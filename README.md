@@ -1,30 +1,30 @@
 
-# mpv.net - fork de manutencao
+# mpv.net - fork de manutenção
 
-Este repositorio e um fork de manutencao do **mpv.net**, um player de midia para Windows com interface grafica moderna, baseado no **mpv/libmpv**.
+Este repositório é um fork de manutenção do **mpv.net**, um player de mídia para Windows com interface gráfica moderna, baseado no **mpv/libmpv**.
 
-O projeto original foi criado e mantido por **Frank Skare / stax76**. Este fork respeita esse trabalho e tem como prioridade inicial preservar o funcionamento existente, melhorar a documentacao em portugues e corrigir bugs simples de forma cuidadosa.
+O projeto original foi criado e mantido por **Frank Skare / stax76**. Este fork respeita esse trabalho e tem como prioridade inicial preservar o funcionamento existente, melhorar a documentação em português brasileiro e corrigir bugs simples de forma cuidadosa.
 
-Neste momento, grandes mudancas de arquitetura nao sao prioridade. A regra principal e manter compatibilidade com o mpv sempre que possivel e evitar alteracoes amplas sem necessidade.
+Neste momento, grandes mudanças de arquitetura não são prioridade. A regra principal é manter compatibilidade com o mpv sempre que possível e evitar alterações amplas sem necessidade.
 
 ## Objetivos iniciais do fork
 
 - Preservar o comportamento atual do mpv.net.
-- Documentar melhor o uso, configuracao e manutencao do projeto.
-- Facilitar o uso em portugues brasileiro.
+- Documentar melhor o uso, a configuração e a manutenção do projeto.
+- Facilitar o uso em português brasileiro.
 - Corrigir bugs simples e bem delimitados.
-- Preparar o repositorio para manutencao assistida por agentes de IA.
+- Preparar o repositório para manutenção assistida por agentes de IA.
 
-## Documentacao em portugues
+## Documentação em português
 
 - [Plano de trabalho do Codex](docs/PLANO-CODEX.md)
-- [Modo portatil](docs/PORTATIL.md)
-- [Configuracao](docs/CONFIGURACAO.md)
+- [Modo portátil](docs/PORTATIL.md)
+- [Configuração](docs/CONFIGURACAO.md)
 - [Atalhos e input.conf](docs/ATALHOS.md)
 - [Build e release](docs/BUILD.md)
 - [Roadmap do fork](docs/ROADMAP.md)
 
-## Exemplos de configuracao
+## Exemplos de configuração
 
 - [Exemplo de mpv.conf](docs/exemplos/mpv.conf)
 - [Exemplo de input.conf](docs/exemplos/input.conf)
@@ -32,15 +32,13 @@ Neste momento, grandes mudancas de arquitetura nao sao prioridade. A regra princ
 
 ## Sobre o mpv.net
 
-O **mpv.net** e uma interface grafica para Windows baseada no [mpv](https://mpv.io). A compatibilidade com o mpv e uma caracteristica central do projeto: a maior parte dos recursos, opcoes de configuracao, scripts e comandos do mpv tambem se aplica ao mpv.net.
+O **mpv.net** é uma interface gráfica para Windows baseada no [mpv](https://mpv.io). A compatibilidade com o mpv é uma característica central do projeto: a maior parte dos recursos, opções de configuração, scripts e comandos do mpv também se aplica ao mpv.net.
 
-Para documentacao tecnica completa do comportamento herdado do mpv, consulte tambem o [manual oficial do mpv](https://mpv.io/manual/master/) e o [manual original do mpv.net](docs/manual.md).
+Para documentação técnica completa do comportamento herdado do mpv, consulte também o [manual oficial do mpv](https://mpv.io/manual/master/) e o [manual original do mpv.net](docs/manual.md).
 
 ---
 
 ## README original
-
-![](docs/img/mpvnet.png)
 
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/stax76/mpv.net) ![GitHub closed issues](https://img.shields.io/github/issues-closed/stax76/mpv.net) ![GitHub All Releases](https://img.shields.io/github/downloads/stax76/mpv.net/total) ![GitHub tag (latest by date)](https://img.shields.io/github/tag-date/stax76/mpv.net) ![GitHub stars](https://img.shields.io/github/stars/stax76/mpv.net)
 
@@ -150,7 +148,7 @@ Features exclusive to mpv.net
 [The mpv.net documentation.](docs/manual.md)
 
 
-## [Contributing](docs/contributing.md)
+## [Contributing](docs/contributing-ptbr.md)
 
 [Contributing section of the manual.](docs/manual.md#contributing)
 

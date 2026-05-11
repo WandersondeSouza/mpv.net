@@ -2,108 +2,216 @@
 
 ## Objetivo
 
-Este documento tem como objetivo ajudar mantenedores, desenvolvedores e agentes de IA a entender a arquitetura geral do projeto mpv.net.
+Este documento ajuda mantenedores, desenvolvedores e agentes de IA a entender a arquitetura geral do fork mpv.net.
 
-O foco inicial é mapear responsabilidades, áreas críticas e fluxo geral da aplicação.
+O foco é mapear responsabilidades reais do código atual, áreas críticas e fluxos que devem ser preservados.
 
 ---
 
-# Visão Geral
+# Visão geral
 
 O mpv.net é um frontend Windows para o mpv/libmpv.
 
-O projeto utiliza o motor do mpv para reprodução multimídia e implementa uma interface gráfica moderna para Windows.
+O projeto usa o motor do mpv para reprodução multimídia e implementa uma camada Windows com WinForms, WPF, comandos próprios, configuração compatível com mpv e integração com recursos do sistema.
 
-A prioridade arquitetural do projeto é:
+Prioridades arquiteturais:
 
-1. compatibilidade com mpv;
-2. simplicidade de configuração;
-3. alta capacidade de customização;
-4. suporte a scripts e extensões;
-5. integração com recursos modernos do Windows.
-
----
-
-# Principais Camadas
-
-## 1. Inicialização da aplicação
-
-Responsável por:
-
-- iniciar a aplicação;
-- carregar configurações;
-- validar ambiente;
-- iniciar integração com mpv/libmpv;
-- criar janela principal.
+1. preservar compatibilidade com mpv/libmpv;
+2. manter configuração baseada em arquivos simples;
+3. preservar scripts, atalhos e comandos existentes;
+4. isolar alterações de UI quando possível;
+5. evitar refatorações amplas sem validação manual.
 
 ---
 
-## 2. Camada de Interface Gráfica
+# Solução e camadas
 
-Responsável por:
+```text
+src/MpvNet.sln
+  MpvNet/
+  MpvNet.Windows/
+  NGettext.Wpf/
+  MpvNet.Extension/
+```
 
-- janela principal;
-- controles visuais;
-- menus;
-- overlays;
-- temas;
-- integração com mouse e teclado.
+## `MpvNet`
 
-Mudanças nessa área podem impactar:
+Núcleo da aplicação:
 
-- fullscreen;
-- atalhos;
-- DPI;
-- comportamento multi-monitor.
-
----
-
-## 3. Integração com mpv/libmpv
-
-Camada crítica do projeto.
-
-Responsável por:
-
-- comunicação com libmpv;
-- propriedades;
-- comandos;
-- eventos;
-- estado de reprodução.
-
-Essa área deve preservar compatibilidade máxima com o comportamento original do mpv.
-
----
-
-## 4. Sistema de configuração
-
-Responsável por:
-
-- carregar mpv.conf;
-- carregar mpvnet.conf;
-- carregar input.conf;
-- resolver pasta de configuração;
-- salvar preferências.
-
----
-
-## 5. Sistema de comandos
-
-Responsável por:
-
-- atalhos;
+- integração com libmpv;
 - comandos internos;
-- integração terminal;
-- comandos específicos do mpv.net.
+- linha de comando;
+- resolução de configuração;
+- `input.conf`;
+- carregamento de extensões;
+- estado do player.
+
+## `MpvNet.Windows`
+
+Frontend Windows:
+
+- entry point;
+- janela principal WinForms;
+- janelas auxiliares WPF;
+- comandos de UI;
+- tema;
+- hotkeys globais;
+- associação de arquivos;
+- integração com APIs nativas do Windows.
+
+## `NGettext.Wpf`
+
+Suporte de localização usado pelo frontend WPF.
+
+## `MpvNet.Extension`
+
+Exemplo de extensão .NET carregável.
 
 ---
 
-## 6. Sistema de scripts e extensões
+# Fluxo de inicialização
 
-Responsável por:
+Arquivo principal: `src/MpvNet.Windows/Program.cs`
 
-- scripts Lua;
-- scripts JavaScript;
-- extensões .NET.
+Fluxo:
+
+1. configura produto, tradução e handlers globais de exceção;
+2. anexa console quando aplicável;
+3. trata `--register-file-associations`;
+4. chama `App.Init()`;
+5. chama `Theme.Init()`;
+6. cria `Mutex` baseado em `App.ConfPath`;
+7. aplica regra de instância única, fila ou múltiplas instâncias;
+8. processa comandos informativos de terminal;
+9. inicia modo sem janela quando `--o=` está presente;
+10. abre `WinForms.MainForm` no fluxo normal.
+
+Arquivos relacionados:
+
+- `src/MpvNet/App.cs`;
+- `src/MpvNet/CommandLine.cs`;
+- `src/MpvNet.Windows/WinForms/MainForm.cs`;
+- `src/MpvNet.Windows/UI/Theme.cs`.
+
+---
+
+# Integração com mpv/libmpv
+
+Arquivos principais:
+
+- `src/MpvNet/Player.cs`;
+- `src/MpvNet/MpvClient.cs`;
+- `src/MpvNet/Native/LibMpv.cs`.
+
+Responsabilidades:
+
+- criar contexto `mpv_create`;
+- registrar eventos;
+- configurar propriedades iniciais;
+- definir `config-dir`;
+- carregar `input.conf` em memória;
+- processar argumentos antes de `mpv_initialize`;
+- chamar `mpv_initialize`;
+- criar cliente `mpvnet`;
+- iniciar loops de evento;
+- observar propriedades como `pause`, `video-rotate` e `playlist-pos`;
+- destruir handles no encerramento.
+
+Essa camada é a área de maior risco do projeto.
+
+---
+
+# Interface gráfica
+
+Arquivos principais:
+
+- `src/MpvNet.Windows/WinForms/MainForm.cs`;
+- `src/MpvNet.Windows/WPF/ConfWindow.xaml`;
+- `src/MpvNet.Windows/WPF/InputWindow.xaml`;
+- `src/MpvNet.Windows/WPF/Views/AboutWindow.xaml`;
+- `src/MpvNet.Windows/WPF/Resources.xaml`;
+- `src/MpvNet.Windows/UI/Theme.cs`;
+- `src/MpvNet.Windows/UI/GlobalHotkey.cs`.
+
+A janela principal é WinForms. Janelas auxiliares e editores usam WPF. Essa combinação exige cuidado com ownership de janela, DPI, fullscreen e integração com o handle nativo usado pelo libmpv.
+
+---
+
+# Sistema de configuração
+
+Arquivos:
+
+- `src/MpvNet/Player.cs`;
+- `src/MpvNet/App.cs`;
+- `src/MpvNet/Settings.cs`;
+- `src/MpvNet/InputConf.cs`;
+- `src/MpvNet.Windows/UI/Theme.cs`;
+- `src/MpvNet.Windows/UI/GlobalHotkey.cs`.
+
+Pasta de configuração:
+
+1. `MPVNET_HOME`;
+2. `portable_config`;
+3. `%APPDATA%\mpv.net`.
+
+Arquivos:
+
+- `mpv.conf`;
+- `mpvnet.conf`;
+- `input.conf`;
+- `settings.xml`;
+- `theme.conf`;
+- `global-input.conf`.
+
+---
+
+# Sistema de comandos
+
+Arquivos:
+
+- `src/MpvNet/Command.cs`;
+- `src/MpvNet.Windows/GuiCommand.cs`;
+- `src/MpvNet/InputHelp.cs`;
+- `src/MpvNet/InputConf.cs`;
+- `src/MpvNet/CommandLine.cs`.
+
+O projeto aceita comandos mpv diretamente e adiciona comandos próprios, normalmente chamados por:
+
+```text
+script-message-to mpvnet <comando>
+```
+
+Comandos marcados como deprecated ainda podem ser usados por configurações antigas e não devem ser removidos sem migração.
+
+---
+
+# Scripts e extensões
+
+Scripts Lua/JavaScript são responsabilidade do mpv e seguem a estrutura de configuração compatível:
+
+- `scripts`;
+- `script-opts`.
+
+Extensões .NET são carregadas de:
+
+```text
+extensions
+```
+
+O carregamento é feito por `ExtensionLoader` após a janela principal informar que está carregada.
+
+---
+
+# Build e empacotamento
+
+Arquivos:
+
+- `src/MpvNet.Windows/MpvNet.Windows.csproj`;
+- `src/Directory.Packages.props`;
+- `src/Tools/release-mpv.net.ps1`;
+- `src/Setup/Inno/inno-setup.iss`.
+
+O executável é `mpvnet.exe`. O script de release atual publica `win-x64` e `win-arm64`, copia DLLs nativas, cria ZIPs e gera instalador x64.
 
 ---
 
@@ -111,45 +219,54 @@ Responsável por:
 
 ## Integração com libmpv
 
-Mudanças podem quebrar:
+Risco alto:
 
 - reprodução;
-- sincronização;
 - eventos;
-- compatibilidade com scripts.
+- propriedades;
+- threading;
+- scripts;
+- compatibilidade com mpv.
 
 ## Configuração
 
-Mudanças podem quebrar instalações existentes.
+Risco alto:
 
-## UI
+- pasta de configuração;
+- migrações automáticas;
+- `input.conf`;
+- `mpv.conf`;
+- `mpvnet.conf`;
+- modo portátil.
 
-Mudanças podem impactar:
+## UI/fullscreen
 
-- usabilidade;
+Risco médio/alto:
+
+- DPI;
 - fullscreen;
-- OSC;
-- menu de contexto.
+- múltiplos monitores;
+- menu de contexto;
+- foco;
+- atalhos;
+- tema claro/escuro.
+
+## Release
+
+Risco médio:
+
+- caminhos fixos de ferramentas;
+- dependências nativas;
+- publicação Debug;
+- ZIP portátil sem `portable_config`.
 
 ---
 
-# Prioridades deste fork
+# Recomendações para agentes
 
-Este fork inicialmente prioriza:
-
-1. documentação técnica;
-2. documentação em português brasileiro;
-3. preparação para agentes de IA;
-4. entendimento da arquitetura;
-5. melhoria gradual da manutenção.
-
----
-
-# Próximos documentos recomendados
-
-- build-ptbr.md
-- commands-ptbr.md
-- configuration-system-ptbr.md
-- ui-ptbr.md
-- mpv-integration-ptbr.md
-- contributing-ptbr.md
+1. Antes de alterar código, localizar a camada correta.
+2. Preferir mudanças pequenas.
+3. Preservar comandos, opções e arquivos existentes.
+4. Atualizar documentação quando comportamento mudar.
+5. Validar manualmente fullscreen, input e configuração quando tocar UI ou libmpv.
+6. Separar documentação validada de hipóteses ainda pendentes.

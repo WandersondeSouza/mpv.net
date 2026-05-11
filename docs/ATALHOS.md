@@ -52,24 +52,25 @@ Right seek 10
 
 Nesse caso, o último comando pode sobrescrever o primeiro.
 
-## 2. Diferença entre versões antigas e novas
+### 2. Diferença entre versões antigas e novas
 
 Alguns usuários relataram diferenças entre versões antigas do mpv.net e versões mais novas.
 
 Em alguns casos, atalhos antigos continuam funcionando, mas o editor visual pode não refletir corretamente as mudanças.
 
-## 3. Editor de atalhos
+### 3. Editor de atalhos
 
 O editor de atalhos do mpv.net ajuda a editar o `input.conf`, mas algumas configurações avançadas ainda podem precisar de edição manual.
 
 ## Como restaurar os atalhos
 
-Uma forma simples de restaurar os atalhos é:
+Uma forma simples de testar sem as customizações atuais é:
 
 1. fechar o mpv.net;
-2. renomear o arquivo `input.conf`;
+2. renomear temporariamente o arquivo `input.conf`;
 3. abrir novamente o mpv.net;
-4. criar um novo arquivo padrão.
+4. testar os atalhos internos/padrão do mpv.net;
+5. recriar apenas os atalhos necessários no `input.conf`.
 
 ## Tarefa futura para o Codex
 

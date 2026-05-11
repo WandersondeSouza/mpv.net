@@ -2,95 +2,191 @@
 
 ## Objetivo
 
-Documentar como o mpv.net localiza, carrega e utiliza arquivos de configuração.
+Documentar como o mpv.net localiza, carrega, migra e utiliza arquivos de configuração.
 
 ---
 
 # Visão geral
 
-O mpv.net utiliza uma abordagem compatível com o mpv, baseada principalmente em arquivos de configuração simples.
+O mpv.net mantém compatibilidade com o modelo do mpv: arquivos de texto simples, pasta de configuração previsível e suporte a scripts.
 
-Isso facilita:
+O núcleo da resolução de configuração está em:
 
-- customização;
-- portabilidade;
-- scripts;
-- backup;
-- automação.
+- `src/MpvNet/Player.cs`;
+- `src/MpvNet/App.cs`;
+- `src/MpvNet/InputConf.cs`;
+- `src/MpvNet/Settings.cs`;
+- `src/MpvNet.Windows/UI/Theme.cs`;
+- `src/MpvNet.Windows/UI/GlobalHotkey.cs`.
 
 ---
 
-# Ordem de resolução da pasta de configuração
+# Ordem real da pasta de configuração
 
-Segundo a documentação atual:
+Implementação: `Player.ConfigFolder`.
 
-1. variável de ambiente `MPVNET_HOME`;
-2. `portable_config` no diretório do executável;
-3. `%APPDATA%\\mpv.net`.
+Ordem:
 
-Essa ordem é crítica para compatibilidade.
+1. variável de ambiente `MPVNET_HOME`, quando aponta para um diretório existente;
+2. pasta `portable_config` ao lado do executável;
+3. `%APPDATA%\mpv.net`, criada automaticamente se não existir.
+
+Essa ordem é crítica para compatibilidade com instalações existentes e modo portátil.
 
 ---
 
 # Arquivos principais
 
-## mpv.conf
+| Arquivo | Origem no código | Função |
+| --- | --- | --- |
+| `mpv.conf` | `Player.ConfPath` | Opções do mpv e algumas opções processadas por `Player.ProcessProperty`. |
+| `mpvnet.conf` | `App.ConfPath` | Opções específicas do frontend mpv.net. |
+| `input.conf` | `App.InputConf` | Atalhos, comandos e menu. |
+| `settings.xml` | `SettingsManager.SettingsFile` | Preferências persistidas pelo mpv.net. |
+| `theme.conf` | `Theme.Init()` | Tema visual customizado. |
+| `global-input.conf` | `GlobalHotkey` | Hotkeys globais. |
 
-Responsável pelas configurações do mpv.
+Pastas:
 
-Exemplos:
-
-- vídeo;
-- áudio;
-- fullscreen;
-- HDR;
-- interpolação;
-- escalonamento.
-
----
-
-## mpvnet.conf
-
-Responsável pelas opções específicas do mpv.net.
-
-Exemplos:
-
-- comportamento da janela;
-- temas;
-- recursos específicos da interface;
-- comportamento de instância única.
+| Pasta | Função |
+| --- | --- |
+| `scripts` | Scripts Lua/JavaScript do mpv. |
+| `script-opts` | Configuração dos scripts. |
+| `extensions` | Extensões .NET carregadas pelo mpv.net. |
 
 ---
 
-## input.conf
+# `mpv.conf`
 
-Responsável pelos atalhos e comandos.
+Arquivo de opções do mpv.
 
-Pode conter:
+Além de ser lido pelo mpv, o mpv.net também processa algumas opções em `Player.ProcessProperty`, incluindo:
 
-- atalhos de teclado;
-- comandos personalizados;
-- customizações do menu de contexto.
+- `autofit`;
+- `autofit-smaller`;
+- `autofit-larger`;
+- `border`;
+- `fs` / `fullscreen`;
+- `gpu-api`;
+- `keepaspect-window`;
+- `screen`;
+- `snap-window`;
+- `taskbar-progress`;
+- `vo`;
+- `window-maximized`;
+- `window-minimized`;
+- `title-bar`.
+
+Cuidados:
+
+- preservar sintaxe compatível com mpv;
+- evitar mudar o parser sem validar arquivos antigos;
+- lembrar que linhas sem `=` podem ser interpretadas como `=yes` quando o nome é simples.
 
 ---
 
-# Pastas importantes
+# `mpvnet.conf`
 
-## scripts
+Arquivo de opções específicas do mpv.net, processado por `App.ProcessProperty`.
 
-Scripts Lua e JavaScript.
+Opções observadas:
+
+| Opção | Valor padrão no código | Função |
+| --- | --- | --- |
+| `auto-load-folder` | `no` | Controla carregamento automático da pasta. |
+| `autofit-audio` | `70%` | Tamanho de janela para áudio. |
+| `autofit-image` | `80%` | Tamanho de janela para imagem. |
+| `dark-mode` | `always` | Modo escuro/claro. |
+| `dark-theme` | `dark` | Tema escuro. |
+| `debug-mode` | `no` | Ativa log `MpvNet-debug.log`. |
+| `language` | `system` | Idioma da interface. |
+| `light-theme` | `light` | Tema claro. |
+| `media-info` | `yes` | Controla recurso de media info. |
+| `menu-syntax` | `#menu:` | Sintaxe antiga/nova para menu em `input.conf`. |
+| `minimum-aspect-ratio` | `0` | Limite de proporção para vídeo. |
+| `minimum-aspect-ratio-audio` | `0` | Limite de proporção para áudio. |
+| `process-instance` | `single` | Controle de instância: single/queue/multi. |
+| `queue` | `no` | Modo fila. |
+| `recent-count` | `15` | Quantidade de recentes. |
+| `remember-audio-device` | `yes` | Persiste dispositivo de áudio. |
+| `remember-volume` | `yes` | Persiste volume/mute. |
+| `remember-window-position` | `no` | Persiste posição da janela. |
+| `start-size` | `height-session` | Tamanho inicial da janela. |
+
+Opções desconhecidas são registradas como erro quando `App.Init()` processa o arquivo.
 
 ---
 
-## script-opts
+# `input.conf`
 
-Configuração dos scripts.
+Responsável por atalhos, comandos e menu.
+
+Arquivos envolvidos:
+
+- `src/MpvNet/InputConf.cs`;
+- `src/MpvNet/InputHelp.cs`;
+- `src/MpvNet/Binding.cs`;
+- `src/MpvNet/Command.cs`;
+- `src/MpvNet.Windows/GuiCommand.cs`.
+
+Comportamento importante:
+
+- se o arquivo usa a sintaxe de menu (`App.MenuSyntax`), o conteúdo é usado como base de menu;
+- caso contrário, os atalhos padrão de `InputHelp.GetDefaults()` são combinados com os atalhos do usuário;
+- atalhos do usuário podem substituir atalhos padrão;
+- o conteúdo final pode ser passado ao mpv via `input-conf=memory://...`.
+
+Migração automática observada:
+
+- `script-message mpv.net` vira `script-message-to mpvnet`;
+- `/docs/Manual.md` vira `/docs/manual.md`;
+- link antigo `stax76/mpv.net` vira `mpvnet-player/mpv.net`;
+- antes de alterar o arquivo, é criado backup em `input.conf.backup`.
 
 ---
 
-## extensions
+# `settings.xml`
 
-Extensões .NET.
+Arquivo persistido por `SettingsManager`.
+
+Usado para preferências internas como:
+
+- volume;
+- mute;
+- dispositivo de áudio;
+- arquivos recentes;
+- flags de migração já aplicadas.
+
+Esse arquivo não substitui `mpv.conf` ou `mpvnet.conf`; ele armazena estado interno do frontend.
+
+---
+
+# Temas e hotkeys globais
+
+`theme.conf` é lido por `Theme.Init()` quando existe na pasta de configuração.
+
+`global-input.conf` é lido por `GlobalHotkey` para registrar hotkeys globais no Windows.
+
+Mudanças nesses fluxos devem ser validadas com tema claro/escuro, permissões de registro de hotkey e conflito com outros programas.
+
+---
+
+# Linha de comando e configuração
+
+`CommandLine` processa argumentos `--nome=valor`.
+
+Algumas opções são aplicadas antes de `mpv_initialize`, por exemplo:
+
+- `config-dir`;
+- `input-conf`;
+- `scripts`;
+- `script-opts`;
+- `terminal`;
+- `input-terminal`;
+- `idle`;
+- `log-file`.
+
+Quando `--config-dir` é usado, o caminho do `input.conf` também é ajustado para essa pasta.
 
 ---
 
@@ -98,32 +194,35 @@ Extensões .NET.
 
 ## Compatibilidade
 
-Mudanças no sistema de configuração podem quebrar instalações existentes.
+Não alterar nomes de arquivos, ordem de resolução ou sintaxe sem migração.
 
-## Migração de versões
+## Modo portátil
 
-Mudanças de sintaxe devem considerar compatibilidade retroativa.
+`portable_config` só é usado quando a pasta existe ao lado do executável.
+
+## Migrações automáticas
+
+Migrações em `App.ApplyShowMenuFix`, `App.ApplyInputDefaultBindingsFix` e `InputConf.UpdateContent` alteram arquivos do usuário. Qualquer ajuste deve ser conservador.
 
 ## Performance
 
-Leitura excessiva de configuração pode impactar startup.
+A configuração é lida no startup. Evite leituras repetidas ou validações pesadas.
 
 ---
 
 # Recomendações para manutenção
 
-1. Não alterar nomes de arquivos sem necessidade.
-2. Preservar comportamento padrão.
-3. Documentar qualquer nova opção.
-4. Validar impacto em instalações portáteis.
-5. Testar comportamento com múltiplas configurações.
+1. Validar `MPVNET_HOME`, `portable_config` e `%APPDATA%\mpv.net`.
+2. Testar `mpv.conf`, `mpvnet.conf` e `input.conf` separadamente.
+3. Preservar compatibilidade com arquivos antigos.
+4. Criar backup antes de qualquer migração que altere arquivo do usuário.
+5. Documentar novas opções no manual e neste arquivo.
+6. Validar o editor visual quando alterar opções expostas na UI.
 
 ---
 
-# Melhorias futuras sugeridas
+# Pendências
 
-- validação automática de configuração;
-- exportação/importação de perfil;
-- documentação automática das opções;
-- backup automático opcional;
-- modo seguro para inicialização.
+- Gerar documentação automática a partir de `App.ProcessProperty`, `Player.ProcessProperty` e comandos registrados.
+- Validar se o ZIP portátil deve incluir `portable_config` por padrão.
+- Documentar exemplos avançados de `theme.conf` e `global-input.conf`.

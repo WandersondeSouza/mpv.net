@@ -748,7 +748,7 @@ stable release, no changes since the last beta
 5.4.4.5 Beta
 ============
 
-- overhaul of the [webpage](README.md) and the [manual](Manual.md).
+- overhaul of the [webpage](../README.md) and the [manual](manual.md).
 - change that possibly could fix a multimedia keyboard volume issue.
 
 
