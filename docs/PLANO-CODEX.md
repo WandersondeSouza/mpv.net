@@ -13,6 +13,17 @@ Este fork tem como foco:
 - evitar grandes mudanças de arquitetura no início;
 - preparar o projeto para manutenção contínua.
 
+## Documentos relacionados
+
+- [README do fork](../README.md)
+- [Modo portátil](PORTATIL.md)
+- [Configuração](CONFIGURACAO.md)
+- [Atalhos](ATALHOS.md)
+- [Build e release](BUILD.md)
+- [Roadmap](ROADMAP.md)
+- [Template de bug](../.github/ISSUE_TEMPLATE/bug_report.md)
+- [Template de melhoria](../.github/ISSUE_TEMPLATE/feature_request.md)
+
 ---
 
 ## Regra principal para o Codex
