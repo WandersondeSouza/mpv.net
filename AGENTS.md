@@ -24,7 +24,20 @@ Este arquivo orienta agentes de IA, Codex, GitHub Copilot e ferramentas automati
 - README.md
 - docs/manual.md
 - docs/changelog.md
+- docs/PLANO-CODEX.md
+- documentação técnica em docs/developer/
 - arquivos relacionados à funcionalidade alterada
+
+## Artefatos de IA do fork
+
+Além deste arquivo, o repositório possui materiais auxiliares em `.ai/`:
+
+- `.ai/skills/mpvnet-maintainer.md`: skill base para manutenção conservadora do fork;
+- `.ai/agents/`: perfis de agentes por área crítica;
+- `.ai/prompts/`: prompts reutilizáveis para auditorias, bugs, configuração, libmpv, release e documentação;
+- `.ai/mcp/README.md`: recomendações de MCPs úteis para trabalhar no projeto.
+
+Esses arquivos não substituem a análise do código atual. Eles servem como ponto de partida para agentes trabalharem com menos risco.
 
 ## Áreas críticas
 
