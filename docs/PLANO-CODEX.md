@@ -1,17 +1,71 @@
 # Plano de Trabalho para o Codex — Fork mpv.net
 
-Este documento organiza o trabalho inicial de manutenção do fork do **mpv.net**.
+Este documento organiza a fase atual de manutenção do fork do **mpv.net**.
 
-O objetivo é trabalhar com calma, corrigindo uma coisa por vez, começando pelas tarefas mais simples e avançando para as mais difíceis.
+O fork deixou a fase de documentação inicial pura e agora entra em uma fase de **manutenção prática assistida**, com foco em bugs pequenos, melhorias de empacotamento e documentação complementar conforme cada correção for feita.
+
+## Objetivo atual
+
+Trabalhar com calma, corrigindo uma coisa por vez, começando pelas tarefas mais simples e avançando para as mais difíceis.
+
+A documentação básica já foi iniciada. A partir de agora, a prioridade é:
+
+- corrigir bugs pequenos e bem delimitados;
+- validar o pacote portátil;
+- melhorar a experiência inicial do usuário;
+- manter a documentação atualizada junto com cada correção;
+- evitar grandes mudanças de arquitetura;
+- preparar o repositório para manutenção contínua e segura.
+
+## Estratégia da fase atual
+
+A divisão recomendada de esforço nesta fase é:
+
+```text
+70% correção de bugs e melhorias pequenas
+30% documentação complementar e organização
+```
+
+Isto significa que não devemos continuar apenas documentando. Também não devemos iniciar grandes funcionalidades novas.
+
+O foco correto agora é transformar a documentação existente em trabalho prático, sempre com alterações pequenas, rastreáveis e fáceis de testar.
+
+## Foco do fork
 
 Este fork tem como foco:
 
 - preservar o projeto original;
 - respeitar o trabalho de Frank Skare / stax76;
-- melhorar a documentação;
+- manter compatibilidade com mpv/libmpv sempre que possível;
+- melhorar a documentação em português brasileiro;
 - corrigir bugs simples primeiro;
+- melhorar o pacote portátil e a experiência de configuração;
 - evitar grandes mudanças de arquitetura no início;
 - preparar o projeto para manutenção contínua.
+
+## O que pode ser feito agora
+
+Nesta fase, o Codex pode trabalhar em:
+
+- ajustes no pacote portátil;
+- validação da pasta `portable_config`;
+- melhorias simples em arquivos de configuração;
+- investigação de atalhos duplicados no `input.conf`;
+- correções pequenas e testáveis de bugs;
+- documentação complementar relacionada ao bug corrigido;
+- melhoria de templates, instruções de build e instruções de teste.
+
+## O que ainda deve ser evitado
+
+Nesta fase, o Codex não deve fazer:
+
+- grandes refatorações;
+- mudança ampla de arquitetura;
+- troca de tecnologia de interface;
+- alteração grande no ciclo de vida do player;
+- funcionalidades grandes como IPTV, AI upscaling, LUT, uosc ou mudanças profundas no yt-dlp;
+- alterações que mexam em muitos arquivos sem necessidade clara;
+- correções sem explicar como testar.
 
 ## Documentos relacionados
 
@@ -32,215 +86,71 @@ Antes de alterar qualquer arquivo:
 
 1. Leia o README atual.
 2. Leia este plano.
-3. Liste quais arquivos pretende alterar.
-4. Explique o motivo da alteração.
-5. Faça uma alteração pequena por vez.
-6. Ao final, informe:
+3. Identifique exatamente qual etapa será trabalhada.
+4. Liste quais arquivos pretende alterar.
+5. Explique o motivo da alteração.
+6. Faça uma alteração pequena por vez.
+7. Ao final, informe:
    - o que foi alterado;
    - quais arquivos foram modificados;
    - como testar;
+   - quais riscos existem;
    - qual deve ser o próximo passo.
 
 Não faça grandes refatorações sem necessidade.
 
 ---
 
-# Etapa 1 — Organizar o README em português
+# Situação atual da documentação inicial
 
-## Objetivo
+A documentação inicial já está suficiente para iniciar bugs e melhorias pequenas.
 
-Transformar o README do fork em um documento claro para usuários e desenvolvedores brasileiros.
+Já existem documentos e estruturas para:
 
-## Tarefas
+- README do fork;
+- modo portátil;
+- configuração;
+- atalhos;
+- build e release;
+- roadmap;
+- exemplos de configuração;
+- templates de bug e melhoria.
 
-- Explicar o que é o mpv.net.
-- Informar que este repositório é um fork de manutenção.
-- Dar crédito ao projeto original e ao mantenedor Frank Skare / stax76.
-- Explicar que o foco inicial é estabilidade, documentação e correções simples.
-- Criar seção de instalação.
-- Criar seção de uso portátil.
-- Criar seção de arquivos de configuração.
-- Criar seção de como reportar bugs.
-- Criar seção de roadmap.
+Portanto, a documentação continua importante, mas agora deve acompanhar as correções reais.
 
-## Resultado esperado
+Regra prática:
 
-README em português, limpo, objetivo e fácil de entender.
+```text
+Corrigiu um bug ou melhorou um comportamento?
+Atualize também a documentação relacionada, se necessário.
+```
 
 ---
 
-# Etapa 2 — Documentar o modo portátil
+# Ordem recomendada da fase atual
 
-## Problema
+## Etapa 1 — Validar pacote portátil e portable_config
 
-A versão ZIP é chamada de portátil, mas para funcionar como portátil real o usuário precisa criar uma pasta chamada:
+### Objetivo
 
-```text
-portable_config
-```
+Confirmar se o pacote ZIP portátil entrega uma estrutura clara para o usuário e se a pasta `portable_config` pode ser incluída automaticamente ou orientada de forma mais objetiva.
 
-ao lado do arquivo:
-
-```text
-mpvnet.exe
-```
-
-Sem essa pasta, as configurações podem ir para:
-
-```text
-C:\Users\<usuario>\AppData\Roaming\mpv.net
-```
-
-## Tarefas
-
-- Criar o arquivo:
-
-```text
-docs/PORTATIL.md
-```
-
-- Explicar a estrutura correta:
-
-```text
-mpvnet.exe
-portable_config/
-  mpv.conf
-  input.conf
-  scripts/
-  script-opts/
-```
-
-- Explicar que `portable_config` deve ficar na mesma pasta do `mpvnet.exe`.
-- Explicar a diferença entre:
-  - versão sem instalador;
-  - versão realmente portátil.
-
-## Melhoria futura
-
-Verificar se o script de release pode incluir automaticamente a pasta `portable_config` no ZIP portátil.
-
----
-
-# Etapa 3 — Criar exemplos de configuração
-
-## Problema
-
-Alguns usuários não encontram os arquivos:
-
-```text
-mpv.conf
-input.conf
-```
-
-ou o programa cria arquivos vazios.
-
-## Tarefas
-
-Criar a pasta:
-
-```text
-docs/exemplos/
-```
-
-Criar os arquivos:
-
-```text
-docs/exemplos/mpv.conf
-docs/exemplos/input.conf
-docs/exemplos/thumbfast.conf
-```
-
-## Conteúdo esperado
-
-O `mpv.conf` deve ter configurações simples e comentadas.
-
-O `input.conf` deve ter atalhos básicos e explicar que teclas duplicadas podem causar conflito.
-
-O `thumbfast.conf` deve explicar que, em alguns casos, pode ser necessário apontar para um `mpv.exe` separado.
-
----
-
-# Etapa 4 — Documentar atalhos e conflitos no input.conf
-
-## Problema
-
-Alguns usuários alteram atalhos no `input.conf`, mas as alterações não funcionam.
-
-Possíveis causas:
-
-- mesma tecla configurada mais de uma vez;
-- editor de atalhos com limitações;
-- diferença entre configuração antiga e nova;
-- conflito entre atalhos do mpv e do mpv.net.
-
-## Tarefas
-
-Criar o arquivo:
-
-```text
-docs/ATALHOS.md
-```
-
-Explicar:
-
-- como editar `input.conf`;
-- como evitar teclas duplicadas;
-- que, se a mesma tecla aparecer mais de uma vez, a última configuração pode prevalecer;
-- como restaurar atalhos padrão;
-- como testar alteração de atalho.
-
-## Melhoria futura
-
-Criar no código uma validação para detectar teclas duplicadas antes de salvar o `input.conf`.
-
----
-
-# Etapa 5 — Criar modelo para reportar bugs
-
-## Problema
-
-Muitas issues não trazem informações suficientes para reproduzir o erro.
-
-## Tarefas
-
-Criar:
-
-```text
-.github/ISSUE_TEMPLATE/bug_report.md
-.github/ISSUE_TEMPLATE/feature_request.md
-```
-
-## O modelo de bug deve pedir:
-
-- versão do mpv.net;
-- versão do Windows;
-- placa de vídeo;
-- se está usando versão instalada ou portátil;
-- se o problema acontece também no mpv.exe;
-- passos para reproduzir;
-- resultado esperado;
-- resultado atual;
-- arquivos `mpv.conf` e `input.conf`, se forem relevantes;
-- logs, prints ou vídeos, se possível.
-
----
-
-# Etapa 6 — Ajustar pacote portátil
-
-## Problema
-
-O pacote ZIP portátil deveria ser mais claro e fácil de usar.
-
-## Tarefas
-
-Verificar os scripts:
+### Arquivos prováveis
 
 ```text
 src/Tools/release-mpv.net.ps1
 src/Tools/update-mpv.ps1
+docs/PORTATIL.md
+docs/BUILD.md
+docs/exemplos/mpv.conf
+docs/exemplos/input.conf
 ```
 
-Verificar se o pacote ZIP pode incluir:
+### Tarefas
+
+- Verificar como o ZIP portátil é montado.
+- Verificar se existe lógica para incluir arquivos/pastas extras.
+- Avaliar se é seguro incluir:
 
 ```text
 portable_config/
@@ -250,116 +160,180 @@ portable_config/scripts/
 portable_config/script-opts/
 ```
 
-## Resultado esperado
+- Se a alteração no pacote for simples e segura, propor correção pequena.
+- Se a alteração exigir mais análise, documentar claramente o motivo.
+- Atualizar a documentação do modo portátil, se necessário.
 
-Ao baixar a versão portátil, o usuário já terá uma estrutura clara para configuração.
+### Resultado esperado
+
+O usuário deve entender claramente a diferença entre versão sem instalador e versão realmente portátil.
 
 ---
 
-# Etapa 7 — Investigar problema de caminhos longos
+## Etapa 2 — Validar atalhos e conflitos no input.conf
 
-## Issue relacionada
+### Objetivo
 
-Problema: mpv.net não abre vídeos com caminho muito longo, enquanto o mpv.exe consegue abrir.
+Investigar se há duplicidade ou conflito de atalhos que impeça alterações feitas pelo usuário de funcionarem corretamente.
 
-## Tarefas
+### Arquivos prováveis
 
-- Criar teste com arquivo em caminho longo.
-- Testar abertura via:
-  - Explorer;
-  - linha de comando;
-  - outro programa externo.
-- Verificar se o problema está no tratamento de argumentos.
-- Verificar suporte a long path no Windows.
-- Verificar uso de prefixo:
+```text
+docs/ATALHOS.md
+docs/exemplos/input.conf
+```
+
+Também procurar no código por áreas relacionadas ao editor de atalhos e salvamento de `input.conf`.
+
+### Tarefas
+
+- Localizar onde o `input.conf` é carregado e salvo.
+- Verificar se o app pode gerar atalhos duplicados.
+- Verificar se há diferença entre atalhos do mpv e atalhos do mpv.net.
+- Se possível, propor validação simples ou aviso.
+- Atualizar a documentação com a regra prática para evitar duplicidade.
+
+### Resultado esperado
+
+Reduzir confusão do usuário ao editar atalhos.
+
+---
+
+## Etapa 3 — Investigar thumbfast na versão portátil
+
+### Objetivo
+
+Verificar se o script thumbfast falha na versão portátil por depender de `mpv.exe` separado ou por limitação do empacotamento.
+
+### Arquivos prováveis
+
+```text
+docs/exemplos/thumbfast.conf
+docs/PORTATIL.md
+docs/CONFIGURACAO.md
+```
+
+Também procurar no repositório referências a `thumbfast`, `script-opts`, `mpv.exe` e scripts Lua.
+
+### Tarefas
+
+- Verificar como scripts são carregados no modo portátil.
+- Verificar se `thumbfast.conf` precisa apontar para um `mpv.exe` separado.
+- Documentar configuração recomendada.
+- Evitar incluir binários externos sem análise.
+
+### Resultado esperado
+
+Ter uma orientação clara para usuários que usam thumbfast na versão portátil.
+
+---
+
+## Etapa 4 — Investigar caminhos longos no Windows
+
+### Objetivo
+
+Entender por que o mpv.net pode falhar com caminhos muito longos enquanto o `mpv.exe` consegue abrir.
+
+### Arquivos prováveis
+
+Procurar no código por:
+
+```text
+args
+command line
+open file
+playlist
+File.Exists
+Path
+```
+
+### Tarefas
+
+- Criar cenário de teste com caminho longo.
+- Verificar abertura via Explorer.
+- Verificar abertura via linha de comando.
+- Verificar abertura por associação de arquivo.
+- Avaliar uso de prefixo:
 
 ```text
 \\?\
 ```
 
-## Solução temporária
+- Propor correção pequena apenas se o ponto exato for identificado.
+- Caso contrário, documentar workaround temporário.
 
-Documentar workaround usando script `.bat`, se necessário.
+### Resultado esperado
 
----
-
-# Etapa 8 — Investigar thumbfast na versão portátil
-
-## Problema
-
-Na versão 7.1.2.0 portátil, o script thumbfast pode falhar.
-
-Um usuário relatou que funcionou ao colocar um `mpv.exe` original na pasta raiz e configurar o `thumbfast.conf` para apontar para ele.
-
-## Tarefas
-
-- Testar thumbfast em versão portátil.
-- Verificar se thumbfast chama `mpv.exe` ou `mpvnet.exe`.
-- Verificar se o empacotamento self-contained afeta o script.
-- Documentar configuração recomendada.
-- Avaliar se o pacote deve incluir ou orientar o uso de `mpv.exe` separado.
+Identificar se o problema está no tratamento de argumentos, normalização de caminho ou limitação do Windows/.NET.
 
 ---
 
-# Etapa 9 — Investigar autoplay com pause=yes
+## Etapa 5 — Investigar autoplay com pause=yes
 
-## Problema
+### Objetivo
 
-Mesmo usando:
+Investigar por que alguns vídeos podem começar automaticamente mesmo com:
 
 ```text
 pause=yes
 drag-and-drop=append
 ```
 
-E fila de arquivos, alguns vídeos começam a tocar automaticamente.
+### Tarefas
 
-## Tarefas
-
-- Reproduzir o problema com vários vídeos.
-- Testar abertura por:
-  - menu do app;
-  - arrastar e soltar;
-  - associação de arquivo;
-  - linha de comando.
+- Reproduzir o problema com múltiplos vídeos.
+- Testar abertura pelo menu do app.
+- Testar arrastar e soltar.
+- Testar associação de arquivo.
+- Testar linha de comando.
 - Verificar se `pause=yes` é perdido ao carregar próximo item.
-- Verificar comportamento com playlist/fila.
-- Criar correção pequena e testável.
+- Criar correção pequena e testável, se possível.
+
+### Resultado esperado
+
+Entender se o problema vem do fluxo de playlist/fila ou de alguma opção sobrescrita pelo mpv.net.
 
 ---
 
-# Etapa 10 — Bugs visuais e integração com Windows
+## Etapa 6 — Investigar bugs visuais simples
 
-## Problemas
+### Objetivo
+
+Tratar bugs visuais pequenos e bem delimitados.
+
+### Exemplos
 
 - Flash branco ao fechar janela.
-- Área fora do vídeo aparece cinza em vez de preta.
-- Comportamentos diferentes após updates do Windows 11.
+- Área fora do vídeo cinza em vez de preta.
+- Comportamentos visuais diferentes após atualizações do Windows 11.
 
-## Tarefas
+### Tarefas
 
 - Verificar cor de fundo da janela.
 - Verificar renderização ao fechar.
 - Testar modo escuro.
-- Comparar com mpv.exe.
-- Criar correções pequenas, sem alterar arquitetura geral.
+- Comparar com `mpv.exe` quando fizer sentido.
+- Evitar mexer no ciclo de vida completo da janela sem necessidade.
+
+### Resultado esperado
+
+Correções pequenas de UX visual sem alterar arquitetura geral.
 
 ---
 
-# Ordem recomendada de trabalho
+# Backlog futuro
 
-1. README em português.
-2. Documentação do modo portátil.
-3. Exemplos de `mpv.conf` e `input.conf`.
-4. Documentação de atalhos.
-5. Templates de issue.
-6. Ajuste do ZIP portátil.
-7. Caminhos longos.
-8. Thumbfast.
-9. Autoplay.
-10. Bugs visuais.
-11. OneDrive/cloud files.
-12. Melhorias grandes como uosc, yt-dlp, LUT e AI upscaling.
+Somente depois da fase atual, avaliar:
+
+- OneDrive/cloud files;
+- integração mais avançada com yt-dlp;
+- uosc;
+- LUT;
+- AI upscaling;
+- melhorias grandes de UX;
+- recursos voltados a IPTV ou media center.
+
+Esses itens não são prioridade agora.
 
 ---
 
@@ -372,29 +346,89 @@ Leia o arquivo docs/PLANO-CODEX.md.
 
 Vamos trabalhar apenas na etapa: [NOME DA ETAPA].
 
+Objetivo desta rodada:
+[DESCREVA O OBJETIVO EM UMA FRASE]
+
 Antes de alterar qualquer arquivo:
 1. Analise o problema.
 2. Liste os arquivos envolvidos.
 3. Explique a solução proposta.
-4. Só depois faça alterações pequenas e objetivas.
+4. Informe o risco da alteração.
+5. Só depois faça alterações pequenas e objetivas.
 
-Não faça refatoração grande.
-Não altere comportamento não relacionado.
-Ao final, informe como testar.
+Regras:
+- Não faça refatoração grande.
+- Não altere comportamento não relacionado.
+- Não mexa em muitos arquivos sem necessidade.
+- Não implemente funcionalidades grandes.
+- Se a correção exigir mais investigação, pare e explique o que encontrou.
+
+Ao final, informe:
+- o que foi alterado;
+- quais arquivos foram modificados;
+- como testar;
+- se a documentação foi atualizada;
+- qual deve ser o próximo passo.
+```
+
+---
+
+# Prompt recomendado para iniciar amanhã
+
+Use este prompt para começar a primeira tarefa prática:
+
+```text
+Leia o arquivo docs/PLANO-CODEX.md.
+
+Estamos iniciando a fase de manutenção prática do fork mpv.net.
+
+Trabalhe apenas na Etapa 1: Validar pacote portátil e portable_config.
+
+Objetivo desta rodada:
+Verificar se o pacote ZIP portátil pode incluir automaticamente uma estrutura portable_config básica, com arquivos de exemplo de configuração, sem quebrar o comportamento atual do mpv.net.
+
+Antes de alterar qualquer arquivo:
+1. Leia o README.md.
+2. Leia docs/PLANO-CODEX.md.
+3. Leia docs/PORTATIL.md.
+4. Leia docs/BUILD.md.
+5. Analise os scripts src/Tools/release-mpv.net.ps1 e src/Tools/update-mpv.ps1.
+6. Liste os arquivos que pretende alterar.
+7. Explique qual alteração pretende fazer e por quê.
+8. Informe os riscos antes de modificar.
+
+Regras:
+- Não faça refatoração grande.
+- Não altere comportamento não relacionado.
+- Não mexa em funcionalidades de player, libmpv, interface ou atalhos nesta rodada.
+- Não inclua binários externos.
+- Faça apenas uma alteração pequena e testável.
+- Se não for seguro alterar o script de release agora, apenas documente a conclusão e proponha o próximo passo.
+
+Resultado esperado:
+- Confirmar como o ZIP portátil é gerado.
+- Avaliar se é seguro incluir portable_config no pacote.
+- Se for seguro, ajustar o script de release para incluir uma estrutura portable_config básica.
+- Atualizar docs/PORTATIL.md ou docs/BUILD.md se necessário.
+
+Ao final, informe:
+- resumo da análise;
+- arquivos alterados;
+- como testar a geração do pacote portátil;
+- riscos conhecidos;
+- próximo passo recomendado.
 ```
 
 ---
 
 # Observação final
 
-Este fork deve evoluir com calma.
+O objetivo agora é evoluir com segurança.
 
-A prioridade inicial não é criar muitas funcionalidades novas.
+A documentação não para, mas deixa de ser o trabalho principal isolado.
 
-A prioridade é:
+A regra da fase atual é:
 
-1. entender o projeto;
-2. documentar bem;
-3. corrigir bugs simples;
-4. preparar o ambiente;
-5. depois atacar problemas mais complexos.
+```text
+Corrigir pequeno, testar bem, documentar o necessário e avançar para o próximo bug.
+```
