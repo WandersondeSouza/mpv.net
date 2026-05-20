@@ -1,8 +1,8 @@
 
 #define MyAppName "mpv.net"
 #define MyAppExeName "mpvnet.exe"
-#define MyAppSourceDir "..\..\MpvNet.Windows\bin\Debug"
-#define MyAppVersion GetFileVersion("..\..\MpvNet.Windows\bin\Debug\mpvnet.exe")
+#define MyAppSourceDir "..\..\MpvNet.Windows\bin\Debug\win-x64\publish"
+#define MyAppVersion GetFileVersion("..\..\MpvNet.Windows\bin\Debug\win-x64\publish\mpvnet.exe")
 
 [Setup]
 AppId={{9AA2B100-BEF3-44D0-B819-D8FC3C4D557D}}
@@ -25,4 +25,4 @@ Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 
 [Files]
 Source: "{#MyAppSourceDir}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSourceDir}\*"; DestDir: "{app}"; Excludes: "win-x64,win-arm64"; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "{#MyAppSourceDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;

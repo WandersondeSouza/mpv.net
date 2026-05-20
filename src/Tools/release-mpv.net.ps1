@@ -61,10 +61,8 @@ $Repo = 'github.com/mpvnet-player/mpv.net'
 
 # Dotnet Publish
 $PublishDir64 = Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\publish\'
-$PublishDirARM64 = Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-arm64\publish\'
 $ProjectFile = Test (Join-Path $SourceDir 'MpvNet.Windows\MpvNet.Windows.csproj')
 dotnet publish $ProjectFile --self-contained false --configuration Debug --runtime win-x64
-dotnet publish $ProjectFile --self-contained false --configuration Debug --runtime win-arm64
 $PublishedExeFile64 = Test ($PublishDir64 + 'mpvnet.exe')
 
 # Create OutputName
@@ -73,39 +71,28 @@ $IsBeta = $VersionInfo.FilePrivatePart -ne 0
 $BetaString = if ($IsBeta) { '-beta' } else { '' }
 $VersionName = $VersionInfo.FileVersion
 $OutputName64 = 'mpv.net-v' + $VersionName + $BetaString + '-portable-x64'
-$OutputNameARM64 = 'mpv.net-v' + $VersionName + $BetaString + '-portable-ARM64'
 
 # Create OutputFolder
 $OutputDir64   = Join-Path $OutputRootDir ($OutputName64 + '\')
-$OutputDirARM64 = Join-Path $OutputRootDir ($OutputNameARM64 + '\')
 DeleteDir $OutputDir64
-DeleteDir $OutputDirARM64
 mkdir $OutputDir64
-mkdir $OutputDirARM64
 
 # Copy Files
 Copy-Item ($PublishDir64 + '*') $OutputDir64
-Copy-Item ($PublishDirARM64 + '*') $OutputDirARM64
-$BinDirX64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\')
-$BinDirARM64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-arm64\')
+$BinDirX64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\')
 $ExtraFiles = 'mpvnet.com', 'libmpv-2.dll', 'MediaInfo.dll'
 $ExtraFiles | ForEach-Object { Copy-Item ($BinDirX64 + $_) ($OutputDir64 + $_) }
-$ExtraFiles | ForEach-Object { Copy-Item ($BinDirARM64 + $_) ($OutputDirARM64 + $_) }
-$LocaleDir = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\Locale\')
+$ExtraFiles | ForEach-Object { Copy-Item ($BinDirX64 + $_) ($PublishDir64 + $_) }
+$LocaleDir = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\Locale\')
 Copy-Item $LocaleDir ($OutputDir64 + 'Locale') -Recurse
-Copy-Item $LocaleDir ($OutputDirARM64 + 'Locale') -Recurse
+Copy-Item $LocaleDir ($PublishDir64 + 'Locale') -Recurse -Force
 AddPortableConfig $OutputDir64 $DocsDir
-AddPortableConfig $OutputDirARM64 $DocsDir
 
 # Pack
 $ZipOutputFile64 = Join-Path $OutputRootDir ($OutputName64 + '.zip')
-$ZipOutputFileARM64 = Join-Path $OutputRootDir ($OutputNameARM64 + '.zip')
 & $7zFile a -tzip -mx9 $ZipOutputFile64 -r ($OutputDir64 + '*')
 if ($LastExitCode) { throw $LastExitCode }
-& $7zFile a -tzip -mx9 $ZipOutputFileARM64 -r ($OutputDirARM64 + '*')
-if ($LastExitCode) { throw $LastExitCode }
 Test $ZipOutputFile64
-Test $ZipOutputFileARM64
 
 # Inno Setup
 ''; ''
@@ -124,9 +111,9 @@ if ($IsBeta) {
 $Title = 'v' + $VersionName + $BetaString
 
 if ($BetaString) {
-    gh release create $Title -t $Title -n $ReleaseNotes --repo $Repo --prerelease $ZipOutputFile64 $ZipOutputFileARM64 $SetupFile
+    gh release create $Title -t $Title -n $ReleaseNotes --repo $Repo --prerelease $ZipOutputFile64 $SetupFile
 } else {
-    gh release create $Title -t $Title -n $ReleaseNotes --repo $Repo $ZipOutputFile64 $ZipOutputFileARM64 $SetupFile
+    gh release create $Title -t $Title -n $ReleaseNotes --repo $Repo $ZipOutputFile64 $SetupFile
 }
 
 if ($LastExitCode) { throw $LastExitCode }

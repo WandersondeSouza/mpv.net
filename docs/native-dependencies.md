@@ -36,7 +36,6 @@ Recommended process:
 1. Download the latest official MediaInfo/MediaInfoLib package for Windows from the official MediaInfo source.
 2. Select the correct architecture version:
    - x64 for `win-x64`
-   - ARM64 for `win-arm64`, if ARM64 builds are still supported
 3. Replace the existing `MediaInfo.dll` in the corresponding dependency/build output location.
 4. Build and run mpv.net.
 5. Test media information loading with different file types.
@@ -85,7 +84,7 @@ If the application fails to start or media information cannot be loaded, confirm
 
 The release script currently copies `MediaInfo.dll` from the build output folder as an extra file. Therefore, updating the source dependency alone is not enough if the release process uses a different output folder.
 
-Before creating a release package, confirm that the updated `MediaInfo.dll` is present in the folders used by the release script for each architecture.
+Before creating a release package, confirm that the updated x64 `MediaInfo.dll` is present in the folder used by the release script.
 
 ## Future improvement
 

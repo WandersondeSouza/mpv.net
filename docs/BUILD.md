@@ -8,6 +8,8 @@ Este documento e uma orientacao inicial para estudar o build do fork do mpv.net.
 
 O mpv.net e um projeto para Windows.
 
+O executavel principal e gerado como `win-x64`. O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` define `RuntimeIdentifier=win-x64` e `Prefer32Bit=false`, portanto builds normais do projeto da aplicacao devem produzir executavel 64 bits por padrao.
+
 O build deve ser feito com Visual Studio/.NET conforme a estrutura atual do projeto. A versao exata recomendada do Visual Studio, do SDK .NET e das dependencias nativas ainda precisa ser validada neste fork.
 
 ## Como abrir o projeto
@@ -19,7 +21,17 @@ Orientacao inicial:
 3. Restaurar pacotes NuGet.
 4. Compilar em Debug antes de tentar empacotamento ou release.
 
-Comandos exatos de terminal ainda estao pendentes de validacao.
+Comando principal esperado para a aplicacao:
+
+```powershell
+dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj
+```
+
+Publicacao x64 usada pelo fluxo de release:
+
+```powershell
+dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained false --configuration Debug --runtime win-x64
+```
 
 ## Scripts relacionados
 
@@ -34,7 +46,7 @@ Scripts relevantes para analise futura:
 - `src/Tools/release-mpv.net.ps1`: relacionado ao fluxo de build/release e à criação do ZIP portátil com `portable_config`.
 - `src/Tools/update-mpv.ps1`: relacionado a atualizacao de mpv/libmpv.
 
-O script de release foi ajustado para incluir `portable_config` no pacote portatil. O fluxo completo de release ainda precisa ser validado em execucao real.
+O script de release foi ajustado para publicar e empacotar a aplicacao como x64, incluindo `portable_config` no pacote portatil. O fluxo completo de release ainda precisa ser validado em execucao real.
 
 ## Pendencias de validacao
 

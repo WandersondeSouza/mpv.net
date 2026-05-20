@@ -6,6 +6,8 @@
 		<RootNamespace>MpvNet.Windows</RootNamespace>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<PublishSingleFile>true</PublishSingleFile>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<Prefer32Bit>false</Prefer32Bit>
 		<AssemblyName>mpvnet</AssemblyName>
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>

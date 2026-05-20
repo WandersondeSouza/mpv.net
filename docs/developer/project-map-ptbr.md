@@ -195,7 +195,7 @@ Arquivos:
 - `src/Setup/Inno/inno-setup.iss`;
 - `src/MpvNet.Windows/MpvNet.Windows.csproj`.
 
-O script de release atual publica x64 e ARM64, copia DLLs nativas, empacota ZIP com 7-Zip, gera instalador x64 via Inno Setup e cria release no GitHub com `gh`.
+O script de release atual publica x64, copia DLLs nativas x64, empacota ZIP com 7-Zip, gera instalador x64 via Inno Setup e cria release no GitHub com `gh`.
 
 ---
 
