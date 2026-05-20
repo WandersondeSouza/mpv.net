@@ -46,7 +46,7 @@ Scripts relevantes para analise futura:
 - `src/Tools/release-mpv.net.ps1`: relacionado ao fluxo de build/release e à criação do ZIP portátil com `portable_config`.
 - `src/Tools/update-mpv.ps1`: relacionado a atualizacao de mpv/libmpv.
 
-O script de release foi ajustado para publicar e empacotar a aplicacao como x64, incluindo `portable_config` no pacote portatil. Ele tambem copia para a pasta do `mpvnet.exe` os binarios auxiliares esperados pelo pacote portatil:
+O script de release foi ajustado para publicar e empacotar a aplicacao como x64, incluindo `portable_config` no pacote portatil. Durante a geracao do pacote, ele baixa automaticamente as dependencias atualizadas de FFmpeg, libmpv e yt-dlp e copia para a pasta do `mpvnet.exe` os binarios auxiliares esperados pelo pacote portatil:
 
 ```text
 libmpv-2.dll
@@ -57,7 +57,13 @@ ffprobe.exe
 yt-dlp.exe
 ```
 
-Esses arquivos devem existir previamente em `src/MpvNet.Windows/bin/Debug/win-x64/`. O script nao baixa dependencias automaticamente; se algum arquivo estiver ausente, a release deve falhar antes de montar o pacote incompleto. O fluxo completo de release ainda precisa ser validado em execucao real.
+As fontes automaticas usadas pelo script sao:
+
+- `ffmpeg-master-latest-win64-gpl.zip` em `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`;
+- `mpv-dev-x86_64-...7z` em `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`;
+- `yt-dlp.exe` em `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`.
+
+`MediaInfo.dll` e `mpvnet.com` continuam sendo dependencias locais e devem existir previamente em `src/MpvNet.Windows/bin/Debug/win-x64/`. Se algum download, extracao ou arquivo obrigatorio falhar, a release deve falhar antes de montar o pacote incompleto. O fluxo completo de release ainda precisa ser validado em execucao real.
 
 ## Pendencias de validacao
 

@@ -51,6 +51,10 @@ Garantir que releases futuras sejam feitas de forma segura e organizada.
 # Publicação
 
 - [ ] artefatos gerados;
+- [ ] download automatico de FFmpeg concluido;
+- [ ] download automatico de libmpv concluido;
+- [ ] download automatico de yt-dlp concluido;
+- [ ] ZIP portatil contem `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe`;
 - [ ] versão validada;
 - [ ] release publicada;
 - [ ] links revisados.

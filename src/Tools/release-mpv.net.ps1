@@ -13,6 +13,7 @@ Dependencies:
     7zip installation found at: 'C:\Program Files\7-Zip\7z.exe'.
     Inno Setup compiler installation found at: 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'.
     GitHub CLI https://cli.github.com, the env var GH_TOKEN must be defined.
+    Internet access to download FFmpeg, libmpv and yt-dlp for the portable package.
 
 Notes:
     Before you run the script you need to update the versions found in the file:
@@ -28,12 +29,26 @@ function DeleteDir($path) {
     }
 }
 
+function NewCleanDir($path) {
+    DeleteDir $path
+    New-Item -ItemType Directory -Force $path | Out-Null
+    return Test $path
+}
+
 # Throw error if the file/dir don't exist
 function Test($path) {
     if (-not (Test-Path $path)) {
         throw $path
     }
     return $path
+}
+
+function TestFile($path) {
+    $file = Get-Item (Test $path)
+    if ($file.Length -le 0) {
+        throw "File is empty: $path"
+    }
+    return $file.FullName
 }
 
 function AddPortableConfig($outputDir, $docsDir) {
@@ -49,11 +64,80 @@ function AddPortableConfig($outputDir, $docsDir) {
 function CopyExtraFiles($sourceDir, $targetDir, $files) {
     foreach ($file in $files) {
         $sourceFile = Join-Path $sourceDir $file
-        if (-not (Test-Path $sourceFile)) {
-            throw "Required release file not found: $sourceFile"
-        }
-
+        TestFile $sourceFile | Out-Null
         Copy-Item $sourceFile (Join-Path $targetDir $file)
+    }
+}
+
+function InvokeFileDownload($uri, $outputFile) {
+    Write-Host "Downloading $uri"
+    Invoke-WebRequest -Uri $uri -UserAgent 'mpv.net-release-script' -OutFile $outputFile -UseBasicParsing
+    return TestFile $outputFile
+}
+
+function DownloadGitHubLatestAsset($apiUrl, $assetPattern, $downloadDir) {
+    Write-Host "Reading latest release: $apiUrl"
+    $release = Invoke-WebRequest -Uri $apiUrl -UserAgent 'mpv.net-release-script' -UseBasicParsing | ConvertFrom-Json
+    $assets = @($release.assets | Where-Object { $_.name -match $assetPattern })
+
+    if ($assets.Count -ne 1) {
+        $assetNames = @($release.assets | ForEach-Object { $_.name }) -join ', '
+        throw "Expected exactly one asset matching '$assetPattern' from $apiUrl, found $($assets.Count). Assets: $assetNames"
+    }
+
+    $outputFile = Join-Path $downloadDir $assets[0].name
+    return InvokeFileDownload $assets[0].browser_download_url $outputFile
+}
+
+function ExpandReleaseArchive($archiveFile, $outputDir) {
+    NewCleanDir $outputDir | Out-Null
+    $process = Start-Process $7zFile @('x', $archiveFile, "-o$outputDir", '-y') -NoNewWindow -Wait -PassThru
+    if ($process.ExitCode) {
+        throw "7-Zip failed extracting $archiveFile with exit code $($process.ExitCode)"
+    }
+
+    return Test $outputDir
+}
+
+function CopyExtractedFile($sourceRootDir, $fileName, $targetDir) {
+    $matches = @(Get-ChildItem $sourceRootDir -Filter $fileName -Recurse -File)
+    if ($matches.Count -ne 1) {
+        throw "Expected exactly one extracted $fileName in $sourceRootDir, found $($matches.Count)."
+    }
+
+    TestFile $matches[0].FullName | Out-Null
+    $targetFile = Join-Path $targetDir $fileName
+    Copy-Item $matches[0].FullName $targetFile -Force
+    TestFile $targetFile | Out-Null
+}
+
+function UpdatePortableDependencies($binDir, $workDir) {
+    try {
+        $downloadsDir = NewCleanDir (Join-Path $workDir 'downloads')
+        $extractDir = NewCleanDir (Join-Path $workDir 'extract')
+
+        $ffmpegArchive = DownloadGitHubLatestAsset `
+            'https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest' `
+            '^ffmpeg-master-latest-win64-gpl\.zip$' `
+            $downloadsDir
+        $ffmpegExtractDir = ExpandReleaseArchive $ffmpegArchive (Join-Path $extractDir 'ffmpeg')
+        CopyExtractedFile $ffmpegExtractDir 'ffmpeg.exe' $binDir
+        CopyExtractedFile $ffmpegExtractDir 'ffplay.exe' $binDir
+        CopyExtractedFile $ffmpegExtractDir 'ffprobe.exe' $binDir
+
+        $libmpvArchive = DownloadGitHubLatestAsset `
+            'https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest' `
+            '^mpv-dev-x86_64-[0-9]{8}-git-[0-9a-z]+\.7z$' `
+            $downloadsDir
+        $libmpvExtractDir = ExpandReleaseArchive $libmpvArchive (Join-Path $extractDir 'libmpv')
+        CopyExtractedFile $libmpvExtractDir 'libmpv-2.dll' $binDir
+
+        InvokeFileDownload `
+            'https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe' `
+            (Join-Path $binDir 'yt-dlp.exe') | Out-Null
+    }
+    finally {
+        DeleteDir $workDir
     }
 }
 
@@ -91,7 +175,9 @@ mkdir $OutputDir64
 # Copy Files
 Copy-Item ($PublishDir64 + '*') $OutputDir64
 $BinDirX64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\')
-$ExtraFiles = 'mpvnet.com', 'libmpv-2.dll', 'MediaInfo.dll', 'ffmpeg.exe', 'ffplay.exe', 'ffprobe.exe', 'yt-dlp.exe'
+$DependencyWorkDir = Join-Path $env:TEMP 'mpv.net-release-dependencies'
+UpdatePortableDependencies $BinDirX64 $DependencyWorkDir
+$ExtraFiles = 'mpvnet.com', 'MediaInfo.dll', 'libmpv-2.dll', 'ffmpeg.exe', 'ffplay.exe', 'ffprobe.exe', 'yt-dlp.exe'
 CopyExtraFiles $BinDirX64 $OutputDir64 $ExtraFiles
 CopyExtraFiles $BinDirX64 $PublishDir64 $ExtraFiles
 $LocaleDir = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\Locale\')

@@ -32,7 +32,8 @@ Para release:
 - 7-Zip em `C:\Program Files\7-Zip\7z.exe`;
 - Inno Setup 6 em `C:\Program Files (x86)\Inno Setup 6\ISCC.exe`;
 - GitHub CLI (`gh`);
-- variável `GH_TOKEN` configurada para criação de release.
+- variável `GH_TOKEN` configurada para criação de release;
+- acesso a internet para baixar FFmpeg, libmpv e yt-dlp no momento da release.
 
 ---
 
@@ -77,7 +78,7 @@ cd mpv.net
 3. Abra `src/MpvNet.sln`.
 4. Restaure os pacotes NuGet.
 5. Compile em Debug.
-6. Garanta que `libmpv-2.dll`, `MediaInfo.dll` e, para o pacote portatil, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` estejam no diretório esperado de saída antes de executar.
+6. Garanta que `MediaInfo.dll` esteja no diretório esperado de saída antes de executar. No fluxo de release, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` sao baixados automaticamente para o pacote portatil.
 
 ---
 
@@ -151,12 +152,23 @@ O script:
 3. publica `MpvNet.Windows.csproj` para `win-x64`;
 4. cria nomes com base na versão do `mpvnet.exe`;
 5. copia arquivos publicados;
-6. copia `mpvnet.com`, `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` x64;
-7. copia `Locale`;
-8. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
-9. gera ZIP portátil x64;
-10. executa `Setup/Inno/inno-setup.iss` para gerar o instalador x64;
-11. cria release no GitHub usando `gh release create`.
+6. baixa `ffmpeg-master-latest-win64-gpl.zip` do BtbN e copia `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe`;
+7. baixa `mpv-dev-x86_64-...7z` do shinchiro e copia `libmpv-2.dll`;
+8. baixa `yt-dlp.exe` do release latest oficial do yt-dlp;
+9. copia `mpvnet.com`, `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` x64;
+10. copia `Locale`;
+11. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
+12. gera ZIP portátil x64;
+13. executa `Setup/Inno/inno-setup.iss` para gerar o instalador x64;
+14. cria release no GitHub usando `gh release create`.
+
+As dependencias baixadas automaticamente usam estas fontes:
+
+- FFmpeg: `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, asset `ffmpeg-master-latest-win64-gpl.zip`;
+- libmpv: `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, asset `mpv-dev-x86_64-[data]-git-[hash].7z`;
+- yt-dlp: `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`.
+
+O script usa o asset x64 generico de libmpv, nao `x86_64-v3`, para preservar compatibilidade com mais CPUs x64. Se o GitHub mudar os nomes dos assets, se o download falhar, se a extracao falhar ou se algum arquivo baixado estiver vazio, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` continua sendo dependencia manual.
 
 Pendente real: validar um pacote gerado pelo script completo, incluindo ZIP, instalador e publicação.
 
@@ -184,7 +196,7 @@ Confira os `TargetFramework` dos projetos e instale o SDK/runtime correspondente
 
 ## Dependência nativa ausente
 
-Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução. Para o pacote portatil, verifique tambem `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`.
+Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução. Para o pacote portatil, verifique tambem `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. No fluxo de release, FFmpeg, libmpv e yt-dlp devem ser baixados automaticamente; `MediaInfo.dll` ainda precisa estar disponivel localmente.
 
 ## Ferramenta de release ausente
 
