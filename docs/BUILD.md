@@ -31,10 +31,10 @@ src/Tools
 
 Scripts relevantes para analise futura:
 
-- `src/Tools/release-mpv.net.ps1`: relacionado ao fluxo de build/release.
+- `src/Tools/release-mpv.net.ps1`: relacionado ao fluxo de build/release e à criação do ZIP portátil com `portable_config`.
 - `src/Tools/update-mpv.ps1`: relacionado a atualizacao de mpv/libmpv.
 
-Estes scripts nao foram alterados nesta etapa.
+O script de release foi ajustado para incluir `portable_config` no pacote portatil. O fluxo completo de release ainda precisa ser validado em execucao real.
 
 ## Pendencias de validacao
 
@@ -42,7 +42,7 @@ Estes scripts nao foram alterados nesta etapa.
 - Versao recomendada do SDK .NET.
 - Comando exato de build.
 - Fluxo de release.
-- Fluxo de pacote portatil.
+- Validação completa do pacote portatil gerado.
 - Dependencias nativas necessarias para executar o player compilado.
 - Relacao exata entre build do mpv.net e atualizacao de mpv/libmpv.
 

@@ -46,9 +46,9 @@ C:\Users\<usuario>\AppData\Roaming\mpv.net
 
 Isso pode confundir usuários que esperam que a versão ZIP seja totalmente portátil.
 
-## Recomendação para o fork
+## Comportamento do pacote gerado pelo fork
 
-Nas futuras versões deste fork, o ideal é que o pacote ZIP portátil já venha com uma estrutura básica:
+O script de release do fork inclui automaticamente uma estrutura básica no ZIP portátil:
 
 ```text
 portable_config/
@@ -58,14 +58,11 @@ portable_config/scripts/
 portable_config/script-opts/
 ```
 
-Assim o usuário entende imediatamente onde colocar suas configurações.
-
-## Tarefa futura para o Codex
-
-Verificar o script de release:
+Os arquivos `mpv.conf` e `input.conf` são modelos comentados, sem opções ativas por padrão, copiados de:
 
 ```text
-src/Tools/release-mpv.net.ps1
+docs/exemplos/portable_config/mpv.conf
+docs/exemplos/portable_config/input.conf
 ```
 
-E avaliar se a pasta `portable_config` pode ser incluída automaticamente no pacote ZIP portátil.
+Assim o usuário entende imediatamente onde colocar suas configurações, e o mpv.net passa a usar a pasta portátil porque `portable_config` existe ao lado de `mpvnet.exe`.

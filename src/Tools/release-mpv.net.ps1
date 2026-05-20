@@ -36,9 +36,20 @@ function Test($path) {
     return $path
 }
 
+function AddPortableConfig($outputDir, $docsDir) {
+    $portableConfigDir = Join-Path $outputDir 'portable_config'
+    $scriptsDir = Join-Path $portableConfigDir 'scripts'
+    $scriptOptsDir = Join-Path $portableConfigDir 'script-opts'
+    New-Item -ItemType Directory -Force $scriptsDir | Out-Null
+    New-Item -ItemType Directory -Force $scriptOptsDir | Out-Null
+    Copy-Item (Test (Join-Path $docsDir 'exemplos\portable_config\mpv.conf')) (Join-Path $portableConfigDir 'mpv.conf')
+    Copy-Item (Test (Join-Path $docsDir 'exemplos\portable_config\input.conf')) (Join-Path $portableConfigDir 'input.conf')
+}
+
 # Variables
 $SourceDir     = Test $args[0]
 $OutputRootDir = Test $args[1]
+$DocsDir       = Test (Join-Path $SourceDir '..\docs')
 
 Test (Join-Path $SourceDir 'MpvNet.sln')
 
@@ -83,6 +94,8 @@ $ExtraFiles | ForEach-Object { Copy-Item ($BinDirARM64 + $_) ($OutputDirARM64 + 
 $LocaleDir = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\Locale\')
 Copy-Item $LocaleDir ($OutputDir64 + 'Locale') -Recurse
 Copy-Item $LocaleDir ($OutputDirARM64 + 'Locale') -Recurse
+AddPortableConfig $OutputDir64 $DocsDir
+AddPortableConfig $OutputDirARM64 $DocsDir
 
 # Pack
 $ZipOutputFile64 = Join-Path $OutputRootDir ($OutputName64 + '.zip')

@@ -132,6 +132,8 @@ Atualize também a documentação relacionada, se necessário.
 
 ## Etapa 1 — Validar pacote portátil e portable_config
 
+Status: implementado no script de release; pendente validar um pacote gerado pelo fluxo completo.
+
 ### Objetivo
 
 Confirmar se o pacote ZIP portátil entrega uma estrutura clara para o usuário e se a pasta `portable_config` pode ser incluída automaticamente ou orientada de forma mais objetiva.
@@ -145,13 +147,15 @@ docs/PORTATIL.md
 docs/BUILD.md
 docs/exemplos/mpv.conf
 docs/exemplos/input.conf
+docs/exemplos/portable_config/mpv.conf
+docs/exemplos/portable_config/input.conf
 ```
 
 ### Tarefas
 
-- Verificar como o ZIP portátil é montado.
-- Verificar se existe lógica para incluir arquivos/pastas extras.
-- Avaliar se é seguro incluir:
+- Verificar como o ZIP portátil é montado. Concluído.
+- Verificar se existe lógica para incluir arquivos/pastas extras. Concluído.
+- Incluir no pacote:
 
 ```text
 portable_config/
@@ -161,9 +165,8 @@ portable_config/scripts/
 portable_config/script-opts/
 ```
 
-- Se a alteração no pacote for simples e segura, propor correção pequena.
-- Se a alteração exigir mais análise, documentar claramente o motivo.
-- Atualizar a documentação do modo portátil, se necessário.
+- Atualizar a documentação do modo portátil.
+- Validar o ZIP gerado em uma execução completa do script de release.
 
 ### Resultado esperado
 

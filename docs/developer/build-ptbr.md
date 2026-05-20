@@ -152,11 +152,12 @@ O script:
 6. copia arquivos publicados;
 7. copia `mpvnet.com`, `libmpv-2.dll` e `MediaInfo.dll`;
 8. copia `Locale`;
-9. gera ZIP portátil x64 e ARM64;
-10. executa `Setup/Inno/inno-setup.iss`;
-11. cria release no GitHub usando `gh release create`.
+9. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
+10. gera ZIP portátil x64 e ARM64;
+11. executa `Setup/Inno/inno-setup.iss`;
+12. cria release no GitHub usando `gh release create`.
 
-Pendente real: o ZIP portátil ainda não cria automaticamente a estrutura `portable_config`.
+Pendente real: validar um pacote gerado pelo script completo, incluindo ZIP, instalador e publicação.
 
 ---
 
@@ -225,4 +226,4 @@ Após compilar:
 - Rodar e registrar resultado de `dotnet publish` x64/ARM64.
 - Validar execução com dependências nativas reais.
 - Validar geração de ZIP e instalador.
-- Decidir se o pacote portátil deve incluir `portable_config` por padrão.
+- Validar se o pacote portátil gerado inclui `portable_config` por padrão.
