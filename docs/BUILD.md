@@ -46,7 +46,18 @@ Scripts relevantes para analise futura:
 - `src/Tools/release-mpv.net.ps1`: relacionado ao fluxo de build/release e à criação do ZIP portátil com `portable_config`.
 - `src/Tools/update-mpv.ps1`: relacionado a atualizacao de mpv/libmpv.
 
-O script de release foi ajustado para publicar e empacotar a aplicacao como x64, incluindo `portable_config` no pacote portatil. O fluxo completo de release ainda precisa ser validado em execucao real.
+O script de release foi ajustado para publicar e empacotar a aplicacao como x64, incluindo `portable_config` no pacote portatil. Ele tambem copia para a pasta do `mpvnet.exe` os binarios auxiliares esperados pelo pacote portatil:
+
+```text
+libmpv-2.dll
+MediaInfo.dll
+ffmpeg.exe
+ffplay.exe
+ffprobe.exe
+yt-dlp.exe
+```
+
+Esses arquivos devem existir previamente em `src/MpvNet.Windows/bin/Debug/win-x64/`. O script nao baixa dependencias automaticamente; se algum arquivo estiver ausente, a release deve falhar antes de montar o pacote incompleto. O fluxo completo de release ainda precisa ser validado em execucao real.
 
 ## Pendencias de validacao
 
@@ -55,7 +66,7 @@ O script de release foi ajustado para publicar e empacotar a aplicacao como x64,
 - Comando exato de build.
 - Fluxo de release.
 - Validação completa do pacote portatil gerado.
-- Dependencias nativas necessarias para executar o player compilado.
+- Dependencias nativas e auxiliares necessarias para executar o player compilado e o pacote portatil.
 - Relacao exata entre build do mpv.net e atualizacao de mpv/libmpv.
 
 Este documento deve ser refinado depois de um teste real de build.

@@ -46,6 +46,17 @@ function AddPortableConfig($outputDir, $docsDir) {
     Copy-Item (Test (Join-Path $docsDir 'exemplos\portable_config\input.conf')) (Join-Path $portableConfigDir 'input.conf')
 }
 
+function CopyExtraFiles($sourceDir, $targetDir, $files) {
+    foreach ($file in $files) {
+        $sourceFile = Join-Path $sourceDir $file
+        if (-not (Test-Path $sourceFile)) {
+            throw "Required release file not found: $sourceFile"
+        }
+
+        Copy-Item $sourceFile (Join-Path $targetDir $file)
+    }
+}
+
 # Variables
 $SourceDir     = Test $args[0]
 $OutputRootDir = Test $args[1]
@@ -80,9 +91,9 @@ mkdir $OutputDir64
 # Copy Files
 Copy-Item ($PublishDir64 + '*') $OutputDir64
 $BinDirX64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\')
-$ExtraFiles = 'mpvnet.com', 'libmpv-2.dll', 'MediaInfo.dll'
-$ExtraFiles | ForEach-Object { Copy-Item ($BinDirX64 + $_) ($OutputDir64 + $_) }
-$ExtraFiles | ForEach-Object { Copy-Item ($BinDirX64 + $_) ($PublishDir64 + $_) }
+$ExtraFiles = 'mpvnet.com', 'libmpv-2.dll', 'MediaInfo.dll', 'ffmpeg.exe', 'ffplay.exe', 'ffprobe.exe', 'yt-dlp.exe'
+CopyExtraFiles $BinDirX64 $OutputDir64 $ExtraFiles
+CopyExtraFiles $BinDirX64 $PublishDir64 $ExtraFiles
 $LocaleDir = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\Locale\')
 Copy-Item $LocaleDir ($OutputDir64 + 'Locale') -Recurse
 Copy-Item $LocaleDir ($PublishDir64 + 'Locale') -Recurse -Force

@@ -24,6 +24,7 @@ Para execução:
 - .NET Desktop Runtime 10.0 quando o publish for framework-dependent;
 - `libmpv-2.dll` x64;
 - `MediaInfo.dll` x64;
+- `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` no pacote portatil do fork;
 - arquivos de `Locale`, quando aplicável.
 
 Para release:
@@ -76,7 +77,7 @@ cd mpv.net
 3. Abra `src/MpvNet.sln`.
 4. Restaure os pacotes NuGet.
 5. Compile em Debug.
-6. Garanta que `libmpv-2.dll` e `MediaInfo.dll` estejam no diretório esperado de saída antes de executar.
+6. Garanta que `libmpv-2.dll`, `MediaInfo.dll` e, para o pacote portatil, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` estejam no diretório esperado de saída antes de executar.
 
 ---
 
@@ -150,7 +151,7 @@ O script:
 3. publica `MpvNet.Windows.csproj` para `win-x64`;
 4. cria nomes com base na versão do `mpvnet.exe`;
 5. copia arquivos publicados;
-6. copia `mpvnet.com`, `libmpv-2.dll` e `MediaInfo.dll` x64;
+6. copia `mpvnet.com`, `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` x64;
 7. copia `Locale`;
 8. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
 9. gera ZIP portátil x64;
@@ -183,7 +184,7 @@ Confira os `TargetFramework` dos projetos e instale o SDK/runtime correspondente
 
 ## Dependência nativa ausente
 
-Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução.
+Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução. Para o pacote portatil, verifique tambem `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`.
 
 ## Ferramenta de release ausente
 

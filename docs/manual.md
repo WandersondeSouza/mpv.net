@@ -60,6 +60,8 @@ Internet streaming requires:
 - Downloading [yt-dlp](https://github.com/yt-dlp/yt-dlp) and adding its folder
   to the [user environment variable PATH](https://www.google.com/search?q=user+environment+variable+PATH).
   Alternativly the yt-dlp executable can be saved in the mpv.net executable folder.
+  The portable package produced by this fork is expected to include `yt-dlp.exe`
+  beside `mpvnet.exe` when the release source folder contains it.
 - In case of proxy server usage, [manual configuration](https://github.com/mpvnet-player/mpv.net/issues/401).
 
 #### File Associations

@@ -11,9 +11,21 @@ The main native dependencies used by the Windows application are:
 - `libmpv-2.dll`
 - `MediaInfo.dll`
 
-`MediaInfo.dll` is loaded directly from the application runtime path through P/Invoke in `MpvNet/Native/MediaInfo.cs`.
+`libmpv-2.dll` is loaded directly through P/Invoke in `MpvNet/Native/LibMpv.cs`.
+`MediaInfo.dll` is loaded directly through P/Invoke in `MpvNet/Native/MediaInfo.cs`.
 
-The release script copies `MediaInfo.dll` as an extra file during packaging. This means the DLL must already exist in the expected build output folder before the release package is created.
+Because both declarations use only the DLL file name, the DLLs must be available in the runtime search path. For the portable package, keep them in the same folder as `mpvnet.exe`.
+
+The portable package also includes auxiliary executables expected beside `mpvnet.exe`:
+
+- `ffmpeg.exe`
+- `ffplay.exe`
+- `ffprobe.exe`
+- `yt-dlp.exe`
+
+These executables are not called directly by the C# P/Invoke layer. They are auxiliary tools used by mpv/libmpv and streaming workflows. `yt-dlp.exe` can also be found through `PATH`, but the fork's portable package is expected to include it when the validated release source folder contains it.
+
+The release script copies these files as extra files during packaging. This means they must already exist in the expected build output folder before the release package is created.
 
 ## MediaInfo.dll
 
@@ -82,9 +94,15 @@ If the application fails to start or media information cannot be loaded, confirm
 
 ## Release packaging note
 
-The release script currently copies `MediaInfo.dll` from the build output folder as an extra file. Therefore, updating the source dependency alone is not enough if the release process uses a different output folder.
+The release script currently copies `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` and `yt-dlp.exe` from the build output folder as extra files. Therefore, updating the source dependency alone is not enough if the release process uses a different output folder.
 
-Before creating a release package, confirm that the updated x64 `MediaInfo.dll` is present in the folder used by the release script.
+Before creating a release package, confirm that the updated x64 files are present in the folder used by the release script:
+
+```text
+src/MpvNet.Windows/bin/Debug/win-x64/
+```
+
+If any expected file is missing, the release script should fail instead of creating a partial portable package.
 
 ## Future improvement
 
