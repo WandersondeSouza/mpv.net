@@ -1,40 +1,55 @@
+# mpv.net - fork de manutencao
 
-# mpv.net - fork de manutenção
+Este repositorio e um fork de manutencao do **mpv.net**, um player de midia para Windows com interface grafica moderna, baseado no **mpv/libmpv**.
 
-Este repositório é um fork de manutenção do **mpv.net**, um player de mídia para Windows com interface gráfica moderna, baseado no **mpv/libmpv**.
+O projeto original foi criado e mantido por **Frank Skare / stax76**. Este fork respeita esse trabalho e tem como prioridade preservar o funcionamento existente, melhorar a documentacao em portugues brasileiro e corrigir problemas pequenos de forma cuidadosa.
 
-O projeto original foi criado e mantido por **Frank Skare / stax76**. Este fork respeita esse trabalho e tem como prioridade inicial preservar o funcionamento existente, melhorar a documentação em português brasileiro e corrigir bugs simples de forma cuidadosa.
+Grandes mudancas de arquitetura nao sao prioridade neste momento. A regra principal e manter compatibilidade com o mpv sempre que possivel e evitar alteracoes amplas sem necessidade.
 
-Neste momento, grandes mudanças de arquitetura não são prioridade. A regra principal é manter compatibilidade com o mpv sempre que possível e evitar alterações amplas sem necessidade.
-
-## Objetivos iniciais do fork
+## Objetivos do fork
 
 - Preservar o comportamento atual do mpv.net.
-- Documentar melhor o uso, a configuração e a manutenção do projeto.
-- Facilitar o uso em português brasileiro.
+- Documentar melhor o uso, a configuracao, o build e a manutencao do projeto.
+- Facilitar o uso e a contribuicao em portugues brasileiro.
 - Corrigir bugs simples e bem delimitados.
-- Preparar o repositório para manutenção assistida por agentes de IA.
+- Preparar o repositorio para manutencao assistida por agentes de IA.
 
-## Documentação em português
+## Para usuarios
 
-- [Plano de trabalho do Codex](docs/PLANO-CODEX.md)
-- [Modo portátil](docs/PORTATIL.md)
-- [Configuração](docs/CONFIGURACAO.md)
+- [Manual original do mpv.net](docs/manual.md)
+- [Manual oficial do mpv](https://mpv.io/manual/master/)
+- [Modo portatil](docs/PORTATIL.md)
+- [Configuracao](docs/CONFIGURACAO.md)
 - [Atalhos e input.conf](docs/ATALHOS.md)
-- [Build e release](docs/BUILD.md)
-- [Roadmap do fork](docs/ROADMAP.md)
-
-## Exemplos de configuração
-
 - [Exemplo de mpv.conf](docs/exemplos/mpv.conf)
 - [Exemplo de input.conf](docs/exemplos/input.conf)
 - [Exemplo de thumbfast.conf](docs/exemplos/thumbfast.conf)
 
-## Sobre o mpv.net
+## Para mantenedores
 
-O **mpv.net** é uma interface gráfica para Windows baseada no [mpv](https://mpv.io). A compatibilidade com o mpv é uma característica central do projeto: a maior parte dos recursos, opções de configuração, scripts e comandos do mpv também se aplica ao mpv.net.
+- [Plano de trabalho do Codex](docs/PLANO-CODEX.md)
+- [Roadmap do fork](docs/ROADMAP.md)
+- [Build e release](docs/BUILD.md)
+- [Checklist de release](docs/release-checklist-ptbr.md)
+- [Guia de contribuicao](docs/contributing-ptbr.md)
+- [Documentacao tecnica](docs/developer/project-map-ptbr.md)
 
-Para documentação técnica completa do comportamento herdado do mpv, consulte também o [manual oficial do mpv](https://mpv.io/manual/master/) e o [manual original do mpv.net](docs/manual.md).
+## Para agentes de IA
+
+Antes de qualquer alteracao automatizada, leia:
+
+1. [AGENTS.md](AGENTS.md)
+2. [Skill de manutencao do fork](.ai/skills/mpvnet-maintainer.md)
+3. [Plano de trabalho do Codex](docs/PLANO-CODEX.md)
+4. [Prompt de proximas melhorias](.ai/prompts/next-improvements.md)
+
+Os artefatos em `.ai/` ajudam a orientar analises e mudancas pequenas, mas nao substituem a leitura do codigo atual.
+
+## Sobre compatibilidade
+
+O **mpv.net** e uma interface grafica para Windows baseada no [mpv](https://mpv.io). A compatibilidade com o mpv e uma caracteristica central do projeto: a maior parte dos recursos, opcoes de configuracao, scripts e comandos do mpv tambem se aplica ao mpv.net.
+
+Para documentacao tecnica completa do comportamento herdado do mpv, consulte o [manual oficial do mpv](https://mpv.io/manual/master/) e o [manual original do mpv.net](docs/manual.md).
 
 ---
 
@@ -84,7 +99,7 @@ Leverages the FFmpeg hwaccel APIs to support DXVA2 video decoding acceleration.
 mpv.net is based on libmpv which offers a straightforward C API that
 was designed from the ground up to make mpv usable as a library and
 facilitate easy integration into other applications.
-mpv is like VLC not based on DirectShow or Media Foundation. 
+mpv is like VLC not based on DirectShow or Media Foundation.
 
 
 Table of contents
@@ -150,7 +165,7 @@ Features exclusive to mpv.net
 
 ## [Contributing](docs/contributing-ptbr.md)
 
-[Contributing section of the manual.](docs/manual.md#contributing)
+[Contributing guide for this fork.](docs/contributing-ptbr.md)
 
 
 Screenshots

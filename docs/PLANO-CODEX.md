@@ -75,6 +75,7 @@ Nesta fase, o Codex não deve fazer:
 - [Atalhos](ATALHOS.md)
 - [Build e release](BUILD.md)
 - [Roadmap](ROADMAP.md)
+- [Prompt de proximas melhorias](../.ai/prompts/next-improvements.md)
 - [Template de bug](../.github/ISSUE_TEMPLATE/bug_report.md)
 - [Template de melhoria](../.github/ISSUE_TEMPLATE/feature_request.md)
 
@@ -340,6 +341,12 @@ Esses itens não são prioridade agora.
 # Prompt padrão para iniciar cada tarefa no Codex
 
 Use este modelo antes de cada correção:
+
+Para rodadas gerais de organizacao, priorizacao e melhoria documental, use tambem:
+
+```text
+.ai/prompts/next-improvements.md
+```
 
 ```text
 Leia o arquivo docs/PLANO-CODEX.md.

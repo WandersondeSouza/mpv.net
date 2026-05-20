@@ -1,0 +1,77 @@
+# Prompt - Próximas melhorias do fork
+
+Use este prompt para iniciar uma rodada curta de melhoria no fork `WandersondeSouza/mpv.net`.
+
+## Leitura obrigatória
+
+Antes de alterar qualquer arquivo, leia:
+
+1. `AGENTS.md`;
+2. `README.md`;
+3. `docs/PLANO-CODEX.md`;
+4. `docs/ROADMAP.md`;
+5. `.ai/skills/mpvnet-maintainer.md`;
+6. `docs/developer/project-map-ptbr.md`;
+7. documentação técnica relacionada à área analisada.
+
+## Objetivo
+
+Analisar o estado atual do fork e propor melhorias pequenas, seguras e bem documentadas para manutenção contínua do mpv.net, priorizando compatibilidade com mpv/libmpv.
+
+## Escopo permitido
+
+- `README.md`;
+- `docs/PLANO-CODEX.md`;
+- `docs/ROADMAP.md`;
+- `docs/developer/`;
+- `.ai/prompts/`;
+- `.ai/agents/`;
+- `.ai/skills/`.
+
+## Fora de escopo nesta rodada
+
+- Não alterar código-fonte do player.
+- Não alterar integração com libmpv.
+- Não alterar scripts de build ou release.
+- Não fazer refatoração ampla.
+- Não remover compatibilidade com configurações existentes.
+
+## Tarefas
+
+1. Verificar se o README está claro para usuário e mantenedor.
+2. Identificar tarefas do roadmap que já foram concluídas e tarefas ainda pendentes.
+3. Separar melhorias em três grupos:
+   - documentação;
+   - prompts, agentes e fluxo de IA;
+   - futuras correções técnicas que exigem análise de código.
+4. Listar arquivos que pretende alterar e explicar o motivo antes de editar.
+5. Fazer mudanças pequenas e revisáveis.
+6. Ao final, entregar:
+   - resumo do que foi analisado;
+   - arquivos alterados;
+   - problemas encontrados;
+   - próximos passos recomendados;
+   - validação executada.
+
+## Formato obrigatório antes de editar
+
+```text
+Resumo do entendimento atual:
+
+Arquivos envolvidos:
+
+Problema encontrado:
+
+Mudança proposta:
+
+Riscos:
+
+Plano de teste:
+```
+
+## Validação mínima
+
+- Rodar `git status --short` antes de editar.
+- Revisar links Markdown locais após alterações.
+- Conferir se `README.md`, `docs/ROADMAP.md` e `.ai/prompts/` não duplicam informação com nomes diferentes.
+- Não marcar como concluído nada que não tenha evidência no repositório atual ou validação local.
