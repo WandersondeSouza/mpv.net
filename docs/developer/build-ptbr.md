@@ -30,10 +30,12 @@ Para execução:
 Para release:
 
 - 7-Zip em `C:\Program Files\7-Zip\7z.exe`;
-- Inno Setup 6 em `C:\Program Files (x86)\Inno Setup 6\ISCC.exe`;
-- GitHub CLI (`gh`);
+- Inno Setup 6 em `C:\Program Files (x86)\Inno Setup 6\ISCC.exe`, exceto quando `-SkipInstaller` for usado;
+- GitHub CLI (`gh`), exceto quando `-SkipGitHubRelease` for usado;
 - variável `GH_TOKEN` configurada para criação de release;
 - acesso a internet para baixar FFmpeg, libmpv e yt-dlp no momento da release.
+
+Observacao: Inno Setup, GitHub CLI e `GH_TOKEN` deixam de ser obrigatorios quando o script e executado, respectivamente, com `-SkipInstaller` e `-SkipGitHubRelease`.
 
 ---
 
@@ -145,10 +147,28 @@ Exemplo:
 src\Tools\release-mpv.net.ps1 C:\repo\mpv.net\src C:\saida
 ```
 
+Por padrao, o script publica em `WandersondeSouza/mpv.net`. Para gerar apenas artefatos locais, use:
+
+```powershell
+src\Tools\release-mpv.net.ps1 C:\repo\mpv.net\src C:\saida -SkipGitHubRelease
+```
+
+Para gerar apenas o ZIP portatil, sem instalador e sem publicacao:
+
+```powershell
+src\Tools\release-mpv.net.ps1 C:\repo\mpv.net\src C:\saida -SkipInstaller -SkipGitHubRelease
+```
+
+Quando `MediaInfo.dll` e `mpvnet.com` nao estiverem no diretorio de build, informe os arquivos explicitamente:
+
+```powershell
+src\Tools\release-mpv.net.ps1 C:\repo\mpv.net\src C:\saida -MediaInfoFile C:\deps\MediaInfo.dll -MpvNetComFile C:\deps\mpvnet.com
+```
+
 O script:
 
 1. valida `MpvNet.sln`;
-2. valida 7-Zip e Inno Setup;
+2. valida 7-Zip e, quando aplicavel, Inno Setup;
 3. publica `MpvNet.Windows.csproj` para `win-x64`;
 4. cria nomes com base na versão do `mpvnet.exe`;
 5. copia arquivos publicados;
@@ -159,8 +179,8 @@ O script:
 10. copia `Locale`;
 11. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
 12. gera ZIP portátil x64;
-13. executa `Setup/Inno/inno-setup.iss` para gerar o instalador x64;
-14. cria release no GitHub usando `gh release create`.
+13. executa `Setup/Inno/inno-setup.iss` para gerar o instalador x64, exceto com `-SkipInstaller`;
+14. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`.
 
 As dependencias baixadas automaticamente usam estas fontes:
 
@@ -168,7 +188,11 @@ As dependencias baixadas automaticamente usam estas fontes:
 - libmpv: `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, asset `mpv-dev-x86_64-[data]-git-[hash].7z`;
 - yt-dlp: `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`.
 
-O script usa o asset x64 generico de libmpv, nao `x86_64-v3`, para preservar compatibilidade com mais CPUs x64. Se o GitHub mudar os nomes dos assets, se o download falhar, se a extracao falhar ou se algum arquivo baixado estiver vazio, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` continua sendo dependencia manual.
+O script usa o asset x64 generico de libmpv, nao `x86_64-v3`, para preservar compatibilidade com mais CPUs x64. Se o GitHub mudar os nomes dos assets, se o download falhar, se a extracao falhar ou se algum arquivo baixado estiver vazio, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` continua sendo dependencia manual, mas pode ser fornecido por `-MediaInfoFile`.
+
+O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo script no GitHub Actions. Ele sempre publica os pacotes como artefato do workflow e, quando executado com `create_release=true`, tambem cria a Release no repositorio. Configure `MEDIAINFO_DLL_BASE64` e `MPVNET_COM_BASE64` como secrets se esses binarios nao estiverem versionados no repositorio.
+
+Este fork nao publica um pacote NuGet/container no GitHub Packages por enquanto; os pacotes de distribuicao do aplicativo sao assets de GitHub Releases e artefatos do workflow.
 
 Pendente real: validar um pacote gerado pelo script completo, incluindo ZIP, instalador e publicação.
 

@@ -51,10 +51,12 @@ Garantir que releases futuras sejam feitas de forma segura e organizada.
 # Publicação
 
 - [ ] artefatos gerados;
+- [ ] workflow manual `.github/workflows/release-packages.yml` validado, quando a release for feita pelo GitHub Actions;
 - [ ] download automatico de FFmpeg concluido;
 - [ ] download automatico de libmpv concluido;
 - [ ] download automatico de yt-dlp concluido;
 - [ ] ZIP portatil contem `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe`;
+- [ ] `MediaInfo.dll` e `mpvnet.com` fornecidos por build local ou secrets `MEDIAINFO_DLL_BASE64` e `MPVNET_COM_BASE64`;
 - [ ] versão validada;
 - [ ] release publicada;
 - [ ] links revisados.
