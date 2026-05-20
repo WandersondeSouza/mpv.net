@@ -66,3 +66,26 @@ docs/exemplos/portable_config/input.conf
 ```
 
 Assim o usuário entende imediatamente onde colocar suas configurações, e o mpv.net passa a usar a pasta portátil porque `portable_config` existe ao lado de `mpvnet.exe`.
+
+## thumbfast no modo portátil
+
+Para usar o `thumbfast` na versão portátil, coloque os arquivos dentro da própria pasta `portable_config`:
+
+```text
+mpvnet.exe
+portable_config/
+  scripts/
+    thumbfast.lua
+  script-opts/
+    thumbfast.conf
+```
+
+O arquivo de exemplo deste fork fica em:
+
+```text
+docs/exemplos/thumbfast.conf
+```
+
+No mpv.net v7, o `thumbfast` tem suporte direto e não deve precisar de `mpv_path` apontando para um `mpv.exe` separado. Use `mpv_path` apenas como fallback para versões antigas ou quando a documentação atual do próprio `thumbfast` indicar essa necessidade.
+
+O pacote portátil não inclui `thumbfast.lua` nem `mpv.exe` separado. Esses arquivos devem ser instalados pelo usuário conforme a documentação do script.

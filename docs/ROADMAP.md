@@ -12,6 +12,7 @@ Este roadmap organiza prioridades iniciais do fork em blocos pequenos. Ele deve 
 - Templates de issue para bug e melhoria.
 - Documentação técnica inicial em `docs/developer/`.
 - Artefatos de IA em `.ai/`.
+- Orientação de uso do `thumbfast` no modo portátil.
 
 ## Agora
 
@@ -27,7 +28,7 @@ Este roadmap organiza prioridades iniciais do fork em blocos pequenos. Ele deve 
 - Verificar criação de `portable_config` no ZIP.
 - Analisar `input.conf` e atalhos duplicados.
 - Investigar long path.
-- Investigar thumbfast na versão portátil.
+- Validar manualmente `thumbfast` na versão portátil com `thumbfast.lua` real e UI compatível.
 
 ## Futuro
 

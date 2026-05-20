@@ -54,6 +54,8 @@ Pastas:
 | `script-opts` | Configuração dos scripts. |
 | `extensions` | Extensões .NET carregadas pelo mpv.net. |
 
+Para scripts como `thumbfast`, a versão portátil deve usar `portable_config/scripts` e `portable_config/script-opts`. No mpv.net v7, `thumbfast` tem suporte direto; `mpv_path` para um `mpv.exe` separado deve ser tratado como fallback para versões antigas ou casos específicos documentados pelo próprio script.
+
 ---
 
 # `mpv.conf`
@@ -224,5 +226,5 @@ A configuração é lida no startup. Evite leituras repetidas ou validações pe
 # Pendências
 
 - Gerar documentação automática a partir de `App.ProcessProperty`, `Player.ProcessProperty` e comandos registrados.
-- Validar se o ZIP portátil deve incluir `portable_config` por padrão.
+- Validar manualmente o ZIP portátil gerado com `portable_config`.
 - Documentar exemplos avançados de `theme.conf` e `global-input.conf`.

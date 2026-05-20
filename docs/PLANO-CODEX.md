@@ -207,6 +207,8 @@ Reduzir confusão do usuário ao editar atalhos.
 
 ## Etapa 3 — Investigar thumbfast na versão portátil
 
+Status: documentação recomendada atualizada; pendente validação manual com `thumbfast.lua` real e uma UI compatível.
+
 ### Objetivo
 
 Verificar se o script thumbfast falha na versão portátil por depender de `mpv.exe` separado ou por limitação do empacotamento.
@@ -223,10 +225,10 @@ Também procurar no repositório referências a `thumbfast`, `script-opts`, `mpv
 
 ### Tarefas
 
-- Verificar como scripts são carregados no modo portátil.
-- Verificar se `thumbfast.conf` precisa apontar para um `mpv.exe` separado.
+- Verificar como scripts são carregados no modo portátil. Concluído.
+- Verificar se `thumbfast.conf` precisa apontar para um `mpv.exe` separado. Concluído: no mpv.net v7, não por padrão.
 - Documentar configuração recomendada.
-- Evitar incluir binários externos sem análise.
+- Evitar incluir binários externos sem análise. Concluído: o pacote não inclui `mpv.exe` separado.
 
 ### Resultado esperado
 

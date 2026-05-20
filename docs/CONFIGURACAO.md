@@ -59,6 +59,28 @@ script-opts/
 
 Nem todo script precisa de um arquivo em `script-opts`. Quando precisar, siga a documentacao do proprio script.
 
+### thumbfast
+
+Para usar `thumbfast`, coloque o script em:
+
+```text
+scripts/thumbfast.lua
+```
+
+E a configuracao opcional em:
+
+```text
+script-opts/thumbfast.conf
+```
+
+O exemplo deste fork fica em:
+
+```text
+docs/exemplos/thumbfast.conf
+```
+
+No mpv.net v7, o `thumbfast` tem suporte direto. Nao configure `mpv_path` por padrao; deixe essa opcao apenas como fallback para versoes antigas ou casos indicados pela documentacao atual do script.
+
 ## Instalacao normal
 
 Na instalacao normal, os arquivos de configuracao podem ficar na pasta do usuario do Windows, por exemplo:
