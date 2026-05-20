@@ -176,6 +176,8 @@ O usuário deve entender claramente a diferença entre versão sem instalador e 
 
 ## Etapa 2 — Validar atalhos e conflitos no input.conf
 
+Status: implementado aviso no editor para teclas duplicadas com comandos diferentes; pendente validar manualmente a janela do editor.
+
 ### Objetivo
 
 Investigar se há duplicidade ou conflito de atalhos que impeça alterações feitas pelo usuário de funcionarem corretamente.
@@ -191,10 +193,10 @@ Também procurar no código por áreas relacionadas ao editor de atalhos e salva
 
 ### Tarefas
 
-- Localizar onde o `input.conf` é carregado e salvo.
-- Verificar se o app pode gerar atalhos duplicados.
-- Verificar se há diferença entre atalhos do mpv e atalhos do mpv.net.
-- Se possível, propor validação simples ou aviso.
+- Localizar onde o `input.conf` é carregado e salvo. Concluído.
+- Verificar se o app pode gerar atalhos duplicados. Concluído.
+- Verificar se há diferença entre atalhos do mpv e atalhos do mpv.net. Concluído.
+- Implementar validação simples no editor para duplicidade de tecla com comandos diferentes.
 - Atualizar a documentação com a regra prática para evitar duplicidade.
 
 ### Resultado esperado

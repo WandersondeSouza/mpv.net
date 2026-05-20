@@ -15,7 +15,7 @@
     Foreground="{Binding Theme.Foreground}"
     Background="{Binding Theme.Background}"
     Loaded="Window_Loaded"
-    Closed="Window_Closed"
+    Closing="Window_Closing"
     StateChanged="Window_StateChanged"
     >
     

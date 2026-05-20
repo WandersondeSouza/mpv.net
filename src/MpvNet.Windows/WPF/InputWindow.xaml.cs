@@ -97,12 +97,21 @@ public partial class InputWindow : Window
 
     void Window_Loaded(object sender, RoutedEventArgs e) => Keyboard.Focus(SearchControl.SearchTextBox);
 
-    void Window_Closed(object sender, EventArgs e)
+    void Window_Closing(object? sender, CancelEventArgs e)
     {
         string newContent =  InputHelp.ConvertToString(Bindings);
 
         if (StartupContent == newContent)
             return;
+
+        string duplicateInputMessage = GetDuplicateInputMessage();
+
+        if (duplicateInputMessage != "")
+        {
+            Msg.ShowWarning(duplicateInputMessage);
+            e.Cancel = true;
+            return;
+        }
 
         if (App.InputConf.HasMenu)
             File.WriteAllText(App.InputConf.Path, App.InputConf.Content = newContent);
@@ -114,6 +123,23 @@ public partial class InputWindow : Window
         }
 
         Msg.ShowInfo(_("Changes will be available on next startup."));
+    }
+
+    string GetDuplicateInputMessage()
+    {
+        var duplicateInputs = Bindings
+            .Where(it => it.Input != "" && it.Command != "")
+            .GroupBy(it => it.Input)
+            .Where(group => group.Select(it => it.Command).Distinct().Skip(1).Any())
+            .Select(group => group.Key)
+            .Take(8)
+            .ToList();
+
+        if (duplicateInputs.Count == 0)
+            return "";
+
+        return _("The input editor cannot save duplicate shortcuts with different commands:") +
+            BR2 + string.Join(BR, duplicateInputs);
     }
 
     void DataGrid_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)

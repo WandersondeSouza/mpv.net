@@ -60,7 +60,11 @@ Em alguns casos, atalhos antigos continuam funcionando, mas o editor visual pode
 
 ### 3. Editor de atalhos
 
-O editor de atalhos do mpv.net ajuda a editar o `input.conf`, mas algumas configurações avançadas ainda podem precisar de edição manual.
+O editor de atalhos do mpv.net ajuda a editar o `input.conf`.
+
+Ao salvar alterações, o editor verifica se a mesma tecla foi atribuída a comandos diferentes. Se encontrar duplicidade, ele mostra um aviso e não grava o arquivo até que o conflito seja resolvido.
+
+Configurações avançadas ainda podem precisar de edição manual, principalmente quando o arquivo usa menus customizados ou comandos específicos de scripts.
 
 ## Como restaurar os atalhos
 
@@ -72,11 +76,9 @@ Uma forma simples de testar sem as customizações atuais é:
 4. testar os atalhos internos/padrão do mpv.net;
 5. recriar apenas os atalhos necessários no `input.conf`.
 
-## Tarefa futura para o Codex
+## Pendências futuras
 
-Investigar melhorias no editor de atalhos:
+Melhorias ainda possíveis no editor de atalhos:
 
-- detectar teclas duplicadas;
-- mostrar conflitos antes de salvar;
 - melhorar sincronização entre interface gráfica e arquivo `input.conf`;
 - validar atalhos inválidos.

@@ -158,6 +158,7 @@ O arquivo pode conter comandos mpv nativos e comandos do mpv.net.
 Cuidados:
 
 - atalhos duplicados podem sobrescrever comportamento esperado;
+- o editor de atalhos bloqueia o salvamento quando a mesma tecla aponta para comandos diferentes;
 - comandos antigos podem continuar funcionando por migração em `InputConf`;
 - scripts de usuário podem depender de comandos deprecated.
 
