@@ -118,12 +118,8 @@ public class CommandLine
 
         foreach (string arg in Environment.GetCommandLineArgs().Skip(1))
         {
-            if (!arg.StartsWith("--") && (arg == "-" || arg.Contains("://") ||
-                arg.Contains(":\\") || arg.StartsWith("\\\\") || arg.StartsWith('.') ||
-                File.Exists(arg)))
-            {
+            if (IsLoadableFileArgument(arg))
                 files.Add(arg);
-            }
         }
 
         Player.LoadFiles([.. files], !App.Queue, App.Queue);
@@ -133,6 +129,23 @@ public class CommandLine
             Player.Command("playlist-shuffle");
             Player.SetPropertyInt("playlist-pos", 0);
         }
+    }
+
+    public static bool IsLoadableFileArgument(string arg)
+    {
+        if (string.IsNullOrEmpty(arg) || arg.StartsWith("--"))
+            return false;
+
+        if (arg == "-" || arg.Contains("://"))
+            return true;
+
+        if (arg.Contains(":\\") || (arg.Contains(":/") && !arg.Contains("://")) || arg.StartsWith("\\\\"))
+            return true;
+
+        if (arg.StartsWith('.'))
+            return true;
+
+        return File.Exists(arg);
     }
 
     public static bool Contains(string name)

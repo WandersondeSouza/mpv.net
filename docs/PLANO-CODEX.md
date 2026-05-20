@@ -238,6 +238,8 @@ Ter uma orientação clara para usuários que usam thumbfast na versão portáti
 
 ## Etapa 4 — Investigar caminhos longos no Windows
 
+Status: regra de argumento carregável centralizada para primeira instância e repasse à instância única; pendente validação manual por Explorer/associação de arquivo.
+
 ### Objetivo
 
 Entender por que o mpv.net pode falhar com caminhos muito longos enquanto o `mpv.exe` consegue abrir.
@@ -257,9 +259,9 @@ Path
 
 ### Tarefas
 
-- Criar cenário de teste com caminho longo.
+- Criar cenário de teste com caminho longo. Concluído para validação .NET local.
 - Verificar abertura via Explorer.
-- Verificar abertura via linha de comando.
+- Verificar abertura via linha de comando. Parcial: fluxo de argumento revisado no código.
 - Verificar abertura por associação de arquivo.
 - Avaliar uso de prefixo:
 
@@ -267,7 +269,7 @@ Path
 \\?\
 ```
 
-- Propor correção pequena apenas se o ponto exato for identificado.
+- Propor correção pequena apenas se o ponto exato for identificado. Concluído para repasse de argumentos à instância única.
 - Caso contrário, documentar workaround temporário.
 
 ### Resultado esperado

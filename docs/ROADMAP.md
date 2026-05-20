@@ -27,7 +27,7 @@ Este roadmap organiza prioridades iniciais do fork em blocos pequenos. Ele deve 
 - Validar pacote portátil.
 - Verificar criação de `portable_config` no ZIP.
 - Analisar `input.conf` e atalhos duplicados.
-- Investigar long path.
+- Validar caminhos longos por Explorer, terminal, associação de arquivo e instância única.
 - Validar manualmente `thumbfast` na versão portátil com `thumbfast.lua` real e UI compatível.
 
 ## Futuro

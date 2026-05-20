@@ -54,9 +54,7 @@ static class Program
 
                 foreach (string arg in args)
                 {
-                    if (!arg.StartsWith("--") && (arg == "-" || arg.Contains("://") ||
-                        arg.Contains(":\\") || arg.StartsWith("\\\\")))
-
+                    if (CommandLine.IsLoadableFileArgument(arg))
                         args2.Add(arg);
                     else if (arg == "--queue")
                         args2[0] = "queue";
