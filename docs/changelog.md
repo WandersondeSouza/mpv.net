@@ -46,6 +46,8 @@ alteracoes relevantes feitas neste fork de manutencao.
   entregar ao mpv/libmpv.
 - Ajustado o exemplo de `thumbfast.conf` para usar chaves aceitas pelo
   `thumbfast.lua` atual.
+- Documentado `reset-on-next-file=pause` nos exemplos para manter cada novo item
+  da playlist pausado quando `pause=yes` estiver ativo.
 - Atualizado o plano do Codex para sair da fase de documentacao inicial pura e
   orientar manutencao pratica, bugs pequenos e melhorias de empacotamento.
 

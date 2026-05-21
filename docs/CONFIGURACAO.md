@@ -12,12 +12,15 @@ Exemplos comuns:
 
 ```text
 pause=yes
+reset-on-next-file=pause
 volume=100
 hwdec=auto-safe
 save-position-on-quit=yes
 ```
 
 Cada linha normalmente define uma opcao do mpv. Quando houver duvida sobre uma opcao, consulte o manual oficial do mpv.
+
+Se voce usa `pause=yes` e quer que cada novo item da playlist tambem volte a iniciar pausado, mantenha `reset-on-next-file=pause`. Sem essa opcao, depois que o usuario tira o player da pausa, o mpv pode manter `pause=no` ao avancar para o proximo arquivo.
 
 ## input.conf
 

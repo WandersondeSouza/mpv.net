@@ -294,15 +294,17 @@ pause=yes
 drag-and-drop=append
 ```
 
+Validacao de 2026-05-21: com dois MP4s curtos, `MPVNET_HOME` isolado e `input-ipc-server`, o primeiro item abriu pausado. Depois de enviar `pause=false`, avancar para o proximo item manteve `pause=false` e o tempo continuou andando. Repetindo o teste com `reset-on-next-file=pause`, o proximo item voltou com `pause=true` e tempo parado em `0`. O comportamento vem da semantica do mpv ao manter o valor runtime da opcao; a correcao aplicada foi documentar `reset-on-next-file=pause` nos exemplos.
+
 ### Tarefas
 
-- Reproduzir o problema com múltiplos vídeos.
+- Reproduzir o problema com múltiplos vídeos. Concluido via linha de comando e IPC em 2026-05-21.
 - Testar abertura pelo menu do app.
 - Testar arrastar e soltar.
 - Testar associação de arquivo.
-- Testar linha de comando.
-- Verificar se `pause=yes` é perdido ao carregar próximo item.
-- Criar correção pequena e testável, se possível.
+- Testar linha de comando. Concluido em 2026-05-21.
+- Verificar se `pause=yes` é perdido ao carregar próximo item. Concluido: nao e perdido no arquivo inicial; apos o usuario tirar a pausa, o mpv mantem `pause=no` no proximo item sem `reset-on-next-file=pause`.
+- Criar correção pequena e testável, se possível. Concluido como ajuste documental nos exemplos, sem mudanca de codigo.
 
 ### Resultado esperado
 
@@ -324,8 +326,8 @@ Tratar bugs visuais pequenos e bem delimitados.
 
 ### Tarefas
 
-- Verificar cor de fundo da janela.
-- Verificar renderização ao fechar.
+- Verificar cor de fundo da janela. Concluido por inspecao: `MainForm.Designer.cs` define `BackColor = System.Drawing.Color.Black`.
+- Verificar renderização ao fechar. Pendente de reproducao visual confiavel antes de qualquer correcao.
 - Testar modo escuro.
 - Comparar com `mpv.exe` quando fizer sentido.
 - Evitar mexer no ciclo de vida completo da janela sem necessidade.

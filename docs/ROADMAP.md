@@ -23,6 +23,7 @@ Este roadmap organiza prioridades iniciais do fork em blocos pequenos. Ele deve 
 - `thumbfast.lua` real validado no modo portátil, carregando de `portable_config/scripts` com configuração em `portable_config/script-opts`.
 - Caminhos longos validados por terminal e instância única; arquivos locais com 260+ caracteres agora são normalizados para `\\?\` antes do `loadfile`.
 - Fluxo de aviso de atalhos duplicados validado por inspeção do código e build.
+- Autoplay com `pause=yes` e playlist validado por IPC: sem `reset-on-next-file=pause`, o mpv mantem `pause=no` apos o usuario iniciar a reproducao; os exemplos agora documentam a opcao de reset.
 
 ## Agora
 
@@ -40,8 +41,7 @@ Este roadmap organiza prioridades iniciais do fork em blocos pequenos. Ele deve 
 
 ## Futuro
 
-- Autoplay intermitente.
-- Flash branco ao fechar.
+- Flash branco ao fechar e area fora do video cinza, somente com reproducao visual confirmada.
 - Black levels.
 - OneDrive/cloud files.
 - uosc.
