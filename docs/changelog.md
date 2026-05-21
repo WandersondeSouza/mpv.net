@@ -1,3 +1,58 @@
+# Changelog
+
+Este arquivo preserva o historico original do mpv.net e registra, no topo, as
+alteracoes relevantes feitas neste fork de manutencao.
+
+# Fork WandersondeSouza - alteracoes recentes (2026-05-21)
+
+## Release, pacote portatil e dependencias nativas
+
+- Adicionado o workflow manual `.github/workflows/release-packages.yml` para gerar
+  os pacotes no GitHub Actions. O workflow publica os arquivos como artefato da
+  execucao e, quando iniciado com `create_release=true`, tambem cria uma GitHub
+  Release com os assets gerados.
+- O script `src/Tools/release-mpv.net.ps1` agora monta o pacote portatil x64 do
+  fork com validacao explicita dos arquivos obrigatorios antes de compactar.
+- O pacote portatil passou a incluir `portable_config/` com exemplos iniciais de
+  `mpv.conf`, `input.conf`, `scripts/` e `script-opts/`.
+- FFmpeg, libmpv e yt-dlp passaram a ser baixados/atualizados automaticamente no
+  fluxo de release, usando os assets definidos no script de release.
+- `MediaInfo.dll` x64 passou a ser versionado em `src/Native/win-x64/` para o
+  fluxo de build/release do fork.
+- `mpvnet.com` passou a ter suporte a caminho customizado e fallback de download
+  no script de release.
+- A geracao de arquivos de locale foi integrada ao fluxo de release com fallback
+  para baixar `Gettext.Tools` quando `msgfmt.exe` nao esta disponivel no PATH.
+- O build da aplicacao Windows foi ajustado para `win-x64`/64 bits de forma
+  explicita, alinhando projeto, instalador e documentacao.
+- A documentacao de build, modo portatil, dependencias nativas e checklist de
+  release foi atualizada para refletir o fluxo real do pacote portatil.
+
+## Manutencao do aplicativo e documentacao tecnica
+
+- Adicionada documentacao inicial do fork em portugues brasileiro, incluindo
+  README de manutencao, guia de contribuicao, roadmap, plano Codex e documentos
+  tecnicos em `docs/developer/`.
+- Adicionados artefatos de IA em `.ai/` com skill, agentes, prompts e guia MCP
+  para manutencao conservadora do fork.
+- Adicionados exemplos de configuracao em `docs/exemplos/`, incluindo `mpv.conf`,
+  `input.conf`, `thumbfast.conf` e exemplos para `portable_config`.
+- Adicionada documentacao de atalhos e ajustes no editor de input para alertar
+  sobre duplicidade de teclas com comandos diferentes.
+- Adicionada documentacao de caminhos longos no Windows e ajuste pequeno no
+  tratamento de caminhos para reduzir problemas com caminhos extensos.
+- Atualizado o plano do Codex para sair da fase de documentacao inicial pura e
+  orientar manutencao pratica, bugs pequenos e melhorias de empacotamento.
+
+## Observacao sobre GitHub Packages
+
+- Este fork, por enquanto, nao publica pacote NuGet/container no GitHub Packages.
+  Os artefatos gerados pelo workflow ficam em Actions como workflow artifacts, e
+  os arquivos de distribuicao ficam na aba Releases quando a release e criada.
+  Por isso a area "Packages" do GitHub pode aparecer vazia ou nao ser destacada
+  na navegacao principal do repositorio.
+
+# Historico original do mpv.net
 
 - The Japanese translation was updated. Thanks to the translators!
 
