@@ -195,7 +195,9 @@ O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo sc
 
 Este fork nao publica um pacote NuGet/container no GitHub Packages por enquanto; os pacotes de distribuicao do aplicativo sao assets de GitHub Releases e artefatos do workflow.
 
-Pendente real: validar um pacote gerado pelo script completo, incluindo ZIP, instalador e publicação.
+Validado em 2026-05-21: dry run local com `-SkipGitHubRelease -SkipInstaller` gerou o ZIP portatil, baixou FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e permitiu smoke test do executavel extraido com video MP4 e imagem PNG locais.
+
+Pendente real: validar o instalador, a publicacao GitHub e a revisao manual completa da UI no pacote gerado.
 
 ---
 

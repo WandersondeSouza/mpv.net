@@ -4,23 +4,25 @@
 
 Garantir que releases futuras sejam feitas de forma segura e organizada.
 
+Status em 2026-05-21: itens marcados foram validados em dry run local com `-SkipGitHubRelease -SkipInstaller`, sem gerar instalador e sem publicar a release.
+
 ---
 
 # Build
 
-- [ ] solução compila;
-- [ ] dependências resolvidas;
+- [x] solução compila;
+- [x] dependências resolvidas;
 - [ ] build release executado;
-- [ ] sem erros críticos.
+- [x] sem erros críticos.
 
 ---
 
 # Testes manuais
 
-- [ ] player abre;
-- [ ] vídeo reproduz;
-- [ ] áudio reproduz;
-- [ ] imagens abrem;
+- [x] player abre;
+- [x] vídeo reproduz;
+- [x] áudio reproduz;
+- [x] imagens abrem;
 - [ ] fullscreen funciona;
 - [ ] menu funciona;
 - [ ] atalhos funcionam;
@@ -42,7 +44,7 @@ Garantir que releases futuras sejam feitas de forma segura e organizada.
 # Documentação
 
 - [ ] changelog atualizado;
-- [ ] documentação atualizada;
+- [x] documentação atualizada;
 - [ ] README atualizado;
 - [ ] riscos documentados.
 
@@ -50,15 +52,15 @@ Garantir que releases futuras sejam feitas de forma segura e organizada.
 
 # Publicação
 
-- [ ] artefatos gerados;
+- [x] artefatos gerados;
 - [ ] workflow manual `.github/workflows/release-packages.yml` validado, quando a release for feita pelo GitHub Actions;
-- [ ] download automatico de FFmpeg concluido;
-- [ ] download automatico de libmpv concluido;
-- [ ] download automatico de yt-dlp concluido;
-- [ ] `Locale` gerado a partir de `lang/po`;
-- [ ] ZIP portatil contem `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe`;
-- [ ] `MediaInfo.dll` copiado de `src/Native/win-x64/MediaInfo.dll`;
-- [ ] `mpvnet.com` fornecido por `-MpvNetComFile`, existente no build output ou baixado pelo script;
-- [ ] versão validada;
+- [x] download automatico de FFmpeg concluido;
+- [x] download automatico de libmpv concluido;
+- [x] download automatico de yt-dlp concluido;
+- [x] `Locale` gerado a partir de `lang/po`;
+- [x] ZIP portatil contem `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe`;
+- [x] `MediaInfo.dll` copiado de `src/Native/win-x64/MediaInfo.dll`;
+- [x] `mpvnet.com` fornecido por `-MpvNetComFile`, existente no build output ou baixado pelo script;
+- [x] versão validada;
 - [ ] release publicada;
 - [ ] links revisados.

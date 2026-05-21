@@ -2,7 +2,7 @@
 
 Este documento e uma orientacao inicial para estudar o build do fork do mpv.net.
 
-> Status: pendente de validacao em um build real.
+> Status: build local e dry run do ZIP portatil validados em 2026-05-21; instalador e publicacao GitHub continuam pendentes de validacao real.
 
 ## Plataforma
 
@@ -66,7 +66,9 @@ As fontes automaticas usadas pelo script sao:
 - `yt-dlp.exe` em `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`.
 - `Gettext.Tools` em `https://api.nuget.org/v3-flatcontainer/gettext.tools/`, quando `msgfmt.exe` nao estiver no `PATH`, para gerar `Locale`.
 
-`MediaInfo.dll` fica versionada em `src/Native/win-x64/MediaInfo.dll` e e copiada automaticamente para a saida do build, para o publish e para o ZIP portatil. O parametro `-MediaInfoFile` continua existindo apenas como override manual. `mpvnet.com` pode ser fornecido por `-MpvNetComFile`; se nao for informado e nao existir no build output, o script baixa o arquivo auxiliar do host original usado pelo projeto. A pasta `Locale` e gerada automaticamente a partir de `lang/po` quando necessario. Se algum download, extracao ou arquivo obrigatorio falhar, a release deve falhar antes de montar o pacote incompleto. O fluxo completo de release ainda precisa ser validado em execucao real.
+`MediaInfo.dll` fica versionada em `src/Native/win-x64/MediaInfo.dll` e e copiada automaticamente para a saida do build, para o publish e para o ZIP portatil. O parametro `-MediaInfoFile` continua existindo apenas como override manual. `mpvnet.com` pode ser fornecido por `-MpvNetComFile`; se nao for informado e nao existir no build output, o script baixa o arquivo auxiliar do host original usado pelo projeto. A pasta `Locale` e gerada automaticamente a partir de `lang/po` quando necessario. Se algum download, extracao ou arquivo obrigatorio falhar, a release deve falhar antes de montar o pacote incompleto.
+
+Validacao local de 2026-05-21: `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release -SkipGitHubRelease -SkipInstaller` gerou `mpv.net-v7.1.2.0-portable-x64.zip`, baixou FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e permitiu smoke test do `mpvnet.exe` extraido com video MP4 e imagem PNG locais. O fluxo com instalador e publicacao GitHub ainda precisa ser validado em execucao real.
 
 Exemplo para gerar artefatos locais sem publicar no GitHub:
 
@@ -94,10 +96,9 @@ Observacao sobre GitHub Packages: este fork distribui o aplicativo desktop como 
 
 - Versao recomendada do Visual Studio.
 - Versao recomendada do SDK .NET.
-- Comando exato de build.
-- Fluxo de release.
-- Validação completa do pacote portatil gerado.
-- Dependencias nativas e auxiliares necessarias para executar o player compilado e o pacote portatil.
+- Fluxo de release com instalador.
+- Fluxo de publicacao GitHub.
+- Validacao manual completa do pacote portatil gerado, incluindo fullscreen, menu, atalhos, persistencia de configuracao e temas.
 - Relacao exata entre build do mpv.net e atualizacao de mpv/libmpv.
 
-Este documento deve ser refinado depois de um teste real de build.
+Este documento deve ser refinado depois de um teste real do instalador e da publicacao.

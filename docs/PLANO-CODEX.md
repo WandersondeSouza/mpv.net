@@ -132,7 +132,7 @@ Atualize também a documentação relacionada, se necessário.
 
 ## Etapa 1 — Validar pacote portátil e portable_config
 
-Status: implementado no script de release; pendente validar um pacote gerado pelo fluxo completo.
+Status: validado em dry run local em 2026-05-21 com `-SkipGitHubRelease -SkipInstaller`; pendente validar instalador, publicação GitHub e revisão manual completa da UI.
 
 ### Objetivo
 
@@ -166,7 +166,9 @@ portable_config/script-opts/
 ```
 
 - Atualizar a documentação do modo portátil.
-- Validar o ZIP gerado em uma execução completa do script de release.
+- Validar o ZIP gerado em uma execução local do script de release. Concluído em 2026-05-21: o ZIP `mpv.net-v7.1.2.0-portable-x64.zip` foi gerado, inspecionado e contém `mpvnet.exe`, dependências nativas, ferramentas auxiliares, `Locale/` e `portable_config/`.
+- Smoke test do executável extraído com vídeo MP4 e imagem PNG gerados localmente. Concluído em 2026-05-21.
+- Validar instalador, publicação GitHub e testes manuais de fullscreen, menu, atalhos, persistência de configuração e temas.
 
 ### Resultado esperado
 

@@ -14,6 +14,13 @@ Este roadmap organiza prioridades iniciais do fork em blocos pequenos. Ele deve 
 - Artefatos de IA em `.ai/`.
 - Orientação de uso do `thumbfast` no modo portátil.
 
+## Concluído na estabilização pós-primeira versão
+
+- Build local de `src\MpvNet.Windows\MpvNet.Windows.csproj` validado em Windows em 2026-05-21.
+- Dry run local do pacote portátil validado com `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release -SkipGitHubRelease -SkipInstaller`.
+- ZIP `mpv.net-v7.1.2.0-portable-x64.zip` inspecionado com `mpvnet.exe`, `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe`, `mpvnet.com`, `Locale/` e `portable_config/`.
+- Smoke test do executável extraído validado com vídeo MP4 e imagem PNG gerados pelo `ffmpeg.exe` empacotado.
+
 ## Agora
 
 - Refinar README, roadmap e plano para refletirem o estado atual do fork.
@@ -23,12 +30,10 @@ Este roadmap organiza prioridades iniciais do fork em blocos pequenos. Ele deve 
 
 ## Próximo
 
-- Validar build local em ambiente Windows completo.
-- Validar pacote portátil.
-- Verificar criação de `portable_config` no ZIP.
 - Analisar `input.conf` e atalhos duplicados.
 - Validar caminhos longos por Explorer, terminal, associação de arquivo e instância única.
 - Validar manualmente `thumbfast` na versão portátil com `thumbfast.lua` real e UI compatível.
+- Validar instalador, publicação GitHub e testes manuais completos de fullscreen, menu, atalhos, persistência de configuração e temas.
 
 ## Futuro
 
