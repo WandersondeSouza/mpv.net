@@ -1,8 +1,12 @@
 
+param(
+    [string] $OutputDir = "$PSScriptRoot/../src/MpvNet.Windows/bin/Debug"
+)
+
 $ErrorActionPreference = 'Stop'
 
 $PoFiles = Get-ChildItem $PSScriptRoot/po
-$ExeFolder = "$PSScriptRoot/../src/MpvNet.Windows/bin/Debug"
+$ExeFolder = $OutputDir
 
 foreach ($it in $PoFiles)
 {

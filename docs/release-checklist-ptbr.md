@@ -55,8 +55,10 @@ Garantir que releases futuras sejam feitas de forma segura e organizada.
 - [ ] download automatico de FFmpeg concluido;
 - [ ] download automatico de libmpv concluido;
 - [ ] download automatico de yt-dlp concluido;
+- [ ] `Locale` gerado a partir de `lang/po`;
 - [ ] ZIP portatil contem `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe`;
-- [ ] `MediaInfo.dll` e `mpvnet.com` fornecidos por build local ou secrets `MEDIAINFO_DLL_BASE64` e `MPVNET_COM_BASE64`;
+- [ ] `MediaInfo.dll` copiado de `src/Native/win-x64/MediaInfo.dll`;
+- [ ] `mpvnet.com` fornecido por `-MpvNetComFile`, existente no build output ou baixado pelo script;
 - [ ] versão validada;
 - [ ] release publicada;
 - [ ] links revisados.

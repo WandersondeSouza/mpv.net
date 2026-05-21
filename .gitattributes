@@ -3,6 +3,7 @@
 
 # Custom for Visual Studio
 *.cs     diff=csharp
+src/Native/**/*.dll binary
 
 # Standard to msysgit
 *.doc	 diff=astextplain

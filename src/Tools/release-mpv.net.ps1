@@ -13,14 +13,16 @@ Optional parameters:
     -Repo Owner/repository used by GitHub CLI. Default: WandersondeSouza/mpv.net.
     -SkipInstaller Skips Inno Setup package generation.
     -SkipGitHubRelease Creates local artifacts without publishing a GitHub release.
-    -MediaInfoFile Path to MediaInfo.dll when it is not already in the build output folder.
-    -MpvNetComFile Path to mpvnet.com when it is not already in the build output folder.
+    -MediaInfoFile Optional override path to MediaInfo.dll. Defaults to src\Native\win-x64\MediaInfo.dll.
+    -MpvNetComFile Optional override path to mpvnet.com. Defaults to the upstream helper download.
 
 Dependencies:
     7zip installation found at: 'C:\Program Files\7-Zip\7z.exe'.
     Inno Setup compiler installation found at: 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' unless -SkipInstaller is used.
     GitHub CLI https://cli.github.com, the env var GH_TOKEN must be defined unless -SkipGitHubRelease is used.
     Internet access to download FFmpeg, libmpv and yt-dlp for the portable package.
+    Internet access to download mpvnet.com when -MpvNetComFile is not provided and the build output does not already contain it.
+    Internet access to download Gettext.Tools from NuGet when msgfmt.exe is not available on PATH.
 
 Notes:
     Before you run the script you need to update the versions found in the file:
@@ -94,6 +96,12 @@ function CopyExtraFiles($sourceDir, $targetDir, $files) {
     }
 }
 
+function CopyDir($sourceDir, $targetDir) {
+    DeleteDir $targetDir
+    Copy-Item (Test $sourceDir) $targetDir -Recurse -Force
+    return Test $targetDir
+}
+
 function InvokeFileDownload($uri, $outputFile) {
     Write-Host "Downloading $uri"
     Invoke-WebRequest -Uri $uri -UserAgent 'mpv.net-release-script' -OutFile $outputFile -UseBasicParsing
@@ -136,6 +144,52 @@ function CopyExtractedFile($sourceRootDir, $fileName, $targetDir) {
     TestFile $targetFile | Out-Null
 }
 
+function AddGettextToolsToPath($workDir) {
+    if (Get-Command msgfmt -ErrorAction SilentlyContinue) {
+        return
+    }
+
+    $packagesDir = NewCleanDir (Join-Path $workDir 'gettext-tools')
+    $index = Invoke-WebRequest `
+        -Uri 'https://api.nuget.org/v3-flatcontainer/gettext.tools/index.json' `
+        -UseBasicParsing |
+        ConvertFrom-Json
+    $version = @($index.versions)[-1]
+    if (-not $version) {
+        throw 'Could not resolve the latest Gettext.Tools package version from NuGet.'
+    }
+
+    $packageFile = Join-Path $workDir "gettext.tools.$version.nupkg"
+    InvokeFileDownload `
+        "https://api.nuget.org/v3-flatcontainer/gettext.tools/$version/gettext.tools.$version.nupkg" `
+        $packageFile | Out-Null
+    ExpandReleaseArchive $packageFile $packagesDir | Out-Null
+
+    $toolBinDir = Get-ChildItem $packagesDir -Filter 'msgfmt.exe' -Recurse -File |
+        Select-Object -First 1 |
+        ForEach-Object { $_.DirectoryName }
+
+    if (-not $toolBinDir) {
+        throw "Gettext.Tools was installed, but msgfmt.exe was not found in $packagesDir"
+    }
+
+    $env:Path = "$toolBinDir;$env:Path"
+    TestFile (Join-Path $toolBinDir 'msgfmt.exe') | Out-Null
+}
+
+function EnsureLocale($sourceDir, $localeDir, $workDir) {
+    if ((Test-Path $localeDir) -and @(Get-ChildItem $localeDir -Filter 'mpvnet.mo' -Recurse -File).Count) {
+        return Test $localeDir
+    }
+
+    $createMoScript = Test (Join-Path $sourceDir '..\lang\create-mo-files.ps1')
+    AddGettextToolsToPath $workDir
+    & $createMoScript (Join-Path $sourceDir 'MpvNet.Windows\bin\Debug\win-x64')
+    if ($LastExitCode) { throw $LastExitCode }
+
+    return Test $localeDir
+}
+
 function UpdatePortableDependencies($binDir, $workDir) {
     try {
         $downloadsDir = NewCleanDir (Join-Path $workDir 'downloads')
@@ -171,6 +225,7 @@ $SourceDir     = Test $SourceDir
 New-Item -ItemType Directory -Force $OutputRootDir | Out-Null
 $OutputRootDir = Test $OutputRootDir
 $DocsDir       = Test (Join-Path $SourceDir '..\docs')
+$NativeWinX64Dir = Test (Join-Path $SourceDir 'Native\win-x64')
 
 Test (Join-Path $SourceDir 'MpvNet.sln')
 
@@ -204,18 +259,25 @@ Copy-Item ($PublishDir64 + '*') $OutputDir64
 $BinDirX64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\')
 $DependencyWorkDir = Join-Path $env:TEMP 'mpv.net-release-dependencies'
 UpdatePortableDependencies $BinDirX64 $DependencyWorkDir
-if ($MediaInfoFile) {
-    Copy-Item (TestFile $MediaInfoFile) (Join-Path $BinDirX64 'MediaInfo.dll') -Force
-}
+$MediaInfoSourceFile = if ($MediaInfoFile) { TestFile $MediaInfoFile } else { TestFile (Join-Path $NativeWinX64Dir 'MediaInfo.dll') }
+Copy-Item $MediaInfoSourceFile (Join-Path $BinDirX64 'MediaInfo.dll') -Force
 if ($MpvNetComFile) {
     Copy-Item (TestFile $MpvNetComFile) (Join-Path $BinDirX64 'mpvnet.com') -Force
+}
+elseif (-not (Test-Path (Join-Path $BinDirX64 'mpvnet.com'))) {
+    InvokeFileDownload `
+        'https://github.com/mpvnet-player/file-host/releases/download/tag/mpvnet.com.txt' `
+        (Join-Path $BinDirX64 'mpvnet.com') | Out-Null
 }
 $ExtraFiles = 'mpvnet.com', 'MediaInfo.dll', 'libmpv-2.dll', 'ffmpeg.exe', 'ffplay.exe', 'ffprobe.exe', 'yt-dlp.exe'
 CopyExtraFiles $BinDirX64 $OutputDir64 $ExtraFiles
 CopyExtraFiles $BinDirX64 $PublishDir64 $ExtraFiles
-$LocaleDir = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\Locale\')
-Copy-Item $LocaleDir ($OutputDir64 + 'Locale') -Recurse
-Copy-Item $LocaleDir ($PublishDir64 + 'Locale') -Recurse -Force
+$LocaleDir = EnsureLocale `
+    $SourceDir `
+    (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\Locale\') `
+    (Join-Path $env:TEMP 'mpv.net-release-locale')
+CopyDir $LocaleDir (Join-Path $OutputDir64 'Locale') | Out-Null
+CopyDir $LocaleDir (Join-Path $PublishDir64 'Locale') | Out-Null
 AddPortableConfig $OutputDir64 $DocsDir
 
 # Pack

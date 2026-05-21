@@ -51,25 +51,6 @@ jobs:
         shell: pwsh
         run: dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj
 
-      - name: Restore native release-only files from secrets
-        shell: pwsh
-        env:
-          MEDIAINFO_DLL_BASE64: ${{ secrets.MEDIAINFO_DLL_BASE64 }}
-          MPVNET_COM_BASE64: ${{ secrets.MPVNET_COM_BASE64 }}
-        run: |
-          $nativeDir = Join-Path $env:RUNNER_TEMP 'mpvnet-native'
-          New-Item -ItemType Directory -Force $nativeDir | Out-Null
-
-          if ($env:MEDIAINFO_DLL_BASE64) {
-            [IO.File]::WriteAllBytes((Join-Path $nativeDir 'MediaInfo.dll'), [Convert]::FromBase64String($env:MEDIAINFO_DLL_BASE64))
-          }
-
-          if ($env:MPVNET_COM_BASE64) {
-            [IO.File]::WriteAllBytes((Join-Path $nativeDir 'mpvnet.com'), [Convert]::FromBase64String($env:MPVNET_COM_BASE64))
-          }
-
-          "NATIVE_DIR=$nativeDir" >> $env:GITHUB_ENV
-
       - name: Generate packages
         shell: pwsh
         env:
@@ -88,16 +69,6 @@ jobs:
 
           if ('${{ inputs.create_installer }}' -ne 'true') {
             $releaseArgs += '-SkipInstaller'
-          }
-
-          $mediaInfoFile = Join-Path $env:NATIVE_DIR 'MediaInfo.dll'
-          if (Test-Path $mediaInfoFile) {
-            $releaseArgs += @('-MediaInfoFile', $mediaInfoFile)
-          }
-
-          $mpvNetComFile = Join-Path $env:NATIVE_DIR 'mpvnet.com'
-          if (Test-Path $mpvNetComFile) {
-            $releaseArgs += @('-MpvNetComFile', $mpvNetComFile)
           }
 
           & .\src\Tools\release-mpv.net.ps1 @releaseArgs

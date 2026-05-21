@@ -80,7 +80,7 @@ docs/exemplos/portable_config/input.conf
 
 Assim o usuário entende imediatamente onde colocar suas configurações, e o mpv.net passa a usar a pasta portátil porque `portable_config` existe ao lado de `mpvnet.exe`.
 
-O pacote portatil tambem deve deixar `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. Durante a release, o script baixa `libmpv-2.dll`, FFmpeg e `yt-dlp.exe` das fontes configuradas no proprio script. `MediaInfo.dll` continua sendo uma dependencia local/manual. O codigo do mpv.net carrega diretamente `libmpv-2.dll` e `MediaInfo.dll`; os executaveis FFmpeg e `yt-dlp.exe` sao auxiliares usados pelo mpv/libmpv e por fluxos de streaming, nao chamadas diretas do codigo C# do mpv.net.
+O pacote portatil tambem deve deixar `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. Durante a release, o script baixa `libmpv-2.dll`, FFmpeg e `yt-dlp.exe` das fontes configuradas no proprio script. `MediaInfo.dll` vem da copia versionada em `src/Native/win-x64/MediaInfo.dll`. O codigo do mpv.net carrega diretamente `libmpv-2.dll` e `MediaInfo.dll`; os executaveis FFmpeg e `yt-dlp.exe` sao auxiliares usados pelo mpv/libmpv e por fluxos de streaming, nao chamadas diretas do codigo C# do mpv.net.
 
 ## thumbfast no modo portátil
 

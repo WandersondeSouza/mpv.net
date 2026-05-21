@@ -25,7 +25,7 @@ The portable package also includes auxiliary executables expected beside `mpvnet
 
 These executables are not called directly by the C# P/Invoke layer. They are auxiliary tools used by mpv/libmpv and streaming workflows. `yt-dlp.exe` can also be found through `PATH`, but the fork's portable package downloads and includes it beside `mpvnet.exe`.
 
-The release script downloads FFmpeg, libmpv and yt-dlp during packaging. `MediaInfo.dll` remains a manual/local dependency and must already exist in the expected build output folder before the release package is created.
+The release script downloads FFmpeg, libmpv and yt-dlp during packaging. `MediaInfo.dll` is versioned in `src/Native/win-x64/MediaInfo.dll` and is copied automatically by the project build and release script.
 
 ## Automatically downloaded release dependencies
 
@@ -34,6 +34,7 @@ The release script downloads FFmpeg, libmpv and yt-dlp during packaging. `MediaI
 - FFmpeg from `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, selecting `ffmpeg-master-latest-win64-gpl.zip` and copying only `ffmpeg.exe`, `ffplay.exe` and `ffprobe.exe`.
 - libmpv from `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, selecting the generic x64 asset `mpv-dev-x86_64-[date]-git-[hash].7z` and copying only `libmpv-2.dll`.
 - yt-dlp from `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`.
+- Gettext.Tools from `https://api.nuget.org/v3-flatcontainer/gettext.tools/` when `msgfmt.exe` is not available on `PATH`, so the release script can generate `Locale` from `lang/po`.
 
 The libmpv selector intentionally uses the generic `x86_64` asset instead of `x86_64-v3` to preserve compatibility with more x64 CPUs. If an upstream release changes asset names, if a download fails, if extraction fails, or if a required downloaded file is empty, the script must fail before creating a partial portable package.
 
@@ -58,7 +59,7 @@ Recommended process:
 1. Download the latest official MediaInfo/MediaInfoLib package for Windows from the official MediaInfo source.
 2. Select the correct architecture version:
    - x64 for `win-x64`
-3. Replace the existing `MediaInfo.dll` in the corresponding dependency/build output location.
+3. Replace the existing `src/Native/win-x64/MediaInfo.dll`.
 4. Build and run mpv.net.
 5. Test media information loading with different file types.
 
@@ -104,19 +105,19 @@ If the application fails to start or media information cannot be loaded, confirm
 
 ## Release packaging note
 
-The release script downloads `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` and `yt-dlp.exe`, places them in the x64 build output folder, and then copies them as extra files for the portable and publish folders. `MediaInfo.dll` and `mpvnet.com` are still copied from the local build output folder as required files.
+The release script downloads `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` and `yt-dlp.exe`, places them in the x64 build output folder, and then copies them as extra files for the portable and publish folders. `MediaInfo.dll` is copied from `src/Native/win-x64/MediaInfo.dll` by default. `mpvnet.com` can be provided by `-MpvNetComFile`; otherwise the script downloads the upstream helper file when it is not already present in the build output.
 
-Before creating a release package, confirm that the local required files are present in the folder used by the release script:
+Before creating a release package, confirm that the versioned native file exists:
 
 ```text
-src/MpvNet.Windows/bin/Debug/win-x64/
+src/Native/win-x64/MediaInfo.dll
 ```
 
 If any expected file is missing, empty, or cannot be downloaded, the release script should fail instead of creating a partial portable package.
 
 ## Future improvement
 
-A future improvement would be to automate this process with a script, for example:
+A future improvement would be to automate MediaInfo updates with a script, for example:
 
 ```text
 src/Tools/update-mediainfo.ps1
