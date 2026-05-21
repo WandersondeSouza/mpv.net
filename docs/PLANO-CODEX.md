@@ -338,6 +338,27 @@ Correções pequenas de UX visual sem alterar arquitetura geral.
 
 ---
 
+## Etapa 7 — Melhorar higiene de manutenção
+
+Status: executado em 2026-05-21 com ajuste documental do checklist e do roadmap, sem alterar codigo do player.
+
+### Objetivo
+
+Manter a fase pos-primeira versao organizada, separando o que ja foi validado, o que ainda depende de teste manual e o que deve ficar para o futuro.
+
+### Tarefas
+
+- Revisar o checklist de release apos a validacao real. Concluido: `docs/release-checklist-ptbr.md` agora separa preparacao, pacote portatil, smoke test, compatibilidade, instalador/publicacao, documentacao e fora de escopo.
+- Separar no roadmap o que esta concluido, pendente de validacao manual e futuro. Concluido em `docs/ROADMAP.md`.
+- Manter fora desta fase itens grandes como uosc, LUT, AI upscaling, IPTV/media center e mudancas profundas em yt-dlp. Concluido como regra explicita no checklist e no roadmap.
+- Atualizar documentos somente quando houver comportamento real validado ou mudanca de organizacao necessaria.
+
+### Resultado esperado
+
+Evitar dispersao apos a primeira versao e manter as proximas rodadas focadas em validacoes pequenas, bugs comprovados e manutencao conservadora.
+
+---
+
 # Backlog futuro
 
 Somente depois da fase atual, avaliar:
