@@ -477,6 +477,19 @@ public class MainPlayer : MpvClient
         if (!path.Contains(':') && !path.StartsWith("\\\\") && File.Exists(path))
             path = System.IO.Path.GetFullPath(path);
 
+        if (OperatingSystem.IsWindows() &&
+            path.Length >= 260 &&
+            !path.StartsWith(@"\\?\") &&
+            !path.Contains("://") &&
+            System.IO.Path.IsPathFullyQualified(path) &&
+            File.Exists(path))
+        {
+            if (path.StartsWith(@"\\"))
+                return @"\\?\UNC\" + path[2..];
+
+            return @"\\?\" + path;
+        }
+
         return path;
     }
 

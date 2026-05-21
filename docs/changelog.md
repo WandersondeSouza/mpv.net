@@ -41,6 +41,11 @@ alteracoes relevantes feitas neste fork de manutencao.
   sobre duplicidade de teclas com comandos diferentes.
 - Adicionada documentacao de caminhos longos no Windows e ajuste pequeno no
   tratamento de caminhos para reduzir problemas com caminhos extensos.
+- Corrigido o carregamento de arquivos locais com caminho acima de 260
+  caracteres, normalizando o caminho para o formato estendido `\\?\` antes de
+  entregar ao mpv/libmpv.
+- Ajustado o exemplo de `thumbfast.conf` para usar chaves aceitas pelo
+  `thumbfast.lua` atual.
 - Atualizado o plano do Codex para sair da fase de documentacao inicial pura e
   orientar manutencao pratica, bugs pequenos e melhorias de empacotamento.
 

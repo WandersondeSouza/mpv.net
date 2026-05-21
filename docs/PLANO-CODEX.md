@@ -178,7 +178,7 @@ O usuário deve entender claramente a diferença entre versão sem instalador e 
 
 ## Etapa 2 — Validar atalhos e conflitos no input.conf
 
-Status: implementado aviso no editor para teclas duplicadas com comandos diferentes; pendente validar manualmente a janela do editor.
+Status: fluxo de código validado por inspeção e build em 2026-05-21; pendente apenas validação visual interativa da janela.
 
 ### Objetivo
 
@@ -198,8 +198,9 @@ Também procurar no código por áreas relacionadas ao editor de atalhos e salva
 - Localizar onde o `input.conf` é carregado e salvo. Concluído.
 - Verificar se o app pode gerar atalhos duplicados. Concluído.
 - Verificar se há diferença entre atalhos do mpv e atalhos do mpv.net. Concluído.
-- Implementar validação simples no editor para duplicidade de tecla com comandos diferentes.
-- Atualizar a documentação com a regra prática para evitar duplicidade.
+- Implementar validação simples no editor para duplicidade de tecla com comandos diferentes. Concluído.
+- Atualizar a documentação com a regra prática para evitar duplicidade. Concluído.
+- Confirmar no código que `InputWindow` cancela o fechamento e mostra aviso quando a mesma tecla possui comandos diferentes. Concluído por inspeção e build.
 
 ### Resultado esperado
 
@@ -209,7 +210,7 @@ Reduzir confusão do usuário ao editar atalhos.
 
 ## Etapa 3 — Investigar thumbfast na versão portátil
 
-Status: documentação recomendada atualizada; pendente validação manual com `thumbfast.lua` real e uma UI compatível.
+Status: validado em 2026-05-21 com `thumbfast.lua` real no pacote portátil; pendente apenas validação visual de thumbnails em uma UI de usuário final.
 
 ### Objetivo
 
@@ -229,8 +230,9 @@ Também procurar no repositório referências a `thumbfast`, `script-opts`, `mpv
 
 - Verificar como scripts são carregados no modo portátil. Concluído.
 - Verificar se `thumbfast.conf` precisa apontar para um `mpv.exe` separado. Concluído: no mpv.net v7, não por padrão.
-- Documentar configuração recomendada.
+- Documentar configuração recomendada. Concluído.
 - Evitar incluir binários externos sem análise. Concluído: o pacote não inclui `mpv.exe` separado.
+- Validar carregamento real de `portable_config/scripts/thumbfast.lua` e `portable_config/script-opts/thumbfast.conf`. Concluído em 2026-05-21: o log registrou carregamento do script, leitura da configuração e mensagens `thumbfast-info` sem erros.
 
 ### Resultado esperado
 
@@ -240,7 +242,7 @@ Ter uma orientação clara para usuários que usam thumbfast na versão portáti
 
 ## Etapa 4 — Investigar caminhos longos no Windows
 
-Status: regra de argumento carregável centralizada para primeira instância e repasse à instância única; pendente validação manual por Explorer/associação de arquivo.
+Status: corrigido e validado por terminal e instância única em 2026-05-21; pendente validar Explorer, associação de arquivo e menu `Open Files...`.
 
 ### Objetivo
 
@@ -263,7 +265,7 @@ Path
 
 - Criar cenário de teste com caminho longo. Concluído para validação .NET local.
 - Verificar abertura via Explorer.
-- Verificar abertura via linha de comando. Parcial: fluxo de argumento revisado no código.
+- Verificar abertura via linha de comando. Concluído em 2026-05-21 com arquivo MP4 em caminho de 325 caracteres.
 - Verificar abertura por associação de arquivo.
 - Avaliar uso de prefixo:
 
@@ -271,7 +273,8 @@ Path
 \\?\
 ```
 
-- Propor correção pequena apenas se o ponto exato for identificado. Concluído para repasse de argumentos à instância única.
+- Propor correção pequena apenas se o ponto exato for identificado. Concluído: `Player.ConvertFilePath` converte arquivos locais longos para `\\?\` antes de chamar `loadfile`.
+- Validar repasse à instância única. Concluído em 2026-05-21: a segunda instância encerrou após enviar o arquivo e a primeira instância abriu o caminho longo normalizado.
 - Caso contrário, documentar workaround temporário.
 
 ### Resultado esperado

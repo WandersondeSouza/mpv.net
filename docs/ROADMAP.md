@@ -20,6 +20,9 @@ Este roadmap organiza prioridades iniciais do fork em blocos pequenos. Ele deve 
 - Dry run local do pacote portátil validado com `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release -SkipGitHubRelease -SkipInstaller`.
 - ZIP `mpv.net-v7.1.2.0-portable-x64.zip` inspecionado com `mpvnet.exe`, `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe`, `mpvnet.com`, `Locale/` e `portable_config/`.
 - Smoke test do executável extraído validado com vídeo MP4 e imagem PNG gerados pelo `ffmpeg.exe` empacotado.
+- `thumbfast.lua` real validado no modo portátil, carregando de `portable_config/scripts` com configuração em `portable_config/script-opts`.
+- Caminhos longos validados por terminal e instância única; arquivos locais com 260+ caracteres agora são normalizados para `\\?\` antes do `loadfile`.
+- Fluxo de aviso de atalhos duplicados validado por inspeção do código e build.
 
 ## Agora
 
@@ -30,9 +33,9 @@ Este roadmap organiza prioridades iniciais do fork em blocos pequenos. Ele deve 
 
 ## Próximo
 
-- Analisar `input.conf` e atalhos duplicados.
-- Validar caminhos longos por Explorer, terminal, associação de arquivo e instância única.
-- Validar manualmente `thumbfast` na versão portátil com `thumbfast.lua` real e UI compatível.
+- Validar caminhos longos por Explorer, associação de arquivo e menu `Open Files...`.
+- Validar visualmente a janela do editor de atalhos ao tentar salvar duplicidade.
+- Validar visualmente thumbnails do `thumbfast` em uma UI compatível de uso real.
 - Validar instalador, publicação GitHub e testes manuais completos de fullscreen, menu, atalhos, persistência de configuração e temas.
 
 ## Futuro

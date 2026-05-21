@@ -66,6 +66,8 @@ Ao salvar alterações, o editor verifica se a mesma tecla foi atribuída a coma
 
 Configurações avançadas ainda podem precisar de edição manual, principalmente quando o arquivo usa menus customizados ou comandos específicos de scripts.
 
+Validação de manutenção em 2026-05-21: o fluxo em `InputWindow` foi revisado e o build passou. A confirmação visual da mensagem na janela ainda deve ser feita em teste manual interativo, porque depende de editar uma célula do editor e tentar fechar/salvar a janela.
+
 ## Como restaurar os atalhos
 
 Uma forma simples de testar sem as customizações atuais é:
