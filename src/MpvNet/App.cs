@@ -57,6 +57,7 @@ public class AppClass
     public void Init()
     {
         var useless1 = Player.ConfigFolder;
+        EnsureInitialMpvConf();
         var useless2 = Player.Conf;
 
         foreach (var i in Conf)
@@ -85,6 +86,29 @@ public class AppClass
         $"{GetLastWriteTime(Folder.Startup + "MediaInfo.dll")}" + "\n" + "GPL v2 License";
 
     static string GetLastWriteTime(string path) => $" ({File.GetLastWriteTime(path).ToShortDateString()})";
+
+    void EnsureInitialMpvConf()
+    {
+        string appDataConfigFolder = (Folder.AppData + "mpv.net").Separator;
+
+        if (!StringComparer.OrdinalIgnoreCase.Equals(Player.ConfigFolder, appDataConfigFolder))
+            return;
+
+        if (File.Exists(Player.ConfPath))
+            return;
+
+        File.WriteAllText(Player.ConfPath,
+            "# Initial mpv/mpv.net configuration." + BR +
+            "# This file is created only when no user mpv.conf exists." + BR +
+            BR +
+            "# Profile used by IPTV Media Center when it launches mpv.net." + BR +
+            "# It is applied only with: --profile=iptv-media-center" + BR +
+            "[iptv-media-center]" + BR +
+            "force-window=yes" + BR +
+            "idle=no" + BR +
+            "cache=yes" + BR +
+            "volume=100" + BR);
+    }
 
     void Player_Initialized()
     {

@@ -86,6 +86,8 @@ docs/exemplos/portable_config/input.conf
 
 Assim o usuário entende imediatamente onde colocar suas configurações, e o mpv.net passa a usar a pasta portátil porque `portable_config` existe ao lado de `mpvnet.exe`.
 
+O `portable_config/mpv.conf` tambem inclui o perfil `[iptv-media-center]`. Esse perfil so e usado quando o player recebe `--profile=iptv-media-center`; portanto ele nao muda a abertura normal do mpv.net pelo usuario.
+
 O pacote portatil tambem deve deixar `libmpv-2.dll`, `MediaInfo.dll`, as DLLs `.NET/WPF` nativas, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. Durante a release, o script baixa `libmpv-2.dll`, MediaInfo, FFmpeg e `yt-dlp.exe` das fontes configuradas no proprio script. As DLLs Microsoft/.NET vem do `dotnet publish` self-contained, nao de sites externos. O codigo do mpv.net carrega diretamente `libmpv-2.dll` e `MediaInfo.dll`; os executaveis FFmpeg e `yt-dlp.exe` sao auxiliares usados pelo mpv/libmpv e por fluxos de streaming, nao chamadas diretas do codigo C# do mpv.net.
 
 ## thumbfast no modo portátil

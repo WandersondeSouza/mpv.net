@@ -19,6 +19,12 @@ alteracoes relevantes feitas neste fork de manutencao.
   fork com validacao explicita dos arquivos obrigatorios antes de compactar.
 - O pacote portatil passou a incluir `portable_config/` com exemplos iniciais de
   `mpv.conf`, `input.conf`, `scripts/` e `script-opts/`.
+- O `mpv.conf` inicial passou a incluir o perfil `[iptv-media-center]`, usado
+  apenas quando o player recebe `--profile=iptv-media-center`, para reduzir
+  parametros estaticos enviados pelo IPTV Media Center sem alterar o uso normal.
+- Na instalacao normal, quando `%APPDATA%\mpv.net\mpv.conf` ainda nao existe, o
+  mpv.net cria um arquivo inicial com o perfil `[iptv-media-center]` sem
+  sobrescrever configuracoes existentes do usuario.
 - FFmpeg, libmpv e yt-dlp passaram a ser baixados/atualizados automaticamente no
   fluxo de release, usando os assets definidos no script de release.
 - `MediaInfo.dll` x64 passou a ser versionado em `src/Native/win-x64/` para o

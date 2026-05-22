@@ -22,6 +22,14 @@ Cada linha normalmente define uma opcao do mpv. Quando houver duvida sobre uma o
 
 Se voce usa `pause=yes` e quer que cada novo item da playlist tambem volte a iniciar pausado, mantenha `reset-on-next-file=pause`. Sem essa opcao, depois que o usuario tira o player da pausa, o mpv pode manter `pause=no` ao avancar para o proximo arquivo.
 
+Este fork tambem pode criar um perfil chamado `[iptv-media-center]` no `mpv.conf`. Ele fica inativo no uso normal e so e aplicado quando outro aplicativo inicia o player com:
+
+```text
+--profile=iptv-media-center
+```
+
+O perfil existe para integrar o pacote com o IPTV Media Center sem transformar essas opcoes em padrao global do mpv.net.
+
 ## input.conf
 
 O arquivo `input.conf` guarda atalhos de teclado, mouse e comandos.
@@ -95,6 +103,8 @@ C:\Users\<usuario>\AppData\Roaming\mpv.net
 ```
 
 Esse caminho pode variar conforme a versao, configuracao ou modo de execucao.
+
+Quando essa pasta e usada e ainda nao existe `mpv.conf`, o mpv.net cria um arquivo inicial com o perfil `[iptv-media-center]`. Se o usuario ja possui `mpv.conf`, o arquivo existente nao e sobrescrito.
 
 ## Versao portatil
 
