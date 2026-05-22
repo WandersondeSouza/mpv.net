@@ -22,16 +22,19 @@ Use este checklist como fonte de verdade da release. Se um item for validado em 
 
 # Pacote portatil
 
-- [x] dry run local executado com `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release -SkipGitHubRelease -SkipInstaller`;
+- [x] dry run local executado com `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release-native-installer-test -SkipGitHubRelease`;
 - [x] artefatos gerados;
 - [x] download automatico de FFmpeg concluido;
 - [x] download automatico de libmpv concluido;
 - [x] download automatico de yt-dlp concluido;
+- [x] download automatico de MediaInfo concluido a partir da MediaArea oficial;
+- [x] DLLs Microsoft/.NET/WPF validadas a partir do publish self-contained;
 - [x] `Locale` gerado a partir de `lang/po`;
-- [x] ZIP portatil contem `mpvnet.exe`, `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe`, `mpvnet.com`, `Locale/` e `portable_config/`;
-- [x] `MediaInfo.dll` copiado de `src/Native/win-x64/MediaInfo.dll`;
+- [x] ZIP portatil contem `mpvnet.exe`, `libmpv-2.dll`, `MediaInfo.dll`, DLLs `.NET/WPF`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe`, `mpvnet.com`, `Locale/` e `portable_config/`;
+- [x] `MediaInfo.dll` baixado/validado pelo script `download-native-dependencies.ps1`;
 - [x] `mpvnet.com` fornecido por `-MpvNetComFile`, existente no build output ou baixado pelo script;
-- [x] versao validada no nome do ZIP gerado.
+- [x] versao validada no nome do ZIP gerado;
+- [x] `test-native-dependencies.ps1` validou publish, pasta portatil e ZIP.
 
 ---
 
@@ -62,7 +65,8 @@ Use este checklist como fonte de verdade da release. Se um item for validado em 
 # Instalador e publicacao
 
 - [ ] build release executado para publicacao final;
-- [ ] instalador gerado;
+- [x] instalador gerado localmente;
+- [x] log do Inno Setup confirmou inclusao das DLLs nativas obrigatorias a partir do publish;
 - [ ] instalador instalado em maquina limpa ou perfil isolado;
 - [ ] workflow manual `.github/workflows/release-packages.yml` validado, quando a release for feita pelo GitHub Actions;
 - [ ] release publicada;

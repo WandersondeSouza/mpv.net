@@ -24,6 +24,11 @@ mpvnet.exe
 mpvnet.exe
 libmpv-2.dll
 MediaInfo.dll
+D3DCompiler_47_cor3.dll
+vcruntime140_cor3.dll
+wpfgfx_cor3.dll
+PenImc_cor3.dll
+PresentationNative_cor3.dll
 ffmpeg.exe
 ffplay.exe
 ffprobe.exe
@@ -45,7 +50,8 @@ portable_config/
 Arquivos auxiliares esperados ao lado de `mpvnet.exe` no pacote portatil:
 
 - `libmpv-2.dll`: biblioteca nativa usada diretamente pelo mpv.net.
-- `MediaInfo.dll`: biblioteca nativa usada pelo recurso de informacoes de midia.
+- `MediaInfo.dll`: biblioteca nativa usada pelo recurso de informacoes de midia; o release baixa a DLL x64 da fonte oficial MediaArea.
+- `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll`: DLLs nativas vindas do publish self-contained oficial do .NET Desktop/WPF.
 - `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe`: ferramentas auxiliares do ecossistema FFmpeg baixadas do release latest do BtbN durante a geracao do pacote portatil.
 - `yt-dlp.exe`: ferramenta usada pelo mpv/libmpv para streaming de sites suportados; tambem pode estar no `PATH`, mas o pacote portatil do fork baixa e inclui o executavel oficial ao lado do `mpvnet.exe`.
 
@@ -80,7 +86,7 @@ docs/exemplos/portable_config/input.conf
 
 Assim o usuário entende imediatamente onde colocar suas configurações, e o mpv.net passa a usar a pasta portátil porque `portable_config` existe ao lado de `mpvnet.exe`.
 
-O pacote portatil tambem deve deixar `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. Durante a release, o script baixa `libmpv-2.dll`, FFmpeg e `yt-dlp.exe` das fontes configuradas no proprio script. `MediaInfo.dll` vem da copia versionada em `src/Native/win-x64/MediaInfo.dll`. O codigo do mpv.net carrega diretamente `libmpv-2.dll` e `MediaInfo.dll`; os executaveis FFmpeg e `yt-dlp.exe` sao auxiliares usados pelo mpv/libmpv e por fluxos de streaming, nao chamadas diretas do codigo C# do mpv.net.
+O pacote portatil tambem deve deixar `libmpv-2.dll`, `MediaInfo.dll`, as DLLs `.NET/WPF` nativas, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. Durante a release, o script baixa `libmpv-2.dll`, MediaInfo, FFmpeg e `yt-dlp.exe` das fontes configuradas no proprio script. As DLLs Microsoft/.NET vem do `dotnet publish` self-contained, nao de sites externos. O codigo do mpv.net carrega diretamente `libmpv-2.dll` e `MediaInfo.dll`; os executaveis FFmpeg e `yt-dlp.exe` sao auxiliares usados pelo mpv/libmpv e por fluxos de streaming, nao chamadas diretas do codigo C# do mpv.net.
 
 ## thumbfast no modo portátil
 

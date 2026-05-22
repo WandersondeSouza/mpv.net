@@ -73,6 +73,17 @@ jobs:
 
           & .\src\Tools\release-mpv.net.ps1 @releaseArgs
 
+      - name: Validate native dependencies in packages
+        shell: pwsh
+        run: |
+          $zip = Get-ChildItem artifacts\release -Filter '*-portable-x64.zip' | Select-Object -First 1
+          if (-not $zip) {
+            throw 'Portable x64 ZIP was not generated.'
+          }
+
+          .\src\Tools\test-native-dependencies.ps1 -ZipFile $zip.FullName
+          .\src\Tools\test-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
+
       - name: Upload generated packages
         uses: actions/upload-artifact@v4
         with:

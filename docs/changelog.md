@@ -7,6 +7,10 @@ alteracoes relevantes feitas neste fork de manutencao.
 
 ## Release, pacote portatil e dependencias nativas
 
+- O fluxo de release passou a publicar self-contained `win-x64`, preservando as DLLs nativas Microsoft/.NET/WPF no output final.
+- Adicionados `src/Tools/download-native-dependencies.ps1` e `src/Tools/test-native-dependencies.ps1` para baixar MediaInfo da MediaArea oficial, validar DLLs x64 e bloquear pacote sem dependencias obrigatorias.
+- `MediaInfo.dll` passou a ser baixada automaticamente da fonte oficial MediaArea durante a release, com suporte a pinagem por `-MediaInfoVersion` ou `MPVNET_MEDIAINFO_VERSION`.
+- A validacao cobre `MediaInfo.dll`, `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` no publish, na pasta portatil e no ZIP.
 - Adicionado o workflow manual `.github/workflows/release-packages.yml` para gerar
   os pacotes no GitHub Actions. O workflow publica os arquivos como artefato da
   execucao e, quando iniciado com `create_release=true`, tambem cria uma GitHub

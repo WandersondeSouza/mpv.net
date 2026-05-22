@@ -14,13 +14,14 @@ Optional parameters:
     -SkipInstaller Skips Inno Setup package generation.
     -SkipGitHubRelease Creates local artifacts without publishing a GitHub release.
     -MediaInfoFile Optional override path to MediaInfo.dll. Defaults to src\Native\win-x64\MediaInfo.dll.
+    -MediaInfoVersion Optional MediaInfo version pin, for example 26.05. Defaults to the latest stable x64 DLL archive listed by MediaArea.
     -MpvNetComFile Optional override path to mpvnet.com. Defaults to the upstream helper download.
 
 Dependencies:
     7zip installation found at: 'C:\Program Files\7-Zip\7z.exe'.
     Inno Setup compiler installation found at: 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' unless -SkipInstaller is used.
     GitHub CLI https://cli.github.com, the env var GH_TOKEN must be defined unless -SkipGitHubRelease is used.
-    Internet access to download FFmpeg, libmpv and yt-dlp for the portable package.
+    Internet access to download FFmpeg, libmpv, yt-dlp and MediaInfo for the portable package.
     Internet access to download mpvnet.com when -MpvNetComFile is not provided and the build output does not already contain it.
     Internet access to download Gettext.Tools from NuGet when msgfmt.exe is not available on PATH.
 
@@ -43,6 +44,8 @@ param(
     [switch] $SkipGitHubRelease,
 
     [string] $MediaInfoFile,
+
+    [string] $MediaInfoVersion,
 
     [string] $MpvNetComFile
 )
@@ -225,7 +228,6 @@ $SourceDir     = Test $SourceDir
 New-Item -ItemType Directory -Force $OutputRootDir | Out-Null
 $OutputRootDir = Test $OutputRootDir
 $DocsDir       = Test (Join-Path $SourceDir '..\docs')
-$NativeWinX64Dir = Test (Join-Path $SourceDir 'Native\win-x64')
 
 Test (Join-Path $SourceDir 'MpvNet.sln')
 
@@ -234,13 +236,31 @@ if (-not $SkipInstaller) {
     $InnoSetupCompiler = Test 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
 }
 
-$ReleaseNotes = "- [.NET Desktop Runtime 10.0](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)`n- [Changelog](https://github.com/$Repo/blob/main/docs/changelog.md)"
+$ReleaseNotes = "- [Changelog](https://github.com/$Repo/blob/main/docs/changelog.md)"
 
 # Dotnet Publish
 $PublishDir64 = Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\publish\'
 $ProjectFile = Test (Join-Path $SourceDir 'MpvNet.Windows\MpvNet.Windows.csproj')
-dotnet publish $ProjectFile --self-contained false --configuration Debug --runtime win-x64
+DeleteDir $PublishDir64
+dotnet publish $ProjectFile --self-contained true --configuration Debug --runtime win-x64 --output $PublishDir64 /p:IncludeNativeLibrariesForSelfExtract=false
 $PublishedExeFile64 = Test ($PublishDir64 + 'mpvnet.exe')
+$BinDirX64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\')
+$NativeDependenciesScript = Test (Join-Path $SourceDir 'Tools\download-native-dependencies.ps1')
+$NativeDependenciesArgs = @{
+    SourceDir = $SourceDir
+    PublishDir = $PublishDir64
+    BuildOutputDir = $BinDirX64
+    ArtifactsDir = Join-Path (Split-Path $SourceDir -Parent) 'artifacts\native-dependencies'
+}
+if ($MediaInfoVersion) {
+    $NativeDependenciesArgs.MediaInfoVersion = $MediaInfoVersion
+}
+& $NativeDependenciesScript @NativeDependenciesArgs
+if ($LastExitCode) { throw $LastExitCode }
+if ($MediaInfoFile) {
+    Copy-Item (TestFile $MediaInfoFile) (Join-Path $PublishDir64 'MediaInfo.dll') -Force
+    Copy-Item (TestFile $MediaInfoFile) (Join-Path $BinDirX64 'MediaInfo.dll') -Force
+}
 
 # Create OutputName
 $VersionInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($PublishedExeFile64)
@@ -256,11 +276,8 @@ mkdir $OutputDir64
 
 # Copy Files
 Copy-Item ($PublishDir64 + '*') $OutputDir64
-$BinDirX64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\')
 $DependencyWorkDir = Join-Path $env:TEMP 'mpv.net-release-dependencies'
 UpdatePortableDependencies $BinDirX64 $DependencyWorkDir
-$MediaInfoSourceFile = if ($MediaInfoFile) { TestFile $MediaInfoFile } else { TestFile (Join-Path $NativeWinX64Dir 'MediaInfo.dll') }
-Copy-Item $MediaInfoSourceFile (Join-Path $BinDirX64 'MediaInfo.dll') -Force
 if ($MpvNetComFile) {
     Copy-Item (TestFile $MpvNetComFile) (Join-Path $BinDirX64 'mpvnet.com') -Force
 }
@@ -280,11 +297,19 @@ CopyDir $LocaleDir (Join-Path $OutputDir64 'Locale') | Out-Null
 CopyDir $LocaleDir (Join-Path $PublishDir64 'Locale') | Out-Null
 AddPortableConfig $OutputDir64 $DocsDir
 
+$NativeValidationScript = Test (Join-Path $SourceDir 'Tools\test-native-dependencies.ps1')
+& $NativeValidationScript -Path $OutputDir64
+if ($LastExitCode) { throw $LastExitCode }
+& $NativeValidationScript -Path $PublishDir64
+if ($LastExitCode) { throw $LastExitCode }
+
 # Pack
 $ZipOutputFile64 = Join-Path $OutputRootDir ($OutputName64 + '.zip')
 & $7zFile a -tzip -mx9 $ZipOutputFile64 -r ($OutputDir64 + '*')
 if ($LastExitCode) { throw $LastExitCode }
 Test $ZipOutputFile64
+& $NativeValidationScript -ZipFile $ZipOutputFile64
+if ($LastExitCode) { throw $LastExitCode }
 
 $ReleaseFiles = @($ZipOutputFile64)
 

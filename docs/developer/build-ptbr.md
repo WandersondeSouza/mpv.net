@@ -21,9 +21,9 @@ Para desenvolvimento:
 Para execução:
 
 - Windows;
-- .NET Desktop Runtime 10.0 quando o publish for framework-dependent;
+- SDK .NET 10.0 para publicar self-contained `win-x64`;
 - `libmpv-2.dll` x64;
-- `MediaInfo.dll` x64 versionada em `src/Native/win-x64/MediaInfo.dll`;
+- `MediaInfo.dll` x64 baixada da MediaArea oficial durante a release;
 - `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` no pacote portatil do fork;
 - arquivos de `Locale`, quando aplicável.
 
@@ -33,7 +33,7 @@ Para release:
 - Inno Setup 6 em `C:\Program Files (x86)\Inno Setup 6\ISCC.exe`, exceto quando `-SkipInstaller` for usado;
 - GitHub CLI (`gh`), exceto quando `-SkipGitHubRelease` for usado;
 - variável `GH_TOKEN` configurada para criação de release;
-- acesso a internet para baixar FFmpeg, libmpv, yt-dlp, `mpvnet.com` e `Gettext.Tools` no momento da release, quando esses arquivos/ferramentas ainda nao estiverem disponiveis localmente.
+- acesso a internet para baixar FFmpeg, libmpv, yt-dlp, MediaInfo, `mpvnet.com` e `Gettext.Tools` no momento da release, quando esses arquivos/ferramentas ainda nao estiverem disponiveis localmente.
 
 Observacao: Inno Setup, GitHub CLI e `GH_TOKEN` deixam de ser obrigatorios quando o script e executado, respectivamente, com `-SkipInstaller` e `-SkipGitHubRelease`.
 
@@ -104,7 +104,7 @@ O projeto da aplicação define `RuntimeIdentifier=win-x64` e `Prefer32Bit=false
 Para publicar como o script de release atual faz:
 
 ```powershell
-dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained false --configuration Debug --runtime win-x64
+dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained true --configuration Debug --runtime win-x64 /p:IncludeNativeLibrariesForSelfExtract=false
 ```
 
 Observação: o script de release atual publica em `Debug`. Não documente uma release como `Release` sem ajustar e validar o script.
@@ -169,35 +169,40 @@ O script:
 
 1. valida `MpvNet.sln`;
 2. valida 7-Zip e, quando aplicavel, Inno Setup;
-3. publica `MpvNet.Windows.csproj` para `win-x64`;
+3. publica `MpvNet.Windows.csproj` self-contained para `win-x64`;
 4. cria nomes com base na versão do `mpvnet.exe`;
 5. copia arquivos publicados;
-6. baixa `ffmpeg-master-latest-win64-gpl.zip` do BtbN e copia `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe`;
-7. baixa `mpv-dev-x86_64-...7z` do shinchiro e copia `libmpv-2.dll`;
-8. baixa `yt-dlp.exe` do release latest oficial do yt-dlp;
-9. copia `MediaInfo.dll` da pasta `src/Native/win-x64`, baixa ou copia `mpvnet.com`, e copia `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` x64;
-10. copia `Locale`;
-11. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
-12. gera ZIP portátil x64;
-13. executa `Setup/Inno/inno-setup.iss` para gerar o instalador x64, exceto com `-SkipInstaller`;
-14. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`.
+6. baixa `MediaInfo_DLL_..._Windows_x64_WithoutInstaller.7z` da pagina oficial da MediaArea e copia `MediaInfo.dll`;
+7. valida as DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vindas do publish self-contained;
+8. baixa `ffmpeg-master-latest-win64-gpl.zip` do BtbN e copia `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe`;
+9. baixa `mpv-dev-x86_64-...7z` do shinchiro e copia `libmpv-2.dll`;
+10. baixa `yt-dlp.exe` do release latest oficial do yt-dlp;
+11. baixa ou copia `mpvnet.com`, e copia `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` x64;
+12. copia `Locale`;
+13. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
+14. valida as DLLs nativas no publish, na pasta portatil e no ZIP com `test-native-dependencies.ps1`;
+15. gera ZIP portatil x64;
+16. executa `Setup/Inno/inno-setup.iss` para gerar o instalador x64, exceto com `-SkipInstaller`;
+17. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`.
 
 As dependencias baixadas automaticamente usam estas fontes:
 
 - FFmpeg: `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, asset `ffmpeg-master-latest-win64-gpl.zip`;
 - libmpv: `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, asset `mpv-dev-x86_64-[data]-git-[hash].7z`;
-- yt-dlp: `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`.
+- yt-dlp: `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`;
+- MediaInfo: `https://mediaarea.net/en/MediaInfo/Download/Windows`, asset `MediaInfo_DLL_[versao]_Windows_x64_WithoutInstaller.7z`;
+- DLLs WPF/.NET e `vcruntime140_cor3.dll`: publish self-contained oficial do SDK .NET Desktop/WPF.
 - Gettext.Tools: `https://api.nuget.org/v3-flatcontainer/gettext.tools/`, usado para obter `msgfmt.exe` e gerar `Locale` quando `msgfmt.exe` nao esta no `PATH`.
 
-O script usa o asset x64 generico de libmpv, nao `x86_64-v3`, para preservar compatibilidade com mais CPUs x64. Se o GitHub mudar os nomes dos assets, se o NuGet mudar a resolucao de `Gettext.Tools`, se o download falhar, se a extracao falhar ou se algum arquivo baixado estiver vazio, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` e uma dependencia versionada do fork, mas pode ser sobrescrita por `-MediaInfoFile`.
+O script usa o asset x64 generico de libmpv, nao `x86_64-v3`, para preservar compatibilidade com mais CPUs x64. Se o GitHub mudar os nomes dos assets, se a MediaArea mudar o link de download, se o NuGet mudar a resolucao de `Gettext.Tools`, se o download falhar, se a extracao falhar, se algum arquivo baixado estiver vazio ou se uma DLL obrigatoria nao for x64, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` pode ser pinada por `-MediaInfoVersion`/`MPVNET_MEDIAINFO_VERSION` ou sobrescrita por `-MediaInfoFile`.
 
-O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo script no GitHub Actions. Ele sempre publica os pacotes como artefato do workflow e, quando executado com `create_release=true`, tambem cria a Release no repositorio. `MediaInfo.dll` ja esta versionada no repositorio e nao exige secret.
+O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo script no GitHub Actions. Ele sempre publica os pacotes como artefato do workflow e, quando executado com `create_release=true`, tambem cria a Release no repositorio. O workflow roda `test-native-dependencies.ps1` antes do upload dos artefatos.
 
 Este fork nao publica um pacote NuGet/container no GitHub Packages por enquanto; os pacotes de distribuicao do aplicativo sao assets de GitHub Releases e artefatos do workflow.
 
-Validado em 2026-05-21: dry run local com `-SkipGitHubRelease -SkipInstaller` gerou o ZIP portatil, baixou FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e permitiu smoke test do executavel extraido com video MP4 e imagem PNG locais.
+Validado em 2026-05-22: dry run local com `-SkipGitHubRelease` gerou o ZIP portatil e o instalador, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
 
-Pendente real: validar o instalador, a publicacao GitHub e a revisao manual completa da UI no pacote gerado.
+Pendente real: validar a publicacao GitHub e a revisao manual completa da UI no pacote gerado.
 
 ---
 
