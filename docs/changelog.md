@@ -5,6 +5,15 @@ alteracoes relevantes feitas neste fork de manutencao.
 
 # Fork WandersondeSouza - v7.1.2.2 (2026-05-22)
 
+## Robustez interna
+
+- Comandos de interface do `mpv.net` com argumentos ausentes ou invalidos agora
+  registram erro controlado em vez de falharem por acesso direto a argumentos.
+- Callbacks de propriedades vindos do libmpv passaram a ser copiados antes da
+  execucao, reduzindo risco de reentrancia ou bloqueio durante eventos.
+- A gravacao de `settings.xml` passou a usar arquivo temporario antes de
+  substituir a configuracao final, reduzindo risco de arquivo parcial.
+
 ## Titulos visiveis de midia
 
 - Os titulos visiveis de midia agora sao normalizados antes de aparecerem na

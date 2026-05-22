@@ -34,13 +34,13 @@ public class GuiCommand
         ["edit-conf-file"] = EditCongFile,
         ["load-audio"] = LoadAudio,
         ["load-sub"] = LoadSubtitle,
-        ["move-window"] = args => MoveWindow?.Invoke(args[0]),
+        ["move-window"] = MoveWindowCommand,
         ["open-clipboard"] = OpenFromClipboard,
         ["open-files"] = OpenFiles,
         ["open-optical-media"] = Open_DVD_Or_BD_Folder,
         ["reg-file-assoc"] = RegisterFileAssociations,
         ["remove-from-path"] = args => RemoveFromPath(),
-        ["scale-window"] = args => ScaleWindow?.Invoke(float.Parse(args[0], CultureInfo.InvariantCulture)),
+        ["scale-window"] = ScaleWindowCommand,
         ["show-about"] = args => ShowDialog(typeof(AboutWindow)),
         ["show-bindings"] = args => ShowBindings(),
         ["show-commands"] = args => ShowCommands(),
@@ -55,7 +55,7 @@ public class GuiCommand
         ["show-profiles"] = args => Msg.ShowInfo(Player.GetProfiles()),
         ["show-properties"] = args => Player.Command("script-binding select/show-properties"),
         ["show-protocols"] = args => ShowProtocols(),
-        ["window-scale"] = args => WindowScaleNet?.Invoke(float.Parse(args[0], CultureInfo.InvariantCulture)),
+        ["window-scale"] = WindowScaleCommand,
 
 
         // deprecated
@@ -68,6 +68,57 @@ public class GuiCommand
         ["show-subtitle-tracks"] = args => Player.Command("script-binding select/select-sid"), // deprecated
         ["show-audio-devices"] = args => Player.Command("script-binding select/select-audio-device"), // deprecated
     };
+
+    void MoveWindowCommand(IList<string> args)
+    {
+        if (!TryGetArg(args, "move-window", out string direction))
+            return;
+
+        MoveWindow?.Invoke(direction);
+    }
+
+    void ScaleWindowCommand(IList<string> args)
+    {
+        if (!TryGetFloatArg(args, "scale-window", out float scale))
+            return;
+
+        ScaleWindow?.Invoke(scale);
+    }
+
+    void WindowScaleCommand(IList<string> args)
+    {
+        if (!TryGetFloatArg(args, "window-scale", out float scale))
+            return;
+
+        WindowScaleNet?.Invoke(scale);
+    }
+
+    static bool TryGetArg(IList<string> args, string commandName, out string value)
+    {
+        if (args.Count > 0 && !string.IsNullOrWhiteSpace(args[0]))
+        {
+            value = args[0];
+            return true;
+        }
+
+        value = "";
+        Terminal.WriteError($"Missing argument for mpv.net command: {commandName}");
+        return false;
+    }
+
+    static bool TryGetFloatArg(IList<string> args, string commandName, out float value)
+    {
+        value = 0;
+
+        if (!TryGetArg(args, commandName, out string rawValue))
+            return false;
+
+        if (float.TryParse(rawValue, NumberStyles.Float, CultureInfo.InvariantCulture, out value))
+            return true;
+
+        Terminal.WriteError($"Invalid numeric argument for mpv.net command: {commandName} {rawValue}");
+        return false;
+    }
 
     void ShowDialog(Type winType)
     {
@@ -115,11 +166,14 @@ public class GuiCommand
 
     void EditCongFile(IList<string> args)
     {
-        string file = Player.ConfigFolder + args[0];
+        if (!TryGetArg(args, "edit-conf-file", out string configFile))
+            return;
+
+        string file = Player.ConfigFolder + configFile;
 
         if (!File.Exists(file))
         {
-            string msg = $"{args[0]} does not exist. Would you like to create it?";
+            string msg = $"{configFile} does not exist. Would you like to create it?";
 
             if (Msg.ShowQuestion(msg) == MessageBoxResult.OK)
                 File.WriteAllText(file, "");
@@ -236,7 +290,9 @@ public class GuiCommand
 
     void RegisterFileAssociations(IList<string> args)
     {
-        string perceivedType = args[0];
+        if (!TryGetArg(args, "reg-file-assoc", out string perceivedType))
+            return;
+
         string[] extensions = Array.Empty<string>();
 
         switch (perceivedType)

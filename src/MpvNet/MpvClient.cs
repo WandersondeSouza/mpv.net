@@ -119,85 +119,58 @@ public class MpvClient
     {
         if (data.format == mpv_format.MPV_FORMAT_FLAG)
         {
-            lock (BoolPropChangeActions)
-                foreach (var pair in BoolPropChangeActions)
-                    if (pair.Key == data.name)
-                    {
-                        bool value = Marshal.PtrToStructure<int>(data.data) == 1;
+            bool value = Marshal.PtrToStructure<int>(data.data) == 1;
 
-                        foreach (var action in pair.Value)
-                            action.Invoke(value);
-                    }
+            foreach (var action in GetActions(BoolPropChangeActions, data.name))
+                action.Invoke(value);
         }
         else if (data.format == mpv_format.MPV_FORMAT_STRING)
         {
-            lock (StringPropChangeActions)
-            {
-                foreach (var pair in StringPropChangeActions)
-                {
-                    if (pair.Key == data.name)
-                    {
-                        string value = ConvertFromUtf8(Marshal.PtrToStructure<IntPtr>(data.data));
+            string value = ConvertFromUtf8(Marshal.PtrToStructure<IntPtr>(data.data));
 
-                        foreach (var action in pair.Value)
-                        {
-                            action.Invoke(value);
-                        }
-                    }
-                }
-            }
+            foreach (var action in GetActions(StringPropChangeActions, data.name))
+                action.Invoke(value);
         }
         else if (data.format == mpv_format.MPV_FORMAT_INT64)
         {
-            lock (IntPropChangeActions)
-            {
-                foreach (var pair in IntPropChangeActions)
-                {
-                    if (pair.Key == data.name)
-                    {
-                        int value = Marshal.PtrToStructure<int>(data.data);
+            int value = Convert.ToInt32(Marshal.PtrToStructure<long>(data.data));
 
-                        foreach (var action in pair.Value)
-                        {
-                            action.Invoke(value);
-                        }
-                    }
-                }
-            }
+            foreach (var action in GetActions(IntPropChangeActions, data.name))
+                action.Invoke(value);
         }
         else if (data.format == mpv_format.MPV_FORMAT_NONE)
         {
-            lock (PropChangeActions)
-            {
-                foreach (var pair in PropChangeActions)
-                {
-                    if (pair.Key == data.name)
-                    {
-                        foreach (var action in pair.Value)
-                        {
-                            action.Invoke();
-                        }
-                    }
-                }
-            }
+            foreach (var action in GetActions(PropChangeActions, data.name))
+                action.Invoke();
         }
         else if (data.format == mpv_format.MPV_FORMAT_DOUBLE)
         {
-            lock (DoublePropChangeActions)
-            {
-                foreach (var pair in DoublePropChangeActions)
-                {
-                    if (pair.Key == data.name)
-                    {
-                        double value = Marshal.PtrToStructure<double>(data.data);
+            double value = Marshal.PtrToStructure<double>(data.data);
 
-                        foreach (var action in pair.Value)
-                        {
-                            action.Invoke(value);
-                        }
-                    }
-                }
-            }
+            foreach (var action in GetActions(DoublePropChangeActions, data.name))
+                action.Invoke(value);
+        }
+    }
+
+    static Action<T>[] GetActions<T>(Dictionary<string, List<Action<T>>> actions, string name)
+    {
+        lock (actions)
+        {
+            if (!actions.TryGetValue(name, out var values))
+                return [];
+
+            return [.. values];
+        }
+    }
+
+    static Action[] GetActions(Dictionary<string, List<Action>> actions, string name)
+    {
+        lock (actions)
+        {
+            if (!actions.TryGetValue(name, out var values))
+                return [];
+
+            return [.. values];
         }
     }
 

@@ -47,17 +47,33 @@ class SettingsManager
 
     public static void Save(object obj)
     {
+        string tempFile = SettingsFile + ".tmp";
+
         try
         {
-            using XmlTextWriter writer = new XmlTextWriter(SettingsFile, Encoding.UTF8);
-            writer.Formatting = Formatting.Indented;
-            writer.Indentation = 4;
-            XmlSerializer serializer = new XmlSerializer(obj.GetType());
-            serializer.Serialize(writer, obj);
+            using (XmlTextWriter writer = new XmlTextWriter(tempFile, Encoding.UTF8))
+            {
+                writer.Formatting = Formatting.Indented;
+                writer.Indentation = 4;
+                XmlSerializer serializer = new XmlSerializer(obj.GetType());
+                serializer.Serialize(writer, obj);
+            }
+
+            File.Move(tempFile, SettingsFile, true);
         }
         catch (Exception ex)
         {
             Terminal.WriteError(ex.ToString());
+
+            try
+            {
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+            }
+            catch (Exception cleanupEx)
+            {
+                Terminal.WriteError(cleanupEx.ToString());
+            }
         }
     }
 }
