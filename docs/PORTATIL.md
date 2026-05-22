@@ -47,15 +47,15 @@ portable_config/
 - `scripts/`: scripts Lua ou JavaScript usados pelo mpv.
 - `script-opts/`: arquivos de configuração dos scripts.
 
-Arquivos auxiliares esperados ao lado de `mpvnet.exe` no pacote portatil:
+Arquivos auxiliares esperados ao lado de `mpvnet.exe` no pacote portátil:
 
 - `libmpv-2.dll`: biblioteca nativa usada diretamente pelo mpv.net.
-- `MediaInfo.dll`: biblioteca nativa usada pelo recurso de informacoes de midia; o release baixa a DLL x64 da fonte oficial MediaArea.
+- `MediaInfo.dll`: biblioteca nativa usada pelo recurso de informações de mídia; o release baixa a DLL x64 da fonte oficial MediaArea.
 - `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll`: DLLs nativas vindas do publish self-contained oficial do .NET Desktop/WPF.
-- `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe`: ferramentas auxiliares do ecossistema FFmpeg baixadas do release latest do BtbN durante a geracao do pacote portatil.
-- `yt-dlp.exe`: ferramenta usada pelo mpv/libmpv para streaming de sites suportados; tambem pode estar no `PATH`, mas o pacote portatil do fork baixa e inclui o executavel oficial ao lado do `mpvnet.exe`.
+- `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe`: ferramentas auxiliares do ecossistema FFmpeg baixadas do release latest do BtbN durante a geração do pacote portátil.
+- `yt-dlp.exe`: ferramenta usada pelo mpv/libmpv para streaming de sites suportados; também pode estar no `PATH`, mas o pacote portátil do fork baixa e inclui o executável oficial ao lado do `mpvnet.exe`.
 
-## Quando a pasta portable_config não existe
+## Quando a pasta `portable_config` não existe
 
 Se a pasta `portable_config` não existir, o mpv.net pode usar a pasta de configuração do usuário no Windows, por exemplo:
 
@@ -86,9 +86,9 @@ docs/exemplos/portable_config/input.conf
 
 Assim o usuário entende imediatamente onde colocar suas configurações, e o mpv.net passa a usar a pasta portátil porque `portable_config` existe ao lado de `mpvnet.exe`.
 
-O `portable_config/mpv.conf` tambem inclui o perfil `[iptv-media-center]`. Esse perfil so e usado quando o player recebe `--profile=iptv-media-center`; portanto ele nao muda a abertura normal do mpv.net pelo usuario.
+O `portable_config/mpv.conf` também inclui o perfil `[iptv-media-center]`. Esse perfil só é usado quando o player recebe `--profile=iptv-media-center`; portanto ele não muda a abertura normal do mpv.net pelo usuário.
 
-O pacote portatil tambem deve deixar `libmpv-2.dll`, `MediaInfo.dll`, as DLLs `.NET/WPF` nativas, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. Durante a release, o script baixa `libmpv-2.dll`, MediaInfo, FFmpeg e `yt-dlp.exe` das fontes configuradas no proprio script. As DLLs Microsoft/.NET vem do `dotnet publish` self-contained, nao de sites externos. O codigo do mpv.net carrega diretamente `libmpv-2.dll` e `MediaInfo.dll`; os executaveis FFmpeg e `yt-dlp.exe` sao auxiliares usados pelo mpv/libmpv e por fluxos de streaming, nao chamadas diretas do codigo C# do mpv.net.
+O pacote portátil também deve deixar `libmpv-2.dll`, `MediaInfo.dll`, as DLLs `.NET/WPF` nativas, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. Durante a release, o script baixa `libmpv-2.dll`, MediaInfo, FFmpeg e `yt-dlp.exe` das fontes configuradas no próprio script. As DLLs Microsoft/.NET vêm do `dotnet publish` self-contained, não de sites externos. O código do mpv.net carrega diretamente `libmpv-2.dll` e `MediaInfo.dll`; os executáveis FFmpeg e `yt-dlp.exe` são auxiliares usados pelo mpv/libmpv e por fluxos de streaming, não chamadas diretas do código C# do mpv.net.
 
 ## thumbfast no modo portátil
 
