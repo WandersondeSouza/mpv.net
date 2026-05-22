@@ -200,7 +200,7 @@ O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo sc
 
 Este fork nao publica um pacote NuGet/container no GitHub Packages por enquanto; os pacotes de distribuicao do aplicativo sao assets de GitHub Releases e artefatos do workflow.
 
-Validado em 2026-05-22: execucao local de `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release` gerou o ZIP portatil `mpv.net-v7.1.2.2-portable-x64.zip` e o instalador `mpv.net-v7.1.2.2-setup-x64.exe`, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. A publicacao no GitHub ainda exige `GH_TOKEN` ou `gh auth login`.
+Validado em 2026-05-22: execucao local de `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release` gerou o ZIP portatil `mpv.net-v7.1.2.2-portable-x64.zip` e o instalador `mpv.net-v7.1.2.2-setup-x64.exe`, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. A release `v7.1.2.2` foi publicada no GitHub.
 
 Pendente real: validar a publicacao GitHub e a revisao manual completa da UI no pacote gerado.
 

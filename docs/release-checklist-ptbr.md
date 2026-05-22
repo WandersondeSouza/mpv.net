@@ -4,7 +4,7 @@
 
 Garantir que releases futuras sejam feitas de forma segura e organizada.
 
-Status em 2026-05-22: os itens marcados abaixo foram validados localmente para a versao `7.1.2.2`, incluindo ZIP portatil, instalador e validacao de DLLs nativas. A publicacao da GitHub Release continua pendente de autenticacao do GitHub CLI e os testes manuais de UI ainda precisam ser fechados.
+Status em 2026-05-22: os itens marcados abaixo foram validados localmente para a versao `7.1.2.2`, incluindo ZIP portatil, instalador e validacao de DLLs nativas. A release `v7.1.2.2` foi publicada no GitHub, mas os testes manuais de UI ainda precisam ser fechados.
 
 Use este checklist como fonte de verdade da release. Se um item for validado em outra rodada, marque apenas esse item e registre a evidencia no documento relacionado.
 
@@ -19,7 +19,7 @@ Itens marcados com `[x]` abaixo já podem ser considerados fechados para a versa
 - [x] dependencias de build resolvidas;
 - [x] `src/BuildVersion.props` revisado com a versao da release;
 - [x] tela `Help > About mpv.net` revisada com versao, identidade do fork e link do repositorio;
-- [ ] branch/tag de release revisados antes da publicacao;
+- [x] branch/tag de release revisados antes da publicacao;
 - [x] changelog da versao revisado.
 
 ---
@@ -77,8 +77,8 @@ Itens marcados com `[x]` abaixo já podem ser considerados fechados para a versa
 - [x] log do Inno Setup confirmou inclusao das DLLs nativas obrigatorias a partir do publish;
 - [x] instalador executado e validado localmente;
 - [ ] workflow manual `.github/workflows/release-packages.yml` validado, quando a release for feita pelo GitHub Actions;
-- [ ] release publicada;
-- [ ] links revisados.
+- [x] release publicada;
+- [x] links revisados.
 
 ---
 

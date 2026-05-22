@@ -2,7 +2,7 @@
 
 Este documento é uma orientação inicial para estudar o build do fork do mpv.net.
 
-> Status: fluxo local de build e release validado em 2026-05-22, incluindo o download do FFmpeg atual do BtbN, a geração do ZIP portátil e do instalador x64. A publicação GitHub continua pendente de validação/autenticação real.
+> Status: fluxo local de build e release validado em 2026-05-22, incluindo o download do FFmpeg atual do BtbN, a geração do ZIP portátil e do instalador x64. A release `v7.1.2.2` foi publicada no GitHub.
 
 ## Plataforma
 
