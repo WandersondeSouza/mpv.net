@@ -174,7 +174,7 @@ O script:
 5. copia arquivos publicados;
 6. baixa `MediaInfo_DLL_..._Windows_x64_WithoutInstaller.7z` da pagina oficial da MediaArea e copia `MediaInfo.dll`;
 7. valida as DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vindas do publish self-contained;
-8. baixa `ffmpeg-N-...-win64-gpl.zip` do BtbN e copia `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe`;
+8. baixa `ffmpeg-master-latest-win64-gpl.zip` do BtbN e copia `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe`;
 9. baixa `mpv-dev-x86_64-...7z` do shinchiro e copia `libmpv-2.dll`;
 10. baixa `yt-dlp.exe` do release latest oficial do yt-dlp;
 11. baixa ou copia `mpvnet.com`, e copia `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` x64;
@@ -187,7 +187,7 @@ O script:
 
 As dependencias baixadas automaticamente usam estas fontes:
 
-- FFmpeg: `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, asset `ffmpeg-N-...-win64-gpl.zip`;
+- FFmpeg: `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, asset `ffmpeg-master-latest-win64-gpl.zip`;
 - libmpv: `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, asset `mpv-dev-x86_64-[data]-git-[hash].7z`;
 - yt-dlp: `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`;
 - MediaInfo: `https://mediaarea.net/en/MediaInfo/Download/Windows`, asset `MediaInfo_DLL_[versao]_Windows_x64_WithoutInstaller.7z`;

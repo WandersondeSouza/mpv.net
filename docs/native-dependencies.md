@@ -36,7 +36,7 @@ The release script downloads FFmpeg, libmpv, yt-dlp and MediaInfo during packagi
 
 `src/Tools/release-mpv.net.ps1` downloads or validates these dependencies before creating the portable ZIP:
 
-- FFmpeg from `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, selecting `ffmpeg-N-...-win64-gpl.zip` and copying only `ffmpeg.exe`, `ffplay.exe` and `ffprobe.exe`.
+- FFmpeg from `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, selecting `ffmpeg-master-latest-win64-gpl.zip` and copying only `ffmpeg.exe`, `ffplay.exe` and `ffprobe.exe`.
 - libmpv from `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, selecting the generic x64 asset `mpv-dev-x86_64-[date]-git-[hash].7z` and copying only `libmpv-2.dll`.
 - yt-dlp from `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`.
 - MediaInfo from the official MediaArea Windows download page `https://mediaarea.net/en/MediaInfo/Download/Windows`, selecting `MediaInfo_DLL_[version]_Windows_x64_WithoutInstaller.7z`.

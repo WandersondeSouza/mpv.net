@@ -2,7 +2,7 @@
 
 Este documento é uma orientação inicial para estudar o build do fork do mpv.net.
 
-> Status: publicação GitHub continua pendente de validação real.
+> Status: fluxo local de build e release validado em 2026-05-22, incluindo o download do FFmpeg atual do BtbN, a geração do ZIP portátil e do instalador x64. A publicação GitHub continua pendente de validação/autenticação real.
 
 ## Plataforma
 
@@ -71,7 +71,7 @@ yt-dlp.exe
 
 As fontes automáticas usadas pelo script são:
 
-- `ffmpeg-N-...-win64-gpl.zip` em `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`;
+- `ffmpeg-master-latest-win64-gpl.zip` em `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`;
 - `mpv-dev-x86_64-...7z` em `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`;
 - `yt-dlp.exe` em `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`.
 - `MediaInfo_DLL_..._Windows_x64_WithoutInstaller.7z` a partir da página oficial `https://mediaarea.net/en/MediaInfo/Download/Windows`;

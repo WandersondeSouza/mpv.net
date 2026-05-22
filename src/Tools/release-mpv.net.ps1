@@ -200,7 +200,7 @@ function UpdatePortableDependencies($binDir, $workDir) {
 
         $ffmpegArchive = DownloadGitHubLatestAsset `
             'https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest' `
-            '^ffmpeg-N-[0-9]+-g[0-9a-f]+-win64-gpl\.zip$' `
+            '^ffmpeg-(?:N-[0-9]+-g[0-9a-f]+|master-latest)-win64-gpl\.zip$' `
             $downloadsDir
         $ffmpegExtractDir = ExpandReleaseArchive $ffmpegArchive (Join-Path $extractDir 'ffmpeg')
         CopyExtractedFile $ffmpegExtractDir 'ffmpeg.exe' $binDir
