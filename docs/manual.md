@@ -42,7 +42,7 @@ differences are documented in this manual under [Differences compared to mpv](#d
 Download
 --------
 
-[Stable and beta portable and setup via GitHub download](../../../releases)
+[Stable and beta portable and setup via GitHub download](https://github.com/mpvnet-player/mpv.net/releases)
 
 [Changelog](changelog.md)
 
@@ -59,41 +59,41 @@ Internet streaming requires:
 
 - Downloading [yt-dlp](https://github.com/yt-dlp/yt-dlp) and adding its folder
   to the [user environment variable PATH](https://www.google.com/search?q=user+environment+variable+PATH).
-  Alternativly the yt-dlp executable can be saved in the mpv.net executable folder.
+  Alternatively, the yt-dlp executable can be saved in the mpv.net executable folder.
   The portable package produced by this fork is expected to include `yt-dlp.exe`
   beside `mpvnet.exe` when the release source folder contains it.
-- In case of proxy server usage, [manual configuration](https://github.com/mpvnet-player/mpv.net/issues/401).
+- In case of proxy server usage, see [manual configuration](https://github.com/mpvnet-player/mpv.net/issues/401).
 
 #### File Associations
 
-File Associations can be registered using the context menu under `Config > Setup`.
+File associations can be registered using the context menu under `Config > Setup`.
 
 After the file associations were registered, it might still be necessary to change the
 default app in the Windows settings.
 
-Another way to register file associations is using Windows File Explorer,
+Another way to register file associations is to use Windows File Explorer:
 select a media file and select `Open with > Choose another app` in the context menu.
 
 [Open with++](#open-with) can be used to extend the File Explorer context menu
 to get menu items for [Play with mpv.net](https://github.com/stax76/OpenWithPlusPlus#play-with-mpvnet) and
 [Add to mpv.net playlist](https://github.com/stax76/OpenWithPlusPlus#add-to-mpvnet-playlist).
-Alternativly the `Send To` feature of Windows File Explorer can be used.
+Alternatively, the `Send To` feature of Windows File Explorer can be used.
 
 #### Path environment variable
 
-In order to use mpv.net in a terminal for advanced use cases,
+To use mpv.net in a terminal for advanced use cases,
 mpv.net can be added to the Path environment variable, it allows
-to run mpv.net in a terminal by typing `mpvnet`. The easiest way
-to add mpv.net to path is:
+you to run mpv.net in a terminal by typing `mpvnet`. The easiest way
+to add mpv.net to PATH is:
 
 `Context Menu > Config > Setup > Add mpv.net to Path environment variable`
 
-For more information see the [terminal section](#terminal).
+For more information, see the [terminal section](#terminal).
 
 Support
 -------
 
-Before making a support request, please try the newest [beta version](../../../releases) first.
+Before making a support request, please try the newest [beta version](https://github.com/mpvnet-player/mpv.net/releases) first.
 
 Support can be requested here:
 
@@ -200,7 +200,7 @@ To enable the border property:
 
 To disable the border property:
 
-`--no-boder` or `--border=no`
+`--no-border` or `--border=no`
 
 
 Supported are all mpv properties, they are documented here:
@@ -223,10 +223,10 @@ mpv.net specific commands
 `script-message-to mpvnet <command> <arguments>`
 
 ### add-to-path
-Adds mpv.net to the Path environment variable.
+Adds mpv.net to the PATH environment variable.
 
 ### remove-from-path
-Removes mpv.net from the Path environment variable.
+Removes mpv.net from the PATH environment variable.
 
 ### edit-conf-file [mpv.conf|input.conf]
 Opens mpv.conf or input.conf in a text editor.
@@ -235,7 +235,7 @@ Opens mpv.conf or input.conf in a text editor.
 Shows a file browser dialog to open external audio files.
 
 For automatic detection of external audio files based on the file name,
-use the mpv option `audio-file-auto`, it can be found it the config dialog:
+use the mpv option `audio-file-auto`; it can be found in the config dialog:
 
 `Context Menu > Config > Show Config Editor > Audio > audio-file-auto`
 
@@ -243,12 +243,12 @@ use the mpv option `audio-file-auto`, it can be found it the config dialog:
 Shows a file browser dialog to open external subtitle files.
 
 For automatic detection of external subtitle files based on the file name,
-use the mpv option `sub-auto`, it can be found it the config dialog:
+use the mpv option `sub-auto`; it can be found in the config dialog:
 
 `Context Menu > Config > Show Config Editor > Subtitles > sub-auto`
 
 ### move-window [left|top|right|bottom|center]
-Moves the Window to the screen edge (Alt+Arrow) or center (Alt+BS).
+Moves the window to the screen edge (Alt+Arrow) or center (Alt+BS).
 
 ### open-conf-folder
 Opens the config folder with Windows File Explorer.
@@ -269,7 +269,7 @@ ISO images don't have to be mounted, but instead can be
 opened directly with the open-files command.
 
 ### open-clipboard [\<flags\>]
-Opens URLs or filepaths from the clipboard,
+Opens URLs or file paths from the clipboard,
 or files in the file clipboard format.
 
 **append**  
@@ -320,7 +320,7 @@ Shows the input editor.
 
 ### show-media-info [\<flags\>]
 **msgbox**  
-Shows media info in a messsage box.
+Shows media info in a message box.
 
 **editor**  
 Shows media info in a text editor.
@@ -341,7 +341,7 @@ Shows the context menu.
 Shows available profiles with a message box.
 
 ### show-text \<text\> \<duration\> \<font-size\>
-Shows a OSD message with given text, duration and font size.
+Shows an OSD message with the given text, duration, and font size.
 
 ### window-scale \<factor\>
 Works similar as the [window-scale](https://mpv.io/manual/master/#command-interface-window-scale) mpv property.
@@ -367,7 +367,7 @@ Adds files to the playlist, requires [--process-instance=single](#--process-inst
 
 #### --command=\<input command\>
 
-Sends a input command to a running mpv.net instance via command line, for instance
+Sends an input command to a running mpv.net instance via command line, for instance
 to create global keyboard shortcuts with AutoHotkey. Requires [process-instance=single](#--process-instancevalue).
 
 ### Audio
@@ -447,7 +447,7 @@ mpv.net by default uses `#menu:`, uosc uses `#!` by default.
 
 #### --process-instance=\<value\>
 
-Defines if more then one mpv.net process is allowed.
+Defines whether more than one mpv.net process is allowed.
 
 Whenever the CTRL key is pressed when files or URLs are opened,
 the playlist is not cleared but the files or URLs are appended to the playlist.
@@ -519,7 +519,7 @@ External Tools
 
 In order to play videos from sites such as YouTube the Chrome Extension [Play with mpv](https://chrome.google.com/webstore/detail/play-with-mpv/hahklcmnfgffdlchjigehabfbiigleji) can be used.
 
-Due to Chrome Extensions not being able to start a app, another app that communicates with the extension is required, this app can be downloaded [here](http://www.mediafire.com/file/lezj8lwqt5zf75v/play-with-mpvnet-server.7z/file). The extension works only when the app is running, to have the app always running a link can be created in the auto start folder located at:
+Because Chrome extensions cannot start an app directly, another app that communicates with the extension is required. This app can be downloaded [here](http://www.mediafire.com/file/lezj8lwqt5zf75v/play-with-mpvnet-server.7z/file). The extension works only when the app is running, so to keep it always running a link can be created in the auto-start folder located at:
 
 `C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
 
@@ -528,7 +528,7 @@ This will start the app on system start and have it running in the background. W
 
 ### Open With
 
-Alternatively the Chrome/Firefox extension [Open With](../../../issues/119) can be used.
+Alternatively, the Chrome/Firefox extension [Open With](https://github.com/mpvnet-player/mpv.net/issues/119) can be used.
 
 
 ### Open with++
@@ -578,7 +578,7 @@ Color Theme
 
 mpv.net supports custom color themes, the definition of the built-in themes can be found at:
 
-[theme.txt](../../../tree/main/src/Resources/theme.txt)
+[theme.txt](https://github.com/mpvnet-player/mpv.net/blob/main/src/Resources/theme.txt)
 
 
 Custom themes can be saved at:

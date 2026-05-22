@@ -1,4 +1,4 @@
-# Plano de Trabalho para o Codex — Fork mpv.net
+# Plano de Trabalho para o Codex - Fork mpv.net
 
 Este documento organiza a fase atual de manutenção do fork do **mpv.net**.
 

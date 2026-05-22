@@ -1,29 +1,29 @@
-# mpv.net - fork de manutencao
+# mpv.net - fork de manutenção
 
-Este repositorio e um fork de manutencao do **mpv.net**, um player de midia para Windows com interface grafica moderna, baseado no **mpv/libmpv**.
+Este repositório é um fork de manutenção do **mpv.net**, um player de mídia para Windows com interface gráfica moderna, baseado no **mpv/libmpv**.
 
-O projeto original foi criado e mantido por **Frank Skare / stax76**. Este fork respeita esse trabalho e tem como prioridade preservar o funcionamento existente, melhorar a documentacao em portugues brasileiro e corrigir problemas pequenos de forma cuidadosa.
+O projeto original foi criado e mantido por **Frank Skare / stax76**. Este fork respeita esse trabalho e tem como prioridade preservar o funcionamento existente, melhorar a documentação em português brasileiro e corrigir problemas pequenos de forma cuidadosa.
 
-Grandes mudancas de arquitetura nao sao prioridade neste momento. A regra principal e manter compatibilidade com o mpv sempre que possivel e evitar alteracoes amplas sem necessidade.
+Grandes mudanças de arquitetura não são prioridade neste momento. A regra principal é manter compatibilidade com o mpv sempre que possível e evitar alterações amplas sem necessidade.
 
 ## Objetivos do fork
 
 - Preservar o comportamento atual do mpv.net.
-- Documentar melhor o uso, a configuracao, o build e a manutencao do projeto.
-- Facilitar o uso e a contribuicao em portugues brasileiro.
+- Documentar melhor o uso, a configuração, o build e a manutenção do projeto.
+- Facilitar o uso e a contribuição em português brasileiro.
 - Corrigir bugs simples e bem delimitados.
-- Preparar o repositorio para manutencao assistida por agentes de IA.
+- Preparar o repositório para manutenção assistida por agentes de IA.
 
 ## Para usuarios
 
-- [Manual original do mpv.net](docs/manual.md)
+- [Manual do mpv.net](docs/manual.md)
 - [Manual oficial do mpv](https://mpv.io/manual/master/)
-- [Modo portatil](docs/PORTATIL.md)
-- [Configuracao](docs/CONFIGURACAO.md)
+- [Modo portátil](docs/PORTATIL.md)
+- [Configuração](docs/CONFIGURACAO.md)
 - [Atalhos e input.conf](docs/ATALHOS.md)
-- [Exemplo de mpv.conf](docs/exemplos/mpv.conf)
-- [Exemplo de input.conf](docs/exemplos/input.conf)
-- [Exemplo de thumbfast.conf](docs/exemplos/thumbfast.conf)
+- [Exemplo de `mpv.conf`](docs/exemplos/mpv.conf)
+- [Exemplo de `input.conf`](docs/exemplos/input.conf)
+- [Exemplo de `thumbfast.conf`](docs/exemplos/thumbfast.conf)
 
 ## Para mantenedores
 
@@ -32,25 +32,25 @@ Grandes mudancas de arquitetura nao sao prioridade neste momento. A regra princi
 - [Build e release](docs/BUILD.md)
 - [Checklist de release](docs/release-checklist-ptbr.md)
 - [Caminhos longos no Windows](docs/CAMINHOS-LONGOS.md)
-- [Guia de contribuicao](docs/contributing-ptbr.md)
-- [Documentacao tecnica](docs/developer/project-map-ptbr.md)
+- [Guia de contribuição](docs/contributing-ptbr.md)
+- [Documentação técnica](docs/developer/project-map-ptbr.md)
 
 ## Para agentes de IA
 
 Antes de qualquer alteracao automatizada, leia:
 
 1. [AGENTS.md](AGENTS.md)
-2. [Skill de manutencao do fork](.ai/skills/mpvnet-maintainer.md)
+2. [Skill de manutenção do fork](.ai/skills/mpvnet-maintainer.md)
 3. [Plano de trabalho do Codex](docs/PLANO-CODEX.md)
-4. [Prompt de proximas melhorias](.ai/prompts/next-improvements.md)
+4. [Prompt de próximas melhorias](.ai/prompts/next-improvements.md)
 
-Os artefatos em `.ai/` ajudam a orientar analises e mudancas pequenas, mas nao substituem a leitura do codigo atual.
+Os artefatos em `.ai/` ajudam a orientar análises e mudanças pequenas, mas não substituem a leitura do código atual.
 
 ## Sobre compatibilidade
 
-O **mpv.net** e uma interface grafica para Windows baseada no [mpv](https://mpv.io). A compatibilidade com o mpv e uma caracteristica central do projeto: a maior parte dos recursos, opcoes de configuracao, scripts e comandos do mpv tambem se aplica ao mpv.net.
+O **mpv.net** é uma interface gráfica para Windows baseada no [mpv](https://mpv.io). A compatibilidade com o mpv é uma característica central do projeto: a maior parte dos recursos, opções de configuração, scripts e comandos do mpv também se aplica ao mpv.net.
 
-Para documentacao tecnica completa do comportamento herdado do mpv, consulte o [manual oficial do mpv](https://mpv.io/manual/master/) e o [manual original do mpv.net](docs/manual.md).
+Para documentação técnica completa do comportamento herdado do mpv, consulte o [manual oficial do mpv](https://mpv.io/manual/master/) e o [manual do mpv.net](docs/manual.md).
 
 ---
 
@@ -75,7 +75,7 @@ Modern GUI with customizable color themes.
 
 #### Command Line Interface
 
-mpv.net supports mpvs command line interface.
+mpv.net supports mpv's command-line interface.
 
 
 #### High quality video output
@@ -119,7 +119,7 @@ Features that mpv and mpv.net have in common
 
 - Lua and JavaScript Scripting ([awesome-mpv lists a large collection of available user scripts](https://github.com/stax76/awesome-mpv))
 - Simple config files that are easy to read and edit
-- JSON IPC to control the player with a external programs
+- JSON IPC to control the player from external programs
 - On Screen Controller (OSC, play control buttons) with modern flat design
 - Command Line Interface
 - Started from a terminal, status, error and debug output is printed on the terminal
@@ -130,7 +130,7 @@ Features that mpv and mpv.net have in common
 - Fast startup performance
 - Usable as video player, audio player and image viewer with a wide range of supported formats
 - Built-in decoders, no external codecs have to be installed
-- Build-in media streaming (requires yt-dlp being installed)
+- Built-in media streaming (requires yt-dlp to be installed)
 - External audio and subtitle files can be loaded manually or automatically
 - Screenshot feature
 - Internationalization using gettext and transifex
@@ -143,7 +143,7 @@ Features exclusive to mpv.net
 - Modern graphical user interface with customizable color themes
 - Customizable context menu
 - Searchable config editor
-- Searchable input (shorcut keys) editor
+- Searchable input (shortcut keys) editor
 - Global keyboard shortcuts
 - Extension API for .NET languages (C#, VB.NET and F#)
 - Files can be enqueued from File Explorer
