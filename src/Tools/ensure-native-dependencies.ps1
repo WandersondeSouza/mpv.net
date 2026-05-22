@@ -1,0 +1,296 @@
+<#
+
+Ensures the native and helper binaries expected beside mpvnet.exe exist.
+
+FFmpeg, libmpv, yt-dlp and MediaInfo are downloaded from the same sources used
+by the release flow. Microsoft .NET/WPF native DLLs are never downloaded from
+third-party sites; when a publish directory is supplied they are copied from the
+self-contained publish output.
+
+#>
+
+param(
+    [Parameter(Mandatory = $true)]
+    [string] $SourceDir,
+
+    [Parameter(Mandatory = $true)]
+    [string] $TargetDir,
+
+    [string] $PublishDir,
+
+    [string] $ArtifactsDir,
+
+    [string] $MediaInfoVersion = $env:MPVNET_MEDIAINFO_VERSION,
+
+    [string] $MediaInfoFile,
+
+    [string] $MpvNetComFile,
+
+    [switch] $UpdateExisting,
+
+    [string] $SevenZipPath = 'C:\Program Files\7-Zip\7z.exe'
+)
+
+$ErrorActionPreference = 'Stop'
+
+$RequiredDotNetNativeDlls = @(
+    'D3DCompiler_47_cor3.dll',
+    'vcruntime140_cor3.dll',
+    'wpfgfx_cor3.dll',
+    'PenImc_cor3.dll',
+    'PresentationNative_cor3.dll'
+)
+
+function Test-RequiredPath($path) {
+    if (-not (Test-Path $path)) {
+        throw "Required path not found: $path"
+    }
+
+    return (Resolve-Path $path).Path
+}
+
+function Test-RequiredFile($path) {
+    if (-not (Test-Path $path)) {
+        throw "Required file not found: $path"
+    }
+
+    $file = Get-Item $path
+    if ($file.Length -le 0) {
+        throw "Required file is empty: $path"
+    }
+
+    return $file
+}
+
+function Assert-PeX64($path) {
+    $file = Test-RequiredFile $path
+    $stream = [System.IO.File]::OpenRead($file.FullName)
+    try {
+        $reader = [System.IO.BinaryReader]::new($stream)
+        $stream.Position = 0x3C
+        $peOffset = $reader.ReadInt32()
+        if ($peOffset -le 0 -or $peOffset -gt ($stream.Length - 6)) {
+            throw "Invalid PE header in $($file.FullName)"
+        }
+
+        $stream.Position = $peOffset
+        $signature = $reader.ReadUInt32()
+        if ($signature -ne 0x00004550) {
+            throw "Invalid PE signature in $($file.FullName)"
+        }
+
+        $machine = $reader.ReadUInt16()
+        if ($machine -ne 0x8664) {
+            throw "Expected x64 native binary, got machine 0x$($machine.ToString('X4')): $($file.FullName)"
+        }
+    }
+    finally {
+        $stream.Dispose()
+    }
+
+    return $file
+}
+
+function New-CleanDir($path) {
+    if (Test-Path $path) {
+        Remove-Item $path -Recurse -Force
+    }
+
+    New-Item -ItemType Directory -Force $path | Out-Null
+    return Test-RequiredPath $path
+}
+
+function Invoke-FileDownload($uri, $outputFile) {
+    Write-Host "Downloading $uri"
+    Invoke-WebRequest -Uri $uri -UserAgent 'mpv.net-native-dependencies' -OutFile $outputFile -UseBasicParsing
+    return Test-RequiredFile $outputFile
+}
+
+function Download-GitHubLatestAsset($apiUrl, $assetPattern, $downloadDir) {
+    Write-Host "Reading latest release: $apiUrl"
+    $release = Invoke-WebRequest -Uri $apiUrl -UserAgent 'mpv.net-native-dependencies' -UseBasicParsing | ConvertFrom-Json
+    $assets = @($release.assets | Where-Object { $_.name -match $assetPattern })
+
+    if ($assets.Count -ne 1) {
+        $assetNames = @($release.assets | ForEach-Object { $_.name }) -join ', '
+        throw "Expected exactly one asset matching '$assetPattern' from $apiUrl, found $($assets.Count). Assets: $assetNames"
+    }
+
+    $outputFile = Join-Path $downloadDir $assets[0].name
+    return Invoke-FileDownload $assets[0].browser_download_url $outputFile
+}
+
+function Expand-ArchiveWith7Zip($archiveFile, $outputDir) {
+    Test-RequiredFile $SevenZipPath | Out-Null
+    New-CleanDir $outputDir | Out-Null
+    $process = Start-Process $SevenZipPath @('x', $archiveFile, "-o$outputDir", '-y') -NoNewWindow -Wait -PassThru
+    if ($process.ExitCode) {
+        throw "7-Zip failed extracting $archiveFile with exit code $($process.ExitCode)"
+    }
+
+    return Test-RequiredPath $outputDir
+}
+
+function Copy-ExtractedFile($sourceRootDir, $fileName, $targetDir) {
+    $matches = @(Get-ChildItem $sourceRootDir -Filter $fileName -Recurse -File)
+    if ($matches.Count -ne 1) {
+        throw "Expected exactly one extracted $fileName in $sourceRootDir, found $($matches.Count)."
+    }
+
+    Copy-Item (Test-RequiredFile $matches[0].FullName).FullName (Join-Path $targetDir $fileName) -Force
+    return Test-RequiredFile (Join-Path $targetDir $fileName)
+}
+
+function Resolve-MediaInfoDownloadUri($version) {
+    if ($version) {
+        return "https://mediaarea.net/download/binary/libmediainfo0/$version/MediaInfo_DLL_$($version)_Windows_x64_WithoutInstaller.7z"
+    }
+
+    $downloadPage = 'https://mediaarea.net/en/MediaInfo/Download/Windows'
+    Write-Host "Reading official MediaInfo download page: $downloadPage"
+    $page = Invoke-WebRequest -Uri $downloadPage -UserAgent 'mpv.net-native-dependencies' -UseBasicParsing
+    $link = @($page.Links |
+        Where-Object { $_.href -match '/download/binary/libmediainfo0/[0-9.]+/MediaInfo_DLL_[0-9.]+_Windows_x64_WithoutInstaller\.7z$' } |
+        Select-Object -First 1)[0]
+
+    if (-not $link) {
+        throw "Could not find the latest MediaInfo x64 DLL archive on $downloadPage"
+    }
+
+    $href = [string] $link.href
+    if ($href.StartsWith('//')) {
+        return "https:$href"
+    }
+
+    if ($href.StartsWith('/')) {
+        return "https://mediaarea.net$href"
+    }
+
+    return $href
+}
+
+function Copy-MediaInfoDll($extractDir, $targetDir) {
+    $matches = @(Get-ChildItem $extractDir -Filter 'MediaInfo.dll' -Recurse -File)
+    if ($matches.Count -ne 1) {
+        throw "Expected exactly one MediaInfo.dll in $extractDir, found $($matches.Count)."
+    }
+
+    Assert-PeX64 $matches[0].FullName | Out-Null
+    Copy-Item $matches[0].FullName (Join-Path $targetDir 'MediaInfo.dll') -Force
+    return Assert-PeX64 (Join-Path $targetDir 'MediaInfo.dll')
+}
+
+function Ensure-MediaInfo($targetDir, $downloadsDir, $extractDir) {
+    $targetFile = Join-Path $targetDir 'MediaInfo.dll'
+    if ($MediaInfoFile) {
+        Copy-Item (Test-RequiredFile $MediaInfoFile).FullName $targetFile -Force
+        Assert-PeX64 $targetFile | Out-Null
+        return
+    }
+
+    if ((-not $UpdateExisting) -and (Test-Path $targetFile)) {
+        Assert-PeX64 $targetFile | Out-Null
+        return
+    }
+
+    $mediaInfoUri = Resolve-MediaInfoDownloadUri $MediaInfoVersion
+    $mediaInfoArchive = Invoke-FileDownload $mediaInfoUri (Join-Path $downloadsDir (Split-Path $mediaInfoUri -Leaf))
+    $mediaInfoExtractDir = Expand-ArchiveWith7Zip $mediaInfoArchive.FullName (Join-Path $extractDir 'mediainfo')
+    Copy-MediaInfoDll $mediaInfoExtractDir $targetDir | Out-Null
+}
+
+function Ensure-FFmpeg($targetDir, $downloadsDir, $extractDir) {
+    $requiredFiles = 'ffmpeg.exe', 'ffplay.exe', 'ffprobe.exe'
+    $missingFiles = @($requiredFiles | Where-Object { -not (Test-Path (Join-Path $targetDir $_)) })
+    if ((-not $UpdateExisting) -and (-not $missingFiles.Count)) {
+        foreach ($file in $requiredFiles) { Assert-PeX64 (Join-Path $targetDir $file) | Out-Null }
+        return
+    }
+
+    $ffmpegArchive = Download-GitHubLatestAsset `
+        'https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest' `
+        '^ffmpeg-(?:N-[0-9]+-g[0-9a-f]+|master-latest)-win64-gpl\.zip$' `
+        $downloadsDir
+    $ffmpegExtractDir = Expand-ArchiveWith7Zip $ffmpegArchive.FullName (Join-Path $extractDir 'ffmpeg')
+    foreach ($file in $requiredFiles) {
+        Copy-ExtractedFile $ffmpegExtractDir $file $targetDir | Out-Null
+        Assert-PeX64 (Join-Path $targetDir $file) | Out-Null
+    }
+}
+
+function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
+    $targetFile = Join-Path $targetDir 'libmpv-2.dll'
+    if ((-not $UpdateExisting) -and (Test-Path $targetFile)) {
+        Assert-PeX64 $targetFile | Out-Null
+        return
+    }
+
+    $libmpvArchive = Download-GitHubLatestAsset `
+        'https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest' `
+        '^mpv-dev-x86_64-[0-9]{8}-git-[0-9a-z]+\.7z$' `
+        $downloadsDir
+    $libmpvExtractDir = Expand-ArchiveWith7Zip $libmpvArchive.FullName (Join-Path $extractDir 'libmpv')
+    Copy-ExtractedFile $libmpvExtractDir 'libmpv-2.dll' $targetDir | Out-Null
+    Assert-PeX64 $targetFile | Out-Null
+}
+
+function Ensure-YtDlp($targetDir) {
+    $targetFile = Join-Path $targetDir 'yt-dlp.exe'
+    if ($UpdateExisting -or (-not (Test-Path $targetFile))) {
+        Invoke-FileDownload `
+            'https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe' `
+            $targetFile | Out-Null
+    }
+
+    Assert-PeX64 $targetFile | Out-Null
+}
+
+function Ensure-MpvNetCom($targetDir) {
+    $targetFile = Join-Path $targetDir 'mpvnet.com'
+    if ($MpvNetComFile) {
+        Copy-Item (Test-RequiredFile $MpvNetComFile).FullName $targetFile -Force
+        Test-RequiredFile $targetFile | Out-Null
+        return
+    }
+
+    if ($UpdateExisting -or (-not (Test-Path $targetFile))) {
+        Invoke-FileDownload `
+            'https://github.com/mpvnet-player/file-host/releases/download/tag/mpvnet.com.txt' `
+            $targetFile | Out-Null
+    }
+}
+
+function Ensure-DotNetNativeDlls($targetDir, $publishDir) {
+    if (-not $publishDir) {
+        return
+    }
+
+    $publishDir = Test-RequiredPath $publishDir
+    foreach ($dll in $RequiredDotNetNativeDlls) {
+        $sourceFile = Join-Path $publishDir $dll
+        Assert-PeX64 $sourceFile | Out-Null
+        Copy-Item $sourceFile (Join-Path $targetDir $dll) -Force
+        Assert-PeX64 (Join-Path $targetDir $dll) | Out-Null
+    }
+}
+
+$SourceDir = Test-RequiredPath $SourceDir
+New-Item -ItemType Directory -Force $TargetDir | Out-Null
+$TargetDir = Test-RequiredPath $TargetDir
+
+if (-not $ArtifactsDir) {
+    $ArtifactsDir = Join-Path (Split-Path $SourceDir -Parent) 'artifacts\native-dependencies'
+}
+
+$ArtifactsDir = New-CleanDir $ArtifactsDir
+$DownloadsDir = New-CleanDir (Join-Path $ArtifactsDir 'downloads')
+$ExtractDir = New-CleanDir (Join-Path $ArtifactsDir 'extract')
+
+Ensure-MediaInfo $TargetDir $DownloadsDir $ExtractDir
+Ensure-FFmpeg $TargetDir $DownloadsDir $ExtractDir
+Ensure-LibMpv $TargetDir $DownloadsDir $ExtractDir
+Ensure-YtDlp $TargetDir
+Ensure-MpvNetCom $TargetDir
+Ensure-DotNetNativeDlls $TargetDir $PublishDir
+
+Write-Host "Native and helper dependencies are ready: $TargetDir"

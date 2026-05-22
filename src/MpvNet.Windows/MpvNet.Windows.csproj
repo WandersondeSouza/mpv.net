@@ -17,6 +17,7 @@
 		<FileVersion>$(MpvNetVersion)</FileVersion>
 		<AssemblyVersion>$(MpvNetVersion)</AssemblyVersion>
 		<InformationalVersion>$(MpvNetVersion)</InformationalVersion>
+		<EnsureNativeDependencies>false</EnsureNativeDependencies>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -51,5 +52,9 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
 	</ItemGroup>
+
+	<Target Name="EnsureNativeDependencies" AfterTargets="Build" Condition="'$(EnsureNativeDependencies)' == 'true'">
+		<Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\ensure-native-dependencies.ps1&quot; -SourceDir &quot;$(MSBuildThisFileDirectory)..&quot; -TargetDir &quot;$(TargetDir).&quot;" />
+	</Target>
 
 </Project>

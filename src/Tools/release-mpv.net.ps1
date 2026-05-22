@@ -13,7 +13,7 @@ Optional parameters:
     -Repo Owner/repository used by GitHub CLI. Default: WandersondeSouza/mpv.net.
     -SkipInstaller Skips Inno Setup package generation.
     -SkipGitHubRelease Creates local artifacts without publishing a GitHub release.
-    -MediaInfoFile Optional override path to MediaInfo.dll. Defaults to src\Native\win-x64\MediaInfo.dll.
+    -MediaInfoFile Optional override path to MediaInfo.dll. Defaults to automatic MediaArea download when missing.
     -MediaInfoVersion Optional MediaInfo version pin, for example 26.05. Defaults to the latest stable x64 DLL archive listed by MediaArea.
     -MpvNetComFile Optional override path to mpvnet.com. Defaults to the upstream helper download.
 
@@ -193,36 +193,6 @@ function EnsureLocale($sourceDir, $localeDir, $workDir) {
     return Test $localeDir
 }
 
-function UpdatePortableDependencies($binDir, $workDir) {
-    try {
-        $downloadsDir = NewCleanDir (Join-Path $workDir 'downloads')
-        $extractDir = NewCleanDir (Join-Path $workDir 'extract')
-
-        $ffmpegArchive = DownloadGitHubLatestAsset `
-            'https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest' `
-            '^ffmpeg-(?:N-[0-9]+-g[0-9a-f]+|master-latest)-win64-gpl\.zip$' `
-            $downloadsDir
-        $ffmpegExtractDir = ExpandReleaseArchive $ffmpegArchive (Join-Path $extractDir 'ffmpeg')
-        CopyExtractedFile $ffmpegExtractDir 'ffmpeg.exe' $binDir
-        CopyExtractedFile $ffmpegExtractDir 'ffplay.exe' $binDir
-        CopyExtractedFile $ffmpegExtractDir 'ffprobe.exe' $binDir
-
-        $libmpvArchive = DownloadGitHubLatestAsset `
-            'https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest' `
-            '^mpv-dev-x86_64-[0-9]{8}-git-[0-9a-z]+\.7z$' `
-            $downloadsDir
-        $libmpvExtractDir = ExpandReleaseArchive $libmpvArchive (Join-Path $extractDir 'libmpv')
-        CopyExtractedFile $libmpvExtractDir 'libmpv-2.dll' $binDir
-
-        InvokeFileDownload `
-            'https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe' `
-            (Join-Path $binDir 'yt-dlp.exe') | Out-Null
-    }
-    finally {
-        DeleteDir $workDir
-    }
-}
-
 # Variables
 $SourceDir     = Test $SourceDir
 New-Item -ItemType Directory -Force $OutputRootDir | Out-Null
@@ -245,21 +215,22 @@ DeleteDir $PublishDir64
 dotnet publish $ProjectFile --self-contained true --configuration Debug --runtime win-x64 --output $PublishDir64 /p:IncludeNativeLibrariesForSelfExtract=false
 $PublishedExeFile64 = Test ($PublishDir64 + 'mpvnet.exe')
 $BinDirX64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\')
-$NativeDependenciesScript = Test (Join-Path $SourceDir 'Tools\download-native-dependencies.ps1')
-$NativeDependenciesArgs = @{
+$EnsureDependenciesScript = Test (Join-Path $SourceDir 'Tools\ensure-native-dependencies.ps1')
+$EnsureDependenciesArgs = @{
     SourceDir = $SourceDir
+    TargetDir = $BinDirX64
     PublishDir = $PublishDir64
-    BuildOutputDir = $BinDirX64
     ArtifactsDir = Join-Path (Split-Path $SourceDir -Parent) 'artifacts\native-dependencies'
+    UpdateExisting = $true
 }
 if ($MediaInfoVersion) {
-    $NativeDependenciesArgs.MediaInfoVersion = $MediaInfoVersion
+    $EnsureDependenciesArgs.MediaInfoVersion = $MediaInfoVersion
 }
-& $NativeDependenciesScript @NativeDependenciesArgs
-if ($LastExitCode) { throw $LastExitCode }
 if ($MediaInfoFile) {
-    Copy-Item (TestFile $MediaInfoFile) (Join-Path $PublishDir64 'MediaInfo.dll') -Force
-    Copy-Item (TestFile $MediaInfoFile) (Join-Path $BinDirX64 'MediaInfo.dll') -Force
+    $EnsureDependenciesArgs.MediaInfoFile = $MediaInfoFile
+}
+if ($MpvNetComFile) {
+    $EnsureDependenciesArgs.MpvNetComFile = $MpvNetComFile
 }
 
 # Create OutputName
@@ -276,16 +247,8 @@ mkdir $OutputDir64
 
 # Copy Files
 Copy-Item ($PublishDir64 + '*') $OutputDir64
-$DependencyWorkDir = Join-Path $env:TEMP 'mpv.net-release-dependencies'
-UpdatePortableDependencies $BinDirX64 $DependencyWorkDir
-if ($MpvNetComFile) {
-    Copy-Item (TestFile $MpvNetComFile) (Join-Path $BinDirX64 'mpvnet.com') -Force
-}
-elseif (-not (Test-Path (Join-Path $BinDirX64 'mpvnet.com'))) {
-    InvokeFileDownload `
-        'https://github.com/mpvnet-player/file-host/releases/download/tag/mpvnet.com.txt' `
-        (Join-Path $BinDirX64 'mpvnet.com') | Out-Null
-}
+& $EnsureDependenciesScript @EnsureDependenciesArgs
+if ($LastExitCode) { throw $LastExitCode }
 $ExtraFiles = 'mpvnet.com', 'MediaInfo.dll', 'libmpv-2.dll', 'ffmpeg.exe', 'ffplay.exe', 'ffprobe.exe', 'yt-dlp.exe'
 CopyExtraFiles $BinDirX64 $OutputDir64 $ExtraFiles
 CopyExtraFiles $BinDirX64 $PublishDir64 $ExtraFiles

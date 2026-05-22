@@ -35,7 +35,7 @@ Itens marcados com `[x]` abaixo já podem ser considerados fechados para a versa
 - [x] DLLs Microsoft/.NET/WPF validadas a partir do publish self-contained;
 - [x] `Locale` gerado a partir de `lang/po`;
 - [x] ZIP portatil contem `mpvnet.exe`, `libmpv-2.dll`, `MediaInfo.dll`, DLLs `.NET/WPF`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe`, `mpvnet.com`, `Locale/` e `portable_config/`;
-- [x] `MediaInfo.dll` baixado/validado pelo script `download-native-dependencies.ps1`;
+- [x] `MediaInfo.dll` baixado/validado pelo script `ensure-native-dependencies.ps1`;
 - [x] `mpvnet.com` fornecido por `-MpvNetComFile`, existente no build output ou baixado pelo script;
 - [x] versao validada no nome do ZIP gerado;
 - [x] `test-native-dependencies.ps1` validou publish, pasta portatil e ZIP.

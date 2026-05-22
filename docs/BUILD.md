@@ -54,6 +54,7 @@ src/Tools
 Scripts relevantes para análise futura:
 
 - `src/Tools/release-mpv.net.ps1`: relacionado ao fluxo de build/release e à criação do ZIP portátil com `portable_config`.
+- `src/Tools/ensure-native-dependencies.ps1`: garante, por download ou cópia validada, os binários nativos e auxiliares esperados ao lado de `mpvnet.exe`.
 - `src/Tools/update-mpv.ps1`: relacionado a atualização de mpv/libmpv.
 
 O script de release foi ajustado para publicar e empacotar a aplicação como x64, incluindo `portable_config` no pacote portátil. Por padrão, a publicação GitHub aponta para o fork `WandersondeSouza/mpv.net`; use `-Repo outro-dono/outro-repo` se precisar publicar em outro repositório.
@@ -79,7 +80,21 @@ As fontes automáticas usadas pelo script são:
 
 As DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vêm do próprio `dotnet publish` self-contained. O fork não baixa essas DLLs de sites externos.
 
-`MediaInfo.dll` é baixada/atualizada por `src/Tools/download-native-dependencies.ps1`. O parâmetro `-MediaInfoVersion`, ou a variável `MPVNET_MEDIAINFO_VERSION`, permite pinagem de uma versão específica. O parâmetro `-MediaInfoFile` continua existindo no release script apenas como override manual. `mpvnet.com` pode ser fornecido por `-MpvNetComFile`; se não for informado e não existir no build output, o script baixa o arquivo auxiliar do host original usado pelo projeto. A pasta `Locale` é gerada automaticamente a partir de `lang/po` quando necessário. Se algum download, extração ou arquivo obrigatório falhar, a release deve falhar antes de montar o pacote incompleto.
+`MediaInfo.dll` é baixada/atualizada por `src/Tools/ensure-native-dependencies.ps1`. O parâmetro `-MediaInfoVersion`, ou a variável `MPVNET_MEDIAINFO_VERSION`, permite pinagem de uma versão específica. O parâmetro `-MediaInfoFile` continua existindo no release script apenas como override manual. `mpvnet.com` pode ser fornecido por `-MpvNetComFile`; se não for informado e não existir no build output, o script baixa o arquivo auxiliar do host original usado pelo projeto. A pasta `Locale` é gerada automaticamente a partir de `lang/po` quando necessário. Se algum download, extração ou arquivo obrigatório falhar, a release deve falhar antes de montar o pacote incompleto.
+
+Para preparar a saída Debug local com as mesmas dependências auxiliares, use o alvo opt-in:
+
+```powershell
+dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:EnsureNativeDependencies=true
+```
+
+Ou chame o script diretamente:
+
+```powershell
+src\Tools\ensure-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64
+```
+
+Esse fluxo baixa quando faltar ou valida `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com`. Use `-UpdateExisting` no script direto para forçar atualização dos arquivos já presentes. As DLLs Microsoft/.NET/WPF (`D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll`) continuam vindo apenas de um publish self-contained; quando `-PublishDir` é informado ao script, elas são copiadas/validadas a partir desse diretório.
 
 O fluxo de release gera `mpv.net-v7.1.2.2-portable-x64.zip` e `mpv.net-v7.1.2.2-setup-x64.exe`, baixa MediaInfo da MediaArea, baixa FFmpeg/libmpv/yt-dlp, gera `Locale`, inclui `portable_config` e valida as DLLs nativas obrigatórias no publish, na pasta portátil e dentro do ZIP. A criação da GitHub Release exige `GH_TOKEN` ou `gh auth login`.
 

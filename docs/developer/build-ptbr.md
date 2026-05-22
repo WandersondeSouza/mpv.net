@@ -80,7 +80,7 @@ cd mpv.net
 3. Abra `src/MpvNet.sln`.
 4. Restaure os pacotes NuGet.
 5. Compile em Debug.
-6. Confirme que `src/Native/win-x64/MediaInfo.dll` existe. O build copia esse arquivo para a saida da aplicacao. No fluxo de release, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` sao baixados automaticamente para o pacote portatil.
+6. Para preparar a saida Debug com os binarios nativos/auxiliares, compile com `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:EnsureNativeDependencies=true` ou execute `src\Tools\ensure-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64`.
 
 ---
 
@@ -100,6 +100,14 @@ dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj
 ```
 
 O projeto da aplicação define `RuntimeIdentifier=win-x64` e `Prefer32Bit=false`, portanto o build normal gera o executável como x64.
+
+Para compilar e baixar/validar automaticamente os binarios nativos e auxiliares esperados ao lado de `mpvnet.exe`:
+
+```powershell
+dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:EnsureNativeDependencies=true
+```
+
+Esse alvo opt-in chama `src\Tools\ensure-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` na pasta Debug, baixando apenas o que estiver faltando. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained.
 
 Para publicar como o script de release atual faz:
 
@@ -172,18 +180,15 @@ O script:
 3. publica `MpvNet.Windows.csproj` self-contained para `win-x64`;
 4. cria nomes com base na versão do `mpvnet.exe`;
 5. copia arquivos publicados;
-6. baixa `MediaInfo_DLL_..._Windows_x64_WithoutInstaller.7z` da pagina oficial da MediaArea e copia `MediaInfo.dll`;
-7. valida as DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vindas do publish self-contained;
-8. baixa `ffmpeg-master-latest-win64-gpl.zip` do BtbN e copia `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe`;
-9. baixa `mpv-dev-x86_64-...7z` do shinchiro e copia `libmpv-2.dll`;
-10. baixa `yt-dlp.exe` do release latest oficial do yt-dlp;
-11. baixa ou copia `mpvnet.com`, e copia `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` x64;
-12. copia `Locale`;
-13. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
-14. valida as DLLs nativas no publish, na pasta portatil e no ZIP com `test-native-dependencies.ps1`;
-15. gera ZIP portatil x64;
-16. executa `Setup/Inno/inno-setup.iss` para gerar o instalador x64, exceto com `-SkipInstaller`;
-17. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`.
+6. chama `src\Tools\ensure-native-dependencies.ps1` para baixar ou validar `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `libmpv-2.dll`, `yt-dlp.exe` e `mpvnet.com`;
+7. valida e copia as DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vindas do publish self-contained;
+8. copia `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` x64;
+9. copia `Locale`;
+10. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
+11. valida as DLLs nativas no publish, na pasta portatil e no ZIP com `test-native-dependencies.ps1`;
+12. gera ZIP portatil x64;
+13. executa `Setup/Inno/inno-setup.iss` para gerar o instalador x64, exceto com `-SkipInstaller`;
+14. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`.
 
 As dependencias baixadas automaticamente usam estas fontes:
 

@@ -57,23 +57,29 @@ MediaInfo.dll
 
 Do not rename the file unless the P/Invoke declarations in `MpvNet/Native/MediaInfo.cs` are also updated.
 
-## How to update MediaInfo.dll
+## How to prepare local native dependencies
 
-Updating `MediaInfo.dll` is automated by `src/Tools/download-native-dependencies.ps1`.
+Preparing the local output folder is automated by `src/Tools/ensure-native-dependencies.ps1`.
 
 Default process:
 
 ```powershell
-src\Tools\download-native-dependencies.ps1 -SourceDir .\src -PublishDir .\src\MpvNet.Windows\bin\Debug\win-x64\publish -BuildOutputDir .\src\MpvNet.Windows\bin\Debug\win-x64
+src\Tools\ensure-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64
+```
+
+The same preparation can be requested during a Debug build:
+
+```powershell
+dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:EnsureNativeDependencies=true
 ```
 
 To pin a specific MediaInfo version, pass `-MediaInfoVersion` or set `MPVNET_MEDIAINFO_VERSION`:
 
 ```powershell
-src\Tools\download-native-dependencies.ps1 -SourceDir .\src -PublishDir .\src\MpvNet.Windows\bin\Debug\win-x64\publish -BuildOutputDir .\src\MpvNet.Windows\bin\Debug\win-x64 -MediaInfoVersion 26.05
+src\Tools\ensure-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64 -MediaInfoVersion 26.05
 ```
 
-The script stores downloaded files under `artifacts/native-dependencies`, copies `MediaInfo.dll` into the publish/build output, verifies that it is a non-empty x64 PE file, and validates the required .NET/WPF native DLLs already produced by publish.
+The script stores downloaded files under `artifacts/native-dependencies`, downloads missing FFmpeg/libmpv/yt-dlp/MediaInfo binaries, verifies that native binaries are non-empty x64 PE files, and can copy/validate the required .NET/WPF native DLLs from a self-contained publish output when `-PublishDir` is provided. Pass `-UpdateExisting` to refresh files that already exist. Microsoft .NET/WPF DLLs are not downloaded manually.
 
 Suggested test files:
 
@@ -117,7 +123,7 @@ If the application fails to start or media information cannot be loaded, confirm
 
 ## Release packaging note
 
-The release script publishes self-contained `win-x64`, downloads `libmpv-2.dll`, `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` and `yt-dlp.exe`, places the required extra files in the x64 build output folder, and copies them for the portable and publish folders. `mpvnet.com` can be provided by `-MpvNetComFile`; otherwise the script downloads the upstream helper file when it is not already present in the build output.
+The release script publishes self-contained `win-x64`, calls `ensure-native-dependencies.ps1 -UpdateExisting`, places the required extra files in the x64 build output folder, and copies them for the portable and publish folders. `mpvnet.com` can be provided by `-MpvNetComFile`; otherwise the script downloads the upstream helper file when it is not already present in the build output.
 
 Before creating a release package, validate the final folder or ZIP:
 
