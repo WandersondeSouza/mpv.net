@@ -200,7 +200,7 @@ function UpdatePortableDependencies($binDir, $workDir) {
 
         $ffmpegArchive = DownloadGitHubLatestAsset `
             'https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest' `
-            '^ffmpeg-master-latest-win64-gpl\.zip$' `
+            '^ffmpeg-N-[0-9]+-g[0-9a-f]+-win64-gpl\.zip$' `
             $downloadsDir
         $ffmpegExtractDir = ExpandReleaseArchive $ffmpegArchive (Join-Path $extractDir 'ffmpeg')
         CopyExtractedFile $ffmpegExtractDir 'ffmpeg.exe' $binDir
@@ -264,7 +264,7 @@ if ($MediaInfoFile) {
 
 # Create OutputName
 $VersionInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($PublishedExeFile64)
-$IsBeta = $VersionInfo.FilePrivatePart -ne 0
+$IsBeta = $VersionInfo.ProductVersion -match '(?i)(^|[-+.])(alpha|beta|preview|rc)([-+.]|$)'
 $BetaString = if ($IsBeta) { '-beta' } else { '' }
 $VersionName = $VersionInfo.FileVersion
 $OutputName64 = 'mpv.net-v' + $VersionName + $BetaString + '-portable-x64'

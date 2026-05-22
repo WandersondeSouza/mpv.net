@@ -12,6 +12,20 @@ O executavel principal e gerado como `win-x64`. O projeto `src/MpvNet.Windows/Mp
 
 O build deve ser feito com Visual Studio/.NET conforme a estrutura atual do projeto. A versao exata recomendada do Visual Studio, do SDK .NET e das dependencias nativas ainda precisa ser validada neste fork.
 
+## Versao
+
+A versao do fork fica centralizada em:
+
+```text
+src/BuildVersion.props
+```
+
+O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
+usa `MpvNetVersion` para `FileVersion`, `AssemblyVersion` e
+`InformationalVersion`. O script de release le a versao do `mpvnet.exe`
+publicado para montar nomes de artefatos e tag, por exemplo
+`mpv.net-v7.1.2.1-portable-x64.zip` e `v7.1.2.1`.
+
 ## Como abrir o projeto
 
 Orientacao inicial:
@@ -61,7 +75,7 @@ yt-dlp.exe
 
 As fontes automaticas usadas pelo script sao:
 
-- `ffmpeg-master-latest-win64-gpl.zip` em `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`;
+- `ffmpeg-N-...-win64-gpl.zip` em `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`;
 - `mpv-dev-x86_64-...7z` em `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`;
 - `yt-dlp.exe` em `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`.
 - `MediaInfo_DLL_..._Windows_x64_WithoutInstaller.7z` a partir da pagina oficial `https://mediaarea.net/en/MediaInfo/Download/Windows`;
@@ -71,7 +85,7 @@ As DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfg
 
 `MediaInfo.dll` e baixada/atualizada por `src/Tools/download-native-dependencies.ps1`. O parametro `-MediaInfoVersion`, ou a variavel `MPVNET_MEDIAINFO_VERSION`, permite pinar uma versao especifica. O parametro `-MediaInfoFile` continua existindo no release script apenas como override manual. `mpvnet.com` pode ser fornecido por `-MpvNetComFile`; se nao for informado e nao existir no build output, o script baixa o arquivo auxiliar do host original usado pelo projeto. A pasta `Locale` e gerada automaticamente a partir de `lang/po` quando necessario. Se algum download, extracao ou arquivo obrigatorio falhar, a release deve falhar antes de montar o pacote incompleto.
 
-Validacao local de 2026-05-22: `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release-native-installer-test -SkipGitHubRelease` gerou `mpv.net-v7.1.2.0-portable-x64.zip` e `mpv.net-v7.1.2.0-setup-x64.exe`, baixou MediaInfo 26.05 da MediaArea, baixou FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
+Validacao local de 2026-05-22: `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release` gerou `mpv.net-v7.1.2.1-portable-x64.zip` e `mpv.net-v7.1.2.1-setup-x64.exe`, baixou MediaInfo 26.05 da MediaArea, baixou FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. A criacao da GitHub Release exige `GH_TOKEN` ou `gh auth login`.
 
 Exemplo para gerar artefatos locais sem publicar no GitHub:
 
@@ -101,7 +115,7 @@ Validacao manual de dependencias nativas:
 
 ```powershell
 src\Tools\test-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
-src\Tools\test-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.0-portable-x64.zip
+src\Tools\test-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.1-portable-x64.zip
 ```
 
 Tambem existe o workflow manual `.github/workflows/release-packages.yml`, que gera os pacotes no GitHub Actions e pode criar a Release quando executado com `create_release=true`. O workflow executa o mesmo release script e roda `test-native-dependencies.ps1` antes de publicar os artefatos.

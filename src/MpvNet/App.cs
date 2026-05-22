@@ -78,7 +78,10 @@ public class AppClass
         Player.Initialized += Player_Initialized;
     }
 
-    public static string About => "Copyright (C) 2000-2024 mpv.net/mpv/mplayer\n" +
+    public static string About => "WandersondeSouza/mpv.net maintenance fork\n" +
+        "Repository: https://github.com/WandersondeSouza/mpv.net\n" +
+        "Based on the original mpv.net project by Frank Skare / stax76\n" +
+        "Copyright (C) 2000-2024 mpv.net/mpv/mplayer\n" +
         $"{AppInfo.Product} v{AppInfo.Version}" + GetLastWriteTime(Environment.ProcessPath!) + "\n" +
         $"{Player.GetPropertyString("mpv-version")}" + GetLastWriteTime(Folder.Startup + "libmpv-2.dll") + "\n" +
         $"ffmpeg {Player.GetPropertyString("ffmpeg-version")}\n" +

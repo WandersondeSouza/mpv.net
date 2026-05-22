@@ -3,6 +3,22 @@
 Este arquivo preserva o historico original do mpv.net e registra, no topo, as
 alteracoes relevantes feitas neste fork de manutencao.
 
+# Fork WandersondeSouza - v7.1.2.1 (2026-05-22)
+
+## Identidade do fork, versao e release
+
+- A janela `Help > About mpv.net` agora identifica este fork de manutencao,
+  mostra o repositorio `https://github.com/WandersondeSouza/mpv.net` e preserva
+  o credito ao projeto original mpv.net.
+- A versao da aplicacao passou a ser centralizada em `src/BuildVersion.props`,
+  usada pelo executavel e pelo fluxo de release para gerar artefatos e tag.
+- A release x64 continua validando as dependencias nativas obrigatorias no
+  publish, na pasta portatil e no ZIP, incluindo `MediaInfo.dll`,
+  `libmpv-2.dll` e as DLLs Microsoft/.NET/WPF vindas do publish self-contained.
+- O script de release foi atualizado para o nome atual dos assets FFmpeg da
+  BtbN e para tratar beta/pre-release apenas quando a versao informacional
+  trouxer marcador explicito.
+
 # Fork WandersondeSouza - alteracoes recentes (2026-05-21)
 
 ## Release, pacote portatil e dependencias nativas

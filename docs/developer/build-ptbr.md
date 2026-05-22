@@ -174,7 +174,7 @@ O script:
 5. copia arquivos publicados;
 6. baixa `MediaInfo_DLL_..._Windows_x64_WithoutInstaller.7z` da pagina oficial da MediaArea e copia `MediaInfo.dll`;
 7. valida as DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vindas do publish self-contained;
-8. baixa `ffmpeg-master-latest-win64-gpl.zip` do BtbN e copia `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe`;
+8. baixa `ffmpeg-N-...-win64-gpl.zip` do BtbN e copia `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe`;
 9. baixa `mpv-dev-x86_64-...7z` do shinchiro e copia `libmpv-2.dll`;
 10. baixa `yt-dlp.exe` do release latest oficial do yt-dlp;
 11. baixa ou copia `mpvnet.com`, e copia `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` x64;
@@ -187,7 +187,7 @@ O script:
 
 As dependencias baixadas automaticamente usam estas fontes:
 
-- FFmpeg: `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, asset `ffmpeg-master-latest-win64-gpl.zip`;
+- FFmpeg: `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, asset `ffmpeg-N-...-win64-gpl.zip`;
 - libmpv: `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, asset `mpv-dev-x86_64-[data]-git-[hash].7z`;
 - yt-dlp: `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`;
 - MediaInfo: `https://mediaarea.net/en/MediaInfo/Download/Windows`, asset `MediaInfo_DLL_[versao]_Windows_x64_WithoutInstaller.7z`;
@@ -200,7 +200,7 @@ O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo sc
 
 Este fork nao publica um pacote NuGet/container no GitHub Packages por enquanto; os pacotes de distribuicao do aplicativo sao assets de GitHub Releases e artefatos do workflow.
 
-Validado em 2026-05-22: dry run local com `-SkipGitHubRelease` gerou o ZIP portatil e o instalador, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
+Validado em 2026-05-22: execucao local de `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release` gerou o ZIP portatil `mpv.net-v7.1.2.1-portable-x64.zip` e o instalador `mpv.net-v7.1.2.1-setup-x64.exe`, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. A publicacao no GitHub ainda exige `GH_TOKEN` ou `gh auth login`.
 
 Pendente real: validar a publicacao GitHub e a revisao manual completa da UI no pacote gerado.
 
@@ -208,15 +208,16 @@ Pendente real: validar a publicacao GitHub e a revisao manual completa da UI no 
 
 # Versão
 
-A versão atual do executável está em `src/MpvNet.Windows/MpvNet.Windows.csproj`:
+A versão atual do executável está centralizada em `src/BuildVersion.props`:
 
 ```xml
-<FileVersion>7.1.2.0</FileVersion>
-<AssemblyVersion>7.1.2.0</AssemblyVersion>
-<InformationalVersion>7.1.2.0</InformationalVersion>
+<MpvNetVersion>7.1.2.1</MpvNetVersion>
 ```
 
-O script de release usa a versão do arquivo publicado para montar os nomes dos artefatos.
+O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
+usa `MpvNetVersion` para `FileVersion`, `AssemblyVersion` e
+`InformationalVersion`. O script de release usa a versão do arquivo publicado
+para montar os nomes dos artefatos e a tag da release.
 
 ---
 
