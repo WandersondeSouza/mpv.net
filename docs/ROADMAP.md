@@ -5,8 +5,10 @@ O que já foi concluído deve ficar registrado no `docs/changelog.md`.
 
 ## Em andamento
 
-- validar instalador, publicação GitHub e revisão manual completa da UI;
-- validar renderização ao fechar e outros bugs visuais pequenos.
+- validar instalador, publicação GitHub e smoke test do ZIP portátil;
+- validar revisão manual da UI, incluindo fullscreen, menu, atalhos, persistência de configuração e temas;
+- validar renderização ao fechar e outros bugs visuais pequenos;
+- validar input, thumbfast e caminhos longos nas rotas já documentadas.
 
 ## Futuro
 
