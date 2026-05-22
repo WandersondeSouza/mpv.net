@@ -48,17 +48,6 @@ Tarefas:
 - validar thumbnails do `thumbfast` em uma UI de usuário final;
 - atualizar a documentação apenas se surgir um caso novo de uso.
 
-### Etapa 4 - Caminhos longos no Windows
-
-Status: pendente validar `Explorer`, associação de arquivo e menu `Open Files...`.
-
-Tarefas:
-
-- validar abertura via `Explorer`;
-- validar abertura por associação de arquivo;
-- validar menu `Open Files...`;
-- registrar apenas o que ainda falhar em um documento técnico separado, se necessário.
-
 ### Etapa 5 - `pause=yes` e autoplay
 
 Status: pendente confirmação nos fluxos de abertura do app.
@@ -104,4 +93,3 @@ Tarefas:
 - [Prompt de proximas melhorias](../.ai/prompts/next-improvements.md)
 - [Template de bug](../.github/ISSUE_TEMPLATE/bug_report.md)
 - [Template de melhoria](../.github/ISSUE_TEMPLATE/feature_request.md)
-

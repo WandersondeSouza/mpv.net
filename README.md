@@ -31,7 +31,6 @@ Grandes mudanças de arquitetura não são prioridade neste momento. A regra pri
 - [Roadmap do fork](docs/ROADMAP.md)
 - [Build e release](docs/BUILD.md)
 - [Checklist de release](docs/release-checklist-ptbr.md)
-- [Caminhos longos no Windows](docs/CAMINHOS-LONGOS.md)
 - [Guia de contribuição](docs/contributing-ptbr.md)
 - [Documentação técnica](docs/developer/project-map-ptbr.md)
 

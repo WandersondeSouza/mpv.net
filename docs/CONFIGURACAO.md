@@ -138,4 +138,4 @@ Use esses arquivos como ponto de partida. Eles não substituem a documentação 
 - Ao testar uma configuração, altere uma coisa por vez.
 - Se algo parar de funcionar, renomeie temporariamente o arquivo alterado e teste novamente.
 
-Configurações duplicadas dificultam a investigação de bugs, porque nem sempre fica claro qual linha está prevalecendo.
+Configurações duplicadas dificultam a validação de bugs, porque nem sempre fica claro qual linha está prevalecendo.
