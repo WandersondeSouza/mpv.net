@@ -207,6 +207,10 @@ Supported are all mpv properties, they are documented here:
 
 https://mpv.io/manual/master/#properties
 
+For visible media titles, this fork normalizes literal `--force-media-title`
+values and literal `--title` values before displaying them. Template values such
+as `--title="${media-title}"` keep mpv property expansion behavior.
+
 
 mpv has a few non property based switches which are generally not supported in mpv.net.
 

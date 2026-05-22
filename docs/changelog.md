@@ -5,6 +5,15 @@ alteracoes relevantes feitas neste fork de manutencao.
 
 # Fork WandersondeSouza - v7.1.2.2 (2026-05-22)
 
+## Titulos visiveis de midia
+
+- Os titulos visiveis de midia agora sao normalizados antes de aparecerem na
+  janela, no OSD de reproducao e nas listas que usam `media-title`.
+- `--force-media-title` e valores literais de `--title` recebidos por linha de
+  comando passam a ser ajustados antes de serem repassados ao mpv.
+- O fallback `mpv.net` continua sendo usado quando nao ha midia/titulo, mas nao
+  e concatenado ao titulo em reproducao.
+
 ## Release e alinhamento do pacote
 
 - O fluxo de release foi alinhado ao nome atual do asset do FFmpeg do BtbN,

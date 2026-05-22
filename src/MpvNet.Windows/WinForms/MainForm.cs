@@ -880,6 +880,8 @@ public partial class MainForm : Form
     
     void Player_FileLoaded()
     {
+        NormalizeLoadedMediaTitle();
+
         BeginInvoke(() => {
             SetTitleInternal();
 
@@ -932,8 +934,22 @@ public partial class MainForm : Form
 
         if (text == "(unavailable)" || Player.PlaylistPos == -1)
             text = "mpv.net";
+        else
+            text = TitleHelp.NormalizeMediaTitle(text);
 
         Text = text;
+    }
+
+    void NormalizeLoadedMediaTitle()
+    {
+        if (CommandLine.Contains("force-media-title"))
+            return;
+
+        string title = Player.GetPropertyString("media-title");
+        string normalizedTitle = TitleHelp.NormalizeMediaTitle(title);
+
+        if (!string.IsNullOrEmpty(normalizedTitle) && normalizedTitle != title)
+            Player.SetPropertyString("force-media-title", normalizedTitle);
     }
 
     void SaveWindowProperties()
@@ -979,7 +995,9 @@ public partial class MainForm : Form
                 return;
 
             if (value.EndsWith("} - mpv"))
-                value = value.Replace("} - mpv", "} - mpv.net");
+                value = value[..^6];
+            else if (value.EndsWith("} - mpv.net"))
+                value = value[..^10];
 
             _title = value;
         }

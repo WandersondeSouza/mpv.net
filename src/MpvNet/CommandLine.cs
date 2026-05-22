@@ -1,4 +1,5 @@
-﻿
+﻿using MpvNet.Help;
+
 namespace MpvNet;
 
 public class CommandLine
@@ -51,6 +52,9 @@ public class CommandLine
                     case "sub-file": left = "sub-files"; break;
                     case "external-file": left = "external-files"; break;
                 }
+
+                if (ShouldNormalizeTitleArgument(left, right))
+                    right = TitleHelp.NormalizeMediaTitle(right);
 
                 _arguments.Add(new StringPair(left, right));
             }
@@ -168,5 +172,16 @@ public class CommandLine
         }
 
         return "";
+    }
+
+    static bool ShouldNormalizeTitleArgument(string name, string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return false;
+
+        if (name == "force-media-title")
+            return true;
+
+        return name == "title" && !value.Contains("${");
     }
 }
