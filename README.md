@@ -27,7 +27,6 @@ Grandes mudanças de arquitetura não são prioridade neste momento. A regra pri
 
 ## Para mantenedores
 
-- [Plano de trabalho do Codex](docs/PLANO-CODEX.md)
 - [Roadmap do fork](docs/ROADMAP.md)
 - [Build e release](docs/BUILD.md)
 - [Checklist de release](docs/release-checklist-ptbr.md)
@@ -40,7 +39,7 @@ Antes de qualquer alteracao automatizada, leia:
 
 1. [AGENTS.md](AGENTS.md)
 2. [Skill de manutenção do fork](.ai/skills/mpvnet-maintainer.md)
-3. [Plano de trabalho do Codex](docs/PLANO-CODEX.md)
+3. [Roadmap do fork](docs/ROADMAP.md)
 4. [Prompt de próximas melhorias](.ai/prompts/next-improvements.md)
 
 Os artefatos em `.ai/` ajudam a orientar análises e mudanças pequenas, mas não substituem a leitura do código atual.

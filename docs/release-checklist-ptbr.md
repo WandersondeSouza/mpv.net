@@ -4,11 +4,11 @@
 
 Garantir que releases futuras sejam feitas de forma segura e organizada.
 
-Status em 2026-05-22: os itens marcados abaixo foram validados localmente para a versao `7.1.2.1`, incluindo ZIP portatil, instalador e validacao de DLLs nativas. A publicacao da GitHub Release continua pendente de autenticacao do GitHub CLI e os testes manuais de UI ainda precisam ser fechados.
+Status em 2026-05-22: os itens marcados abaixo foram validados localmente para a versao `7.1.2.2`, incluindo ZIP portatil, instalador e validacao de DLLs nativas. A publicacao da GitHub Release continua pendente de autenticacao do GitHub CLI e os testes manuais de UI ainda precisam ser fechados.
 
 Use este checklist como fonte de verdade da release. Se um item for validado em outra rodada, marque apenas esse item e registre a evidencia no documento relacionado.
 
-Itens marcados com `[x]` abaixo já podem ser considerados fechados para a versao `7.1.2.1` e podem sair desta lista quando a proxima versao for consolidada, desde que o changelog e a documentacao associada continuem coerentes.
+Itens marcados com `[x]` abaixo já podem ser considerados fechados para a versao `7.1.2.2` e podem sair desta lista quando a proxima versao for consolidada, desde que o changelog e a documentacao associada continuem coerentes.
 
 ---
 
@@ -39,7 +39,7 @@ Itens marcados com `[x]` abaixo já podem ser considerados fechados para a versa
 - [x] `mpvnet.com` fornecido por `-MpvNetComFile`, existente no build output ou baixado pelo script;
 - [x] versao validada no nome do ZIP gerado;
 - [x] `test-native-dependencies.ps1` validou publish, pasta portatil e ZIP.
-- [x] ZIP portatil final da versao `7.1.2.1` validado com as DLLs nativas obrigatorias.
+- [x] ZIP portatil final da versao `7.1.2.2` validado com as DLLs nativas obrigatorias.
 
 ---
 
@@ -85,7 +85,7 @@ Itens marcados com `[x]` abaixo já podem ser considerados fechados para a versa
 # Documentacao
 
 - [x] documentacao de build, modo portatil, dependencias nativas e checklist alinhada ao dry run validado;
-- [x] changelog da release final `7.1.2.1` atualizado;
+- [x] changelog da release final `7.1.2.2` atualizado;
 - [ ] README revisado quando houver mudanca de comportamento visivel para usuario;
 - [ ] riscos documentados quando algum item manual ficar pendente.
 

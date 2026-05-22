@@ -20,7 +20,7 @@ A versão do fork fica centralizada em:
 src/BuildVersion.props
 ```
 
-O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e usa `MpvNetVersion` para `FileVersion`, `AssemblyVersion` e `InformationalVersion`. O script de release lê a versão do `mpvnet.exe` publicado para montar nomes de artefatos e tag, por exemplo `mpv.net-v7.1.2.1-portable-x64.zip` e `v7.1.2.1`.
+O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e usa `MpvNetVersion` para `FileVersion`, `AssemblyVersion` e `InformationalVersion`. O script de release lê a versão do `mpvnet.exe` publicado para montar nomes de artefatos e tag, por exemplo `mpv.net-v7.1.2.2-portable-x64.zip` e `v7.1.2.2`.
 
 ## Como abrir o projeto
 
@@ -81,7 +81,7 @@ As DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfg
 
 `MediaInfo.dll` é baixada/atualizada por `src/Tools/download-native-dependencies.ps1`. O parâmetro `-MediaInfoVersion`, ou a variável `MPVNET_MEDIAINFO_VERSION`, permite pinagem de uma versão específica. O parâmetro `-MediaInfoFile` continua existindo no release script apenas como override manual. `mpvnet.com` pode ser fornecido por `-MpvNetComFile`; se não for informado e não existir no build output, o script baixa o arquivo auxiliar do host original usado pelo projeto. A pasta `Locale` é gerada automaticamente a partir de `lang/po` quando necessário. Se algum download, extração ou arquivo obrigatório falhar, a release deve falhar antes de montar o pacote incompleto.
 
-O fluxo de release gera `mpv.net-v7.1.2.1-portable-x64.zip` e `mpv.net-v7.1.2.1-setup-x64.exe`, baixa MediaInfo da MediaArea, baixa FFmpeg/libmpv/yt-dlp, gera `Locale`, inclui `portable_config` e valida as DLLs nativas obrigatórias no publish, na pasta portátil e dentro do ZIP. A criação da GitHub Release exige `GH_TOKEN` ou `gh auth login`.
+O fluxo de release gera `mpv.net-v7.1.2.2-portable-x64.zip` e `mpv.net-v7.1.2.2-setup-x64.exe`, baixa MediaInfo da MediaArea, baixa FFmpeg/libmpv/yt-dlp, gera `Locale`, inclui `portable_config` e valida as DLLs nativas obrigatórias no publish, na pasta portátil e dentro do ZIP. A criação da GitHub Release exige `GH_TOKEN` ou `gh auth login`.
 
 Exemplo para gerar artefatos locais sem publicar no GitHub:
 
@@ -111,7 +111,7 @@ Validação manual de dependências nativas:
 
 ```powershell
 src\Tools\test-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
-src\Tools\test-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.1-portable-x64.zip
+src\Tools\test-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.2-portable-x64.zip
 ```
 
 Também existe o workflow manual `.github/workflows/release-packages.yml`, que gera os pacotes no GitHub Actions e pode criar a Release quando executado com `create_release=true`. O workflow executa o mesmo release script e roda `test-native-dependencies.ps1` antes de publicar os artefatos.

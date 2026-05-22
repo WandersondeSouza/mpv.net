@@ -3,6 +3,18 @@
 Este arquivo preserva o historico original do mpv.net e registra, no topo, as
 alteracoes relevantes feitas neste fork de manutencao.
 
+# Fork WandersondeSouza - v7.1.2.2 (2026-05-22)
+
+## Release e alinhamento do pacote
+
+- O fluxo de release foi alinhado ao nome atual do asset do FFmpeg do BtbN,
+  que agora é `ffmpeg-master-latest-win64-gpl.zip`.
+- O script de release e a documentação técnica passaram a refletir o fluxo
+  validado localmente para gerar o ZIP portátil e o instalador x64.
+- O plano operacional do fork foi esvaziado e removido após a consolidação das
+  pendências já tratadas, deixando o histórico consolidado apenas no changelog
+  e nas docs de release.
+
 # Fork WandersondeSouza - v7.1.2.1 (2026-05-22)
 
 ## Identidade do fork, versao e release
