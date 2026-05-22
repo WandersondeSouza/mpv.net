@@ -160,6 +160,7 @@ Usado para preferências internas como:
 - flags de migração já aplicadas.
 
 Esse arquivo não substitui `mpv.conf` ou `mpvnet.conf`; ele armazena estado interno do frontend.
+Se ainda não existir `settings.xml`, o volume inicial usado pelo frontend começa em `100`.
 
 ---
 
