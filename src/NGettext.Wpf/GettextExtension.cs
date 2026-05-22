@@ -1,4 +1,4 @@
-﻿
+
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Markup;
@@ -8,8 +8,8 @@ namespace NGettext.Wpf
     [MarkupExtensionReturnType(typeof(string))]
     public class GettextExtension : MarkupExtension, IWeakCultureObserver
     {
-        private DependencyObject _dependencyObject;
-        private DependencyProperty _dependencyProperty;
+        private DependencyObject? _dependencyObject;
+        private DependencyProperty? _dependencyProperty;
 
         [ConstructorArgument("params")] public object[] Params { get; set; }
 
@@ -27,12 +27,12 @@ namespace NGettext.Wpf
             Params = @params;
         }
 
-        public static ILocalizer Localizer { get; set; }
+        public static ILocalizer? Localizer { get; set; }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            var provideValueTarget = (IProvideValueTarget)serviceProvider.GetService(typeof(IProvideValueTarget));
-            if (provideValueTarget.TargetObject is DependencyObject dependencyObject)
+            var provideValueTarget = (IProvideValueTarget?)serviceProvider.GetService(typeof(IProvideValueTarget));
+            if (provideValueTarget?.TargetObject is DependencyObject dependencyObject)
             {
                 _dependencyObject = dependencyObject;
                 if (DesignerProperties.GetIsInDesignMode(_dependencyObject))
@@ -42,13 +42,14 @@ namespace NGettext.Wpf
 
                 AttachToCultureChangedEvent();
 
-                _dependencyProperty = (DependencyProperty)provideValueTarget.TargetProperty;
+                _dependencyProperty = provideValueTarget.TargetProperty as DependencyProperty;
 
-                KeepGettextExtensionAliveForAsLongAsDependencyObject();
+                if (_dependencyProperty is not null)
+                    KeepGettextExtensionAliveForAsLongAsDependencyObject();
             }
             else
             {
-                System.Console.WriteLine("NGettext.Wpf: Target object of type {0} is not yet implemented", provideValueTarget.TargetObject?.GetType());
+                System.Console.WriteLine("NGettext.Wpf: Target object of type {0} is not yet implemented", provideValueTarget?.TargetObject?.GetType());
             }
 
             return Gettext();
@@ -56,12 +57,13 @@ namespace NGettext.Wpf
 
         private string Gettext()
         {
-            return Params.Any() ? Localizer.Gettext(MsgId, Params) : Localizer.Gettext(MsgId);
+            return Params.Any() ? Localizer.Gettext(MsgId, Params) : Localizer.Gettext(MsgId) ?? "";
         }
 
         void KeepGettextExtensionAliveForAsLongAsDependencyObject()
         {
-            SetGettextExtension(_dependencyObject, this);
+            if (_dependencyObject is not null)
+                SetGettextExtension(_dependencyObject, this);
         }
 
         void AttachToCultureChangedEvent()
@@ -77,7 +79,8 @@ namespace NGettext.Wpf
 
         public void HandleCultureChanged(ICultureTracker sender, CultureEventArgs eventArgs)
         {
-            _dependencyObject.SetValue(_dependencyProperty, Gettext());
+            if (_dependencyObject is not null && _dependencyProperty is not null)
+                _dependencyObject.SetValue(_dependencyProperty, Gettext());
         }
 
         public static readonly DependencyProperty GettextExtensionProperty = DependencyProperty.RegisterAttached(
@@ -88,9 +91,9 @@ namespace NGettext.Wpf
             element.SetValue(GettextExtensionProperty, value);
         }
 
-        public static GettextExtension GetGettextExtension(DependencyObject element)
+        public static GettextExtension? GetGettextExtension(DependencyObject element)
         {
-            return (GettextExtension)element.GetValue(GettextExtensionProperty);
+            return (GettextExtension?)element.GetValue(GettextExtensionProperty);
         }
     }
 }

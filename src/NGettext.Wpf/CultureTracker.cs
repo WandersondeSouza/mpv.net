@@ -1,4 +1,4 @@
-﻿
+
 using System.Globalization;
 
 namespace NGettext.Wpf;
@@ -6,9 +6,9 @@ namespace NGettext.Wpf;
 public interface ICultureTracker
 {
     [Obsolete("Use AddWeakCultureObserver() instead.  Otherwise the culture tracker (which is probably a singleton) will keep your object alive for longer than it needs to. This method will be removed in 2.x")]
-    event EventHandler<CultureEventArgs> CultureChanged;
+    event EventHandler<CultureEventArgs>? CultureChanged;
 
-    event EventHandler<CultureEventArgs> CultureChanging;
+    event EventHandler<CultureEventArgs>? CultureChanging;
 
     CultureInfo CurrentCulture { get; set; }
 
@@ -20,7 +20,7 @@ public class CultureTracker : ICultureTracker
     private CultureInfo _currentCulture = CultureInfo.CurrentUICulture;
     private List<WeakReference<IWeakCultureObserver>> _weakObservers = new List<WeakReference<IWeakCultureObserver>>();
 
-    public event EventHandler<CultureEventArgs> CultureChanged;
+    public event EventHandler<CultureEventArgs>? CultureChanged;
 
     public CultureInfo CurrentCulture
     {
@@ -55,7 +55,7 @@ public class CultureTracker : ICultureTracker
         _weakObservers = weakObserversStillAlive;
     }
 
-    public event EventHandler<CultureEventArgs> CultureChanging;
+    public event EventHandler<CultureEventArgs>? CultureChanging;
 
     public void AddWeakCultureObserver(IWeakCultureObserver weakCultureObserver)
     {

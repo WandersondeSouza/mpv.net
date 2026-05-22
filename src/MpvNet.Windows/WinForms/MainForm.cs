@@ -28,7 +28,7 @@ public partial class MainForm : Form
     public IntPtr MpvWindowHandle { get; set; }
     public bool WasShown { get; set; }
     public static MainForm? Instance { get; set; }
-    WpfControls.ContextMenu ContextMenu { get; } = new WpfControls.ContextMenu();
+    new WpfControls.ContextMenu ContextMenu { get; } = new WpfControls.ContextMenu();
     AutoResetEvent MenuAutoResetEvent { get; } = new AutoResetEvent(false);
     Point _lastCursorPosition;
     Taskbar? _taskbar;

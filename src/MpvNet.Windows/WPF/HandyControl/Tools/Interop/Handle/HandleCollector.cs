@@ -1,4 +1,4 @@
-﻿// reference from https://referencesource.microsoft.com/#WindowsBase/Shared/MS/Win32/HandleCollector.cs,d0f99220d8e1b708
+// reference from https://referencesource.microsoft.com/#WindowsBase/Shared/MS/Win32/HandleCollector.cs,d0f99220d8e1b708
 
 using System.Runtime.InteropServices;
 
@@ -6,7 +6,7 @@ namespace HandyControl.Tools.Interop
 {
     internal static class HandleCollector
     {
-        private static HandleType[] HandleTypes;
+        private static HandleType[] HandleTypes = [];
         private static int HandleTypeCount;
 
         private static readonly object HandleMutex = new object();

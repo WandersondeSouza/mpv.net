@@ -1,4 +1,4 @@
-﻿
+
 using System.Globalization;
 using System.Windows.Input;
 
@@ -8,8 +8,9 @@ namespace NGettext.Wpf
     {
         public bool CanExecute(object? parameter)
         {
-            return CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                .Any(cultureInfo => cultureInfo.Name == (string)parameter);
+            return parameter is string cultureName &&
+                CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+                    .Any(cultureInfo => cultureInfo.Name == cultureName);
         }
 
         public void Execute(object? parameter)
@@ -20,12 +21,19 @@ namespace NGettext.Wpf
                 return;
             }
 
+            if (parameter is not string cultureName)
+                return;
+
             CultureTracker.CurrentCulture =
                 CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                    .Single(cultureInfo => cultureInfo.Name == (string)parameter);
+                    .Single(cultureInfo => cultureInfo.Name == cultureName);
         }
 
-        public event EventHandler? CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public static ICultureTracker? CultureTracker { get; set; }
     }

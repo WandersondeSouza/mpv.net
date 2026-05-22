@@ -1,4 +1,4 @@
-﻿
+
 using System.Threading;
 using System.Windows;
 
@@ -45,7 +45,7 @@ public class Msg
             MessageBoxEx.DetailsText = details;
 
             return MessageBoxEx.OpenMessageBox((msg + "").Trim(),
-                Forms.Application.ProductName, buttons, img);
+                Forms.Application.ProductName ?? "", buttons, img);
         }
     }
 }

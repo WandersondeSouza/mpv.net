@@ -1,4 +1,4 @@
-﻿
+
 
 using System.ComponentModel;
 
@@ -6,11 +6,12 @@ namespace HandyControl.Tools.Extension
 {
     public static class StringExtension
     {
-        public static T Value<T>(this string input)
+        public static T? Value<T>(this string input)
         {
             try
             {
-                return (T) TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(input);
+                var value = TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(input);
+                return value is T typedValue ? typedValue : default;
             }
             catch
             {
@@ -18,7 +19,7 @@ namespace HandyControl.Tools.Extension
             }
         }
 
-        public static object Value(this string input, Type type)
+        public static object? Value(this string input, Type type)
         {
             try
             {

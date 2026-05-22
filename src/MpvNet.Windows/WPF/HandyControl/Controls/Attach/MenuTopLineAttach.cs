@@ -1,4 +1,4 @@
-﻿
+
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -17,10 +17,8 @@ namespace HandyControl.Controls
         {
             var topLine = (FrameworkElement)d;
 
-            if (e.NewValue is Popup)
+            if (e.NewValue is Popup popup && popup.TemplatedParent is MenuItem menuItem)
             {
-                Popup popup = e.NewValue as Popup;
-                MenuItem menuItem = popup.TemplatedParent as MenuItem;
                 SetTopLine(menuItem, topLine);
                 menuItem.Loaded += MenuItem_Loaded;
             }
@@ -50,9 +48,11 @@ namespace HandyControl.Controls
             }
         }
 
-        private static void Popup_Opened(object sender, EventArgs e)
+        private static void Popup_Opened(object? sender, EventArgs e)
         {
-            var popup = (Popup)sender;
+            if (sender is not Popup popup)
+                return;
+
             if (popup.TemplatedParent is MenuItem menuItem)
             {
                 var topLine = GetTopLine(menuItem);
@@ -66,6 +66,7 @@ namespace HandyControl.Controls
                 var positionRightBottom = menuItem.PointToScreen(new Point(menuItem.ActualWidth, menuItem.ActualHeight));
                 ScreenHelper.FindMonitorRectsFromPoint(InteropMethods.GetCursorPos(), out Rect monitorRect, out var workAreaRect);
                 var panel = VisualHelper.GetParent<Panel>(topLine);
+                if (panel is null) return;
 
                 if (positionLeftTop.X < 0)
                 {

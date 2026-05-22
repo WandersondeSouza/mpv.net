@@ -1,4 +1,4 @@
-﻿
+
 using System.Reflection;
 
 namespace NGettext.Wpf.EnumTranslation
@@ -20,8 +20,8 @@ namespace NGettext.Wpf.EnumTranslation
         public string LocalizeEnum(Enum value)
         {
             var type = value.GetType();
-            var enumMemberName = value.ToString();
-            var msgIdAttribute = (EnumMsgIdAttribute)type.GetMember(enumMemberName).SingleOrDefault()?.GetCustomAttribute(typeof(EnumMsgIdAttribute), true);
+            var enumMemberName = value.ToString() ?? "";
+            var msgIdAttribute = type.GetMember(enumMemberName).SingleOrDefault()?.GetCustomAttribute<EnumMsgIdAttribute>(true);
 
             if (msgIdAttribute is null)
             {
@@ -29,7 +29,7 @@ namespace NGettext.Wpf.EnumTranslation
                 return enumMemberName;
             }
 
-            return _localizer.Gettext(msgIdAttribute.MsgId);
+            return _localizer.Gettext(msgIdAttribute.MsgId) ?? msgIdAttribute.MsgId;
         }
     }
 }

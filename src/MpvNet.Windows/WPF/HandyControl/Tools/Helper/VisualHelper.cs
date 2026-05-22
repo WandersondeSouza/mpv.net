@@ -1,4 +1,4 @@
-﻿
+
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -8,7 +8,7 @@ namespace HandyControl.Tools
 {
     public static class VisualHelper
     {
-        internal static VisualStateGroup TryGetVisualStateGroup(DependencyObject d, string groupName)
+        internal static VisualStateGroup? TryGetVisualStateGroup(DependencyObject d, string groupName)
         {
             var root = GetImplementationRoot(d);
             if (root == null) return null;
@@ -19,12 +19,12 @@ namespace HandyControl.Tools
                 .FirstOrDefault(group => string.CompareOrdinal(groupName, group.Name) == 0);
         }
 
-        internal static FrameworkElement GetImplementationRoot(DependencyObject d) =>
+        internal static FrameworkElement? GetImplementationRoot(DependencyObject d) =>
             1 == VisualTreeHelper.GetChildrenCount(d)
                 ? VisualTreeHelper.GetChild(d, 0) as FrameworkElement
                 : null;
 
-        public static T GetChild<T>(DependencyObject d) where T : DependencyObject
+        public static T? GetChild<T>(DependencyObject? d) where T : DependencyObject
         {
             if (d == null) return default;
             if (d is T t) return t;
@@ -40,13 +40,13 @@ namespace HandyControl.Tools
             return default;
         }
 
-        public static T GetParent<T>(DependencyObject d) where T : DependencyObject
+        public static T? GetParent<T>(DependencyObject? d) where T : DependencyObject
         {
             if (d == null)
                 return default;
 
-            if (d is T)
-                return d as T;
+            if (d is T parent)
+                return parent;
 
             if (d is Window)
                 return null;

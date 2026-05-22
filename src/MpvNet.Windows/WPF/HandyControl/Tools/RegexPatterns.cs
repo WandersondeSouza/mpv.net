@@ -1,4 +1,4 @@
-﻿
+
 namespace HandyControl.Tools
 {
     public sealed class RegexPatterns
@@ -73,6 +73,6 @@ namespace HandyControl.Tools
 
         public const string NpDoublePattern = @"^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$";
 
-        public object GetValue(string propertyName) => GetType().GetField(propertyName).GetValue(null);
+        public object? GetValue(string propertyName) => GetType().GetField(propertyName)?.GetValue(null);
     }
 }

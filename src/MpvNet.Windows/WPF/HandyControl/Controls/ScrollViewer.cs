@@ -1,4 +1,4 @@
-﻿
+
 
 using System.Windows;
 using System.Windows.Controls;
@@ -126,7 +126,7 @@ namespace HandyControl.Controls
             BeginAnimation(CurrentHorizontalOffsetProperty, animation, HandoffBehavior.Compose);
         }
 
-        protected override HitTestResult HitTestCore(PointHitTestParameters hitTestParameters) =>
+        protected override HitTestResult? HitTestCore(PointHitTestParameters hitTestParameters) =>
             IsPenetrating ? null : base.HitTestCore(hitTestParameters);
 
         public static readonly DependencyProperty IsInertiaEnabledProperty = DependencyProperty.RegisterAttached(

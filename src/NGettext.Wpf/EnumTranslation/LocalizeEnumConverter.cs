@@ -1,4 +1,4 @@
-﻿
+
 using System.Globalization;
 using System.Windows.Data;
 
@@ -6,7 +6,7 @@ namespace NGettext.Wpf.EnumTranslation
 {
     public class LocalizeEnumConverter : IValueConverter
     {
-        private IEnumLocalizer _enumLocalizer;
+        private readonly IEnumLocalizer? _enumLocalizer;
 
         public LocalizeEnumConverter()
         {
@@ -17,7 +17,7 @@ namespace NGettext.Wpf.EnumTranslation
             _enumLocalizer = enumLocalizer;
         }
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var enumLocalizer = GetEnumLocalizer();
             if (enumLocalizer is null)
@@ -38,9 +38,9 @@ namespace NGettext.Wpf.EnumTranslation
             throw new NotImplementedException();
         }
 
-        public static IEnumLocalizer EnumLocalizer { get; set; }
+        public static IEnumLocalizer? EnumLocalizer { get; set; }
 
-        private IEnumLocalizer GetEnumLocalizer()
+        private IEnumLocalizer? GetEnumLocalizer()
         {
             var result = _enumLocalizer ?? EnumLocalizer;
 

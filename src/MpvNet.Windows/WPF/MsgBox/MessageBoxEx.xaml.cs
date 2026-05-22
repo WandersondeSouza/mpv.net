@@ -1,10 +1,11 @@
-﻿
+
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Media;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -50,8 +51,8 @@ public partial class MessageBoxEx : Window, INotifyPropertyChanged
 
     #region fields
 
-    private string? message;
-    private string? messageTitle;
+    private string message = "";
+    private string messageTitle = "";
     private MessageBoxButton? buttons;
     private MessageBoxResult messageResult;
     private MessageBoxButtonEx? buttonsEx;
@@ -867,7 +868,7 @@ public partial class MessageBoxEx : Window, INotifyPropertyChanged
         }
     }
 
-    void TbUrl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) => ProcessHelp.ShellExecute(Url?.ToString());
+    void TbUrl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) => ProcessHelp.ShellExecute(Url?.ToString() ?? "");
 
     [DllImport("user32.dll")]
     private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);

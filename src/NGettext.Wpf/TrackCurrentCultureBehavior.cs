@@ -1,7 +1,8 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Markup;
 using Microsoft.Xaml.Behaviors;
+using System.Runtime.Versioning;
 
 namespace NGettext.Wpf
 {
@@ -13,9 +14,10 @@ namespace NGettext.Wpf
     /// For instance, dates and numbers bound with a culture specific StringFormat will be formatted
     /// according to the tracked culture and even reformatted on culture changed.
     /// </summary>
+    [SupportedOSPlatform("windows7.0")]
     public class TrackCurrentCultureBehavior : Behavior<FrameworkElement>, IWeakCultureObserver
     {
-        public static ICultureTracker CultureTracker { get; set; }
+        public static ICultureTracker? CultureTracker { get; set; }
 
         protected override void OnAttached()
         {
@@ -36,6 +38,9 @@ namespace NGettext.Wpf
         void UpdateAssociatedObjectCulture()
         {
             if (AssociatedObject is null) return;
+            if (CultureTracker is null)
+                return;
+
             AssociatedObject.Language = XmlLanguage.GetLanguage(CultureTracker.CurrentCulture.IetfLanguageTag);
         }
 

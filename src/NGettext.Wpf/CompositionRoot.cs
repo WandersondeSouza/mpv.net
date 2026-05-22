@@ -1,5 +1,6 @@
 ﻿
 using System.Globalization;
+using System.Runtime.Versioning;
 
 using NGettext.Wpf.Common;
 using NGettext.Wpf.EnumTranslation;
@@ -8,6 +9,7 @@ namespace NGettext.Wpf
 {
     public static class CompositionRoot
     {
+        [SupportedOSPlatform("windows7.0")]
         public static void Compose(string domainName, CultureInfo cultureInfo, string localeFolder)
         {
             var cultureTracker = new CultureTracker();
