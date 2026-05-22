@@ -2,5 +2,7 @@
 	<PropertyGroup>
 		<Product>mpv.net</Product>
 		<Nullable>enable</Nullable>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">win-x64</RuntimeIdentifier>
 	</PropertyGroup>
 </Project>

@@ -8,7 +8,7 @@ Este documento é uma orientação inicial para estudar o build do fork do mpv.n
 
 O mpv.net é um projeto para Windows.
 
-O executável principal é gerado como `win-x64`. O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` define `RuntimeIdentifier=win-x64` e `Prefer32Bit=false`, portanto builds normais do projeto da aplicação devem produzir executável 64 bits por padrão.
+O executável principal é gerado como `win-x64`. A configuração comum em `src/Directory.Build.props` define `RuntimeIdentifier=win-x64` e remove o `TargetFramework` do caminho de saída, portanto builds normais devem produzir os binários em `bin/Debug/win-x64` ou `bin/Release/win-x64`. O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` também define `Prefer32Bit=false`, mantendo a aplicação como 64 bits por padrão.
 
 O build deve ser feito com Visual Studio/.NET conforme a estrutura atual do projeto. A versão exata recomendada do Visual Studio, do SDK .NET e das dependências nativas ainda precisa ser validada neste fork.
 
