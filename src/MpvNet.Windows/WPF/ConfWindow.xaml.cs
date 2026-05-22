@@ -546,5 +546,5 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
 
     [RelayCommand] void ShowMpvManual() => ProcessHelp.ShellExecute("https://mpv.io/manual/master/");
     
-    [RelayCommand] void ShowMpvNetManual() => ProcessHelp.ShellExecute("https://github.com/mpvnet-player/mpv.net/blob/main/docs/manual.md");
+    [RelayCommand] void ShowMpvNetManual() => ProcessHelp.ShellExecute("https://github.com/WandersondeSouza/mpv.net/blob/main/docs/manual.md");
 }

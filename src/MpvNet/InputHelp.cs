@@ -190,10 +190,10 @@ public static class InputHelp
         Add(b, new ("", _("Custom")));
 
         Add(b, new (_("Help"), _("Website mpv"), "script-message-to mpvnet shell-execute https://mpv.io", "Ctrl+Home"));
-        Add(b, new (_("Help"), _("Website mpv.net"), "script-message-to mpvnet shell-execute https://github.com/mpvnet-player/mpv.net"));
+        Add(b, new (_("Help"), _("Website mpv.net"), "script-message-to mpvnet shell-execute https://github.com/WandersondeSouza/mpv.net"));
         Add(b, new (_("Help"), "-"));
         Add(b, new (_("Help"), _("Manual mpv"), "script-message-to mpvnet shell-execute https://mpv.io/manual/stable", "Ctrl+F1"));
-        Add(b, new (_("Help"), _("Manual mpv.net"), "script-message-to mpvnet shell-execute https://github.com/mpvnet-player/mpv.net/blob/main/docs/manual.md", "Ctrl+F2"));
+        Add(b, new (_("Help"), _("Manual mpv.net"), "script-message-to mpvnet shell-execute https://github.com/WandersondeSouza/mpv.net/blob/main/docs/manual.md", "Ctrl+F2"));
         Add(b, new (_("Help"), "-"));
         Add(b, new (_("Help"), _("awesome-mpv"), "script-message-to mpvnet shell-execute https://github.com/stax76/awesome-mpv", "Ctrl+a"));
         Add(b, new (_("Help"), _("About mpv.net"), "script-message-to mpvnet show-about"));

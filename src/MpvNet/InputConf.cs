@@ -115,5 +115,5 @@ public class InputConf
     static string UpdateContent(string content) => content
         .Replace("script-message mpv.net", "script-message-to mpvnet")
         .Replace("/docs/Manual.md", "/docs/manual.md")
-        .Replace("https://github.com/stax76/mpv.net", "https://github.com/mpvnet-player/mpv.net");
+        .Replace("https://github.com/stax76/mpv.net", "https://github.com/WandersondeSouza/mpv.net");
 }

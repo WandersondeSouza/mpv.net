@@ -1166,13 +1166,13 @@ option = never
 name = dark-theme
 file = mpvnet
 directory = Appearance
-url = https://github.com/mpvnet-player/mpv.net/blob/main/docs/manual.md#color-theme
+url = https://github.com/WandersondeSouza/mpv.net/blob/main/docs/manual.md#color-theme
 help = Color theme used in dark mode.\nmpv.net must be restarted after a change.\nmpv.net specific option. Default: dark
 
 name = light-theme
 file = mpvnet
 directory = Appearance
-url = https://github.com/mpvnet-player/mpv.net/blob/main/docs/manual.md#color-theme
+url = https://github.com/WandersondeSouza/mpv.net/blob/main/docs/manual.md#color-theme
 help = Color theme used in light mode.\nmpv.net must be restarted after a change.\nmpv.net specific option. Default: light
 
 name = cache

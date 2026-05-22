@@ -42,7 +42,7 @@ differences are documented in this manual under [Differences compared to mpv](#d
 Download
 --------
 
-[Stable and beta portable and setup via GitHub download](https://github.com/mpvnet-player/mpv.net/releases)
+[Stable and beta portable and setup via GitHub download](https://github.com/WandersondeSouza/mpv.net/releases)
 
 [Changelog](changelog.md)
 
@@ -62,7 +62,7 @@ Internet streaming requires:
   Alternatively, the yt-dlp executable can be saved in the mpv.net executable folder.
   The portable package produced by this fork is expected to include `yt-dlp.exe`
   beside `mpvnet.exe` when the release source folder contains it.
-- In case of proxy server usage, see [manual configuration](https://github.com/mpvnet-player/mpv.net/issues/401).
+- In case of proxy server usage, see [manual configuration](https://github.com/WandersondeSouza/mpv.net/issues/401).
 
 #### File Associations
 
@@ -93,13 +93,13 @@ For more information, see the [terminal section](#terminal).
 Support
 -------
 
-Before making a support request, please try the newest [beta version](https://github.com/mpvnet-player/mpv.net/releases) first.
+Before making a support request, please try the newest [beta version](https://github.com/WandersondeSouza/mpv.net/releases) first.
 
 Support can be requested here:
 
 mpv.net bug reports, feature requests and advanced questions:
 
-https://github.com/mpvnet-player/mpv.net/issues
+https://github.com/WandersondeSouza/mpv.net/issues
 
 Beginner mpv questions:
 
@@ -528,7 +528,7 @@ This will start the app on system start and have it running in the background. W
 
 ### Open With
 
-Alternatively, the Chrome/Firefox extension [Open With](https://github.com/mpvnet-player/mpv.net/issues/119) can be used.
+Alternatively, the Chrome/Firefox extension [Open With](https://github.com/WandersondeSouza/mpv.net/issues/119) can be used.
 
 
 ### Open with++
@@ -555,7 +555,7 @@ Scripting
 A very large collection of user scripts can be found in the GitHub repository
 [awesome-mpv](https://github.com/stax76/awesome-mpv). 
 
-Lua scripting is documented in the mpv.net wiki [here](https://github.com/mpvnet-player/mpv.net/wiki/Extending-mpv-and-mpv.net-via-Lua-scripting).
+Lua scripting is documented in the mpv.net wiki [here](https://github.com/WandersondeSouza/mpv.net/wiki/Extending-mpv-and-mpv.net-via-Lua-scripting).
 
 #### JavaScript
 
@@ -578,7 +578,7 @@ Color Theme
 
 mpv.net supports custom color themes, the definition of the built-in themes can be found at:
 
-[theme.txt](https://github.com/mpvnet-player/mpv.net/blob/main/src/Resources/theme.txt)
+[theme.txt](https://github.com/WandersondeSouza/mpv.net/blob/main/src/Resources/theme.txt)
 
 
 Custom themes can be saved at:
@@ -754,4 +754,4 @@ https://app.transifex.com/stax76/teams/
 
 For translation questions visit:
 
-https://github.com/mpvnet-player/mpv.net/issues/576
+https://github.com/WandersondeSouza/mpv.net/issues/576
