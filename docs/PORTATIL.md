@@ -113,4 +113,4 @@ No mpv.net v7, o `thumbfast` tem suporte direto e não deve precisar de `mpv_pat
 
 O pacote portátil não inclui `thumbfast.lua` nem `mpv.exe` separado. Esses arquivos devem ser instalados pelo usuário conforme a documentação do script.
 
-Validação de manutenção em 2026-05-21: com `thumbfast.lua` real instalado em `portable_config/scripts/` e o exemplo deste fork em `portable_config/script-opts/thumbfast.conf`, o log do mpv registrou carregamento do script, leitura da configuração e mensagens `thumbfast-info` sem erro. A exibição visual dos thumbnails ainda depende de uma UI/script compatível consumindo essas mensagens.
+`thumbfast` funciona no modo portátil com `portable_config/scripts/thumbfast.lua` e `portable_config/script-opts/thumbfast.conf`. A exibição visual dos thumbnails ainda depende de uma UI/script compatível consumindo as mensagens do script.

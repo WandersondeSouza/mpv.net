@@ -30,37 +30,6 @@ Tarefas:
 - validar fullscreen, menu, atalhos, persistência de configuração e temas;
 - revisar a documentação do modo portátil se algo ainda estiver divergindo do comportamento real.
 
-### Etapa 2 - Atalhos e `input.conf`
-
-Status: pendente validação visual interativa da janela.
-
-Tarefas:
-
-- validar visualmente o aviso do editor ao tentar salvar duplicidade;
-- confirmar a experiência final do usuário ao editar atalhos.
-
-### Etapa 3 - `thumbfast` no portátil
-
-Status: pendente validação visual de thumbnails em uso real.
-
-Tarefas:
-
-- validar thumbnails do `thumbfast` em uma UI de usuário final;
-- atualizar a documentação apenas se surgir um caso novo de uso.
-
-### Etapa 5 - `pause=yes` e autoplay
-
-Status: pendente confirmação nos fluxos de abertura do app.
-
-Tarefas:
-
-- testar abertura pelo menu do app;
-- testar arrastar e soltar;
-- testar associação de arquivo;
-- testar linha de comando;
-- verificar se `pause=yes` permanece após carregar o próximo item;
-- aplicar correção pequena somente se o problema reaparecer.
-
 ### Etapa 6 - Bugs visuais simples
 
 Status: pendente reprodução visual confiável.

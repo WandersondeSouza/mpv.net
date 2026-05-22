@@ -92,7 +92,7 @@ docs/exemplos/thumbfast.conf
 
 No mpv.net v7, o `thumbfast` tem suporte direto. Não configure `mpv_path` por padrão; deixe essa opção apenas como fallback para versões antigas ou casos indicados pela documentação atual do script.
 
-Em validação de 2026-05-21, o `thumbfast.lua` real carregou corretamente a partir de `portable_config/scripts/`, leu `portable_config/script-opts/thumbfast.conf` e emitiu mensagens `thumbfast-info` sem erros. Para ver thumbnails na prática, ainda é necessário usar uma UI/script compatível que consuma essas mensagens.
+`thumbfast.lua` carrega a partir de `portable_config/scripts/` e lê `portable_config/script-opts/thumbfast.conf`. Para ver thumbnails na prática, ainda é necessário usar uma UI/script compatível que consuma essas mensagens.
 
 ## Instalação normal
 
