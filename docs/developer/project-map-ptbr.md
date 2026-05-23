@@ -27,7 +27,7 @@ Responsabilidades principais:
 
 1. `MpvNet`: núcleo de reprodução, comandos, configuração, input, integração com libmpv e extensões;
 2. `MpvNet.Windows`: executável Windows, janela principal, WPF/WinForms, comandos de UI e integração com o sistema;
-3. `NGettext.Wpf`: suporte de localização WPF;
+3. `NGettext.Wpf`: suporte de localização WPF, documentado em `docs/developer/localization-ptbr.md`;
 4. `MpvNet.Extension/ExampleExtension`: exemplo de extensão .NET;
 5. `Tools`: scripts de atualização/release;
 6. `Setup`: empacotamento com Inno Setup.
@@ -166,6 +166,18 @@ Arquivos/pastas:
 - `src/MpvNet.Windows/Help/`.
 
 A UI mistura WinForms para a janela principal e WPF para janelas auxiliares como editores e About.
+
+## Localização
+
+Arquivos:
+
+- `lang/source.pot`;
+- `lang/po/*.po`;
+- `lang/create-mo-files.ps1`;
+- `src/MpvNet.Windows/WPF/WpfTranslator.cs`;
+- `src/MpvNet.Windows/Resources/editor_conf.txt`.
+
+O fluxo gettext da interface e a inclusão de novos idiomas, incluindo `pt-BR`, estão documentados em `docs/developer/localization-ptbr.md`.
 
 ---
 
