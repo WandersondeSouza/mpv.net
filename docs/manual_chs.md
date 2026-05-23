@@ -48,7 +48,7 @@ mpv专注命令行与终端的使用，而mpv.net保留了这些并加入了现�
 
 1. [Microsoft Store 的稳定版](https://www.microsoft.com/store/productId/9N64SQZTB3LM)
 
-2. [Github 的稳定与测试版](../../../releases)
+2. [Github 的稳定与测试版](https://github.com/WandersondeSouza/mpv.net/releases)
 
 3. `winget install mpv.net`
 
@@ -81,7 +81,7 @@ mpv.net需要.NET Framework 4.8运行库和高于win7版本的系统以及一张
 支持
 -------
 
-在提出支持请求之前，先尝试最新的 [测试版](../../../releases)。
+在提出支持请求之前，先尝试最新的 [测试版](https://github.com/WandersondeSouza/mpv.net/releases)。
 
 可以在这些地方请求支持：
 
@@ -553,7 +553,7 @@ mpv.net的专属选项
 
 ### Open With
 
-或者可以使用Chrome/Firefox扩展 [Open With](../../../issues/119) 。
+或者可以使用Chrome/Firefox扩展 [Open With](https://github.com/mpvnet-player/mpv.net/issues/119) 。
 
 
 ### Open with++
@@ -591,7 +591,7 @@ Lua脚本在 [mpv.net wiki](https://github.com/mpvnet-player/mpv.net/wiki/Extend
 
 PS脚本在打开媒体文件前尚未初始化。
 
-[示例脚本](../../../tree/master/src/Scripts)
+[示例脚本](https://github.com/stax76/awesome-mpv)
 
 
 #### C#
@@ -600,13 +600,13 @@ PS脚本在打开媒体文件前尚未初始化。
 
 没有兼容性保证。
 
-脚本代码可以在C#[扩展](../../../tree/master/src/Extensions)中编写，这样就可以获得完整的代码和调试器支持。一旦代码被调试和开发完成，就可以将其从扩展转移到轻量级的独立脚本。脚本host使用的是旧的C#版本，像字符串插值这样的现代功能是不存在的。
+脚本代码可以在C#[扩展](https://github.com/WandersondeSouza/mpv.net/tree/main/src/MpvNet.Extension/ExampleExtension)中编写，这样就可以获得完整的代码和调试器支持。一旦代码被调试和开发完成，就可以将其从扩展转移到轻量级的独立脚本。脚本host使用的是旧的C#版本，像字符串插值这样的现代功能是不存在的。
 
 有同步事件和异步事件，更偏好异步事件，不要阻断同步事件和观察到的属性，因为这样会阻断主事件循环。
 
-C#脚本的host类似于[扩展](../../../tree/master/src/Extensions)，在打开媒体文件前尚未初始化。
+C#脚本的host类似于[扩展](https://github.com/WandersondeSouza/mpv.net/tree/main/src/MpvNet.Extension/ExampleExtension)，在打开媒体文件前尚未初始化。
 
-[示例脚本](../../../tree/master/src/Scripts)
+[示例脚本](https://github.com/stax76/awesome-mpv)
 
 
 扩展
@@ -639,7 +639,7 @@ C#脚本的host类似于[扩展](../../../tree/master/src/Extensions)，在打�
 
 'input.conf defaults' 包含了用于设置评级扩展的键位绑定。
 
-[源码](../../../tree/master/src/Extensions)
+[源码](https://github.com/WandersondeSouza/mpv.net/tree/main/src/MpvNet.Extension/ExampleExtension)
 
 
 配色主题
@@ -647,7 +647,7 @@ C#脚本的host类似于[扩展](../../../tree/master/src/Extensions)，在打�
 
 mpv.net支持自定义配色主题，内置主题的定义可以在以下文件中查看：
 
-[theme.txt](../../../tree/master/src/Resources/theme.txt)
+[theme.txt](https://github.com/WandersondeSouza/mpv.net/blob/main/src/MpvNet.Windows/Resources/theme.txt)
 
 
 自定义的配色方案保存在以下文件中：

@@ -26,6 +26,10 @@ C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net
 
 Evite dar acesso amplo ao usuário inteiro sem necessidade.
 
+## Estado local esperado no Codex
+
+No Codex App, confirme que `C:\Users\Wanderson\.codex\config.toml` inclui este repositório nos `args` de `[mcp_servers.filesystem]`. Sem esse caminho, o MCP filesystem pode funcionar para outros projetos, mas não ajuda diretamente na leitura assistida deste fork.
+
 ## Exemplo de configuração conceitual
 
 Adapte ao formato do cliente MCP usado. Não coloque tokens diretamente no arquivo versionado.
@@ -36,21 +40,21 @@ command = "npx"
 args = [
   "-y",
   "@modelcontextprotocol/server-filesystem",
+  "C:\\Users\\Wanderson\\OneDrive\\Documentos\\MeusProjetos\\GestaoDeSistemas",
+  "C:\\Users\\Wanderson\\OneDrive\\Documentos\\MeusProjetos\\IPTVMediaCenter",
   "C:\\Users\\Wanderson\\OneDrive\\Documentos\\MeusProjetos\\WandersondeSouza\\mpv.net"
 ]
 
 [mcp_servers.github]
-command = "npx"
-args = ["-y", "@modelcontextprotocol/server-github"]
-env = { GITHUB_PERSONAL_ACCESS_TOKEN = "${GITHUB_MCP_PAT}" }
+url = "https://api.githubcopilot.com/mcp/"
+bearer_token_env_var = "GITHUB_MCP_PAT"
 
-[mcp_servers.microsoft-learn]
-command = "npx"
-args = ["-y", "@microsoft/mcp-server"]
+[mcp_servers.microsoft_learn]
+url = "https://learn.microsoft.com/api/mcp"
 
 [mcp_servers.nuget]
-command = "dotnet"
-args = ["tool", "run", "NuGet.Mcp.Server"]
+command = "dnx"
+args = [ "NuGet.Mcp.Server", "--source", "https://api.nuget.org/v3/index.json", "--yes" ]
 ```
 
 ## Cuidados

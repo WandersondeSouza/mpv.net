@@ -4,7 +4,7 @@
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **mpv.net**.
 
-> Status: estrutura real do projeto mapeada. Os comandos abaixo refletem os arquivos atuais, mas o build/release completo ainda deve ser validado em uma máquina Windows com as dependências nativas e ferramentas externas instaladas.
+> Status: estrutura real do projeto mapeada. O build local da aplicação Windows e o fluxo local de release da versão `7.1.2.2` foram validados em Windows, incluindo ZIP portátil, instalador e validação de dependências nativas. Ainda faltam fechar a revisão manual completa de UI/compatibilidade e validar o workflow manual do GitHub Actions.
 
 ---
 
@@ -207,7 +207,7 @@ Este fork nao publica um pacote NuGet/container no GitHub Packages por enquanto;
 
 Validado em 2026-05-22: execucao local de `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release` gerou o ZIP portatil `mpv.net-v7.1.2.2-portable-x64.zip` e o instalador `mpv.net-v7.1.2.2-setup-x64.exe`, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. A release `v7.1.2.2` foi publicada no GitHub.
 
-Pendente real: validar a publicacao GitHub e a revisao manual completa da UI no pacote gerado.
+Pendente real: validar o workflow manual do GitHub Actions e a revisao manual completa da UI no pacote gerado.
 
 ---
 
@@ -274,7 +274,6 @@ Após compilar:
 # Pendências deste guia
 
 - Rodar e registrar resultado de `dotnet build src\MpvNet.sln`.
-- Rodar e registrar resultado de `dotnet publish` x64.
-- Validar execução com dependências nativas reais.
-- Validar geração de ZIP e instalador.
-- Validar se o pacote portátil gerado inclui `portable_config` por padrão.
+- Rodar e registrar resultado de `dotnet publish` x64 em rodada futura.
+- Validar revisão manual completa de UI, fullscreen, menu, atalhos, temas e persistência.
+- Validar o workflow manual `.github/workflows/release-packages.yml`.

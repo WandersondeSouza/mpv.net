@@ -26,7 +26,7 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 ## Regras
 
 - Não assumir que build local equivale a pacote final.
-- Validar x64 e ARM64 quando a mudança afetar release.
+- Validar x64 sempre que a mudança afetar release; validar ARM64 somente se esse alvo for explicitamente reintroduzido.
 - Verificar se o ZIP portátil contém estrutura esperada.
 - Não commitar artefatos binários gerados sem pedido explícito.
 - Documentar pré-requisitos externos como 7-Zip, Inno Setup e GitHub CLI.

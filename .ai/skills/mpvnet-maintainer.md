@@ -10,7 +10,7 @@ Antes de qualquer alteração, leia:
 
 1. `AGENTS.md`;
 2. `README.md`;
-3. `docs/PLANO-CODEX.md`;
+3. `docs/ROADMAP.md`;
 4. `docs/manual.md`;
 5. documentação técnica relacionada à área tocada em `docs/developer/`;
 6. arquivos diretamente relacionados ao problema.

@@ -1,6 +1,6 @@
 # Prompt — Investigação de bug no mpv.net
 
-Leia `AGENTS.md`, `README.md` e `docs/PLANO-CODEX.md`.
+Leia `AGENTS.md`, `README.md` e `docs/ROADMAP.md`.
 
 Vamos investigar apenas este bug:
 

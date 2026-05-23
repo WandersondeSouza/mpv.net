@@ -87,7 +87,15 @@ Itens marcados com `[x]` abaixo já podem ser considerados fechados para a versa
 - [x] documentacao de build, modo portatil, dependencias nativas e checklist alinhada ao dry run validado;
 - [x] changelog da release final `7.1.2.2` atualizado;
 - [ ] README revisado quando houver mudanca de comportamento visivel para usuario;
-- [ ] riscos documentados quando algum item manual ficar pendente.
+- [x] riscos documentados quando algum item manual ficar pendente.
+
+---
+
+# Riscos pendentes conhecidos
+
+- A release `v7.1.2.2` foi publicada e os artefatos principais foram validados, mas a revisão manual completa de UI ainda não foi fechada. Fullscreen, menu, atalhos, persistência de configuração, temas e comparação visual em modo escuro devem ser revalidados antes de declarar a versão totalmente estabilizada.
+- A compatibilidade com scripts, `input.conf`, `mpv.conf`, `mpvnet.conf`, `thumbfast` e caminhos longos ainda depende de validação manual nas rotas reais documentadas.
+- O workflow manual `.github/workflows/release-packages.yml` usa o mesmo script de release, mas ainda precisa de uma execução validada no GitHub Actions antes de virar o caminho preferencial de publicação.
 
 ---
 

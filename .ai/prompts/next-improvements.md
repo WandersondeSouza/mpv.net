@@ -8,11 +8,10 @@ Antes de alterar qualquer arquivo, leia:
 
 1. `AGENTS.md`;
 2. `README.md`;
-3. `docs/PLANO-CODEX.md`;
-4. `docs/ROADMAP.md`;
-5. `.ai/skills/mpvnet-maintainer.md`;
-6. `docs/developer/project-map-ptbr.md`;
-7. documentação técnica relacionada à área analisada.
+3. `docs/ROADMAP.md`;
+4. `.ai/skills/mpvnet-maintainer.md`;
+5. `docs/developer/project-map-ptbr.md`;
+6. documentação técnica relacionada à área analisada.
 
 ## Objetivo
 
@@ -21,7 +20,6 @@ Analisar o estado atual do fork e propor melhorias pequenas, seguras e bem docum
 ## Escopo permitido
 
 - `README.md`;
-- `docs/PLANO-CODEX.md`;
 - `docs/ROADMAP.md`;
 - `docs/developer/`;
 - `.ai/prompts/`;

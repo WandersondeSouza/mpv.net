@@ -5,7 +5,7 @@ Leia:
 1. `AGENTS.md`;
 2. `README.md`;
 3. `README.pt-br.md`, se existir;
-4. `docs/PLANO-CODEX.md`;
+4. `docs/ROADMAP.md`;
 5. documentos relacionados ao tema.
 
 Objetivo:

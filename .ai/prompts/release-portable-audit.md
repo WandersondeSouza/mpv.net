@@ -42,5 +42,5 @@ Regras:
 
 - não commitar binários gerados sem pedido explícito;
 - separar build local de pacote final;
-- validar x64 e ARM64 quando aplicável;
+- validar x64 sempre; validar ARM64 somente se esse alvo for explicitamente reintroduzido;
 - atualizar documentação se o processo mudar.

@@ -10,7 +10,7 @@ Ler nesta ordem:
 
 1. `AGENTS.md`;
 2. `README.md`;
-3. `docs/PLANO-CODEX.md`;
+3. `docs/ROADMAP.md`;
 4. `docs/developer/project-map-ptbr.md`;
 5. documentação da área afetada.
 

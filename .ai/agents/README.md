@@ -9,7 +9,7 @@ Use estes perfis como instruções de especialização para Codex, Copilot, agen
 Todo agente deve seguir:
 
 1. preservar compatibilidade com mpv/libmpv;
-2. ler `AGENTS.md`, `README.md` e `docs/PLANO-CODEX.md`;
+2. ler `AGENTS.md`, `README.md` e `docs/ROADMAP.md`;
 3. consultar a documentação técnica em `docs/developer/`;
 4. confirmar comportamento no código antes de editar;
 5. propor mudança pequena;

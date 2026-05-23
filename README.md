@@ -54,6 +54,9 @@ Para documentação técnica completa do comportamento herdado do mpv, consulte 
 
 ## README original
 
+Esta seção preserva o README original do projeto upstream como referência histórica.
+Os badges e links abaixo podem apontar para `stax76/mpv.net`; para releases e issues deste fork, use os links das seções anteriores.
+
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/stax76/mpv.net) ![GitHub closed issues](https://img.shields.io/github/issues-closed/stax76/mpv.net) ![GitHub All Releases](https://img.shields.io/github/downloads/stax76/mpv.net/total) ![GitHub tag (latest by date)](https://img.shields.io/github/tag-date/stax76/mpv.net) ![GitHub stars](https://img.shields.io/github/stars/stax76/mpv.net)
 
 🎞 mpv.net
