@@ -17,7 +17,7 @@
 		<FileVersion>$(MpvNetVersion)</FileVersion>
 		<AssemblyVersion>$(MpvNetVersion)</AssemblyVersion>
 		<InformationalVersion>$(MpvNetVersion)</InformationalVersion>
-		<EnsureNativeDependencies>false</EnsureNativeDependencies>
+		<EnsureBuildAssets>true</EnsureBuildAssets>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -53,8 +53,8 @@
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
 	</ItemGroup>
 
-	<Target Name="EnsureNativeDependencies" AfterTargets="Build" Condition="'$(EnsureNativeDependencies)' == 'true'">
-		<Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\ensure-native-dependencies.ps1&quot; -SourceDir &quot;$(MSBuildThisFileDirectory)..&quot; -TargetDir &quot;$(TargetDir).&quot;" />
+	<Target Name="EnsureBuildAssets" AfterTargets="Build" Condition="'$(EnsureBuildAssets)' == 'true' and '$(DesignTimeBuild)' != 'true'">
+		<Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\ensure-build-assets.ps1&quot; -SourceDir &quot;$(MSBuildThisFileDirectory)..&quot; -TargetDir &quot;$(TargetDir).&quot;" />
 	</Target>
 
 </Project>

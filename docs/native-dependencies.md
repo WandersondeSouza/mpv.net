@@ -67,10 +67,19 @@ Default process:
 src\Tools\ensure-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64
 ```
 
-The same preparation can be requested during a Debug build:
+Normal Windows project builds prepare these files automatically in Debug and Release, including builds started from Visual Studio:
 
 ```powershell
-dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:EnsureNativeDependencies=true
+dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj
+dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj -c Release
+```
+
+This also generates `Locale` from `lang/po`, including `Locale/pt_BR/LC_MESSAGES/mpvnet.mo`.
+
+To skip asset preparation for a quick compile-only check:
+
+```powershell
+dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:EnsureBuildAssets=false
 ```
 
 To pin a specific MediaInfo version, pass `-MediaInfoVersion` or set `MPVNET_MEDIAINFO_VERSION`:

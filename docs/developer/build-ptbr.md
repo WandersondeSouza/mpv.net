@@ -80,7 +80,7 @@ cd mpv.net
 3. Abra `src/MpvNet.sln`.
 4. Restaure os pacotes NuGet.
 5. Compile em Debug.
-6. Para preparar a saida Debug com os binarios nativos/auxiliares, compile com `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:EnsureNativeDependencies=true` ou execute `src\Tools\ensure-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64`.
+6. Builds Debug/Release do projeto Windows preparam automaticamente os binarios nativos/auxiliares e `Locale` com `src\Tools\ensure-build-assets.ps1`; para uma compilacao rapida sem preparar assets, use `/p:EnsureBuildAssets=false`.
 
 ---
 
@@ -104,7 +104,7 @@ O projeto da aplicação define `RuntimeIdentifier=win-x64` e `Prefer32Bit=false
 Para compilar e baixar/validar automaticamente os binarios nativos e auxiliares esperados ao lado de `mpvnet.exe`:
 
 ```powershell
-dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:EnsureNativeDependencies=true
+dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj -c Release
 ```
 
 Esse alvo opt-in chama `src\Tools\ensure-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` na pasta Debug, baixando apenas o que estiver faltando. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained.

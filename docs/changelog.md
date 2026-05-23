@@ -11,6 +11,9 @@ alteracoes relevantes feitas neste fork de manutencao.
   selecionavel por `language=portuguese-brazil`.
 - O modo `language=system` agora reconhece Windows em `pt-BR` e seleciona a
   traducao brasileira automaticamente.
+- Builds Debug/Release do projeto Windows agora preparam automaticamente
+  dependencias nativas/auxiliares e geram `Locale`, permitindo testar a
+  traducao diretamente pelo Visual Studio.
 
 # Fork WandersondeSouza - v7.1.2.2 (2026-05-22)
 
@@ -37,9 +40,8 @@ alteracoes relevantes feitas neste fork de manutencao.
 - Adicionado `src/Tools/ensure-native-dependencies.ps1` para preparar a pasta
   do `mpvnet.exe` com `MediaInfo.dll`, `libmpv-2.dll`, FFmpeg, `yt-dlp.exe`,
   `mpvnet.com` e, quando houver publish self-contained, as DLLs Microsoft/.NET/WPF.
-- O build Debug ganhou o alvo opt-in
-  `/p:EnsureNativeDependencies=true` para baixar ou validar essas dependencias
-  sem tornar todo build normal dependente de internet.
+- O build Debug ganhou preparacao automatica de dependencias auxiliares para
+  baixar ou validar esses arquivos quando necessario.
 
 - O fluxo de release foi alinhado ao nome atual do asset do FFmpeg do BtbN,
   que agora é `ffmpeg-master-latest-win64-gpl.zip`.
