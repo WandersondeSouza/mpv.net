@@ -51,11 +51,11 @@ msgstr "mpv.net 정보"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
-msgstr ""
+msgstr "텍스트 편집기의 활성 단축키"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:145
 msgid "Active Bindings On-Screen"
-msgstr ""
+msgstr "화면의 활성 단축키"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:16
 msgid "Add external audio files..."
@@ -93,12 +93,12 @@ msgstr "오디오 장치"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:138
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:243
 msgid "Audio Devices"
-msgstr ""
+msgstr "오디오 장치"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:132
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:237
 msgid "Audio Tracks"
-msgstr ""
+msgstr "오디오 트랙"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:209
 msgid "Backward"
@@ -107,7 +107,7 @@ msgstr "뒤로"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:128
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:246
 msgid "Bindings"
-msgstr ""
+msgstr "단축키"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:163
 msgctxt "Move"
@@ -130,7 +130,7 @@ msgstr "챕터"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:130
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:240
 msgid "Chapters"
-msgstr ""
+msgstr "챕터"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:388
 msgid "Clear List"
@@ -156,7 +156,7 @@ msgstr "명령어 표시"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:181
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Config"
-msgstr ""
+msgstr "설정"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:142
 #, fuzzy
@@ -294,6 +294,10 @@ msgstr "파일 연결을 제거했습니다."
 msgid "Files/URLs were added to the playlist"
 msgstr "파일/URL을 재생 목록에 추가했습니다"
 
+#: D:\Projects\CS\mpv.net\src\MpvNet\Player.cs:115
+msgid "Drop files or URLs to play here."
+msgstr "재생할 파일 또는 URL을 여기에 놓으세요."
+
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
 msgstr "첫 파일"
@@ -324,7 +328,7 @@ msgid "Help"
 msgstr "도움말"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:220
-msgid "Ignore left mouse butten"
+msgid "Ignore left mouse button"
 msgstr "왼쪽 마우스 버튼 무시"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:71
@@ -526,7 +530,7 @@ msgstr "다음 트랙"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:249
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:250
 msgid "On-Screen Menu"
-msgstr ""
+msgstr "화면 메뉴"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:175
 msgid "Open Config Folder"
@@ -577,7 +581,7 @@ msgstr "재생"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:127
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:234
 msgid "Playlist"
-msgstr ""
+msgstr "재생 목록"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:36
 msgid "Previous Chapter"
@@ -603,7 +607,7 @@ msgstr "진행률 표시"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:129
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:247
 msgid "Properties"
-msgstr ""
+msgstr "속성"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:147
 #, fuzzy
@@ -647,7 +651,7 @@ msgstr "비디오 회전"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:134
 msgid "Secondary Subtitle"
-msgstr ""
+msgstr "보조 자막"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:236
 #, fuzzy
@@ -750,11 +754,11 @@ msgstr "자막"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:137
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:242
 msgid "Subtitle Lines"
-msgstr ""
+msgstr "자막 줄"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:133
 msgid "Subtitle Tracks"
-msgstr ""
+msgstr "자막 트랙"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:235
 #, fuzzy
@@ -839,7 +843,7 @@ msgstr "트랙"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:131
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:239
 msgid "Tracks"
-msgstr ""
+msgstr "트랙"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:227
 msgid "Undo previous (or marked) seek"
@@ -882,7 +886,7 @@ msgstr "비디오"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:135
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:238
 msgid "Video Tracks"
-msgstr ""
+msgstr "비디오 트랙"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:120
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:121
@@ -937,7 +941,7 @@ msgstr "볼륨 증가"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:139
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:244
 msgid "Watch History"
-msgstr ""
+msgstr "시청 기록"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:140
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:245

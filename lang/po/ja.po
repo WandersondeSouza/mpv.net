@@ -883,7 +883,7 @@ msgid "Volume Down"
 msgstr "音量を下げる"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:220
-msgid "Ignore left mouse butten"
+msgid "Ignore left mouse button"
 msgstr "マウスの左ボタンを無視"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:223
@@ -926,6 +926,10 @@ msgstr "セカンダリ字幕"
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:214
 msgid "Files/URLs were added to the playlist"
 msgstr "ファイル/URL がプレイリストへ追加されました"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet\Player.cs:115
+msgid "Drop files or URLs to play here."
+msgstr "再生するファイルまたはURLをここにドロップしてください。"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:207
 msgid "The clipboard does not contain a valid URL or file."

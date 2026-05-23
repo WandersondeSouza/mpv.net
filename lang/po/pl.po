@@ -53,11 +53,11 @@ msgstr "O mpv.net"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
-msgstr ""
+msgstr "Aktywne skróty w edytorze tekstu"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:145
 msgid "Active Bindings On-Screen"
-msgstr ""
+msgstr "Aktywne skróty ekranowe"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:16
 msgid "Add external audio files..."
@@ -95,12 +95,12 @@ msgstr "Urządzenie audio"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:138
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:243
 msgid "Audio Devices"
-msgstr ""
+msgstr "Urządzenia audio"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:132
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:237
 msgid "Audio Tracks"
-msgstr ""
+msgstr "Ścieżki audio"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:209
 msgid "Backward"
@@ -109,7 +109,7 @@ msgstr "Wstecz"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:128
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:246
 msgid "Bindings"
-msgstr ""
+msgstr "Skróty"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:163
 msgctxt "Move"
@@ -132,7 +132,7 @@ msgstr "Rozdział"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:130
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:240
 msgid "Chapters"
-msgstr ""
+msgstr "Rozdziały"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:388
 msgid "Clear List"
@@ -158,7 +158,7 @@ msgstr "Pokaż polecenia"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:181
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Config"
-msgstr ""
+msgstr "Konfiguracja"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:142
 #, fuzzy
@@ -296,6 +296,10 @@ msgstr "Skojarzenia plików zostały pomyślnie usunięte."
 msgid "Files/URLs were added to the playlist"
 msgstr "Pliki/URL zostały dodane do playlisty"
 
+#: D:\Projects\CS\mpv.net\src\MpvNet\Player.cs:115
+msgid "Drop files or URLs to play here."
+msgstr "Upuść tutaj pliki lub adresy URL, aby je odtworzyć."
+
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
 msgstr "Pierwszy plik"
@@ -326,7 +330,7 @@ msgid "Help"
 msgstr "Pomoc"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:220
-msgid "Ignore left mouse butten"
+msgid "Ignore left mouse button"
 msgstr "Ignoruj LPM"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:71
@@ -528,7 +532,7 @@ msgstr "Następna ścieżka"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:249
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:250
 msgid "On-Screen Menu"
-msgstr ""
+msgstr "Menu ekranowe"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:175
 msgid "Open Config Folder"
@@ -579,7 +583,7 @@ msgstr "Odtwarzanie"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:127
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:234
 msgid "Playlist"
-msgstr ""
+msgstr "Lista odtwarzania"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:36
 msgid "Previous Chapter"
@@ -605,7 +609,7 @@ msgstr "Pokaż postęp"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:129
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:247
 msgid "Properties"
-msgstr ""
+msgstr "Właściwości"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:147
 #, fuzzy
@@ -649,7 +653,7 @@ msgstr "Obróć wideo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:134
 msgid "Secondary Subtitle"
-msgstr ""
+msgstr "Napisy dodatkowe"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:236
 #, fuzzy
@@ -752,11 +756,11 @@ msgstr "Napis"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:137
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:242
 msgid "Subtitle Lines"
-msgstr ""
+msgstr "Wiersze napisów"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:133
 msgid "Subtitle Tracks"
-msgstr ""
+msgstr "Ścieżki napisów"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:235
 #, fuzzy
@@ -841,7 +845,7 @@ msgstr "Ścieżka"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:131
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:239
 msgid "Tracks"
-msgstr ""
+msgstr "Ścieżki"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:227
 msgid "Undo previous (or marked) seek"
@@ -884,7 +888,7 @@ msgstr "Wideo"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:135
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:238
 msgid "Video Tracks"
-msgstr ""
+msgstr "Ścieżki wideo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:120
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:121
@@ -939,7 +943,7 @@ msgstr "Głośność w górę"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:139
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:244
 msgid "Watch History"
-msgstr ""
+msgstr "Historia odtwarzania"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:140
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:245

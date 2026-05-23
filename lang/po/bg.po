@@ -43,11 +43,11 @@ msgstr "Относно mpv.net"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
-msgstr ""
+msgstr "Активни назначения в текстовия редактор"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:145
 msgid "Active Bindings On-Screen"
-msgstr ""
+msgstr "Активни назначения на екрана"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:16
 msgid "Add external audio files..."
@@ -148,7 +148,7 @@ msgstr "Покажи команди"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:181
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Config"
-msgstr ""
+msgstr "Конфигурация"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:142
 #, fuzzy
@@ -286,6 +286,10 @@ msgstr "Файловите асоциации са премахнати успе
 msgid "Files/URLs were added to the playlist"
 msgstr "Файловете/URL адресите бяха добавени към плейлиста"
 
+#: D:\Projects\CS\mpv.net\src\MpvNet\Player.cs:115
+msgid "Drop files or URLs to play here."
+msgstr "Пуснете файлове или URL адреси тук за възпроизвеждане."
+
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
 msgstr "Първи файл"
@@ -316,7 +320,7 @@ msgid "Help"
 msgstr "Помощ"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:220
-msgid "Ignore left mouse butten"
+msgid "Ignore left mouse button"
 msgstr "Игнорирай левия бутон на мишката"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:71
@@ -930,7 +934,7 @@ msgstr "Увеличи звука"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:139
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:244
 msgid "Watch History"
-msgstr ""
+msgstr "История на гледане"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:140
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:245

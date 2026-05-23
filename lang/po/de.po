@@ -883,7 +883,7 @@ msgid "Volume Down"
 msgstr "Lautstärke verringern"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:220
-msgid "Ignore left mouse butten"
+msgid "Ignore left mouse button"
 msgstr "Ignoriere die linke Maustaste"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:223
@@ -927,14 +927,17 @@ msgstr "Zweite Untertitel"
 msgid "Files/URLs were added to the playlist"
 msgstr "Dateien/URLs wurden zur Wiedergabeliste hinzugefügt"
 
+#: D:\Projects\CS\mpv.net\src\MpvNet\Player.cs:115
+msgid "Drop files or URLs to play here."
+msgstr "Dateien oder URLs hier ablegen, um sie wiederzugeben."
+
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:207
 msgid "The clipboard does not contain a valid URL or file."
 msgstr "Die Zwischenablage enthält keine gültige URL oder Datei."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:262
 msgid "File Explorer icons will refresh after process restart."
-msgstr ""
-"Datei-Explorer-Symbole werden nach dem Neustart des Prozesses aktualisiert."
+msgstr "Die Symbole des Datei-Explorers werden nach einem Neustart des Prozesses aktualisiert."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:265
 msgid "File associations were successfully removed."
@@ -991,8 +994,7 @@ msgstr "Profile anzeigen"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:1432
 msgid "Shutdown thread failed to complete within 10 seconds."
-msgstr ""
-"Shutdown-Thread konnte nicht innerhalb von 10 Sekunden abgeschlossen werden."
+msgstr "Der Thread zum Herunterfahren wurde nicht innerhalb von 10 Sekunden abgeschlossen."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:116
 msgid "Changes will be available on next startup."

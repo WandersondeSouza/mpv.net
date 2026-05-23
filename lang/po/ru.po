@@ -53,11 +53,11 @@ msgstr "О mpv.net"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
-msgstr ""
+msgstr "Активные привязки в текстовом редакторе"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:145
 msgid "Active Bindings On-Screen"
-msgstr ""
+msgstr "Активные привязки на экране"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:16
 msgid "Add external audio files..."
@@ -95,12 +95,12 @@ msgstr "Аудиоустройство"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:138
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:243
 msgid "Audio Devices"
-msgstr ""
+msgstr "Аудиоустройства"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:132
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:237
 msgid "Audio Tracks"
-msgstr ""
+msgstr "Аудиодорожки"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:209
 msgid "Backward"
@@ -109,7 +109,7 @@ msgstr "Назад"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:128
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:246
 msgid "Bindings"
-msgstr ""
+msgstr "Привязки"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:163
 msgctxt "Move"
@@ -132,7 +132,7 @@ msgstr "Глава"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:130
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:240
 msgid "Chapters"
-msgstr ""
+msgstr "Главы"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:388
 msgid "Clear List"
@@ -158,7 +158,7 @@ msgstr "Показать команды"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:181
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Config"
-msgstr ""
+msgstr "Настройки"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:142
 #, fuzzy
@@ -296,6 +296,10 @@ msgstr "Ассоциации файлов успешно удалены."
 msgid "Files/URLs were added to the playlist"
 msgstr "Файлы/URL добавлены в список воспроизведения"
 
+#: D:\Projects\CS\mpv.net\src\MpvNet\Player.cs:115
+msgid "Drop files or URLs to play here."
+msgstr "Перетащите сюда файлы или URL-адреса для воспроизведения."
+
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
 msgstr "Первый файл"
@@ -326,8 +330,8 @@ msgid "Help"
 msgstr "Помощь"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:220
-msgid "Ignore left mouse butten"
-msgstr ""
+msgid "Ignore left mouse button"
+msgstr "Игнорировать левую кнопку мыши"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:71
 msgid "Increase Brightness"
@@ -528,7 +532,7 @@ msgstr "Следующий трек"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:249
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:250
 msgid "On-Screen Menu"
-msgstr ""
+msgstr "Экранное меню"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:175
 msgid "Open Config Folder"
@@ -536,7 +540,7 @@ msgstr "Открыть папку конфигурации"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:14
 msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr ""
+msgstr "Открыть привод/папку DVD/Blu-ray..."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:12
 msgid "Open Files..."
@@ -579,7 +583,7 @@ msgstr "Воспроизведение"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:127
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:234
 msgid "Playlist"
-msgstr ""
+msgstr "Список воспроизведения"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:36
 msgid "Previous Chapter"
@@ -605,7 +609,7 @@ msgstr "Показать прогресс"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:129
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:247
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:147
 #, fuzzy
@@ -627,7 +631,7 @@ msgstr "Зарегистрировать ассоциации файлов из�
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:176
 msgid "Register video file associations"
-msgstr ""
+msgstr "Зарегистрировать ассоциации видеофайлов"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Remove mpv.net from Path environment variable"
@@ -645,11 +649,11 @@ msgstr "Вправо"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Rotate Video"
-msgstr ""
+msgstr "Повернуть видео"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:134
 msgid "Secondary Subtitle"
-msgstr ""
+msgstr "Вторичные субтитры"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:236
 #, fuzzy
@@ -752,11 +756,11 @@ msgstr "Субтитры"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:137
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:242
 msgid "Subtitle Lines"
-msgstr ""
+msgstr "Строки субтитров"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:133
 msgid "Subtitle Tracks"
-msgstr ""
+msgstr "Дорожки субтитров"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:235
 #, fuzzy
@@ -778,7 +782,7 @@ msgstr "Буфер обмена не содержит действительно
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:418
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:423
 msgid "This feature was removed, but there are user scripts:"
-msgstr ""
+msgstr "Эта функция удалена, но доступны пользовательские скрипты:"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:427
 msgid "This feature was removed."
@@ -795,11 +799,11 @@ msgstr "Переключить рамку"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:81
 msgid "Toggle Deinterlace"
-msgstr ""
+msgstr "Переключить деинтерлейс"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:187
 msgid "Toggle Hardware Decoding"
-msgstr ""
+msgstr "Переключить аппаратное декодирование"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:122
 msgid "Toggle OSC Visibility"
@@ -841,7 +845,7 @@ msgstr "Трек"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:131
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:239
 msgid "Tracks"
-msgstr ""
+msgstr "Дорожки"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:227
 msgid "Undo previous (or marked) seek"
@@ -879,12 +883,12 @@ msgstr "Увеличить"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:82
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Video"
-msgstr ""
+msgstr "Видео"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:135
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:238
 msgid "Video Tracks"
-msgstr ""
+msgstr "Видеодорожки"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:120
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:121
@@ -939,7 +943,7 @@ msgstr "Увеличить громкость"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:139
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:244
 msgid "Watch History"
-msgstr ""
+msgstr "История просмотра"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:140
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:245
@@ -1001,7 +1005,7 @@ msgstr "mpv.net не найден в переменной среды 'Path'."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:395
 msgid "mpv.net was successfully added to the Path environment variable."
-msgstr ""
+msgstr "mpv.net успешно добавлен в переменную среды Path."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:413
 msgid "mpv.net was successfully removed from the Path environment variable."

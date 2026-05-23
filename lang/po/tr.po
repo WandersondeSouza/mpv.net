@@ -276,8 +276,7 @@ msgstr "Dosya"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:262
 msgid "File Explorer icons will refresh after process restart."
-msgstr ""
-"Dosya Gezgini simgeleri, işlem yeniden başlatıldıktan sonra yenilenecektir."
+msgstr "Dosya Gezgini simgeleri işlem yeniden başlatıldıktan sonra yenilenecek."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:267
 msgid "File associations were successfully created."
@@ -291,6 +290,10 @@ msgstr "Dosya ilişkilendirmeleri başarıyla kaldırıldı."
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:214
 msgid "Files/URLs were added to the playlist"
 msgstr "Dosyalar/URL'ler oynatma listesine eklendi"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet\Player.cs:115
+msgid "Drop files or URLs to play here."
+msgstr "Oynatmak için dosyaları veya URL'leri buraya bırakın."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
@@ -322,7 +325,7 @@ msgid "Help"
 msgstr "Yardım"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:220
-msgid "Ignore left mouse butten"
+msgid "Ignore left mouse button"
 msgstr "Sol fare düğmesini görmezden gel"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:71

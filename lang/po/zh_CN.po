@@ -884,7 +884,7 @@ msgid "Volume Down"
 msgstr "降低 音量"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:220
-msgid "Ignore left mouse butten"
+msgid "Ignore left mouse button"
 msgstr "忽略左键"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:223
@@ -927,6 +927,10 @@ msgstr "第二字幕"
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:214
 msgid "Files/URLs were added to the playlist"
 msgstr "已添加 文件/URL 到播放列表"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet\Player.cs:115
+msgid "Drop files or URLs to play here."
+msgstr "将文件或 URL 拖放到此处播放。"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:207
 msgid "The clipboard does not contain a valid URL or file."

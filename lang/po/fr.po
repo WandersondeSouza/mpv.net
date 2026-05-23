@@ -52,11 +52,11 @@ msgstr "À propos de mpv.net"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
-msgstr ""
+msgstr "Raccourcis actifs dans l'éditeur de texte"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:145
 msgid "Active Bindings On-Screen"
-msgstr ""
+msgstr "Raccourcis actifs à l'écran"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:16
 msgid "Add external audio files..."
@@ -72,8 +72,7 @@ msgstr "Ajouter des fichiers à la liste de lecture…"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:20
 msgid "Add files/URLs to playlist from clipboard"
-msgstr ""
-"Ajouter des fichiers/URL à la liste de lecture depuis le presse-papiers"
+msgstr "Ajouter des fichiers/URL à la liste de lecture depuis le presse-papiers"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:181
 msgid "Add mpv.net to Path environment variable"
@@ -158,7 +157,7 @@ msgstr "Afficher les Commandes"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:181
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Config"
-msgstr ""
+msgstr "Configuration"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:142
 #, fuzzy
@@ -281,9 +280,7 @@ msgstr "Fichier"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:262
 msgid "File Explorer icons will refresh after process restart."
-msgstr ""
-"Les icônes de l'explorateur de fichiers s'actualisent après le redémarrage "
-"du processus"
+msgstr "Les icônes de l'Explorateur de fichiers seront actualisées après le redémarrage du processus."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:267
 msgid "File associations were successfully created."
@@ -297,6 +294,10 @@ msgstr "Les associations de fichiers ont été retirées avec succès."
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:214
 msgid "Files/URLs were added to the playlist"
 msgstr "Des fichiers/URLs ont été ajoutés à la liste de lecture."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet\Player.cs:115
+msgid "Drop files or URLs to play here."
+msgstr "Déposez des fichiers ou des URL ici pour les lire."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
@@ -328,7 +329,7 @@ msgid "Help"
 msgstr "Aide"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:220
-msgid "Ignore left mouse butten"
+msgid "Ignore left mouse button"
 msgstr "Ignorer le bouton gauche de la souris"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:71
@@ -781,9 +782,7 @@ msgstr "Le presse-papiers ne contient pas d'URL ou de fichier valide."
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:418
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:423
 msgid "This feature was removed, but there are user scripts:"
-msgstr ""
-"Cette fonctionnalité a été retirée, mais il existe néanmoins des scripts "
-"d'utilisateurs :"
+msgstr "Cette fonctionnalité a été supprimée, mais il existe des scripts utilisateur :"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:427
 msgid "This feature was removed."
@@ -828,8 +827,7 @@ msgstr "Activer/désactiver la Boucle infinie du fichier"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:103
 msgid "Toggle overriding SSA/ASS styles with normal styles"
-msgstr ""
-"Activer/désactiver le remplacement des styles SSA/ASS par les styles normaux"
+msgstr "Activer/désactiver le remplacement des styles SSA/ASS par des styles normaux"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:184
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:185
@@ -945,7 +943,7 @@ msgstr "Augmenter le Volume"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:139
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:244
 msgid "Watch History"
-msgstr ""
+msgstr "Historique de lecture"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:140
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:245
