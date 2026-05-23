@@ -18,6 +18,7 @@ public class WpfTranslator : ITranslator
         new("japanese", "ja", "ja"),
         new("korean", "ko", "ko"),
         new("polish", "pl", "pl"),
+        new("portuguese-brazil", "pt-BR", "pt"),
         new("russian", "ru", "ru"),
         new("turkish", "tr", "tr"),
     };
@@ -49,6 +50,9 @@ public class WpfTranslator : ITranslator
 
         if (twoLetterName == "zh")
             return "chinese-china";  // Chinese (Simplified)
+
+        if (CultureInfo.CurrentUICulture.Name == "pt-BR")
+            return "portuguese-brazil";
 
         return new CultureInfo(twoLetterName).EnglishName.ToLowerInvariant();
     }

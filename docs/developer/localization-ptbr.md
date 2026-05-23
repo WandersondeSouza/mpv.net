@@ -29,7 +29,11 @@ Exemplo para portugues brasileiro:
 Locale/pt_BR/LC_MESSAGES/mpvnet.mo
 ```
 
-## Como adicionar `pt-BR`
+## Implementacao atual de `pt-BR`
+
+O fork ja possui uma traducao inicial em `lang/po/pt_BR.po`, exposta como `language=portuguese-brazil`.
+
+## Como adicionar ou revisar `pt-BR`
 
 1. Criar `lang/po/pt_BR.po` a partir de `lang/source.pot`.
 

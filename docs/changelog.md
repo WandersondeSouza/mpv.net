@@ -3,6 +3,15 @@
 Este arquivo preserva o historico original do mpv.net e registra, no topo, as
 alteracoes relevantes feitas neste fork de manutencao.
 
+# Fork WandersondeSouza - alteracoes em desenvolvimento
+
+## Localizacao
+
+- Adicionada traducao inicial da interface para portugues brasileiro (`pt-BR`),
+  selecionavel por `language=portuguese-brazil`.
+- O modo `language=system` agora reconhece Windows em `pt-BR` e seleciona a
+  traducao brasileira automaticamente.
+
 # Fork WandersondeSouza - v7.1.2.2 (2026-05-22)
 
 ## Robustez interna

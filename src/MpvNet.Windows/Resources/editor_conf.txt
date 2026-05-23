@@ -1151,6 +1151,7 @@ option = german
 option = japanese
 option = korean
 option = polish
+option = portuguese-brazil
 option = russian
 option = turkish
 
