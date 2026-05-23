@@ -36,7 +36,7 @@ msgstr "Abrir arquivos..."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:13
 msgid "Open URL or file from clipboard"
-msgstr "Abrir URL ou arquivo da ?rea de transfer?ncia"
+msgstr "Abrir URL ou arquivo da área de transferência"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:14
 msgid "Open DVD/Blu-ray Drive/Folder..."
@@ -44,7 +44,7 @@ msgstr "Abrir unidade/pasta de DVD/Blu-ray..."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:16
 msgid "Add external audio files..."
-msgstr "Adicionar arquivos de ?udio externos..."
+msgstr "Adicionar arquivos de áudio externos..."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:17
 msgid "Add external subtitle files..."
@@ -52,11 +52,11 @@ msgstr "Adicionar arquivos de legenda externos..."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:19
 msgid "Add files to playlist..."
-msgstr "Adicionar arquivos ? lista de reprodu??o..."
+msgstr "Adicionar arquivos à lista de reprodução..."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:20
 msgid "Add files/URLs to playlist from clipboard"
-msgstr "Adicionar arquivos/URLs da ?rea de transfer?ncia ? lista de reprodu??o"
+msgstr "Adicionar arquivos/URLs da área de transferência à lista de reprodução"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:22
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:372
@@ -72,7 +72,7 @@ msgstr "Sair"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:25
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:26
 msgid "Playback"
-msgstr "Reprodu??o"
+msgstr "Reprodução"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:25
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:203
@@ -125,7 +125,7 @@ msgstr "Arquivo anterior"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:217
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:219
 msgid "Next File"
-msgstr "Pr?ximo arquivo"
+msgstr "Próximo arquivo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
@@ -133,19 +133,19 @@ msgstr "Primeiro arquivo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:32
 msgid "Last File"
-msgstr "?ltimo arquivo"
+msgstr "Último arquivo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:35
 msgid "Next Chapter"
-msgstr "Pr?ximo cap?tulo"
+msgstr "Próximo capítulo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:36
 msgid "Previous Chapter"
-msgstr "Cap?tulo anterior"
+msgstr "Capítulo anterior"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:38
 msgid "Jump To Next Frame"
-msgstr "Avan?ar para o pr?ximo quadro"
+msgstr "Avançar para o próximo quadro"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:39
 msgid "Jump To Previous Frame"
@@ -153,7 +153,7 @@ msgstr "Voltar para o quadro anterior"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:41
 msgid "Jump 5 sec forward"
-msgstr "Avan?ar 5 s"
+msgstr "Avançar 5 s"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:42
 msgid "Jump 5 sec backward"
@@ -161,7 +161,7 @@ msgstr "Voltar 5 s"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:44
 msgid "Jump 30 sec forward"
-msgstr "Avan?ar 30 s"
+msgstr "Avançar 30 s"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:45
 msgid "Jump 30 sec backward"
@@ -169,7 +169,7 @@ msgstr "Voltar 30 s"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:47
 msgid "Jump 5 min forward"
-msgstr "Avan?ar 5 min"
+msgstr "Avançar 5 min"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:48
 msgid "Jump 5 min backward"
@@ -178,12 +178,12 @@ msgstr "Voltar 5 min"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:50
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:393
 msgid "Title"
-msgstr "T?tulo"
+msgstr "Título"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:51
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:351
 msgid "Chapter"
-msgstr "Cap?tulo"
+msgstr "Capítulo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:53
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:54
@@ -258,7 +258,7 @@ msgstr "Redefinir"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:82
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Video"
-msgstr "V?deo"
+msgstr "Vídeo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:67
 msgid "Decrease Contrast"
@@ -286,11 +286,11 @@ msgstr "Aumentar gama"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:76
 msgid "Decrease Saturation"
-msgstr "Diminuir satura??o"
+msgstr "Diminuir saturação"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:77
 msgid "Increase Saturation"
-msgstr "Aumentar satura??o"
+msgstr "Aumentar saturação"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:79
 msgid "Take Screenshot"
@@ -302,15 +302,15 @@ msgstr "Capturar tela sem legendas"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:81
 msgid "Toggle Deinterlace"
-msgstr "Alternar desentrela?amento"
+msgstr "Alternar desentrelaçamento"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:82
 msgid "Change Aspect Ratio"
-msgstr "Alterar propor??o de aspecto"
+msgstr "Alterar proporção de aspecto"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Rotate Video"
-msgstr "Girar v?deo"
+msgstr "Girar vídeo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:85
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:86
@@ -318,17 +318,17 @@ msgstr "Girar v?deo"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:88
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:89
 msgid "Audio"
-msgstr "?udio"
+msgstr "Áudio"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:85
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:453
 msgid "Audio Device"
-msgstr "Dispositivo de ?udio"
+msgstr "Dispositivo de áudio"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:86
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:91
 msgid "Next Track"
-msgstr "Pr?xima faixa"
+msgstr "Próxima faixa"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:88
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:95
@@ -382,7 +382,7 @@ msgstr "Mais"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:103
 msgid "Toggle overriding SSA/ASS styles with normal styles"
-msgstr "Alternar substitui??o dos estilos SSA/ASS por estilos normais"
+msgstr "Alternar substituição dos estilos SSA/ASS por estilos normais"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:105
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:289
@@ -473,11 +473,11 @@ msgstr "Exibir"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:127
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:234
 msgid "Playlist"
-msgstr "Lista de reprodu??o"
+msgstr "Lista de reprodução"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:121
 msgid "Toggle Statistics"
-msgstr "Alternar estat?sticas"
+msgstr "Alternar estatísticas"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:122
 msgid "Toggle OSC Visibility"
@@ -485,11 +485,11 @@ msgstr "Alternar visibilidade do OSC"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:123
 msgid "Media Info On-Screen"
-msgstr "Informa??es de m?dia na tela"
+msgstr "Informações de mídia na tela"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:124
 msgid "Media Info Message Box"
-msgstr "Informa??es de m?dia em caixa de mensagem"
+msgstr "Informações de mídia em caixa de mensagem"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:125
 msgid "Progress"
@@ -529,7 +529,7 @@ msgstr "Propriedades"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:130
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:240
 msgid "Chapters"
-msgstr "Cap?tulos"
+msgstr "Capítulos"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:131
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:239
@@ -539,7 +539,7 @@ msgstr "Faixas"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:132
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:237
 msgid "Audio Tracks"
-msgstr "Faixas de ?udio"
+msgstr "Faixas de áudio"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:133
 msgid "Subtitle Tracks"
@@ -547,17 +547,17 @@ msgstr "Faixas de legenda"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:134
 msgid "Secondary Subtitle"
-msgstr "Legenda secund?ria"
+msgstr "Legenda secundária"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:135
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:238
 msgid "Video Tracks"
-msgstr "Faixas de v?deo"
+msgstr "Faixas de vídeo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:136
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:241
 msgid "Editions"
-msgstr "Edi??es"
+msgstr "Edições"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:137
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:242
@@ -567,12 +567,12 @@ msgstr "Linhas de legenda"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:138
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:243
 msgid "Audio Devices"
-msgstr "Dispositivos de ?udio"
+msgstr "Dispositivos de áudio"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:139
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:244
 msgid "Watch History"
-msgstr "Hist?rico de reprodu??o"
+msgstr "Histórico de reprodução"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:140
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:245
@@ -730,11 +730,11 @@ msgstr "Perfil"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:181
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Config"
-msgstr "Configura??o"
+msgstr "Configuração"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:169
 msgid "Show Config Editor"
-msgstr "Mostrar editor de configura??o"
+msgstr "Mostrar editor de configuração"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:170
 msgid "Show Input Editor"
@@ -750,7 +750,7 @@ msgstr "Editar input.conf"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:175
 msgid "Open Config Folder"
-msgstr "Abrir pasta de configura??o"
+msgstr "Abrir pasta de configuração"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:176
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:177
@@ -760,31 +760,31 @@ msgstr "Abrir pasta de configura??o"
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:181
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Setup"
-msgstr "Configura??o inicial"
+msgstr "Configuração inicial"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:176
 msgid "Register video file associations"
-msgstr "Registrar associa??es de arquivos de v?deo"
+msgstr "Registrar associações de arquivos de vídeo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:177
 msgid "Register audio file associations"
-msgstr "Registrar associa??es de arquivos de ?udio"
+msgstr "Registrar associações de arquivos de áudio"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:178
 msgid "Register image file associations"
-msgstr "Registrar associa??es de arquivos de imagem"
+msgstr "Registrar associações de arquivos de imagem"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:179
 msgid "Unregister file associations"
-msgstr "Remover associa??es de arquivos"
+msgstr "Remover associações de arquivos"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:181
 msgid "Add mpv.net to Path environment variable"
-msgstr "Adicionar mpv.net ? vari?vel de ambiente Path"
+msgstr "Adicionar mpv.net à variável de ambiente Path"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Remove mpv.net from Path environment variable"
-msgstr "Remover mpv.net da vari?vel de ambiente Path"
+msgstr "Remover mpv.net da variável de ambiente Path"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:184
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:185
@@ -796,19 +796,19 @@ msgstr "Ferramentas"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:184
 msgid "Set/clear A-B loop points"
-msgstr "Definir/limpar pontos de repeti??o A-B"
+msgstr "Definir/limpar pontos de repetição A-B"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:185
 msgid "Toggle infinite file looping"
-msgstr "Alternar repeti??o infinita do arquivo"
+msgstr "Alternar repetição infinita do arquivo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:186
 msgid "Shuffle Playlist"
-msgstr "Embaralhar lista de reprodu??o"
+msgstr "Embaralhar lista de reprodução"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:187
 msgid "Toggle Hardware Decoding"
-msgstr "Alternar decodifica??o por hardware"
+msgstr "Alternar decodificação por hardware"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:188
 msgid "Exit Watch Later"
@@ -860,7 +860,7 @@ msgstr "Mostrar menu"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:208
 msgid "Forward"
-msgstr "Avan?ar"
+msgstr "Avançar"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:209
 msgid "Backward"
@@ -877,14 +877,14 @@ msgid "Volume Down"
 msgstr "Diminuir volume"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:220
-msgid "Ignore left mouse butten"
-msgstr "Ignorar bot?o esquerdo do mouse"
+msgid "Ignore left mouse button"
+msgstr "Ignorar botão esquerdo do mouse"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:223
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:225
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:231
 msgid "Seek Forward"
-msgstr "Avan?ar busca"
+msgstr "Avançar busca"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:224
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:226
@@ -898,7 +898,7 @@ msgstr "Desfazer busca anterior (ou marcada)"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:228
 msgid "Mark position for revert-seek"
-msgstr "Marcar posi??o para reverter busca"
+msgstr "Marcar posição para reverter busca"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:229
 msgid "Seek to previous subtitle"
@@ -906,7 +906,7 @@ msgstr "Buscar legenda anterior"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:230
 msgid "Seek to next subtitle"
-msgstr "Buscar pr?xima legenda"
+msgstr "Buscar próxima legenda"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:235
 msgid "Subtitles"
@@ -914,53 +914,53 @@ msgstr "Legendas"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:236
 msgid "Secondary Subtitles"
-msgstr "Legendas secund?rias"
+msgstr "Legendas secundárias"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:192
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:214
 msgid "Files/URLs were added to the playlist"
-msgstr "Arquivos/URLs foram adicionados ? lista de reprodu??o"
+msgstr "Arquivos/URLs foram adicionados à lista de reprodução"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:207
 msgid "The clipboard does not contain a valid URL or file."
-msgstr "A ?rea de transfer?ncia n?o cont?m uma URL ou arquivo v?lido."
+msgstr "A área de transferência não contém uma URL ou arquivo válido."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:262
 msgid "File Explorer icons will refresh after process restart."
-msgstr "Os ?cones do Explorador de Arquivos ser?o atualizados ap?s reiniciar o processo."
+msgstr "Os ícones do Explorador de Arquivos serão atualizados após reiniciar o processo."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:265
 msgid "File associations were successfully removed."
-msgstr "As associa??es de arquivos foram removidas com sucesso."
+msgstr "As associações de arquivos foram removidas com sucesso."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:267
 msgid "File associations were successfully created."
-msgstr "As associa??es de arquivos foram criadas com sucesso."
+msgstr "As associações de arquivos foram criadas com sucesso."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:270
 msgid "Error creating file associations."
-msgstr "Erro ao criar associa??es de arquivos."
+msgstr "Erro ao criar associações de arquivos."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:387
 msgid "mpv.net is already in the Path environment variable."
-msgstr "mpv.net j? est? na vari?vel de ambiente Path."
+msgstr "mpv.net já está na variável de ambiente Path."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:395
 msgid "mpv.net was successfully added to the Path environment variable."
-msgstr "mpv.net foi adicionado com sucesso ? vari?vel de ambiente Path."
+msgstr "mpv.net foi adicionado com sucesso à variável de ambiente Path."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:404
 msgid "mpv.net was not found in the Path environment variable."
-msgstr "mpv.net n?o foi encontrado na vari?vel de ambiente Path."
+msgstr "mpv.net não foi encontrado na variável de ambiente Path."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:413
 msgid "mpv.net was successfully removed from the Path environment variable."
-msgstr "mpv.net foi removido com sucesso da vari?vel de ambiente Path."
+msgstr "mpv.net foi removido com sucesso da variável de ambiente Path."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:418
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:423
 msgid "This feature was removed, but there are user scripts:"
-msgstr "Este recurso foi removido, mas existem scripts de usu?rio:"
+msgstr "Este recurso foi removido, mas existem scripts de usuário:"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:427
 msgid "This feature was removed."
@@ -984,8 +984,8 @@ msgstr "Mostrar perfis"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:1432
 msgid "Shutdown thread failed to complete within 10 seconds."
-msgstr "A thread de encerramento n?o foi conclu?da em 10 segundos."
+msgstr "A thread de encerramento não foi concluída em 10 segundos."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:116
 msgid "Changes will be available on next startup."
-msgstr "As altera??es estar?o dispon?veis na pr?xima inicializa??o."
+msgstr "As alterações estarão disponíveis na próxima inicialização."

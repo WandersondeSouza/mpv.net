@@ -879,7 +879,7 @@ msgid "Volume Down"
 msgstr ""
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:220
-msgid "Ignore left mouse butten"
+msgid "Ignore left mouse button"
 msgstr ""
 
 #: D:\Projects\CS\mpv.net\src\MpvNet\InputHelp.cs:223
