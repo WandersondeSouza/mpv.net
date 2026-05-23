@@ -13,12 +13,14 @@ public class WpfTranslator : ITranslator
         new("bulgarian", "bg", "bg"),
         new("chinese-china", "zh-CN", "zh"),  // Chinese (Simplified)
         new("english", "en", "en"),
+        new("spanish", "es", "es"),
         new("french", "fr", "fr"),
         new("german", "de", "de"),
         new("japanese", "ja", "ja"),
         new("korean", "ko", "ko"),
         new("polish", "pl", "pl"),
         new("portuguese-brazil", "pt-BR", "pt"),
+        new("portuguese-portugal", "pt-PT", "pt"),
         new("russian", "ru", "ru"),
         new("turkish", "tr", "tr"),
     };
@@ -53,6 +55,9 @@ public class WpfTranslator : ITranslator
 
         if (CultureInfo.CurrentUICulture.Name == "pt-BR")
             return "portuguese-brazil";
+
+        if (CultureInfo.CurrentUICulture.Name == "pt-PT")
+            return "portuguese-portugal";
 
         return new CultureInfo(twoLetterName).EnglishName.ToLowerInvariant();
     }

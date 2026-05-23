@@ -1,8 +1,8 @@
-# Localizacao e novo idioma pt-BR
+# Localizacao e idiomas da interface
 
 ## Objetivo
 
-Este guia documenta como adicionar uma nova traducao da interface do mpv.net sem quebrar os idiomas existentes. O exemplo principal e o portugues brasileiro (`pt-BR`), mas o mesmo fluxo vale para outros idiomas.
+Este guia documenta como adicionar ou revisar traducoes da interface do mpv.net sem quebrar os idiomas existentes.
 
 O mpv.net usa gettext para os textos de interface. A traducao fica fora dos arquivos `.resx` principais e e carregada em runtime a partir da pasta `Locale`.
 
@@ -29,13 +29,35 @@ Exemplo para portugues brasileiro:
 Locale/pt_BR/LC_MESSAGES/mpvnet.mo
 ```
 
-## Implementacao atual de `pt-BR`
+## Idiomas disponiveis
 
-O fork ja possui uma traducao inicial em `lang/po/pt_BR.po`, exposta como `language=portuguese-brazil`.
+Os idiomas abaixo possuem arquivo `.po`, mapeamento em `WpfTranslator.cs` e valor publico aceito por `language`:
 
-## Como adicionar ou revisar `pt-BR`
+| Idioma | Valor de `language` | Arquivo PO | Pasta Locale | CultureInfo |
+| --- | --- | --- | --- | --- |
+| Bulgaro | `bulgarian` | `lang/po/bg.po` | `Locale/bg/LC_MESSAGES/` | `bg` |
+| Chines simplificado | `chinese-china` | `lang/po/zh_CN.po` | `Locale/zh_CN/LC_MESSAGES/` | `zh-CN` |
+| Ingles | `english` | nativo | nativo | `en` |
+| Espanhol | `spanish` | `lang/po/es.po` | `Locale/es/LC_MESSAGES/` | `es` |
+| Frances | `french` | `lang/po/fr.po` | `Locale/fr/LC_MESSAGES/` | `fr` |
+| Alemao | `german` | `lang/po/de.po` | `Locale/de/LC_MESSAGES/` | `de` |
+| Japones | `japanese` | `lang/po/ja.po` | `Locale/ja/LC_MESSAGES/` | `ja` |
+| Coreano | `korean` | `lang/po/ko.po` | `Locale/ko/LC_MESSAGES/` | `ko` |
+| Polones | `polish` | `lang/po/pl.po` | `Locale/pl/LC_MESSAGES/` | `pl` |
+| Portugues do Brasil | `portuguese-brazil` | `lang/po/pt_BR.po` | `Locale/pt_BR/LC_MESSAGES/` | `pt-BR` |
+| Portugues de Portugal | `portuguese-portugal` | `lang/po/pt_PT.po` | `Locale/pt_PT/LC_MESSAGES/` | `pt-PT` |
+| Russo | `russian` | `lang/po/ru.po` | `Locale/ru/LC_MESSAGES/` | `ru` |
+| Turco | `turkish` | `lang/po/tr.po` | `Locale/tr/LC_MESSAGES/` | `tr` |
 
-1. Criar `lang/po/pt_BR.po` a partir de `lang/source.pot`.
+O valor `system` continua selecionando o idioma do Windows quando houver mapeamento conhecido; caso contrario, o fallback continua sendo ingles.
+
+## Implementacao atual de portugues e espanhol
+
+O fork possui traducoes gettext para portugues brasileiro (`language=portuguese-brazil`), portugues de Portugal (`language=portuguese-portugal`) e espanhol (`language=spanish`).
+
+## Como adicionar ou revisar um idioma
+
+1. Criar o arquivo `lang/po/<cultura>.po` a partir de `lang/source.pot`.
 
 2. Ajustar o cabecalho do novo `.po` para UTF-8 e plural do portugues brasileiro:
 
@@ -63,7 +85,7 @@ msgstr ""
 option = portuguese-brazil
 ```
 
-O nome recomendado e `portuguese-brazil`, seguindo o estilo dos valores existentes como `chinese-china`.
+O nome deve seguir o estilo dos valores existentes, como `chinese-china`, `portuguese-brazil` e `portuguese-portugal`.
 
 5. Adicionar o idioma em `src/MpvNet.Windows/WPF/WpfTranslator.cs`:
 
@@ -71,7 +93,7 @@ O nome recomendado e `portuguese-brazil`, seguindo o estilo dos valores existent
 new("portuguese-brazil", "pt-BR", "pt"),
 ```
 
-6. Ajustar o tratamento de `system` para que Windows em `pt-BR` resolva para `portuguese-brazil`, sem mudar o comportamento dos outros idiomas.
+6. Quando necessario, ajustar o tratamento de `system` para regioes especificas, como `pt-BR` e `pt-PT`, sem mudar o comportamento dos outros idiomas.
 
 7. Gerar os arquivos `.mo`:
 
@@ -100,20 +122,24 @@ Validacao automatica minima:
 ```powershell
 .\lang\create-mo-files.ps1 .\src\MpvNet.Windows\bin\Debug\win-x64
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_BR\LC_MESSAGES\mpvnet.mo
+Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_PT\LC_MESSAGES\mpvnet.mo
+Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\es\LC_MESSAGES\mpvnet.mo
 dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore
 ```
 
 Validacao manual:
 
 - iniciar com `mpvnet.exe --language=portuguese-brazil`;
+- iniciar com `mpvnet.exe --language=portuguese-portugal`;
+- iniciar com `mpvnet.exe --language=spanish`;
 - iniciar com `mpvnet.conf` contendo `language=portuguese-brazil`;
 - confirmar que um idioma invalido continua caindo para ingles;
 - confirmar que idiomas existentes, como `german` e `chinese-china`, continuam funcionando;
-- em release, confirmar que o ZIP contem `Locale/pt_BR/LC_MESSAGES/mpvnet.mo`.
+- em release, confirmar que o ZIP contem os arquivos `.mo` esperados em `Locale/<cultura>/LC_MESSAGES/mpvnet.mo`.
 
 ## Riscos
 
-O maior risco e desalinhamento entre o nome publico da opcao, o nome do arquivo `.po`, o nome da pasta `Locale` e a `CultureInfo` usada pelo WPF. Para `pt-BR`, o contrato recomendado e:
+O maior risco e desalinhamento entre o nome publico da opcao, o nome do arquivo `.po`, o nome da pasta `Locale` e a `CultureInfo` usada pelo WPF. Para `pt-BR`, o contrato e:
 
 | Item | Valor |
 | --- | --- |

@@ -488,6 +488,25 @@ Enable this only when a developer asks for it. Default: no
 User interface display language.
 mpv.net must be restarted after a change.
 
+Supported values:
+
+| Language | Value |
+| --- | --- |
+| System language | `system` |
+| Bulgarian | `bulgarian` |
+| Chinese (Simplified) | `chinese-china` |
+| English | `english` |
+| Spanish | `spanish` |
+| French | `french` |
+| German | `german` |
+| Japanese | `japanese` |
+| Korean | `korean` |
+| Polish | `polish` |
+| Portuguese (Brazil) | `portuguese-brazil` |
+| Portuguese (Portugal) | `portuguese-portugal` |
+| Russian | `russian` |
+| Turkish | `turkish` |
+
 Work on the translation is done with transifex:  
 https://app.transifex.com/stax76/teams/
 

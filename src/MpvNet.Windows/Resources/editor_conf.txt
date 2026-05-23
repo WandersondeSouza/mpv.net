@@ -1146,12 +1146,14 @@ option = system
 option = bulgarian
 option = chinese-china
 option = english
+option = spanish
 option = french
 option = german
 option = japanese
 option = korean
 option = polish
 option = portuguese-brazil
+option = portuguese-portugal
 option = russian
 option = turkish
 
