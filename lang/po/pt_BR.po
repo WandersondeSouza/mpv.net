@@ -921,6 +921,10 @@ msgstr "Legendas secundárias"
 msgid "Files/URLs were added to the playlist"
 msgstr "Arquivos/URLs foram adicionados à lista de reprodução"
 
+#: D:\Projects\CS\mpv.net\src\MpvNet\Player.cs:115
+msgid "Drop files or URLs to play here."
+msgstr "Solte arquivos ou URLs aqui para reproduzir."
+
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\GuiCommand.cs:207
 msgid "The clipboard does not contain a valid URL or file."
 msgstr "A área de transferência não contém uma URL ou arquivo válido."
