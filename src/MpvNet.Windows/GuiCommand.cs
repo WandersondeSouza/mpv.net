@@ -359,20 +359,20 @@ public class GuiCommand
 
         if (File.Exists(path) && osd)
         {
-            if (FileTypes.IsAudio(path.Ext))
+            if (FileTypes.IsAudio(path.Ext()))
             {
                 text = Player.GetPropertyOsdString("filtered-metadata");
                 Player.CommandV("show-text", text, "5000");
                 return;
             }
-            else if (FileTypes.IsImage(path.Ext))
+            else if (FileTypes.IsImage(path.Ext()))
             {
                 fileSize = new FileInfo(path).Length;
 
                 text = "Width: " + Player.GetPropertyInt("width") + "\n" +
                        "Height: " + Player.GetPropertyInt("height") + "\n" +
                        "Size: " + Convert.ToInt32(fileSize / 1024.0) + " KB\n" +
-                       "Type: " + path.Ext.ToUpper();
+                       "Type: " + path.Ext().ToUpper();
 
                 Player.CommandV("show-text", text, "5000");
                 return;
@@ -388,7 +388,7 @@ public class GuiCommand
             int width = Player.GetPropertyInt("video-params/w");
             int height = Player.GetPropertyInt("video-params/h");
             TimeSpan len = TimeSpan.FromSeconds(Player.GetPropertyDouble("duration"));
-            text = path.FileName + "\n";
+            text = path.FileName() + "\n";
             text += FormatTime(len.TotalMinutes) + ":" + FormatTime(len.Seconds) + "\n";
             if (fileSize > 0)
                 text += Convert.ToInt32(fileSize / 1024.0 / 1024.0) + " MB\n";

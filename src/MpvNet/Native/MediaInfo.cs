@@ -5,74 +5,105 @@ namespace MpvNet;
 
 public class MediaInfo : IDisposable
 {
-    readonly IntPtr Handle;
+    private IntPtr _handle;
+    private bool _disposed;
 
     public MediaInfo(string file)
     {
-        if ((Handle = MediaInfo_New()) == IntPtr.Zero)
+        ArgumentNullException.ThrowIfNull(file);
+
+        if ((_handle = MediaInfo_New()) == IntPtr.Zero)
             throw new Exception("Failed to call MediaInfo_New");
 
-        if (MediaInfo_Open(Handle, file) == 0)
+        if (MediaInfo_Open(_handle, file) == 0)
             throw new Exception("Error MediaInfo_Open");
+    }
+
+    private void ThrowIfDisposed()
+    {
+        if (_disposed)
+            throw new ObjectDisposedException(nameof(MediaInfo));
     }
 
     public string GetInfo(MediaInfoStreamKind kind, string parameter)
     {
-        return Marshal.PtrToStringUni(MediaInfo_Get(Handle, kind, 0,
+        ThrowIfDisposed();
+
+        return Marshal.PtrToStringUni(MediaInfo_Get(_handle, kind, 0,
             parameter, MediaInfoKind.Text, MediaInfoKind.Name)) ?? "";
     }
 
-    public int GetCount(MediaInfoStreamKind kind) => MediaInfo_Count_Get(Handle, kind, -1);
+    public int GetCount(MediaInfoStreamKind kind)
+    {
+        ThrowIfDisposed();
+        return MediaInfo_Count_Get(_handle, kind, -1);
+    }
 
     public string GetGeneral(string parameter)
     {
-        return Marshal.PtrToStringUni(MediaInfo_Get(Handle, MediaInfoStreamKind.General,
+        ThrowIfDisposed();
+        ArgumentNullException.ThrowIfNull(parameter);
+        return Marshal.PtrToStringUni(MediaInfo_Get(_handle, MediaInfoStreamKind.General,
             0, parameter, MediaInfoKind.Text, MediaInfoKind.Name)) ?? "";
     }
 
     public string GetVideo(int stream, string parameter)
     {
-        return Marshal.PtrToStringUni(MediaInfo_Get(Handle, MediaInfoStreamKind.Video,
+        ThrowIfDisposed();
+        ArgumentNullException.ThrowIfNull(parameter);
+        return Marshal.PtrToStringUni(MediaInfo_Get(_handle, MediaInfoStreamKind.Video,
             stream, parameter, MediaInfoKind.Text, MediaInfoKind.Name)) ?? "";
     }
 
     public string GetAudio(int stream, string parameter)
     {
-        return Marshal.PtrToStringUni(MediaInfo_Get(Handle, MediaInfoStreamKind.Audio,
+        ThrowIfDisposed();
+        ArgumentNullException.ThrowIfNull(parameter);
+        return Marshal.PtrToStringUni(MediaInfo_Get(_handle, MediaInfoStreamKind.Audio,
             stream, parameter, MediaInfoKind.Text, MediaInfoKind.Name)) ?? "";
     }
 
     public string GetText(int stream, string parameter)
     {
-        return Marshal.PtrToStringUni(MediaInfo_Get(Handle, MediaInfoStreamKind.Text,
+        ThrowIfDisposed();
+        ArgumentNullException.ThrowIfNull(parameter);
+        return Marshal.PtrToStringUni(MediaInfo_Get(_handle, MediaInfoStreamKind.Text,
             stream, parameter, MediaInfoKind.Text, MediaInfoKind.Name)) ?? "";
     }
 
     public string GetSummary(bool complete, bool rawView)
     {
-        MediaInfo_Option(Handle, "Language", rawView ? "raw" : "");
-        MediaInfo_Option(Handle, "Complete", complete ? "1" : "0");
-        return Marshal.PtrToStringUni(MediaInfo_Inform(Handle, 0)) ?? "";
+        ThrowIfDisposed();
+        MediaInfo_Option(_handle, "Language", rawView ? "raw" : "");
+        MediaInfo_Option(_handle, "Complete", complete ? "1" : "0");
+        return Marshal.PtrToStringUni(MediaInfo_Inform(_handle, 0)) ?? "";
     }
 
-    bool Disposed;
-
-    public void Dispose()
+    protected virtual void Dispose(bool disposing)
     {
-        if (!Disposed)
+        if (!_disposed)
         {
-            if (Handle != IntPtr.Zero)
+            if (_handle != IntPtr.Zero)
             {
-                MediaInfo_Close(Handle);
-                MediaInfo_Delete(Handle);
+                MediaInfo_Close(_handle);
+                MediaInfo_Delete(_handle);
+                _handle = IntPtr.Zero;
             }
 
-            Disposed = true;
-            GC.SuppressFinalize(this);
+            _disposed = true;
         }
     }
 
-    ~MediaInfo() { Dispose(); }
+    public void Dispose()
+    {
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
+    }
+
+    ~MediaInfo()
+    {
+        Dispose(disposing: false);
+    }
 
     [DllImport("MediaInfo.dll")]
     static extern IntPtr MediaInfo_New();

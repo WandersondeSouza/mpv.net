@@ -15,7 +15,7 @@ public partial class ComboBoxSettingControl : UserControl, ISettingControl
         OptionSetting = optionSetting;
         InitializeComponent();
         DataContext = this;
-        TitleTextBox.Text = optionSetting.Name;
+        TitleTextBox.Text = optionSetting.DisplayName ?? optionSetting.Name;
 
         if (string.IsNullOrEmpty(optionSetting.Help))
             HelpTextBox.Visibility = Visibility.Collapsed;

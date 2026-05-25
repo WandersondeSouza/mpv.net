@@ -31,7 +31,7 @@ static class Program
 
             string[] args = Environment.GetCommandLineArgs().Skip(1).ToArray();
 
-            if (args.Length > 0 && args[0] == "--register-file-associations")
+            if (args.Length > 1 && args[0] == "--register-file-associations")
             {
                 FileAssociation.Register(args[1], args.Skip(1).ToArray());
                 return;
@@ -39,7 +39,7 @@ static class Program
 
             App.Init();
             Theme.Init();
-            Mutex mutex = new Mutex(true, StringHelp.GetMD5Hash(App.ConfPath), out bool isFirst);
+            using Mutex mutex = new Mutex(true, StringHelp.GetMD5Hash(App.ConfPath), out bool isFirst);
 
             if (Control.ModifierKeys == Keys.Shift ||
                 App.CommandLine.Contains("--process-instance=multi") ||
@@ -78,7 +78,6 @@ static class Program
                             data.lpData = string.Join("\n", args2.ToArray());
                             data.cbData = data.lpData.Length * 2 + 1;
                             WinApi.SendMessage(proc.MainWindowHandle, 0x004A /*WM_COPYDATA*/, IntPtr.Zero, ref data);
-                            mutex.Dispose();
 
                             if (App.IsTerminalAttached)
                                 WinApi.FreeConsole();
@@ -90,7 +89,6 @@ static class Program
                     Thread.Sleep(50);
                 }
 
-                mutex.Dispose();
                 return;
             }
 
@@ -114,8 +112,6 @@ static class Program
 
             if (App.IsTerminalAttached)
                 WinApi.FreeConsole();
-
-            mutex.Dispose();
         }
         catch (Exception ex)
         {

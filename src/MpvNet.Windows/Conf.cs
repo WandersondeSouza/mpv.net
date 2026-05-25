@@ -50,8 +50,7 @@ public class Conf
                 stringSetting.Default = section.HasName("default") ? section.GetValue("default") : "";
             }
 
-            baseSetting.Name = section.GetValue("name");
-            baseSetting.File = section.GetValue("file");
+            baseSetting.Name = EditorConfLocalization.TranslateText(section.GetValue("name") ?? "");            baseSetting.DisplayName = EditorConfLocalization.TranslateText(baseSetting.Name ?? "");            baseSetting.File = section.GetValue("file");
             baseSetting.Directory = EditorConfLocalization.TranslateDirectory(section.GetValue("directory") ?? "");
 
             if (section.HasName("help")) baseSetting.Help = EditorConfLocalization.TranslateText(section.GetValue("help") ?? "");

@@ -34,7 +34,7 @@ public class ExtensionLoader
         {
             foreach (string dir in Directory.GetDirectories(path))
             {
-                LoadDll(dir.Separator + Path.GetFileName(dir) + ".dll");
+                LoadDll(dir.Separator() + Path.GetFileName(dir) + ".dll");
             }
         }
     }

@@ -3,8 +3,5 @@ namespace MpvNet.Extensions;
 
 public static class ObjectExtensions
 {
-    extension(object instance)
-    {
-        public string ToStringEx() => instance?.ToString() ?? "";
-    }
+    public static string ToStringEx(this object? instance) => instance?.ToString() ?? "";
 }

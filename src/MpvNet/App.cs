@@ -92,7 +92,7 @@ public class AppClass
 
     void EnsureInitialMpvConf()
     {
-        string appDataConfigFolder = (Folder.AppData + "mpv.net").Separator;
+        string appDataConfigFolder = (Folder.AppData + "mpv.net").Separator();
 
         if (!StringComparer.OrdinalIgnoreCase.Equals(Player.ConfigFolder, appDataConfigFolder))
             return;

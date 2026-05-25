@@ -9,6 +9,17 @@ $utf8 = New-Object System.Text.UTF8Encoding -ArgumentList $false
 [System.IO.File]::WriteAllLines("$PSScriptRoot/cs-files.txt", $csFiles, $utf8)
 
 # Create .pot file
+$xgettext = Get-Command xgettext -ErrorAction SilentlyContinue
+if (-not $xgettext) {
+    Write-Warning 'xgettext not found. Skipping full C#/XAML pot extraction.'
+    $python = Get-Command python -ErrorAction SilentlyContinue
+    if (-not $python) { throw 'xgettext not found and Python is not available to update editor_conf entries.' }
+
+    Write-Host 'Using Python fallback to update editor_conf entries only.'
+    & python "$PSScriptRoot/update-editor-conf-po.py"
+    return
+}
+
 xgettext -k_ -k_n:1,2 -k_p:1c,2 -k_pn:1c,2,3 --force-po --from-code=UTF-8 '--language=c#' -o $PSScriptRoot/source.pot --files-from=$PSScriptRoot/cs-files.txt --keyword=_
 if ($LastExitCode) { throw $LastExitCode }
 
@@ -61,6 +72,57 @@ function Get-XamlGettextStrings {
     return $results
 }
 
+function Add-EditorConfString {
+    param([hashtable]$results, [string]$msgid)
+
+    if ([string]::IsNullOrWhiteSpace($msgid)) { return }
+
+    $trimmed = $msgid.Trim()
+    $key = "gettext|$trimmed"
+
+    if (-not $results.ContainsKey($key)) {
+        $results[$key] = [ordered]@{ MsgId = $trimmed; References = @() }
+    }
+}
+
+function Get-EditorConfStrings {
+    param([string]$editorConfPath)
+
+    $results = @{}
+    if (-not (Test-Path $editorConfPath)) { return $results }
+
+    $lines = Get-Content $editorConfPath -Encoding UTF8
+    foreach ($line in $lines) {
+        $trimmed = $line.Trim()
+        if ($trimmed -eq "" -or $trimmed.StartsWith("#")) { continue }
+
+        if ($trimmed -match '^name\s*=\s*(.*)$') {
+            Add-EditorConfString $results $matches[1]
+        }
+        elseif ($trimmed -match '^directory\s*=\s*(.*)$') {
+            $directory = $matches[1]
+            foreach ($part in $directory.Split('/')) {
+                Add-EditorConfString $results $part.Trim()
+            }
+        }
+        elseif ($trimmed -match '^help\s*=\s*(.*)$') {
+            Add-EditorConfString $results $matches[1]
+        }
+        elseif ($trimmed -match '^option\s*=\s*(.*)$') {
+            $value = $matches[1].Trim()
+            if ($value -match '^(?<name>\S+)\s+(?<help>.*)$') {
+                Add-EditorConfString $results $matches['name']
+                Add-EditorConfString $results $matches['help']
+            }
+            else {
+                Add-EditorConfString $results $value
+            }
+        }
+    }
+
+    return $results
+}
+
 function Add-XamlGettextEntriesToPot {
     param([string]$potPath, [string]$sourceRoot)
 
@@ -103,7 +165,42 @@ function Add-XamlGettextEntriesToPot {
     }
 }
 
+function Add-EditorConfEntriesToPot {
+    param([string]$potPath, [string]$editorConfPath)
+
+    $entries = Get-EditorConfStrings -editorConfPath $editorConfPath
+    if ($entries.Count -eq 0) { return }
+
+    $tempPot = "$potPath.editor_conf.tmp"
+    Copy-Item $potPath $tempPot -Force
+
+    foreach ($entry in $entries.GetEnumerator() | Sort-Object Name) {
+        $item = $entry.Value
+        $lines = @()
+        foreach ($ref in $item.References | Sort-Object -Unique) {
+            $lines += "#: $ref"
+        }
+
+        $lines += 'msgid "' + (Escape-PotString $item.MsgId) + '"'
+        $lines += 'msgstr ""'
+        $lines += ''
+        Add-Content -Path $tempPot -Value $lines
+    }
+
+    $msguniq = Get-Command msguniq -ErrorAction SilentlyContinue
+    if ($msguniq) {
+        msguniq --sort-output --use-first -o $potPath $tempPot
+        if ($LastExitCode) { throw $LastExitCode }
+        Remove-Item $tempPot -Force
+    } else {
+        Copy-Item $tempPot $potPath -Force
+        Remove-Item $tempPot -Force
+        Write-Warning 'msguniq not found: source.pot may contain duplicate entries from editor_conf extraction.'
+    }
+}
+
 Add-XamlGettextEntriesToPot -potPath $PSScriptRoot/source.pot -sourceRoot (Resolve-Path "$PSScriptRoot/.." | Select-Object -ExpandProperty Path)
+Add-EditorConfEntriesToPot -potPath $PSScriptRoot/source.pot -editorConfPath (Resolve-Path "$PSScriptRoot/../src/MpvNet.Windows/Resources/editor_conf.txt" | Select-Object -ExpandProperty Path)
 
 # Backup .po files
 $BackupTargetFolder = $env:TEMP + '/mpv.net po backup ' + (Get-Date -Format 'yyyy-MM-dd HH_mm_ss')

@@ -18,7 +18,12 @@ foreach ($it in $PoFiles)
     }
 
     $moPath = "$folder/mpvnet.mo"
-    msgfmt --output-file=$moPath $it.FullName
-    if ($LastExitCode) { throw $LastExitCode }
+    Write-Host "Compiling $($it.Name)"
+    & msgfmt --output-file="$moPath" "$($it.FullName)"
+    if ($LastExitCode) {
+        Write-Warning "Skipping invalid .po file: $($it.FullName) (msgfmt exit code $LastExitCode)"
+        $global:LastExitCode = 0
+        continue
+    }
     $moPath
 }
