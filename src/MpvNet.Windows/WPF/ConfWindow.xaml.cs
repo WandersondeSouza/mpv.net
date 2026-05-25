@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -93,39 +94,22 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
             return null;
 
         string[] parts = path.Split('/', StringSplitOptions.RemoveEmptyEntries);
+        TreeNode? currentNode = null;
 
-        for (int x = 0; x < parts.Length; x++)
+        foreach (string part in parts)
         {
-            bool found = false;
- 
-            foreach (var node in nodes)
+            currentNode = nodes.FirstOrDefault(node => node.Name == part);
+
+            if (currentNode == null)
             {
-                if (x < parts.Length - 1)
-                {
-                    if (node.Name == parts[x])
-                    {
-                        found = true;
-                        nodes = node.Children;
-                    }
-                }
-                else if (x == parts.Length - 1 && node.Name == parts[x])
-                {
-                    found = true;
-                }
+                currentNode = new TreeNode() { Name = part };
+                nodes.Add(currentNode);
             }
 
-            if (!found)
-            {
-                if (x == parts.Length - 1)
-                {
-                    var item = new TreeNode() { Name = parts[x] };
-                    nodes?.Add(item);
-                    return item;
-                }
-            }
+            nodes = currentNode.Children;
         }
 
-        return null;
+        return currentNode;
     }
 
     void LoadSettings()
@@ -542,6 +526,14 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
             SearchText = node!.Path + ":";
         },
         DispatcherPriority.Background);
+    }
+
+    void MenuTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        MainContextMenu.PlacementTarget = MenuTextBlock;
+        MainContextMenu.Placement = PlacementMode.Top;
+        MainContextMenu.IsOpen = true;
+        e.Handled = true;
     }
 
     void SelectNodeFromSearchText(NodeViewModel node)

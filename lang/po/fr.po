@@ -1080,3 +1080,139 @@ msgstr "Les paramètres de thème modifiés nécessitent le redémarrage de mpv.
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
 msgid "Info"
 msgstr "Infos"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Render Options"
+msgstr "Options de rendu"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Scaling"
+msgstr "Mise ? l??chelle"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "libplacebo"
+msgstr "libplacebo"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Debanding"
+msgstr "R?duction des bandes"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Sigmoidization"
+msgstr "Sigmo?disation"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Color Adjustment"
+msgstr "Ajustement des couleurs"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "HDR Peak Detection"
+msgstr "D?tection du pic HDR"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Color Mapping"
+msgstr "Mappage des couleurs"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Screenshot"
+msgstr "Capture d??cran"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Program Behavior"
+msgstr "Comportement du programme"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Input"
+msgstr "Entr?e"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Cache"
+msgstr "Cache"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Demuxer"
+msgstr "D?muxeur"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "yes"
+msgstr "oui"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "no"
+msgstr "non"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
+msgstr "D?finit si plusieurs processus mpv.net sont autoris?s.\\nMulti peut aussi ?tre activ? en appuyant sur la touche MAJ. (option mpv.net)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Create a new process everytime the shell starts mpv.net"
+msgstr "Cr?er un nouveau processus chaque fois que le shell lance mpv.net"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Force a single process everytime the shell starts mpv.net"
+msgstr "Forcer un seul processus chaque fois que le shell lance mpv.net"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Force a single process and add files to playlist"
+msgstr "Forcer un seul processus et ajouter les fichiers ? la liste de lecture"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
+msgstr "<int> Nombre de fichiers r?cents ? m?moriser. Par d?faut : 15 (option mpv.net)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
+msgstr "Utilise la biblioth?que d?informations m?dia au lieu de mpv pour r?cup?rer les informations du m?dia. (option mpv.net)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+msgstr "Extensions d?image ? faire correspondre avec --cover-art-auto, --autocreate-playlist ou --directory-filter-types. mpv.net les utilise pour les associations de fichiers et auto-load-folder. Par d?faut : avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "Syntaxe de menu utilis?e pour d?finir le menu contextuel dans input.conf.\\nmpv.net utilise '#menu:' par d?faut ; uosc utilise '#!' par d?faut."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Controls which type of graphics APIs will be accepted."
+msgstr "Contr?le les types d?API graphiques accept?s."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
+msgstr "D?finit le titre de la fen?tre. Il est utilis? pour la fen?tre vid?o et, si possible, d?finit aussi le titre du flux audio. Les propri?t?s sont d?velopp?es. Attention : selon les propri?t?s utilis?es, cela peut entra?ner une utilisation CPU importante."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Start the player in fullscreen mode."
+msgstr "D?marre le lecteur en mode plein ?cran."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Show window with decoration (titlebar, border)."
+msgstr "Affiche la fen?tre avec d?corations (barre de titre, bordure)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Use custom title-bar (no operating system border)."
+msgstr "Utilise une barre de titre personnalis?e (sans bordure du syst?me d?exploitation)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "How the player synchronizes audio and video.\\n\\nFor more information visit:"
+msgstr "Comment le lecteur synchronise l?audio et la vid?o.\\n\\nPour plus d?informations, consultez :"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enable this only when a developer asks for it. (mpv.net option)"
+msgstr "Activez ceci uniquement si un d?veloppeur le demande. (option mpv.net)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Video output drivers to be used.\\n\\nFor more information visit:"
+msgstr "Pilotes de sortie vid?o ? utiliser.\\n\\nPour plus d?informations, consultez :"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
+msgstr "Fonction de filtre du moteur GPU ? utiliser lors de l?agrandissement vid?o. Il existe d?autres filtres, mais la plupart sont moins utiles. Pour la liste compl?te, passez help comme valeur, par ex. : mpv --scale=help"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "As scale, but for interpolating chroma information. If the image is not subsampled, this option is ignored entirely."
+msgstr "Comme scale, mais pour interpoler les informations de chrominance. Si l?image n?est pas sous-?chantillonn?e, cette option est enti?rement ignor?e."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Like scale, but apply these filters on downscaling instead. \\nIf no option is selected, it will keep the same with the upscaler."
+msgstr "Comme scale, mais applique ces filtres lors de la r?duction d??chelle. \\nSi aucune option n?est s?lectionn?e, elle restera identique ? l?upscaler."

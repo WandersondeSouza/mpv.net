@@ -113,6 +113,7 @@
             HorizontalAlignment="Center"
             Margin="20,5,10,10"
             Grid.Row="2"
+            MouseLeftButtonDown="MenuTextBlock_MouseLeftButtonDown"
             >
 
             <TextBlock.ContextMenu>
@@ -147,16 +148,6 @@
                 </ContextMenu>
             </TextBlock.ContextMenu>
             
-            <b:Interaction.Triggers>
-                <b:EventTrigger EventName="MouseLeftButtonDown">
-                    <b:ChangePropertyAction TargetObject="{Binding ContextMenu, ElementName=MenuTextBlock}"
-                                            PropertyName="PlacementTarget"
-                                            Value="{Binding ElementName=MenuTextBlock, Mode=OneWay}"/>
-                    <b:ChangePropertyAction TargetObject="{Binding ContextMenu, ElementName=MenuTextBlock}"
-                                            PropertyName="IsOpen"
-                                            Value="True"/>
-                </b:EventTrigger>
-            </b:Interaction.Triggers>
         </TextBlock>
         
     </Grid>

@@ -32,10 +32,12 @@ public class Conf
                     else
                         opt.Name = it.Value;
 
-                    if (opt.Name == optionSetting.Default)
-                        opt.Text = opt.Name + " " + _("(Default)");
+                    opt.Text = EditorConfLocalization.TranslateOptionValue(opt.Name);
 
-                    opt.Help = _(opt.Help ?? "");
+                    if (opt.Name == optionSetting.Default)
+                        opt.Text += " " + _("(Default)");
+
+                    opt.Help = EditorConfLocalization.TranslateText(opt.Help ?? "");
 
                     opt.OptionSetting = optionSetting;
                     optionSetting.Options.Add(opt);
@@ -50,9 +52,9 @@ public class Conf
 
             baseSetting.Name = section.GetValue("name");
             baseSetting.File = section.GetValue("file");
-            baseSetting.Directory = _(section.GetValue("directory") ?? "");
+            baseSetting.Directory = EditorConfLocalization.TranslateDirectory(section.GetValue("directory") ?? "");
 
-            if (section.HasName("help")) baseSetting.Help = _(section.GetValue("help") ?? "");
+            if (section.HasName("help")) baseSetting.Help = EditorConfLocalization.TranslateText(section.GetValue("help") ?? "");
             if (section.HasName("url")) baseSetting.URL = section.GetValue("url");
             if (section.HasName("width")) baseSetting.Width = Convert.ToInt32(section.GetValue("width"));
             if (section.HasName("option-name-width")) baseSetting.OptionNameWidth = Convert.ToInt32(section.GetValue("option-name-width"));
@@ -66,6 +68,16 @@ public class Conf
 
         return settingsList;
     }
+}
+
+static class EditorConfLocalization
+{
+    public static string TranslateDirectory(string path) =>
+        string.Join("/", path.Split('/', StringSplitOptions.RemoveEmptyEntries).Select(TranslateText));
+
+    public static string TranslateOptionValue(string? value) => TranslateText(value ?? "");
+
+    public static string TranslateText(string text) => _(text);
 }
 
 public class ConfItem
