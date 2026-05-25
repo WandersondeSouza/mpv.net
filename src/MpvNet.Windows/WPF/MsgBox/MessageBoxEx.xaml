@@ -3,6 +3,7 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:ngettext="clr-namespace:NGettext.Wpf;assembly=NGettext.Wpf"
 		mc:Ignorable="d"
         
 		Title="{Binding Path=MessageTitle}" 
@@ -123,7 +124,7 @@
 				Background="{Binding Path=ButtonBackground}" >
 			<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
 				<Button x:Name="btnOK"
-                        Content=" OK "
+                        Content="{ngettext:Gettext OK}"
                         MinWidth="75"
                         Margin="5,0,5,0" 
 						Width="{Binding Path=ButtonWidth}"
@@ -133,7 +134,7 @@
 						IsDefault="{Binding Path=IsDefaultOK}" 
 						Click="BtnOK_Click" />
 				<Button x:Name="btnYes"
-                        Content=" Yes "
+                        Content="{ngettext:Gettext Yes}"
 						Width="{Binding Path=ButtonWidth}" 
                         MinWidth="75"
                         MinHeight="25"
@@ -142,7 +143,7 @@
 						IsDefault="{Binding Path=IsDefaultYes}" 
 						Click="BtnYes_Click"/>
 				<Button x:Name="btnNo"
-                        Content=" No "
+                        Content="{ngettext:Gettext No}"
 						Width="{Binding Path=ButtonWidth}" 
                         MinWidth="75"
                         MinHeight="25"
@@ -151,7 +152,7 @@
 						IsDefault="{Binding Path=IsDefaultNo}" 
 						Click="BtnNo_Click"/>
 				<Button x:Name="btnAbort"
-                        Content=" Abort "
+                        Content="{ngettext:Gettext Abort}"
 						Width="{Binding Path=ButtonWidth}" 
                         MinWidth="75"
                         MinHeight="25"
@@ -160,7 +161,7 @@
 						IsDefault="{Binding Path=IsDefaultAbort}" 
 						Click="BtnAbort_Click"/>
 				<Button x:Name="btnRetry"
-                        Content=" Retry "
+                        Content="{ngettext:Gettext Retry}"
 						Width="{Binding Path=ButtonWidth}" 
                         MinWidth="75"
                         MinHeight="25"
@@ -169,7 +170,7 @@
 						IsDefault="{Binding Path=IsDefaultRetry}" 
 						Click="BtnRetry_Click"/>
 				<Button x:Name="btnIgnore"
-                        Content=" Ignore "
+                        Content="{ngettext:Gettext Ignore}"
 						Width="{Binding Path=ButtonWidth}" 
                         MinWidth="75"
                         MinHeight="25"
@@ -178,7 +179,7 @@
 						IsDefault="{Binding Path=IsDefaultIgnore}" 
 						Click="BtnIgnore_Click"/>
 				<Button x:Name="btnCancel"
-                        Content=" Cancel "
+                        Content="{ngettext:Gettext Cancel}"
 						Width="{Binding Path=ButtonWidth}" 
                         MinWidth="75"
                         MinHeight="25"
@@ -189,7 +190,7 @@
 			</StackPanel>
 		</Border>
 
-		<Expander Grid.Row="4" Header=" Details" 
+		<Expander Grid.Row="4" Header="{ngettext:Gettext Details}" 
 				  IsExpanded="{Binding Path=Expanded}"
                   Margin="3,8,0,0"
 				  Visibility="{Binding Path=ShowDetailsBtn}"

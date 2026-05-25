@@ -3,11 +3,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="clr-namespace:MpvNet.Windows.WPF.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ngettext="clr-namespace:NGettext.Wpf;assembly=NGettext.Wpf"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     mc:Ignorable="d"
     
-    Title="Input Editor"
+    Title="{ngettext:Gettext Input Editor}"
     Height="500"
     Width="800"
     FontSize="13"
@@ -35,7 +36,7 @@
         </Grid.RowDefinitions>
 
         <controls:SearchControl
-            HintText="Find a binding (Ctrl+F)"
+            HintText="{ngettext:Gettext Find a binding (Ctrl+F)}"
             x:Name="SearchControl"
             Width="300"
             Margin="0,20,0,20"
@@ -92,13 +93,13 @@
             
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Header="Name"
+                    Header="{ngettext:Gettext Name}"
                     Binding="{Binding Comment}"
                     MaxWidth="322"
                     />
                 
                 <DataGridTextColumn
-                    Header="Input"
+                    Header="{ngettext:Gettext Input}"
                     Binding="{Binding Input}"
                     >
                     
@@ -136,7 +137,7 @@
                 </DataGridTextColumn>
 
                 <DataGridTextColumn
-                    Header="Command"
+                    Header="{ngettext:Gettext Command}"
                     x:Name="CommandColumn"
                     Binding="{Binding Command}"
                     MaxWidth="322"

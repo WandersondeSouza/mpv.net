@@ -1,5 +1,6 @@
 ﻿
 using System.Windows;
+using MpvNet;
 
 namespace MpvNet.Windows.WPF;
 
@@ -12,6 +13,8 @@ public class WpfApplication
         Application.Current!.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
         Application.Current!.DispatcherUnhandledException += (sender, e) => Terminal.WriteError(e.Exception);
+
+        Translator.Current?.Gettext("");
 
         Application.Current?.Resources.MergedDictionaries.Add(
             Application.LoadComponent(new Uri("mpvnet;component/WPF/Resources.xaml",
