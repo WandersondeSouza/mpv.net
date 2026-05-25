@@ -11,17 +11,17 @@ $utf8 = New-Object System.Text.UTF8Encoding -ArgumentList $false
 # Create .pot file
 $xgettext = Get-Command xgettext -ErrorAction SilentlyContinue
 if (-not $xgettext) {
-    Write-Warning 'xgettext not found. Skipping full C#/XAML pot extraction.'
+    Write-Warning 'xgettext not found. Using Python fallback for source.pot extraction.'
     $python = Get-Command python -ErrorAction SilentlyContinue
-    if (-not $python) { throw 'xgettext not found and Python is not available to update editor_conf entries.' }
+    if (-not $python) { throw 'xgettext not found and Python is not available to generate source.pot.' }
 
-    Write-Host 'Using Python fallback to update editor_conf entries only.'
-    & python "$PSScriptRoot/update-editor-conf-po.py"
-    return
+    & python "$PSScriptRoot/update-source-pot-fallback.py"
+    if ($LastExitCode) { throw $LastExitCode }
+    Write-Host 'Python fallback source.pot extraction completed.'
+} else {
+    xgettext -k_ -k_n:1,2 -k_p:1c,2 -k_pn:1c,2,3 --force-po --from-code=UTF-8 '--language=c#' -o $PSScriptRoot/source.pot --files-from=$PSScriptRoot/cs-files.txt --keyword=_
+    if ($LastExitCode) { throw $LastExitCode }
 }
-
-xgettext -k_ -k_n:1,2 -k_p:1c,2 -k_pn:1c,2,3 --force-po --from-code=UTF-8 '--language=c#' -o $PSScriptRoot/source.pot --files-from=$PSScriptRoot/cs-files.txt --keyword=_
-if ($LastExitCode) { throw $LastExitCode }
 
 function Escape-PotString {
     param([string]$value)
@@ -207,8 +207,27 @@ $BackupTargetFolder = $env:TEMP + '/mpv.net po backup ' + (Get-Date -Format 'yyy
 Copy-Item $PSScriptRoot/po $BackupTargetFolder -Force -Recurse
 'PO file backup: ' + (Resolve-Path $BackupTargetFolder)
 
-# Update .po files
-(Get-ChildItem $PSScriptRoot/PO -Filter '*.po').FullName |
-    ForEach-Object { msgmerge --sort-output --backup=none --update $_ $PSScriptRoot/source.pot }
+$msgmerge = Get-Command msgmerge -ErrorAction SilentlyContinue
+if (-not $msgmerge) {
+    Write-Warning 'msgmerge not found. Using Python fallback to merge PO files with source.pot.'
+    $python = Get-Command python -ErrorAction SilentlyContinue
+    if (-not $python) { throw 'msgmerge not found and Python is not available to merge PO files.' }
 
-if ($LastExitCode) { throw $LastExitCode }
+    & python "$PSScriptRoot/merge-po-with-pot-fallback.py" --po-directory (Join-Path $PSScriptRoot 'po') --pot-path (Join-Path $PSScriptRoot 'source.pot')
+    if ($LastExitCode) { throw $LastExitCode }
+} else {
+    (Get-ChildItem $PSScriptRoot/PO -Filter '*.po').FullName |
+        ForEach-Object { msgmerge --sort-output --backup=none --update $_ $PSScriptRoot/source.pot }
+
+    if ($LastExitCode) { throw $LastExitCode }
+}
+
+$cleanScript = Join-Path $PSScriptRoot 'clean-po-files.ps1'
+if (Test-Path $cleanScript) {
+    if ($msgmerge) {
+        & $cleanScript -PoDirectory (Join-Path $PSScriptRoot 'po') -PotPath (Join-Path $PSScriptRoot 'source.pot')
+        if ($LastExitCode) { throw $LastExitCode }
+    } else {
+        Write-Host 'Skipping clean-po-files.ps1 because gettext msgmerge is unavailable. PO files were merged by Python fallback.'
+    }
+}

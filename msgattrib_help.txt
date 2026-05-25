@@ -1,0 +1,83 @@
+Uso: artifacts\build-assets\locale\gettext-tools\tools\bin\msgattrib.exe [OPÇÃO] [ARQUIVO-ENTRADA]
+
+Filtra as mensagens de um catálogo de tradução de acordo com seus atributos
+e manipula-os.
+
+Argumentos obrigatórios para opções longas também o são para opções curtas.
+
+Local do arquivo de entrada:
+  ARQUIVO-ENTRADA             arquivo PO de entrada
+  -D, --directory=DIRETÓRIO   adiciona DIRETÓRIO à lista de arquivos de
+                              entrada para pesquisar
+Se nenhum arquivo de entrada for passado ou se for -, a entrada padrão é lida.
+
+Local do arquivo de saída:
+  -o, --output-file=ARQUIVO   escreve a saída para o arquivo especificado
+Os resultados são escritos para a saída padrão se nenhum arquivo de saída for
+especificado ou se ele for -.
+
+Seleção de mensagem:
+      --translated            mantém as traduzidas, remove as mensagens não
+                              traduzidas
+      --untranslated          mantém as não traduzidas, remove as mensagens
+                              traduzidas
+      --no-fuzzy              remove as mensagens marcadas com "fuzzy"
+      --only-fuzzy            mantém as mensagens marcadas com "fuzzy"
+      --no-obsolete           remove mensagens obsoletas (#~)
+      --only-obsolete         mantém mensagens obsoletas (#~)
+
+Manipulação de atributo:
+      --set-fuzzy             define "fuzzy" em todas as mensagens
+      --clear-fuzzy           apaga "fuzzy" de todas as mensagens
+      --set-obsolete          define como obsoletas todas as mensagens
+      --clear-obsolete        define como não obsoletas todas as mensagens
+      --previous              ao definir "fuzzy", mantém msgids anteriores
+                              de mensagens traduzidas.
+      --clear-previous        remove a "previous msgid" de todas as
+                              mensagens
+      --empty                 ao remover os "fuzzy", também esvazia a msgstr
+      --only-file=ARQUIVO.po  manipula apenas entradas listadas no ARQUIVO.po
+      --ignore-file=ARQUIVO.po
+                              manipula apenas entradas não listadas no
+                              ARQUIVO.po
+      --fuzzy                 sinônimo de --only-fuzzy --clear-fuzzy
+      --obsolete              sinônimo de --only-obsolete --clear-obsolete
+
+Sintaxe do arquivo de entrada:
+  -P, --properties-input      arquivo de entrada está em sintaxe de
+                              .properties Java
+      --stringtable-input     arquivo de entrada está em sintaxe de
+                              .strings de NeXTstep/GNUstep
+
+Detalhes de entrada:
+      --color                 usa sempre cores e outros atributos de atributos
+      --color=QUANDO          usa cores e outros atributos de texto se QUANDO.
+                              QUANDO pode ser "always", "never", "auto" ou
+                              "html".
+      --style=ARQUIVO-ESTILO  especifica arquivo de regras de estilo CSS para
+                              --color
+  -e, --no-escape             não usa escapes de C na saída (padrão)
+  -E, --escape                usa escapes de C na saída, nenhum caractere
+                              estendido
+      --force-po              escreve um arquivo PO mesmo se vazio
+  -i, --indent                escreve o arquivo .po usando estilo com recuo
+      --no-location           não escreve linhas "#: nome-de-arquivo:linha"
+  -n, --add-location          gera linhas "#: nome-de-arquivo:linha' (padrão)
+      --strict                escreve um arquivo .po em conformidade com
+                              Uniforum estrito
+  -p, --properties-output     escreve em arquivo .properties de Java
+      --stringtable-output    escreve um arquivo .strings de NeXTstep/GNUstep
+  -w, --width=NÚMERO          define a largura da página de saída
+      --no-wrap               não quebra linhas de mensagens longas, maiores
+                              do que a largura da página de saída, em várias
+                              linhas
+  -s, --sort-output           gera uma saída ordenada
+  -F, --sort-by-file          ordena a saída por local de arquivos
+
+Saída informativa:
+  -h, --help                  exibe essa ajuda e sai
+  -V, --version               exibe a informação da versão e sai
+
+Relate erros no rastreador em <https://savannah.gnu.org/projects/gettext>
+ou por e-mail para <bug-gettext@gnu.org>.
+Relate erros de tradução para <https://translationproject.org/team/pt_BR.html>
