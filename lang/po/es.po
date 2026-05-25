@@ -1064,11 +1064,11 @@ msgstr "libplacebo"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Debanding"
-msgstr "Reducci?n de bandas"
+msgstr "Reducción de bandas"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Sigmoidization"
-msgstr "Sigmoidizaci?n"
+msgstr "Sigmoidización"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Color Adjustment"
@@ -1076,7 +1076,7 @@ msgstr "Ajuste de color"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "HDR Peak Detection"
-msgstr "Detecci?n de pico HDR"
+msgstr "Detección de pico HDR"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Color Mapping"
@@ -1096,7 +1096,7 @@ msgstr "Entrada"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Cache"
-msgstr "Cach?"
+msgstr "Caché"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Demuxer"
@@ -1104,7 +1104,7 @@ msgstr "Demuxer"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "yes"
-msgstr "s?"
+msgstr "sí"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "no"
@@ -1112,7 +1112,7 @@ msgstr "no"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
-msgstr "Define si se permite m?s de un proceso de mpv.net.\\nMulti tambi?n puede activarse pulsando la tecla MAY?S. (opci?n de mpv.net)"
+msgstr "Define si se permite más de un proceso de mpv.net.\\nMulti también puede activarse pulsando la tecla MAYÚS. (opción de mpv.net)"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Create a new process everytime the shell starts mpv.net"
@@ -1120,19 +1120,19 @@ msgstr "Crear un proceso nuevo cada vez que el shell inicie mpv.net"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Force a single process everytime the shell starts mpv.net"
-msgstr "Forzar un ?nico proceso cada vez que el shell inicie mpv.net"
+msgstr "Forzar un único proceso cada vez que el shell inicie mpv.net"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Force a single process and add files to playlist"
-msgstr "Forzar un ?nico proceso y a?adir archivos a la lista de reproducci?n"
+msgstr "Forzar un único proceso y añadir archivos a la lista de reproducción"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
-msgstr "<int> Cantidad de archivos recientes que se recordar?n. Predeterminado: 15 (opci?n de mpv.net)"
+msgstr "<int> Cantidad de archivos recientes que se recordarán. Predeterminado: 15 (opción de mpv.net)"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
-msgstr "Usa la biblioteca de informaci?n de medios en lugar de mpv para obtener informaci?n del medio. (opci?n de mpv.net)"
+msgstr "Usa la biblioteca de información de medios en lugar de mpv para obtener información del medio. (opción de mpv.net)"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
@@ -1140,15 +1140,15 @@ msgstr "Extensiones de imagen que se intentan coincidir con --cover-art-auto, --
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
-msgstr "Sintaxis de men? usada para definir el men? contextual en input.conf.\\nmpv.net usa '#menu:' de forma predeterminada; uosc usa '#!' de forma predeterminada."
+msgstr "Sintaxis de menú usada para definir el menú contextual en input.conf.\\nmpv.net usa '#menu:' de forma predeterminada; uosc usa '#!' de forma predeterminada."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Controls which type of graphics APIs will be accepted."
-msgstr "Controla qu? tipos de API gr?ficas se aceptar?n."
+msgstr "Controla qué tipos de API gráficas se aceptarán."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
-msgstr "Define el t?tulo de la ventana. Se usa para la ventana de v?deo y, si es posible, tambi?n define el t?tulo del flujo de audio. Las propiedades se expanden. Advertencia: seg?n las propiedades usadas, puede causar un uso significativo de CPU."
+msgstr "Define el título de la ventana. Se usa para la ventana de vídeo y, si es posible, también define el título del flujo de audio. Las propiedades se expanden. Advertencia: según las propiedades usadas, puede causar un uso significativo de CPU."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Start the player in fullscreen mode."
@@ -1156,32 +1156,56 @@ msgstr "Inicia el reproductor en modo de pantalla completa."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Show window with decoration (titlebar, border)."
-msgstr "Muestra la ventana con decoraci?n (barra de t?tulo, borde)."
+msgstr "Muestra la ventana con decoración (barra de título, borde)."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Use custom title-bar (no operating system border)."
-msgstr "Usa una barra de t?tulo personalizada (sin borde del sistema operativo)."
+msgstr "Usa una barra de título personalizada (sin borde del sistema operativo)."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "How the player synchronizes audio and video.\\n\\nFor more information visit:"
-msgstr "C?mo el reproductor sincroniza audio y v?deo.\\n\\nPara m?s informaci?n visite:"
+msgstr "Cómo el reproductor sincroniza audio y vídeo.\\n\\nPara más información visite:"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Enable this only when a developer asks for it. (mpv.net option)"
-msgstr "Active esto solo cuando un desarrollador lo solicite. (opci?n de mpv.net)"
+msgstr "Active esto solo cuando un desarrollador lo solicite. (opción de mpv.net)"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Video output drivers to be used.\\n\\nFor more information visit:"
-msgstr "Controladores de salida de v?deo que se usar?n.\\n\\nPara m?s informaci?n visite:"
+msgstr "Controladores de salida de vídeo que se usarán.\\n\\nPara más información visite:"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
-msgstr "Funci?n de filtro del renderizador GPU al escalar v?deo hacia arriba. Hay m?s filtros, pero la mayor?a no son tan ?tiles. Para una lista completa, use help como valor, por ejemplo: mpv --scale=help"
+msgstr "Función de filtro del renderizador GPU al escalar vídeo hacia arriba. Hay más filtros, pero la mayoría no son tan útiles. Para una lista completa, use help como valor, por ejemplo: mpv --scale=help"
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "As scale, but for interpolating chroma information. If the image is not subsampled, this option is ignored entirely."
-msgstr "Como scale, pero para interpolar informaci?n de croma. Si la imagen no est? submuestreada, esta opci?n se ignora por completo."
+msgstr "Como scale, pero para interpolar información de croma. Si la imagen no está submuestreada, esta opción se ignora por completo."
 
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Like scale, but apply these filters on downscaling instead. \\nIf no option is selected, it will keep the same with the upscaler."
-msgstr "Como scale, pero aplica estos filtros al reducir la escala. \\nSi no se selecciona ninguna opci?n, se mantendr? igual que el upscaler."
+msgstr "Como scale, pero aplica estos filtros al reducir la escala. \\nSi no se selecciona ninguna opción, se mantendrá igual que el upscaler."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Set dither target depth to N. Note that the depth of the connected video display device cannot be detected. Often, LCD panels will do dithering on their own, which conflicts with this option and leads to ugly output."
+msgstr "Define la profundidad de destino del dithering como N. Tenga en cuenta que no se puede detectar la profundidad del dispositivo de pantalla de vídeo conectado. A menudo, los paneles LCD aplican dithering por su cuenta, lo que entra en conflicto con esta opción y produce una salida deficiente."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Disable any dithering done by mpv."
+msgstr "Desactiva cualquier dithering realizado por mpv."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
+msgstr "Selección automática. Si no se puede detectar la profundidad de bits de salida, se asumen 8 bits por componente."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Dither to 8 bit output."
+msgstr "Aplica dithering a salida de 8 bits."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Dither to 10 bit output."
+msgstr "Aplica dithering a salida de 10 bits."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
+msgstr "Activa el algoritmo de debanding. Esto reduce en gran medida la cantidad de bandas visibles, bloques y otros artefactos de cuantización, a costa de desenfocar muy ligeramente algunos de los detalles más finos. En la práctica, casi siempre es una mejora; el único motivo para desactivarlo sería el rendimiento."
