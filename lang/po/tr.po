@@ -1226,3 +1226,815 @@ msgstr "Dither to 10 bit output."
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
 msgstr "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
+
+# Config editor help text completed by localization parity sweep.
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Choose the best mode automatically."
+msgstr "En iyi modu otomatik olarak seçin."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "Genel amaçlı, özelleştirilebilir, GPU hızlandırmalı video çıkış sürücüsü. Genişletilmiş ölçeklendirme yöntemlerini, renk taklidini, renk yönetimini, özel gölgelendiricileri, HDR ve daha fazlasını destekler."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
+msgstr "libplacebo tabanlı deneysel video oluşturucu. Bu, --vo=gpu ile hemen hemen aynı özellik grubunu destekler."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Video output driver that uses the Direct3D interface."
+msgstr "Direct3D arayüzünü kullanan video çıkış sürücüsü."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
+msgstr "Mümkünse kullanılması gereken donanım video kod çözme API'sini belirtin. Donanım kod çözme işleminin gerçekten yapılıp yapılmayacağı video codec bileşenine bağlıdır. Donanım kod çözme mümkün değilse, mpv yazılım kod çözme işlemine başvuracaktır. Güvenilirliği korumak için donanım kod çözme default tarafından devre dışı bırakılır. Ancak modern donanım, donanım video kod çözmeyi desteklemeli, CPU kullanımını ve güç tüketimini azaltmalıdır.\\n\\nDaha fazla bilgi için şu adresi ziyaret edin:"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "always use software decoding"
+msgstr "her zaman yazılım kod çözmeyi kullanın"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "enable best hw decoder"
+msgstr "en iyi hw kod çözücüyü etkinleştir"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "exactly the same as auto"
+msgstr "auto ile tamamen aynı"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "enable best hw decoder with copy-back"
+msgstr "geri kopyalamayla en iyi hw kod çözücüyü etkinleştir"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "enable any whitelisted hw decoder"
+msgstr "beyaz listeye alınmış herhangi bir hw kod çözücüyü etkinleştir"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
+msgstr "gpu-context=d3d11, gpu-context=angle veya gpu-context=dxinterop ile vo=gpu gerektirir"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "copies video back to system RAM"
+msgstr "videoyu sistem RAM'ine geri kopyalar"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
+msgstr "gpu-context=d3d11 veya gpu-context=angle ile vo=gpu gerektirir"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "requires vo=gpu (Any platform CUDA is available)"
+msgstr "vo=gpu gerektirir (Herhangi bir CUDA platformu mevcuttur)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "Mevcut herhangi bir API'yi kullanın. Bu değer için kullanılan default GPU API'sinin değişebileceğini ve bu API'ye güvenilmemesi gerektiğini unutmayın. Belirli bir GPU API'sinin kullanılması gerekiyorsa açıkça belirtilmelidir"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Allow only gpu-context=d3d11"
+msgstr "Yalnızca gpu-context=d3d11'ya izin ver"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr "Yalnızca OpenGL'ya izin ver (OpenGL 2.1+ veya GLES 2.0+ gerektirir)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Allow only Vulkan"
+msgstr "Yalnızca Vulkan'ya izin ver"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "auto-select"
+msgstr "auto-select"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Win32, with native Direct3D 11 rendering."
+msgstr "Win32, yerel Direct3D 11 işlemeyle."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "Direct3D11, OpenGL ES çeviri katmanı ANGLE aracılığıyla. Bu, win arka ucunun yaptığı hemen hemen her şeyi destekler (eğer ANGLE yapısı yeterince yeniyse)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Win32/WGL"
+msgstr "Win32/WGL"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr "(deneysel) Win32, işleme için WGL ve sunum için Direct3D 9Ex kullanılıyor. Nvidia ve AMD üzerinde çalışır. En son sürücülere sahip daha yeni Intel yongaları da çalışabilir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "VK_KHR_win32_surface"
+msgstr "VK_KHR_win32_surface"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
+msgstr "Evrişim tabanlı filtreler kullanırken, ölçeği küçültürken filtre boyutunu genişletin. Kaliteyi artırır ancak ölçek küçültme sırasında performansı azaltır.\\n\\nBu, anamorfik video için biraz idealin altında bir performans sergileyecektir (ancak yine de onsuzdan daha iyidir), çünkü boyutu, eksenler arasındaki ölçek faktörlerinin yalnızca daha hafif olanıyla eşleşecek şekilde genişletecektir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
+msgstr "Yükseltme sırasında çınlama artefaktlarının vurgulanmasını önlemek için sigmoidal renk dönüşümü kullanın. Bu aynı zamanda linear ölçeklendirmesini de ima eder."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
+msgstr "mpv penceresinin video kapsamında olmayan kısımlarını çizmek için kullanılan renk. Renklerin nasıl tanımlandığını öğrenmek için --sub-color seçeneğine bakın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
+msgstr "Ekstra raw seçeneğini libplacebo işleme arka ucuna iletir (--vo=gpu-next tarafından kullanılır). Normal seçenekler sistemi kullanılarak belirlenen diğer seçeneklerin etkilerini geçersiz kılabilir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Override all libplacebo options by the values from the given preset."
+msgstr "Verilen ön ayardaki değerlere göre all libplacebo seçeneklerini geçersiz kılın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Default settings, tuned to provide a balance of performance and quality."
+msgstr "Performans ve kalite arasında bir denge sağlayacak şekilde ayarlanmış varsayılan ayarlar."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Disable all advanced rendering, equivalent to passing no to every option."
+msgstr "all gelişmiş işlemeyi devre dışı bırakın; bu, no'yu her seçeneğe geçirmeye eşdeğerdir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Reset all everything to high quality presets (where available)."
+msgstr "all'nun her şeyini yüksek kaliteli ön ayarlara sıfırlayın (varsa)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Sets the filter used for upscaling."
+msgstr "Yükseltme için kullanılan filtreyi ayarlar."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "No filter, only use basic GPU texture sampling."
+msgstr "Filtre yok, yalnızca temel GPU doku örneklemesini kullanın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Nearest-neighbour (box) sampling (very fast)."
+msgstr "En yakın komşu (box) örneklemesi (çok fast)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Bilinear sampling (very fast)."
+msgstr "Bilinear örnekleme (çok fast)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Aspect-ratio preserving nearest neighbour sampling (very fast)."
+msgstr "nearest komşu örneklemesini koruyan en boy oranı (çok fast)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Bicubic interpolation (fast)."
+msgstr "Bicubic enterpolasyonu (fast)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Gaussian smoothing (fast)."
+msgstr "Gaussian yumuşatma (fast)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Catmull-Rom cubic spline."
+msgstr "Catmull-Rom kübik spline."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Lanczos reconstruction."
+msgstr "Lanczos yeniden inşası."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "EWA Lanczos (\"Jinc\") reconstruction (slow)."
+msgstr "EWA Lanczos (\"Jinc\") yeniden yapılanma (yavaş)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Sharpened version of ewa_lanczos (slow)."
+msgstr "ewa_lanczos'nun (yavaş) keskinleştirilmiş versiyonu."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
+msgstr "ewa_lanczos'nun zil sesi önleyici (çok yavaş) çok keskin versiyonu."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
+msgstr "Ölçek küçültme için kullanılan filtreyi ayarlar. En alakalı seçenekler, kabaca en hızlıdan en yavaşa doğru sıralanmıştır."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Use the same filter as specified for upscaler"
+msgstr "Yükseltici için belirtilen filtrenin aynısını kullanın"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Box averaging (very fast)"
+msgstr "Kutu ortalaması (çok fast)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Hermite-weighted averaging (fast)"
+msgstr "Hermite ağırlıklı ortalama (fast)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Bilinear (triangle) averaging (fast)"
+msgstr "Bilinear (üçgen) ortalama (fast)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Bicubic interpolation (fast)"
+msgstr "Bicubic enterpolasyonu (fast)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Gaussian smoothing (fast)"
+msgstr "Gaussian yumuşatma (fast)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Catmull-Rom cubic spline"
+msgstr "Catmull-Rom kübik spline"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Mitchell-Netravalia cubic spline"
+msgstr "Mitchell-Netravalia kübik spline"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Lanczos reconstruction"
+msgstr "Lanczos yeniden inşası"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
+msgstr "Düzlemleri ölçeklendirmek için kullanılan filtreyi geçersiz kılın; kroma/alfa. none olarak ayarlanmışsa sırasıyla yükselticiyle aynı ayarı kullanın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
+msgstr "Düzlemleri küçültmek için kullanılan filtreyi geçersiz kılın; kroma/alfa. none olarak ayarlanmışsa sırasıyla ölçek küçültücüyle aynı ayarı kullanın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Sets the filter used for frame mixing (temporal interpolation). Roughly ordered from fastest to slowest."
+msgstr "Çerçeve karıştırma (geçici enterpolasyon) için kullanılan filtreyi ayarlar. Kabaca en hızlıdan en yavaşa doğru sıralanmıştır."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Disable frame mixing, show nearest frame to target PTS"
+msgstr "Çerçeve karıştırmayı devre dışı bırakın, nearest çerçevesini hedef PTS'ye gösterin"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Oversampling, only mix \"edge\" frames while preserving FPS"
+msgstr "Aşırı örnekleme, FPS'yi korurken yalnızca \"kenar\" kareleri karıştırın"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Hermite-weighted frame mixing"
+msgstr "Hermite ağırlıklı çerçeve karıştırma"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Linear frame mixing"
+msgstr "Doğrusal çerçeve karıştırma"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Cubic B-spline frame mixing"
+msgstr "Cubic B-spline çerçeve karıştırma"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
+msgstr "<0.0..1.0> all filtreleri için kullanılacak çınlama önleme gücü. 0.0 değeri zil sesi önlemeyi devre dışı bırakır ve 1.0 değeri tam güçte zil sesi önlemeyi etkinleştirir. Varsayılan olarak 0.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enables debanding using libplacebo."
+msgstr "libplacebo kullanarak banttan çıkarma işlemini etkinleştirir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Overrides the value of all options in this section by their default values from the given preset."
+msgstr "Bu bölümdeki all seçeneklerinin değerini, verilen ön ayardaki default değerlerine göre geçersiz kılar."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
+msgstr "<0..16> Örnek başına gerçekleştirilecek banttan çıkarma adımlarının sayısı. Her adım biraz daha fazla şeritlenmeyi azaltır ancak hesaplanması zaman alır. Her adımın gücünün çok hızlı bir şekilde düştüğünü, dolayısıyla yüksek sayıların (>4) pratikte işe yaramadığını unutmayın. Varsayılan olarak 1 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
+msgstr "<0.0..1000.0> Bant çıkarma filtresinin kesme eşiği. Daha yüksek sayılar bant çıkarma gücünü önemli ölçüde artırır ancak görüntü ayrıntılarını giderek azaltır. Varsayılan olarak 3.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
+msgstr "<0.0..1000.0> Bant giderme filtresinin başlangıç yarıçapı. Yarıçap her yinelemede doğrusal olarak artar. Daha yüksek bir yarıçap daha fazla eğim bulacaktır, ancak daha düşük bir yarıçap daha agresif bir şekilde yumuşatacaktır. Varsayılan olarak 16.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps cover up remaining quantization artifacts. Higher numbers add more noise. Defaults to 4.0, which is very mild."
+msgstr "<0.0..1000.0> Görüntüye biraz ekstra gürültü ekleyin. Bu, kalan nicemleme yapıtlarının örtbas edilmesine önemli ölçüde yardımcı olur. Daha yüksek sayılar daha fazla gürültü ekler. Varsayılan olarak çok hafif olan 4.0'ya ayarlanır."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enables sigmoidization."
+msgstr "Sigmoidizasyonu etkinleştirir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
+msgstr "<0.0..1.0> Sigmoid eğrinin merkezi (eğilim). Varsayılan olarak 0.75 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
+msgstr "<1.0..20.0> Sigmoid eğrinin eğimi (dikliği). Varsayılan olarak 6.5 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enables color adjustment."
+msgstr "Renk ayarını etkinleştirir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
+msgstr "<-1.0..1.0> Parlaklık artışı. Kaynak parlaklık sinyaline sabit bir önyargı ekler. 0.0 = nötr, 1.0 = düz beyaz, -1.0 = düz siyah. Varsayılan olarak 0.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> Kontrast kazancı. Kaynak parlaklık sinyalini sabit bir faktörle çarpar. 1.0 = nötr, 0.0 = düz siyah. Varsayılan olarak 1.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
+msgstr "<0.0..100.0> Doygunluk kazancı. Kaynak renklilik sinyalini sabit bir faktörle çarpar. 1.0 = nötr, 0.0 = gri tonlamalı. Varsayılan olarak 1.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
+msgstr "<angle> Ton değiştirme. UV alt vektörünün nötr eksen etrafında dönmesine karşılık gelir. Radyan cinsinden belirtilir. Varsayılan olarak 0.0 (nötr) şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> Gama kaldırma. Genel kontrastı korurken sahneyi öznel olarak aydınlatır veya karartır. 1.0 = nötr, 0.0 = düz siyah. Varsayılan olarak 1.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
+msgstr "<-1.143..5.286> Renk sıcaklığı değişimi. 6500 K ile ilgili olarak, 0.0 değeri 6500 K'yi (no değişimi), -1.0 değeri 3000 K'yi ve 1.0 değeri 10000 K'yi verir. Varsayılan olarak 0.0 olur."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enables HDR peak detection."
+msgstr "HDR tepe noktası algılamayı etkinleştirir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
+msgstr "Bu bölümdeki all seçeneklerinin değerini, verilen ön ayardaki default değerlerine göre geçersiz kılar. high_quality ayrıca kare histogram ölçümünü de mümkün kılar."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
+msgstr "<0.0..1000.0> Algılanan değerler için yumuşatma katsayısı."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
+msgstr "<0.0..100.0> Giriş görüntüsü parlaklık histogramının hangi yüzdelik diliminin sahnenin gerçek zirvesi olarak dikkate alınacağı."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..100.0> Black cutoff strength."
+msgstr "<0.0..100.0> Siyah kesme gücü."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
+msgstr "Tepe noktası algılama sonucunun tek bir kareye kadar geciktirilmesine izin verir, bu da bazen geçişlerde 1 kare titremesi olasılığını ortaya çıkarma pahasına verimi artırabilir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
+msgstr "Bu renk eşleme ayarlarının kullanımını etkinleştirir. Bu seçeneğin devre dışı bırakılması, renk eşlemeyi devre dışı bırakmaz; yalnızca \"her şey için default seçeneklerini kullanın\" anlamına gelir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
+msgstr "Bu bölümdeki all seçeneklerinin değerini, verilen ön ayardaki default değerlerine göre geçersiz kılar. high_quality ayrıca HDR kontrast kurtarmayı da sağlar."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
+msgstr "Ton eşlemenin bir sonucu olarak gamut dışı olan renkler de dahil olmak üzere, gamut dışı renkleri işlemek için kullanılacak gam eşleme işlevi."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
+msgstr "Algısal haritalama için <0.0..1.0> (Göreceli) renklilik koruma bölgesi. Varsayılan olarak 0.30 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
+msgstr "<0.0..1.0> Algısal doygunluk eşleme bileşeninin gücü. Varsayılan olarak 0.80 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
+msgstr "<0.0..10.0> I ve C eğrisi gamma, kolorimetrik kırpma (göreceli, mutlak ve koyulaştırma) için kullanılacak. Varsayılan olarak 1.80 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
+msgstr "<0.0..1.0> Yumuşak kırpma yöntemleri (algısal, yumuşak kırpma) için kullanılacak diz noktası. Varsayılan olarak 0.70 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
+msgstr "<0.0..1.0> Yumuşak klip için doygunluk giderme gücü. Varsayılan olarak 0.35 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
+msgstr "<0..1024> Gamut eşleme 3DLUT boyutu. Bir boyutu 0 olarak ayarlamak default değerini seçer. Varsayılan olarak 48 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
+msgstr "<0..1024> Gamut eşleme 3DLUT boyutu. Bir boyutu 0 olarak ayarlamak default değerini seçer. Varsayılan olarak 32 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
+msgstr "<0..1024> Gamut eşleme 3DLUT boyutu. Bir boyutu 0 olarak ayarlamak default değerini seçer. Varsayılan olarak 256 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
+msgstr "3DLUT'ların gamut eşlemesi için daha yüksek kalitede ancak daha yavaş trikübik enterpolasyon kullanın. Özellikle daha küçük 3DLUT boyutlarında 3DLUT gam haritalama doğruluğunu önemli ölçüde artırabilir. default boyutunda fazla bir etkisi olmamalıdır."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If enabled, allows the gamut mapping function to expand the gamut, in cases where the target gamut exceeds that of the source. If disabled, the source gamut will never be enlarged, even when using a gamut mapping function capable of bidirectional mapping."
+msgstr "Etkinleştirilirse, hedef gamın kaynağınkini aştığı durumlarda gam eşleme fonksiyonunun gamı genişletmesine izin verir. Devre dışı bırakılırsa, çift yönlü eşleme yapabilen bir gam eşleme işlevi kullanıldığında bile kaynak gamı ​​hiçbir zaman genişletilmez."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
+msgstr "Siyah nokta uyarlaması da dahil olmak üzere farklı parlaklık aralıkları arasında uyum sağlamak için kullanılacak ton eşleme işlevi."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
+msgstr "<0.0..0.5> Minimum diz noktasını PQ parlaklık aralığının yüzdesi olarak yapılandırır. diz_adaptasyonu tarafından seçilen diz noktasına sert bir sınır sağlar. Varsayılan olarak 0.1 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
+msgstr "<0.5..1.0> Diz noktası maksimumunu PQ parlaklık aralığının yüzdesi olarak yapılandırır. diz_adaptasyonu tarafından seçilen diz noktasına sert bir sınır sağlar. Varsayılan olarak 0.8 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
+msgstr "<0.0..1.0> Kaynak sahne ortalama meta verilerinin bulunmadığı durumlarda kullanılacak varsayılan diz noktası. Normalde bu, diz noktasının (göreceli) kaynak sahnesi ortalama parlaklık düzeyi olarak seçilmesi lehine göz ardı edilir. Varsayılan olarak 0.4 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
+msgstr "<0.5..2.0> Diz noktası ofseti (yalnızca bt2390 için). 0.5 değerinin, 1.0'nun libplacebo default değerinden farklı olan, spesifikasyon tanımlı default davranışı olduğunu unutmayın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast coefficient at the display peak. Essentially, a value of 0.5 implies that the reference white will be about half as bright as when clipping. Defaults to 0.5."
+msgstr "<0.0..1.0> reinhard işlevi için bu, ekranın tepe noktasındaki yerel kontrast katsayısını belirtir. Temel olarak 0.5 değeri, referans beyazının kırpma sırasındakinin yarısı kadar parlak olacağı anlamına gelir. Varsayılan olarak 0.5 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
+msgstr "<0.0..1.0> linear ışığı üzerinde çalışan eski işlevler (mobius, gamma) için bu, doğrudan karşılık gelen diz noktasını ayarlar. Varsayılan olarak 0.3 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
+msgstr "<0.0..10.0> linear yöntemleri (linear, lineer ışık) için bu, görüntüye uygulanan linear pozlamayı/kazancını kontrol eder. Varsayılan olarak 1.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If enabled, and supported by the given tone mapping function, will perform inverse tone mapping to expand the dynamic range of a signal. libplacebo is not liable for any HDR-induced eye damage."
+msgstr "Etkinleştirilirse ve verilen ton eşleme işlevi tarafından desteklenirse, bir sinyalin dinamik aralığını genişletmek için ters ton eşleme gerçekleştirecektir. libplacebo, HDR kaynaklı göz hasarından sorumlu değildir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
+msgstr "Ton eşleme sırasında kullanılacak veri kaynağı. Bunu belirli bir değere ayarlamak, default meta veri tercih mantığının geçersiz kılınmasına olanak tanır."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
+msgstr "<0..4096> Ton eşleme LUT boyutu. 0 ayarı default boyutunu seçer. Varsayılan olarak 256 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
+msgstr "<1.0..32.0> HDR kontrast kurtarma düşük geçişli çekirdek boyutu. Bunun arttırılması veya azaltılması görsel görünümü önemli ölçüde etkileyecektir. Varsayılan olarak 3.5 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
+msgstr "Daha hızlı saf GLSL değişimlerine sahip işlevler için bile tam ton eşlemeli LUT kullanımını zorunlu kılın (ör. clip, linear, doygunluk). Bu bir hata ayıklama seçeneğidir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 0.0."
+msgstr "İşlenen videoya göre LUt görselleştirmesinin nereye çizileceğini kontrol eder. Varsayılan olarak 0.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 1.0."
+msgstr "İşlenen videoya göre LUt görselleştirmesinin nereye çizileceğini kontrol eder. Varsayılan olarak 1.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
+msgstr "Gamut 3DLUT görselleştirmesinin dönüşünü kontrol eder. Gamı renk alanı boyunca (I ekseni etrafında) radyan cinsinden döndürür. Varsayılan olarak 0.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Controls the rotation of the gamut 3DLUT visualization. The theta parameter vertically rotates the cross section (around the C axis), in radians. Defaults to 0.0."
+msgstr "Gamut 3DLUT görselleştirmesinin dönüşünü kontrol eder. Teta parametresi kesiti radyan cinsinden dikey olarak (C ekseni etrafında) döndürür. Varsayılan olarak 0.0 şeklindedir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
+msgstr "Ton eşleme sırasında sert kırpılmış pikselleri (yani iddia edilen kaynak parlaklık aralığını aşan pikselleri) grafiksel olarak vurgulayın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
+msgstr "Ekran görüntülerini bu dizinde saklayın. Bu yol, ekran görüntüsü şablonu tarafından oluşturulan dosya adıyla birleştirilir. Şablon dosya adı zaten mutlaksa dizin dikkate alınmaz."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Set the image file type used for saving screenshots."
+msgstr "Ekran görüntülerini kaydetmek için kullanılan görüntü dosyası türünü ayarlayın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
+msgstr "Ekran görüntülerini uygun renk alanıyla etiketleyin. all formatlarının desteklenmediğini unutmayın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If possible, write screenshots with a bit depth similar to the source video. This is interesting in particular for PNG, as this sometimes triggers writing 16 bit PNGs with huge file sizes. This will also include an unused alpha channel in the resulting files if 16 bit is used."
+msgstr "Mümkünse kaynak videoya benzer bir bit derinliğinde ekran görüntüleri yazın. Bu özellikle PNG için ilginçtir, çünkü bu bazen büyük dosya boyutlarına sahip 16 bit PNG'lerinin yazılmasını tetikler. Bu aynı zamanda 16 bitinin kullanılması durumunda ortaya çıkan dosyalara kullanılmayan bir alfa kanalını da içerecektir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Write JPEG files with the same chroma subsampling as the video. If disabled, the libjpeg default is used."
+msgstr "Videoyla aynı renk alt örneklemesine sahip JPEG dosyalarını yazın. Devre dışı bırakılırsa libjpeg default kullanılır."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
+msgstr "Ekran görüntülerini kaydetmek için kullanılan dosya adı şablonunu belirtin. Şablon, dosya uzantısı olmadan dosya adını belirtir ve ekran görüntüsü alınırken değiştirilecek olan format belirticileri içerebilir. default ile şablon mpv-shot%n'dir; bu da örneğin mpv-shot0012.png gibi dosya adlarıyla sonuçlanır.\\n\\nBelgelerin tamamını burada bulabilirsiniz:"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
+msgstr "<0-100> JPEG kalite seviyesini ayarlayın. Daha yüksek, daha iyi kalite anlamına gelir. default, 90'dur."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
+msgstr "<0-9> PNG sıkıştırma düzeyini ayarlayın. Daha yüksek, daha iyi sıkıştırma anlamına gelir. Bu, yazılı ekran görüntüsü dosyasının dosya boyutunu ve ekran görüntüsü yazmak için gereken süreyi etkileyecektir. Çok yüksek sıkıştırma, oynatmayı kesintiye uğratmaya yetecek kadar CPU zamanını işgal edebilir. default, 7'dur."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
+msgstr "<0-5> PNG sıkıştırmasından önce uygulanan filtreyi ayarlayın. 0, none'dur, 1 \"alt\"tır, 2 \"yukarıdır\", 3 \"ortalamadır\", 4 \"Paeth\"dur ve 5 \"karışıktır\". Bu, elde edilebilecek sıkıştırma düzeyini etkiler. Çoğu görüntü için 'karışık' en iyi sıkıştırma oranına ulaşır, dolayısıyla default'dur."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+msgstr "--autocreate-playlist veya --directory-filter-types. kullanılırken eşleşmeye çalışılacak video dosyası uzantıları mpv.net tarafından dosya ilişkileri oluşturmak için kullanılır ve auto-klasör yükleme özelliği tarafından kullanılır. Varsayılan: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
+msgstr "Başlangıç ses düzeyini ayarlayın. 0 sessizlik anlamına gelir, 100 no ses seviyesinin azaltılması veya yükseltilmesi anlamına gelir. Uyumluluk açısından negatif değerler aktarılabilir ancak 0 olarak değerlendirilir. mpv 0.18.1'dan bu yana, bu her zaman dahili karıştırıcıyı (\"softvol\" olarak da bilinir) kontrol eder. Varsayılan: 100"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Save volume and mute on exit and restore it on start. (mpv.net option)"
+msgstr "Çıkışta ses seviyesini kaydedin ve sessize alın ve başlangıçta geri yükleyin. (mpv.net seçeneği)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
+msgstr "Kullanılacak audio dillerinin öncelik listesini belirtin. Farklı kapsayıcı formatları farklı dil kodları kullanır. DVDs, ISO 639-1 iki harfli dil kodlarını kullanır, Matroska, MPEG-TS ve NUT, ISO 639-2 üç harfli dil kodlarını kullanır, OGM ise serbest biçimli bir tanımlayıcı kullanır. Ayrıca bkz. yardım."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load additional audio files matching the video filename. The parameter specifies how external audio files are matched."
+msgstr "Video dosya adıyla eşleşen ek audio dosyalarını yükleyin. Parametre harici audio dosyalarının nasıl eşleştirildiğini belirtir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Don't automatically load external audio files."
+msgstr "Harici audio dosyalarını otomatik olarak yüklemeyin."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load the media filename with audio file extension."
+msgstr "Medya dosya adını audio dosya uzantısıyla yükleyin."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load all audio files containing media filename."
+msgstr "Medya dosya adını içeren all audio dosyalarını yükleyin."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load all audio files in the current and audio-file-paths directories."
+msgstr "all audio dosyalarını geçerli ve audio-dosya-yolları dizinlerine yükleyin."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
+msgstr "<name> Verilen audio cihazını kullanın. Bu, audio çıkış adından oluşur, ör. alsa, ardından / ve ardından audio çıkışına özel cihaz adı gelir. Bu seçenek için default değeri, her audio çıkışını default cihazıyla tercih sırasına göre deneyen auto'dur.\\n\\nmpv.net'daki mevcut audio cihazlarını listelemek için içerik menüsünü kullanın:\\n\\nGörünüm > Daha Fazla > Ses Cihazlarını Göster.\\n\\nmpv.net'daki audio cihazını değiştirmek için bağlam menüsünü de kullanın:\\n\\nSes > Ses Cihazı"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Save and restore the audio device chosen in the context menu. Default: yes"
+msgstr "Bağlam menüsünde seçilen audio cihazını kaydedin ve geri yükleyin. Varsayılan: yes"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
+msgstr "--audio-file-auto, --autocreate-playlist veya --directory-filter-types. kullanılırken eşleşmeye çalışılacak ses dosyası uzantıları mpv.net tarafından dosya ilişkileri oluşturmak için kullanılır ve auto-klasör yükleme özelliği tarafından kullanılır. Varsayılan: aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
+msgstr "Kullanılacak altyazı dillerinin öncelik listesini belirtin. Farklı kapsayıcı formatları farklı dil kodları kullanır. DVDs, ISO 639-1 iki harfli dil kodlarını kullanır, Matroska, ISO 639-2 üç harfli dil kodlarını kullanırken OGM serbest biçimli bir tanımlayıcı kullanır. Ayrıca bkz. Sid."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load additional subtitle files matching the video filename. The parameter specifies how external subtitle files are matched. exact is enabled by default."
+msgstr "Video dosya adıyla eşleşen ek altyazı dosyalarını yükleyin. Parametre, harici altyazı dosyalarının nasıl eşleştirileceğini belirtir. exact, default tarafından etkinleştirilir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Don't automatically load external subtitle files."
+msgstr "Harici altyazı dosyalarını otomatik olarak yüklemeyin."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load the media filename with subtitle file extension."
+msgstr "Medya dosya adını altyazı dosya uzantısıyla yükleyin."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load all subs containing media filename."
+msgstr "Medya dosya adını içeren all alt dosyalarını yükleyin."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load all subs in the current and sub-file-paths directories."
+msgstr "Geçerli ve alt dosya yolu dizinlerine all alt dizinlerini yükleyin."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
+msgstr "Belirli bir yazı tipini belirtmeyen altyazılar için kullanılacak yazı tipini belirtin. default sans-serif'tir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
+msgstr "Alt yazı tipi boyutunu belirtin. Birim, 720 pencere yüksekliğinde ölçeklendirilmiş piksel cinsinden boyuttur. Gerçek piksel boyutu pencere yüksekliğiyle ölçeklenir: pencere yüksekliği 720'dan büyük veya küçükse metnin gerçek boyutu da artar veya azalır. Varsayılan: 55"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
+msgstr "Biçimlendirilmemiş metin altyazıları için kullanılan rengi belirtin.\\n\\nBir kullanım açıklaması ve örnekleri aşağıdaki adresteki kılavuzda bulunabilir:"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
+msgstr "Bkz. alt renk. Alt yazı tipi kenarlığı için kullanılan renk. Alt arka renk belirtildiğinde (veya daha doğrusu: bu seçenek tamamen şeffaf olarak ayarlanmadığında) göz ardı edilir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
+msgstr "Bkz. alt renk. Alt metin arka planı için kullanılan renk. Metne göre boyutunu değiştirmek için alt gölge ofsetini kullanabilirsiniz."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Set this to no in order to hide the window title bar."
+msgstr "Pencere başlık çubuğunu gizlemek için bunu no olarak ayarlayın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
+msgstr "<0-32> Çoklu monitör yapılandırmalarında (yani birden fazla ekrana yayılan tek bir masaüstü), bu seçenek mpv'ya videoyu hangi ekranda görüntüleyeceğini söyler."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Show progress in taskbar."
+msgstr "İlerlemeyi görev çubuğunda göster."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
+msgstr "Oynatma başladığında OSD'de bir mesaj gösterin. Dize özellikler için genişletilir, ör. osd-playing-msg='file: ${filename}' mesaj dosyasını gösterecektir: ardından bir boşluk ve o anda oynatılan dosya adı. Daha fazla bilgi için şu adresi ziyaret edin:"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
+msgstr "OSD yazı tipi boyutunu belirtin. Ayrıntılar için alt yazı tipi boyutuna bakın. Varsayılan: 55"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "OSD mesajlarının süresini ms cinsinden ayarlayın. Varsayılan: 1000"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+msgstr "OSD'nin pencere boyutuna göre ölçeklenip ölçeklenmeyeceği. Bu devre dışı bırakılırsa, ölçeklendirilmiş pikselleri kullanan osd-font-size ve diğer OSD seçenekleri her zaman gerçek piksellerde olur. Bunun etkisi, pencere boyutunu değiştirmenin OSD yazı tipi boyutunu değiştirmemesidir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<int> Initial window height in percent. Default: 60"
+msgstr "<int> Yüzde cinsinden başlangıç pencere yüksekliği. Varsayılan: 60"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<int> Minimum window height in percent. Default: 10"
+msgstr "<int> Yüzde cinsinden minimum pencere yüksekliği. Varsayılan: 10"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<int> Maximum window height in percent. Default: 80"
+msgstr "<int> Yüzde olarak maksimum pencere yüksekliği. Varsayılan: 80"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<int> Initial window height in percent for image files. Default: 80"
+msgstr "<int> Görüntü dosyaları için yüzde olarak başlangıç pencere yüksekliği. Varsayılan: 80"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<int> Initial window height in percent for audio files. Default: 70"
+msgstr "<int> audio dosyaları için yüzde olarak başlangıç pencere yüksekliği. Varsayılan: 70"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
+msgstr "<x:y> Yüzde cinsinden başlangıç pencere konumu. Varsayılan: 50:50 (ortalanmış)\\n\\nWindows 11 gerektirir, Windows 10'da görünmez kenarlıklar nedeniyle biraz hatalı çalışır.\\n\\nx=0 pencereyi sol tarafa sabitler.\\nx=100 pencereyi sağ tarafa yerleştirir.\\n\\ny=0 pencereyi üst tarafa sabitler.\\ny=100 pencereyi alt tarafa sabitler."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Setting to remember the window size. (mpv.net option)"
+msgstr "Pencere boyutunu hatırlama ayarı. (mpv.net seçeneği)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window width is remembered in the current session"
+msgstr "Geçerli oturumda pencere genişliği hatırlanıyor"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window width is always remembered"
+msgstr "Pencere genişliği her zaman hatırlanır"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window height is remembered in the current session"
+msgstr "Geçerli oturumda pencere yüksekliği hatırlanıyor"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window height is always remembered"
+msgstr "Pencere yüksekliği her zaman hatırlanır"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window size is set to video resolution"
+msgstr "Pencere boyutu video çözünürlüğüne ayarlandı"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window size is remembered in the current session"
+msgstr "Geçerli oturumda pencere boyutu hatırlanıyor"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window size is always remembered"
+msgstr "Pencere boyutu her zaman hatırlanır"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "keepaspect-window will lock the window size to the video aspect. Default: yes"
+msgstr "keepaspect-window, pencere boyutunu video boyutuna kilitler. Varsayılan: yes"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
+msgstr "<float> Pencerenin minimum en boy oranı. Daha geniş bir pencereyi ve dolayısıyla daha büyük bir OSC'yi zorlamak için kullanışlıdır. (mpv.net seçeneği)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Same as minimum-aspect-ratio but used for audio files."
+msgstr "Minimum en boy oranıyla aynıdır ancak audio dosyaları için kullanılır."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Save the window position on exit. (mpv.net option)"
+msgstr "Çıkışta pencere konumunu kaydedin. (mpv.net seçeneği)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Snap the player window to screen edges."
+msgstr "Oynatıcı penceresini ekranın kenarlarına yaslayın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Start with a maximized window."
+msgstr "Büyütülmüş bir pencereyle başlayın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If the current file ends, go to the next file, keep the last file open."
+msgstr "Mevcut dosya biterse sonraki dosyaya geçin, son dosyayı açık bırakın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
+msgstr "Geçerli dosya biterse sonraki dosyaya geçin. Boşta no olarak ayarlanmışsa oynatıcı son dosyadan sonra çıkar."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Playback will never automatically advance to the next file."
+msgstr "Oynatma hiçbir zaman otomatik olarak bir sonraki dosyaya ilerlemeyecektir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
+msgstr "no olarak ayarlanırsa, açık tutma etkinken duraklatmak yerine dosyanın sonunda durun ve geriye doğru aradığınızda tekrar durduğu yere kadar ileriye doğru oynatmaya devam edin."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
+msgstr "no olarak ayarlandıysa ve açık tutma da no olarak ayarlandıysa, oynatıcı son dosya bittikten sonra çıkar."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
+msgstr "<N|inf|no> Tek bir dosyayı N kez döngüye alın. inf sonsuza kadar anlamına gelir, no normal oynatma anlamına gelir.\\n\\nDöngü çalma listesinin farkı, bunun çalma listesini döngüye sokmaması, yalnızca dosyanın kendisi olmasıdır. Çalma listesi yalnızca tek bir dosya içeriyorsa, iki seçenek arasındaki fark, bu seçeneğin dosyayı yeniden yüklemek yerine döngüde arama gerçekleştirmesidir. loop bu seçeneğin takma adıdır."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
+msgstr "Çıkış sırasında her zaman geçerli oynatma konumunu kaydedin. Bu dosya daha sonra tekrar oynatıldığında, oynatıcı başlangıçta eski oynatma konumunu arayacaktır. Bir dosyanın oynatılması, çıkmak dışında herhangi bir şekilde durdurulursa bu durum gerçekleşmez. Örneğin, çalma listesindeki bir sonraki dosyaya gitmek, konumu kaydetmez ve dosyanın bir sonraki oynatılışında baştan oynatmaya başlar.\\n\\nBu davranış default tarafından devre dışı bırakılır, ancak oynatıcıdan Shift+Q ile çıkarken her zaman kullanılabilir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "mpv başlatıldığından bu yana değiştirilmişse \"daha sonra izle\" dosyalarına kaydedilen seçenekler. Bu değerler, dosyalar bir sonraki oynatılışında geri yüklenecektir. Bu bir dize listesi seçeneğidir. Daha fazla bilgi için şu adresi ziyaret edin:"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
+msgstr "Anahtar karelerle sınırlı olmayan hassas aramaların ne zaman kullanılacağını seçin. Bu tür aramalar, önceki ana kareden hedef konuma kadar videonun kodunun çözülmesini gerektirir ve bu nedenle, kod çözme performansına bağlı olarak biraz zaman alabilir. Bazı video formatlarında hassas aramalar devre dışı bırakılır. Bu seçenek, aramalar için kullanılacak default seçeneğini belirler; tuş bağlamalarının tanımında ve giriş komutlarında default'yu açıkça geçersiz kılmak mümkündür."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Use precise seeks whenever possible."
+msgstr "Mümkün olduğunda hassas aramalar kullanın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Never use precise seeks."
+msgstr "Hiçbir zaman hassas aramalar kullanmayın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
+msgstr "Arama, dosyada bölüm arama gibi mutlak bir konumdaysa kesin aramaları kullanın, ancak ok tuşlarının default davranışı gibi göreceli aramalar için kullanmayın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Same as yes (for compatibility)."
+msgstr "yes ile aynı (uyumluluk için)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
+msgstr "default parça auto seçimini etkinleştirin. Bunu etkinleştirmek, oyuncunun akışları yardım, alang ve diğerlerine göre seçmesini sağlayacaktır. Devre dışı bırakılırsa no parçaları seçilir. Ayrıca, no parçaları seçildiğinde oynatıcıdan çıkmayacak ve bunun yerine bekleyecektir (bu bekleme modu duraklatmaya benzer, ancak duraklatma seçeneği ayarlanmamıştır).\\n\\nBu, lavfi-complex ile kullanışlıdır: bu modda oynatmayı başlatabilir ve ardından filtre grafiğini ayarlayarak çalışma zamanında seçilen parçaları ayarlayabilirsiniz. Lavfi-complex oynatma başlatılmadan önce ayarlanırsa referans alınan parçaların her zaman seçileceğini unutmayın."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
+msgstr "<N|inf|force|no> Oynatmayı N kez döngüye alır. 1 değeri onu bir kez oynatır (default), 2 iki kez vb. inf sonsuza kadar anlamına gelir. no, 1 ile aynıdır ve döngüyü devre dışı bırakır. Komut satırında birden fazla dosya belirtilirse tüm çalma listesi döngüye alınır. Zorlama modu inf gibidir ancak başarısız olarak işaretlenen çalma listesi girişlerini atlamaz. Bu, oynatıcının var olmayan bir dosyayı döngüye sokmaya çalışırken CPU zamanını boşa harcayabileceği anlamına gelir. Ancak çok kötü ağ koşullarında web radyolarını oynatmak için yararlı olabilir."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
+msgstr "Yerel bir dosyayı açarken ana dizin açılmış gibi davranın ve otomatik olarak bir oynatma listesi oluşturun.\\n\\nno: Tek bir dosya yükleyin (mpv default).\\n\\nFiltre: --directory-filter-types. (mpv.net default) ile eşleşen dosyalarla ana dizinden bir çalma listesi oluşturun\\n\\naynı: Ana dizinden, o anda yüklü olan dosyayla aynı kategoriyle eşleşen dosyalardan oluşan bir çalma listesi oluşturun. Giriş dosyasına göre *-ext'lerden biri seçilir ve yalnızca eşleşen uzantılara sahip dosyalar oynatma listesine eklenir. Giriş dosyasının kendisi herhangi bir uzantı listesiyle eşleştirilmezse oynatma listesi otomatik olarak oluşturulmaz."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
+msgstr "Tek dosyalar için tüm dizini otomatik olarak çalma listesine yükleyin. (kullanımdan kaldırıldı mpv.net seçeneği, bunun yerine otomatik oynatma listesi oluştur kullanılabilir)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
+msgstr "Normalde mpv, oynatma sırasında kullanıcı tarafından değiştirilmiş olsa bile, çalma listesindeki sonraki dosyayı oynatırken all seçeneklerini korumaya çalışacaktır. Bu seçenek ile bu değiştirilebilir. Bir seçenekler listesini kabul eder ve mpv, oynatma başlangıcında bu seçeneklerin değerini başlangıç ​​değerine sıfırlar."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
+msgstr "Bir anahtarı otomatik olarak tekrarlamaya başlamadan önce milisaniye cinsinden gecikme (devre dışı bırakmak için 0)."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Number of key presses to generate per second on autorepeat."
+msgstr "Otomatik tekrarlamada saniyede oluşturulacak tuş basma sayısı."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enable the IPC support and create the listening socket at the given path."
+msgstr "IPC desteğini etkinleştirin ve verilen yolda dinleme soketini oluşturun."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "Açık ve koyu tema arasında geçiş yapar.\\nmpv.net bir değişiklikten sonra yeniden başlatılmalıdır.\\nmpv.net'ya özel seçenek."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Available on Windows 10 or higher"
+msgstr "Windows 10 veya üzeri sürümlerde mevcuttur"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "Karanlık modda kullanılan renk teması.\\nmpv.net bir değişiklikten sonra yeniden başlatılmalıdır.\\nmpv.net'ya özel seçenek. Varsayılan: koyu"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "Işık modunda kullanılan renk teması.\\nmpv.net bir değişiklikten sonra yeniden başlatılmalıdır.\\nmpv.net'ya özel seçenek. Varsayılan: ışık"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Decide whether to use network cache settings."
+msgstr "Ağ önbellek ayarlarının kullanılıp kullanılmayacağına karar verin."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
+msgstr "<bytesize> Demuxer'ın ne kadar ileri ara belleğe almasına izin verildiğini kontrol eder.\\nKiB ve MiB gibi son ekler desteklenmektedir."
+
+# Config editor help text completed by localization parity sweep.

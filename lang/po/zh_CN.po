@@ -1216,3 +1216,813 @@ msgstr "Dither to 10 bit output."
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
 msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
 msgstr "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
+
+# Config editor help text completed by localization parity sweep.
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Choose the best mode automatically."
+msgstr "自动选择最佳模式。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "通用、可定制、GPU 加速视频输出驱动器。它支持扩展缩放方法、抖动、颜色管理、自定义着色器、HDR 等。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
+msgstr "基于libplacebo的实验视频渲染器。这支持与 --vo=gpu 几乎相同的功能集。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Video output driver that uses the Direct3D interface."
+msgstr "使用Direct3D接口的视频输出驱动器。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
+msgstr "如果可能，请指定应使用的硬件视频解码 API。是否真正完成硬件解码取决于视频编解码器。如果无法进行硬件解码，mpv 将依靠软件解码。 default 禁用硬件解码以保持可靠性。然而，现代硬件应该支持硬件视频解码，从而减少CPU的使用和功耗。\\n\\n欲了解更多信息，请访问："
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "always use software decoding"
+msgstr "始终使用软件解码"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "enable best hw decoder"
+msgstr "启用最佳硬件解码器"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "exactly the same as auto"
+msgstr "与auto完全相同"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "enable best hw decoder with copy-back"
+msgstr "启用带回拷功能的最佳硬件解码器"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "enable any whitelisted hw decoder"
+msgstr "启用任何列入白名单的硬件解码器"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
+msgstr "需要 vo=gpu 且 gpu-context=d3d11、gpu-context=angle 或 gpu-context=dxinterop"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "copies video back to system RAM"
+msgstr "将视频复制回系统 RAM"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
+msgstr "需要 vo=gpu 且 gpu-context=d3d11 或 gpu-context=angle"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "requires vo=gpu (Any platform CUDA is available)"
+msgstr "需要 vo=gpu（任何平台 CUDA 都可用）"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "使用任何可用的 API。请注意，用于此值的 default GPU API 可能会发生变化，并且不得依赖。如果需要使用某个GPU API，必须明确指定"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Allow only gpu-context=d3d11"
+msgstr "仅允许 gpu-context=d3d11"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr "仅允许 OpenGL（需要 OpenGL 2.1+ 或 GLES 2.0+）"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Allow only Vulkan"
+msgstr "仅允许 Vulkan"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "auto-select"
+msgstr "auto-选择"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Win32, with native Direct3D 11 rendering."
+msgstr "Win32，具有原生 Direct3D 11 渲染。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "Direct3D11通过OpenGL ES翻译层ANGLE。这几乎支持 win 后端所做的一切（如果 ANGLE 版本足够新）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Win32/WGL"
+msgstr "Win32/WGL"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr "（实验）Win32，使用WGL进行渲染，使用Direct3D 9Ex进行演示。适用于 Nvidia 和 AMD。具有最新驱动程序的较新 Intel 芯片也可能工作。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "VK_KHR_win32_surface"
+msgstr "VK_KHR_win32_surface"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
+msgstr "当使用基于卷积的滤波器时，在缩小时扩展滤波器的大小。提高质量，但在缩小规模时会降低性能。\\n\\n这对于变形视频来说效果稍差（但仍然比没有它更好），因为它会扩展尺寸以仅匹配轴之间较温和的比例因子。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
+msgstr "放大时，使用 S 形颜色变换以避免强调振铃伪影。这也意味着 linear 缩放。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
+msgstr "用于绘制 mpv 窗口未被视频覆盖的部分的颜色。有关如何定义颜色的信息，请参阅 --sub-color 选项。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
+msgstr "将额外的原始选项传递给 libplacebo 渲染后端（由 --vo=gpu-next 使用）。可以覆盖使用普通选项系统设置的任何其他选项的效果。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Override all libplacebo options by the values from the given preset."
+msgstr "使用给定预设值覆盖 all libplacebo 选项。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Default settings, tuned to provide a balance of performance and quality."
+msgstr "默认设置，经过调整以提供性能和质量的平衡。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Disable all advanced rendering, equivalent to passing no to every option."
+msgstr "禁用all高级渲染，相当于将no传递给每个选项。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Reset all everything to high quality presets (where available)."
+msgstr "将 all 的所有内容重置为高质量预设（如果有）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Sets the filter used for upscaling."
+msgstr "设置用于放大的过滤器。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "No filter, only use basic GPU texture sampling."
+msgstr "无滤镜，仅使用基本的 GPU 纹理采样。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Nearest-neighbour (box) sampling (very fast)."
+msgstr "最近邻 (box) 采样（非常 fast）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Bilinear sampling (very fast)."
+msgstr "Bilinear采样（非常fast）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Aspect-ratio preserving nearest neighbour sampling (very fast)."
+msgstr "保留 nearest 邻居采样的纵横比（非常 fast）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Bicubic interpolation (fast)."
+msgstr "Bicubic 插补（fast）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Gaussian smoothing (fast)."
+msgstr "Gaussian 平滑 (fast)。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Catmull-Rom cubic spline."
+msgstr "Catmull-Rom立方体spline。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Lanczos reconstruction."
+msgstr "Lanczos重建。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "EWA Lanczos (\"Jinc\") reconstruction (slow)."
+msgstr "EWA Lanczos（“Jinc”）重建（慢）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Sharpened version of ewa_lanczos (slow)."
+msgstr "ewa_lanczos 的锐化版本（慢速）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
+msgstr "ewa_lanczos的非常锐利的版本，具有防振铃功能（非常慢）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
+msgstr "设置用于缩小尺寸的过滤器。最相关的选项，大致从最快到最慢排序。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Use the same filter as specified for upscaler"
+msgstr "使用与升级器指定相同的过滤器"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Box averaging (very fast)"
+msgstr "箱平均（非常fast）"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Hermite-weighted averaging (fast)"
+msgstr "Hermite加权平均(fast)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Bilinear (triangle) averaging (fast)"
+msgstr "Bilinear（三角形）平均（fast）"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Bicubic interpolation (fast)"
+msgstr "Bicubic插补（fast）"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Gaussian smoothing (fast)"
+msgstr "Gaussian 平滑 (fast)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Catmull-Rom cubic spline"
+msgstr "Catmull-Rom 立方体 spline"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Mitchell-Netravalia cubic spline"
+msgstr "Mitchell-Netravalia 立方体 spline"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Lanczos reconstruction"
+msgstr "Lanczos改造"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
+msgstr "覆盖用于放大平面的过滤器，例如色度/阿尔法。如果设置为 none，则分别使用与升频器相同的设置。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
+msgstr "覆盖用于缩小平面的过滤器，例如色度/阿尔法。如果设置为 none，则分别使用与缩减器相同的设置。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Sets the filter used for frame mixing (temporal interpolation). Roughly ordered from fastest to slowest."
+msgstr "设置用于帧混合（时间插值）的过滤器。大致按从最快到最慢的顺序排列。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Disable frame mixing, show nearest frame to target PTS"
+msgstr "禁用帧混合，将 nearest 帧显示到目标 PTS"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Oversampling, only mix \"edge\" frames while preserving FPS"
+msgstr "过采样，仅混合“边缘”帧，同时保留 FPS"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Hermite-weighted frame mixing"
+msgstr "Hermite-加权帧混合"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Linear frame mixing"
+msgstr "线性框架混合"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Cubic B-spline frame mixing"
+msgstr "立方B-spline框架混合"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
+msgstr "<0.0..1.0> 用于 all 滤波器的抗振铃强度。 0.0 为禁用抗振铃，1.0 为全强度抗振铃。默认为 0.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enables debanding using libplacebo."
+msgstr "使用 libplacebo 启用解带。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Overrides the value of all options in this section by their default values from the given preset."
+msgstr "用给定预设中的 default 值覆盖本节中 all 选项的值。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
+msgstr "<0..16> 每个样本执行的去带步骤数。每一步都会减少更多的条带，但需要时间来计算。请注意，每个步骤的强度下降得非常快，因此高数字（> 4）实际上是无用的。默认为 1。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
+msgstr "<0.0..1000.0> 去带滤波器的截止阈值。较高的数字会显着增加去带强度，但会逐渐减少图像细节。默认为 3.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
+msgstr "<0.0..1000.0> 去带滤波器的初始半径。每次迭代半径都会线性增加。较高的半径会发现更多的梯度，但较低的半径会更积极地平滑。默认为 16.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps cover up remaining quantization artifacts. Higher numbers add more noise. Defaults to 4.0, which is very mild."
+msgstr "<0.0..1000.0> 向图像添加一些额外的噪点。这极大地有助于掩盖剩余的量化伪影。数字越大，噪音越大。默认为4.0，非常温和。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enables sigmoidization."
+msgstr "启用 sigmoid 化。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
+msgstr "<0.0..1.0> S 型曲线的中心（偏差）。默认为 0.75。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
+msgstr "<1.0..20.0> S 型曲线的斜率（陡度）。默认为 6.5。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enables color adjustment."
+msgstr "启用颜色调整。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
+msgstr "<-1.0..1.0> 亮度增强。在源亮度信号上添加恒定偏置。 0.0 = 中性色，1.0 = 纯白色，-1.0 = 纯黑色。默认为 0.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> 对比度增益。将源亮度信号乘以常数因子。 1.0 = 中性色，0.0 = 纯黑色。默认为 1.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
+msgstr "<0.0..100.0> 饱和增益。将源色度信号乘以常数因子。 1.0 = 中性，0.0 = 灰度。默认为 1.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
+msgstr "<angle> 色调偏移。对应于 UV 子矢量绕中性轴的旋转。以弧度指定。默认为 0.0（中性）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> 伽玛提升机。主观地使场景变亮或变暗，同时保持整体对比度。 1.0 = 中性色，0.0 = 纯黑色。默认为 1.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
+msgstr "<-1.143..5.286> 色温偏移。相对于 6500 K，0.0 的值给您 6500 K（no 更改），-1.0 的值给您 3000 K，1.0 的值给您 10000 K。默认为 0.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enables HDR peak detection."
+msgstr "启用 HDR 峰值检测。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
+msgstr "用给定预设中的 default 值覆盖本节中 all 选项的值。 high_quality还可以进行帧直方图测量。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
+msgstr "<0.0..1000.0> 检测值的平滑系数。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
+msgstr "<0.0..100.0> 输入图像亮度直方图的哪个百分位数被视为场景的真实峰值。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..100.0> Black cutoff strength."
+msgstr "<0.0..100.0> 黑色截止强度。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
+msgstr "允许峰值检测结果延迟最多一帧，这有时可以提高吞吐量，但代价是引入 1 帧在转换时闪烁的可能性。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
+msgstr "允许使用这些颜色映射设置。禁用此选项不会禁用颜色映射，它只是意味着“对所有内容都使用 default 选项”。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
+msgstr "用给定预设中的 default 值覆盖本节中 all 选项的值。 high_quality 还支持 HDR 对比度恢复。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
+msgstr "色域映射函数，用于处理色域外颜色，包括由于色调映射而导致色域外的颜色。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
+msgstr "<0.0..1.0>（相对）色度保护区，用于感知映射。默认为 0.30。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
+msgstr "<0.0..1.0> 感知饱和度映射分量的强度。默认为 0.80。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
+msgstr "<0.0..10.0> I vs C 曲线 gamma 用于比色剪裁（相对、绝对和变暗）。默认为 1.80。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
+msgstr "<0.0..1.0> 用于软剪裁方法（感知、软剪裁）的拐点。默认为 0.70。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
+msgstr "<0.0..1.0> 软夹去饱和强度。默认为 0.35。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
+msgstr "<0..1024> 色域映射 3DLUT 大小。将尺寸设置为 0 会选取 default 值。默认为 48。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
+msgstr "<0..1024> 色域映射 3DLUT 大小。将尺寸设置为 0 会选取 default 值。默认为 32。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
+msgstr "<0..1024> 色域映射 3DLUT 大小。将尺寸设置为 0 会选取 default 值。默认为 256。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
+msgstr "使用更高质量但更慢的三次插值来进行色域映射 3DLUT。可以显着提高 3DLUT 色域映射精度，特别是在较小的 3DLUT 尺寸下。对 default 尺寸应该没有太大影响。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If enabled, allows the gamut mapping function to expand the gamut, in cases where the target gamut exceeds that of the source. If disabled, the source gamut will never be enlarged, even when using a gamut mapping function capable of bidirectional mapping."
+msgstr "如果启用，则在目标色域超过源色域的情况下，允许色域映射功能扩展色域。如果禁用，即使使用能够双向映射的色域映射功能，源色域也永远不会扩大。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
+msgstr "用于适应不同亮度范围之间的色调映射功能，包括黑点适应。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
+msgstr "<0.0..0.5> 将拐点最小值配置为 PQ 亮度范围的百分比。对knee_adaptation选择的拐点提供硬性限制。默认为 0.1。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
+msgstr "<0.5..1.0> 将拐点最大值配置为 PQ 亮度范围的百分比。对knee_adaptation选择的拐点提供硬性限制。默认为 0.8。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
+msgstr "<0.0..1.0> 在没有源场景平均元数据的情况下使用的默认拐点。通常，这会被忽略，有利于选择拐点作为（相对）源场景平均亮度级别。默认为 0.4。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
+msgstr "<0.5..2.0> 拐点偏移（仅适用于 bt2390）。请注意，0.5 的值是规范定义的 default 行为，它与 1.0 的 libplacebo default 不同。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast coefficient at the display peak. Essentially, a value of 0.5 implies that the reference white will be about half as bright as when clipping. Defaults to 0.5."
+msgstr "<0.0..1.0> 对于reinhard 功能，指定显示峰值处的局部对比度系数。本质上，0.5 的值意味着参考白色的亮度约为剪切时的一半。默认为 0.5。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
+msgstr "<0.0..1.0> 对于在 linear 灯上运行的旧功能（mobius、gamma），这直接设置相应的拐点。默认为 0.3。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
+msgstr "<0.0..10.0> 对于 linear 方法（linear，线性光），它控制应用于图像的 linear 曝光/增益。默认为 1.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If enabled, and supported by the given tone mapping function, will perform inverse tone mapping to expand the dynamic range of a signal. libplacebo is not liable for any HDR-induced eye damage."
+msgstr "如果启用并受给定色调映射功能的支持，将执行逆色调映射以扩展信号的动态范围。 libplacebo 对 HDR 引起的任何眼睛损伤不承担责任。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
+msgstr "色调映射时使用的数据源。将此设置为特定值允许覆盖 default 元数据首选项逻辑。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
+msgstr "<0..4096> 色调映射 LUT 大小。设置 0 选择 default 尺寸。默认为 256。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
+msgstr "<1.0..32.0> HDR 对比恢复低通核大小。增加或减少此值将极大地影响视觉外观。默认为 3.5。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
+msgstr "即使对于具有更快的纯 GLSL 替换的函数（例如 clip、linear、饱和度），也强制使用完整的色调映射 LUT。这是一个调试选项。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 0.0."
+msgstr "控制相对于渲染视频的 LUt 可视化绘制位置。默认为 0.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 1.0."
+msgstr "控制相对于渲染视频的 LUt 可视化绘制位置。默认为 1.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
+msgstr "控制色域 3DLUT 可视化的旋转。通过色调空间（围绕 I 轴）旋转色域，以弧度为单位。默认为 0.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Controls the rotation of the gamut 3DLUT visualization. The theta parameter vertically rotates the cross section (around the C axis), in radians. Defaults to 0.0."
+msgstr "控制色域 3DLUT 可视化的旋转。 theta 参数以弧度为单位垂直旋转横截面（绕 C 轴）。默认为 0.0。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
+msgstr "以图形方式突出显示色调映射期间硬剪辑的像素（即超出声明的源亮度范围的像素）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
+msgstr "将屏幕截图存储在此目录中。该路径与截图模板生成的文件名相连接。如果模板文件名已经是绝对文件名，则忽略该目录。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Set the image file type used for saving screenshots."
+msgstr "设置用于保存屏幕截图的图像文件类型。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
+msgstr "使用适当的色彩空间标记屏幕截图。请注意，不支持 all 格式。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If possible, write screenshots with a bit depth similar to the source video. This is interesting in particular for PNG, as this sometimes triggers writing 16 bit PNGs with huge file sizes. This will also include an unused alpha channel in the resulting files if 16 bit is used."
+msgstr "如果可能，请编写与源视频类似的位深度的屏幕截图。这对于 PNG 特别有趣，因为这有时会触发写入具有巨大文件大小的 16 位 PNG。如果使用 16 位，这还将在结果文件中包括未使用的 Alpha 通道。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Write JPEG files with the same chroma subsampling as the video. If disabled, the libjpeg default is used."
+msgstr "使用与视频相同的色度子采样写入 JPEG 文件。如果禁用，则使用 libjpeg default。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
+msgstr "指定用于保存屏幕截图的文件名模板。该模板指定不带文件扩展名的文件名，并且可以包含格式说明符，在截屏时将被替换。对于 default，模板为 mpv-shot%n，这会产生类似 mpv-shot0012.png 的文件名。\\n\\n在这里找到完整的文档："
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
+msgstr "<0-100> 设置 JPEG 质量级别。更高意味着更好的质量。 default 是 90。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
+msgstr "<0-9> 设置 PNG 压缩级别。越高意味着压缩效果越好。这会影响写入屏幕截图文件的文件大小以及写入屏幕截图所需的时间。太高的压缩可能会占用足够的 CPU 时间来中断播放。 default 是 7。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
+msgstr "<0-5> 设置 PNG 压缩之前应用的滤波器。 0 是 none，1 是“子”，2 是“上”，3 是“平均”，4 是“Paeth”，5 是“混合”。这会影响可以实现的压缩级别。对于大多数图像，“混合”可实现最佳压缩比，因此它是 default。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+msgstr "使用 --autocreate-playlist 或 --directory-filter-types. 时尝试匹配的视频文件扩展名 mpv.net 用于创建文件关联并由 auto 加载文件夹功能使用。默认：3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
+msgstr "设置启动音量。 0表示静音，100表示no音量减小或放大。为了兼容性，可以传递负值，但会被视为 0。从 mpv 0.18.1 开始，它始终控制内部混音器（又名“softvol”）。默认：100"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Save volume and mute on exit and restore it on start. (mpv.net option)"
+msgstr "退出时保存音量和静音并在启动时恢复。 （mpv.net 选项）"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
+msgstr "指定要使用的 audio 语言的优先级列表。不同的容器格式采用不同的语言代码。 DVDs 使用 ISO 639-1 两字母语言代码，Matroska、MPEG-TS 和 NUT 使用 ISO 639-2 三字母语言代码，而 OGM 使用自由格式标识符。另见援助。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load additional audio files matching the video filename. The parameter specifies how external audio files are matched."
+msgstr "加载与视频文件名匹配的其他 audio 文件。该参数指定如何匹配外部audio文件。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Don't automatically load external audio files."
+msgstr "不要自动加载外部 audio 文件。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load the media filename with audio file extension."
+msgstr "加载带有 audio 文件扩展名的媒体文件名。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load all audio files containing media filename."
+msgstr "加载包含媒体文件名的 all audio 文件。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load all audio files in the current and audio-file-paths directories."
+msgstr "加载当前目录和 audio-file-paths 目录中的 all audio 文件。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
+msgstr "<name> 使用给定的 audio 器件。这由 audio 输出名称组成，例如alsa，后面跟/，后面跟audio输出具体的设备名称。此选项的 default 值为 auto，它使用 default 设备按优先顺序尝试每个 audio 输出。\\n\\n要列出 mpv.net 中可用的 audio 设备，请使用上下文菜单：\\n\\n查看>更多>显示音频设备。\\n\\n要更改 mpv.net 中的 audio 设备，还可以使用上下文菜单：\\n\\n音频 > 音频设备"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Save and restore the audio device chosen in the context menu. Default: yes"
+msgstr "保存并恢复在上下文菜单中选择的 audio 设备。默认：yes"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
+msgstr "使用 --audio-file-auto、--autocreate-playlist 或 --directory-filter-types. 时尝试匹配的音频文件扩展名 mpv.net 用于创建文件关联并由 auto 加载文件夹功能使用。默认：aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
+msgstr "指定要使用的字幕语言的优先级列表。不同的容器格式采用不同的语言代码。 DVDs 使用 ISO 639-1 两个字母语言代码，Matroska 使用 ISO 639-2 三字母语言代码，而 OGM 使用自由格式标识符。另请参见希德。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load additional subtitle files matching the video filename. The parameter specifies how external subtitle files are matched. exact is enabled by default."
+msgstr "加载与视频文件名匹配的其他字幕文件。该参数指定如何匹配外部字幕文件。 exact 由 default 使能。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Don't automatically load external subtitle files."
+msgstr "不自动加载外部字幕文件。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load the media filename with subtitle file extension."
+msgstr "加载带有字幕文件扩展名的媒体文件名。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load all subs containing media filename."
+msgstr "加载包含媒体文件名的 all 子文件。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Load all subs in the current and sub-file-paths directories."
+msgstr "加载当前目录和子文件路径目录中的 all 子文件。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
+msgstr "指定用于本身不指定特定字体的字幕的字体。 default 是无衬线字体。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
+msgstr "指定子字体大小。单位是窗口高度为 720 时缩放像素的大小。实际像素大小随窗口高度缩放：如果窗口高度大于或小于720，则文本的实际大小也会增大或减小。默认：55"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
+msgstr "指定用于无样式文本字幕的颜色。\\n\\n使用说明和示例可以在手册中找到："
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
+msgstr "见子色。用于子字体边框的颜色。当指定了子背景颜色时（或更准确地说：当该选项未设置为完全透明时），将被忽略。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
+msgstr "见子色。用于子文本背景的颜色。您可以使用 sub-shadow-offset 来更改其相对于文本的大小。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Set this to no in order to hide the window title bar."
+msgstr "将其设置为 no 以隐藏窗口标题栏。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
+msgstr "<0-32> 在多显示器配置（即跨多个显示器的单个桌面）中，此选项告诉 mpv 在哪个屏幕上显示视频。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Show progress in taskbar."
+msgstr "在任务栏中显示进度。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
+msgstr "播放开始时在 OSD 上显示消息。该字符串针对属性进行扩展，例如osd-playing-msg='file: ${filename}' 将显示消息 file: 后跟一个空格和当前播放的文件名。欲了解更多信息，请访问："
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
+msgstr "指定 OSD 字体大小。有关详细信息，请参阅子字体大小。默认值：55"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "设置 OSD 消息的持续时间（以毫秒为单位）。默认值：1000"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+msgstr "是否随窗口大小缩放OSD。如果禁用此选项，则 osd-font-size 和其他使用缩放像素的 OSD 选项始终以实际像素为单位。效果是更改窗口大小不会更改 OSD 字体大小。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<int> Initial window height in percent. Default: 60"
+msgstr "<int> 初始窗口高度（以百分比表示）。默认：60"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<int> Minimum window height in percent. Default: 10"
+msgstr "<int> 最小窗口高度（百分比）。默认：10"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<int> Maximum window height in percent. Default: 80"
+msgstr "<int> 最大窗口高度（百分比）。默认：80"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<int> Initial window height in percent for image files. Default: 80"
+msgstr "<int> 图像文件的初始窗口高度（以百分比表示）。默认：80"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<int> Initial window height in percent for audio files. Default: 70"
+msgstr "<int> audio 文件的初始窗口高度（以百分比表示）。默认：70"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
+msgstr "<x:y> 初始窗口位置（以百分比表示）。默认值：50:50（居中）\\n\\n需要 Windows 11，在 Windows 10 上，由于不可见边框，它的工作稍微不正确。\\n\\nx=0 将窗口停靠在左侧。\\nx=100 将窗口停靠在右侧。\\n\\ny=0 将窗口停靠在顶部。\\ny=100 将窗口停靠在底部。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Setting to remember the window size. (mpv.net option)"
+msgstr "设置记住窗口大小。 （mpv.net 选项）"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window width is remembered in the current session"
+msgstr "窗口宽度在当前会话中被记住"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window width is always remembered"
+msgstr "窗口宽度始终被记住"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window height is remembered in the current session"
+msgstr "窗口高度在当前会话中被记住"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window height is always remembered"
+msgstr "窗户高度始终被记住"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window size is set to video resolution"
+msgstr "窗口大小设置为视频分辨率"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window size is remembered in the current session"
+msgstr "窗口大小被记住在当前会话中"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Window size is always remembered"
+msgstr "窗口大小始终被记住"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "keepaspect-window will lock the window size to the video aspect. Default: yes"
+msgstr "keepaspect-window 会将窗口大小锁定为视频宽高比。默认值：yes"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
+msgstr "<float> 窗口的最小纵横比。有助于强制使用更宽的窗口，从而获得更大的 OSC。 （mpv.net 选项）"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Same as minimum-aspect-ratio but used for audio files."
+msgstr "与最小纵横比相同，但用于 audio 文件。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Save the window position on exit. (mpv.net option)"
+msgstr "退出时保存窗口位置。 （mpv.net 选项）"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Snap the player window to screen edges."
+msgstr "将播放器窗口对齐到屏幕边缘。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Start with a maximized window."
+msgstr "从最大化窗口开始。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If the current file ends, go to the next file, keep the last file open."
+msgstr "如果当前文件结束，则转到下一个文件，保持最后一个文件打开。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
+msgstr "如果当前文件结束，则转到下一个文件。如果idle设置为no，则播放器在播放完最后一个文件后退出。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Playback will never automatically advance to the next file."
+msgstr "播放永远不会自动前进到下一个文件。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
+msgstr "如果设置为 no，则在保持打开状态处于活动状态时不会暂停，而是在文件末尾停止，并在向后查找时继续向前播放，直到再次停止为止。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
+msgstr "如果设置为 no 并且 keep-open 也设置为 no，则播放器在最后一个文件结束后退出。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
+msgstr "<N|inf|no> 循环单个文件 N 次。 inf表示永远，no表示正常播放。\\n\\n与循环播放列表的区别在于，它不会循环播放列表，而只会循环文件本身。如果播放列表仅包含单个文件，则两个选项之间的区别在于该选项执行循环查找，而不是重新加载文件。 Loop 是该选项的别名。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
+msgstr "退出时始终保存当前播放位置。当稍后再次播放该文件时，播放器将在开始时寻找旧的播放位置。如果文件播放以退出以外的任何其他方式停止，则不会发生这种情况。例如，转到播放列表中的下一个文件将不会保存位置，并在下次播放该文件时从头开始播放。\\n\\n此行为被 default 禁用，但在使用 Shift+Q 退出播放器时始终可用。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "保存在“稍后观看”文件中的选项（如果自 mpv 启动后已更改）。这些值将在下次播放文件时恢复。这是一个字符串列表选项。欲了解更多信息，请访问："
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
+msgstr "选择何时使用不限于关键帧的精确搜索。此类搜索需要对从前一个关键帧到目标位置的视频进行解码，因此可能需要一些时间，具体取决于解码性能。对于某些视频格式，精确搜索被禁用。该选项选择用于搜索的 default 选项；可以在键绑定的定义和输入命令中显式覆盖 default。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Use precise seeks whenever possible."
+msgstr "尽可能使用精确搜索。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Never use precise seeks."
+msgstr "切勿使用精确搜索。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
+msgstr "如果查找是文件中的绝对位置（例如章节查找），则使用精确查找，但不适用于相对查找（例如箭头键的 default 行为）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Same as yes (for compatibility)."
+msgstr "与 yes 相同（为了兼容性）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
+msgstr "启用 default 轨道 auto 选择。启用此选项将使玩家根据辅助、alang 等选择流。如果禁用，则选择 no 轨道。另外，如果选择了no曲目，播放器不会退出，而是等待（这种等待方式类似于暂停，但没有设置暂停选项）。\\n\\n这对于 lavfi-complex 很有用：您可以在此模式下开始播放，然后通过设置过滤器图在运行时设置选择曲目。请注意，如果在开始播放之前设置了 lavfi-complex，则始终会选择引用的曲目。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
+msgstr "<N|inf|force|no> 循环播放 N 次。 1 的值播放一次（default），2 播放两次，依此类推。inf 表示永远。 no 与 1 相同，禁用循环。如果在命令行上指定了多个文件，则循环整个播放列表。强制模式类似于 inf，但不会跳过已标记为失败的播放列表条目。这意味着玩家可能会浪费 CPU 时间来尝试循环不存在的文件。但它对于在非常糟糕的网络条件下播放网络广播可能很有用。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
+msgstr "打开本地文件时，就像打开父目录一样，自动创建播放列表。\\n\\nno：加载单个文件（mpv default）。\\n\\n过滤器：从父目录创建播放列表，其中文件匹配 --directory-filter-types. (mpv.net default)\\n\\n相同：从父目录创建一个播放列表，其中的文件与当前加载的文件匹配相同的类别。根据输入文件选择 *-ext 之一，并且仅将具有匹配扩展名的文件添加到播放列表中。如果输入文件本身与任何扩展名列表都不匹配，则不会自动生成播放列表。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
+msgstr "对于单个文件，自动将整个目录加载到播放列表中。 （已弃用 mpv.net 选项，可以使用 autocreate-playlist 代替）"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
+msgstr "通常，mpv 在播放播放列表中的下一个文件时会尝试保留 all 选项，即使用户在播放过程中更改了这些选项。可以使用此选项更改此设置。它接受选项列表，mpv 将在播放开始时将这些选项的值重置为初始值。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
+msgstr "在我们开始自动重复按键之前延迟几毫秒（0 禁用）。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Number of key presses to generate per second on autorepeat."
+msgstr "自动重复时每秒生成的按键次数。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Enable the IPC support and create the listening socket at the given path."
+msgstr "启用 IPC 支持并在给定路径创建侦听套接字。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "在浅色和深色主题之间变化。\\nmpv.net 更改后必须重新启动。\\nmpv.net特定选项。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Available on Windows 10 or higher"
+msgstr "适用于 Windows 10 或更高版本"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "深色模式下使用的颜色主题。\\nmpv.net 更改后必须重新启动。\\nmpv.net特定选项。默认：深色"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "浅色模式下使用的颜色主题。\\nmpv.net 更改后必须重新启动。\\nmpv.net特定选项。默认：光"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Decide whether to use network cache settings."
+msgstr "决定是否使用网络缓存设置。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
+msgstr "<bytesize> 控制允许多路分配器提前缓冲的量。\\n支持 KiB 和 MiB 等后缀。"

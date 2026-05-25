@@ -14,6 +14,8 @@ alteracoes relevantes feitas neste fork de manutencao.
 - O editor de configuracao passou a traduzir textos visiveis da propria tela e
   a mostrar o idioma efetivo no combo quando `language=system`, preservando
   `system` no arquivo enquanto o usuario nao alterar o idioma manualmente.
+- Os textos explicativos e ajudas das opcoes do editor de configuracao foram
+  sincronizados em todos os catalogos gettext suportados.
 - Builds Debug/Release do projeto Windows agora preparam automaticamente
   dependencias nativas/auxiliares e geram `Locale`, permitindo testar a
   traducao diretamente pelo Visual Studio.
