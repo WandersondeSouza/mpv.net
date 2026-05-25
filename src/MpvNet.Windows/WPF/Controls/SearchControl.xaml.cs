@@ -11,7 +11,6 @@ namespace MpvNet.Windows.WPF.Controls;
 
 public partial class SearchControl : UserControl
 {
-    string? _hintText;
     bool _gotFocus;
 
     public bool HideClearButton { get; set; }
@@ -21,12 +20,16 @@ public partial class SearchControl : UserControl
     public Theme? Theme => Theme.Current;
 
     public string HintText {
-        get => _hintText ??= "";
-        set {
-            _hintText = value;
-            UpdateControls();
-        }
+        get => (string)GetValue(HintTextProperty);
+        set => SetValue(HintTextProperty, value);
     }
+
+    public static readonly DependencyProperty HintTextProperty =
+        DependencyProperty.Register(
+            nameof(HintText),
+            typeof(string),
+            typeof(SearchControl),
+            new PropertyMetadata("", OnCustomerChangedCallBack));
 
     [RelayCommand]
     void Clear()
