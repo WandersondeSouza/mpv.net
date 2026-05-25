@@ -11,6 +11,7 @@ public abstract class Setting
     public string? Help { get; set; }
     public string? Name { get; set; }
     public string? StartValue { get; set; }
+    public string? PersistedValue { get; set; }
     public string? Type { get; set; }
     public string? URL { get; set; }
     public string? Value { get; set; }

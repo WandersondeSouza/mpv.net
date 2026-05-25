@@ -49,7 +49,7 @@ Os idiomas abaixo possuem arquivo `.po`, mapeamento em `WpfTranslator.cs` e valo
 | Russo | `russian` | `lang/po/ru.po` | `Locale/ru/LC_MESSAGES/` | `ru` |
 | Turco | `turkish` | `lang/po/tr.po` | `Locale/tr/LC_MESSAGES/` | `tr` |
 
-O valor `system` continua selecionando o idioma do Windows quando houver mapeamento conhecido; caso contrario, o fallback continua sendo ingles.
+O valor `system` continua selecionando o idioma do Windows quando houver mapeamento conhecido; caso contrario, o fallback continua sendo ingles. No editor de configuracao, `language=system` e exibido como o idioma efetivo detectado, mas continua sendo salvo como `system` se o usuario nao trocar manualmente o combo.
 
 ## Implementacao atual de portugues e espanhol
 

@@ -46,7 +46,18 @@ public class WpfTranslator : ITranslator
         }
     }
 
-    string GetSystemLanguage()
+    public static string GetEffectiveLanguage(string name)
+    {
+        if (name != "system")
+            return IsKnownLanguage(name) ? name : "english";
+
+        string systemLanguage = GetSystemLanguage();
+        return IsKnownLanguage(systemLanguage) ? systemLanguage : "english";
+    }
+
+    static bool IsKnownLanguage(string name) => Languages.Any(lang => lang.MpvNetName == name);
+
+    static string GetSystemLanguage()
     {
         string twoLetterName = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
@@ -64,8 +75,7 @@ public class WpfTranslator : ITranslator
 
     CultureInfo GetCulture(string name)
     {
-        if (name == "system")
-            name = GetSystemLanguage();
+        name = GetEffectiveLanguage(name);
 
         foreach (Language lang in Languages)
             if (lang.MpvNetName == name)

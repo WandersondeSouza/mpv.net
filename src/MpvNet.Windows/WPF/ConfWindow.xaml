@@ -10,7 +10,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     mc:Ignorable="d"
     
-    Title="Config Editor"
+    Title="{Binding WindowTitle}"
     Height="550"
     Width="800"
     Foreground="{Binding Theme.Foreground}"
@@ -46,7 +46,7 @@
 
         <controls:SearchControl
             x:Name="SearchControl"
-            HintText="Find a setting (Ctrl+F)"
+            HintText="{Binding SearchHintText}"
             Margin="20,20,0,10"
             MaxWidth="190"
             Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -106,7 +106,7 @@
 
         <TextBlock
             Name="MenuTextBlock"
-            Text="Menu"
+            Text="{Binding MenuText}"
             Cursor="Hand"
             Foreground="LightGray"
             TextDecorations="Underline"
@@ -118,29 +118,29 @@
             <TextBlock.ContextMenu>
                 <ContextMenu Name="MainContextMenu">
                     <MenuItem
-                        Header="Show mpv.net options"
+                        Header="{Binding Data.ShowMpvNetOptionsText, Source={StaticResource BindingProxy}}"
                         InputGestureText="Ctrl+n"
                         Command="{Binding Data.ShowMpvNetSpecificSettingsCommand, Source={StaticResource BindingProxy}}"
                         />
                     <Separator />
                     <MenuItem
-                        Header="Preview mpv.conf"
+                        Header="{Binding Data.PreviewMpvConfText, Source={StaticResource BindingProxy}}"
                         InputGestureText="F5"
                         Command="{Binding Data.PreviewMpvConfFileCommand, Source={StaticResource BindingProxy}}"
                         />
                     <MenuItem
-                        Header="Preview mpvnet.conf"
+                        Header="{Binding Data.PreviewMpvNetConfText, Source={StaticResource BindingProxy}}"
                         InputGestureText="F6"
                         Command="{Binding Data.PreviewMpvNetConfFileCommand, Source={StaticResource BindingProxy}}"
                         />
                     <Separator />
                     <MenuItem
-                        Header="Show mpv manual"
+                        Header="{Binding Data.ShowMpvManualText, Source={StaticResource BindingProxy}}"
                         InputGestureText="Ctrl+F1"
                         Command="{Binding Data.ShowMpvManualCommand, Source={StaticResource BindingProxy}}"
                         />
                     <MenuItem
-                        Header="Show mpv.net manual"
+                        Header="{Binding Data.ShowMpvNetManualText, Source={StaticResource BindingProxy}}"
                         InputGestureText="Ctrl+F2"
                         Command="{Binding Data.ShowMpvNetManualCommand, Source={StaticResource BindingProxy}}"
                         />

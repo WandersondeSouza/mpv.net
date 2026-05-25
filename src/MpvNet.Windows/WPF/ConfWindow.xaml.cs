@@ -144,10 +144,22 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
                     item.Section == "" && !item.IsSectionItem)
                 {
                     setting.Value = item.Value;
+                    setting.PersistedValue = item.Value;
+
+                    if (setting.Name == "language" && item.Value == "system")
+                        setting.Value = WpfTranslator.GetEffectiveLanguage(item.Value);
+
                     setting.StartValue = setting.Value;
                     setting.ConfItem = item;
                     item.SettingBase = setting;
                 }
+            }
+
+            if (setting.Name == "language" && setting.Value == "system")
+            {
+                setting.PersistedValue = "system";
+                setting.Value = WpfTranslator.GetEffectiveLanguage(setting.Value);
+                setting.StartValue = setting.Value;
             }
 
             switch (setting)
@@ -264,8 +276,10 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
             if (filename != setting.File)
                 continue;
 
-            if ((setting.Value ?? "") != setting.Default)
-                pairs.Add(setting.Name + "=" + EscapeValue(setting.Value!));
+            string value = GetValueToSave(setting);
+
+            if (value != setting.Default)
+                pairs.Add(setting.Name + "=" + EscapeValue(value));
         }
 
         return string.Join(',', pairs);
@@ -343,9 +357,9 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
                     namesWritten.Add(item.Name);
                 }
             }
-            else if ((item.SettingBase.Value ?? "") != item.SettingBase.Default)
+            else if (GetValueToSave(item.SettingBase) != item.SettingBase.Default)
             {
-                sb.Append(item.Name + equalString + EscapeValue(item.SettingBase.Value!));
+                sb.Append(item.Name + equalString + EscapeValue(GetValueToSave(item.SettingBase)));
 
                 if (item.LineComment != "")
                     sb.Append(" " + item.LineComment);
@@ -360,8 +374,10 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
             if (filename != setting.File || namesWritten.Contains(setting.Name!))
                 continue;
 
-            if ((setting.Value ?? "") != setting.Default)
-                sb.AppendLine(setting.Name + equalString + EscapeValue(setting.Value!));
+            string value = GetValueToSave(setting);
+
+            if (value != setting.Default)
+                sb.AppendLine(setting.Name + equalString + EscapeValue(value));
         }
 
         foreach (ConfItem item in _confItems)
@@ -468,7 +484,7 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
         Theme.UpdateWpfColors();
 
         if (_themeConf != GetThemeConf())
-            MessageBox.Show("Changed theme settings require mpv.net being restarted.", "Info");
+            MessageBox.Show(_("Changed theme settings require mpv.net being restarted."), _("Info"));
     }
 
     protected override void OnKeyDown(KeyEventArgs e)
@@ -487,6 +503,18 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
 
     protected void OnPropertyChanged([CallerMemberName] string? name = null) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+    string GetValueToSave(Setting setting)
+    {
+        if (setting.Name == "language" &&
+            setting.PersistedValue == "system" &&
+            setting.Value == setting.StartValue)
+        {
+            return "system";
+        }
+
+        return setting.Value ?? "";
+    }
 
     protected override void OnContentRendered(EventArgs e)
     {
@@ -547,4 +575,13 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
     [RelayCommand] void ShowMpvManual() => ProcessHelp.ShellExecute("https://mpv.io/manual/master/");
     
     [RelayCommand] void ShowMpvNetManual() => ProcessHelp.ShellExecute("https://github.com/WandersondeSouza/mpv.net/blob/main/docs/manual.md");
+
+    public string WindowTitle => _("Config Editor");
+    public string SearchHintText => _("Find a setting (Ctrl+F)");
+    public string MenuText => _("Menu");
+    public string ShowMpvNetOptionsText => _("Show mpv.net options");
+    public string PreviewMpvConfText => _("Preview mpv.conf");
+    public string PreviewMpvNetConfText => _("Preview mpvnet.conf");
+    public string ShowMpvManualText => _("Show mpv manual");
+    public string ShowMpvNetManualText => _("Show mpv.net manual");
 }

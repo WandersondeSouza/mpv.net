@@ -11,6 +11,9 @@ alteracoes relevantes feitas neste fork de manutencao.
   selecionavel por `language=portuguese-brazil`.
 - O modo `language=system` agora reconhece Windows em `pt-BR` e seleciona a
   traducao brasileira automaticamente.
+- O editor de configuracao passou a traduzir textos visiveis da propria tela e
+  a mostrar o idioma efetivo no combo quando `language=system`, preservando
+  `system` no arquivo enquanto o usuario nao alterar o idioma manualmente.
 - Builds Debug/Release do projeto Windows agora preparam automaticamente
   dependencias nativas/auxiliares e geram `Locale`, permitindo testar a
   traducao diretamente pelo Visual Studio.

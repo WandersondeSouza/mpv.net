@@ -33,7 +33,9 @@ public class Conf
                         opt.Name = it.Value;
 
                     if (opt.Name == optionSetting.Default)
-                        opt.Text = opt.Name + " (Default)";
+                        opt.Text = opt.Name + " " + _("(Default)");
+
+                    opt.Help = _(opt.Help ?? "");
 
                     opt.OptionSetting = optionSetting;
                     optionSetting.Options.Add(opt);
@@ -48,9 +50,9 @@ public class Conf
 
             baseSetting.Name = section.GetValue("name");
             baseSetting.File = section.GetValue("file");
-            baseSetting.Directory = section.GetValue("directory");
+            baseSetting.Directory = _(section.GetValue("directory") ?? "");
 
-            if (section.HasName("help")) baseSetting.Help = section.GetValue("help");
+            if (section.HasName("help")) baseSetting.Help = _(section.GetValue("help") ?? "");
             if (section.HasName("url")) baseSetting.URL = section.GetValue("url");
             if (section.HasName("width")) baseSetting.Width = Convert.ToInt32(section.GetValue("width"));
             if (section.HasName("option-name-width")) baseSetting.OptionNameWidth = Convert.ToInt32(section.GetValue("option-name-width"));
