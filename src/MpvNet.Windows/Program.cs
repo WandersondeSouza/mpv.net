@@ -107,7 +107,10 @@ static class Program
                 Player.Destroy();
             }
             else
+            {
+                WpfApplication.Init();
                 Application.Run(new WinForms.MainForm());
+            }
 
             if (App.IsTerminalAttached)
                 WinApi.FreeConsole();
