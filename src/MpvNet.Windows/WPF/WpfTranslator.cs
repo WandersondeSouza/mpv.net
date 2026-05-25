@@ -79,7 +79,7 @@ public class WpfTranslator : ITranslator
 
         foreach (Language lang in Languages)
             if (lang.MpvNetName == name)
-                return new CultureInfo(lang.CultureInfoName);
+                return new CultureInfo(lang.CultureInfoName.Replace('-', '_'));
 
         return new CultureInfo("en");
     }
