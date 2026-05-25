@@ -65,5 +65,11 @@ public partial class ComboBoxSettingControl : UserControl, ISettingControl
     void ComboBoxControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         OptionSetting.Value = (ComboBoxControl.SelectedItem as OptionSettingOption)?.Name;
+
+        if (OptionSetting.Name == "language")
+        {
+            App.Language = OptionSetting.Value ?? "";
+            Translator.Current?.Gettext("");
+        }
     }
 }

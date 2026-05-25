@@ -3,11 +3,15 @@ using NGettext.Wpf;
 
 using System.Globalization;
 
+using System.Threading;
+
 namespace MpvNet.Windows.WPF;
 
 public class WpfTranslator : ITranslator
 {
     string _localizerLangauge = "";
+
+    public static event EventHandler<CultureInfo>? LanguageChanged;
 
     static Language[] Languages { get; } = new Language[] {
         new("bulgarian", "bg", "bg"),
@@ -39,11 +43,30 @@ public class WpfTranslator : ITranslator
 
     void InitNGettextWpf()
     {
-        if (Translation.Localizer == null || _localizerLangauge != App.Language)
+        CultureInfo culture = GetCulture(App.Language);
+        ApplyThreadCulture(culture);
+
+        if (Translation.Localizer == null)
         {
-            CompositionRoot.Compose("mpvnet", GetCulture(App.Language), Folder.Startup + "Locale");
+            CompositionRoot.Compose("mpvnet", culture, Folder.Startup + "Locale");
             _localizerLangauge = App.Language;
+            return;
         }
+
+        if (_localizerLangauge != App.Language)
+        {
+            Translation.Localizer.CultureTracker.CurrentCulture = culture;
+            _localizerLangauge = App.Language;
+            LanguageChanged?.Invoke(this, culture);
+        }
+    }
+
+    static void ApplyThreadCulture(CultureInfo culture)
+    {
+        CultureInfo.CurrentCulture = culture;
+        CultureInfo.CurrentUICulture = culture;
+        Thread.CurrentThread.CurrentCulture = culture;
+        Thread.CurrentThread.CurrentUICulture = culture;
     }
 
     public static string GetEffectiveLanguage(string name)
