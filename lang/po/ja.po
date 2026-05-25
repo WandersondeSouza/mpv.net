@@ -999,3 +999,59 @@ msgstr "シャットダウン スレッドが 10 秒以内に完了しません�
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:116
 msgid "Changes will be available on next startup."
 msgstr "変更は次回の起動時に利用可能になります。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Conf.cs
+msgid "(Default)"
+msgstr "(既定)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "General"
+msgstr "全般"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Appearance"
+msgstr "外観"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "User interface display language.\\nmpv.net must be restarted after a change."
+msgstr "ユーザー インターフェイスの表示言語。\\n変更後は mpv.net の再起動が必要です。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Config Editor"
+msgstr "設定エディター"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Find a setting (Ctrl+F)"
+msgstr "設定を検索 (Ctrl+F)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Menu"
+msgstr "メニュー"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv.net options"
+msgstr "mpv.net オプションを表示"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Preview mpv.conf"
+msgstr "mpv.conf をプレビュー"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Preview mpvnet.conf"
+msgstr "mpvnet.conf をプレビュー"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv manual"
+msgstr "mpv マニュアルを表示"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv.net manual"
+msgstr "mpv.net マニュアルを表示"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Changed theme settings require mpv.net being restarted."
+msgstr "変更したテーマ設定を適用するには mpv.net の再起動が必要です。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Info"
+msgstr "情報"

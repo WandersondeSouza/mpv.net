@@ -1022,3 +1022,59 @@ msgstr "theme"
 
 #~ msgid "Show Bindings"
 #~ msgstr "키 설정 표시"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Conf.cs
+msgid "(Default)"
+msgstr "(기본값)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "General"
+msgstr "일반"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Appearance"
+msgstr "모양"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "User interface display language.\\nmpv.net must be restarted after a change."
+msgstr "사용자 인터페이스 표시 언어입니다.\\n변경 후 mpv.net을 다시 시작해야 합니다."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Config Editor"
+msgstr "설정 편집기"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Find a setting (Ctrl+F)"
+msgstr "설정 찾기 (Ctrl+F)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Menu"
+msgstr "메뉴"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv.net options"
+msgstr "mpv.net 옵션 표시"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Preview mpv.conf"
+msgstr "mpv.conf 미리 보기"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Preview mpvnet.conf"
+msgstr "mpvnet.conf 미리 보기"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv manual"
+msgstr "mpv 설명서 표시"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv.net manual"
+msgstr "mpv.net 설명서 표시"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Changed theme settings require mpv.net being restarted."
+msgstr "변경된 테마 설정을 적용하려면 mpv.net을 다시 시작해야 합니다."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Info"
+msgstr "정보"

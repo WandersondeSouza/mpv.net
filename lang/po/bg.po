@@ -1015,3 +1015,59 @@ msgstr "тема"
 
 #~ msgid "Show Bindings"
 #~ msgstr "Покажи обвързвания"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Conf.cs
+msgid "(Default)"
+msgstr "(По подразбиране)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "General"
+msgstr "Общи"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Appearance"
+msgstr "Външен вид"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "User interface display language.\\nmpv.net must be restarted after a change."
+msgstr "Език на потребителския интерфейс.\\nmpv.net трябва да бъде рестартиран след промяна."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Config Editor"
+msgstr "Редактор на конфигурацията"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Find a setting (Ctrl+F)"
+msgstr "Намиране на настройка (Ctrl+F)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Menu"
+msgstr "Меню"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv.net options"
+msgstr "Показване на опциите на mpv.net"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Preview mpv.conf"
+msgstr "Преглед на mpv.conf"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Preview mpvnet.conf"
+msgstr "Преглед на mpvnet.conf"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv manual"
+msgstr "Показване на ръководството на mpv"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv.net manual"
+msgstr "Показване на ръководството на mpv.net"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Changed theme settings require mpv.net being restarted."
+msgstr "Променените настройки на темата изискват рестартиране на mpv.net."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Info"
+msgstr "Информация"

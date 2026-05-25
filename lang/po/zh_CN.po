@@ -1000,3 +1000,59 @@ msgstr "线程关闭未能在 10 秒内完成"
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:116
 msgid "Changes will be available on next startup."
 msgstr "更改将在下次启动时应用"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Conf.cs
+msgid "(Default)"
+msgstr "（默认）"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "General"
+msgstr "常规"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Appearance"
+msgstr "外观"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "User interface display language.\\nmpv.net must be restarted after a change."
+msgstr "用户界面显示语言。\\n更改后必须重新启动 mpv.net。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Config Editor"
+msgstr "配置编辑器"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Find a setting (Ctrl+F)"
+msgstr "查找设置 (Ctrl+F)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Menu"
+msgstr "菜单"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv.net options"
+msgstr "显示 mpv.net 选项"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Preview mpv.conf"
+msgstr "预览 mpv.conf"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Preview mpvnet.conf"
+msgstr "预览 mpvnet.conf"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv manual"
+msgstr "显示 mpv 手册"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv.net manual"
+msgstr "显示 mpv.net 手册"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Changed theme settings require mpv.net being restarted."
+msgstr "更改的主题设置需要重新启动 mpv.net。"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Info"
+msgstr "信息"

@@ -993,3 +993,59 @@ msgstr "El hilo de cierre no terminó en 10 segundos."
 #: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:116
 msgid "Changes will be available on next startup."
 msgstr "Los cambios estarán disponibles en el próximo inicio."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Conf.cs
+msgid "(Default)"
+msgstr "(Predeterminado)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "General"
+msgstr "General"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "Appearance"
+msgstr "Apariencia"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt
+msgid "User interface display language.\\nmpv.net must be restarted after a change."
+msgstr "Idioma de visualización de la interfaz de usuario.\\nmpv.net debe reiniciarse después de un cambio."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Config Editor"
+msgstr "Editor de configuración"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Find a setting (Ctrl+F)"
+msgstr "Buscar una opción (Ctrl+F)"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Menu"
+msgstr "Menú"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv.net options"
+msgstr "Mostrar opciones de mpv.net"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Preview mpv.conf"
+msgstr "Vista previa de mpv.conf"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Preview mpvnet.conf"
+msgstr "Vista previa de mpvnet.conf"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv manual"
+msgstr "Mostrar manual de mpv"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Show mpv.net manual"
+msgstr "Mostrar manual de mpv.net"
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Changed theme settings require mpv.net being restarted."
+msgstr "Los cambios de tema requieren reiniciar mpv.net."
+
+#: D:\Projects\CS\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs
+msgid "Info"
+msgstr "Información"
