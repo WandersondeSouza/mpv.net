@@ -1348,7 +1348,7 @@ msgstr "インフォメーション"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1136
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:102
 msgid "Input"
-msgstr "??"
+msgstr "入力"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:11
 msgid "Input Editor"
@@ -1402,7 +1402,7 @@ msgstr "æå¾ã®ãã¡ã¤ã«"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:10
 msgid "Learn Input"
-msgstr "??"
+msgstr "入力を学習"
 
 msgid "Like scale, but apply these filters on downscaling instead. \\\\nIf no option is selected, it will keep the same with the upscaler."
 msgstr "スケールのように, しかし、代わりにダウンスケーリングにこれらのフィルタを適用します. \\\\nオプションが選択されていない場合は、upscaler と同じままになります。"
@@ -2562,7 +2562,7 @@ msgstr "JPEGファイルをビデオと同じクロマサブサンプリング�
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:137
 msgid "Yes"
-msgstr "??"
+msgstr "はい"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:152
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:153

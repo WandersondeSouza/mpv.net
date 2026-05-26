@@ -1339,7 +1339,7 @@ msgstr "ÐÐ½ÑÐ¾ÑÐ¼Ð°ÑÐ¸Ñ"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1136
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:102
 msgid "Input"
-msgstr "????"
+msgstr "Вход"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:11
 msgid "Input Editor"
@@ -1393,7 +1393,7 @@ msgstr "ÐÐ¾ÑÐ»ÐµÐ´ÐµÐ½ ÑÐ°Ð¹Ð»"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:10
 msgid "Learn Input"
-msgstr "????"
+msgstr "Обучение на вход"
 
 msgid "Like scale, but apply these filters on downscaling instead. \\\\nIf no option is selected, it will keep the same with the upscaler."
 msgstr "Подобно на мащаб, но нанесете тези филтри на снижаване вместо \\\\nАко не бъде избрана опция, тя ще запази същата с upscaler."
@@ -2553,7 +2553,7 @@ msgstr "Напишете JPEG файлове със същата хрома ка
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:137
 msgid "Yes"
-msgstr "??"
+msgstr "Да"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:152
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:153
