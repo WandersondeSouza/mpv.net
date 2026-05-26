@@ -8,7 +8,21 @@ FIELD_RE = re.compile(r'^(msgctxt|msgid_plural|msgid|msgstr(?:\[[0-9]+\])?)\s+(.
 
 
 def unescape_po_string(value: str) -> str:
-    return bytes(value, 'utf-8').decode('unicode_escape')
+    result = []
+    i = 0
+    while i < len(value):
+        ch = value[i]
+        if ch != '\\' or i + 1 >= len(value):
+            result.append(ch)
+            i += 1
+            continue
+
+        nxt = value[i + 1]
+        escapes = {'n': '\n', 'r': '\r', 't': '\t', '"': '"', '\\': '\\'}
+        result.append(escapes.get(nxt, nxt))
+        i += 2
+
+    return ''.join(result)
 
 
 def escape_mo_string(value: str) -> bytes:

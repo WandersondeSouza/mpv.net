@@ -7,7 +7,21 @@ ENTRY_KEY_SEPARATOR = '\u0000'
 
 
 def unescape_po_string(text):
-    return bytes(text, 'utf-8').decode('unicode_escape')
+    result = []
+    i = 0
+    while i < len(text):
+        ch = text[i]
+        if ch != '\\' or i + 1 >= len(text):
+            result.append(ch)
+            i += 1
+            continue
+
+        nxt = text[i + 1]
+        escapes = {'n': '\n', 'r': '\r', 't': '\t', '"': '"', '\\': '\\'}
+        result.append(escapes.get(nxt, nxt))
+        i += 2
+
+    return ''.join(result)
 
 
 def escape_po_string(text):

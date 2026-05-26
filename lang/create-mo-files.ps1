@@ -24,19 +24,19 @@ $Python = Get-CommandPath 'python'
 $hasGettextTools = $MsgAttrib -and $MsgUniq -and $MsgFmt
 $hasPythonFallback = $Python -ne $null
 
-$PoFiles = Get-ChildItem $PSScriptRoot/po
+$PoFiles = Get-ChildItem $PSScriptRoot/po -Filter '*.po' -File
 $ExeFolder = $OutputDir
 
-if ($hasGettextTools) {
-    $validationScript = Join-Path $PSScriptRoot 'clean-po-files.ps1'
-    $potPath = Join-Path $PSScriptRoot 'source.pot'
-    if ((Test-Path $validationScript) -and (Test-Path $potPath)) {
-        Write-Host "Validating PO files before compilation"
-        & $validationScript -PoDirectory (Join-Path $PSScriptRoot 'po') -PotPath $potPath
-        if ($LastExitCode) { throw $LastExitCode }
-    }
-} else {
-    Write-Warning 'Gettext tools not available. Skipping gettext-based PO validation and using Python compilation fallback.'
+$validationScript = Join-Path $PSScriptRoot 'clean-po-files.ps1'
+$potPath = Join-Path $PSScriptRoot 'source.pot'
+if ((Test-Path $validationScript) -and (Test-Path $potPath)) {
+    Write-Host "Validating PO files before compilation"
+    & $validationScript -PoDirectory (Join-Path $PSScriptRoot 'po') -PotPath $potPath -ValidateOnly
+    if ($LastExitCode) { throw $LastExitCode }
+}
+
+if (-not $hasGettextTools) {
+    Write-Warning 'Gettext tools not available. Using Python compilation fallback.'
     if (-not $hasPythonFallback) {
         throw 'Neither gettext tools nor Python fallback are available. Cannot compile MO files.'
     }
