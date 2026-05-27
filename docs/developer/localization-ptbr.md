@@ -10,12 +10,16 @@ O mpv.net usa gettext para os textos de interface. A traducao fica fora dos arqu
 
 Arquivos e responsabilidades:
 
-- `lang/source.pot`: template gettext gerado a partir dos textos fonte.
-- `lang/po/*.po`: arquivos de traducao por idioma.
+- `lang/source.pot`: template gettext gerado a partir dos textos fonte e base inglesa oficial.
+- `lang/po/*.po`: arquivos de traducao apenas para idiomas traduzidos.
 - `lang/create-mo-files.ps1`: compila arquivos `.po` para `.mo`.
 - `src/MpvNet.Windows/WPF/WpfTranslator.cs`: converte o valor de `language` em uma `CultureInfo`.
 - `src/MpvNet.Windows/Resources/editor_conf.txt`: lista os valores aceitos pelo editor de configuracao para a opcao `language`.
 - `src/Tools/release-mpv.net.ps1`: gera ou reaproveita a pasta `Locale` durante o fluxo de release.
+
+O ingles e o idioma-fonte nativo do mpv.net. Por isso, nao existe `lang/po/en.po` nem `Locale/en/LC_MESSAGES/mpvnet.mo` gerado pelo fluxo normal. Quando a interface esta em ingles, o gettext usa os proprios `msgid` em ingles como texto final.
+
+O arquivo `lang/source.pot` deve ser tratado como a base inglesa oficial. Todo arquivo `.po` de idioma traduzido deve ter as mesmas entradas ativas do `source.pot`, sem entradas ausentes, extras, duplicadas ou vazias. A validacao de paridade compara cada `lang/po/*.po` contra esse arquivo.
 
 O formato final esperado pelo runtime e:
 
@@ -31,7 +35,7 @@ Locale/pt_BR/LC_MESSAGES/mpvnet.mo
 
 ## Idiomas disponiveis
 
-Os idiomas abaixo possuem arquivo `.po`, mapeamento em `WpfTranslator.cs` e valor publico aceito por `language`:
+Os idiomas abaixo possuem mapeamento em `WpfTranslator.cs` e valor publico aceito por `language`. Idiomas traduzidos tambem possuem arquivo `.po` e pasta `Locale`; o ingles usa a base nativa em `source.pot`.
 
 | Idioma | Valor de `language` | Arquivo PO | Pasta Locale | CultureInfo |
 | --- | --- | --- | --- | --- |
@@ -58,6 +62,8 @@ O fork possui traducoes gettext para portugues brasileiro (`language=portuguese-
 ## Como adicionar ou revisar um idioma
 
 1. Criar o arquivo `lang/po/<cultura>.po` a partir de `lang/source.pot`.
+
+   Nao criar `lang/po/en.po`: ingles e nativo e deve permanecer representado pelo proprio `lang/source.pot`.
 
 2. Ajustar o cabecalho do novo `.po` para UTF-8 e plural do portugues brasileiro:
 
@@ -111,6 +117,8 @@ src/MpvNet.Windows/bin/Debug/win-x64/Locale/pt_BR/LC_MESSAGES/mpvnet.mo
 
 - Nao renomear idiomas existentes.
 - Nao mudar o padrao `language=system`.
+- Nao criar `lang/po/en.po` sem uma decisao explicita de mudar o contrato de localizacao.
+- Manter `lang/source.pot` como base inglesa oficial para paridade dos `.po`.
 - Nao remover nem substituir a referencia historica a Transifex/upstream.
 - Nao tratar `.resx` como fonte principal da traducao gettext da interface.
 - Nao alterar o formato de `mpvnet.conf`; o usuario deve continuar podendo definir `language=<valor>`.
@@ -120,12 +128,15 @@ src/MpvNet.Windows/bin/Debug/win-x64/Locale/pt_BR/LC_MESSAGES/mpvnet.mo
 Validacao automatica minima:
 
 ```powershell
+.\lang\clean-po-files.ps1 -ValidateOnly
 .\lang\create-mo-files.ps1 .\src\MpvNet.Windows\bin\Debug\win-x64
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_BR\LC_MESSAGES\mpvnet.mo
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_PT\LC_MESSAGES\mpvnet.mo
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\es\LC_MESSAGES\mpvnet.mo
 dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore
 ```
+
+O comando `.\lang\clean-po-files.ps1 -ValidateOnly` e a validacao principal de paridade: ele confirma que `lang/source.pot` nao tem duplicatas, que cada `.po` traduzido corresponde ao `source.pot` e que `lang/po/en.po` nao foi criado indevidamente.
 
 Validacao manual:
 

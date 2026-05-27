@@ -82,7 +82,7 @@ As DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfg
 
 `MediaInfo.dll` é baixada/atualizada por `src/Tools/ensure-native-dependencies.ps1`. O parâmetro `-MediaInfoVersion`, ou a variável `MPVNET_MEDIAINFO_VERSION`, permite pinagem de uma versão específica. O parâmetro `-MediaInfoFile` continua existindo no release script apenas como override manual. `mpvnet.com` pode ser fornecido por `-MpvNetComFile`; se não for informado e não existir no build output, o script baixa o arquivo auxiliar do host original usado pelo projeto. A pasta `Locale` é gerada automaticamente a partir de `lang/po` quando necessário. Se algum download, extração ou arquivo obrigatório falhar, a release deve falhar antes de montar o pacote incompleto.
 
-Builds normais do projeto Windows, incluindo Visual Studio, Debug e Release, executam `src/Tools/ensure-build-assets.ps1` após a compilação. Esse script valida ou baixa `MediaInfo.dll`, `libmpv-2.dll`, FFmpeg, `yt-dlp.exe` e `mpvnet.com`, baixa `Gettext.Tools` quando `msgfmt.exe` não está no `PATH`, e gera `Locale/<idioma>/LC_MESSAGES/mpvnet.mo` no mesmo diretório de saída do `mpvnet.exe`.
+Builds normais do projeto Windows, incluindo Visual Studio, Debug e Release, executam `src/Tools/ensure-build-assets.ps1` após a compilação. Esse script valida ou baixa `MediaInfo.dll`, `libmpv-2.dll`, FFmpeg, `yt-dlp.exe` e `mpvnet.com`, baixa `Gettext.Tools` quando `msgfmt.exe` não está no `PATH`, e gera `Locale/<idioma>/LC_MESSAGES/mpvnet.mo` para os idiomas traduzidos no mesmo diretório de saída do `mpvnet.exe`. O ingles permanece como idioma nativo em `lang/source.pot` e nao gera `Locale/en`.
 
 ```powershell
 dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj

@@ -257,14 +257,29 @@ def active_po_files(po_directory):
     return sorted(po_directory.glob("*.po"))
 
 
+def assert_no_native_english_po(po_directory):
+    english_po = po_directory / "en.po"
+    if english_po.exists():
+        raise SystemExit(
+            "PO validation failed:\n"
+            f"{english_po.name}: English is the native gettext source language. "
+            "Do not add lang/po/en.po; keep lang/source.pot as the official English base."
+        )
+
+
 def validate(po_directory, pot_path):
+    assert_no_native_english_po(po_directory)
+
     pot_entries = [entry for entry in parse_po(pot_path) if not entry.is_header]
     pot_keys = [entry.key() for entry in pot_entries]
     pot_set = set(pot_keys)
     failures = []
 
     pot_duplicates = [key for key, count in Counter(pot_keys).items() if count > 1]
-    print(f"{pot_path.name}: entries={len(pot_keys)} unique={len(pot_set)} duplicate={len(pot_duplicates)}")
+    print(
+        f"{pot_path.name}: native English base entries={len(pot_keys)} "
+        f"unique={len(pot_set)} duplicate={len(pot_duplicates)}"
+    )
     if pot_duplicates:
         failures.append(f"{pot_path.name}: duplicate={len(pot_duplicates)}")
 
@@ -295,6 +310,8 @@ def validate(po_directory, pot_path):
 
 
 def normalize(po_directory, pot_path, fill_empty):
+    assert_no_native_english_po(po_directory)
+
     parsed_pot = parse_po(pot_path)
     pot_header = find_header(parsed_pot)
     unique_pot = merge_duplicate_templates(parsed_pot)
