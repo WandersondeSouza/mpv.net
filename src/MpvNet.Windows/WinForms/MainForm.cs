@@ -970,7 +970,7 @@ public partial class MainForm : Form
         string normalizedTitle = TitleHelp.NormalizeMediaTitle(title);
 
         if (!string.IsNullOrEmpty(normalizedTitle) && normalizedTitle != title)
-            Player.SetPropertyString("force-media-title", normalizedTitle);
+            Player.SetPropertyString("file-local-options/force-media-title", normalizedTitle);
     }
 
     void SaveWindowProperties()

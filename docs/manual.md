@@ -209,7 +209,10 @@ https://mpv.io/manual/master/#properties
 
 For visible media titles, this fork normalizes literal `--force-media-title`
 values and literal `--title` values before displaying them. Template values such
-as `--title="${media-title}"` keep mpv property expansion behavior.
+as `--title="${media-title}"` keep mpv property expansion behavior. Automatic
+title normalization is applied as a per-file visual metadata override, so
+advancing in a playlist keeps using the real file path or URL while each item
+receives its own normalized window, OSD, and playlist title.
 
 
 mpv has a few non property based switches which are generally not supported in mpv.net.

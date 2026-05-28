@@ -35,6 +35,9 @@ alteracoes relevantes feitas neste fork de manutencao.
 
 - Os titulos visiveis de midia agora sao normalizados antes de aparecerem na
   janela, no OSD de reproducao e nas listas que usam `media-title`.
+- A normalizacao automatica do titulo agora e aplicada por item de playlist,
+  sem transformar o titulo limpo em identidade persistente para os proximos
+  arquivos; o caminho/URL real continua sendo usado para carregar a midia.
 - `--force-media-title` e valores literais de `--title` recebidos por linha de
   comando passam a ser ajustados antes de serem repassados ao mpv.
 - O fallback `mpv.net` continua sendo usado quando nao ha midia/titulo, mas nao
