@@ -266,12 +266,12 @@ public class MpvClient
         return ret;
     }
 
-    public bool GetPropertyBool(string name)
+    public bool GetPropertyBool(string name, bool handleError = true)
     {
         mpv_error err = mpv_get_property(Handle, GetUtf8Bytes(name),
             mpv_format.MPV_FORMAT_FLAG, out IntPtr lpBuffer);
 
-        if (err < 0)
+        if (err < 0 && handleError)
             HandleError(err, "error getting property: " + name);
 
         return lpBuffer.ToInt32() != 0;

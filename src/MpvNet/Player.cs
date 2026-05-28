@@ -717,14 +717,17 @@ public class MainPlayer : MpvClient
 
         for (int i = 0; i < trackCount; i++)
         {
-            bool external = GetPropertyBool($"track-list/{i}/external");
+            bool external = GetPropertyBool($"track-list/{i}/external", false);
 
             if ((external && !includeExternal) || (!external && !includeInternal))
                 continue;
 
             string type = GetPropertyString($"track-list/{i}/type");
             string filename = GetPropertyString($"filename/no-ext");
-            string title = GetPropertyString($"track-list/{i}/title").Replace(filename, "");
+            string title = GetPropertyString($"track-list/{i}/title");
+
+            if (!string.IsNullOrEmpty(filename))
+                title = title.Replace(filename, "");
 
             title = TitleRegex.Replace(title, "");
 
@@ -739,7 +742,7 @@ public class MainPlayer : MpvClient
                 Add(track, codec);
                 Add(track, GetPropertyString($"track-list/{i}/demux-w") + "x" + GetPropertyString($"track-list/{i}/demux-h"));
                 Add(track, GetPropertyString($"track-list/{i}/demux-fps").Replace(".000000", "") + " FPS");
-                Add(track, GetPropertyBool($"track-list/{i}/default") ? "Default" : null);
+                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? "Default" : null);
                 track.Text = "V: " + track.Text.Trim(' ', ',');
                 track.Type = "v";
                 track.ID = GetPropertyInt($"track-list/{i}/id");
@@ -757,9 +760,9 @@ public class MainPlayer : MpvClient
                 Add(track, codec);
                 Add(track, GetPropertyInt($"track-list/{i}/audio-channels") + " ch");
                 Add(track, GetPropertyInt($"track-list/{i}/demux-samplerate") / 1000 + " kHz");
-                Add(track, GetPropertyBool($"track-list/{i}/forced") ? "Forced" : null);
-                Add(track, GetPropertyBool($"track-list/{i}/default") ? "Default" : null);
-                Add(track, GetPropertyBool($"track-list/{i}/external") ? "External" : null);
+                Add(track, GetPropertyBool($"track-list/{i}/forced", false) ? "Forced" : null);
+                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? "Default" : null);
+                Add(track, GetPropertyBool($"track-list/{i}/external", false) ? "External" : null);
                 Add(track, title);
                 track.Text = "A: " + track.Text.Trim(' ', ',');
                 track.Type = "a";
@@ -785,9 +788,9 @@ public class MainPlayer : MpvClient
                 track.Language = language;
                 Add(track, GetLanguage(language));
                 Add(track, codec);
-                Add(track, GetPropertyBool($"track-list/{i}/forced") ? "Forced" : null);
-                Add(track, GetPropertyBool($"track-list/{i}/default") ? "Default" : null);
-                Add(track, GetPropertyBool($"track-list/{i}/external") ? "External" : null);
+                Add(track, GetPropertyBool($"track-list/{i}/forced", false) ? "Forced" : null);
+                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? "Default" : null);
+                Add(track, GetPropertyBool($"track-list/{i}/external", false) ? "External" : null);
                 Add(track, title);
                 track.Text = "S: " + track.Text.Trim(' ', ',');
                 track.Type = "s";
