@@ -507,9 +507,11 @@ Supported values:
 | Russian | `russian` |
 | Turkish | `turkish` |
 
-During playback, the interface language follows the selected audio track when
-the track language maps to one of the supported values above. Unsupported or
-missing audio language metadata falls back to English.
+When `alang` is set, mpv.net uses its first supported language value as the
+interface language preference. This uses the declared `alang` priority list, not
+the language metadata of the audio or subtitle track selected by the current
+file. If no `alang` value is supported, mpv.net falls back to the Windows UI
+language when supported, otherwise English.
 
 Work on the translation is done with transifex:  
 https://app.transifex.com/stax76/teams/

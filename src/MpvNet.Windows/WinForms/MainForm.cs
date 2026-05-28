@@ -91,6 +91,7 @@ public partial class MainForm : Form
             Player.ObservePropertyDouble("window-scale", PropChangeWindowScale);
 
             CommandLine.ProcessCommandLineArgsPostInit();
+            ApplyInterfaceLanguageFromAlang();
             CommandLine.ProcessCommandLineFiles();
 
             _taskbarButtonCreatedMessage = RegisterWindowMessage("TaskbarButtonCreated");
@@ -501,9 +502,14 @@ public partial class MainForm : Form
         }
     }
 
-    void ApplyInterfaceLanguageFromSelectedAudioTrack()
+    void ApplyInterfaceLanguageFromAlang()
     {
-        string language = GetInterfaceLanguageFromSelectedAudioTrack();
+        string alang = Player.GetPropertyString("alang");
+
+        if (string.IsNullOrWhiteSpace(alang))
+            return;
+
+        string language = WpfTranslator.GetEffectiveLanguageFromAlang(alang);
 
         if (App.Language == language)
             return;
@@ -511,42 +517,6 @@ public partial class MainForm : Form
         App.Language = language;
         Translator.Current?.Gettext("");
         Player.SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
-    }
-
-    static string GetInterfaceLanguageFromSelectedAudioTrack()
-    {
-        if (!int.TryParse(Player.AID, NumberStyles.Integer, CultureInfo.InvariantCulture, out int aid))
-            return "english";
-
-        lock (Player.MediaTracksLock)
-        {
-            MediaTrack? track = Player.MediaTracks.FirstOrDefault(i => i.Type == "a" && i.ID == aid);
-            return GetInterfaceLanguageFromAudioLanguage(track?.Language);
-        }
-    }
-
-    static string GetInterfaceLanguageFromAudioLanguage(string? language)
-    {
-        string normalized = (language ?? "").Trim().Replace('_', '-').ToLowerInvariant();
-
-        return normalized switch
-        {
-            "bg" or "bul" or "bulgarian" => "bulgarian",
-            "zh" or "zh-cn" or "chi" or "zho" or "chinese" => "chinese-china",
-            "en" or "eng" or "english" => "english",
-            "es" or "spa" or "spanish" => "spanish",
-            "fr" or "fra" or "fre" or "french" => "french",
-            "de" or "deu" or "ger" or "german" => "german",
-            "ja" or "jpn" or "japanese" => "japanese",
-            "ko" or "kor" or "korean" => "korean",
-            "pl" or "pol" or "polish" => "polish",
-            "pt-br" or "por-br" or "portuguese-brazil" or "brazilian portuguese" => "portuguese-brazil",
-            "pt-pt" or "por-pt" or "portuguese-portugal" or "european portuguese" => "portuguese-portugal",
-            "pt" or "por" or "portuguese" => "portuguese-brazil",
-            "ru" or "rus" or "russian" => "russian",
-            "tr" or "tur" or "turkish" => "turkish",
-            _ => "english"
-        };
     }
 
     public WpfControls.MenuItem? FindMenuItem(string text, string text2 = "") {
@@ -931,7 +901,6 @@ public partial class MainForm : Form
         NormalizeLoadedMediaTitle();
         TaskHelp.Run(() => {
             Player.UpdateTracks();
-            BeginInvoke(ApplyInterfaceLanguageFromSelectedAudioTrack);
         });
 
         BeginInvoke(() => {
@@ -1344,10 +1313,7 @@ public partial class MainForm : Form
     void PropChangeAid(string value)
     {
         Player.AID = value;
-        TaskHelp.Run(() => {
-            Player.UpdateTracks();
-            BeginInvoke(ApplyInterfaceLanguageFromSelectedAudioTrack);
-        });
+        TaskHelp.Run(Player.UpdateTracks);
     }
 
     void PropChangeSid(string value) => Player.SID = value;
