@@ -3,7 +3,7 @@
 Este arquivo preserva o historico original do mpv.net e registra, no topo, as
 alteracoes relevantes feitas neste fork de manutencao.
 
-# Fork WandersondeSouza - alteracoes em desenvolvimento
+# Fork WandersondeSouza - v7.1.2.3 (2026-05-28)
 
 ## Localizacao
 
@@ -19,6 +19,33 @@ alteracoes relevantes feitas neste fork de manutencao.
 - Builds Debug/Release do projeto Windows agora preparam automaticamente
   dependencias nativas/auxiliares e geram `Locale`, permitindo testar a
   traducao diretamente pelo Visual Studio.
+
+## Idiomas e catalogos gettext
+
+- Adicionados catalogos gettext para espanhol (`es`) e portugues de Portugal
+  (`pt-PT`), mantendo o ingles como base nativa em `lang/source.pot`.
+- Os catalogos ativos foram normalizados e sincronizados com `lang/source.pot`,
+  incluindo entradas do editor de configuracao e textos visiveis da interface.
+- O fluxo de geracao de `.mo` ganhou fallbacks locais para ambientes sem
+  `msgfmt.exe`, reduzindo falhas durante build, teste e release.
+
+## Reproducao, titulos e interface
+
+- Ajustada a exibicao de titulos visiveis para manter nomes de midia
+  normalizados na janela, OSD e playlist sem alterar a identidade real do
+  arquivo ou URL reproduzido.
+- Melhorada a compatibilidade de reproducao de arquivos web e URLs, preservando
+  a delegacao ao mpv/libmpv.
+- Corrigido o binding de `HintText` no campo de busca da janela de configuracao,
+  evitando falha ao abrir o editor.
+
+## Manutencao e documentacao
+
+- Adicionada documentacao tecnica de localizacao do fork em
+  `docs/developer/localization-ptbr.md`.
+- Adicionada a base inicial de wiki em `docs/wiki/Home.md`.
+- Documentos e artefatos `.ai/` foram alinhados ao fluxo atual de manutencao,
+  build x64, localizacao e release do fork.
 
 # Fork WandersondeSouza - v7.1.2.2 (2026-05-22)
 

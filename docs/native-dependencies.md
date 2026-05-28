@@ -138,7 +138,7 @@ Before creating a release package, validate the final folder or ZIP:
 
 ```powershell
 src\Tools\test-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
-src\Tools\test-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.2-portable-x64.zip
+src\Tools\test-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.3-portable-x64.zip
 ```
 
 If any expected file is missing, empty, not x64, or cannot be downloaded, the release script fails instead of creating a partial portable package. Do not download DLLs from generic DLL websites such as dll-files.com.

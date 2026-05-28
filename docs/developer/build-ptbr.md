@@ -4,7 +4,7 @@
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **mpv.net**.
 
-> Status: estrutura real do projeto mapeada. O build local da aplicação Windows e o fluxo local de release da versão `7.1.2.2` foram validados em Windows, incluindo ZIP portátil, instalador e validação de dependências nativas. Ainda faltam fechar a revisão manual completa de UI/compatibilidade e validar o workflow manual do GitHub Actions.
+> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release da versao `7.1.2.3` foram validados em Windows, incluindo ZIP portatil, instalador e validacao de dependencias nativas. Ainda faltam fechar a revisao manual completa de UI/compatibilidade e validar o workflow manual do GitHub Actions.
 
 ---
 
@@ -205,7 +205,7 @@ O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo sc
 
 Este fork nao publica um pacote NuGet/container no GitHub Packages por enquanto; os pacotes de distribuicao do aplicativo sao assets de GitHub Releases e artefatos do workflow.
 
-Validado em 2026-05-22: execucao local de `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release` gerou o ZIP portatil `mpv.net-v7.1.2.2-portable-x64.zip` e o instalador `mpv.net-v7.1.2.2-setup-x64.exe`, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. A release `v7.1.2.2` foi publicada no GitHub.
+Validado em 2026-05-28: execucao local de `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release` gerou o ZIP portatil `mpv.net-v7.1.2.3-portable-x64.zip` e o instalador `mpv.net-v7.1.2.3-setup-x64.exe`, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. A release `v7.1.2.3` foi publicada no GitHub.
 
 Pendente real: validar o workflow manual do GitHub Actions e a revisao manual completa da UI no pacote gerado.
 
@@ -216,7 +216,7 @@ Pendente real: validar o workflow manual do GitHub Actions e a revisao manual co
 A versão atual do executável está centralizada em `src/BuildVersion.props`:
 
 ```xml
-<MpvNetVersion>7.1.2.2</MpvNetVersion>
+<MpvNetVersion>7.1.2.3</MpvNetVersion>
 ```
 
 O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
