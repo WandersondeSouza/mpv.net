@@ -367,7 +367,7 @@ msgstr " ビデオをシステムRAMにコピーする"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Conf.cs:38
 msgid "(Default)"
-msgstr "(æ¢å®)"
+msgstr "(既定)"
 
 msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
 msgstr "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
@@ -623,31 +623,31 @@ msgstr "About mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
-msgstr "ã­ã¼ãã¤ã³ããã¨ãã£ã¿ã§ç·¨é"
+msgstr "キーバインドをエディタで編集"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:145
 msgid "Active Bindings On-Screen"
-msgstr "ã­ã¼ãã¤ã³ããç»é¢ã«è¡¨ç¤º"
+msgstr "キーバインドを画面に表示"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:16
 msgid "Add external audio files..."
-msgstr "å¤é¨ãªã¼ãã£ãªãã¡ã¤ã«ãè¿½å ..."
+msgstr "外部オーディオファイルを追加..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:17
 msgid "Add external subtitle files..."
-msgstr "å¤é¨å­å¹ãã¡ã¤ã«ãè¿½å ..."
+msgstr "外部字幕ファイルを追加..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:19
 msgid "Add files to playlist..."
-msgstr "ãã¬ã¤ãªã¹ãã¸ãã¡ã¤ã«ãè¿½å ..."
+msgstr "プレイリストへファイルを追加..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:20
 msgid "Add files/URLs to playlist from clipboard"
-msgstr "ã¯ãªãããã¼ããããã¬ã¤ãªã¹ãã¸ãã¡ã¤ã«/URL ãè¿½å "
+msgstr "クリップボードからプレイリストへファイル/URL を追加"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 msgid "Add mpv.net to Path environment variable"
-msgstr "mpv.net ã Path ç°å¢å¤æ°ã¸è¿½å "
+msgstr "mpv.net を Path 環境変数へ追加"
 
 msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
 msgstr "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
@@ -696,22 +696,22 @@ msgstr "最寄りの隣接するサンプリング(非常に高速)を予約す�
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:88
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:89
 msgid "Audio"
-msgstr "ãªã¼ãã£ãª"
+msgstr "オーディオ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:453
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:85
 msgid "Audio Device"
-msgstr "ãªã¼ãã£ãªããã¤ã¹"
+msgstr "オーディオデバイス"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:138
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:243
 msgid "Audio Devices"
-msgstr "ãªã¼ãã£ãªããã¤ã¹"
+msgstr "オーディオデバイス"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:132
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:237
 msgid "Audio Tracks"
-msgstr "ãªã¼ãã£ãªãã©ãã¯"
+msgstr "オーディオトラック"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:835
 msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
@@ -725,7 +725,7 @@ msgstr "Available on Windows 10 or higher"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:209
 msgid "Backward"
-msgstr "æ»ã"
+msgstr "戻る"
 
 msgid "Bicubic interpolation (fast)"
 msgstr "立方補間(高速)"
@@ -742,7 +742,7 @@ msgstr "バイリンガルサンプリング(非常に高速)。"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:128
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:246
 msgid "Bindings"
-msgstr "ãã¤ã³ãã£ã³ã°"
+msgstr "バインディング"
 
 msgid "Box averaging (very fast)"
 msgstr "ボックス平均化(非常に高速)"
@@ -764,7 +764,7 @@ msgstr "Catmull-Romの立方スプライン。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:82
 msgid "Change Aspect Ratio"
-msgstr "ã¢ã¹ãã¯ãæ¯ãå¤æ´"
+msgstr "アスペクト比を変更"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:471
 msgid "Changed theme settings require mpv.net being restarted."
@@ -779,28 +779,28 @@ msgstr "光とダークなテーマで変化します。\\nmpv.net must be resta
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:125
 msgid "Changes will be available on next startup."
-msgstr "å¤æ´ã¯æ¬¡åã®èµ·åæã«å©ç¨å¯è½ã«ãªãã¾ãã"
+msgstr "変更は次回の起動時に利用可能になります。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:351
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:51
 msgid "Chapter"
-msgstr "ãã£ãã¿ã¼"
+msgstr "チャプター"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:130
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:240
 msgid "Chapters"
-msgstr "ãã£ãã¿ã¼"
+msgstr "チャプター"
 
 msgid "Choose the best mode automatically."
 msgstr "最高のモードを自動的に選択します。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:54
 msgid "Clear"
-msgstr "ãªã¹ããã¯ãªã¢"
+msgstr "リストをクリア"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:388
 msgid "Clear List"
-msgstr "ãªã¹ããã¯ãªã¢"
+msgstr "リストをクリア"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:375
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:383
@@ -875,11 +875,11 @@ msgstr "Color used to draw parts of the mpv window not covered by video. See the
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:140
 msgid "Command"
-msgstr "ã³ãã³ã"
+msgstr "コマンド"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:143
 msgid "Commands"
-msgstr "ã³ãã³ã"
+msgstr "コマンド"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:169
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:170
@@ -896,19 +896,19 @@ msgstr "ã³ãã³ã"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Config"
-msgstr "è¨­å®"
+msgstr "設定"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:571
 msgid "Config Editor"
-msgstr "è¨­å®ã¨ãã£ã¿ã¼"
+msgstr "設定エディター"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:53
 msgid "Confirm"
-msgstr "è¨­å®"
+msgstr "設定"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:142
 msgid "Console"
-msgstr "ã³ã³ã½ã¼ã«"
+msgstr "コンソール"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:707
 msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
@@ -941,7 +941,7 @@ msgstr "立方Bスプラインフレーム混合"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:477
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:190
 msgid "Custom"
-msgstr "ã«ã¹ã¿ã "
+msgstr "カスタム"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:645
 msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
@@ -962,35 +962,35 @@ msgstr "ネットワークキャッシュの設定を使用するかどうかを
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 msgid "Decoders"
-msgstr "ãã³ã¼ãã¼"
+msgstr "デコーダー"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:70
 msgid "Decrease Brightness"
-msgstr "æãããä¸ãã"
+msgstr "明るさを下げる"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:67
 msgid "Decrease Contrast"
-msgstr "ã³ã³ãã©ã¹ããä¸ãã"
+msgstr "コントラストを下げる"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:100
 msgid "Decrease Font Size"
-msgstr "ãã©ã³ããµã¤ãºãç¸®å°"
+msgstr "フォントサイズを縮小"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:73
 msgid "Decrease Gamma"
-msgstr "ã¬ã³ãå¤ãä¸ãã"
+msgstr "ガンマ値を下げる"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:62
 msgid "Decrease Height"
-msgstr "é«ããç¸®å°"
+msgstr "高さを縮小"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:76
 msgid "Decrease Saturation"
-msgstr "å½©åº¦ãä¸ãã"
+msgstr "彩度を下げる"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:53
 msgid "Decrease Size"
-msgstr "ãµã¤ãºãç¸®å°"
+msgstr "サイズを縮小"
 
 msgid "Default settings, tuned to provide a balance of performance and quality."
 msgstr "デフォルト設定は、パフォーマンスと品質のバランスを提供するように調整しました。"
@@ -1022,7 +1022,7 @@ msgstr "デムクサー"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "Demuxers"
-msgstr "ããã«ããã¬ã¯ãµ"
+msgstr "デマルチプレクサ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:193
 msgid "Details"
@@ -1054,27 +1054,27 @@ msgstr "外部のサブタイトルファイルを自動ロードしないでく
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:116
 msgid "Double"
-msgstr "2 å"
+msgstr "2 倍"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:114
 msgid "Drop files or URLs to play here."
-msgstr "åçãããã¡ã¤ã«ã¾ãã¯URLãããã«ãã­ãããã¦ãã ããã"
+msgstr "再生するファイルまたはURLをここにドロップしてください。"
 
 msgid "EWA Lanczos (\\\"Jinc\\\") reconstruction (slow)."
 msgstr "EWAランチョス(\\\"Jinc\\\")再建(スロー)。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:173
 msgid "Edit input.conf"
-msgstr "input.conf ã®ç·¨é"
+msgstr "input.conf の編集"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:172
 msgid "Edit mpv.conf"
-msgstr "mpv.conf ã®ç·¨é"
+msgstr "mpv.conf の編集"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:136
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:241
 msgid "Editions"
-msgstr "ã¨ãã£ã·ã§ã³"
+msgstr "エディション"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1137
 msgid "Enable the IPC support and create the listening socket at the given path."
@@ -1120,21 +1120,21 @@ msgstr "これらのカラーマッピングの設定を有効にします。 �
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:152
 msgid "Enlarge"
-msgstr "æ¡å¤§"
+msgstr "拡大"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:326
 msgid "Error creating file associations."
-msgstr "ãã¡ã¤ã«ã®é¢é£ä»ãã®ä½æä¸­ã«ã¨ã©ã¼ãçºçãã¾ããã"
+msgstr "ファイルの関連付けの作成中にエラーが発生しました。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:201
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:23
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:233
 msgid "Exit"
-msgstr "çµäº"
+msgstr "終了"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:188
 msgid "Exit Watch Later"
-msgstr "åçä½ç½®ãä¿å­ãã¦çµäº"
+msgstr "再生位置を保存して終了"
 
 msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
 msgstr "libplacebo に基づく実験的なビデオレンダー。 --vo=gpu と同じ機能をサポートしています。"
@@ -1152,36 +1152,36 @@ msgstr "libplacebo に基づく実験的なビデオレンダー。 --vo=gpu と
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:22
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:23
 msgid "File"
-msgstr "ãã¡ã¤ã«"
+msgstr "ファイル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:318
 msgid "File Explorer icons will refresh after process restart."
-msgstr "ãã¡ã¤ã«ã¨ã¯ã¹ãã­ã¼ã©ã¼ã®ã¢ã¤ã³ã³ã¯ããã­ã»ã¹ã®åèµ·åå¾ã«æ´æ°ããã¾ãã"
+msgstr "ファイルエクスプローラーのアイコンは、プロセスの再起動後に更新されます。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:323
 msgid "File associations were successfully created."
-msgstr "ãã¡ã¤ã«ã®é¢é£ä»ããæ­£å¸¸ã«ä½æããã¾ããã"
+msgstr "ファイルの関連付けが正常に作成されました。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:321
 msgid "File associations were successfully removed."
-msgstr "ãã¡ã¤ã«ã®é¢é£ä»ãã¯æ­£å¸¸ã«åé¤ããã¾ããã"
+msgstr "ファイルの関連付けは正常に削除されました。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:246
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:268
 msgid "Files/URLs were added to the playlist"
-msgstr "ãã¡ã¤ã«/URL ããã¬ã¤ãªã¹ãã¸è¿½å ããã¾ãã"
+msgstr "ファイル/URL がプレイリストへ追加されました"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:39
 msgid "Find a binding (Ctrl+F)"
-msgstr "è¨­å®ãæ¤ç´¢ (Ctrl+F)"
+msgstr "設定を検索 (Ctrl+F)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:572
 msgid "Find a setting (Ctrl+F)"
-msgstr "è¨­å®ãæ¤ç´¢ (Ctrl+F)"
+msgstr "設定を検索 (Ctrl+F)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
-msgstr "æåã®ãã¡ã¤ã«"
+msgstr "最初のファイル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1113
 msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
@@ -1199,13 +1199,13 @@ msgstr "フル tone-mapping の使用を強制する より速い純粋なGLSL�
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:208
 msgid "Forward"
-msgstr "é²ã"
+msgstr "進む"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:151
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:221
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:222
 msgid "Fullscreen"
-msgstr "ãã«ã¹ã¯ãªã¼ã³"
+msgstr "フルスクリーン"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:492
 msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
@@ -1258,7 +1258,7 @@ msgstr "1/2"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:198
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:199
 msgid "Help"
-msgstr "ãã«ã"
+msgstr "ヘルプ"
 
 msgid "Hermite-weighted averaging (fast)"
 msgstr "ヘルマイト級平均化(高速)"
@@ -1305,7 +1305,7 @@ msgstr "イグノー"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:220
 msgid "Ignore left mouse button"
-msgstr "ãã¦ã¹ã®å·¦ãã¿ã³ãç¡è¦"
+msgstr "マウスの左ボタンを無視"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:28
 msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
@@ -1313,31 +1313,31 @@ msgstr "Image file extentions to try to match when using --cover-art-auto, --aut
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:71
 msgid "Increase Brightness"
-msgstr "æãããä¸ãã"
+msgstr "明るさを上げる"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:68
 msgid "Increase Contrast"
-msgstr "ã³ã³ãã©ã¹ããä¸ãã"
+msgstr "コントラストを上げる"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:101
 msgid "Increase Font Size"
-msgstr "ãã©ã³ããµã¤ãºãæ¡å¤§"
+msgstr "フォントサイズを拡大"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:74
 msgid "Increase Gamma"
-msgstr "ã¬ã³ãå¤ãä¸ãã"
+msgstr "ガンマ値を上げる"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:63
 msgid "Increase Height"
-msgstr "é«ããæ¡å¤§"
+msgstr "高さを拡大"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:77
 msgid "Increase Saturation"
-msgstr "å½©åº¦ãä¸ãã"
+msgstr "彩度を上げる"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:54
 msgid "Increase Size"
-msgstr "ãµã¤ãºãæ¡å¤§"
+msgstr "サイズを拡大"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:471
 msgid "Info"
@@ -1356,39 +1356,39 @@ msgstr "入力エディタ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:45
 msgid "Jump 30 sec backward"
-msgstr "30 ç§æ»ã"
+msgstr "30 秒戻る"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:44
 msgid "Jump 30 sec forward"
-msgstr "30 ç§é²ã"
+msgstr "30 秒進む"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:48
 msgid "Jump 5 min backward"
-msgstr "5 åæ»ã"
+msgstr "5 分戻る"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:47
 msgid "Jump 5 min forward"
-msgstr "5 åé²ã"
+msgstr "5 分進む"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:42
 msgid "Jump 5 sec backward"
-msgstr "5 ç§æ»ã"
+msgstr "5 秒戻る"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:41
 msgid "Jump 5 sec forward"
-msgstr "5 ç§é²ã"
+msgstr "5 秒進む"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:38
 msgid "Jump To Next Frame"
-msgstr "æ¬¡ã®ãã¬ã¼ã ã¸é²ã"
+msgstr "次のフレームへ進む"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:39
 msgid "Jump To Previous Frame"
-msgstr "åã®ãã¬ã¼ã ã¸æ»ã"
+msgstr "前のフレームへ戻る"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:146
 msgid "Keys"
-msgstr "ã­ã¼"
+msgstr "キー"
 
 msgid "Lanczos reconstruction"
 msgstr "ランチョス再建"
@@ -1398,7 +1398,7 @@ msgstr "ランチョス再建。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:32
 msgid "Last File"
-msgstr "æå¾ã®ãã¡ã¤ã«"
+msgstr "最後のファイル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:10
 msgid "Learn Input"
@@ -1442,15 +1442,15 @@ msgstr "サブタイトルファイル拡張子でメディアファイル名を
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:195
 msgid "Manual mpv"
-msgstr "mpv ããã¥ã¢ã«"
+msgstr "mpv マニュアル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:196
 msgid "Manual mpv.net"
-msgstr "mpv.net ããã¥ã¢ã«"
+msgstr "mpv.net マニュアル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:228
 msgid "Mark position for revert-seek"
-msgstr "æ»ãä½ç½®ããã¼ã¯"
+msgstr "戻り位置をマーク"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:124
 msgid "Media Info Message Box"
@@ -1462,7 +1462,7 @@ msgstr "メディア情報 オンスクリーン"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:573
 msgid "Menu"
-msgstr "ã¡ãã¥ã¼"
+msgstr "メニュー"
 
 msgid "Mitchell-Netravalia cubic spline"
 msgstr "Mitchell-Netravalia キュービックスプライン"
@@ -1477,7 +1477,7 @@ msgstr "Mitchell-Netravalia キュービックスプライン"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "More"
-msgstr "ãã®ä»"
+msgstr "その他"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:159
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:160
@@ -1485,29 +1485,29 @@ msgstr "ãã®ä»"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:162
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:163
 msgid "Move"
-msgstr "ç§»å"
+msgstr "移動"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:60
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:98
 msgid "Move Down"
-msgstr "ä¸ã¸ç§»å"
+msgstr "下へ移動"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:56
 msgid "Move Left"
-msgstr "å·¦ã¸ç§»å"
+msgstr "左へ移動"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:57
 msgid "Move Right"
-msgstr "å³ã¸ç§»å"
+msgstr "右へ移動"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:59
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:97
 msgid "Move Up"
-msgstr "ä¸ã¸ç§»å"
+msgstr "上へ移動"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:110
 msgid "Mute"
-msgstr "ãã¥ã¼ã"
+msgstr "ミュート"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:96
 msgid "Name"
@@ -1537,7 +1537,7 @@ msgstr "お名前 (必須)"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:50
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:51
 msgid "Navigate"
-msgstr "æä½"
+msgstr "操作"
 
 msgid "Nearest-neighbour (box) sampling (very fast)."
 msgstr "近距離(ボックス)サンプリング(非常に高速)。"
@@ -1547,19 +1547,19 @@ msgstr "決して精密な一見を使用しません。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:35
 msgid "Next Chapter"
-msgstr "æ¬¡ã®ãã£ãã¿ã¼"
+msgstr "次のチャプター"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:215
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:217
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:219
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:29
 msgid "Next File"
-msgstr "æ¬¡ã®ãã¡ã¤ã«"
+msgstr "次のファイル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:86
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:91
 msgid "Next Track"
-msgstr "æ¬¡ã®ãã©ãã¯"
+msgstr "次のトラック"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
 msgid "No"
@@ -1599,23 +1599,23 @@ msgstr "お問い合わせ"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:249
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:250
 msgid "On-Screen Menu"
-msgstr "ç»é¢ã¡ãã¥ã¼"
+msgstr "画面メニュー"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:175
 msgid "Open Config Folder"
-msgstr "æ§æãã©ã«ããéã"
+msgstr "構成フォルダを開く"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:14
 msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr "DVD/Blu-ray ãã©ã¤ã/ãã©ã«ããéã..."
+msgstr "DVD/Blu-ray ドライブ/フォルダを開く..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:12
 msgid "Open Files..."
-msgstr "ãã¡ã¤ã«ãéã..."
+msgstr "ファイルを開く..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:13
 msgid "Open URL or file from clipboard"
-msgstr "ã¯ãªãããã¼ããã URL ã¾ãã¯ãã¡ã¤ã«ãéã"
+msgstr "クリップボードから URL またはファイルを開く"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:224
 msgid "Override all libplacebo options by the values from the given preset."
@@ -1660,7 +1660,7 @@ msgstr "オーバーサンプリングは、FPSを保存しながら、\\\" edge
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:64
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:65
 msgid "Pan & Scan"
-msgstr "ãã³ï¼ã¹ã­ã£ã³"
+msgstr "パン＆スキャン"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:219
 msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
@@ -1672,7 +1672,7 @@ msgstr "libplacebo レンダリングのバックエンド (--vo=gpu-next で使
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:206
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:25
 msgid "Play/Pause"
-msgstr "åç/ä¸æåæ­¢"
+msgstr "再生/一時停止"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1036
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1044
@@ -1688,7 +1688,7 @@ msgstr "åç/ä¸æåæ­¢"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:25
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:26
 msgid "Playback"
-msgstr "åç"
+msgstr "再生"
 
 msgid "Playback will never automatically advance to the next file."
 msgstr "再生は、次のファイルへ自動的に転送されません。"
@@ -1697,31 +1697,31 @@ msgstr "再生は、次のファイルへ自動的に転送されません。"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:127
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:234
 msgid "Playlist"
-msgstr "ãã¬ã¤ãªã¹ã"
+msgstr "プレイリスト"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:575
 msgid "Preview mpv.conf"
-msgstr "mpv.conf ããã¬ãã¥ã¼"
+msgstr "mpv.conf をプレビュー"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:576
 msgid "Preview mpvnet.conf"
-msgstr "mpvnet.conf ããã¬ãã¥ã¼"
+msgstr "mpvnet.conf をプレビュー"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:36
 msgid "Previous Chapter"
-msgstr "åã®ãã£ãã¿ã¼"
+msgstr "前のチャプター"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:214
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:216
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:218
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:28
 msgid "Previous File"
-msgstr "åã®ãã¡ã¤ã«"
+msgstr "前のファイル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:426
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:167
 msgid "Profile"
-msgstr "ãã­ãã¡ã¤ã«"
+msgstr "プロファイル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1120
 msgid "Program Behavior"
@@ -1729,37 +1729,37 @@ msgstr "プログラム行動"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:125
 msgid "Progress"
-msgstr "åçä½ç½®"
+msgstr "再生位置"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:129
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:247
 msgid "Properties"
-msgstr "ãã­ããã£"
+msgstr "プロパティ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:147
 msgid "Protocols"
-msgstr "ãã­ãã³ã«"
+msgstr "プロトコル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:372
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:22
 msgid "Recent Files"
-msgstr "æè¿ã®ãã¡ã¤ã«"
+msgstr "最近のファイル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:177
 msgid "Register audio file associations"
-msgstr "ãªã¼ãã£ãªãã¡ã¤ã«ã®é¢é£ä»ããç»é²"
+msgstr "オーディオファイルの関連付けを登録"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:178
 msgid "Register image file associations"
-msgstr "ç»åãã¡ã¤ã«ã®é¢é£ä»ããç»é²"
+msgstr "画像ファイルの関連付けを登録"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:176
 msgid "Register video file associations"
-msgstr "ãããªãã¡ã¤ã«ã®é¢é£ä»ããç»é²"
+msgstr "ビデオファイルの関連付けを登録"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Remove mpv.net from Path environment variable"
-msgstr "mpv.net ã Path ç°å¢å¤æ°ããåé¤"
+msgstr "mpv.net を Path 環境変数から削除"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:101
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:112
@@ -1781,7 +1781,7 @@ msgstr "レンダリングオプション"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:118
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:65
 msgid "Reset"
-msgstr "ãªã»ãã"
+msgstr "リセット"
 
 msgid "Reset all everything to high quality presets (where available)."
 msgstr "高品質のプリセット(利用可能な場所)にすべてのすべてをリセットします。"
@@ -1792,7 +1792,7 @@ msgstr "リトリート"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Rotate Video"
-msgstr "ãããªãåè»¢"
+msgstr "ビデオを回転"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1008
 msgid "Same as minimum-aspect-ratio but used for audio files."
@@ -1841,11 +1841,11 @@ msgstr "スクリーンショット"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:134
 msgid "Secondary Subtitle"
-msgstr "ã»ã«ã³ããªå­å¹"
+msgstr "セカンダリ字幕"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:236
 msgid "Secondary Subtitles"
-msgstr "ã»ã«ã³ããªå­å¹"
+msgstr "セカンダリ字幕"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:879
 msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
@@ -1859,21 +1859,21 @@ msgstr "sub-color を参照してください。 サブフォントの境界に�
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:226
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:232
 msgid "Seek Backward"
-msgstr "æ©æ»ã"
+msgstr "早戻し"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:223
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:225
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:231
 msgid "Seek Forward"
-msgstr "æ©éã"
+msgstr "早送り"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:230
 msgid "Seek to next subtitle"
-msgstr "æ¬¡ã®å­å¹ã¸é²ã"
+msgstr "次の字幕へ進む"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:229
 msgid "Seek to previous subtitle"
-msgstr "åã®å­å¹ã¸æ»ã"
+msgstr "前の字幕へ戻る"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1081
 msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
@@ -1908,7 +1908,7 @@ msgstr "ウィンドウのタイトルバーを隠すために、この設定は
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:184
 msgid "Set/clear A-B loop points"
-msgstr "A-B åºéã«ã¼ãã®è¨­å®/è§£é¤"
+msgstr "A-B 区間ループの設定/解除"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:253
 msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
@@ -1934,14 +1934,14 @@ msgstr "Setting to remember the window size. (mpv.net option)"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Setup"
-msgstr "ã»ããã¢ãã"
+msgstr "セットアップ"
 
 msgid "Sharpened version of ewa_lanczos (slow)."
 msgstr "ewa_lanczos(slow)のシャープなバージョン。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:169
 msgid "Show Config Editor"
-msgstr "æ§æã¨ãã£ã¿ã¼ãè¡¨ç¤º"
+msgstr "構成エディターを表示"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:170
 msgid "Show Input Editor"
@@ -1949,11 +1949,11 @@ msgstr "入力エディタを表示する"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:202
 msgid "Show Menu"
-msgstr "ã¡ãã¥ã¼ãè¡¨ç¤º"
+msgstr "メニューを表示"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:448
 msgid "Show Profiles"
-msgstr "ãã­ãã¡ã¤ã«ãè¡¨ç¤º"
+msgstr "プロファイルを表示"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:928
 msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
@@ -1961,15 +1961,15 @@ msgstr "Show a message on OSD when playback starts. The string is expanded for p
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:577
 msgid "Show mpv manual"
-msgstr "mpv ããã¥ã¢ã«ãè¡¨ç¤º"
+msgstr "mpv マニュアルを表示"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:578
 msgid "Show mpv.net manual"
-msgstr "mpv.net ããã¥ã¢ã«ãè¡¨ç¤º"
+msgstr "mpv.net マニュアルを表示"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:574
 msgid "Show mpv.net options"
-msgstr "mpv.net ãªãã·ã§ã³ãè¡¨ç¤º"
+msgstr "mpv.net オプションを表示"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:919
 msgid "Show progress in taskbar."
@@ -1981,11 +1981,11 @@ msgstr "装飾(タイトルバー、ボーダー)でウィンドウを表示し�
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:153
 msgid "Shrink"
-msgstr "ç¸®å°"
+msgstr "縮小"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:186
 msgid "Shuffle Playlist"
-msgstr "ãã¬ã¤ãªã¹ããã·ã£ããã«"
+msgstr "プレイリストをシャッフル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:1450
 msgid "Shutdown thread failed to complete within 10 seconds."
@@ -2051,7 +2051,7 @@ msgstr "サブフォントサイズを指定します。 単位は 720 の窓の
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:117
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:118
 msgid "Speed"
-msgstr "åçéåº¦"
+msgstr "再生速度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:890
 msgid "Start the player in fullscreen mode."
@@ -2064,7 +2064,7 @@ msgstr "最大化されたウィンドウで起動します。"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:207
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:26
 msgid "Stop"
-msgstr "åæ­¢"
+msgstr "停止"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:727
 msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
@@ -2091,20 +2091,20 @@ msgstr "このディレクトリにスクリーンショットを保存します
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:98
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:99
 msgid "Subtitle"
-msgstr "å­å¹"
+msgstr "字幕"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:137
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:242
 msgid "Subtitle Lines"
-msgstr "å­å¹ã©ã¤ã³"
+msgstr "字幕ライン"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:133
 msgid "Subtitle Tracks"
-msgstr "å­å¹ãã©ãã¯"
+msgstr "字幕トラック"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:235
 msgid "Subtitles"
-msgstr "å­å¹"
+msgstr "字幕"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:740
 msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
@@ -2112,11 +2112,11 @@ msgstr "適切なカラースペースでスクリーンショットをタグ付
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:79
 msgid "Take Screenshot"
-msgstr "ã¹ã¯ãªã¼ã³ã·ã§ãããæ®ã"
+msgstr "スクリーンショットを撮る"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:80
 msgid "Take Screenshot without subtitles"
-msgstr "å­å¹ãªãã§ã¹ã¯ãªã¼ã³ã·ã§ãããæ®ã"
+msgstr "字幕なしでスクリーンショットを撮る"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:113
 msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
@@ -2124,7 +2124,7 @@ msgstr "The GPU renderer filter function to use when upscaling video. There are 
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:261
 msgid "The clipboard does not contain a valid URL or file."
-msgstr "ã¯ãªãããã¼ãã«æå¹ãª URL ã¾ãã¯ãã¡ã¤ã«ãå«ã¾ãã¦ãã¾ããã"
+msgstr "クリップボードに有効な URL またはファイルが含まれていません。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:141
 msgid "The input editor cannot save duplicate shortcuts with different commands:"
@@ -2140,36 +2140,36 @@ msgstr "The options that are saved in \\\"watch later\\\" files if they have bee
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:474
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:479
 msgid "This feature was removed, but there are user scripts:"
-msgstr "ãã®æ©è½ã¯åé¤ããã¾ããããã¦ã¼ã¶ã¼ã¹ã¯ãªãããããã¾ã:"
+msgstr "この機能は削除されましたが、ユーザースクリプトがあります:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:483
 msgid "This feature was removed."
-msgstr "ãã®æ©è½ã¯åé¤ããã¾ããã"
+msgstr "この機能は削除されました。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:393
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:50
 msgid "Title"
-msgstr "ã¿ã¤ãã«"
+msgstr "タイトル"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:164
 msgid "Toggle Border"
-msgstr "ãã¼ãã¼ã®åãæ¿ã"
+msgstr "ボーダーの切り替え"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:81
 msgid "Toggle Deinterlace"
-msgstr "ã¤ã³ã¿ã¼ã¬ã¼ã¹è§£é¤ã®åãæ¿ã"
+msgstr "インターレース解除の切り替え"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:187
 msgid "Toggle Hardware Decoding"
-msgstr "ãã¼ãã¦ã§ã¢ãã³ã¼ãã®åãæ¿ã"
+msgstr "ハードウェアデコードの切り替え"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:122
 msgid "Toggle OSC Visibility"
-msgstr "OSC è¡¨ç¤ºã®åãæ¿ã"
+msgstr "OSC 表示の切り替え"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:165
 msgid "Toggle On Top"
-msgstr "å¸¸ã«æåã«è¡¨ç¤º"
+msgstr "常に手前に表示"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:121
 msgid "Toggle Statistics"
@@ -2177,15 +2177,15 @@ msgstr "統計情報"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:92
 msgid "Toggle Visibility"
-msgstr "è¡¨ç¤ºã®åãæ¿ã"
+msgstr "表示の切り替え"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:185
 msgid "Toggle infinite file looping"
-msgstr "ç¡éãã¡ã¤ã«ã«ã¼ãã®åãæ¿ã"
+msgstr "無限ファイルループの切り替え"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:103
 msgid "Toggle overriding SSA/ASS styles with normal styles"
-msgstr "SSA/ASS ã¹ã¿ã¤ã«ãéå¸¸ã®ã¹ã¿ã¤ã«ã§ä¸æ¸ããã"
+msgstr "SSA/ASS スタイルを通常のスタイルで上書きする"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:564
 msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
@@ -2197,17 +2197,17 @@ msgstr "トーンマッピング機能は、黒い点の適応を含む差分範
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:187
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:188
 msgid "Tools"
-msgstr "ãã¼ã«"
+msgstr "ツール"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:289
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:105
 msgid "Track"
-msgstr "ãã©ãã¯"
+msgstr "トラック"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:131
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:239
 msgid "Tracks"
-msgstr "ãã©ãã¯"
+msgstr "トラック"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:227
 msgid "Undo previous (or marked) seek"
@@ -2215,7 +2215,7 @@ msgstr "前のUndo (またはマーク) 求める"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:179
 msgid "Unregister file associations"
-msgstr "ãã¡ã¤ã«ã®é¢é£ä»ãã®ç»é²è§£é¤"
+msgstr "ファイルの関連付けの登録解除"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:19
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
@@ -2373,12 +2373,12 @@ msgstr "ewa_lanczos の非常に鋭いバージョン、anti-ringing (非常に�
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:82
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Video"
-msgstr "ãããª"
+msgstr "ビデオ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:135
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:238
 msgid "Video Tracks"
-msgstr "ãããªãã©ãã¯"
+msgstr "ビデオトラック"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:786
 msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
@@ -2425,24 +2425,24 @@ msgstr "使用されるビデオ出力ドライバ。\\n\\n詳細については
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "View"
-msgstr "è¡¨ç¤º"
+msgstr "表示"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:107
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:108
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:109
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:110
 msgid "Volume"
-msgstr "é³é"
+msgstr "音量"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:211
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:213
 msgid "Volume Down"
-msgstr "é³éãä¸ãã"
+msgstr "音量を下げる"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:210
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:212
 msgid "Volume Up"
-msgstr "é³éãä¸ãã"
+msgstr "音量を上げる"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:42
 msgid "Waiting for key/mouse input."
@@ -2451,20 +2451,20 @@ msgstr "キー/マウスの入力を待ちます。"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:139
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:244
 msgid "Watch History"
-msgstr "åçå±¥æ­´"
+msgstr "再生履歴"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:140
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:245
 msgid "Watch Later"
-msgstr "åçä½ç½®ãä¿å­"
+msgstr "再生位置を保存"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:192
 msgid "Website mpv"
-msgstr "mpv ã¦ã§ããµã¤ã"
+msgstr "mpv ウェブサイト"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:193
 msgid "Website mpv.net"
-msgstr "mpv.net ã¦ã§ããµã¤ã"
+msgstr "mpv.net ウェブサイト"
 
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
 msgstr "ローカルファイルを開くと、親ディレクトリが開き、自動的にプレイリストを作成するかのように動作します。\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\n同じ: 現在の読み込みファイルと同じカテゴリに一致するファイルで、親ディレクトリからプレイリストを作成します。 *-extsの1つが入力ファイルに基づいて選択され、マッチする拡張子を持つファイルのみがプレイリストに追加されます。 入力ファイルが拡張子リストに一致しない場合は、再生リストは自動生成されません。"
@@ -2533,7 +2533,7 @@ msgstr "Win32/WGL"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:164
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:165
 msgid "Window"
-msgstr "ã¦ã£ã³ãã¦"
+msgstr "ウィンドウ"
 
 msgid "Window height is always remembered"
 msgstr "窓の高さは常に記憶されます"
@@ -2572,7 +2572,7 @@ msgstr "はい"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:157
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:158
 msgid "Zoom"
-msgstr "ãºã¼ã "
+msgstr "ズーム"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1085
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:499
@@ -3357,19 +3357,19 @@ msgstr "mobius"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:443
 msgid "mpv.net is already in the Path environment variable."
-msgstr "mpv.net ã¯æ¢ã« Path ç°å¢å¤æ°ã«ããã¾ãã"
+msgstr "mpv.net は既に Path 環境変数にあります。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:460
 msgid "mpv.net was not found in the Path environment variable."
-msgstr "mpv.net ã Path ç°å¢å¤æ°ã«è¦ã¤ããã¾ããã§ããã"
+msgstr "mpv.net が Path 環境変数に見つかりませんでした。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:451
 msgid "mpv.net was successfully added to the Path environment variable."
-msgstr "mpv.net ã Path ç°å¢å¤æ°ã¸æ­£å¸¸ã«è¿½å ããã¾ããã"
+msgstr "mpv.net が Path 環境変数へ正常に追加されました。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:469
 msgid "mpv.net was successfully removed from the Path environment variable."
-msgstr "mpv.net ã¯ Path ç°å¢å¤æ°ããæ­£å¸¸ã«åé¤ããã¾ããã"
+msgstr "mpv.net は Path 環境変数から正常に削除されました。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:7
 msgid "multi"

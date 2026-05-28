@@ -367,7 +367,7 @@ msgstr " 시스템 RAM에 비디오 백업"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Conf.cs:38
 msgid "(Default)"
-msgstr "(ê¸°ë³¸ê°)"
+msgstr "(기본값)"
 
 msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
 msgstr "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
@@ -619,7 +619,7 @@ msgstr "한국어"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\Views\AboutWindow.xaml:10
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:199
 msgid "About mpv.net"
-msgstr "mpv.net ì ë³´"
+msgstr "mpv.net 정보"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
@@ -627,27 +627,27 @@ msgstr "Active Bindings 에 텍스트 편집기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:145
 msgid "Active Bindings On-Screen"
-msgstr "íë©´ì íì± ë¨ì¶í¤"
+msgstr "화면의 활성 단축키"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:16
 msgid "Add external audio files..."
-msgstr "ì¸ë¶ ì¤ëì¤ íì¼ ì¶ê°..."
+msgstr "외부 오디오 파일 추가..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:17
 msgid "Add external subtitle files..."
-msgstr "ì¸ë¶ ìë§ íì¼ ì¶ê°..."
+msgstr "외부 자막 파일 추가..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:19
 msgid "Add files to playlist..."
-msgstr "ì¬ì ëª©ë¡ì íì¼ ì¶ê°..."
+msgstr "재생 목록에 파일 추가..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:20
 msgid "Add files/URLs to playlist from clipboard"
-msgstr "í´ë¦½ë³´ëìì íì¼/URLì ì¬ì ëª©ë¡ì ì¶ê°"
+msgstr "클립보드에서 파일/URL을 재생 목록에 추가"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 msgid "Add mpv.net to Path environment variable"
-msgstr "Path íê²½ ë³ìì mpv.net ì¶ê°"
+msgstr "Path 환경 변수에 mpv.net 추가"
 
 msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
 msgstr "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
@@ -696,22 +696,22 @@ msgstr "Aspect-ratio는 가장 가까운 neighbour 샘플링을 보존합니다 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:88
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:89
 msgid "Audio"
-msgstr "ì¤ëì¤"
+msgstr "오디오"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:453
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:85
 msgid "Audio Device"
-msgstr "ì¤ëì¤ ì¥ì¹"
+msgstr "오디오 장치"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:138
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:243
 msgid "Audio Devices"
-msgstr "ì¤ëì¤ ì¥ì¹"
+msgstr "오디오 장치"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:132
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:237
 msgid "Audio Tracks"
-msgstr "ì¤ëì¤ í¸ë"
+msgstr "오디오 트랙"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:835
 msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
@@ -725,7 +725,7 @@ msgstr "Available on Windows 10 or higher"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:209
 msgid "Backward"
-msgstr "ë¤ë¡"
+msgstr "뒤로"
 
 msgid "Bicubic interpolation (fast)"
 msgstr "Bicubic interpolation (빠른)"
@@ -742,7 +742,7 @@ msgstr "Bilinear 샘플링 (매우 빠른)."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:128
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:246
 msgid "Bindings"
-msgstr "ë¨ì¶í¤"
+msgstr "단축키"
 
 msgid "Box averaging (very fast)"
 msgstr "상자 averaging (매우 빠른)"
@@ -764,7 +764,7 @@ msgstr "Catmull-Rom 입방 스플라인."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:82
 msgid "Change Aspect Ratio"
-msgstr "íë©´ ë¹ì¨ ë³ê²½"
+msgstr "화면 비율 변경"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:471
 msgid "Changed theme settings require mpv.net being restarted."
@@ -779,28 +779,28 @@ msgstr "빛과 어두운 테마 사이의 변화.\\nmpv.net must be restarted af
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:125
 msgid "Changes will be available on next startup."
-msgstr "ë³ê²½ ì¬í­ì ë¤ì ì¤í ì ì ì©ë©ëë¤."
+msgstr "변경 사항은 다음 실행 시 적용됩니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:351
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:51
 msgid "Chapter"
-msgstr "ì±í°"
+msgstr "챕터"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:130
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:240
 msgid "Chapters"
-msgstr "ì±í°"
+msgstr "챕터"
 
 msgid "Choose the best mode automatically."
 msgstr "자동적으로 제일 형태를 선택하십시오."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:54
 msgid "Clear"
-msgstr "ëª©ë¡ ë¹ì°ê¸°"
+msgstr "목록 비우기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:388
 msgid "Clear List"
-msgstr "ëª©ë¡ ë¹ì°ê¸°"
+msgstr "목록 비우기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:375
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:383
@@ -896,19 +896,19 @@ msgstr "이름 *"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Config"
-msgstr "ì¤ì "
+msgstr "설정"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:571
 msgid "Config Editor"
-msgstr "ì¤ì  í¸ì§ê¸°"
+msgstr "설정 편집기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:53
 msgid "Confirm"
-msgstr "ì¤ì "
+msgstr "설정"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:142
 msgid "Console"
-msgstr "ì½ì íì"
+msgstr "콘솔 표시"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:707
 msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
@@ -941,7 +941,7 @@ msgstr "Cubic B-spline 프레임 혼합"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:477
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:190
 msgid "Custom"
-msgstr "ì¬ì©ì ì§ì "
+msgstr "사용자 지정"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:645
 msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
@@ -962,35 +962,35 @@ msgstr "네트워크 캐시 설정을 사용하는지 결정합니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 msgid "Decoders"
-msgstr "ëì½ë íì"
+msgstr "디코더 표시"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:70
 msgid "Decrease Brightness"
-msgstr "ë°ê¸° ê°ì"
+msgstr "밝기 감소"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:67
 msgid "Decrease Contrast"
-msgstr "ëë¹ ê°ì"
+msgstr "대비 감소"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:100
 msgid "Decrease Font Size"
-msgstr "ê¸ê¼´ í¬ê¸° ì¶ì"
+msgstr "글꼴 크기 축소"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:73
 msgid "Decrease Gamma"
-msgstr "ê°ë§ ê°ì"
+msgstr "감마 감소"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:62
 msgid "Decrease Height"
-msgstr "ëì´ ì¶ì"
+msgstr "높이 축소"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:76
 msgid "Decrease Saturation"
-msgstr "ì±ë ê°ì"
+msgstr "채도 감소"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:53
 msgid "Decrease Size"
-msgstr "í¬ê¸° ì¶ì"
+msgstr "크기 축소"
 
 msgid "Default settings, tuned to provide a balance of performance and quality."
 msgstr "기본 설정, 성능과 품질의 균형을 제공하기 위해 조정."
@@ -1005,12 +1005,12 @@ msgstr "Defines if more then one mpv.net process is allowed.\\nMulti can alterna
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:88
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:95
 msgid "Delay +0.1"
-msgstr "ì§ì° 0.1ì´ ì¦ê°"
+msgstr "지연 0.1초 증가"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:89
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:94
 msgid "Delay -0.1"
-msgstr "ì§ì° 0.1ì´ ê°ì"
+msgstr "지연 0.1초 감소"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1127
 msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
@@ -1022,7 +1022,7 @@ msgstr "팟캐스트"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "Demuxers"
-msgstr "ëë©í°íë ì íì"
+msgstr "디멀티플렉서 표시"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:193
 msgid "Details"
@@ -1054,27 +1054,27 @@ msgstr "외부 자막 파일을 자동로드하지 마십시오."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:116
 msgid "Double"
-msgstr "ëë°°"
+msgstr "두배"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:114
 msgid "Drop files or URLs to play here."
-msgstr "ì¬ìí  íì¼ ëë URLì ì¬ê¸°ì ëì¼ì¸ì."
+msgstr "재생할 파일 또는 URL을 여기에 놓으세요."
 
 msgid "EWA Lanczos (\\\"Jinc\\\") reconstruction (slow)."
 msgstr "EWA Lanczos (\\\"Jinc\\\") 재건축"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:173
 msgid "Edit input.conf"
-msgstr "input.conf íì¼ í¸ì§"
+msgstr "input.conf 파일 편집"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:172
 msgid "Edit mpv.conf"
-msgstr "mpv.conf íì¼ í¸ì§"
+msgstr "mpv.conf 파일 편집"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:136
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:241
 msgid "Editions"
-msgstr "input.conf íì¼ í¸ì§"
+msgstr "input.conf 파일 편집"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1137
 msgid "Enable the IPC support and create the listening socket at the given path."
@@ -1120,11 +1120,11 @@ msgstr "이 색상 매핑 설정의 사용을 가능하게 합니다. 이 옵션
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:152
 msgid "Enlarge"
-msgstr "í¬ê²"
+msgstr "크게"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:326
 msgid "Error creating file associations."
-msgstr "íì¼ ì°ê²°ì ë§ëë ì¤ ì¤ë¥ê° ë°ìíìµëë¤."
+msgstr "파일 연결을 만드는 중 오류가 발생했습니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:201
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:23
@@ -1152,7 +1152,7 @@ msgstr "libplacebo를 기반으로 한 Experimental 비디오 렌더링기. --vo
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:22
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:23
 msgid "File"
-msgstr "íì¼"
+msgstr "파일"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:318
 msgid "File Explorer icons will refresh after process restart."
@@ -1160,28 +1160,28 @@ msgstr "File Explorer 아이콘은 프로세스 재시작 후 새로 고침됩�
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:323
 msgid "File associations were successfully created."
-msgstr "íì¼ ì°ê²°ì ìì±íìµëë¤."
+msgstr "파일 연결을 생성했습니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:321
 msgid "File associations were successfully removed."
-msgstr "íì¼ ì°ê²°ì ì ê±°íìµëë¤."
+msgstr "파일 연결을 제거했습니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:246
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:268
 msgid "Files/URLs were added to the playlist"
-msgstr "íì¼/URLì ì¬ì ëª©ë¡ì ì¶ê°íìµëë¤"
+msgstr "파일/URL을 재생 목록에 추가했습니다"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:39
 msgid "Find a binding (Ctrl+F)"
-msgstr "ì¤ì  ì°¾ê¸° (Ctrl+F)"
+msgstr "설정 찾기 (Ctrl+F)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:572
 msgid "Find a setting (Ctrl+F)"
-msgstr "ì¤ì  ì°¾ê¸° (Ctrl+F)"
+msgstr "설정 찾기 (Ctrl+F)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
-msgstr "ì²« íì¼"
+msgstr "첫 파일"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1113
 msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
@@ -1199,13 +1199,13 @@ msgstr "힘 가득 차있는 tone-mapping의 사용 LUT는 더 빠른 순수한 
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:208
 msgid "Forward"
-msgstr "ìì¼ë¡"
+msgstr "앞으로"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:151
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:221
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:222
 msgid "Fullscreen"
-msgstr "ì ì²´ íë©´"
+msgstr "전체 화면"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:492
 msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
@@ -1247,7 +1247,7 @@ msgstr "HDR Peak Detection"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:115
 msgid "Half"
-msgstr "ì ë°"
+msgstr "절반"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:192
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:193
@@ -1258,7 +1258,7 @@ msgstr "ì ë°"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:198
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:199
 msgid "Help"
-msgstr "ëìë§"
+msgstr "도움말"
 
 msgid "Hermite-weighted averaging (fast)"
 msgstr "Hermite-weighted averaging (빠른)"
@@ -1305,7 +1305,7 @@ msgstr "이름 *"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:220
 msgid "Ignore left mouse button"
-msgstr "ì¼ìª½ ë§ì°ì¤ ë²í¼ ë¬´ì"
+msgstr "왼쪽 마우스 버튼 무시"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:28
 msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
@@ -1313,35 +1313,35 @@ msgstr "Image file extentions to try to match when using --cover-art-auto, --aut
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:71
 msgid "Increase Brightness"
-msgstr "ë°ê¸° ì¦ê°"
+msgstr "밝기 증가"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:68
 msgid "Increase Contrast"
-msgstr "ëë¹ ì¦ê°"
+msgstr "대비 증가"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:101
 msgid "Increase Font Size"
-msgstr "ê¸ê¼´ í¬ê¸° ì¦ê°"
+msgstr "글꼴 크기 증가"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:74
 msgid "Increase Gamma"
-msgstr "ê°ë§ ì¦ê°"
+msgstr "감마 증가"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:63
 msgid "Increase Height"
-msgstr "ëì´ ì¦ê°"
+msgstr "높이 증가"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:77
 msgid "Increase Saturation"
-msgstr "ì±ë ì¦ê°"
+msgstr "채도 증가"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:54
 msgid "Increase Size"
-msgstr "í¬ê¸° íë"
+msgstr "크기 확대"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:471
 msgid "Info"
-msgstr "ì ë³´"
+msgstr "정보"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1126
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1131
@@ -1356,39 +1356,39 @@ msgstr "입력 편집기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:45
 msgid "Jump 30 sec backward"
-msgstr "30ì´ ì ì¼ë¡ ì´ë"
+msgstr "30초 전으로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:44
 msgid "Jump 30 sec forward"
-msgstr "30ì´ íë¡ ì´ë"
+msgstr "30초 후로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:48
 msgid "Jump 5 min backward"
-msgstr "5ë¶ ì ì¼ë¡ ì´ë"
+msgstr "5분 전으로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:47
 msgid "Jump 5 min forward"
-msgstr "5ë¶ íë¡ ì´ë"
+msgstr "5분 후로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:42
 msgid "Jump 5 sec backward"
-msgstr "5ì´ ì ì¼ë¡ ì´ë"
+msgstr "5초 전으로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:41
 msgid "Jump 5 sec forward"
-msgstr "5ì´ íë¡ ì´ë"
+msgstr "5초 후로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:38
 msgid "Jump To Next Frame"
-msgstr "ë¤ì íë ìì¼ë¡ ì´ë"
+msgstr "다음 프레임으로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:39
 msgid "Jump To Previous Frame"
-msgstr "ì´ì  íë ìì¼ë¡ ì´ë"
+msgstr "이전 프레임으로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:146
 msgid "Keys"
-msgstr "í¤ íì"
+msgstr "키 표시"
 
 msgid "Lanczos reconstruction"
 msgstr "Lanczos 재건축"
@@ -1398,7 +1398,7 @@ msgstr "Lanczos 재건."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:32
 msgid "Last File"
-msgstr "ë§ì§ë§ íì¼"
+msgstr "마지막 파일"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:10
 msgid "Learn Input"
@@ -1450,19 +1450,19 @@ msgstr "Manual mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:228
 msgid "Mark position for revert-seek"
-msgstr "ë³µê· íìíê¸° ìí ìì¹ íì"
+msgstr "복귀 탐색하기 위한 위치 표시"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:124
 msgid "Media Info Message Box"
-msgstr "ë¯¸ëì´ ì ë³´ ë©ìì§ ìì íì"
+msgstr "미디어 정보 메시지 상자 표시"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:123
 msgid "Media Info On-Screen"
-msgstr "On-Screen ë¯¸ëì´ ì ë³´ íì"
+msgstr "On-Screen 미디어 정보 표시"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:573
 msgid "Menu"
-msgstr "ë©ë´"
+msgstr "메뉴"
 
 msgid "Mitchell-Netravalia cubic spline"
 msgstr "Mitchell-Netravalia 입방 스플라인"
@@ -1477,7 +1477,7 @@ msgstr "Mitchell-Netravalia 입방 스플라인"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "More"
-msgstr "ë ë³´ê¸°"
+msgstr "더 보기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:159
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:160
@@ -1485,29 +1485,29 @@ msgstr "ë ë³´ê¸°"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:162
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:163
 msgid "Move"
-msgstr "ì´ë"
+msgstr "이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:60
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:98
 msgid "Move Down"
-msgstr "ìëë¡ ì´ë"
+msgstr "아래로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:56
 msgid "Move Left"
-msgstr "ì¼ìª½ì¼ë¡ ì´ë"
+msgstr "왼쪽으로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:57
 msgid "Move Right"
-msgstr "ì¤ë¥¸ìª½ì¼ë¡ ì´ë"
+msgstr "오른쪽으로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:59
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:97
 msgid "Move Up"
-msgstr "ìë¡ ì´ë"
+msgstr "위로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:110
 msgid "Mute"
-msgstr "ììê±°"
+msgstr "음소거"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:96
 msgid "Name"
@@ -1537,7 +1537,7 @@ msgstr "이름 *"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:50
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:51
 msgid "Navigate"
-msgstr "íì"
+msgstr "탐색"
 
 msgid "Nearest-neighbour (box) sampling (very fast)."
 msgstr "가장 가까운 거리 (box) 샘플링 (매우 빠른)."
@@ -1547,19 +1547,19 @@ msgstr "정확한 추구를 사용하지 마십시오."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:35
 msgid "Next Chapter"
-msgstr "ë¤ì ì¥"
+msgstr "다음 장"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:215
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:217
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:219
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:29
 msgid "Next File"
-msgstr "ë¤ì íì¼"
+msgstr "다음 파일"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:86
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:91
 msgid "Next Track"
-msgstr "ë¤ì í¸ë"
+msgstr "다음 트랙"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
 msgid "No"
@@ -1599,23 +1599,23 @@ msgstr "이름 *"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:249
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:250
 msgid "On-Screen Menu"
-msgstr "íë©´ ë©ë´"
+msgstr "화면 메뉴"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:175
 msgid "Open Config Folder"
-msgstr "ì¤ì  í´ë ì´ê¸°"
+msgstr "설정 폴더 열기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:14
 msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr "DVD/Blu-ray ëë¼ì´ë¸/í´ë ì´ê¸°..."
+msgstr "DVD/Blu-ray 드라이브/폴더 열기..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:12
 msgid "Open Files..."
-msgstr "íì¼ ì´ê¸°..."
+msgstr "파일 열기..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:13
 msgid "Open URL or file from clipboard"
-msgstr "í´ë¦½ë³´ëì URLì´ë íì¼ ì´ê¸°"
+msgstr "클립보드의 URL이나 파일 열기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:224
 msgid "Override all libplacebo options by the values from the given preset."
@@ -1660,7 +1660,7 @@ msgstr "오버 스탬핑, 믹스 \\\"edge\\\" 프레임은 FPS를 보존하면�
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:64
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:65
 msgid "Pan & Scan"
-msgstr "í¬ê³¼ ì¤ìº"
+msgstr "팬과 스캔"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:219
 msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
@@ -1672,7 +1672,7 @@ msgstr "libplacebo 렌더링 백엔드(--vo=gpu-next)에 추가적인 원시 옵
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:206
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:25
 msgid "Play/Pause"
-msgstr "ì¬ì/ì¼ì ì ì§"
+msgstr "재생/일시 정지"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1036
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1044
@@ -1688,7 +1688,7 @@ msgstr "ì¬ì/ì¼ì ì ì§"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:25
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:26
 msgid "Playback"
-msgstr "ì¬ì"
+msgstr "재생"
 
 msgid "Playback will never automatically advance to the next file."
 msgstr "재생은 다음 파일로 자동으로 발전하지 않습니다."
@@ -1697,31 +1697,31 @@ msgstr "재생은 다음 파일로 자동으로 발전하지 않습니다."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:127
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:234
 msgid "Playlist"
-msgstr "ì¬ì ëª©ë¡"
+msgstr "재생 목록"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:575
 msgid "Preview mpv.conf"
-msgstr "mpv.conf ë¯¸ë¦¬ ë³´ê¸°"
+msgstr "mpv.conf 미리 보기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:576
 msgid "Preview mpvnet.conf"
-msgstr "mpvnet.conf ë¯¸ë¦¬ ë³´ê¸°"
+msgstr "mpvnet.conf 미리 보기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:36
 msgid "Previous Chapter"
-msgstr "ì´ì  ì¥"
+msgstr "이전 장"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:214
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:216
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:218
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:28
 msgid "Previous File"
-msgstr "ì´ì  íì¼"
+msgstr "이전 파일"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:426
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:167
 msgid "Profile"
-msgstr "íë¡íì¼"
+msgstr "프로파일"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1120
 msgid "Program Behavior"
@@ -1729,37 +1729,37 @@ msgstr "프로그램 Behavior"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:125
 msgid "Progress"
-msgstr "ì§íë¥  íì"
+msgstr "진행률 표시"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:129
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:247
 msgid "Properties"
-msgstr "ìì±"
+msgstr "속성"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:147
 msgid "Protocols"
-msgstr "íë¡í ì½ íì"
+msgstr "프로토콜 표시"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:372
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:22
 msgid "Recent Files"
-msgstr "ìµê·¼ íì¼"
+msgstr "최근 파일"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:177
 msgid "Register audio file associations"
-msgstr "ì¤ëì¤ íì¼ ì°ê²° ë±ë¡"
+msgstr "오디오 파일 연결 등록"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:178
 msgid "Register image file associations"
-msgstr "ì´ë¯¸ì§ íì¼ ì°ê²° ë±ë¡"
+msgstr "이미지 파일 연결 등록"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:176
 msgid "Register video file associations"
-msgstr "ë¹ëì¤ íì¼ ì°ê²° ë±ë¡"
+msgstr "비디오 파일 연결 등록"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Remove mpv.net from Path environment variable"
-msgstr "Path íê²½ ë³ììì mpv.net ì ê±°"
+msgstr "Path 환경 변수에서 mpv.net 제거"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:101
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:112
@@ -1781,7 +1781,7 @@ msgstr "옵션 렌더링"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:118
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:65
 msgid "Reset"
-msgstr "ì´ê¸°í"
+msgstr "초기화"
 
 msgid "Reset all everything to high quality presets (where available)."
 msgstr "고품질 사전 설정에 모든 모든 것을 재설정 (무선 가능)."
@@ -1792,7 +1792,7 @@ msgstr "이름 *"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Rotate Video"
-msgstr "ë¹ëì¤ íì "
+msgstr "비디오 회전"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1008
 msgid "Same as minimum-aspect-ratio but used for audio files."
@@ -1841,11 +1841,11 @@ msgstr "스크린 샷"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:134
 msgid "Secondary Subtitle"
-msgstr "ë³´ì¡° ìë§"
+msgstr "보조 자막"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:236
 msgid "Secondary Subtitles"
-msgstr "ë¤ì ìë§ì¼ë¡ ì´ë"
+msgstr "다음 자막으로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:879
 msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
@@ -1859,21 +1859,21 @@ msgstr "sub-color를 참조하십시오. 하위 글꼴 경계에 사용되는 �
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:226
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:232
 msgid "Seek Backward"
-msgstr "ëê°ê¸°"
+msgstr "되감기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:223
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:225
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:231
 msgid "Seek Forward"
-msgstr "ë¹¨ë¦¬ê°ê¸°"
+msgstr "빨리감기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:230
 msgid "Seek to next subtitle"
-msgstr "ë¤ì ìë§ì¼ë¡ ì´ë"
+msgstr "다음 자막으로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:229
 msgid "Seek to previous subtitle"
-msgstr "ì´ì  ìë§ì¼ë¡ ì´ë"
+msgstr "이전 자막으로 이동"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1081
 msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
@@ -1908,7 +1908,7 @@ msgstr "창 제목 표시 줄을 숨기려면이를 설정하십시오."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:184
 msgid "Set/clear A-B loop points"
-msgstr "A-B ë°ë³µ ì§ì  ì¤ì /í´ì "
+msgstr "A-B 반복 지점 설정/해제"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:253
 msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
@@ -1941,7 +1941,7 @@ msgstr "ewa_lanczos (slow)의 날카로운 버전."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:169
 msgid "Show Config Editor"
-msgstr "êµ¬ì± í¸ì§ê¸° íì"
+msgstr "구성 편집기 표시"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:170
 msgid "Show Input Editor"
@@ -1949,11 +1949,11 @@ msgstr "본문 바로가기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:202
 msgid "Show Menu"
-msgstr "ë©ë´ íì"
+msgstr "메뉴 표시"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:448
 msgid "Show Profiles"
-msgstr "íë¡íì¼ ë³´ê¸°"
+msgstr "프로파일 보기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:928
 msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
@@ -1981,11 +1981,11 @@ msgstr "장식 (titlebar, 국경)과 창을 표시합니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:153
 msgid "Shrink"
-msgstr "ìê²"
+msgstr "작게"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:186
 msgid "Shuffle Playlist"
-msgstr "ì¬ì ëª©ë¡ ìì ìê¸°"
+msgstr "재생 목록 순서 섞기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:1450
 msgid "Shutdown thread failed to complete within 10 seconds."
@@ -2051,7 +2051,7 @@ msgstr "하위 글꼴 크기를 지정합니다. 단위는 720의 창 고도에 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:117
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:118
 msgid "Speed"
-msgstr "ìë"
+msgstr "속도"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:890
 msgid "Start the player in fullscreen mode."
@@ -2064,7 +2064,7 @@ msgstr "확대된 창으로 시작하세요."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:207
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:26
 msgid "Stop"
-msgstr "ì ì§"
+msgstr "정지"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:727
 msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
@@ -2091,20 +2091,20 @@ msgstr "이 디렉토리의 스크린 샷을 저장합니다. 이 경로는 scre
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:98
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:99
 msgid "Subtitle"
-msgstr "ìë§"
+msgstr "자막"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:137
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:242
 msgid "Subtitle Lines"
-msgstr "ìë§ ì¤"
+msgstr "자막 줄"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:133
 msgid "Subtitle Tracks"
-msgstr "ìë§ í¸ë"
+msgstr "자막 트랙"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:235
 msgid "Subtitles"
-msgstr "ìë§"
+msgstr "자막"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:740
 msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
@@ -2112,11 +2112,11 @@ msgstr "적절한 색 공간으로 스크린 샷을 가져옵니다. 모든 형�
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:79
 msgid "Take Screenshot"
-msgstr "ì¤í¬ë¦°ì· ì°ê¸°"
+msgstr "스크린샷 찍기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:80
 msgid "Take Screenshot without subtitles"
-msgstr "ìë§ ìì´ ì¤í¬ë¦°ì· ì°ê¸°"
+msgstr "자막 없이 스크린샷 찍기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:113
 msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
@@ -2124,7 +2124,7 @@ msgstr "The GPU renderer filter function to use when upscaling video. There are 
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:261
 msgid "The clipboard does not contain a valid URL or file."
-msgstr "í´ë¦½ë³´ëì ì í¨í URL ëë íì¼ì´ í¬í¨ëì´ ìì§ ììµëë¤."
+msgstr "클립보드에 유효한 URL 또는 파일이 포함되어 있지 않습니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:141
 msgid "The input editor cannot save duplicate shortcuts with different commands:"
@@ -2140,16 +2140,16 @@ msgstr "The options that are saved in \\\"watch later\\\" files if they have bee
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:474
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:479
 msgid "This feature was removed, but there are user scripts:"
-msgstr "ì´ ê¸°ë¥ì ì­ì ëìì§ë§, ì¬ì©ì ì¤í¬ë¦½í¸ë¥¼ ì°¾ì ì ììµëë¤:"
+msgstr "이 기능은 삭제되었지만, 사용자 스크립트를 찾을 수 있습니다:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:483
 msgid "This feature was removed."
-msgstr "ì´ ê¸°ë¥ì ì­ì ëììµëë¤."
+msgstr "이 기능은 삭제되었습니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:393
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:50
 msgid "Title"
-msgstr "íì´í"
+msgstr "타이틀"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:164
 msgid "Toggle Border"
@@ -2157,35 +2157,35 @@ msgstr "링크 메뉴"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:81
 msgid "Toggle Deinterlace"
-msgstr "ëì¸í°ë ì´ì¤ ì í"
+msgstr "디인터레이스 전환"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:187
 msgid "Toggle Hardware Decoding"
-msgstr "íëì¨ì´ ëì½ë© ì í"
+msgstr "하드웨어 디코딩 전환"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:122
 msgid "Toggle OSC Visibility"
-msgstr "OSC íì ì í"
+msgstr "OSC 표시 전환"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:165
 msgid "Toggle On Top"
-msgstr "í­ì ìì íì ì í"
+msgstr "항상 위에 표시 전환"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:121
 msgid "Toggle Statistics"
-msgstr "íµê³ ì í"
+msgstr "통계 전환"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:92
 msgid "Toggle Visibility"
-msgstr "íì ì í"
+msgstr "표시 전환"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:185
 msgid "Toggle infinite file looping"
-msgstr "íì¼ ë¬´í ë°ë³µ ì í"
+msgstr "파일 무한 반복 전환"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:103
 msgid "Toggle overriding SSA/ASS styles with normal styles"
-msgstr "SSA/ASS ì¤íì¼ì ì¼ë° ì¤íì¼ë¡ ë®ì´ì°ê¸° ì í"
+msgstr "SSA/ASS 스타일을 일반 스타일로 덮어쓰기 전환"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:564
 msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
@@ -2197,25 +2197,25 @@ msgstr "Tone mapping 함수는 black point adaptation을 포함한 차이 발광
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:187
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:188
 msgid "Tools"
-msgstr "ëêµ¬"
+msgstr "도구"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:289
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:105
 msgid "Track"
-msgstr "í¸ë"
+msgstr "트랙"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:131
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:239
 msgid "Tracks"
-msgstr "í¸ë"
+msgstr "트랙"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:227
 msgid "Undo previous (or marked) seek"
-msgstr "ì´ì  (ëë íìë) íìì ì·¨ì"
+msgstr "이전 (또는 표시된) 탐색을 취소"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:179
 msgid "Unregister file associations"
-msgstr "íì¼ ì°ê²° ë±ë¡ í´ì "
+msgstr "파일 연결 등록 해제"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:19
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
@@ -2373,12 +2373,12 @@ msgstr "ewa_lanczos의 아주 예리한 버전, anti-ringing (매우 느립니�
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:82
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Video"
-msgstr "ë¹ëì¤"
+msgstr "비디오"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:135
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:238
 msgid "Video Tracks"
-msgstr "ë¹ëì¤ í¸ë"
+msgstr "비디오 트랙"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:786
 msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
@@ -2425,24 +2425,24 @@ msgstr "사용 될 비디오 출력 드라이버.\\n\\n더 많은 정보 방문:
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "View"
-msgstr "ë³´ê¸°"
+msgstr "보기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:107
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:108
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:109
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:110
 msgid "Volume"
-msgstr "ë³¼ë¥¨"
+msgstr "볼륨"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:211
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:213
 msgid "Volume Down"
-msgstr "ë³¼ë¥¨ ê°ì"
+msgstr "볼륨 감소"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:210
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:212
 msgid "Volume Up"
-msgstr "ë³¼ë¥¨ ì¦ê°"
+msgstr "볼륨 증가"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:42
 msgid "Waiting for key/mouse input."
@@ -2451,7 +2451,7 @@ msgstr "key/mouse 입력을 위해 대기."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:139
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:244
 msgid "Watch History"
-msgstr "ìì²­ ê¸°ë¡"
+msgstr "시청 기록"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:140
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:245
@@ -2460,11 +2460,11 @@ msgstr "더 보기"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:192
 msgid "Website mpv"
-msgstr "mpv ì¹ì¬ì´í¸"
+msgstr "mpv 웹사이트"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:193
 msgid "Website mpv.net"
-msgstr "mpv.net ì¹ì¬ì´í¸"
+msgstr "mpv.net 웹사이트"
 
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
 msgstr "로컬 파일을 열 때, 부모 디렉토리가 열리고 재생 목록을 자동으로 만듭니다.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\n동일: 현재 로드된 파일과 같은 범주와 일치하는 파일과 부모 디렉토리의 재생 목록을 만듭니다. *-exts 중 하나는 입력 파일에 따라 선택되며 일치 확장 파일 만 재생 목록에 추가됩니다. 입력 파일 자체가 어떤 확장 목록에 일치하지 않는 경우, 재생 목록은 자동 생성되지 않습니다."
@@ -2533,7 +2533,7 @@ msgstr "Win32/WGL"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:164
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:165
 msgid "Window"
-msgstr "ì°½"
+msgstr "창"
 
 msgid "Window height is always remembered"
 msgstr "창 고도는 항상 기억됩니다"
@@ -2572,7 +2572,7 @@ msgstr "예"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:157
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:158
 msgid "Zoom"
-msgstr "íë"
+msgstr "확대"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1085
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:499
@@ -3357,19 +3357,19 @@ msgstr "mobius"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:443
 msgid "mpv.net is already in the Path environment variable."
-msgstr "mpv.netì ì´ë¯¸ Path íê²½ ë³ìì ììµëë¤."
+msgstr "mpv.net은 이미 Path 환경 변수에 있습니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:460
 msgid "mpv.net was not found in the Path environment variable."
-msgstr "mpv.netì Path íê²½ ë³ììì ì°¾ì ì ììµëë¤."
+msgstr "mpv.net을 Path 환경 변수에서 찾을 수 없습니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:451
 msgid "mpv.net was successfully added to the Path environment variable."
-msgstr "mpv.netì Path íê²½ ë³ìì ì¶ê°íìµëë¤."
+msgstr "mpv.net을 Path 환경 변수에 추가했습니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:469
 msgid "mpv.net was successfully removed from the Path environment variable."
-msgstr "mpv.netì Path íê²½ ë³ììì ì ê±°íìµëë¤."
+msgstr "mpv.net을 Path 환경 변수에서 제거했습니다."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:7
 msgid "multi"
