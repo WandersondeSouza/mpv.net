@@ -507,6 +507,10 @@ Supported values:
 | Russian | `russian` |
 | Turkish | `turkish` |
 
+During playback, the interface language follows the selected audio track when
+the track language maps to one of the supported values above. Unsupported or
+missing audio language metadata falls back to English.
+
 Work on the translation is done with transifex:  
 https://app.transifex.com/stax76/teams/
 

@@ -748,10 +748,12 @@ public class MainPlayer : MpvClient
             else if (type == "audio")
             {
                 string codec = GetPropertyString($"track-list/{i}/codec").ToUpperEx();
+                string language = GetPropertyString($"track-list/{i}/lang");
                 if (codec.Contains("PCM"))
                     codec = "PCM";
                 MediaTrack track = new MediaTrack();
-                Add(track, GetLanguage(GetPropertyString($"track-list/{i}/lang")));
+                track.Language = language;
+                Add(track, GetLanguage(language));
                 Add(track, codec);
                 Add(track, GetPropertyInt($"track-list/{i}/audio-channels") + " ch");
                 Add(track, GetPropertyInt($"track-list/{i}/demux-samplerate") / 1000 + " kHz");
@@ -768,6 +770,7 @@ public class MainPlayer : MpvClient
             else if (type == "sub")
             {
                 string codec = GetPropertyString($"track-list/{i}/codec").ToUpperEx();
+                string language = GetPropertyString($"track-list/{i}/lang");
                 if (codec.Contains("PGS"))
                     codec = "PGS";
                 else if (codec == "SUBRIP")
@@ -779,7 +782,8 @@ public class MainPlayer : MpvClient
                 else if (codec == "DVD_SUBTITLE")
                     codec = "VOB";
                 MediaTrack track = new MediaTrack();
-                Add(track, GetLanguage(GetPropertyString($"track-list/{i}/lang")));
+                track.Language = language;
+                Add(track, GetLanguage(language));
                 Add(track, codec);
                 Add(track, GetPropertyBool($"track-list/{i}/forced") ? "Forced" : null);
                 Add(track, GetPropertyBool($"track-list/{i}/default") ? "Default" : null);
@@ -934,6 +938,7 @@ public class MainPlayer : MpvClient
                 }
 
                 track = new MediaTrack();
+                track.Language = lang;
                 Add(track, lang);
                 Add(track, format);
                 Add(track, mi.GetAudio(i, "Format_Profile"));
@@ -1020,6 +1025,7 @@ public class MainPlayer : MpvClient
                 }
 
                 track = new MediaTrack();
+                track.Language = lang;
                 Add(track, lang);
                 Add(track, codec);
                 Add(track, mi.GetText(i, "Format_Profile"));

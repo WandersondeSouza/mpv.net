@@ -55,6 +55,8 @@ Os idiomas abaixo possuem mapeamento em `WpfTranslator.cs` e valor publico aceit
 
 O valor `system` continua selecionando o idioma do Windows quando houver mapeamento conhecido; caso contrario, o fallback continua sendo ingles. No editor de configuracao, `language=system` e exibido como o idioma efetivo detectado, mas continua sendo salvo como `system` se o usuario nao trocar manualmente o combo.
 
+Durante a reproducao, a interface acompanha a faixa de audio ativa quando o idioma da faixa (`track-list/<n>/lang` ou metadado equivalente do MediaInfo) corresponde a um idioma suportado. Se a faixa de audio nao tiver idioma reconhecido ou apontar para um idioma sem traducao suportada, a interface volta para ingles. A legenda (`slang`/`sid`) nao participa dessa escolha.
+
 ## Implementacao atual de portugues e espanhol
 
 O fork possui traducoes gettext para portugues brasileiro (`language=portuguese-brazil`), portugues de Portugal (`language=portuguese-portugal`) e espanhol (`language=spanish`).
