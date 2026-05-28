@@ -56,19 +56,18 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          $releaseArgs = @(
-            (Join-Path $env:GITHUB_WORKSPACE 'src'),
-            (Join-Path $env:GITHUB_WORKSPACE 'artifacts\release'),
-            '-Repo',
-            '${{ github.repository }}'
-          )
+          $releaseArgs = @{
+            SourceDir = Join-Path $env:GITHUB_WORKSPACE 'src'
+            OutputRootDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts\release'
+            Repo = '${{ github.repository }}'
+          }
 
           if ('${{ inputs.create_release }}' -ne 'true') {
-            $releaseArgs += '-SkipGitHubRelease'
+            $releaseArgs.SkipGitHubRelease = $true
           }
 
           if ('${{ inputs.create_installer }}' -ne 'true') {
-            $releaseArgs += '-SkipInstaller'
+            $releaseArgs.SkipInstaller = $true
           }
 
           & .\src\Tools\release-mpv.net.ps1 @releaseArgs
