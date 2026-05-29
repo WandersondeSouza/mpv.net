@@ -14,6 +14,10 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   o instalador registrar corretamente o `mpvnet.exe` como destino no Windows.
 - Adicionada cobertura de teste para os cenarios de entrada relacionados a
   arquivos, URLs, playlists e prioridade de reproducao.
+- Consolidado no changelog e removido do plano de trabalho o que ja estava
+  validado no fork: suporte a caminhos longos, reconhecimento de protocolos de
+  streaming comuns, tratamento do estado de janela maximizada e a documentacao
+  do fluxo de traducoes e configuracao local.
 
 ## Versionamento e pacote
 
