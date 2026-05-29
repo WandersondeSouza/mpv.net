@@ -11,10 +11,10 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
 5. `docs/developer/mpv-integration.md`;
-6. `docs/developer/libmpv-wrapper.md`;
-7. `docs/developer/event-flow.md`;
-8. `docs/developer/commands.md`.
-9. `docs/developer/source-audit.md` quando a alteração envolver múltiplos módulos.
+6. `docs/developer/mpv-integration.md`;
+7. `docs/developer/mpv-integration.md`;
+8. `docs/developer/mpv-integration.md`.
+9. `docs/developer/architecture.md` quando a alteração envolver múltiplos módulos.
 
 ## Arquivos críticos
 
@@ -41,4 +41,5 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 - Testar pause/play, seek, playlist e encerramento.
 - Testar fullscreen.
 - Testar script simples e comando `script-message-to mpvnet`.
+
 

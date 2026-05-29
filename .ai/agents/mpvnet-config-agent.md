@@ -12,8 +12,8 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 4. `docs/CONFIGURACAO.md`;
 5. `docs/ATALHOS.md`;
 6. `docs/guia-operacional.md`;
-7. `docs/developer/configuration-system.md`;
-8. `docs/developer/configuration-flow.md`.
+7. `docs/developer/configuration.md`;
+8. `docs/developer/configuration.md`.
 9. `docs/developer/architecture.md` quando a mudança envolver fluxo amplo.
 
 ## Arquivos críticos
@@ -41,4 +41,5 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 - Executar com `MPVNET_HOME`.
 - Testar `input.conf` padrão e customizado.
 - Testar menu de contexto quando `input.conf` contém sintaxe de menu.
+
 

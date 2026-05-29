@@ -24,6 +24,54 @@ A integração com libmpv é considerada uma das áreas mais críticas do projet
 - estado do player;
 - integração com scripts.
 
+---
+
+# Wrapper e comunicação
+
+Arquivos principais:
+
+- `src/MpvNet/Native/LibMpv.cs` - P/Invoke para `libmpv-2.dll`;
+- `src/MpvNet/MpvClient.cs` - wrapper de cliente, comandos, propriedades e eventos;
+- `src/MpvNet/Player.cs` - inicialização, configuração inicial e estado do player.
+
+## Ciclo de vida
+
+Fluxo principal em `Player.Init`:
+
+1. cria contexto com `mpv_create`;
+2. registra eventos com `mpv_request_event`;
+3. prepara propriedades iniciais;
+4. define `config-dir` como `Player.ConfigFolder`;
+5. carrega `input.conf` em memória quando existe conteúdo;
+6. processa argumentos de linha de comando antes de `mpv_initialize`;
+7. chama `mpv_initialize`;
+8. cria cliente secundário `mpvnet`;
+9. inicia o loop de eventos;
+10. registra observadores de propriedades;
+11. dispara o estado pronto para a UI.
+
+## Eventos, propriedades e comandos
+
+`MpvClient` traduz eventos nativos para eventos .NET e expõe callbacks para mudanças de propriedades, incluindo valores booleanos, inteiros, `double` e `string`.
+
+Eventos importantes:
+
+- `MPV_EVENT_SHUTDOWN`;
+- `MPV_EVENT_LOG_MESSAGE`;
+- `MPV_EVENT_CLIENT_MESSAGE`;
+- `MPV_EVENT_END_FILE`;
+- `MPV_EVENT_FILE_LOADED`;
+- `MPV_EVENT_PROPERTY_CHANGE`;
+- `MPV_EVENT_START_FILE`;
+- `MPV_EVENT_PLAYBACK_RESTART`.
+
+Comandos:
+
+- `Command(string command)` para comandos textuais;
+- `CommandV(params string[] args)` para comandos com argumentos separados.
+
+Regra prática: quando o trabalho tocar eventos, propriedades, comandos ou `input.conf`, a investigação deve apontar a camada certa antes de alterar a implementação.
+
 ## Metadados auxiliares
 
 A reprodução tem prioridade sobre metadados auxiliares. `MediaInfo.dll`,
@@ -88,7 +136,7 @@ Atalhos e comandos podem depender da integração com mpv.
 # Melhorias futuras sugeridas
 
 - documentação dos wrappers;
-- mapa de eventos;
+- detalhamento do fluxo de eventos;
 - fluxo de propriedades;
 - logs estruturados;
 - diagnóstico avançado;

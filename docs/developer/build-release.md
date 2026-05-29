@@ -1,4 +1,4 @@
-# Guia de Build e Ambiente de Desenvolvimento
+# Build e release do mpv.net
 
 ## Objetivo
 

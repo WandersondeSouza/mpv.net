@@ -10,9 +10,9 @@ Analisar e alterar interface Windows do mpv.net preservando comportamento de jan
 2. `README.md`;
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
-5. `docs/developer/ui.md`;
-6. `docs/developer/startup-flow.md`;
-7. `docs/developer/event-flow.md`;
+5. `docs/developer/windows-ui.md`;
+6. `docs/developer/architecture.md`;
+7. `docs/developer/mpv-integration.md`;
 8. `docs/ATALHOS.md`.
 9. `docs/developer/architecture.md` quando a mudança envolver fluxo entre janelas, eventos e inicialização.
 
@@ -40,4 +40,5 @@ Analisar e alterar interface Windows do mpv.net preservando comportamento de jan
 - Abrir menu de contexto.
 - Alternar tema quando aplicável.
 - Testar foco do teclado e comandos básicos.
+
 

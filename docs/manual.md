@@ -77,11 +77,11 @@ Veja [Guia operacional](guia-operacional.md) para o layout recomendado.
 Se você for manter ou auditar o fork, os pontos de entrada mais úteis são:
 
 - [Arquitetura](developer/architecture.md)
-- [Auditoria de código](developer/source-audit.md)
-- [Mapa do projeto](developer/project-map.md)
-- [Mapa de classes](developer/class-map.md)
-- [Fluxo de inicialização](developer/startup-flow.md)
-- [Fluxo de configuração](developer/configuration-flow.md)
+- [Configuração](developer/configuration.md)
+- [Integração com mpv/libmpv](developer/mpv-integration.md)
+- [Interface Windows](developer/windows-ui.md)
+- [Build e release](developer/build-release.md)
+- [Localização](developer/localization.md)
 
 ## Suporte
 

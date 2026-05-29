@@ -1,4 +1,4 @@
-# Sistema de Configuração do mpv.net
+# Configuração do mpv.net
 
 ## Objetivo
 
@@ -190,6 +190,18 @@ Algumas opções são aplicadas antes de `mpv_initialize`, por exemplo:
 - `log-file`.
 
 Quando `--config-dir` é usado, o caminho do `input.conf` também é ajustado para essa pasta.
+
+---
+
+# Fluxo resumido de configuração
+
+1. A aplicação inicia.
+2. `Player.ConfigFolder` resolve `MPVNET_HOME`, `portable_config` ou `%APPDATA%\mpv.net`.
+3. Os arquivos de configuração são lidos.
+4. `mpv.conf`, `mpvnet.conf` e `input.conf` recebem tratamento específico.
+5. `settings.xml`, `theme.conf` e `global-input.conf` completam o estado do frontend.
+6. A UI e o libmpv usam esse estado inicial.
+7. Alterações podem ser persistidas em `settings.xml` ou nos arquivos do usuário quando a migração for necessária.
 
 ---
 

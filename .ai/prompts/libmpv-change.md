@@ -7,11 +7,11 @@ Leia:
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
 5. `docs/developer/mpv-integration.md`;
-6. `docs/developer/libmpv-wrapper.md`;
-7. `docs/developer/event-flow.md`;
-8. `docs/developer/commands.md`.
+6. `docs/developer/mpv-integration.md`;
+7. `docs/developer/mpv-integration.md`;
+8. `docs/developer/mpv-integration.md`.
 
-Se a alteração cruzar mais de um módulo, consulte também `docs/developer/source-audit.md` e `docs/developer/architecture.md`.
+Se a alteração cruzar mais de um módulo, consulte também `docs/developer/architecture.md` e `docs/developer/architecture.md`.
 
 Objetivo:
 
@@ -44,4 +44,5 @@ Plano de teste mínimo:
 - testar playlist;
 - testar script/comando relacionado;
 - encerrar o aplicativo.
+
 

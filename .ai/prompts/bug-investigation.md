@@ -1,7 +1,7 @@
 ﻿# Prompt — Investigação de bug no mpv.net
 
 Leia `AGENTS.md`, `README.md`, `docs/manual.md` e `docs/guia-operacional.md`.
-Se o bug parecer amplo, leia também `docs/developer/source-audit.md` e `docs/developer/architecture.md` antes de alterar.
+Se o bug parecer amplo, leia também `docs/developer/architecture.md` e `docs/developer/architecture.md` antes de alterar.
 
 Vamos investigar apenas este bug:
 
@@ -43,4 +43,5 @@ Regras:
 - preservar compatibilidade com mpv;
 - atualizar documentação se o comportamento mudar;
 - ao final, informar arquivos alterados e validação feita.
+
 

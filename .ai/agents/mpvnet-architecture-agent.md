@@ -11,9 +11,9 @@ Analisar a arquitetura do mpv.net, mapear módulos, classes, fluxos e dependênc
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
 5. `docs/developer/architecture.md`;
-6. `docs/developer/source-audit.md`;
-7. `docs/developer/class-map.md`;
-8. `docs/developer/project-map.md`;
+6. `docs/developer/architecture.md`;
+7. `docs/developer/architecture.md`;
+8. `docs/developer/architecture.md`;
 9. `docs/changelog.md` quando a mudança tocar comportamento já consolidado.
 
 ## Arquivos críticos
@@ -45,4 +45,5 @@ Plano de teste:
 ```
 
 Depois da execução, informar arquivos alterados, validação feita e riscos remanescentes.
+
 

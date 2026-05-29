@@ -6,8 +6,8 @@ Leia:
 2. `README.md`;
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
-5. `docs/developer/build.md`;
-6. `docs/developer/project-map.md`;
+5. `docs/developer/build-release.md`;
+6. `docs/developer/architecture.md`;
 7. `docs/changelog.md`;
 8. documentação da área de build ou release que esteja ligada à mudança.
 
@@ -17,7 +17,7 @@ Objetivo:
 [DESCREVA A AUDITORIA OU MUDANÇA DE RELEASE]
 ```
 
-Se a mudança tocar a experiência de uso imediato, confira também se os artefatos de release continuam coerentes com `docs/guia-operacional.md` e `docs/developer/build.md`.
+Se a mudança tocar a experiência de uso imediato, confira também se os artefatos de release continuam coerentes com `docs/guia-operacional.md` e `docs/developer/build-release.md`.
 
 Verifique:
 
@@ -48,4 +48,5 @@ Regras:
 - separar build local de pacote final;
 - validar x64 sempre; validar ARM64 somente se esse alvo for explicitamente reintroduzido;
 - atualizar documentação se o processo mudar.
+
 

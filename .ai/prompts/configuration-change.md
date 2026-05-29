@@ -8,8 +8,8 @@ Leia:
 4. `docs/CONFIGURACAO.md`;
 5. `docs/ATALHOS.md`;
 6. `docs/guia-operacional.md`;
-7. `docs/developer/configuration-system.md`;
-8. `docs/developer/configuration-flow.md`.
+7. `docs/developer/configuration.md`;
+8. `docs/developer/configuration.md`.
 
 Objetivo:
 
@@ -27,7 +27,7 @@ Antes de alterar código, confirme no código:
 - impacto no modo portátil;
 - necessidade de migração ou backup.
 
-Se a mudança tocar fluxos de inicialização, leia também `docs/developer/configuration-flow.md` e `docs/developer/architecture.md`.
+Se a mudança tocar fluxos de inicialização, leia também `docs/developer/configuration.md` e `docs/developer/architecture.md`.
 
 Regras:
 
@@ -47,4 +47,5 @@ Mudança proposta:
 Riscos:
 Plano de teste:
 ```
+
 

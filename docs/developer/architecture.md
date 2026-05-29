@@ -6,6 +6,8 @@ Este documento ajuda mantenedores, desenvolvedores e agentes de IA a entender a 
 
 O foco é mapear responsabilidades reais do código atual, áreas críticas e fluxos que devem ser preservados.
 
+Este arquivo substitui os antigos mapas separados de projeto, classes, startup e auditoria inicial. A regra aqui é manter a visão arquitetural em um único lugar e só separar um novo documento se houver necessidade real e contínua.
+
 ---
 
 # Visão geral
@@ -69,6 +71,24 @@ Exemplo de extensão .NET carregável.
 
 ---
 
+# Mapa rápido de classes e pontos de entrada
+
+Arquivos centrais para entender o fluxo sem abrir vários documentos:
+
+- `src/MpvNet.Windows/Program.cs` - entry point da aplicação Windows;
+- `src/MpvNet/App.cs` - inicialização, configuração e opções do frontend;
+- `src/MpvNet.Windows/WinForms/MainForm.cs` - janela principal;
+- `src/MpvNet/Player.cs` - ciclo do player e configuração do mpv;
+- `src/MpvNet/MpvClient.cs` - wrapper de cliente e loop de eventos;
+- `src/MpvNet/Native/LibMpv.cs` - P/Invoke e estruturas nativas;
+- `src/MpvNet/InputConf.cs` - leitura e migração do `input.conf`;
+- `src/MpvNet/Settings.cs` - persistência de estado do frontend;
+- `src/MpvNet/CommandLine.cs` - argumentos de linha de comando;
+- `src/MpvNet.Windows/UI/Theme.cs` e `src/MpvNet.Windows/UI/GlobalHotkey.cs` - tema e hotkeys globais;
+- `src/MpvNet.Windows/GuiCommand.cs` e `src/MpvNet/Command.cs` - comandos da UI e comandos internos.
+
+---
+
 # Fluxo de inicialização
 
 Arquivo principal: `src/MpvNet.Windows/Program.cs`
@@ -92,6 +112,16 @@ Arquivos relacionados:
 - `src/MpvNet/CommandLine.cs`;
 - `src/MpvNet.Windows/WinForms/MainForm.cs`;
 - `src/MpvNet.Windows/UI/Theme.cs`.
+
+Fluxo resumido adicional:
+
+1. `Program.Main` inicializa WinForms, tradução e handlers globais;
+2. `App.Init()` resolve configuração e opções do frontend;
+3. `Theme.Init()` carrega o tema;
+4. a instância única é aplicada com base em `App.ConfPath`;
+5. `Player.Init()` prepara libmpv e o estado inicial;
+6. `MainForm` é criado;
+7. arquivos/URLs informados pela linha de comando são processados depois da janela estar pronta.
 
 ---
 
@@ -182,6 +212,10 @@ script-message-to mpvnet <comando>
 ```
 
 Comandos marcados como deprecated ainda podem ser usados por configurações antigas e não devem ser removidos sem migração.
+
+## Critério de auditoria
+
+Se uma alteração exigir procurar a causa real em mais de um módulo, a investigação deve voltar para este arquivo e não ficar espalhada em páginas pequenas separadas.
 
 ---
 

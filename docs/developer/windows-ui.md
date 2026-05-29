@@ -1,4 +1,4 @@
-# Interface Gráfica do mpv.net
+# Interface Windows do mpv.net
 
 ## Objetivo
 

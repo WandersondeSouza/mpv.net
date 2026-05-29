@@ -23,9 +23,9 @@ Identifique:
 Confirme também:
 
 - `docs/developer/architecture.md`;
-- `docs/developer/source-audit.md`;
-- `docs/developer/class-map.md`;
-- `docs/developer/project-map.md`.
+- `docs/developer/architecture.md`;
+- `docs/developer/architecture.md`;
+- `docs/developer/architecture.md`.
 
 ---
 
@@ -139,4 +139,5 @@ Antes de alterar qualquer código:
 - listar arquivos analisados;
 - listar riscos;
 - propor plano incremental.
+
 

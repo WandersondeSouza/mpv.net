@@ -10,8 +10,8 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 2. `README.md`;
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
-5. `docs/developer/build.md`;
-6. `docs/developer/project-map.md`;
+5. `docs/developer/build-release.md`;
+6. `docs/developer/architecture.md`;
 7. `docs/changelog.md`;
 8. `docs/proximos-trabalhos.md` quando a mudança afetar a priorização do fluxo.
 9. `docs/developer/architecture.md` quando o release expuser dependências de fluxo amplo.
@@ -44,4 +44,5 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 - Geração do ZIP portátil.
 - Conferência de DLLs nativas.
 - Conferência do instalador quando aplicável.
+
 

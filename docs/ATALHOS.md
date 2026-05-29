@@ -11,7 +11,8 @@ Use este arquivo como índice rápido. Para detalhes de configuração, veja [Co
 
 Para mudanças amplas em atalhos, menu ou input, consulte também:
 
-- `docs/developer/commands.md`
-- `docs/developer/configuration-system.md`
-- `docs/developer/source-audit.md`
+- `docs/developer/mpv-integration.md`
+- `docs/developer/configuration.md`
+- `docs/developer/architecture.md`
+
 

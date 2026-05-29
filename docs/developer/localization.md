@@ -1,4 +1,4 @@
-# Localizacao e idiomas da interface
+# Localização do mpv.net
 
 ## Objetivo
 
