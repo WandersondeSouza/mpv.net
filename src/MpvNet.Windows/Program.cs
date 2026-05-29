@@ -33,7 +33,7 @@ static class Program
 
             if (args.Length > 1 && args[0] == "--register-file-associations")
             {
-                FileAssociation.Register(args[1], args.Skip(1).ToArray());
+                FileAssociation.Register(args[1], args.Skip(2).ToArray());
                 return;
             }
 

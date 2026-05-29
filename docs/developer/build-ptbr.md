@@ -188,7 +188,9 @@ O script:
 11. valida as DLLs nativas no publish, na pasta portatil e no ZIP com `test-native-dependencies.ps1`;
 12. gera ZIP portatil x64;
 13. executa `Setup/Inno/inno-setup.iss` para gerar o instalador x64, exceto com `-SkipInstaller`;
-14. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`.
+14. o instalador executa `mpvnet.exe --register-file-associations video ...`
+    para registrar as associacoes de video e playlists IPTV apos a instalacao;
+15. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`.
 
 As dependencias baixadas automaticamente usam estas fontes:
 

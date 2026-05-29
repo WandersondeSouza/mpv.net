@@ -5,6 +5,16 @@ alteracoes relevantes feitas neste fork de manutencao.
 
 # Fork WandersondeSouza - v7.1.2.3 (2026-05-28)
 
+## Associacoes de arquivos e streaming
+
+- O instalador passou a registrar associacoes de video e playlists IPTV para o
+  Windows encaminhar arquivos como `.mp4`, `.mkv`, `.m3u` e `.m3u8` ao
+  `mpvnet.exe` apos a instalacao.
+- A validacao de entrada de midia foi centralizada para aceitar arquivos locais,
+  playlists e URLs de streaming sem tratar URLs como caminhos locais.
+- O dialogo `Open Files...` passou a filtrar videos, playlists e a manter a
+  opcao `All files (*.*)`.
+
 ## Localizacao
 
 - Adicionada traducao inicial da interface para portugues brasileiro (`pt-BR`),

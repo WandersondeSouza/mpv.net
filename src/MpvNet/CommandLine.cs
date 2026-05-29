@@ -140,7 +140,7 @@ public class CommandLine
         if (string.IsNullOrEmpty(arg) || arg.StartsWith("--"))
             return false;
 
-        if (arg == "-" || arg.Contains("://"))
+        if (arg == "-" || FileTypes.IsStreamingUrl(arg))
             return true;
 
         if (arg.Contains(":\\") || (arg.Contains(":/") && !arg.Contains("://")) || arg.StartsWith("\\\\"))
@@ -149,7 +149,7 @@ public class CommandLine
         if (arg.StartsWith('.'))
             return true;
 
-        return File.Exists(arg);
+        return File.Exists(arg) || FileTypes.IsSupportedMediaInput(arg);
     }
 
     public static bool Contains(string name)

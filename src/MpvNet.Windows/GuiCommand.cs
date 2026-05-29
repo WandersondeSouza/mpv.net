@@ -150,7 +150,11 @@ public class GuiCommand
             if (arg == "append")
                 append = true;
 
-        using var dialog = new OpenFileDialog() { Multiselect = true };
+        using var dialog = new OpenFileDialog()
+        {
+            Filter = FileTypes.GetOpenFileDialogFilter(),
+            Multiselect = true
+        };
 
         if (dialog.ShowDialog() == DialogResult.OK)
             Player.LoadFiles(dialog.FileNames, true, append);
@@ -252,7 +256,7 @@ public class GuiCommand
 
             foreach (string i in clipboard.Split(BR.ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
             {
-                if (i.Contains("://") || File.Exists(i))
+                if (FileTypes.IsStreamingUrl(i) || File.Exists(i) || FileTypes.IsSupportedMediaInput(i))
                     files.Add(i);
             }
 
@@ -297,7 +301,7 @@ public class GuiCommand
 
         switch (perceivedType)
         {
-            case "video": extensions = FileTypes.GetVideoExts(); break;
+            case "video": extensions = [.. FileTypes.GetSupportedVideoExts(), .. FileTypes.Playlist]; break;
             case "audio": extensions = FileTypes.GetAudioExts(); break;
             case "image": extensions = FileTypes.GetImgExts(); break;
         }

@@ -50,6 +50,23 @@ O **mpv.net** é uma interface gráfica para Windows baseada no [mpv](https://mp
 
 Para documentação técnica completa do comportamento herdado do mpv, consulte o [manual oficial do mpv](https://mpv.io/manual/master/) e o [manual do mpv.net](docs/manual.md).
 
+## Arquivos, playlists e streaming
+
+O instalador registra o mpv.net como aplicativo para os principais formatos de video locais e playlists IPTV: `.mp4`, `.m4v`, `.mkv`, `.webm`, `.avi`, `.mov`, `.qt`, `.wmv`, `.asf`, `.flv`, `.f4v`, `.mpg`, `.mpeg`, `.mpe`, `.m1v`, `.m2v`, `.vob`, `.ts`, `.mts`, `.m2ts`, `.3gp`, `.3g2`, `.ogv`, `.ogg`, `.rm`, `.rmvb`, `.divx`, `.xvid`, `.dv`, `.nut`, `.nsv`, `.m3u`, `.m3u8`, `.pls` e `.xspf`.
+
+Tambem e possivel abrir arquivos e URLs pela linha de comando:
+
+```powershell
+mpvnet.exe "C:\Videos\filme.mp4"
+mpvnet.exe "C:\Listas\iptv.m3u"
+mpvnet.exe "https://example.com/live/index.m3u8?token=abc123"
+mpvnet.exe "rtmp://example.com/live/channel"
+mpvnet.exe "rtsp://example.com/stream"
+mpvnet.exe "udp://239.0.0.1:1234"
+```
+
+As entradas de streaming aceitas pelo frontend incluem `http://`, `https://`, `rtmp://`, `rtmps://`, `rtsp://`, `mms://`, `udp://`, `tcp://`, `ftp://` e `sftp://`. A associacao de arquivos apenas permite que o Windows encaminhe a entrada para o app; codecs, containers e protocolos reproduzidos de fato dependem do mpv/libmpv/FFmpeg incluido no pacote.
+
 ---
 
 ## README original

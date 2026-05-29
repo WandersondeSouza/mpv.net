@@ -66,7 +66,9 @@ Internet streaming requires:
 
 #### File Associations
 
-File associations can be registered using the context menu under `Config > Setup`.
+The setup installer registers mpv.net for the main local video formats and IPTV
+playlist formats supported by this fork. File associations can also be
+registered again using the context menu under `Config > Setup`.
 
 After the file associations were registered, it might still be necessary to change the
 default app in the Windows settings.
@@ -78,6 +80,17 @@ select a media file and select `Open with > Choose another app` in the context m
 to get menu items for [Play with mpv.net](https://github.com/stax76/OpenWithPlusPlus#play-with-mpvnet) and
 [Add to mpv.net playlist](https://github.com/stax76/OpenWithPlusPlus#add-to-mpvnet-playlist).
 Alternatively, the `Send To` feature of Windows File Explorer can be used.
+
+The installer and `Config > Setup > Register video file associations` cover at
+least these video extensions:
+
+`.mp4`, `.m4v`, `.mkv`, `.webm`, `.avi`, `.mov`, `.qt`, `.wmv`, `.asf`, `.flv`,
+`.f4v`, `.mpg`, `.mpeg`, `.mpe`, `.m1v`, `.m2v`, `.vob`, `.ts`, `.mts`,
+`.m2ts`, `.3gp`, `.3g2`, `.ogv`, `.ogg`, `.rm`, `.rmvb`, `.divx`, `.xvid`,
+`.dv`, `.nut`, `.nsv`.
+
+The IPTV/playlist extensions registered with video associations are `.m3u`,
+`.m3u8`, `.pls` and `.xspf`.
 
 #### Path environment variable
 
@@ -188,6 +201,28 @@ Command Line Interface
 
 **mpvnet** [options] [file|URL|PLAYLIST|-]  
 **mpvnet** [options] files
+
+Examples:
+
+```powershell
+mpvnet.exe "C:\Videos\filme.mp4"
+mpvnet.exe "C:\Videos\video.mkv"
+mpvnet.exe "C:\Listas\iptv.m3u"
+mpvnet.exe "https://example.com/video.mp4"
+mpvnet.exe "https://example.com/live/index.m3u8?token=abc123"
+mpvnet.exe "rtmp://example.com/live/channel"
+mpvnet.exe "rtsp://example.com/stream"
+mpvnet.exe "udp://239.0.0.1:1234"
+```
+
+mpv.net accepts local media files, local playlists and streaming URLs on the
+command line. The frontend recognizes `http://`, `https://`, `rtmp://`,
+`rtmps://`, `rtsp://`, `mms://`, `udp://`, `tcp://`, `ftp://` and `sftp://`
+without requiring them to exist as local files.
+
+Actual codec, container and protocol playback depends on the mpv/libmpv/FFmpeg
+build included in the package. File association only controls how Windows
+forwards a file or playlist to mpv.net.
 
 
 mpv properties can be set with the same syntax as mpv, that is:
