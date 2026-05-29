@@ -19,6 +19,7 @@ Fork de manutenção do mpv.net para Windows, focado em compatibilidade com mpv/
 - [Build e release](docs/BUILD.md)
 - [Dependências nativas](docs/native-dependencies.md)
 - [Roadmap](docs/ROADMAP.md)
+- [Próximos trabalhos](docs/proximos-trabalhos.md)
 - [Contribuição](docs/contributing-ptbr.md)
 - [Checklist de release](docs/release-checklist-ptbr.md)
 
@@ -40,6 +41,7 @@ Antes de alterar código ou documentação, leia:
 2. `README.md`
 3. `docs/manual.md`
 4. `docs/ROADMAP.md`
-5. a documentação da área tocada em `docs/developer/`
+5. `docs/proximos-trabalhos.md`
+6. a documentação da área tocada em `docs/developer/`
 
 Os arquivos em `.ai/` existem para orientar tarefas recorrentes do fork, mas não substituem a análise do código atual.
