@@ -236,7 +236,7 @@ Confira os `TargetFramework` dos projetos e instale o SDK/runtime correspondente
 
 ## Dependência nativa ausente
 
-Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução. Para o pacote portatil, verifique tambem `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. No fluxo de release, FFmpeg, libmpv e yt-dlp devem ser baixados automaticamente; `MediaInfo.dll` deve vir de `src/Native/win-x64/MediaInfo.dll`.
+Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução. Para o pacote portatil, verifique tambem `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. No fluxo de build/release, FFmpeg, libmpv, yt-dlp e `MediaInfo.dll` devem ser baixados ou atualizados automaticamente por `src\Tools\ensure-native-dependencies.ps1`.
 
 ## Ferramenta de release ausente
 

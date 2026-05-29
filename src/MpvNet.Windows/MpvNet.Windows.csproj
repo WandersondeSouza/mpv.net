@@ -29,10 +29,6 @@
 
 	<ItemGroup>
 		<Content Include="mpv-icon.ico" />
-		<Content Include="..\Native\win-x64\MediaInfo.dll" Link="MediaInfo.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
