@@ -389,7 +389,7 @@ public class MainPlayer : MpvClient
     // executed after OnStartFile
     protected override void OnFileLoaded()
     {
-        Duration = TimeSpan.FromSeconds(GetPropertyDouble("duration"));
+        Duration = GetSafeDuration();
 
         if (App.StartSize == "video")
             WasInitialSizeSet = false;
@@ -497,21 +497,29 @@ public class MainPlayer : MpvClient
 
     public void LoadISO(string path)
     {
-        using var mi = new MediaInfo(path);
-        
-        if (mi.GetGeneral("Format") == "ISO 9660 / DVD Video")
+        try
         {
-            Command("stop");
-            Thread.Sleep(500);
-            SetPropertyString("dvd-device", path);
-            LoadFiles([@"dvd://"], false, false);
+            using var mi = new MediaInfo(path);
+
+            if (mi.GetGeneral("Format") == "ISO 9660 / DVD Video")
+            {
+                Command("stop");
+                Thread.Sleep(500);
+                SetPropertyString("dvd-device", path);
+                LoadFiles([@"dvd://"], false, false);
+            }
+            else
+            {
+                Command("stop");
+                Thread.Sleep(500);
+                SetPropertyString("bluray-device", path);
+                LoadFiles([@"bd://"], false, false);
+            }
         }
-        else
+        catch (Exception ex)
         {
-            Command("stop");
-            Thread.Sleep(500);
-            SetPropertyString("bluray-device", path);
-            LoadFiles([@"bd://"], false, false);
+            LogNonBlockingMetadataFailure("MediaInfo ISO detection", path, ex);
+            CommandV("loadfile", path);
         }
     }
 
@@ -644,11 +652,64 @@ public class MainPlayer : MpvClient
 
         lock (MediaTracksLock)
         {
-            if (App.MediaInfo && !path.Contains("://") && !path.Contains(@"\\.\pipe\") && File.Exists(path))
-                MediaTracks = GetMediaInfoTracks(path);
-            else
-                MediaTracks = GetTracks();
+            MediaTracks = GetSafeTracks(path);
         }
+    }
+
+    public List<MediaTrack> GetSafeTracks(string path)
+    {
+        if (CanUseMediaInfo(path))
+        {
+            try
+            {
+                return GetMediaInfoTracks(path);
+            }
+            catch (Exception ex)
+            {
+                LogNonBlockingMetadataFailure("MediaInfo track scan", path, ex);
+            }
+        }
+
+        try
+        {
+            return GetTracks();
+        }
+        catch (Exception ex)
+        {
+            LogNonBlockingMetadataFailure("mpv track scan", path, ex);
+            return [];
+        }
+    }
+
+    public static bool CanUseMediaInfo(string path) =>
+        App.MediaInfo &&
+        !string.IsNullOrWhiteSpace(path) &&
+        !path.Contains("://") &&
+        !path.Contains(@"\\.\pipe\") &&
+        File.Exists(path);
+
+    TimeSpan GetSafeDuration()
+    {
+        try
+        {
+            double seconds = GetPropertyDouble("duration", false);
+
+            if (double.IsNaN(seconds) || double.IsInfinity(seconds) || seconds < 0)
+                return TimeSpan.Zero;
+
+            return TimeSpan.FromSeconds(seconds);
+        }
+        catch (Exception ex)
+        {
+            LogNonBlockingMetadataFailure("mpv duration property", Path, ex);
+            return TimeSpan.Zero;
+        }
+    }
+
+    static void LogNonBlockingMetadataFailure(string source, string path, Exception ex)
+    {
+        Terminal.WriteError($"Non-blocking metadata failure ({source}) for '{path}': {ex.Message}");
+        Terminal.WriteError(ex);
     }
 
     public List<StringPair> AudioDevices {
@@ -657,14 +718,24 @@ public class MainPlayer : MpvClient
                 return _audioDevices;
 
             _audioDevices = [];
-            string json = GetPropertyString("audio-device-list");
-            var enumerator = JsonDocument.Parse(json).RootElement.EnumerateArray();
 
-            foreach (var element in enumerator)
+            try
             {
-                string name = element.GetProperty("name").GetString()!;
-                string description = element.GetProperty("description").GetString()!;
-                _audioDevices.Add(new StringPair(name, description));
+                string json = GetPropertyString("audio-device-list");
+                var enumerator = JsonDocument.Parse(json).RootElement.EnumerateArray();
+
+                foreach (var element in enumerator)
+                {
+                    string name = element.TryGetProperty("name", out var nameElement) ? nameElement.GetString() ?? "" : "";
+                    string description = element.TryGetProperty("description", out var descriptionElement) ? descriptionElement.GetString() ?? "" : "";
+
+                    if (!string.IsNullOrEmpty(name) || !string.IsNullOrEmpty(description))
+                        _audioDevices.Add(new StringPair(name, description));
+                }
+            }
+            catch (Exception ex)
+            {
+                LogNonBlockingMetadataFailure("mpv audio-device-list property", Path, ex);
             }
 
             return _audioDevices;
@@ -673,37 +744,54 @@ public class MainPlayer : MpvClient
 
     public List<Chapter> GetChapters() {
         List<Chapter> chapters = new List<Chapter>();
-        int count = GetPropertyInt("chapter-list/count");
-
-        for (int x = 0; x < count; x++)
+        try
         {
-            string title = GetPropertyString($"chapter-list/{x}/title");
-            double time = GetPropertyDouble($"chapter-list/{x}/time");
+            int count = GetPropertyInt("chapter-list/count");
 
-            if (string.IsNullOrEmpty(title) ||
-                (title.Length == 12 && title.Contains(':') && title.Contains('.')))
+            for (int x = 0; x < count; x++)
+            {
+                string title = GetPropertyString($"chapter-list/{x}/title");
+                double time = GetPropertyDouble($"chapter-list/{x}/time", false);
 
-                title = "Chapter " + (x + 1);
+                if (string.IsNullOrEmpty(title) ||
+                    (title.Length == 12 && title.Contains(':') && title.Contains('.')))
 
-            chapters.Add(new Chapter() { Title = title, Time = time });
+                    title = "Chapter " + (x + 1);
+
+                if (double.IsNaN(time) || double.IsInfinity(time) || time < 0)
+                    time = 0;
+
+                chapters.Add(new Chapter() { Title = title, Time = time });
+            }
+        }
+        catch (Exception ex)
+        {
+            LogNonBlockingMetadataFailure("mpv chapter-list property", Path, ex);
         }
 
         return chapters;
     }
 
     public void UpdateExternalTracks()
-    { 
-        int trackListTrackCount = GetPropertyInt("track-list/count");
-        int editionCount = GetPropertyInt("edition-list/count");
-        int count = MediaTracks.Where(i => i.Type != "g").Count();
-
-        lock (MediaTracksLock)
+    {
+        try
         {
-            if (count != (trackListTrackCount + editionCount))
+            int trackListTrackCount = GetPropertyInt("track-list/count");
+            int editionCount = GetPropertyInt("edition-list/count");
+            int count = MediaTracks.Where(i => i.Type != "g").Count();
+
+            lock (MediaTracksLock)
             {
-                MediaTracks = MediaTracks.Where(i => !i.External).ToList();
-                MediaTracks.AddRange(GetTracks(false));
+                if (count != (trackListTrackCount + editionCount))
+                {
+                    MediaTracks = MediaTracks.Where(i => !i.External).ToList();
+                    MediaTracks.AddRange(GetSafeMpvTracks(false));
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            LogNonBlockingMetadataFailure("mpv external track scan", Path, ex);
         }
     }
 
@@ -830,6 +918,19 @@ public class MainPlayer : MpvClient
 
             if (str != "" && !track.Text.Contains(str))
                 track.Text += " " + str + ",";
+        }
+    }
+
+    List<MediaTrack> GetSafeMpvTracks(bool includeInternal = true, bool includeExternal = true)
+    {
+        try
+        {
+            return GetTracks(includeInternal, includeExternal);
+        }
+        catch (Exception ex)
+        {
+            LogNonBlockingMetadataFailure("mpv track-list property", Path, ex);
+            return [];
         }
     }
 

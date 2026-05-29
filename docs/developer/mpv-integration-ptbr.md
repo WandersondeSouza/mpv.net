@@ -24,6 +24,20 @@ A integração com libmpv é considerada uma das áreas mais críticas do projet
 - estado do player;
 - integração com scripts.
 
+## Metadados auxiliares
+
+A reprodução tem prioridade sobre metadados auxiliares. `MediaInfo.dll`,
+listas de faixas, capítulos, duração, codec, idioma, título e propriedades
+consultadas apenas para montar a interface não devem bloquear a tentativa de
+reprodução quando o arquivo local existe ou a URL de streaming foi encaminhada
+ao mpv. Falhas nessa coleta devem ser registradas como diagnóstico técnico e
+tratadas com listas vazias ou valores padrão.
+
+O mpv/libmpv é a autoridade final para decidir se a mídia abre. Validações do
+frontend devem rejeitar apenas entradas claramente inválidas antes do `loadfile`;
+ausência de legenda, áudio, duração, título ou dados de MediaInfo é falha não
+bloqueante.
+
 ---
 
 # Compatibilidade

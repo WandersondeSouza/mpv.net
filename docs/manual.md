@@ -220,6 +220,13 @@ command line. The frontend recognizes `http://`, `https://`, `rtmp://`,
 `rtmps://`, `rtsp://`, `mms://`, `udp://`, `tcp://`, `ftp://` and `sftp://`
 without requiring them to exist as local files.
 
+Metadata is optional for playback. mpv.net may use mpv properties and
+MediaInfo.dll to improve titles, track lists, chapters, duration and other UI
+details after a file starts loading, but missing or incomplete metadata must not
+block a valid local file, playlist or streaming URL from being sent to mpv. If
+MediaInfo.dll is missing or cannot read a file, mpv.net logs the technical
+failure and falls back to mpv-reported data or empty/default UI values.
+
 Actual codec, container and protocol playback depends on the mpv/libmpv/FFmpeg
 build included in the package. File association only controls how Windows
 forwards a file or playlist to mpv.net.
