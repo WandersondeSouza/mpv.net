@@ -17,6 +17,8 @@ Objetivo:
 [DESCREVA A AUDITORIA OU MUDANÇA DE RELEASE]
 ```
 
+Se a mudança tocar a experiência de uso imediato, confira também se os artefatos de release continuam coerentes com `docs/guia-operacional.md` e `docs/developer/build-ptbr.md`.
+
 Verifique:
 
 - solução e projetos envolvidos;

@@ -23,6 +23,7 @@ Todo agente deve seguir:
 | Perfil | Arquivo | Uso |
 | --- | --- | --- |
 | Mantenedor geral | `mpvnet-maintainer-agent.md` | Tarefas amplas de manutenção, documentação e correções pequenas. |
+| Arquitetura e análise | `mpvnet-architecture-agent.md` | Mapa arquitetural, análise de módulos, refatoração segura e mudanças amplas. |
 | Configuração e atalhos | `mpvnet-config-agent.md` | `mpv.conf`, `mpvnet.conf`, `input.conf`, modo portátil e migrações. |
 | Integração mpv/libmpv | `mpvnet-libmpv-agent.md` | Player, eventos, propriedades, comandos e wrappers nativos. |
 | UI Windows | `mpvnet-ui-agent.md` | WinForms, WPF, fullscreen, tema, DPI, menus e foco. |
@@ -31,5 +32,6 @@ Todo agente deve seguir:
 ## Como escolher
 
 - Use o mantenedor geral para triagem, documentação e alinhamento inicial.
+- Use o agente de arquitetura quando a tarefa envolver mapa do código, classes críticas ou refatoração em etapas.
 - Use um agente especializado quando a tarefa tocar uma área crítica.
 - Para mudanças grandes, peça primeiro relatório de impacto e divida em etapas.

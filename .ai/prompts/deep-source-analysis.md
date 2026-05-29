@@ -1,10 +1,10 @@
-# Prompt — Auditoria profunda do código-fonte
+# Prompt — Auditoria profunda de arquitetura e código-fonte
 
 Analise profundamente este repositório.
 
 Objetivo:
 
-Entender a arquitetura técnica do projeto mpv.net para manutenção de longo prazo.
+Entender a arquitetura técnica do projeto mpv.net para manutenção de longo prazo, identificar acoplamentos e preparar mudanças grandes com risco controlado.
 
 ---
 
@@ -19,6 +19,13 @@ Identifique:
 - assets;
 - arquivos de build;
 - arquivos de release.
+
+Confirme também:
+
+- `docs/developer/architecture-ptbr.md`;
+- `docs/developer/source-audit-ptbr.md`;
+- `docs/developer/class-map-ptbr.md`;
+- `docs/developer/project-map-ptbr.md`.
 
 ---
 
@@ -107,6 +114,10 @@ Identifique:
 - dependências críticas;
 - riscos de regressão;
 - gargalos de manutenção.
+
+## Etapa 9 — Limites da análise
+
+Se a descoberta mostrar que o trabalho é mais bem dividido por área, pare e proponha um recorte menor antes de editar.
 
 ---
 

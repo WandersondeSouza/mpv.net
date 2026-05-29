@@ -30,6 +30,8 @@ Evite dar acesso amplo ao usuário inteiro sem necessidade.
 
 No Codex App, confirme que `C:\Users\Wanderson\.codex\config.toml` inclui este repositório nos `args` de `[mcp_servers.filesystem]`. Sem esse caminho, o MCP filesystem pode funcionar para outros projetos, mas não ajuda diretamente na leitura assistida deste fork.
 
+Se o caminho já estiver presente, normalmente não há necessidade de criar um MCP adicional só para trabalhar neste repositório.
+
 ## Exemplo de configuração conceitual
 
 Adapte ao formato do cliente MCP usado. Não coloque tokens diretamente no arquivo versionado.

@@ -18,6 +18,7 @@ Verifique:
 - áreas sem documentação;
 - documentação redundante;
 - divergência entre docs do repositório e artefatos de IA em `.ai/`.
+- consistência entre `docs/developer/` e os agentes/prompts que citam esses arquivos.
 
 Entregue:
 

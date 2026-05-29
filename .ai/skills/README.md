@@ -14,9 +14,10 @@ Use esta skill quando a tarefa envolver:
 - integração com mpv/libmpv;
 - UI Windows;
 - build ou release;
-- preparação do repositório para agentes de IA.
+- preparação do repositório para agentes de IA;
+- análise arquitetural ampla antes de mudanças grandes.
 
-Para tarefas muito específicas, combine esta skill com um perfil em `.ai/agents/` e um prompt em `.ai/prompts/`.
+Para tarefas muito específicas, combine esta skill com um perfil em `.ai/agents/` e um prompt em `.ai/prompts/`. Para refatoração larga, use também o agente de arquitetura.
 
 ## Leitura que esta skill assume
 

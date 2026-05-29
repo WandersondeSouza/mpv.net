@@ -12,8 +12,11 @@ Antes de alterar qualquer arquivo, leia:
 4. `docs/guia-operacional.md`;
 5. `docs/proximos-trabalhos.md`;
 6. `.ai/skills/mpvnet-maintainer.md`;
-7. `docs/developer/project-map-ptbr.md`;
-8. documentação técnica relacionada à área analisada.
+7. `.ai/agents/mpvnet-architecture-agent.md`;
+8. `docs/developer/project-map-ptbr.md`;
+9. `docs/developer/architecture-ptbr.md`;
+10. `docs/developer/source-audit-ptbr.md`;
+11. documentação técnica relacionada à área analisada.
 
 ## Objetivo
 
@@ -41,9 +44,10 @@ Analisar o estado atual do fork e propor melhorias pequenas, seguras e bem docum
 
 1. Verificar se o README está claro para usuário e mantenedor.
 2. Identificar tarefas pendentes e tarefas já consolidadas em `docs/proximos-trabalhos.md` e `docs/changelog.md`.
-3. Separar melhorias em três grupos:
+3. Separar melhorias em quatro grupos:
    - documentação;
    - prompts, agentes e fluxo de IA;
+   - arquitetura e análise de código;
    - futuras correções técnicas que exigem análise de código.
 4. Listar arquivos que pretende alterar e explicar o motivo antes de editar.
 5. Fazer mudanças pequenas e revisáveis.
