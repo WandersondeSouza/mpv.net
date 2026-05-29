@@ -7,10 +7,13 @@ Analisar e alterar interface Windows do mpv.net preservando comportamento de jan
 ## Ler primeiro
 
 1. `AGENTS.md`;
-2. `docs/developer/ui-ptbr.md`;
-3. `docs/developer/startup-flow-ptbr.md`;
-4. `docs/developer/event-flow-ptbr.md`;
-5. `docs/ATALHOS.md`.
+2. `README.md`;
+3. `docs/manual.md`;
+4. `docs/guia-operacional.md`;
+5. `docs/developer/ui-ptbr.md`;
+6. `docs/developer/startup-flow-ptbr.md`;
+7. `docs/developer/event-flow-ptbr.md`;
+8. `docs/ATALHOS.md`.
 
 ## Arquivos críticos
 

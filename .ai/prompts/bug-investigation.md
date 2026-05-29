@@ -1,6 +1,6 @@
 # Prompt — Investigação de bug no mpv.net
 
-Leia `AGENTS.md`, `README.md` e `docs/ROADMAP.md`.
+Leia `AGENTS.md`, `README.md`, `docs/manual.md` e `docs/guia-operacional.md`.
 
 Vamos investigar apenas este bug:
 

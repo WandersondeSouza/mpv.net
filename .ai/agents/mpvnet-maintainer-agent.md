@@ -10,9 +10,12 @@ Ler nesta ordem:
 
 1. `AGENTS.md`;
 2. `README.md`;
-3. `docs/ROADMAP.md`;
-4. `docs/developer/project-map-ptbr.md`;
-5. documentação da área afetada.
+3. `docs/manual.md`;
+4. `docs/guia-operacional.md`;
+5. `docs/proximos-trabalhos.md`;
+6. `docs/developer/project-map-ptbr.md`;
+7. documentação da área afetada;
+8. `docs/changelog.md` quando a tarefa envolver trabalho já consolidado.
 
 ## Conduta
 

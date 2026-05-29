@@ -7,11 +7,13 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 ## Ler primeiro
 
 1. `AGENTS.md`;
-2. `docs/CONFIGURACAO.md`;
-3. `docs/ATALHOS.md`;
-4. `docs/PORTATIL.md`;
-5. `docs/developer/configuration-system-ptbr.md`;
-6. `docs/developer/configuration-flow-ptbr.md`.
+2. `README.md`;
+3. `docs/manual.md`;
+4. `docs/CONFIGURACAO.md`;
+5. `docs/ATALHOS.md`;
+6. `docs/guia-operacional.md`;
+7. `docs/developer/configuration-system-ptbr.md`;
+8. `docs/developer/configuration-flow-ptbr.md`.
 
 ## Arquivos críticos
 

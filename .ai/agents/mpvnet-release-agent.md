@@ -7,11 +7,13 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 ## Ler primeiro
 
 1. `AGENTS.md`;
-2. `docs/BUILD.md`;
-3. `docs/release-checklist-ptbr.md`;
-4. `docs/PORTATIL.md`;
+2. `README.md`;
+3. `docs/manual.md`;
+4. `docs/guia-operacional.md`;
 5. `docs/developer/build-ptbr.md`;
-6. `docs/developer/project-map-ptbr.md`.
+6. `docs/developer/project-map-ptbr.md`;
+7. `docs/changelog.md`;
+8. `docs/proximos-trabalhos.md` quando a mudança afetar a priorização do fluxo.
 
 ## Arquivos críticos
 
@@ -20,8 +22,10 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 - `src/Directory.Packages.props`;
 - `src/MpvNet.Windows/MpvNet.Windows.csproj`;
 - `src/Tools/build-release-package.ps1`;
+- `src/Tools/prepare-native-dependencies.ps1`;
+- `src/Tools/validate-native-dependencies.ps1`;
 - `src/Tools/update-mpv-runtime.ps1`;
-- `src/Setup/Inno/build-windows-installer.iss`.
+- `src/Setup/Inno/build-windows-installer.iss`;
 
 ## Regras
 

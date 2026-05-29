@@ -5,8 +5,11 @@ Leia:
 1. `AGENTS.md`;
 2. `README.md`;
 3. `README.pt-br.md`, se existir;
-4. `docs/ROADMAP.md`;
-5. documentos relacionados ao tema.
+4. `docs/manual.md`;
+5. `docs/CONFIGURACAO.md`;
+6. `docs/changelog.md`;
+7. `docs/developer/localization-ptbr.md`;
+8. documentos relacionados ao tema.
 
 Objetivo:
 

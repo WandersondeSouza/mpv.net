@@ -7,8 +7,9 @@ Guia curto para manter o fork sem quebrar compatibilidade com mpv/libmpv.
 1. `AGENTS.md`
 2. `README.md`
 3. `docs/manual.md`
-4. `docs/ROADMAP.md`
-5. a documentação específica da área alterada
+4. `docs/guia-operacional.md`
+5. `docs/proximos-trabalhos.md`
+6. a documentação específica da área alterada
 
 ## Regras
 
@@ -16,7 +17,7 @@ Guia curto para manter o fork sem quebrar compatibilidade com mpv/libmpv.
 - faça mudanças pequenas e verificáveis;
 - atualize documentação quando o comportamento mudar;
 - trate integração com mpv/libmpv como área de alto risco;
-- valide UI, configuração e release conforme a área tocada.
+- valide UI, configuração, build e release conforme a área tocada.
 
 ## Resumo para a mudança
 

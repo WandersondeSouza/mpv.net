@@ -3,11 +3,13 @@
 Leia:
 
 1. `AGENTS.md`;
-2. `docs/manual.md`;
-3. `docs/developer/mpv-integration-ptbr.md`;
-4. `docs/developer/libmpv-wrapper-ptbr.md`;
-5. `docs/developer/event-flow-ptbr.md`;
-6. `docs/developer/commands-ptbr.md`.
+2. `README.md`;
+3. `docs/manual.md`;
+4. `docs/guia-operacional.md`;
+5. `docs/developer/mpv-integration-ptbr.md`;
+6. `docs/developer/libmpv-wrapper-ptbr.md`;
+7. `docs/developer/event-flow-ptbr.md`;
+8. `docs/developer/commands-ptbr.md`.
 
 Objetivo:
 

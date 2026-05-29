@@ -17,6 +17,7 @@ Fork de manutenção do mpv.net para Windows, focado em compatibilidade com mpv/
 - [Guia operacional](docs/guia-operacional.md)
 - [Atalhos](docs/ATALHOS.md)
 - [Próximos trabalhos](docs/proximos-trabalhos.md)
+- [Artefatos de IA](.ai/README.md)
 
 ## Uso rápido
 
@@ -37,6 +38,7 @@ Antes de alterar código ou documentação, leia:
 3. `docs/manual.md`
 4. `docs/guia-operacional.md`
 5. `docs/proximos-trabalhos.md`
-6. a documentação da área tocada em `docs/developer/`
+6. `.ai/README.md`
+7. a documentação da área tocada em `docs/developer/`
 
 Os arquivos em `.ai/` existem para orientar tarefas recorrentes do fork, mas não substituem a análise do código atual.

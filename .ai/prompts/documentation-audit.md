@@ -1,4 +1,4 @@
-# Prompt — Auditoria de Documentação
+# Prompt — Auditoria de documentação
 
 Analise profundamente este repositório.
 
@@ -16,7 +16,8 @@ Verifique:
 - ausência de documentação arquitetural;
 - inconsistências entre README e manual;
 - áreas sem documentação;
-- documentação redundante.
+- documentação redundante;
+- divergência entre docs do repositório e artefatos de IA em `.ai/`.
 
 Entregue:
 

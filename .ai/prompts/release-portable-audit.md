@@ -3,11 +3,13 @@
 Leia:
 
 1. `AGENTS.md`;
-2. `docs/BUILD.md`;
-3. `docs/PORTATIL.md`;
-4. `docs/release-checklist-ptbr.md`;
+2. `README.md`;
+3. `docs/manual.md`;
+4. `docs/guia-operacional.md`;
 5. `docs/developer/build-ptbr.md`;
-6. `docs/developer/project-map-ptbr.md`.
+6. `docs/developer/project-map-ptbr.md`;
+7. `docs/changelog.md`;
+8. documentação da área de build ou release que esteja ligada à mudança.
 
 Objetivo:
 

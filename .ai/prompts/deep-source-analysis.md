@@ -1,14 +1,14 @@
-# Prompt — Auditoria Profunda do Código-Fonte
+# Prompt — Auditoria profunda do código-fonte
 
 Analise profundamente este repositório.
 
 Objetivo:
 
-Entender completamente a arquitetura técnica do projeto mpv.net para manutenção de longo prazo.
+Entender a arquitetura técnica do projeto mpv.net para manutenção de longo prazo.
 
 ---
 
-# Etapa 1 — Estrutura
+## Etapa 1 — Estrutura
 
 Identifique:
 
@@ -22,7 +22,7 @@ Identifique:
 
 ---
 
-# Etapa 2 — Inicialização
+## Etapa 2 — Inicialização
 
 Explique:
 
@@ -34,7 +34,7 @@ Explique:
 
 ---
 
-# Etapa 3 — Integração com mpv/libmpv
+## Etapa 3 — Integração com mpv/libmpv
 
 Mapeie:
 
@@ -45,11 +45,11 @@ Mapeie:
 - comandos;
 - sincronização.
 
-Explique fluxo de comunicação.
+Explique o fluxo de comunicação.
 
 ---
 
-# Etapa 4 — Interface gráfica
+## Etapa 4 — Interface gráfica
 
 Explique:
 
@@ -64,19 +64,19 @@ Explique:
 
 ---
 
-# Etapa 5 — Sistema de comandos
+## Etapa 5 — Sistema de comandos
 
 Explique:
 
 - parser;
-- input.conf;
+- `input.conf`;
 - atalhos;
 - menu;
 - comandos específicos do mpv.net.
 
 ---
 
-# Etapa 6 — Configuração
+## Etapa 6 — Configuração
 
 Explique:
 
@@ -87,7 +87,7 @@ Explique:
 
 ---
 
-# Etapa 7 — Extensões e scripts
+## Etapa 7 — Extensões e scripts
 
 Explique:
 
@@ -98,7 +98,7 @@ Explique:
 
 ---
 
-# Etapa 8 — Riscos técnicos
+## Etapa 8 — Riscos técnicos
 
 Identifique:
 
@@ -110,7 +110,7 @@ Identifique:
 
 ---
 
-# Entrega esperada
+## Entrega esperada
 
 Entregue:
 

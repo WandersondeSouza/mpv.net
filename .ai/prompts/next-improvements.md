@@ -1,4 +1,4 @@
-# Prompt - Próximas melhorias do fork
+# Prompt — Próximas melhorias do fork
 
 Use este prompt para iniciar uma rodada curta de melhoria no fork `WandersondeSouza/mpv.net`.
 
@@ -8,10 +8,12 @@ Antes de alterar qualquer arquivo, leia:
 
 1. `AGENTS.md`;
 2. `README.md`;
-3. `docs/ROADMAP.md`;
-4. `.ai/skills/mpvnet-maintainer.md`;
-5. `docs/developer/project-map-ptbr.md`;
-6. documentação técnica relacionada à área analisada.
+3. `docs/manual.md`;
+4. `docs/guia-operacional.md`;
+5. `docs/proximos-trabalhos.md`;
+6. `.ai/skills/mpvnet-maintainer.md`;
+7. `docs/developer/project-map-ptbr.md`;
+8. documentação técnica relacionada à área analisada.
 
 ## Objetivo
 
@@ -20,7 +22,8 @@ Analisar o estado atual do fork e propor melhorias pequenas, seguras e bem docum
 ## Escopo permitido
 
 - `README.md`;
-- `docs/ROADMAP.md`;
+- `docs/guia-operacional.md`;
+- `docs/proximos-trabalhos.md`;
 - `docs/developer/`;
 - `.ai/prompts/`;
 - `.ai/agents/`;
@@ -37,7 +40,7 @@ Analisar o estado atual do fork e propor melhorias pequenas, seguras e bem docum
 ## Tarefas
 
 1. Verificar se o README está claro para usuário e mantenedor.
-2. Identificar tarefas do roadmap que já foram concluídas e tarefas ainda pendentes.
+2. Identificar tarefas pendentes e tarefas já consolidadas em `docs/proximos-trabalhos.md` e `docs/changelog.md`.
 3. Separar melhorias em três grupos:
    - documentação;
    - prompts, agentes e fluxo de IA;
@@ -71,5 +74,5 @@ Plano de teste:
 
 - Rodar `git status --short` antes de editar.
 - Revisar links Markdown locais após alterações.
-- Conferir se `README.md`, `docs/ROADMAP.md` e `.ai/prompts/` não duplicam informação com nomes diferentes.
+- Conferir se `README.md`, `docs/proximos-trabalhos.md` e `.ai/prompts/` não duplicam informação com nomes diferentes.
 - Não marcar como concluído nada que não tenha evidência no repositório atual ou validação local.

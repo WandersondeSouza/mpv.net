@@ -17,3 +17,12 @@ Use esta skill quando a tarefa envolver:
 - preparação do repositório para agentes de IA.
 
 Para tarefas muito específicas, combine esta skill com um perfil em `.ai/agents/` e um prompt em `.ai/prompts/`.
+
+## Leitura que esta skill assume
+
+- `AGENTS.md`;
+- `README.md`;
+- `docs/manual.md`;
+- `docs/guia-operacional.md`;
+- `docs/proximos-trabalhos.md`;
+- a documentação técnica da área tocada em `docs/developer/`.

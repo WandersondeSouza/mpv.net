@@ -18,7 +18,7 @@ Use MCPs sob demanda. Para este projeto, eles devem ajudar a ler documentação,
 
 ## Escopo recomendado
 
-Para Filesystem, limitar ao repositório:
+Para Filesystem, limitar ao repositório deste fork:
 
 ```text
 C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net
@@ -40,8 +40,6 @@ command = "npx"
 args = [
   "-y",
   "@modelcontextprotocol/server-filesystem",
-  "C:\\Users\\Wanderson\\OneDrive\\Documentos\\MeusProjetos\\GestaoDeSistemas",
-  "C:\\Users\\Wanderson\\OneDrive\\Documentos\\MeusProjetos\\IPTVMediaCenter",
   "C:\\Users\\Wanderson\\OneDrive\\Documentos\\MeusProjetos\\WandersondeSouza\\mpv.net"
 ]
 
