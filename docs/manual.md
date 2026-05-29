@@ -69,7 +69,7 @@ portable_config/
   script-opts/
 ```
 
-Veja [Modo portátil](PORTATIL.md) para o layout recomendado.
+Veja [Guia operacional](guia-operacional.md) para o layout recomendado.
 
 ## Suporte
 

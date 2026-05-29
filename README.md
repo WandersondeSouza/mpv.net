@@ -14,14 +14,9 @@ Fork de manutenção do mpv.net para Windows, focado em compatibilidade com mpv/
 
 - [Manual](docs/manual.md)
 - [Configuração](docs/CONFIGURACAO.md)
-- [Modo portátil](docs/PORTATIL.md)
+- [Guia operacional](docs/guia-operacional.md)
 - [Atalhos](docs/ATALHOS.md)
-- [Build e release](docs/BUILD.md)
-- [Dependências nativas](docs/native-dependencies.md)
-- [Roadmap](docs/ROADMAP.md)
 - [Próximos trabalhos](docs/proximos-trabalhos.md)
-- [Contribuição](docs/contributing-ptbr.md)
-- [Checklist de release](docs/release-checklist-ptbr.md)
 
 ## Uso rápido
 
@@ -40,7 +35,7 @@ Antes de alterar código ou documentação, leia:
 1. `AGENTS.md`
 2. `README.md`
 3. `docs/manual.md`
-4. `docs/ROADMAP.md`
+4. `docs/guia-operacional.md`
 5. `docs/proximos-trabalhos.md`
 6. a documentação da área tocada em `docs/developer/`
 

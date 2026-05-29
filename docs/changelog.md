@@ -30,7 +30,7 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   build, release, dependencias nativas e localizacao gettext.
 - Renomeado o script do Inno Setup para
   `src/Setup/Inno/build-windows-installer.iss`.
-- Adicionado `docs/scripts-ptbr.md` com a funcao de cada script e exemplos de
+- Adicionado `docs/guia-operacional.md` com a funcao de cada script e exemplos de
   execucao a partir da raiz do repositorio.
 - Atualizadas chamadas internas, alvo MSBuild, workflow de release e
   documentacao operacional para usar os novos nomes.

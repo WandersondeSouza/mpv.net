@@ -137,7 +137,7 @@ Pontos a validar:
 
 # Release e empacotamento
 
-Para a referência completa dos scripts PowerShell do fork, veja `docs/scripts-ptbr.md`.
+Para a referência completa dos scripts PowerShell do fork, veja `docs/guia-operacional.md`.
 
 Script principal:
 

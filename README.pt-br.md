@@ -9,8 +9,7 @@ Este repositório mantém o mpv.net para Windows com foco em compatibilidade com
 - [README](README.md)
 - [Manual](docs/manual.md)
 - [Configuração](docs/CONFIGURACAO.md)
-- [Build e release](docs/BUILD.md)
-- [Contribuição](docs/contributing-ptbr.md)
+- [Guia operacional](docs/guia-operacional.md)
 
 ## Objetivo
 
