@@ -14,6 +14,7 @@ Analisar e alterar interface Windows do mpv.net preservando comportamento de jan
 6. `docs/developer/startup-flow-ptbr.md`;
 7. `docs/developer/event-flow-ptbr.md`;
 8. `docs/ATALHOS.md`.
+9. `docs/developer/architecture-ptbr.md` quando a mudança envolver fluxo entre janelas, eventos e inicialização.
 
 ## Arquivos críticos
 
@@ -30,6 +31,7 @@ Analisar e alterar interface Windows do mpv.net preservando comportamento de jan
 - Validar DPI e múltiplos monitores quando a mudança afetar janela.
 - Não misturar correção visual com refatoração de arquitetura.
 - Preservar atalhos e menu de contexto.
+- Quando o problema parecer de layout mas afetar ciclo de vida, validar primeiro o fluxo de startup.
 
 ## Testes manuais esperados
 

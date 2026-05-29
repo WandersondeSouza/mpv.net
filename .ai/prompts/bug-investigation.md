@@ -1,6 +1,7 @@
 # Prompt — Investigação de bug no mpv.net
 
 Leia `AGENTS.md`, `README.md`, `docs/manual.md` e `docs/guia-operacional.md`.
+Se o bug parecer amplo, leia também `docs/developer/source-audit-ptbr.md` e `docs/developer/architecture-ptbr.md` antes de alterar.
 
 Vamos investigar apenas este bug:
 
@@ -16,6 +17,8 @@ Antes de alterar qualquer arquivo:
 4. explique o comportamento atual confirmado no código;
 5. compare com o comportamento esperado;
 6. liste riscos e plano de teste.
+
+Se a causa estiver espalhada por mais de um subsistema, proponha primeiro um recorte menor.
 
 Use este formato:
 

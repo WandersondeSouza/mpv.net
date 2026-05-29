@@ -27,6 +27,8 @@ Antes de alterar código, confirme no código:
 - impacto no modo portátil;
 - necessidade de migração ou backup.
 
+Se a mudança tocar fluxos de inicialização, leia também `docs/developer/configuration-flow-ptbr.md` e `docs/developer/architecture-ptbr.md`.
+
 Regras:
 
 - preservar `MPVNET_HOME`, `portable_config` e `%APPDATA%\mpv.net`;

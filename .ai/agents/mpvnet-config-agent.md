@@ -14,6 +14,7 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 6. `docs/guia-operacional.md`;
 7. `docs/developer/configuration-system-ptbr.md`;
 8. `docs/developer/configuration-flow-ptbr.md`.
+9. `docs/developer/architecture-ptbr.md` quando a mudança envolver fluxo amplo.
 
 ## Arquivos críticos
 
@@ -31,6 +32,7 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 - Criar backup antes de migração que altere arquivo do usuário.
 - Validar atalhos duplicados sem quebrar compatibilidade com sintaxe do mpv.
 - Documentar qualquer nova opção ou mudança de fallback.
+- Quando uma migração afetar mais de um arquivo, descrever a sequência exata e o motivo.
 
 ## Testes manuais esperados
 

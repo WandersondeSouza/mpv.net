@@ -9,7 +9,8 @@ Leia:
 5. `docs/CONFIGURACAO.md`;
 6. `docs/changelog.md`;
 7. `docs/developer/localization-ptbr.md`;
-8. documentos relacionados ao tema.
+8. `docs/developer/source-audit-ptbr.md` quando a mudança tocar texto distribuído em várias áreas;
+9. documentos relacionados ao tema.
 
 Objetivo:
 
@@ -25,6 +26,8 @@ Regras:
 - preservar nomes oficiais de arquivos, opções, comandos e caminhos;
 - não traduzir comandos mpv, opções de configuração ou nomes de classes;
 - marcar como pendência aquilo que ainda não foi confirmado no código.
+
+Se a documentação estiver desatualizada em mais de um subsistema, separar o que é correção textual do que exige mudança de comportamento.
 
 Antes de alterar:
 

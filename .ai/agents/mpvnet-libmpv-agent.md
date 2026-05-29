@@ -14,6 +14,7 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 6. `docs/developer/libmpv-wrapper-ptbr.md`;
 7. `docs/developer/event-flow-ptbr.md`;
 8. `docs/developer/commands-ptbr.md`.
+9. `docs/developer/source-audit-ptbr.md` quando a alteração envolver múltiplos módulos.
 
 ## Arquivos críticos
 
@@ -31,6 +32,7 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 - Comparar comportamento com mpv sempre que possível.
 - Validar scripts Lua/JavaScript quando tocar input, comandos ou eventos.
 - Evitar bloquear thread de evento do mpv.
+- Se o efeito observado vier de uma camada acima do wrapper, apontar a camada correta antes de mexer no nativo.
 
 ## Testes manuais esperados
 
