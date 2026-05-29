@@ -11,6 +11,7 @@ Este manual cobre apenas o que importa para o uso cotidiano do fork.
 - [Configuração](#configuração)
 - [Linha de comando](#linha-de-comando)
 - [Modo portátil](#modo-portátil)
+- [Documentação técnica](#documentação-técnica)
 - [Suporte](#suporte)
 - [Diferenças em relação ao mpv](#diferenças-em-relação-ao-mpv)
 
@@ -70,6 +71,17 @@ portable_config/
 ```
 
 Veja [Guia operacional](guia-operacional.md) para o layout recomendado.
+
+## Documentação técnica
+
+Se você for manter ou auditar o fork, os pontos de entrada mais úteis são:
+
+- [Arquitetura](developer/architecture-ptbr.md)
+- [Auditoria de código](developer/source-audit-ptbr.md)
+- [Mapa do projeto](developer/project-map-ptbr.md)
+- [Mapa de classes](developer/class-map-ptbr.md)
+- [Fluxo de inicialização](developer/startup-flow-ptbr.md)
+- [Fluxo de configuração](developer/configuration-flow-ptbr.md)
 
 ## Suporte
 

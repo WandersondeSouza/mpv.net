@@ -4,6 +4,8 @@
 
 Este documento organiza o entendimento estrutural do projeto mpv.net com base na árvore local atual do fork.
 
+Para uma visão mais ampla da arquitetura e dos acoplamentos, consulte também `docs/developer/architecture-ptbr.md` e `docs/developer/source-audit-ptbr.md`.
+
 ---
 
 # Visão geral
