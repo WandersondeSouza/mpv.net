@@ -27,7 +27,7 @@ Esta auditoria substitui a etapa anterior, que dependia de busca remota e ainda 
 | Extensão de exemplo | `src/MpvNet.Extension/ExampleExtension/ExampleExtension.csproj` | Exemplo de extensão .NET. |
 | Versões NuGet | `src/Directory.Packages.props` | Gerenciamento centralizado de versões. |
 | Propriedades comuns | `src/Directory.Build.props` | Propriedades MSBuild compartilhadas. |
-| Release | `src/Tools/release-mpv.net.ps1` | Publicação x64, ZIP portátil, instalador Inno x64 e release GitHub. |
+| Release | `src/Tools/build-release-package.ps1` | Publicação x64, ZIP portátil, instalador Inno x64 e release GitHub. |
 | Instalador | `src/Setup/Inno/inno-setup.iss` | Script do Inno Setup para instalador x64. |
 
 ---

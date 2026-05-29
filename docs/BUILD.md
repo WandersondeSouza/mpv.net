@@ -53,9 +53,11 @@ src/Tools
 
 Scripts relevantes para análise futura:
 
-- `src/Tools/release-mpv.net.ps1`: relacionado ao fluxo de build/release e à criação do ZIP portátil com `portable_config`.
-- `src/Tools/ensure-native-dependencies.ps1`: garante, por download ou cópia validada, os binários nativos e auxiliares esperados ao lado de `mpvnet.exe`.
-- `src/Tools/update-mpv.ps1`: relacionado a atualização de mpv/libmpv.
+- `src/Tools/build-release-package.ps1`: relacionado ao fluxo de build/release e à criação do ZIP portátil com `portable_config`.
+- `src/Tools/prepare-native-dependencies.ps1`: garante, por download ou cópia validada, os binários nativos e auxiliares esperados ao lado de `mpvnet.exe`.
+- `src/Tools/update-mpv-runtime.ps1`: relacionado a atualização de mpv/libmpv.
+
+Para a lista completa de scripts, responsabilidades e exemplos de execução, consulte [Scripts de manutenção](scripts-ptbr.md).
 
 O script de release foi ajustado para publicar e empacotar a aplicação como x64, incluindo `portable_config` no pacote portátil. Por padrão, a publicação GitHub aponta para o fork `WandersondeSouza/mpv.net`; use `-Repo outro-dono/outro-repo` se precisar publicar em outro repositório.
 
@@ -80,9 +82,9 @@ As fontes automáticas usadas pelo script são:
 
 As DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vêm do próprio `dotnet publish` self-contained. O fork não baixa essas DLLs de sites externos.
 
-`MediaInfo.dll` é baixada/atualizada por `src/Tools/ensure-native-dependencies.ps1`. O parâmetro `-MediaInfoVersion`, ou a variável `MPVNET_MEDIAINFO_VERSION`, permite pinagem de uma versão específica. O parâmetro `-MediaInfoFile` continua existindo no release script apenas como override manual. `mpvnet.com` pode ser fornecido por `-MpvNetComFile`; se não for informado e não existir no build output, o script baixa o arquivo auxiliar do host original usado pelo projeto. A pasta `Locale` é gerada automaticamente a partir de `lang/po` quando necessário. Se algum download, extração ou arquivo obrigatório falhar, a release deve falhar antes de montar o pacote incompleto.
+`MediaInfo.dll` é baixada/atualizada por `src/Tools/prepare-native-dependencies.ps1`. O parâmetro `-MediaInfoVersion`, ou a variável `MPVNET_MEDIAINFO_VERSION`, permite pinagem de uma versão específica. O parâmetro `-MediaInfoFile` continua existindo no release script apenas como override manual. `mpvnet.com` pode ser fornecido por `-MpvNetComFile`; se não for informado e não existir no build output, o script baixa o arquivo auxiliar do host original usado pelo projeto. A pasta `Locale` é gerada automaticamente a partir de `lang/po` quando necessário. Se algum download, extração ou arquivo obrigatório falhar, a release deve falhar antes de montar o pacote incompleto.
 
-Builds normais do projeto Windows, incluindo Visual Studio, Debug e Release, executam `src/Tools/ensure-build-assets.ps1` após a compilação. Esse script valida ou baixa `MediaInfo.dll`, `libmpv-2.dll`, FFmpeg, `yt-dlp.exe` e `mpvnet.com`, baixa `Gettext.Tools` quando `msgfmt.exe` não está no `PATH`, e gera `Locale/<idioma>/LC_MESSAGES/mpvnet.mo` para os idiomas traduzidos no mesmo diretório de saída do `mpvnet.exe`. O ingles permanece como idioma nativo em `lang/source.pot` e nao gera `Locale/en`.
+Builds normais do projeto Windows, incluindo Visual Studio, Debug e Release, executam `src/Tools/prepare-build-output.ps1` após a compilação. Esse script valida ou baixa `MediaInfo.dll`, `libmpv-2.dll`, FFmpeg, `yt-dlp.exe` e `mpvnet.com`, baixa `Gettext.Tools` quando `msgfmt.exe` não está no `PATH`, e gera `Locale/<idioma>/LC_MESSAGES/mpvnet.mo` para os idiomas traduzidos no mesmo diretório de saída do `mpvnet.exe`. O ingles permanece como idioma nativo em `lang/source.pot` e nao gera `Locale/en`.
 
 ```powershell
 dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj
@@ -102,35 +104,35 @@ O fluxo de release gera `mpv.net-v7.1.2.3-portable-x64.zip` e `mpv.net-v7.1.2.3-
 Exemplo para gerar artefatos locais sem publicar no GitHub:
 
 ```powershell
-src\Tools\release-mpv.net.ps1 .\src .\artifacts\release -SkipGitHubRelease
+src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
 ```
 
 Exemplo para gerar apenas o ZIP portátil, sem instalador e sem publicação:
 
 ```powershell
-src\Tools\release-mpv.net.ps1 .\src .\artifacts\release -SkipInstaller -SkipGitHubRelease
+src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipInstaller -SkipGitHubRelease
 ```
 
 Exemplo passando dependências nativas externas como override:
 
 ```powershell
-src\Tools\release-mpv.net.ps1 .\src .\artifacts\release -MediaInfoFile C:\deps\MediaInfo.dll -MpvNetComFile C:\deps\mpvnet.com
+src\Tools\build-release-package.ps1 .\src .\artifacts\release -MediaInfoFile C:\deps\MediaInfo.dll -MpvNetComFile C:\deps\mpvnet.com
 ```
 
 Exemplo pinando uma versão específica do MediaInfo:
 
 ```powershell
-src\Tools\release-mpv.net.ps1 .\src .\artifacts\release -MediaInfoVersion 26.05 -SkipGitHubRelease
+src\Tools\build-release-package.ps1 .\src .\artifacts\release -MediaInfoVersion 26.05 -SkipGitHubRelease
 ```
 
 Validação manual de dependências nativas:
 
 ```powershell
-src\Tools\test-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
-src\Tools\test-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.3-portable-x64.zip
+src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
+src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.3-portable-x64.zip
 ```
 
-Também existe o workflow manual `.github/workflows/release-packages.yml`, que gera os pacotes no GitHub Actions e pode criar a Release quando executado com `create_release=true`. O workflow executa o mesmo release script e roda `test-native-dependencies.ps1` antes de publicar os artefatos.
+Também existe o workflow manual `.github/workflows/release-packages.yml`, que gera os pacotes no GitHub Actions e pode criar a Release quando executado com `create_release=true`. O workflow executa o mesmo release script e roda `validate-native-dependencies.ps1` antes de publicar os artefatos.
 
 Observação sobre GitHub Packages: este fork distribui o aplicativo desktop como assets de GitHub Releases e artefatos de workflow. Ele não publica, por enquanto, um pacote NuGet/container no GitHub Packages.
 

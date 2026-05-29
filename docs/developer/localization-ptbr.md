@@ -12,10 +12,10 @@ Arquivos e responsabilidades:
 
 - `lang/source.pot`: template gettext gerado a partir dos textos fonte e base inglesa oficial.
 - `lang/po/*.po`: arquivos de traducao apenas para idiomas traduzidos.
-- `lang/create-mo-files.ps1`: compila arquivos `.po` para `.mo`.
+- `lang/compile-mo-files.ps1`: compila arquivos `.po` para `.mo`.
 - `src/MpvNet.Windows/WPF/WpfTranslator.cs`: converte o valor de `language` em uma `CultureInfo`.
 - `src/MpvNet.Windows/Resources/editor_conf.txt`: lista os valores aceitos pelo editor de configuracao para a opcao `language`.
-- `src/Tools/release-mpv.net.ps1`: gera ou reaproveita a pasta `Locale` durante o fluxo de release.
+- `src/Tools/build-release-package.ps1`: gera ou reaproveita a pasta `Locale` durante o fluxo de release.
 
 O ingles e o idioma-fonte nativo do mpv.net. Por isso, nao existe `lang/po/en.po` nem `Locale/en/LC_MESSAGES/mpvnet.mo` gerado pelo fluxo normal. Quando a interface esta em ingles, o gettext usa os proprios `msgid` em ingles como texto final.
 
@@ -106,7 +106,7 @@ new("portuguese-brazil", "pt-BR", "pt"),
 7. Gerar os arquivos `.mo`:
 
 ```powershell
-.\lang\create-mo-files.ps1 .\src\MpvNet.Windows\bin\Debug\win-x64
+.\lang\compile-mo-files.ps1 .\src\MpvNet.Windows\bin\Debug\win-x64
 ```
 
 8. Confirmar que o arquivo foi criado:
@@ -130,15 +130,15 @@ src/MpvNet.Windows/bin/Debug/win-x64/Locale/pt_BR/LC_MESSAGES/mpvnet.mo
 Validacao automatica minima:
 
 ```powershell
-.\lang\clean-po-files.ps1 -ValidateOnly
-.\lang\create-mo-files.ps1 .\src\MpvNet.Windows\bin\Debug\win-x64
+.\lang\validate-po-files.ps1 -ValidateOnly
+.\lang\compile-mo-files.ps1 .\src\MpvNet.Windows\bin\Debug\win-x64
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_BR\LC_MESSAGES\mpvnet.mo
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_PT\LC_MESSAGES\mpvnet.mo
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\es\LC_MESSAGES\mpvnet.mo
 dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore
 ```
 
-O comando `.\lang\clean-po-files.ps1 -ValidateOnly` e a validacao principal de paridade: ele confirma que `lang/source.pot` nao tem duplicatas, que cada `.po` traduzido corresponde ao `source.pot` e que `lang/po/en.po` nao foi criado indevidamente.
+O comando `.\lang\validate-po-files.ps1 -ValidateOnly` e a validacao principal de paridade: ele confirma que `lang/source.pot` nao tem duplicatas, que cada `.po` traduzido corresponde ao `source.pot` e que `lang/po/en.po` nao foi criado indevidamente.
 
 Validacao manual:
 

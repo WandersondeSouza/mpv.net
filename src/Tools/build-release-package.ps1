@@ -185,7 +185,7 @@ function EnsureLocale($sourceDir, $localeDir, $workDir) {
         return Test $localeDir
     }
 
-    $createMoScript = Test (Join-Path $sourceDir '..\lang\create-mo-files.ps1')
+    $createMoScript = Test (Join-Path $sourceDir '..\lang\compile-mo-files.ps1')
     AddGettextToolsToPath $workDir
     & $createMoScript (Join-Path $sourceDir 'MpvNet.Windows\bin\Debug\win-x64')
     if ($LastExitCode) { throw $LastExitCode }
@@ -215,7 +215,7 @@ DeleteDir $PublishDir64
 dotnet publish $ProjectFile --self-contained true --configuration Debug --runtime win-x64 --output $PublishDir64 /p:IncludeNativeLibrariesForSelfExtract=false
 $PublishedExeFile64 = Test ($PublishDir64 + 'mpvnet.exe')
 $BinDirX64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\')
-$EnsureDependenciesScript = Test (Join-Path $SourceDir 'Tools\ensure-native-dependencies.ps1')
+$EnsureDependenciesScript = Test (Join-Path $SourceDir 'Tools\prepare-native-dependencies.ps1')
 $EnsureDependenciesArgs = @{
     SourceDir = $SourceDir
     TargetDir = $BinDirX64
@@ -260,7 +260,7 @@ CopyDir $LocaleDir (Join-Path $OutputDir64 'Locale') | Out-Null
 CopyDir $LocaleDir (Join-Path $PublishDir64 'Locale') | Out-Null
 AddPortableConfig $OutputDir64 $DocsDir
 
-$NativeValidationScript = Test (Join-Path $SourceDir 'Tools\test-native-dependencies.ps1')
+$NativeValidationScript = Test (Join-Path $SourceDir 'Tools\validate-native-dependencies.ps1')
 & $NativeValidationScript -Path $OutputDir64
 if ($LastExitCode) { throw $LastExitCode }
 & $NativeValidationScript -Path $PublishDir64

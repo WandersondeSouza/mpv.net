@@ -3,6 +3,17 @@
 Este arquivo preserva o historico original do mpv.net e registra, no topo, as
 alteracoes relevantes feitas neste fork de manutencao.
 
+# Fork WandersondeSouza - alteracoes nao lancadas
+
+## Scripts de manutencao
+
+- Renomeados os scripts PowerShell do fork para nomes mais objetivos, cobrindo
+  build, release, dependencias nativas e localizacao gettext.
+- Adicionado `docs/scripts-ptbr.md` com a funcao de cada script e exemplos de
+  execucao a partir da raiz do repositorio.
+- Atualizadas as chamadas internas, o alvo MSBuild, o workflow de release e a
+  documentacao operacional para usar os novos nomes.
+
 # Fork WandersondeSouza - v7.1.2.3 (2026-05-28)
 
 ## Associacoes de arquivos e streaming
@@ -82,7 +93,7 @@ alteracoes relevantes feitas neste fork de manutencao.
 
 ## Release e alinhamento do pacote
 
-- Adicionado `src/Tools/ensure-native-dependencies.ps1` para preparar a pasta
+- Adicionado `src/Tools/prepare-native-dependencies.ps1` para preparar a pasta
   do `mpvnet.exe` com `MediaInfo.dll`, `libmpv-2.dll`, FFmpeg, `yt-dlp.exe`,
   `mpvnet.com` e, quando houver publish self-contained, as DLLs Microsoft/.NET/WPF.
 - O build Debug ganhou preparacao automatica de dependencias auxiliares para
@@ -117,14 +128,14 @@ alteracoes relevantes feitas neste fork de manutencao.
 ## Release, pacote portatil e dependencias nativas
 
 - O fluxo de release passou a publicar self-contained `win-x64`, preservando as DLLs nativas Microsoft/.NET/WPF no output final.
-- Adicionados `src/Tools/download-native-dependencies.ps1` e `src/Tools/test-native-dependencies.ps1` para baixar MediaInfo da MediaArea oficial, validar DLLs x64 e bloquear pacote sem dependencias obrigatorias.
+- Adicionados `src/Tools/download-mediainfo-dependency.ps1` e `src/Tools/validate-native-dependencies.ps1` para baixar MediaInfo da MediaArea oficial, validar DLLs x64 e bloquear pacote sem dependencias obrigatorias.
 - `MediaInfo.dll` passou a ser baixada automaticamente da fonte oficial MediaArea durante a release, com suporte a pinagem por `-MediaInfoVersion` ou `MPVNET_MEDIAINFO_VERSION`.
 - A validacao cobre `MediaInfo.dll`, `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` no publish, na pasta portatil e no ZIP.
 - Adicionado o workflow manual `.github/workflows/release-packages.yml` para gerar
   os pacotes no GitHub Actions. O workflow publica os arquivos como artefato da
   execucao e, quando iniciado com `create_release=true`, tambem cria uma GitHub
   Release com os assets gerados.
-- O script `src/Tools/release-mpv.net.ps1` agora monta o pacote portatil x64 do
+- O script `src/Tools/build-release-package.ps1` agora monta o pacote portatil x64 do
   fork com validacao explicita dos arquivos obrigatorios antes de compactar.
 - O pacote portatil passou a incluir `portable_config/` com exemplos iniciais de
   `mpv.conf`, `input.conf`, `scripts/` e `script-opts/`.
@@ -218,7 +229,7 @@ alteracoes relevantes feitas neste fork de manutencao.
   Also most users prefer having the newest runtime.
 - auto build has been disabled because it requires updating libmpv and
   mediainfo all the time which is too much manual work.
-- The script src/Tools/update-mpv.ps1 has been improved. It's the easiest way
+- The script src/Tools/update-mpv-runtime.ps1 has been improved. It's the easiest way
   update mpv and libmpv (x64 and ARM64). Shinshiro has a update script too,
   but it's a lot longer and more complex.
 - mediainfo and libmpv have been updated.
@@ -264,7 +275,7 @@ alteracoes relevantes feitas neste fork de manutencao.
 - New default bindings and menu items for select.lua which is a new simple mpv built-in command palette script.  
   In the context menu select.lua features can be found under `View > On Screen Menu`.  
   https://github.com/mpv-player/mpv/blob/master/player/lua/select.lua
-- New PowerShell script 'Tools\release-mpv.net.ps1' used to releases mpv.net on GitHub.
+- New PowerShell script 'Tools\build-release-package.ps1' used to releases mpv.net on GitHub.
 - Fix DVD ISO file support.
 - MediaInfo updated to version v24.6.
 - New ARM64 support.

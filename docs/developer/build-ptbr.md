@@ -80,7 +80,7 @@ cd mpv.net
 3. Abra `src/MpvNet.sln`.
 4. Restaure os pacotes NuGet.
 5. Compile em Debug.
-6. Builds Debug/Release do projeto Windows preparam automaticamente os binarios nativos/auxiliares e `Locale` com `src\Tools\ensure-build-assets.ps1`; para uma compilacao rapida sem preparar assets, use `/p:EnsureBuildAssets=false`.
+6. Builds Debug/Release do projeto Windows preparam automaticamente os binarios nativos/auxiliares e `Locale` com `src\Tools\prepare-build-output.ps1`; para uma compilacao rapida sem preparar assets, use `/p:EnsureBuildAssets=false`.
 
 ---
 
@@ -107,7 +107,7 @@ Para compilar e baixar/validar automaticamente os binarios nativos e auxiliares 
 dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj -c Release
 ```
 
-Esse alvo opt-in chama `src\Tools\ensure-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` na pasta Debug, baixando apenas o que estiver faltando. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained.
+Esse alvo opt-in chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` na pasta Debug, baixando apenas o que estiver faltando. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained.
 
 Para publicar como o script de release atual faz:
 
@@ -137,40 +137,42 @@ Pontos a validar:
 
 # Release e empacotamento
 
+Para a referência completa dos scripts PowerShell do fork, veja `docs/scripts-ptbr.md`.
+
 Script principal:
 
 ```text
-src/Tools/release-mpv.net.ps1
+src/Tools/build-release-package.ps1
 ```
 
 Uso esperado pelo cabeçalho do script:
 
 ```powershell
-src\Tools\release-mpv.net.ps1 <diretorio-src> <diretorio-saida>
+src\Tools\build-release-package.ps1 <diretorio-src> <diretorio-saida>
 ```
 
 Exemplo:
 
 ```powershell
-src\Tools\release-mpv.net.ps1 C:\repo\mpv.net\src C:\saida
+src\Tools\build-release-package.ps1 C:\repo\mpv.net\src C:\saida
 ```
 
 Por padrao, o script publica em `WandersondeSouza/mpv.net`. Para gerar apenas artefatos locais, use:
 
 ```powershell
-src\Tools\release-mpv.net.ps1 C:\repo\mpv.net\src C:\saida -SkipGitHubRelease
+src\Tools\build-release-package.ps1 C:\repo\mpv.net\src C:\saida -SkipGitHubRelease
 ```
 
 Para gerar apenas o ZIP portatil, sem instalador e sem publicacao:
 
 ```powershell
-src\Tools\release-mpv.net.ps1 C:\repo\mpv.net\src C:\saida -SkipInstaller -SkipGitHubRelease
+src\Tools\build-release-package.ps1 C:\repo\mpv.net\src C:\saida -SkipInstaller -SkipGitHubRelease
 ```
 
 Quando for necessario sobrescrever `MediaInfo.dll` ou fornecer um `mpvnet.com` local, informe os arquivos explicitamente:
 
 ```powershell
-src\Tools\release-mpv.net.ps1 C:\repo\mpv.net\src C:\saida -MediaInfoFile C:\deps\MediaInfo.dll -MpvNetComFile C:\deps\mpvnet.com
+src\Tools\build-release-package.ps1 C:\repo\mpv.net\src C:\saida -MediaInfoFile C:\deps\MediaInfo.dll -MpvNetComFile C:\deps\mpvnet.com
 ```
 
 O script:
@@ -180,12 +182,12 @@ O script:
 3. publica `MpvNet.Windows.csproj` self-contained para `win-x64`;
 4. cria nomes com base na versão do `mpvnet.exe`;
 5. copia arquivos publicados;
-6. chama `src\Tools\ensure-native-dependencies.ps1` para baixar ou validar `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `libmpv-2.dll`, `yt-dlp.exe` e `mpvnet.com`;
+6. chama `src\Tools\prepare-native-dependencies.ps1` para baixar ou validar `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `libmpv-2.dll`, `yt-dlp.exe` e `mpvnet.com`;
 7. valida e copia as DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vindas do publish self-contained;
 8. copia `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` x64;
 9. copia `Locale`;
 10. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
-11. valida as DLLs nativas no publish, na pasta portatil e no ZIP com `test-native-dependencies.ps1`;
+11. valida as DLLs nativas no publish, na pasta portatil e no ZIP com `validate-native-dependencies.ps1`;
 12. gera ZIP portatil x64;
 13. executa `Setup/Inno/inno-setup.iss` para gerar o instalador x64, exceto com `-SkipInstaller`;
 14. o instalador executa `mpvnet.exe --register-file-associations video ...`
@@ -203,11 +205,11 @@ As dependencias baixadas automaticamente usam estas fontes:
 
 O script usa o asset x64 generico de libmpv, nao `x86_64-v3`, para preservar compatibilidade com mais CPUs x64. Se o GitHub mudar os nomes dos assets, se a MediaArea mudar o link de download, se o NuGet mudar a resolucao de `Gettext.Tools`, se o download falhar, se a extracao falhar, se algum arquivo baixado estiver vazio ou se uma DLL obrigatoria nao for x64, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` pode ser pinada por `-MediaInfoVersion`/`MPVNET_MEDIAINFO_VERSION` ou sobrescrita por `-MediaInfoFile`.
 
-O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo script no GitHub Actions. Ele sempre publica os pacotes como artefato do workflow e, quando executado com `create_release=true`, tambem cria a Release no repositorio. O workflow roda `test-native-dependencies.ps1` antes do upload dos artefatos.
+O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo script no GitHub Actions. Ele sempre publica os pacotes como artefato do workflow e, quando executado com `create_release=true`, tambem cria a Release no repositorio. O workflow roda `validate-native-dependencies.ps1` antes do upload dos artefatos.
 
 Este fork nao publica um pacote NuGet/container no GitHub Packages por enquanto; os pacotes de distribuicao do aplicativo sao assets de GitHub Releases e artefatos do workflow.
 
-Validado em 2026-05-28: execucao local de `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release` gerou o ZIP portatil `mpv.net-v7.1.2.3-portable-x64.zip` e o instalador `mpv.net-v7.1.2.3-setup-x64.exe`, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. A release `v7.1.2.3` foi publicada no GitHub.
+Validado em 2026-05-28: execucao local de `src\Tools\build-release-package.ps1 .\src .\artifacts\release` gerou o ZIP portatil `mpv.net-v7.1.2.3-portable-x64.zip` e o instalador `mpv.net-v7.1.2.3-setup-x64.exe`, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale`, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. A release `v7.1.2.3` foi publicada no GitHub.
 
 Pendente real: validar o workflow manual do GitHub Actions e a revisao manual completa da UI no pacote gerado.
 
@@ -236,7 +238,7 @@ Confira os `TargetFramework` dos projetos e instale o SDK/runtime correspondente
 
 ## Dependência nativa ausente
 
-Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução. Para o pacote portatil, verifique tambem `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. No fluxo de build/release, FFmpeg, libmpv, yt-dlp e `MediaInfo.dll` devem ser baixados ou atualizados automaticamente por `src\Tools\ensure-native-dependencies.ps1`.
+Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução. Para o pacote portatil, verifique tambem `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. No fluxo de build/release, FFmpeg, libmpv, yt-dlp e `MediaInfo.dll` devem ser baixados ou atualizados automaticamente por `src\Tools\prepare-native-dependencies.ps1`.
 
 ## Ferramenta de release ausente
 

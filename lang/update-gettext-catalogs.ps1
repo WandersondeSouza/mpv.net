@@ -222,12 +222,12 @@ if (-not $msgmerge) {
     if ($LastExitCode) { throw $LastExitCode }
 }
 
-$cleanScript = Join-Path $PSScriptRoot 'clean-po-files.ps1'
+$cleanScript = Join-Path $PSScriptRoot 'validate-po-files.ps1'
 if (Test-Path $cleanScript) {
     if ($msgmerge) {
         & $cleanScript -PoDirectory (Join-Path $PSScriptRoot 'po') -PotPath (Join-Path $PSScriptRoot 'source.pot')
         if ($LastExitCode) { throw $LastExitCode }
     } else {
-        Write-Host 'Skipping clean-po-files.ps1 because gettext msgmerge is unavailable. PO files were merged by Python fallback.'
+        Write-Host 'Skipping validate-po-files.ps1 because gettext msgmerge is unavailable. PO files were merged by Python fallback.'
     }
 }

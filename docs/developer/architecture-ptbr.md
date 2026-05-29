@@ -208,7 +208,7 @@ Arquivos:
 
 - `src/MpvNet.Windows/MpvNet.Windows.csproj`;
 - `src/Directory.Packages.props`;
-- `src/Tools/release-mpv.net.ps1`;
+- `src/Tools/build-release-package.ps1`;
 - `src/Setup/Inno/inno-setup.iss`.
 
 O executável é `mpvnet.exe`. O projeto da aplicação define `win-x64` como runtime padrão, e o script de release atual publica `win-x64`, copia DLLs nativas x64, cria ZIP portátil e gera instalador x64.

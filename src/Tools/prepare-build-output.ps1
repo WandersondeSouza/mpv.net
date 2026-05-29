@@ -107,7 +107,7 @@ if (-not $ArtifactsDir) {
 $ArtifactsDir = Test-RequiredPath (New-Item -ItemType Directory -Force $ArtifactsDir).FullName
 $LocaleWorkDir = New-CleanDir (Join-Path $ArtifactsDir 'locale')
 
-$ensureNativeScript = Test-RequiredFile (Join-Path $SourceDir 'Tools\ensure-native-dependencies.ps1')
+$ensureNativeScript = Test-RequiredFile (Join-Path $SourceDir 'Tools\prepare-native-dependencies.ps1')
 $ensureNativeArgs = @{
     SourceDir = $SourceDir
     TargetDir = $TargetDir
@@ -124,7 +124,7 @@ if ($LastExitCode) { throw $LastExitCode }
 
 AddGettextToolsToPath $LocaleWorkDir
 
-$createMoScript = Test-RequiredFile (Join-Path (Split-Path $SourceDir -Parent) 'lang\create-mo-files.ps1')
+$createMoScript = Test-RequiredFile (Join-Path (Split-Path $SourceDir -Parent) 'lang\compile-mo-files.ps1')
 & $createMoScript $TargetDir
 if ($LastExitCode) { throw $LastExitCode }
 

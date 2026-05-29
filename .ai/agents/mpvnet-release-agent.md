@@ -19,8 +19,8 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 - `src/Directory.Build.props`;
 - `src/Directory.Packages.props`;
 - `src/MpvNet.Windows/MpvNet.Windows.csproj`;
-- `src/Tools/release-mpv.net.ps1`;
-- `src/Tools/update-mpv.ps1`;
+- `src/Tools/build-release-package.ps1`;
+- `src/Tools/update-mpv-runtime.ps1`;
 - `src/Setup/Inno/inno-setup.iss`.
 
 ## Regras

@@ -34,7 +34,7 @@ The release script downloads FFmpeg, libmpv, yt-dlp and MediaInfo during packagi
 
 ## Automatically downloaded release dependencies
 
-`src/Tools/release-mpv.net.ps1` downloads or validates these dependencies before creating the portable ZIP:
+`src/Tools/build-release-package.ps1` downloads or validates these dependencies before creating the portable ZIP:
 
 - FFmpeg from `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, selecting `ffmpeg-master-latest-win64-gpl.zip` and copying only `ffmpeg.exe`, `ffplay.exe` and `ffprobe.exe`.
 - libmpv from `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, selecting the generic x64 asset `mpv-dev-x86_64-[date]-git-[hash].7z` and copying only `libmpv-2.dll`.
@@ -59,12 +59,12 @@ Do not rename the file unless the P/Invoke declarations in `MpvNet/Native/MediaI
 
 ## How to prepare local native dependencies
 
-Preparing the local output folder is automated by `src/Tools/ensure-native-dependencies.ps1`.
+Preparing the local output folder is automated by `src/Tools/prepare-native-dependencies.ps1`.
 
 Default process:
 
 ```powershell
-src\Tools\ensure-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64
+src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64
 ```
 
 Normal Windows project builds prepare these files automatically in Debug and Release, including builds started from Visual Studio:
@@ -85,7 +85,7 @@ dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:EnsureBuildAssets=false
 To pin a specific MediaInfo version, pass `-MediaInfoVersion` or set `MPVNET_MEDIAINFO_VERSION`:
 
 ```powershell
-src\Tools\ensure-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64 -MediaInfoVersion 26.05
+src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64 -MediaInfoVersion 26.05
 ```
 
 The script stores downloaded files under `artifacts/native-dependencies`, downloads missing FFmpeg/libmpv/yt-dlp/MediaInfo binaries, verifies that native binaries are non-empty x64 PE files, and can copy/validate the required .NET/WPF native DLLs from a self-contained publish output when `-PublishDir` is provided. Pass `-UpdateExisting` to refresh files that already exist. Microsoft .NET/WPF DLLs are not downloaded manually.
@@ -132,13 +132,13 @@ If the application fails to start or media information cannot be loaded, confirm
 
 ## Release packaging note
 
-The release script publishes self-contained `win-x64`, calls `ensure-native-dependencies.ps1 -UpdateExisting`, places the required extra files in the x64 build output folder, and copies them for the portable and publish folders. `mpvnet.com` can be provided by `-MpvNetComFile`; otherwise the script downloads the upstream helper file when it is not already present in the build output.
+The release script publishes self-contained `win-x64`, calls `prepare-native-dependencies.ps1 -UpdateExisting`, places the required extra files in the x64 build output folder, and copies them for the portable and publish folders. `mpvnet.com` can be provided by `-MpvNetComFile`; otherwise the script downloads the upstream helper file when it is not already present in the build output.
 
 Before creating a release package, validate the final folder or ZIP:
 
 ```powershell
-src\Tools\test-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
-src\Tools\test-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.3-portable-x64.zip
+src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
+src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.3-portable-x64.zip
 ```
 
 If any expected file is missing, empty, not x64, or cannot be downloaded, the release script fails instead of creating a partial portable package. Do not download DLLs from generic DLL websites such as dll-files.com.

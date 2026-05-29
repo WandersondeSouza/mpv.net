@@ -27,7 +27,7 @@ $hasPythonFallback = $Python -ne $null
 $PoFiles = Get-ChildItem $PSScriptRoot/po -Filter '*.po' -File
 $ExeFolder = $OutputDir
 
-$validationScript = Join-Path $PSScriptRoot 'clean-po-files.ps1'
+$validationScript = Join-Path $PSScriptRoot 'validate-po-files.ps1'
 $potPath = Join-Path $PSScriptRoot 'source.pot'
 if ((Test-Path $validationScript) -and (Test-Path $potPath)) {
     Write-Host "Validating PO files before compilation"

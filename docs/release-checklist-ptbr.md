@@ -26,7 +26,7 @@ Itens marcados com `[x]` abaixo ja podem ser considerados fechados para a versao
 
 # Pacote portatil
 
-- [x] dry run local executado com `src\Tools\release-mpv.net.ps1 .\src .\artifacts\release-native-installer-test -SkipGitHubRelease`;
+- [x] dry run local executado com `src\Tools\build-release-package.ps1 .\src .\artifacts\release-native-installer-test -SkipGitHubRelease`;
 - [x] artefatos gerados;
 - [x] download automatico de FFmpeg concluido;
 - [x] download automatico de libmpv concluido;
@@ -35,10 +35,10 @@ Itens marcados com `[x]` abaixo ja podem ser considerados fechados para a versao
 - [x] DLLs Microsoft/.NET/WPF validadas a partir do publish self-contained;
 - [x] `Locale` gerado a partir de `lang/po`;
 - [x] ZIP portatil contem `mpvnet.exe`, `libmpv-2.dll`, `MediaInfo.dll`, DLLs `.NET/WPF`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe`, `mpvnet.com`, `Locale/` e `portable_config/`;
-- [x] `MediaInfo.dll` baixado/validado pelo script `ensure-native-dependencies.ps1`;
+- [x] `MediaInfo.dll` baixado/validado pelo script `prepare-native-dependencies.ps1`;
 - [x] `mpvnet.com` fornecido por `-MpvNetComFile`, existente no build output ou baixado pelo script;
 - [x] versao validada no nome do ZIP gerado;
-- [x] `test-native-dependencies.ps1` validou publish, pasta portatil e ZIP.
+- [x] `validate-native-dependencies.ps1` validou publish, pasta portatil e ZIP.
 - [x] ZIP portatil final da versao `7.1.2.3` validado com as DLLs nativas obrigatorias.
 
 ---

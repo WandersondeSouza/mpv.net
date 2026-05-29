@@ -173,7 +173,7 @@ Arquivos:
 
 - `lang/source.pot`;
 - `lang/po/*.po`;
-- `lang/create-mo-files.ps1`;
+- `lang/compile-mo-files.ps1`;
 - `src/MpvNet.Windows/WPF/WpfTranslator.cs`;
 - `src/MpvNet.Windows/Resources/editor_conf.txt`.
 
@@ -202,8 +202,8 @@ Pastas de configuração:
 
 Arquivos:
 
-- `src/Tools/release-mpv.net.ps1`;
-- `src/Tools/update-mpv.ps1`;
+- `src/Tools/build-release-package.ps1`;
+- `src/Tools/update-mpv-runtime.ps1`;
 - `src/Setup/Inno/inno-setup.iss`;
 - `src/MpvNet.Windows/MpvNet.Windows.csproj`.
 
