@@ -1,86 +1,10 @@
-# Atalhos e input.conf
+# Atalhos
 
-Este documento explica como funcionam os atalhos do mpv.net.
+Resumo dos arquivos de atalhos usados pelo mpv.net.
 
-O mpv.net utiliza o arquivo:
+- `input.conf`: atalhos de teclado e mouse;
+- `global-input.conf`: atalhos globais do Windows;
+- `input-test` e `input-keylist`: modos de diagnóstico;
+- o menu de contexto pode ser ajustado pelo `input.conf` compatível com o fork.
 
-```text
-input.conf
-```
-
-para controlar atalhos de teclado, mouse e comandos do menu.
-
-## Onde fica o input.conf
-
-### Instalação normal
-
-Normalmente o arquivo pode ficar em:
-
-```text
-C:\Users\<usuario>\AppData\Roaming\mpv.net
-```
-
-### Versão portátil
-
-Na versão portátil:
-
-```text
-portable_config/input.conf
-```
-
-## Exemplo simples
-
-```text
-Right seek 2
-Left seek -2
-Space cycle pause
-f cycle fullscreen
-```
-
-## Problemas comuns
-
-### 1. Atalho duplicado
-
-Se a mesma tecla for definida mais de uma vez, apenas a última definição pode funcionar.
-
-Exemplo:
-
-```text
-Right seek 2
-Right seek 10
-```
-
-Nesse caso, o último comando pode sobrescrever o primeiro.
-
-### 2. Diferença entre versões antigas e novas
-
-Alguns usuários relataram diferenças entre versões antigas do mpv.net e versões mais novas.
-
-Em alguns casos, atalhos antigos continuam funcionando, mas o editor visual pode não refletir corretamente as mudanças.
-
-### 3. Editor de atalhos
-
-O editor de atalhos do mpv.net ajuda a editar o `input.conf`.
-
-Ao salvar alterações, o editor verifica se a mesma tecla foi atribuída a comandos diferentes. Se encontrar duplicidade, ele mostra um aviso e não grava o arquivo até que o conflito seja resolvido.
-
-Configurações avançadas ainda podem precisar de edição manual, principalmente quando o arquivo usa menus customizados ou comandos específicos de scripts.
-
-Validação de manutenção em 2026-05-21: o fluxo em `InputWindow` foi revisado e o build passou. A confirmação visual da mensagem na janela ainda deve ser feita em teste manual interativo, porque depende de editar uma célula do editor e tentar fechar/salvar a janela.
-
-## Como restaurar os atalhos
-
-Uma forma simples de testar sem as customizações atuais é:
-
-1. fechar o mpv.net;
-2. renomear temporariamente o arquivo `input.conf`;
-3. abrir novamente o mpv.net;
-4. testar os atalhos internos/padrão do mpv.net;
-5. recriar apenas os atalhos necessários no `input.conf`.
-
-## Pendências futuras
-
-Melhorias ainda possíveis no editor de atalhos:
-
-- melhorar sincronização entre interface gráfica e arquivo `input.conf`;
-- validar atalhos inválidos.
+Use este arquivo como índice rápido. Para detalhes de configuração, veja [Configuração](CONFIGURACAO.md).

@@ -1,24 +1,19 @@
-# Roadmap do fork
+# Roadmap
 
-Este roadmap mostra apenas o que ainda está pendente, em andamento ou reservado para o futuro.
-O que já foi concluído deve ficar registrado no `docs/changelog.md`.
+Lista curta do que ainda está pendente ou reservado para depois.
 
 ## Em andamento
 
-- validar instalador, publicação GitHub e smoke test do ZIP portátil;
-- validar revisão manual da UI, incluindo fullscreen, menu, atalhos, persistência de configuração e temas;
-- validar renderização ao fechar e outros bugs visuais pequenos;
-- validar input, thumbfast e caminhos longos nas rotas já documentadas.
+- validar instalador, ZIP portátil e release do GitHub;
+- validar UI, fullscreen, menu, atalhos e persistência de configuração;
+- validar caminhos longos, `input.conf` e `thumbfast`.
 
 ## Futuro
 
-- `uosc`;
-- `LUT`;
-- `AI upscaling`;
-- IPTV/media center;
-- mudanças profundas em `yt-dlp`;
-- outras refatorações grandes que não sejam necessárias para corrigir um bug comprovado.
+- recursos grandes que mudem o comportamento do player sem necessidade comprovada;
+- refatorações amplas sem bug confirmado;
+- mudanças profundas em `yt-dlp` ou no fluxo de streaming.
 
-## Critério
+## Regra
 
-Um item só entra em `docs/changelog.md` quando estiver corrigido de fato e com validação suficiente. A partir daí, ele sai do roadmap e do plano operacional.
+Quando um item estiver corrigido e validado, ele sai daqui e entra no `docs/changelog.md`.

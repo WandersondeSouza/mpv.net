@@ -1,221 +1,45 @@
-# mpv.net - fork de manutenção
+# mpv.net
 
-Este repositório é um fork de manutenção do **mpv.net**, um player de mídia para Windows com interface gráfica moderna, baseado no **mpv/libmpv**.
+Fork de manutenção do mpv.net para Windows, focado em compatibilidade com mpv/libmpv, documentação objetiva e mudanças pequenas e verificadas.
 
-O projeto original foi criado e mantido por **Frank Skare / stax76**. Este fork respeita esse trabalho e tem como prioridade preservar o funcionamento existente, melhorar a documentação em português brasileiro e corrigir problemas pequenos de forma cuidadosa.
+## Prioridades
 
-Grandes mudanças de arquitetura não são prioridade neste momento. A regra principal é manter compatibilidade com o mpv sempre que possível e evitar alterações amplas sem necessidade.
+- manter o comportamento existente;
+- preservar compatibilidade com arquivos de configuração e comandos do mpv;
+- documentar uso, configuração, build e release do fork;
+- corrigir bugs pequenos sem refatorações amplas;
+- manter a manutenção do repositório simples e rastreável.
 
-## Objetivos do fork
+## Documentação principal
 
-- Preservar o comportamento atual do mpv.net.
-- Documentar melhor o uso, a configuração, o build e a manutenção do projeto.
-- Facilitar o uso e a contribuição em português brasileiro.
-- Corrigir bugs simples e bem delimitados.
-- Preparar o repositório para manutenção assistida por agentes de IA.
-
-## Para usuarios
-
-- [Manual do mpv.net](docs/manual.md)
-- [Manual oficial do mpv](https://mpv.io/manual/master/)
-- [Modo portátil](docs/PORTATIL.md)
+- [Manual](docs/manual.md)
 - [Configuração](docs/CONFIGURACAO.md)
-- [Atalhos e input.conf](docs/ATALHOS.md)
-- [Exemplo de `mpv.conf`](docs/exemplos/mpv.conf)
-- [Exemplo de `input.conf`](docs/exemplos/input.conf)
-- [Exemplo de `thumbfast.conf`](docs/exemplos/thumbfast.conf)
-
-## Para mantenedores
-
-- [Roadmap do fork](docs/ROADMAP.md)
+- [Modo portátil](docs/PORTATIL.md)
+- [Atalhos](docs/ATALHOS.md)
 - [Build e release](docs/BUILD.md)
-- [Scripts de manutenção](docs/scripts-ptbr.md)
+- [Dependências nativas](docs/native-dependencies.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Contribuição](docs/contributing-ptbr.md)
 - [Checklist de release](docs/release-checklist-ptbr.md)
-- [Guia de contribuição](docs/contributing-ptbr.md)
-- [Documentação técnica](docs/developer/project-map-ptbr.md)
 
-## Para agentes de IA
-
-Antes de qualquer alteracao automatizada, leia:
-
-1. [AGENTS.md](AGENTS.md)
-2. [Skill de manutenção do fork](.ai/skills/mpvnet-maintainer.md)
-3. [Roadmap do fork](docs/ROADMAP.md)
-4. [Prompt de próximas melhorias](.ai/prompts/next-improvements.md)
-
-Os artefatos em `.ai/` ajudam a orientar análises e mudanças pequenas, mas não substituem a leitura do código atual.
-
-## Sobre compatibilidade
-
-O **mpv.net** é uma interface gráfica para Windows baseada no [mpv](https://mpv.io). A compatibilidade com o mpv é uma característica central do projeto: a maior parte dos recursos, opções de configuração, scripts e comandos do mpv também se aplica ao mpv.net.
-
-Para documentação técnica completa do comportamento herdado do mpv, consulte o [manual oficial do mpv](https://mpv.io/manual/master/) e o [manual do mpv.net](docs/manual.md).
-
-## Arquivos, playlists e streaming
-
-O instalador registra o mpv.net como aplicativo para os principais formatos de video locais e playlists IPTV: `.mp4`, `.m4v`, `.mkv`, `.webm`, `.avi`, `.mov`, `.qt`, `.wmv`, `.asf`, `.flv`, `.f4v`, `.mpg`, `.mpeg`, `.mpe`, `.m1v`, `.m2v`, `.vob`, `.ts`, `.mts`, `.m2ts`, `.3gp`, `.3g2`, `.ogv`, `.ogg`, `.rm`, `.rmvb`, `.divx`, `.xvid`, `.dv`, `.nut`, `.nsv`, `.m3u`, `.m3u8`, `.pls` e `.xspf`.
-
-Tambem e possivel abrir arquivos e URLs pela linha de comando:
+## Uso rápido
 
 ```powershell
 mpvnet.exe "C:\Videos\filme.mp4"
 mpvnet.exe "C:\Listas\iptv.m3u"
-mpvnet.exe "https://example.com/live/index.m3u8?token=abc123"
-mpvnet.exe "rtmp://example.com/live/channel"
-mpvnet.exe "rtsp://example.com/stream"
-mpvnet.exe "udp://239.0.0.1:1234"
+mpvnet.exe "https://example.com/live/index.m3u8"
 ```
 
-As entradas de streaming aceitas pelo frontend incluem `http://`, `https://`, `rtmp://`, `rtmps://`, `rtsp://`, `mms://`, `udp://`, `tcp://`, `ftp://` e `sftp://`. A associacao de arquivos apenas permite que o Windows encaminhe a entrada para o app; codecs, containers e protocolos reproduzidos de fato dependem do mpv/libmpv/FFmpeg incluido no pacote.
+O mpv.net aceita arquivos locais, playlists e URLs de streaming compatíveis com o mpv.
 
----
+## Para agentes
 
-## README original
+Antes de alterar código ou documentação, leia:
 
-Esta seção preserva o README original do projeto upstream como referência histórica.
-Os badges e links abaixo podem apontar para `stax76/mpv.net`; para releases e issues deste fork, use os links das seções anteriores.
+1. `AGENTS.md`
+2. `README.md`
+3. `docs/manual.md`
+4. `docs/ROADMAP.md`
+5. a documentação da área tocada em `docs/developer/`
 
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/stax76/mpv.net) ![GitHub closed issues](https://img.shields.io/github/issues-closed/stax76/mpv.net) ![GitHub All Releases](https://img.shields.io/github/downloads/stax76/mpv.net/total) ![GitHub tag (latest by date)](https://img.shields.io/github/tag-date/stax76/mpv.net) ![GitHub stars](https://img.shields.io/github/stars/stax76/mpv.net)
-
-🎞 mpv.net
-==========
-
-mpv.net is a media player for Windows with a modern GUI.
-
-The player is based on the popular [mpv](https://mpv.io) media player.
-mpv.net is designed to be mpv compatible, almost all mpv features are available,
-this means the official [mpv manual](https://mpv.io/manual/master/) applies to mpv.net,
-differences are documented in the [mpv.net manual](docs/manual.md#differences-compared-to-mpv).
-
-#### Graphical User Interface
-
-Modern GUI with customizable color themes.
-
-
-#### Command Line Interface
-
-mpv.net supports mpv's command-line interface.
-
-
-#### High quality video output
-
-Video output that is capable of many features loved by videophiles,
-such as video scaling with popular high quality algorithms,
-color management, frame timing, interpolation, HDR, and more.
-
-
-#### On Screen Controller
-
-Play controls with a modern flat design.
-
-
-#### GPU video decoding
-
-Leverages the FFmpeg hwaccel APIs to support DXVA2 video decoding acceleration.
-
-
-#### Based on libmpv
-
-mpv.net is based on libmpv which offers a straightforward C API that
-was designed from the ground up to make mpv usable as a library and
-facilitate easy integration into other applications.
-mpv is like VLC not based on DirectShow or Media Foundation.
-
-
-Table of contents
------------------
-
-- [Features](#features-that-mpv-and-mpvnet-have-in-common)
-- [Support](#support)
-- [Download](#download)
-- [Manual](#manual)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-
-
-Features that mpv and mpv.net have in common
---------------------------------------------
-
-- Lua and JavaScript Scripting ([awesome-mpv lists a large collection of available user scripts](https://github.com/stax76/awesome-mpv))
-- Simple config files that are easy to read and edit
-- JSON IPC to control the player from external programs
-- On Screen Controller (OSC, play control buttons) with modern flat design
-- Command Line Interface
-- Started from a terminal, status, error and debug output is printed on the terminal
-- DXVA2 video decoding acceleration
-- Video output capable of features loved by videophiles, such as video scaling with popular high quality algorithms, color management, frame timing, interpolation, HDR, and more
-- Browser extensions to start mpv.net from the browser
-- Fast seek performance
-- Fast startup performance
-- Usable as video player, audio player and image viewer with a wide range of supported formats
-- Built-in decoders, no external codecs have to be installed
-- Built-in media streaming (requires yt-dlp to be installed)
-- External audio and subtitle files can be loaded manually or automatically
-- Screenshot feature
-- Internationalization using gettext and transifex
-
-
-Features exclusive to mpv.net
-----------------------------
-
-- Very high degree of mpv compatibility, almost all mpv features are available
-- Modern graphical user interface with customizable color themes
-- Customizable context menu
-- Searchable config editor
-- Searchable input (shortcut keys) editor
-- Global keyboard shortcuts
-- Extension API for .NET languages (C#, VB.NET and F#)
-- Files can be enqueued from File Explorer
-
-
-## [Support](docs/manual.md#support)
-
-[Support section of the manual.](docs/manual.md#support)
-
-
-## [Download](docs/manual.md#download)
-
-[Download section of the manual.](docs/manual.md#download)
-
-
-## [Manual](docs/manual.md)
-
-[The mpv.net documentation.](docs/manual.md)
-
-
-## [Contributing](docs/contributing-ptbr.md)
-
-[Contributing guide for this fork.](docs/contributing-ptbr.md)
-
-
-Screenshots
------------
-
-#### Main Window
-
-![Main Window](docs/img/Main.webp)
-
-
-#### Context Menu
-
-![Context Menu](docs/img/Menu.webp)
-
-
-#### Config Editor
-
-Searchable config editor as alternative to edit the conf file manually.
-
-![](docs/img/ConfEditor.webp)
-
-
-#### Terminal
-
-![](docs/img/Terminal.webp)
-
-
-Other projects from me
-----------------------
-
-A list of my other projects can be found here:
-
-https://stax76.github.io/software-list
+Os arquivos em `.ai/` existem para orientar tarefas recorrentes do fork, mas não substituem a análise do código atual.

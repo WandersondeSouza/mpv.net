@@ -1,24 +1,14 @@
-# Artefatos de IA do fork mpv.net
+# Artefatos de IA
 
-Este diretório reúne materiais para orientar agentes de IA na manutenção do fork.
+Este diretório reúne materiais para tarefas recorrentes do fork.
 
-## Estrutura
+## Conteúdo
 
-| Pasta | Conteúdo | Uso |
-| --- | --- | --- |
-| `skills/` | Skill base do mantenedor mpv.net | Contexto e regras reutilizáveis para manutenção conservadora. |
-| `agents/` | Perfis por área crítica | Especializar o agente conforme o tipo de tarefa. |
-| `prompts/` | Prompts operacionais | Iniciar auditorias, bugs, release, documentação e mudanças técnicas. |
-| `mcp/` | Guia de MCPs úteis | Planejar quais servidores MCP ativar no ambiente do agente. |
+- `skills/`: regras e contexto reutilizáveis;
+- `agents/`: perfis por tipo de tarefa;
+- `prompts/`: prompts prontos para investigação, documentação, release e mudanças técnicas;
+- `mcp/`: notas sobre MCPs úteis.
 
-## Fluxo recomendado
+## Regra
 
-1. Ler `AGENTS.md`.
-2. Escolher um perfil em `agents/`.
-3. Usar a skill `skills/mpvnet-maintainer.md` como base.
-4. Escolher um prompt em `prompts/` para a tarefa.
-5. Ativar MCPs somente quando forem úteis para a investigação.
-
-## Regra principal
-
-Os arquivos deste diretório ajudam a orientar agentes, mas não substituem a leitura do código atual. Toda mudança deve ser confirmada no código e validada com o menor teste suficiente para o risco da área alterada.
+Os arquivos aqui ajudam a manter consistência, mas não substituem a leitura do código atual nem a validação do comportamento real.
