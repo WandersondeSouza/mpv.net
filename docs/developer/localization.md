@@ -13,6 +13,9 @@ Arquivos e responsabilidades:
 - `lang/source.pot`: template gettext gerado a partir dos textos fonte e base inglesa oficial.
 - `lang/po/*.po`: arquivos de traducao apenas para idiomas traduzidos.
 - `lang/compile-mo-files.ps1`: compila arquivos `.po` para `.mo`.
+- `tools/localization/checks/*.py`: utilitarios de leitura para detectar duplicatas e inconsistencias.
+- `tools/localization/cleanup/*.py`: utilitarios que limpam ou reescrevem arquivos de traducao.
+- `tools/localization/reference/msgattrib_help.txt`: referencia textual do `msgattrib` usada na manutencao do gettext.
 - `src/MpvNet.Windows/WPF/WpfTranslator.cs`: converte o valor de `language` em uma `CultureInfo`.
 - `src/MpvNet.Windows/Resources/editor_conf.txt`: lista os valores aceitos pelo editor de configuracao para a opcao `language`.
 - `src/Tools/build-release-package.ps1`: gera ou reaproveita a pasta `Locale` durante o fluxo de release.
