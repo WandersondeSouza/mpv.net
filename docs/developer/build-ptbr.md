@@ -189,7 +189,7 @@ O script:
 10. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
 11. valida as DLLs nativas no publish, na pasta portatil e no ZIP com `validate-native-dependencies.ps1`;
 12. gera ZIP portatil x64;
-13. executa `Setup/Inno/inno-setup.iss` para gerar o instalador x64, exceto com `-SkipInstaller`;
+13. executa `Setup/Inno/build-windows-installer.iss` para gerar o instalador x64, exceto com `-SkipInstaller`;
 14. o instalador executa `mpvnet.exe --register-file-associations video ...`
     para registrar as associacoes de video e playlists IPTV apos a instalacao;
 15. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`.
@@ -246,7 +246,7 @@ O script falha se 7-Zip, Inno Setup ou `gh` não estiverem nos locais esperados.
 
 ## Caminho fixo do Inno Setup
 
-`src/Setup/Inno/inno-setup.iss` usa `OutputDir=E:\Desktop`. Ajustar esse caminho exige cuidado para não quebrar o fluxo original.
+`src/Setup/Inno/build-windows-installer.iss` usa `OutputDir=E:\Desktop`. Ajustar esse caminho exige cuidado para não quebrar o fluxo original.
 
 ---
 

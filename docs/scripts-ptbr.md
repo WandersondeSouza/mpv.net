@@ -59,6 +59,18 @@ Somente ZIP portatil, sem instalador e sem GitHub Release:
 src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipInstaller -SkipGitHubRelease
 ```
 
+Quando o instalador nao e ignorado, esse fluxo chama `src/Setup/Inno/build-windows-installer.iss`.
+
+### `src/Setup/Inno/build-windows-installer.iss`
+
+Script do Inno Setup usado pelo release para gerar o instalador Windows x64. Ele empacota o publish self-contained, instala `mpvnet.exe` em `{autopf}\mpv.net` e executa o registro de associacoes de arquivos de video e playlists IPTV apos a instalacao.
+
+Normalmente ele nao precisa ser chamado diretamente; use `build-release-package.ps1`. Para compilar apenas o instalador com o Inno Setup:
+
+```powershell
+& 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' .\src\Setup\Inno\build-windows-installer.iss
+```
+
 ### `src/Tools/download-mediainfo-dependency.ps1`
 
 Script legado e mais estreito para baixar e validar `MediaInfo.dll` a partir da MediaArea oficial, copiando o resultado para uma pasta de publish e, opcionalmente, para uma pasta de build. O fluxo atual normalmente usa `prepare-native-dependencies.ps1`, que cobre mais arquivos.

@@ -9,6 +9,8 @@ alteracoes relevantes feitas neste fork de manutencao.
 
 - Renomeados os scripts PowerShell do fork para nomes mais objetivos, cobrindo
   build, release, dependencias nativas e localizacao gettext.
+- Renomeado o script do Inno Setup para
+  `src/Setup/Inno/build-windows-installer.iss`.
 - Adicionado `docs/scripts-ptbr.md` com a funcao de cada script e exemplos de
   execucao a partir da raiz do repositorio.
 - Atualizadas as chamadas internas, o alvo MSBuild, o workflow de release e a

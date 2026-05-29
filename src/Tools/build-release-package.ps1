@@ -279,7 +279,7 @@ $ReleaseFiles = @($ZipOutputFile64)
 if (-not $SkipInstaller) {
     # Inno Setup
     ''; ''
-    $InnoSetupScript = Test (Join-Path $SourceDir 'Setup\Inno\inno-setup.iss')
+    $InnoSetupScript = Test (Join-Path $SourceDir 'Setup\Inno\build-windows-installer.iss')
     & $InnoSetupCompiler "/O$OutputRootDir" $InnoSetupScript
     if ($LastExitCode) { throw $LastExitCode }
     $SetupFile = Test (Join-Path $OutputRootDir "mpv.net-v$VersionName-setup-x64.exe")
