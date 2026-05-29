@@ -8,3 +8,9 @@ Resumo dos arquivos de atalhos usados pelo mpv.net.
 - o menu de contexto pode ser ajustado pelo `input.conf` compatível com o fork.
 
 Use este arquivo como índice rápido. Para detalhes de configuração, veja [Configuração](CONFIGURACAO.md).
+
+Para mudanças amplas em atalhos, menu ou input, consulte também:
+
+- `docs/developer/commands-ptbr.md`
+- `docs/developer/configuration-system-ptbr.md`
+- `docs/developer/source-audit-ptbr.md`
