@@ -4,11 +4,11 @@
 
 Garantir que releases futuras sejam feitas de forma segura e organizada.
 
-Status em 2026-05-28: os itens marcados abaixo foram validados localmente para a versao `7.1.2.3`, incluindo ZIP portatil, instalador e validacao de DLLs nativas. A release `v7.1.2.3` foi publicada no GitHub, mas os testes manuais completos de UI ainda precisam ser fechados.
+Status em 2026-05-29: os itens marcados abaixo foram validados localmente para a versao `7.1.2.4`, incluindo ZIP portatil, instalador e validacao de DLLs nativas. A release `v7.1.2.4` foi publicada no GitHub, mas os testes manuais completos de UI ainda precisam ser fechados.
 
 Use este checklist como fonte de verdade da release. Se um item for validado em outra rodada, marque apenas esse item e registre a evidencia no documento relacionado.
 
-Itens marcados com `[x]` abaixo ja podem ser considerados fechados para a versao `7.1.2.3` e podem sair desta lista quando a proxima versao for consolidada, desde que o changelog e a documentacao associada continuem coerentes.
+Itens marcados com `[x]` abaixo ja podem ser considerados fechados para a versao `7.1.2.4` e podem sair desta lista quando a proxima versao for consolidada, desde que o changelog e a documentacao associada continuem coerentes.
 
 ---
 
@@ -39,7 +39,7 @@ Itens marcados com `[x]` abaixo ja podem ser considerados fechados para a versao
 - [x] `mpvnet.com` fornecido por `-MpvNetComFile`, existente no build output ou baixado pelo script;
 - [x] versao validada no nome do ZIP gerado;
 - [x] `validate-native-dependencies.ps1` validou publish, pasta portatil e ZIP.
-- [x] ZIP portatil final da versao `7.1.2.3` validado com as DLLs nativas obrigatorias.
+- [x] ZIP portatil final da versao `7.1.2.4` validado com as DLLs nativas obrigatorias.
 
 ---
 
@@ -85,7 +85,7 @@ Itens marcados com `[x]` abaixo ja podem ser considerados fechados para a versao
 # Documentacao
 
 - [x] documentacao de build, modo portatil, dependencias nativas e checklist alinhada ao dry run validado;
-- [x] changelog da release final `7.1.2.3` atualizado;
+- [x] changelog da release final `7.1.2.4` atualizado;
 - [ ] README revisado quando houver mudanca de comportamento visivel para usuario;
 - [x] riscos documentados quando algum item manual ficar pendente.
 
@@ -93,7 +93,7 @@ Itens marcados com `[x]` abaixo ja podem ser considerados fechados para a versao
 
 # Riscos pendentes conhecidos
 
-- A release `v7.1.2.3` foi publicada e os artefatos principais foram validados, mas a revisao manual completa de UI ainda nao foi fechada. Fullscreen, menu, atalhos, persistencia de configuracao, temas e comparacao visual em modo escuro devem ser revalidados antes de declarar a versao totalmente estabilizada.
+- A release `v7.1.2.4` foi publicada e os artefatos principais foram validados, mas a revisao manual completa de UI ainda nao foi fechada. Fullscreen, menu, atalhos, persistencia de configuracao, temas e comparacao visual em modo escuro devem ser revalidados antes de declarar a versao totalmente estabilizada.
 - A compatibilidade com scripts, `input.conf`, `mpv.conf`, `mpvnet.conf`, `thumbfast` e caminhos longos ainda depende de validação manual nas rotas reais documentadas.
 - O workflow manual `.github/workflows/release-packages.yml` usa o mesmo script de release, mas ainda precisa de uma execução validada no GitHub Actions antes de virar o caminho preferencial de publicação.
 

@@ -2,7 +2,7 @@
 
 Este documento é uma orientação inicial para estudar o build do fork do mpv.net.
 
-> Status: fluxo local de build e release validado em 2026-05-28, incluindo o download do FFmpeg atual do BtbN, a geração do ZIP portátil e do instalador x64. A release `v7.1.2.3` foi publicada no GitHub.
+> Status: fluxo local de build e release validado em 2026-05-29, incluindo o download do FFmpeg atual do BtbN, a geração do ZIP portátil e do instalador x64. A release `v7.1.2.4` foi publicada no GitHub.
 
 ## Plataforma
 
@@ -20,7 +20,7 @@ A versão do fork fica centralizada em:
 src/BuildVersion.props
 ```
 
-O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e usa `MpvNetVersion` para `FileVersion`, `AssemblyVersion` e `InformationalVersion`. O script de release lê a versão do `mpvnet.exe` publicado para montar nomes de artefatos e tag, por exemplo `mpv.net-v7.1.2.3-portable-x64.zip` e `v7.1.2.3`.
+O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e usa `MpvNetVersion` para `FileVersion`, `AssemblyVersion` e `InformationalVersion`. O script de release lê a versão do `mpvnet.exe` publicado para montar nomes de artefatos e tag, por exemplo `mpv.net-v7.1.2.4-portable-x64.zip` e `v7.1.2.4`.
 
 ## Como abrir o projeto
 
@@ -99,7 +99,7 @@ dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:EnsureBuildAssets=false
 
 Esse fluxo baixa quando faltar ou valida `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe`, `mpvnet.com` e `Locale`. As DLLs Microsoft/.NET/WPF (`D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll`) continuam vindo apenas de um publish self-contained; quando `-PublishDir` é informado ao script de dependências nativas, elas são copiadas/validadas a partir desse diretório.
 
-O fluxo de release gera `mpv.net-v7.1.2.3-portable-x64.zip` e `mpv.net-v7.1.2.3-setup-x64.exe`, baixa MediaInfo da MediaArea, baixa FFmpeg/libmpv/yt-dlp, gera `Locale`, inclui `portable_config` e valida as DLLs nativas obrigatórias no publish, na pasta portátil e dentro do ZIP. A criação da GitHub Release exige `GH_TOKEN` ou `gh auth login`.
+O fluxo de release gera `mpv.net-v7.1.2.4-portable-x64.zip` e `mpv.net-v7.1.2.4-setup-x64.exe`, baixa MediaInfo da MediaArea, baixa FFmpeg/libmpv/yt-dlp, gera `Locale`, inclui `portable_config` e valida as DLLs nativas obrigatórias no publish, na pasta portátil e dentro do ZIP. A criação da GitHub Release exige `GH_TOKEN` ou `gh auth login`.
 
 Exemplo para gerar artefatos locais sem publicar no GitHub:
 
@@ -129,7 +129,7 @@ Validação manual de dependências nativas:
 
 ```powershell
 src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
-src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.3-portable-x64.zip
+src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.4-portable-x64.zip
 ```
 
 Também existe o workflow manual `.github/workflows/release-packages.yml`, que gera os pacotes no GitHub Actions e pode criar a Release quando executado com `create_release=true`. O workflow executa o mesmo release script e roda `validate-native-dependencies.ps1` antes de publicar os artefatos.
