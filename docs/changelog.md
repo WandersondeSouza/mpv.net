@@ -1,4 +1,4 @@
-# Changelog
+﻿# Changelog
 
 Este arquivo registra apenas as versoes publicadas pelo fork
 `WandersondeSouza/mpv.net`.
@@ -91,7 +91,7 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 ## Manutencao e documentacao
 
 - Adicionada documentacao tecnica de localizacao do fork em
-  `docs/developer/localization-ptbr.md`.
+  `docs/developer/localization.md`.
 - Adicionada a base inicial de wiki em `docs/wiki/Home.md`.
 - Documentos e artefatos `.ai/` foram alinhados ao fluxo atual de manutencao,
   build x64, localizacao e release do fork.
@@ -188,3 +188,4 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 - Este fork, por enquanto, nao publica pacote NuGet/container no GitHub
   Packages. Os artefatos de distribuicao ficam em GitHub Releases ou como
   artefatos de workflow.
+

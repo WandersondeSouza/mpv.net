@@ -1,4 +1,4 @@
-# Atalhos
+﻿# Atalhos
 
 Resumo dos arquivos de atalhos usados pelo mpv.net.
 
@@ -11,6 +11,7 @@ Use este arquivo como índice rápido. Para detalhes de configuração, veja [Co
 
 Para mudanças amplas em atalhos, menu ou input, consulte também:
 
-- `docs/developer/commands-ptbr.md`
-- `docs/developer/configuration-system-ptbr.md`
-- `docs/developer/source-audit-ptbr.md`
+- `docs/developer/commands.md`
+- `docs/developer/configuration-system.md`
+- `docs/developer/source-audit.md`
+

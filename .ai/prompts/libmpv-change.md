@@ -1,4 +1,4 @@
-# Prompt — Mudança na integração mpv/libmpv
+﻿# Prompt — Mudança na integração mpv/libmpv
 
 Leia:
 
@@ -6,12 +6,12 @@ Leia:
 2. `README.md`;
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
-5. `docs/developer/mpv-integration-ptbr.md`;
-6. `docs/developer/libmpv-wrapper-ptbr.md`;
-7. `docs/developer/event-flow-ptbr.md`;
-8. `docs/developer/commands-ptbr.md`.
+5. `docs/developer/mpv-integration.md`;
+6. `docs/developer/libmpv-wrapper.md`;
+7. `docs/developer/event-flow.md`;
+8. `docs/developer/commands.md`.
 
-Se a alteração cruzar mais de um módulo, consulte também `docs/developer/source-audit-ptbr.md` e `docs/developer/architecture-ptbr.md`.
+Se a alteração cruzar mais de um módulo, consulte também `docs/developer/source-audit.md` e `docs/developer/architecture.md`.
 
 Objetivo:
 
@@ -44,3 +44,4 @@ Plano de teste mínimo:
 - testar playlist;
 - testar script/comando relacionado;
 - encerrar o aplicativo.
+

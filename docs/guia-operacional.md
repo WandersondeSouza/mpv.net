@@ -1,4 +1,4 @@
-# Guia operacional do mpv.net
+﻿# Guia operacional do mpv.net
 
 Documento único para build, dependências nativas, scripts, modo portátil, contribuição, release e direção do fork.
 
@@ -11,7 +11,7 @@ Documento único para build, dependências nativas, scripts, modo portátil, con
 - Para entender o modo portátil, leia `Portátil`.
 - Para contribuir com mudanças pequenas e compatíveis, leia `Contribuição`.
 - Para saber o que ainda está pendente, leia `Roadmap`.
-- Para entender a estrutura maior do fork, leia `docs/developer/architecture-ptbr.md`, `docs/developer/project-map-ptbr.md` e `docs/developer/source-audit-ptbr.md`.
+- Para entender a estrutura maior do fork, leia `docs/developer/architecture.md`, `docs/developer/project-map.md` e `docs/developer/source-audit.md`.
 
 ## Build
 
@@ -186,3 +186,4 @@ Quando um item estiver corrigido e validado, ele sai desta lista e entra no `doc
 - Sempre que um script mudar, ajuste esta página primeiro.
 - Se um comando aqui deixar de funcionar, atualize o caminho completo e a descrição do uso.
 - Para mudanças amplas de arquitetura ou módulos, comece pela documentação técnica em `docs/developer/`.
+

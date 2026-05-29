@@ -1,4 +1,4 @@
-# Prompt — Mudança em configuração, atalhos ou modo portátil
+﻿# Prompt — Mudança em configuração, atalhos ou modo portátil
 
 Leia:
 
@@ -8,8 +8,8 @@ Leia:
 4. `docs/CONFIGURACAO.md`;
 5. `docs/ATALHOS.md`;
 6. `docs/guia-operacional.md`;
-7. `docs/developer/configuration-system-ptbr.md`;
-8. `docs/developer/configuration-flow-ptbr.md`.
+7. `docs/developer/configuration-system.md`;
+8. `docs/developer/configuration-flow.md`.
 
 Objetivo:
 
@@ -27,7 +27,7 @@ Antes de alterar código, confirme no código:
 - impacto no modo portátil;
 - necessidade de migração ou backup.
 
-Se a mudança tocar fluxos de inicialização, leia também `docs/developer/configuration-flow-ptbr.md` e `docs/developer/architecture-ptbr.md`.
+Se a mudança tocar fluxos de inicialização, leia também `docs/developer/configuration-flow.md` e `docs/developer/architecture.md`.
 
 Regras:
 
@@ -47,3 +47,4 @@ Mudança proposta:
 Riscos:
 Plano de teste:
 ```
+

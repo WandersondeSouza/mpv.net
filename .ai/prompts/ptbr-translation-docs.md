@@ -1,4 +1,4 @@
-# Prompt — Tradução e documentação em português brasileiro
+﻿# Prompt — Tradução e documentação em português brasileiro
 
 Leia:
 
@@ -8,8 +8,8 @@ Leia:
 4. `docs/manual.md`;
 5. `docs/CONFIGURACAO.md`;
 6. `docs/changelog.md`;
-7. `docs/developer/localization-ptbr.md`;
-8. `docs/developer/source-audit-ptbr.md` quando a mudança tocar texto distribuído em várias áreas;
+7. `docs/developer/localization.md`;
+8. `docs/developer/source-audit.md` quando a mudança tocar texto distribuído em várias áreas;
 9. documentos relacionados ao tema.
 
 Objetivo:
@@ -45,3 +45,4 @@ Validação:
 - conferir links relativos;
 - conferir se caminhos citados existem;
 - conferir se comportamento descrito bate com o código ou está marcado como pendente.
+

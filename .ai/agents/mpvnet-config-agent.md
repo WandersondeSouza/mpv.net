@@ -1,4 +1,4 @@
-# Agente: Configuração e atalhos do mpv.net
+﻿# Agente: Configuração e atalhos do mpv.net
 
 ## Missão
 
@@ -12,9 +12,9 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 4. `docs/CONFIGURACAO.md`;
 5. `docs/ATALHOS.md`;
 6. `docs/guia-operacional.md`;
-7. `docs/developer/configuration-system-ptbr.md`;
-8. `docs/developer/configuration-flow-ptbr.md`.
-9. `docs/developer/architecture-ptbr.md` quando a mudança envolver fluxo amplo.
+7. `docs/developer/configuration-system.md`;
+8. `docs/developer/configuration-flow.md`.
+9. `docs/developer/architecture.md` quando a mudança envolver fluxo amplo.
 
 ## Arquivos críticos
 
@@ -41,3 +41,4 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 - Executar com `MPVNET_HOME`.
 - Testar `input.conf` padrão e customizado.
 - Testar menu de contexto quando `input.conf` contém sintaxe de menu.
+

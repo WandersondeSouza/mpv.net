@@ -1,4 +1,4 @@
-# Prompt — Próximas melhorias do fork
+﻿# Prompt — Próximas melhorias do fork
 
 Use este prompt para iniciar uma rodada curta de melhoria no fork `WandersondeSouza/mpv.net`.
 
@@ -13,9 +13,9 @@ Antes de alterar qualquer arquivo, leia:
 5. `docs/proximos-trabalhos.md`;
 6. `.ai/skills/mpvnet-maintainer.md`;
 7. `.ai/agents/mpvnet-architecture-agent.md`;
-8. `docs/developer/project-map-ptbr.md`;
-9. `docs/developer/architecture-ptbr.md`;
-10. `docs/developer/source-audit-ptbr.md`;
+8. `docs/developer/project-map.md`;
+9. `docs/developer/architecture.md`;
+10. `docs/developer/source-audit.md`;
 11. documentação técnica relacionada à área analisada.
 
 ## Objetivo
@@ -80,3 +80,4 @@ Plano de teste:
 - Revisar links Markdown locais após alterações.
 - Conferir se `README.md`, `docs/proximos-trabalhos.md` e `.ai/prompts/` não duplicam informação com nomes diferentes.
 - Não marcar como concluído nada que não tenha evidência no repositório atual ou validação local.
+

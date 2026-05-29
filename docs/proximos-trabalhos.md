@@ -1,4 +1,4 @@
-# Próximos Trabalhos
+﻿# Próximos Trabalhos
 
 Documento curto para orientar a manutenção do fork `mpv.net`.
 
@@ -20,7 +20,8 @@ Os itens aqui são pendências ou verificações em aberto. Quando algo for cons
 
 Para cada item acima, a primeira leitura recomendada é:
 
-- `docs/developer/architecture-ptbr.md` quando o impacto for amplo;
-- `docs/developer/source-audit-ptbr.md` quando houver dúvida sobre a estrutura real;
-- `docs/developer/configuration-flow-ptbr.md` e `docs/developer/startup-flow-ptbr.md` quando a dúvida envolver inicialização ou configuração;
-- `docs/developer/project-map-ptbr.md` quando o problema for de módulos e arquivos.
+- `docs/developer/architecture.md` quando o impacto for amplo;
+- `docs/developer/source-audit.md` quando houver dúvida sobre a estrutura real;
+- `docs/developer/configuration-flow.md` e `docs/developer/startup-flow.md` quando a dúvida envolver inicialização ou configuração;
+- `docs/developer/project-map.md` quando o problema for de módulos e arquivos.
+

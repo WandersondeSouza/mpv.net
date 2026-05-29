@@ -1,4 +1,4 @@
-# Prompt — Auditoria profunda de arquitetura e código-fonte
+﻿# Prompt — Auditoria profunda de arquitetura e código-fonte
 
 Analise profundamente este repositório.
 
@@ -22,10 +22,10 @@ Identifique:
 
 Confirme também:
 
-- `docs/developer/architecture-ptbr.md`;
-- `docs/developer/source-audit-ptbr.md`;
-- `docs/developer/class-map-ptbr.md`;
-- `docs/developer/project-map-ptbr.md`.
+- `docs/developer/architecture.md`;
+- `docs/developer/source-audit.md`;
+- `docs/developer/class-map.md`;
+- `docs/developer/project-map.md`.
 
 ---
 
@@ -139,3 +139,4 @@ Antes de alterar qualquer código:
 - listar arquivos analisados;
 - listar riscos;
 - propor plano incremental.
+

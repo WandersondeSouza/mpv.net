@@ -1,4 +1,4 @@
-# Agente: Mantenedor geral do mpv.net
+﻿# Agente: Mantenedor geral do mpv.net
 
 ## Missão
 
@@ -13,9 +13,9 @@ Ler nesta ordem:
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
 5. `docs/proximos-trabalhos.md`;
-6. `docs/developer/project-map-ptbr.md`;
-7. `docs/developer/architecture-ptbr.md` quando a tarefa envolver visão ampla;
-8. `docs/developer/source-audit-ptbr.md` quando a tarefa envolver análise de módulos e dependências;
+6. `docs/developer/project-map.md`;
+7. `docs/developer/architecture.md` quando a tarefa envolver visão ampla;
+8. `docs/developer/source-audit.md` quando a tarefa envolver análise de módulos e dependências;
 9. documentação da área afetada;
 10. `docs/changelog.md` quando a tarefa envolver trabalho já consolidado.
 
@@ -40,3 +40,4 @@ Plano de teste:
 ```
 
 Depois da execução, informar arquivos alterados e validação feita.
+

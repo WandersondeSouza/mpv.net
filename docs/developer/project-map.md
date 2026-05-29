@@ -1,10 +1,10 @@
-# Mapa Inicial do Projeto mpv.net
+﻿# Mapa Inicial do Projeto mpv.net
 
 ## Objetivo
 
 Este documento organiza o entendimento estrutural do projeto mpv.net com base na árvore local atual do fork.
 
-Para uma visão mais ampla da arquitetura e dos acoplamentos, consulte também `docs/developer/architecture-ptbr.md` e `docs/developer/source-audit-ptbr.md`.
+Para uma visão mais ampla da arquitetura e dos acoplamentos, consulte também `docs/developer/architecture.md` e `docs/developer/source-audit.md`.
 
 ---
 
@@ -29,7 +29,7 @@ Responsabilidades principais:
 
 1. `MpvNet`: núcleo de reprodução, comandos, configuração, input, integração com libmpv e extensões;
 2. `MpvNet.Windows`: executável Windows, janela principal, WPF/WinForms, comandos de UI e integração com o sistema;
-3. `NGettext.Wpf`: suporte de localização WPF, documentado em `docs/developer/localization-ptbr.md`;
+3. `NGettext.Wpf`: suporte de localização WPF, documentado em `docs/developer/localization.md`;
 4. `MpvNet.Extension/ExampleExtension`: exemplo de extensão .NET;
 5. `Tools`: scripts de atualização/release;
 6. `Setup`: empacotamento com Inno Setup.
@@ -179,7 +179,7 @@ Arquivos:
 - `src/MpvNet.Windows/WPF/WpfTranslator.cs`;
 - `src/MpvNet.Windows/Resources/editor_conf.txt`.
 
-O fluxo gettext da interface e a inclusão de novos idiomas, incluindo `pt-BR`, estão documentados em `docs/developer/localization-ptbr.md`.
+O fluxo gettext da interface e a inclusão de novos idiomas, incluindo `pt-BR`, estão documentados em `docs/developer/localization.md`.
 
 ---
 
@@ -240,3 +240,4 @@ Comandos deprecated ainda podem ser usados por scripts ou configurações antiga
 - Documentar fluxo de eventos detalhado com base em `MpvClient.EventLoop`.
 - Documentar fluxo completo de empacotamento após teste real.
 - Criar tabela gerada automaticamente de comandos e opções.
+
