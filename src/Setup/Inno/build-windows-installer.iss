@@ -39,8 +39,8 @@ Source: "{#MyAppSourceDir}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignorevers
 Source: "{#MyAppSourceDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations video"; Flags: runhidden waituntilterminated
 Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations audio"; Flags: runhidden waituntilterminated
+Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations video"; Flags: runhidden waituntilterminated
 
 [UninstallRun]
 Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations unreg"; Flags: runhidden waituntilterminated

@@ -297,14 +297,7 @@ public class GuiCommand
         if (!TryGetArg(args, "reg-file-assoc", out string perceivedType))
             return;
 
-        string[] extensions = Array.Empty<string>();
-
-        switch (perceivedType)
-        {
-            case "video": extensions = [.. FileTypes.GetSupportedVideoExts(), .. FileTypes.Playlist]; break;
-            case "audio": extensions = FileTypes.GetAudioExts(); break;
-            case "image": extensions = FileTypes.GetImgExts(); break;
-        }
+        string[] extensions = FileAssociation.GetExtensionsForPerceivedType(perceivedType);
 
         try
         {

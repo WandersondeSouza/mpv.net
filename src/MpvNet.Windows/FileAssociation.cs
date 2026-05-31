@@ -8,6 +8,15 @@ namespace MpvNet.Windows;
 
 public static class FileAssociation
 {
+    public static string[] GetExtensionsForPerceivedType(string perceivedType) =>
+        perceivedType switch
+        {
+            "video" => [.. FileTypes.GetSupportedVideoExts(), .. FileTypes.Playlist],
+            "audio" => [.. FileTypes.GetAudioExts(), .. FileTypes.Playlist],
+            "image" => FileTypes.GetImgExts(),
+            _ => []
+        };
+
     public static void Register(string perceivedType, string[] extensions)
     {
         string exePath = Environment.ProcessPath!;
@@ -19,15 +28,7 @@ public static class FileAssociation
         if (perceivedType != "unreg")
         {
             if (extensions.Length == 0)
-            {
-                extensions = perceivedType switch
-                {
-                    "video" => [.. FileTypes.GetSupportedVideoExts(), .. FileTypes.Playlist],
-                    "audio" => FileTypes.GetAudioExts(),
-                    "image" => FileTypes.GetImgExts(),
-                    _ => extensions
-                };
-            }
+                extensions = GetExtensionsForPerceivedType(perceivedType);
 
             foreach (string it in protocols)
             {
