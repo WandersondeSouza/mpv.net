@@ -78,8 +78,9 @@ public class AppClass
         Player.Initialized += Player_Initialized;
     }
 
-    public static string About => "WandersondeSouza/mpv.net maintenance fork\n" +
+    public static string About => "MPV.NET Media Player Community Edition\n" +
         "Repository: https://github.com/WandersondeSouza/mpv.net\n" +
+        "Maintainer: Wanderson Estanislau de Souza Rodrigues\n" +
         "Based on the original mpv.net project by Frank Skare / stax76\n" +
         "Copyright (C) 2000-2024 mpv.net/mpv/mplayer\n" +
         $"{AppInfo.Product} v{AppInfo.Version}" + GetLastWriteTime(Environment.ProcessPath!) + "\n" +

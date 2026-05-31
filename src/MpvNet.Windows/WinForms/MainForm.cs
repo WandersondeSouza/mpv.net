@@ -954,7 +954,7 @@ public partial class MainForm : Form
         string text = Player.Expand(title);
 
         if (text == "(unavailable)" || Player.PlaylistPos == -1)
-            text = "mpv.net";
+            text = AppInfo.Product;
         else
             text = TitleHelp.NormalizeMediaTitle(text);
 

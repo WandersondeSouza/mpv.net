@@ -239,6 +239,7 @@ $IsBeta = $VersionInfo.ProductVersion -match '(?i)(^|[-+.])(alpha|beta|preview|r
 $BetaString = if ($IsBeta) { '-beta' } else { '' }
 $VersionName = $VersionInfo.FileVersion
 $OutputName64 = 'mpv.net-v' + $VersionName + $BetaString + '-portable-x64'
+$InstallerOutputName64 = 'MPV.NET-Media-Player-Community-Edition-v' + $VersionName
 
 # Create OutputFolder
 $OutputDir64   = Join-Path $OutputRootDir ($OutputName64 + '\')
@@ -282,10 +283,10 @@ if (-not $SkipInstaller) {
     $InnoSetupScript = Test (Join-Path $SourceDir 'Setup\Inno\build-windows-installer.iss')
     & $InnoSetupCompiler "/O$OutputRootDir" $InnoSetupScript
     if ($LastExitCode) { throw $LastExitCode }
-    $SetupFile = Test (Join-Path $OutputRootDir "mpv.net-v$VersionName-setup-x64.exe")
+    $SetupFile = Test (Join-Path $OutputRootDir "$InstallerOutputName64-setup-x64.exe")
 
     if ($IsBeta) {
-        $NewSetupFile = Join-Path $OutputRootDir "mpv.net-v$VersionName-beta-setup-x64.exe"
+        $NewSetupFile = Join-Path $OutputRootDir "$InstallerOutputName64-beta-setup-x64.exe"
         Move-Item $SetupFile $NewSetupFile
         $SetupFile = $NewSetupFile
     }

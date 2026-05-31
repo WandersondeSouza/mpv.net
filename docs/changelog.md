@@ -3,6 +3,18 @@
 Este arquivo registra apenas as versoes publicadas pelo fork
 `WandersondeSouza/mpv.net`.
 
+# Em desenvolvimento
+
+## Metadados do fork
+
+- Atualizados os metadados do executavel e do instalador para identificar o
+  projeto como `MPV.NET Media Player Community Edition`.
+- Atualizados produto, publicador do instalador, URLs de suporte/atualizacao e nome
+  amigavel de associacoes de arquivo para apontar ao fork
+  `WandersondeSouza/mpv.net`.
+- Mantidos `mpvnet.exe`, `%APPDATA%\mpv.net` e chaves tecnicas de compatibilidade
+  para preservar configuracoes e fluxos existentes.
+
 # Fork WandersondeSouza - v7.1.2.4 (2026-05-29)
 
 ## Reproducao, arquivos e prioridade de entrada
