@@ -297,7 +297,7 @@ public class GuiCommand
         if (!TryGetArg(args, "reg-file-assoc", out string perceivedType))
             return;
 
-        string[] extensions = FileAssociation.GetExtensionsForPerceivedType(perceivedType);
+        string[] extensions = Windows.FileAssociation.GetExtensionsForPerceivedType(perceivedType);
 
         try
         {
