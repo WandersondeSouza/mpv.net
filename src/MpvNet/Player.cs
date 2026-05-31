@@ -454,7 +454,21 @@ public class MainPlayer : MpvClient
                 }
             }
 
-            if (ext == "iso")
+            if (FileTypes.IsPlaylist(ext) && File.Exists(file))
+            {
+                var playlistItems = PlaylistFile.Read(file);
+                bool appendPlaylist = append || i > 0 || !string.IsNullOrEmpty(GetPropertyString("path"));
+
+                foreach (var item in playlistItems)
+                {
+                    if (PlaylistContainsPath(item.Path))
+                        continue;
+
+                    LoadPlaylistItem(item, appendPlaylist);
+                    appendPlaylist = true;
+                }
+            }
+            else if (ext == "iso")
                 LoadISO(file);
             else if(FileTypes.Subtitle.Contains(ext))
                 CommandV("sub-add", file);
@@ -469,6 +483,64 @@ public class MainPlayer : MpvClient
 
         if (string.IsNullOrEmpty(GetPropertyString("path")))
             SetPropertyInt("playlist-pos", 0);
+    }
+
+    void LoadPlaylistItem(PlaylistFileItem item, bool append)
+    {
+        string title = item.Title;
+
+        if (string.IsNullOrWhiteSpace(title))
+        {
+            CommandV("loadfile", item.Path, append ? "append" : "replace");
+            return;
+        }
+
+        CommandV("loadfile", item.Path, append ? "append" : "replace", "-1", "force-media-title=" + title);
+    }
+
+    bool PlaylistContainsPath(string path)
+    {
+        string json = GetPropertyString("playlist");
+
+        if (string.IsNullOrWhiteSpace(json))
+            return false;
+
+        string key = GetPlaylistPathKey(path);
+
+        try
+        {
+            foreach (JsonElement item in JsonDocument.Parse(json).RootElement.EnumerateArray())
+            {
+                if (!item.TryGetProperty("filename", out JsonElement filenameElement))
+                    continue;
+
+                string? filename = filenameElement.GetString();
+
+                if (!string.IsNullOrWhiteSpace(filename) && GetPlaylistPathKey(filename) == key)
+                    return true;
+            }
+        }
+        catch (Exception ex)
+        {
+            LogNonBlockingMetadataFailure("Playlist duplicate detection", path, ex);
+        }
+
+        return false;
+    }
+
+    static string GetPlaylistPathKey(string path)
+    {
+        if (FileTypes.IsStreamingUrl(path))
+            return path.Trim();
+
+        try
+        {
+            return System.IO.Path.GetFullPath(path).TrimEnd(System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar).ToLowerInvariant();
+        }
+        catch
+        {
+            return path.Trim().ToLowerInvariant();
+        }
     }
 
     public static string ConvertFilePath(string path)

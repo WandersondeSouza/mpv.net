@@ -5,6 +5,18 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 
 # Em desenvolvimento
 
+## Playlists locais
+
+- Adicionado parser do frontend para playlists locais `.m3u`, `.m3u8`,
+  `.pls`, `.xspf`, `.asx`, `.wpl`, `.cue` e `.jspf`, extraindo titulo e caminho
+  de cada item antes de encaminhar a midia ao mpv/libmpv.
+- Ao abrir uma playlist, o primeiro item reproduzivel passa a iniciar a
+  reproducao quando o player esta vazio; os demais itens sao anexados a
+  playlist. Se uma instancia ja estiver aberta, os itens da playlist recebida
+  sao apenas adicionados.
+- Entradas repetidas que apontam para o mesmo arquivo ou URL sao ignoradas,
+  mesmo quando possuem titulos diferentes.
+
 # Fork WandersondeSouza - v7.1.2.5 (2026-05-31)
 
 ## Metadados do fork

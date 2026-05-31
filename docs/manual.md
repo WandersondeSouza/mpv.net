@@ -31,7 +31,7 @@ O instalador registra os formatos de mídia comuns e playlists IPTV suportados p
 
 As associações atuais incluem:
 
-- Vídeo e playlists: `.mp4`, `.m4v`, `.mkv`, `.webm`, `.avi`, `.mov`, `.qt`, `.wmv`, `.asf`, `.flv`, `.f4v`, `.mpg`, `.mpeg`, `.mpe`, `.m1v`, `.m2v`, `.vob`, `.ts`, `.mts`, `.m2ts`, `.3gp`, `.3g2`, `.ogv`, `.ogg`, `.rm`, `.rmvb`, `.divx`, `.xvid`, `.dv`, `.nut`, `.nsv`, `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.cue`;
+- Vídeo e playlists: `.mp4`, `.m4v`, `.mkv`, `.webm`, `.avi`, `.mov`, `.qt`, `.wmv`, `.asf`, `.flv`, `.f4v`, `.mpg`, `.mpeg`, `.mpe`, `.m1v`, `.m2v`, `.vob`, `.ts`, `.mts`, `.m2ts`, `.3gp`, `.3g2`, `.ogv`, `.ogg`, `.rm`, `.rmvb`, `.divx`, `.xvid`, `.dv`, `.nut`, `.nsv`, `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`, `.wpl`, `.cue`, `.jspf`;
 - Áudio: `.mp3`, `.wav`, `.flac`, `.m4a`, `.aac`, `.ogg`, `.opus`, `.wma`, `.alac`, `.aiff`, `.aif`, `.ape`, `.wv`, `.mka`, `.ac3`, `.dts`, `.eac3`, `.amr`, `.au`, `.mp2`, `.mpa`, `.mpc`, `.thd`, `.w64`, `.oga`, `.ogm`, `.dtshd`, `.dtshr`, `.dtsma`.
 
 ## Configuração
@@ -54,6 +54,13 @@ Arquivos principais:
 ## Linha de comando
 
 O frontend aceita arquivos locais, playlists e URLs de streaming compatíveis com o mpv.
+
+Playlists locais nos formatos `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`,
+`.wpl`, `.cue` e `.jspf` são expandidas pelo frontend antes do envio ao
+mpv/libmpv. O mpv.net usa o título informado pela playlist quando disponível,
+mantém apenas entradas de áudio/vídeo ou URLs de streaming e ignora itens
+repetidos que apontem para o mesmo caminho ou URL. Se uma instância do player
+já estiver aberta, os itens da playlist são adicionados à playlist atual.
 
 Exemplo:
 

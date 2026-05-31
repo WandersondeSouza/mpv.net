@@ -1239,8 +1239,7 @@ public partial class MainForm : Form
                             Player.LoadFiles(args, true, false);
                             break;
                         case "queue":
-                            foreach (string file in args)
-                                Player.CommandV("loadfile", file, "append");
+                            Player.LoadFiles(args, true, true);
                             break;
                         case "command":
                             Player.Command(args[0]);

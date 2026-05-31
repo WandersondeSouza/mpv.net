@@ -6,7 +6,7 @@ namespace MpvNet;
 public static class FileTypes
 {
     public static string[] Subtitle { get; } = ["srt", "ass", "idx", "sub", "sup", "ttxt", "txt", "ssa", "smi", "mks"];
-    public static string[] Playlist { get; } = ["m3u", "m3u8", "pls", "xspf", "cue"];
+    public static string[] Playlist { get; } = ["m3u", "m3u8", "pls", "xspf", "asx", "wpl", "cue", "jspf"];
     public static string[] StreamingProtocols { get; } = ["http://", "https://", "rtmp://", "rtmps://", "rtsp://", "mms://", "udp://", "tcp://", "ftp://", "sftp://"];
     public static string[] DefaultAudioExts { get; } = [
         "mp3", "wav", "flac", "m4a", "aac", "ogg", "opus", "wma",

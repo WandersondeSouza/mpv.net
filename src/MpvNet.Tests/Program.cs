@@ -7,6 +7,23 @@ using MpvNet.Help;
 
 string tempMediaFile = Path.Combine(Path.GetTempPath(), "mpvnet-tests-empty-media.mkv");
 File.WriteAllText(tempMediaFile, "");
+string tempPlaylistDir = Path.Combine(Path.GetTempPath(), "mpvnet-playlist-tests");
+Directory.CreateDirectory(tempPlaylistDir);
+string tempAudio = Path.Combine(tempPlaylistDir, "audio.mp3");
+string tempVideo = Path.Combine(tempPlaylistDir, "video.mp4");
+string tempM3u = Path.Combine(tempPlaylistDir, "playlist.m3u");
+File.WriteAllText(tempAudio, "");
+File.WriteAllText(tempVideo, "");
+File.WriteAllLines(tempM3u, [
+    "#EXTM3U",
+    "#EXTINF:-1,Audio title",
+    "audio.mp3",
+    "#EXTINF:-1,Duplicate title",
+    "audio.mp3",
+    "#EXTINF:-1,Video title",
+    "video.mp4",
+    "subtitle.srt"]);
+var parsedPlaylist = PlaylistFile.Read(tempM3u);
 
 string[] expectedAudioExts = [
     "mp3", "wav", "flac", "m4a", "aac", "ogg", "opus", "wma",
@@ -23,6 +40,9 @@ var tests = new (string Name, bool Result)[]
     ("IsVideoFile .mkv", FileTypes.IsVideoFile(".mkv")),
     ("IsPlaylistFile .m3u8", FileTypes.IsPlaylistFile(".m3u8")),
     ("IsPlaylistFile .cue", FileTypes.IsPlaylistFile(".cue")),
+    ("IsPlaylistFile .asx", FileTypes.IsPlaylistFile(".asx")),
+    ("IsPlaylistFile .wpl", FileTypes.IsPlaylistFile(".wpl")),
+    ("IsPlaylistFile .jspf", FileTypes.IsPlaylistFile(".jspf")),
     ("IsStreamingUrl https HLS", FileTypes.IsStreamingUrl("https://example.com/live.m3u8")),
     ("IsStreamingUrl rtmp", FileTypes.IsStreamingUrl("rtmp://server/live")),
     ("IsStreamingUrl rtsp", FileTypes.IsStreamingUrl("rtsp://server/stream")),
@@ -46,11 +66,15 @@ var tests = new (string Name, bool Result)[]
     ("Audio defaults keep legacy formats", legacyAudioExts.All(audioExts.Contains)),
     ("Audio defaults add modern formats", expectedAudioExts.All(audioExts.Contains)),
     ("Empty media track defaults avoid null bindings", new MediaTrack().Text == "" && new MediaTrack().Language == ""),
+    ("Playlist parser keeps playable unique items", parsedPlaylist.Count == 2),
+    ("Playlist parser resolves relative media paths", parsedPlaylist.Any(i => i.Path == tempAudio)),
+    ("Playlist parser keeps item title", parsedPlaylist.Any(i => i.Title == "Video title" && i.Path == tempVideo)),
 };
 
 var failed = tests.Where(test => !test.Result).ToArray();
 
 File.Delete(tempMediaFile);
+Directory.Delete(tempPlaylistDir, true);
 
 foreach (var test in tests)
     Console.WriteLine($"{(test.Result ? "PASS" : "FAIL")} {test.Name}");
