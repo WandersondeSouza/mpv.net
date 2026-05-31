@@ -6,8 +6,13 @@ namespace MpvNet;
 public static class FileTypes
 {
     public static string[] Subtitle { get; } = ["srt", "ass", "idx", "sub", "sup", "ttxt", "txt", "ssa", "smi", "mks"];
-    public static string[] Playlist { get; } = ["m3u", "m3u8", "pls", "xspf"];
+    public static string[] Playlist { get; } = ["m3u", "m3u8", "pls", "xspf", "cue"];
     public static string[] StreamingProtocols { get; } = ["http://", "https://", "rtmp://", "rtmps://", "rtsp://", "mms://", "udp://", "tcp://", "ftp://", "sftp://"];
+    public static string[] DefaultAudioExts { get; } = [
+        "mp3", "wav", "flac", "m4a", "aac", "ogg", "opus", "wma",
+        "alac", "aiff", "aif", "ape", "wv", "mka", "ac3", "dts",
+        "eac3", "amr", "au", "mp2", "mpa", "mpc", "thd", "w64",
+        "oga", "ogm", "dtshd", "dtshr", "dtsma"];
     public static string[] DefaultVideoExts { get; } = [
         "mp4", "m4v", "mkv", "webm", "avi", "mov", "qt", "wmv", "asf", "flv", "f4v",
         "mpg", "mpeg", "mpe", "m1v", "m2v", "vob", "ts", "mts", "m2ts", "3gp",
@@ -29,7 +34,7 @@ public static class FileTypes
         IsStreamingUrl(input) || IsVideoFile(input) || IsPlaylistFile(input);
 
     public static bool IsVideo(string ext) => GetSupportedVideoExts().Contains(NormalizeExt(ext));
-    public static bool IsAudio(string ext) => GetAudioExts().Contains(ext);
+    public static bool IsAudio(string ext) => GetAudioExts().Contains(NormalizeExt(ext));
     public static bool IsImage(string ext) => GetImgExts().Contains(ext);
 
     public static string[] GetVideoExts()
@@ -49,9 +54,9 @@ public static class FileTypes
         string exts = Player.GetPropertyString("audio-exts");
 
         if (string.IsNullOrEmpty(exts))
-            return ["mp3", "flac", "m4a", "mka", "mp2", "ogg", "opus", "aac", "ac3", "dts", "dtshd", "dtshr", "dtsma", "eac3", "mpa", "mpc", "thd", "w64", "wav"];
+            return DefaultAudioExts;
 
-        return exts.Split(" ,;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+        return exts.Split(" ,;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(NormalizeExt).Distinct().ToArray();
     }
 
     public static string[] GetImgExts()

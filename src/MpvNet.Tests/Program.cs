@@ -7,11 +7,21 @@ using MpvNet;
 string tempMediaFile = Path.Combine(Path.GetTempPath(), "mpvnet-tests-empty-media.mkv");
 File.WriteAllText(tempMediaFile, "");
 
+string[] expectedAudioExts = [
+    "mp3", "wav", "flac", "m4a", "aac", "ogg", "opus", "wma",
+    "alac", "aiff", "aif", "ape", "wv", "mka", "ac3", "dts",
+    "eac3", "amr"];
+
+string[] legacyAudioExts = ["au", "mp2", "mpa", "mpc", "thd", "w64", "oga", "ogm", "dtshd", "dtshr", "dtsma"];
+
+string[] audioExts = FileTypes.GetAudioExts();
+
 var tests = new (string Name, bool Result)[]
 {
     ("IsVideoFile .mp4", FileTypes.IsVideoFile(".mp4")),
     ("IsVideoFile .mkv", FileTypes.IsVideoFile(".mkv")),
     ("IsPlaylistFile .m3u8", FileTypes.IsPlaylistFile(".m3u8")),
+    ("IsPlaylistFile .cue", FileTypes.IsPlaylistFile(".cue")),
     ("IsStreamingUrl https HLS", FileTypes.IsStreamingUrl("https://example.com/live.m3u8")),
     ("IsStreamingUrl rtmp", FileTypes.IsStreamingUrl("rtmp://server/live")),
     ("IsStreamingUrl rtsp", FileTypes.IsStreamingUrl("rtsp://server/stream")),
@@ -30,6 +40,8 @@ var tests = new (string Name, bool Result)[]
     ("Streaming without title is still loadable", CommandLine.IsLoadableFileArgument("rtsp://example.com/stream")),
     ("Invalid empty URL is not loadable", !CommandLine.IsLoadableFileArgument("")),
     ("Invalid unknown local path is not supported media input", !FileTypes.IsSupportedMediaInput(@"C:\missing\file.unknown")),
+    ("Audio defaults keep legacy formats", legacyAudioExts.All(audioExts.Contains)),
+    ("Audio defaults add modern formats", expectedAudioExts.All(audioExts.Contains)),
     ("Empty media track defaults avoid null bindings", new MediaTrack().Text == "" && new MediaTrack().Language == ""),
 };
 

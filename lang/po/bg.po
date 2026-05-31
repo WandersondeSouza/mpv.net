@@ -3,29 +3,29 @@ msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:75
 msgid "           always use software decoding"
-msgstr "           винаги използвайте софтуерно декодиране"
+msgstr "           Ð²Ð¸Ð½Ð°Ð³Ð¸ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹Ñ‚Ðµ ÑÐ¾Ñ„Ñ‚ÑƒÐµÑ€Ð½Ð¾ Ð´ÐµÐºÐ¾Ð´Ð¸Ñ€Ð°Ð½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:988
 msgid "          Window size is set to video resolution"
-msgstr "          Размера на прозореца е зададен за резолюция на видео"
+msgstr "          Ð Ð°Ð·Ð¼ÐµÑ€Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° Ðµ Ð·Ð°Ð´Ð°Ð´ÐµÐ½ Ð·Ð° Ñ€ÐµÐ·Ð¾Ð»ÑŽÑ†Ð¸Ñ Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:77
 msgid "          exactly the same as auto"
-msgstr "          абсолютно същото като авто"
+msgstr "          Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ð¾ ÑÑŠÑ‰Ð¾Ñ‚Ð¾ ÐºÐ°Ñ‚Ð¾ Ð°Ð²Ñ‚Ð¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:256
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:271
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:286
 msgid "         Box averaging (very fast)"
-msgstr "         Кутия средно (много бързо)"
+msgstr "         ÐšÑƒÑ‚Ð¸Ñ ÑÑ€ÐµÐ´Ð½Ð¾ (Ð¼Ð½Ð¾Ð³Ð¾ Ð±ÑŠÑ€Ð·Ð¾)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:990
 msgid "         Window size is always remembered"
-msgstr "         Размерът на прозореца винаги се запомня"
+msgstr "         Ð Ð°Ð·Ð¼ÐµÑ€ÑŠÑ‚ Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° Ð²Ð¸Ð½Ð°Ð³Ð¸ ÑÐµ Ð·Ð°Ð¿Ð¾Ð¼Ð½Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:76
 msgid "         enable best hw decoder"
-msgstr "         позволява най-добър hw декодер"
+msgstr "         Ð¿Ð¾Ð·Ð²Ð¾Ð»ÑÐ²Ð° Ð½Ð°Ð¹-Ð´Ð¾Ð±ÑŠÑ€ hw Ð´ÐµÐºÐ¾Ð´ÐµÑ€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:84
 msgid "         requires vo=gpu (Any platform CUDA is available)"
@@ -33,17 +33,17 @@ msgstr "         requires vo=gpu (Any platform CUDA is available)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1084
 msgid "        Never use precise seeks."
-msgstr "        Никога не използвай точни търсения."
+msgstr "        ÐÐ¸ÐºÐ¾Ð³Ð° Ð½Ðµ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹ Ñ‚Ð¾Ñ‡Ð½Ð¸ Ñ‚ÑŠÑ€ÑÐµÐ½Ð¸Ñ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:255
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:270
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:285
 msgid "        Use the same filter as specified for upscaler"
-msgstr "        Използване на същия филтър, както е посочено за upscaler"
+msgstr "        Ð˜Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ðµ Ð½Ð° ÑÑŠÑ‰Ð¸Ñ Ñ„Ð¸Ð»Ñ‚ÑŠÑ€, ÐºÐ°ÐºÑ‚Ð¾ Ðµ Ð¿Ð¾ÑÐ¾Ñ‡ÐµÐ½Ð¾ Ð·Ð° upscaler"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:989
 msgid "        Window size is remembered in the current session"
-msgstr "        Размерът на прозореца се запомня през текущата сесия"
+msgstr "        Ð Ð°Ð·Ð¼ÐµÑ€ÑŠÑ‚ Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° ÑÐµ Ð·Ð°Ð¿Ð¾Ð¼Ð½Ñ Ð¿Ñ€ÐµÐ· Ñ‚ÐµÐºÑƒÑ‰Ð°Ñ‚Ð° ÑÐµÑÐ¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:86
 msgid "        requires vo=gpu (Any platform CUDA is available)"
@@ -55,7 +55,7 @@ msgstr "        requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:300
 msgid "       Disable frame mixing, show nearest frame to target PTS"
-msgstr "       Изключване на смесването на рамката, показване на най-близката рамка до целевата PTS"
+msgstr "       Ð˜Ð·ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½Ðµ Ð½Ð° ÑÐ¼ÐµÑÐ²Ð°Ð½ÐµÑ‚Ð¾ Ð½Ð° Ñ€Ð°Ð¼ÐºÐ°Ñ‚Ð°, Ð¿Ð¾ÐºÐ°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ð½Ð°Ð¹-Ð±Ð»Ð¸Ð·ÐºÐ°Ñ‚Ð° Ñ€Ð°Ð¼ÐºÐ° Ð´Ð¾ Ñ†ÐµÐ»ÐµÐ²Ð°Ñ‚Ð° PTS"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:106
 msgid "       Win32/WGL"
@@ -63,7 +63,7 @@ msgstr "       Win32/WGL"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:304
 msgid "      Cubic B-spline frame mixing"
-msgstr "      Смесване на кубичната рамка B-spline"
+msgstr "      Ð¡Ð¼ÐµÑÐ²Ð°Ð½Ðµ Ð½Ð° ÐºÑƒÐ±Ð¸Ñ‡Ð½Ð°Ñ‚Ð° Ñ€Ð°Ð¼ÐºÐ° B-spline"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:65
 msgid "      General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
@@ -71,7 +71,7 @@ msgstr "      General purpose, customizable, GPU-accelerated video output driver
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1083
 msgid "      Use precise seeks whenever possible."
-msgstr "      Използвайте точни търсения, когато е възможно."
+msgstr "      Ð˜Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹Ñ‚Ðµ Ñ‚Ð¾Ñ‡Ð½Ð¸ Ñ‚ÑŠÑ€ÑÐµÐ½Ð¸Ñ, ÐºÐ¾Ð³Ð°Ñ‚Ð¾ Ðµ Ð²ÑŠÐ·Ð¼Ð¾Ð¶Ð½Ð¾."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:103
 msgid "      auto-select"
@@ -85,11 +85,11 @@ msgstr "      requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:274
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:289
 msgid "     Bicubic interpolation (fast)"
-msgstr "     Бикубична интерполация (бърза)"
+msgstr "     Ð‘Ð¸ÐºÑƒÐ±Ð¸Ñ‡Ð½Ð° Ð¸Ð½Ñ‚ÐµÑ€Ð¿Ð¾Ð»Ð°Ñ†Ð¸Ñ (Ð±ÑŠÑ€Ð·Ð°)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:64
 msgid "     Choose the best mode automatically."
-msgstr "     Изберете най-добрия режим автоматично."
+msgstr "     Ð˜Ð·Ð±ÐµÑ€ÐµÑ‚Ðµ Ð½Ð°Ð¹-Ð´Ð¾Ð±Ñ€Ð¸Ñ Ñ€ÐµÐ¶Ð¸Ð¼ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:105
 msgid "     Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
@@ -99,21 +99,21 @@ msgstr "     Direct3D11 through the OpenGL ES translation layer ANGLE. This supp
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:272
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:287
 msgid "     Hermite-weighted averaging (fast)"
-msgstr "     Среднопретеглена стойност на хермитите (бърза)"
+msgstr "     Ð¡Ñ€ÐµÐ´Ð½Ð¾Ð¿Ñ€ÐµÑ‚ÐµÐ³Ð»ÐµÐ½Ð° ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚ Ð½Ð° Ñ…ÐµÑ€Ð¼Ð¸Ñ‚Ð¸Ñ‚Ðµ (Ð±ÑŠÑ€Ð·Ð°)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1039
 msgid "     If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
-msgstr "     Ако текущият файл приключи, отидете в следващия файл. Ако настройката е \"не,\" играчът излиза след последния файл."
+msgstr "     ÐÐºÐ¾ Ñ‚ÐµÐºÑƒÑ‰Ð¸ÑÑ‚ Ñ„Ð°Ð¹Ð» Ð¿Ñ€Ð¸ÐºÐ»ÑŽÑ‡Ð¸, Ð¾Ñ‚Ð¸Ð´ÐµÑ‚Ðµ Ð² ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ Ñ„Ð°Ð¹Ð». ÐÐºÐ¾ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ°Ñ‚Ð° Ðµ \"Ð½Ðµ,\" Ð¸Ð³Ñ€Ð°Ñ‡ÑŠÑ‚ Ð¸Ð·Ð»Ð¸Ð·Ð° ÑÐ»ÐµÐ´ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ñ Ñ„Ð°Ð¹Ð»."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:263
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:278
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:293
 msgid "     Lanczos reconstruction"
-msgstr "     Реконструкция на Lanczos"
+msgstr "     Ð ÐµÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ†Ð¸Ñ Ð½Ð° Lanczos"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:303
 msgid "     Linear frame mixing"
-msgstr "     Линейно смесване на рамката"
+msgstr "     Ð›Ð¸Ð½ÐµÐ¹Ð½Ð¾ ÑÐ¼ÐµÑÐ²Ð°Ð½Ðµ Ð½Ð° Ñ€Ð°Ð¼ÐºÐ°Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:108
 msgid "     VK_KHR_win32_surface"
@@ -127,33 +127,33 @@ msgstr "     Win32, with native Direct3D 11 rendering."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:273
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:288
 msgid "    Bilinear (triangle) averaging (fast)"
-msgstr "    Билинейна (триъгълник) средна (бърза)"
+msgstr "    Ð‘Ð¸Ð»Ð¸Ð½ÐµÐ¹Ð½Ð° (Ñ‚Ñ€Ð¸ÑŠÐ³ÑŠÐ»Ð½Ð¸Ðº) ÑÑ€ÐµÐ´Ð½Ð° (Ð±ÑŠÑ€Ð·Ð°)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:175
 msgid "    Dither to 8 bit output."
-msgstr "    Дитер до 8 битов изход."
+msgstr "    Ð”Ð¸Ñ‚ÐµÑ€ Ð´Ð¾ 8 Ð±Ð¸Ñ‚Ð¾Ð² Ð¸Ð·Ñ…Ð¾Ð´."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:811
 msgid "    Don't automatically load external audio files."
-msgstr "    Не зареждайте автоматично външни аудио файлове."
+msgstr "    ÐÐµ Ð·Ð°Ñ€ÐµÐ¶Ð´Ð°Ð¹Ñ‚Ðµ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾ Ð²ÑŠÐ½ÑˆÐ½Ð¸ Ð°ÑƒÐ´Ð¸Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:847
 msgid "    Don't automatically load external subtitle files."
-msgstr "    Не зареждайте автоматично външни субтитри файлове."
+msgstr "    ÐÐµ Ð·Ð°Ñ€ÐµÐ¶Ð´Ð°Ð¹Ñ‚Ðµ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾ Ð²ÑŠÐ½ÑˆÐ½Ð¸ ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:260
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:275
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:290
 msgid "    Gaussian smoothing (fast)"
-msgstr "    Гаусово изглаждане (бързо)"
+msgstr "    Ð“Ð°ÑƒÑÐ¾Ð²Ð¾ Ð¸Ð·Ð³Ð»Ð°Ð¶Ð´Ð°Ð½Ðµ (Ð±ÑŠÑ€Ð·Ð¾)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:302
 msgid "    Hermite-weighted frame mixing"
-msgstr "    Смесване на рамка с хермит"
+msgstr "    Ð¡Ð¼ÐµÑÐ²Ð°Ð½Ðµ Ð½Ð° Ñ€Ð°Ð¼ÐºÐ° Ñ Ñ…ÐµÑ€Ð¼Ð¸Ñ‚"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1038
 msgid "    If the current file ends, go to the next file, keep the last file open."
-msgstr "    Ако текущият файл приключи, отидете в следващия файл, задръжте последния файл отворен."
+msgstr "    ÐÐºÐ¾ Ñ‚ÐµÐºÑƒÑ‰Ð¸ÑÑ‚ Ñ„Ð°Ð¹Ð» Ð¿Ñ€Ð¸ÐºÐ»ÑŽÑ‡Ð¸, Ð¾Ñ‚Ð¸Ð´ÐµÑ‚Ðµ Ð² ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ Ñ„Ð°Ð¹Ð», Ð·Ð°Ð´Ñ€ÑŠÐ¶Ñ‚Ðµ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ñ Ñ„Ð°Ð¹Ð» Ð¾Ñ‚Ð²Ð¾Ñ€ÐµÐ½."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:262
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:277
@@ -163,11 +163,11 @@ msgstr "    Mitchell-Netravalia cubical spline"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:85
 msgid "    copies video back to system RAM"
-msgstr "    копия на видеото обратно към системата RAM"
+msgstr "    ÐºÐ¾Ð¿Ð¸Ñ Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾Ñ‚Ð¾ Ð¾Ð±Ñ€Ð°Ñ‚Ð½Ð¾ ÐºÑŠÐ¼ ÑÐ¸ÑÑ‚ÐµÐ¼Ð°Ñ‚Ð° RAM"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:79
 msgid "    enable any whitelisted hw decoder"
-msgstr "    да се даде възможност на всеки декодер в бяло"
+msgstr "    Ð´Ð° ÑÐµ Ð´Ð°Ð´Ðµ Ð²ÑŠÐ·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑ‚ Ð½Ð° Ð²ÑÐµÐºÐ¸ Ð´ÐµÐºÐ¾Ð´ÐµÑ€ Ð² Ð±ÑÐ»Ð¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:78
 msgid "    enable best hw decoder with copy-back"
@@ -175,11 +175,11 @@ msgstr "    enable best hw decoder with copy-back"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:173
 msgid "   Disable any dithering done by mpv."
-msgstr "   Изключете всяко отклонение направено от mpv."
+msgstr "   Ð˜Ð·ÐºÐ»ÑŽÑ‡ÐµÑ‚Ðµ Ð²ÑÑÐºÐ¾ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÐµÐ½Ð¸Ðµ Ð½Ð°Ð¿Ñ€Ð°Ð²ÐµÐ½Ð¾ Ð¾Ñ‚ mpv."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:176
 msgid "   Dither to 10 bit output."
-msgstr "   Дитер на 10 бита изход."
+msgstr "   Ð”Ð¸Ñ‚ÐµÑ€ Ð½Ð° 10 Ð±Ð¸Ñ‚Ð° Ð¸Ð·Ñ…Ð¾Ð´."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:814
 msgid "   Load all audio files in the current and audio-file-paths directories."
@@ -191,7 +191,7 @@ msgstr "   Load all subs in the current and sub-file-paths directories."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1086
 msgid "   Same as yes (for compatibility)."
-msgstr "   Същото като да (за съвместимост)."
+msgstr "   Ð¡ÑŠÑ‰Ð¾Ñ‚Ð¾ ÐºÐ°Ñ‚Ð¾ Ð´Ð° (Ð·Ð° ÑÑŠÐ²Ð¼ÐµÑÑ‚Ð¸Ð¼Ð¾ÑÑ‚)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:94
 msgid "   Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
@@ -199,12 +199,12 @@ msgstr "   Use any available API. Note that the default GPU API used for this va
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:985
 msgid "   Window width is always remembered"
-msgstr "   Ширината на прозореца винаги се помни"
+msgstr "   Ð¨Ð¸Ñ€Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° Ð²Ð¸Ð½Ð°Ð³Ð¸ ÑÐµ Ð¿Ð¾Ð¼Ð½Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:81
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:87
 msgid "   copies video back to system RAM"
-msgstr "   копия на видеото обратно към системата RAM"
+msgstr "   ÐºÐ¾Ð¿Ð¸Ñ Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾Ñ‚Ð¾ Ð¾Ð±Ñ€Ð°Ñ‚Ð½Ð¾ ÐºÑŠÐ¼ ÑÐ¸ÑÑ‚ÐµÐ¼Ð°Ñ‚Ð° RAM"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:95
 msgid "  Allow only gpu-context=d3d11"
@@ -216,15 +216,15 @@ msgstr "  Create a new process everytime the shell starts mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:9
 msgid "  Force a single process and add files to playlist"
-msgstr "  Принуди един процес и добави файлове в списъка"
+msgstr "  ÐŸÑ€Ð¸Ð½ÑƒÐ´Ð¸ ÐµÐ´Ð¸Ð½ Ð¿Ñ€Ð¾Ñ†ÐµÑ Ð¸ Ð´Ð¾Ð±Ð°Ð²Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ Ð² ÑÐ¿Ð¸ÑÑŠÐºÐ°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:987
 msgid "  Window height is always remembered"
-msgstr "  Височината на прозореца винаги се помни"
+msgstr "  Ð’Ð¸ÑÐ¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° Ð²Ð¸Ð½Ð°Ð³Ð¸ ÑÐµ Ð¿Ð¾Ð¼Ð½Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:984
 msgid "  Window width is remembered in the current session"
-msgstr "  Ширината на прозореца се запомня през текущата сесия"
+msgstr "  Ð¨Ð¸Ñ€Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° ÑÐµ Ð·Ð°Ð¿Ð¾Ð¼Ð½Ñ Ð¿Ñ€ÐµÐ· Ñ‚ÐµÐºÑƒÑ‰Ð°Ñ‚Ð° ÑÐµÑÐ¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:107
 msgid " (experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
@@ -240,11 +240,11 @@ msgstr " Allow only Vulkan"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:241
 msgid " Aspect-ratio preserving nearest neighbour sampling (very fast)."
-msgstr " Aspect-състояние запазване на най-близкия съсед вземане на проби (много бързо)."
+msgstr " Aspect-ÑÑŠÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð·Ð°Ð¿Ð°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ð½Ð°Ð¹-Ð±Ð»Ð¸Ð·ÐºÐ¸Ñ ÑÑŠÑÐµÐ´ Ð²Ð·ÐµÐ¼Ð°Ð½Ðµ Ð½Ð° Ð¿Ñ€Ð¾Ð±Ð¸ (Ð¼Ð½Ð¾Ð³Ð¾ Ð±ÑŠÑ€Ð·Ð¾)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:174
 msgid " Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
-msgstr " Автоматичен подбор. Ако не може да бъде открита дълбочината на изходния бит, се приемат 8 бита на компонент."
+msgstr " ÐÐ²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÐ½ Ð¿Ð¾Ð´Ð±Ð¾Ñ€. ÐÐºÐ¾ Ð½Ðµ Ð¼Ð¾Ð¶Ðµ Ð´Ð° Ð±ÑŠÐ´Ðµ Ð¾Ñ‚ÐºÑ€Ð¸Ñ‚Ð° Ð´ÑŠÐ»Ð±Ð¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¸Ð·Ñ…Ð¾Ð´Ð½Ð¸Ñ Ð±Ð¸Ñ‚, ÑÐµ Ð¿Ñ€Ð¸ÐµÐ¼Ð°Ñ‚ 8 Ð±Ð¸Ñ‚Ð° Ð½Ð° ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1166
 msgid " Available on Windows 10 or higher"
@@ -252,11 +252,11 @@ msgstr " Available on Windows 10 or higher"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:242
 msgid " Bicubic interpolation (fast)."
-msgstr " Бикубичната интерполация (бърза)."
+msgstr " Ð‘Ð¸ÐºÑƒÐ±Ð¸Ñ‡Ð½Ð°Ñ‚Ð° Ð¸Ð½Ñ‚ÐµÑ€Ð¿Ð¾Ð»Ð°Ñ†Ð¸Ñ (Ð±ÑŠÑ€Ð·Ð°)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:240
 msgid " Bilinear sampling (very fast)."
-msgstr " Билинейна проба (много бързо)."
+msgstr " Ð‘Ð¸Ð»Ð¸Ð½ÐµÐ¹Ð½Ð° Ð¿Ñ€Ð¾Ð±Ð° (Ð¼Ð½Ð¾Ð³Ð¾ Ð±ÑŠÑ€Ð·Ð¾)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:261
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:276
@@ -270,19 +270,19 @@ msgstr " Catmull-Rom cubical spline."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:227
 msgid " Default settings, tuned to provide a balance of performance and quality."
-msgstr " Настройки по подразбиране, настроени да осигурят баланс на изпълнение и качество."
+msgstr " ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ, Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð¸ Ð´Ð° Ð¾ÑÐ¸Ð³ÑƒÑ€ÑÑ‚ Ð±Ð°Ð»Ð°Ð½Ñ Ð½Ð° Ð¸Ð·Ð¿ÑŠÐ»Ð½ÐµÐ½Ð¸Ðµ Ð¸ ÐºÐ°Ñ‡ÐµÑÑ‚Ð²Ð¾."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:228
 msgid " Disable all advanced rendering, equivalent to passing no to every option."
-msgstr " Изключване на всички напреднали рендиране, равносилно на преминаване не на всяка опция."
+msgstr " Ð˜Ð·ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½Ðµ Ð½Ð° Ð²ÑÐ¸Ñ‡ÐºÐ¸ Ð½Ð°Ð¿Ñ€ÐµÐ´Ð½Ð°Ð»Ð¸ Ñ€ÐµÐ½Ð´Ð¸Ñ€Ð°Ð½Ðµ, Ñ€Ð°Ð²Ð½Ð¾ÑÐ¸Ð»Ð½Ð¾ Ð½Ð° Ð¿Ñ€ÐµÐ¼Ð¸Ð½Ð°Ð²Ð°Ð½Ðµ Ð½Ðµ Ð½Ð° Ð²ÑÑÐºÐ° Ð¾Ð¿Ñ†Ð¸Ñ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:246
 msgid " EWA Lanczos (\"Jinc\") reconstruction (slow)."
-msgstr " EWA Lanczos (\"Jinc\") възстановяване (бавно)."
+msgstr " EWA Lanczos (\"Jinc\") Ð²ÑŠÐ·ÑÑ‚Ð°Ð½Ð¾Ð²ÑÐ²Ð°Ð½Ðµ (Ð±Ð°Ð²Ð½Ð¾)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:66
 msgid " Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
-msgstr " Експериментален видеопредавател базиран на libplacebo. Това поддържа почти същия набор от функции като --vo=gpu."
+msgstr " Ð•ÐºÑÐ¿ÐµÑ€Ð¸Ð¼ÐµÐ½Ñ‚Ð°Ð»ÐµÐ½ Ð²Ð¸Ð´ÐµÐ¾Ð¿Ñ€ÐµÐ´Ð°Ð²Ð°Ñ‚ÐµÐ» Ð±Ð°Ð·Ð¸Ñ€Ð°Ð½ Ð½Ð° libplacebo. Ð¢Ð¾Ð²Ð° Ð¿Ð¾Ð´Ð´ÑŠÑ€Ð¶Ð° Ð¿Ð¾Ñ‡Ñ‚Ð¸ ÑÑŠÑ‰Ð¸Ñ Ð½Ð°Ð±Ð¾Ñ€ Ð¾Ñ‚ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ ÐºÐ°Ñ‚Ð¾ --vo=gpu."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:8
 msgid " Force a single process everytime the shell starts mpv.net"
@@ -290,31 +290,31 @@ msgstr " Force a single process everytime the shell starts mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:243
 msgid " Gaussian smoothing (fast)."
-msgstr " Гаусийски изглаждане (бързо)."
+msgstr " Ð“Ð°ÑƒÑÐ¸Ð¹ÑÐºÐ¸ Ð¸Ð·Ð³Ð»Ð°Ð¶Ð´Ð°Ð½Ðµ (Ð±ÑŠÑ€Ð·Ð¾)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:245
 msgid " Lanczos reconstruction."
-msgstr " Реконструкция на Ланчос."
+msgstr " Ð ÐµÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ†Ð¸Ñ Ð½Ð° Ð›Ð°Ð½Ñ‡Ð¾Ñ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:813
 msgid " Load all audio files containing media filename."
-msgstr " Зареждане на всички аудио файлове, съдържащи медийно име."
+msgstr " Ð—Ð°Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° Ð²ÑÐ¸Ñ‡ÐºÐ¸ Ð°ÑƒÐ´Ð¸Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ, ÑÑŠÐ´ÑŠÑ€Ð¶Ð°Ñ‰Ð¸ Ð¼ÐµÐ´Ð¸Ð¹Ð½Ð¾ Ð¸Ð¼Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:849
 msgid " Load all subs containing media filename."
-msgstr " Зареждане на всички подове, съдържащи медийно име."
+msgstr " Ð—Ð°Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° Ð²ÑÐ¸Ñ‡ÐºÐ¸ Ð¿Ð¾Ð´Ð¾Ð²Ðµ, ÑÑŠÐ´ÑŠÑ€Ð¶Ð°Ñ‰Ð¸ Ð¼ÐµÐ´Ð¸Ð¹Ð½Ð¾ Ð¸Ð¼Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:812
 msgid " Load the media filename with audio file extension."
-msgstr " Зареждане на медийното име с аудио файлово разширение."
+msgstr " Ð—Ð°Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° Ð¼ÐµÐ´Ð¸Ð¹Ð½Ð¾Ñ‚Ð¾ Ð¸Ð¼Ðµ Ñ Ð°ÑƒÐ´Ð¸Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ð¾ Ñ€Ð°Ð·ÑˆÐ¸Ñ€ÐµÐ½Ð¸Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:848
 msgid " Load the media filename with subtitle file extension."
-msgstr " Зареждане на медийното име със субтитри разширение на файл."
+msgstr " Ð—Ð°Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° Ð¼ÐµÐ´Ð¸Ð¹Ð½Ð¾Ñ‚Ð¾ Ð¸Ð¼Ðµ ÑÑŠÑ ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸ Ñ€Ð°Ð·ÑˆÐ¸Ñ€ÐµÐ½Ð¸Ðµ Ð½Ð° Ñ„Ð°Ð¹Ð»."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:239
 msgid " Nearest-neighbour (box) sampling (very fast)."
-msgstr " Най-близката (кутия) проба (много бързо)."
+msgstr " ÐÐ°Ð¹-Ð±Ð»Ð¸Ð·ÐºÐ°Ñ‚Ð° (ÐºÑƒÑ‚Ð¸Ñ) Ð¿Ñ€Ð¾Ð±Ð° (Ð¼Ð½Ð¾Ð³Ð¾ Ð±ÑŠÑ€Ð·Ð¾)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:238
 msgid " No filter, only use basic GPU texture sampling."
@@ -322,15 +322,15 @@ msgstr " No filter, only use basic GPU texture sampling."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:301
 msgid " Oversampling, only mix \"edge\" frames while preserving FPS"
-msgstr " Претоварване, само смесване на \"напред\" рамки, като същевременно се запазва FPS"
+msgstr " ÐŸÑ€ÐµÑ‚Ð¾Ð²Ð°Ñ€Ð²Ð°Ð½Ðµ, ÑÐ°Ð¼Ð¾ ÑÐ¼ÐµÑÐ²Ð°Ð½Ðµ Ð½Ð° \"Ð½Ð°Ð¿Ñ€ÐµÐ´\" Ñ€Ð°Ð¼ÐºÐ¸, ÐºÐ°Ñ‚Ð¾ ÑÑŠÑ‰ÐµÐ²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ ÑÐµ Ð·Ð°Ð¿Ð°Ð·Ð²Ð° FPS"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1040
 msgid " Playback will never automatically advance to the next file."
-msgstr " Playback никога няма да премине автоматично към следващия файл."
+msgstr " Playback Ð½Ð¸ÐºÐ¾Ð³Ð° Ð½ÑÐ¼Ð° Ð´Ð° Ð¿Ñ€ÐµÐ¼Ð¸Ð½Ðµ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾ ÐºÑŠÐ¼ ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ Ñ„Ð°Ð¹Ð»."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:229
 msgid " Reset all everything to high quality presets (where available)."
-msgstr " Рестартирайте всичко на висококачествени настройки (където има налични)."
+msgstr " Ð ÐµÑÑ‚Ð°Ñ€Ñ‚Ð¸Ñ€Ð°Ð¹Ñ‚Ðµ Ð²ÑÐ¸Ñ‡ÐºÐ¾ Ð½Ð° Ð²Ð¸ÑÐ¾ÐºÐ¾ÐºÐ°Ñ‡ÐµÑÑ‚Ð²ÐµÐ½Ð¸ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ (ÐºÑŠÐ´ÐµÑ‚Ð¾ Ð¸Ð¼Ð° Ð½Ð°Ð»Ð¸Ñ‡Ð½Ð¸)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:247
 msgid " Sharpened version of ewa_lanczos (slow)."
@@ -338,7 +338,7 @@ msgstr " Sharpened version of ewa_lanczos (slow)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1085
 msgid " Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
-msgstr " Използвайте точни търсения, ако търсенето е до абсолютна позиция във файла, като например глава търси, но не за роднина търси като поведението по подразбиране на клавишите със стрелки."
+msgstr " Ð˜Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹Ñ‚Ðµ Ñ‚Ð¾Ñ‡Ð½Ð¸ Ñ‚ÑŠÑ€ÑÐµÐ½Ð¸Ñ, Ð°ÐºÐ¾ Ñ‚ÑŠÑ€ÑÐµÐ½ÐµÑ‚Ð¾ Ðµ Ð´Ð¾ Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ð° Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð²ÑŠÐ² Ñ„Ð°Ð¹Ð»Ð°, ÐºÐ°Ñ‚Ð¾ Ð½Ð°Ð¿Ñ€Ð¸Ð¼ÐµÑ€ Ð³Ð»Ð°Ð²Ð° Ñ‚ÑŠÑ€ÑÐ¸, Ð½Ð¾ Ð½Ðµ Ð·Ð° Ñ€Ð¾Ð´Ð½Ð¸Ð½Ð° Ñ‚ÑŠÑ€ÑÐ¸ ÐºÐ°Ñ‚Ð¾ Ð¿Ð¾Ð²ÐµÐ´ÐµÐ½Ð¸ÐµÑ‚Ð¾ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° ÐºÐ»Ð°Ð²Ð¸ÑˆÐ¸Ñ‚Ðµ ÑÑŠÑ ÑÑ‚Ñ€ÐµÐ»ÐºÐ¸."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:248
 msgid " Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
@@ -350,15 +350,15 @@ msgstr " Video output driver that uses the Direct3D interface."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:986
 msgid " Window height is remembered in the current session"
-msgstr " Височината на прозореца се запомня през текущата сесия"
+msgstr " Ð’Ð¸ÑÐ¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° ÑÐµ Ð·Ð°Ð¿Ð¾Ð¼Ð½Ñ Ð¿Ñ€ÐµÐ· Ñ‚ÐµÐºÑƒÑ‰Ð°Ñ‚Ð° ÑÐµÑÐ¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:83
 msgid " copies video back to system RAM"
-msgstr " копия на видеото обратно към системата RAM"
+msgstr " ÐºÐ¾Ð¿Ð¸Ñ Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾Ñ‚Ð¾ Ð¾Ð±Ñ€Ð°Ñ‚Ð½Ð¾ ÐºÑŠÐ¼ ÑÐ¸ÑÑ‚ÐµÐ¼Ð°Ñ‚Ð° RAM"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Conf.cs:38
 msgid "(Default)"
-msgstr "(По подразбиране)"
+msgstr "(ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ)"
 
 msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
 msgstr "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
@@ -433,7 +433,7 @@ msgstr "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the d
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:330
 msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
-msgstr "<0..16> Броят на стъпките за разглобяване на пробата. Всяка стъпка намалява малко повече ленти, но отнема време да се изчисли. Имайте предвид, че силата на всяка стъпка пада много бързо, така че високите числа (>4) са практически безполезни. По подразбиране до 1."
+msgstr "<0..16> Ð‘Ñ€Ð¾ÑÑ‚ Ð½Ð° ÑÑ‚ÑŠÐ¿ÐºÐ¸Ñ‚Ðµ Ð·Ð° Ñ€Ð°Ð·Ð³Ð»Ð¾Ð±ÑÐ²Ð°Ð½Ðµ Ð½Ð° Ð¿Ñ€Ð¾Ð±Ð°Ñ‚Ð°. Ð’ÑÑÐºÐ° ÑÑ‚ÑŠÐ¿ÐºÐ° Ð½Ð°Ð¼Ð°Ð»ÑÐ²Ð° Ð¼Ð°Ð»ÐºÐ¾ Ð¿Ð¾Ð²ÐµÑ‡Ðµ Ð»ÐµÐ½Ñ‚Ð¸, Ð½Ð¾ Ð¾Ñ‚Ð½ÐµÐ¼Ð° Ð²Ñ€ÐµÐ¼Ðµ Ð´Ð° ÑÐµ Ð¸Ð·Ñ‡Ð¸ÑÐ»Ð¸. Ð˜Ð¼Ð°Ð¹Ñ‚Ðµ Ð¿Ñ€ÐµÐ´Ð²Ð¸Ð´, Ñ‡Ðµ ÑÐ¸Ð»Ð°Ñ‚Ð° Ð½Ð° Ð²ÑÑÐºÐ° ÑÑ‚ÑŠÐ¿ÐºÐ° Ð¿Ð°Ð´Ð° Ð¼Ð½Ð¾Ð³Ð¾ Ð±ÑŠÑ€Ð·Ð¾, Ñ‚Ð°ÐºÐ° Ñ‡Ðµ Ð²Ð¸ÑÐ¾ÐºÐ¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð° (>4) ÑÐ° Ð¿Ñ€Ð°ÐºÑ‚Ð¸Ñ‡ÐµÑÐºÐ¸ Ð±ÐµÐ·Ð¿Ð¾Ð»ÐµÐ·Ð½Ð¸. ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð´Ð¾ 1."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:656
 msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
@@ -461,11 +461,11 @@ msgstr "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:627
 msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
-msgstr "<0.0..1.0> За наследствени функции (мобиус, гама), които работят на линейна светлина, това директно определя съответната точка на коляното. По подразбиране до 0.3."
+msgstr "<0.0..1.0> Ð—Ð° Ð½Ð°ÑÐ»ÐµÐ´ÑÑ‚Ð²ÐµÐ½Ð¸ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ (Ð¼Ð¾Ð±Ð¸ÑƒÑ, Ð³Ð°Ð¼Ð°), ÐºÐ¾Ð¸Ñ‚Ð¾ Ñ€Ð°Ð±Ð¾Ñ‚ÑÑ‚ Ð½Ð° Ð»Ð¸Ð½ÐµÐ¹Ð½Ð° ÑÐ²ÐµÑ‚Ð»Ð¸Ð½Ð°, Ñ‚Ð¾Ð²Ð° Ð´Ð¸Ñ€ÐµÐºÑ‚Ð½Ð¾ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ ÑÑŠÐ¾Ñ‚Ð²ÐµÑ‚Ð½Ð°Ñ‚Ð° Ñ‚Ð¾Ñ‡ÐºÐ° Ð½Ð° ÐºÐ¾Ð»ÑÐ½Ð¾Ñ‚Ð¾. ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð´Ð¾ 0.3."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:622
 msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast coefficient at the display peak. Essentially, a value of 0.5 implies that the reference white will be about half as bright as when clipping. Defaults to 0.5."
-msgstr "<0.0..1.0> За функцията на реиндърд това определя локалния контрастен коефициент на пика на дисплея. По същество, стойност от 0,5 означава, че референтното бяло ще бъде наполовина светло, както при изрязването. По подразбиране до 0.5."
+msgstr "<0.0..1.0> Ð—Ð° Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑÑ‚Ð° Ð½Ð° Ñ€ÐµÐ¸Ð½Ð´ÑŠÑ€Ð´ Ñ‚Ð¾Ð²Ð° Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ Ð»Ð¾ÐºÐ°Ð»Ð½Ð¸Ñ ÐºÐ¾Ð½Ñ‚Ñ€Ð°ÑÑ‚ÐµÐ½ ÐºÐ¾ÐµÑ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ Ð½Ð° Ð¿Ð¸ÐºÐ° Ð½Ð° Ð´Ð¸ÑÐ¿Ð»ÐµÑ. ÐŸÐ¾ ÑÑŠÑ‰ÐµÑÑ‚Ð²Ð¾, ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚ Ð¾Ñ‚ 0,5 Ð¾Ð·Ð½Ð°Ñ‡Ð°Ð²Ð°, Ñ‡Ðµ Ñ€ÐµÑ„ÐµÑ€ÐµÐ½Ñ‚Ð½Ð¾Ñ‚Ð¾ Ð±ÑÐ»Ð¾ Ñ‰Ðµ Ð±ÑŠÐ´Ðµ Ð½Ð°Ð¿Ð¾Ð»Ð¾Ð²Ð¸Ð½Ð° ÑÐ²ÐµÑ‚Ð»Ð¾, ÐºÐ°ÐºÑ‚Ð¾ Ð¿Ñ€Ð¸ Ð¸Ð·Ñ€ÑÐ·Ð²Ð°Ð½ÐµÑ‚Ð¾. ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð´Ð¾ 0.5."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:523
 msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
@@ -481,7 +481,7 @@ msgstr "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:632
 msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
-msgstr "<0.0..10.0> За линейни методи (линейна, линейна), това контролира линейната експозиция/отрицание, приложена върху изображението. По подразбиране до 1.0."
+msgstr "<0.0..10.0> Ð—Ð° Ð»Ð¸Ð½ÐµÐ¹Ð½Ð¸ Ð¼ÐµÑ‚Ð¾Ð´Ð¸ (Ð»Ð¸Ð½ÐµÐ¹Ð½Ð°, Ð»Ð¸Ð½ÐµÐ¹Ð½Ð°), Ñ‚Ð¾Ð²Ð° ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»Ð¸Ñ€Ð° Ð»Ð¸Ð½ÐµÐ¹Ð½Ð°Ñ‚Ð° ÐµÐºÑÐ¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ/Ð¾Ñ‚Ñ€Ð¸Ñ†Ð°Ð½Ð¸Ðµ, Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð° Ð²ÑŠÑ€Ñ…Ñƒ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸ÐµÑ‚Ð¾. ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð´Ð¾ 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:518
 msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
@@ -505,11 +505,11 @@ msgstr "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal 
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:455
 msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
-msgstr "<0.0..100.0> Кой процент от яркостта на входното изображение е хистограмата, за да се счита за истински връх на сцената."
+msgstr "<0.0..100.0> ÐšÐ¾Ð¹ Ð¿Ñ€Ð¾Ñ†ÐµÐ½Ñ‚ Ð¾Ñ‚ ÑÑ€ÐºÐ¾ÑÑ‚Ñ‚Ð° Ð½Ð° Ð²Ñ…Ð¾Ð´Ð½Ð¾Ñ‚Ð¾ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ðµ Ñ…Ð¸ÑÑ‚Ð¾Ð³Ñ€Ð°Ð¼Ð°Ñ‚Ð°, Ð·Ð° Ð´Ð° ÑÐµ ÑÑ‡Ð¸Ñ‚Ð° Ð·Ð° Ð¸ÑÑ‚Ð¸Ð½ÑÐºÐ¸ Ð²Ñ€ÑŠÑ… Ð½Ð° ÑÑ†ÐµÐ½Ð°Ñ‚Ð°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:345
 msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps cover up remaining quantization artifacts. Higher numbers add more noise. Defaults to 4.0, which is very mild."
-msgstr "<0.0..1000.0> Добавете допълнителен шум към изображението. Това значително помага да се покрият останалите квантизационни артефакти. По-високите числа добавят повече шум. По подразбиране до 4.0, което е много леко."
+msgstr "<0.0..1000.0> Ð”Ð¾Ð±Ð°Ð²ÐµÑ‚Ðµ Ð´Ð¾Ð¿ÑŠÐ»Ð½Ð¸Ñ‚ÐµÐ»ÐµÐ½ ÑˆÑƒÐ¼ ÐºÑŠÐ¼ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸ÐµÑ‚Ð¾. Ð¢Ð¾Ð²Ð° Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ÐµÐ»Ð½Ð¾ Ð¿Ð¾Ð¼Ð°Ð³Ð° Ð´Ð° ÑÐµ Ð¿Ð¾ÐºÑ€Ð¸ÑÑ‚ Ð¾ÑÑ‚Ð°Ð½Ð°Ð»Ð¸Ñ‚Ðµ ÐºÐ²Ð°Ð½Ñ‚Ð¸Ð·Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¸ Ð°Ñ€Ñ‚ÐµÑ„Ð°ÐºÑ‚Ð¸. ÐŸÐ¾-Ð²Ð¸ÑÐ¾ÐºÐ¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð° Ð´Ð¾Ð±Ð°Ð²ÑÑ‚ Ð¿Ð¾Ð²ÐµÑ‡Ðµ ÑˆÑƒÐ¼. ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð´Ð¾ 4.0, ÐºÐ¾ÐµÑ‚Ð¾ Ðµ Ð¼Ð½Ð¾Ð³Ð¾ Ð»ÐµÐºÐ¾."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:439
 msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
@@ -555,11 +555,11 @@ msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around t
 msgstr "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
 
 msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\\\nSuffixes such as KiB and MiB are supported."
-msgstr "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\\\nПодкрепени са Suffixes като KiB и MiB."
+msgstr "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\\\nÐŸÐ¾Ð´ÐºÑ€ÐµÐ¿ÐµÐ½Ð¸ ÑÐ° Suffixes ÐºÐ°Ñ‚Ð¾ KiB Ð¸ MiB."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1194
 msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
-msgstr "<bytesize> контролира колко на демуксера е позволено да буферира напред.\\nПодкрепени са Suffixes като KiB и MiB."
+msgstr "<bytesize> ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»Ð¸Ñ€Ð° ÐºÐ¾Ð»ÐºÐ¾ Ð½Ð° Ð´ÐµÐ¼ÑƒÐºÑÐµÑ€Ð° Ðµ Ð¿Ð¾Ð·Ð²Ð¾Ð»ÐµÐ½Ð¾ Ð´Ð° Ð±ÑƒÑ„ÐµÑ€Ð¸Ñ€Ð° Ð½Ð°Ð¿Ñ€ÐµÐ´.\\nÐŸÐ¾Ð´ÐºÑ€ÐµÐ¿ÐµÐ½Ð¸ ÑÐ° Suffixes ÐºÐ°Ñ‚Ð¾ KiB Ð¸ MiB."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1003
 msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
@@ -590,11 +590,11 @@ msgid "<int> Minimum window height in percent. Default: 10"
 msgstr "<int> Minimum window height in percent. Default: 10"
 
 msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\\\n\\\\nTo list available audio devices in mpv.net, use the context menu:\\\\n\\\\nView > More > Show Audio Devices.\\\\n\\\\nTo change the audio device in mpv.net, also use the context menu:\\\\n\\\\nAudio > Audio Device"
-msgstr "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\\\n\\\\nTo list available audio devices in mpv.net, use the context menu:\\\\n\\\\nПреглед > > Показване на аудио устройства.\\\\n\\\\nTo change the audio device in mpv.net, also use the context menu:\\\\n\\\\nАудио > Аудио устройство"
+msgstr "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\\\n\\\\nTo list available audio devices in mpv.net, use the context menu:\\\\n\\\\nÐŸÑ€ÐµÐ³Ð»ÐµÐ´ > > ÐŸÐ¾ÐºÐ°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ð°ÑƒÐ´Ð¸Ð¾ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð°.\\\\n\\\\nTo change the audio device in mpv.net, also use the context menu:\\\\n\\\\nÐÑƒÐ´Ð¸Ð¾ > ÐÑƒÐ´Ð¸Ð¾ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:821
 msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
-msgstr "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nПреглед > Повече > Показване на аудио устройства\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nАудио > Аудио устройство"
+msgstr "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nÐŸÑ€ÐµÐ³Ð»ÐµÐ´ > ÐŸÐ¾Ð²ÐµÑ‡Ðµ > ÐŸÐ¾ÐºÐ°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ð°ÑƒÐ´Ð¸Ð¾ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð°\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nÐÑƒÐ´Ð¸Ð¾ > ÐÑƒÐ´Ð¸Ð¾ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾"
 
 msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\\\n\\\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\\\n\\\\nx=0 docks the window to the left side.\\\\nx=100 docks the window to the right side.\\\\n\\\\ny=0 docks the window to the top side.\\\\ny=100 docks the window to the bottom side."
 msgstr "<x:y> Initial window location in percent. Default: 50:50 (centered)\\\\n\\\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\\\n\\\\nx=0 docks the window to the left side.\\\\nx=100 docks the window to the right side.\\\\n\\\\ny=0 docks the window to the top side.\\\\ny=100 docks the window to the bottom side."
@@ -605,40 +605,40 @@ msgstr "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
 msgid "Abort"
-msgstr "Прекъсване"
+msgstr "ÐŸÑ€ÐµÐºÑŠÑÐ²Ð°Ð½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\Views\AboutWindow.xaml:10
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:199
 msgid "About mpv.net"
-msgstr "Относно mpv.net"
+msgstr "ÐžÑ‚Ð½Ð¾ÑÐ½Ð¾ mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
-msgstr "Активни назначения в текстовия редактор"
+msgstr "ÐÐºÑ‚Ð¸Ð²Ð½Ð¸ Ð½Ð°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð² Ñ‚ÐµÐºÑÑ‚Ð¾Ð²Ð¸Ñ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:145
 msgid "Active Bindings On-Screen"
-msgstr "Активни назначения на екрана"
+msgstr "ÐÐºÑ‚Ð¸Ð²Ð½Ð¸ Ð½Ð°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð½Ð° ÐµÐºÑ€Ð°Ð½Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:16
 msgid "Add external audio files..."
-msgstr "Добави външни аудиофайлове..."
+msgstr "Ð”Ð¾Ð±Ð°Ð²Ð¸ Ð²ÑŠÐ½ÑˆÐ½Ð¸ Ð°ÑƒÐ´Ð¸Ð¾Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:17
 msgid "Add external subtitle files..."
-msgstr "Добави външни файлове със субтитри..."
+msgstr "Ð”Ð¾Ð±Ð°Ð²Ð¸ Ð²ÑŠÐ½ÑˆÐ½Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ ÑÑŠÑ ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:19
 msgid "Add files to playlist..."
-msgstr "Добави файлове към плейлиста..."
+msgstr "Ð”Ð¾Ð±Ð°Ð²Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ ÐºÑŠÐ¼ Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚Ð°..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:20
 msgid "Add files/URLs to playlist from clipboard"
-msgstr "Добави файлове/URL адреси към плейлист от клипборда"
+msgstr "Ð”Ð¾Ð±Ð°Ð²Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ/URL Ð°Ð´Ñ€ÐµÑÐ¸ ÐºÑŠÐ¼ Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚ Ð¾Ñ‚ ÐºÐ»Ð¸Ð¿Ð±Ð¾Ñ€Ð´Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 msgid "Add mpv.net to Path environment variable"
-msgstr "Добави mpv.net към променливата на средата Path"
+msgstr "Ð”Ð¾Ð±Ð°Ð²Ð¸ mpv.net ÐºÑŠÐ¼ Ð¿Ñ€Ð¾Ð¼ÐµÐ½Ð»Ð¸Ð²Ð°Ñ‚Ð° Ð½Ð° ÑÑ€ÐµÐ´Ð°Ñ‚Ð° Path"
 
 msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
 msgstr "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
@@ -654,25 +654,25 @@ msgid "Allows the peak detection result to be delayed by up to a single frame, w
 msgstr "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
 
 msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\\\n\\\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
-msgstr "Винаги запазвайте текущата позиция за възпроизвеждане при напускане. Когато този файл се играе отново по-късно, играчът ще се стреми към старата позиция за възпроизвеждане при стартиране. Това не се случва, ако възпроизвеждането на файл е спряно по друг начин освен напускането. Например, отивайки към следващия файл в списъка няма да запишете позицията и започнете възпроизвеждане в началото следващия път, когато файлът се играе.\\\\n\\\\nТова поведение е изключено по подразбиране, но винаги е на разположение при напускане на играча с Shift+Q."
+msgstr "Ð’Ð¸Ð½Ð°Ð³Ð¸ Ð·Ð°Ð¿Ð°Ð·Ð²Ð°Ð¹Ñ‚Ðµ Ñ‚ÐµÐºÑƒÑ‰Ð°Ñ‚Ð° Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð·Ð° Ð²ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ¶Ð´Ð°Ð½Ðµ Ð¿Ñ€Ð¸ Ð½Ð°Ð¿ÑƒÑÐºÐ°Ð½Ðµ. ÐšÐ¾Ð³Ð°Ñ‚Ð¾ Ñ‚Ð¾Ð·Ð¸ Ñ„Ð°Ð¹Ð» ÑÐµ Ð¸Ð³Ñ€Ð°Ðµ Ð¾Ñ‚Ð½Ð¾Ð²Ð¾ Ð¿Ð¾-ÐºÑŠÑÐ½Ð¾, Ð¸Ð³Ñ€Ð°Ñ‡ÑŠÑ‚ Ñ‰Ðµ ÑÐµ ÑÑ‚Ñ€ÐµÐ¼Ð¸ ÐºÑŠÐ¼ ÑÑ‚Ð°Ñ€Ð°Ñ‚Ð° Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð·Ð° Ð²ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ¶Ð´Ð°Ð½Ðµ Ð¿Ñ€Ð¸ ÑÑ‚Ð°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½Ðµ. Ð¢Ð¾Ð²Ð° Ð½Ðµ ÑÐµ ÑÐ»ÑƒÑ‡Ð²Ð°, Ð°ÐºÐ¾ Ð²ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ¶Ð´Ð°Ð½ÐµÑ‚Ð¾ Ð½Ð° Ñ„Ð°Ð¹Ð» Ðµ ÑÐ¿Ñ€ÑÐ½Ð¾ Ð¿Ð¾ Ð´Ñ€ÑƒÐ³ Ð½Ð°Ñ‡Ð¸Ð½ Ð¾ÑÐ²ÐµÐ½ Ð½Ð°Ð¿ÑƒÑÐºÐ°Ð½ÐµÑ‚Ð¾. ÐÐ°Ð¿Ñ€Ð¸Ð¼ÐµÑ€, Ð¾Ñ‚Ð¸Ð²Ð°Ð¹ÐºÐ¸ ÐºÑŠÐ¼ ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ Ñ„Ð°Ð¹Ð» Ð² ÑÐ¿Ð¸ÑÑŠÐºÐ° Ð½ÑÐ¼Ð° Ð´Ð° Ð·Ð°Ð¿Ð¸ÑˆÐµÑ‚Ðµ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑÑ‚Ð° Ð¸ Ð·Ð°Ð¿Ð¾Ñ‡Ð½ÐµÑ‚Ðµ Ð²ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ¶Ð´Ð°Ð½Ðµ Ð² Ð½Ð°Ñ‡Ð°Ð»Ð¾Ñ‚Ð¾ ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ Ð¿ÑŠÑ‚, ÐºÐ¾Ð³Ð°Ñ‚Ð¾ Ñ„Ð°Ð¹Ð»ÑŠÑ‚ ÑÐµ Ð¸Ð³Ñ€Ð°Ðµ.\\\\n\\\\nÐ¢Ð¾Ð²Ð° Ð¿Ð¾Ð²ÐµÐ´ÐµÐ½Ð¸Ðµ Ðµ Ð¸Ð·ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¾ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ, Ð½Ð¾ Ð²Ð¸Ð½Ð°Ð³Ð¸ Ðµ Ð½Ð° Ñ€Ð°Ð·Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð¸ Ð½Ð°Ð¿ÑƒÑÐºÐ°Ð½Ðµ Ð½Ð° Ð¸Ð³Ñ€Ð°Ñ‡Ð° Ñ Shift+Q."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1067
 msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
-msgstr "Винаги запазвайте текущата позиция за възпроизвеждане при напускане. Когато този файл се играе отново по-късно, играчът ще се стреми към старата позиция за възпроизвеждане при стартиране. Това не се случва, ако възпроизвеждането на файл е спряно по друг начин освен напускането. Например, отиването към следващия файл в списъка няма да запази позицията и ще започне възпроизвеждането в началото следващия път, когато файлът се играе.\\n\\nТова поведение е изключено по подразбиране, но винаги е на разположение при напускане на играча с Shift+Q."
+msgstr "Ð’Ð¸Ð½Ð°Ð³Ð¸ Ð·Ð°Ð¿Ð°Ð·Ð²Ð°Ð¹Ñ‚Ðµ Ñ‚ÐµÐºÑƒÑ‰Ð°Ñ‚Ð° Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð·Ð° Ð²ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ¶Ð´Ð°Ð½Ðµ Ð¿Ñ€Ð¸ Ð½Ð°Ð¿ÑƒÑÐºÐ°Ð½Ðµ. ÐšÐ¾Ð³Ð°Ñ‚Ð¾ Ñ‚Ð¾Ð·Ð¸ Ñ„Ð°Ð¹Ð» ÑÐµ Ð¸Ð³Ñ€Ð°Ðµ Ð¾Ñ‚Ð½Ð¾Ð²Ð¾ Ð¿Ð¾-ÐºÑŠÑÐ½Ð¾, Ð¸Ð³Ñ€Ð°Ñ‡ÑŠÑ‚ Ñ‰Ðµ ÑÐµ ÑÑ‚Ñ€ÐµÐ¼Ð¸ ÐºÑŠÐ¼ ÑÑ‚Ð°Ñ€Ð°Ñ‚Ð° Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð·Ð° Ð²ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ¶Ð´Ð°Ð½Ðµ Ð¿Ñ€Ð¸ ÑÑ‚Ð°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½Ðµ. Ð¢Ð¾Ð²Ð° Ð½Ðµ ÑÐµ ÑÐ»ÑƒÑ‡Ð²Ð°, Ð°ÐºÐ¾ Ð²ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ¶Ð´Ð°Ð½ÐµÑ‚Ð¾ Ð½Ð° Ñ„Ð°Ð¹Ð» Ðµ ÑÐ¿Ñ€ÑÐ½Ð¾ Ð¿Ð¾ Ð´Ñ€ÑƒÐ³ Ð½Ð°Ñ‡Ð¸Ð½ Ð¾ÑÐ²ÐµÐ½ Ð½Ð°Ð¿ÑƒÑÐºÐ°Ð½ÐµÑ‚Ð¾. ÐÐ°Ð¿Ñ€Ð¸Ð¼ÐµÑ€, Ð¾Ñ‚Ð¸Ð²Ð°Ð½ÐµÑ‚Ð¾ ÐºÑŠÐ¼ ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ Ñ„Ð°Ð¹Ð» Ð² ÑÐ¿Ð¸ÑÑŠÐºÐ° Ð½ÑÐ¼Ð° Ð´Ð° Ð·Ð°Ð¿Ð°Ð·Ð¸ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑÑ‚Ð° Ð¸ Ñ‰Ðµ Ð·Ð°Ð¿Ð¾Ñ‡Ð½Ðµ Ð²ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ¶Ð´Ð°Ð½ÐµÑ‚Ð¾ Ð² Ð½Ð°Ñ‡Ð°Ð»Ð¾Ñ‚Ð¾ ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ Ð¿ÑŠÑ‚, ÐºÐ¾Ð³Ð°Ñ‚Ð¾ Ñ„Ð°Ð¹Ð»ÑŠÑ‚ ÑÐµ Ð¸Ð³Ñ€Ð°Ðµ.\\n\\nÐ¢Ð¾Ð²Ð° Ð¿Ð¾Ð²ÐµÐ´ÐµÐ½Ð¸Ðµ Ðµ Ð¸Ð·ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¾ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ, Ð½Ð¾ Ð²Ð¸Ð½Ð°Ð³Ð¸ Ðµ Ð½Ð° Ñ€Ð°Ð·Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð¸ Ð½Ð°Ð¿ÑƒÑÐºÐ°Ð½Ðµ Ð½Ð° Ð¸Ð³Ñ€Ð°Ñ‡Ð° Ñ Shift+Q."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1142
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1162
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1171
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1177
 msgid "Appearance"
-msgstr "Външен вид"
+msgstr "Ð’ÑŠÐ½ÑˆÐµÐ½ Ð²Ð¸Ð´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:127
 msgid "As scale, but for interpolating chroma information. If the image is not subsampled, this option is ignored entirely."
-msgstr "Като скала, но за интерполиране на хрома. Ако изображението не е включено в извадката, тази опция се игнорира изцяло."
+msgstr "ÐšÐ°Ñ‚Ð¾ ÑÐºÐ°Ð»Ð°, Ð½Ð¾ Ð·Ð° Ð¸Ð½Ñ‚ÐµÑ€Ð¿Ð¾Ð»Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° Ñ…Ñ€Ð¾Ð¼Ð°. ÐÐºÐ¾ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸ÐµÑ‚Ð¾ Ð½Ðµ Ðµ Ð²ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¾ Ð² Ð¸Ð·Ð²Ð°Ð´ÐºÐ°Ñ‚Ð°, Ñ‚Ð°Ð·Ð¸ Ð¾Ð¿Ñ†Ð¸Ñ ÑÐµ Ð¸Ð³Ð½Ð¾Ñ€Ð¸Ñ€Ð° Ð¸Ð·Ñ†ÑÐ»Ð¾."
 
 msgid "Aspect-ratio preserving nearest neighbour sampling (very fast)."
-msgstr "Aspect-състояние запазване на най-близкия съсед вземане на проби (много бързо)."
+msgstr "Aspect-ÑÑŠÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð·Ð°Ð¿Ð°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ð½Ð°Ð¹-Ð±Ð»Ð¸Ð·ÐºÐ¸Ñ ÑÑŠÑÐµÐ´ Ð²Ð·ÐµÐ¼Ð°Ð½Ðµ Ð½Ð° Ð¿Ñ€Ð¾Ð±Ð¸ (Ð¼Ð½Ð¾Ð³Ð¾ Ð±ÑŠÑ€Ð·Ð¾)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:790
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:795
@@ -687,65 +687,65 @@ msgstr "Aspect-състояние запазване на най-близкия 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:88
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:89
 msgid "Audio"
-msgstr "Аудио"
+msgstr "ÐÑƒÐ´Ð¸Ð¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:453
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:85
 msgid "Audio Device"
-msgstr "Аудио устройство"
+msgstr "ÐÑƒÐ´Ð¸Ð¾ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:138
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:243
 msgid "Audio Devices"
-msgstr "Аудио устройства"
+msgstr "ÐÑƒÐ´Ð¸Ð¾ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:132
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:237
 msgid "Audio Tracks"
-msgstr "Аудио заглавия"
+msgstr "ÐÑƒÐ´Ð¸Ð¾ Ð·Ð°Ð³Ð»Ð°Ð²Ð¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:835
-msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
-msgstr "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
+msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
 
 msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
-msgstr "Автоматичен подбор. Ако не може да бъде открита дълбочината на изходния бит, се приемат 8 бита на компонент."
+msgstr "ÐÐ²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÐ½ Ð¿Ð¾Ð´Ð±Ð¾Ñ€. ÐÐºÐ¾ Ð½Ðµ Ð¼Ð¾Ð¶Ðµ Ð´Ð° Ð±ÑŠÐ´Ðµ Ð¾Ñ‚ÐºÑ€Ð¸Ñ‚Ð° Ð´ÑŠÐ»Ð±Ð¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¸Ð·Ñ…Ð¾Ð´Ð½Ð¸Ñ Ð±Ð¸Ñ‚, ÑÐµ Ð¿Ñ€Ð¸ÐµÐ¼Ð°Ñ‚ 8 Ð±Ð¸Ñ‚Ð° Ð½Ð° ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚."
 
 msgid "Available on Windows 10 or higher"
 msgstr "Available on Windows 10 or higher"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:209
 msgid "Backward"
-msgstr "Назад"
+msgstr "ÐÐ°Ð·Ð°Ð´"
 
 msgid "Bicubic interpolation (fast)"
-msgstr "Бикубична интерполация (бърза)"
+msgstr "Ð‘Ð¸ÐºÑƒÐ±Ð¸Ñ‡Ð½Ð° Ð¸Ð½Ñ‚ÐµÑ€Ð¿Ð¾Ð»Ð°Ñ†Ð¸Ñ (Ð±ÑŠÑ€Ð·Ð°)"
 
 msgid "Bicubic interpolation (fast)."
-msgstr "Бикубичната интерполация (бърза)."
+msgstr "Ð‘Ð¸ÐºÑƒÐ±Ð¸Ñ‡Ð½Ð°Ñ‚Ð° Ð¸Ð½Ñ‚ÐµÑ€Ð¿Ð¾Ð»Ð°Ñ†Ð¸Ñ (Ð±ÑŠÑ€Ð·Ð°)."
 
 msgid "Bilinear (triangle) averaging (fast)"
-msgstr "Билинейна (триъгълник) средна (бърза)"
+msgstr "Ð‘Ð¸Ð»Ð¸Ð½ÐµÐ¹Ð½Ð° (Ñ‚Ñ€Ð¸ÑŠÐ³ÑŠÐ»Ð½Ð¸Ðº) ÑÑ€ÐµÐ´Ð½Ð° (Ð±ÑŠÑ€Ð·Ð°)"
 
 msgid "Bilinear sampling (very fast)."
-msgstr "Билинейна проба (много бързо)."
+msgstr "Ð‘Ð¸Ð»Ð¸Ð½ÐµÐ¹Ð½Ð° Ð¿Ñ€Ð¾Ð±Ð° (Ð¼Ð½Ð¾Ð³Ð¾ Ð±ÑŠÑ€Ð·Ð¾)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:128
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:246
 msgid "Bindings"
-msgstr "Обвързвания"
+msgstr "ÐžÐ±Ð²ÑŠÑ€Ð·Ð²Ð°Ð½Ð¸Ñ"
 
 msgid "Box averaging (very fast)"
-msgstr "Кутия средно (много бързо)"
+msgstr "ÐšÑƒÑ‚Ð¸Ñ ÑÑ€ÐµÐ´Ð½Ð¾ (Ð¼Ð½Ð¾Ð³Ð¾ Ð±ÑŠÑ€Ð·Ð¾)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1183
 msgid "Cache"
-msgstr "Кеш"
+msgstr "ÐšÐµÑˆ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:55
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:182
 msgid "Cancel"
-msgstr "Отмяна"
+msgstr "ÐžÑ‚Ð¼ÑÐ½Ð°"
 
 msgid "Catmull-Rom cubic spline"
 msgstr "Catmull-Rom cubical spline"
@@ -755,43 +755,43 @@ msgstr "Catmull-Rom cubical spline."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:82
 msgid "Change Aspect Ratio"
-msgstr "Промяна на пропорциите"
+msgstr "ÐŸÑ€Ð¾Ð¼ÑÐ½Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð¿Ð¾Ñ€Ñ†Ð¸Ð¸Ñ‚Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:471
 msgid "Changed theme settings require mpv.net being restarted."
-msgstr "Променените настройки на темата изискват рестартиране на mpv.net."
+msgstr "ÐŸÑ€Ð¾Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ‚Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð½Ð° Ñ‚ÐµÐ¼Ð°Ñ‚Ð° Ð¸Ð·Ð¸ÑÐºÐ²Ð°Ñ‚ Ñ€ÐµÑÑ‚Ð°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° mpv.net."
 
 msgid "Changes between a light and dark theme.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option."
-msgstr "Промени между светлина и тъмна тема.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option."
+msgstr "ÐŸÑ€Ð¾Ð¼ÐµÐ½Ð¸ Ð¼ÐµÐ¶Ð´Ñƒ ÑÐ²ÐµÑ‚Ð»Ð¸Ð½Ð° Ð¸ Ñ‚ÑŠÐ¼Ð½Ð° Ñ‚ÐµÐ¼Ð°.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1163
 msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
-msgstr "Промени между светлина и тъмна тема.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "ÐŸÑ€Ð¾Ð¼ÐµÐ½Ð¸ Ð¼ÐµÐ¶Ð´Ñƒ ÑÐ²ÐµÑ‚Ð»Ð¸Ð½Ð° Ð¸ Ñ‚ÑŠÐ¼Ð½Ð° Ñ‚ÐµÐ¼Ð°.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:125
 msgid "Changes will be available on next startup."
-msgstr "Промените ще бъдат налични при следващото стартиране."
+msgstr "ÐŸÑ€Ð¾Ð¼ÐµÐ½Ð¸Ñ‚Ðµ Ñ‰Ðµ Ð±ÑŠÐ´Ð°Ñ‚ Ð½Ð°Ð»Ð¸Ñ‡Ð½Ð¸ Ð¿Ñ€Ð¸ ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¾Ñ‚Ð¾ ÑÑ‚Ð°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:351
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:51
 msgid "Chapter"
-msgstr "Глава"
+msgstr "Ð“Ð»Ð°Ð²Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:130
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:240
 msgid "Chapters"
-msgstr "Глава"
+msgstr "Ð“Ð»Ð°Ð²Ð°"
 
 msgid "Choose the best mode automatically."
-msgstr "Изберете най-добрия режим автоматично."
+msgstr "Ð˜Ð·Ð±ÐµÑ€ÐµÑ‚Ðµ Ð½Ð°Ð¹-Ð´Ð¾Ð±Ñ€Ð¸Ñ Ñ€ÐµÐ¶Ð¸Ð¼ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:54
 msgid "Clear"
-msgstr "Изчисти списъка"
+msgstr "Ð˜Ð·Ñ‡Ð¸ÑÑ‚Ð¸ ÑÐ¿Ð¸ÑÑŠÐºÐ°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:388
 msgid "Clear List"
-msgstr "Изчисти списъка"
+msgstr "Ð˜Ð·Ñ‡Ð¸ÑÑ‚Ð¸ ÑÐ¿Ð¸ÑÑŠÐºÐ°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:375
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:383
@@ -802,7 +802,7 @@ msgstr "Изчисти списъка"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:411
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:416
 msgid "Color Adjustment"
-msgstr "Промяна на цвета"
+msgstr "ÐŸÑ€Ð¾Ð¼ÑÐ½Ð° Ð½Ð° Ñ†Ð²ÐµÑ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:474
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:482
@@ -844,21 +844,21 @@ msgstr "Промяна на цвета"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:711
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:716
 msgid "Color Mapping"
-msgstr "Маркиране на цветове"
+msgstr "ÐœÐ°Ñ€ÐºÐ¸Ñ€Ð°Ð½Ðµ Ð½Ð° Ñ†Ð²ÐµÑ‚Ð¾Ð²Ðµ"
 
 msgid "Color theme used in dark mode.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: dark"
-msgstr "Цветна тема, използвана в тъмен режим.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: dark"
+msgstr "Ð¦Ð²ÐµÑ‚Ð½Ð° Ñ‚ÐµÐ¼Ð°, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ð° Ð² Ñ‚ÑŠÐ¼ÐµÐ½ Ñ€ÐµÐ¶Ð¸Ð¼.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: dark"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1173
 msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
-msgstr "Цветна тема, използвана в тъмен режим.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "Ð¦Ð²ÐµÑ‚Ð½Ð° Ñ‚ÐµÐ¼Ð°, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ð° Ð² Ñ‚ÑŠÐ¼ÐµÐ½ Ñ€ÐµÐ¶Ð¸Ð¼.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
 
 msgid "Color theme used in light mode.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: light"
-msgstr "Цветна тема, използвана в светлинен режим.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: light"
+msgstr "Ð¦Ð²ÐµÑ‚Ð½Ð° Ñ‚ÐµÐ¼Ð°, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ð° Ð² ÑÐ²ÐµÑ‚Ð»Ð¸Ð½ÐµÐ½ Ñ€ÐµÐ¶Ð¸Ð¼.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: light"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1179
 msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
-msgstr "Цветна тема, използвана в светлинен режим.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "Ð¦Ð²ÐµÑ‚Ð½Ð° Ñ‚ÐµÐ¼Ð°, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ð° Ð² ÑÐ²ÐµÑ‚Ð»Ð¸Ð½ÐµÐ½ Ñ€ÐµÐ¶Ð¸Ð¼.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:214
 msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
@@ -866,11 +866,11 @@ msgstr "Color used to draw parts of the mpv window not covered by video. See the
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:140
 msgid "Command"
-msgstr "Покажи команди"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ ÐºÐ¾Ð¼Ð°Ð½Ð´Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:143
 msgid "Commands"
-msgstr "Покажи команди"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ ÐºÐ¾Ð¼Ð°Ð½Ð´Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:169
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:170
@@ -887,52 +887,52 @@ msgstr "Покажи команди"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Config"
-msgstr "Конфигурация"
+msgstr "ÐšÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:571
 msgid "Config Editor"
-msgstr "Редактор на конфигурацията"
+msgstr "Ð ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€ Ð½Ð° ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸ÑÑ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:53
 msgid "Confirm"
-msgstr "Конфигурация"
+msgstr "ÐšÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:142
 msgid "Console"
-msgstr "Покажи конзола"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ ÐºÐ¾Ð½Ð·Ð¾Ð»Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:707
 msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
-msgstr "Контролира въртенето на гамата 3DLUT визуализация. Завърта гамата през оранжево пространство (около оста I), в радиани. По подразбиране до 0.0."
+msgstr "ÐšÐ¾Ð½Ñ‚Ñ€Ð¾Ð»Ð¸Ñ€Ð° Ð²ÑŠÑ€Ñ‚ÐµÐ½ÐµÑ‚Ð¾ Ð½Ð° Ð³Ð°Ð¼Ð°Ñ‚Ð° 3DLUT Ð²Ð¸Ð·ÑƒÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ. Ð—Ð°Ð²ÑŠÑ€Ñ‚Ð° Ð³Ð°Ð¼Ð°Ñ‚Ð° Ð¿Ñ€ÐµÐ· Ð¾Ñ€Ð°Ð½Ð¶ÐµÐ²Ð¾ Ð¿Ñ€Ð¾ÑÑ‚Ñ€Ð°Ð½ÑÑ‚Ð²Ð¾ (Ð¾ÐºÐ¾Ð»Ð¾ Ð¾ÑÑ‚Ð° I), Ð² Ñ€Ð°Ð´Ð¸Ð°Ð½Ð¸. ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð´Ð¾ 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:712
 msgid "Controls the rotation of the gamut 3DLUT visualization. The theta parameter vertically rotates the cross section (around the C axis), in radians. Defaults to 0.0."
-msgstr "Контролира въртенето на гамата 3DLUT визуализация. Параметърът тита вертикално завърта напречното сечение (около оста С), в радиани. По подразбиране до 0.0."
+msgstr "ÐšÐ¾Ð½Ñ‚Ñ€Ð¾Ð»Ð¸Ñ€Ð° Ð²ÑŠÑ€Ñ‚ÐµÐ½ÐµÑ‚Ð¾ Ð½Ð° Ð³Ð°Ð¼Ð°Ñ‚Ð° 3DLUT Ð²Ð¸Ð·ÑƒÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ. ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚ÑŠÑ€ÑŠÑ‚ Ñ‚Ð¸Ñ‚Ð° Ð²ÐµÑ€Ñ‚Ð¸ÐºÐ°Ð»Ð½Ð¾ Ð·Ð°Ð²ÑŠÑ€Ñ‚Ð° Ð½Ð°Ð¿Ñ€ÐµÑ‡Ð½Ð¾Ñ‚Ð¾ ÑÐµÑ‡ÐµÐ½Ð¸Ðµ (Ð¾ÐºÐ¾Ð»Ð¾ Ð¾ÑÑ‚Ð° Ð¡), Ð² Ñ€Ð°Ð´Ð¸Ð°Ð½Ð¸. ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð´Ð¾ 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:687
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:692
 msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 0.0."
-msgstr "Контрол къде да начертая LUT визуализация, в сравнение с преведеното видео. По подразбиране до 0.0."
+msgstr "ÐšÐ¾Ð½Ñ‚Ñ€Ð¾Ð» ÐºÑŠÐ´Ðµ Ð´Ð° Ð½Ð°Ñ‡ÐµÑ€Ñ‚Ð°Ñ LUT Ð²Ð¸Ð·ÑƒÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ, Ð² ÑÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ðµ Ñ Ð¿Ñ€ÐµÐ²ÐµÐ´ÐµÐ½Ð¾Ñ‚Ð¾ Ð²Ð¸Ð´ÐµÐ¾. ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð´Ð¾ 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:697
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:702
 msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 1.0."
-msgstr "Контрол къде да начертая LUT визуализация, в сравнение с преведеното видео. По подразбиране до 1.0."
+msgstr "ÐšÐ¾Ð½Ñ‚Ñ€Ð¾Ð» ÐºÑŠÐ´Ðµ Ð´Ð° Ð½Ð°Ñ‡ÐµÑ€Ñ‚Ð°Ñ LUT Ð²Ð¸Ð·ÑƒÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ, Ð² ÑÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ðµ Ñ Ð¿Ñ€ÐµÐ²ÐµÐ´ÐµÐ½Ð¾Ñ‚Ð¾ Ð²Ð¸Ð´ÐµÐ¾. ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð´Ð¾ 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:92
 msgid "Controls which type of graphics APIs will be accepted."
-msgstr "Контрол кой тип графики API ще бъдат приети."
+msgstr "ÐšÐ¾Ð½Ñ‚Ñ€Ð¾Ð» ÐºÐ¾Ð¹ Ñ‚Ð¸Ð¿ Ð³Ñ€Ð°Ñ„Ð¸ÐºÐ¸ API Ñ‰Ðµ Ð±ÑŠÐ´Ð°Ñ‚ Ð¿Ñ€Ð¸ÐµÑ‚Ð¸."
 
 msgid "Create a new process everytime the shell starts mpv.net"
 msgstr "Create a new process everytime the shell starts mpv.net"
 
 msgid "Cubic B-spline frame mixing"
-msgstr "Смесване на кубичната рамка B-spline"
+msgstr "Ð¡Ð¼ÐµÑÐ²Ð°Ð½Ðµ Ð½Ð° ÐºÑƒÐ±Ð¸Ñ‡Ð½Ð°Ñ‚Ð° Ñ€Ð°Ð¼ÐºÐ° B-spline"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:477
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:190
 msgid "Custom"
-msgstr "Потребителско"
+msgstr "ÐŸÐ¾Ñ‚Ñ€ÐµÐ±Ð¸Ñ‚ÐµÐ»ÑÐºÐ¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:645
 msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
@@ -945,46 +945,46 @@ msgstr "Data source to use when tone-mapping. Setting this to a specific value a
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:339
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:344
 msgid "Debanding"
-msgstr "Разглобяване"
+msgstr "Ð Ð°Ð·Ð³Ð»Ð¾Ð±ÑÐ²Ð°Ð½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1184
 msgid "Decide whether to use network cache settings."
-msgstr "Решете дали да използвате мрежови настройки за кеширане."
+msgstr "Ð ÐµÑˆÐµÑ‚Ðµ Ð´Ð°Ð»Ð¸ Ð´Ð° Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ñ‚Ðµ Ð¼Ñ€ÐµÐ¶Ð¾Ð²Ð¸ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð·Ð° ÐºÐµÑˆÐ¸Ñ€Ð°Ð½Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 msgid "Decoders"
-msgstr "Покажи декодери"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ð´ÐµÐºÐ¾Ð´ÐµÑ€Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:70
 msgid "Decrease Brightness"
-msgstr "Намали яркостта"
+msgstr "ÐÐ°Ð¼Ð°Ð»Ð¸ ÑÑ€ÐºÐ¾ÑÑ‚Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:67
 msgid "Decrease Contrast"
-msgstr "Намали контраст"
+msgstr "ÐÐ°Ð¼Ð°Ð»Ð¸ ÐºÐ¾Ð½Ñ‚Ñ€Ð°ÑÑ‚"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:100
 msgid "Decrease Font Size"
-msgstr "Намали размера на шрифта"
+msgstr "ÐÐ°Ð¼Ð°Ð»Ð¸ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð° Ð½Ð° ÑˆÑ€Ð¸Ñ„Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:73
 msgid "Decrease Gamma"
-msgstr "Намали гамата"
+msgstr "ÐÐ°Ð¼Ð°Ð»Ð¸ Ð³Ð°Ð¼Ð°Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:62
 msgid "Decrease Height"
-msgstr "Намали височината"
+msgstr "ÐÐ°Ð¼Ð°Ð»Ð¸ Ð²Ð¸ÑÐ¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:76
 msgid "Decrease Saturation"
-msgstr "Намали наситеността"
+msgstr "ÐÐ°Ð¼Ð°Ð»Ð¸ Ð½Ð°ÑÐ¸Ñ‚ÐµÐ½Ð¾ÑÑ‚Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:53
 msgid "Decrease Size"
-msgstr "Намали размера"
+msgstr "ÐÐ°Ð¼Ð°Ð»Ð¸ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð°"
 
 msgid "Default settings, tuned to provide a balance of performance and quality."
-msgstr "Настройки по подразбиране, настроени да осигурят баланс на изпълнение и качество."
+msgstr "ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ, Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð¸ Ð´Ð° Ð¾ÑÐ¸Ð³ÑƒÑ€ÑÑ‚ Ð±Ð°Ð»Ð°Ð½Ñ Ð½Ð° Ð¸Ð·Ð¿ÑŠÐ»Ð½ÐµÐ½Ð¸Ðµ Ð¸ ÐºÐ°Ñ‡ÐµÑÑ‚Ð²Ð¾."
 
 msgid "Defines if more then one mpv.net process is allowed.\\\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
 msgstr "Defines if more then one mpv.net process is allowed.\\\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
@@ -996,16 +996,16 @@ msgstr "Defines if more then one mpv.net process is allowed.\\nMulti can alterna
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:88
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:95
 msgid "Delay +0.1"
-msgstr "Закъснение +0,1"
+msgstr "Ð—Ð°ÐºÑŠÑÐ½ÐµÐ½Ð¸Ðµ +0,1"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:89
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:94
 msgid "Delay -0.1"
-msgstr "Закъснение -0.1"
+msgstr "Ð—Ð°ÐºÑŠÑÐ½ÐµÐ½Ð¸Ðµ -0.1"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1127
 msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
-msgstr "Забавяне на милисекунди преди да започнем да рестартираме ключ (0 за деактивиране)."
+msgstr "Ð—Ð°Ð±Ð°Ð²ÑÐ½Ðµ Ð½Ð° Ð¼Ð¸Ð»Ð¸ÑÐµÐºÑƒÐ½Ð´Ð¸ Ð¿Ñ€ÐµÐ´Ð¸ Ð´Ð° Ð·Ð°Ð¿Ð¾Ñ‡Ð½ÐµÐ¼ Ð´Ð° Ñ€ÐµÑÑ‚Ð°Ñ€Ñ‚Ð¸Ñ€Ð°Ð¼Ðµ ÐºÐ»ÑŽÑ‡ (0 Ð·Ð° Ð´ÐµÐ°ÐºÑ‚Ð¸Ð²Ð¸Ñ€Ð°Ð½Ðµ)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1193
 msgid "Demuxer"
@@ -1013,67 +1013,67 @@ msgstr "Demuxer"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "Demuxers"
-msgstr "Покажи Demuxers"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Demuxers"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:193
 msgid "Details"
-msgstr "Подробности"
+msgstr "ÐŸÐ¾Ð´Ñ€Ð¾Ð±Ð½Ð¾ÑÑ‚Ð¸"
 
 msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
 msgstr "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
 
 msgid "Disable all advanced rendering, equivalent to passing no to every option."
-msgstr "Изключване на всички напреднали рендиране, равносилно на преминаване не на всяка опция."
+msgstr "Ð˜Ð·ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½Ðµ Ð½Ð° Ð²ÑÐ¸Ñ‡ÐºÐ¸ Ð½Ð°Ð¿Ñ€ÐµÐ´Ð½Ð°Ð»Ð¸ Ñ€ÐµÐ½Ð´Ð¸Ñ€Ð°Ð½Ðµ, Ñ€Ð°Ð²Ð½Ð¾ÑÐ¸Ð»Ð½Ð¾ Ð½Ð° Ð¿Ñ€ÐµÐ¼Ð¸Ð½Ð°Ð²Ð°Ð½Ðµ Ð½Ðµ Ð½Ð° Ð²ÑÑÐºÐ° Ð¾Ð¿Ñ†Ð¸Ñ."
 
 msgid "Disable any dithering done by mpv."
-msgstr "Изключете всяко отклонение направено от mpv."
+msgstr "Ð˜Ð·ÐºÐ»ÑŽÑ‡ÐµÑ‚Ðµ Ð²ÑÑÐºÐ¾ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÐµÐ½Ð¸Ðµ Ð½Ð°Ð¿Ñ€Ð°Ð²ÐµÐ½Ð¾ Ð¾Ñ‚ mpv."
 
 msgid "Disable frame mixing, show nearest frame to target PTS"
-msgstr "Изключване на смесването на рамката, показване на най-близката рамка до целевата PTS"
+msgstr "Ð˜Ð·ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½Ðµ Ð½Ð° ÑÐ¼ÐµÑÐ²Ð°Ð½ÐµÑ‚Ð¾ Ð½Ð° Ñ€Ð°Ð¼ÐºÐ°Ñ‚Ð°, Ð¿Ð¾ÐºÐ°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ð½Ð°Ð¹-Ð±Ð»Ð¸Ð·ÐºÐ°Ñ‚Ð° Ñ€Ð°Ð¼ÐºÐ° Ð´Ð¾ Ñ†ÐµÐ»ÐµÐ²Ð°Ñ‚Ð° PTS"
 
 msgid "Dither to 10 bit output."
-msgstr "Дитер на 10 бита изход."
+msgstr "Ð”Ð¸Ñ‚ÐµÑ€ Ð½Ð° 10 Ð±Ð¸Ñ‚Ð° Ð¸Ð·Ñ…Ð¾Ð´."
 
 msgid "Dither to 8 bit output."
-msgstr "Дитер до 8 битов изход."
+msgstr "Ð”Ð¸Ñ‚ÐµÑ€ Ð´Ð¾ 8 Ð±Ð¸Ñ‚Ð¾Ð² Ð¸Ð·Ñ…Ð¾Ð´."
 
 msgid "Don't automatically load external audio files."
-msgstr "Не зареждайте автоматично външни аудио файлове."
+msgstr "ÐÐµ Ð·Ð°Ñ€ÐµÐ¶Ð´Ð°Ð¹Ñ‚Ðµ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾ Ð²ÑŠÐ½ÑˆÐ½Ð¸ Ð°ÑƒÐ´Ð¸Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ."
 
 msgid "Don't automatically load external subtitle files."
-msgstr "Не зареждайте автоматично външни субтитри файлове."
+msgstr "ÐÐµ Ð·Ð°Ñ€ÐµÐ¶Ð´Ð°Ð¹Ñ‚Ðµ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾ Ð²ÑŠÐ½ÑˆÐ½Ð¸ ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:116
 msgid "Double"
-msgstr "Двойна"
+msgstr "Ð”Ð²Ð¾Ð¹Ð½Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:114
 msgid "Drop files or URLs to play here."
-msgstr "Пуснете файлове или URL адреси тук за възпроизвеждане."
+msgstr "ÐŸÑƒÑÐ½ÐµÑ‚Ðµ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ Ð¸Ð»Ð¸ URL Ð°Ð´Ñ€ÐµÑÐ¸ Ñ‚ÑƒÐº Ð·Ð° Ð²ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ¶Ð´Ð°Ð½Ðµ."
 
 msgid "EWA Lanczos (\\\"Jinc\\\") reconstruction (slow)."
 msgstr "EWA Lanczos (\\\"Jinc\\\") reconstruction (slow)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:173
 msgid "Edit input.conf"
-msgstr "Редактирай input.conf"
+msgstr "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð°Ð¹ input.conf"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:172
 msgid "Edit mpv.conf"
-msgstr "Редактирай mpv.conf"
+msgstr "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð°Ð¹ mpv.conf"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:136
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:241
 msgid "Editions"
-msgstr "Редактирай input.conf"
+msgstr "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð°Ð¹ input.conf"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1137
 msgid "Enable the IPC support and create the listening socket at the given path."
-msgstr "Включване на IPC поддръжка и създаване на слушалката на даден път."
+msgstr "Ð’ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½Ðµ Ð½Ð° IPC Ð¿Ð¾Ð´Ð´Ñ€ÑŠÐ¶ÐºÐ° Ð¸ ÑÑŠÐ·Ð´Ð°Ð²Ð°Ð½Ðµ Ð½Ð° ÑÐ»ÑƒÑˆÐ°Ð»ÐºÐ°Ñ‚Ð° Ð½Ð° Ð´Ð°Ð´ÐµÐ½ Ð¿ÑŠÑ‚."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:181
 msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
-msgstr "Включване на алгоритъма. Това значително намалява количеството видими ленти, блокиране и други квантизационни артефакти, за сметка на много леко размиване на някои от най-добрите детайли. На практика, това почти винаги е подобрение - единствената причина да се деактивира е за изпълнение."
+msgstr "Ð’ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½Ðµ Ð½Ð° Ð°Ð»Ð³Ð¾Ñ€Ð¸Ñ‚ÑŠÐ¼Ð°. Ð¢Ð¾Ð²Ð° Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ÐµÐ»Ð½Ð¾ Ð½Ð°Ð¼Ð°Ð»ÑÐ²Ð° ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ñ‚Ð¾ Ð²Ð¸Ð´Ð¸Ð¼Ð¸ Ð»ÐµÐ½Ñ‚Ð¸, Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð°Ð½Ðµ Ð¸ Ð´Ñ€ÑƒÐ³Ð¸ ÐºÐ²Ð°Ð½Ñ‚Ð¸Ð·Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¸ Ð°Ñ€Ñ‚ÐµÑ„Ð°ÐºÑ‚Ð¸, Ð·Ð° ÑÐ¼ÐµÑ‚ÐºÐ° Ð½Ð° Ð¼Ð½Ð¾Ð³Ð¾ Ð»ÐµÐºÐ¾ Ñ€Ð°Ð·Ð¼Ð¸Ð²Ð°Ð½Ðµ Ð½Ð° Ð½ÑÐºÐ¾Ð¸ Ð¾Ñ‚ Ð½Ð°Ð¹-Ð´Ð¾Ð±Ñ€Ð¸Ñ‚Ðµ Ð´ÐµÑ‚Ð°Ð¹Ð»Ð¸. ÐÐ° Ð¿Ñ€Ð°ÐºÑ‚Ð¸ÐºÐ°, Ñ‚Ð¾Ð²Ð° Ð¿Ð¾Ñ‡Ñ‚Ð¸ Ð²Ð¸Ð½Ð°Ð³Ð¸ Ðµ Ð¿Ð¾Ð´Ð¾Ð±Ñ€ÐµÐ½Ð¸Ðµ - ÐµÐ´Ð¸Ð½ÑÑ‚Ð²ÐµÐ½Ð°Ñ‚Ð° Ð¿Ñ€Ð¸Ñ‡Ð¸Ð½Ð° Ð´Ð° ÑÐµ Ð´ÐµÐ°ÐºÑ‚Ð¸Ð²Ð¸Ñ€Ð° Ðµ Ð·Ð° Ð¸Ð·Ð¿ÑŠÐ»Ð½ÐµÐ½Ð¸Ðµ."
 
 msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\\\n\\\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
 msgstr "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\\\n\\\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
@@ -1092,43 +1092,43 @@ msgstr "Enables HDR peak detection."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:376
 msgid "Enables color adjustment."
-msgstr "Включване на корекция на цвета."
+msgstr "Ð’ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½Ðµ Ð½Ð° ÐºÐ¾Ñ€ÐµÐºÑ†Ð¸Ñ Ð½Ð° Ñ†Ð²ÐµÑ‚Ð°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:314
 msgid "Enables debanding using libplacebo."
-msgstr "Включване на дебандирането чрез libplacebo."
+msgstr "Ð’ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½Ðµ Ð½Ð° Ð´ÐµÐ±Ð°Ð½Ð´Ð¸Ñ€Ð°Ð½ÐµÑ‚Ð¾ Ñ‡Ñ€ÐµÐ· libplacebo."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:350
 msgid "Enables sigmoidization."
-msgstr "Включва сигмоидизация."
+msgstr "Ð’ÐºÐ»ÑŽÑ‡Ð²Ð° ÑÐ¸Ð³Ð¼Ð¾Ð¸Ð´Ð¸Ð·Ð°Ñ†Ð¸Ñ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:475
 msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
-msgstr "Разрешава използването на тези настройки за цветово картиране. Изключването на тази опция не изключва картирането на цветовете, това означава просто \"използвайте опциите по подразбиране за всичко.\""
+msgstr "Ð Ð°Ð·Ñ€ÐµÑˆÐ°Ð²Ð° Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½ÐµÑ‚Ð¾ Ð½Ð° Ñ‚ÐµÐ·Ð¸ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð·Ð° Ñ†Ð²ÐµÑ‚Ð¾Ð²Ð¾ ÐºÐ°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½Ðµ. Ð˜Ð·ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½ÐµÑ‚Ð¾ Ð½Ð° Ñ‚Ð°Ð·Ð¸ Ð¾Ð¿Ñ†Ð¸Ñ Ð½Ðµ Ð¸Ð·ÐºÐ»ÑŽÑ‡Ð²Ð° ÐºÐ°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½ÐµÑ‚Ð¾ Ð½Ð° Ñ†Ð²ÐµÑ‚Ð¾Ð²ÐµÑ‚Ðµ, Ñ‚Ð¾Ð²Ð° Ð¾Ð·Ð½Ð°Ñ‡Ð°Ð²Ð° Ð¿Ñ€Ð¾ÑÑ‚Ð¾ \"Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹Ñ‚Ðµ Ð¾Ð¿Ñ†Ð¸Ð¸Ñ‚Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð·Ð° Ð²ÑÐ¸Ñ‡ÐºÐ¾.\""
 
 msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \\\"use the default options for everything\\\"."
 msgstr "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \\\"use the default options for everything\\\"."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:152
 msgid "Enlarge"
-msgstr "Увеличи"
+msgstr "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:326
 msgid "Error creating file associations."
-msgstr "Грешка при създаване на файлови асоциации."
+msgstr "Ð“Ñ€ÐµÑˆÐºÐ° Ð¿Ñ€Ð¸ ÑÑŠÐ·Ð´Ð°Ð²Ð°Ð½Ðµ Ð½Ð° Ñ„Ð°Ð¹Ð»Ð¾Ð²Ð¸ Ð°ÑÐ¾Ñ†Ð¸Ð°Ñ†Ð¸Ð¸."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:201
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:23
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:233
 msgid "Exit"
-msgstr "Изход"
+msgstr "Ð˜Ð·Ñ…Ð¾Ð´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:188
 msgid "Exit Watch Later"
-msgstr "Изходен часовник по-късно"
+msgstr "Ð˜Ð·Ñ…Ð¾Ð´ÐµÐ½ Ñ‡Ð°ÑÐ¾Ð²Ð½Ð¸Ðº Ð¿Ð¾-ÐºÑŠÑÐ½Ð¾"
 
 msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
-msgstr "Експериментален видеопредавател базиран на libplacebo. Това поддържа почти същия набор от функции като --vo=gpu."
+msgstr "Ð•ÐºÑÐ¿ÐµÑ€Ð¸Ð¼ÐµÐ½Ñ‚Ð°Ð»ÐµÐ½ Ð²Ð¸Ð´ÐµÐ¾Ð¿Ñ€ÐµÐ´Ð°Ð²Ð°Ñ‚ÐµÐ» Ð±Ð°Ð·Ð¸Ñ€Ð°Ð½ Ð½Ð° libplacebo. Ð¢Ð¾Ð²Ð° Ð¿Ð¾Ð´Ð´ÑŠÑ€Ð¶Ð° Ð¿Ð¾Ñ‡Ñ‚Ð¸ ÑÑŠÑ‰Ð¸Ñ Ð½Ð°Ð±Ð¾Ñ€ Ð¾Ñ‚ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ ÐºÐ°Ñ‚Ð¾ --vo=gpu."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:12
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:13
@@ -1143,43 +1143,43 @@ msgstr "Експериментален видеопредавател базир
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:22
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:23
 msgid "File"
-msgstr "Файл"
+msgstr "Ð¤Ð°Ð¹Ð»"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:318
 msgid "File Explorer icons will refresh after process restart."
-msgstr "Иконите на File Explorer ще се обновят след рестартиране на процеса."
+msgstr "Ð˜ÐºÐ¾Ð½Ð¸Ñ‚Ðµ Ð½Ð° File Explorer Ñ‰Ðµ ÑÐµ Ð¾Ð±Ð½Ð¾Ð²ÑÑ‚ ÑÐ»ÐµÐ´ Ñ€ÐµÑÑ‚Ð°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° Ð¿Ñ€Ð¾Ñ†ÐµÑÐ°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:323
 msgid "File associations were successfully created."
-msgstr "Файловите асоциации са създадени успешно."
+msgstr "Ð¤Ð°Ð¹Ð»Ð¾Ð²Ð¸Ñ‚Ðµ Ð°ÑÐ¾Ñ†Ð¸Ð°Ñ†Ð¸Ð¸ ÑÐ° ÑÑŠÐ·Ð´Ð°Ð´ÐµÐ½Ð¸ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:321
 msgid "File associations were successfully removed."
-msgstr "Файловите асоциации бяха успешно отстранени."
+msgstr "Ð¤Ð°Ð¹Ð»Ð¾Ð²Ð¸Ñ‚Ðµ Ð°ÑÐ¾Ñ†Ð¸Ð°Ñ†Ð¸Ð¸ Ð±ÑÑ…Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚ÑÑ‚Ñ€Ð°Ð½ÐµÐ½Ð¸."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:246
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:268
 msgid "Files/URLs were added to the playlist"
-msgstr "Добавени са файлове/URL файлове в списъка"
+msgstr "Ð”Ð¾Ð±Ð°Ð²ÐµÐ½Ð¸ ÑÐ° Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ/URL Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ Ð² ÑÐ¿Ð¸ÑÑŠÐºÐ°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:39
 msgid "Find a binding (Ctrl+F)"
-msgstr "Намиране на настройка (Ctrl+F)"
+msgstr "ÐÐ°Ð¼Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° (Ctrl+F)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:572
 msgid "Find a setting (Ctrl+F)"
-msgstr "Намиране на настройка (Ctrl+F)"
+msgstr "ÐÐ°Ð¼Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° (Ctrl+F)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
-msgstr "Първи файл"
+msgstr "ÐŸÑŠÑ€Ð²Ð¸ Ñ„Ð°Ð¹Ð»"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1113
 msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
 msgstr "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
 
 msgid "Force a single process and add files to playlist"
-msgstr "Принуди един процес и добави файлове в списъка"
+msgstr "ÐŸÑ€Ð¸Ð½ÑƒÐ´Ð¸ ÐµÐ´Ð¸Ð½ Ð¿Ñ€Ð¾Ñ†ÐµÑ Ð¸ Ð´Ð¾Ð±Ð°Ð²Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ Ð² ÑÐ¿Ð¸ÑÑŠÐºÐ°"
 
 msgid "Force a single process everytime the shell starts mpv.net"
 msgstr "Force a single process everytime the shell starts mpv.net"
@@ -1190,23 +1190,23 @@ msgstr "Force the use of a full tone-mapping LUT even for functions that have fa
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:208
 msgid "Forward"
-msgstr "Напред"
+msgstr "ÐÐ°Ð¿Ñ€ÐµÐ´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:151
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:221
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:222
 msgid "Fullscreen"
-msgstr "Цял екран"
+msgstr "Ð¦ÑÐ» ÐµÐºÑ€Ð°Ð½"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:492
 msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
 msgstr "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
 
 msgid "Gaussian smoothing (fast)"
-msgstr "Гаусово изглаждане (бързо)"
+msgstr "Ð“Ð°ÑƒÑÐ¾Ð²Ð¾ Ð¸Ð·Ð³Ð»Ð°Ð¶Ð´Ð°Ð½Ðµ (Ð±ÑŠÑ€Ð·Ð¾)"
 
 msgid "Gaussian smoothing (fast)."
-msgstr "Гаусийски изглаждане (бързо)."
+msgstr "Ð“Ð°ÑƒÑÐ¸Ð¹ÑÐºÐ¸ Ð¸Ð·Ð³Ð»Ð°Ð¶Ð´Ð°Ð½Ðµ (Ð±ÑŠÑ€Ð·Ð¾)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:13
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:18
@@ -1216,7 +1216,7 @@ msgstr "Гаусийски изглаждане (бързо)."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:4
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:52
 msgid "General"
-msgstr "Общи положения"
+msgstr "ÐžÐ±Ñ‰Ð¸ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ"
 
 msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
 msgstr "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
@@ -1238,7 +1238,7 @@ msgstr "HDR Peak Detection"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:115
 msgid "Half"
-msgstr "Наполовина"
+msgstr "ÐÐ°Ð¿Ð¾Ð»Ð¾Ð²Ð¸Ð½Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:192
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:193
@@ -1249,32 +1249,32 @@ msgstr "Наполовина"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:198
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:199
 msgid "Help"
-msgstr "Помощ"
+msgstr "ÐŸÐ¾Ð¼Ð¾Ñ‰"
 
 msgid "Hermite-weighted averaging (fast)"
-msgstr "Среднопретеглена стойност на хермитите (бърза)"
+msgstr "Ð¡Ñ€ÐµÐ´Ð½Ð¾Ð¿Ñ€ÐµÑ‚ÐµÐ³Ð»ÐµÐ½Ð° ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚ Ð½Ð° Ñ…ÐµÑ€Ð¼Ð¸Ñ‚Ð¸Ñ‚Ðµ (Ð±ÑŠÑ€Ð·Ð°)"
 
 msgid "Hermite-weighted frame mixing"
-msgstr "Смесване на рамка с хермит"
+msgstr "Ð¡Ð¼ÐµÑÐ²Ð°Ð½Ðµ Ð½Ð° Ñ€Ð°Ð¼ÐºÐ° Ñ Ñ…ÐµÑ€Ð¼Ð¸Ñ‚"
 
 msgid "How the player synchronizes audio and video.\\\\n\\\\nFor more information visit:"
-msgstr "Как играчът синхронизира аудио и видео.\\\\n\\\\nЗа повече информация:"
+msgstr "ÐšÐ°Ðº Ð¸Ð³Ñ€Ð°Ñ‡ÑŠÑ‚ ÑÐ¸Ð½Ñ…Ñ€Ð¾Ð½Ð¸Ð·Ð¸Ñ€Ð° Ð°ÑƒÐ´Ð¸Ð¾ Ð¸ Ð²Ð¸Ð´ÐµÐ¾.\\\\n\\\\nÐ—Ð° Ð¿Ð¾Ð²ÐµÑ‡Ðµ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:38
 msgid "How the player synchronizes audio and video.\\n\\nFor more information visit:"
-msgstr "Как играчът синхронизира аудио и видео.\\n\\nЗа повече информация:"
+msgstr "ÐšÐ°Ðº Ð¸Ð³Ñ€Ð°Ñ‡ÑŠÑ‚ ÑÐ¸Ð½Ñ…Ñ€Ð¾Ð½Ð¸Ð·Ð¸Ñ€Ð° Ð°ÑƒÐ´Ð¸Ð¾ Ð¸ Ð²Ð¸Ð´ÐµÐ¾.\\n\\nÐ—Ð° Ð¿Ð¾Ð²ÐµÑ‡Ðµ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:556
 msgid "If enabled, allows the gamut mapping function to expand the gamut, in cases where the target gamut exceeds that of the source. If disabled, the source gamut will never be enlarged, even when using a gamut mapping function capable of bidirectional mapping."
-msgstr "Ако е активиран, позволява функцията за картиране на гамата да разшири гамата, в случаите, когато целевата гама превишава тази на източника. Ако е изключен, изходът на източника никога няма да бъде разширен, дори когато се използва функция за картиране на гамата, способна на двупосочно картографиране."
+msgstr "ÐÐºÐ¾ Ðµ Ð°ÐºÑ‚Ð¸Ð²Ð¸Ñ€Ð°Ð½, Ð¿Ð¾Ð·Ð²Ð¾Ð»ÑÐ²Ð° Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑÑ‚Ð° Ð·Ð° ÐºÐ°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° Ð³Ð°Ð¼Ð°Ñ‚Ð° Ð´Ð° Ñ€Ð°Ð·ÑˆÐ¸Ñ€Ð¸ Ð³Ð°Ð¼Ð°Ñ‚Ð°, Ð² ÑÐ»ÑƒÑ‡Ð°Ð¸Ñ‚Ðµ, ÐºÐ¾Ð³Ð°Ñ‚Ð¾ Ñ†ÐµÐ»ÐµÐ²Ð°Ñ‚Ð° Ð³Ð°Ð¼Ð° Ð¿Ñ€ÐµÐ²Ð¸ÑˆÐ°Ð²Ð° Ñ‚Ð°Ð·Ð¸ Ð½Ð° Ð¸Ð·Ñ‚Ð¾Ñ‡Ð½Ð¸ÐºÐ°. ÐÐºÐ¾ Ðµ Ð¸Ð·ÐºÐ»ÑŽÑ‡ÐµÐ½, Ð¸Ð·Ñ…Ð¾Ð´ÑŠÑ‚ Ð½Ð° Ð¸Ð·Ñ‚Ð¾Ñ‡Ð½Ð¸ÐºÐ° Ð½Ð¸ÐºÐ¾Ð³Ð° Ð½ÑÐ¼Ð° Ð´Ð° Ð±ÑŠÐ´Ðµ Ñ€Ð°Ð·ÑˆÐ¸Ñ€ÐµÐ½, Ð´Ð¾Ñ€Ð¸ ÐºÐ¾Ð³Ð°Ñ‚Ð¾ ÑÐµ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð° Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ð·Ð° ÐºÐ°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° Ð³Ð°Ð¼Ð°Ñ‚Ð°, ÑÐ¿Ð¾ÑÐ¾Ð±Ð½Ð° Ð½Ð° Ð´Ð²ÑƒÐ¿Ð¾ÑÐ¾Ñ‡Ð½Ð¾ ÐºÐ°Ñ€Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ñ€Ð°Ð½Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:637
 msgid "If enabled, and supported by the given tone mapping function, will perform inverse tone mapping to expand the dynamic range of a signal. libplacebo is not liable for any HDR-induced eye damage."
-msgstr "Ако е активиран и поддържан от дадена функция за тониране, ще изпълнява обратно тонизиране, за да разшири динамичния обхват на сигнала. libplacebo не носи отговорност за увреждане на очите, предизвикано от HDR."
+msgstr "ÐÐºÐ¾ Ðµ Ð°ÐºÑ‚Ð¸Ð²Ð¸Ñ€Ð°Ð½ Ð¸ Ð¿Ð¾Ð´Ð´ÑŠÑ€Ð¶Ð°Ð½ Ð¾Ñ‚ Ð´Ð°Ð´ÐµÐ½Ð° Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ð·Ð° Ñ‚Ð¾Ð½Ð¸Ñ€Ð°Ð½Ðµ, Ñ‰Ðµ Ð¸Ð·Ð¿ÑŠÐ»Ð½ÑÐ²Ð° Ð¾Ð±Ñ€Ð°Ñ‚Ð½Ð¾ Ñ‚Ð¾Ð½Ð¸Ð·Ð¸Ñ€Ð°Ð½Ðµ, Ð·Ð° Ð´Ð° Ñ€Ð°Ð·ÑˆÐ¸Ñ€Ð¸ Ð´Ð¸Ð½Ð°Ð¼Ð¸Ñ‡Ð½Ð¸Ñ Ð¾Ð±Ñ…Ð²Ð°Ñ‚ Ð½Ð° ÑÐ¸Ð³Ð½Ð°Ð»Ð°. libplacebo Ð½Ðµ Ð½Ð¾ÑÐ¸ Ð¾Ñ‚Ð³Ð¾Ð²Ð¾Ñ€Ð½Ð¾ÑÑ‚ Ð·Ð° ÑƒÐ²Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° Ð¾Ñ‡Ð¸Ñ‚Ðµ, Ð¿Ñ€ÐµÐ´Ð¸Ð·Ð²Ð¸ÐºÐ°Ð½Ð¾ Ð¾Ñ‚ HDR."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:748
 msgid "If possible, write screenshots with a bit depth similar to the source video. This is interesting in particular for PNG, as this sometimes triggers writing 16 bit PNGs with huge file sizes. This will also include an unused alpha channel in the resulting files if 16 bit is used."
-msgstr "Ако е възможно, напишете снимки на екрана с малко дълбочина, подобна на видеото с източника. Това е интересно по-специално за PNG, тъй като това понякога задейства писане 16 малко PNGs с огромни размери на файловете. Това ще включва и неизползван алфа канал в получените файлове, ако се използва 16 бита."
+msgstr "ÐÐºÐ¾ Ðµ Ð²ÑŠÐ·Ð¼Ð¾Ð¶Ð½Ð¾, Ð½Ð°Ð¿Ð¸ÑˆÐµÑ‚Ðµ ÑÐ½Ð¸Ð¼ÐºÐ¸ Ð½Ð° ÐµÐºÑ€Ð°Ð½Ð° Ñ Ð¼Ð°Ð»ÐºÐ¾ Ð´ÑŠÐ»Ð±Ð¾Ñ‡Ð¸Ð½Ð°, Ð¿Ð¾Ð´Ð¾Ð±Ð½Ð° Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾Ñ‚Ð¾ Ñ Ð¸Ð·Ñ‚Ð¾Ñ‡Ð½Ð¸ÐºÐ°. Ð¢Ð¾Ð²Ð° Ðµ Ð¸Ð½Ñ‚ÐµÑ€ÐµÑÐ½Ð¾ Ð¿Ð¾-ÑÐ¿ÐµÑ†Ð¸Ð°Ð»Ð½Ð¾ Ð·Ð° PNG, Ñ‚ÑŠÐ¹ ÐºÐ°Ñ‚Ð¾ Ñ‚Ð¾Ð²Ð° Ð¿Ð¾Ð½ÑÐºÐ¾Ð³Ð° Ð·Ð°Ð´ÐµÐ¹ÑÑ‚Ð²Ð° Ð¿Ð¸ÑÐ°Ð½Ðµ 16 Ð¼Ð°Ð»ÐºÐ¾ PNGs Ñ Ð¾Ð³Ñ€Ð¾Ð¼Ð½Ð¸ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð¸ Ð½Ð° Ñ„Ð°Ð¹Ð»Ð¾Ð²ÐµÑ‚Ðµ. Ð¢Ð¾Ð²Ð° Ñ‰Ðµ Ð²ÐºÐ»ÑŽÑ‡Ð²Ð° Ð¸ Ð½ÐµÐ¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½ Ð°Ð»Ñ„Ð° ÐºÐ°Ð½Ð°Ð» Ð² Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ‚Ðµ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ, Ð°ÐºÐ¾ ÑÐµ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð° 16 Ð±Ð¸Ñ‚Ð°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1053
 msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
@@ -1285,18 +1285,18 @@ msgid "If set to no, instead of pausing when keep-open is active, just stop at e
 msgstr "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
 
 msgid "If the current file ends, go to the next file, keep the last file open."
-msgstr "Ако текущият файл приключи, отидете в следващия файл, задръжте последния файл отворен."
+msgstr "ÐÐºÐ¾ Ñ‚ÐµÐºÑƒÑ‰Ð¸ÑÑ‚ Ñ„Ð°Ð¹Ð» Ð¿Ñ€Ð¸ÐºÐ»ÑŽÑ‡Ð¸, Ð¾Ñ‚Ð¸Ð´ÐµÑ‚Ðµ Ð² ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ Ñ„Ð°Ð¹Ð», Ð·Ð°Ð´Ñ€ÑŠÐ¶Ñ‚Ðµ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ñ Ñ„Ð°Ð¹Ð» Ð¾Ñ‚Ð²Ð¾Ñ€ÐµÐ½."
 
 msgid "If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
-msgstr "Ако текущият файл приключи, отидете в следващия файл. Ако настройката е \"не,\" играчът излиза след последния файл."
+msgstr "ÐÐºÐ¾ Ñ‚ÐµÐºÑƒÑ‰Ð¸ÑÑ‚ Ñ„Ð°Ð¹Ð» Ð¿Ñ€Ð¸ÐºÐ»ÑŽÑ‡Ð¸, Ð¾Ñ‚Ð¸Ð´ÐµÑ‚Ðµ Ð² ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ Ñ„Ð°Ð¹Ð». ÐÐºÐ¾ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ°Ñ‚Ð° Ðµ \"Ð½Ðµ,\" Ð¸Ð³Ñ€Ð°Ñ‡ÑŠÑ‚ Ð¸Ð·Ð»Ð¸Ð·Ð° ÑÐ»ÐµÐ´ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ñ Ñ„Ð°Ð¹Ð»."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:173
 msgid "Ignore"
-msgstr "Игнориране"
+msgstr "Ð˜Ð³Ð½Ð¾Ñ€Ð¸Ñ€Ð°Ð½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:220
 msgid "Ignore left mouse button"
-msgstr "Игнорирай левия бутон на мишката"
+msgstr "Ð˜Ð³Ð½Ð¾Ñ€Ð¸Ñ€Ð°Ð¹ Ð»ÐµÐ²Ð¸Ñ Ð±ÑƒÑ‚Ð¾Ð½ Ð½Ð° Ð¼Ð¸ÑˆÐºÐ°Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:28
 msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
@@ -1304,156 +1304,156 @@ msgstr "Image file extentions to try to match when using --cover-art-auto, --aut
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:71
 msgid "Increase Brightness"
-msgstr "Увеличи яркостта"
+msgstr "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸ ÑÑ€ÐºÐ¾ÑÑ‚Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:68
 msgid "Increase Contrast"
-msgstr "Увеличи контраста"
+msgstr "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸ ÐºÐ¾Ð½Ñ‚Ñ€Ð°ÑÑ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:101
 msgid "Increase Font Size"
-msgstr "Увеличи размера на шрифта"
+msgstr "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð° Ð½Ð° ÑˆÑ€Ð¸Ñ„Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:74
 msgid "Increase Gamma"
-msgstr "Увеличи гамата"
+msgstr "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸ Ð³Ð°Ð¼Ð°Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:63
 msgid "Increase Height"
-msgstr "Увеличи височината"
+msgstr "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸ Ð²Ð¸ÑÐ¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:77
 msgid "Increase Saturation"
-msgstr "Увеличи наситеността"
+msgstr "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸ Ð½Ð°ÑÐ¸Ñ‚ÐµÐ½Ð¾ÑÑ‚Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:54
 msgid "Increase Size"
-msgstr "Увеличи размера"
+msgstr "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:471
 msgid "Info"
-msgstr "Информация"
+msgstr "Ð˜Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1126
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1131
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1136
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:102
 msgid "Input"
-msgstr "Вход"
+msgstr "Ð’Ñ…Ð¾Ð´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:11
 msgid "Input Editor"
-msgstr "Покажи редактора за въвеждане"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€Ð° Ð·Ð° Ð²ÑŠÐ²ÐµÐ¶Ð´Ð°Ð½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:45
 msgid "Jump 30 sec backward"
-msgstr "Скок 30 секунди назад"
+msgstr "Ð¡ÐºÐ¾Ðº 30 ÑÐµÐºÑƒÐ½Ð´Ð¸ Ð½Ð°Ð·Ð°Ð´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:44
 msgid "Jump 30 sec forward"
-msgstr "Скок 30 секунди напред"
+msgstr "Ð¡ÐºÐ¾Ðº 30 ÑÐµÐºÑƒÐ½Ð´Ð¸ Ð½Ð°Ð¿Ñ€ÐµÐ´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:48
 msgid "Jump 5 min backward"
-msgstr "Скок 5 минути назад"
+msgstr "Ð¡ÐºÐ¾Ðº 5 Ð¼Ð¸Ð½ÑƒÑ‚Ð¸ Ð½Ð°Ð·Ð°Ð´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:47
 msgid "Jump 5 min forward"
-msgstr "Скок 5 минути напред"
+msgstr "Ð¡ÐºÐ¾Ðº 5 Ð¼Ð¸Ð½ÑƒÑ‚Ð¸ Ð½Ð°Ð¿Ñ€ÐµÐ´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:42
 msgid "Jump 5 sec backward"
-msgstr "Скок 5 секунди назад"
+msgstr "Ð¡ÐºÐ¾Ðº 5 ÑÐµÐºÑƒÐ½Ð´Ð¸ Ð½Ð°Ð·Ð°Ð´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:41
 msgid "Jump 5 sec forward"
-msgstr "Скок 5 секунди напред"
+msgstr "Ð¡ÐºÐ¾Ðº 5 ÑÐµÐºÑƒÐ½Ð´Ð¸ Ð½Ð°Ð¿Ñ€ÐµÐ´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:38
 msgid "Jump To Next Frame"
-msgstr "Премини към следващия кадър"
+msgstr "ÐŸÑ€ÐµÐ¼Ð¸Ð½Ð¸ ÐºÑŠÐ¼ ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ ÐºÐ°Ð´ÑŠÑ€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:39
 msgid "Jump To Previous Frame"
-msgstr "Премини към предишния кадър"
+msgstr "ÐŸÑ€ÐµÐ¼Ð¸Ð½Ð¸ ÐºÑŠÐ¼ Ð¿Ñ€ÐµÐ´Ð¸ÑˆÐ½Ð¸Ñ ÐºÐ°Ð´ÑŠÑ€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:146
 msgid "Keys"
-msgstr "Покажи ключове"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ ÐºÐ»ÑŽÑ‡Ð¾Ð²Ðµ"
 
 msgid "Lanczos reconstruction"
-msgstr "Реконструкция на Lanczos"
+msgstr "Ð ÐµÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ†Ð¸Ñ Ð½Ð° Lanczos"
 
 msgid "Lanczos reconstruction."
-msgstr "Реконструкция на Ланчос."
+msgstr "Ð ÐµÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ†Ð¸Ñ Ð½Ð° Ð›Ð°Ð½Ñ‡Ð¾Ñ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:32
 msgid "Last File"
-msgstr "Последен файл"
+msgstr "ÐŸÐ¾ÑÐ»ÐµÐ´ÐµÐ½ Ñ„Ð°Ð¹Ð»"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:10
 msgid "Learn Input"
-msgstr "Обучение на вход"
+msgstr "ÐžÐ±ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð½Ð° Ð²Ñ…Ð¾Ð´"
 
 msgid "Like scale, but apply these filters on downscaling instead. \\\\nIf no option is selected, it will keep the same with the upscaler."
-msgstr "Подобно на мащаб, но нанесете тези филтри на снижаване вместо \\\\nАко не бъде избрана опция, тя ще запази същата с upscaler."
+msgstr "ÐŸÐ¾Ð´Ð¾Ð±Ð½Ð¾ Ð½Ð° Ð¼Ð°Ñ‰Ð°Ð±, Ð½Ð¾ Ð½Ð°Ð½ÐµÑÐµÑ‚Ðµ Ñ‚ÐµÐ·Ð¸ Ñ„Ð¸Ð»Ñ‚Ñ€Ð¸ Ð½Ð° ÑÐ½Ð¸Ð¶Ð°Ð²Ð°Ð½Ðµ Ð²Ð¼ÐµÑÑ‚Ð¾ \\\\nÐÐºÐ¾ Ð½Ðµ Ð±ÑŠÐ´Ðµ Ð¸Ð·Ð±Ñ€Ð°Ð½Ð° Ð¾Ð¿Ñ†Ð¸Ñ, Ñ‚Ñ Ñ‰Ðµ Ð·Ð°Ð¿Ð°Ð·Ð¸ ÑÑŠÑ‰Ð°Ñ‚Ð° Ñ upscaler."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:141
 msgid "Like scale, but apply these filters on downscaling instead. \\nIf no option is selected, it will keep the same with the upscaler."
-msgstr "Като мащаб, но нанесете тези филтри на снижаване. \\nАко не бъде избрана опция, тя ще запази същата с upscaler."
+msgstr "ÐšÐ°Ñ‚Ð¾ Ð¼Ð°Ñ‰Ð°Ð±, Ð½Ð¾ Ð½Ð°Ð½ÐµÑÐµÑ‚Ðµ Ñ‚ÐµÐ·Ð¸ Ñ„Ð¸Ð»Ñ‚Ñ€Ð¸ Ð½Ð° ÑÐ½Ð¸Ð¶Ð°Ð²Ð°Ð½Ðµ. \\nÐÐºÐ¾ Ð½Ðµ Ð±ÑŠÐ´Ðµ Ð¸Ð·Ð±Ñ€Ð°Ð½Ð° Ð¾Ð¿Ñ†Ð¸Ñ, Ñ‚Ñ Ñ‰Ðµ Ð·Ð°Ð¿Ð°Ð·Ð¸ ÑÑŠÑ‰Ð°Ñ‚Ð° Ñ upscaler."
 
 msgid "Linear frame mixing"
-msgstr "Линейно смесване на рамката"
+msgstr "Ð›Ð¸Ð½ÐµÐ¹Ð½Ð¾ ÑÐ¼ÐµÑÐ²Ð°Ð½Ðµ Ð½Ð° Ñ€Ð°Ð¼ÐºÐ°Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:809
 msgid "Load additional audio files matching the video filename. The parameter specifies how external audio files are matched."
-msgstr "Зареждане на допълнителни аудио файлове, отговарящи на името на видео файла. В параметъра се посочва как са съгласувани външните аудио файлове."
+msgstr "Ð—Ð°Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° Ð´Ð¾Ð¿ÑŠÐ»Ð½Ð¸Ñ‚ÐµÐ»Ð½Ð¸ Ð°ÑƒÐ´Ð¸Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ, Ð¾Ñ‚Ð³Ð¾Ð²Ð°Ñ€ÑÑ‰Ð¸ Ð½Ð° Ð¸Ð¼ÐµÑ‚Ð¾ Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾ Ñ„Ð°Ð¹Ð»Ð°. Ð’ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚ÑŠÑ€Ð° ÑÐµ Ð¿Ð¾ÑÐ¾Ñ‡Ð²Ð° ÐºÐ°Ðº ÑÐ° ÑÑŠÐ³Ð»Ð°ÑÑƒÐ²Ð°Ð½Ð¸ Ð²ÑŠÐ½ÑˆÐ½Ð¸Ñ‚Ðµ Ð°ÑƒÐ´Ð¸Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:845
 msgid "Load additional subtitle files matching the video filename. The parameter specifies how external subtitle files are matched. exact is enabled by default."
-msgstr "Зареждане на допълнителни субтитри файлове, отговарящи на името на видео файла. В параметъра се посочва как се съвпадат външни субтитри файлове. Точността се активира по подразбиране."
+msgstr "Ð—Ð°Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° Ð´Ð¾Ð¿ÑŠÐ»Ð½Ð¸Ñ‚ÐµÐ»Ð½Ð¸ ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ, Ð¾Ñ‚Ð³Ð¾Ð²Ð°Ñ€ÑÑ‰Ð¸ Ð½Ð° Ð¸Ð¼ÐµÑ‚Ð¾ Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾ Ñ„Ð°Ð¹Ð»Ð°. Ð’ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚ÑŠÑ€Ð° ÑÐµ Ð¿Ð¾ÑÐ¾Ñ‡Ð²Ð° ÐºÐ°Ðº ÑÐµ ÑÑŠÐ²Ð¿Ð°Ð´Ð°Ñ‚ Ð²ÑŠÐ½ÑˆÐ½Ð¸ ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ. Ð¢Ð¾Ñ‡Ð½Ð¾ÑÑ‚Ñ‚Ð° ÑÐµ Ð°ÐºÑ‚Ð¸Ð²Ð¸Ñ€Ð° Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ."
 
 msgid "Load all audio files containing media filename."
-msgstr "Зареждане на всички аудио файлове, съдържащи медийно име."
+msgstr "Ð—Ð°Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° Ð²ÑÐ¸Ñ‡ÐºÐ¸ Ð°ÑƒÐ´Ð¸Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ, ÑÑŠÐ´ÑŠÑ€Ð¶Ð°Ñ‰Ð¸ Ð¼ÐµÐ´Ð¸Ð¹Ð½Ð¾ Ð¸Ð¼Ðµ."
 
 msgid "Load all audio files in the current and audio-file-paths directories."
 msgstr "Load all audio files in the current and audio-file-paths directories."
 
 msgid "Load all subs containing media filename."
-msgstr "Зареждане на всички подове, съдържащи медийно име."
+msgstr "Ð—Ð°Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° Ð²ÑÐ¸Ñ‡ÐºÐ¸ Ð¿Ð¾Ð´Ð¾Ð²Ðµ, ÑÑŠÐ´ÑŠÑ€Ð¶Ð°Ñ‰Ð¸ Ð¼ÐµÐ´Ð¸Ð¹Ð½Ð¾ Ð¸Ð¼Ðµ."
 
 msgid "Load all subs in the current and sub-file-paths directories."
 msgstr "Load all subs in the current and sub-file-paths directories."
 
 msgid "Load the media filename with audio file extension."
-msgstr "Зареждане на медийното име с аудио файлово разширение."
+msgstr "Ð—Ð°Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° Ð¼ÐµÐ´Ð¸Ð¹Ð½Ð¾Ñ‚Ð¾ Ð¸Ð¼Ðµ Ñ Ð°ÑƒÐ´Ð¸Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ð¾ Ñ€Ð°Ð·ÑˆÐ¸Ñ€ÐµÐ½Ð¸Ðµ."
 
 msgid "Load the media filename with subtitle file extension."
-msgstr "Зареждане на медийното име със субтитри разширение на файл."
+msgstr "Ð—Ð°Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° Ð¼ÐµÐ´Ð¸Ð¹Ð½Ð¾Ñ‚Ð¾ Ð¸Ð¼Ðµ ÑÑŠÑ ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸ Ñ€Ð°Ð·ÑˆÐ¸Ñ€ÐµÐ½Ð¸Ðµ Ð½Ð° Ñ„Ð°Ð¹Ð»."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:195
 msgid "Manual mpv"
-msgstr "Ръчно mpv"
+msgstr "Ð ÑŠÑ‡Ð½Ð¾ mpv"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:196
 msgid "Manual mpv.net"
-msgstr "Ръководство mpv.net"
+msgstr "Ð ÑŠÐºÐ¾Ð²Ð¾Ð´ÑÑ‚Ð²Ð¾ mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:228
 msgid "Mark position for revert-seek"
-msgstr "Маркирай позиция за търсене назад"
+msgstr "ÐœÐ°Ñ€ÐºÐ¸Ñ€Ð°Ð¹ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð·Ð° Ñ‚ÑŠÑ€ÑÐµÐ½Ðµ Ð½Ð°Ð·Ð°Ð´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:124
 msgid "Media Info Message Box"
-msgstr "Покажи поле за съобщения с медийна информация"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ð¿Ð¾Ð»Ðµ Ð·Ð° ÑÑŠÐ¾Ð±Ñ‰ÐµÐ½Ð¸Ñ Ñ Ð¼ÐµÐ´Ð¸Ð¹Ð½Ð° Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:123
 msgid "Media Info On-Screen"
-msgstr "Покажи медийна информация на екрана"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ð¼ÐµÐ´Ð¸Ð¹Ð½Ð° Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ Ð½Ð° ÐµÐºÑ€Ð°Ð½Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:573
 msgid "Menu"
-msgstr "Меню"
+msgstr "ÐœÐµÐ½ÑŽ"
 
 msgid "Mitchell-Netravalia cubic spline"
 msgstr "Mitchell-Netravalia cubical spline"
@@ -1468,7 +1468,7 @@ msgstr "Mitchell-Netravalia cubical spline"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "More"
-msgstr "Още"
+msgstr "ÐžÑ‰Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:159
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:160
@@ -1476,33 +1476,33 @@ msgstr "Още"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:162
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:163
 msgid "Move"
-msgstr "Премести"
+msgstr "ÐŸÑ€ÐµÐ¼ÐµÑÑ‚Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:60
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:98
 msgid "Move Down"
-msgstr "Премести надолу"
+msgstr "ÐŸÑ€ÐµÐ¼ÐµÑÑ‚Ð¸ Ð½Ð°Ð´Ð¾Ð»Ñƒ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:56
 msgid "Move Left"
-msgstr "Премести наляво"
+msgstr "ÐŸÑ€ÐµÐ¼ÐµÑÑ‚Ð¸ Ð½Ð°Ð»ÑÐ²Ð¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:57
 msgid "Move Right"
-msgstr "Премести надясно"
+msgstr "ÐŸÑ€ÐµÐ¼ÐµÑÑ‚Ð¸ Ð½Ð°Ð´ÑÑÐ½Ð¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:59
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:97
 msgid "Move Up"
-msgstr "Премести нагоре"
+msgstr "ÐŸÑ€ÐµÐ¼ÐµÑÑ‚Ð¸ Ð½Ð°Ð³Ð¾Ñ€Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:110
 msgid "Mute"
-msgstr "Без звук"
+msgstr "Ð‘ÐµÐ· Ð·Ð²ÑƒÐº"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:96
 msgid "Name"
-msgstr "Име"
+msgstr "Ð˜Ð¼Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:28
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:29
@@ -1528,33 +1528,33 @@ msgstr "Име"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:50
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:51
 msgid "Navigate"
-msgstr "Навигиране"
+msgstr "ÐÐ°Ð²Ð¸Ð³Ð¸Ñ€Ð°Ð½Ðµ"
 
 msgid "Nearest-neighbour (box) sampling (very fast)."
-msgstr "Най-близката (кутия) проба (много бързо)."
+msgstr "ÐÐ°Ð¹-Ð±Ð»Ð¸Ð·ÐºÐ°Ñ‚Ð° (ÐºÑƒÑ‚Ð¸Ñ) Ð¿Ñ€Ð¾Ð±Ð° (Ð¼Ð½Ð¾Ð³Ð¾ Ð±ÑŠÑ€Ð·Ð¾)."
 
 msgid "Never use precise seeks."
-msgstr "Никога не използвай точни търсения."
+msgstr "ÐÐ¸ÐºÐ¾Ð³Ð° Ð½Ðµ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹ Ñ‚Ð¾Ñ‡Ð½Ð¸ Ñ‚ÑŠÑ€ÑÐµÐ½Ð¸Ñ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:35
 msgid "Next Chapter"
-msgstr "Следваща глава"
+msgstr "Ð¡Ð»ÐµÐ´Ð²Ð°Ñ‰Ð° Ð³Ð»Ð°Ð²Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:215
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:217
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:219
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:29
 msgid "Next File"
-msgstr "Следващ файл"
+msgstr "Ð¡Ð»ÐµÐ´Ð²Ð°Ñ‰ Ñ„Ð°Ð¹Ð»"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:86
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:91
 msgid "Next Track"
-msgstr "Следващо заглавие"
+msgstr "Ð¡Ð»ÐµÐ´Ð²Ð°Ñ‰Ð¾ Ð·Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
 msgid "No"
-msgstr "Не."
+msgstr "ÐÐµ."
 
 msgid "No filter, only use basic GPU texture sampling."
 msgstr "No filter, only use basic GPU texture sampling."
@@ -1565,11 +1565,11 @@ msgstr "Normally, mpv will try to keep all options when playing the next file on
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1132
 msgid "Number of key presses to generate per second on autorepeat."
-msgstr "Брой на ключовите преси за генериране в секунда на автоповторение."
+msgstr "Ð‘Ñ€Ð¾Ð¹ Ð½Ð° ÐºÐ»ÑŽÑ‡Ð¾Ð²Ð¸Ñ‚Ðµ Ð¿Ñ€ÐµÑÐ¸ Ð·Ð° Ð³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð°Ð½Ðµ Ð² ÑÐµÐºÑƒÐ½Ð´Ð° Ð½Ð° Ð°Ð²Ñ‚Ð¾Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€ÐµÐ½Ð¸Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:127
 msgid "OK"
-msgstr "Добре."
+msgstr "Ð”Ð¾Ð±Ñ€Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:126
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:127
@@ -1590,41 +1590,41 @@ msgstr "Добре."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:249
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:250
 msgid "On-Screen Menu"
-msgstr "Меню на екрана"
+msgstr "ÐœÐµÐ½ÑŽ Ð½Ð° ÐµÐºÑ€Ð°Ð½Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:175
 msgid "Open Config Folder"
-msgstr "Отвори папката Config"
+msgstr "ÐžÑ‚Ð²Ð¾Ñ€Ð¸ Ð¿Ð°Ð¿ÐºÐ°Ñ‚Ð° Config"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:14
 msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr "Отвори DVD/Blu-ray устройство/папка..."
+msgstr "ÐžÑ‚Ð²Ð¾Ñ€Ð¸ DVD/Blu-ray ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾/Ð¿Ð°Ð¿ÐºÐ°..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:12
 msgid "Open Files..."
-msgstr "Отвори файлове..."
+msgstr "ÐžÑ‚Ð²Ð¾Ñ€Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:13
 msgid "Open URL or file from clipboard"
-msgstr "Отвори URL или файл от клипборда"
+msgstr "ÐžÑ‚Ð²Ð¾Ñ€Ð¸ URL Ð¸Ð»Ð¸ Ñ„Ð°Ð¹Ð» Ð¾Ñ‚ ÐºÐ»Ð¸Ð¿Ð±Ð¾Ñ€Ð´Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:224
 msgid "Override all libplacebo options by the values from the given preset."
-msgstr "Превключете всички опции libplacebo от стойностите от даден предварително зададен."
+msgstr "ÐŸÑ€ÐµÐ²ÐºÐ»ÑŽÑ‡ÐµÑ‚Ðµ Ð²ÑÐ¸Ñ‡ÐºÐ¸ Ð¾Ð¿Ñ†Ð¸Ð¸ libplacebo Ð¾Ñ‚ ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚Ð¸Ñ‚Ðµ Ð¾Ñ‚ Ð´Ð°Ð´ÐµÐ½ Ð¿Ñ€ÐµÐ´Ð²Ð°Ñ€Ð¸Ñ‚ÐµÐ»Ð½Ð¾ Ð·Ð°Ð´Ð°Ð´ÐµÐ½."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:283
 msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
-msgstr "Превключване на филтъра, използван за снижаване на равнините, напр. хрома/алфа. Ако не е зададено, използвайте същата настройка като скалера."
+msgstr "ÐŸÑ€ÐµÐ²ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½Ðµ Ð½Ð° Ñ„Ð¸Ð»Ñ‚ÑŠÑ€Ð°, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½ Ð·Ð° ÑÐ½Ð¸Ð¶Ð°Ð²Ð°Ð½Ðµ Ð½Ð° Ñ€Ð°Ð²Ð½Ð¸Ð½Ð¸Ñ‚Ðµ, Ð½Ð°Ð¿Ñ€. Ñ…Ñ€Ð¾Ð¼Ð°/Ð°Ð»Ñ„Ð°. ÐÐºÐ¾ Ð½Ðµ Ðµ Ð·Ð°Ð´Ð°Ð´ÐµÐ½Ð¾, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹Ñ‚Ðµ ÑÑŠÑ‰Ð°Ñ‚Ð° Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° ÐºÐ°Ñ‚Ð¾ ÑÐºÐ°Ð»ÐµÑ€Ð°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:268
 msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
-msgstr "Превключване на филтъра, използван за извисяващи се равнини, напр. хрома/алфа. Ако няма такава, използвайте същата настройка като ъпскалера."
+msgstr "ÐŸÑ€ÐµÐ²ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½Ðµ Ð½Ð° Ñ„Ð¸Ð»Ñ‚ÑŠÑ€Ð°, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½ Ð·Ð° Ð¸Ð·Ð²Ð¸ÑÑÐ²Ð°Ñ‰Ð¸ ÑÐµ Ñ€Ð°Ð²Ð½Ð¸Ð½Ð¸, Ð½Ð°Ð¿Ñ€. Ñ…Ñ€Ð¾Ð¼Ð°/Ð°Ð»Ñ„Ð°. ÐÐºÐ¾ Ð½ÑÐ¼Ð° Ñ‚Ð°ÐºÐ°Ð²Ð°, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹Ñ‚Ðµ ÑÑŠÑ‰Ð°Ñ‚Ð° Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° ÐºÐ°Ñ‚Ð¾ ÑŠÐ¿ÑÐºÐ°Ð»ÐµÑ€Ð°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:322
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:358
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:384
 msgid "Overrides the value of all options in this section by their default values from the given preset."
-msgstr "Прехвърля стойността на всички опции в този раздел от техните стойности по подразбиране от дадената предварително зададена."
+msgstr "ÐŸÑ€ÐµÑ…Ð²ÑŠÑ€Ð»Ñ ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚Ñ‚Ð° Ð½Ð° Ð²ÑÐ¸Ñ‡ÐºÐ¸ Ð¾Ð¿Ñ†Ð¸Ð¸ Ð² Ñ‚Ð¾Ð·Ð¸ Ñ€Ð°Ð·Ð´ÐµÐ» Ð¾Ñ‚ Ñ‚ÐµÑ…Ð½Ð¸Ñ‚Ðµ ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚Ð¸ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð¾Ñ‚ Ð´Ð°Ð´ÐµÐ½Ð°Ñ‚Ð° Ð¿Ñ€ÐµÐ´Ð²Ð°Ñ€Ð¸Ñ‚ÐµÐ»Ð½Ð¾ Ð·Ð°Ð´Ð°Ð´ÐµÐ½Ð°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:483
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
@@ -1651,7 +1651,7 @@ msgstr "Oversampling, only mix \\\"edge\\\" frames while preserving FPS"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:64
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:65
 msgid "Pan & Scan"
-msgstr "Панорама & Мащаб"
+msgstr "ÐŸÐ°Ð½Ð¾Ñ€Ð°Ð¼Ð° & ÐœÐ°Ñ‰Ð°Ð±"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:219
 msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
@@ -1663,7 +1663,7 @@ msgstr "Passes extra raw option to the libplacebo rendering backend (used by --v
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:206
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:25
 msgid "Play/Pause"
-msgstr "Възпроизведи/Пауза"
+msgstr "Ð’ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ´Ð¸/ÐŸÐ°ÑƒÐ·Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1036
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1044
@@ -1679,74 +1679,74 @@ msgstr "Възпроизведи/Пауза"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:25
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:26
 msgid "Playback"
-msgstr "Възпроизвеждане"
+msgstr "Ð’ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ¶Ð´Ð°Ð½Ðµ"
 
 msgid "Playback will never automatically advance to the next file."
-msgstr "Playback никога няма да премине автоматично към следващия файл."
+msgstr "Playback Ð½Ð¸ÐºÐ¾Ð³Ð° Ð½ÑÐ¼Ð° Ð´Ð° Ð¿Ñ€ÐµÐ¼Ð¸Ð½Ðµ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾ ÐºÑŠÐ¼ ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ Ñ„Ð°Ð¹Ð»."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:120
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:127
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:234
 msgid "Playlist"
-msgstr "Плейлист"
+msgstr "ÐŸÐ»ÐµÐ¹Ð»Ð¸ÑÑ‚"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:575
 msgid "Preview mpv.conf"
-msgstr "Преглед на mpv.conf"
+msgstr "ÐŸÑ€ÐµÐ³Ð»ÐµÐ´ Ð½Ð° mpv.conf"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:576
 msgid "Preview mpvnet.conf"
-msgstr "Преглед на mpvnet.conf"
+msgstr "ÐŸÑ€ÐµÐ³Ð»ÐµÐ´ Ð½Ð° mpvnet.conf"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:36
 msgid "Previous Chapter"
-msgstr "Предишна глава"
+msgstr "ÐŸÑ€ÐµÐ´Ð¸ÑˆÐ½Ð° Ð³Ð»Ð°Ð²Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:214
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:216
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:218
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:28
 msgid "Previous File"
-msgstr "Предишен файл"
+msgstr "ÐŸÑ€ÐµÐ´Ð¸ÑˆÐµÐ½ Ñ„Ð°Ð¹Ð»"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:426
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:167
 msgid "Profile"
-msgstr "Профил"
+msgstr "ÐŸÑ€Ð¾Ñ„Ð¸Ð»"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1120
 msgid "Program Behavior"
-msgstr "Поведение на програмата"
+msgstr "ÐŸÐ¾Ð²ÐµÐ´ÐµÐ½Ð¸Ðµ Ð½Ð° Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð°Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:125
 msgid "Progress"
-msgstr "Покажи напредъка"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ð½Ð°Ð¿Ñ€ÐµÐ´ÑŠÐºÐ°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:129
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:247
 msgid "Properties"
-msgstr "Свойства"
+msgstr "Ð¡Ð²Ð¾Ð¹ÑÑ‚Ð²Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:147
 msgid "Protocols"
-msgstr "Покажи протоколи"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ð¿Ñ€Ð¾Ñ‚Ð¾ÐºÐ¾Ð»Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:372
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:22
 msgid "Recent Files"
-msgstr "Последни файлове"
+msgstr "ÐŸÐ¾ÑÐ»ÐµÐ´Ð½Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:177
 msgid "Register audio file associations"
-msgstr "Регистрирай асоциации на аудио файлове"
+msgstr "Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€Ð°Ð¹ Ð°ÑÐ¾Ñ†Ð¸Ð°Ñ†Ð¸Ð¸ Ð½Ð° Ð°ÑƒÐ´Ð¸Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:178
 msgid "Register image file associations"
-msgstr "Регистрирай асоциации на файлове с изображения"
+msgstr "Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€Ð°Ð¹ Ð°ÑÐ¾Ñ†Ð¸Ð°Ñ†Ð¸Ð¸ Ð½Ð° Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ Ñ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:176
 msgid "Register video file associations"
-msgstr "Регистрирай асоциации на видео файлове"
+msgstr "Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€Ð°Ð¹ Ð°ÑÐ¾Ñ†Ð¸Ð°Ñ†Ð¸Ð¸ Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Remove mpv.net from Path environment variable"
@@ -1767,34 +1767,34 @@ msgstr "Remove mpv.net from Path environment variable"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:218
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:91
 msgid "Render Options"
-msgstr "Опции за предаване"
+msgstr "ÐžÐ¿Ñ†Ð¸Ð¸ Ð·Ð° Ð¿Ñ€ÐµÐ´Ð°Ð²Ð°Ð½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:118
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:65
 msgid "Reset"
-msgstr "Нулиране"
+msgstr "ÐÑƒÐ»Ð¸Ñ€Ð°Ð½Ðµ"
 
 msgid "Reset all everything to high quality presets (where available)."
-msgstr "Рестартирайте всичко на висококачествени настройки (където има налични)."
+msgstr "Ð ÐµÑÑ‚Ð°Ñ€Ñ‚Ð¸Ñ€Ð°Ð¹Ñ‚Ðµ Ð²ÑÐ¸Ñ‡ÐºÐ¾ Ð½Ð° Ð²Ð¸ÑÐ¾ÐºÐ¾ÐºÐ°Ñ‡ÐµÑÑ‚Ð²ÐµÐ½Ð¸ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ (ÐºÑŠÐ´ÐµÑ‚Ð¾ Ð¸Ð¼Ð° Ð½Ð°Ð»Ð¸Ñ‡Ð½Ð¸)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:164
 msgid "Retry"
-msgstr "Ретрия"
+msgstr "Ð ÐµÑ‚Ñ€Ð¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Rotate Video"
-msgstr "Завъртане на видео"
+msgstr "Ð—Ð°Ð²ÑŠÑ€Ñ‚Ð°Ð½Ðµ Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1008
 msgid "Same as minimum-aspect-ratio but used for audio files."
 msgstr "Same as minimum-aspect-ratio but used for audio files."
 
 msgid "Same as yes (for compatibility)."
-msgstr "Същото като да (за съвместимост)."
+msgstr "Ð¡ÑŠÑ‰Ð¾Ñ‚Ð¾ ÐºÐ°Ñ‚Ð¾ Ð´Ð° (Ð·Ð° ÑÑŠÐ²Ð¼ÐµÑÑ‚Ð¸Ð¼Ð¾ÑÑ‚)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:826
 msgid "Save and restore the audio device chosen in the context menu. Default: yes"
-msgstr "Запис и възстановяване на аудио устройството, избрано в контекстното меню. По подразбиране: да"
+msgstr "Ð—Ð°Ð¿Ð¸Ñ Ð¸ Ð²ÑŠÐ·ÑÑ‚Ð°Ð½Ð¾Ð²ÑÐ²Ð°Ð½Ðµ Ð½Ð° Ð°ÑƒÐ´Ð¸Ð¾ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾Ñ‚Ð¾, Ð¸Ð·Ð±Ñ€Ð°Ð½Ð¾ Ð² ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ð½Ð¾Ñ‚Ð¾ Ð¼ÐµÐ½ÑŽ. ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ: Ð´Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1013
 msgid "Save the window position on exit. (mpv.net option)"
@@ -1816,7 +1816,7 @@ msgstr "Save volume and mute on exit and restore it on start. (mpv.net option)"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:297
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:308
 msgid "Scaling"
-msgstr "Скалиране"
+msgstr "Ð¡ÐºÐ°Ð»Ð¸Ñ€Ð°Ð½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:726
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:731
@@ -1828,15 +1828,15 @@ msgstr "Скалиране"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:774
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:779
 msgid "Screenshot"
-msgstr "Снимка на екрана"
+msgstr "Ð¡Ð½Ð¸Ð¼ÐºÐ° Ð½Ð° ÐµÐºÑ€Ð°Ð½Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:134
 msgid "Secondary Subtitle"
-msgstr "Втори субтитри"
+msgstr "Ð’Ñ‚Ð¾Ñ€Ð¸ ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:236
 msgid "Secondary Subtitles"
-msgstr "Втори субтитри"
+msgstr "Ð’Ñ‚Ð¾Ñ€Ð¸ ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:879
 msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
@@ -1850,29 +1850,29 @@ msgstr "See sub-color. Color used for the sub font border. Ignored when sub-back
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:226
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:232
 msgid "Seek Backward"
-msgstr "Търсене назад"
+msgstr "Ð¢ÑŠÑ€ÑÐµÐ½Ðµ Ð½Ð°Ð·Ð°Ð´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:223
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:225
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:231
 msgid "Seek Forward"
-msgstr "Търсене напред"
+msgstr "Ð¢ÑŠÑ€ÑÐµÐ½Ðµ Ð½Ð°Ð¿Ñ€ÐµÐ´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:230
 msgid "Seek to next subtitle"
-msgstr "Премини към следващия субтитър"
+msgstr "ÐŸÑ€ÐµÐ¼Ð¸Ð½Ð¸ ÐºÑŠÐ¼ ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ ÑÑƒÐ±Ñ‚Ð¸Ñ‚ÑŠÑ€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:229
 msgid "Seek to previous subtitle"
-msgstr "Премини към предишния субтитър"
+msgstr "ÐŸÑ€ÐµÐ¼Ð¸Ð½Ð¸ ÐºÑŠÐ¼ Ð¿Ñ€ÐµÐ´Ð¸ÑˆÐ½Ð¸Ñ ÑÑƒÐ±Ñ‚Ð¸Ñ‚ÑŠÑ€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1081
 msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
-msgstr "Изберете кога да използвате точните търсения, които не са ограничени до клавиатури. Тези цели изискват декодиране на видео от предишната клавиатура до целевата позиция и така може да отнеме известно време в зависимост от декодирането изпълнение. За някои видео формати точните търсения са изключени. Тази опция избира избора по подразбиране за търсене; възможно е изрично да се отмени, че по подразбиране в дефиницията на ключовите подвързвания и в входните команди."
+msgstr "Ð˜Ð·Ð±ÐµÑ€ÐµÑ‚Ðµ ÐºÐ¾Ð³Ð° Ð´Ð° Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ñ‚Ðµ Ñ‚Ð¾Ñ‡Ð½Ð¸Ñ‚Ðµ Ñ‚ÑŠÑ€ÑÐµÐ½Ð¸Ñ, ÐºÐ¾Ð¸Ñ‚Ð¾ Ð½Ðµ ÑÐ° Ð¾Ð³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ð¸ Ð´Ð¾ ÐºÐ»Ð°Ð²Ð¸Ð°Ñ‚ÑƒÑ€Ð¸. Ð¢ÐµÐ·Ð¸ Ñ†ÐµÐ»Ð¸ Ð¸Ð·Ð¸ÑÐºÐ²Ð°Ñ‚ Ð´ÐµÐºÐ¾Ð´Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾ Ð¾Ñ‚ Ð¿Ñ€ÐµÐ´Ð¸ÑˆÐ½Ð°Ñ‚Ð° ÐºÐ»Ð°Ð²Ð¸Ð°Ñ‚ÑƒÑ€Ð° Ð´Ð¾ Ñ†ÐµÐ»ÐµÐ²Ð°Ñ‚Ð° Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð¸ Ñ‚Ð°ÐºÐ° Ð¼Ð¾Ð¶Ðµ Ð´Ð° Ð¾Ñ‚Ð½ÐµÐ¼Ðµ Ð¸Ð·Ð²ÐµÑÑ‚Ð½Ð¾ Ð²Ñ€ÐµÐ¼Ðµ Ð² Ð·Ð°Ð²Ð¸ÑÐ¸Ð¼Ð¾ÑÑ‚ Ð¾Ñ‚ Ð´ÐµÐºÐ¾Ð´Ð¸Ñ€Ð°Ð½ÐµÑ‚Ð¾ Ð¸Ð·Ð¿ÑŠÐ»Ð½ÐµÐ½Ð¸Ðµ. Ð—Ð° Ð½ÑÐºÐ¾Ð¸ Ð²Ð¸Ð´ÐµÐ¾ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ð¸ Ñ‚Ð¾Ñ‡Ð½Ð¸Ñ‚Ðµ Ñ‚ÑŠÑ€ÑÐµÐ½Ð¸Ñ ÑÐ° Ð¸Ð·ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸. Ð¢Ð°Ð·Ð¸ Ð¾Ð¿Ñ†Ð¸Ñ Ð¸Ð·Ð±Ð¸Ñ€Ð° Ð¸Ð·Ð±Ð¾Ñ€Ð° Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð·Ð° Ñ‚ÑŠÑ€ÑÐµÐ½Ðµ; Ð²ÑŠÐ·Ð¼Ð¾Ð¶Ð½Ð¾ Ðµ Ð¸Ð·Ñ€Ð¸Ñ‡Ð½Ð¾ Ð´Ð° ÑÐµ Ð¾Ñ‚Ð¼ÐµÐ½Ð¸, Ñ‡Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð² Ð´ÐµÑ„Ð¸Ð½Ð¸Ñ†Ð¸ÑÑ‚Ð° Ð½Ð° ÐºÐ»ÑŽÑ‡Ð¾Ð²Ð¸Ñ‚Ðµ Ð¿Ð¾Ð´Ð²ÑŠÑ€Ð·Ð²Ð°Ð½Ð¸Ñ Ð¸ Ð² Ð²Ñ…Ð¾Ð´Ð½Ð¸Ñ‚Ðµ ÐºÐ¾Ð¼Ð°Ð½Ð´Ð¸."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:171
 msgid "Set dither target depth to N. Note that the depth of the connected video display device cannot be detected. Often, LCD panels will do dithering on their own, which conflicts with this option and leads to ugly output."
-msgstr "Настройте дълбочината на мишената към N. Имайте предвид, че дълбочината на свързаното видео дисплей устройство не може да бъде открита. Често LCD панелите ще се разпадат сами, което противоречи на тази опция и води до грозен изход."
+msgstr "ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹Ñ‚Ðµ Ð´ÑŠÐ»Ð±Ð¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¼Ð¸ÑˆÐµÐ½Ð°Ñ‚Ð° ÐºÑŠÐ¼ N. Ð˜Ð¼Ð°Ð¹Ñ‚Ðµ Ð¿Ñ€ÐµÐ´Ð²Ð¸Ð´, Ñ‡Ðµ Ð´ÑŠÐ»Ð±Ð¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° ÑÐ²ÑŠÑ€Ð·Ð°Ð½Ð¾Ñ‚Ð¾ Ð²Ð¸Ð´ÐµÐ¾ Ð´Ð¸ÑÐ¿Ð»ÐµÐ¹ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾ Ð½Ðµ Ð¼Ð¾Ð¶Ðµ Ð´Ð° Ð±ÑŠÐ´Ðµ Ð¾Ñ‚ÐºÑ€Ð¸Ñ‚Ð°. Ð§ÐµÑÑ‚Ð¾ LCD Ð¿Ð°Ð½ÐµÐ»Ð¸Ñ‚Ðµ Ñ‰Ðµ ÑÐµ Ñ€Ð°Ð·Ð¿Ð°Ð´Ð°Ñ‚ ÑÐ°Ð¼Ð¸, ÐºÐ¾ÐµÑ‚Ð¾ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð¾Ñ€ÐµÑ‡Ð¸ Ð½Ð° Ñ‚Ð°Ð·Ð¸ Ð¾Ð¿Ñ†Ð¸Ñ Ð¸ Ð²Ð¾Ð´Ð¸ Ð´Ð¾ Ð³Ñ€Ð¾Ð·ÐµÐ½ Ð¸Ð·Ñ…Ð¾Ð´."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:939
 msgid "Set the duration of the OSD messages in ms. Default: 1000"
@@ -1880,7 +1880,7 @@ msgstr "Set the duration of the OSD messages in ms. Default: 1000"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:732
 msgid "Set the image file type used for saving screenshots."
-msgstr "Задаване на типа образен файл, използван за запис на снимки на екрани."
+msgstr "Ð—Ð°Ð´Ð°Ð²Ð°Ð½Ðµ Ð½Ð° Ñ‚Ð¸Ð¿Ð° Ð¾Ð±Ñ€Ð°Ð·ÐµÐ½ Ñ„Ð°Ð¹Ð», Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½ Ð·Ð° Ð·Ð°Ð¿Ð¸Ñ Ð½Ð° ÑÐ½Ð¸Ð¼ÐºÐ¸ Ð½Ð° ÐµÐºÑ€Ð°Ð½Ð¸."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:791
 msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
@@ -1891,27 +1891,27 @@ msgstr "Set the startup volume. 0 means silence, 100 means no volume reduction o
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:885
 msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
-msgstr "Задайте заглавието на прозореца. Това се използва за видео прозорец, и ако е възможно, също определя заглавието аудио поток. Свойствата са разширени. Внимание! Съществува опасност това да доведе до значително използване на процесора, в зависимост от използваните свойства."
+msgstr "Ð—Ð°Ð´Ð°Ð¹Ñ‚Ðµ Ð·Ð°Ð³Ð»Ð°Ð²Ð¸ÐµÑ‚Ð¾ Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð°. Ð¢Ð¾Ð²Ð° ÑÐµ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð° Ð·Ð° Ð²Ð¸Ð´ÐµÐ¾ Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†, Ð¸ Ð°ÐºÐ¾ Ðµ Ð²ÑŠÐ·Ð¼Ð¾Ð¶Ð½Ð¾, ÑÑŠÑ‰Ð¾ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ Ð·Ð°Ð³Ð»Ð°Ð²Ð¸ÐµÑ‚Ð¾ Ð°ÑƒÐ´Ð¸Ð¾ Ð¿Ð¾Ñ‚Ð¾Ðº. Ð¡Ð²Ð¾Ð¹ÑÑ‚Ð²Ð°Ñ‚Ð° ÑÐ° Ñ€Ð°Ð·ÑˆÐ¸Ñ€ÐµÐ½Ð¸. Ð’Ð½Ð¸Ð¼Ð°Ð½Ð¸Ðµ! Ð¡ÑŠÑ‰ÐµÑÑ‚Ð²ÑƒÐ²Ð° Ð¾Ð¿Ð°ÑÐ½Ð¾ÑÑ‚ Ñ‚Ð¾Ð²Ð° Ð´Ð° Ð´Ð¾Ð²ÐµÐ´Ðµ Ð´Ð¾ Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ÐµÐ»Ð½Ð¾ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ð¿Ñ€Ð¾Ñ†ÐµÑÐ¾Ñ€Ð°, Ð² Ð·Ð°Ð²Ð¸ÑÐ¸Ð¼Ð¾ÑÑ‚ Ð¾Ñ‚ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ð¸Ñ‚Ðµ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:906
 msgid "Set this to no in order to hide the window title bar."
-msgstr "Поставете това на не, за да скриете заглавието на прозореца лента."
+msgstr "ÐŸÐ¾ÑÑ‚Ð°Ð²ÐµÑ‚Ðµ Ñ‚Ð¾Ð²Ð° Ð½Ð° Ð½Ðµ, Ð·Ð° Ð´Ð° ÑÐºÑ€Ð¸ÐµÑ‚Ðµ Ð·Ð°Ð³Ð»Ð°Ð²Ð¸ÐµÑ‚Ð¾ Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° Ð»ÐµÐ½Ñ‚Ð°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:184
 msgid "Set/clear A-B loop points"
-msgstr "Задай/изчисти AB точки на цикъл"
+msgstr "Ð—Ð°Ð´Ð°Ð¹/Ð¸Ð·Ñ‡Ð¸ÑÑ‚Ð¸ AB Ñ‚Ð¾Ñ‡ÐºÐ¸ Ð½Ð° Ñ†Ð¸ÐºÑŠÐ»"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:253
 msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
-msgstr "Задаване на филтъра, използван за снижаване. Най-важните варианти, грубо поръчани от най-бързия до най-бавния."
+msgstr "Ð—Ð°Ð´Ð°Ð²Ð°Ð½Ðµ Ð½Ð° Ñ„Ð¸Ð»Ñ‚ÑŠÑ€Ð°, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½ Ð·Ð° ÑÐ½Ð¸Ð¶Ð°Ð²Ð°Ð½Ðµ. ÐÐ°Ð¹-Ð²Ð°Ð¶Ð½Ð¸Ñ‚Ðµ Ð²Ð°Ñ€Ð¸Ð°Ð½Ñ‚Ð¸, Ð³Ñ€ÑƒÐ±Ð¾ Ð¿Ð¾Ñ€ÑŠÑ‡Ð°Ð½Ð¸ Ð¾Ñ‚ Ð½Ð°Ð¹-Ð±ÑŠÑ€Ð·Ð¸Ñ Ð´Ð¾ Ð½Ð°Ð¹-Ð±Ð°Ð²Ð½Ð¸Ñ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:298
 msgid "Sets the filter used for frame mixing (temporal interpolation). Roughly ordered from fastest to slowest."
-msgstr "Филтърът се поставя за смесване на рамката (времева интерполация). Грубо поръчано от най-бързия до най-бавния."
+msgstr "Ð¤Ð¸Ð»Ñ‚ÑŠÑ€ÑŠÑ‚ ÑÐµ Ð¿Ð¾ÑÑ‚Ð°Ð²Ñ Ð·Ð° ÑÐ¼ÐµÑÐ²Ð°Ð½Ðµ Ð½Ð° Ñ€Ð°Ð¼ÐºÐ°Ñ‚Ð° (Ð²Ñ€ÐµÐ¼ÐµÐ²Ð° Ð¸Ð½Ñ‚ÐµÑ€Ð¿Ð¾Ð»Ð°Ñ†Ð¸Ñ). Ð“Ñ€ÑƒÐ±Ð¾ Ð¿Ð¾Ñ€ÑŠÑ‡Ð°Ð½Ð¾ Ð¾Ñ‚ Ð½Ð°Ð¹-Ð±ÑŠÑ€Ð·Ð¸Ñ Ð´Ð¾ Ð½Ð°Ð¹-Ð±Ð°Ð²Ð½Ð¸Ñ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:234
 msgid "Sets the filter used for upscaling."
-msgstr "Задаване на филтъра, използван за опъване."
+msgstr "Ð—Ð°Ð´Ð°Ð²Ð°Ð½Ðµ Ð½Ð° Ñ„Ð¸Ð»Ñ‚ÑŠÑ€Ð°, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½ Ð·Ð° Ð¾Ð¿ÑŠÐ²Ð°Ð½Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:982
 msgid "Setting to remember the window size. (mpv.net option)"
@@ -1925,26 +1925,26 @@ msgstr "Setting to remember the window size. (mpv.net option)"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Setup"
-msgstr "Настройка"
+msgstr "ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ°"
 
 msgid "Sharpened version of ewa_lanczos (slow)."
 msgstr "Sharpened version of ewa_lanczos (slow)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:169
 msgid "Show Config Editor"
-msgstr "Покажи редактор на конфигурация"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€ Ð½Ð° ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:170
 msgid "Show Input Editor"
-msgstr "Покажи редактора за въвеждане"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€Ð° Ð·Ð° Ð²ÑŠÐ²ÐµÐ¶Ð´Ð°Ð½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:202
 msgid "Show Menu"
-msgstr "Покажи меню"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ð¼ÐµÐ½ÑŽ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:448
 msgid "Show Profiles"
-msgstr "Покажи профили"
+msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:928
 msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
@@ -1952,46 +1952,46 @@ msgstr "Show a message on OSD when playback starts. The string is expanded for p
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:577
 msgid "Show mpv manual"
-msgstr "Показване на ръководството на mpv"
+msgstr "ÐŸÐ¾ÐºÐ°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ñ€ÑŠÐºÐ¾Ð²Ð¾Ð´ÑÑ‚Ð²Ð¾Ñ‚Ð¾ Ð½Ð° mpv"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:578
 msgid "Show mpv.net manual"
-msgstr "Показване на ръководството на mpv.net"
+msgstr "ÐŸÐ¾ÐºÐ°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ñ€ÑŠÐºÐ¾Ð²Ð¾Ð´ÑÑ‚Ð²Ð¾Ñ‚Ð¾ Ð½Ð° mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:574
 msgid "Show mpv.net options"
-msgstr "Показване на опциите на mpv.net"
+msgstr "ÐŸÐ¾ÐºÐ°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ð¾Ð¿Ñ†Ð¸Ð¸Ñ‚Ðµ Ð½Ð° mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:919
 msgid "Show progress in taskbar."
-msgstr "Показване на прогреса в лентата за задачи."
+msgstr "ÐŸÐ¾ÐºÐ°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÐ° Ð² Ð»ÐµÐ½Ñ‚Ð°Ñ‚Ð° Ð·Ð° Ð·Ð°Ð´Ð°Ñ‡Ð¸."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:898
 msgid "Show window with decoration (titlebar, border)."
-msgstr "Показване на прозорец с декорация (титуляр, граница)."
+msgstr "ÐŸÐ¾ÐºÐ°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ† Ñ Ð´ÐµÐºÐ¾Ñ€Ð°Ñ†Ð¸Ñ (Ñ‚Ð¸Ñ‚ÑƒÐ»ÑÑ€, Ð³Ñ€Ð°Ð½Ð¸Ñ†Ð°)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:153
 msgid "Shrink"
-msgstr "Свиване"
+msgstr "Ð¡Ð²Ð¸Ð²Ð°Ð½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:186
 msgid "Shuffle Playlist"
-msgstr "Разбъркай плейлиста"
+msgstr "Ð Ð°Ð·Ð±ÑŠÑ€ÐºÐ°Ð¹ Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:1450
 msgid "Shutdown thread failed to complete within 10 seconds."
-msgstr "Изключването не успя да завърши в рамките на 10 секунди."
+msgstr "Ð˜Ð·ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½ÐµÑ‚Ð¾ Ð½Ðµ ÑƒÑÐ¿Ñ Ð´Ð° Ð·Ð°Ð²ÑŠÑ€ÑˆÐ¸ Ð² Ñ€Ð°Ð¼ÐºÐ¸Ñ‚Ðµ Ð½Ð° 10 ÑÐµÐºÑƒÐ½Ð´Ð¸."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:349
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:357
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:365
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:370
 msgid "Sigmoidization"
-msgstr "Сигмоидизация"
+msgstr "Ð¡Ð¸Ð³Ð¼Ð¾Ð¸Ð´Ð¸Ð·Ð°Ñ†Ð¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1021
 msgid "Snap the player window to screen edges."
-msgstr "Натиснете прозореца на играча, за да екран ръбове."
+msgstr "ÐÐ°Ñ‚Ð¸ÑÐ½ÐµÑ‚Ðµ Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° Ð½Ð° Ð¸Ð³Ñ€Ð°Ñ‡Ð°, Ð·Ð° Ð´Ð° ÐµÐºÑ€Ð°Ð½ Ñ€ÑŠÐ±Ð¾Ð²Ðµ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:804
 msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
@@ -2010,29 +2010,29 @@ msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
 msgstr "Specify the OSD font size. See sub-font-size for details. Default: 55"
 
 msgid "Specify the color used for unstyled text subtitles.\\\\n\\\\nA usage description and examples can be found in the manual at:"
-msgstr "Посочете цвета, използван за нестилирани текстови субтитри.\\\\n\\\\nОписание и примери за използване могат да бъдат намерени в ръководството на:"
+msgstr "ÐŸÐ¾ÑÐ¾Ñ‡ÐµÑ‚Ðµ Ñ†Ð²ÐµÑ‚Ð°, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½ Ð·Ð° Ð½ÐµÑÑ‚Ð¸Ð»Ð¸Ñ€Ð°Ð½Ð¸ Ñ‚ÐµÐºÑÑ‚Ð¾Ð²Ð¸ ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸.\\\\n\\\\nÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ Ð¸ Ð¿Ñ€Ð¸Ð¼ÐµÑ€Ð¸ Ð·Ð° Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ðµ Ð¼Ð¾Ð³Ð°Ñ‚ Ð´Ð° Ð±ÑŠÐ´Ð°Ñ‚ Ð½Ð°Ð¼ÐµÑ€ÐµÐ½Ð¸ Ð² Ñ€ÑŠÐºÐ¾Ð²Ð¾Ð´ÑÑ‚Ð²Ð¾Ñ‚Ð¾ Ð½Ð°:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:867
 msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
-msgstr "Посочете цвета, използван за нестилирани текстови субтитри.\\n\\nОписание и примери за използване могат да бъдат намерени в ръководството на:"
+msgstr "ÐŸÐ¾ÑÐ¾Ñ‡ÐµÑ‚Ðµ Ñ†Ð²ÐµÑ‚Ð°, Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½ Ð·Ð° Ð½ÐµÑÑ‚Ð¸Ð»Ð¸Ñ€Ð°Ð½Ð¸ Ñ‚ÐµÐºÑÑ‚Ð¾Ð²Ð¸ ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸.\\n\\nÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ Ð¸ Ð¿Ñ€Ð¸Ð¼ÐµÑ€Ð¸ Ð·Ð° Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ðµ Ð¼Ð¾Ð³Ð°Ñ‚ Ð´Ð° Ð±ÑŠÐ´Ð°Ñ‚ Ð½Ð°Ð¼ÐµÑ€ÐµÐ½Ð¸ Ð² Ñ€ÑŠÐºÐ¾Ð²Ð¾Ð´ÑÑ‚Ð²Ð¾Ñ‚Ð¾ Ð½Ð°:"
 
 msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\\\n\\\\nFind the full documentation here:"
-msgstr "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\\\n\\\\nНамерете пълната документация тук:"
+msgstr "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\\\n\\\\nÐÐ°Ð¼ÐµÑ€ÐµÑ‚Ðµ Ð¿ÑŠÐ»Ð½Ð°Ñ‚Ð° Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð°Ñ†Ð¸Ñ Ñ‚ÑƒÐº:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:764
 msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
-msgstr "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nНамерете пълната документация тук:"
+msgstr "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nÐÐ°Ð¼ÐµÑ€ÐµÑ‚Ðµ Ð¿ÑŠÐ»Ð½Ð°Ñ‚Ð° Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð°Ñ†Ð¸Ñ Ñ‚ÑƒÐº:"
 
 msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\\\n\\\\nFor more information visit:"
-msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\\\n\\\\nЗа повече информация:"
+msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\\\n\\\\nÐ—Ð° Ð¿Ð¾Ð²ÐµÑ‡Ðµ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:73
 msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
-msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nЗа повече информация:"
+msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nÐ—Ð° Ð¿Ð¾Ð²ÐµÑ‡Ðµ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:860
 msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
-msgstr "Посочете размера на под шрифта. Устройството е с размер в мащабирани пиксели на височина на прозореца 720. Действителният размер на пикселите се мащабира с височината на прозореца: ако височината на прозореца е по-голяма или по-малка от 720, действителният размер на текста се увеличава или намалява. По подразбиране: 55"
+msgstr "ÐŸÐ¾ÑÐ¾Ñ‡ÐµÑ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð° Ð½Ð° Ð¿Ð¾Ð´ ÑˆÑ€Ð¸Ñ„Ñ‚Ð°. Ð£ÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾Ñ‚Ð¾ Ðµ Ñ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð² Ð¼Ð°Ñ‰Ð°Ð±Ð¸Ñ€Ð°Ð½Ð¸ Ð¿Ð¸ÐºÑÐµÐ»Ð¸ Ð½Ð° Ð²Ð¸ÑÐ¾Ñ‡Ð¸Ð½Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° 720. Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ‚ÐµÐ»Ð½Ð¸ÑÑ‚ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð½Ð° Ð¿Ð¸ÐºÑÐµÐ»Ð¸Ñ‚Ðµ ÑÐµ Ð¼Ð°Ñ‰Ð°Ð±Ð¸Ñ€Ð° Ñ Ð²Ð¸ÑÐ¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð°: Ð°ÐºÐ¾ Ð²Ð¸ÑÐ¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° Ðµ Ð¿Ð¾-Ð³Ð¾Ð»ÑÐ¼Ð° Ð¸Ð»Ð¸ Ð¿Ð¾-Ð¼Ð°Ð»ÐºÐ° Ð¾Ñ‚ 720, Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ‚ÐµÐ»Ð½Ð¸ÑÑ‚ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð½Ð° Ñ‚ÐµÐºÑÑ‚Ð° ÑÐµ ÑƒÐ²ÐµÐ»Ð¸Ñ‡Ð°Ð²Ð° Ð¸Ð»Ð¸ Ð½Ð°Ð¼Ð°Ð»ÑÐ²Ð°. ÐŸÐ¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ: 55"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:112
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:113
@@ -2042,24 +2042,24 @@ msgstr "Посочете размера на под шрифта. Устройс
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:117
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:118
 msgid "Speed"
-msgstr "Скорост"
+msgstr "Ð¡ÐºÐ¾Ñ€Ð¾ÑÑ‚"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:890
 msgid "Start the player in fullscreen mode."
-msgstr "Стартирайте играча в режим пълен екран."
+msgstr "Ð¡Ñ‚Ð°Ñ€Ñ‚Ð¸Ñ€Ð°Ð¹Ñ‚Ðµ Ð¸Ð³Ñ€Ð°Ñ‡Ð° Ð² Ñ€ÐµÐ¶Ð¸Ð¼ Ð¿ÑŠÐ»ÐµÐ½ ÐµÐºÑ€Ð°Ð½."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1029
 msgid "Start with a maximized window."
-msgstr "Започнете с максимизиран прозорец."
+msgstr "Ð—Ð°Ð¿Ð¾Ñ‡Ð½ÐµÑ‚Ðµ Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð¸Ð·Ð¸Ñ€Ð°Ð½ Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:207
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:26
 msgid "Stop"
-msgstr "Спри"
+msgstr "Ð¡Ð¿Ñ€Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:727
 msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
-msgstr "Съхранявайте снимки на екрана в тази директория. Този път се свързва с името на файла, генерирано от screenshot-template. Ако името на шаблона вече е абсолютно, директорията се игнорира."
+msgstr "Ð¡ÑŠÑ…Ñ€Ð°Ð½ÑÐ²Ð°Ð¹Ñ‚Ðµ ÑÐ½Ð¸Ð¼ÐºÐ¸ Ð½Ð° ÐµÐºÑ€Ð°Ð½Ð° Ð² Ñ‚Ð°Ð·Ð¸ Ð´Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€Ð¸Ñ. Ð¢Ð¾Ð·Ð¸ Ð¿ÑŠÑ‚ ÑÐµ ÑÐ²ÑŠÑ€Ð·Ð²Ð° Ñ Ð¸Ð¼ÐµÑ‚Ð¾ Ð½Ð° Ñ„Ð°Ð¹Ð»Ð°, Ð³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð°Ð½Ð¾ Ð¾Ñ‚ screenshot-template. ÐÐºÐ¾ Ð¸Ð¼ÐµÑ‚Ð¾ Ð½Ð° ÑˆÐ°Ð±Ð»Ð¾Ð½Ð° Ð²ÐµÑ‡Ðµ Ðµ Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ð¾, Ð´Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€Ð¸ÑÑ‚Ð° ÑÐµ Ð¸Ð³Ð½Ð¾Ñ€Ð¸Ñ€Ð°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:839
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:844
@@ -2082,32 +2082,32 @@ msgstr "Съхранявайте снимки на екрана в тази ди
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:98
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:99
 msgid "Subtitle"
-msgstr "Подзаглавие"
+msgstr "ÐŸÐ¾Ð´Ð·Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:137
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:242
 msgid "Subtitle Lines"
-msgstr "Редове на субтитри"
+msgstr "Ð ÐµÐ´Ð¾Ð²Ðµ Ð½Ð° ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:133
 msgid "Subtitle Tracks"
-msgstr "Субтитри заглавия"
+msgstr "Ð¡ÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸ Ð·Ð°Ð³Ð»Ð°Ð²Ð¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:235
 msgid "Subtitles"
-msgstr "Подзаглавие"
+msgstr "ÐŸÐ¾Ð´Ð·Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:740
 msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
-msgstr "Маркиране на снимки с подходящо цветово пространство. Имайте предвид, че не всички формати се поддържат."
+msgstr "ÐœÐ°Ñ€ÐºÐ¸Ñ€Ð°Ð½Ðµ Ð½Ð° ÑÐ½Ð¸Ð¼ÐºÐ¸ Ñ Ð¿Ð¾Ð´Ñ…Ð¾Ð´ÑÑ‰Ð¾ Ñ†Ð²ÐµÑ‚Ð¾Ð²Ð¾ Ð¿Ñ€Ð¾ÑÑ‚Ñ€Ð°Ð½ÑÑ‚Ð²Ð¾. Ð˜Ð¼Ð°Ð¹Ñ‚Ðµ Ð¿Ñ€ÐµÐ´Ð²Ð¸Ð´, Ñ‡Ðµ Ð½Ðµ Ð²ÑÐ¸Ñ‡ÐºÐ¸ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ð¸ ÑÐµ Ð¿Ð¾Ð´Ð´ÑŠÑ€Ð¶Ð°Ñ‚."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:79
 msgid "Take Screenshot"
-msgstr "Направи екранна снимка"
+msgstr "ÐÐ°Ð¿Ñ€Ð°Ð²Ð¸ ÐµÐºÑ€Ð°Ð½Ð½Ð° ÑÐ½Ð¸Ð¼ÐºÐ°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:80
 msgid "Take Screenshot without subtitles"
-msgstr "Направи екранна снимка без субтитри"
+msgstr "ÐÐ°Ð¿Ñ€Ð°Ð²Ð¸ ÐµÐºÑ€Ð°Ð½Ð½Ð° ÑÐ½Ð¸Ð¼ÐºÐ° Ð±ÐµÐ· ÑÑƒÐ±Ñ‚Ð¸Ñ‚Ñ€Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:113
 msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
@@ -2115,11 +2115,11 @@ msgstr "The GPU renderer filter function to use when upscaling video. There are 
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:261
 msgid "The clipboard does not contain a valid URL or file."
-msgstr "Клипбордът не съдържа валиден URL или файл."
+msgstr "ÐšÐ»Ð¸Ð¿Ð±Ð¾Ñ€Ð´ÑŠÑ‚ Ð½Ðµ ÑÑŠÐ´ÑŠÑ€Ð¶Ð° Ð²Ð°Ð»Ð¸Ð´ÐµÐ½ URL Ð¸Ð»Ð¸ Ñ„Ð°Ð¹Ð»."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:141
 msgid "The input editor cannot save duplicate shortcuts with different commands:"
-msgstr "Редакторът не може да записва дубликати с различни команди:"
+msgstr "Ð ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€ÑŠÑ‚ Ð½Ðµ Ð¼Ð¾Ð¶Ðµ Ð´Ð° Ð·Ð°Ð¿Ð¸ÑÐ²Ð° Ð´ÑƒÐ±Ð»Ð¸ÐºÐ°Ñ‚Ð¸ Ñ Ñ€Ð°Ð·Ð»Ð¸Ñ‡Ð½Ð¸ ÐºÐ¾Ð¼Ð°Ð½Ð´Ð¸:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1075
 msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
@@ -2131,56 +2131,56 @@ msgstr "The options that are saved in \\\"watch later\\\" files if they have bee
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:474
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:479
 msgid "This feature was removed, but there are user scripts:"
-msgstr "Тази функция е премахната, но има потребителски скриптове:"
+msgstr "Ð¢Ð°Ð·Ð¸ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ðµ Ð¿Ñ€ÐµÐ¼Ð°Ñ…Ð½Ð°Ñ‚Ð°, Ð½Ð¾ Ð¸Ð¼Ð° Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð¸Ñ‚ÐµÐ»ÑÐºÐ¸ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð¾Ð²Ðµ:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:483
 msgid "This feature was removed."
-msgstr "Тази функция е премахната."
+msgstr "Ð¢Ð°Ð·Ð¸ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ðµ Ð¿Ñ€ÐµÐ¼Ð°Ñ…Ð½Ð°Ñ‚Ð°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:393
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:50
 msgid "Title"
-msgstr "Заглавие"
+msgstr "Ð—Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:164
 msgid "Toggle Border"
-msgstr "Превключи рамката"
+msgstr "ÐŸÑ€ÐµÐ²ÐºÐ»ÑŽÑ‡Ð¸ Ñ€Ð°Ð¼ÐºÐ°Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:81
 msgid "Toggle Deinterlace"
-msgstr "Превключи Deinterlace"
+msgstr "ÐŸÑ€ÐµÐ²ÐºÐ»ÑŽÑ‡Ð¸ Deinterlace"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:187
 msgid "Toggle Hardware Decoding"
-msgstr "Декодиране на хардуера"
+msgstr "Ð”ÐµÐºÐ¾Ð´Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° Ñ…Ð°Ñ€Ð´ÑƒÐµÑ€Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:122
 msgid "Toggle OSC Visibility"
-msgstr "Превключи видимостта на OSC"
+msgstr "ÐŸÑ€ÐµÐ²ÐºÐ»ÑŽÑ‡Ð¸ Ð²Ð¸Ð´Ð¸Ð¼Ð¾ÑÑ‚Ñ‚Ð° Ð½Ð° OSC"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:165
 msgid "Toggle On Top"
-msgstr "Превключи отгоре"
+msgstr "ÐŸÑ€ÐµÐ²ÐºÐ»ÑŽÑ‡Ð¸ Ð¾Ñ‚Ð³Ð¾Ñ€Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:121
 msgid "Toggle Statistics"
-msgstr "Превключи на статистиката"
+msgstr "ÐŸÑ€ÐµÐ²ÐºÐ»ÑŽÑ‡Ð¸ Ð½Ð° ÑÑ‚Ð°Ñ‚Ð¸ÑÑ‚Ð¸ÐºÐ°Ñ‚Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:92
 msgid "Toggle Visibility"
-msgstr "Превключи на видимост"
+msgstr "ÐŸÑ€ÐµÐ²ÐºÐ»ÑŽÑ‡Ð¸ Ð½Ð° Ð²Ð¸Ð´Ð¸Ð¼Ð¾ÑÑ‚"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:185
 msgid "Toggle infinite file looping"
-msgstr "Превключи за безкраен цикъл на файла"
+msgstr "ÐŸÑ€ÐµÐ²ÐºÐ»ÑŽÑ‡Ð¸ Ð·Ð° Ð±ÐµÐ·ÐºÑ€Ð°ÐµÐ½ Ñ†Ð¸ÐºÑŠÐ» Ð½Ð° Ñ„Ð°Ð¹Ð»Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:103
 msgid "Toggle overriding SSA/ASS styles with normal styles"
-msgstr "Превключи замяна на SSA/ASS стилове с нормални стилове"
+msgstr "ÐŸÑ€ÐµÐ²ÐºÐ»ÑŽÑ‡Ð¸ Ð·Ð°Ð¼ÑÐ½Ð° Ð½Ð° SSA/ASS ÑÑ‚Ð¸Ð»Ð¾Ð²Ðµ Ñ Ð½Ð¾Ñ€Ð¼Ð°Ð»Ð½Ð¸ ÑÑ‚Ð¸Ð»Ð¾Ð²Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:564
 msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
-msgstr "Функция за картографиране на тон, която да се използва за адаптиране между диапазоните на яркостта на разликата, включително адаптация на черна точка."
+msgstr "Ð¤ÑƒÐ½ÐºÑ†Ð¸Ñ Ð·Ð° ÐºÐ°Ñ€Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° Ñ‚Ð¾Ð½, ÐºÐ¾ÑÑ‚Ð¾ Ð´Ð° ÑÐµ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð° Ð·Ð° Ð°Ð´Ð°Ð¿Ñ‚Ð¸Ñ€Ð°Ð½Ðµ Ð¼ÐµÐ¶Ð´Ñƒ Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ð¸Ñ‚Ðµ Ð½Ð° ÑÑ€ÐºÐ¾ÑÑ‚Ñ‚Ð° Ð½Ð° Ñ€Ð°Ð·Ð»Ð¸ÐºÐ°Ñ‚Ð°, Ð²ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÐµÐ»Ð½Ð¾ Ð°Ð´Ð°Ð¿Ñ‚Ð°Ñ†Ð¸Ñ Ð½Ð° Ñ‡ÐµÑ€Ð½Ð° Ñ‚Ð¾Ñ‡ÐºÐ°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:184
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:185
@@ -2188,25 +2188,25 @@ msgstr "Функция за картографиране на тон, която
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:187
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:188
 msgid "Tools"
-msgstr "Инструменти"
+msgstr "Ð˜Ð½ÑÑ‚Ñ€ÑƒÐ¼ÐµÐ½Ñ‚Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:289
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:105
 msgid "Track"
-msgstr "Заглавие"
+msgstr "Ð—Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:131
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:239
 msgid "Tracks"
-msgstr "Заглавие"
+msgstr "Ð—Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:227
 msgid "Undo previous (or marked) seek"
-msgstr "Отмени предишно (или маркирано) търсене"
+msgstr "ÐžÑ‚Ð¼ÐµÐ½Ð¸ Ð¿Ñ€ÐµÐ´Ð¸ÑˆÐ½Ð¾ (Ð¸Ð»Ð¸ Ð¼Ð°Ñ€ÐºÐ¸Ñ€Ð°Ð½Ð¾) Ñ‚ÑŠÑ€ÑÐµÐ½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:179
 msgid "Unregister file associations"
-msgstr "Отмени регистрацията на файловите асоциации"
+msgstr "ÐžÑ‚Ð¼ÐµÐ½Ð¸ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸ÑÑ‚Ð° Ð½Ð° Ñ„Ð°Ð¹Ð»Ð¾Ð²Ð¸Ñ‚Ðµ Ð°ÑÐ¾Ñ†Ð¸Ð°Ñ†Ð¸Ð¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:19
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
@@ -2217,30 +2217,30 @@ msgstr "Use any available API. Note that the default GPU API used for this value
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:548
 msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
-msgstr "Използвайте по-високо качество, но по-бавно, трикубна интерполация за gamut mapping 3DLUTs. Може значително да се подобри 3DLUT гамут точност на картиране, по-специално при по-малки 3DLUT размери. Не би трябвало да има голям ефект при размера по подразбиране."
+msgstr "Ð˜Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹Ñ‚Ðµ Ð¿Ð¾-Ð²Ð¸ÑÐ¾ÐºÐ¾ ÐºÐ°Ñ‡ÐµÑÑ‚Ð²Ð¾, Ð½Ð¾ Ð¿Ð¾-Ð±Ð°Ð²Ð½Ð¾, Ñ‚Ñ€Ð¸ÐºÑƒÐ±Ð½Ð° Ð¸Ð½Ñ‚ÐµÑ€Ð¿Ð¾Ð»Ð°Ñ†Ð¸Ñ Ð·Ð° gamut mapping 3DLUTs. ÐœÐ¾Ð¶Ðµ Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ÐµÐ»Ð½Ð¾ Ð´Ð° ÑÐµ Ð¿Ð¾Ð´Ð¾Ð±Ñ€Ð¸ 3DLUT Ð³Ð°Ð¼ÑƒÑ‚ Ñ‚Ð¾Ñ‡Ð½Ð¾ÑÑ‚ Ð½Ð° ÐºÐ°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½Ðµ, Ð¿Ð¾-ÑÐ¿ÐµÑ†Ð¸Ð°Ð»Ð½Ð¾ Ð¿Ñ€Ð¸ Ð¿Ð¾-Ð¼Ð°Ð»ÐºÐ¸ 3DLUT Ñ€Ð°Ð·Ð¼ÐµÑ€Ð¸. ÐÐµ Ð±Ð¸ Ñ‚Ñ€ÑÐ±Ð²Ð°Ð»Ð¾ Ð´Ð° Ð¸Ð¼Ð° Ð³Ð¾Ð»ÑÐ¼ ÐµÑ„ÐµÐºÑ‚ Ð¿Ñ€Ð¸ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð° Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ."
 
 msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
-msgstr "Използвайте точни търсения, ако търсенето е до абсолютна позиция във файла, като например глава търси, но не за роднина търси като поведението по подразбиране на клавишите със стрелки."
+msgstr "Ð˜Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹Ñ‚Ðµ Ñ‚Ð¾Ñ‡Ð½Ð¸ Ñ‚ÑŠÑ€ÑÐµÐ½Ð¸Ñ, Ð°ÐºÐ¾ Ñ‚ÑŠÑ€ÑÐµÐ½ÐµÑ‚Ð¾ Ðµ Ð´Ð¾ Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ð° Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ Ð²ÑŠÐ² Ñ„Ð°Ð¹Ð»Ð°, ÐºÐ°Ñ‚Ð¾ Ð½Ð°Ð¿Ñ€Ð¸Ð¼ÐµÑ€ Ð³Ð»Ð°Ð²Ð° Ñ‚ÑŠÑ€ÑÐ¸, Ð½Ð¾ Ð½Ðµ Ð·Ð° Ñ€Ð¾Ð´Ð½Ð¸Ð½Ð° Ñ‚ÑŠÑ€ÑÐ¸ ÐºÐ°Ñ‚Ð¾ Ð¿Ð¾Ð²ÐµÐ´ÐµÐ½Ð¸ÐµÑ‚Ð¾ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° ÐºÐ»Ð°Ð²Ð¸ÑˆÐ¸Ñ‚Ðµ ÑÑŠÑ ÑÑ‚Ñ€ÐµÐ»ÐºÐ¸."
 
 msgid "Use precise seeks whenever possible."
-msgstr "Използвайте точни търсения, когато е възможно."
+msgstr "Ð˜Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹Ñ‚Ðµ Ñ‚Ð¾Ñ‡Ð½Ð¸ Ñ‚ÑŠÑ€ÑÐµÐ½Ð¸Ñ, ÐºÐ¾Ð³Ð°Ñ‚Ð¾ Ðµ Ð²ÑŠÐ·Ð¼Ð¾Ð¶Ð½Ð¾."
 
 msgid "Use the same filter as specified for upscaler"
-msgstr "Използване на същия филтър, както е посочено за upscaler"
+msgstr "Ð˜Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ðµ Ð½Ð° ÑÑŠÑ‰Ð¸Ñ Ñ„Ð¸Ð»Ñ‚ÑŠÑ€, ÐºÐ°ÐºÑ‚Ð¾ Ðµ Ð¿Ð¾ÑÐ¾Ñ‡ÐµÐ½Ð¾ Ð·Ð° upscaler"
 
 msgid "Used menu syntax for defining the context menu in input.conf.\\\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
-msgstr "Използвано меню синтаксис за дефиниране на контекстното меню in input.conf.\\\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "Ð˜Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ð¾ Ð¼ÐµÐ½ÑŽ ÑÐ¸Ð½Ñ‚Ð°ÐºÑÐ¸Ñ Ð·Ð° Ð´ÐµÑ„Ð¸Ð½Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ð½Ð¾Ñ‚Ð¾ Ð¼ÐµÐ½ÑŽ in input.conf.\\\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:33
 msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
-msgstr "Използван меню синтаксис за определяне на контекстното меню in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "Ð˜Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½ Ð¼ÐµÐ½ÑŽ ÑÐ¸Ð½Ñ‚Ð°ÐºÑÐ¸Ñ Ð·Ð° Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÐ½Ðµ Ð½Ð° ÐºÐ¾Ð½Ñ‚ÐµÐºÑÑ‚Ð½Ð¾Ñ‚Ð¾ Ð¼ÐµÐ½ÑŽ in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
 
 msgid "User interface display language.\\\\nmpv.net must be restarted after a change."
-msgstr "Език на потребителския интерфейс.\\\\nmpv.net must be restarted after a change."
+msgstr "Ð•Ð·Ð¸Ðº Ð½Ð° Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð¸Ñ‚ÐµÐ»ÑÐºÐ¸Ñ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹Ñ.\\\\nmpv.net must be restarted after a change."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1143
 msgid "User interface display language.\\nmpv.net must be restarted after a change."
-msgstr "Език на потребителския интерфейс.\\nmpv.net must be restarted after a change."
+msgstr "Ð•Ð·Ð¸Ðº Ð½Ð° Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð¸Ñ‚ÐµÐ»ÑÐºÐ¸Ñ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹Ñ.\\nmpv.net must be restarted after a change."
 
 msgid "VK_KHR_win32_surface"
 msgstr "VK_KHR_win32_surface"
@@ -2364,12 +2364,12 @@ msgstr "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:82
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Video"
-msgstr "Видео"
+msgstr "Ð’Ð¸Ð´ÐµÐ¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:135
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:238
 msgid "Video Tracks"
-msgstr "Видео заглавия"
+msgstr "Ð’Ð¸Ð´ÐµÐ¾ Ð·Ð°Ð³Ð»Ð°Ð²Ð¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:786
 msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
@@ -2379,11 +2379,11 @@ msgid "Video output driver that uses the Direct3D interface."
 msgstr "Video output driver that uses the Direct3D interface."
 
 msgid "Video output drivers to be used.\\\\n\\\\nFor more information visit:"
-msgstr "Видео изход драйвери да се използват.\\\\n\\\\nЗа повече информация:"
+msgstr "Ð’Ð¸Ð´ÐµÐ¾ Ð¸Ð·Ñ…Ð¾Ð´ Ð´Ñ€Ð°Ð¹Ð²ÐµÑ€Ð¸ Ð´Ð° ÑÐµ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ñ‚.\\\\n\\\\nÐ—Ð° Ð¿Ð¾Ð²ÐµÑ‡Ðµ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:61
 msgid "Video output drivers to be used.\\n\\nFor more information visit:"
-msgstr "Трябва да се използват драйвери за видео изход.\\n\\nЗа повече информация:"
+msgstr "Ð¢Ñ€ÑÐ±Ð²Ð° Ð´Ð° ÑÐµ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ñ‚ Ð´Ñ€Ð°Ð¹Ð²ÐµÑ€Ð¸ Ð·Ð° Ð²Ð¸Ð´ÐµÐ¾ Ð¸Ð·Ñ…Ð¾Ð´.\\n\\nÐ—Ð° Ð¿Ð¾Ð²ÐµÑ‡Ðµ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ñ:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:120
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:121
@@ -2416,64 +2416,64 @@ msgstr "Трябва да се използват драйвери за виде
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "View"
-msgstr "Преглед"
+msgstr "ÐŸÑ€ÐµÐ³Ð»ÐµÐ´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:107
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:108
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:109
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:110
 msgid "Volume"
-msgstr "Звук"
+msgstr "Ð—Ð²ÑƒÐº"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:211
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:213
 msgid "Volume Down"
-msgstr "Намали звука"
+msgstr "ÐÐ°Ð¼Ð°Ð»Ð¸ Ð·Ð²ÑƒÐºÐ°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:210
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:212
 msgid "Volume Up"
-msgstr "Увеличи звука"
+msgstr "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸ Ð·Ð²ÑƒÐºÐ°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:42
 msgid "Waiting for key/mouse input."
-msgstr "Изчакване за въвеждане на ключ/мишка."
+msgstr "Ð˜Ð·Ñ‡Ð°ÐºÐ²Ð°Ð½Ðµ Ð·Ð° Ð²ÑŠÐ²ÐµÐ¶Ð´Ð°Ð½Ðµ Ð½Ð° ÐºÐ»ÑŽÑ‡/Ð¼Ð¸ÑˆÐºÐ°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:139
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:244
 msgid "Watch History"
-msgstr "История на гледане"
+msgstr "Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ Ð½Ð° Ð³Ð»ÐµÐ´Ð°Ð½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:140
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:245
 msgid "Watch Later"
-msgstr "Гледай по-късно"
+msgstr "Ð“Ð»ÐµÐ´Ð°Ð¹ Ð¿Ð¾-ÐºÑŠÑÐ½Ð¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:192
 msgid "Website mpv"
-msgstr "Уеб сайт mpv"
+msgstr "Ð£ÐµÐ± ÑÐ°Ð¹Ñ‚ mpv"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:193
 msgid "Website mpv.net"
-msgstr "Уебсайт mpv.net"
+msgstr "Ð£ÐµÐ±ÑÐ°Ð¹Ñ‚ mpv.net"
 
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
-msgstr "Когато отваряте местен файл, действайте сякаш главната директория е отворена и създавате автоматично плейлист.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\nСъщото: Създаване на плейлист от главната директория с файлове, отговарящи на същата категория като текущо заредения файл. Един от *-exts се избира въз основа на входния файл и към списъка се добавят само файлове със съвпадащи разширения. Ако входният файл сам по себе си не съответства на списъка с разширения, плейлистът не се генерира автоматично."
+msgstr "ÐšÐ¾Ð³Ð°Ñ‚Ð¾ Ð¾Ñ‚Ð²Ð°Ñ€ÑÑ‚Ðµ Ð¼ÐµÑÑ‚ÐµÐ½ Ñ„Ð°Ð¹Ð», Ð´ÐµÐ¹ÑÑ‚Ð²Ð°Ð¹Ñ‚Ðµ ÑÑÐºÐ°Ñˆ Ð³Ð»Ð°Ð²Ð½Ð°Ñ‚Ð° Ð´Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€Ð¸Ñ Ðµ Ð¾Ñ‚Ð²Ð¾Ñ€ÐµÐ½Ð° Ð¸ ÑÑŠÐ·Ð´Ð°Ð²Ð°Ñ‚Ðµ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾ Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\nÐ¡ÑŠÑ‰Ð¾Ñ‚Ð¾: Ð¡ÑŠÐ·Ð´Ð°Ð²Ð°Ð½Ðµ Ð½Ð° Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚ Ð¾Ñ‚ Ð³Ð»Ð°Ð²Ð½Ð°Ñ‚Ð° Ð´Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€Ð¸Ñ Ñ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ, Ð¾Ñ‚Ð³Ð¾Ð²Ð°Ñ€ÑÑ‰Ð¸ Ð½Ð° ÑÑŠÑ‰Ð°Ñ‚Ð° ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸Ñ ÐºÐ°Ñ‚Ð¾ Ñ‚ÐµÐºÑƒÑ‰Ð¾ Ð·Ð°Ñ€ÐµÐ´ÐµÐ½Ð¸Ñ Ñ„Ð°Ð¹Ð». Ð•Ð´Ð¸Ð½ Ð¾Ñ‚ *-exts ÑÐµ Ð¸Ð·Ð±Ð¸Ñ€Ð° Ð²ÑŠÐ· Ð¾ÑÐ½Ð¾Ð²Ð° Ð½Ð° Ð²Ñ…Ð¾Ð´Ð½Ð¸Ñ Ñ„Ð°Ð¹Ð» Ð¸ ÐºÑŠÐ¼ ÑÐ¿Ð¸ÑÑŠÐºÐ° ÑÐµ Ð´Ð¾Ð±Ð°Ð²ÑÑ‚ ÑÐ°Ð¼Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ ÑÑŠÑ ÑÑŠÐ²Ð¿Ð°Ð´Ð°Ñ‰Ð¸ Ñ€Ð°Ð·ÑˆÐ¸Ñ€ÐµÐ½Ð¸Ñ. ÐÐºÐ¾ Ð²Ñ…Ð¾Ð´Ð½Ð¸ÑÑ‚ Ñ„Ð°Ð¹Ð» ÑÐ°Ð¼ Ð¿Ð¾ ÑÐµÐ±Ðµ ÑÐ¸ Ð½Ðµ ÑÑŠÐ¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²Ð° Ð½Ð° ÑÐ¿Ð¸ÑÑŠÐºÐ° Ñ Ñ€Ð°Ð·ÑˆÐ¸Ñ€ÐµÐ½Ð¸Ñ, Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚ÑŠÑ‚ Ð½Ðµ ÑÐµ Ð³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð° Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1104
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
-msgstr "При отваряне на местен файл, действайте така, сякаш главната директория е отворена и автоматично създавайте плейлист.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nСъщото: Създаване на плейлист от главната директория с файлове, отговарящи на същата категория като текущо заредения файл. Един от *-exts се избира въз основа на входния файл и към списъка се добавят само файлове със съвпадащи разширения. Ако входният файл сам по себе си не съответства на списъка с разширения, плейлистът не се генерира автоматично."
+msgstr "ÐŸÑ€Ð¸ Ð¾Ñ‚Ð²Ð°Ñ€ÑÐ½Ðµ Ð½Ð° Ð¼ÐµÑÑ‚ÐµÐ½ Ñ„Ð°Ð¹Ð», Ð´ÐµÐ¹ÑÑ‚Ð²Ð°Ð¹Ñ‚Ðµ Ñ‚Ð°ÐºÐ°, ÑÑÐºÐ°Ñˆ Ð³Ð»Ð°Ð²Ð½Ð°Ñ‚Ð° Ð´Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€Ð¸Ñ Ðµ Ð¾Ñ‚Ð²Ð¾Ñ€ÐµÐ½Ð° Ð¸ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾ ÑÑŠÐ·Ð´Ð°Ð²Ð°Ð¹Ñ‚Ðµ Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nÐ¡ÑŠÑ‰Ð¾Ñ‚Ð¾: Ð¡ÑŠÐ·Ð´Ð°Ð²Ð°Ð½Ðµ Ð½Ð° Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚ Ð¾Ñ‚ Ð³Ð»Ð°Ð²Ð½Ð°Ñ‚Ð° Ð´Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€Ð¸Ñ Ñ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ, Ð¾Ñ‚Ð³Ð¾Ð²Ð°Ñ€ÑÑ‰Ð¸ Ð½Ð° ÑÑŠÑ‰Ð°Ñ‚Ð° ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸Ñ ÐºÐ°Ñ‚Ð¾ Ñ‚ÐµÐºÑƒÑ‰Ð¾ Ð·Ð°Ñ€ÐµÐ´ÐµÐ½Ð¸Ñ Ñ„Ð°Ð¹Ð». Ð•Ð´Ð¸Ð½ Ð¾Ñ‚ *-exts ÑÐµ Ð¸Ð·Ð±Ð¸Ñ€Ð° Ð²ÑŠÐ· Ð¾ÑÐ½Ð¾Ð²Ð° Ð½Ð° Ð²Ñ…Ð¾Ð´Ð½Ð¸Ñ Ñ„Ð°Ð¹Ð» Ð¸ ÐºÑŠÐ¼ ÑÐ¿Ð¸ÑÑŠÐºÐ° ÑÐµ Ð´Ð¾Ð±Ð°Ð²ÑÑ‚ ÑÐ°Ð¼Ð¾ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ ÑÑŠÑ ÑÑŠÐ²Ð¿Ð°Ð´Ð°Ñ‰Ð¸ Ñ€Ð°Ð·ÑˆÐ¸Ñ€ÐµÐ½Ð¸Ñ. ÐÐºÐ¾ Ð²Ñ…Ð¾Ð´Ð½Ð¸ÑÑ‚ Ñ„Ð°Ð¹Ð» ÑÐ°Ð¼ Ð¿Ð¾ ÑÐµÐ±Ðµ ÑÐ¸ Ð½Ðµ ÑÑŠÐ¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²Ð° Ð½Ð° ÑÐ¿Ð¸ÑÑŠÐºÐ° Ñ Ñ€Ð°Ð·ÑˆÐ¸Ñ€ÐµÐ½Ð¸Ñ, Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚ÑŠÑ‚ Ð½Ðµ ÑÐµ Ð³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð° Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:163
 msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
 msgstr "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
 
 msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\\\n\\\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
-msgstr "При използване на конволюционни филтри, удължете размера на филтъра при снижаване. Увеличава качеството, но намалява ефективността по време на снижаване. \\\\n\\\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
+msgstr "ÐŸÑ€Ð¸ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ðµ Ð½Ð° ÐºÐ¾Ð½Ð²Ð¾Ð»ÑŽÑ†Ð¸Ð¾Ð½Ð½Ð¸ Ñ„Ð¸Ð»Ñ‚Ñ€Ð¸, ÑƒÐ´ÑŠÐ»Ð¶ÐµÑ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð° Ð½Ð° Ñ„Ð¸Ð»Ñ‚ÑŠÑ€Ð° Ð¿Ñ€Ð¸ ÑÐ½Ð¸Ð¶Ð°Ð²Ð°Ð½Ðµ. Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð°Ð²Ð° ÐºÐ°Ñ‡ÐµÑÑ‚Ð²Ð¾Ñ‚Ð¾, Ð½Ð¾ Ð½Ð°Ð¼Ð°Ð»ÑÐ²Ð° ÐµÑ„ÐµÐºÑ‚Ð¸Ð²Ð½Ð¾ÑÑ‚Ñ‚Ð° Ð¿Ð¾ Ð²Ñ€ÐµÐ¼Ðµ Ð½Ð° ÑÐ½Ð¸Ð¶Ð°Ð²Ð°Ð½Ðµ. \\\\n\\\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:155
 msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
-msgstr "При използване на конволюционни филтри, удължете размера на филтъра при снижаване. Увеличава качеството, но намалява производителността при снижаване.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
+msgstr "ÐŸÑ€Ð¸ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ðµ Ð½Ð° ÐºÐ¾Ð½Ð²Ð¾Ð»ÑŽÑ†Ð¸Ð¾Ð½Ð½Ð¸ Ñ„Ð¸Ð»Ñ‚Ñ€Ð¸, ÑƒÐ´ÑŠÐ»Ð¶ÐµÑ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð° Ð½Ð° Ñ„Ð¸Ð»Ñ‚ÑŠÑ€Ð° Ð¿Ñ€Ð¸ ÑÐ½Ð¸Ð¶Ð°Ð²Ð°Ð½Ðµ. Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð°Ð²Ð° ÐºÐ°Ñ‡ÐµÑÑ‚Ð²Ð¾Ñ‚Ð¾, Ð½Ð¾ Ð½Ð°Ð¼Ð°Ð»ÑÐ²Ð° Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð´Ð¸Ñ‚ÐµÐ»Ð½Ð¾ÑÑ‚Ñ‚Ð° Ð¿Ñ€Ð¸ ÑÐ½Ð¸Ð¶Ð°Ð²Ð°Ð½Ðµ.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:944
 msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
@@ -2524,36 +2524,36 @@ msgstr "Win32/WGL"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:164
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:165
 msgid "Window"
-msgstr "Прозорец"
+msgstr "ÐŸÑ€Ð¾Ð·Ð¾Ñ€ÐµÑ†"
 
 msgid "Window height is always remembered"
-msgstr "Височината на прозореца винаги се помни"
+msgstr "Ð’Ð¸ÑÐ¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° Ð²Ð¸Ð½Ð°Ð³Ð¸ ÑÐµ Ð¿Ð¾Ð¼Ð½Ð¸"
 
 msgid "Window height is remembered in the current session"
-msgstr "Височината на прозореца се запомня през текущата сесия"
+msgstr "Ð’Ð¸ÑÐ¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° ÑÐµ Ð·Ð°Ð¿Ð¾Ð¼Ð½Ñ Ð¿Ñ€ÐµÐ· Ñ‚ÐµÐºÑƒÑ‰Ð°Ñ‚Ð° ÑÐµÑÐ¸Ñ"
 
 msgid "Window size is always remembered"
-msgstr "Размерът на прозореца винаги се запомня"
+msgstr "Ð Ð°Ð·Ð¼ÐµÑ€ÑŠÑ‚ Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° Ð²Ð¸Ð½Ð°Ð³Ð¸ ÑÐµ Ð·Ð°Ð¿Ð¾Ð¼Ð½Ñ"
 
 msgid "Window size is remembered in the current session"
-msgstr "Размерът на прозореца се запомня през текущата сесия"
+msgstr "Ð Ð°Ð·Ð¼ÐµÑ€ÑŠÑ‚ Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° ÑÐµ Ð·Ð°Ð¿Ð¾Ð¼Ð½Ñ Ð¿Ñ€ÐµÐ· Ñ‚ÐµÐºÑƒÑ‰Ð°Ñ‚Ð° ÑÐµÑÐ¸Ñ"
 
 msgid "Window size is set to video resolution"
-msgstr "Размера на прозореца е зададен за резолюция на видео"
+msgstr "Ð Ð°Ð·Ð¼ÐµÑ€Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° Ðµ Ð·Ð°Ð´Ð°Ð´ÐµÐ½ Ð·Ð° Ñ€ÐµÐ·Ð¾Ð»ÑŽÑ†Ð¸Ñ Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾"
 
 msgid "Window width is always remembered"
-msgstr "Ширината на прозореца винаги се помни"
+msgstr "Ð¨Ð¸Ñ€Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° Ð²Ð¸Ð½Ð°Ð³Ð¸ ÑÐµ Ð¿Ð¾Ð¼Ð½Ð¸"
 
 msgid "Window width is remembered in the current session"
-msgstr "Ширината на прозореца се запомня през текущата сесия"
+msgstr "Ð¨Ð¸Ñ€Ð¸Ð½Ð°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð·Ð¾Ñ€ÐµÑ†Ð° ÑÐµ Ð·Ð°Ð¿Ð¾Ð¼Ð½Ñ Ð¿Ñ€ÐµÐ· Ñ‚ÐµÐºÑƒÑ‰Ð°Ñ‚Ð° ÑÐµÑÐ¸Ñ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:756
 msgid "Write JPEG files with the same chroma subsampling as the video. If disabled, the libjpeg default is used."
-msgstr "Напишете JPEG файлове със същата хрома като видеото. Ако е изключен, се използва по подразбиране libjpeg."
+msgstr "ÐÐ°Ð¿Ð¸ÑˆÐµÑ‚Ðµ JPEG Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ ÑÑŠÑ ÑÑŠÑ‰Ð°Ñ‚Ð° Ñ…Ñ€Ð¾Ð¼Ð° ÐºÐ°Ñ‚Ð¾ Ð²Ð¸Ð´ÐµÐ¾Ñ‚Ð¾. ÐÐºÐ¾ Ðµ Ð¸Ð·ÐºÐ»ÑŽÑ‡ÐµÐ½, ÑÐµ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð° Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ libjpeg."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:137
 msgid "Yes"
-msgstr "Да"
+msgstr "Ð”Ð°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:152
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:153
@@ -2563,7 +2563,7 @@ msgstr "Да"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:157
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:158
 msgid "Zoom"
-msgstr "Увеличение"
+msgstr "Ð£Ð²ÐµÐ»Ð¸Ñ‡ÐµÐ½Ð¸Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1085
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:499
@@ -2595,7 +2595,7 @@ msgid "always"
 msgstr "always"
 
 msgid "always use software decoding"
-msgstr "винаги използвайте софтуерно декодиране"
+msgstr "Ð²Ð¸Ð½Ð°Ð³Ð¸ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð¹Ñ‚Ðµ ÑÐ¾Ñ„Ñ‚ÑƒÐµÑ€Ð½Ð¾ Ð´ÐµÐºÐ¾Ð´Ð¸Ñ€Ð°Ð½Ðµ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:105
 msgid "angle"
@@ -2785,7 +2785,7 @@ msgid "contrast_smoothness"
 msgstr "contrast_smoothness"
 
 msgid "copies video back to system RAM"
-msgstr "копия на видеото обратно към системата RAM"
+msgstr "ÐºÐ¾Ð¿Ð¸Ñ Ð½Ð° Ð²Ð¸Ð´ÐµÐ¾Ñ‚Ð¾ Ð¾Ð±Ñ€Ð°Ñ‚Ð½Ð¾ ÐºÑŠÐ¼ ÑÐ¸ÑÑ‚ÐµÐ¼Ð°Ñ‚Ð° RAM"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:152
 msgid "correct-downscaling"
@@ -2938,10 +2938,10 @@ msgid "dxva2-copy"
 msgstr "dxva2-copy"
 
 msgid "enable any whitelisted hw decoder"
-msgstr "да се даде възможност на всеки декодер в бяло"
+msgstr "Ð´Ð° ÑÐµ Ð´Ð°Ð´Ðµ Ð²ÑŠÐ·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑ‚ Ð½Ð° Ð²ÑÐµÐºÐ¸ Ð´ÐµÐºÐ¾Ð´ÐµÑ€ Ð² Ð±ÑÐ»Ð¾"
 
 msgid "enable best hw decoder"
-msgstr "позволява най-добър hw декодер"
+msgstr "Ð¿Ð¾Ð·Ð²Ð¾Ð»ÑÐ²Ð° Ð½Ð°Ð¹-Ð´Ð¾Ð±ÑŠÑ€ hw Ð´ÐµÐºÐ¾Ð´ÐµÑ€"
 
 msgid "enable best hw decoder with copy-back"
 msgstr "enable best hw decoder with copy-back"
@@ -2974,7 +2974,7 @@ msgid "exact"
 msgstr "exact"
 
 msgid "exactly the same as auto"
-msgstr "абсолютно същото като авто"
+msgstr "Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ð¾ ÑÑŠÑ‰Ð¾Ñ‚Ð¾ ÐºÐ°Ñ‚Ð¾ Ð°Ð²Ñ‚Ð¾"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:629
 msgid "exposure"
@@ -3348,11 +3348,11 @@ msgstr "mobius"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:443
 msgid "mpv.net is already in the Path environment variable."
-msgstr "mpv.net вече е в променливата на средата Path."
+msgstr "mpv.net Ð²ÐµÑ‡Ðµ Ðµ Ð² Ð¿Ñ€Ð¾Ð¼ÐµÐ½Ð»Ð¸Ð²Ð°Ñ‚Ð° Ð½Ð° ÑÑ€ÐµÐ´Ð°Ñ‚Ð° Path."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:460
 msgid "mpv.net was not found in the Path environment variable."
-msgstr "mpv.net не бе намерен в променливата на средата Path."
+msgstr "mpv.net Ð½Ðµ Ð±Ðµ Ð½Ð°Ð¼ÐµÑ€ÐµÐ½ Ð² Ð¿Ñ€Ð¾Ð¼ÐµÐ½Ð»Ð¸Ð²Ð°Ñ‚Ð° Ð½Ð° ÑÑ€ÐµÐ´Ð°Ñ‚Ð° Path."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:451
 msgid "mpv.net was successfully added to the Path environment variable."

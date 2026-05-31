@@ -6,11 +6,11 @@ msgstr "Project-Id-Version: mpv.net\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:75
 msgid "           always use software decoding"
-msgstr "           sempre usar decodificação de software"
+msgstr "           sempre usar decodificaÃ§Ã£o de software"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:988
 msgid "          Window size is set to video resolution"
-msgstr "          O tamanho da janela está definido como resolução de vídeo"
+msgstr "          O tamanho da janela estÃ¡ definido como resoluÃ§Ã£o de vÃ­deo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:77
 msgid "          exactly the same as auto"
@@ -20,11 +20,11 @@ msgstr "          exatamente o mesmo que auto"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:271
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:286
 msgid "         Box averaging (very fast)"
-msgstr "         Caixa de média (muito rápida)"
+msgstr "         Caixa de mÃ©dia (muito rÃ¡pida)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:990
 msgid "         Window size is always remembered"
-msgstr "         O tamanho da janela é sempre lembrado"
+msgstr "         O tamanho da janela Ã© sempre lembrado"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:76
 msgid "         enable best hw decoder"
@@ -46,7 +46,7 @@ msgstr "        Usar o mesmo filtro que indicado para o upscaler"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:989
 msgid "        Window size is remembered in the current session"
-msgstr "        O tamanho da janela é lembrado na sessão atual"
+msgstr "        O tamanho da janela Ã© lembrado na sessÃ£o atual"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:86
 msgid "        requires vo=gpu (Any platform CUDA is available)"
@@ -58,7 +58,7 @@ msgstr "        requer vo=gpu com gpu-context=d3d11, gpu-context=angle ou gpu-co
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:300
 msgid "       Disable frame mixing, show nearest frame to target PTS"
-msgstr "       Desactivar a mistura de quadros, mostrar o quadro mais próximo do PTS alvo"
+msgstr "       Desactivar a mistura de quadros, mostrar o quadro mais prÃ³ximo do PTS alvo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:106
 msgid "       Win32/WGL"
@@ -66,7 +66,7 @@ msgstr "       Win32/WGL"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:304
 msgid "      Cubic B-spline frame mixing"
-msgstr "      Mistura de moldura cúbica B-spline"
+msgstr "      Mistura de moldura cÃºbica B-spline"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:65
 msgid "      General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
@@ -74,7 +74,7 @@ msgstr "      General purpose, customizable, GPU-accelerated video output driver
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1083
 msgid "      Use precise seeks whenever possible."
-msgstr "      Use buscas precisas sempre que possível."
+msgstr "      Use buscas precisas sempre que possÃ­vel."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:103
 msgid "      auto-select"
@@ -88,7 +88,7 @@ msgstr "      requer vo=gpu com gpu-context=d3d11 ou gpu-context=angle"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:274
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:289
 msgid "     Bicubic interpolation (fast)"
-msgstr "     Interpolação bicúbica (rápida)"
+msgstr "     InterpolaÃ§Ã£o bicÃºbica (rÃ¡pida)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:64
 msgid "     Choose the best mode automatically."
@@ -102,17 +102,17 @@ msgstr "     Direct3D11 through the OpenGL ES translation layer ANGLE. This supp
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:272
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:287
 msgid "     Hermite-weighted averaging (fast)"
-msgstr "     Média ponderada em hermite (rápido)"
+msgstr "     MÃ©dia ponderada em hermite (rÃ¡pido)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1039
 msgid "     If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
-msgstr "     Se o arquivo atual terminar, vá para o próximo arquivo. Se o ocioso estiver definido como não, o jogador sai após o último arquivo."
+msgstr "     Se o arquivo atual terminar, vÃ¡ para o prÃ³ximo arquivo. Se o ocioso estiver definido como nÃ£o, o jogador sai apÃ³s o Ãºltimo arquivo."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:263
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:278
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:293
 msgid "     Lanczos reconstruction"
-msgstr "     Reconstrução de Lanczos"
+msgstr "     ReconstruÃ§Ã£o de Lanczos"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:303
 msgid "     Linear frame mixing"
@@ -130,25 +130,25 @@ msgstr "     Win32, with native Direct3D 11 rendering."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:273
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:288
 msgid "    Bilinear (triangle) averaging (fast)"
-msgstr "    Média bilinear (triângulo) (rápido)"
+msgstr "    MÃ©dia bilinear (triÃ¢ngulo) (rÃ¡pido)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:175
 msgid "    Dither to 8 bit output."
-msgstr "    Dither para 8 bits de saída."
+msgstr "    Dither para 8 bits de saÃ­da."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:811
 msgid "    Don't automatically load external audio files."
-msgstr "    Não carregue automaticamente arquivos de áudio externos."
+msgstr "    NÃ£o carregue automaticamente arquivos de Ã¡udio externos."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:847
 msgid "    Don't automatically load external subtitle files."
-msgstr "    Não carregue automaticamente arquivos de legendas externos."
+msgstr "    NÃ£o carregue automaticamente arquivos de legendas externos."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:260
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:275
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:290
 msgid "    Gaussian smoothing (fast)"
-msgstr "    Alisamento gaussiano (rápido)"
+msgstr "    Alisamento gaussiano (rÃ¡pido)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:302
 msgid "    Hermite-weighted frame mixing"
@@ -156,17 +156,17 @@ msgstr "    Mistura de molduras ponderadas em hermite"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1038
 msgid "    If the current file ends, go to the next file, keep the last file open."
-msgstr "    Se o arquivo atual terminar, vá para o próximo arquivo, mantenha o último arquivo aberto."
+msgstr "    Se o arquivo atual terminar, vÃ¡ para o prÃ³ximo arquivo, mantenha o Ãºltimo arquivo aberto."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:262
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:277
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:292
 msgid "    Mitchell-Netravalia cubic spline"
-msgstr "    Rosca cúbica Mitchell-Netravalia"
+msgstr "    Rosca cÃºbica Mitchell-Netravalia"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:85
 msgid "    copies video back to system RAM"
-msgstr "    copia vídeo de volta para o sistema RAM"
+msgstr "    copia vÃ­deo de volta para o sistema RAM"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:79
 msgid "    enable any whitelisted hw decoder"
@@ -182,15 +182,15 @@ msgstr "   Desactiva qualquer dithering feito pelo mpv."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:176
 msgid "   Dither to 10 bit output."
-msgstr "   Saída de 10 bits."
+msgstr "   SaÃ­da de 10 bits."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:814
 msgid "   Load all audio files in the current and audio-file-paths directories."
-msgstr "   Carregar todos os arquivos de áudio nos diretórios atuais e audio-file-paths."
+msgstr "   Carregar todos os arquivos de Ã¡udio nos diretÃ³rios atuais e audio-file-paths."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:850
 msgid "   Load all subs in the current and sub-file-paths directories."
-msgstr "   Carregar todos os subs nos diretórios atuais e sub-file-paths."
+msgstr "   Carregar todos os subs nos diretÃ³rios atuais e sub-file-paths."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1086
 msgid "   Same as yes (for compatibility)."
@@ -202,12 +202,12 @@ msgstr "   Use any available API. Note that the default GPU API used for this va
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:985
 msgid "   Window width is always remembered"
-msgstr "   A largura da janela é sempre lembrada"
+msgstr "   A largura da janela Ã© sempre lembrada"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:81
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:87
 msgid "   copies video back to system RAM"
-msgstr "   copia vídeo de volta para o sistema RAM"
+msgstr "   copia vÃ­deo de volta para o sistema RAM"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:95
 msgid "  Allow only gpu-context=d3d11"
@@ -219,15 +219,15 @@ msgstr "  Create a new process everytime the shell starts mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:9
 msgid "  Force a single process and add files to playlist"
-msgstr "  Forçar um único processo e adicionar arquivos à lista de reprodução"
+msgstr "  ForÃ§ar um Ãºnico processo e adicionar arquivos Ã  lista de reproduÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:987
 msgid "  Window height is always remembered"
-msgstr "  A altura da janela é sempre lembrada"
+msgstr "  A altura da janela Ã© sempre lembrada"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:984
 msgid "  Window width is remembered in the current session"
-msgstr "  A largura da janela é lembrada na sessão atual"
+msgstr "  A largura da janela Ã© lembrada na sessÃ£o atual"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:107
 msgid " (experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
@@ -243,11 +243,11 @@ msgstr " Allow only Vulkan"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:241
 msgid " Aspect-ratio preserving nearest neighbour sampling (very fast)."
-msgstr " Razão-respectiva preservando a amostragem mais próxima do vizinho (muito rápido)."
+msgstr " RazÃ£o-respectiva preservando a amostragem mais prÃ³xima do vizinho (muito rÃ¡pido)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:174
 msgid " Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
-msgstr " Seleção automática. Se a profundidade do bit de saída não pode ser detectada, 8 bits por componente são assumidos."
+msgstr " SeleÃ§Ã£o automÃ¡tica. Se a profundidade do bit de saÃ­da nÃ£o pode ser detectada, 8 bits por componente sÃ£o assumidos."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1166
 msgid " Available on Windows 10 or higher"
@@ -255,37 +255,37 @@ msgstr " Available on Windows 10 or higher"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:242
 msgid " Bicubic interpolation (fast)."
-msgstr " Interpolação bicúbica (rápida)."
+msgstr " InterpolaÃ§Ã£o bicÃºbica (rÃ¡pida)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:240
 msgid " Bilinear sampling (very fast)."
-msgstr " Amostragem bilinear (muito rápida)."
+msgstr " Amostragem bilinear (muito rÃ¡pida)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:261
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:276
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:291
 msgid " Catmull-Rom cubic spline"
-msgstr " Espessura cúbica de Catmull-Rom"
+msgstr " Espessura cÃºbica de Catmull-Rom"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:244
 msgid " Catmull-Rom cubic spline."
-msgstr " Rosca cúbica Catmull-Rom."
+msgstr " Rosca cÃºbica Catmull-Rom."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:227
 msgid " Default settings, tuned to provide a balance of performance and quality."
-msgstr " Configurações padrão, sintonizadas para fornecer um equilíbrio de desempenho e qualidade."
+msgstr " ConfiguraÃ§Ãµes padrÃ£o, sintonizadas para fornecer um equilÃ­brio de desempenho e qualidade."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:228
 msgid " Disable all advanced rendering, equivalent to passing no to every option."
-msgstr " Desactivar toda a renderização avançada, equivalente a passar não a cada opção."
+msgstr " Desactivar toda a renderizaÃ§Ã£o avanÃ§ada, equivalente a passar nÃ£o a cada opÃ§Ã£o."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:246
 msgid " EWA Lanczos (\"Jinc\") reconstruction (slow)."
-msgstr " EWA Lanczos (\"Jinc\") reconstrução (low)."
+msgstr " EWA Lanczos (\"Jinc\") reconstruÃ§Ã£o (low)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:66
 msgid " Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
-msgstr " renderizador de vídeo experimental baseado na libplacebo. Isso suporta quase o mesmo conjunto de recursos que --vo=gpu."
+msgstr " renderizador de vÃ­deo experimental baseado na libplacebo. Isso suporta quase o mesmo conjunto de recursos que --vo=gpu."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:8
 msgid " Force a single process everytime the shell starts mpv.net"
@@ -293,31 +293,31 @@ msgstr " Force a single process everytime the shell starts mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:243
 msgid " Gaussian smoothing (fast)."
-msgstr " Alisamento gaussiano (rápido)."
+msgstr " Alisamento gaussiano (rÃ¡pido)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:245
 msgid " Lanczos reconstruction."
-msgstr " Reconstrução de Lanczos."
+msgstr " ReconstruÃ§Ã£o de Lanczos."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:813
 msgid " Load all audio files containing media filename."
-msgstr " Carregar todos os arquivos de áudio contendo nome de arquivo de mídia."
+msgstr " Carregar todos os arquivos de Ã¡udio contendo nome de arquivo de mÃ­dia."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:849
 msgid " Load all subs containing media filename."
-msgstr " Carregar todos os subs contendo o nome do ficheiro multimédia."
+msgstr " Carregar todos os subs contendo o nome do ficheiro multimÃ©dia."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:812
 msgid " Load the media filename with audio file extension."
-msgstr " Carregar o arquivo de mídia com extensão de arquivo de áudio."
+msgstr " Carregar o arquivo de mÃ­dia com extensÃ£o de arquivo de Ã¡udio."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:848
 msgid " Load the media filename with subtitle file extension."
-msgstr " Carregar o nome do ficheiro multimédia com a extensão do ficheiro de legendas."
+msgstr " Carregar o nome do ficheiro multimÃ©dia com a extensÃ£o do ficheiro de legendas."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:239
 msgid " Nearest-neighbour (box) sampling (very fast)."
-msgstr " Amostragem do vizinho mais próximo (caixa) (muito rápido)."
+msgstr " Amostragem do vizinho mais prÃ³ximo (caixa) (muito rÃ¡pido)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:238
 msgid " No filter, only use basic GPU texture sampling."
@@ -329,23 +329,23 @@ msgstr " Oversampling, misture apenas as molduras \"de borda\" enquanto preserva
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1040
 msgid " Playback will never automatically advance to the next file."
-msgstr " A reprodução nunca avançará automaticamente para o próximo arquivo."
+msgstr " A reproduÃ§Ã£o nunca avanÃ§arÃ¡ automaticamente para o prÃ³ximo arquivo."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:229
 msgid " Reset all everything to high quality presets (where available)."
-msgstr " Reinicie tudo para predefinições de alta qualidade (onde disponível)."
+msgstr " Reinicie tudo para predefiniÃ§Ãµes de alta qualidade (onde disponÃ­vel)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:247
 msgid " Sharpened version of ewa_lanczos (slow)."
-msgstr " Versão afiada de ewa_lanczos (low)."
+msgstr " VersÃ£o afiada de ewa_lanczos (low)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1085
 msgid " Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
-msgstr " Use buscas precisas se a busca é para uma posição absoluta no arquivo, como uma busca de capítulo, mas não para buscas relativas como o comportamento padrão das setas."
+msgstr " Use buscas precisas se a busca Ã© para uma posiÃ§Ã£o absoluta no arquivo, como uma busca de capÃ­tulo, mas nÃ£o para buscas relativas como o comportamento padrÃ£o das setas."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:248
 msgid " Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
-msgstr " Versão muito nítida de ewa_lanczos, com anti-ringing (muito lento)."
+msgstr " VersÃ£o muito nÃ­tida de ewa_lanczos, com anti-ringing (muito lento)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:67
 msgid " Video output driver that uses the Direct3D interface."
@@ -353,15 +353,15 @@ msgstr " Video output driver that uses the Direct3D interface."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:986
 msgid " Window height is remembered in the current session"
-msgstr " A altura da janela é lembrada na sessão atual"
+msgstr " A altura da janela Ã© lembrada na sessÃ£o atual"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:83
 msgid " copies video back to system RAM"
-msgstr " copia vídeo de volta para o sistema RAM"
+msgstr " copia vÃ­deo de volta para o sistema RAM"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Conf.cs:38
 msgid "(Default)"
-msgstr "(Padrão)"
+msgstr "(PadrÃ£o)"
 
 msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
 msgstr "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
@@ -400,15 +400,15 @@ msgstr "8"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:392
 msgid "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
-msgstr "<-1.0..1.0> Aumento do brilho. Adiciona um viés constante ao sinal de luminância da fonte. 0,0 = neutro, 1,0 = branco sólido, -1,0 = preto sólido. O padrão é 0.0."
+msgstr "<-1.0..1.0> Aumento do brilho. Adiciona um viÃ©s constante ao sinal de luminÃ¢ncia da fonte. 0,0 = neutro, 1,0 = branco sÃ³lido, -1,0 = preto sÃ³lido. O padrÃ£o Ã© 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:417
 msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
-msgstr "<-1.143..5.286> Mudança de temperatura de cor. Em relação a 6500 K, um valor de 0.0 dá-lhe 6500 K (sem alteração), um valor de -1.0 dá-lhe 3000 K, e um valor de 1.0 dá-lhe 10000 K. Por omissão a 0.0."
+msgstr "<-1.143..5.286> MudanÃ§a de temperatura de cor. Em relaÃ§Ã£o a 6500 K, um valor de 0.0 dÃ¡-lhe 6500 K (sem alteraÃ§Ã£o), um valor de -1.0 dÃ¡-lhe 3000 K, e um valor de 1.0 dÃ¡-lhe 10000 K. Por omissÃ£o a 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:770
 msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
-msgstr "<0-100> Defina o nível de qualidade JPEG. Maior significa melhor qualidade. O padrão é 90."
+msgstr "<0-100> Defina o nÃ­vel de qualidade JPEG. Maior significa melhor qualidade. O padrÃ£o Ã© 90."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:914
 msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
@@ -416,31 +416,31 @@ msgstr "<0-32> In multi-monitor configurations (i.e. a single desktop that spans
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:780
 msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
-msgstr "<0-5> Defina o filtro aplicado antes da compressão PNG. 0 é nenhum, 1 é 'sub', 2 é 'up', 3 é 'média', 4 é 'Paeth', e 5 é 'mixed'. Isso afeta o nível de compressão que pode ser alcançado. Para a maioria das imagens, 'mixed' atinge a melhor taxa de compressão, portanto é o padrão."
+msgstr "<0-5> Defina o filtro aplicado antes da compressÃ£o PNG. 0 Ã© nenhum, 1 Ã© 'sub', 2 Ã© 'up', 3 Ã© 'mÃ©dia', 4 Ã© 'Paeth', e 5 Ã© 'mixed'. Isso afeta o nÃ­vel de compressÃ£o que pode ser alcanÃ§ado. Para a maioria das imagens, 'mixed' atinge a melhor taxa de compressÃ£o, portanto Ã© o padrÃ£o."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:775
 msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
-msgstr "<0-9> Defina o nível de compressão PNG. Maior significa melhor compressão. Isso afetará o tamanho do arquivo de captura de tela escrita e o tempo que leva para escrever uma captura de tela. Compressão muito alta pode ocupar tempo suficiente de CPU para interromper a reprodução. O padrão é 7."
+msgstr "<0-9> Defina o nÃ­vel de compressÃ£o PNG. Maior significa melhor compressÃ£o. Isso afetarÃ¡ o tamanho do arquivo de captura de tela escrita e o tempo que leva para escrever uma captura de tela. CompressÃ£o muito alta pode ocupar tempo suficiente de CPU para interromper a reproduÃ§Ã£o. O padrÃ£o Ã© 7."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:543
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
-msgstr "<0..1024> Gamut mapping 3DLUT size. Definir uma dimensão como 0 escolhe o valor padrão. O padrão é 256."
+msgstr "<0..1024> Gamut mapping 3DLUT size. Definir uma dimensÃ£o como 0 escolhe o valor padrÃ£o. O padrÃ£o Ã© 256."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:538
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
-msgstr "<0..1024> Gamut mapping 3DLUT size. Definir uma dimensão como 0 escolhe o valor padrão. O padrão é 32."
+msgstr "<0..1024> Gamut mapping 3DLUT size. Definir uma dimensÃ£o como 0 escolhe o valor padrÃ£o. O padrÃ£o Ã© 32."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:533
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
-msgstr "<0..1024> Gamut mapping 3DLUT size. Definir uma dimensão como 0 escolhe o valor padrão. O padrão é 48."
+msgstr "<0..1024> Gamut mapping 3DLUT size. Definir uma dimensÃ£o como 0 escolhe o valor padrÃ£o. O padrÃ£o Ã© 48."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:330
 msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
-msgstr "<0..16> O número de passos de debandagem para executar por amostra. Cada passo reduz um pouco mais a bandagem, mas leva tempo para computar. Note que a força de cada passo cai muito rapidamente, números tão altos (>4) são praticamente inúteis. Predefinição para 1."
+msgstr "<0..16> O nÃºmero de passos de debandagem para executar por amostra. Cada passo reduz um pouco mais a bandagem, mas leva tempo para computar. Note que a forÃ§a de cada passo cai muito rapidamente, nÃºmeros tÃ£o altos (>4) sÃ£o praticamente inÃºteis. PredefiniÃ§Ã£o para 1."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:656
 msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
-msgstr "<0..4096> Mapeamento de tons tamanho LUT. A configuração 0 escolhe o tamanho por omissão. O padrão é 256."
+msgstr "<0..4096> Mapeamento de tons tamanho LUT. A configuraÃ§Ã£o 0 escolhe o tamanho por omissÃ£o. O padrÃ£o Ã© 256."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:587
 msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
@@ -448,63 +448,63 @@ msgstr "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ l
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:508
 msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
-msgstr "<0.0..1.0> (Relativo) zona de proteção de cromaticidade para mapeamento perceptivo. O padrão é 0,30."
+msgstr "<0.0..1.0> (Relativo) zona de proteÃ§Ã£o de cromaticidade para mapeamento perceptivo. O padrÃ£o Ã© 0,30."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:309
 msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
-msgstr "<0.0..1.0> Resistência antiringing para todos os filtros. Um valor de 0.0 desativa o antiringing, e um valor de 1.0 permite full-strength antiringing. O padrão é 0.0."
+msgstr "<0.0..1.0> ResistÃªncia antiringing para todos os filtros. Um valor de 0.0 desativa o antiringing, e um valor de 1.0 permite full-strength antiringing. O padrÃ£o Ã© 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:597
 msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
-msgstr "<0.0..1.0> Ponto de joelho padrão a ser usado na ausência de metadados médios de cena de origem. Normalmente, isto é ignorado em favor de escolher o ponto do joelho como a (relativa) fonte cena nível de brilho médio. O padrão é 0,4."
+msgstr "<0.0..1.0> Ponto de joelho padrÃ£o a ser usado na ausÃªncia de metadados mÃ©dios de cena de origem. Normalmente, isto Ã© ignorado em favor de escolher o ponto do joelho como a (relativa) fonte cena nÃ­vel de brilho mÃ©dio. O padrÃ£o Ã© 0,4."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:528
 msgid "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
-msgstr "<0.0..1.0> Resistência à dessaturação para o softclip. O padrão é 0,35."
+msgstr "<0.0..1.0> ResistÃªncia Ã  dessaturaÃ§Ã£o para o softclip. O padrÃ£o Ã© 0,35."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:627
 msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
-msgstr "<0.0..1.0> Para funções legadas (mobius, gama) que operam na luz linear, isso define diretamente o ponto de joelho correspondente. Padrões a 0.3."
+msgstr "<0.0..1.0> Para funÃ§Ãµes legadas (mobius, gama) que operam na luz linear, isso define diretamente o ponto de joelho correspondente. PadrÃµes a 0.3."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:622
 msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast coefficient at the display peak. Essentially, a value of 0.5 implies that the reference white will be about half as bright as when clipping. Defaults to 0.5."
-msgstr "<0.0..1.0> Para a função reinhard, isso especifica o coeficiente de contraste local no pico de exibição. Essencialmente, um valor de 0,5 implica que o branco de referência será cerca de metade tão brilhante quanto quando o recorte. O padrão é 0,5."
+msgstr "<0.0..1.0> Para a funÃ§Ã£o reinhard, isso especifica o coeficiente de contraste local no pico de exibiÃ§Ã£o. Essencialmente, um valor de 0,5 implica que o branco de referÃªncia serÃ¡ cerca de metade tÃ£o brilhante quanto quando o recorte. O padrÃ£o Ã© 0,5."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:523
 msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
-msgstr "<0.0..1.0> Ponto de joelho para usar para métodos soft-clipping (perceptivo, softclip). O padrão é 0,70."
+msgstr "<0.0..1.0> Ponto de joelho para usar para mÃ©todos soft-clipping (perceptivo, softclip). O padrÃ£o Ã© 0,70."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:513
 msgid "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
-msgstr "<0.0..1.0> Força do componente de mapeamento perceptivo da saturação. O padrão é 0.80."
+msgstr "<0.0..1.0> ForÃ§a do componente de mapeamento perceptivo da saturaÃ§Ã£o. O padrÃ£o Ã© 0.80."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:366
 msgid "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
-msgstr "<0.0..1.0> O centro (bias) da curva sigmóide. Padrões a 0.75."
+msgstr "<0.0..1.0> O centro (bias) da curva sigmÃ³ide. PadrÃµes a 0.75."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:632
 msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
-msgstr "<0.0..10.0> Para métodos lineares (linear, linearlight), isto controla a exposição/gain linear aplicada à imagem. O padrão é 1.0."
+msgstr "<0.0..10.0> Para mÃ©todos lineares (linear, linearlight), isto controla a exposiÃ§Ã£o/gain linear aplicada Ã  imagem. O padrÃ£o Ã© 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:518
 msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
-msgstr "<0.0..10.0> I vs C curva gama para uso para recorte colorimétrico (relativo, absoluto e escuro). O padrão é 1.80."
+msgstr "<0.0..10.0> I vs C curva gama para uso para recorte colorimÃ©trico (relativo, absoluto e escuro). O padrÃ£o Ã© 1.80."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:461
 msgid "<0.0..100.0> Black cutoff strength."
-msgstr "<0.0..100.0> Força de corte preta."
+msgstr "<0.0..100.0> ForÃ§a de corte preta."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:397
 msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
-msgstr "<0.0..100.0> Ganho de contraste. Multiplica o sinal de luminância da fonte por um fator constante. 1,0 = neutro, 0,0 = preto sólido. O padrão é 1.0."
+msgstr "<0.0..100.0> Ganho de contraste. Multiplica o sinal de luminÃ¢ncia da fonte por um fator constante. 1,0 = neutro, 0,0 = preto sÃ³lido. O padrÃ£o Ã© 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:412
 msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
-msgstr "<0.0..100.0> Elevador Gama. Subjetivamente ilumina ou escurece a cena enquanto preserva o contraste geral. 1,0 = neutro, 0,0 = preto sólido. O padrão é 1.0."
+msgstr "<0.0..100.0> Elevador Gama. Subjetivamente ilumina ou escurece a cena enquanto preserva o contraste geral. 1,0 = neutro, 0,0 = preto sÃ³lido. O padrÃ£o Ã© 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:402
 msgid "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
-msgstr "<0.0..100.0> Ganho de saturação. Multiplica o sinal de cromaticidade da fonte por um fator constante. 1,0 = neutro, 0,0 = escala de cinza. O padrão é 1.0."
+msgstr "<0.0..100.0> Ganho de saturaÃ§Ã£o. Multiplica o sinal de cromaticidade da fonte por um fator constante. 1,0 = neutro, 0,0 = escala de cinza. O padrÃ£o Ã© 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:455
 msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
@@ -512,19 +512,19 @@ msgstr "<0.0..100.0> Qual o percentil do histograma de brilho da imagem de entra
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:345
 msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps cover up remaining quantization artifacts. Higher numbers add more noise. Defaults to 4.0, which is very mild."
-msgstr "<0.0..1000.0> Adicione algum ruído extra à imagem. Isso ajuda significativamente a encobrir artefatos de quantização remanescentes. Números mais elevados adicionam mais ruído. O padrão é 4.0, o que é muito leve."
+msgstr "<0.0..1000.0> Adicione algum ruÃ­do extra Ã  imagem. Isso ajuda significativamente a encobrir artefatos de quantizaÃ§Ã£o remanescentes. NÃºmeros mais elevados adicionam mais ruÃ­do. O padrÃ£o Ã© 4.0, o que Ã© muito leve."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:439
 msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
-msgstr "<0.0..1000.0> Coeficiente de suavização para os valores detectados."
+msgstr "<0.0..1000.0> Coeficiente de suavizaÃ§Ã£o para os valores detectados."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:335
 msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
-msgstr "<0.0..1000.0> O filtro de debandagem é o limiar cut-off. Números mais elevados aumentam dramaticamente a força de debandagem, mas diminuem progressivamente os detalhes da imagem. O padrão é 3.0."
+msgstr "<0.0..1000.0> O filtro de debandagem Ã© o limiar cut-off. NÃºmeros mais elevados aumentam dramaticamente a forÃ§a de debandagem, mas diminuem progressivamente os detalhes da imagem. O padrÃ£o Ã© 3.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:340
 msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
-msgstr "<0.0..1000.0> O raio inicial do filtro de desbandamento. O raio aumenta linearmente para cada iteração. Um raio mais alto vai encontrar mais gradientes, mas um raio mais baixo vai suavizar mais agressivamente. O padrão é 16.0."
+msgstr "<0.0..1000.0> O raio inicial do filtro de desbandamento. O raio aumenta linearmente para cada iteraÃ§Ã£o. Um raio mais alto vai encontrar mais gradientes, mas um raio mais baixo vai suavizar mais agressivamente. O padrÃ£o Ã© 16.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:592
 msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
@@ -532,11 +532,11 @@ msgstr "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ l
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:602
 msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
-msgstr "<0.5..2.0> Desvio do ponto de joelho (apenas para bt2390). Note que um valor de 0,5 é o comportamento padrão spec-defined, que difere do padrão libplacebo de 1.0."
+msgstr "<0.5..2.0> Desvio do ponto de joelho (apenas para bt2390). Note que um valor de 0,5 Ã© o comportamento padrÃ£o spec-defined, que difere do padrÃ£o libplacebo de 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:371
 msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
-msgstr "<1.0..20.0> A inclinação (steepness) da curva sigmóide. O padrão é 6.5."
+msgstr "<1.0..20.0> A inclinaÃ§Ã£o (steepness) da curva sigmÃ³ide. O padrÃ£o Ã© 6.5."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:666
 msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
@@ -544,25 +544,25 @@ msgstr "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or dec
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1099
 msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
-msgstr "<N|inf|force|no> Reproduções de loops N vezes. Um valor de 1 joga uma vez (padrão), 2 duas vezes, etc inf significa para sempre. não é o mesmo que 1 e desativa looping. Se vários arquivos são especificados na linha de comando, toda a lista de reprodução é loopada. O modo força é como inf, mas não ignora os itens da lista de reprodução que foram marcados como falhando. Isso significa que o jogador pode perder tempo com CPU tentando loop de um arquivo que não existe. Mas pode ser útil para jogar webradios em condições de rede muito ruins."
+msgstr "<N|inf|force|no> ReproduÃ§Ãµes de loops N vezes. Um valor de 1 joga uma vez (padrÃ£o), 2 duas vezes, etc inf significa para sempre. nÃ£o Ã© o mesmo que 1 e desativa looping. Se vÃ¡rios arquivos sÃ£o especificados na linha de comando, toda a lista de reproduÃ§Ã£o Ã© loopada. O modo forÃ§a Ã© como inf, mas nÃ£o ignora os itens da lista de reproduÃ§Ã£o que foram marcados como falhando. Isso significa que o jogador pode perder tempo com CPU tentando loop de um arquivo que nÃ£o existe. Mas pode ser Ãºtil para jogar webradios em condiÃ§Ãµes de rede muito ruins."
 
 msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\\\n\\\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
-msgstr "<N|inf|no> Loop um único arquivo N vezes. inf significa para sempre, não significa reprodução normal.\\\\n\\\\nA diferença para loop-playlist é que isso não faz o loop da playlist, apenas o próprio arquivo. Se a lista de reprodução contém apenas um único arquivo, a diferença entre as duas opções é que esta opção executa uma busca no loop, em vez de recarregar o arquivo. loop é um nome falso para esta opção."
+msgstr "<N|inf|no> Loop um Ãºnico arquivo N vezes. inf significa para sempre, nÃ£o significa reproduÃ§Ã£o normal.\\\\n\\\\nA diferenÃ§a para loop-playlist Ã© que isso nÃ£o faz o loop da playlist, apenas o prÃ³prio arquivo. Se a lista de reproduÃ§Ã£o contÃ©m apenas um Ãºnico arquivo, a diferenÃ§a entre as duas opÃ§Ãµes Ã© que esta opÃ§Ã£o executa uma busca no loop, em vez de recarregar o arquivo. loop Ã© um nome falso para esta opÃ§Ã£o."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1062
 msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
-msgstr "<N|inf|no> Loop um único arquivo N vezes. inf significa para sempre, não significa reprodução normal.\\n\\nA diferença para loop-playlist é que isso não faz o loop da playlist, apenas o próprio arquivo. Se a lista de reprodução contém apenas um único arquivo, a diferença entre as duas opções é que esta opção executa uma busca no loop, em vez de recarregar o arquivo. loop é um nome falso para esta opção."
+msgstr "<N|inf|no> Loop um Ãºnico arquivo N vezes. inf significa para sempre, nÃ£o significa reproduÃ§Ã£o normal.\\n\\nA diferenÃ§a para loop-playlist Ã© que isso nÃ£o faz o loop da playlist, apenas o prÃ³prio arquivo. Se a lista de reproduÃ§Ã£o contÃ©m apenas um Ãºnico arquivo, a diferenÃ§a entre as duas opÃ§Ãµes Ã© que esta opÃ§Ã£o executa uma busca no loop, em vez de recarregar o arquivo. loop Ã© um nome falso para esta opÃ§Ã£o."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:407
 msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
-msgstr "<angle> Hue shift. Corresponde a uma rotação do subvector UV em torno do eixo neutro. Especificado em radianos. O padrão é 0. 0 (neutro)."
+msgstr "<angle> Hue shift. Corresponde a uma rotaÃ§Ã£o do subvector UV em torno do eixo neutro. Especificado em radianos. O padrÃ£o Ã© 0. 0 (neutro)."
 
 msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\\\nSuffixes such as KiB and MiB are supported."
-msgstr "<bytesize> Controla o quanto o demuxer é permitido para buffer adiante.\\\\nSufixos como KiB e MiB são suportados."
+msgstr "<bytesize> Controla o quanto o demuxer Ã© permitido para buffer adiante.\\\\nSufixos como KiB e MiB sÃ£o suportados."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1194
 msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
-msgstr "<bytesize> Controla quanto o demuxer é permitido para buffer adiante.\\nSufixos como KiB e MiB são suportados."
+msgstr "<bytesize> Controla quanto o demuxer Ã© permitido para buffer adiante.\\nSufixos como KiB e MiB sÃ£o suportados."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1003
 msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
@@ -574,37 +574,37 @@ msgstr "<int> Amount of recent files to be remembered. Default: 15 (mpv.net opti
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:972
 msgid "<int> Initial window height in percent for audio files. Default: 70"
-msgstr "<int> Altura inicial da janela em % para arquivos de áudio. Predefinição: 70"
+msgstr "<int> Altura inicial da janela em % para arquivos de Ã¡udio. PredefiniÃ§Ã£o: 70"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:967
 msgid "<int> Initial window height in percent for image files. Default: 80"
-msgstr "<int> Altura inicial da janela em % para arquivos de imagem. Predefinição: 80"
+msgstr "<int> Altura inicial da janela em % para arquivos de imagem. PredefiniÃ§Ã£o: 80"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:952
 msgid "<int> Initial window height in percent. Default: 60"
-msgstr "<int> Altura inicial da janela em percentagem. Padrão: 60"
+msgstr "<int> Altura inicial da janela em percentagem. PadrÃ£o: 60"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:962
 msgid "<int> Maximum window height in percent. Default: 80"
-msgstr "<int> Altura máxima da janela em percentagem. Predefinição: 80"
+msgstr "<int> Altura mÃ¡xima da janela em percentagem. PredefiniÃ§Ã£o: 80"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:957
 msgid "<int> Minimum window height in percent. Default: 10"
-msgstr "<int> Altura mínima da janela em percentagem. Predefinição: 10"
+msgstr "<int> Altura mÃ­nima da janela em percentagem. PredefiniÃ§Ã£o: 10"
 
 msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\\\n\\\\nTo list available audio devices in mpv.net, use the context menu:\\\\n\\\\nView > More > Show Audio Devices.\\\\n\\\\nTo change the audio device in mpv.net, also use the context menu:\\\\n\\\\nAudio > Audio Device"
-msgstr "<name> Use o dispositivo de áudio fornecido. Isto consiste no nome de saída de áudio, por exemplo alsa, seguido por /, seguido pelo nome de saída de áudio específico do dispositivo. O valor padrão para esta opção é auto, que tenta cada saída de áudio em ordem de preferência com o dispositivo padrão.\\\\n\\\\nTo list available audio devices in mpv.net, use the context menu:\\\\n\\\\nVer > Mais > Mostrar dispositivos de áudio.\\\\n\\\\nTo change the audio device in mpv.net, also use the context menu:\\\\n\\\\nÁudio > Dispositivo de Áudio"
+msgstr "<name> Use o dispositivo de Ã¡udio fornecido. Isto consiste no nome de saÃ­da de Ã¡udio, por exemplo alsa, seguido por /, seguido pelo nome de saÃ­da de Ã¡udio especÃ­fico do dispositivo. O valor padrÃ£o para esta opÃ§Ã£o Ã© auto, que tenta cada saÃ­da de Ã¡udio em ordem de preferÃªncia com o dispositivo padrÃ£o.\\\\n\\\\nTo list available audio devices in mpv.net, use the context menu:\\\\n\\\\nVer > Mais > Mostrar dispositivos de Ã¡udio.\\\\n\\\\nTo change the audio device in mpv.net, also use the context menu:\\\\n\\\\nÃudio > Dispositivo de Ãudio"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:821
 msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
-msgstr "<name> Use o dispositivo de áudio fornecido. Isto consiste no nome de saída de áudio, por exemplo alsa, seguido por /, seguido pelo nome de saída de áudio específico do dispositivo. O valor padrão para esta opção é auto, que tenta cada saída de áudio em ordem de preferência com o dispositivo padrão.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nVer > Mais > Mostrar dispositivos de áudio.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nÁudio > Dispositivo de Áudio"
+msgstr "<name> Use o dispositivo de Ã¡udio fornecido. Isto consiste no nome de saÃ­da de Ã¡udio, por exemplo alsa, seguido por /, seguido pelo nome de saÃ­da de Ã¡udio especÃ­fico do dispositivo. O valor padrÃ£o para esta opÃ§Ã£o Ã© auto, que tenta cada saÃ­da de Ã¡udio em ordem de preferÃªncia com o dispositivo padrÃ£o.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nVer > Mais > Mostrar dispositivos de Ã¡udio.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nÃudio > Dispositivo de Ãudio"
 
 msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\\\n\\\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\\\n\\\\nx=0 docks the window to the left side.\\\\nx=100 docks the window to the right side.\\\\n\\\\ny=0 docks the window to the top side.\\\\ny=100 docks the window to the bottom side."
-msgstr "<x:y> Localização da janela inicial em percentagem. Padrão: 50:50 (centrado)\\\\n\\\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\\\n\\\\nx=0 acopla a janela ao lado esquerdo.\\\\nx=100 acopla a janela para o lado direito.\\\\n\\\\ny=0 acopla a janela ao lado superior.\\\\ny=100 acopla a janela ao lado inferior."
+msgstr "<x:y> LocalizaÃ§Ã£o da janela inicial em percentagem. PadrÃ£o: 50:50 (centrado)\\\\n\\\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\\\n\\\\nx=0 acopla a janela ao lado esquerdo.\\\\nx=100 acopla a janela para o lado direito.\\\\n\\\\ny=0 acopla a janela ao lado superior.\\\\ny=100 acopla a janela ao lado inferior."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:977
 msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
-msgstr "<x:y> Localização da janela inicial em percentagem. Padrão: 50:50 (centrado)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 acopla a janela ao lado esquerdo.\\nx=100 acopla a janela para o lado direito.\\n\\ny=0 acopla a janela ao lado superior.\\ny=100 acopla a janela ao lado inferior."
+msgstr "<x:y> LocalizaÃ§Ã£o da janela inicial em percentagem. PadrÃ£o: 50:50 (centrado)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 acopla a janela ao lado esquerdo.\\nx=100 acopla a janela para o lado direito.\\n\\ny=0 acopla a janela ao lado superior.\\ny=100 acopla a janela ao lado inferior."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
 msgid "Abort"
@@ -625,7 +625,7 @@ msgstr "Atalhos ativos na tela"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:16
 msgid "Add external audio files..."
-msgstr "Adicionar arquivos de áudio externos..."
+msgstr "Adicionar arquivos de Ã¡udio externos..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:17
 msgid "Add external subtitle files..."
@@ -633,15 +633,15 @@ msgstr "Adicionar arquivos de legenda externos..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:19
 msgid "Add files to playlist..."
-msgstr "Adicionar arquivos à lista de reprodução..."
+msgstr "Adicionar arquivos Ã  lista de reproduÃ§Ã£o..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:20
 msgid "Add files/URLs to playlist from clipboard"
-msgstr "Adicionar arquivos/URLs da área de transferência à lista de reprodução"
+msgstr "Adicionar arquivos/URLs da Ã¡rea de transferÃªncia Ã  lista de reproduÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 msgid "Add mpv.net to Path environment variable"
-msgstr "Adicionar mpv.net à variável de ambiente Path"
+msgstr "Adicionar mpv.net Ã  variÃ¡vel de ambiente Path"
 
 msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
 msgstr "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
@@ -654,28 +654,28 @@ msgstr "Permitir apenas gpu-context=d3d11"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:467
 msgid "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
-msgstr "Permite que o resultado da detecção de pico seja atrasado por até um único quadro, que pode, às vezes, melhorar o rendimento, ao custo de introduzir a possibilidade de 1-frame flickers em transições."
+msgstr "Permite que o resultado da detecÃ§Ã£o de pico seja atrasado por atÃ© um Ãºnico quadro, que pode, Ã s vezes, melhorar o rendimento, ao custo de introduzir a possibilidade de 1-frame flickers em transiÃ§Ãµes."
 
 msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\\\n\\\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
-msgstr "Sempre salve a posição de reprodução atual ao sair. Quando este arquivo é reproduzido novamente mais tarde, o jogador irá procurar a posição de reprodução antiga no início. Isto não acontece se a reprodução de um ficheiro for interrompida de outra forma que não seja sair. Por exemplo, ir para o próximo arquivo na lista de reprodução não irá salvar a posição, e iniciar a reprodução no início da próxima vez que o arquivo for reproduzido.\\\\n\\\\nEste comportamento é desativado por padrão, mas está sempre disponível ao sair do jogador com Shift+Q."
+msgstr "Sempre salve a posiÃ§Ã£o de reproduÃ§Ã£o atual ao sair. Quando este arquivo Ã© reproduzido novamente mais tarde, o jogador irÃ¡ procurar a posiÃ§Ã£o de reproduÃ§Ã£o antiga no inÃ­cio. Isto nÃ£o acontece se a reproduÃ§Ã£o de um ficheiro for interrompida de outra forma que nÃ£o seja sair. Por exemplo, ir para o prÃ³ximo arquivo na lista de reproduÃ§Ã£o nÃ£o irÃ¡ salvar a posiÃ§Ã£o, e iniciar a reproduÃ§Ã£o no inÃ­cio da prÃ³xima vez que o arquivo for reproduzido.\\\\n\\\\nEste comportamento Ã© desativado por padrÃ£o, mas estÃ¡ sempre disponÃ­vel ao sair do jogador com Shift+Q."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1067
 msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
-msgstr "Sempre salve a posição de reprodução atual ao sair. Quando este arquivo é reproduzido novamente mais tarde, o jogador irá procurar a posição de reprodução antiga no início. Isto não acontece se a reprodução de um ficheiro for interrompida de outra forma que não seja sair. Por exemplo, ir para o próximo arquivo na lista de reprodução não irá salvar a posição, e iniciar a reprodução no início da próxima vez que o arquivo for reproduzido.\\n\\nEste comportamento é desativado por padrão, mas está sempre disponível ao sair do jogador com Shift+Q."
+msgstr "Sempre salve a posiÃ§Ã£o de reproduÃ§Ã£o atual ao sair. Quando este arquivo Ã© reproduzido novamente mais tarde, o jogador irÃ¡ procurar a posiÃ§Ã£o de reproduÃ§Ã£o antiga no inÃ­cio. Isto nÃ£o acontece se a reproduÃ§Ã£o de um ficheiro for interrompida de outra forma que nÃ£o seja sair. Por exemplo, ir para o prÃ³ximo arquivo na lista de reproduÃ§Ã£o nÃ£o irÃ¡ salvar a posiÃ§Ã£o, e iniciar a reproduÃ§Ã£o no inÃ­cio da prÃ³xima vez que o arquivo for reproduzido.\\n\\nEste comportamento Ã© desativado por padrÃ£o, mas estÃ¡ sempre disponÃ­vel ao sair do jogador com Shift+Q."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1142
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1162
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1171
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1177
 msgid "Appearance"
-msgstr "Aparência"
+msgstr "AparÃªncia"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:127
 msgid "As scale, but for interpolating chroma information. If the image is not subsampled, this option is ignored entirely."
-msgstr "Como escala, mas para interpolar informações de chroma. Se a imagem não for subamostrada, esta opção é ignorada inteiramente."
+msgstr "Como escala, mas para interpolar informaÃ§Ãµes de chroma. Se a imagem nÃ£o for subamostrada, esta opÃ§Ã£o Ã© ignorada inteiramente."
 
 msgid "Aspect-ratio preserving nearest neighbour sampling (very fast)."
-msgstr "Razão-respectiva preservando a amostragem mais próxima do vizinho (muito rápido)."
+msgstr "RazÃ£o-respectiva preservando a amostragem mais prÃ³xima do vizinho (muito rÃ¡pido)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:790
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:795
@@ -690,29 +690,29 @@ msgstr "Razão-respectiva preservando a amostragem mais próxima do vizinho (mui
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:88
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:89
 msgid "Audio"
-msgstr "Áudio"
+msgstr "Ãudio"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:453
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:85
 msgid "Audio Device"
-msgstr "Dispositivo de áudio"
+msgstr "Dispositivo de Ã¡udio"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:138
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:243
 msgid "Audio Devices"
-msgstr "Dispositivos de áudio"
+msgstr "Dispositivos de Ã¡udio"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:132
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:237
 msgid "Audio Tracks"
-msgstr "Faixas de áudio"
+msgstr "Faixas de Ã¡udio"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:835
-msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
-msgstr "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
+msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
 
 msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
-msgstr "Seleção automática. Se a profundidade do bit de saída não pode ser detectada, 8 bits por componente são assumidos."
+msgstr "SeleÃ§Ã£o automÃ¡tica. Se a profundidade do bit de saÃ­da nÃ£o pode ser detectada, 8 bits por componente sÃ£o assumidos."
 
 msgid "Available on Windows 10 or higher"
 msgstr "Available on Windows 10 or higher"
@@ -722,16 +722,16 @@ msgid "Backward"
 msgstr "Voltar"
 
 msgid "Bicubic interpolation (fast)"
-msgstr "Interpolação bicúbica (rápida)"
+msgstr "InterpolaÃ§Ã£o bicÃºbica (rÃ¡pida)"
 
 msgid "Bicubic interpolation (fast)."
-msgstr "Interpolação bicúbica (rápida)."
+msgstr "InterpolaÃ§Ã£o bicÃºbica (rÃ¡pida)."
 
 msgid "Bilinear (triangle) averaging (fast)"
-msgstr "Média bilinear (triângulo) (rápido)"
+msgstr "MÃ©dia bilinear (triÃ¢ngulo) (rÃ¡pido)"
 
 msgid "Bilinear sampling (very fast)."
-msgstr "Amostragem bilinear (muito rápida)."
+msgstr "Amostragem bilinear (muito rÃ¡pida)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:128
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:246
@@ -739,7 +739,7 @@ msgid "Bindings"
 msgstr "Atalhos"
 
 msgid "Box averaging (very fast)"
-msgstr "Caixa de média (muito rápida)"
+msgstr "Caixa de mÃ©dia (muito rÃ¡pida)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1183
 msgid "Cache"
@@ -751,39 +751,39 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "Catmull-Rom cubic spline"
-msgstr "Espessura cúbica de Catmull-Rom"
+msgstr "Espessura cÃºbica de Catmull-Rom"
 
 msgid "Catmull-Rom cubic spline."
-msgstr "Rosca cúbica Catmull-Rom."
+msgstr "Rosca cÃºbica Catmull-Rom."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:82
 msgid "Change Aspect Ratio"
-msgstr "Alterar proporção de aspecto"
+msgstr "Alterar proporÃ§Ã£o de aspecto"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:471
 msgid "Changed theme settings require mpv.net being restarted."
-msgstr "As configurações de tema alteradas exigem reiniciar o mpv.net."
+msgstr "As configuraÃ§Ãµes de tema alteradas exigem reiniciar o mpv.net."
 
 msgid "Changes between a light and dark theme.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option."
-msgstr "Alterações entre um tema claro e escuro.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option."
+msgstr "AlteraÃ§Ãµes entre um tema claro e escuro.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1163
 msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
-msgstr "Mudanças entre um tema claro e escuro.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "MudanÃ§as entre um tema claro e escuro.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:125
 msgid "Changes will be available on next startup."
-msgstr "As alterações estarão disponíveis na próxima inicialização."
+msgstr "As alteraÃ§Ãµes estarÃ£o disponÃ­veis na prÃ³xima inicializaÃ§Ã£o."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:351
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:51
 msgid "Chapter"
-msgstr "Capítulo"
+msgstr "CapÃ­tulo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:130
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:240
 msgid "Chapters"
-msgstr "Capítulos"
+msgstr "CapÃ­tulos"
 
 msgid "Choose the best mode automatically."
 msgstr "Escolha o melhor modo automaticamente."
@@ -890,15 +890,15 @@ msgstr "Comandos"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Config"
-msgstr "Configuração"
+msgstr "ConfiguraÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:571
 msgid "Config Editor"
-msgstr "Editor de configuração"
+msgstr "Editor de configuraÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:53
 msgid "Confirm"
-msgstr "Configuração"
+msgstr "ConfiguraÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:142
 msgid "Console"
@@ -906,31 +906,31 @@ msgstr "Consola"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:707
 msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
-msgstr "Controla a rotação da visualização da gama 3DLUT. Rotaciona a gama através do espaço de matiz (ao redor do eixo I), em radianos. O padrão é 0.0."
+msgstr "Controla a rotaÃ§Ã£o da visualizaÃ§Ã£o da gama 3DLUT. Rotaciona a gama atravÃ©s do espaÃ§o de matiz (ao redor do eixo I), em radianos. O padrÃ£o Ã© 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:712
 msgid "Controls the rotation of the gamut 3DLUT visualization. The theta parameter vertically rotates the cross section (around the C axis), in radians. Defaults to 0.0."
-msgstr "Controla a rotação da visualização da gama 3DLUT. O parâmetro teta gira verticalmente a seção transversal (em torno do eixo C), em radianos. O padrão é 0.0."
+msgstr "Controla a rotaÃ§Ã£o da visualizaÃ§Ã£o da gama 3DLUT. O parÃ¢metro teta gira verticalmente a seÃ§Ã£o transversal (em torno do eixo C), em radianos. O padrÃ£o Ã© 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:687
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:692
 msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 0.0."
-msgstr "Controla onde desenhar a visualização do LUT, em relação ao vídeo renderizado. O padrão é 0.0."
+msgstr "Controla onde desenhar a visualizaÃ§Ã£o do LUT, em relaÃ§Ã£o ao vÃ­deo renderizado. O padrÃ£o Ã© 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:697
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:702
 msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 1.0."
-msgstr "Controla onde desenhar a visualização do LUT, em relação ao vídeo renderizado. O padrão é 1.0."
+msgstr "Controla onde desenhar a visualizaÃ§Ã£o do LUT, em relaÃ§Ã£o ao vÃ­deo renderizado. O padrÃ£o Ã© 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:92
 msgid "Controls which type of graphics APIs will be accepted."
-msgstr "Controles que tipo de APIs gráficas serão aceitos."
+msgstr "Controles que tipo de APIs grÃ¡ficas serÃ£o aceitos."
 
 msgid "Create a new process everytime the shell starts mpv.net"
 msgstr "Create a new process everytime the shell starts mpv.net"
 
 msgid "Cubic B-spline frame mixing"
-msgstr "Mistura de moldura cúbica B-spline"
+msgstr "Mistura de moldura cÃºbica B-spline"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:477
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:190
@@ -939,7 +939,7 @@ msgstr "Personalizado"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:645
 msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
-msgstr "Fonte de dados a usar quando tone-mapping. Configurando isso para um valor específico permite sobrescrever a lógica de preferência de metadados padrão."
+msgstr "Fonte de dados a usar quando tone-mapping. Configurando isso para um valor especÃ­fico permite sobrescrever a lÃ³gica de preferÃªncia de metadados padrÃ£o."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:313
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:321
@@ -948,11 +948,11 @@ msgstr "Fonte de dados a usar quando tone-mapping. Configurando isso para um val
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:339
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:344
 msgid "Debanding"
-msgstr "Desactivação"
+msgstr "DesactivaÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1184
 msgid "Decide whether to use network cache settings."
-msgstr "Decida se deve usar as configurações de cache de rede."
+msgstr "Decida se deve usar as configuraÃ§Ãµes de cache de rede."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 msgid "Decoders"
@@ -980,14 +980,14 @@ msgstr "Diminuir altura"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:76
 msgid "Decrease Saturation"
-msgstr "Diminuir saturação"
+msgstr "Diminuir saturaÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:53
 msgid "Decrease Size"
 msgstr "Diminuir tamanho"
 
 msgid "Default settings, tuned to provide a balance of performance and quality."
-msgstr "Configurações padrão, sintonizadas para fornecer um equilíbrio de desempenho e qualidade."
+msgstr "ConfiguraÃ§Ãµes padrÃ£o, sintonizadas para fornecer um equilÃ­brio de desempenho e qualidade."
 
 msgid "Defines if more then one mpv.net process is allowed.\\\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
 msgstr "Defines if more then one mpv.net process is allowed.\\\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
@@ -1008,7 +1008,7 @@ msgstr "Atraso -0,1"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1127
 msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
-msgstr "Atrasar em milissegundos antes de começarmos a repetir uma chave (0 para desativar)."
+msgstr "Atrasar em milissegundos antes de comeÃ§armos a repetir uma chave (0 para desativar)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1193
 msgid "Demuxer"
@@ -1026,25 +1026,25 @@ msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports a
 msgstr "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
 
 msgid "Disable all advanced rendering, equivalent to passing no to every option."
-msgstr "Desactivar toda a renderização avançada, equivalente a passar não a cada opção."
+msgstr "Desactivar toda a renderizaÃ§Ã£o avanÃ§ada, equivalente a passar nÃ£o a cada opÃ§Ã£o."
 
 msgid "Disable any dithering done by mpv."
 msgstr "Desactiva qualquer dithering feito pelo mpv."
 
 msgid "Disable frame mixing, show nearest frame to target PTS"
-msgstr "Desactivar a mistura de quadros, mostrar o quadro mais próximo do PTS alvo"
+msgstr "Desactivar a mistura de quadros, mostrar o quadro mais prÃ³ximo do PTS alvo"
 
 msgid "Dither to 10 bit output."
-msgstr "Saída de 10 bits."
+msgstr "SaÃ­da de 10 bits."
 
 msgid "Dither to 8 bit output."
-msgstr "Dither para 8 bits de saída."
+msgstr "Dither para 8 bits de saÃ­da."
 
 msgid "Don't automatically load external audio files."
-msgstr "Não carregue automaticamente arquivos de áudio externos."
+msgstr "NÃ£o carregue automaticamente arquivos de Ã¡udio externos."
 
 msgid "Don't automatically load external subtitle files."
-msgstr "Não carregue automaticamente arquivos de legendas externos."
+msgstr "NÃ£o carregue automaticamente arquivos de legendas externos."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:116
 msgid "Double"
@@ -1055,7 +1055,7 @@ msgid "Drop files or URLs to play here."
 msgstr "Solte arquivos ou URLs aqui para reproduzir."
 
 msgid "EWA Lanczos (\\\"Jinc\\\") reconstruction (slow)."
-msgstr "EWA Lanczos (\\\"Jinc\\\") reconstrução (low)."
+msgstr "EWA Lanczos (\\\"Jinc\\\") reconstruÃ§Ã£o (low)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:173
 msgid "Edit input.conf"
@@ -1068,7 +1068,7 @@ msgstr "Editar mpv.conf"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:136
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:241
 msgid "Editions"
-msgstr "Edições"
+msgstr "EdiÃ§Ãµes"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1137
 msgid "Enable the IPC support and create the listening socket at the given path."
@@ -1076,14 +1076,14 @@ msgstr "Habilite o suporte IPC e crie o socket de escuta no caminho indicado."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:181
 msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
-msgstr "Activar o algoritmo de debandagem. Isto reduz grandemente a quantidade de bandagens visíveis, bloqueios e outros artefatos de quantização, à custa de muito ligeiramente borrar alguns dos melhores detalhes. Na prática, é praticamente sempre uma melhoria - a única razão para desativá-lo seria para o desempenho."
+msgstr "Activar o algoritmo de debandagem. Isto reduz grandemente a quantidade de bandagens visÃ­veis, bloqueios e outros artefatos de quantizaÃ§Ã£o, Ã  custa de muito ligeiramente borrar alguns dos melhores detalhes. Na prÃ¡tica, Ã© praticamente sempre uma melhoria - a Ãºnica razÃ£o para desativÃ¡-lo seria para o desempenho."
 
 msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\\\n\\\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
-msgstr "Habilite a faixa padrão auto-selection. Ativar isso fará com que o jogador selecione fluxos de acordo com ajuda, alang, e outros. Se estiver desactivada, nenhuma faixa será seleccionada. Além disso, o jogador não vai sair se nenhuma faixa estiver selecionada, e espere em vez disso (este modo de espera é semelhante a pausa, mas a opção pausa não está definida).\\\\n\\\\nIsso é útil com lavfi-complex: você pode iniciar a reprodução neste modo, e então definir faixas selecionadas em tempo de execução, definindo o gráfico do filtro. Note que se lavfi-complex for definido antes da reprodução ser iniciada, as faixas referenciadas são sempre selecionadas."
+msgstr "Habilite a faixa padrÃ£o auto-selection. Ativar isso farÃ¡ com que o jogador selecione fluxos de acordo com ajuda, alang, e outros. Se estiver desactivada, nenhuma faixa serÃ¡ seleccionada. AlÃ©m disso, o jogador nÃ£o vai sair se nenhuma faixa estiver selecionada, e espere em vez disso (este modo de espera Ã© semelhante a pausa, mas a opÃ§Ã£o pausa nÃ£o estÃ¡ definida).\\\\n\\\\nIsso Ã© Ãºtil com lavfi-complex: vocÃª pode iniciar a reproduÃ§Ã£o neste modo, e entÃ£o definir faixas selecionadas em tempo de execuÃ§Ã£o, definindo o grÃ¡fico do filtro. Note que se lavfi-complex for definido antes da reproduÃ§Ã£o ser iniciada, as faixas referenciadas sÃ£o sempre selecionadas."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1091
 msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
-msgstr "Habilite a faixa padrão auto-selection. Ativar isso fará com que o jogador selecione fluxos de acordo com ajuda, alang, e outros. Se estiver desactivada, nenhuma faixa será seleccionada. Além disso, o jogador não vai sair se nenhuma faixa estiver selecionada, e espere em vez disso (este modo de espera é semelhante a pausa, mas a opção pausa não está definida).\\n\\nIsso é útil com lavfi-complex: você pode iniciar a reprodução neste modo, e então definir faixas selecionadas em tempo de execução, definindo o gráfico do filtro. Note que se lavfi-complex for definido antes da reprodução ser iniciada, as faixas referenciadas são sempre selecionadas."
+msgstr "Habilite a faixa padrÃ£o auto-selection. Ativar isso farÃ¡ com que o jogador selecione fluxos de acordo com ajuda, alang, e outros. Se estiver desactivada, nenhuma faixa serÃ¡ seleccionada. AlÃ©m disso, o jogador nÃ£o vai sair se nenhuma faixa estiver selecionada, e espere em vez disso (este modo de espera Ã© semelhante a pausa, mas a opÃ§Ã£o pausa nÃ£o estÃ¡ definida).\\n\\nIsso Ã© Ãºtil com lavfi-complex: vocÃª pode iniciar a reproduÃ§Ã£o neste modo, e entÃ£o definir faixas selecionadas em tempo de execuÃ§Ã£o, definindo o grÃ¡fico do filtro. Note que se lavfi-complex for definido antes da reproduÃ§Ã£o ser iniciada, as faixas referenciadas sÃ£o sempre selecionadas."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:53
 msgid "Enable this only when a developer asks for it. (mpv.net option)"
@@ -1099,18 +1099,18 @@ msgstr "Activa o ajuste de cores."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:314
 msgid "Enables debanding using libplacebo."
-msgstr "Activa a desactivação com a libplacebo."
+msgstr "Activa a desactivaÃ§Ã£o com a libplacebo."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:350
 msgid "Enables sigmoidization."
-msgstr "Activa a sigmoidização."
+msgstr "Activa a sigmoidizaÃ§Ã£o."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:475
 msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
-msgstr "Permite o uso destas configurações de mapeamento de cores. Desactivar esta opção não desactiva o mapeamento de cores, significa apenas \"utilizar as opções por omissão para tudo\"."
+msgstr "Permite o uso destas configuraÃ§Ãµes de mapeamento de cores. Desactivar esta opÃ§Ã£o nÃ£o desactiva o mapeamento de cores, significa apenas \"utilizar as opÃ§Ãµes por omissÃ£o para tudo\"."
 
 msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \\\"use the default options for everything\\\"."
-msgstr "Permite o uso destas configurações de mapeamento de cores. Desativar esta opção não desabilita o mapeamento de cores, apenas significa \\\"use as opções padrão para tudo\\\"."
+msgstr "Permite o uso destas configuraÃ§Ãµes de mapeamento de cores. Desativar esta opÃ§Ã£o nÃ£o desabilita o mapeamento de cores, apenas significa \\\"use as opÃ§Ãµes padrÃ£o para tudo\\\"."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:152
 msgid "Enlarge"
@@ -1118,7 +1118,7 @@ msgstr "Ampliar"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:326
 msgid "Error creating file associations."
-msgstr "Erro ao criar associações de arquivos."
+msgstr "Erro ao criar associaÃ§Ãµes de arquivos."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:201
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:23
@@ -1131,7 +1131,7 @@ msgid "Exit Watch Later"
 msgstr "Sair de assistir mais tarde"
 
 msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
-msgstr "renderizador de vídeo experimental baseado na libplacebo. Isso suporta quase o mesmo conjunto de recursos que --vo=gpu."
+msgstr "renderizador de vÃ­deo experimental baseado na libplacebo. Isso suporta quase o mesmo conjunto de recursos que --vo=gpu."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:12
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:13
@@ -1150,28 +1150,28 @@ msgstr "Arquivo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:318
 msgid "File Explorer icons will refresh after process restart."
-msgstr "Os ícones do Explorador de Arquivos serão atualizados após reiniciar o processo."
+msgstr "Os Ã­cones do Explorador de Arquivos serÃ£o atualizados apÃ³s reiniciar o processo."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:323
 msgid "File associations were successfully created."
-msgstr "As associações de arquivos foram criadas com sucesso."
+msgstr "As associaÃ§Ãµes de arquivos foram criadas com sucesso."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:321
 msgid "File associations were successfully removed."
-msgstr "As associações de arquivos foram removidas com sucesso."
+msgstr "As associaÃ§Ãµes de arquivos foram removidas com sucesso."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:246
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:268
 msgid "Files/URLs were added to the playlist"
-msgstr "Arquivos/URLs foram adicionados à lista de reprodução"
+msgstr "Arquivos/URLs foram adicionados Ã  lista de reproduÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:39
 msgid "Find a binding (Ctrl+F)"
-msgstr "Localizar uma configuração (Ctrl+F)"
+msgstr "Localizar uma configuraÃ§Ã£o (Ctrl+F)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:572
 msgid "Find a setting (Ctrl+F)"
-msgstr "Localizar uma configuração (Ctrl+F)"
+msgstr "Localizar uma configuraÃ§Ã£o (Ctrl+F)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
@@ -1182,18 +1182,18 @@ msgid "For single files automatically load the entire directory into the playlis
 msgstr "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
 
 msgid "Force a single process and add files to playlist"
-msgstr "Forçar um único processo e adicionar arquivos à lista de reprodução"
+msgstr "ForÃ§ar um Ãºnico processo e adicionar arquivos Ã  lista de reproduÃ§Ã£o"
 
 msgid "Force a single process everytime the shell starts mpv.net"
 msgstr "Force a single process everytime the shell starts mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:671
 msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
-msgstr "Forçar o uso de um tone-mapping completo LUT mesmo para funções que tenham substituições GLSL puras mais rápidas (por exemplo, clipe, linear, saturação). Esta é uma opção de depuração."
+msgstr "ForÃ§ar o uso de um tone-mapping completo LUT mesmo para funÃ§Ãµes que tenham substituiÃ§Ãµes GLSL puras mais rÃ¡pidas (por exemplo, clipe, linear, saturaÃ§Ã£o). Esta Ã© uma opÃ§Ã£o de depuraÃ§Ã£o."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:208
 msgid "Forward"
-msgstr "Avançar"
+msgstr "AvanÃ§ar"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:151
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:221
@@ -1203,13 +1203,13 @@ msgstr "Tela cheia"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:492
 msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
-msgstr "Função de mapeamento de gama para usar para lidar com out-of-gamut cores, incluindo cores que são out-of-gamut como consequência do mapeamento de tom."
+msgstr "FunÃ§Ã£o de mapeamento de gama para usar para lidar com out-of-gamut cores, incluindo cores que sÃ£o out-of-gamut como consequÃªncia do mapeamento de tom."
 
 msgid "Gaussian smoothing (fast)"
-msgstr "Alisamento gaussiano (rápido)"
+msgstr "Alisamento gaussiano (rÃ¡pido)"
 
 msgid "Gaussian smoothing (fast)."
-msgstr "Alisamento gaussiano (rápido)."
+msgstr "Alisamento gaussiano (rÃ¡pido)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:13
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:18
@@ -1226,7 +1226,7 @@ msgstr "General purpose, customizable, GPU-accelerated video output driver. It s
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:717
 msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
-msgstr "Destaque gráfico hard-clipped pixels durante tone-mapping (i.e. pixels que excedem a faixa de luminância de origem reivindicada)."
+msgstr "Destaque grÃ¡fico hard-clipped pixels durante tone-mapping (i.e. pixels que excedem a faixa de luminÃ¢ncia de origem reivindicada)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:421
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:429
@@ -1255,43 +1255,43 @@ msgid "Help"
 msgstr "Ajuda"
 
 msgid "Hermite-weighted averaging (fast)"
-msgstr "Média ponderada em hermite (rápido)"
+msgstr "MÃ©dia ponderada em hermite (rÃ¡pido)"
 
 msgid "Hermite-weighted frame mixing"
 msgstr "Mistura de molduras ponderadas em hermite"
 
 msgid "How the player synchronizes audio and video.\\\\n\\\\nFor more information visit:"
-msgstr "Como o jogador sincroniza áudio e vídeo.\\\\n\\\\nPara mais informações visite:"
+msgstr "Como o jogador sincroniza Ã¡udio e vÃ­deo.\\\\n\\\\nPara mais informaÃ§Ãµes visite:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:38
 msgid "How the player synchronizes audio and video.\\n\\nFor more information visit:"
-msgstr "Como o jogador sincroniza áudio e vídeo.\\n\\nPara mais informações visite:"
+msgstr "Como o jogador sincroniza Ã¡udio e vÃ­deo.\\n\\nPara mais informaÃ§Ãµes visite:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:556
 msgid "If enabled, allows the gamut mapping function to expand the gamut, in cases where the target gamut exceeds that of the source. If disabled, the source gamut will never be enlarged, even when using a gamut mapping function capable of bidirectional mapping."
-msgstr "Se habilitado, permite que a função de mapeamento gamut expanda o gamut, nos casos em que o gamut alvo excede o da fonte. Se desabilitado, o gamut fonte nunca será ampliado, mesmo quando usando uma função de mapeamento gamut capaz de mapeamento bidirecional."
+msgstr "Se habilitado, permite que a funÃ§Ã£o de mapeamento gamut expanda o gamut, nos casos em que o gamut alvo excede o da fonte. Se desabilitado, o gamut fonte nunca serÃ¡ ampliado, mesmo quando usando uma funÃ§Ã£o de mapeamento gamut capaz de mapeamento bidirecional."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:637
 msgid "If enabled, and supported by the given tone mapping function, will perform inverse tone mapping to expand the dynamic range of a signal. libplacebo is not liable for any HDR-induced eye damage."
-msgstr "Se habilitado, e suportado pela função de mapeamento de tom dada, executará mapeamento de tom inverso para expandir o alcance dinâmico de um sinal. libplacebo não é responsável por qualquer lesão ocular induzida por HDR."
+msgstr "Se habilitado, e suportado pela funÃ§Ã£o de mapeamento de tom dada, executarÃ¡ mapeamento de tom inverso para expandir o alcance dinÃ¢mico de um sinal. libplacebo nÃ£o Ã© responsÃ¡vel por qualquer lesÃ£o ocular induzida por HDR."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:748
 msgid "If possible, write screenshots with a bit depth similar to the source video. This is interesting in particular for PNG, as this sometimes triggers writing 16 bit PNGs with huge file sizes. This will also include an unused alpha channel in the resulting files if 16 bit is used."
-msgstr "Se possível, escreva imagens com um pouco de profundidade semelhante ao vídeo fonte. Isto é interessante em particular para PNG, como isso às vezes desencadeia a escrita 16 PNGs bits com tamanhos de arquivos enormes. Isso também incluirá um canal alfa não utilizado nos arquivos resultantes se 16 bits forem usados."
+msgstr "Se possÃ­vel, escreva imagens com um pouco de profundidade semelhante ao vÃ­deo fonte. Isto Ã© interessante em particular para PNG, como isso Ã s vezes desencadeia a escrita 16 PNGs bits com tamanhos de arquivos enormes. Isso tambÃ©m incluirÃ¡ um canal alfa nÃ£o utilizado nos arquivos resultantes se 16 bits forem usados."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1053
 msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
-msgstr "Se definido como não e keep-open também está definido como não, o jogador sai após o último arquivo terminar."
+msgstr "Se definido como nÃ£o e keep-open tambÃ©m estÃ¡ definido como nÃ£o, o jogador sai apÃ³s o Ãºltimo arquivo terminar."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1045
 msgid "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
-msgstr "Se definido como não, em vez de pausar quando keep-open estiver ativo, basta parar no final do arquivo e continuar jogando para frente quando você procurar para trás até o fim onde ele pára novamente."
+msgstr "Se definido como nÃ£o, em vez de pausar quando keep-open estiver ativo, basta parar no final do arquivo e continuar jogando para frente quando vocÃª procurar para trÃ¡s atÃ© o fim onde ele pÃ¡ra novamente."
 
 msgid "If the current file ends, go to the next file, keep the last file open."
-msgstr "Se o arquivo atual terminar, vá para o próximo arquivo, mantenha o último arquivo aberto."
+msgstr "Se o arquivo atual terminar, vÃ¡ para o prÃ³ximo arquivo, mantenha o Ãºltimo arquivo aberto."
 
 msgid "If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
-msgstr "Se o arquivo atual terminar, vá para o próximo arquivo. Se o ocioso estiver definido como não, o jogador sai após o último arquivo."
+msgstr "Se o arquivo atual terminar, vÃ¡ para o prÃ³ximo arquivo. Se o ocioso estiver definido como nÃ£o, o jogador sai apÃ³s o Ãºltimo arquivo."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:173
 msgid "Ignore"
@@ -1299,7 +1299,7 @@ msgstr "Ignorar"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:220
 msgid "Ignore left mouse button"
-msgstr "Ignorar botão esquerdo do mouse"
+msgstr "Ignorar botÃ£o esquerdo do mouse"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:28
 msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
@@ -1327,7 +1327,7 @@ msgstr "Aumentar altura"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:77
 msgid "Increase Saturation"
-msgstr "Aumentar saturação"
+msgstr "Aumentar saturaÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:54
 msgid "Increase Size"
@@ -1335,7 +1335,7 @@ msgstr "Aumentar tamanho"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:471
 msgid "Info"
-msgstr "Informação"
+msgstr "InformaÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1126
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1131
@@ -1354,7 +1354,7 @@ msgstr "Voltar 30 s"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:44
 msgid "Jump 30 sec forward"
-msgstr "Avançar 30 s"
+msgstr "AvanÃ§ar 30 s"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:48
 msgid "Jump 5 min backward"
@@ -1362,7 +1362,7 @@ msgstr "Voltar 5 min"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:47
 msgid "Jump 5 min forward"
-msgstr "Avançar 5 min"
+msgstr "AvanÃ§ar 5 min"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:42
 msgid "Jump 5 sec backward"
@@ -1370,11 +1370,11 @@ msgstr "Voltar 5 s"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:41
 msgid "Jump 5 sec forward"
-msgstr "Avançar 5 s"
+msgstr "AvanÃ§ar 5 s"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:38
 msgid "Jump To Next Frame"
-msgstr "Avançar para o próximo quadro"
+msgstr "AvanÃ§ar para o prÃ³ximo quadro"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:39
 msgid "Jump To Previous Frame"
@@ -1385,54 +1385,54 @@ msgid "Keys"
 msgstr "Teclas"
 
 msgid "Lanczos reconstruction"
-msgstr "Reconstrução de Lanczos"
+msgstr "ReconstruÃ§Ã£o de Lanczos"
 
 msgid "Lanczos reconstruction."
-msgstr "Reconstrução de Lanczos."
+msgstr "ReconstruÃ§Ã£o de Lanczos."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:32
 msgid "Last File"
-msgstr "Último arquivo"
+msgstr "Ãšltimo arquivo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:10
 msgid "Learn Input"
 msgstr "Entrada"
 
 msgid "Like scale, but apply these filters on downscaling instead. \\\\nIf no option is selected, it will keep the same with the upscaler."
-msgstr "Como escala, mas aplicar estes filtros na redução de escala. \\\\nSe nenhuma opção estiver selecionada, ela manterá o mesmo com o upscaler."
+msgstr "Como escala, mas aplicar estes filtros na reduÃ§Ã£o de escala. \\\\nSe nenhuma opÃ§Ã£o estiver selecionada, ela manterÃ¡ o mesmo com o upscaler."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:141
 msgid "Like scale, but apply these filters on downscaling instead. \\nIf no option is selected, it will keep the same with the upscaler."
-msgstr "Como escala, mas aplique estes filtros na escala descendente. \\nSe nenhuma opção estiver selecionada, ela manterá o mesmo com o upscaler."
+msgstr "Como escala, mas aplique estes filtros na escala descendente. \\nSe nenhuma opÃ§Ã£o estiver selecionada, ela manterÃ¡ o mesmo com o upscaler."
 
 msgid "Linear frame mixing"
 msgstr "Mistura de quadros lineares"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:809
 msgid "Load additional audio files matching the video filename. The parameter specifies how external audio files are matched."
-msgstr "Carregar arquivos de áudio adicionais correspondentes ao nome do arquivo de vídeo. O parâmetro especifica como os arquivos de áudio externos são combinados."
+msgstr "Carregar arquivos de Ã¡udio adicionais correspondentes ao nome do arquivo de vÃ­deo. O parÃ¢metro especifica como os arquivos de Ã¡udio externos sÃ£o combinados."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:845
 msgid "Load additional subtitle files matching the video filename. The parameter specifies how external subtitle files are matched. exact is enabled by default."
-msgstr "Carregar arquivos de legendas adicionais correspondentes ao nome do arquivo de vídeo. O parâmetro especifica como os arquivos de legendas externas são combinados. exato é ativado por padrão."
+msgstr "Carregar arquivos de legendas adicionais correspondentes ao nome do arquivo de vÃ­deo. O parÃ¢metro especifica como os arquivos de legendas externas sÃ£o combinados. exato Ã© ativado por padrÃ£o."
 
 msgid "Load all audio files containing media filename."
-msgstr "Carregar todos os arquivos de áudio contendo nome de arquivo de mídia."
+msgstr "Carregar todos os arquivos de Ã¡udio contendo nome de arquivo de mÃ­dia."
 
 msgid "Load all audio files in the current and audio-file-paths directories."
-msgstr "Carregar todos os arquivos de áudio nos diretórios atuais e audio-file-paths."
+msgstr "Carregar todos os arquivos de Ã¡udio nos diretÃ³rios atuais e audio-file-paths."
 
 msgid "Load all subs containing media filename."
-msgstr "Carregar todos os subs contendo o nome do ficheiro multimédia."
+msgstr "Carregar todos os subs contendo o nome do ficheiro multimÃ©dia."
 
 msgid "Load all subs in the current and sub-file-paths directories."
-msgstr "Carregar todos os subs nos diretórios atuais e sub-file-paths."
+msgstr "Carregar todos os subs nos diretÃ³rios atuais e sub-file-paths."
 
 msgid "Load the media filename with audio file extension."
-msgstr "Carregar o arquivo de mídia com extensão de arquivo de áudio."
+msgstr "Carregar o arquivo de mÃ­dia com extensÃ£o de arquivo de Ã¡udio."
 
 msgid "Load the media filename with subtitle file extension."
-msgstr "Carregar o nome do ficheiro multimédia com a extensão do ficheiro de legendas."
+msgstr "Carregar o nome do ficheiro multimÃ©dia com a extensÃ£o do ficheiro de legendas."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:195
 msgid "Manual mpv"
@@ -1444,22 +1444,22 @@ msgstr "Manual do mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:228
 msgid "Mark position for revert-seek"
-msgstr "Marcar posição para reverter busca"
+msgstr "Marcar posiÃ§Ã£o para reverter busca"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:124
 msgid "Media Info Message Box"
-msgstr "Informações de mídia em caixa de mensagem"
+msgstr "InformaÃ§Ãµes de mÃ­dia em caixa de mensagem"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:123
 msgid "Media Info On-Screen"
-msgstr "Informações de mídia na tela"
+msgstr "InformaÃ§Ãµes de mÃ­dia na tela"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:573
 msgid "Menu"
 msgstr "Menu"
 
 msgid "Mitchell-Netravalia cubic spline"
-msgstr "Rosca cúbica Mitchell-Netravalia"
+msgstr "Rosca cÃºbica Mitchell-Netravalia"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:103
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:142
@@ -1534,30 +1534,30 @@ msgid "Navigate"
 msgstr "Navegar"
 
 msgid "Nearest-neighbour (box) sampling (very fast)."
-msgstr "Amostragem do vizinho mais próximo (caixa) (muito rápido)."
+msgstr "Amostragem do vizinho mais prÃ³ximo (caixa) (muito rÃ¡pido)."
 
 msgid "Never use precise seeks."
 msgstr "Nunca use buscas precisas."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:35
 msgid "Next Chapter"
-msgstr "Próximo capítulo"
+msgstr "PrÃ³ximo capÃ­tulo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:215
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:217
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:219
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:29
 msgid "Next File"
-msgstr "Próximo arquivo"
+msgstr "PrÃ³ximo arquivo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:86
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:91
 msgid "Next Track"
-msgstr "Próxima faixa"
+msgstr "PrÃ³xima faixa"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
 msgid "No"
-msgstr "Não"
+msgstr "NÃ£o"
 
 msgid "No filter, only use basic GPU texture sampling."
 msgstr "No filter, only use basic GPU texture sampling."
@@ -1568,11 +1568,11 @@ msgstr "Normally, mpv will try to keep all options when playing the next file on
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1132
 msgid "Number of key presses to generate per second on autorepeat."
-msgstr "Número de prensas chave a gerar por segundo em autorrepeat."
+msgstr "NÃºmero de prensas chave a gerar por segundo em autorrepeat."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:127
 msgid "OK"
-msgstr "Está bem"
+msgstr "EstÃ¡ bem"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:126
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:127
@@ -1597,7 +1597,7 @@ msgstr "Menu na tela"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:175
 msgid "Open Config Folder"
-msgstr "Abrir pasta de configuração"
+msgstr "Abrir pasta de configuraÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:14
 msgid "Open DVD/Blu-ray Drive/Folder..."
@@ -1609,25 +1609,25 @@ msgstr "Abrir arquivos..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:13
 msgid "Open URL or file from clipboard"
-msgstr "Abrir URL ou arquivo da área de transferência"
+msgstr "Abrir URL ou arquivo da Ã¡rea de transferÃªncia"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:224
 msgid "Override all libplacebo options by the values from the given preset."
-msgstr "Sobrescrever todas as opções da libplacebo pelos valores da predefinição indicada."
+msgstr "Sobrescrever todas as opÃ§Ãµes da libplacebo pelos valores da predefiniÃ§Ã£o indicada."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:283
 msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
-msgstr "Substituir o filtro utilizado para os planos de descida, por exemplo, chroma/alfa. Se definido como nenhum, use a mesma configuração como downscaler, respectivamente."
+msgstr "Substituir o filtro utilizado para os planos de descida, por exemplo, chroma/alfa. Se definido como nenhum, use a mesma configuraÃ§Ã£o como downscaler, respectivamente."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:268
 msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
-msgstr "Substituir o filtro utilizado para planos de elevação, por exemplo chroma/alfa. Se definido para nenhum, use a mesma configuração que upscaler, respectivamente."
+msgstr "Substituir o filtro utilizado para planos de elevaÃ§Ã£o, por exemplo chroma/alfa. Se definido para nenhum, use a mesma configuraÃ§Ã£o que upscaler, respectivamente."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:322
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:358
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:384
 msgid "Overrides the value of all options in this section by their default values from the given preset."
-msgstr "Sobrepõe o valor de todas as opções nesta seção pelos seus valores predefinidos da predefinição indicada."
+msgstr "SobrepÃµe o valor de todas as opÃ§Ãµes nesta seÃ§Ã£o pelos seus valores predefinidos da predefiniÃ§Ã£o indicada."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:483
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
@@ -1635,7 +1635,7 @@ msgstr "Overrides the value of all options in this section by their default valu
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:430
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
-msgstr "Sobrepõe o valor de todas as opções nesta seção pelos seus valores predefinidos da predefinição indicada. high_quality também permite medição de histograma de quadros."
+msgstr "SobrepÃµe o valor de todas as opÃ§Ãµes nesta seÃ§Ã£o pelos seus valores predefinidos da predefiniÃ§Ã£o indicada. high_quality tambÃ©m permite mediÃ§Ã£o de histograma de quadros."
 
 msgid "Oversampling, only mix \\\"edge\\\" frames while preserving FPS"
 msgstr "Oversampling, apenas misture \\\"edge\\\" frames enquanto preserva FPS"
@@ -1658,7 +1658,7 @@ msgstr "Analisar"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:219
 msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
-msgstr "Passa a opção extra bruta para a infraestrutura de renderização libplacebo (usada por --vo=gpu-next). Pode substituir os efeitos de quaisquer outras opções definidas usando o sistema de opções normais."
+msgstr "Passa a opÃ§Ã£o extra bruta para a infraestrutura de renderizaÃ§Ã£o libplacebo (usada por --vo=gpu-next). Pode substituir os efeitos de quaisquer outras opÃ§Ãµes definidas usando o sistema de opÃ§Ãµes normais."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:203
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:204
@@ -1682,16 +1682,16 @@ msgstr "Reproduzir/Pausar"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:25
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:26
 msgid "Playback"
-msgstr "Reprodução"
+msgstr "ReproduÃ§Ã£o"
 
 msgid "Playback will never automatically advance to the next file."
-msgstr "A reprodução nunca avançará automaticamente para o próximo arquivo."
+msgstr "A reproduÃ§Ã£o nunca avanÃ§arÃ¡ automaticamente para o prÃ³ximo arquivo."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:120
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:127
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:234
 msgid "Playlist"
-msgstr "Lista de reprodução"
+msgstr "Lista de reproduÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:575
 msgid "Preview mpv.conf"
@@ -1703,7 +1703,7 @@ msgstr "Visualizar mpvnet.conf"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:36
 msgid "Previous Chapter"
-msgstr "Capítulo anterior"
+msgstr "CapÃ­tulo anterior"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:214
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:216
@@ -1741,19 +1741,19 @@ msgstr "Arquivos recentes"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:177
 msgid "Register audio file associations"
-msgstr "Registrar associações de arquivos de áudio"
+msgstr "Registrar associaÃ§Ãµes de arquivos de Ã¡udio"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:178
 msgid "Register image file associations"
-msgstr "Registrar associações de arquivos de imagem"
+msgstr "Registrar associaÃ§Ãµes de arquivos de imagem"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:176
 msgid "Register video file associations"
-msgstr "Registrar associações de arquivos de vídeo"
+msgstr "Registrar associaÃ§Ãµes de arquivos de vÃ­deo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Remove mpv.net from Path environment variable"
-msgstr "Remover mpv.net da variável de ambiente Path"
+msgstr "Remover mpv.net da variÃ¡vel de ambiente Path"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:101
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:112
@@ -1770,7 +1770,7 @@ msgstr "Remover mpv.net da variável de ambiente Path"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:218
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:91
 msgid "Render Options"
-msgstr "Opções de renderização"
+msgstr "OpÃ§Ãµes de renderizaÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:118
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:65
@@ -1778,7 +1778,7 @@ msgid "Reset"
 msgstr "Redefinir"
 
 msgid "Reset all everything to high quality presets (where available)."
-msgstr "Reinicie tudo para predefinições de alta qualidade (onde disponível)."
+msgstr "Reinicie tudo para predefiniÃ§Ãµes de alta qualidade (onde disponÃ­vel)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:164
 msgid "Retry"
@@ -1786,18 +1786,18 @@ msgstr "Repetir"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Rotate Video"
-msgstr "Girar vídeo"
+msgstr "Girar vÃ­deo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1008
 msgid "Same as minimum-aspect-ratio but used for audio files."
-msgstr "O mesmo que minimum-aspect-ratio mas usado para arquivos de áudio."
+msgstr "O mesmo que minimum-aspect-ratio mas usado para arquivos de Ã¡udio."
 
 msgid "Same as yes (for compatibility)."
 msgstr "O mesmo que sim (para compatibilidade)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:826
 msgid "Save and restore the audio device chosen in the context menu. Default: yes"
-msgstr "Salve e restaure o dispositivo de áudio escolhido no menu de contexto. Padrão: sim"
+msgstr "Salve e restaure o dispositivo de Ã¡udio escolhido no menu de contexto. PadrÃ£o: sim"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1013
 msgid "Save the window position on exit. (mpv.net option)"
@@ -1835,19 +1835,19 @@ msgstr "Imagem"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:134
 msgid "Secondary Subtitle"
-msgstr "Legenda secundária"
+msgstr "Legenda secundÃ¡ria"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:236
 msgid "Secondary Subtitles"
-msgstr "Legendas secundárias"
+msgstr "Legendas secundÃ¡rias"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:879
 msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
-msgstr "Ver sub-color. Cor usada para o fundo do sub- texto. Você pode usar sub-shadow-offset para alterar seu tamanho em relação ao texto."
+msgstr "Ver sub-color. Cor usada para o fundo do sub- texto. VocÃª pode usar sub-shadow-offset para alterar seu tamanho em relaÃ§Ã£o ao texto."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:873
 msgid "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
-msgstr "Ver sub-color. Cor usada para o contorno do sub- fonte. Ignorado quando sub-back-color é especificado (ou mais exatamente: quando essa opção não está definida para completamente transparente)."
+msgstr "Ver sub-color. Cor usada para o contorno do sub- fonte. Ignorado quando sub-back-color Ã© especificado (ou mais exatamente: quando essa opÃ§Ã£o nÃ£o estÃ¡ definida para completamente transparente)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:224
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:226
@@ -1859,11 +1859,11 @@ msgstr "Voltar busca"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:225
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:231
 msgid "Seek Forward"
-msgstr "Avançar busca"
+msgstr "AvanÃ§ar busca"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:230
 msgid "Seek to next subtitle"
-msgstr "Buscar próxima legenda"
+msgstr "Buscar prÃ³xima legenda"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:229
 msgid "Seek to previous subtitle"
@@ -1871,11 +1871,11 @@ msgstr "Buscar legenda anterior"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1081
 msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
-msgstr "Selecione quando usar buscas precisas que não se limitam a quadros de chaves. Tais buscas exigem decodificação de vídeo do keyframe anterior até a posição alvo e assim pode levar algum tempo dependendo do desempenho de decodificação. Para alguns formatos de vídeo, buscas precisas são desabilitadas. Esta opção seleciona a escolha padrão a usar para buscas; é possível substituir explicitamente esse padrão na definição de atalhos de teclas e nos comandos de entrada."
+msgstr "Selecione quando usar buscas precisas que nÃ£o se limitam a quadros de chaves. Tais buscas exigem decodificaÃ§Ã£o de vÃ­deo do keyframe anterior atÃ© a posiÃ§Ã£o alvo e assim pode levar algum tempo dependendo do desempenho de decodificaÃ§Ã£o. Para alguns formatos de vÃ­deo, buscas precisas sÃ£o desabilitadas. Esta opÃ§Ã£o seleciona a escolha padrÃ£o a usar para buscas; Ã© possÃ­vel substituir explicitamente esse padrÃ£o na definiÃ§Ã£o de atalhos de teclas e nos comandos de entrada."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:171
 msgid "Set dither target depth to N. Note that the depth of the connected video display device cannot be detected. Often, LCD panels will do dithering on their own, which conflicts with this option and leads to ugly output."
-msgstr "Definir profundidade dither alvo para N. Observe que a profundidade do dispositivo de visualização de vídeo conectado não pode ser detectada. Muitas vezes, os painéis LCD fazem dithering por conta própria, o que entra em conflito com esta opção e leva a saída feia."
+msgstr "Definir profundidade dither alvo para N. Observe que a profundidade do dispositivo de visualizaÃ§Ã£o de vÃ­deo conectado nÃ£o pode ser detectada. Muitas vezes, os painÃ©is LCD fazem dithering por conta prÃ³pria, o que entra em conflito com esta opÃ§Ã£o e leva a saÃ­da feia."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:939
 msgid "Set the duration of the OSD messages in ms. Default: 1000"
@@ -1894,23 +1894,23 @@ msgstr "Set the startup volume. 0 means silence, 100 means no volume reduction o
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:885
 msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
-msgstr "Define o título da janela. Isto é usado para a janela de vídeo, e se possível, também define o título do fluxo de áudio. As propriedades são ampliadas. Aviso! Existe o perigo de isso causar um uso significativo da CPU, dependendo das propriedades utilizadas."
+msgstr "Define o tÃ­tulo da janela. Isto Ã© usado para a janela de vÃ­deo, e se possÃ­vel, tambÃ©m define o tÃ­tulo do fluxo de Ã¡udio. As propriedades sÃ£o ampliadas. Aviso! Existe o perigo de isso causar um uso significativo da CPU, dependendo das propriedades utilizadas."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:906
 msgid "Set this to no in order to hide the window title bar."
-msgstr "Defina isto como não para ocultar a barra de título da janela."
+msgstr "Defina isto como nÃ£o para ocultar a barra de tÃ­tulo da janela."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:184
 msgid "Set/clear A-B loop points"
-msgstr "Definir/limpar pontos de repetição A-B"
+msgstr "Definir/limpar pontos de repetiÃ§Ã£o A-B"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:253
 msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
-msgstr "Define o filtro usado para reduzir a escala. As opções mais relevantes, mais ou menos ordenadas de mais rápido para mais lento."
+msgstr "Define o filtro usado para reduzir a escala. As opÃ§Ãµes mais relevantes, mais ou menos ordenadas de mais rÃ¡pido para mais lento."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:298
 msgid "Sets the filter used for frame mixing (temporal interpolation). Roughly ordered from fastest to slowest."
-msgstr "Define o filtro usado para a mistura de quadros (interpolação temporal). Praticamente ordenado de mais rápido para mais lento."
+msgstr "Define o filtro usado para a mistura de quadros (interpolaÃ§Ã£o temporal). Praticamente ordenado de mais rÃ¡pido para mais lento."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:234
 msgid "Sets the filter used for upscaling."
@@ -1928,14 +1928,14 @@ msgstr "Setting to remember the window size. (mpv.net option)"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Setup"
-msgstr "Configuração inicial"
+msgstr "ConfiguraÃ§Ã£o inicial"
 
 msgid "Sharpened version of ewa_lanczos (slow)."
-msgstr "Versão afiada de ewa_lanczos (low)."
+msgstr "VersÃ£o afiada de ewa_lanczos (low)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:169
 msgid "Show Config Editor"
-msgstr "Mostrar editor de configuração"
+msgstr "Mostrar editor de configuraÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:170
 msgid "Show Input Editor"
@@ -1963,7 +1963,7 @@ msgstr "Mostrar manual do mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:574
 msgid "Show mpv.net options"
-msgstr "Mostrar opções do mpv.net"
+msgstr "Mostrar opÃ§Ãµes do mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:919
 msgid "Show progress in taskbar."
@@ -1971,7 +1971,7 @@ msgstr "Mostrar o progresso na barra de tarefas."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:898
 msgid "Show window with decoration (titlebar, border)."
-msgstr "Mostrar janela com decoração (barra de título, borda)."
+msgstr "Mostrar janela com decoraÃ§Ã£o (barra de tÃ­tulo, borda)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:153
 msgid "Shrink"
@@ -1979,22 +1979,22 @@ msgstr "Reduzir"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:186
 msgid "Shuffle Playlist"
-msgstr "Embaralhar lista de reprodução"
+msgstr "Embaralhar lista de reproduÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:1450
 msgid "Shutdown thread failed to complete within 10 seconds."
-msgstr "A thread de encerramento não foi concluída em 10 segundos."
+msgstr "A thread de encerramento nÃ£o foi concluÃ­da em 10 segundos."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:349
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:357
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:365
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:370
 msgid "Sigmoidization"
-msgstr "Sigmoidização"
+msgstr "SigmoidizaÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1021
 msgid "Snap the player window to screen edges."
-msgstr "Apertar a janela do jogador para as bordas do ecrã."
+msgstr "Apertar a janela do jogador para as bordas do ecrÃ£."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:804
 msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
@@ -2006,36 +2006,36 @@ msgstr "Specify a priority list of subtitle languages to use. Different containe
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:855
 msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
-msgstr "Indique o tipo de letra a usar para as legendas que não especificam uma determinada fonte. O padrão é sans-serif."
+msgstr "Indique o tipo de letra a usar para as legendas que nÃ£o especificam uma determinada fonte. O padrÃ£o Ã© sans-serif."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:934
 msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
 msgstr "Specify the OSD font size. See sub-font-size for details. Default: 55"
 
 msgid "Specify the color used for unstyled text subtitles.\\\\n\\\\nA usage description and examples can be found in the manual at:"
-msgstr "Especifique a cor usada para legendas de texto sem estilo.\\\\n\\\\nUma descrição de uso e exemplos podem ser encontrados no manual em:"
+msgstr "Especifique a cor usada para legendas de texto sem estilo.\\\\n\\\\nUma descriÃ§Ã£o de uso e exemplos podem ser encontrados no manual em:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:867
 msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
-msgstr "Especifique a cor usada para legendas de texto sem estilo.\\n\\nUma descrição de uso e exemplos podem ser encontrados no manual em:"
+msgstr "Especifique a cor usada para legendas de texto sem estilo.\\n\\nUma descriÃ§Ã£o de uso e exemplos podem ser encontrados no manual em:"
 
 msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\\\n\\\\nFind the full documentation here:"
-msgstr "Especifique o modelo de nome de arquivo usado para salvar imagens. O modelo especifica o nome do arquivo sem extensão de arquivo, e pode conter especificadores de formato, que serão substituídos ao tirar uma captura de tela. Por padrão, o modelo é mpv-shot%n, o que resulta em nomes de arquivos como mpv-shot0012.png, por exemplo.\\\\n\\\\nEncontre aqui a documentação completa:"
+msgstr "Especifique o modelo de nome de arquivo usado para salvar imagens. O modelo especifica o nome do arquivo sem extensÃ£o de arquivo, e pode conter especificadores de formato, que serÃ£o substituÃ­dos ao tirar uma captura de tela. Por padrÃ£o, o modelo Ã© mpv-shot%n, o que resulta em nomes de arquivos como mpv-shot0012.png, por exemplo.\\\\n\\\\nEncontre aqui a documentaÃ§Ã£o completa:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:764
 msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
-msgstr "Especifique o modelo de nome de arquivo usado para salvar imagens. O modelo especifica o nome do arquivo sem extensão de arquivo, e pode conter especificadores de formato, que serão substituídos ao tirar uma captura de tela. Por padrão, o modelo é mpv-shot%n, o que resulta em nomes de arquivos como mpv-shot0012.png, por exemplo.\\n\\nEncontre aqui a documentação completa:"
+msgstr "Especifique o modelo de nome de arquivo usado para salvar imagens. O modelo especifica o nome do arquivo sem extensÃ£o de arquivo, e pode conter especificadores de formato, que serÃ£o substituÃ­dos ao tirar uma captura de tela. Por padrÃ£o, o modelo Ã© mpv-shot%n, o que resulta em nomes de arquivos como mpv-shot0012.png, por exemplo.\\n\\nEncontre aqui a documentaÃ§Ã£o completa:"
 
 msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\\\n\\\\nFor more information visit:"
-msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\\\n\\\\nPara mais informações visite:"
+msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\\\n\\\\nPara mais informaÃ§Ãµes visite:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:73
 msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
-msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nPara mais informações visite:"
+msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nPara mais informaÃ§Ãµes visite:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:860
 msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
-msgstr "Indique o tamanho do sub- fonte. A unidade é o tamanho em pixels escalados a uma altura de janela de 720. O tamanho real do pixel é escalado com a altura da janela: se a altura da janela for maior ou menor que 720, o tamanho real do texto aumenta ou diminui também. Padrão: 55"
+msgstr "Indique o tamanho do sub- fonte. A unidade Ã© o tamanho em pixels escalados a uma altura de janela de 720. O tamanho real do pixel Ã© escalado com a altura da janela: se a altura da janela for maior ou menor que 720, o tamanho real do texto aumenta ou diminui tambÃ©m. PadrÃ£o: 55"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:112
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:113
@@ -2062,7 +2062,7 @@ msgstr "Parar"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:727
 msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
-msgstr "Guarda as imagens nesta pasta. Este caminho é associado ao nome do arquivo gerado por screenshot-template. Se o nome de arquivo do modelo já for absoluto, o diretório é ignorado."
+msgstr "Guarda as imagens nesta pasta. Este caminho Ã© associado ao nome do arquivo gerado por screenshot-template. Se o nome de arquivo do modelo jÃ¡ for absoluto, o diretÃ³rio Ã© ignorado."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:839
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:844
@@ -2102,7 +2102,7 @@ msgstr "Legendas"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:740
 msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
-msgstr "Marca as imagens com o espaço de cores apropriado. Note que nem todos os formatos são suportados."
+msgstr "Marca as imagens com o espaÃ§o de cores apropriado. Note que nem todos os formatos sÃ£o suportados."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:79
 msgid "Take Screenshot"
@@ -2118,11 +2118,11 @@ msgstr "The GPU renderer filter function to use when upscaling video. There are 
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:261
 msgid "The clipboard does not contain a valid URL or file."
-msgstr "A área de transferência não contém uma URL ou arquivo válido."
+msgstr "A Ã¡rea de transferÃªncia nÃ£o contÃ©m uma URL ou arquivo vÃ¡lido."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:141
 msgid "The input editor cannot save duplicate shortcuts with different commands:"
-msgstr "O editor de entrada não pode salvar atalhos duplicados com comandos diferentes:"
+msgstr "O editor de entrada nÃ£o pode salvar atalhos duplicados com comandos diferentes:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1075
 msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
@@ -2134,7 +2134,7 @@ msgstr "The options that are saved in \\\"watch later\\\" files if they have bee
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:474
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:479
 msgid "This feature was removed, but there are user scripts:"
-msgstr "Este recurso foi removido, mas existem scripts de usuário:"
+msgstr "Este recurso foi removido, mas existem scripts de usuÃ¡rio:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:483
 msgid "This feature was removed."
@@ -2143,7 +2143,7 @@ msgstr "Este recurso foi removido."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:393
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:50
 msgid "Title"
-msgstr "Título"
+msgstr "TÃ­tulo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:164
 msgid "Toggle Border"
@@ -2151,11 +2151,11 @@ msgstr "Alternar borda"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:81
 msgid "Toggle Deinterlace"
-msgstr "Alternar desentrelaçamento"
+msgstr "Alternar desentrelaÃ§amento"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:187
 msgid "Toggle Hardware Decoding"
-msgstr "Alternar decodificação por hardware"
+msgstr "Alternar decodificaÃ§Ã£o por hardware"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:122
 msgid "Toggle OSC Visibility"
@@ -2167,7 +2167,7 @@ msgstr "Alternar sempre no topo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:121
 msgid "Toggle Statistics"
-msgstr "Alternar estatísticas"
+msgstr "Alternar estatÃ­sticas"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:92
 msgid "Toggle Visibility"
@@ -2175,15 +2175,15 @@ msgstr "Alternar visibilidade"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:185
 msgid "Toggle infinite file looping"
-msgstr "Alternar repetição infinita do arquivo"
+msgstr "Alternar repetiÃ§Ã£o infinita do arquivo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:103
 msgid "Toggle overriding SSA/ASS styles with normal styles"
-msgstr "Alternar substituição dos estilos SSA/ASS por estilos normais"
+msgstr "Alternar substituiÃ§Ã£o dos estilos SSA/ASS por estilos normais"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:564
 msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
-msgstr "Função de mapeamento de tons a usar para adaptar-se entre diferenças gamas de luminância, incluindo adaptação ponto preto."
+msgstr "FunÃ§Ã£o de mapeamento de tons a usar para adaptar-se entre diferenÃ§as gamas de luminÃ¢ncia, incluindo adaptaÃ§Ã£o ponto preto."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:184
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:185
@@ -2209,7 +2209,7 @@ msgstr "Desfazer busca anterior (ou marcada)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:179
 msgid "Unregister file associations"
-msgstr "Remover associações de arquivos"
+msgstr "Remover associaÃ§Ãµes de arquivos"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:19
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
@@ -2220,13 +2220,13 @@ msgstr "Use any available API. Note that the default GPU API used for this value
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:548
 msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
-msgstr "Use interpolação tricúbica de maior qualidade, mas mais lenta, para mapeamento de gama 3DLUTs. Pode melhorar substancialmente a precisão de mapeamento de gama 3DLUT, em particular em tamanhos menores de 3DLUT. Não deve ter muito efeito no tamanho padrão."
+msgstr "Use interpolaÃ§Ã£o tricÃºbica de maior qualidade, mas mais lenta, para mapeamento de gama 3DLUTs. Pode melhorar substancialmente a precisÃ£o de mapeamento de gama 3DLUT, em particular em tamanhos menores de 3DLUT. NÃ£o deve ter muito efeito no tamanho padrÃ£o."
 
 msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
-msgstr "Use buscas precisas se a busca é para uma posição absoluta no arquivo, como uma busca de capítulo, mas não para buscas relativas como o comportamento padrão das setas."
+msgstr "Use buscas precisas se a busca Ã© para uma posiÃ§Ã£o absoluta no arquivo, como uma busca de capÃ­tulo, mas nÃ£o para buscas relativas como o comportamento padrÃ£o das setas."
 
 msgid "Use precise seeks whenever possible."
-msgstr "Use buscas precisas sempre que possível."
+msgstr "Use buscas precisas sempre que possÃ­vel."
 
 msgid "Use the same filter as specified for upscaler"
 msgstr "Usar o mesmo filtro que indicado para o upscaler"
@@ -2239,17 +2239,17 @@ msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net b
 msgstr "Sintaxe de menu usada para definir o menu de contexto em input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
 
 msgid "User interface display language.\\\\nmpv.net must be restarted after a change."
-msgstr "Linguagem de exibição da interface do usuário.\\\\nmpv.net must be restarted after a change."
+msgstr "Linguagem de exibiÃ§Ã£o da interface do usuÃ¡rio.\\\\nmpv.net must be restarted after a change."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1143
 msgid "User interface display language.\\nmpv.net must be restarted after a change."
-msgstr "Linguagem de exibição da interface do usuário.\\nmpv.net must be restarted after a change."
+msgstr "Linguagem de exibiÃ§Ã£o da interface do usuÃ¡rio.\\nmpv.net must be restarted after a change."
 
 msgid "VK_KHR_win32_surface"
 msgstr "VK_KHR_win32_surface"
 
 msgid "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
-msgstr "Versão muito nítida de ewa_lanczos, com anti-ringing (muito lento)."
+msgstr "VersÃ£o muito nÃ­tida de ewa_lanczos, com anti-ringing (muito lento)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:101
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:112
@@ -2367,12 +2367,12 @@ msgstr "Versão muito nítida de ewa_lanczos, com anti-ringing (muito lento)."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:82
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Video"
-msgstr "Vídeo"
+msgstr "VÃ­deo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:135
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:238
 msgid "Video Tracks"
-msgstr "Faixas de vídeo"
+msgstr "Faixas de vÃ­deo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:786
 msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
@@ -2382,11 +2382,11 @@ msgid "Video output driver that uses the Direct3D interface."
 msgstr "Video output driver that uses the Direct3D interface."
 
 msgid "Video output drivers to be used.\\\\n\\\\nFor more information visit:"
-msgstr "Drivers de saída de vídeo a ser usado.\\\\n\\\\nPara mais informações visite:"
+msgstr "Drivers de saÃ­da de vÃ­deo a ser usado.\\\\n\\\\nPara mais informaÃ§Ãµes visite:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:61
 msgid "Video output drivers to be used.\\n\\nFor more information visit:"
-msgstr "Controladores de saída de vídeo a usar.\\n\\nPara mais informações visite:"
+msgstr "Controladores de saÃ­da de vÃ­deo a usar.\\n\\nPara mais informaÃ§Ãµes visite:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:120
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:121
@@ -2440,12 +2440,12 @@ msgstr "Aumentar volume"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:42
 msgid "Waiting for key/mouse input."
-msgstr "À espera da entrada chave/rato."
+msgstr "Ã€ espera da entrada chave/rato."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:139
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:244
 msgid "Watch History"
-msgstr "Histórico de reprodução"
+msgstr "HistÃ³rico de reproduÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:140
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:245
@@ -2461,22 +2461,22 @@ msgid "Website mpv.net"
 msgstr "Site do mpv.net"
 
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
-msgstr "Ao abrir um arquivo local, aja como se o diretório pai fosse aberto e crie uma lista de reprodução automaticamente.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\no mesmo: Crie uma lista de reprodução a partir do diretório pai com arquivos correspondentes à mesma categoria do arquivo atualmente carregado. Um dos *-exts é selecionado com base no arquivo de entrada e apenas os arquivos com extensões correspondentes são adicionados à lista de reprodução. Se o ficheiro de entrada em si não corresponder a nenhuma lista de extensões, a lista de reprodução não é gerada automaticamente."
+msgstr "Ao abrir um arquivo local, aja como se o diretÃ³rio pai fosse aberto e crie uma lista de reproduÃ§Ã£o automaticamente.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\no mesmo: Crie uma lista de reproduÃ§Ã£o a partir do diretÃ³rio pai com arquivos correspondentes Ã  mesma categoria do arquivo atualmente carregado. Um dos *-exts Ã© selecionado com base no arquivo de entrada e apenas os arquivos com extensÃµes correspondentes sÃ£o adicionados Ã  lista de reproduÃ§Ã£o. Se o ficheiro de entrada em si nÃ£o corresponder a nenhuma lista de extensÃµes, a lista de reproduÃ§Ã£o nÃ£o Ã© gerada automaticamente."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1104
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
-msgstr "Ao abrir um arquivo local, aja como se o diretório pai fosse aberto e crie uma lista de reprodução automaticamente.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\no mesmo: Crie uma lista de reprodução a partir do diretório pai com arquivos correspondentes à mesma categoria do arquivo atualmente carregado. Um dos *-exts é selecionado com base no arquivo de entrada e apenas os arquivos com extensões correspondentes são adicionados à lista de reprodução. Se o ficheiro de entrada em si não corresponder a nenhuma lista de extensões, a lista de reprodução não é gerada automaticamente."
+msgstr "Ao abrir um arquivo local, aja como se o diretÃ³rio pai fosse aberto e crie uma lista de reproduÃ§Ã£o automaticamente.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\no mesmo: Crie uma lista de reproduÃ§Ã£o a partir do diretÃ³rio pai com arquivos correspondentes Ã  mesma categoria do arquivo atualmente carregado. Um dos *-exts Ã© selecionado com base no arquivo de entrada e apenas os arquivos com extensÃµes correspondentes sÃ£o adicionados Ã  lista de reproduÃ§Ã£o. Se o ficheiro de entrada em si nÃ£o corresponder a nenhuma lista de extensÃµes, a lista de reproduÃ§Ã£o nÃ£o Ã© gerada automaticamente."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:163
 msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
-msgstr "Quando upscaling, usar uma transformação de cor sigmoidal para evitar enfatizar artefatos tocando. Isso também implica linear-scaling."
+msgstr "Quando upscaling, usar uma transformaÃ§Ã£o de cor sigmoidal para evitar enfatizar artefatos tocando. Isso tambÃ©m implica linear-scaling."
 
 msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\\\n\\\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
-msgstr "Ao usar filtros baseados em convolução, estenda o tamanho do filtro ao baixar a escala. Aumenta a qualidade, mas reduz o desempenho ao reduzir a escala.\\\\n\\\\nIsto irá executar ligeiramente sub-optimally para vídeo anamórfico (mas ainda melhor do que sem ele) uma vez que irá estender o tamanho para coincidir apenas com os fatores mais leves da escala entre os eixos."
+msgstr "Ao usar filtros baseados em convoluÃ§Ã£o, estenda o tamanho do filtro ao baixar a escala. Aumenta a qualidade, mas reduz o desempenho ao reduzir a escala.\\\\n\\\\nIsto irÃ¡ executar ligeiramente sub-optimally para vÃ­deo anamÃ³rfico (mas ainda melhor do que sem ele) uma vez que irÃ¡ estender o tamanho para coincidir apenas com os fatores mais leves da escala entre os eixos."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:155
 msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
-msgstr "Ao usar filtros baseados em convolução, estenda o tamanho do filtro ao baixar a escala. Aumenta a qualidade, mas reduz o desempenho ao reduzir a escala.\\n\\nIsto irá executar ligeiramente sub-optimally para vídeo anamórfico (mas ainda melhor do que sem ele) uma vez que irá estender o tamanho para coincidir apenas com os fatores mais leves da escala entre os eixos."
+msgstr "Ao usar filtros baseados em convoluÃ§Ã£o, estenda o tamanho do filtro ao baixar a escala. Aumenta a qualidade, mas reduz o desempenho ao reduzir a escala.\\n\\nIsto irÃ¡ executar ligeiramente sub-optimally para vÃ­deo anamÃ³rfico (mas ainda melhor do que sem ele) uma vez que irÃ¡ estender o tamanho para coincidir apenas com os fatores mais leves da escala entre os eixos."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:944
 msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
@@ -2530,29 +2530,29 @@ msgid "Window"
 msgstr "Janela"
 
 msgid "Window height is always remembered"
-msgstr "A altura da janela é sempre lembrada"
+msgstr "A altura da janela Ã© sempre lembrada"
 
 msgid "Window height is remembered in the current session"
-msgstr "A altura da janela é lembrada na sessão atual"
+msgstr "A altura da janela Ã© lembrada na sessÃ£o atual"
 
 msgid "Window size is always remembered"
-msgstr "O tamanho da janela é sempre lembrado"
+msgstr "O tamanho da janela Ã© sempre lembrado"
 
 msgid "Window size is remembered in the current session"
-msgstr "O tamanho da janela é lembrado na sessão atual"
+msgstr "O tamanho da janela Ã© lembrado na sessÃ£o atual"
 
 msgid "Window size is set to video resolution"
-msgstr "O tamanho da janela está definido como resolução de vídeo"
+msgstr "O tamanho da janela estÃ¡ definido como resoluÃ§Ã£o de vÃ­deo"
 
 msgid "Window width is always remembered"
-msgstr "A largura da janela é sempre lembrada"
+msgstr "A largura da janela Ã© sempre lembrada"
 
 msgid "Window width is remembered in the current session"
-msgstr "A largura da janela é lembrada na sessão atual"
+msgstr "A largura da janela Ã© lembrada na sessÃ£o atual"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:756
 msgid "Write JPEG files with the same chroma subsampling as the video. If disabled, the libjpeg default is used."
-msgstr "Escreva arquivos JPEG com a mesma sub-amostragem de chroma que o vídeo. Se desabilitado, o padrão libjpeg é usado."
+msgstr "Escreva arquivos JPEG com a mesma sub-amostragem de chroma que o vÃ­deo. Se desabilitado, o padrÃ£o libjpeg Ã© usado."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:137
 msgid "Yes"
@@ -2566,7 +2566,7 @@ msgstr "sim"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:157
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:158
 msgid "Zoom"
-msgstr "Ampliação"
+msgstr "AmpliaÃ§Ã£o"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1085
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:499
@@ -2598,7 +2598,7 @@ msgid "always"
 msgstr "always"
 
 msgid "always use software decoding"
-msgstr "sempre usar decodificação de software"
+msgstr "sempre usar decodificaÃ§Ã£o de software"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:105
 msgid "angle"
@@ -2788,7 +2788,7 @@ msgid "contrast_smoothness"
 msgstr "contrast_smoothness"
 
 msgid "copies video back to system RAM"
-msgstr "copia vídeo de volta para o sistema RAM"
+msgstr "copia vÃ­deo de volta para o sistema RAM"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:152
 msgid "correct-downscaling"
@@ -3159,7 +3159,7 @@ msgstr "keepaspect-window"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:995
 msgid "keepaspect-window will lock the window size to the video aspect. Default: yes"
-msgstr "keepaspect-window irá bloquear o tamanho da janela para o aspecto de vídeo. Padrão: sim"
+msgstr "keepaspect-window irÃ¡ bloquear o tamanho da janela para o aspecto de vÃ­deo. PadrÃ£o: sim"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:579
 msgid "knee_adaptation"
@@ -3351,19 +3351,19 @@ msgstr "mobius"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:443
 msgid "mpv.net is already in the Path environment variable."
-msgstr "mpv.net já está na variável de ambiente Path."
+msgstr "mpv.net jÃ¡ estÃ¡ na variÃ¡vel de ambiente Path."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:460
 msgid "mpv.net was not found in the Path environment variable."
-msgstr "mpv.net não foi encontrado na variável de ambiente Path."
+msgstr "mpv.net nÃ£o foi encontrado na variÃ¡vel de ambiente Path."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:451
 msgid "mpv.net was successfully added to the Path environment variable."
-msgstr "mpv.net foi adicionado com sucesso à variável de ambiente Path."
+msgstr "mpv.net foi adicionado com sucesso Ã  variÃ¡vel de ambiente Path."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:469
 msgid "mpv.net was successfully removed from the Path environment variable."
-msgstr "mpv.net foi removido com sucesso da variável de ambiente Path."
+msgstr "mpv.net foi removido com sucesso da variÃ¡vel de ambiente Path."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:7
 msgid "multi"

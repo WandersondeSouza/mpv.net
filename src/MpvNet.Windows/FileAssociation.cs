@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.Win32;
 
+using MpvNet;
 using MpvNet.Windows.Help;
 
 namespace MpvNet.Windows;
@@ -17,6 +18,17 @@ public static class FileAssociation
 
         if (perceivedType != "unreg")
         {
+            if (extensions.Length == 0)
+            {
+                extensions = perceivedType switch
+                {
+                    "video" => [.. FileTypes.GetSupportedVideoExts(), .. FileTypes.Playlist],
+                    "audio" => FileTypes.GetAudioExts(),
+                    "image" => FileTypes.GetImgExts(),
+                    _ => extensions
+                };
+            }
+
             foreach (string it in protocols)
             {
                 RegistryHelp.SetValue($@"HKCR\{it}", $"{it.ToUpper()} Protocol", "");

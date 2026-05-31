@@ -12,29 +12,29 @@ msgstr "Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creatio
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:75
 msgid "           always use software decoding"
-msgstr "           항상 소프트웨어 디코딩을 사용"
+msgstr "           í•­ìƒ ì†Œí”„íŠ¸ì›¨ì–´ ë””ì½”ë”©ì„ ì‚¬ìš©"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:988
 msgid "          Window size is set to video resolution"
-msgstr "          창 크기는 영상 해결책에 놓입니다"
+msgstr "          ì°½ í¬ê¸°ëŠ” ì˜ìƒ í•´ê²°ì±…ì— ë†“ìž…ë‹ˆë‹¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:77
 msgid "          exactly the same as auto"
-msgstr "          정확하게 자동차와 동일"
+msgstr "          ì •í™•í•˜ê²Œ ìžë™ì°¨ì™€ ë™ì¼"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:256
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:271
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:286
 msgid "         Box averaging (very fast)"
-msgstr "         상자 averaging (매우 빠른)"
+msgstr "         ìƒìž averaging (ë§¤ìš° ë¹ ë¥¸)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:990
 msgid "         Window size is always remembered"
-msgstr "         창 크기는 항상 기억됩니다"
+msgstr "         ì°½ í¬ê¸°ëŠ” í•­ìƒ ê¸°ì–µë©ë‹ˆë‹¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:76
 msgid "         enable best hw decoder"
-msgstr "         최고의 hw 디코더를 활성화"
+msgstr "         ìµœê³ ì˜ hw ë””ì½”ë”ë¥¼ í™œì„±í™”"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:84
 msgid "         requires vo=gpu (Any platform CUDA is available)"
@@ -42,17 +42,17 @@ msgstr "         requires vo=gpu (Any platform CUDA is available)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1084
 msgid "        Never use precise seeks."
-msgstr "        정확한 추구를 사용하지 마십시오."
+msgstr "        ì •í™•í•œ ì¶”êµ¬ë¥¼ ì‚¬ìš©í•˜ì§€ ë§ˆì‹­ì‹œì˜¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:255
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:270
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:285
 msgid "        Use the same filter as specified for upscaler"
-msgstr "        upscaler를 위해 지정된 것과 동일한 필터를 사용하십시오"
+msgstr "        upscalerë¥¼ ìœ„í•´ ì§€ì •ëœ ê²ƒê³¼ ë™ì¼í•œ í•„í„°ë¥¼ ì‚¬ìš©í•˜ì‹­ì‹œì˜¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:989
 msgid "        Window size is remembered in the current session"
-msgstr "        창 크기는 현재 세션에서 기억됩니다."
+msgstr "        ì°½ í¬ê¸°ëŠ” í˜„ìž¬ ì„¸ì…˜ì—ì„œ ê¸°ì–µë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:86
 msgid "        requires vo=gpu (Any platform CUDA is available)"
@@ -60,11 +60,11 @@ msgstr "        requires vo=gpu (Any platform CUDA is available)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:80
 msgid "        requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
-msgstr "        gpu-context=d3d11, gpu-context=angle 또는 gpu-context=dxinterop를 가진 vo=gpu를 요구합니다"
+msgstr "        gpu-context=d3d11, gpu-context=angle ë˜ëŠ” gpu-context=dxinteropë¥¼ ê°€ì§„ vo=gpuë¥¼ ìš”êµ¬í•©ë‹ˆë‹¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:300
 msgid "       Disable frame mixing, show nearest frame to target PTS"
-msgstr "       Disable 프레임 혼합, 대상 PTS에 가장 가까운 프레임 표시"
+msgstr "       Disable í”„ë ˆìž„ í˜¼í•©, ëŒ€ìƒ PTSì— ê°€ìž¥ ê°€ê¹Œìš´ í”„ë ˆìž„ í‘œì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:106
 msgid "       Win32/WGL"
@@ -72,7 +72,7 @@ msgstr "       Win32/WGL"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:304
 msgid "      Cubic B-spline frame mixing"
-msgstr "      Cubic B-spline 프레임 혼합"
+msgstr "      Cubic B-spline í”„ë ˆìž„ í˜¼í•©"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:65
 msgid "      General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
@@ -80,7 +80,7 @@ msgstr "      General purpose, customizable, GPU-accelerated video output driver
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1083
 msgid "      Use precise seeks whenever possible."
-msgstr "      가능한 한 정확한 추구를 사용합니다."
+msgstr "      ê°€ëŠ¥í•œ í•œ ì •í™•í•œ ì¶”êµ¬ë¥¼ ì‚¬ìš©í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:103
 msgid "      auto-select"
@@ -88,17 +88,17 @@ msgstr "      auto-select"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:82
 msgid "      requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
-msgstr "      gpu-context=d3d11 또는 gpu-context=angle를 가진 vo=gpu를 요구합니다"
+msgstr "      gpu-context=d3d11 ë˜ëŠ” gpu-context=angleë¥¼ ê°€ì§„ vo=gpuë¥¼ ìš”êµ¬í•©ë‹ˆë‹¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:259
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:274
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:289
 msgid "     Bicubic interpolation (fast)"
-msgstr "     Bicubic interpolation (빠른)"
+msgstr "     Bicubic interpolation (ë¹ ë¥¸)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:64
 msgid "     Choose the best mode automatically."
-msgstr "     자동적으로 제일 형태를 선택하십시오."
+msgstr "     ìžë™ì ìœ¼ë¡œ ì œì¼ í˜•íƒœë¥¼ ì„ íƒí•˜ì‹­ì‹œì˜¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:105
 msgid "     Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
@@ -108,21 +108,21 @@ msgstr "     Direct3D11 through the OpenGL ES translation layer ANGLE. This supp
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:272
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:287
 msgid "     Hermite-weighted averaging (fast)"
-msgstr "     Hermite-weighted averaging (빠른)"
+msgstr "     Hermite-weighted averaging (ë¹ ë¥¸)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1039
 msgid "     If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
-msgstr "     현재 파일이 종료되면 다음 파일로 이동합니다. idle이 no로 설정되면 마지막 파일 이후에 플레이어가 종료됩니다."
+msgstr "     í˜„ìž¬ íŒŒì¼ì´ ì¢…ë£Œë˜ë©´ ë‹¤ìŒ íŒŒì¼ë¡œ ì´ë™í•©ë‹ˆë‹¤. idleì´ noë¡œ ì„¤ì •ë˜ë©´ ë§ˆì§€ë§‰ íŒŒì¼ ì´í›„ì— í”Œë ˆì´ì–´ê°€ ì¢…ë£Œë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:263
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:278
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:293
 msgid "     Lanczos reconstruction"
-msgstr "     Lanczos 재건축"
+msgstr "     Lanczos ìž¬ê±´ì¶•"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:303
 msgid "     Linear frame mixing"
-msgstr "     선형 프레임 혼합"
+msgstr "     ì„ í˜• í”„ë ˆìž„ í˜¼í•©"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:108
 msgid "     VK_KHR_win32_surface"
@@ -136,71 +136,71 @@ msgstr "     Win32, with native Direct3D 11 rendering."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:273
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:288
 msgid "    Bilinear (triangle) averaging (fast)"
-msgstr "    Bilinear (삼각)averaging (빠른)"
+msgstr "    Bilinear (ì‚¼ê°)averaging (ë¹ ë¥¸)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:175
 msgid "    Dither to 8 bit output."
-msgstr "    8 비트 출력으로 이동합니다."
+msgstr "    8 ë¹„íŠ¸ ì¶œë ¥ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:811
 msgid "    Don't automatically load external audio files."
-msgstr "    외부 오디오 파일을 자동로드하지 마십시오."
+msgstr "    ì™¸ë¶€ ì˜¤ë””ì˜¤ íŒŒì¼ì„ ìžë™ë¡œë“œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:847
 msgid "    Don't automatically load external subtitle files."
-msgstr "    외부 자막 파일을 자동로드하지 마십시오."
+msgstr "    ì™¸ë¶€ ìžë§‰ íŒŒì¼ì„ ìžë™ë¡œë“œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:260
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:275
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:290
 msgid "    Gaussian smoothing (fast)"
-msgstr "    Gaussian 스무딩 (빠른)"
+msgstr "    Gaussian ìŠ¤ë¬´ë”© (ë¹ ë¥¸)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:302
 msgid "    Hermite-weighted frame mixing"
-msgstr "    Hermite-weighted 프레임 혼합"
+msgstr "    Hermite-weighted í”„ë ˆìž„ í˜¼í•©"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1038
 msgid "    If the current file ends, go to the next file, keep the last file open."
-msgstr "    현재 파일이 종료되면 다음 파일로 이동하면 마지막 파일을 엽니다."
+msgstr "    í˜„ìž¬ íŒŒì¼ì´ ì¢…ë£Œë˜ë©´ ë‹¤ìŒ íŒŒì¼ë¡œ ì´ë™í•˜ë©´ ë§ˆì§€ë§‰ íŒŒì¼ì„ ì—½ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:262
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:277
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:292
 msgid "    Mitchell-Netravalia cubic spline"
-msgstr "    Mitchell-Netravalia 입방 스플라인"
+msgstr "    Mitchell-Netravalia ìž…ë°© ìŠ¤í”Œë¼ì¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:85
 msgid "    copies video back to system RAM"
-msgstr "    시스템 RAM에 비디오 백업"
+msgstr "    ì‹œìŠ¤í…œ RAMì— ë¹„ë””ì˜¤ ë°±ì—…"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:79
 msgid "    enable any whitelisted hw decoder"
-msgstr "    어떤 whitelisted hw 디코더를 활성화"
+msgstr "    ì–´ë–¤ whitelisted hw ë””ì½”ë”ë¥¼ í™œì„±í™”"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:78
 msgid "    enable best hw decoder with copy-back"
-msgstr "    copy-back로 최고의 hw 디코더 활성화"
+msgstr "    copy-backë¡œ ìµœê³ ì˜ hw ë””ì½”ë” í™œì„±í™”"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:173
 msgid "   Disable any dithering done by mpv."
-msgstr "   mpv에 의해 수행 된 어떤 제광을 해제."
+msgstr "   mpvì— ì˜í•´ ìˆ˜í–‰ ëœ ì–´ë–¤ ì œê´‘ì„ í•´ì œ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:176
 msgid "   Dither to 10 bit output."
-msgstr "   10 비트 출력으로 나눕니다."
+msgstr "   10 ë¹„íŠ¸ ì¶œë ¥ìœ¼ë¡œ ë‚˜ëˆ•ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:814
 msgid "   Load all audio files in the current and audio-file-paths directories."
-msgstr "   현재와 audio-file-paths 디렉토리의 모든 오디오 파일을로드합니다."
+msgstr "   í˜„ìž¬ì™€ audio-file-paths ë””ë ‰í† ë¦¬ì˜ ëª¨ë“  ì˜¤ë””ì˜¤ íŒŒì¼ì„ë¡œë“œí•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:850
 msgid "   Load all subs in the current and sub-file-paths directories."
-msgstr "   현재와 sub-file-paths 디렉토리의 모든 하위를로드합니다."
+msgstr "   í˜„ìž¬ì™€ sub-file-paths ë””ë ‰í† ë¦¬ì˜ ëª¨ë“  í•˜ìœ„ë¥¼ë¡œë“œí•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1086
 msgid "   Same as yes (for compatibility)."
-msgstr "   그렇습니다와 동일 ( 겸용성을 위해)."
+msgstr "   ê·¸ë ‡ìŠµë‹ˆë‹¤ì™€ ë™ì¼ ( ê²¸ìš©ì„±ì„ ìœ„í•´)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:94
 msgid "   Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
@@ -208,16 +208,16 @@ msgstr "   Use any available API. Note that the default GPU API used for this va
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:985
 msgid "   Window width is always remembered"
-msgstr "   창 폭은 항상 기억됩니다"
+msgstr "   ì°½ í­ì€ í•­ìƒ ê¸°ì–µë©ë‹ˆë‹¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:81
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:87
 msgid "   copies video back to system RAM"
-msgstr "   시스템 RAM에 비디오 백업"
+msgstr "   ì‹œìŠ¤í…œ RAMì— ë¹„ë””ì˜¤ ë°±ì—…"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:95
 msgid "  Allow only gpu-context=d3d11"
-msgstr "  gpu-context=d3d11만 허용"
+msgstr "  gpu-context=d3d11ë§Œ í—ˆìš©"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:7
 msgid "  Create a new process everytime the shell starts mpv.net"
@@ -225,15 +225,15 @@ msgstr "  Create a new process everytime the shell starts mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:9
 msgid "  Force a single process and add files to playlist"
-msgstr "  단일 프로세스를 강제하고 재생 목록에 파일을 추가"
+msgstr "  ë‹¨ì¼ í”„ë¡œì„¸ìŠ¤ë¥¼ ê°•ì œí•˜ê³  ìž¬ìƒ ëª©ë¡ì— íŒŒì¼ì„ ì¶”ê°€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:987
 msgid "  Window height is always remembered"
-msgstr "  창 고도는 항상 기억됩니다"
+msgstr "  ì°½ ê³ ë„ëŠ” í•­ìƒ ê¸°ì–µë©ë‹ˆë‹¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:984
 msgid "  Window width is remembered in the current session"
-msgstr "  창 폭은 현재 세션에서 기억됩니다."
+msgstr "  ì°½ í­ì€ í˜„ìž¬ ì„¸ì…˜ì—ì„œ ê¸°ì–µë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:107
 msgid " (experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
@@ -249,11 +249,11 @@ msgstr " Allow only Vulkan"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:241
 msgid " Aspect-ratio preserving nearest neighbour sampling (very fast)."
-msgstr " Aspect-ratio는 가장 가까운 neighbour 샘플링을 보존합니다 (매우 빠른)."
+msgstr " Aspect-ratioëŠ” ê°€ìž¥ ê°€ê¹Œìš´ neighbour ìƒ˜í”Œë§ì„ ë³´ì¡´í•©ë‹ˆë‹¤ (ë§¤ìš° ë¹ ë¥¸)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:174
 msgid " Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
-msgstr " 자동 선택. 산출 조금 깊이가 검출될 수 없는 경우에, 성분 당 8 조금은 가정됩니다."
+msgstr " ìžë™ ì„ íƒ. ì‚°ì¶œ ì¡°ê¸ˆ ê¹Šì´ê°€ ê²€ì¶œë  ìˆ˜ ì—†ëŠ” ê²½ìš°ì—, ì„±ë¶„ ë‹¹ 8 ì¡°ê¸ˆì€ ê°€ì •ë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1166
 msgid " Available on Windows 10 or higher"
@@ -261,37 +261,37 @@ msgstr " Available on Windows 10 or higher"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:242
 msgid " Bicubic interpolation (fast)."
-msgstr " Bicubic interpolation (빠른)."
+msgstr " Bicubic interpolation (ë¹ ë¥¸)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:240
 msgid " Bilinear sampling (very fast)."
-msgstr " Bilinear 샘플링 (매우 빠른)."
+msgstr " Bilinear ìƒ˜í”Œë§ (ë§¤ìš° ë¹ ë¥¸)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:261
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:276
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:291
 msgid " Catmull-Rom cubic spline"
-msgstr " Catmull rom 입방 스플라인"
+msgstr " Catmull rom ìž…ë°© ìŠ¤í”Œë¼ì¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:244
 msgid " Catmull-Rom cubic spline."
-msgstr " Catmull-Rom 입방 스플라인."
+msgstr " Catmull-Rom ìž…ë°© ìŠ¤í”Œë¼ì¸."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:227
 msgid " Default settings, tuned to provide a balance of performance and quality."
-msgstr " 기본 설정, 성능과 품질의 균형을 제공하기 위해 조정."
+msgstr " ê¸°ë³¸ ì„¤ì •, ì„±ëŠ¥ê³¼ í’ˆì§ˆì˜ ê· í˜•ì„ ì œê³µí•˜ê¸° ìœ„í•´ ì¡°ì •."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:228
 msgid " Disable all advanced rendering, equivalent to passing no to every option."
-msgstr " 모든 고급 렌더링을 비활성화하여 모든 옵션에 대해 전달하십시오."
+msgstr " ëª¨ë“  ê³ ê¸‰ ë Œë”ë§ì„ ë¹„í™œì„±í™”í•˜ì—¬ ëª¨ë“  ì˜µì…˜ì— ëŒ€í•´ ì „ë‹¬í•˜ì‹­ì‹œì˜¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:246
 msgid " EWA Lanczos (\"Jinc\") reconstruction (slow)."
-msgstr " EWA Lanczos (\"Jinc\") 재건축 (저녁)."
+msgstr " EWA Lanczos (\"Jinc\") ìž¬ê±´ì¶• (ì €ë…)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:66
 msgid " Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
-msgstr " libplacebo를 기반으로 한 Experimental 비디오 렌더링기. --vo=gpu로 거의 동일한 기능을 지원합니다."
+msgstr " libplaceboë¥¼ ê¸°ë°˜ìœ¼ë¡œ í•œ Experimental ë¹„ë””ì˜¤ ë Œë”ë§ê¸°. --vo=gpuë¡œ ê±°ì˜ ë™ì¼í•œ ê¸°ëŠ¥ì„ ì§€ì›í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:8
 msgid " Force a single process everytime the shell starts mpv.net"
@@ -299,31 +299,31 @@ msgstr " Force a single process everytime the shell starts mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:243
 msgid " Gaussian smoothing (fast)."
-msgstr " Gaussian 스무딩 (빠른)."
+msgstr " Gaussian ìŠ¤ë¬´ë”© (ë¹ ë¥¸)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:245
 msgid " Lanczos reconstruction."
-msgstr " Lanczos 재건."
+msgstr " Lanczos ìž¬ê±´."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:813
 msgid " Load all audio files containing media filename."
-msgstr " 미디어 파일명 포함 모든 오디오 파일을로드합니다."
+msgstr " ë¯¸ë””ì–´ íŒŒì¼ëª… í¬í•¨ ëª¨ë“  ì˜¤ë””ì˜¤ íŒŒì¼ì„ë¡œë“œí•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:849
 msgid " Load all subs containing media filename."
-msgstr " media filename을 포함한 모든 하위를 로드합니다."
+msgstr " media filenameì„ í¬í•¨í•œ ëª¨ë“  í•˜ìœ„ë¥¼ ë¡œë“œí•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:812
 msgid " Load the media filename with audio file extension."
-msgstr " 오디오 파일 확장으로 미디어 파일 이름을로드합니다."
+msgstr " ì˜¤ë””ì˜¤ íŒŒì¼ í™•ìž¥ìœ¼ë¡œ ë¯¸ë””ì–´ íŒŒì¼ ì´ë¦„ì„ë¡œë“œí•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:848
 msgid " Load the media filename with subtitle file extension."
-msgstr " subtitle 파일 확장으로 미디어 파일 이름을로드합니다."
+msgstr " subtitle íŒŒì¼ í™•ìž¥ìœ¼ë¡œ ë¯¸ë””ì–´ íŒŒì¼ ì´ë¦„ì„ë¡œë“œí•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:239
 msgid " Nearest-neighbour (box) sampling (very fast)."
-msgstr " 가장 가까운 거리 (box) 샘플링 (매우 빠른)."
+msgstr " ê°€ìž¥ ê°€ê¹Œìš´ ê±°ë¦¬ (box) ìƒ˜í”Œë§ (ë§¤ìš° ë¹ ë¥¸)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:238
 msgid " No filter, only use basic GPU texture sampling."
@@ -331,27 +331,27 @@ msgstr " No filter, only use basic GPU texture sampling."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:301
 msgid " Oversampling, only mix \"edge\" frames while preserving FPS"
-msgstr " 오버 샘플링, FPS를 보존하는 동안 \"edge\"프레임 만 혼합"
+msgstr " ì˜¤ë²„ ìƒ˜í”Œë§, FPSë¥¼ ë³´ì¡´í•˜ëŠ” ë™ì•ˆ \"edge\"í”„ë ˆìž„ ë§Œ í˜¼í•©"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1040
 msgid " Playback will never automatically advance to the next file."
-msgstr " 재생은 다음 파일로 자동으로 발전하지 않습니다."
+msgstr " ìž¬ìƒì€ ë‹¤ìŒ íŒŒì¼ë¡œ ìžë™ìœ¼ë¡œ ë°œì „í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:229
 msgid " Reset all everything to high quality presets (where available)."
-msgstr " 고품질 사전 설정에 모든 모든 것을 재설정 (무선 가능)."
+msgstr " ê³ í’ˆì§ˆ ì‚¬ì „ ì„¤ì •ì— ëª¨ë“  ëª¨ë“  ê²ƒì„ ìž¬ì„¤ì • (ë¬´ì„  ê°€ëŠ¥)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:247
 msgid " Sharpened version of ewa_lanczos (slow)."
-msgstr " ewa_lanczos (slow)의 날카로운 버전."
+msgstr " ewa_lanczos (slow)ì˜ ë‚ ì¹´ë¡œìš´ ë²„ì „."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1085
 msgid " Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
-msgstr " 찾기가 파일에 절대 위치 인 경우 정확한 추구를 사용하지만, 화살표 키의 기본 행동과 같은 상대적 추구하지."
+msgstr " ì°¾ê¸°ê°€ íŒŒì¼ì— ì ˆëŒ€ ìœ„ì¹˜ ì¸ ê²½ìš° ì •í™•í•œ ì¶”êµ¬ë¥¼ ì‚¬ìš©í•˜ì§€ë§Œ, í™”ì‚´í‘œ í‚¤ì˜ ê¸°ë³¸ í–‰ë™ê³¼ ê°™ì€ ìƒëŒ€ì  ì¶”êµ¬í•˜ì§€."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:248
 msgid " Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
-msgstr " ewa_lanczos의 아주 예리한 버전, anti-ringing (매우 느립니다)."
+msgstr " ewa_lanczosì˜ ì•„ì£¼ ì˜ˆë¦¬í•œ ë²„ì „, anti-ringing (ë§¤ìš° ëŠë¦½ë‹ˆë‹¤)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:67
 msgid " Video output driver that uses the Direct3D interface."
@@ -359,15 +359,15 @@ msgstr " Video output driver that uses the Direct3D interface."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:986
 msgid " Window height is remembered in the current session"
-msgstr " 창 고도는 현재 회의에서 기억됩니다"
+msgstr " ì°½ ê³ ë„ëŠ” í˜„ìž¬ íšŒì˜ì—ì„œ ê¸°ì–µë©ë‹ˆë‹¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:83
 msgid " copies video back to system RAM"
-msgstr " 시스템 RAM에 비디오 백업"
+msgstr " ì‹œìŠ¤í…œ RAMì— ë¹„ë””ì˜¤ ë°±ì—…"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Conf.cs:38
 msgid "(Default)"
-msgstr "(기본값)"
+msgstr "(ê¸°ë³¸ê°’)"
 
 msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
 msgstr "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
@@ -406,15 +406,15 @@ msgstr "8"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:392
 msgid "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
-msgstr "<-1.0..1.0> 광도 향상. 근원 발광성 신호에 일정한 bias를 추가하십시오. 0.0 = 중립, 1.0 = 단단한 백색, -1.0 = 단단한 검정. 기본값은 0.0."
+msgstr "<-1.0..1.0> ê´‘ë„ í–¥ìƒ. ê·¼ì› ë°œê´‘ì„± ì‹ í˜¸ì— ì¼ì •í•œ biasë¥¼ ì¶”ê°€í•˜ì‹­ì‹œì˜¤. 0.0 = ì¤‘ë¦½, 1.0 = ë‹¨ë‹¨í•œ ë°±ìƒ‰, -1.0 = ë‹¨ë‹¨í•œ ê²€ì •. ê¸°ë³¸ê°’ì€ 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:417
 msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
-msgstr "<-1.143..5.286> 색온도 이동. 6500 K와 상대, 0.0의 가치는 당신에게 6500 K (변화 없음), -1.0의 가치 당신에게 3000 K를 주고, 1.0의 가치는 당신에게 10000 K를 줍니다. 0.0에 과태."
+msgstr "<-1.143..5.286> ìƒ‰ì˜¨ë„ ì´ë™. 6500 Kì™€ ìƒëŒ€, 0.0ì˜ ê°€ì¹˜ëŠ” ë‹¹ì‹ ì—ê²Œ 6500 K (ë³€í™” ì—†ìŒ), -1.0ì˜ ê°€ì¹˜ ë‹¹ì‹ ì—ê²Œ 3000 Kë¥¼ ì£¼ê³ , 1.0ì˜ ê°€ì¹˜ëŠ” ë‹¹ì‹ ì—ê²Œ 10000 Kë¥¼ ì¤ë‹ˆë‹¤. 0.0ì— ê³¼íƒœ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:770
 msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
-msgstr "<0-100> JPEG 품질 수준을 설정합니다. Higher는 더 나은 질을 의미합니다. 기본값은 90입니다."
+msgstr "<0-100> JPEG í’ˆì§ˆ ìˆ˜ì¤€ì„ ì„¤ì •í•©ë‹ˆë‹¤. HigherëŠ” ë” ë‚˜ì€ ì§ˆì„ ì˜ë¯¸í•©ë‹ˆë‹¤. ê¸°ë³¸ê°’ì€ 90ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:914
 msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
@@ -422,31 +422,31 @@ msgstr "<0-32> In multi-monitor configurations (i.e. a single desktop that spans
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:780
 msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
-msgstr "<0-5> PNG 압축 이전에 적용되는 필터를 설정합니다. 0은 아무도, 1은 'sub', 2은 'up', 3은 'average', 4은 'Paeth', 5은 'mixed'입니다. 이것은 달성될 수 있는 압축의 수준에 영향을 줍니다. 대부분의 이미지의 경우 'mixed'는 최고의 압축 비율을 달성하므로 기본값입니다."
+msgstr "<0-5> PNG ì••ì¶• ì´ì „ì— ì ìš©ë˜ëŠ” í•„í„°ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤. 0ì€ ì•„ë¬´ë„, 1ì€ 'sub', 2ì€ 'up', 3ì€ 'average', 4ì€ 'Paeth', 5ì€ 'mixed'ìž…ë‹ˆë‹¤. ì´ê²ƒì€ ë‹¬ì„±ë  ìˆ˜ ìžˆëŠ” ì••ì¶•ì˜ ìˆ˜ì¤€ì— ì˜í–¥ì„ ì¤ë‹ˆë‹¤. ëŒ€ë¶€ë¶„ì˜ ì´ë¯¸ì§€ì˜ ê²½ìš° 'mixed'ëŠ” ìµœê³ ì˜ ì••ì¶• ë¹„ìœ¨ì„ ë‹¬ì„±í•˜ë¯€ë¡œ ê¸°ë³¸ê°’ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:775
 msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
-msgstr "<0-9> PNG 압축 레벨을 설정합니다. Higher는 더 나은 압축을 의미합니다. 이것은 서면 스크린 샷 파일의 파일 크기에 영향을주고 스크린 샷을 작성하는 데 시간이 걸립니다. 너무 높은 압축은 재생을 중단하는 충분한 CPU 시간을 점유할지도 모릅니다. 기본값은 7.입니다."
+msgstr "<0-9> PNG ì••ì¶• ë ˆë²¨ì„ ì„¤ì •í•©ë‹ˆë‹¤. HigherëŠ” ë” ë‚˜ì€ ì••ì¶•ì„ ì˜ë¯¸í•©ë‹ˆë‹¤. ì´ê²ƒì€ ì„œë©´ ìŠ¤í¬ë¦° ìƒ· íŒŒì¼ì˜ íŒŒì¼ í¬ê¸°ì— ì˜í–¥ì„ì£¼ê³  ìŠ¤í¬ë¦° ìƒ·ì„ ìž‘ì„±í•˜ëŠ” ë° ì‹œê°„ì´ ê±¸ë¦½ë‹ˆë‹¤. ë„ˆë¬´ ë†’ì€ ì••ì¶•ì€ ìž¬ìƒì„ ì¤‘ë‹¨í•˜ëŠ” ì¶©ë¶„í•œ CPU ì‹œê°„ì„ ì ìœ í• ì§€ë„ ëª¨ë¦…ë‹ˆë‹¤. ê¸°ë³¸ê°’ì€ 7.ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:543
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
-msgstr "<0..1024> Gamut 매핑 3DLUT 크기. 치수를 0로 설정하면 기본 값을 선택합니다. 기본 256."
+msgstr "<0..1024> Gamut ë§¤í•‘ 3DLUT í¬ê¸°. ì¹˜ìˆ˜ë¥¼ 0ë¡œ ì„¤ì •í•˜ë©´ ê¸°ë³¸ ê°’ì„ ì„ íƒí•©ë‹ˆë‹¤. ê¸°ë³¸ 256."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:538
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
-msgstr "<0..1024> Gamut 매핑 3DLUT 크기. 치수를 0로 설정하면 기본 값을 선택합니다. 기본값은 32입니다."
+msgstr "<0..1024> Gamut ë§¤í•‘ 3DLUT í¬ê¸°. ì¹˜ìˆ˜ë¥¼ 0ë¡œ ì„¤ì •í•˜ë©´ ê¸°ë³¸ ê°’ì„ ì„ íƒí•©ë‹ˆë‹¤. ê¸°ë³¸ê°’ì€ 32ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:533
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
-msgstr "<0..1024> Gamut 매핑 3DLUT 크기. 치수를 0로 설정하면 기본 값을 선택합니다. 기본값은 48입니다."
+msgstr "<0..1024> Gamut ë§¤í•‘ 3DLUT í¬ê¸°. ì¹˜ìˆ˜ë¥¼ 0ë¡œ ì„¤ì •í•˜ë©´ ê¸°ë³¸ ê°’ì„ ì„ íƒí•©ë‹ˆë‹¤. ê¸°ë³¸ê°’ì€ 48ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:330
 msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
-msgstr "<0..16> 샘플 당 수행 단계의 수. 각 단계는 조금 더 밴딩을 감소시키고, 그러나 보상하는 시간을 가지고 갑니다. 각 단계의 힘이 매우 빨리 떨어지는 것을 주의하십시오, 그래서 높은 수 (>4)는 실질적으로 쓸모가 있습니다. 기본값 1"
+msgstr "<0..16> ìƒ˜í”Œ ë‹¹ ìˆ˜í–‰ ë‹¨ê³„ì˜ ìˆ˜. ê° ë‹¨ê³„ëŠ” ì¡°ê¸ˆ ë” ë°´ë”©ì„ ê°ì†Œì‹œí‚¤ê³ , ê·¸ëŸ¬ë‚˜ ë³´ìƒí•˜ëŠ” ì‹œê°„ì„ ê°€ì§€ê³  ê°‘ë‹ˆë‹¤. ê° ë‹¨ê³„ì˜ íž˜ì´ ë§¤ìš° ë¹¨ë¦¬ ë–¨ì–´ì§€ëŠ” ê²ƒì„ ì£¼ì˜í•˜ì‹­ì‹œì˜¤, ê·¸ëž˜ì„œ ë†’ì€ ìˆ˜ (>4)ëŠ” ì‹¤ì§ˆì ìœ¼ë¡œ ì“¸ëª¨ê°€ ìžˆìŠµë‹ˆë‹¤. ê¸°ë³¸ê°’ 1"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:656
 msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
-msgstr "<0..4096> 톤 매핑 LUT 크기. 0을 설정하면 기본 크기를 선택합니다. 기본 256."
+msgstr "<0..4096> í†¤ ë§¤í•‘ LUT í¬ê¸°. 0ì„ ì„¤ì •í•˜ë©´ ê¸°ë³¸ í¬ê¸°ë¥¼ ì„ íƒí•©ë‹ˆë‹¤. ê¸°ë³¸ 256."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:587
 msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
@@ -454,83 +454,83 @@ msgstr "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ l
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:508
 msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
-msgstr "<0.0..1.0> (Relative) 각광을 위한 색도 보호 지역. 기본값은 0.30입니다."
+msgstr "<0.0..1.0> (Relative) ê°ê´‘ì„ ìœ„í•œ ìƒ‰ë„ ë³´í˜¸ ì§€ì—­. ê¸°ë³¸ê°’ì€ 0.30ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:309
 msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
-msgstr "<0.0..1.0> 모든 필터에 사용할 수 있는 힘 방지. 0.0의 값은 antiringing을 해제하고 1.0의 값은 full-strength antiringing을 활성화합니다. 기본값은 0.0."
+msgstr "<0.0..1.0> ëª¨ë“  í•„í„°ì— ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” íž˜ ë°©ì§€. 0.0ì˜ ê°’ì€ antiringingì„ í•´ì œí•˜ê³  1.0ì˜ ê°’ì€ full-strength antiringingì„ í™œì„±í™”í•©ë‹ˆë‹¤. ê¸°ë³¸ê°’ì€ 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:597
 msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
-msgstr "<0.0..1.0> 기본 무릎 점은 소스 장면 평균 metadata의 부재에 사용. 일반적으로, 이것은 무릎 지점을 선택의 호의에서 무시 (관계) 소스 장면 평균 밝기 수준. 기본값은 0.4입니다."
+msgstr "<0.0..1.0> ê¸°ë³¸ ë¬´ë¦Ž ì ì€ ì†ŒìŠ¤ ìž¥ë©´ í‰ê·  metadataì˜ ë¶€ìž¬ì— ì‚¬ìš©. ì¼ë°˜ì ìœ¼ë¡œ, ì´ê²ƒì€ ë¬´ë¦Ž ì§€ì ì„ ì„ íƒì˜ í˜¸ì˜ì—ì„œ ë¬´ì‹œ (ê´€ê³„) ì†ŒìŠ¤ ìž¥ë©´ í‰ê·  ë°ê¸° ìˆ˜ì¤€. ê¸°ë³¸ê°’ì€ 0.4ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:528
 msgid "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
-msgstr "<0.0..1.0> softclip를 위한 Desaturation 힘. 기본값은 0.35입니다."
+msgstr "<0.0..1.0> softclipë¥¼ ìœ„í•œ Desaturation íž˜. ê¸°ë³¸ê°’ì€ 0.35ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:627
 msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
-msgstr "<0.0..1.0> 레거시 기능을 위해 (mobius, gamma) 선형 빛에서 작동, 이 직접 대응 무릎 지점을 설정합니다. 기본값은 0.3입니다."
+msgstr "<0.0..1.0> ë ˆê±°ì‹œ ê¸°ëŠ¥ì„ ìœ„í•´ (mobius, gamma) ì„ í˜• ë¹›ì—ì„œ ìž‘ë™, ì´ ì§ì ‘ ëŒ€ì‘ ë¬´ë¦Ž ì§€ì ì„ ì„¤ì •í•©ë‹ˆë‹¤. ê¸°ë³¸ê°’ì€ 0.3ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:622
 msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast coefficient at the display peak. Essentially, a value of 0.5 implies that the reference white will be about half as bright as when clipping. Defaults to 0.5."
-msgstr "<0.0..1.0> reinhard 함수의 경우, 이 디스플레이 피크의 지역 대조 계수를 지정합니다. 근본적으로, 0.5의 가치는 참고 백색이 클립을 때 밝게 대략 반일 것이라는 점을 의미합니다. 기본값 0.5."
+msgstr "<0.0..1.0> reinhard í•¨ìˆ˜ì˜ ê²½ìš°, ì´ ë””ìŠ¤í”Œë ˆì´ í”¼í¬ì˜ ì§€ì—­ ëŒ€ì¡° ê³„ìˆ˜ë¥¼ ì§€ì •í•©ë‹ˆë‹¤. ê·¼ë³¸ì ìœ¼ë¡œ, 0.5ì˜ ê°€ì¹˜ëŠ” ì°¸ê³  ë°±ìƒ‰ì´ í´ë¦½ì„ ë•Œ ë°ê²Œ ëŒ€ëžµ ë°˜ì¼ ê²ƒì´ë¼ëŠ” ì ì„ ì˜ë¯¸í•©ë‹ˆë‹¤. ê¸°ë³¸ê°’ 0.5."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:523
 msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
-msgstr "<0.0..1.0> 무릎 점 soft-clipping 방법 (perceptual, softclip). 기본값은 0.70입니다."
+msgstr "<0.0..1.0> ë¬´ë¦Ž ì  soft-clipping ë°©ë²• (perceptual, softclip). ê¸°ë³¸ê°’ì€ 0.70ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:513
 msgid "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
-msgstr "<0.0..1.0> perceptual 포화 매핑 부품의 강도. 기본값은 0.80입니다."
+msgstr "<0.0..1.0> perceptual í¬í™” ë§¤í•‘ ë¶€í’ˆì˜ ê°•ë„. ê¸°ë³¸ê°’ì€ 0.80ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:366
 msgid "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
-msgstr "<0.0..1.0> sigmoid 곡선의 중심 (bias). 기본값 0.75."
+msgstr "<0.0..1.0> sigmoid ê³¡ì„ ì˜ ì¤‘ì‹¬ (bias). ê¸°ë³¸ê°’ 0.75."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:632
 msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
-msgstr "<0.0..10.0> 선형 방법 (선형, 선형 조명)의 경우 선형 노출 / 가인이 이미지에 적용됩니다. 기본값 1.0."
+msgstr "<0.0..10.0> ì„ í˜• ë°©ë²• (ì„ í˜•, ì„ í˜• ì¡°ëª…)ì˜ ê²½ìš° ì„ í˜• ë…¸ì¶œ / ê°€ì¸ì´ ì´ë¯¸ì§€ì— ì ìš©ë©ë‹ˆë‹¤. ê¸°ë³¸ê°’ 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:518
 msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
-msgstr "<0.0..10.0> I vs C 곡선 gamma는 색도계 클립핑을 사용하기 위해 (관계, 절대 및 어둠). 기본값은 1.80입니다."
+msgstr "<0.0..10.0> I vs C ê³¡ì„  gammaëŠ” ìƒ‰ë„ê³„ í´ë¦½í•‘ì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ (ê´€ê³„, ì ˆëŒ€ ë° ì–´ë‘ ). ê¸°ë³¸ê°’ì€ 1.80ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:461
 msgid "<0.0..100.0> Black cutoff strength."
-msgstr "<0.0..100.0> 까만 커트오프 힘."
+msgstr "<0.0..100.0> ê¹Œë§Œ ì»¤íŠ¸ì˜¤í”„ íž˜."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:397
 msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
-msgstr "<0.0..100.0> 대조 이익. 일정한 요인에 의하여 근원 발광성 신호. 1.0 = 중립, 0.0 = 단단한 검정. 기본 1.0."
+msgstr "<0.0..100.0> ëŒ€ì¡° ì´ìµ. ì¼ì •í•œ ìš”ì¸ì— ì˜í•˜ì—¬ ê·¼ì› ë°œê´‘ì„± ì‹ í˜¸. 1.0 = ì¤‘ë¦½, 0.0 = ë‹¨ë‹¨í•œ ê²€ì •. ê¸°ë³¸ 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:412
 msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
-msgstr "<0.0..100.0> 감마 리프트. 일반적으로 밝은 또는 어둠의 장면을 보존하는 동안 전체적인 대조. 1.0 = 중립, 0.0 = 단단한 검정. 기본 1.0."
+msgstr "<0.0..100.0> ê°ë§ˆ ë¦¬í”„íŠ¸. ì¼ë°˜ì ìœ¼ë¡œ ë°ì€ ë˜ëŠ” ì–´ë‘ ì˜ ìž¥ë©´ì„ ë³´ì¡´í•˜ëŠ” ë™ì•ˆ ì „ì²´ì ì¸ ëŒ€ì¡°. 1.0 = ì¤‘ë¦½, 0.0 = ë‹¨ë‹¨í•œ ê²€ì •. ê¸°ë³¸ 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:402
 msgid "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
-msgstr "<0.0..100.0> 포화 이익. 일정한 요인에 의하여 근원 색도 신호. 1.0 = 중립, 0.0 = 그레이 스케일. 기본값 1.0."
+msgstr "<0.0..100.0> í¬í™” ì´ìµ. ì¼ì •í•œ ìš”ì¸ì— ì˜í•˜ì—¬ ê·¼ì› ìƒ‰ë„ ì‹ í˜¸. 1.0 = ì¤‘ë¦½, 0.0 = ê·¸ë ˆì´ ìŠ¤ì¼€ì¼. ê¸°ë³¸ê°’ 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:455
 msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
-msgstr "<0.0..100.0> 입력 이미지 밝기 histogram의 % 진정한 피크 장면으로 고려."
+msgstr "<0.0..100.0> ìž…ë ¥ ì´ë¯¸ì§€ ë°ê¸° histogramì˜ % ì§„ì •í•œ í”¼í¬ ìž¥ë©´ìœ¼ë¡œ ê³ ë ¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:345
 msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps cover up remaining quantization artifacts. Higher numbers add more noise. Defaults to 4.0, which is very mild."
-msgstr "<0.0..1000.0> 이미지에 몇 가지 추가 소음을 추가합니다. 이것은 크게 남아있는 정량화 artifacts를 덮습니다. 더 높은 숫자는 더 많은 소음을 추가합니다. 아주 온화한 4.0에 과태."
+msgstr "<0.0..1000.0> ì´ë¯¸ì§€ì— ëª‡ ê°€ì§€ ì¶”ê°€ ì†ŒìŒì„ ì¶”ê°€í•©ë‹ˆë‹¤. ì´ê²ƒì€ í¬ê²Œ ë‚¨ì•„ìžˆëŠ” ì •ëŸ‰í™” artifactsë¥¼ ë®ìŠµë‹ˆë‹¤. ë” ë†’ì€ ìˆ«ìžëŠ” ë” ë§Žì€ ì†ŒìŒì„ ì¶”ê°€í•©ë‹ˆë‹¤. ì•„ì£¼ ì˜¨í™”í•œ 4.0ì— ê³¼íƒœ."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:439
 msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
-msgstr "<0.0..1000.0> 검출된 값의 스무딩 계수."
+msgstr "<0.0..1000.0> ê²€ì¶œëœ ê°’ì˜ ìŠ¤ë¬´ë”© ê³„ìˆ˜."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:335
 msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
-msgstr "<0.0..1000.0> 분리 필터의 cut-off 임계값. 높은 숫자는 극적으로 파괴 강도를 증가, 그러나 진보적으로 이미지 세부 사항을 감소. 기본값은 3.0입니다."
+msgstr "<0.0..1000.0> ë¶„ë¦¬ í•„í„°ì˜ cut-off ìž„ê³„ê°’. ë†’ì€ ìˆ«ìžëŠ” ê·¹ì ìœ¼ë¡œ íŒŒê´´ ê°•ë„ë¥¼ ì¦ê°€, ê·¸ëŸ¬ë‚˜ ì§„ë³´ì ìœ¼ë¡œ ì´ë¯¸ì§€ ì„¸ë¶€ ì‚¬í•­ì„ ê°ì†Œ. ê¸°ë³¸ê°’ì€ 3.0ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:340
 msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
-msgstr "<0.0..1000.0> 분리 필터의 초기 반경. 반경이 선형으로 증가합니다. 더 높은 반경은 더 많은 gradients를 찾아낼 것입니다, 그러나 더 낮은 반경은 더 적극적으로 매끄럽게 할 것입니다. 기본값 16.0."
+msgstr "<0.0..1000.0> ë¶„ë¦¬ í•„í„°ì˜ ì´ˆê¸° ë°˜ê²½. ë°˜ê²½ì´ ì„ í˜•ìœ¼ë¡œ ì¦ê°€í•©ë‹ˆë‹¤. ë” ë†’ì€ ë°˜ê²½ì€ ë” ë§Žì€ gradientsë¥¼ ì°¾ì•„ë‚¼ ê²ƒìž…ë‹ˆë‹¤, ê·¸ëŸ¬ë‚˜ ë” ë‚®ì€ ë°˜ê²½ì€ ë” ì ê·¹ì ìœ¼ë¡œ ë§¤ë„ëŸ½ê²Œ í•  ê²ƒìž…ë‹ˆë‹¤. ê¸°ë³¸ê°’ 16.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:592
 msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
@@ -538,11 +538,11 @@ msgstr "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ l
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:602
 msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
-msgstr "<0.5..2.0> 무릎 점 오프셋 (bt2390 전용). 0.5 값은 spec-defined 기본 동작이며, 1.0의 libplacebo 기본값과 다릅니다."
+msgstr "<0.5..2.0> ë¬´ë¦Ž ì  ì˜¤í”„ì…‹ (bt2390 ì „ìš©). 0.5 ê°’ì€ spec-defined ê¸°ë³¸ ë™ìž‘ì´ë©°, 1.0ì˜ libplacebo ê¸°ë³¸ê°’ê³¼ ë‹¤ë¦…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:371
 msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
-msgstr "<1.0..20.0> sigmoid 곡선의 사면 (맛). 기본 6.5."
+msgstr "<1.0..20.0> sigmoid ê³¡ì„ ì˜ ì‚¬ë©´ (ë§›). ê¸°ë³¸ 6.5."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:666
 msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
@@ -550,25 +550,25 @@ msgstr "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or dec
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1099
 msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
-msgstr "<N|inf|force|no> 루프 재생 N 번. 1의 가치는 1 시간 (과태), 2 2 시간, 등 inf가 영원히 의미한다. 1과 disables 반복과 동일하지 않습니다. 여러 파일이 명령줄에 지정되면 전체 재생 목록이 반복됩니다. 힘 형태는 inf 같이, 그러나 실패로 표시된 playlist 입장을 건너지 않습니다. 이것은 플레이어가 존재하지 않는 파일을 반복하려고 CPU 시간을 낭비 할 수 있음을 의미합니다. 하지만 그것은 매우 나쁜 네트워크 조건 하에서 webradios 재생에 대 한 유용할 수 있습니다."
+msgstr "<N|inf|force|no> ë£¨í”„ ìž¬ìƒ N ë²ˆ. 1ì˜ ê°€ì¹˜ëŠ” 1 ì‹œê°„ (ê³¼íƒœ), 2 2 ì‹œê°„, ë“± infê°€ ì˜ì›ížˆ ì˜ë¯¸í•œë‹¤. 1ê³¼ disables ë°˜ë³µê³¼ ë™ì¼í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ì—¬ëŸ¬ íŒŒì¼ì´ ëª…ë ¹ì¤„ì— ì§€ì •ë˜ë©´ ì „ì²´ ìž¬ìƒ ëª©ë¡ì´ ë°˜ë³µë©ë‹ˆë‹¤. íž˜ í˜•íƒœëŠ” inf ê°™ì´, ê·¸ëŸ¬ë‚˜ ì‹¤íŒ¨ë¡œ í‘œì‹œëœ playlist ìž…ìž¥ì„ ê±´ë„ˆì§€ ì•ŠìŠµë‹ˆë‹¤. ì´ê²ƒì€ í”Œë ˆì´ì–´ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” íŒŒì¼ì„ ë°˜ë³µí•˜ë ¤ê³  CPU ì‹œê°„ì„ ë‚­ë¹„ í•  ìˆ˜ ìžˆìŒì„ ì˜ë¯¸í•©ë‹ˆë‹¤. í•˜ì§€ë§Œ ê·¸ê²ƒì€ ë§¤ìš° ë‚˜ìœ ë„¤íŠ¸ì›Œí¬ ì¡°ê±´ í•˜ì—ì„œ webradios ìž¬ìƒì— ëŒ€ í•œ ìœ ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤."
 
 msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\\\n\\\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
-msgstr "<N|inf|no> 단일 파일 N 번 루프. inf는 영원히 의미, 정상적인 재생을 의미하지 않습니다. \\\\n\\\\nloop-playlist의 차이는 재생 목록을 반복하지 않다는 것입니다. 재생 목록이 단일 파일 만 포함되면 두 옵션의 차이는이 옵션은 파일 재로드 대신 루프를 추구하는 것을 수행한다는 것입니다. 루프는이 옵션에 대한 별명입니다."
+msgstr "<N|inf|no> ë‹¨ì¼ íŒŒì¼ N ë²ˆ ë£¨í”„. infëŠ” ì˜ì›ížˆ ì˜ë¯¸, ì •ìƒì ì¸ ìž¬ìƒì„ ì˜ë¯¸í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. \\\\n\\\\nloop-playlistì˜ ì°¨ì´ëŠ” ìž¬ìƒ ëª©ë¡ì„ ë°˜ë³µí•˜ì§€ ì•Šë‹¤ëŠ” ê²ƒìž…ë‹ˆë‹¤. ìž¬ìƒ ëª©ë¡ì´ ë‹¨ì¼ íŒŒì¼ ë§Œ í¬í•¨ë˜ë©´ ë‘ ì˜µì…˜ì˜ ì°¨ì´ëŠ”ì´ ì˜µì…˜ì€ íŒŒì¼ ìž¬ë¡œë“œ ëŒ€ì‹  ë£¨í”„ë¥¼ ì¶”êµ¬í•˜ëŠ” ê²ƒì„ ìˆ˜í–‰í•œë‹¤ëŠ” ê²ƒìž…ë‹ˆë‹¤. ë£¨í”„ëŠ”ì´ ì˜µì…˜ì— ëŒ€í•œ ë³„ëª…ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1062
 msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
-msgstr "<N|inf|no> 단일 파일 N 번 루프. inf는 영원히, 정상적인 재생을 의미하지 않습니다.\\n\\nloop-playlist의 차이는 재생 목록을 반복하지 않다는 것입니다. 재생 목록이 단일 파일 만 포함되면 두 옵션의 차이는이 옵션은 파일 재로드 대신 루프를 추구하는 것을 수행한다는 것입니다. 루프는이 옵션에 대한 별명입니다."
+msgstr "<N|inf|no> ë‹¨ì¼ íŒŒì¼ N ë²ˆ ë£¨í”„. infëŠ” ì˜ì›ížˆ, ì •ìƒì ì¸ ìž¬ìƒì„ ì˜ë¯¸í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\\n\\nloop-playlistì˜ ì°¨ì´ëŠ” ìž¬ìƒ ëª©ë¡ì„ ë°˜ë³µí•˜ì§€ ì•Šë‹¤ëŠ” ê²ƒìž…ë‹ˆë‹¤. ìž¬ìƒ ëª©ë¡ì´ ë‹¨ì¼ íŒŒì¼ ë§Œ í¬í•¨ë˜ë©´ ë‘ ì˜µì…˜ì˜ ì°¨ì´ëŠ”ì´ ì˜µì…˜ì€ íŒŒì¼ ìž¬ë¡œë“œ ëŒ€ì‹  ë£¨í”„ë¥¼ ì¶”êµ¬í•˜ëŠ” ê²ƒì„ ìˆ˜í–‰í•œë‹¤ëŠ” ê²ƒìž…ë‹ˆë‹¤. ë£¨í”„ëŠ”ì´ ì˜µì…˜ì— ëŒ€í•œ ë³„ëª…ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:407
 msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
-msgstr "<angle> Hue 이동. 중립 축선의 주위에 UV subvector의 교체에 대응합니다. 라디언에서 지정. 기본값은 0.0(neutral)입니다."
+msgstr "<angle> Hue ì´ë™. ì¤‘ë¦½ ì¶•ì„ ì˜ ì£¼ìœ„ì— UV subvectorì˜ êµì²´ì— ëŒ€ì‘í•©ë‹ˆë‹¤. ë¼ë””ì–¸ì—ì„œ ì§€ì •. ê¸°ë³¸ê°’ì€ 0.0(neutral)ìž…ë‹ˆë‹¤."
 
 msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\\\nSuffixes such as KiB and MiB are supported."
-msgstr "<bytesize> demuxer가 버퍼로 허용되는 방법을 제어합니다. \\\\nKiB 및 MiB와 같은 스핑크가 지원됩니다."
+msgstr "<bytesize> demuxerê°€ ë²„í¼ë¡œ í—ˆìš©ë˜ëŠ” ë°©ë²•ì„ ì œì–´í•©ë‹ˆë‹¤. \\\\nKiB ë° MiBì™€ ê°™ì€ ìŠ¤í•‘í¬ê°€ ì§€ì›ë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1194
 msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
-msgstr "<bytesize> demuxer가 버퍼로 허용되는 방법을 제어합니다.\\nKiB 및 MiB와 같은 스핑크가 지원됩니다."
+msgstr "<bytesize> demuxerê°€ ë²„í¼ë¡œ í—ˆìš©ë˜ëŠ” ë°©ë²•ì„ ì œì–´í•©ë‹ˆë‹¤.\\nKiB ë° MiBì™€ ê°™ì€ ìŠ¤í•‘í¬ê°€ ì§€ì›ë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1003
 msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
@@ -580,74 +580,74 @@ msgstr "<int> Amount of recent files to be remembered. Default: 15 (mpv.net opti
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:972
 msgid "<int> Initial window height in percent for audio files. Default: 70"
-msgstr "<int> 오디오 파일에 대한 %의 초기 창 높이. 과태: 70"
+msgstr "<int> ì˜¤ë””ì˜¤ íŒŒì¼ì— ëŒ€í•œ %ì˜ ì´ˆê¸° ì°½ ë†’ì´. ê³¼íƒœ: 70"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:967
 msgid "<int> Initial window height in percent for image files. Default: 80"
-msgstr "<int> 이미지 파일에 대한 %의 초기 창 높이. 과태: 80"
+msgstr "<int> ì´ë¯¸ì§€ íŒŒì¼ì— ëŒ€í•œ %ì˜ ì´ˆê¸° ì°½ ë†’ì´. ê³¼íƒœ: 80"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:952
 msgid "<int> Initial window height in percent. Default: 60"
-msgstr "<int> 퍼센트의 초기 창 높이. 과태: 60"
+msgstr "<int> í¼ì„¼íŠ¸ì˜ ì´ˆê¸° ì°½ ë†’ì´. ê³¼íƒœ: 60"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:962
 msgid "<int> Maximum window height in percent. Default: 80"
-msgstr "<int> %의 최대 창 높이. 과태: 80"
+msgstr "<int> %ì˜ ìµœëŒ€ ì°½ ë†’ì´. ê³¼íƒœ: 80"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:957
 msgid "<int> Minimum window height in percent. Default: 10"
-msgstr "<int> %의 최소 창 높이. 과태: 10"
+msgstr "<int> %ì˜ ìµœì†Œ ì°½ ë†’ì´. ê³¼íƒœ: 10"
 
 msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\\\n\\\\nTo list available audio devices in mpv.net, use the context menu:\\\\n\\\\nView > More > Show Audio Devices.\\\\n\\\\nTo change the audio device in mpv.net, also use the context menu:\\\\n\\\\nAudio > Audio Device"
-msgstr "<name> 주어진 오디오 장치를 사용하십시오. 이것은 오디오 출력 이름, e.g. alsa로 구성되며, 다음으로 /, 다음으로 오디오 출력 특정 장치 이름. 이 옵션의 기본 값은 자동이며, 기본 장치로 설정 명령에서 각 오디오 출력을 트리거합니다.\\\\n\\\\nTo list available audio devices in mpv.net, use the context menu:\\\\n\\\\n보기 > More > 오디오 장치 표시.\\\\n\\\\nTo change the audio device in mpv.net, also use the context menu:\\\\n\\\\n오디오 > 오디오 장치"
+msgstr "<name> ì£¼ì–´ì§„ ì˜¤ë””ì˜¤ ìž¥ì¹˜ë¥¼ ì‚¬ìš©í•˜ì‹­ì‹œì˜¤. ì´ê²ƒì€ ì˜¤ë””ì˜¤ ì¶œë ¥ ì´ë¦„, e.g. alsaë¡œ êµ¬ì„±ë˜ë©°, ë‹¤ìŒìœ¼ë¡œ /, ë‹¤ìŒìœ¼ë¡œ ì˜¤ë””ì˜¤ ì¶œë ¥ íŠ¹ì • ìž¥ì¹˜ ì´ë¦„. ì´ ì˜µì…˜ì˜ ê¸°ë³¸ ê°’ì€ ìžë™ì´ë©°, ê¸°ë³¸ ìž¥ì¹˜ë¡œ ì„¤ì • ëª…ë ¹ì—ì„œ ê° ì˜¤ë””ì˜¤ ì¶œë ¥ì„ íŠ¸ë¦¬ê±°í•©ë‹ˆë‹¤.\\\\n\\\\nTo list available audio devices in mpv.net, use the context menu:\\\\n\\\\në³´ê¸° > More > ì˜¤ë””ì˜¤ ìž¥ì¹˜ í‘œì‹œ.\\\\n\\\\nTo change the audio device in mpv.net, also use the context menu:\\\\n\\\\nì˜¤ë””ì˜¤ > ì˜¤ë””ì˜¤ ìž¥ì¹˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:821
 msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
-msgstr "<name> 주어진 오디오 장치를 사용하십시오. 이것은 오디오 출력 이름, e.g. alsa로 구성되며, 다음으로 /, 다음으로 오디오 출력 특정 장치 이름. 이 옵션의 기본 값은 자동이며, 기본 장치로 설정 명령에서 각 오디오 출력을 트리거합니다.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\n보기 > 더 많은 > 오디오 장치 표시.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\n오디오 > 오디오 장치"
+msgstr "<name> ì£¼ì–´ì§„ ì˜¤ë””ì˜¤ ìž¥ì¹˜ë¥¼ ì‚¬ìš©í•˜ì‹­ì‹œì˜¤. ì´ê²ƒì€ ì˜¤ë””ì˜¤ ì¶œë ¥ ì´ë¦„, e.g. alsaë¡œ êµ¬ì„±ë˜ë©°, ë‹¤ìŒìœ¼ë¡œ /, ë‹¤ìŒìœ¼ë¡œ ì˜¤ë””ì˜¤ ì¶œë ¥ íŠ¹ì • ìž¥ì¹˜ ì´ë¦„. ì´ ì˜µì…˜ì˜ ê¸°ë³¸ ê°’ì€ ìžë™ì´ë©°, ê¸°ë³¸ ìž¥ì¹˜ë¡œ ì„¤ì • ëª…ë ¹ì—ì„œ ê° ì˜¤ë””ì˜¤ ì¶œë ¥ì„ íŠ¸ë¦¬ê±°í•©ë‹ˆë‹¤.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\në³´ê¸° > ë” ë§Žì€ > ì˜¤ë””ì˜¤ ìž¥ì¹˜ í‘œì‹œ.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nì˜¤ë””ì˜¤ > ì˜¤ë””ì˜¤ ìž¥ì¹˜"
 
 msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\\\n\\\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\\\n\\\\nx=0 docks the window to the left side.\\\\nx=100 docks the window to the right side.\\\\n\\\\ny=0 docks the window to the top side.\\\\ny=100 docks the window to the bottom side."
-msgstr "<x:y> 퍼센트의 초기 창 위치. 기본값: 50:50 (centered)\\\\n\\\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\\\n\\\\nx=0 창을 왼쪽으로 고정합니다.\\\\nx=100 창을 오른쪽으로 고정합니다.\\\\n\\\\ny=0 창을 왼쪽으로 고정합니다.\\\\ny=100는 아래쪽에 창을 묶습니다."
+msgstr "<x:y> í¼ì„¼íŠ¸ì˜ ì´ˆê¸° ì°½ ìœ„ì¹˜. ê¸°ë³¸ê°’: 50:50 (centered)\\\\n\\\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\\\n\\\\nx=0 ì°½ì„ ì™¼ìª½ìœ¼ë¡œ ê³ ì •í•©ë‹ˆë‹¤.\\\\nx=100 ì°½ì„ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê³ ì •í•©ë‹ˆë‹¤.\\\\n\\\\ny=0 ì°½ì„ ì™¼ìª½ìœ¼ë¡œ ê³ ì •í•©ë‹ˆë‹¤.\\\\ny=100ëŠ” ì•„ëž˜ìª½ì— ì°½ì„ ë¬¶ìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:977
 msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
-msgstr "<x:y> 퍼센트의 초기 창 위치. 과태: 50:50 (중앙)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 창을 왼쪽으로 고정합니다.\\nx=100 창을 오른쪽으로 고정합니다.\\n\\ny=0 창을 왼쪽으로 고정합니다.\\ny=100는 아래쪽에 창을 묶습니다."
+msgstr "<x:y> í¼ì„¼íŠ¸ì˜ ì´ˆê¸° ì°½ ìœ„ì¹˜. ê³¼íƒœ: 50:50 (ì¤‘ì•™)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 ì°½ì„ ì™¼ìª½ìœ¼ë¡œ ê³ ì •í•©ë‹ˆë‹¤.\\nx=100 ì°½ì„ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê³ ì •í•©ë‹ˆë‹¤.\\n\\ny=0 ì°½ì„ ì™¼ìª½ìœ¼ë¡œ ê³ ì •í•©ë‹ˆë‹¤.\\ny=100ëŠ” ì•„ëž˜ìª½ì— ì°½ì„ ë¬¶ìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
 msgid "Abort"
-msgstr "한국어"
+msgstr "í•œêµ­ì–´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\Views\AboutWindow.xaml:10
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:199
 msgid "About mpv.net"
-msgstr "mpv.net 정보"
+msgstr "mpv.net ì •ë³´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
-msgstr "Active Bindings 에 텍스트 편집기"
+msgstr "Active Bindings ì— í…ìŠ¤íŠ¸ íŽ¸ì§‘ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:145
 msgid "Active Bindings On-Screen"
-msgstr "화면의 활성 단축키"
+msgstr "í™”ë©´ì˜ í™œì„± ë‹¨ì¶•í‚¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:16
 msgid "Add external audio files..."
-msgstr "외부 오디오 파일 추가..."
+msgstr "ì™¸ë¶€ ì˜¤ë””ì˜¤ íŒŒì¼ ì¶”ê°€..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:17
 msgid "Add external subtitle files..."
-msgstr "외부 자막 파일 추가..."
+msgstr "ì™¸ë¶€ ìžë§‰ íŒŒì¼ ì¶”ê°€..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:19
 msgid "Add files to playlist..."
-msgstr "재생 목록에 파일 추가..."
+msgstr "ìž¬ìƒ ëª©ë¡ì— íŒŒì¼ ì¶”ê°€..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:20
 msgid "Add files/URLs to playlist from clipboard"
-msgstr "클립보드에서 파일/URL을 재생 목록에 추가"
+msgstr "í´ë¦½ë³´ë“œì—ì„œ íŒŒì¼/URLì„ ìž¬ìƒ ëª©ë¡ì— ì¶”ê°€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 msgid "Add mpv.net to Path environment variable"
-msgstr "Path 환경 변수에 mpv.net 추가"
+msgstr "Path í™˜ê²½ ë³€ìˆ˜ì— mpv.net ì¶”ê°€"
 
 msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
 msgstr "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
@@ -656,32 +656,32 @@ msgid "Allow only Vulkan"
 msgstr "Allow only Vulkan"
 
 msgid "Allow only gpu-context=d3d11"
-msgstr "gpu-context=d3d11만 허용"
+msgstr "gpu-context=d3d11ë§Œ í—ˆìš©"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:467
 msgid "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
-msgstr "최대 단일 프레임에 의해 지연 될 피크 검출 결과를 허용, 때로는 전환에 1-frame 깜박임의 가능성을 소개하는 비용에서 처리량을 향상시킬 수 있습니다."
+msgstr "ìµœëŒ€ ë‹¨ì¼ í”„ë ˆìž„ì— ì˜í•´ ì§€ì—° ë  í”¼í¬ ê²€ì¶œ ê²°ê³¼ë¥¼ í—ˆìš©, ë•Œë¡œëŠ” ì „í™˜ì— 1-frame ê¹œë°•ìž„ì˜ ê°€ëŠ¥ì„±ì„ ì†Œê°œí•˜ëŠ” ë¹„ìš©ì—ì„œ ì²˜ë¦¬ëŸ‰ì„ í–¥ìƒì‹œí‚¬ ìˆ˜ ìžˆìŠµë‹ˆë‹¤."
 
 msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\\\n\\\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
-msgstr "항상 종료에 현재 재생 위치를 저장합니다. 이 파일은 나중에 재생될 때, 플레이어는 시작에 오래된 재생 위치로 추구합니다. 파일의 재생이 종료하는 것보다 다른 방법으로 중지되는 경우 발생하지 않습니다. 예를 들어, 재생 목록의 다음 파일로 이동하면 위치를 저장하지 않고 다음 파일이 재생됩니다.\\\\n\\\\n이 동작은 기본적으로 비활성화되지만 Shift+Q로 플레이어를 종료할 때 항상 사용할 수 있습니다."
+msgstr "í•­ìƒ ì¢…ë£Œì— í˜„ìž¬ ìž¬ìƒ ìœ„ì¹˜ë¥¼ ì €ìž¥í•©ë‹ˆë‹¤. ì´ íŒŒì¼ì€ ë‚˜ì¤‘ì— ìž¬ìƒë  ë•Œ, í”Œë ˆì´ì–´ëŠ” ì‹œìž‘ì— ì˜¤ëž˜ëœ ìž¬ìƒ ìœ„ì¹˜ë¡œ ì¶”êµ¬í•©ë‹ˆë‹¤. íŒŒì¼ì˜ ìž¬ìƒì´ ì¢…ë£Œí•˜ëŠ” ê²ƒë³´ë‹¤ ë‹¤ë¥¸ ë°©ë²•ìœ¼ë¡œ ì¤‘ì§€ë˜ëŠ” ê²½ìš° ë°œìƒí•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ì˜ˆë¥¼ ë“¤ì–´, ìž¬ìƒ ëª©ë¡ì˜ ë‹¤ìŒ íŒŒì¼ë¡œ ì´ë™í•˜ë©´ ìœ„ì¹˜ë¥¼ ì €ìž¥í•˜ì§€ ì•Šê³  ë‹¤ìŒ íŒŒì¼ì´ ìž¬ìƒë©ë‹ˆë‹¤.\\\\n\\\\nì´ ë™ìž‘ì€ ê¸°ë³¸ì ìœ¼ë¡œ ë¹„í™œì„±í™”ë˜ì§€ë§Œ Shift+Që¡œ í”Œë ˆì´ì–´ë¥¼ ì¢…ë£Œí•  ë•Œ í•­ìƒ ì‚¬ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1067
 msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
-msgstr "항상 종료에 현재 재생 위치를 저장합니다. 이 파일은 나중에 재생될 때, 플레이어는 시작에 오래된 재생 위치로 추구합니다. 파일의 재생이 종료하는 것보다 다른 방법으로 중지되는 경우 발생하지 않습니다. 예를 들어, 재생 목록의 다음 파일로 이동하면 위치를 저장하지 않으며 다음 파일이 재생됩니다.\\n\\n이 동작은 기본적으로 비활성화되지만 Shift+Q로 플레이어를 종료할 때 항상 사용할 수 있습니다."
+msgstr "í•­ìƒ ì¢…ë£Œì— í˜„ìž¬ ìž¬ìƒ ìœ„ì¹˜ë¥¼ ì €ìž¥í•©ë‹ˆë‹¤. ì´ íŒŒì¼ì€ ë‚˜ì¤‘ì— ìž¬ìƒë  ë•Œ, í”Œë ˆì´ì–´ëŠ” ì‹œìž‘ì— ì˜¤ëž˜ëœ ìž¬ìƒ ìœ„ì¹˜ë¡œ ì¶”êµ¬í•©ë‹ˆë‹¤. íŒŒì¼ì˜ ìž¬ìƒì´ ì¢…ë£Œí•˜ëŠ” ê²ƒë³´ë‹¤ ë‹¤ë¥¸ ë°©ë²•ìœ¼ë¡œ ì¤‘ì§€ë˜ëŠ” ê²½ìš° ë°œìƒí•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ì˜ˆë¥¼ ë“¤ì–´, ìž¬ìƒ ëª©ë¡ì˜ ë‹¤ìŒ íŒŒì¼ë¡œ ì´ë™í•˜ë©´ ìœ„ì¹˜ë¥¼ ì €ìž¥í•˜ì§€ ì•Šìœ¼ë©° ë‹¤ìŒ íŒŒì¼ì´ ìž¬ìƒë©ë‹ˆë‹¤.\\n\\nì´ ë™ìž‘ì€ ê¸°ë³¸ì ìœ¼ë¡œ ë¹„í™œì„±í™”ë˜ì§€ë§Œ Shift+Që¡œ í”Œë ˆì´ì–´ë¥¼ ì¢…ë£Œí•  ë•Œ í•­ìƒ ì‚¬ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1142
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1162
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1171
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1177
 msgid "Appearance"
-msgstr "이름 *"
+msgstr "ì´ë¦„ *"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:127
 msgid "As scale, but for interpolating chroma information. If the image is not subsampled, this option is ignored entirely."
-msgstr "가늠자로, 그러나 interpolating 크롬 정보를 위해. 이미지가 하위 샘플되지 않은 경우,이 옵션은 완전히 무시됩니다."
+msgstr "ê°€ëŠ ìžë¡œ, ê·¸ëŸ¬ë‚˜ interpolating í¬ë¡¬ ì •ë³´ë¥¼ ìœ„í•´. ì´ë¯¸ì§€ê°€ í•˜ìœ„ ìƒ˜í”Œë˜ì§€ ì•Šì€ ê²½ìš°,ì´ ì˜µì…˜ì€ ì™„ì „ížˆ ë¬´ì‹œë©ë‹ˆë‹¤."
 
 msgid "Aspect-ratio preserving nearest neighbour sampling (very fast)."
-msgstr "Aspect-ratio는 가장 가까운 neighbour 샘플링을 보존합니다 (매우 빠른)."
+msgstr "Aspect-ratioëŠ” ê°€ìž¥ ê°€ê¹Œìš´ neighbour ìƒ˜í”Œë§ì„ ë³´ì¡´í•©ë‹ˆë‹¤ (ë§¤ìš° ë¹ ë¥¸)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:790
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:795
@@ -696,111 +696,111 @@ msgstr "Aspect-ratio는 가장 가까운 neighbour 샘플링을 보존합니다 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:88
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:89
 msgid "Audio"
-msgstr "오디오"
+msgstr "ì˜¤ë””ì˜¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:453
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:85
 msgid "Audio Device"
-msgstr "오디오 장치"
+msgstr "ì˜¤ë””ì˜¤ ìž¥ì¹˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:138
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:243
 msgid "Audio Devices"
-msgstr "오디오 장치"
+msgstr "ì˜¤ë””ì˜¤ ìž¥ì¹˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:132
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:237
 msgid "Audio Tracks"
-msgstr "오디오 트랙"
+msgstr "ì˜¤ë””ì˜¤ íŠ¸ëž™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:835
-msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
-msgstr "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: aac,ac3,aiff,ape,au,dts,eac3,flac,m4a,mka,mp3,oga,ogg,ogm,opus,thd,wav,wav,wma,wv"
+msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
 
 msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
-msgstr "자동 선택. 산출 조금 깊이가 검출될 수 없는 경우에, 성분 당 8 조금은 가정됩니다."
+msgstr "ìžë™ ì„ íƒ. ì‚°ì¶œ ì¡°ê¸ˆ ê¹Šì´ê°€ ê²€ì¶œë  ìˆ˜ ì—†ëŠ” ê²½ìš°ì—, ì„±ë¶„ ë‹¹ 8 ì¡°ê¸ˆì€ ê°€ì •ë©ë‹ˆë‹¤."
 
 msgid "Available on Windows 10 or higher"
 msgstr "Available on Windows 10 or higher"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:209
 msgid "Backward"
-msgstr "뒤로"
+msgstr "ë’¤ë¡œ"
 
 msgid "Bicubic interpolation (fast)"
-msgstr "Bicubic interpolation (빠른)"
+msgstr "Bicubic interpolation (ë¹ ë¥¸)"
 
 msgid "Bicubic interpolation (fast)."
-msgstr "Bicubic interpolation (빠른)."
+msgstr "Bicubic interpolation (ë¹ ë¥¸)."
 
 msgid "Bilinear (triangle) averaging (fast)"
-msgstr "Bilinear (삼각)averaging (빠른)"
+msgstr "Bilinear (ì‚¼ê°)averaging (ë¹ ë¥¸)"
 
 msgid "Bilinear sampling (very fast)."
-msgstr "Bilinear 샘플링 (매우 빠른)."
+msgstr "Bilinear ìƒ˜í”Œë§ (ë§¤ìš° ë¹ ë¥¸)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:128
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:246
 msgid "Bindings"
-msgstr "단축키"
+msgstr "ë‹¨ì¶•í‚¤"
 
 msgid "Box averaging (very fast)"
-msgstr "상자 averaging (매우 빠른)"
+msgstr "ìƒìž averaging (ë§¤ìš° ë¹ ë¥¸)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1183
 msgid "Cache"
-msgstr "스낵 바"
+msgstr "ìŠ¤ë‚µ ë°”"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:55
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:182
 msgid "Cancel"
-msgstr "이름 *"
+msgstr "ì´ë¦„ *"
 
 msgid "Catmull-Rom cubic spline"
-msgstr "Catmull rom 입방 스플라인"
+msgstr "Catmull rom ìž…ë°© ìŠ¤í”Œë¼ì¸"
 
 msgid "Catmull-Rom cubic spline."
-msgstr "Catmull-Rom 입방 스플라인."
+msgstr "Catmull-Rom ìž…ë°© ìŠ¤í”Œë¼ì¸."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:82
 msgid "Change Aspect Ratio"
-msgstr "화면 비율 변경"
+msgstr "í™”ë©´ ë¹„ìœ¨ ë³€ê²½"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:471
 msgid "Changed theme settings require mpv.net being restarted."
 msgstr "Changed theme settings require mpv.net being restarted."
 
 msgid "Changes between a light and dark theme.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option."
-msgstr "빛과 어두운 테마 사이의 변화.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option."
+msgstr "ë¹›ê³¼ ì–´ë‘ìš´ í…Œë§ˆ ì‚¬ì´ì˜ ë³€í™”.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1163
 msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
-msgstr "빛과 어두운 테마 사이의 변화.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "ë¹›ê³¼ ì–´ë‘ìš´ í…Œë§ˆ ì‚¬ì´ì˜ ë³€í™”.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:125
 msgid "Changes will be available on next startup."
-msgstr "변경 사항은 다음 실행 시 적용됩니다."
+msgstr "ë³€ê²½ ì‚¬í•­ì€ ë‹¤ìŒ ì‹¤í–‰ ì‹œ ì ìš©ë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:351
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:51
 msgid "Chapter"
-msgstr "챕터"
+msgstr "ì±•í„°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:130
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:240
 msgid "Chapters"
-msgstr "챕터"
+msgstr "ì±•í„°"
 
 msgid "Choose the best mode automatically."
-msgstr "자동적으로 제일 형태를 선택하십시오."
+msgstr "ìžë™ì ìœ¼ë¡œ ì œì¼ í˜•íƒœë¥¼ ì„ íƒí•˜ì‹­ì‹œì˜¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:54
 msgid "Clear"
-msgstr "목록 비우기"
+msgstr "ëª©ë¡ ë¹„ìš°ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:388
 msgid "Clear List"
-msgstr "목록 비우기"
+msgstr "ëª©ë¡ ë¹„ìš°ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:375
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:383
@@ -811,7 +811,7 @@ msgstr "목록 비우기"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:411
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:416
 msgid "Color Adjustment"
-msgstr "색깔 조정"
+msgstr "ìƒ‰ê¹” ì¡°ì •"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:474
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:482
@@ -853,21 +853,21 @@ msgstr "색깔 조정"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:711
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:716
 msgid "Color Mapping"
-msgstr "색깔 매핑"
+msgstr "ìƒ‰ê¹” ë§¤í•‘"
 
 msgid "Color theme used in dark mode.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: dark"
-msgstr "어두운 모드에서 사용되는 색상 테마.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: dark"
+msgstr "ì–´ë‘ìš´ ëª¨ë“œì—ì„œ ì‚¬ìš©ë˜ëŠ” ìƒ‰ìƒ í…Œë§ˆ.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: dark"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1173
 msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
-msgstr "어두운 형태에서 사용되는 색상 테마.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "ì–´ë‘ìš´ í˜•íƒœì—ì„œ ì‚¬ìš©ë˜ëŠ” ìƒ‰ìƒ í…Œë§ˆ.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
 
 msgid "Color theme used in light mode.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: light"
-msgstr "빛 모드에서 사용되는 색상 테마.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: light"
+msgstr "ë¹› ëª¨ë“œì—ì„œ ì‚¬ìš©ë˜ëŠ” ìƒ‰ìƒ í…Œë§ˆ.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: light"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1179
 msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
-msgstr "빛 형태에서 사용된 색깔 주제.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "ë¹› í˜•íƒœì—ì„œ ì‚¬ìš©ëœ ìƒ‰ê¹” ì£¼ì œ.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:214
 msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
@@ -875,11 +875,11 @@ msgstr "Color used to draw parts of the mpv window not covered by video. See the
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:140
 msgid "Command"
-msgstr "이름 *"
+msgstr "ì´ë¦„ *"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:143
 msgid "Commands"
-msgstr "이름 *"
+msgstr "ì´ë¦„ *"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:169
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:170
@@ -896,56 +896,56 @@ msgstr "이름 *"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Config"
-msgstr "설정"
+msgstr "ì„¤ì •"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:571
 msgid "Config Editor"
-msgstr "설정 편집기"
+msgstr "ì„¤ì • íŽ¸ì§‘ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:53
 msgid "Confirm"
-msgstr "설정"
+msgstr "ì„¤ì •"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:142
 msgid "Console"
-msgstr "콘솔 표시"
+msgstr "ì½˜ì†” í‘œì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:707
 msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
-msgstr "gamut 3DLUT 시각화의 교체를 제어합니다. hue space(I Axis)를 통해 가역을 회전합니다. 기본값은 0.0."
+msgstr "gamut 3DLUT ì‹œê°í™”ì˜ êµì²´ë¥¼ ì œì–´í•©ë‹ˆë‹¤. hue space(I Axis)ë¥¼ í†µí•´ ê°€ì—­ì„ íšŒì „í•©ë‹ˆë‹¤. ê¸°ë³¸ê°’ì€ 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:712
 msgid "Controls the rotation of the gamut 3DLUT visualization. The theta parameter vertically rotates the cross section (around the C axis), in radians. Defaults to 0.0."
-msgstr "gamut 3DLUT 시각화의 교체를 제어합니다. theta 매개변수는 수직으로 반경에서 십자가 단면도 (C 축선의 주위에) 자전합니다. 기본값은 0.0."
+msgstr "gamut 3DLUT ì‹œê°í™”ì˜ êµì²´ë¥¼ ì œì–´í•©ë‹ˆë‹¤. theta ë§¤ê°œë³€ìˆ˜ëŠ” ìˆ˜ì§ìœ¼ë¡œ ë°˜ê²½ì—ì„œ ì‹­ìžê°€ ë‹¨ë©´ë„ (C ì¶•ì„ ì˜ ì£¼ìœ„ì—) ìžì „í•©ë‹ˆë‹¤. ê¸°ë³¸ê°’ì€ 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:687
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:692
 msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 0.0."
-msgstr "LUt 시각화를 그리는 제어, 렌더링 된 비디오와 상대. 기본값은 0.0."
+msgstr "LUt ì‹œê°í™”ë¥¼ ê·¸ë¦¬ëŠ” ì œì–´, ë Œë”ë§ ëœ ë¹„ë””ì˜¤ì™€ ìƒëŒ€. ê¸°ë³¸ê°’ì€ 0.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:697
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:702
 msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 1.0."
-msgstr "LUt 시각화를 그리는 제어, 렌더링 된 비디오와 상대. 기본값 1.0."
+msgstr "LUt ì‹œê°í™”ë¥¼ ê·¸ë¦¬ëŠ” ì œì–´, ë Œë”ë§ ëœ ë¹„ë””ì˜¤ì™€ ìƒëŒ€. ê¸°ë³¸ê°’ 1.0."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:92
 msgid "Controls which type of graphics APIs will be accepted."
-msgstr "도표 APIs의 유형이 받아들여질 통제."
+msgstr "ë„í‘œ APIsì˜ ìœ í˜•ì´ ë°›ì•„ë“¤ì—¬ì§ˆ í†µì œ."
 
 msgid "Create a new process everytime the shell starts mpv.net"
 msgstr "Create a new process everytime the shell starts mpv.net"
 
 msgid "Cubic B-spline frame mixing"
-msgstr "Cubic B-spline 프레임 혼합"
+msgstr "Cubic B-spline í”„ë ˆìž„ í˜¼í•©"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:477
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:190
 msgid "Custom"
-msgstr "사용자 지정"
+msgstr "ì‚¬ìš©ìž ì§€ì •"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:645
 msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
-msgstr "tone-mapping를 사용할 때 데이터 소스. 이 값을 특정 값으로 설정하면 기본 메타데이터 기본 논리를 무시할 수 있습니다."
+msgstr "tone-mappingë¥¼ ì‚¬ìš©í•  ë•Œ ë°ì´í„° ì†ŒìŠ¤. ì´ ê°’ì„ íŠ¹ì • ê°’ìœ¼ë¡œ ì„¤ì •í•˜ë©´ ê¸°ë³¸ ë©”íƒ€ë°ì´í„° ê¸°ë³¸ ë…¼ë¦¬ë¥¼ ë¬´ì‹œí•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:313
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:321
@@ -954,46 +954,46 @@ msgstr "tone-mapping를 사용할 때 데이터 소스. 이 값을 특정 값으
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:339
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:344
 msgid "Debanding"
-msgstr "관련 기사"
+msgstr "ê´€ë ¨ ê¸°ì‚¬"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1184
 msgid "Decide whether to use network cache settings."
-msgstr "네트워크 캐시 설정을 사용하는지 결정합니다."
+msgstr "ë„¤íŠ¸ì›Œí¬ ìºì‹œ ì„¤ì •ì„ ì‚¬ìš©í•˜ëŠ”ì§€ ê²°ì •í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 msgid "Decoders"
-msgstr "디코더 표시"
+msgstr "ë””ì½”ë” í‘œì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:70
 msgid "Decrease Brightness"
-msgstr "밝기 감소"
+msgstr "ë°ê¸° ê°ì†Œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:67
 msgid "Decrease Contrast"
-msgstr "대비 감소"
+msgstr "ëŒ€ë¹„ ê°ì†Œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:100
 msgid "Decrease Font Size"
-msgstr "글꼴 크기 축소"
+msgstr "ê¸€ê¼´ í¬ê¸° ì¶•ì†Œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:73
 msgid "Decrease Gamma"
-msgstr "감마 감소"
+msgstr "ê°ë§ˆ ê°ì†Œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:62
 msgid "Decrease Height"
-msgstr "높이 축소"
+msgstr "ë†’ì´ ì¶•ì†Œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:76
 msgid "Decrease Saturation"
-msgstr "채도 감소"
+msgstr "ì±„ë„ ê°ì†Œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:53
 msgid "Decrease Size"
-msgstr "크기 축소"
+msgstr "í¬ê¸° ì¶•ì†Œ"
 
 msgid "Default settings, tuned to provide a balance of performance and quality."
-msgstr "기본 설정, 성능과 품질의 균형을 제공하기 위해 조정."
+msgstr "ê¸°ë³¸ ì„¤ì •, ì„±ëŠ¥ê³¼ í’ˆì§ˆì˜ ê· í˜•ì„ ì œê³µí•˜ê¸° ìœ„í•´ ì¡°ì •."
 
 msgid "Defines if more then one mpv.net process is allowed.\\\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
 msgstr "Defines if more then one mpv.net process is allowed.\\\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
@@ -1005,91 +1005,91 @@ msgstr "Defines if more then one mpv.net process is allowed.\\nMulti can alterna
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:88
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:95
 msgid "Delay +0.1"
-msgstr "지연 0.1초 증가"
+msgstr "ì§€ì—° 0.1ì´ˆ ì¦ê°€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:89
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:94
 msgid "Delay -0.1"
-msgstr "지연 0.1초 감소"
+msgstr "ì§€ì—° 0.1ì´ˆ ê°ì†Œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1127
 msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
-msgstr "우리가 시작하기 전에 밀리 초에 지연은 키 (0을 비활성화)를 autorepeat 시작합니다."
+msgstr "ìš°ë¦¬ê°€ ì‹œìž‘í•˜ê¸° ì „ì— ë°€ë¦¬ ì´ˆì— ì§€ì—°ì€ í‚¤ (0ì„ ë¹„í™œì„±í™”)ë¥¼ autorepeat ì‹œìž‘í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1193
 msgid "Demuxer"
-msgstr "팟캐스트"
+msgstr "íŒŸìºìŠ¤íŠ¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "Demuxers"
-msgstr "디멀티플렉서 표시"
+msgstr "ë””ë©€í‹°í”Œë ‰ì„œ í‘œì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:193
 msgid "Details"
-msgstr "제품 정보"
+msgstr "ì œí’ˆ ì •ë³´"
 
 msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
 msgstr "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
 
 msgid "Disable all advanced rendering, equivalent to passing no to every option."
-msgstr "모든 고급 렌더링을 비활성화하여 모든 옵션에 대해 전달하십시오."
+msgstr "ëª¨ë“  ê³ ê¸‰ ë Œë”ë§ì„ ë¹„í™œì„±í™”í•˜ì—¬ ëª¨ë“  ì˜µì…˜ì— ëŒ€í•´ ì „ë‹¬í•˜ì‹­ì‹œì˜¤."
 
 msgid "Disable any dithering done by mpv."
-msgstr "mpv에 의해 수행 된 어떤 제광을 해제."
+msgstr "mpvì— ì˜í•´ ìˆ˜í–‰ ëœ ì–´ë–¤ ì œê´‘ì„ í•´ì œ."
 
 msgid "Disable frame mixing, show nearest frame to target PTS"
-msgstr "Disable 프레임 혼합, 대상 PTS에 가장 가까운 프레임 표시"
+msgstr "Disable í”„ë ˆìž„ í˜¼í•©, ëŒ€ìƒ PTSì— ê°€ìž¥ ê°€ê¹Œìš´ í”„ë ˆìž„ í‘œì‹œ"
 
 msgid "Dither to 10 bit output."
-msgstr "10 비트 출력으로 나눕니다."
+msgstr "10 ë¹„íŠ¸ ì¶œë ¥ìœ¼ë¡œ ë‚˜ëˆ•ë‹ˆë‹¤."
 
 msgid "Dither to 8 bit output."
-msgstr "8 비트 출력으로 이동합니다."
+msgstr "8 ë¹„íŠ¸ ì¶œë ¥ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤."
 
 msgid "Don't automatically load external audio files."
-msgstr "외부 오디오 파일을 자동로드하지 마십시오."
+msgstr "ì™¸ë¶€ ì˜¤ë””ì˜¤ íŒŒì¼ì„ ìžë™ë¡œë“œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤."
 
 msgid "Don't automatically load external subtitle files."
-msgstr "외부 자막 파일을 자동로드하지 마십시오."
+msgstr "ì™¸ë¶€ ìžë§‰ íŒŒì¼ì„ ìžë™ë¡œë“œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:116
 msgid "Double"
-msgstr "두배"
+msgstr "ë‘ë°°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:114
 msgid "Drop files or URLs to play here."
-msgstr "재생할 파일 또는 URL을 여기에 놓으세요."
+msgstr "ìž¬ìƒí•  íŒŒì¼ ë˜ëŠ” URLì„ ì—¬ê¸°ì— ë†“ìœ¼ì„¸ìš”."
 
 msgid "EWA Lanczos (\\\"Jinc\\\") reconstruction (slow)."
-msgstr "EWA Lanczos (\\\"Jinc\\\") 재건축"
+msgstr "EWA Lanczos (\\\"Jinc\\\") ìž¬ê±´ì¶•"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:173
 msgid "Edit input.conf"
-msgstr "input.conf 파일 편집"
+msgstr "input.conf íŒŒì¼ íŽ¸ì§‘"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:172
 msgid "Edit mpv.conf"
-msgstr "mpv.conf 파일 편집"
+msgstr "mpv.conf íŒŒì¼ íŽ¸ì§‘"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:136
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:241
 msgid "Editions"
-msgstr "input.conf 파일 편집"
+msgstr "input.conf íŒŒì¼ íŽ¸ì§‘"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1137
 msgid "Enable the IPC support and create the listening socket at the given path."
-msgstr "IPC 지원 및 주어진 경로에 청취 소켓을 만듭니다."
+msgstr "IPC ì§€ì› ë° ì£¼ì–´ì§„ ê²½ë¡œì— ì²­ì·¨ ì†Œì¼“ì„ ë§Œë“­ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:181
 msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
-msgstr "debanding 알고리즘을 활성화합니다. 이것은 매우 눈에 띄는 밴딩, 블록 및 기타 정량화 artifacts의 양을 감소, 매우 약간 최고의 세부 사항의 일부를 blurring의 비용. 실제로, 그것은 거의 항상 개선 - 성능에 대한 유일한 이유입니다."
+msgstr "debanding ì•Œê³ ë¦¬ì¦˜ì„ í™œì„±í™”í•©ë‹ˆë‹¤. ì´ê²ƒì€ ë§¤ìš° ëˆˆì— ë„ëŠ” ë°´ë”©, ë¸”ë¡ ë° ê¸°íƒ€ ì •ëŸ‰í™” artifactsì˜ ì–‘ì„ ê°ì†Œ, ë§¤ìš° ì•½ê°„ ìµœê³ ì˜ ì„¸ë¶€ ì‚¬í•­ì˜ ì¼ë¶€ë¥¼ blurringì˜ ë¹„ìš©. ì‹¤ì œë¡œ, ê·¸ê²ƒì€ ê±°ì˜ í•­ìƒ ê°œì„  - ì„±ëŠ¥ì— ëŒ€í•œ ìœ ì¼í•œ ì´ìœ ìž…ë‹ˆë‹¤."
 
 msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\\\n\\\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
-msgstr "기본 트랙을 활성화 auto-selection. 플레이어는 aid, alang 및 기타에 따라 스트림을 선택합니다. 비활성화되면 트랙이 선택되지 않습니다. 또한, 플레이어는 트랙이 선택되지 않는 경우 종료하지 않을 것입니다, 대신 대기 (이 대기 모드는 일시 중지와 유사하지만 일시 옵션은 설정되지 않습니다).\\\\n\\\\n이것은 lavfi-complex와 유용합니다: 당신은 이 모드에서 재생을 시작할 수 있고, 그 후에 필터 그래프를 설정하여 실행시에 트랙을 설정할 수 있습니다. lavfi-complex가 재생하기 전에 설정된 경우, 참고된 트랙은 항상 선택됩니다."
+msgstr "ê¸°ë³¸ íŠ¸ëž™ì„ í™œì„±í™” auto-selection. í”Œë ˆì´ì–´ëŠ” aid, alang ë° ê¸°íƒ€ì— ë”°ë¼ ìŠ¤íŠ¸ë¦¼ì„ ì„ íƒí•©ë‹ˆë‹¤. ë¹„í™œì„±í™”ë˜ë©´ íŠ¸ëž™ì´ ì„ íƒë˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ë˜í•œ, í”Œë ˆì´ì–´ëŠ” íŠ¸ëž™ì´ ì„ íƒë˜ì§€ ì•ŠëŠ” ê²½ìš° ì¢…ë£Œí•˜ì§€ ì•Šì„ ê²ƒìž…ë‹ˆë‹¤, ëŒ€ì‹  ëŒ€ê¸° (ì´ ëŒ€ê¸° ëª¨ë“œëŠ” ì¼ì‹œ ì¤‘ì§€ì™€ ìœ ì‚¬í•˜ì§€ë§Œ ì¼ì‹œ ì˜µì…˜ì€ ì„¤ì •ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤).\\\\n\\\\nì´ê²ƒì€ lavfi-complexì™€ ìœ ìš©í•©ë‹ˆë‹¤: ë‹¹ì‹ ì€ ì´ ëª¨ë“œì—ì„œ ìž¬ìƒì„ ì‹œìž‘í•  ìˆ˜ ìžˆê³ , ê·¸ í›„ì— í•„í„° ê·¸ëž˜í”„ë¥¼ ì„¤ì •í•˜ì—¬ ì‹¤í–‰ì‹œì— íŠ¸ëž™ì„ ì„¤ì •í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. lavfi-complexê°€ ìž¬ìƒí•˜ê¸° ì „ì— ì„¤ì •ëœ ê²½ìš°, ì°¸ê³ ëœ íŠ¸ëž™ì€ í•­ìƒ ì„ íƒë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1091
 msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
-msgstr "기본 트랙을 활성화 auto-selection. 플레이어는 aid, alang 및 기타에 따라 스트림을 선택합니다. 비활성화되면 트랙이 선택되지 않습니다. 또한, 플레이어는 트랙이 선택되지 않는 경우 종료하지 않고 (이 대기 모드는 일시 중지와 유사하지만 일시 옵션은 설정되지 않습니다).\\n\\n이것은 lavfi-complex와 유용합니다: 당신은 이 모드에서 재생을 시작할 수 있고, 그 후에 필터 그래프를 설정하여 실행시에 트랙을 설정할 수 있습니다. lavfi-complex가 재생하기 전에 설정된 경우, 참고된 트랙은 항상 선택됩니다."
+msgstr "ê¸°ë³¸ íŠ¸ëž™ì„ í™œì„±í™” auto-selection. í”Œë ˆì´ì–´ëŠ” aid, alang ë° ê¸°íƒ€ì— ë”°ë¼ ìŠ¤íŠ¸ë¦¼ì„ ì„ íƒí•©ë‹ˆë‹¤. ë¹„í™œì„±í™”ë˜ë©´ íŠ¸ëž™ì´ ì„ íƒë˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ë˜í•œ, í”Œë ˆì´ì–´ëŠ” íŠ¸ëž™ì´ ì„ íƒë˜ì§€ ì•ŠëŠ” ê²½ìš° ì¢…ë£Œí•˜ì§€ ì•Šê³  (ì´ ëŒ€ê¸° ëª¨ë“œëŠ” ì¼ì‹œ ì¤‘ì§€ì™€ ìœ ì‚¬í•˜ì§€ë§Œ ì¼ì‹œ ì˜µì…˜ì€ ì„¤ì •ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤).\\n\\nì´ê²ƒì€ lavfi-complexì™€ ìœ ìš©í•©ë‹ˆë‹¤: ë‹¹ì‹ ì€ ì´ ëª¨ë“œì—ì„œ ìž¬ìƒì„ ì‹œìž‘í•  ìˆ˜ ìžˆê³ , ê·¸ í›„ì— í•„í„° ê·¸ëž˜í”„ë¥¼ ì„¤ì •í•˜ì—¬ ì‹¤í–‰ì‹œì— íŠ¸ëž™ì„ ì„¤ì •í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. lavfi-complexê°€ ìž¬ìƒí•˜ê¸° ì „ì— ì„¤ì •ëœ ê²½ìš°, ì°¸ê³ ëœ íŠ¸ëž™ì€ í•­ìƒ ì„ íƒë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:53
 msgid "Enable this only when a developer asks for it. (mpv.net option)"
@@ -1101,43 +1101,43 @@ msgstr "Enables HDR peak detection."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:376
 msgid "Enables color adjustment."
-msgstr "색깔 조정을 가능하게 합니다."
+msgstr "ìƒ‰ê¹” ì¡°ì •ì„ ê°€ëŠ¥í•˜ê²Œ í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:314
 msgid "Enables debanding using libplacebo."
-msgstr "라이브러리"
+msgstr "ë¼ì´ë¸ŒëŸ¬ë¦¬"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:350
 msgid "Enables sigmoidization."
-msgstr "sigmoidization를 가능하게 합니다."
+msgstr "sigmoidizationë¥¼ ê°€ëŠ¥í•˜ê²Œ í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:475
 msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
-msgstr "이 색상 매핑 설정의 사용을 가능하게 합니다. 이 옵션을 비활성화하지 않는 색상 매핑, 그것은 단지 \"모든에 대한 기본 옵션\"을 의미합니다."
+msgstr "ì´ ìƒ‰ìƒ ë§¤í•‘ ì„¤ì •ì˜ ì‚¬ìš©ì„ ê°€ëŠ¥í•˜ê²Œ í•©ë‹ˆë‹¤. ì´ ì˜µì…˜ì„ ë¹„í™œì„±í™”í•˜ì§€ ì•ŠëŠ” ìƒ‰ìƒ ë§¤í•‘, ê·¸ê²ƒì€ ë‹¨ì§€ \"ëª¨ë“ ì— ëŒ€í•œ ê¸°ë³¸ ì˜µì…˜\"ì„ ì˜ë¯¸í•©ë‹ˆë‹¤."
 
 msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \\\"use the default options for everything\\\"."
-msgstr "이 색상 매핑 설정의 사용을 가능하게 합니다. 이 옵션을 비활성화하지 않는 색상 매핑, 그것은 단지 의미 \\\"모든에 대한 기본 옵션을 사용\\\"."
+msgstr "ì´ ìƒ‰ìƒ ë§¤í•‘ ì„¤ì •ì˜ ì‚¬ìš©ì„ ê°€ëŠ¥í•˜ê²Œ í•©ë‹ˆë‹¤. ì´ ì˜µì…˜ì„ ë¹„í™œì„±í™”í•˜ì§€ ì•ŠëŠ” ìƒ‰ìƒ ë§¤í•‘, ê·¸ê²ƒì€ ë‹¨ì§€ ì˜ë¯¸ \\\"ëª¨ë“ ì— ëŒ€í•œ ê¸°ë³¸ ì˜µì…˜ì„ ì‚¬ìš©\\\"."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:152
 msgid "Enlarge"
-msgstr "크게"
+msgstr "í¬ê²Œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:326
 msgid "Error creating file associations."
-msgstr "파일 연결을 만드는 중 오류가 발생했습니다."
+msgstr "íŒŒì¼ ì—°ê²°ì„ ë§Œë“œëŠ” ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:201
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:23
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:233
 msgid "Exit"
-msgstr "오시는 길"
+msgstr "ì˜¤ì‹œëŠ” ê¸¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:188
 msgid "Exit Watch Later"
-msgstr "출구 시계 나중에"
+msgstr "ì¶œêµ¬ ì‹œê³„ ë‚˜ì¤‘ì—"
 
 msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
-msgstr "libplacebo를 기반으로 한 Experimental 비디오 렌더링기. --vo=gpu로 거의 동일한 기능을 지원합니다."
+msgstr "libplaceboë¥¼ ê¸°ë°˜ìœ¼ë¡œ í•œ Experimental ë¹„ë””ì˜¤ ë Œë”ë§ê¸°. --vo=gpuë¡œ ê±°ì˜ ë™ì¼í•œ ê¸°ëŠ¥ì„ ì§€ì›í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:12
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:13
@@ -1152,70 +1152,70 @@ msgstr "libplacebo를 기반으로 한 Experimental 비디오 렌더링기. --vo
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:22
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:23
 msgid "File"
-msgstr "파일"
+msgstr "íŒŒì¼"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:318
 msgid "File Explorer icons will refresh after process restart."
-msgstr "File Explorer 아이콘은 프로세스 재시작 후 새로 고침됩니다."
+msgstr "File Explorer ì•„ì´ì½˜ì€ í”„ë¡œì„¸ìŠ¤ ìž¬ì‹œìž‘ í›„ ìƒˆë¡œ ê³ ì¹¨ë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:323
 msgid "File associations were successfully created."
-msgstr "파일 연결을 생성했습니다."
+msgstr "íŒŒì¼ ì—°ê²°ì„ ìƒì„±í–ˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:321
 msgid "File associations were successfully removed."
-msgstr "파일 연결을 제거했습니다."
+msgstr "íŒŒì¼ ì—°ê²°ì„ ì œê±°í–ˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:246
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:268
 msgid "Files/URLs were added to the playlist"
-msgstr "파일/URL을 재생 목록에 추가했습니다"
+msgstr "íŒŒì¼/URLì„ ìž¬ìƒ ëª©ë¡ì— ì¶”ê°€í–ˆìŠµë‹ˆë‹¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:39
 msgid "Find a binding (Ctrl+F)"
-msgstr "설정 찾기 (Ctrl+F)"
+msgstr "ì„¤ì • ì°¾ê¸° (Ctrl+F)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:572
 msgid "Find a setting (Ctrl+F)"
-msgstr "설정 찾기 (Ctrl+F)"
+msgstr "ì„¤ì • ì°¾ê¸° (Ctrl+F)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:31
 msgid "First File"
-msgstr "첫 파일"
+msgstr "ì²« íŒŒì¼"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1113
 msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
 msgstr "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
 
 msgid "Force a single process and add files to playlist"
-msgstr "단일 프로세스를 강제하고 재생 목록에 파일을 추가"
+msgstr "ë‹¨ì¼ í”„ë¡œì„¸ìŠ¤ë¥¼ ê°•ì œí•˜ê³  ìž¬ìƒ ëª©ë¡ì— íŒŒì¼ì„ ì¶”ê°€"
 
 msgid "Force a single process everytime the shell starts mpv.net"
 msgstr "Force a single process everytime the shell starts mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:671
 msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
-msgstr "힘 가득 차있는 tone-mapping의 사용 LUT는 더 빠른 순수한 GLSL 보충 (예를들면 클립, 선형, 포화)가 있는 기능을 위해 조차. 디버그 옵션입니다."
+msgstr "íž˜ ê°€ë“ ì°¨ìžˆëŠ” tone-mappingì˜ ì‚¬ìš© LUTëŠ” ë” ë¹ ë¥¸ ìˆœìˆ˜í•œ GLSL ë³´ì¶© (ì˜ˆë¥¼ë“¤ë©´ í´ë¦½, ì„ í˜•, í¬í™”)ê°€ ìžˆëŠ” ê¸°ëŠ¥ì„ ìœ„í•´ ì¡°ì°¨. ë””ë²„ê·¸ ì˜µì…˜ìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:208
 msgid "Forward"
-msgstr "앞으로"
+msgstr "ì•žìœ¼ë¡œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:151
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:221
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:222
 msgid "Fullscreen"
-msgstr "전체 화면"
+msgstr "ì „ì²´ í™”ë©´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:492
 msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
-msgstr "out-of-gamut 색상을 처리하는 데 사용하는 Gamut 매핑 기능으로, out-of-gamut 색을 포함."
+msgstr "out-of-gamut ìƒ‰ìƒì„ ì²˜ë¦¬í•˜ëŠ” ë° ì‚¬ìš©í•˜ëŠ” Gamut ë§¤í•‘ ê¸°ëŠ¥ìœ¼ë¡œ, out-of-gamut ìƒ‰ì„ í¬í•¨."
 
 msgid "Gaussian smoothing (fast)"
-msgstr "Gaussian 스무딩 (빠른)"
+msgstr "Gaussian ìŠ¤ë¬´ë”© (ë¹ ë¥¸)"
 
 msgid "Gaussian smoothing (fast)."
-msgstr "Gaussian 스무딩 (빠른)."
+msgstr "Gaussian ìŠ¤ë¬´ë”© (ë¹ ë¥¸)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:13
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:18
@@ -1225,14 +1225,14 @@ msgstr "Gaussian 스무딩 (빠른)."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:4
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:52
 msgid "General"
-msgstr "주요사업"
+msgstr "ì£¼ìš”ì‚¬ì—…"
 
 msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
 msgstr "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:717
 msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
-msgstr "tone-mapping의 hard-clipped 픽셀을 그래픽으로 강조합니다 (예를들면 광원 발광성 범위를 초과하는 i.e. 픽셀)."
+msgstr "tone-mappingì˜ hard-clipped í”½ì…€ì„ ê·¸ëž˜í”½ìœ¼ë¡œ ê°•ì¡°í•©ë‹ˆë‹¤ (ì˜ˆë¥¼ë“¤ë©´ ê´‘ì› ë°œê´‘ì„± ë²”ìœ„ë¥¼ ì´ˆê³¼í•˜ëŠ” i.e. í”½ì…€)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:421
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:429
@@ -1247,7 +1247,7 @@ msgstr "HDR Peak Detection"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:115
 msgid "Half"
-msgstr "절반"
+msgstr "ì ˆë°˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:192
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:193
@@ -1258,54 +1258,54 @@ msgstr "절반"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:198
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:199
 msgid "Help"
-msgstr "도움말"
+msgstr "ë„ì›€ë§"
 
 msgid "Hermite-weighted averaging (fast)"
-msgstr "Hermite-weighted averaging (빠른)"
+msgstr "Hermite-weighted averaging (ë¹ ë¥¸)"
 
 msgid "Hermite-weighted frame mixing"
-msgstr "Hermite-weighted 프레임 혼합"
+msgstr "Hermite-weighted í”„ë ˆìž„ í˜¼í•©"
 
 msgid "How the player synchronizes audio and video.\\\\n\\\\nFor more information visit:"
-msgstr "플레이어가 오디오 및 비디오를 동기화하는 방법.\\\\n\\\\n더 많은 정보 방문:"
+msgstr "í”Œë ˆì´ì–´ê°€ ì˜¤ë””ì˜¤ ë° ë¹„ë””ì˜¤ë¥¼ ë™ê¸°í™”í•˜ëŠ” ë°©ë²•.\\\\n\\\\në” ë§Žì€ ì •ë³´ ë°©ë¬¸:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:38
 msgid "How the player synchronizes audio and video.\\n\\nFor more information visit:"
-msgstr "플레이어가 오디오 및 비디오를 동기화하는 방법.\\n\\n더 많은 정보 방문:"
+msgstr "í”Œë ˆì´ì–´ê°€ ì˜¤ë””ì˜¤ ë° ë¹„ë””ì˜¤ë¥¼ ë™ê¸°í™”í•˜ëŠ” ë°©ë²•.\\n\\në” ë§Žì€ ì •ë³´ ë°©ë¬¸:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:556
 msgid "If enabled, allows the gamut mapping function to expand the gamut, in cases where the target gamut exceeds that of the source. If disabled, the source gamut will never be enlarged, even when using a gamut mapping function capable of bidirectional mapping."
-msgstr "활성화된 경우, gamut mapping 함수가 gamut을 확장할 수 있도록, 대상 gamut이 소스를 초과하는 경우. 사용하지 않는 경우, 소스 gamut는 양방향 매핑 기능을 사용할 때도 확대되지 않습니다."
+msgstr "í™œì„±í™”ëœ ê²½ìš°, gamut mapping í•¨ìˆ˜ê°€ gamutì„ í™•ìž¥í•  ìˆ˜ ìžˆë„ë¡, ëŒ€ìƒ gamutì´ ì†ŒìŠ¤ë¥¼ ì´ˆê³¼í•˜ëŠ” ê²½ìš°. ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ê²½ìš°, ì†ŒìŠ¤ gamutëŠ” ì–‘ë°©í–¥ ë§¤í•‘ ê¸°ëŠ¥ì„ ì‚¬ìš©í•  ë•Œë„ í™•ëŒ€ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:637
 msgid "If enabled, and supported by the given tone mapping function, will perform inverse tone mapping to expand the dynamic range of a signal. libplacebo is not liable for any HDR-induced eye damage."
-msgstr "가능한 경우, 주어진 톤 mapping 기능에 의해 지원해, 신호의 동적인 범위를 확장하기 위하여 inverse 음색을 실행할 것입니다. libplacebo는 HDR 유도된 눈 손상을 위해 사용할 수 없습니다."
+msgstr "ê°€ëŠ¥í•œ ê²½ìš°, ì£¼ì–´ì§„ í†¤ mapping ê¸°ëŠ¥ì— ì˜í•´ ì§€ì›í•´, ì‹ í˜¸ì˜ ë™ì ì¸ ë²”ìœ„ë¥¼ í™•ìž¥í•˜ê¸° ìœ„í•˜ì—¬ inverse ìŒìƒ‰ì„ ì‹¤í–‰í•  ê²ƒìž…ë‹ˆë‹¤. libplaceboëŠ” HDR ìœ ë„ëœ ëˆˆ ì†ìƒì„ ìœ„í•´ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:748
 msgid "If possible, write screenshots with a bit depth similar to the source video. This is interesting in particular for PNG, as this sometimes triggers writing 16 bit PNGs with huge file sizes. This will also include an unused alpha channel in the resulting files if 16 bit is used."
-msgstr "가능한 경우, 소스 비디오와 비슷한 비트 깊이와 스크린 샷을 작성합니다. 이것은 PNG에 특히 흥미 롭습니다. 때로는 거대한 파일 크기로 16 비트 PNG를 작성하는 것이 좋습니다. 16 비트가 사용되는 경우 결과 파일에 사용하지 않는 알파 채널도 포함됩니다."
+msgstr "ê°€ëŠ¥í•œ ê²½ìš°, ì†ŒìŠ¤ ë¹„ë””ì˜¤ì™€ ë¹„ìŠ·í•œ ë¹„íŠ¸ ê¹Šì´ì™€ ìŠ¤í¬ë¦° ìƒ·ì„ ìž‘ì„±í•©ë‹ˆë‹¤. ì´ê²ƒì€ PNGì— íŠ¹ížˆ í¥ë¯¸ ë¡­ìŠµë‹ˆë‹¤. ë•Œë¡œëŠ” ê±°ëŒ€í•œ íŒŒì¼ í¬ê¸°ë¡œ 16 ë¹„íŠ¸ PNGë¥¼ ìž‘ì„±í•˜ëŠ” ê²ƒì´ ì¢‹ìŠµë‹ˆë‹¤. 16 ë¹„íŠ¸ê°€ ì‚¬ìš©ë˜ëŠ” ê²½ìš° ê²°ê³¼ íŒŒì¼ì— ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ì•ŒíŒŒ ì±„ë„ë„ í¬í•¨ë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1053
 msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
-msgstr "keep-open도 설정하면 마지막 파일이 종료된 후 플레이어가 종료됩니다."
+msgstr "keep-openë„ ì„¤ì •í•˜ë©´ ë§ˆì§€ë§‰ íŒŒì¼ì´ ì¢…ë£Œëœ í›„ í”Œë ˆì´ì–´ê°€ ì¢…ë£Œë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1045
 msgid "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
-msgstr "keep-open가 활성화될 때 사용하지 않는 경우, 파일을 종료하고 다시 중지할 때까지 다시 돌아갈 때까지 계속 재생합니다."
+msgstr "keep-openê°€ í™œì„±í™”ë  ë•Œ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ê²½ìš°, íŒŒì¼ì„ ì¢…ë£Œí•˜ê³  ë‹¤ì‹œ ì¤‘ì§€í•  ë•Œê¹Œì§€ ë‹¤ì‹œ ëŒì•„ê°ˆ ë•Œê¹Œì§€ ê³„ì† ìž¬ìƒí•©ë‹ˆë‹¤."
 
 msgid "If the current file ends, go to the next file, keep the last file open."
-msgstr "현재 파일이 종료되면 다음 파일로 이동하면 마지막 파일을 엽니다."
+msgstr "í˜„ìž¬ íŒŒì¼ì´ ì¢…ë£Œë˜ë©´ ë‹¤ìŒ íŒŒì¼ë¡œ ì´ë™í•˜ë©´ ë§ˆì§€ë§‰ íŒŒì¼ì„ ì—½ë‹ˆë‹¤."
 
 msgid "If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
-msgstr "현재 파일이 종료되면 다음 파일로 이동합니다. idle이 no로 설정되면 마지막 파일 이후에 플레이어가 종료됩니다."
+msgstr "í˜„ìž¬ íŒŒì¼ì´ ì¢…ë£Œë˜ë©´ ë‹¤ìŒ íŒŒì¼ë¡œ ì´ë™í•©ë‹ˆë‹¤. idleì´ noë¡œ ì„¤ì •ë˜ë©´ ë§ˆì§€ë§‰ íŒŒì¼ ì´í›„ì— í”Œë ˆì´ì–´ê°€ ì¢…ë£Œë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:173
 msgid "Ignore"
-msgstr "이름 *"
+msgstr "ì´ë¦„ *"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:220
 msgid "Ignore left mouse button"
-msgstr "왼쪽 마우스 버튼 무시"
+msgstr "ì™¼ìª½ ë§ˆìš°ìŠ¤ ë²„íŠ¼ ë¬´ì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:28
 msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
@@ -1313,132 +1313,132 @@ msgstr "Image file extentions to try to match when using --cover-art-auto, --aut
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:71
 msgid "Increase Brightness"
-msgstr "밝기 증가"
+msgstr "ë°ê¸° ì¦ê°€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:68
 msgid "Increase Contrast"
-msgstr "대비 증가"
+msgstr "ëŒ€ë¹„ ì¦ê°€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:101
 msgid "Increase Font Size"
-msgstr "글꼴 크기 증가"
+msgstr "ê¸€ê¼´ í¬ê¸° ì¦ê°€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:74
 msgid "Increase Gamma"
-msgstr "감마 증가"
+msgstr "ê°ë§ˆ ì¦ê°€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:63
 msgid "Increase Height"
-msgstr "높이 증가"
+msgstr "ë†’ì´ ì¦ê°€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:77
 msgid "Increase Saturation"
-msgstr "채도 증가"
+msgstr "ì±„ë„ ì¦ê°€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:54
 msgid "Increase Size"
-msgstr "크기 확대"
+msgstr "í¬ê¸° í™•ëŒ€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:471
 msgid "Info"
-msgstr "정보"
+msgstr "ì •ë³´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1126
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1131
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1136
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:102
 msgid "Input"
-msgstr "입력"
+msgstr "ìž…ë ¥"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:11
 msgid "Input Editor"
-msgstr "입력 편집기"
+msgstr "ìž…ë ¥ íŽ¸ì§‘ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:45
 msgid "Jump 30 sec backward"
-msgstr "30초 전으로 이동"
+msgstr "30ì´ˆ ì „ìœ¼ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:44
 msgid "Jump 30 sec forward"
-msgstr "30초 후로 이동"
+msgstr "30ì´ˆ í›„ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:48
 msgid "Jump 5 min backward"
-msgstr "5분 전으로 이동"
+msgstr "5ë¶„ ì „ìœ¼ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:47
 msgid "Jump 5 min forward"
-msgstr "5분 후로 이동"
+msgstr "5ë¶„ í›„ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:42
 msgid "Jump 5 sec backward"
-msgstr "5초 전으로 이동"
+msgstr "5ì´ˆ ì „ìœ¼ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:41
 msgid "Jump 5 sec forward"
-msgstr "5초 후로 이동"
+msgstr "5ì´ˆ í›„ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:38
 msgid "Jump To Next Frame"
-msgstr "다음 프레임으로 이동"
+msgstr "ë‹¤ìŒ í”„ë ˆìž„ìœ¼ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:39
 msgid "Jump To Previous Frame"
-msgstr "이전 프레임으로 이동"
+msgstr "ì´ì „ í”„ë ˆìž„ìœ¼ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:146
 msgid "Keys"
-msgstr "키 표시"
+msgstr "í‚¤ í‘œì‹œ"
 
 msgid "Lanczos reconstruction"
-msgstr "Lanczos 재건축"
+msgstr "Lanczos ìž¬ê±´ì¶•"
 
 msgid "Lanczos reconstruction."
-msgstr "Lanczos 재건."
+msgstr "Lanczos ìž¬ê±´."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:32
 msgid "Last File"
-msgstr "마지막 파일"
+msgstr "ë§ˆì§€ë§‰ íŒŒì¼"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:10
 msgid "Learn Input"
-msgstr "입력 학습"
+msgstr "ìž…ë ¥ í•™ìŠµ"
 
 msgid "Like scale, but apply these filters on downscaling instead. \\\\nIf no option is selected, it will keep the same with the upscaler."
-msgstr "스케일처럼, 대신 downscaling에 이러한 필터를 적용합니다. \\\\n옵션이 선택되지 않은 경우, 업스칼러와 동일하게 유지됩니다."
+msgstr "ìŠ¤ì¼€ì¼ì²˜ëŸ¼, ëŒ€ì‹  downscalingì— ì´ëŸ¬í•œ í•„í„°ë¥¼ ì ìš©í•©ë‹ˆë‹¤. \\\\nì˜µì…˜ì´ ì„ íƒë˜ì§€ ì•Šì€ ê²½ìš°, ì—…ìŠ¤ì¹¼ëŸ¬ì™€ ë™ì¼í•˜ê²Œ ìœ ì§€ë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:141
 msgid "Like scale, but apply these filters on downscaling instead. \\nIf no option is selected, it will keep the same with the upscaler."
-msgstr "스케일처럼, 대신 downscaling에 이러한 필터를 적용합니다. \\n옵션이 선택되지 않은 경우, 업스칼러와 동일하게 유지됩니다."
+msgstr "ìŠ¤ì¼€ì¼ì²˜ëŸ¼, ëŒ€ì‹  downscalingì— ì´ëŸ¬í•œ í•„í„°ë¥¼ ì ìš©í•©ë‹ˆë‹¤. \\nì˜µì…˜ì´ ì„ íƒë˜ì§€ ì•Šì€ ê²½ìš°, ì—…ìŠ¤ì¹¼ëŸ¬ì™€ ë™ì¼í•˜ê²Œ ìœ ì§€ë©ë‹ˆë‹¤."
 
 msgid "Linear frame mixing"
-msgstr "선형 프레임 혼합"
+msgstr "ì„ í˜• í”„ë ˆìž„ í˜¼í•©"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:809
 msgid "Load additional audio files matching the video filename. The parameter specifies how external audio files are matched."
-msgstr "비디오 파일 이름과 일치하는 추가 오디오 파일을로드하십시오. 매개 변수는 외부 오디오 파일이 일치하는 방법을 지정합니다."
+msgstr "ë¹„ë””ì˜¤ íŒŒì¼ ì´ë¦„ê³¼ ì¼ì¹˜í•˜ëŠ” ì¶”ê°€ ì˜¤ë””ì˜¤ íŒŒì¼ì„ë¡œë“œí•˜ì‹­ì‹œì˜¤. ë§¤ê°œ ë³€ìˆ˜ëŠ” ì™¸ë¶€ ì˜¤ë””ì˜¤ íŒŒì¼ì´ ì¼ì¹˜í•˜ëŠ” ë°©ë²•ì„ ì§€ì •í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:845
 msgid "Load additional subtitle files matching the video filename. The parameter specifies how external subtitle files are matched. exact is enabled by default."
-msgstr "비디오 파일 이름과 일치하는 추가 자막 파일로드. 매개변수는 외부 자막 파일이 일치하는 방법을 지정합니다. 정확한은 기본적으로 활성화됩니다."
+msgstr "ë¹„ë””ì˜¤ íŒŒì¼ ì´ë¦„ê³¼ ì¼ì¹˜í•˜ëŠ” ì¶”ê°€ ìžë§‰ íŒŒì¼ë¡œë“œ. ë§¤ê°œë³€ìˆ˜ëŠ” ì™¸ë¶€ ìžë§‰ íŒŒì¼ì´ ì¼ì¹˜í•˜ëŠ” ë°©ë²•ì„ ì§€ì •í•©ë‹ˆë‹¤. ì •í™•í•œì€ ê¸°ë³¸ì ìœ¼ë¡œ í™œì„±í™”ë©ë‹ˆë‹¤."
 
 msgid "Load all audio files containing media filename."
-msgstr "미디어 파일명 포함 모든 오디오 파일을로드합니다."
+msgstr "ë¯¸ë””ì–´ íŒŒì¼ëª… í¬í•¨ ëª¨ë“  ì˜¤ë””ì˜¤ íŒŒì¼ì„ë¡œë“œí•©ë‹ˆë‹¤."
 
 msgid "Load all audio files in the current and audio-file-paths directories."
-msgstr "현재와 audio-file-paths 디렉토리의 모든 오디오 파일을로드합니다."
+msgstr "í˜„ìž¬ì™€ audio-file-paths ë””ë ‰í† ë¦¬ì˜ ëª¨ë“  ì˜¤ë””ì˜¤ íŒŒì¼ì„ë¡œë“œí•©ë‹ˆë‹¤."
 
 msgid "Load all subs containing media filename."
-msgstr "media filename을 포함한 모든 하위를 로드합니다."
+msgstr "media filenameì„ í¬í•¨í•œ ëª¨ë“  í•˜ìœ„ë¥¼ ë¡œë“œí•©ë‹ˆë‹¤."
 
 msgid "Load all subs in the current and sub-file-paths directories."
-msgstr "현재와 sub-file-paths 디렉토리의 모든 하위를로드합니다."
+msgstr "í˜„ìž¬ì™€ sub-file-paths ë””ë ‰í† ë¦¬ì˜ ëª¨ë“  í•˜ìœ„ë¥¼ë¡œë“œí•©ë‹ˆë‹¤."
 
 msgid "Load the media filename with audio file extension."
-msgstr "오디오 파일 확장으로 미디어 파일 이름을로드합니다."
+msgstr "ì˜¤ë””ì˜¤ íŒŒì¼ í™•ìž¥ìœ¼ë¡œ ë¯¸ë””ì–´ íŒŒì¼ ì´ë¦„ì„ë¡œë“œí•©ë‹ˆë‹¤."
 
 msgid "Load the media filename with subtitle file extension."
-msgstr "subtitle 파일 확장으로 미디어 파일 이름을로드합니다."
+msgstr "subtitle íŒŒì¼ í™•ìž¥ìœ¼ë¡œ ë¯¸ë””ì–´ íŒŒì¼ ì´ë¦„ì„ë¡œë“œí•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:195
 msgid "Manual mpv"
@@ -1450,22 +1450,22 @@ msgstr "Manual mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:228
 msgid "Mark position for revert-seek"
-msgstr "복귀 탐색하기 위한 위치 표시"
+msgstr "ë³µê·€ íƒìƒ‰í•˜ê¸° ìœ„í•œ ìœ„ì¹˜ í‘œì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:124
 msgid "Media Info Message Box"
-msgstr "미디어 정보 메시지 상자 표시"
+msgstr "ë¯¸ë””ì–´ ì •ë³´ ë©”ì‹œì§€ ìƒìž í‘œì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:123
 msgid "Media Info On-Screen"
-msgstr "On-Screen 미디어 정보 표시"
+msgstr "On-Screen ë¯¸ë””ì–´ ì •ë³´ í‘œì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:573
 msgid "Menu"
-msgstr "메뉴"
+msgstr "ë©”ë‰´"
 
 msgid "Mitchell-Netravalia cubic spline"
-msgstr "Mitchell-Netravalia 입방 스플라인"
+msgstr "Mitchell-Netravalia ìž…ë°© ìŠ¤í”Œë¼ì¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:103
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:142
@@ -1477,7 +1477,7 @@ msgstr "Mitchell-Netravalia 입방 스플라인"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "More"
-msgstr "더 보기"
+msgstr "ë” ë³´ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:159
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:160
@@ -1485,33 +1485,33 @@ msgstr "더 보기"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:162
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:163
 msgid "Move"
-msgstr "이동"
+msgstr "ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:60
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:98
 msgid "Move Down"
-msgstr "아래로 이동"
+msgstr "ì•„ëž˜ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:56
 msgid "Move Left"
-msgstr "왼쪽으로 이동"
+msgstr "ì™¼ìª½ìœ¼ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:57
 msgid "Move Right"
-msgstr "오른쪽으로 이동"
+msgstr "ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:59
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:97
 msgid "Move Up"
-msgstr "위로 이동"
+msgstr "ìœ„ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:110
 msgid "Mute"
-msgstr "음소거"
+msgstr "ìŒì†Œê±°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:96
 msgid "Name"
-msgstr "이름 *"
+msgstr "ì´ë¦„ *"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:28
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:29
@@ -1537,33 +1537,33 @@ msgstr "이름 *"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:50
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:51
 msgid "Navigate"
-msgstr "탐색"
+msgstr "íƒìƒ‰"
 
 msgid "Nearest-neighbour (box) sampling (very fast)."
-msgstr "가장 가까운 거리 (box) 샘플링 (매우 빠른)."
+msgstr "ê°€ìž¥ ê°€ê¹Œìš´ ê±°ë¦¬ (box) ìƒ˜í”Œë§ (ë§¤ìš° ë¹ ë¥¸)."
 
 msgid "Never use precise seeks."
-msgstr "정확한 추구를 사용하지 마십시오."
+msgstr "ì •í™•í•œ ì¶”êµ¬ë¥¼ ì‚¬ìš©í•˜ì§€ ë§ˆì‹­ì‹œì˜¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:35
 msgid "Next Chapter"
-msgstr "다음 장"
+msgstr "ë‹¤ìŒ ìž¥"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:215
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:217
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:219
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:29
 msgid "Next File"
-msgstr "다음 파일"
+msgstr "ë‹¤ìŒ íŒŒì¼"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:86
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:91
 msgid "Next Track"
-msgstr "다음 트랙"
+msgstr "ë‹¤ìŒ íŠ¸ëž™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
 msgid "No"
-msgstr "없음"
+msgstr "ì—†ìŒ"
 
 msgid "No filter, only use basic GPU texture sampling."
 msgstr "No filter, only use basic GPU texture sampling."
@@ -1574,11 +1574,11 @@ msgstr "Normally, mpv will try to keep all options when playing the next file on
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1132
 msgid "Number of key presses to generate per second on autorepeat."
-msgstr "autorepeat에 초 당 생성하는 열쇠의 수."
+msgstr "autorepeatì— ì´ˆ ë‹¹ ìƒì„±í•˜ëŠ” ì—´ì‡ ì˜ ìˆ˜."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:127
 msgid "OK"
-msgstr "이름 *"
+msgstr "ì´ë¦„ *"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:126
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:127
@@ -1599,41 +1599,41 @@ msgstr "이름 *"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:249
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:250
 msgid "On-Screen Menu"
-msgstr "화면 메뉴"
+msgstr "í™”ë©´ ë©”ë‰´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:175
 msgid "Open Config Folder"
-msgstr "설정 폴더 열기"
+msgstr "ì„¤ì • í´ë” ì—´ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:14
 msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr "DVD/Blu-ray 드라이브/폴더 열기..."
+msgstr "DVD/Blu-ray ë“œë¼ì´ë¸Œ/í´ë” ì—´ê¸°..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:12
 msgid "Open Files..."
-msgstr "파일 열기..."
+msgstr "íŒŒì¼ ì—´ê¸°..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:13
 msgid "Open URL or file from clipboard"
-msgstr "클립보드의 URL이나 파일 열기"
+msgstr "í´ë¦½ë³´ë“œì˜ URLì´ë‚˜ íŒŒì¼ ì—´ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:224
 msgid "Override all libplacebo options by the values from the given preset."
-msgstr "주어진 preset의 값으로 모든 libplacebo 옵션을 무시합니다."
+msgstr "ì£¼ì–´ì§„ presetì˜ ê°’ìœ¼ë¡œ ëª¨ë“  libplacebo ì˜µì…˜ì„ ë¬´ì‹œí•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:283
 msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
-msgstr "다운 스케일링 비행기에 사용되는 필터를 제거, 예를 들어, 크롬 / 알파. 아무도로 설정하면, downscaler와 같은 설정을 사용합니다."
+msgstr "ë‹¤ìš´ ìŠ¤ì¼€ì¼ë§ ë¹„í–‰ê¸°ì— ì‚¬ìš©ë˜ëŠ” í•„í„°ë¥¼ ì œê±°, ì˜ˆë¥¼ ë“¤ì–´, í¬ë¡¬ / ì•ŒíŒŒ. ì•„ë¬´ë„ë¡œ ì„¤ì •í•˜ë©´, downscalerì™€ ê°™ì€ ì„¤ì •ì„ ì‚¬ìš©í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:268
 msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
-msgstr "확장 비행기, 예를 들어 크롬 / 알파에 사용되는 필터를 제거하십시오. 아무도로 설정하면, upscaler와 같은 설정을 사용합니다."
+msgstr "í™•ìž¥ ë¹„í–‰ê¸°, ì˜ˆë¥¼ ë“¤ì–´ í¬ë¡¬ / ì•ŒíŒŒì— ì‚¬ìš©ë˜ëŠ” í•„í„°ë¥¼ ì œê±°í•˜ì‹­ì‹œì˜¤. ì•„ë¬´ë„ë¡œ ì„¤ì •í•˜ë©´, upscalerì™€ ê°™ì€ ì„¤ì •ì„ ì‚¬ìš©í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:322
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:358
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:384
 msgid "Overrides the value of all options in this section by their default values from the given preset."
-msgstr "주어진 미리 설정에서 기본 값으로 이 섹션에서 모든 옵션의 값을 무시합니다."
+msgstr "ì£¼ì–´ì§„ ë¯¸ë¦¬ ì„¤ì •ì—ì„œ ê¸°ë³¸ ê°’ìœ¼ë¡œ ì´ ì„¹ì…˜ì—ì„œ ëª¨ë“  ì˜µì…˜ì˜ ê°’ì„ ë¬´ì‹œí•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:483
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
@@ -1641,10 +1641,10 @@ msgstr "Overrides the value of all options in this section by their default valu
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:430
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
-msgstr "주어진 미리 설정에서 기본 값으로 이 섹션에서 모든 옵션의 값을 무시합니다. high_quality도 프레임의 심도 측정을 가능하게 합니다."
+msgstr "ì£¼ì–´ì§„ ë¯¸ë¦¬ ì„¤ì •ì—ì„œ ê¸°ë³¸ ê°’ìœ¼ë¡œ ì´ ì„¹ì…˜ì—ì„œ ëª¨ë“  ì˜µì…˜ì˜ ê°’ì„ ë¬´ì‹œí•©ë‹ˆë‹¤. high_qualityë„ í”„ë ˆìž„ì˜ ì‹¬ë„ ì¸¡ì •ì„ ê°€ëŠ¥í•˜ê²Œ í•©ë‹ˆë‹¤."
 
 msgid "Oversampling, only mix \\\"edge\\\" frames while preserving FPS"
-msgstr "오버 스탬핑, 믹스 \\\"edge\\\" 프레임은 FPS를 보존하면서"
+msgstr "ì˜¤ë²„ ìŠ¤íƒ¬í•‘, ë¯¹ìŠ¤ \\\"edge\\\" í”„ë ˆìž„ì€ FPSë¥¼ ë³´ì¡´í•˜ë©´ì„œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:53
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:54
@@ -1660,11 +1660,11 @@ msgstr "오버 스탬핑, 믹스 \\\"edge\\\" 프레임은 FPS를 보존하면�
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:64
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:65
 msgid "Pan & Scan"
-msgstr "팬과 스캔"
+msgstr "íŒ¬ê³¼ ìŠ¤ìº”"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:219
 msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
-msgstr "libplacebo 렌더링 백엔드(--vo=gpu-next)에 추가적인 원시 옵션을 전달합니다. 정상적인 옵션 시스템을 사용하여 설정된 다른 옵션의 효과를 극복 할 수 있습니다."
+msgstr "libplacebo ë Œë”ë§ ë°±ì—”ë“œ(--vo=gpu-next)ì— ì¶”ê°€ì ì¸ ì›ì‹œ ì˜µì…˜ì„ ì „ë‹¬í•©ë‹ˆë‹¤. ì •ìƒì ì¸ ì˜µì…˜ ì‹œìŠ¤í…œì„ ì‚¬ìš©í•˜ì—¬ ì„¤ì •ëœ ë‹¤ë¥¸ ì˜µì…˜ì˜ íš¨ê³¼ë¥¼ ê·¹ë³µ í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:203
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:204
@@ -1672,7 +1672,7 @@ msgstr "libplacebo 렌더링 백엔드(--vo=gpu-next)에 추가적인 원시 옵
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:206
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:25
 msgid "Play/Pause"
-msgstr "재생/일시 정지"
+msgstr "ìž¬ìƒ/ì¼ì‹œ ì •ì§€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1036
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1044
@@ -1688,78 +1688,78 @@ msgstr "재생/일시 정지"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:25
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:26
 msgid "Playback"
-msgstr "재생"
+msgstr "ìž¬ìƒ"
 
 msgid "Playback will never automatically advance to the next file."
-msgstr "재생은 다음 파일로 자동으로 발전하지 않습니다."
+msgstr "ìž¬ìƒì€ ë‹¤ìŒ íŒŒì¼ë¡œ ìžë™ìœ¼ë¡œ ë°œì „í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:120
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:127
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:234
 msgid "Playlist"
-msgstr "재생 목록"
+msgstr "ìž¬ìƒ ëª©ë¡"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:575
 msgid "Preview mpv.conf"
-msgstr "mpv.conf 미리 보기"
+msgstr "mpv.conf ë¯¸ë¦¬ ë³´ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:576
 msgid "Preview mpvnet.conf"
-msgstr "mpvnet.conf 미리 보기"
+msgstr "mpvnet.conf ë¯¸ë¦¬ ë³´ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:36
 msgid "Previous Chapter"
-msgstr "이전 장"
+msgstr "ì´ì „ ìž¥"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:214
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:216
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:218
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:28
 msgid "Previous File"
-msgstr "이전 파일"
+msgstr "ì´ì „ íŒŒì¼"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:426
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:167
 msgid "Profile"
-msgstr "프로파일"
+msgstr "í”„ë¡œíŒŒì¼"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1120
 msgid "Program Behavior"
-msgstr "프로그램 Behavior"
+msgstr "í”„ë¡œê·¸ëž¨ Behavior"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:125
 msgid "Progress"
-msgstr "진행률 표시"
+msgstr "ì§„í–‰ë¥  í‘œì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:129
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:247
 msgid "Properties"
-msgstr "속성"
+msgstr "ì†ì„±"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:147
 msgid "Protocols"
-msgstr "프로토콜 표시"
+msgstr "í”„ë¡œí† ì½œ í‘œì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:372
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:22
 msgid "Recent Files"
-msgstr "최근 파일"
+msgstr "ìµœê·¼ íŒŒì¼"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:177
 msgid "Register audio file associations"
-msgstr "오디오 파일 연결 등록"
+msgstr "ì˜¤ë””ì˜¤ íŒŒì¼ ì—°ê²° ë“±ë¡"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:178
 msgid "Register image file associations"
-msgstr "이미지 파일 연결 등록"
+msgstr "ì´ë¯¸ì§€ íŒŒì¼ ì—°ê²° ë“±ë¡"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:176
 msgid "Register video file associations"
-msgstr "비디오 파일 연결 등록"
+msgstr "ë¹„ë””ì˜¤ íŒŒì¼ ì—°ê²° ë“±ë¡"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Remove mpv.net from Path environment variable"
-msgstr "Path 환경 변수에서 mpv.net 제거"
+msgstr "Path í™˜ê²½ ë³€ìˆ˜ì—ì„œ mpv.net ì œê±°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:101
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:112
@@ -1776,34 +1776,34 @@ msgstr "Path 환경 변수에서 mpv.net 제거"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:218
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:91
 msgid "Render Options"
-msgstr "옵션 렌더링"
+msgstr "ì˜µì…˜ ë Œë”ë§"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:118
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:65
 msgid "Reset"
-msgstr "초기화"
+msgstr "ì´ˆê¸°í™”"
 
 msgid "Reset all everything to high quality presets (where available)."
-msgstr "고품질 사전 설정에 모든 모든 것을 재설정 (무선 가능)."
+msgstr "ê³ í’ˆì§ˆ ì‚¬ì „ ì„¤ì •ì— ëª¨ë“  ëª¨ë“  ê²ƒì„ ìž¬ì„¤ì • (ë¬´ì„  ê°€ëŠ¥)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:164
 msgid "Retry"
-msgstr "이름 *"
+msgstr "ì´ë¦„ *"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Rotate Video"
-msgstr "비디오 회전"
+msgstr "ë¹„ë””ì˜¤ íšŒì „"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1008
 msgid "Same as minimum-aspect-ratio but used for audio files."
-msgstr "minimum-aspect-ratio와 같지만 오디오 파일에 사용됩니다."
+msgstr "minimum-aspect-ratioì™€ ê°™ì§€ë§Œ ì˜¤ë””ì˜¤ íŒŒì¼ì— ì‚¬ìš©ë©ë‹ˆë‹¤."
 
 msgid "Same as yes (for compatibility)."
-msgstr "그렇습니다와 동일 ( 겸용성을 위해)."
+msgstr "ê·¸ë ‡ìŠµë‹ˆë‹¤ì™€ ë™ì¼ ( ê²¸ìš©ì„±ì„ ìœ„í•´)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:826
 msgid "Save and restore the audio device chosen in the context menu. Default: yes"
-msgstr "컨텍스트 메뉴에서 선택한 오디오 장치를 저장하고 복원합니다. 기본: 예"
+msgstr "ì»¨í…ìŠ¤íŠ¸ ë©”ë‰´ì—ì„œ ì„ íƒí•œ ì˜¤ë””ì˜¤ ìž¥ì¹˜ë¥¼ ì €ìž¥í•˜ê³  ë³µì›í•©ë‹ˆë‹¤. ê¸°ë³¸: ì˜ˆ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1013
 msgid "Save the window position on exit. (mpv.net option)"
@@ -1825,7 +1825,7 @@ msgstr "Save volume and mute on exit and restore it on start. (mpv.net option)"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:297
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:308
 msgid "Scaling"
-msgstr "관련 상품"
+msgstr "ê´€ë ¨ ìƒí’ˆ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:726
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:731
@@ -1837,51 +1837,51 @@ msgstr "관련 상품"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:774
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:779
 msgid "Screenshot"
-msgstr "스크린 샷"
+msgstr "ìŠ¤í¬ë¦° ìƒ·"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:134
 msgid "Secondary Subtitle"
-msgstr "보조 자막"
+msgstr "ë³´ì¡° ìžë§‰"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:236
 msgid "Secondary Subtitles"
-msgstr "다음 자막으로 이동"
+msgstr "ë‹¤ìŒ ìžë§‰ìœ¼ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:879
 msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
-msgstr "sub-color를 참조하십시오. 하위 텍스트 배경에 사용되는 색상. 텍스트에 관계되는 크기를 변경하려면 sub-shadow-offset를 사용할 수 있습니다."
+msgstr "sub-colorë¥¼ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤. í•˜ìœ„ í…ìŠ¤íŠ¸ ë°°ê²½ì— ì‚¬ìš©ë˜ëŠ” ìƒ‰ìƒ. í…ìŠ¤íŠ¸ì— ê´€ê³„ë˜ëŠ” í¬ê¸°ë¥¼ ë³€ê²½í•˜ë ¤ë©´ sub-shadow-offsetë¥¼ ì‚¬ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:873
 msgid "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
-msgstr "sub-color를 참조하십시오. 하위 글꼴 경계에 사용되는 색상. sub-back-color가 지정될 때 Ignored (또는 더 정확하게: 그 선택권이 완전하게 투명한에 놓지 않을 때)."
+msgstr "sub-colorë¥¼ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤. í•˜ìœ„ ê¸€ê¼´ ê²½ê³„ì— ì‚¬ìš©ë˜ëŠ” ìƒ‰ìƒ. sub-back-colorê°€ ì§€ì •ë  ë•Œ Ignored (ë˜ëŠ” ë” ì •í™•í•˜ê²Œ: ê·¸ ì„ íƒê¶Œì´ ì™„ì „í•˜ê²Œ íˆ¬ëª…í•œì— ë†“ì§€ ì•Šì„ ë•Œ)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:224
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:226
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:232
 msgid "Seek Backward"
-msgstr "되감기"
+msgstr "ë˜ê°ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:223
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:225
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:231
 msgid "Seek Forward"
-msgstr "빨리감기"
+msgstr "ë¹¨ë¦¬ê°ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:230
 msgid "Seek to next subtitle"
-msgstr "다음 자막으로 이동"
+msgstr "ë‹¤ìŒ ìžë§‰ìœ¼ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:229
 msgid "Seek to previous subtitle"
-msgstr "이전 자막으로 이동"
+msgstr "ì´ì „ ìžë§‰ìœ¼ë¡œ ì´ë™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1081
 msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
-msgstr "keyframe에 제한되지 않는 정확한 추구를 사용할 때 선택. 이러한 추구는 대상 위치에 이전 키프레임에서 비디오를 디코딩해야하므로 디코딩 성능에 따라 몇 시간을 걸릴 수 있습니다. 일부 비디오 형식의 경우 정확한 추구는 비활성화됩니다. 이 옵션은 기본 선택을 선택하여 추구에 사용할 수 있습니다. 키 바인딩과 입력 명령의 정의에 기본적으로 과도하게 override 할 수 있습니다."
+msgstr "keyframeì— ì œí•œë˜ì§€ ì•ŠëŠ” ì •í™•í•œ ì¶”êµ¬ë¥¼ ì‚¬ìš©í•  ë•Œ ì„ íƒ. ì´ëŸ¬í•œ ì¶”êµ¬ëŠ” ëŒ€ìƒ ìœ„ì¹˜ì— ì´ì „ í‚¤í”„ë ˆìž„ì—ì„œ ë¹„ë””ì˜¤ë¥¼ ë””ì½”ë”©í•´ì•¼í•˜ë¯€ë¡œ ë””ì½”ë”© ì„±ëŠ¥ì— ë”°ë¼ ëª‡ ì‹œê°„ì„ ê±¸ë¦´ ìˆ˜ ìžˆìŠµë‹ˆë‹¤. ì¼ë¶€ ë¹„ë””ì˜¤ í˜•ì‹ì˜ ê²½ìš° ì •í™•í•œ ì¶”êµ¬ëŠ” ë¹„í™œì„±í™”ë©ë‹ˆë‹¤. ì´ ì˜µì…˜ì€ ê¸°ë³¸ ì„ íƒì„ ì„ íƒí•˜ì—¬ ì¶”êµ¬ì— ì‚¬ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. í‚¤ ë°”ì¸ë”©ê³¼ ìž…ë ¥ ëª…ë ¹ì˜ ì •ì˜ì— ê¸°ë³¸ì ìœ¼ë¡œ ê³¼ë„í•˜ê²Œ override í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:171
 msgid "Set dither target depth to N. Note that the depth of the connected video display device cannot be detected. Often, LCD panels will do dithering on their own, which conflicts with this option and leads to ugly output."
-msgstr "N에 dither 표적 깊이를 놓으십시오. 연결된 영상 전시 장치의 깊이가 검출될 수 없다는 점을 주의하십시오. 종종 LCD 패널은이 옵션과 충돌하고 ugly 출력으로 이끌 자신의 자신에 박탈 할 것입니다."
+msgstr "Nì— dither í‘œì  ê¹Šì´ë¥¼ ë†“ìœ¼ì‹­ì‹œì˜¤. ì—°ê²°ëœ ì˜ìƒ ì „ì‹œ ìž¥ì¹˜ì˜ ê¹Šì´ê°€ ê²€ì¶œë  ìˆ˜ ì—†ë‹¤ëŠ” ì ì„ ì£¼ì˜í•˜ì‹­ì‹œì˜¤. ì¢…ì¢… LCD íŒ¨ë„ì€ì´ ì˜µì…˜ê³¼ ì¶©ëŒí•˜ê³  ugly ì¶œë ¥ìœ¼ë¡œ ì´ëŒ ìžì‹ ì˜ ìžì‹ ì— ë°•íƒˆ í•  ê²ƒìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:939
 msgid "Set the duration of the OSD messages in ms. Default: 1000"
@@ -1889,7 +1889,7 @@ msgstr "Set the duration of the OSD messages in ms. Default: 1000"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:732
 msgid "Set the image file type used for saving screenshots."
-msgstr "스크린 샷을 저장하는 데 사용되는 이미지 파일 유형을 설정합니다."
+msgstr "ìŠ¤í¬ë¦° ìƒ·ì„ ì €ìž¥í•˜ëŠ” ë° ì‚¬ìš©ë˜ëŠ” ì´ë¯¸ì§€ íŒŒì¼ ìœ í˜•ì„ ì„¤ì •í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:791
 msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
@@ -1900,27 +1900,27 @@ msgstr "Set the startup volume. 0 means silence, 100 means no volume reduction o
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:885
 msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
-msgstr "창 제목을 설정합니다. 비디오 창에 사용됩니다. 가능한 경우 오디오 스트림 타이틀을 설정합니다. 속성이 확장됩니다. 공지사항 사용 된 속성에 따라 중요한 CPU 사용의 위험이 있습니다."
+msgstr "ì°½ ì œëª©ì„ ì„¤ì •í•©ë‹ˆë‹¤. ë¹„ë””ì˜¤ ì°½ì— ì‚¬ìš©ë©ë‹ˆë‹¤. ê°€ëŠ¥í•œ ê²½ìš° ì˜¤ë””ì˜¤ ìŠ¤íŠ¸ë¦¼ íƒ€ì´í‹€ì„ ì„¤ì •í•©ë‹ˆë‹¤. ì†ì„±ì´ í™•ìž¥ë©ë‹ˆë‹¤. ê³µì§€ì‚¬í•­ ì‚¬ìš© ëœ ì†ì„±ì— ë”°ë¼ ì¤‘ìš”í•œ CPU ì‚¬ìš©ì˜ ìœ„í—˜ì´ ìžˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:906
 msgid "Set this to no in order to hide the window title bar."
-msgstr "창 제목 표시 줄을 숨기려면이를 설정하십시오."
+msgstr "ì°½ ì œëª© í‘œì‹œ ì¤„ì„ ìˆ¨ê¸°ë ¤ë©´ì´ë¥¼ ì„¤ì •í•˜ì‹­ì‹œì˜¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:184
 msgid "Set/clear A-B loop points"
-msgstr "A-B 반복 지점 설정/해제"
+msgstr "A-B ë°˜ë³µ ì§€ì  ì„¤ì •/í•´ì œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:253
 msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
-msgstr "downscaling에 사용되는 필터를 설정합니다. 가장 중요한 옵션은 가장 빠른 속도로 주문했습니다."
+msgstr "downscalingì— ì‚¬ìš©ë˜ëŠ” í•„í„°ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤. ê°€ìž¥ ì¤‘ìš”í•œ ì˜µì…˜ì€ ê°€ìž¥ ë¹ ë¥¸ ì†ë„ë¡œ ì£¼ë¬¸í–ˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:298
 msgid "Sets the filter used for frame mixing (temporal interpolation). Roughly ordered from fastest to slowest."
-msgstr "Frame Mix (temporal interpolation)에 사용되는 필터를 설정합니다. 가장 빠른 속도로 주문."
+msgstr "Frame Mix (temporal interpolation)ì— ì‚¬ìš©ë˜ëŠ” í•„í„°ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤. ê°€ìž¥ ë¹ ë¥¸ ì†ë„ë¡œ ì£¼ë¬¸."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:234
 msgid "Sets the filter used for upscaling."
-msgstr "확장에 사용되는 필터를 설정합니다."
+msgstr "í™•ìž¥ì— ì‚¬ìš©ë˜ëŠ” í•„í„°ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:982
 msgid "Setting to remember the window size. (mpv.net option)"
@@ -1934,26 +1934,26 @@ msgstr "Setting to remember the window size. (mpv.net option)"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:181
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Setup"
-msgstr "설치하기"
+msgstr "ì„¤ì¹˜í•˜ê¸°"
 
 msgid "Sharpened version of ewa_lanczos (slow)."
-msgstr "ewa_lanczos (slow)의 날카로운 버전."
+msgstr "ewa_lanczos (slow)ì˜ ë‚ ì¹´ë¡œìš´ ë²„ì „."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:169
 msgid "Show Config Editor"
-msgstr "구성 편집기 표시"
+msgstr "êµ¬ì„± íŽ¸ì§‘ê¸° í‘œì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:170
 msgid "Show Input Editor"
-msgstr "본문 바로가기"
+msgstr "ë³¸ë¬¸ ë°”ë¡œê°€ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:202
 msgid "Show Menu"
-msgstr "메뉴 표시"
+msgstr "ë©”ë‰´ í‘œì‹œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:448
 msgid "Show Profiles"
-msgstr "프로파일 보기"
+msgstr "í”„ë¡œíŒŒì¼ ë³´ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:928
 msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
@@ -1973,34 +1973,34 @@ msgstr "Show mpv.net options"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:919
 msgid "Show progress in taskbar."
-msgstr "taskbar의 진행 상황을 표시합니다."
+msgstr "taskbarì˜ ì§„í–‰ ìƒí™©ì„ í‘œì‹œí•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:898
 msgid "Show window with decoration (titlebar, border)."
-msgstr "장식 (titlebar, 국경)과 창을 표시합니다."
+msgstr "ìž¥ì‹ (titlebar, êµ­ê²½)ê³¼ ì°½ì„ í‘œì‹œí•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:153
 msgid "Shrink"
-msgstr "작게"
+msgstr "ìž‘ê²Œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:186
 msgid "Shuffle Playlist"
-msgstr "재생 목록 순서 섞기"
+msgstr "ìž¬ìƒ ëª©ë¡ ìˆœì„œ ì„žê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:1450
 msgid "Shutdown thread failed to complete within 10 seconds."
-msgstr "Shutdown 실은 10 초 안에 완료하지 못했습니다."
+msgstr "Shutdown ì‹¤ì€ 10 ì´ˆ ì•ˆì— ì™„ë£Œí•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:349
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:357
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:365
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:370
 msgid "Sigmoidization"
-msgstr "관련 제품"
+msgstr "ê´€ë ¨ ì œí’ˆ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1021
 msgid "Snap the player window to screen edges."
-msgstr "화면 가장자리에 플레이어 창을 스냅."
+msgstr "í™”ë©´ ê°€ìž¥ìžë¦¬ì— í”Œë ˆì´ì–´ ì°½ì„ ìŠ¤ëƒ…."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:804
 msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
@@ -2012,36 +2012,36 @@ msgstr "Specify a priority list of subtitle languages to use. Different containe
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:855
 msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
-msgstr "특정 글꼴을 지정하지 않는 자막에 사용할 글꼴을 지정합니다. 기본값은 sans-serif입니다."
+msgstr "íŠ¹ì • ê¸€ê¼´ì„ ì§€ì •í•˜ì§€ ì•ŠëŠ” ìžë§‰ì— ì‚¬ìš©í•  ê¸€ê¼´ì„ ì§€ì •í•©ë‹ˆë‹¤. ê¸°ë³¸ê°’ì€ sans-serifìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:934
 msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
 msgstr "Specify the OSD font size. See sub-font-size for details. Default: 55"
 
 msgid "Specify the color used for unstyled text subtitles.\\\\n\\\\nA usage description and examples can be found in the manual at:"
-msgstr "unstyled 텍스트 자막에 사용되는 색상을 지정합니다.\\\\n\\\\n사용법 묘사와 예는 설명서에서 찾아낼 수 있습니다:"
+msgstr "unstyled í…ìŠ¤íŠ¸ ìžë§‰ì— ì‚¬ìš©ë˜ëŠ” ìƒ‰ìƒì„ ì§€ì •í•©ë‹ˆë‹¤.\\\\n\\\\nì‚¬ìš©ë²• ë¬˜ì‚¬ì™€ ì˜ˆëŠ” ì„¤ëª…ì„œì—ì„œ ì°¾ì•„ë‚¼ ìˆ˜ ìžˆìŠµë‹ˆë‹¤:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:867
 msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
-msgstr "unstyled 원본 자막을 위해 사용된 색깔을 지정하십시오.\\n\\n사용법 묘사와 예는 설명서에서 찾아낼 수 있습니다:"
+msgstr "unstyled ì›ë³¸ ìžë§‰ì„ ìœ„í•´ ì‚¬ìš©ëœ ìƒ‰ê¹”ì„ ì§€ì •í•˜ì‹­ì‹œì˜¤.\\n\\nì‚¬ìš©ë²• ë¬˜ì‚¬ì™€ ì˜ˆëŠ” ì„¤ëª…ì„œì—ì„œ ì°¾ì•„ë‚¼ ìˆ˜ ìžˆìŠµë‹ˆë‹¤:"
 
 msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\\\n\\\\nFind the full documentation here:"
-msgstr "스크린 샷을 저장하는 데 사용되는 파일 이름 템플릿을 지정합니다. 템플릿은 파일 확장없이 파일 이름을 지정하고 스크린 샷을 복용 할 때 대체 될 형식 사양을 포함 할 수 있습니다. 기본적으로 템플릿은 mpv-shot%n이며, mpv-shot0012.png와 같은 파일명에 있는 결과가 있습니다.\\\\n\\\\n이 문서는 다음과 같습니다:"
+msgstr "ìŠ¤í¬ë¦° ìƒ·ì„ ì €ìž¥í•˜ëŠ” ë° ì‚¬ìš©ë˜ëŠ” íŒŒì¼ ì´ë¦„ í…œí”Œë¦¿ì„ ì§€ì •í•©ë‹ˆë‹¤. í…œí”Œë¦¿ì€ íŒŒì¼ í™•ìž¥ì—†ì´ íŒŒì¼ ì´ë¦„ì„ ì§€ì •í•˜ê³  ìŠ¤í¬ë¦° ìƒ·ì„ ë³µìš© í•  ë•Œ ëŒ€ì²´ ë  í˜•ì‹ ì‚¬ì–‘ì„ í¬í•¨ í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. ê¸°ë³¸ì ìœ¼ë¡œ í…œí”Œë¦¿ì€ mpv-shot%nì´ë©°, mpv-shot0012.pngì™€ ê°™ì€ íŒŒì¼ëª…ì— ìžˆëŠ” ê²°ê³¼ê°€ ìžˆìŠµë‹ˆë‹¤.\\\\n\\\\nì´ ë¬¸ì„œëŠ” ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:764
 msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
-msgstr "스크린 샷을 저장하는 데 사용되는 파일 이름 템플릿을 지정합니다. 템플릿은 파일 확장없이 파일 이름을 지정하고 스크린 샷을 복용 할 때 대체 될 형식 사양을 포함 할 수 있습니다. 기본적으로 템플릿은 mpv-shot%n이며, 예를 들어 mpv-shot0012.png와 같은 파일명에 결과를 나타냅니다.\\n\\n이 문서는 다음과 같습니다:"
+msgstr "ìŠ¤í¬ë¦° ìƒ·ì„ ì €ìž¥í•˜ëŠ” ë° ì‚¬ìš©ë˜ëŠ” íŒŒì¼ ì´ë¦„ í…œí”Œë¦¿ì„ ì§€ì •í•©ë‹ˆë‹¤. í…œí”Œë¦¿ì€ íŒŒì¼ í™•ìž¥ì—†ì´ íŒŒì¼ ì´ë¦„ì„ ì§€ì •í•˜ê³  ìŠ¤í¬ë¦° ìƒ·ì„ ë³µìš© í•  ë•Œ ëŒ€ì²´ ë  í˜•ì‹ ì‚¬ì–‘ì„ í¬í•¨ í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. ê¸°ë³¸ì ìœ¼ë¡œ í…œí”Œë¦¿ì€ mpv-shot%nì´ë©°, ì˜ˆë¥¼ ë“¤ì–´ mpv-shot0012.pngì™€ ê°™ì€ íŒŒì¼ëª…ì— ê²°ê³¼ë¥¼ ë‚˜íƒ€ëƒ…ë‹ˆë‹¤.\\n\\nì´ ë¬¸ì„œëŠ” ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤:"
 
 msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\\\n\\\\nFor more information visit:"
-msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\\\n\\\\n더 많은 정보 방문:"
+msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\\\n\\\\në” ë§Žì€ ì •ë³´ ë°©ë¬¸:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:73
 msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
-msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\n더 많은 정보 방문:"
+msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\në” ë§Žì€ ì •ë³´ ë°©ë¬¸:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:860
 msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
-msgstr "하위 글꼴 크기를 지정합니다. 단위는 720의 창 고도에 가늠자된 화소에 있는 크기입니다. 실제 픽셀 크기는 창 높이로 확장됩니다. 창 높이가 720보다 크거나 작으면 텍스트의 실제 크기가 증가하거나 감소합니다. 과태: 55"
+msgstr "í•˜ìœ„ ê¸€ê¼´ í¬ê¸°ë¥¼ ì§€ì •í•©ë‹ˆë‹¤. ë‹¨ìœ„ëŠ” 720ì˜ ì°½ ê³ ë„ì— ê°€ëŠ ìžëœ í™”ì†Œì— ìžˆëŠ” í¬ê¸°ìž…ë‹ˆë‹¤. ì‹¤ì œ í”½ì…€ í¬ê¸°ëŠ” ì°½ ë†’ì´ë¡œ í™•ìž¥ë©ë‹ˆë‹¤. ì°½ ë†’ì´ê°€ 720ë³´ë‹¤ í¬ê±°ë‚˜ ìž‘ìœ¼ë©´ í…ìŠ¤íŠ¸ì˜ ì‹¤ì œ í¬ê¸°ê°€ ì¦ê°€í•˜ê±°ë‚˜ ê°ì†Œí•©ë‹ˆë‹¤. ê³¼íƒœ: 55"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:112
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:113
@@ -2051,24 +2051,24 @@ msgstr "하위 글꼴 크기를 지정합니다. 단위는 720의 창 고도에 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:117
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:118
 msgid "Speed"
-msgstr "속도"
+msgstr "ì†ë„"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:890
 msgid "Start the player in fullscreen mode."
-msgstr "풀 스크린 모드에서 플레이어를 시작합니다."
+msgstr "í’€ ìŠ¤í¬ë¦° ëª¨ë“œì—ì„œ í”Œë ˆì´ì–´ë¥¼ ì‹œìž‘í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1029
 msgid "Start with a maximized window."
-msgstr "확대된 창으로 시작하세요."
+msgstr "í™•ëŒ€ëœ ì°½ìœ¼ë¡œ ì‹œìž‘í•˜ì„¸ìš”."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:207
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:26
 msgid "Stop"
-msgstr "정지"
+msgstr "ì •ì§€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:727
 msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
-msgstr "이 디렉토리의 스크린 샷을 저장합니다. 이 경로는 screenshot-template에 의해 생성된 파일 이름과 결합됩니다. 템플릿 파일명이 이미 절대라면 디렉토리가 무시됩니다."
+msgstr "ì´ ë””ë ‰í† ë¦¬ì˜ ìŠ¤í¬ë¦° ìƒ·ì„ ì €ìž¥í•©ë‹ˆë‹¤. ì´ ê²½ë¡œëŠ” screenshot-templateì— ì˜í•´ ìƒì„±ëœ íŒŒì¼ ì´ë¦„ê³¼ ê²°í•©ë©ë‹ˆë‹¤. í…œí”Œë¦¿ íŒŒì¼ëª…ì´ ì´ë¯¸ ì ˆëŒ€ë¼ë©´ ë””ë ‰í† ë¦¬ê°€ ë¬´ì‹œë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:839
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:844
@@ -2091,32 +2091,32 @@ msgstr "이 디렉토리의 스크린 샷을 저장합니다. 이 경로는 scre
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:98
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:99
 msgid "Subtitle"
-msgstr "자막"
+msgstr "ìžë§‰"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:137
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:242
 msgid "Subtitle Lines"
-msgstr "자막 줄"
+msgstr "ìžë§‰ ì¤„"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:133
 msgid "Subtitle Tracks"
-msgstr "자막 트랙"
+msgstr "ìžë§‰ íŠ¸ëž™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:235
 msgid "Subtitles"
-msgstr "자막"
+msgstr "ìžë§‰"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:740
 msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
-msgstr "적절한 색 공간으로 스크린 샷을 가져옵니다. 모든 형식이 지원되지 않습니다."
+msgstr "ì ì ˆí•œ ìƒ‰ ê³µê°„ìœ¼ë¡œ ìŠ¤í¬ë¦° ìƒ·ì„ ê°€ì ¸ì˜µë‹ˆë‹¤. ëª¨ë“  í˜•ì‹ì´ ì§€ì›ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:79
 msgid "Take Screenshot"
-msgstr "스크린샷 찍기"
+msgstr "ìŠ¤í¬ë¦°ìƒ· ì°ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:80
 msgid "Take Screenshot without subtitles"
-msgstr "자막 없이 스크린샷 찍기"
+msgstr "ìžë§‰ ì—†ì´ ìŠ¤í¬ë¦°ìƒ· ì°ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:113
 msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
@@ -2124,11 +2124,11 @@ msgstr "The GPU renderer filter function to use when upscaling video. There are 
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:261
 msgid "The clipboard does not contain a valid URL or file."
-msgstr "클립보드에 유효한 URL 또는 파일이 포함되어 있지 않습니다."
+msgstr "í´ë¦½ë³´ë“œì— ìœ íš¨í•œ URL ë˜ëŠ” íŒŒì¼ì´ í¬í•¨ë˜ì–´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:141
 msgid "The input editor cannot save duplicate shortcuts with different commands:"
-msgstr "입력 편집기는 다른 명령과 중복 단축키를 저장할 수 없습니다."
+msgstr "ìž…ë ¥ íŽ¸ì§‘ê¸°ëŠ” ë‹¤ë¥¸ ëª…ë ¹ê³¼ ì¤‘ë³µ ë‹¨ì¶•í‚¤ë¥¼ ì €ìž¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1075
 msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
@@ -2140,56 +2140,56 @@ msgstr "The options that are saved in \\\"watch later\\\" files if they have bee
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:474
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:479
 msgid "This feature was removed, but there are user scripts:"
-msgstr "이 기능은 삭제되었지만, 사용자 스크립트를 찾을 수 있습니다:"
+msgstr "ì´ ê¸°ëŠ¥ì€ ì‚­ì œë˜ì—ˆì§€ë§Œ, ì‚¬ìš©ìž ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì°¾ì„ ìˆ˜ ìžˆìŠµë‹ˆë‹¤:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:483
 msgid "This feature was removed."
-msgstr "이 기능은 삭제되었습니다."
+msgstr "ì´ ê¸°ëŠ¥ì€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:393
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:50
 msgid "Title"
-msgstr "타이틀"
+msgstr "íƒ€ì´í‹€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:164
 msgid "Toggle Border"
-msgstr "링크 메뉴"
+msgstr "ë§í¬ ë©”ë‰´"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:81
 msgid "Toggle Deinterlace"
-msgstr "디인터레이스 전환"
+msgstr "ë””ì¸í„°ë ˆì´ìŠ¤ ì „í™˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:187
 msgid "Toggle Hardware Decoding"
-msgstr "하드웨어 디코딩 전환"
+msgstr "í•˜ë“œì›¨ì–´ ë””ì½”ë”© ì „í™˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:122
 msgid "Toggle OSC Visibility"
-msgstr "OSC 표시 전환"
+msgstr "OSC í‘œì‹œ ì „í™˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:165
 msgid "Toggle On Top"
-msgstr "항상 위에 표시 전환"
+msgstr "í•­ìƒ ìœ„ì— í‘œì‹œ ì „í™˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:121
 msgid "Toggle Statistics"
-msgstr "통계 전환"
+msgstr "í†µê³„ ì „í™˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:92
 msgid "Toggle Visibility"
-msgstr "표시 전환"
+msgstr "í‘œì‹œ ì „í™˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:185
 msgid "Toggle infinite file looping"
-msgstr "파일 무한 반복 전환"
+msgstr "íŒŒì¼ ë¬´í•œ ë°˜ë³µ ì „í™˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:103
 msgid "Toggle overriding SSA/ASS styles with normal styles"
-msgstr "SSA/ASS 스타일을 일반 스타일로 덮어쓰기 전환"
+msgstr "SSA/ASS ìŠ¤íƒ€ì¼ì„ ì¼ë°˜ ìŠ¤íƒ€ì¼ë¡œ ë®ì–´ì“°ê¸° ì „í™˜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:564
 msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
-msgstr "Tone mapping 함수는 black point adaptation을 포함한 차이 발광성 범위의 적응을 위해 사용합니다."
+msgstr "Tone mapping í•¨ìˆ˜ëŠ” black point adaptationì„ í¬í•¨í•œ ì°¨ì´ ë°œê´‘ì„± ë²”ìœ„ì˜ ì ì‘ì„ ìœ„í•´ ì‚¬ìš©í•©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:184
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:185
@@ -2197,25 +2197,25 @@ msgstr "Tone mapping 함수는 black point adaptation을 포함한 차이 발광
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:187
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:188
 msgid "Tools"
-msgstr "도구"
+msgstr "ë„êµ¬"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:289
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:105
 msgid "Track"
-msgstr "트랙"
+msgstr "íŠ¸ëž™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:131
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:239
 msgid "Tracks"
-msgstr "트랙"
+msgstr "íŠ¸ëž™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:227
 msgid "Undo previous (or marked) seek"
-msgstr "이전 (또는 표시된) 탐색을 취소"
+msgstr "ì´ì „ (ë˜ëŠ” í‘œì‹œëœ) íƒìƒ‰ì„ ì·¨ì†Œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:179
 msgid "Unregister file associations"
-msgstr "파일 연결 등록 해제"
+msgstr "íŒŒì¼ ì—°ê²° ë“±ë¡ í•´ì œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:19
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
@@ -2226,36 +2226,36 @@ msgstr "Use any available API. Note that the default GPU API used for this value
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:548
 msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
-msgstr "더 높은 품질, 하지만 더 느리고, tricubic interpolation for gamut mapping 3DLUTs. 3DLUT 가역 매핑 정확도를 실질적으로 향상시킬 수 있습니다. 특히 3DLUT 크기. 기본 크기에 많은 영향을 미칩니다."
+msgstr "ë” ë†’ì€ í’ˆì§ˆ, í•˜ì§€ë§Œ ë” ëŠë¦¬ê³ , tricubic interpolation for gamut mapping 3DLUTs. 3DLUT ê°€ì—­ ë§¤í•‘ ì •í™•ë„ë¥¼ ì‹¤ì§ˆì ìœ¼ë¡œ í–¥ìƒì‹œí‚¬ ìˆ˜ ìžˆìŠµë‹ˆë‹¤. íŠ¹ížˆ 3DLUT í¬ê¸°. ê¸°ë³¸ í¬ê¸°ì— ë§Žì€ ì˜í–¥ì„ ë¯¸ì¹©ë‹ˆë‹¤."
 
 msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
-msgstr "찾기가 파일에 절대 위치 인 경우 정확한 추구를 사용하지만, 화살표 키의 기본 행동과 같은 상대적 추구하지."
+msgstr "ì°¾ê¸°ê°€ íŒŒì¼ì— ì ˆëŒ€ ìœ„ì¹˜ ì¸ ê²½ìš° ì •í™•í•œ ì¶”êµ¬ë¥¼ ì‚¬ìš©í•˜ì§€ë§Œ, í™”ì‚´í‘œ í‚¤ì˜ ê¸°ë³¸ í–‰ë™ê³¼ ê°™ì€ ìƒëŒ€ì  ì¶”êµ¬í•˜ì§€."
 
 msgid "Use precise seeks whenever possible."
-msgstr "가능한 한 정확한 추구를 사용합니다."
+msgstr "ê°€ëŠ¥í•œ í•œ ì •í™•í•œ ì¶”êµ¬ë¥¼ ì‚¬ìš©í•©ë‹ˆë‹¤."
 
 msgid "Use the same filter as specified for upscaler"
-msgstr "upscaler를 위해 지정된 것과 동일한 필터를 사용하십시오"
+msgstr "upscalerë¥¼ ìœ„í•´ ì§€ì •ëœ ê²ƒê³¼ ë™ì¼í•œ í•„í„°ë¥¼ ì‚¬ìš©í•˜ì‹­ì‹œì˜¤"
 
 msgid "Used menu syntax for defining the context menu in input.conf.\\\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
-msgstr "input.conf에 context 메뉴를 정의하는 데 사용되는 메뉴 구문.\\\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "input.confì— context ë©”ë‰´ë¥¼ ì •ì˜í•˜ëŠ” ë° ì‚¬ìš©ë˜ëŠ” ë©”ë‰´ êµ¬ë¬¸.\\\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:33
 msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
-msgstr "input.conf에 context 메뉴를 정의하는 데 사용되는 메뉴 구문.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "input.confì— context ë©”ë‰´ë¥¼ ì •ì˜í•˜ëŠ” ë° ì‚¬ìš©ë˜ëŠ” ë©”ë‰´ êµ¬ë¬¸.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
 
 msgid "User interface display language.\\\\nmpv.net must be restarted after a change."
-msgstr "사용자 인터페이스 표시 언어.\\\\nmpv.net must be restarted after a change."
+msgstr "ì‚¬ìš©ìž ì¸í„°íŽ˜ì´ìŠ¤ í‘œì‹œ ì–¸ì–´.\\\\nmpv.net must be restarted after a change."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1143
 msgid "User interface display language.\\nmpv.net must be restarted after a change."
-msgstr "사용자 인터페이스 표시 언어.\\nmpv.net must be restarted after a change."
+msgstr "ì‚¬ìš©ìž ì¸í„°íŽ˜ì´ìŠ¤ í‘œì‹œ ì–¸ì–´.\\nmpv.net must be restarted after a change."
 
 msgid "VK_KHR_win32_surface"
 msgstr "VK_KHR_win32_surface"
 
 msgid "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
-msgstr "ewa_lanczos의 아주 예리한 버전, anti-ringing (매우 느립니다)."
+msgstr "ewa_lanczosì˜ ì•„ì£¼ ì˜ˆë¦¬í•œ ë²„ì „, anti-ringing (ë§¤ìš° ëŠë¦½ë‹ˆë‹¤)."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:101
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:112
@@ -2373,12 +2373,12 @@ msgstr "ewa_lanczos의 아주 예리한 버전, anti-ringing (매우 느립니�
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:82
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:83
 msgid "Video"
-msgstr "비디오"
+msgstr "ë¹„ë””ì˜¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:135
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:238
 msgid "Video Tracks"
-msgstr "비디오 트랙"
+msgstr "ë¹„ë””ì˜¤ íŠ¸ëž™"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:786
 msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
@@ -2388,11 +2388,11 @@ msgid "Video output driver that uses the Direct3D interface."
 msgstr "Video output driver that uses the Direct3D interface."
 
 msgid "Video output drivers to be used.\\\\n\\\\nFor more information visit:"
-msgstr "비디오 출력 드라이버를 사용합니다.\\\\n\\\\n더 많은 정보 방문:"
+msgstr "ë¹„ë””ì˜¤ ì¶œë ¥ ë“œë¼ì´ë²„ë¥¼ ì‚¬ìš©í•©ë‹ˆë‹¤.\\\\n\\\\në” ë§Žì€ ì •ë³´ ë°©ë¬¸:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:61
 msgid "Video output drivers to be used.\\n\\nFor more information visit:"
-msgstr "사용 될 비디오 출력 드라이버.\\n\\n더 많은 정보 방문:"
+msgstr "ì‚¬ìš© ë  ë¹„ë””ì˜¤ ì¶œë ¥ ë“œë¼ì´ë²„.\\n\\në” ë§Žì€ ì •ë³´ ë°©ë¬¸:"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:120
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:121
@@ -2425,64 +2425,64 @@ msgstr "사용 될 비디오 출력 드라이버.\\n\\n더 많은 정보 방문:
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "View"
-msgstr "보기"
+msgstr "ë³´ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:107
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:108
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:109
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:110
 msgid "Volume"
-msgstr "볼륨"
+msgstr "ë³¼ë¥¨"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:211
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:213
 msgid "Volume Down"
-msgstr "볼륨 감소"
+msgstr "ë³¼ë¥¨ ê°ì†Œ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:210
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:212
 msgid "Volume Up"
-msgstr "볼륨 증가"
+msgstr "ë³¼ë¥¨ ì¦ê°€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:42
 msgid "Waiting for key/mouse input."
-msgstr "key/mouse 입력을 위해 대기."
+msgstr "key/mouse ìž…ë ¥ì„ ìœ„í•´ ëŒ€ê¸°."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:139
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:244
 msgid "Watch History"
-msgstr "시청 기록"
+msgstr "ì‹œì²­ ê¸°ë¡"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:140
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:245
 msgid "Watch Later"
-msgstr "더 보기"
+msgstr "ë” ë³´ê¸°"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:192
 msgid "Website mpv"
-msgstr "mpv 웹사이트"
+msgstr "mpv ì›¹ì‚¬ì´íŠ¸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:193
 msgid "Website mpv.net"
-msgstr "mpv.net 웹사이트"
+msgstr "mpv.net ì›¹ì‚¬ì´íŠ¸"
 
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
-msgstr "로컬 파일을 열 때, 부모 디렉토리가 열리고 재생 목록을 자동으로 만듭니다.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\n동일: 현재 로드된 파일과 같은 범주와 일치하는 파일과 부모 디렉토리의 재생 목록을 만듭니다. *-exts 중 하나는 입력 파일에 따라 선택되며 일치 확장 파일 만 재생 목록에 추가됩니다. 입력 파일 자체가 어떤 확장 목록에 일치하지 않는 경우, 재생 목록은 자동 생성되지 않습니다."
+msgstr "ë¡œì»¬ íŒŒì¼ì„ ì—´ ë•Œ, ë¶€ëª¨ ë””ë ‰í† ë¦¬ê°€ ì—´ë¦¬ê³  ìž¬ìƒ ëª©ë¡ì„ ìžë™ìœ¼ë¡œ ë§Œë“­ë‹ˆë‹¤.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\në™ì¼: í˜„ìž¬ ë¡œë“œëœ íŒŒì¼ê³¼ ê°™ì€ ë²”ì£¼ì™€ ì¼ì¹˜í•˜ëŠ” íŒŒì¼ê³¼ ë¶€ëª¨ ë””ë ‰í† ë¦¬ì˜ ìž¬ìƒ ëª©ë¡ì„ ë§Œë“­ë‹ˆë‹¤. *-exts ì¤‘ í•˜ë‚˜ëŠ” ìž…ë ¥ íŒŒì¼ì— ë”°ë¼ ì„ íƒë˜ë©° ì¼ì¹˜ í™•ìž¥ íŒŒì¼ ë§Œ ìž¬ìƒ ëª©ë¡ì— ì¶”ê°€ë©ë‹ˆë‹¤. ìž…ë ¥ íŒŒì¼ ìžì²´ê°€ ì–´ë–¤ í™•ìž¥ ëª©ë¡ì— ì¼ì¹˜í•˜ì§€ ì•ŠëŠ” ê²½ìš°, ìž¬ìƒ ëª©ë¡ì€ ìžë™ ìƒì„±ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1104
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
-msgstr "로컬 파일을 열 때, 부모 디렉토리가 열리고 재생 목록을 자동으로 만듭니다.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\n동일: 현재 로드된 파일과 같은 범주와 일치하는 파일과 부모 디렉토리의 재생 목록을 만듭니다. *-exts 중 하나는 입력 파일에 따라 선택되며 일치 확장 파일 만 재생 목록에 추가됩니다. 입력 파일 자체가 어떤 확장 목록에 일치하지 않는 경우, 재생 목록은 자동 생성되지 않습니다."
+msgstr "ë¡œì»¬ íŒŒì¼ì„ ì—´ ë•Œ, ë¶€ëª¨ ë””ë ‰í† ë¦¬ê°€ ì—´ë¦¬ê³  ìž¬ìƒ ëª©ë¡ì„ ìžë™ìœ¼ë¡œ ë§Œë“­ë‹ˆë‹¤.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\në™ì¼: í˜„ìž¬ ë¡œë“œëœ íŒŒì¼ê³¼ ê°™ì€ ë²”ì£¼ì™€ ì¼ì¹˜í•˜ëŠ” íŒŒì¼ê³¼ ë¶€ëª¨ ë””ë ‰í† ë¦¬ì˜ ìž¬ìƒ ëª©ë¡ì„ ë§Œë“­ë‹ˆë‹¤. *-exts ì¤‘ í•˜ë‚˜ëŠ” ìž…ë ¥ íŒŒì¼ì— ë”°ë¼ ì„ íƒë˜ë©° ì¼ì¹˜ í™•ìž¥ íŒŒì¼ ë§Œ ìž¬ìƒ ëª©ë¡ì— ì¶”ê°€ë©ë‹ˆë‹¤. ìž…ë ¥ íŒŒì¼ ìžì²´ê°€ ì–´ë–¤ í™•ìž¥ ëª©ë¡ì— ì¼ì¹˜í•˜ì§€ ì•ŠëŠ” ê²½ìš°, ìž¬ìƒ ëª©ë¡ì€ ìžë™ ìƒì„±ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:163
 msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
-msgstr "확장 할 때, sigmoidal 색상 변환을 사용하여 황체화 링을 방지합니다. 이것은 또한 linear-scaling를 의미한다."
+msgstr "í™•ìž¥ í•  ë•Œ, sigmoidal ìƒ‰ìƒ ë³€í™˜ì„ ì‚¬ìš©í•˜ì—¬ í™©ì²´í™” ë§ì„ ë°©ì§€í•©ë‹ˆë‹¤. ì´ê²ƒì€ ë˜í•œ linear-scalingë¥¼ ì˜ë¯¸í•œë‹¤."
 
 msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\\\n\\\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
-msgstr "convolution 기반 필터를 사용할 때, downscaling 때 필터 크기를 확장합니다. 품질 향상, 그러나 downscaling 동안 성능을 감소.\\\\n\\\\n이것은 anamorphic 영상을 위한 약간 sub-optimally를 실행할 것입니다 (그러나 그것 없이 아직도 더 나은) 그것은 axes 사이 가늠자 요인의 더 온화한 일치하기 위하여 크기를 확장할 것입니다."
+msgstr "convolution ê¸°ë°˜ í•„í„°ë¥¼ ì‚¬ìš©í•  ë•Œ, downscaling ë•Œ í•„í„° í¬ê¸°ë¥¼ í™•ìž¥í•©ë‹ˆë‹¤. í’ˆì§ˆ í–¥ìƒ, ê·¸ëŸ¬ë‚˜ downscaling ë™ì•ˆ ì„±ëŠ¥ì„ ê°ì†Œ.\\\\n\\\\nì´ê²ƒì€ anamorphic ì˜ìƒì„ ìœ„í•œ ì•½ê°„ sub-optimallyë¥¼ ì‹¤í–‰í•  ê²ƒìž…ë‹ˆë‹¤ (ê·¸ëŸ¬ë‚˜ ê·¸ê²ƒ ì—†ì´ ì•„ì§ë„ ë” ë‚˜ì€) ê·¸ê²ƒì€ axes ì‚¬ì´ ê°€ëŠ ìž ìš”ì¸ì˜ ë” ì˜¨í™”í•œ ì¼ì¹˜í•˜ê¸° ìœ„í•˜ì—¬ í¬ê¸°ë¥¼ í™•ìž¥í•  ê²ƒìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:155
 msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
-msgstr "convolution 기반 필터를 사용할 때, downscaling 때 필터 크기를 확장합니다. 품질 향상, 그러나 downscaling 동안 성능을 감소.\\n\\n이것은 anamorphic 영상을 위한 약간 sub-optimally를 실행할 것입니다 (그러나 그것 없이 아직도 더 나은) 그것은 axes 사이 가늠자 요인의 더 온화한 일치하기 위하여 크기를 확장할 것입니다."
+msgstr "convolution ê¸°ë°˜ í•„í„°ë¥¼ ì‚¬ìš©í•  ë•Œ, downscaling ë•Œ í•„í„° í¬ê¸°ë¥¼ í™•ìž¥í•©ë‹ˆë‹¤. í’ˆì§ˆ í–¥ìƒ, ê·¸ëŸ¬ë‚˜ downscaling ë™ì•ˆ ì„±ëŠ¥ì„ ê°ì†Œ.\\n\\nì´ê²ƒì€ anamorphic ì˜ìƒì„ ìœ„í•œ ì•½ê°„ sub-optimallyë¥¼ ì‹¤í–‰í•  ê²ƒìž…ë‹ˆë‹¤ (ê·¸ëŸ¬ë‚˜ ê·¸ê²ƒ ì—†ì´ ì•„ì§ë„ ë” ë‚˜ì€) ê·¸ê²ƒì€ axes ì‚¬ì´ ê°€ëŠ ìž ìš”ì¸ì˜ ë” ì˜¨í™”í•œ ì¼ì¹˜í•˜ê¸° ìœ„í•˜ì—¬ í¬ê¸°ë¥¼ í™•ìž¥í•  ê²ƒìž…ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:944
 msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
@@ -2533,36 +2533,36 @@ msgstr "Win32/WGL"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:164
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:165
 msgid "Window"
-msgstr "창"
+msgstr "ì°½"
 
 msgid "Window height is always remembered"
-msgstr "창 고도는 항상 기억됩니다"
+msgstr "ì°½ ê³ ë„ëŠ” í•­ìƒ ê¸°ì–µë©ë‹ˆë‹¤"
 
 msgid "Window height is remembered in the current session"
-msgstr "창 고도는 현재 회의에서 기억됩니다"
+msgstr "ì°½ ê³ ë„ëŠ” í˜„ìž¬ íšŒì˜ì—ì„œ ê¸°ì–µë©ë‹ˆë‹¤"
 
 msgid "Window size is always remembered"
-msgstr "창 크기는 항상 기억됩니다"
+msgstr "ì°½ í¬ê¸°ëŠ” í•­ìƒ ê¸°ì–µë©ë‹ˆë‹¤"
 
 msgid "Window size is remembered in the current session"
-msgstr "창 크기는 현재 세션에서 기억됩니다."
+msgstr "ì°½ í¬ê¸°ëŠ” í˜„ìž¬ ì„¸ì…˜ì—ì„œ ê¸°ì–µë©ë‹ˆë‹¤."
 
 msgid "Window size is set to video resolution"
-msgstr "창 크기는 영상 해결책에 놓입니다"
+msgstr "ì°½ í¬ê¸°ëŠ” ì˜ìƒ í•´ê²°ì±…ì— ë†“ìž…ë‹ˆë‹¤"
 
 msgid "Window width is always remembered"
-msgstr "창 폭은 항상 기억됩니다"
+msgstr "ì°½ í­ì€ í•­ìƒ ê¸°ì–µë©ë‹ˆë‹¤"
 
 msgid "Window width is remembered in the current session"
-msgstr "창 폭은 현재 세션에서 기억됩니다."
+msgstr "ì°½ í­ì€ í˜„ìž¬ ì„¸ì…˜ì—ì„œ ê¸°ì–µë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:756
 msgid "Write JPEG files with the same chroma subsampling as the video. If disabled, the libjpeg default is used."
-msgstr "같은 크롬 subsampling을 비디오로 JPEG 파일을 작성합니다. 비활성화되면 libjpeg 기본값이 사용됩니다."
+msgstr "ê°™ì€ í¬ë¡¬ subsamplingì„ ë¹„ë””ì˜¤ë¡œ JPEG íŒŒì¼ì„ ìž‘ì„±í•©ë‹ˆë‹¤. ë¹„í™œì„±í™”ë˜ë©´ libjpeg ê¸°ë³¸ê°’ì´ ì‚¬ìš©ë©ë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:137
 msgid "Yes"
-msgstr "예"
+msgstr "ì˜ˆ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:152
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:153
@@ -2572,7 +2572,7 @@ msgstr "예"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:157
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:158
 msgid "Zoom"
-msgstr "확대"
+msgstr "í™•ëŒ€"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1085
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:499
@@ -2604,7 +2604,7 @@ msgid "always"
 msgstr "always"
 
 msgid "always use software decoding"
-msgstr "항상 소프트웨어 디코딩을 사용"
+msgstr "í•­ìƒ ì†Œí”„íŠ¸ì›¨ì–´ ë””ì½”ë”©ì„ ì‚¬ìš©"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:105
 msgid "angle"
@@ -2794,7 +2794,7 @@ msgid "contrast_smoothness"
 msgstr "contrast_smoothness"
 
 msgid "copies video back to system RAM"
-msgstr "시스템 RAM에 비디오 백업"
+msgstr "ì‹œìŠ¤í…œ RAMì— ë¹„ë””ì˜¤ ë°±ì—…"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:152
 msgid "correct-downscaling"
@@ -2947,13 +2947,13 @@ msgid "dxva2-copy"
 msgstr "dxva2-copy"
 
 msgid "enable any whitelisted hw decoder"
-msgstr "어떤 whitelisted hw 디코더를 활성화"
+msgstr "ì–´ë–¤ whitelisted hw ë””ì½”ë”ë¥¼ í™œì„±í™”"
 
 msgid "enable best hw decoder"
-msgstr "최고의 hw 디코더를 활성화"
+msgstr "ìµœê³ ì˜ hw ë””ì½”ë”ë¥¼ í™œì„±í™”"
 
 msgid "enable best hw decoder with copy-back"
-msgstr "copy-back로 최고의 hw 디코더 활성화"
+msgstr "copy-backë¡œ ìµœê³ ì˜ hw ë””ì½”ë” í™œì„±í™”"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1148
 msgid "english"
@@ -2983,7 +2983,7 @@ msgid "exact"
 msgstr "exact"
 
 msgid "exactly the same as auto"
-msgstr "정확하게 자동차와 동일"
+msgstr "ì •í™•í•˜ê²Œ ìžë™ì°¨ì™€ ë™ì¼"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:629
 msgid "exposure"
@@ -3165,7 +3165,7 @@ msgstr "keepaspect-window"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:995
 msgid "keepaspect-window will lock the window size to the video aspect. Default: yes"
-msgstr "keepaspect-window는 영상 종횡비에 창 크기를 잠글 것입니다. 기본: 예"
+msgstr "keepaspect-windowëŠ” ì˜ìƒ ì¢…íš¡ë¹„ì— ì°½ í¬ê¸°ë¥¼ ìž ê¸€ ê²ƒìž…ë‹ˆë‹¤. ê¸°ë³¸: ì˜ˆ"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:579
 msgid "knee_adaptation"
@@ -3357,19 +3357,19 @@ msgstr "mobius"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:443
 msgid "mpv.net is already in the Path environment variable."
-msgstr "mpv.net은 이미 Path 환경 변수에 있습니다."
+msgstr "mpv.netì€ ì´ë¯¸ Path í™˜ê²½ ë³€ìˆ˜ì— ìžˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:460
 msgid "mpv.net was not found in the Path environment variable."
-msgstr "mpv.net을 Path 환경 변수에서 찾을 수 없습니다."
+msgstr "mpv.netì„ Path í™˜ê²½ ë³€ìˆ˜ì—ì„œ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:451
 msgid "mpv.net was successfully added to the Path environment variable."
-msgstr "mpv.net을 Path 환경 변수에 추가했습니다."
+msgstr "mpv.netì„ Path í™˜ê²½ ë³€ìˆ˜ì— ì¶”ê°€í–ˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:469
 msgid "mpv.net was successfully removed from the Path environment variable."
-msgstr "mpv.net을 Path 환경 변수에서 제거했습니다."
+msgstr "mpv.netì„ Path í™˜ê²½ ë³€ìˆ˜ì—ì„œ ì œê±°í–ˆìŠµë‹ˆë‹¤."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:7
 msgid "multi"
@@ -3587,10 +3587,10 @@ msgid "requires vo=gpu (Any platform CUDA is available)"
 msgstr "requires vo=gpu (Any platform CUDA is available)"
 
 msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
-msgstr "gpu-context=d3d11 또는 gpu-context=angle를 가진 vo=gpu를 요구합니다"
+msgstr "gpu-context=d3d11 ë˜ëŠ” gpu-context=angleë¥¼ ê°€ì§„ vo=gpuë¥¼ ìš”êµ¬í•©ë‹ˆë‹¤"
 
 msgid "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
-msgstr "gpu-context=d3d11, gpu-context=angle 또는 gpu-context=dxinterop를 가진 vo=gpu를 요구합니다"
+msgstr "gpu-context=d3d11, gpu-context=angle ë˜ëŠ” gpu-context=dxinteropë¥¼ ê°€ì§„ vo=gpuë¥¼ ìš”êµ¬í•©ë‹ˆë‹¤"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1118
 msgid "reset-on-next-file"
