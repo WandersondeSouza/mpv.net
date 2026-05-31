@@ -1594,7 +1594,7 @@ msgstr "次のトラック"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
 msgid "No"
-msgstr "ãªã—"
+msgstr "なし"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Command.cs:77
 msgid "No audio tracks"
@@ -2025,7 +2025,7 @@ msgstr "装飾(タイトルバー、ボーダー)でウィンドウを表示し�
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:153
 msgid "Shrink"
-msgstr "ç¸®å°"
+msgstr "縮小"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:186
 msgid "Shuffle Playlist"

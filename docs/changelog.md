@@ -10,6 +10,9 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 - Adicionado parser do frontend para playlists locais `.m3u`, `.m3u8`,
   `.pls`, `.xspf`, `.asx`, `.wpl`, `.cue` e `.jspf`, extraindo titulo e caminho
   de cada item antes de encaminhar a midia ao mpv/libmpv.
+- URLs HTTP/HTTPS sem extensao reconhecida agora sao verificadas antes do
+  `loadfile`; quando o conteudo remoto inicia com `#EXTM3U`, a playlist e
+  baixada para um arquivo temporario e expandida pelo frontend.
 - Ao abrir uma playlist, o primeiro item reproduzivel passa a iniciar a
   reproducao quando o player esta vazio; os demais itens sao anexados a
   playlist. Se uma instancia ja estiver aberta, os itens da playlist recebida

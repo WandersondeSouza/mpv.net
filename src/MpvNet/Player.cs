@@ -1,6 +1,7 @@
 ﻿
 using System.Drawing;
 using System.Globalization;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
@@ -18,6 +19,8 @@ namespace MpvNet;
 
 public class MainPlayer : MpvClient
 {
+    static readonly HttpClient RemotePlaylistHttpClient = new() { Timeout = TimeSpan.FromSeconds(20) };
+
     public string ConfPath { get => ConfigFolder + "mpv.conf"; }
     public string GPUAPI { get; set; } = "auto";
     public string Path { get; set; } = "";
@@ -443,6 +446,9 @@ public class MainPlayer : MpvClient
 
             file = ConvertFilePath(file);
 
+            if (TryDownloadRemotePlaylist(file, out string remotePlaylistFile))
+                file = remotePlaylistFile;
+
             string ext = file.Ext();
 
             if (OperatingSystem.IsWindows())
@@ -483,6 +489,73 @@ public class MainPlayer : MpvClient
 
         if (string.IsNullOrEmpty(GetPropertyString("path")))
             SetPropertyInt("playlist-pos", 0);
+    }
+
+    static bool TryDownloadRemotePlaylist(string file, out string playlistFile)
+    {
+        playlistFile = "";
+
+        if (!ShouldProbeRemotePlaylist(file))
+            return false;
+
+        try
+        {
+            using HttpRequestMessage probeRequest = new(HttpMethod.Get, file);
+            using HttpResponseMessage probeResponse = RemotePlaylistHttpClient.Send(
+                probeRequest, HttpCompletionOption.ResponseHeadersRead);
+
+            if (!probeResponse.IsSuccessStatusCode)
+                return false;
+
+            using Stream probeStream = probeResponse.Content.ReadAsStream();
+            byte[] buffer = new byte[4096];
+            int read = probeStream.Read(buffer, 0, buffer.Length);
+
+            if (!LooksLikeM3u(buffer.AsSpan(0, read)))
+                return false;
+
+            string content = RemotePlaylistHttpClient.GetStringAsync(file).GetAwaiter().GetResult();
+            string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Guid.NewGuid() + ".m3u8");
+            File.WriteAllText(tempFile, content, Encoding.UTF8);
+            App.TempFiles.Add(tempFile);
+            playlistFile = tempFile;
+            return true;
+        }
+        catch (Exception ex)
+        {
+            LogNonBlockingMetadataFailure("Remote playlist detection", file, ex);
+            return false;
+        }
+    }
+
+    static bool ShouldProbeRemotePlaylist(string file)
+    {
+        if (!Uri.TryCreate(file, UriKind.Absolute, out Uri? uri))
+            return false;
+
+        if (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps)
+            return false;
+
+        if (FileTypes.IsPlaylistFile(file) || FileTypes.IsVideoFile(file))
+            return false;
+
+        return true;
+    }
+
+    public static bool LooksLikeM3u(ReadOnlySpan<byte> bytes)
+    {
+        if (bytes.IsEmpty)
+            return false;
+
+        ReadOnlySpan<byte> utf8Bom = [0xEF, 0xBB, 0xBF];
+
+        if (bytes.StartsWith(utf8Bom))
+            bytes = bytes[utf8Bom.Length..];
+
+        while (!bytes.IsEmpty && (bytes[0] == ' ' || bytes[0] == '\t' || bytes[0] == '\r' || bytes[0] == '\n'))
+            bytes = bytes[1..];
+
+        return bytes.StartsWith("#EXTM3U"u8);
     }
 
     void LoadPlaylistItem(PlaylistFileItem item, bool append)

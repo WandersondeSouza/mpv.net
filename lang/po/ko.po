@@ -1063,7 +1063,7 @@ msgstr "외부 자막 파일을 자동로드하지 마십시오."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:116
 msgid "Double"
-msgstr "ë‘ë°°"
+msgstr "두배"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:519
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:114

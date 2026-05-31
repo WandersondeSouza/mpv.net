@@ -1373,7 +1373,7 @@ msgstr "增加大小"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:471
 msgid "Info"
-msgstr "ä¿¡æ¯"
+msgstr "信息"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1126
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1131
@@ -1543,7 +1543,7 @@ msgstr "静音"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:96
 msgid "Name"
-msgstr "åç§°"
+msgstr "名称"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:28
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:29
@@ -1783,7 +1783,7 @@ msgstr "属性"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:147
 msgid "Protocols"
-msgstr "åè®®"
+msgstr "协议"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:373
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:22
@@ -2590,7 +2590,7 @@ msgstr "Win32/WGL"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:164
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:165
 msgid "Window"
-msgstr "çª—å£"
+msgstr "窗口"
 
 msgid "Window height is always remembered"
 msgstr "窗口高度总是被记住"

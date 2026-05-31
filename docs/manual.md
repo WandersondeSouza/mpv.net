@@ -62,6 +62,11 @@ mantém apenas entradas de áudio/vídeo ou URLs de streaming e ignora itens
 repetidos que apontem para o mesmo caminho ou URL. Se uma instância do player
 já estiver aberta, os itens da playlist são adicionados à playlist atual.
 
+URLs HTTP/HTTPS sem extensão reconhecida também são verificadas de forma
+conservadora. Quando o conteúdo começa com `#EXTM3U`, a playlist remota é
+baixada para um arquivo temporário e expandida pelo frontend antes do envio ao
+mpv/libmpv.
+
 Exemplo:
 
 ```powershell
