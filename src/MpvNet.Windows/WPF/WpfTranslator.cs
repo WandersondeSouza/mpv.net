@@ -22,6 +22,7 @@ public class WpfTranslator : ITranslator
         new("spanish", "es", "es", "spa", "spanish"),
         new("french", "fr", "fr", "fra", "fre", "french"),
         new("german", "de", "de", "deu", "ger", "german"),
+        new("italian", "it", "it", "ita", "italian"),
         new("japanese", "ja", "ja", "jpn", "japanese"),
         new("korean", "ko", "ko", "kor", "korean"),
         new("polish", "pl", "pl", "pol", "polish"),

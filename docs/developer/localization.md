@@ -48,6 +48,7 @@ Os idiomas abaixo possuem mapeamento em `WpfTranslator.cs` e valor publico aceit
 | Espanhol | `spanish` | `lang/po/es.po` | `Locale/es/LC_MESSAGES/` | `es` |
 | Frances | `french` | `lang/po/fr.po` | `Locale/fr/LC_MESSAGES/` | `fr` |
 | Alemao | `german` | `lang/po/de.po` | `Locale/de/LC_MESSAGES/` | `de` |
+| Italiano | `italian` | `lang/po/it.po` | `Locale/it/LC_MESSAGES/` | `it` |
 | Japones | `japanese` | `lang/po/ja.po` | `Locale/ja/LC_MESSAGES/` | `ja` |
 | Coreano | `korean` | `lang/po/ko.po` | `Locale/ko/LC_MESSAGES/` | `ko` |
 | Polones | `polish` | `lang/po/pl.po` | `Locale/pl/LC_MESSAGES/` | `pl` |
@@ -60,9 +61,9 @@ O valor `system` continua selecionando o idioma do Windows quando houver mapeame
 
 Quando `alang` esta definido, a interface usa o primeiro idioma suportado dessa lista de prioridade como preferencia de idioma. Essa escolha vem do valor declarado em `alang`, nao do idioma real da faixa de audio ou legenda selecionada pelo arquivo em reproducao. Se nenhum item de `alang` for suportado, a interface usa o idioma do Windows quando houver mapeamento conhecido; caso contrario, volta para ingles. A legenda (`slang`/`sid`) nao participa dessa escolha.
 
-## Implementacao atual de portugues e espanhol
+## Implementacao atual
 
-O fork possui traducoes gettext para portugues brasileiro (`language=portuguese-brazil`), portugues de Portugal (`language=portuguese-portugal`) e espanhol (`language=spanish`).
+O fork possui traducoes gettext para os idiomas listados na tabela acima. Ingles continua nativo e nao usa arquivo `.po`.
 
 ## Como adicionar ou revisar um idioma
 
@@ -138,6 +139,7 @@ Validacao automatica minima:
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_BR\LC_MESSAGES\mpvnet.mo
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_PT\LC_MESSAGES\mpvnet.mo
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\es\LC_MESSAGES\mpvnet.mo
+Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\it\LC_MESSAGES\mpvnet.mo
 dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore
 ```
 
@@ -148,6 +150,7 @@ Validacao manual:
 - iniciar com `mpvnet.exe --language=portuguese-brazil`;
 - iniciar com `mpvnet.exe --language=portuguese-portugal`;
 - iniciar com `mpvnet.exe --language=spanish`;
+- iniciar com `mpvnet.exe --language=italian`;
 - iniciar com `mpvnet.conf` contendo `language=portuguese-brazil`;
 - confirmar que um idioma invalido continua caindo para ingles;
 - confirmar que idiomas existentes, como `german` e `chinese-china`, continuam funcionando;

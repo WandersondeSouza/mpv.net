@@ -1149,6 +1149,7 @@ option = english
 option = spanish
 option = french
 option = german
+option = italian
 option = japanese
 option = korean
 option = polish
