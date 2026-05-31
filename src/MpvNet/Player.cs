@@ -830,7 +830,7 @@ public class MainPlayer : MpvClient
                 Add(track, codec);
                 Add(track, GetPropertyString($"track-list/{i}/demux-w") + "x" + GetPropertyString($"track-list/{i}/demux-h"));
                 Add(track, GetPropertyString($"track-list/{i}/demux-fps").Replace(".000000", "") + " FPS");
-                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? "Default" : null);
+                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? _("Default") : null);
                 track.Text = "V: " + track.Text.Trim(' ', ',');
                 track.Type = "v";
                 track.ID = GetPropertyInt($"track-list/{i}/id");
@@ -848,9 +848,9 @@ public class MainPlayer : MpvClient
                 Add(track, codec);
                 Add(track, GetPropertyInt($"track-list/{i}/audio-channels") + " ch");
                 Add(track, GetPropertyInt($"track-list/{i}/demux-samplerate") / 1000 + " kHz");
-                Add(track, GetPropertyBool($"track-list/{i}/forced", false) ? "Forced" : null);
-                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? "Default" : null);
-                Add(track, GetPropertyBool($"track-list/{i}/external", false) ? "External" : null);
+                Add(track, GetPropertyBool($"track-list/{i}/forced", false) ? _("Forced") : null);
+                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? _("Default") : null);
+                Add(track, GetPropertyBool($"track-list/{i}/external", false) ? _("External") : null);
                 Add(track, title);
                 track.Text = "A: " + track.Text.Trim(' ', ',');
                 track.Type = "a";
@@ -876,9 +876,9 @@ public class MainPlayer : MpvClient
                 track.Language = language;
                 Add(track, GetLanguage(language));
                 Add(track, codec);
-                Add(track, GetPropertyBool($"track-list/{i}/forced", false) ? "Forced" : null);
-                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? "Default" : null);
-                Add(track, GetPropertyBool($"track-list/{i}/external", false) ? "External" : null);
+                Add(track, GetPropertyBool($"track-list/{i}/forced", false) ? _("Forced") : null);
+                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? _("Default") : null);
+                Add(track, GetPropertyBool($"track-list/{i}/external", false) ? _("External") : null);
                 Add(track, title);
                 track.Text = "S: " + track.Text.Trim(' ', ',');
                 track.Type = "s";
@@ -897,7 +897,7 @@ public class MainPlayer : MpvClient
                 string title = GetPropertyString($"edition-list/{i}/title");
 
                 if (string.IsNullOrEmpty(title))
-                    title = "Edition " + i;
+                    title = _("Edition") + " " + i;
 
                 MediaTrack track = new MediaTrack
                 {
@@ -964,7 +964,7 @@ public class MainPlayer : MpvClient
                 Add(track, mi.GetVideo(i, "Width") + "x" + mi.GetVideo(i, "Height"));
                 Add(track, mi.GetVideo(i, "BitRate/String"));
                 Add(track, fps + " FPS");
-                Add(track, (videoCount > 1 && mi.GetVideo(i, "Default") == "Yes") ? "Default" : "");
+                Add(track, (videoCount > 1 && mi.GetVideo(i, "Default") == "Yes") ? _("Default") : "");
                 track.Text = "V: " + track.Text.Trim(' ', ',');
                 track.Type = "v";
                 track.ID = i + 1;
@@ -1049,8 +1049,8 @@ public class MainPlayer : MpvClient
                 Add(track, mi.GetAudio(i, "BitRate/String"));
                 Add(track, mi.GetAudio(i, "Channel(s)") + " ch");
                 Add(track, mi.GetAudio(i, "SamplingRate/String"));
-                Add(track, mi.GetAudio(i, "Forced") == "Yes" ? "Forced" : "");
-                Add(track, (audioCount > 1 && mi.GetAudio(i, "Default") == "Yes") ? "Default" : "");
+                Add(track, mi.GetAudio(i, "Forced") == "Yes" ? _("Forced") : "");
+                Add(track, (audioCount > 1 && mi.GetAudio(i, "Default") == "Yes") ? _("Default") : "");
                 Add(track, title);
 
                 if (track.Text.Contains("MPEG Audio, Layer 2"))
@@ -1133,8 +1133,8 @@ public class MainPlayer : MpvClient
                 Add(track, lang);
                 Add(track, codec);
                 Add(track, mi.GetText(i, "Format_Profile"));
-                Add(track, forced ? "Forced" : "");
-                Add(track, (subCount > 1 && mi.GetText(i, "Default") == "Yes") ? "Default" : "");
+                Add(track, forced ? _("Forced") : "");
+                Add(track, (subCount > 1 && mi.GetText(i, "Default") == "Yes") ? _("Default") : "");
                 Add(track, title);
                 track.Text = "S: " + track.Text.Trim(' ', ',');
                 track.Type = "s";
@@ -1150,7 +1150,7 @@ public class MainPlayer : MpvClient
             string title = GetPropertyString($"edition-list/{i}/title");
 
             if (string.IsNullOrEmpty(title))
-                title = "Edition " + i;
+                title = _("Edition") + " " + i;
 
             MediaTrack track = new MediaTrack
             {

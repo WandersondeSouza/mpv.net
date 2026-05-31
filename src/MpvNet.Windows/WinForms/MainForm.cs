@@ -330,7 +330,7 @@ public partial class MainForm : Form
 
                 if (subTracks.Any())
                 {
-                    var menuItem = new WpfControls.MenuItem() { Header = "S: No subtitles" };
+                    var menuItem = new WpfControls.MenuItem() { Header = "S: " + _("No subtitles") };
                     menuItem.Click += (sender, args) => Player.CommandV("set", "sid", "no");
                     menuItem.IsChecked = Player.SID == "no";
                     trackMenuItem.Items.Add(menuItem);

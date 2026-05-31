@@ -689,7 +689,7 @@ msgstr "Aspect-ÑÑŠÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð·Ð°Ð¿Ð°Ð·Ð²Ð�
 msgid "Audio"
 msgstr "ÐÑƒÐ´Ð¸Ð¾"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:453
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:454
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:85
 msgid "Audio Device"
 msgstr "ÐÑƒÐ´Ð¸Ð¾ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð¾"
@@ -772,7 +772,7 @@ msgstr "ÐŸÑ€Ð¾Ð¼ÐµÐ½Ð¸ Ð¼ÐµÐ¶Ð´Ñƒ ÑÐ²ÐµÑ‚Ð»
 msgid "Changes will be available on next startup."
 msgstr "ÐŸÑ€Ð¾Ð¼ÐµÐ½Ð¸Ñ‚Ðµ Ñ‰Ðµ Ð±ÑŠÐ´Ð°Ñ‚ Ð½Ð°Ð»Ð¸Ñ‡Ð½Ð¸ Ð¿Ñ€Ð¸ ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¾Ñ‚Ð¾ ÑÑ‚Ð°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½Ðµ."
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:351
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:352
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:51
 msgid "Chapter"
 msgstr "Ð“Ð»Ð°Ð²Ð°"
@@ -789,7 +789,7 @@ msgstr "Ð˜Ð·Ð±ÐµÑ€ÐµÑ‚Ðµ Ð½Ð°Ð¹-Ð´Ð¾Ð±Ñ€Ð¸Ñ�
 msgid "Clear"
 msgstr "Ð˜Ð·Ñ‡Ð¸ÑÑ‚Ð¸ ÑÐ¿Ð¸ÑÑŠÐºÐ°"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:388
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:389
 msgid "Clear List"
 msgstr "Ð˜Ð·Ñ‡Ð¸ÑÑ‚Ð¸ ÑÐ¿Ð¸ÑÑŠÐºÐ°"
 
@@ -929,7 +929,7 @@ msgstr "Create a new process everytime the shell starts mpv.net"
 msgid "Cubic B-spline frame mixing"
 msgstr "Ð¡Ð¼ÐµÑÐ²Ð°Ð½Ðµ Ð½Ð° ÐºÑƒÐ±Ð¸Ñ‡Ð½Ð°Ñ‚Ð° Ñ€Ð°Ð¼ÐºÐ° B-spline"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:477
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:478
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:190
 msgid "Custom"
 msgstr "ÐŸÐ¾Ñ‚Ñ€ÐµÐ±Ð¸Ñ‚ÐµÐ»ÑÐºÐ¾"
@@ -982,6 +982,15 @@ msgstr "ÐÐ°Ð¼Ð°Ð»Ð¸ Ð½Ð°ÑÐ¸Ñ‚ÐµÐ½Ð¾ÑÑ‚Ñ‚
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:53
 msgid "Decrease Size"
 msgstr "ÐÐ°Ð¼Ð°Ð»Ð¸ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð°"
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:1053
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:1137
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:833
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:852
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:880
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:967
+msgid "Default"
+msgstr "По подразбиране"
 
 msgid "Default settings, tuned to provide a balance of performance and quality."
 msgstr "ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð±Ð¸Ñ€Ð°Ð½Ðµ, Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð¸ Ð´Ð° Ð¾ÑÐ¸Ð³ÑƒÑ€ÑÑ‚ Ð±Ð°Ð»Ð°Ð½Ñ Ð½Ð° Ð¸Ð·Ð¿ÑŠÐ»Ð½ÐµÐ½Ð¸Ðµ Ð¸ ÐºÐ°Ñ‡ÐµÑÑ‚Ð²Ð¾."
@@ -1047,6 +1056,7 @@ msgstr "ÐÐµ Ð·Ð°Ñ€ÐµÐ¶Ð´Ð°Ð¹Ñ‚Ðµ Ð°Ð²Ñ‚Ð¾Ð�
 msgid "Double"
 msgstr "Ð”Ð²Ð¾Ð¹Ð½Ð°"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:519
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:114
 msgid "Drop files or URLs to play here."
 msgstr "ÐŸÑƒÑÐ½ÐµÑ‚Ðµ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ Ð¸Ð»Ð¸ URL Ð°Ð´Ñ€ÐµÑÐ¸ Ñ‚ÑƒÐº Ð·Ð° Ð²ÑŠÐ·Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ¶Ð´Ð°Ð½Ðµ."
@@ -1061,6 +1071,11 @@ msgstr "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð°Ð¹ input.conf"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:172
 msgid "Edit mpv.conf"
 msgstr "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð°Ð¹ mpv.conf"
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:1153
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:900
+msgid "Edition"
+msgstr "Издание"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:136
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:241
@@ -1113,7 +1128,7 @@ msgstr "Enables the use of these color mapping settings. Disabling this option d
 msgid "Enlarge"
 msgstr "Ð£Ð²ÐµÐ»Ð¸Ñ‡Ð¸"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:326
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:330
 msgid "Error creating file associations."
 msgstr "Ð“Ñ€ÐµÑˆÐºÐ° Ð¿Ñ€Ð¸ ÑÑŠÐ·Ð´Ð°Ð²Ð°Ð½Ðµ Ð½Ð° Ñ„Ð°Ð¹Ð»Ð¾Ð²Ð¸ Ð°ÑÐ¾Ñ†Ð¸Ð°Ñ†Ð¸Ð¸."
 
@@ -1130,6 +1145,11 @@ msgstr "Ð˜Ð·Ñ…Ð¾Ð´ÐµÐ½ Ñ‡Ð°ÑÐ¾Ð²Ð½Ð¸Ðº Ð¿Ð¾
 msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
 msgstr "Ð•ÐºÑÐ¿ÐµÑ€Ð¸Ð¼ÐµÐ½Ñ‚Ð°Ð»ÐµÐ½ Ð²Ð¸Ð´ÐµÐ¾Ð¿Ñ€ÐµÐ´Ð°Ð²Ð°Ñ‚ÐµÐ» Ð±Ð°Ð·Ð¸Ñ€Ð°Ð½ Ð½Ð° libplacebo. Ð¢Ð¾Ð²Ð° Ð¿Ð¾Ð´Ð´ÑŠÑ€Ð¶Ð° Ð¿Ð¾Ñ‡Ñ‚Ð¸ ÑÑŠÑ‰Ð¸Ñ Ð½Ð°Ð±Ð¾Ñ€ Ð¾Ñ‚ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ ÐºÐ°Ñ‚Ð¾ --vo=gpu."
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:853
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:881
+msgid "External"
+msgstr "Външен"
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:12
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:13
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:14
@@ -1145,20 +1165,20 @@ msgstr "Ð•ÐºÑÐ¿ÐµÑ€Ð¸Ð¼ÐµÐ½Ñ‚Ð°Ð»ÐµÐ½ Ð²Ð¸
 msgid "File"
 msgstr "Ð¤Ð°Ð¹Ð»"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:318
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:322
 msgid "File Explorer icons will refresh after process restart."
 msgstr "Ð˜ÐºÐ¾Ð½Ð¸Ñ‚Ðµ Ð½Ð° File Explorer Ñ‰Ðµ ÑÐµ Ð¾Ð±Ð½Ð¾Ð²ÑÑ‚ ÑÐ»ÐµÐ´ Ñ€ÐµÑÑ‚Ð°Ñ€Ñ‚Ð¸Ñ€Ð°Ð½Ðµ Ð½Ð° Ð¿Ñ€Ð¾Ñ†ÐµÑÐ°."
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:323
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:327
 msgid "File associations were successfully created."
 msgstr "Ð¤Ð°Ð¹Ð»Ð¾Ð²Ð¸Ñ‚Ðµ Ð°ÑÐ¾Ñ†Ð¸Ð°Ñ†Ð¸Ð¸ ÑÐ° ÑÑŠÐ·Ð´Ð°Ð´ÐµÐ½Ð¸ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾."
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:321
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:325
 msgid "File associations were successfully removed."
 msgstr "Ð¤Ð°Ð¹Ð»Ð¾Ð²Ð¸Ñ‚Ðµ Ð°ÑÐ¾Ñ†Ð¸Ð°Ñ†Ð¸Ð¸ Ð±ÑÑ…Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚ÑÑ‚Ñ€Ð°Ð½ÐµÐ½Ð¸."
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:246
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:268
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:250
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:272
 msgid "Files/URLs were added to the playlist"
 msgstr "Ð”Ð¾Ð±Ð°Ð²ÐµÐ½Ð¸ ÑÐ° Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ/URL Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ Ð² ÑÐ¿Ð¸ÑÑŠÐºÐ°"
 
@@ -1187,6 +1207,13 @@ msgstr "Force a single process everytime the shell starts mpv.net"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:671
 msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
 msgstr "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:1052
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:1136
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:851
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:879
+msgid "Forced"
+msgstr "Принудително"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:208
 msgid "Forward"
@@ -1239,6 +1266,10 @@ msgstr "HDR Peak Detection"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:115
 msgid "Half"
 msgstr "ÐÐ°Ð¿Ð¾Ð»Ð¾Ð²Ð¸Ð½Ð°"
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:377
+msgid "Height"
+msgstr "Височина"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:192
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:193
@@ -1556,8 +1587,21 @@ msgstr "Ð¡Ð»ÐµÐ´Ð²Ð°Ñ‰Ð¾ Ð·Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ"
 msgid "No"
 msgstr "ÐÐµ."
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Command.cs:77
+msgid "No audio tracks"
+msgstr "Няма аудио записи"
+
 msgid "No filter, only use basic GPU texture sampling."
 msgstr "No filter, only use basic GPU texture sampling."
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Command.cs:120
+msgid "No subtitle"
+msgstr "Няма субтитър"
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:333
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Command.cs:105
+msgid "No subtitles"
+msgstr "Няма субтитри"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1121
 msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
@@ -1709,7 +1753,7 @@ msgstr "ÐŸÑ€ÐµÐ´Ð¸ÑˆÐ½Ð° Ð³Ð»Ð°Ð²Ð°"
 msgid "Previous File"
 msgstr "ÐŸÑ€ÐµÐ´Ð¸ÑˆÐµÐ½ Ñ„Ð°Ð¹Ð»"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:426
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:427
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:167
 msgid "Profile"
 msgstr "ÐŸÑ€Ð¾Ñ„Ð¸Ð»"
@@ -1731,7 +1775,7 @@ msgstr "Ð¡Ð²Ð¾Ð¹ÑÑ‚Ð²Ð°"
 msgid "Protocols"
 msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ð¿Ñ€Ð¾Ñ‚Ð¾ÐºÐ¾Ð»Ð¸"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:372
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:373
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:22
 msgid "Recent Files"
 msgstr "ÐŸÐ¾ÑÐ»ÐµÐ´Ð½Ð¸ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ðµ"
@@ -1942,7 +1986,7 @@ msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€Ð° Ð·Ð�
 msgid "Show Menu"
 msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ð¼ÐµÐ½ÑŽ"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:448
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:449
 msgid "Show Profiles"
 msgstr "ÐŸÐ¾ÐºÐ°Ð¶Ð¸ Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ð¸"
 
@@ -1978,7 +2022,7 @@ msgstr "Ð¡Ð²Ð¸Ð²Ð°Ð½Ðµ"
 msgid "Shuffle Playlist"
 msgstr "Ð Ð°Ð·Ð±ÑŠÑ€ÐºÐ°Ð¹ Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚Ð°"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:1450
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:1475
 msgid "Shutdown thread failed to complete within 10 seconds."
 msgstr "Ð˜Ð·ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½ÐµÑ‚Ð¾ Ð½Ðµ ÑƒÑÐ¿Ñ Ð´Ð° Ð·Ð°Ð²ÑŠÑ€ÑˆÐ¸ Ð² Ñ€Ð°Ð¼ÐºÐ¸Ñ‚Ðµ Ð½Ð° 10 ÑÐµÐºÑƒÐ½Ð´Ð¸."
 
@@ -1988,6 +2032,10 @@ msgstr "Ð˜Ð·ÐºÐ»ÑŽÑ‡Ð²Ð°Ð½ÐµÑ‚Ð¾ Ð½Ðµ ÑƒÑÐ¿
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:370
 msgid "Sigmoidization"
 msgstr "Ð¡Ð¸Ð³Ð¼Ð¾Ð¸Ð´Ð¸Ð·Ð°Ñ†Ð¸Ñ"
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:378
+msgid "Size"
+msgstr "Размер"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1021
 msgid "Snap the player window to screen edges."
@@ -2113,7 +2161,7 @@ msgstr "ÐÐ°Ð¿Ñ€Ð°Ð²Ð¸ ÐµÐºÑ€Ð°Ð½Ð½Ð° ÑÐ½Ð¸
 msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
 msgstr "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:261
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:265
 msgid "The clipboard does not contain a valid URL or file."
 msgstr "ÐšÐ»Ð¸Ð¿Ð±Ð¾Ñ€Ð´ÑŠÑ‚ Ð½Ðµ ÑÑŠÐ´ÑŠÑ€Ð¶Ð° Ð²Ð°Ð»Ð¸Ð´ÐµÐ½ URL Ð¸Ð»Ð¸ Ñ„Ð°Ð¹Ð»."
 
@@ -2128,16 +2176,16 @@ msgstr "The options that are saved in \"watch later\" files if they have been ch
 msgid "The options that are saved in \\\"watch later\\\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
 msgstr "The options that are saved in \\\"watch later\\\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:474
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:479
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:478
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:483
 msgid "This feature was removed, but there are user scripts:"
 msgstr "Ð¢Ð°Ð·Ð¸ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ðµ Ð¿Ñ€ÐµÐ¼Ð°Ñ…Ð½Ð°Ñ‚Ð°, Ð½Ð¾ Ð¸Ð¼Ð° Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð¸Ñ‚ÐµÐ»ÑÐºÐ¸ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð¾Ð²Ðµ:"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:483
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:487
 msgid "This feature was removed."
 msgstr "Ð¢Ð°Ð·Ð¸ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ðµ Ð¿Ñ€ÐµÐ¼Ð°Ñ…Ð½Ð°Ñ‚Ð°."
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:393
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:394
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:50
 msgid "Title"
 msgstr "Ð—Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ"
@@ -2190,7 +2238,7 @@ msgstr "Ð¤ÑƒÐ½ÐºÑ†Ð¸Ñ Ð·Ð° ÐºÐ°Ñ€Ñ‚Ð¾Ð³Ñ€Ð
 msgid "Tools"
 msgstr "Ð˜Ð½ÑÑ‚Ñ€ÑƒÐ¼ÐµÐ½Ñ‚Ð¸"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:289
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:290
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:105
 msgid "Track"
 msgstr "Ð—Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ"
@@ -2199,6 +2247,10 @@ msgstr "Ð—Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:239
 msgid "Tracks"
 msgstr "Ð—Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ"
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:379
+msgid "Type"
+msgstr "Тип"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:227
 msgid "Undo previous (or marked) seek"
@@ -2478,6 +2530,10 @@ msgstr "ÐŸÑ€Ð¸ Ð¸Ð·Ð¿Ð¾Ð»Ð·Ð²Ð°Ð½Ðµ Ð½Ð° ÐºÐ¾
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:944
 msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
 msgstr "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:376
+msgid "Width"
+msgstr "Ширина"
 
 msgid "Win32, with native Direct3D 11 rendering."
 msgstr "Win32, with native Direct3D 11 rendering."
@@ -3346,19 +3402,19 @@ msgstr "mitchell"
 msgid "mobius"
 msgstr "mobius"
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:443
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:447
 msgid "mpv.net is already in the Path environment variable."
 msgstr "mpv.net Ð²ÐµÑ‡Ðµ Ðµ Ð² Ð¿Ñ€Ð¾Ð¼ÐµÐ½Ð»Ð¸Ð²Ð°Ñ‚Ð° Ð½Ð° ÑÑ€ÐµÐ´Ð°Ñ‚Ð° Path."
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:460
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:464
 msgid "mpv.net was not found in the Path environment variable."
 msgstr "mpv.net Ð½Ðµ Ð±Ðµ Ð½Ð°Ð¼ÐµÑ€ÐµÐ½ Ð² Ð¿Ñ€Ð¾Ð¼ÐµÐ½Ð»Ð¸Ð²Ð°Ñ‚Ð° Ð½Ð° ÑÑ€ÐµÐ´Ð°Ñ‚Ð° Path."
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:451
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:455
 msgid "mpv.net was successfully added to the Path environment variable."
 msgstr "mpv.net was successfully added to the Path environment variable."
 
-#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:469
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:473
 msgid "mpv.net was successfully removed from the Path environment variable."
 msgstr "mpv.net was successfully removed from the Path environment variable."
 

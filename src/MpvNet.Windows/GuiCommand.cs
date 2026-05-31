@@ -373,10 +373,10 @@ public class GuiCommand
             {
                 fileSize = new FileInfo(path).Length;
 
-                text = "Width: " + Player.GetPropertyInt("width") + "\n" +
-                       "Height: " + Player.GetPropertyInt("height") + "\n" +
-                       "Size: " + Convert.ToInt32(fileSize / 1024.0) + " KB\n" +
-                       "Type: " + path.Ext().ToUpper();
+                text = _("Width") + ": " + Player.GetPropertyInt("width") + "\n" +
+                       _("Height") + ": " + Player.GetPropertyInt("height") + "\n" +
+                       _("Size") + ": " + Convert.ToInt32(fileSize / 1024.0) + " KB\n" +
+                       _("Type") + ": " + path.Ext().ToUpper();
 
                 Player.CommandV("show-text", text, "5000");
                 return;

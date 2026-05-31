@@ -74,7 +74,7 @@ public class Command
 
             if (tracks.Length < 1)
             {
-                Player.CommandV("show-text", "No audio tracks");
+                Player.CommandV("show-text", _("No audio tracks"));
                 return;
             }
 
@@ -102,7 +102,7 @@ public class Command
 
             if (tracks.Length < 1)
             {
-                Player.CommandV("show-text", "No subtitles");
+                Player.CommandV("show-text", _("No subtitles"));
                 return;
             }
 
@@ -117,7 +117,7 @@ public class Command
             }
 
             if (sid == 0)
-                Player.CommandV("show-text", "No subtitle");
+                Player.CommandV("show-text", _("No subtitle"));
             else
                 Player.CommandV("show-text", sid + "/" + tracks.Length + ": " + tracks[sid - 1].Text[3..], "5000");
         }
