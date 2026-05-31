@@ -3,7 +3,7 @@
 Este arquivo registra apenas as versoes publicadas pelo fork
 `WandersondeSouza/mpv.net`.
 
-# Em desenvolvimento
+# Fork WandersondeSouza - v7.1.2.6 (2026-05-31)
 
 ## Playlists locais
 
@@ -19,6 +19,11 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   sao apenas adicionados.
 - Entradas repetidas que apontam para o mesmo arquivo ou URL sao ignoradas,
   mesmo quando possuem titulos diferentes.
+
+## Localizacao
+
+- Ajustados cabecalhos e entradas de catalogos gettext afetados por sincronizacao
+  recente, preservando a base nativa em ingles via `lang/source.pot`.
 
 # Fork WandersondeSouza - v7.1.2.5 (2026-05-31)
 
