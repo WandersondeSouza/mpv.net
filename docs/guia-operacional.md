@@ -51,7 +51,7 @@ Validação:
 
 ```powershell
 .\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
-.\src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.4-portable-x64.zip
+.\src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.5-portable-x64.zip
 ```
 
 ## Scripts

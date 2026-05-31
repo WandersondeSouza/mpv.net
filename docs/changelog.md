@@ -5,6 +5,8 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 
 # Em desenvolvimento
 
+# Fork WandersondeSouza - v7.1.2.5 (2026-05-31)
+
 ## Metadados do fork
 
 - Atualizados os metadados do executavel e do instalador para identificar o
@@ -14,6 +16,24 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   `WandersondeSouza/mpv.net`.
 - Mantidos `mpvnet.exe`, `%APPDATA%\mpv.net` e chaves tecnicas de compatibilidade
   para preservar configuracoes e fluxos existentes.
+
+## Localizacao e pacotes de idioma
+
+- Validados os catalogos gettext em UTF-8 e corrigidos caracteres acentuados
+  corrompidos em textos visiveis dos idiomas frances, polones e turco.
+- Revalidada a paridade de todos os catalogos ativos com `lang/source.pot`:
+  bulgaro, chines simplificado, espanhol, frances, alemao, italiano, japones,
+  coreano, polones, portugues do Brasil, portugues de Portugal, russo e turco.
+- Mantido o ingles como base nativa do aplicativo, sem criar pacote `.po`
+  separado.
+
+## Arquivos de midia e associacoes
+
+- Reconfirmado o empacotamento de associacoes para video, audio e playlists no
+  instalador x64.
+- Documentado no release o escopo atual de video, audio, playlists e URLs de
+  streaming aceitos pelo fork, preservando a compatibilidade com as listas de
+  extensoes configuraveis do mpv.
 
 # Fork WandersondeSouza - v7.1.2.4 (2026-05-29)
 
