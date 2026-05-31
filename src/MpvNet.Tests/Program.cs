@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 
 using MpvNet;
+using MpvNet.Help;
 
 string tempMediaFile = Path.Combine(Path.GetTempPath(), "mpvnet-tests-empty-media.mkv");
 File.WriteAllText(tempMediaFile, "");
@@ -30,6 +31,8 @@ var tests = new (string Name, bool Result)[]
     ("Unknown file false", !FileTypes.IsSupportedMediaInput("example.unknown")),
     ("Empty text false", !FileTypes.IsSupportedMediaInput("")),
     ("URL does not depend on File.Exists", FileTypes.IsSupportedMediaInput("https://example.com/video.mp4")),
+    ("Title normalization removes extension and dot separators", TitleHelp.NormalizeMediaTitle("filme.exemplo.2024.mkv") == "Filme Exemplo 2024"),
+    ("Title normalization collapses repeated spaces", TitleHelp.NormalizeMediaTitle("  arquivo..com  ..pontos.mp4  ") == "Arquivo Com Pontos"),
     ("Command line accepts streaming URL", CommandLine.IsLoadableFileArgument("rtmps://example.com/live")),
     ("Command line accepts playlist file extension", CommandLine.IsLoadableFileArgument("iptv.m3u")),
     ("Local file can use optional MediaInfo when present", MainPlayer.CanUseMediaInfo(tempMediaFile)),

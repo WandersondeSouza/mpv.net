@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace MpvNet.Help;
@@ -35,7 +36,11 @@ public static class TitleHelp
     }
 
     public static string NormalizeMediaTitle(string texto) =>
-        PrimeiraLetraDaPalavraMaiuscula(RetirarCaracteresExtendidos(RemoveMpvNetSuffix(texto)));
+        PrimeiraLetraDaPalavraMaiuscula(
+            RetirarCaracteresExtendidos(
+                RemoveDots(
+                    RemoveSupportedExtension(
+                        RemoveMpvNetSuffix(texto)))));
 
     public static string RemoveMpvNetSuffix(string texto)
     {
@@ -43,6 +48,38 @@ public static class TitleHelp
             return string.Empty;
 
         return MpvNetSuffixRegex.Replace(texto, string.Empty);
+    }
+
+    static string RemoveSupportedExtension(string texto)
+    {
+        if (string.IsNullOrWhiteSpace(texto))
+            return string.Empty;
+
+        string value = texto.Trim();
+        string ext = Path.GetExtension(value);
+
+        if (string.IsNullOrEmpty(ext))
+            return value;
+
+        string normalizedExt = ext.TrimStart('.').ToLowerInvariant();
+
+        if (!FileTypes.IsVideo(normalizedExt) &&
+            !FileTypes.IsAudio(normalizedExt) &&
+            !FileTypes.IsPlaylist(normalizedExt) &&
+            !FileTypes.Subtitle.Contains(normalizedExt))
+        {
+            return value;
+        }
+
+        return value[..^ext.Length];
+    }
+
+    static string RemoveDots(string texto)
+    {
+        if (string.IsNullOrWhiteSpace(texto))
+            return string.Empty;
+
+        return texto.Replace('.', ' ');
     }
 
     static string NormalizeSpaces(string texto)
