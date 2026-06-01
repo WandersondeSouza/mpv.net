@@ -61,7 +61,7 @@ try {
         $writer.Dispose()
     }
 
-    Invoke-Checked dotnet @('build', 'src\MpvNet.Windows\MpvNet.Windows.csproj', '--no-restore')
+    Invoke-Checked dotnet @('build', 'src\MpvNet.Windows\MpvNet.Windows.csproj', '--no-restore', '/p:EnsureBuildAssets=false')
     Invoke-Checked git @('add', 'src\BuildVersion.props')
     Invoke-Checked git @('commit', '-m', "Bump version to v$nextVersion")
     Invoke-Checked git @('push', 'origin', $Branch)

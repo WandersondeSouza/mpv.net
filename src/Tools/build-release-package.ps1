@@ -190,7 +190,7 @@ function EnsureLocale($sourceDir, $localeDir, $workDir) {
 
     $createMoScript = Test (Join-Path $sourceDir '..\lang\compile-mo-files.ps1')
     AddGettextToolsToPath $workDir
-    & $createMoScript (Join-Path $sourceDir 'MpvNet.Windows\bin\Debug\win-x64')
+    & $createMoScript (Join-Path $sourceDir 'MpvNet.Windows\bin\Debug\win-x64') | ForEach-Object { Write-Host $_ }
     if ($LastExitCode) { throw $LastExitCode }
 
     return Test $localeDir
@@ -215,7 +215,8 @@ $ReleaseNotes = "- [Changelog](https://github.com/$Repo/blob/main/docs/changelog
 $PublishDir64 = Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\publish\'
 $ProjectFile = Test (Join-Path $SourceDir 'MpvNet.Windows\MpvNet.Windows.csproj')
 DeleteDir $PublishDir64
-dotnet publish $ProjectFile --self-contained true --configuration Debug --runtime win-x64 --output $PublishDir64 /p:IncludeNativeLibrariesForSelfExtract=false
+dotnet publish $ProjectFile --self-contained true --configuration Debug --runtime win-x64 --output $PublishDir64 /p:IncludeNativeLibrariesForSelfExtract=false /p:EnsureBuildAssets=false
+if ($LastExitCode) { throw "dotnet publish failed with exit code $LastExitCode" }
 $PublishedExeFile64 = Test ($PublishDir64 + 'mpvnet.exe')
 $BinDirX64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\')
 $EnsureDependenciesScript = Test (Join-Path $SourceDir 'Tools\prepare-native-dependencies.ps1')

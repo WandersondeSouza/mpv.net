@@ -126,6 +126,19 @@ function Invoke-FileDownload($uri, $outputFile) {
     return Test-RequiredFile $outputFile
 }
 
+function Get-FreshCachedFile($downloadDir, $filePattern) {
+    $matches = @(Get-ChildItem $downloadDir -Filter $filePattern -File -ErrorAction SilentlyContinue |
+        Where-Object { Test-FreshFile $_.FullName } |
+        Sort-Object LastWriteTime -Descending)
+
+    if ($matches.Count) {
+        Write-Host "Using cached download: $($matches[0].FullName)"
+        return Test-RequiredFile $matches[0].FullName
+    }
+
+    return $null
+}
+
 function Download-GitHubLatestAsset($apiUrl, $assetPattern, $downloadDir) {
     Write-Host "Reading latest release: $apiUrl"
     $release = Invoke-WebRequest -Uri $apiUrl -UserAgent 'mpv.net-native-dependencies' -UseBasicParsing | ConvertFrom-Json
@@ -213,8 +226,12 @@ function Ensure-MediaInfo($targetDir, $downloadsDir, $extractDir) {
         return
     }
 
-    $mediaInfoUri = Resolve-MediaInfoDownloadUri $MediaInfoVersion
-    $mediaInfoArchive = Invoke-FileDownload $mediaInfoUri (Join-Path $downloadsDir (Split-Path $mediaInfoUri -Leaf))
+    $mediaInfoArchive = Get-FreshCachedFile $downloadsDir 'MediaInfo_DLL_*_Windows_x64_WithoutInstaller.7z'
+    if (-not $mediaInfoArchive) {
+        $mediaInfoUri = Resolve-MediaInfoDownloadUri $MediaInfoVersion
+        $mediaInfoArchive = Invoke-FileDownload $mediaInfoUri (Join-Path $downloadsDir (Split-Path $mediaInfoUri -Leaf))
+    }
+
     $mediaInfoExtractDir = Expand-ArchiveWith7Zip $mediaInfoArchive.FullName (Join-Path $extractDir 'mediainfo')
     Copy-MediaInfoDll $mediaInfoExtractDir $targetDir | Out-Null
 }
@@ -227,10 +244,14 @@ function Ensure-FFmpeg($targetDir, $downloadsDir, $extractDir) {
         return
     }
 
-    $ffmpegArchive = Download-GitHubLatestAsset `
-        'https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest' `
-        '^ffmpeg-(?:N-[0-9]+-g[0-9a-f]+|master-latest)-win64-gpl\.zip$' `
-        $downloadsDir
+    $ffmpegArchive = Get-FreshCachedFile $downloadsDir 'ffmpeg-*-win64-gpl.zip'
+    if (-not $ffmpegArchive) {
+        $ffmpegArchive = Download-GitHubLatestAsset `
+            'https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest' `
+            '^ffmpeg-(?:N-[0-9]+-g[0-9a-f]+|master-latest)-win64-gpl\.zip$' `
+            $downloadsDir
+    }
+
     $ffmpegExtractDir = Expand-ArchiveWith7Zip $ffmpegArchive.FullName (Join-Path $extractDir 'ffmpeg')
     foreach ($file in $requiredFiles) {
         Copy-ExtractedFile $ffmpegExtractDir $file $targetDir | Out-Null
@@ -245,10 +266,14 @@ function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
         return
     }
 
-    $libmpvArchive = Download-GitHubLatestAsset `
-        'https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest' `
-        '^mpv-dev-x86_64-[0-9]{8}-git-[0-9a-z]+\.7z$' `
-        $downloadsDir
+    $libmpvArchive = Get-FreshCachedFile $downloadsDir 'mpv-dev-x86_64-*.7z'
+    if (-not $libmpvArchive) {
+        $libmpvArchive = Download-GitHubLatestAsset `
+            'https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest' `
+            '^mpv-dev-x86_64-[0-9]{8}-git-[0-9a-z]+\.7z$' `
+            $downloadsDir
+    }
+
     $libmpvExtractDir = Expand-ArchiveWith7Zip $libmpvArchive.FullName (Join-Path $extractDir 'libmpv')
     Copy-ExtractedFile $libmpvExtractDir 'libmpv-2.dll' $targetDir | Out-Null
     Assert-PeX64 $targetFile | Out-Null
@@ -292,9 +317,26 @@ function Ensure-DotNetNativeDlls($targetDir, $publishDir) {
     $publishDir = Test-RequiredPath $publishDir
     foreach ($dll in $RequiredDotNetNativeDlls) {
         $sourceFile = Join-Path $publishDir $dll
+        if (-not (Test-Path $sourceFile)) {
+            $targetExistingFile = Join-Path $targetDir $dll
+            if (Test-Path $targetExistingFile) {
+                $sourceFile = $targetExistingFile
+            }
+        }
+
         Assert-PeX64 $sourceFile | Out-Null
-        Copy-Item $sourceFile (Join-Path $targetDir $dll) -Force
+        $targetFile = Join-Path $targetDir $dll
+        $publishFile = Join-Path $publishDir $dll
+        if ((Resolve-Path $sourceFile).Path -ne (Join-Path (Resolve-Path $targetDir).Path $dll)) {
+            Copy-Item $sourceFile $targetFile -Force
+        }
+
+        if ((Resolve-Path $sourceFile).Path -ne (Join-Path (Resolve-Path $publishDir).Path $dll)) {
+            Copy-Item $sourceFile $publishFile -Force
+        }
+
         Assert-PeX64 (Join-Path $targetDir $dll) | Out-Null
+        Assert-PeX64 (Join-Path $publishDir $dll) | Out-Null
     }
 }
 

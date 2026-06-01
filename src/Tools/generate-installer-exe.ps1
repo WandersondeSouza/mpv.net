@@ -22,6 +22,10 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+$SourceDir = (Resolve-Path $SourceDir).Path
+New-Item -ItemType Directory -Force $OutputRootDir | Out-Null
+$OutputRootDir = (Resolve-Path $OutputRootDir).Path
+
 $argsForRelease = @{
     SourceDir = $SourceDir
     OutputRootDir = $OutputRootDir

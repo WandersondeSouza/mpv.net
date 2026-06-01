@@ -116,7 +116,7 @@ Para publicar como o script de release atual faz:
 dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained true --configuration Debug --runtime win-x64 /p:IncludeNativeLibrariesForSelfExtract=false
 ```
 
-Observação: o script de release atual publica em `Debug`. Não documente uma release como `Release` sem ajustar e validar o script.
+Observação: o script de release atual publica em `Debug`. Não documente uma release como `Release` sem ajustar e validar o script. O script chama o publish com `/p:EnsureBuildAssets=false`, porque prepara e valida os binarios nativos em uma etapa propria depois do publish.
 
 ---
 
