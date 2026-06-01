@@ -28,6 +28,8 @@ param(
 
     [switch] $UpdateExisting,
 
+    [int] $MaxCacheAgeDays = 2,
+
     [string] $SevenZipPath = 'C:\Program Files\7-Zip\7z.exe'
 )
 
@@ -60,6 +62,19 @@ function Test-RequiredFile($path) {
     }
 
     return $file
+}
+
+function Test-FreshFile($path) {
+    if (-not (Test-Path $path)) {
+        return $false
+    }
+
+    $file = Test-RequiredFile $path
+    if ($MaxCacheAgeDays -le 0) {
+        return $true
+    }
+
+    return $file.LastWriteTime -gt (Get-Date).AddDays(-$MaxCacheAgeDays)
 }
 
 function Assert-PeX64($path) {
@@ -101,6 +116,11 @@ function New-CleanDir($path) {
 }
 
 function Invoke-FileDownload($uri, $outputFile) {
+    if (Test-FreshFile $outputFile) {
+        Write-Host "Using cached download: $outputFile"
+        return Test-RequiredFile $outputFile
+    }
+
     Write-Host "Downloading $uri"
     Invoke-WebRequest -Uri $uri -UserAgent 'mpv.net-native-dependencies' -OutFile $outputFile -UseBasicParsing
     return Test-RequiredFile $outputFile
@@ -188,7 +208,7 @@ function Ensure-MediaInfo($targetDir, $downloadsDir, $extractDir) {
         return
     }
 
-    if ((-not $UpdateExisting) -and (Test-Path $targetFile)) {
+    if ((-not $UpdateExisting) -and (Test-FreshFile $targetFile)) {
         Assert-PeX64 $targetFile | Out-Null
         return
     }
@@ -201,8 +221,8 @@ function Ensure-MediaInfo($targetDir, $downloadsDir, $extractDir) {
 
 function Ensure-FFmpeg($targetDir, $downloadsDir, $extractDir) {
     $requiredFiles = 'ffmpeg.exe', 'ffplay.exe', 'ffprobe.exe'
-    $missingFiles = @($requiredFiles | Where-Object { -not (Test-Path (Join-Path $targetDir $_)) })
-    if ((-not $UpdateExisting) -and (-not $missingFiles.Count)) {
+    $staleOrMissingFiles = @($requiredFiles | Where-Object { -not (Test-FreshFile (Join-Path $targetDir $_)) })
+    if ((-not $UpdateExisting) -and (-not $staleOrMissingFiles.Count)) {
         foreach ($file in $requiredFiles) { Assert-PeX64 (Join-Path $targetDir $file) | Out-Null }
         return
     }
@@ -220,7 +240,7 @@ function Ensure-FFmpeg($targetDir, $downloadsDir, $extractDir) {
 
 function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
     $targetFile = Join-Path $targetDir 'libmpv-2.dll'
-    if ((-not $UpdateExisting) -and (Test-Path $targetFile)) {
+    if ((-not $UpdateExisting) -and (Test-FreshFile $targetFile)) {
         Assert-PeX64 $targetFile | Out-Null
         return
     }
@@ -234,18 +254,20 @@ function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
     Assert-PeX64 $targetFile | Out-Null
 }
 
-function Ensure-YtDlp($targetDir) {
+function Ensure-YtDlp($targetDir, $downloadsDir) {
     $targetFile = Join-Path $targetDir 'yt-dlp.exe'
-    if ($UpdateExisting -or (-not (Test-Path $targetFile))) {
+    if ($UpdateExisting -or (-not (Test-FreshFile $targetFile))) {
+        $downloadFile = Join-Path $downloadsDir 'yt-dlp.exe'
         Invoke-FileDownload `
             'https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe' `
-            $targetFile | Out-Null
+            $downloadFile | Out-Null
+        Copy-Item (Test-RequiredFile $downloadFile).FullName $targetFile -Force
     }
 
     Assert-PeX64 $targetFile | Out-Null
 }
 
-function Ensure-MpvNetCom($targetDir) {
+function Ensure-MpvNetCom($targetDir, $downloadsDir) {
     $targetFile = Join-Path $targetDir 'mpvnet.com'
     if ($MpvNetComFile) {
         Copy-Item (Test-RequiredFile $MpvNetComFile).FullName $targetFile -Force
@@ -253,10 +275,12 @@ function Ensure-MpvNetCom($targetDir) {
         return
     }
 
-    if ($UpdateExisting -or (-not (Test-Path $targetFile))) {
+    if ($UpdateExisting -or (-not (Test-FreshFile $targetFile))) {
+        $downloadFile = Join-Path $downloadsDir 'mpvnet.com'
         Invoke-FileDownload `
             'https://github.com/mpvnet-player/file-host/releases/download/tag/mpvnet.com.txt' `
-            $targetFile | Out-Null
+            $downloadFile | Out-Null
+        Copy-Item (Test-RequiredFile $downloadFile).FullName $targetFile -Force
     }
 }
 
@@ -282,15 +306,17 @@ if (-not $ArtifactsDir) {
     $ArtifactsDir = Join-Path (Split-Path $SourceDir -Parent) 'artifacts\native-dependencies'
 }
 
-$ArtifactsDir = New-CleanDir $ArtifactsDir
-$DownloadsDir = New-CleanDir (Join-Path $ArtifactsDir 'downloads')
+New-Item -ItemType Directory -Force $ArtifactsDir | Out-Null
+$ArtifactsDir = Test-RequiredPath $ArtifactsDir
+New-Item -ItemType Directory -Force (Join-Path $ArtifactsDir 'downloads') | Out-Null
+$DownloadsDir = Test-RequiredPath (Join-Path $ArtifactsDir 'downloads')
 $ExtractDir = New-CleanDir (Join-Path $ArtifactsDir 'extract')
 
 Ensure-MediaInfo $TargetDir $DownloadsDir $ExtractDir
 Ensure-FFmpeg $TargetDir $DownloadsDir $ExtractDir
 Ensure-LibMpv $TargetDir $DownloadsDir $ExtractDir
-Ensure-YtDlp $TargetDir
-Ensure-MpvNetCom $TargetDir
+Ensure-YtDlp $TargetDir $DownloadsDir
+Ensure-MpvNetCom $TargetDir $DownloadsDir
 Ensure-DotNetNativeDlls $TargetDir $PublishDir
 
 Write-Host "Native and helper dependencies are ready: $TargetDir"

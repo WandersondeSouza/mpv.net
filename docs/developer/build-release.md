@@ -36,6 +36,7 @@ Para release:
 - acesso a internet para baixar FFmpeg, libmpv, yt-dlp, MediaInfo, `mpvnet.com` e `Gettext.Tools` no momento da release, quando esses arquivos/ferramentas ainda nao estiverem disponiveis localmente.
 
 Observacao: Inno Setup, GitHub CLI e `GH_TOKEN` deixam de ser obrigatorios quando o script e executado, respectivamente, com `-SkipInstaller` e `-SkipGitHubRelease`.
+Os downloads de dependencias nativas e auxiliares ficam em `artifacts\native-dependencies\downloads` e sao reutilizados por ate 2 dias. Se o arquivo nao existir ou estiver mais antigo, o script baixa novamente a versao mais recente encontrada nas fontes configuradas.
 
 ---
 
@@ -166,7 +167,13 @@ src\Tools\build-release-package.ps1 C:\repo\mpv.net\src C:\saida -SkipGitHubRele
 Para gerar apenas o ZIP portatil, sem instalador e sem publicacao:
 
 ```powershell
-src\Tools\build-release-package.ps1 C:\repo\mpv.net\src C:\saida -SkipInstaller -SkipGitHubRelease
+src\Tools\generate-portable-zip.ps1 -SourceDir C:\repo\mpv.net\src -OutputRootDir C:\saida
+```
+
+Para gerar apenas o instalador executavel, sem ZIP e sem publicacao:
+
+```powershell
+src\Tools\generate-installer-exe.ps1 -SourceDir C:\repo\mpv.net\src -OutputRootDir C:\saida
 ```
 
 Quando for necessario sobrescrever `MediaInfo.dll` ou fornecer um `mpvnet.com` local, informe os arquivos explicitamente:
@@ -182,7 +189,7 @@ O script:
 3. publica `MpvNet.Windows.csproj` self-contained para `win-x64`;
 4. cria nomes com base na versão do `mpvnet.exe`;
 5. copia arquivos publicados;
-6. chama `src\Tools\prepare-native-dependencies.ps1` para baixar ou validar `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `libmpv-2.dll`, `yt-dlp.exe` e `mpvnet.com`;
+6. chama `src\Tools\prepare-native-dependencies.ps1` para baixar ou validar `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `libmpv-2.dll`, `yt-dlp.exe` e `mpvnet.com`, reutilizando downloads com ate 2 dias em `artifacts\native-dependencies\downloads`;
 7. valida e copia as DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vindas do publish self-contained;
 8. copia `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` x64;
 9. copia `Locale`;
@@ -209,6 +216,20 @@ O script usa o asset x64 generico de libmpv, nao `x86_64-v3`, para preservar com
 O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo script no GitHub Actions. Ele sempre publica os pacotes como artefato do workflow e, quando executado com `create_release=true`, tambem cria a Release no repositorio. O workflow roda `validate-native-dependencies.ps1` antes do upload dos artefatos.
 
 Este fork nao publica um pacote NuGet/container no GitHub Packages por enquanto; os pacotes de distribuicao do aplicativo sao assets de GitHub Releases e artefatos do workflow.
+
+Para uma release emergencial, com incremento automatico do ultimo numero da versao, commit, push e disparo do workflow:
+
+```powershell
+src\Tools\publish-emergency-release.ps1
+```
+
+Para incluir o instalador no workflow emergencial:
+
+```powershell
+src\Tools\publish-emergency-release.ps1 -CreateInstaller
+```
+
+Esse script exige arvore Git limpa antes de alterar `src\BuildVersion.props`. Ele nao substitui a revisao manual de changelog, UI e compatibilidade; e uma rota curta para publicar uma nova versao do branch atual quando necessario.
 
 Validado em 2026-05-31: execucao local de `src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease` gerou o ZIP portatil `mpv.net-v7.1.2.5-portable-x64.zip` e o instalador `MPV.NET-Media-Player-Community-Edition-v7.1.2.5-setup-x64.exe`, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale` para todos os catalogos ativos, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
 

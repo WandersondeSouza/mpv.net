@@ -11,6 +11,7 @@ Needs 2 positional CLI arguments:
 
 Optional parameters:
     -Repo Owner/repository used by GitHub CLI. Default: WandersondeSouza/mpv.net.
+    -SkipPortableZip Skips portable ZIP generation.
     -SkipInstaller Skips Inno Setup package generation.
     -SkipGitHubRelease Creates local artifacts without publishing a GitHub release.
     -MediaInfoFile Optional override path to MediaInfo.dll. Defaults to automatic MediaArea download when missing.
@@ -26,8 +27,8 @@ Dependencies:
     Internet access to download Gettext.Tools from NuGet when msgfmt.exe is not available on PATH.
 
 Notes:
-    Before you run the script you need to update the versions found in the file:
-        \mpv.net\src\MpvNet.Windows\MpvNet.Windows.csproj
+    The release version is read from:
+        \mpv.net\src\BuildVersion.props
 #>
 
 param(
@@ -38,6 +39,8 @@ param(
     [string] $OutputRootDir,
 
     [string] $Repo = 'WandersondeSouza/mpv.net',
+
+    [switch] $SkipPortableZip,
 
     [switch] $SkipInstaller,
 
@@ -221,7 +224,7 @@ $EnsureDependenciesArgs = @{
     TargetDir = $BinDirX64
     PublishDir = $PublishDir64
     ArtifactsDir = Join-Path (Split-Path $SourceDir -Parent) 'artifacts\native-dependencies'
-    UpdateExisting = $true
+    MaxCacheAgeDays = 2
 }
 if ($MediaInfoVersion) {
     $EnsureDependenciesArgs.MediaInfoVersion = $MediaInfoVersion
@@ -267,15 +270,19 @@ if ($LastExitCode) { throw $LastExitCode }
 & $NativeValidationScript -Path $PublishDir64
 if ($LastExitCode) { throw $LastExitCode }
 
-# Pack
-$ZipOutputFile64 = Join-Path $OutputRootDir ($OutputName64 + '.zip')
-& $7zFile a -tzip -mx9 $ZipOutputFile64 -r ($OutputDir64 + '*')
-if ($LastExitCode) { throw $LastExitCode }
-Test $ZipOutputFile64
-& $NativeValidationScript -ZipFile $ZipOutputFile64
-if ($LastExitCode) { throw $LastExitCode }
+$ReleaseFiles = @()
 
-$ReleaseFiles = @($ZipOutputFile64)
+if (-not $SkipPortableZip) {
+    # Pack
+    $ZipOutputFile64 = Join-Path $OutputRootDir ($OutputName64 + '.zip')
+    & $7zFile a -tzip -mx9 $ZipOutputFile64 -r ($OutputDir64 + '*')
+    if ($LastExitCode) { throw $LastExitCode }
+    Test $ZipOutputFile64
+    & $NativeValidationScript -ZipFile $ZipOutputFile64
+    if ($LastExitCode) { throw $LastExitCode }
+
+    $ReleaseFiles += $ZipOutputFile64
+}
 
 if (-not $SkipInstaller) {
     # Inno Setup
@@ -298,6 +305,10 @@ if (-not $SkipInstaller) {
 $Title = 'v' + $VersionName + $BetaString
 
 if (-not $SkipGitHubRelease) {
+    if (-not $ReleaseFiles.Count) {
+        throw 'No release files were generated. Disable -SkipPortableZip or -SkipInstaller before publishing.'
+    }
+
     if ($BetaString) {
         gh release create $Title -t $Title -n $ReleaseNotes --repo $Repo --prerelease $ReleaseFiles
     } else {

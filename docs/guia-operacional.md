@@ -17,10 +17,16 @@ Documento único para build, dependências nativas, scripts, modo portátil, con
 
 ## Build
 
-Build local do projeto Windows:
+Gerar apenas o ZIP portatil:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1
+```
+
+Gerar apenas o instalador executavel:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1
 ```
 
 Se você quiser apenas compilar a solução principal, use:
@@ -47,6 +53,8 @@ Arquivos nativos esperados ao lado de `mpvnet.exe`:
 - `PenImc_cor3.dll`
 - `PresentationNative_cor3.dll`
 
+O script de dependencias reutiliza downloads em `artifacts\native-dependencies\downloads`. Se o arquivo esperado nao existir ou tiver mais de 2 dias, ele baixa novamente a versao mais recente encontrada nas fontes oficiais configuradas no script.
+
 Validação:
 
 ```powershell
@@ -70,16 +78,42 @@ Usar quando:
 - gerar instalador;
 - preparar a release localmente.
 
+### Gerar apenas o ZIP portátil
+
+```powershell
+.\src\Tools\generate-portable-zip.ps1
+```
+
+Usar quando:
+
+- quiser somente `mpv.net-v<versao>-portable-x64.zip`;
+- nao quiser gerar instalador;
+- nao quiser publicar no GitHub.
+
+### Gerar apenas o instalador executável
+
+```powershell
+.\src\Tools\generate-installer-exe.ps1
+```
+
+Usar quando:
+
+- quiser somente `MPV.NET-Media-Player-Community-Edition-v<versao>-setup-x64.exe`;
+- nao quiser gerar ZIP portatil;
+- nao quiser publicar no GitHub.
+
 ### Preparar dependências nativas
 
 ```powershell
-.\src\Tools\prepare-native-dependencies.ps1
+.\src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64
 ```
 
 Usar quando:
 
 - precisar baixar ou validar `MediaInfo.dll`, `libmpv-2.dll`, FFmpeg e `yt-dlp.exe`;
 - preparar a pasta de execução antes do empacotamento.
+- reutilizar downloads recentes em `artifacts\native-dependencies\downloads`;
+- baixar novamente arquivos ausentes ou baixados ha mais de 2 dias.
 
 ### Validar dependências nativas
 
@@ -113,6 +147,30 @@ Fluxo resumido:
 4. gerar instalador;
 5. validar o conteúdo final;
 6. publicar a release quando solicitado.
+
+### Release de emergência pelo GitHub
+
+Use este script apenas quando a arvore Git estiver limpa e voce quiser gerar uma nova versao a partir do branch atual:
+
+```powershell
+.\src\Tools\publish-emergency-release.ps1
+```
+
+O script:
+
+1. valida `git diff --check`;
+2. exige arvore Git limpa;
+3. incrementa o ultimo numero de `src\BuildVersion.props`;
+4. compila `src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore`;
+5. commita a alteracao de versao;
+6. faz `git push origin <branch-atual>`;
+7. dispara `.github/workflows/release-packages.yml` com `create_release=true`.
+
+Para tambem gerar o instalador no workflow:
+
+```powershell
+.\src\Tools\publish-emergency-release.ps1 -CreateInstaller
+```
 
 ## Portátil
 
