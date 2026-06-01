@@ -19,6 +19,9 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   sao apenas adicionados.
 - Entradas repetidas que apontam para o mesmo arquivo ou URL sao ignoradas,
   mesmo quando possuem titulos diferentes.
+- O seletor de playlist passa a mostrar os titulos extraidos de playlists
+  imediatamente, antes de cada item ser reproduzido, em vez de exibir apenas o
+  caminho da URL.
 
 ## Localizacao
 

@@ -13,6 +13,7 @@ Directory.CreateDirectory(tempPlaylistDir);
 string tempAudio = Path.Combine(tempPlaylistDir, "audio.mp3");
 string tempVideo = Path.Combine(tempPlaylistDir, "video.mp4");
 string tempM3u = Path.Combine(tempPlaylistDir, "playlist.m3u");
+string tempPls = Path.Combine(tempPlaylistDir, "playlist.pls");
 File.WriteAllText(tempAudio, "");
 File.WriteAllText(tempVideo, "");
 File.WriteAllLines(tempM3u, [
@@ -24,7 +25,18 @@ File.WriteAllLines(tempM3u, [
     "#EXTINF:-1,Video title",
     "video.mp4",
     "subtitle.srt"]);
+File.WriteAllLines(tempPls, [
+    "[playlist]",
+    "File1=video.mp4",
+    "Title1=PLS video title",
+    "Length1=-1",
+    "NumberOfEntries=1"]);
 var parsedPlaylist = PlaylistFile.Read(tempM3u);
+string tempNormalizedM3u = PlaylistFile.WriteTempM3u(parsedPlaylist);
+string normalizedM3uContent = File.ReadAllText(tempNormalizedM3u);
+var parsedPlsPlaylist = PlaylistFile.Read(tempPls);
+string tempNormalizedPlsM3u = PlaylistFile.WriteTempM3u(parsedPlsPlaylist);
+string normalizedPlsM3uContent = File.ReadAllText(tempNormalizedPlsM3u);
 
 string[] expectedAudioExts = [
     "mp3", "wav", "flac", "m4a", "aac", "ogg", "opus", "wma",
@@ -73,11 +85,17 @@ var tests = new (string Name, bool Result)[]
     ("Playlist parser keeps playable unique items", parsedPlaylist.Count == 2),
     ("Playlist parser resolves relative media paths", parsedPlaylist.Any(i => i.Path == tempAudio)),
     ("Playlist parser keeps item title", parsedPlaylist.Any(i => i.Title == "Video title" && i.Path == tempVideo)),
+    ("Playlist writer preserves item titles", normalizedM3uContent.Contains("#EXTINF:-1,Video title")),
+    ("Playlist writer preserves resolved paths", normalizedM3uContent.Contains(tempVideo)),
+    ("PLS parser keeps item title", parsedPlsPlaylist.Any(i => i.Title == "PLS video title" && i.Path == tempVideo)),
+    ("PLS writer preserves item titles", normalizedPlsM3uContent.Contains("#EXTINF:-1,PLS video title")),
 };
 
 var failed = tests.Where(test => !test.Result).ToArray();
 
 File.Delete(tempMediaFile);
+File.Delete(tempNormalizedM3u);
+File.Delete(tempNormalizedPlsM3u);
 Directory.Delete(tempPlaylistDir, true);
 
 foreach (var test in tests)

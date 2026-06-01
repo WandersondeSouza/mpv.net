@@ -57,10 +57,11 @@ O frontend aceita arquivos locais, playlists e URLs de streaming compatíveis co
 
 Playlists locais nos formatos `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`,
 `.wpl`, `.cue` e `.jspf` são expandidas pelo frontend antes do envio ao
-mpv/libmpv. O mpv.net usa o título informado pela playlist quando disponível,
-mantém apenas entradas de áudio/vídeo ou URLs de streaming e ignora itens
-repetidos que apontem para o mesmo caminho ou URL. Se uma instância do player
-já estiver aberta, os itens da playlist são adicionados à playlist atual.
+mpv/libmpv. O mpv.net usa o título informado pela playlist quando disponível
+em todos esses formatos, inclusive no seletor de playlist antes de o item ser reproduzido, mantém
+apenas entradas de áudio/vídeo ou URLs de streaming e ignora itens repetidos
+que apontem para o mesmo caminho ou URL. Se uma instância do player já estiver
+aberta, os itens da playlist são adicionados à playlist atual.
 
 URLs HTTP/HTTPS sem extensão reconhecida também são verificadas de forma
 conservadora. Quando o conteúdo começa com `#EXTM3U`, a playlist remota é

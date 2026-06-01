@@ -464,15 +464,18 @@ public class MainPlayer : MpvClient
             {
                 var playlistItems = PlaylistFile.Read(file);
                 bool appendPlaylist = append || i > 0 || !string.IsNullOrEmpty(GetPropertyString("path"));
+                List<PlaylistFileItem> itemsToLoad = [];
 
                 foreach (var item in playlistItems)
                 {
                     if (PlaylistContainsPath(item.Path))
                         continue;
 
-                    LoadPlaylistItem(item, appendPlaylist);
-                    appendPlaylist = true;
+                    itemsToLoad.Add(item);
                 }
+
+                if (itemsToLoad.Count > 0)
+                    LoadPlaylistItems(itemsToLoad, appendPlaylist);
             }
             else if (ext == "iso")
                 LoadISO(file);
@@ -558,17 +561,10 @@ public class MainPlayer : MpvClient
         return bytes.StartsWith("#EXTM3U"u8);
     }
 
-    void LoadPlaylistItem(PlaylistFileItem item, bool append)
+    void LoadPlaylistItems(List<PlaylistFileItem> items, bool append)
     {
-        string title = item.Title;
-
-        if (string.IsNullOrWhiteSpace(title))
-        {
-            CommandV("loadfile", item.Path, append ? "append" : "replace");
-            return;
-        }
-
-        CommandV("loadfile", item.Path, append ? "append" : "replace", "-1", "force-media-title=" + title);
+        string playlist = PlaylistFile.WriteTempM3u(items);
+        CommandV("loadlist", playlist, append ? "append" : "replace");
     }
 
     bool PlaylistContainsPath(string path)

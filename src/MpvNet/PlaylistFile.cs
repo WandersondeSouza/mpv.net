@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.Json;
 using System.Xml.Linq;
 
@@ -9,6 +10,25 @@ public sealed record PlaylistFileItem(string Path, string Title);
 
 public static class PlaylistFile
 {
+    public static string WriteTempM3u(IEnumerable<PlaylistFileItem> items)
+    {
+        string path = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".m3u8");
+
+        using StreamWriter writer = new(path, false, new UTF8Encoding(false));
+        writer.WriteLine("#EXTM3U");
+
+        foreach (var item in items)
+        {
+            if (!string.IsNullOrWhiteSpace(item.Title))
+                writer.WriteLine("#EXTINF:-1," + item.Title.Trim());
+
+            writer.WriteLine(item.Path);
+        }
+
+        App.TempFiles.Add(path);
+        return path;
+    }
+
     public static List<PlaylistFileItem> Read(string path)
     {
         if (!File.Exists(path) || !FileTypes.IsPlaylistFile(path))
