@@ -112,13 +112,14 @@ public class MainPlayer : MpvClient
         SetPropertyString("autocreate-playlist", "filter");
         SetPropertyString("media-controls", "yes");
         SetPropertyString("idle", "yes");
+        SetPropertyString("config-dir", ConfigFolder);
+        SetPropertyString("config", "yes");
+        SetOptionString("load-context-menu", "no");
         SetPropertyString("screenshot-directory", "~~desktop/");
         SetOptionString("script-opts-append", "osc-idlescreen=no");
         SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
         SetPropertyString("osd-playing-msg", "${media-title}");
         SetPropertyString("osc", "yes");
-        SetPropertyString("config-dir", ConfigFolder);
-        SetPropertyString("config", "yes");
         
         UsedInputConfContent = App.InputConf.GetContent();
 
@@ -145,6 +146,8 @@ public class MainPlayer : MpvClient
 
         if (err < 0)
             throw new Exception("mpv_initialize error" + BR2 + GetError(err) + BR);
+
+        CommandV("script-message", "osc-idlescreen", "no", "silent");
 
         string idle = GetPropertyString("idle");
         App.Exit = idle == "no" || idle == "once";
