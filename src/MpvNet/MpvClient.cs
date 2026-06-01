@@ -381,6 +381,20 @@ public class MpvClient
             HandleError(err, $"error setting property: {name} = {value}");
     }
 
+    public void SetOptionString(string name, string value)
+    {
+        if (Handle == IntPtr.Zero)
+        {
+            Terminal.WriteError($"error setting option: {name} = {value}");
+            return;
+        }
+
+        mpv_error err = (mpv_error)mpv_set_option_string(Handle, GetUtf8Bytes(name), GetUtf8Bytes(value));
+
+        if (err < 0)
+            HandleError(err, $"error setting option: {name} = {value}");
+    }
+
     public string GetPropertyOsdString(string name)
     {
         mpv_error err = mpv_get_property(Handle, GetUtf8Bytes(name),

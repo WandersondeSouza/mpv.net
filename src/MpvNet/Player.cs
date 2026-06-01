@@ -113,7 +113,7 @@ public class MainPlayer : MpvClient
         SetPropertyString("media-controls", "yes");
         SetPropertyString("idle", "yes");
         SetPropertyString("screenshot-directory", "~~desktop/");
-        SetPropertyString("script-opts-append", "osc-idlescreen=no");
+        SetOptionString("script-opts-append", "osc-idlescreen=no");
         SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
         SetPropertyString("osd-playing-msg", "${media-title}");
         SetPropertyString("osc", "yes");
