@@ -4,7 +4,7 @@
 #define MyAppPublisher "Wanderson Estanislau de Souza Rodrigues"
 #define MyAppURL "https://github.com/WandersondeSouza/mpv.net"
 #define MyAppSourceDir "..\..\MpvNet.Windows\bin\Debug\win-x64\publish"
-#define MyAppVersion GetFileVersion("..\..\MpvNet.Windows\bin\Debug\win-x64\publish\mpvnet.exe")
+#define MyAppVersion GetVersionNumbersString("..\..\MpvNet.Windows\bin\Debug\win-x64\publish\mpvnet.exe")
 
 [Setup]
 AppId={{9AA2B100-BEF3-44D0-B819-D8FC3C4D557D}}
@@ -15,7 +15,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}/issues
 AppUpdatesURL={#MyAppURL}/releases
-ArchitecturesInstallIn64BitMode=x64
+ArchitecturesInstallIn64BitMode=x64compatible
 Compression=lzma2
 DefaultDirName={autopf}\{#MyAppName}
 OutputBaseFilename=MPV.NET-Media-Player-Community-Edition-v{#MyAppVersion}-setup-x64
@@ -43,4 +43,4 @@ Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations aud
 Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations video"; Flags: runhidden waituntilterminated
 
 [UninstallRun]
-Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations unreg"; Flags: runhidden waituntilterminated
+Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations unreg"; Flags: runhidden waituntilterminated; RunOnceId: "UnregisterFileAssociations"

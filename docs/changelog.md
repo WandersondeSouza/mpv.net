@@ -3,6 +3,20 @@
 Este arquivo registra apenas as versoes publicadas pelo fork
 `WandersondeSouza/mpv.net`.
 
+# Fork WandersondeSouza - v7.1.2.7 (2026-06-01)
+
+## Manutencao operacional
+
+- Ajustados scripts e cache de dependencias nativas do fluxo de release para
+  tornar o empacotamento x64 mais previsivel.
+- Atualizados materiais operacionais do fork para manter o caminho de publicacao
+  alinhado ao workflow manual do GitHub Actions.
+
+## Interface e localizacao
+
+- Ajustado comportamento de menus internos e selecao de idioma da interface.
+- Refinada a exibicao de titulos na camada de playlist.
+
 # Fork WandersondeSouza - v7.1.2.6 (2026-05-31)
 
 ## Playlists locais

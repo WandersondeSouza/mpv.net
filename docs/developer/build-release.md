@@ -4,7 +4,7 @@
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **mpv.net**.
 
-> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release da versao `7.1.2.5` foram validados em Windows, incluindo ZIP portatil, instalador, Locale e validacao de dependencias nativas. A versao atual preparada para publicacao e `7.1.2.6`. Ainda faltam fechar a revisao manual completa de UI/compatibilidade e validar o workflow manual do GitHub Actions.
+> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release da versao `7.1.2.5` foram validados em Windows, incluindo ZIP portatil, instalador, Locale e validacao de dependencias nativas. A versao atual preparada para publicacao e `7.1.2.7`. Ainda faltam fechar a revisao manual completa de UI/compatibilidade e validar o workflow manual do GitHub Actions.
 
 ---
 
@@ -242,7 +242,7 @@ Pendente real: validar o workflow manual do GitHub Actions e a revisao manual co
 A versão atual do executável está centralizada em `src/BuildVersion.props`:
 
 ```xml
-<MpvNetVersion>7.1.2.6</MpvNetVersion>
+<MpvNetVersion>7.1.2.7</MpvNetVersion>
 ```
 
 O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
