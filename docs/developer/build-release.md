@@ -231,7 +231,7 @@ src\Tools\publish-emergency-release.ps1 -CreateInstaller
 
 Esse script exige arvore Git limpa antes de alterar `src\BuildVersion.props`. Ele nao substitui a revisao manual de changelog, UI e compatibilidade; e uma rota curta para publicar uma nova versao do branch atual quando necessario.
 
-Validado em 2026-05-31: execucao local de `src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease` gerou o ZIP portatil `mpv.net-v7.1.2.5-portable-x64.zip` e o instalador `MPV.NET-Media-Player-Community-Edition-v7.1.2.5-setup-x64.exe`, baixou MediaInfo/FFmpeg/libmpv/yt-dlp, gerou `Locale` para todos os catalogos ativos, incluiu `portable_config` e validou as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
+A partir de 2026-06-02, o fluxo de release nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-portable-x64.zip` e `MPV.NET-Media-Player-v<versao>-setup-x64.exe`, baixa MediaInfo/FFmpeg/libmpv/yt-dlp, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
 
 Pendente real: validar o workflow manual do GitHub Actions e a revisao manual completa da UI no pacote gerado.
 

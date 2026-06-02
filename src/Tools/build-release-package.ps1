@@ -242,8 +242,8 @@ $VersionInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($PublishedExeFile64
 $IsBeta = $VersionInfo.ProductVersion -match '(?i)(^|[-+.])(alpha|beta|preview|rc)([-+.]|$)'
 $BetaString = if ($IsBeta) { '-beta' } else { '' }
 $VersionName = $VersionInfo.FileVersion
-$OutputName64 = 'mpv.net-v' + $VersionName + $BetaString + '-portable-x64'
-$InstallerOutputName64 = 'MPV.NET-Media-Player-Community-Edition-v' + $VersionName
+$OutputName64 = 'MPV.NET-Media-Player-v' + $VersionName + $BetaString + '-portable-x64'
+$InstallerOutputName64 = 'MPV.NET-Media-Player-v' + $VersionName
 
 # Create OutputFolder
 $OutputDir64   = Join-Path $OutputRootDir ($OutputName64 + '\')
