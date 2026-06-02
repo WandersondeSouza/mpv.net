@@ -1,11 +1,11 @@
 ﻿<Project>
 	<PropertyGroup>
-		<Product>MPV.NET Media Player</Product>
-		<AssemblyTitle>MPV.NET Media Player</AssemblyTitle>
+		<Product>MPV.NET Media Player Community Edition</Product>
+		<AssemblyTitle>MPV.NET Media Player Community Edition</AssemblyTitle>
 		<Company>Wanderson Estanislau de Souza Rodrigues</Company>
 		<Authors>Wanderson Estanislau de Souza Rodrigues</Authors>
 		<Copyright>Copyright (C) Wanderson Estanislau de Souza Rodrigues</Copyright>
-		<Description>MPV.NET Media Player for Windows, based on mpv/libmpv.</Description>
+		<Description>MPV.NET Media Player Community Edition for Windows, based on mpv.net and mpv/libmpv.</Description>
 		<PackageProjectUrl>https://github.com/WandersondeSouza/mpv.net</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/WandersondeSouza/mpv.net</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>

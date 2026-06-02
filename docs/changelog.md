@@ -10,7 +10,7 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 - Ajustados scripts e cache de dependencias nativas do fluxo de release para
   tornar o empacotamento x64 mais previsivel.
 - Alinhados os metadados do produto, do instalador e dos artefatos ZIP/EXE para
-  usar `MPV.NET Media Player`.
+  usar `MPV.NET Media Player Community Edition`.
 - Atualizados materiais operacionais do fork para manter o caminho de publicacao
   alinhado ao workflow manual do GitHub Actions.
 
@@ -52,7 +52,7 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 ## Metadados do fork
 
 - Atualizados os metadados do executavel e do instalador para identificar o
-  projeto como `MPV.NET Media Player`.
+  projeto como `MPV.NET Media Player Community Edition`.
 - Atualizados produto, publicador do instalador, URLs de suporte/atualizacao e nome
   amigavel de associacoes de arquivo para apontar ao fork
   `WandersondeSouza/mpv.net`.

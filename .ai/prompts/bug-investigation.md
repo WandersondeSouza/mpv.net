@@ -1,4 +1,4 @@
-﻿# Prompt — Investigação de bug no mpv.net
+﻿# Prompt — Investigação de bug no MPV.NET Media Player Community Edition
 
 Leia `AGENTS.md`, `README.md`, `docs/manual.md` e `docs/guia-operacional.md`.
 Se o bug parecer amplo, leia também `docs/developer/architecture.md` e `docs/developer/architecture.md` antes de alterar.

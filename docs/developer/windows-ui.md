@@ -1,8 +1,8 @@
-# Interface Windows do mpv.net
+# Interface Windows do MPV.NET Media Player Community Edition
 
 ## Objetivo
 
-Documentar conceitos da interface gráfica do mpv.net.
+Documentar conceitos da interface gráfica do MPV.NET Media Player Community Edition.
 
 ---
 

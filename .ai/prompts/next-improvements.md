@@ -20,7 +20,7 @@ Antes de alterar qualquer arquivo, leia:
 
 ## Objetivo
 
-Analisar o estado atual do fork e propor melhorias pequenas, seguras e bem documentadas para manutenção contínua do mpv.net, priorizando compatibilidade com mpv/libmpv.
+Analisar o estado atual do fork e propor melhorias pequenas, seguras e bem documentadas para manutenção contínua do MPV.NET Media Player Community Edition, priorizando compatibilidade com mpv/libmpv.
 
 ## Escopo permitido
 

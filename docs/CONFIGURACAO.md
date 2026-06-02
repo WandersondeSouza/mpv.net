@@ -1,4 +1,4 @@
-# Configuração do mpv.net
+# Configuração do MPV.NET Media Player Community Edition
 
 Este documento resume onde o fork procura as configurações e quais arquivos o usuário normalmente edita.
 

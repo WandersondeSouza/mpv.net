@@ -1,4 +1,4 @@
-# MCPs úteis para manutenção do mpv.net
+# MCPs úteis para manutenção do MPV.NET Media Player Community Edition
 
 Este documento recomenda servidores MCP úteis para trabalhar neste fork. Ele não ativa nada sozinho: serve como guia para configurar o ambiente do agente quando necessário.
 

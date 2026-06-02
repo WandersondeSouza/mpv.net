@@ -1,4 +1,4 @@
-﻿# Guia operacional do mpv.net
+﻿# Guia operacional do MPV.NET Media Player Community Edition
 
 Documento único para build, dependências nativas, scripts, modo portátil, contribuição, release e direção do fork.
 
@@ -59,7 +59,7 @@ Validação:
 
 ```powershell
 .\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
-.\src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\MPV.NET-Media-Player-v7.1.2.7-portable-x64.zip
+.\src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.7-portable-x64.zip
 ```
 
 ## Scripts
@@ -86,7 +86,7 @@ Usar quando:
 
 Usar quando:
 
-- quiser somente `MPV.NET-Media-Player-v<versao>-portable-x64.zip`;
+- quiser somente `mpv.net-v<versao>-portable-x64.zip`;
 - nao quiser gerar instalador;
 - nao quiser publicar no GitHub.
 
@@ -98,7 +98,7 @@ Usar quando:
 
 Usar quando:
 
-- quiser somente `MPV.NET-Media-Player-v<versao>-setup-x64.exe`;
+- quiser somente `MPV.NET-Media-Player-Community-Edition-v<versao>-setup-x64.exe`;
 - nao quiser gerar ZIP portatil;
 - nao quiser publicar no GitHub.
 

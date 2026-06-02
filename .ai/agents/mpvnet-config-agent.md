@@ -1,4 +1,4 @@
-﻿# Agente: Configuração e atalhos do mpv.net
+﻿# Agente: Configuração e atalhos do MPV.NET Media Player Community Edition
 
 ## Missão
 

@@ -1,6 +1,6 @@
-﻿# mpv.net
+﻿# MPV.NET Media Player Community Edition
 
-Fork de manutenção do mpv.net para Windows, focado em compatibilidade com mpv/libmpv, documentação objetiva e mudanças pequenas e verificadas.
+Fork de manutenção do **MPV.NET Media Player Community Edition** para Windows, baseado no mpv.net e focado em compatibilidade com mpv/libmpv, documentação objetiva e mudanças pequenas e verificadas.
 
 ## Prioridades
 

@@ -2,7 +2,7 @@
 
 ## Disponível
 
-- `mpvnet-maintainer.md`: skill base para manutenção conservadora do fork mpv.net.
+- `mpvnet-maintainer.md`: skill base para manutenção conservadora do fork MPV.NET Media Player Community Edition.
 
 ## Uso recomendado
 
