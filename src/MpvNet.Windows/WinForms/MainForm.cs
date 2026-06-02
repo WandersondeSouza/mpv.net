@@ -49,6 +49,7 @@ public partial class MainForm : Form
     {
         InitializeComponent();
 
+        Text = AppInfo.Product;
         UpdateDarkMode();
 
         try

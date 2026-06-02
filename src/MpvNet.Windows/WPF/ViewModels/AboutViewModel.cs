@@ -7,6 +7,8 @@ public partial class AboutViewModel : ViewModelBase
 {
     public Action? CloseAction { get; set; }
 
+    public string ProductName { get; } = AppInfo.Product;
+    public string WindowTitle { get; } = _("About") + " " + AppInfo.Product;
     public string About { get; } = AppClass.About;
 
     [RelayCommand]

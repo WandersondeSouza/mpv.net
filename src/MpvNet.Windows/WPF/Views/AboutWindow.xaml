@@ -7,7 +7,7 @@
     xmlns:ngettext="clr-namespace:NGettext.Wpf;assembly=NGettext.Wpf"
     mc:Ignorable="d"
     
-    Title="{ngettext:Gettext About mpv.net}"
+    Title="{Binding WindowTitle}"
     FontSize="16"
     ShowInTaskbar="False"
     WindowStartupLocation="CenterOwner"
@@ -31,7 +31,8 @@
                 BorderThickness="0"
                 Foreground="{Binding Theme.Foreground}"
                 Background="{Binding Theme.Background}"
-                >mpv.net
+                Text="{Binding ProductName}"
+                >
             </TextBox>
             <TextBox
                 IsReadOnly="True"
