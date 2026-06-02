@@ -2260,6 +2260,10 @@ msgstr "Отмени предишно (или маркирано) търсене
 msgid "Unregister file associations"
 msgstr "Отмени регистрацията на файловите асоциации"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Help\TitleHelp.cs:12
+msgid "Untitled Track"
+msgstr "Неозаглавена писта"
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:19
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
 msgstr "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"

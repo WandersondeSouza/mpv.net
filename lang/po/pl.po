@@ -2269,6 +2269,10 @@ msgstr "Cofnij poprzednie (lub zaznaczone) wyszukiwanie"
 msgid "Unregister file associations"
 msgstr "Wyrejestruj skojarzenia plików"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Help\TitleHelp.cs:12
+msgid "Untitled Track"
+msgstr "Ścieżka bez tytułu"
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:19
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
 msgstr "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"

@@ -2260,6 +2260,10 @@ msgstr "Undo previous (or marked) seek"
 msgid "Unregister file associations"
 msgstr "Unregister file associations"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Help\TitleHelp.cs:12
+msgid "Untitled Track"
+msgstr "Traccia senza titolo"
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:19
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
 msgstr "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"

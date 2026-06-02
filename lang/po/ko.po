@@ -2269,6 +2269,10 @@ msgstr "이전 (또는 표시된) 탐색을 취소"
 msgid "Unregister file associations"
 msgstr "파일 연결 등록 해제"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Help\TitleHelp.cs:12
+msgid "Untitled Track"
+msgstr "제목 없는 트랙"
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:19
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
 msgstr "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"

@@ -18,6 +18,9 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 
 - Ajustado comportamento de menus internos e selecao de idioma da interface.
 - Refinada a exibicao de titulos na camada de playlist.
+- A normalizacao de titulos agora remove extensoes conhecidas, limpa caracteres
+  especiais, limita a exibicao a 100 caracteres e usa um titulo padrao quando o
+  resultado fica vazio.
 - A playlist criada automaticamente ao abrir uma pasta agora exibe titulos
   normalizados desde o carregamento inicial e tambem inclui os itens extraidos
   de arquivos de playlist presentes na pasta.
