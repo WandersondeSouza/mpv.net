@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Xml.Linq;
 
 using MpvNet.Extensions;
+using MpvNet.Help;
 
 namespace MpvNet;
 
@@ -72,7 +73,7 @@ public static class PlaylistFile
             if (!seen.Add(key))
                 continue;
 
-            ret.Add(new PlaylistFileItem(resolvedPath, item.Title.Trim()));
+            ret.Add(new PlaylistFileItem(resolvedPath, GetDisplayTitle(resolvedPath, item.Title)));
         }
 
         return ret;
@@ -266,6 +267,12 @@ public static class PlaylistFile
 
         string ext = path.Ext();
         return File.Exists(path) && (FileTypes.IsVideo(ext) || FileTypes.IsAudio(ext));
+    }
+
+    static string GetDisplayTitle(string path, string title)
+    {
+        string value = string.IsNullOrWhiteSpace(title) ? Path.GetFileName(path) : title;
+        return TitleHelp.NormalizeMediaTitle(value);
     }
 
     static string NormalizeKey(string path)

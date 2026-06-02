@@ -16,6 +16,9 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 
 - Ajustado comportamento de menus internos e selecao de idioma da interface.
 - Refinada a exibicao de titulos na camada de playlist.
+- A playlist criada automaticamente ao abrir uma pasta agora exibe titulos
+  normalizados desde o carregamento inicial e tambem inclui os itens extraidos
+  de arquivos de playlist presentes na pasta.
 
 # Fork WandersondeSouza - v7.1.2.6 (2026-05-31)
 

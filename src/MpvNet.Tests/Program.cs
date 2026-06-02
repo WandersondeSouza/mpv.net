@@ -14,8 +14,10 @@ string tempAudio = Path.Combine(tempPlaylistDir, "audio.mp3");
 string tempVideo = Path.Combine(tempPlaylistDir, "video.mp4");
 string tempM3u = Path.Combine(tempPlaylistDir, "playlist.m3u");
 string tempPls = Path.Combine(tempPlaylistDir, "playlist.pls");
+string tempUnknown = Path.Combine(tempPlaylistDir, "ignored.txt");
 File.WriteAllText(tempAudio, "");
 File.WriteAllText(tempVideo, "");
+File.WriteAllText(tempUnknown, "");
 File.WriteAllLines(tempM3u, [
     "#EXTM3U",
     "#EXTINF:-1,Audio title",
@@ -81,14 +83,16 @@ var tests = new (string Name, bool Result)[]
     ("Invalid unknown local path is not supported media input", !FileTypes.IsSupportedMediaInput(@"C:\missing\file.unknown")),
     ("Audio defaults keep legacy formats", legacyAudioExts.All(audioExts.Contains)),
     ("Audio defaults add modern formats", expectedAudioExts.All(audioExts.Contains)),
+    ("Folder media filter includes playlists", FileTypes.GetMediaFiles([tempAudio, tempVideo, tempM3u, tempUnknown]).Count() == 3),
+    ("Folder media filter keeps playlist files", FileTypes.GetMediaFiles([tempM3u]).Single() == tempM3u),
     ("Empty media track defaults avoid null bindings", new MediaTrack().Text == "" && new MediaTrack().Language == ""),
     ("Playlist parser keeps playable unique items", parsedPlaylist.Count == 2),
     ("Playlist parser resolves relative media paths", parsedPlaylist.Any(i => i.Path == tempAudio)),
-    ("Playlist parser keeps item title", parsedPlaylist.Any(i => i.Title == "Video title" && i.Path == tempVideo)),
-    ("Playlist writer preserves item titles", normalizedM3uContent.Contains("#EXTINF:-1,Video title")),
+    ("Playlist parser normalizes item title", parsedPlaylist.Any(i => i.Title == "Video Title" && i.Path == tempVideo)),
+    ("Playlist writer preserves normalized item titles", normalizedM3uContent.Contains("#EXTINF:-1,Video Title")),
     ("Playlist writer preserves resolved paths", normalizedM3uContent.Contains(tempVideo)),
-    ("PLS parser keeps item title", parsedPlsPlaylist.Any(i => i.Title == "PLS video title" && i.Path == tempVideo)),
-    ("PLS writer preserves item titles", normalizedPlsM3uContent.Contains("#EXTINF:-1,PLS video title")),
+    ("PLS parser normalizes item title", parsedPlsPlaylist.Any(i => i.Title == "Pls Video Title" && i.Path == tempVideo)),
+    ("PLS writer preserves normalized item titles", normalizedPlsM3uContent.Contains("#EXTINF:-1,Pls Video Title")),
 };
 
 var failed = tests.Where(test => !test.Result).ToArray();

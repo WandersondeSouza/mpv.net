@@ -713,15 +713,49 @@ public class MainPlayer : MpvClient
             if (OperatingSystem.IsWindows())
                 files.Sort(new StringLogicalComparer());
 
-            int index = files.IndexOf(path);
-            files.Remove(path);
+            List<PlaylistFileItem> playlistItems = BuildFolderPlaylistItems(files);
+            int index = playlistItems.FindIndex(i => GetPlaylistPathKey(i.Path) == GetPlaylistPathKey(path));
 
-            foreach (string file in files)
-                CommandV("loadfile", file, "append");
+            if (playlistItems.Count == 0)
+                return;
+
+            playlistItems.RemoveAll(i => GetPlaylistPathKey(i.Path) == GetPlaylistPathKey(path));
+
+            if (playlistItems.Count > 0)
+                LoadPlaylistItems(playlistItems, true);
 
             if (index > 0)
                 CommandV("playlist-move", "0", (index + 1).ToString());
         }
+    }
+
+    static List<PlaylistFileItem> BuildFolderPlaylistItems(IEnumerable<string> files)
+    {
+        HashSet<string> seen = new(StringComparer.OrdinalIgnoreCase);
+        List<PlaylistFileItem> ret = [];
+
+        foreach (string file in files)
+        {
+            IEnumerable<PlaylistFileItem> items = FileTypes.IsPlaylist(file.Ext())
+                ? PlaylistFile.Read(file)
+                : [new PlaylistFileItem(file, "")];
+
+            foreach (var item in items)
+            {
+                string key = GetPlaylistPathKey(item.Path);
+
+                if (!seen.Add(key))
+                    continue;
+
+                string title = string.IsNullOrWhiteSpace(item.Title)
+                    ? TitleHelp.NormalizeMediaTitle(System.IO.Path.GetFileName(item.Path))
+                    : item.Title;
+
+                ret.Add(new PlaylistFileItem(item.Path, title));
+            }
+        }
+
+        return ret;
     }
 
     bool _wasAviSynthLoaded;
