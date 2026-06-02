@@ -20,14 +20,25 @@ Documento único para build, dependências nativas, scripts, modo portátil, con
 Gerar apenas o ZIP portatil:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1
+$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
+if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
+Set-Location $RepoDir
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
 
 Gerar apenas o instalador executavel:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1
+$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
+if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
+Set-Location $RepoDir
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
+
+O comando cria `C:\Users\<usuario>\source\repos\mpv.net` se o repositório ainda
+não existir. Se você já usa outro diretório, abra o terminal na raiz do
+repositório e execute apenas a última linha do bloco. A pasta `artifacts\release`
+é criada automaticamente quando ainda não existe.
 
 Se você quiser apenas compilar a solução principal, use:
 
@@ -64,12 +75,17 @@ Validação:
 
 ## Scripts
 
-Use sempre o caminho completo a partir da raiz do repositório. O repositório atual expõe os scripts em `src\Tools\`, então este guia referencia esses caminhos diretamente.
+Use sempre os comandos a partir da raiz do repositório. O repositório atual expõe
+os scripts em `src\Tools\`, então este guia referencia esses caminhos
+diretamente.
 
 ### Gerar pacote de release
 
 ```powershell
-.\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
+$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
+if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
+Set-Location $RepoDir
+powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
 ```
 
 Usar quando:
@@ -81,7 +97,10 @@ Usar quando:
 ### Gerar apenas o ZIP portátil
 
 ```powershell
-.\src\Tools\generate-portable-zip.ps1
+$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
+if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
+Set-Location $RepoDir
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
 
 Usar quando:
@@ -90,10 +109,16 @@ Usar quando:
 - nao quiser gerar instalador;
 - nao quiser publicar no GitHub.
 
+O script também cria a pasta extraída
+`artifacts\release\mpv.net-v<versao>-portable-x64\`.
+
 ### Gerar apenas o instalador executável
 
 ```powershell
-.\src\Tools\generate-installer-exe.ps1
+$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
+if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
+Set-Location $RepoDir
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
 
 Usar quando:
@@ -101,6 +126,9 @@ Usar quando:
 - quiser somente `MPV.NET-Media-Player-v<versao>-setup-x64.exe`;
 - nao quiser gerar ZIP portatil;
 - nao quiser publicar no GitHub.
+
+O script também prepara a pasta portátil base
+`artifacts\release\mpv.net-v<versao>-portable-x64\`, usada pelo instalador.
 
 ### Preparar dependências nativas
 

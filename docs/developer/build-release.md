@@ -140,46 +140,91 @@ Pontos a validar:
 
 Para a referência completa dos scripts PowerShell do fork, veja `docs/guia-operacional.md`.
 
+## Comandos prontos para copiar e colar
+
+Abra o PowerShell ou o Terminal do Windows e cole um dos blocos abaixo.
+O comando cria `C:\Users\<usuario>\source\repos\mpv.net` se o repositório ainda
+não existir, entra na raiz do projeto e usa `artifacts\release` como saída. A
+pasta de saída também é criada automaticamente pelo script.
+
+Gerar apenas o ZIP portátil:
+
+```powershell
+$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
+if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
+Set-Location $RepoDir
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
+```
+
+Resultado esperado:
+
+```text
+artifacts\release\mpv.net-v<versao>-portable-x64\
+artifacts\release\mpv.net-v<versao>-portable-x64.zip
+```
+
+Gerar apenas o instalador:
+
+```powershell
+$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
+if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
+Set-Location $RepoDir
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
+```
+
+Resultado esperado:
+
+```text
+artifacts\release\mpv.net-v<versao>-portable-x64\
+artifacts\release\MPV.NET-Media-Player-v<versao>-setup-x64.exe
+```
+
+Gerar ZIP e instalador localmente, sem publicar no GitHub:
+
+```powershell
+$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
+if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
+Set-Location $RepoDir
+powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
+```
+
+Se você já usa outro diretório, abra o terminal na raiz do repositório e execute
+apenas a última linha do bloco escolhido. O valor de `-SourceDir` deve apontar
+para a pasta `src` do repositório, não para a raiz.
+
+## Parâmetros dos scripts
+
 Script principal:
 
 ```text
-src/Tools/build-release-package.ps1
+src\Tools\build-release-package.ps1
 ```
 
-Uso esperado pelo cabeçalho do script:
+Uso:
 
 ```powershell
-src\Tools\build-release-package.ps1 <diretorio-src> <diretorio-saida>
+powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
 ```
 
-Exemplo:
+Por padrão, o script principal tenta publicar em `WandersondeSouza/mpv.net`.
+Para gerar apenas artefatos locais, mantenha `-SkipGitHubRelease`.
+
+Para gerar apenas o ZIP portátil, sem instalador e sem publicação:
 
 ```powershell
-src\Tools\build-release-package.ps1 C:\repo\mpv.net\src C:\saida
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
 
-Por padrao, o script publica em `WandersondeSouza/mpv.net`. Para gerar apenas artefatos locais, use:
+Para gerar apenas o instalador executável, sem ZIP e sem publicação:
 
 ```powershell
-src\Tools\build-release-package.ps1 C:\repo\mpv.net\src C:\saida -SkipGitHubRelease
-```
-
-Para gerar apenas o ZIP portatil, sem instalador e sem publicacao:
-
-```powershell
-src\Tools\generate-portable-zip.ps1 -SourceDir C:\repo\mpv.net\src -OutputRootDir C:\saida
-```
-
-Para gerar apenas o instalador executavel, sem ZIP e sem publicacao:
-
-```powershell
-src\Tools\generate-installer-exe.ps1 -SourceDir C:\repo\mpv.net\src -OutputRootDir C:\saida
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
 
 Quando for necessario sobrescrever `MediaInfo.dll` ou fornecer um `mpvnet.com` local, informe os arquivos explicitamente:
 
 ```powershell
-src\Tools\build-release-package.ps1 C:\repo\mpv.net\src C:\saida -MediaInfoFile C:\deps\MediaInfo.dll -MpvNetComFile C:\deps\mpvnet.com
+powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease -MediaInfoFile C:\deps\MediaInfo.dll -MpvNetComFile C:\deps\mpvnet.com
 ```
 
 O script:
