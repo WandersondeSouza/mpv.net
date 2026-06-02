@@ -1,6 +1,6 @@
 # Próximos Trabalhos
 
-Documento curto para orientar a manutenção do fork `MPV.NET Media Player Community Edition`.
+Documento curto para orientar a manutenção do fork `MPV.NET Media Player`.
 
 Os itens aqui são pendências ou verificações em aberto. Quando algo for consolidado e validado, mova o histórico para `docs/changelog.md`.
 

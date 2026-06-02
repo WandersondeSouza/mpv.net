@@ -1,5 +1,5 @@
 
-#define MyAppName "MPV.NET Media Player Community Edition"
+#define MyAppName "MPV.NET Media Player"
 #define MyAppExeName "mpvnet.exe"
 #define MyAppPublisher "Wanderson Estanislau de Souza Rodrigues"
 #define MyAppURL "https://github.com/WandersondeSouza/mpv.net"
@@ -18,7 +18,7 @@ AppUpdatesURL={#MyAppURL}/releases
 ArchitecturesInstallIn64BitMode=x64compatible
 Compression=lzma2
 DefaultDirName={autopf}\{#MyAppName}
-OutputBaseFilename=MPV.NET-Media-Player-Community-Edition-v{#MyAppVersion}-setup-x64
+OutputBaseFilename=MPV.NET-Media-Player-v{#MyAppVersion}-setup-x64
 OutputDir=E:\Desktop
 DefaultGroupName={#MyAppName}
 SetupIconFile=..\..\MpvNet.Windows\mpv-icon.ico

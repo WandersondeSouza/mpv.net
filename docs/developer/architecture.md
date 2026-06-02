@@ -1,8 +1,8 @@
-# Arquitetura do MPV.NET Media Player Community Edition
+# Arquitetura do MPV.NET Media Player
 
 ## Objetivo
 
-Este documento ajuda mantenedores, desenvolvedores e agentes de IA a entender a arquitetura geral do MPV.NET Media Player Community Edition.
+Este documento ajuda mantenedores, desenvolvedores e agentes de IA a entender a arquitetura geral do MPV.NET Media Player.
 
 O foco é mapear responsabilidades reais do código atual, áreas críticas e fluxos que devem ser preservados.
 
@@ -12,7 +12,7 @@ Este arquivo substitui os antigos mapas separados de projeto, classes, startup e
 
 # Visão geral
 
-O MPV.NET Media Player Community Edition é um frontend Windows para o mpv/libmpv, baseado no mpv.net.
+O MPV.NET Media Player é um frontend Windows para o mpv/libmpv, baseado no mpv.net.
 
 O projeto usa o motor do mpv para reprodução multimídia e implementa uma camada Windows com WinForms, WPF, comandos próprios, configuração compatível com mpv e integração com recursos do sistema.
 

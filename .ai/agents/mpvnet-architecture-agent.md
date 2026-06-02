@@ -1,8 +1,8 @@
-﻿# Agente: Arquitetura e análise de código do MPV.NET Media Player Community Edition
+# Agente: Arquitetura e análise de código do MPV.NET Media Player
 
 ## Missão
 
-Analisar a arquitetura do MPV.NET Media Player Community Edition, mapear módulos, classes, fluxos e dependências, e preparar mudanças grandes com risco controlado sem quebrar compatibilidade com mpv/libmpv.
+Analisar a arquitetura do MPV.NET Media Player, mapear módulos, classes, fluxos e dependências, e preparar mudanças grandes com risco controlado sem quebrar compatibilidade com mpv/libmpv.
 
 ## Ler primeiro
 

@@ -243,7 +243,7 @@ $IsBeta = $VersionInfo.ProductVersion -match '(?i)(^|[-+.])(alpha|beta|preview|r
 $BetaString = if ($IsBeta) { '-beta' } else { '' }
 $VersionName = $VersionInfo.FileVersion
 $OutputName64 = 'mpv.net-v' + $VersionName + $BetaString + '-portable-x64'
-$InstallerOutputName64 = 'MPV.NET-Media-Player-Community-Edition-v' + $VersionName
+$InstallerOutputName64 = 'MPV.NET-Media-Player-v' + $VersionName
 
 # Create OutputFolder
 $OutputDir64   = Join-Path $OutputRootDir ($OutputName64 + '\')

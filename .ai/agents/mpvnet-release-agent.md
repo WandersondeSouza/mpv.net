@@ -1,8 +1,8 @@
-﻿# Agente: Build e release do MPV.NET Media Player Community Edition
+# Agente: Build e release do MPV.NET Media Player
 
 ## Missão
 
-Analisar build, empacotamento, release, ZIP portátil, instalador e dependências nativas do fork MPV.NET Media Player Community Edition.
+Analisar build, empacotamento, release, ZIP portátil, instalador e dependências nativas do fork MPV.NET Media Player.
 
 ## Ler primeiro
 

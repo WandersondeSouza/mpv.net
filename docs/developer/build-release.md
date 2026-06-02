@@ -1,8 +1,8 @@
-# Build e release do MPV.NET Media Player Community Edition
+# Build e release do MPV.NET Media Player
 
 ## Objetivo
 
-Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **MPV.NET Media Player Community Edition**.
+Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **MPV.NET Media Player**.
 
 > Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release da versao `7.1.2.5` foram validados em Windows, incluindo ZIP portatil, instalador, Locale e validacao de dependencias nativas. A versao atual preparada para publicacao e `7.1.2.7`. Ainda faltam fechar a revisao manual completa de UI/compatibilidade e validar o workflow manual do GitHub Actions.
 
@@ -231,7 +231,7 @@ src\Tools\publish-emergency-release.ps1 -CreateInstaller
 
 Esse script exige arvore Git limpa antes de alterar `src\BuildVersion.props`. Ele nao substitui a revisao manual de changelog, UI e compatibilidade; e uma rota curta para publicar uma nova versao do branch atual quando necessario.
 
-A partir de 2026-06-02, o fluxo de release nomeia os artefatos como `MPV.NET-Media-Player-Community-Edition-v<versao>-setup-x64.exe` para o instalador e `mpv.net-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/FFmpeg/libmpv/yt-dlp, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
+A partir de 2026-06-02, o fluxo de release nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-setup-x64.exe` para o instalador e `mpv.net-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/FFmpeg/libmpv/yt-dlp, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
 
 Pendente real: validar o workflow manual do GitHub Actions e a revisao manual completa da UI no pacote gerado.
 

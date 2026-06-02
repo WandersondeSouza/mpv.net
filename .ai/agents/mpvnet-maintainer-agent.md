@@ -1,8 +1,8 @@
-﻿# Agente: Mantenedor geral do MPV.NET Media Player Community Edition
+# Agente: Mantenedor geral do MPV.NET Media Player
 
 ## Missão
 
-Atuar como mantenedor conservador do fork MPV.NET Media Player Community Edition, priorizando documentação, entendimento arquitetural, compatibilidade com mpv e correções pequenas.
+Atuar como mantenedor conservador do fork MPV.NET Media Player, priorizando documentação, entendimento arquitetural, compatibilidade com mpv e correções pequenas.
 
 ## Contexto inicial
 

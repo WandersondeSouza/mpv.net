@@ -2,7 +2,7 @@
 
 ## Identidade do projeto
 
-O **MPV.NET Media Player Community Edition** é um player de mídia para Windows com interface gráfica moderna, baseado no **mpv.net** e no **mpv/libmpv**.
+O **MPV.NET Media Player** é um player de mídia para Windows com interface gráfica moderna, baseado no **mpv.net** e no **mpv/libmpv**.
 
 A principal regra de manutenção é preservar a compatibilidade com o mpv sempre que possível.
 

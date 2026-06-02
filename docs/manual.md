@@ -1,6 +1,6 @@
-# Manual do MPV.NET Media Player Community Edition
+# Manual do MPV.NET Media Player
 
-O MPV.NET Media Player Community Edition é um player de mídia para Windows baseado no mpv/libmpv e no mpv.net.
+O MPV.NET Media Player é um player de mídia para Windows baseado no mpv/libmpv e no mpv.net.
 
 Este manual cobre apenas o que importa para o uso cotidiano do fork.
 

@@ -1,6 +1,6 @@
-# Agentes recomendados para o fork MPV.NET Media Player Community Edition
+# Agentes recomendados para o fork MPV.NET Media Player
 
-Este diretório descreve perfis de agentes úteis para trabalhar no fork sem alterar o comportamento do MPV.NET Media Player Community Edition por acidente.
+Este diretório descreve perfis de agentes úteis para trabalhar no fork sem alterar o comportamento do MPV.NET Media Player por acidente.
 
 Use estes perfis como instruções de especialização para Codex, Copilot, agentes locais ou automações.
 

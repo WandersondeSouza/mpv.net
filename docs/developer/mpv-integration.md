@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Documentar conceitos relacionados à integração do MPV.NET Media Player Community Edition com mpv/libmpv.
+Documentar conceitos relacionados à integração do MPV.NET Media Player com mpv/libmpv.
 
 ---
 

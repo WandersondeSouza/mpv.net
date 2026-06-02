@@ -1,8 +1,8 @@
-﻿# Agente: UI Windows do MPV.NET Media Player Community Edition
+# Agente: UI Windows do MPV.NET Media Player
 
 ## Missão
 
-Analisar e alterar interface Windows do MPV.NET Media Player Community Edition preservando comportamento de janela, fullscreen, foco, tema, DPI, menus, atalhos e integração com o handle usado pelo libmpv.
+Analisar e alterar interface Windows do MPV.NET Media Player preservando comportamento de janela, fullscreen, foco, tema, DPI, menus, atalhos e integração com o handle usado pelo libmpv.
 
 ## Ler primeiro
 

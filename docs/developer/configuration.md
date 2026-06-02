@@ -1,8 +1,8 @@
-# Configuração do MPV.NET Media Player Community Edition
+# Configuração do MPV.NET Media Player
 
 ## Objetivo
 
-Documentar como o MPV.NET Media Player Community Edition localiza, carrega, migra e utiliza arquivos de configuração.
+Documentar como o MPV.NET Media Player localiza, carrega, migra e utiliza arquivos de configuração.
 
 ---
 

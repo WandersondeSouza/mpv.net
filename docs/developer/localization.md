@@ -1,8 +1,8 @@
-# Localização do MPV.NET Media Player Community Edition
+# Localização do MPV.NET Media Player
 
 ## Objetivo
 
-Este guia documenta como adicionar ou revisar traducoes da interface do MPV.NET Media Player Community Edition sem quebrar os idiomas existentes.
+Este guia documenta como adicionar ou revisar traducoes da interface do MPV.NET Media Player sem quebrar os idiomas existentes.
 
 O mpv.net usa gettext para os textos de interface. A traducao fica fora dos arquivos `.resx` principais e e carregada em runtime a partir da pasta `Locale`.
 

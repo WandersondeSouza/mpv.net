@@ -1,4 +1,4 @@
-﻿# Guia operacional do MPV.NET Media Player Community Edition
+# Guia operacional do MPV.NET Media Player
 
 Documento único para build, dependências nativas, scripts, modo portátil, contribuição, release e direção do fork.
 
@@ -98,7 +98,7 @@ Usar quando:
 
 Usar quando:
 
-- quiser somente `MPV.NET-Media-Player-Community-Edition-v<versao>-setup-x64.exe`;
+- quiser somente `MPV.NET-Media-Player-v<versao>-setup-x64.exe`;
 - nao quiser gerar ZIP portatil;
 - nao quiser publicar no GitHub.
 

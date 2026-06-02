@@ -1,10 +1,10 @@
-﻿# Prompt — Auditoria profunda de arquitetura e código-fonte
+# Prompt — Auditoria profunda de arquitetura e código-fonte
 
 Analise profundamente este repositório.
 
 Objetivo:
 
-Entender a arquitetura técnica do projeto MPV.NET Media Player Community Edition para manutenção de longo prazo, identificar acoplamentos e preparar mudanças grandes com risco controlado.
+Entender a arquitetura técnica do projeto MPV.NET Media Player para manutenção de longo prazo, identificar acoplamentos e preparar mudanças grandes com risco controlado.
 
 ---
 
