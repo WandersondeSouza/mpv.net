@@ -3,6 +3,24 @@
 Este arquivo registra apenas as versoes publicadas pelo fork
 `WandersondeSouza/mpv.net`.
 
+# Fork WandersondeSouza - v7.1.2.8 (2026-06-02)
+
+## Identidade e distribuicao
+
+- Reforcada a identidade do fork como `MPV.NET Media Player` em metadados,
+  documentacao, materiais de IA e superficies do instalador.
+- Ajustado o processo de geracao dos pacotes portatil e executavel para manter
+  nomes de artefatos, instalador e fluxo de release alinhados ao fork.
+- Mantida a compatibilidade tecnica com `mpvnet.exe`, configuracoes existentes e
+  caminhos usados pelo mpv.net original.
+
+## Playlists e titulos
+
+- Ajustado o carregamento de playlists para preservar melhor titulos extraidos e
+  itens adicionados ao player.
+- Refinada a normalizacao do titulo da faixa exibido na interface, evitando que
+  extensoes e nomes brutos prejudiquem a leitura da playlist.
+
 # Fork WandersondeSouza - v7.1.2.7 (2026-06-01)
 
 ## Manutencao operacional
