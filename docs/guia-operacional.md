@@ -69,8 +69,8 @@ O script de dependencias reutiliza downloads em `artifacts\native-dependencies\d
 Validação:
 
 ```powershell
-.\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
-.\src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\mpv.net-v7.1.2.7-portable-x64.zip
+.\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Release\win-x64\publish
+.\src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\MPV.NET-Media-Player-v7.1.2.7-portable-x64.zip
 ```
 
 ## Scripts
@@ -105,12 +105,12 @@ powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -
 
 Usar quando:
 
-- quiser somente `mpv.net-v<versao>-portable-x64.zip`;
+- quiser somente `MPV.NET-Media-Player-v<versao>-portable-x64.zip`;
 - nao quiser gerar instalador;
 - nao quiser publicar no GitHub.
 
 O script também cria a pasta extraída
-`artifacts\release\mpv.net-v<versao>-portable-x64\`.
+`artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\`.
 
 ### Gerar apenas o instalador executável
 
@@ -128,12 +128,12 @@ Usar quando:
 - nao quiser publicar no GitHub.
 
 O script também prepara a pasta portátil base
-`artifacts\release\mpv.net-v<versao>-portable-x64\`, usada pelo instalador.
+`artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\`, usada pelo instalador.
 
 ### Preparar dependências nativas
 
 ```powershell
-.\src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Debug\win-x64
+.\src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Release\win-x64
 ```
 
 Usar quando:
@@ -146,7 +146,7 @@ Usar quando:
 ### Validar dependências nativas
 
 ```powershell
-.\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
+.\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Release\win-x64\publish
 ```
 
 Usar quando:

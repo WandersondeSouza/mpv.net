@@ -1,9 +1,7 @@
 
 <#
 
-Script that builds mpv.net and releases it on GitHub.
-Please note that debug builds are built and released,
-for release builds, scripts need to be rewritten.
+Script that builds mpv.net in Release configuration and releases it on GitHub.
 
 Needs 2 positional CLI arguments:
     1. Directory where the mpv.net source code is located (mpv.net\src)
@@ -190,7 +188,7 @@ function EnsureLocale($sourceDir, $localeDir, $workDir) {
 
     $createMoScript = Test (Join-Path $sourceDir '..\lang\compile-mo-files.ps1')
     AddGettextToolsToPath $workDir
-    & $createMoScript (Join-Path $sourceDir 'MpvNet.Windows\bin\Debug\win-x64') | ForEach-Object { Write-Host $_ }
+    & $createMoScript (Join-Path $sourceDir 'MpvNet.Windows\bin\Release\win-x64') | ForEach-Object { Write-Host $_ }
     if ($LastExitCode) { throw $LastExitCode }
 
     return Test $localeDir
@@ -212,13 +210,14 @@ if (-not $SkipInstaller) {
 $ReleaseNotes = "- [Changelog](https://github.com/$Repo/blob/main/docs/changelog.md)"
 
 # Dotnet Publish
-$PublishDir64 = Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\publish\'
+$BuildConfiguration = 'Release'
+$PublishDir64 = Join-Path $SourceDir "MpvNet.Windows\bin\$BuildConfiguration\win-x64\publish\"
 $ProjectFile = Test (Join-Path $SourceDir 'MpvNet.Windows\MpvNet.Windows.csproj')
 DeleteDir $PublishDir64
-dotnet publish $ProjectFile --self-contained true --configuration Debug --runtime win-x64 --output $PublishDir64 /p:IncludeNativeLibrariesForSelfExtract=false /p:EnsureBuildAssets=false
+dotnet publish $ProjectFile --self-contained true --configuration $BuildConfiguration --runtime win-x64 --output $PublishDir64 /p:IncludeNativeLibrariesForSelfExtract=false /p:EnsureBuildAssets=false
 if ($LastExitCode) { throw "dotnet publish failed with exit code $LastExitCode" }
 $PublishedExeFile64 = Test ($PublishDir64 + 'mpvnet.exe')
-$BinDirX64 = Test (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\')
+$BinDirX64 = Test (Join-Path $SourceDir "MpvNet.Windows\bin\$BuildConfiguration\win-x64\")
 $EnsureDependenciesScript = Test (Join-Path $SourceDir 'Tools\prepare-native-dependencies.ps1')
 $EnsureDependenciesArgs = @{
     SourceDir = $SourceDir
@@ -242,8 +241,8 @@ $VersionInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($PublishedExeFile64
 $IsBeta = $VersionInfo.ProductVersion -match '(?i)(^|[-+.])(alpha|beta|preview|rc)([-+.]|$)'
 $BetaString = if ($IsBeta) { '-beta' } else { '' }
 $VersionName = $VersionInfo.FileVersion
-$OutputName64 = 'mpv.net-v' + $VersionName + $BetaString + '-portable-x64'
 $InstallerOutputName64 = 'MPV.NET-Media-Player-v' + $VersionName
+$OutputName64 = $InstallerOutputName64 + $BetaString + '-portable-x64'
 
 # Create OutputFolder
 $OutputDir64   = Join-Path $OutputRootDir ($OutputName64 + '\')
@@ -259,7 +258,7 @@ CopyExtraFiles $BinDirX64 $OutputDir64 $ExtraFiles
 CopyExtraFiles $BinDirX64 $PublishDir64 $ExtraFiles
 $LocaleDir = EnsureLocale `
     $SourceDir `
-    (Join-Path $SourceDir 'MpvNet.Windows\bin\Debug\win-x64\Locale\') `
+    (Join-Path $SourceDir "MpvNet.Windows\bin\$BuildConfiguration\win-x64\Locale\") `
     (Join-Path $env:TEMP 'mpv.net-release-locale')
 CopyDir $LocaleDir (Join-Path $OutputDir64 'Locale') | Out-Null
 CopyDir $LocaleDir (Join-Path $PublishDir64 'Locale') | Out-Null

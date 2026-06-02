@@ -108,15 +108,15 @@ Para compilar e baixar/validar automaticamente os binarios nativos e auxiliares 
 dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj -c Release
 ```
 
-Esse alvo opt-in chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` na pasta Debug, baixando apenas o que estiver faltando. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained.
+Esse alvo opt-in chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` na pasta da configuracao compilada, baixando apenas o que estiver faltando. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained.
 
 Para publicar como o script de release atual faz:
 
 ```powershell
-dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained true --configuration Debug --runtime win-x64 /p:IncludeNativeLibrariesForSelfExtract=false
+dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained true --configuration Release --runtime win-x64 /p:IncludeNativeLibrariesForSelfExtract=false
 ```
 
-Observação: o script de release atual publica em `Debug`. Não documente uma release como `Release` sem ajustar e validar o script. O script chama o publish com `/p:EnsureBuildAssets=false`, porque prepara e valida os binarios nativos em uma etapa propria depois do publish.
+Observacao: o script de release publica em `Release`. Ele chama o publish com `/p:EnsureBuildAssets=false`, porque prepara e valida os binarios nativos em uma etapa propria depois do publish.
 
 ---
 
@@ -159,8 +159,8 @@ powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -
 Resultado esperado:
 
 ```text
-artifacts\release\mpv.net-v<versao>-portable-x64\
-artifacts\release\mpv.net-v<versao>-portable-x64.zip
+artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\
+artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64.zip
 ```
 
 Gerar apenas o instalador:
@@ -175,7 +175,7 @@ powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 
 Resultado esperado:
 
 ```text
-artifacts\release\mpv.net-v<versao>-portable-x64\
+artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\
 artifacts\release\MPV.NET-Media-Player-v<versao>-setup-x64.exe
 ```
 
@@ -276,7 +276,7 @@ src\Tools\publish-emergency-release.ps1 -CreateInstaller
 
 Esse script exige arvore Git limpa antes de alterar `src\BuildVersion.props`. Ele nao substitui a revisao manual de changelog, UI e compatibilidade; e uma rota curta para publicar uma nova versao do branch atual quando necessario.
 
-A partir de 2026-06-02, o fluxo de release nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-setup-x64.exe` para o instalador e `mpv.net-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/FFmpeg/libmpv/yt-dlp, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
+A partir de 2026-06-02, o fluxo de release publica em `Release` e nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-setup-x64.exe` para o instalador e `MPV.NET-Media-Player-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/FFmpeg/libmpv/yt-dlp, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
 
 Pendente real: validar o workflow manual do GitHub Actions e a revisao manual completa da UI no pacote gerado.
 

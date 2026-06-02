@@ -81,7 +81,7 @@ jobs:
           }
 
           .\src\Tools\validate-native-dependencies.ps1 -ZipFile $zip.FullName
-          .\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Debug\win-x64\publish
+          .\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Release\win-x64\publish
 
       - name: Upload generated packages
         uses: actions/upload-artifact@v4

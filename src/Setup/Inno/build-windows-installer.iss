@@ -3,8 +3,8 @@
 #define MyAppExeName "mpvnet.exe"
 #define MyAppPublisher "Wanderson Estanislau de Souza Rodrigues"
 #define MyAppURL "https://github.com/WandersondeSouza/mpv.net"
-#define MyAppSourceDir "..\..\MpvNet.Windows\bin\Debug\win-x64\publish"
-#define MyAppVersion GetVersionNumbersString("..\..\MpvNet.Windows\bin\Debug\win-x64\publish\mpvnet.exe")
+#define MyAppSourceDir "..\..\MpvNet.Windows\bin\Release\win-x64\publish"
+#define MyAppVersion GetVersionNumbersString("..\..\MpvNet.Windows\bin\Release\win-x64\publish\mpvnet.exe")
 
 [Setup]
 AppId={{9AA2B100-BEF3-44D0-B819-D8FC3C4D557D}}
