@@ -18,49 +18,22 @@ public class CommandLine
             if (_arguments != null)
                 return _arguments;
 
-            _arguments = [];
-
-            foreach (string i in Environment.GetCommandLineArgs().Skip(1))
-            {
-                string arg = i;
-
-                if (!arg.StartsWith("--"))
-                    continue;
-
-                if (!arg.Contains('='))
-                {
-                    if (arg.Contains("--no-"))
-                    {
-                        arg = arg.Replace("--no-", "--");
-                        arg += "=no";
-                    }
-                    else
-                        arg += "=yes";
-                }
-
-                string left = arg[2..arg.IndexOf('=')];
-                string right = arg[(left.Length + 3)..];
-
-                if (string.IsNullOrEmpty(left))
-                    continue;
-
-                switch (left)
-                {
-                    case "script": left = "scripts"; break;
-                    case "script-opt": left = "script-opts"; break;
-                    case "audio-file": left = "audio-files"; break;
-                    case "sub-file": left = "sub-files"; break;
-                    case "external-file": left = "external-files"; break;
-                }
-
-                if (ShouldNormalizeTitleArgument(left, right))
-                    right = TitleHelp.NormalizeMediaTitle(right);
-
-                _arguments.Add(new StringPair(left, right));
-            }
-
+            _arguments = ParseArguments(Environment.GetCommandLineArgs().Skip(1));
             return _arguments;
         }
+    }
+
+    internal static List<StringPair> ParseArguments(IEnumerable<string> args)
+    {
+        List<StringPair> arguments = [];
+
+        foreach (string input in args)
+        {
+            if (TryParseArgument(input, out StringPair? pair))
+                arguments.Add(pair!);
+        }
+
+        return arguments;
     }
 
     public static void ProcessCommandLineArgsPreInit()
@@ -154,6 +127,51 @@ public class CommandLine
 
         return name == "title" && !value.Contains("${");
     }
+
+    static bool TryParseArgument(string input, out StringPair? pair)
+    {
+        pair = null;
+        string arg = input;
+
+        if (!arg.StartsWith("--"))
+            return false;
+
+        if (!arg.Contains('='))
+        {
+            if (arg.Contains("--no-"))
+            {
+                arg = arg.Replace("--no-", "--");
+                arg += "=no";
+            }
+            else
+                arg += "=yes";
+        }
+
+        string left = arg[2..arg.IndexOf('=')];
+        string right = arg[(left.Length + 3)..];
+
+        if (string.IsNullOrEmpty(left))
+            return false;
+
+        left = NormalizeArgumentName(left);
+
+        if (ShouldNormalizeTitleArgument(left, right))
+            right = TitleHelp.NormalizeMediaTitle(right);
+
+        pair = new StringPair(left, right);
+        return true;
+    }
+
+    static string NormalizeArgumentName(string name) =>
+        name switch
+        {
+            "script" => "scripts",
+            "script-opt" => "script-opts",
+            "audio-file" => "audio-files",
+            "sub-file" => "sub-files",
+            "external-file" => "external-files",
+            _ => name
+        };
 
     static void ApplyPropertyArgument(StringPair pair)
     {

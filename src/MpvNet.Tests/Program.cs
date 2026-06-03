@@ -99,6 +99,24 @@ var parsedConfig = ConfigFileParser.ParseKeyValueLines([
     "language= pt-BR ",
     "duplicate=old",
     "duplicate=new"]);
+var parsedCommandArguments = CommandLine.ParseArguments([
+    "video.mp4",
+    "--terminal",
+    "--no-config",
+    "--script=test.lua",
+    "--script-opt=thumbfast=yes",
+    "--audio-file=audio.mp3",
+    "--sub-file=sub.srt",
+    "--external-file=cover.jpg",
+    "--title=sample.video.mkv",
+    "--force-media-title=forced.title.mp4",
+    "--title=${media-title}",
+    "--=ignored"]);
+
+var normalizedRemotePlaylistItems = PlaylistFile.Normalize(tempM3u, [
+    new PlaylistFileItem("https://example.com/live/index.m3u8?token=abc", "remote live")]);
+var normalizedFileUriPlaylistItems = PlaylistFile.Normalize(tempM3u, [
+    new PlaylistFileItem(new Uri(tempAudio).AbsoluteUri, "file uri audio")]);
 
 MediaTrack mpvTrackText = new();
 MediaTrackText.AddMpvValue(mpvTrackText, " AAC ");
@@ -132,7 +150,10 @@ var tests = new (string Name, bool Result)[]
     ("IsStreamingUrl rtmp", FileTypes.IsStreamingUrl("rtmp://server/live")),
     ("IsStreamingUrl rtsp", FileTypes.IsStreamingUrl("rtsp://server/stream")),
     ("IsStreamingUrl udp", FileTypes.IsStreamingUrl("udp://239.0.0.1:1234")),
+    ("IsStreamingUrl is case-insensitive", FileTypes.IsStreamingUrl("HTTPS://example.com/live.m3u8")),
     ("URL query string supported", FileTypes.IsSupportedMediaInput("https://example.com/live/index.m3u8?token=abc123")),
+    ("URL fragment supported", FileTypes.IsSupportedMediaInput("https://example.com/live/index.m3u8#stream")),
+    ("Uppercase media extension supported", FileTypes.IsVideoFile("MOVIE.MKV")),
     ("Unknown file false", !FileTypes.IsSupportedMediaInput("example.unknown")),
     ("Empty text false", !FileTypes.IsSupportedMediaInput("")),
     ("URL does not depend on File.Exists", FileTypes.IsSupportedMediaInput("https://example.com/video.mp4")),
@@ -142,8 +163,14 @@ var tests = new (string Name, bool Result)[]
     ("Title normalization removes configured characters", TitleHelp.NormalizeMediaTitle("@titulo#com$simbolos*.mp4") == "Titulocomsimbolos"),
     ("Title normalization uses default title when empty", TitleHelp.NormalizeMediaTitle("@#$*.mp4") == "Untitled Track"),
     ("Title normalization truncates long titles", TitleHelp.NormalizeMediaTitle(new string('a', 120) + ".mp4").Length == 100),
+    ("Title normalization removes mpv.net suffix", TitleHelp.NormalizeMediaTitle("movie title - mpv.net") == "Movie Title"),
+    ("Title normalization keeps unsupported extension text", TitleHelp.NormalizeMediaTitle("notes.backup") == "Notes Backup"),
     ("Command line accepts streaming URL", CommandLine.IsLoadableFileArgument("rtmps://example.com/live")),
     ("Command line accepts playlist file extension", CommandLine.IsLoadableFileArgument("iptv.m3u")),
+    ("Command line accepts stdin pipe marker", CommandLine.IsLoadableFileArgument("-")),
+    ("Command line rejects options as files", !CommandLine.IsLoadableFileArgument("--fullscreen")),
+    ("Command line accepts absolute Windows path without existence check", CommandLine.IsLoadableFileArgument(@"C:\missing\movie.mkv")),
+    ("Command line accepts relative dot path", CommandLine.IsLoadableFileArgument(@".\movie.mkv")),
     ("Local file can use optional MediaInfo when present", MainPlayer.CanUseMediaInfo(tempMediaFile)),
     ("Missing local file skips optional MediaInfo", !MainPlayer.CanUseMediaInfo(tempMediaFile + ".missing")),
     ("Streaming URL skips optional MediaInfo", !MainPlayer.CanUseMediaInfo("https://example.com/live/index.m3u8")),
@@ -165,6 +192,8 @@ var tests = new (string Name, bool Result)[]
     ("Playlist parser normalizes item title", parsedPlaylist.Any(i => i.Title == "Video Title" && i.Path == tempVideo)),
     ("Playlist writer preserves normalized item titles", normalizedM3uContent.Contains("#EXTINF:-1,Video Title")),
     ("Playlist writer preserves resolved paths", normalizedM3uContent.Contains(tempVideo)),
+    ("Playlist normalizer keeps streaming URLs", normalizedRemotePlaylistItems.Single().Path == "https://example.com/live/index.m3u8?token=abc"),
+    ("Playlist normalizer resolves file URIs", Path.GetFullPath(normalizedFileUriPlaylistItems.Single().Path) == Path.GetFullPath(tempAudio)),
     ("PLS parser normalizes item title", parsedPlsPlaylist.Any(i => i.Title == "Pls Video Title" && i.Path == tempVideo)),
     ("PLS writer preserves normalized item titles", normalizedPlsM3uContent.Contains("#EXTINF:-1,Pls Video Title")),
     ("XSPF parser resolves relative media paths", parsedXspfPlaylist.Single().Path == tempAudio),
@@ -180,6 +209,17 @@ var tests = new (string Name, bool Result)[]
     ("Config parser skips comments and invalid lines", parsedConfig.Count == 3),
     ("Config parser trims keys and values", parsedConfig["dark-mode"] == "never" && parsedConfig["language"] == "pt-BR"),
     ("Config parser keeps last duplicate value", parsedConfig["duplicate"] == "new"),
+    ("Command parser ignores non-options and empty names", parsedCommandArguments.Count == 10),
+    ("Command parser handles boolean flags", parsedCommandArguments.Any(i => i.Name == "terminal" && i.Value == "yes")),
+    ("Command parser handles no-prefix flags", parsedCommandArguments.Any(i => i.Name == "config" && i.Value == "no")),
+    ("Command parser normalizes aliases", parsedCommandArguments.Any(i => i.Name == "scripts" && i.Value == "test.lua") &&
+        parsedCommandArguments.Any(i => i.Name == "script-opts" && i.Value == "thumbfast=yes") &&
+        parsedCommandArguments.Any(i => i.Name == "audio-files" && i.Value == "audio.mp3") &&
+        parsedCommandArguments.Any(i => i.Name == "sub-files" && i.Value == "sub.srt") &&
+        parsedCommandArguments.Any(i => i.Name == "external-files" && i.Value == "cover.jpg")),
+    ("Command parser normalizes explicit title values", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "Sample Video")),
+    ("Command parser preserves title templates", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "${media-title}")),
+    ("Command parser normalizes force media title", parsedCommandArguments.Any(i => i.Name == "force-media-title" && i.Value == "Forced Title")),
     ("MediaInfo policy accepts enabled existing local file", MediaInfoPolicy.CanUseMediaInfo(true, tempMediaFile)),
     ("MediaInfo policy rejects disabled local file", !MediaInfoPolicy.CanUseMediaInfo(false, tempMediaFile)),
     ("MediaInfo policy rejects streaming URL", !MediaInfoPolicy.CanUseMediaInfo(true, "https://example.com/video.mp4")),
