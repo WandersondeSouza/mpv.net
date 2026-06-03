@@ -129,6 +129,8 @@ string blockedLogPath = Path.Combine(tempLogDir, "blocked");
 File.WriteAllText(blockedLogPath, "");
 var blockedLogWriter = new FileLogWriter(blockedLogPath, () => fixedLogDate);
 bool blockedWriteDidNotThrow = true;
+string expectedLocalAppDataRoot = Path.Combine(Folder.LocalAppData, "mpv.net");
+string defaultCacheFolder = new MainPlayer().CacheFolder;
 
 try
 {
@@ -254,6 +256,9 @@ var tests = new (string Name, bool Result)[]
     ("File log writer keeps recent daily logs", File.Exists(Path.Combine(tempLogDir, "mpvnet-2026-05-28.log"))),
     ("File log writer ignores unrelated files during cleanup", File.Exists(Path.Combine(tempLogDir, "other-2026-05-01.log"))),
     ("File log writer does not throw on write failure", blockedWriteDidNotThrow),
+    ("Default log folder uses mpv.net LocalAppData root", Path.GetFullPath(Log.LogFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
+    ("Default cache folder uses mpv.net LocalAppData root", Path.GetFullPath(defaultCacheFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
+    ("Default cache folder is separate from logs", !StringComparer.OrdinalIgnoreCase.Equals(Path.GetFullPath(defaultCacheFolder), Path.GetFullPath(Log.LogFolder))),
     ("MediaInfo policy accepts enabled existing local file", MediaInfoPolicy.CanUseMediaInfo(true, tempMediaFile)),
     ("MediaInfo policy rejects disabled local file", !MediaInfoPolicy.CanUseMediaInfo(false, tempMediaFile)),
     ("MediaInfo policy rejects streaming URL", !MediaInfoPolicy.CanUseMediaInfo(true, "https://example.com/video.mp4")),

@@ -94,6 +94,12 @@ Quando habilitado, o aplicativo grava em:
 %LOCALAPPDATA%\mpv.net\Logs
 ```
 
+Essa pasta compartilha a mesma raiz usada pelo cache temporario do mpv:
+
+```text
+%LOCALAPPDATA%\mpv.net\Cache
+```
+
 O arquivo diario usa este padrao:
 
 ```text

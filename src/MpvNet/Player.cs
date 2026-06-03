@@ -22,6 +22,7 @@ public class MainPlayer : MpvClient
     static readonly HttpClient RemotePlaylistHttpClient = new() { Timeout = TimeSpan.FromSeconds(20) };
 
     public string ConfPath { get => ConfigFolder + "mpv.conf"; }
+    public string CacheFolder => System.IO.Path.Combine(Folder.LocalAppData, "mpv.net", "Cache") + System.IO.Path.DirectorySeparatorChar;
     public string GPUAPI { get; set; } = "auto";
     public string Path { get; set; } = "";
     public string VO { get; set; } = "gpu";
@@ -117,6 +118,10 @@ public class MainPlayer : MpvClient
         SetPropertyString("media-controls", "yes");
         SetPropertyString("idle", "yes");
         SetPropertyString("config-dir", ConfigFolder);
+        Directory.CreateDirectory(CacheFolder);
+        SetPropertyString("demuxer-cache-dir", CacheFolder);
+        SetPropertyString("icc-cache-dir", CacheFolder);
+        SetPropertyString("gpu-shader-cache-dir", CacheFolder);
         SetPropertyString("config", "yes");
         SetOptionString("load-context-menu", "no");
         SetPropertyString("screenshot-directory", "~~desktop/");

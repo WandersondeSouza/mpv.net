@@ -42,13 +42,14 @@ Fluxo principal em `Player.Init`:
 2. registra eventos com `mpv_request_event`;
 3. prepara propriedades iniciais;
 4. define `config-dir` como `Player.ConfigFolder`;
-5. carrega `input.conf` em memória quando existe conteúdo;
-6. processa argumentos de linha de comando antes de `mpv_initialize`;
-7. chama `mpv_initialize`;
-8. cria cliente secundário `mpvnet`;
-9. inicia o loop de eventos;
-10. registra observadores de propriedades;
-11. dispara o estado pronto para a UI.
+5. direciona caches do mpv para `%LOCALAPPDATA%\mpv.net\Cache`;
+6. carrega `input.conf` em memória quando existe conteúdo;
+7. processa argumentos de linha de comando antes de `mpv_initialize`;
+8. chama `mpv_initialize`;
+9. cria cliente secundário `mpvnet`;
+10. inicia o loop de eventos;
+11. registra observadores de propriedades;
+12. dispara o estado pronto para a UI.
 
 ## Eventos, propriedades e comandos
 

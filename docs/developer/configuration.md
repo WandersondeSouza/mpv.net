@@ -54,6 +54,13 @@ Pastas:
 | `script-opts` | Configuração dos scripts. |
 | `extensions` | Extensões .NET carregadas pelo mpv.net. |
 
+Cache e logs:
+
+| Pasta | Função |
+| --- | --- |
+| `%LOCALAPPDATA%\mpv.net\Cache` | Cache temporário do mpv para demuxer, ICC e shaders. |
+| `%LOCALAPPDATA%\mpv.net\Logs` | Logs diários quando o build é gerado com logging em arquivo habilitado. |
+
 Para scripts como `thumbfast`, a versão portátil deve usar `portable_config/scripts` e `portable_config/script-opts`. No mpv.net v7, `thumbfast` tem suporte direto; `mpv_path` para um `mpv.exe` separado deve ser tratado como fallback para versões antigas ou casos específicos documentados pelo próprio script.
 
 ---
@@ -181,6 +188,9 @@ Mudanças nesses fluxos devem ser validadas com tema claro/escuro, permissões d
 Algumas opções são aplicadas antes de `mpv_initialize`, por exemplo:
 
 - `config-dir`;
+- `demuxer-cache-dir`;
+- `icc-cache-dir`;
+- `gpu-shader-cache-dir`;
 - `input-conf`;
 - `scripts`;
 - `script-opts`;
@@ -197,11 +207,12 @@ Quando `--config-dir` é usado, o caminho do `input.conf` também é ajustado pa
 
 1. A aplicação inicia.
 2. `Player.ConfigFolder` resolve `MPVNET_HOME`, `portable_config` ou `%APPDATA%\mpv.net`.
-3. Os arquivos de configuração são lidos.
-4. `mpv.conf`, `mpvnet.conf` e `input.conf` recebem tratamento específico.
-5. `settings.xml`, `theme.conf` e `global-input.conf` completam o estado do frontend.
-6. A UI e o libmpv usam esse estado inicial.
-7. Alterações podem ser persistidas em `settings.xml` ou nos arquivos do usuário quando a migração for necessária.
+3. O cache do mpv é direcionado para `%LOCALAPPDATA%\mpv.net\Cache`.
+4. Os arquivos de configuração são lidos.
+5. `mpv.conf`, `mpvnet.conf` e `input.conf` recebem tratamento específico.
+6. `settings.xml`, `theme.conf` e `global-input.conf` completam o estado do frontend.
+7. A UI e o libmpv usam esse estado inicial.
+8. Alterações podem ser persistidas em `settings.xml` ou nos arquivos do usuário quando a migração for necessária.
 
 ---
 
@@ -214,6 +225,9 @@ Não alterar nomes de arquivos, ordem de resolução ou sintaxe sem migração.
 ## Modo portátil
 
 `portable_config` só é usado quando a pasta existe ao lado do executável.
+Arquivos de configuração ficam em `portable_config`, mas cache temporário e logs
+de diagnóstico continuam em `%LOCALAPPDATA%\mpv.net`, para não misturar estado
+descartável com configuração portátil.
 
 ## Migrações automáticas
 

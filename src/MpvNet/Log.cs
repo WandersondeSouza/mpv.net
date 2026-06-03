@@ -56,7 +56,7 @@ internal sealed class FileLogWriter
     }
 
     public static string DefaultLogFolder =>
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "mpv.net", "Logs");
+        Path.Combine(Folder.LocalAppData, "mpv.net", "Logs");
 
     internal void Write(LogLevel level, string? message, Exception? exception)
     {
