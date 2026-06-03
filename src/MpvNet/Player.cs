@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 
 using MpvNet.Extensions;
 using MpvNet.Help;
@@ -546,10 +547,25 @@ public class MainPlayer : MpvClient
         }
         catch (Exception ex)
         {
-            LogNonBlockingMetadataFailure("Remote playlist detection", file, ex);
+            LogRemotePlaylistDetectionFailure(file, ex);
             return false;
         }
     }
+
+    static void LogRemotePlaylistDetectionFailure(string file, Exception ex)
+    {
+        if (IsRemotePlaylistProbeTimeout(ex))
+        {
+            Log.Debug($"Remote playlist detection timed out for '{file}': {ex.Message}");
+            return;
+        }
+
+        LogNonBlockingMetadataFailure("Remote playlist detection", file, ex);
+    }
+
+    public static bool IsRemotePlaylistProbeTimeout(Exception ex) =>
+        ex is TaskCanceledException or TimeoutException ||
+        ex.InnerException != null && IsRemotePlaylistProbeTimeout(ex.InnerException);
 
     static bool ShouldProbeRemotePlaylist(string file)
     {

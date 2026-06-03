@@ -18,6 +18,7 @@ Este arquivo orienta agentes de IA, Codex, GitHub Copilot e ferramentas automati
 4. Atualizar documentação sempre que alterar comportamento.
 5. Preservar compatibilidade com arquivos de configuração existentes.
 6. Antes de alterar código, entender o comportamento atual.
+7. Atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes e evitando criar arquivos redundantes.
 
 ## Arquivos que devem ser analisados primeiro
 
