@@ -19,6 +19,14 @@ on:
         options:
           - "false"
           - "true"
+      enable_file_logging:
+        description: Build diagnostic packages with file logging enabled
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 permissions:
   contents: write
@@ -68,6 +76,10 @@ jobs:
 
           if ('${{ inputs.create_installer }}' -ne 'true') {
             $releaseArgs.SkipInstaller = $true
+          }
+
+          if ('${{ inputs.enable_file_logging }}' -eq 'true') {
+            $releaseArgs.EnableFileLogging = $true
           }
 
           & .\src\Tools\build-release-package.ps1 @releaseArgs

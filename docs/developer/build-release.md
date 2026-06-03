@@ -117,6 +117,9 @@ dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained true --
 ```
 
 Observacao: o script de release publica em `Release`. Ele chama o publish com `/p:EnsureBuildAssets=false`, porque prepara e valida os binarios nativos em uma etapa propria depois do publish.
+Logs em arquivo ficam desligados por padrao com `/p:EnableFileLogging=false`.
+Para pacote de diagnostico, use `/p:EnableFileLogging=true` ou `-EnableFileLogging`
+nos scripts de release. Detalhes: `docs/logging.md`.
 
 ---
 

@@ -15,6 +15,8 @@ param(
 
     [string] $MediaInfoVersion = $env:MPVNET_MEDIAINFO_VERSION,
 
+    [switch] $EnableFileLogging,
+
     [string] $MediaInfoFile,
 
     [string] $MpvNetComFile
@@ -34,6 +36,7 @@ $argsForRelease = @{
 }
 
 if ($MediaInfoVersion) { $argsForRelease.MediaInfoVersion = $MediaInfoVersion }
+if ($EnableFileLogging) { $argsForRelease.EnableFileLogging = $true }
 if ($MediaInfoFile) { $argsForRelease.MediaInfoFile = $MediaInfoFile }
 if ($MpvNetComFile) { $argsForRelease.MpvNetComFile = $MpvNetComFile }
 

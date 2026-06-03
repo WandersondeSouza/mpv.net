@@ -1,6 +1,7 @@
 ﻿
 using System.Windows.Forms;
 using System.Threading;
+using System.Threading.Tasks;
 
 using MpvNet.Windows.Native;
 using MpvNet.Help;
@@ -17,14 +18,32 @@ static class Program
     {
         try
         {
+            Log.Info("Application starting.");
             RegistryHelp.ProductName = AppInfo.Product;
             Translator.Current = new WpfTranslator();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            AppDomain.CurrentDomain.UnhandledException += (sender, e) => Terminal.WriteError(e.ExceptionObject);
-            Application.ThreadException += (sender, e) => Terminal.WriteError(e.Exception);
+            AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+            {
+                if (e.ExceptionObject is Exception ex)
+                    Log.Error(ex, "Unhandled application domain exception.");
+                else
+                    Log.Error("Unhandled application domain exception: " + e.ExceptionObject);
+
+                Terminal.WriteError(e.ExceptionObject);
+            };
+            Application.ThreadException += (sender, e) =>
+            {
+                Log.Error(e.Exception, "Unhandled Windows Forms thread exception.");
+                Terminal.WriteError(e.Exception);
+            };
+            TaskScheduler.UnobservedTaskException += (sender, e) =>
+            {
+                Log.Error(e.Exception, "Unobserved task exception.");
+                Terminal.WriteError(e.Exception);
+            };
 
             if (App.IsTerminalAttached)
                 WinApi.AttachConsole(-1 /*ATTACH_PARENT_PROCESS*/);
@@ -39,6 +58,7 @@ static class Program
 
             App.Init();
             Theme.Init();
+            Log.Info("Application initialized.");
             using Mutex mutex = new Mutex(true, StringHelp.GetMD5Hash(App.ConfPath), out bool isFirst);
 
             if (Control.ModifierKeys == Keys.Shift ||
@@ -112,9 +132,12 @@ static class Program
 
             if (App.IsTerminalAttached)
                 WinApi.FreeConsole();
+
+            Log.Info("Application shutting down.");
         }
         catch (Exception ex)
         {
+            Log.Error(ex, "Application startup failed.");
             Terminal.WriteError(ex);
         }
     }

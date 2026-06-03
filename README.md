@@ -15,6 +15,7 @@ Fork de manutenção do **MPV.NET Media Player** para Windows, baseado no mpv.ne
 - [Manual](docs/manual.md)
 - [Configuração](docs/CONFIGURACAO.md)
 - [Guia operacional](docs/guia-operacional.md)
+- [Logs de diagnostico](docs/logging.md)
 - [Atalhos](docs/ATALHOS.md)
 - [Próximos trabalhos](docs/proximos-trabalhos.md)
 - [Arquitetura técnica](docs/developer/architecture.md)

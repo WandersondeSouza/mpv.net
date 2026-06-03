@@ -44,7 +44,11 @@ public class AppClass
 
     public AppClass()
     {
-        _extensionManager.UnhandledException +=  ex => Terminal.WriteError(ex);
+        _extensionManager.UnhandledException += ex =>
+        {
+            Log.Error(ex, "Extension failed with an unhandled exception.");
+            Terminal.WriteError(ex);
+        };
 
         StrongReferenceMessenger.Default.Register<MainWindowIsLoadedMessage>(this, (r, msg) =>
         {
@@ -56,6 +60,7 @@ public class AppClass
 
     public void Init()
     {
+        Log.Info("Initializing application configuration.");
         var useless1 = Player.ConfigFolder;
         EnsureInitialMpvConf();
         var useless2 = Player.Conf;
@@ -76,6 +81,7 @@ public class AppClass
 
         Player.Shutdown += Player_Shutdown;
         Player.Initialized += Player_Initialized;
+        Log.Info("Application configuration initialized.");
     }
 
     public static string About => "MPV.NET Media Player\n" +
@@ -116,6 +122,8 @@ public class AppClass
 
     void Player_Initialized()
     {
+        Log.Info("Player initialized.");
+
         if (RememberVolume)
         {
             Player.SetPropertyInt("volume", Settings.Volume);
@@ -128,6 +136,7 @@ public class AppClass
 
     void Player_Shutdown()
     {
+        Log.Info("Player shutting down.");
         Settings.Volume = Player.GetPropertyInt("volume");
         Settings.Mute = Player.GetPropertyString("mute");
 
@@ -178,7 +187,10 @@ public class AppClass
 
             default:
                 if (writeError)
+                {
+                    Log.Debug($"Unknown mpv.net configuration property: {name}");
                     Terminal.WriteError($"unknown MpvNet.conf property: {name}");
+                }
 
                 return false;
         }

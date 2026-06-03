@@ -71,6 +71,7 @@ public class MainPlayer : MpvClient
 
     public void Init(IntPtr formHandle, bool processCommandLine)
     {
+        Log.Info("Initializing mpv player.");
         App.ApplyShowMenuFix();
 
         MainHandle = mpv_create();
@@ -89,7 +90,10 @@ public class MainPlayer : MpvClient
             TaskHelp.Run(MainEventLoop);
 
         if (MainHandle == IntPtr.Zero)
+        {
+            Log.Error("mpv_create failed.");
             throw new Exception("error mpv_create");
+        }
 
         if (App.IsTerminalAttached)
         {
@@ -145,7 +149,10 @@ public class MainPlayer : MpvClient
         mpv_error err = mpv_initialize(MainHandle);
 
         if (err < 0)
+        {
+            Log.Error("mpv_initialize failed: " + GetError(err));
             throw new Exception("mpv_initialize error" + BR2 + GetError(err) + BR);
+        }
 
         CommandV("script-message", "osc-idlescreen", "no", "silent");
 
@@ -155,7 +162,10 @@ public class MainPlayer : MpvClient
         Handle = mpv_create_client(MainHandle, "mpvnet");
 
         if (Handle == IntPtr.Zero)
+        {
+            Log.Error("mpv_create_client failed.");
             throw new Exception("mpv_create_client error");
+        }
 
         mpv_request_log_messages(Handle, "info");
 
@@ -196,10 +206,12 @@ public class MainPlayer : MpvClient
         });
 
         Initialized?.Invoke();
+        Log.Info("mpv player initialized.");
     }
 
     public void Destroy()
     {
+        Log.Info("Destroying mpv player.");
         mpv_destroy(MainHandle);
         mpv_destroy(Handle);
 
@@ -882,6 +894,7 @@ public class MainPlayer : MpvClient
 
     static void LogNonBlockingMetadataFailure(string source, string path, Exception ex)
     {
+        Log.Error(ex, $"Non-blocking metadata failure ({source}).");
         Terminal.WriteError($"Non-blocking metadata failure ({source}) for '{path}': {ex.Message}");
         Terminal.WriteError(ex);
     }

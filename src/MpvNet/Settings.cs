@@ -29,17 +29,25 @@ class SettingsManager
 
     public static AppSettings Load()
     {
+        Log.Debug("Loading application settings.");
+
         if (!File.Exists(SettingsFile))
+        {
+            Log.Info("Application settings file was not found; using defaults.");
             return new AppSettings();
+        }
 
         try
         {
             XmlSerializer serializer = new XmlSerializer(typeof(AppSettings));
             using FileStream fs = new FileStream(SettingsFile, FileMode.Open);
-            return (AppSettings)serializer.Deserialize(fs)!;
+            var settings = (AppSettings)serializer.Deserialize(fs)!;
+            Log.Info("Application settings loaded.");
+            return settings;
         }
         catch (Exception ex)
         {
+            Log.Error(ex, "Failed to load application settings.");
             Terminal.WriteError(ex.ToString());
             return new AppSettings();
         }
@@ -63,6 +71,7 @@ class SettingsManager
         }
         catch (Exception ex)
         {
+            Log.Error(ex, "Failed to save application settings.");
             Terminal.WriteError(ex.ToString());
 
             try
@@ -72,6 +81,7 @@ class SettingsManager
             }
             catch (Exception cleanupEx)
             {
+                Log.Error(cleanupEx, "Failed to delete temporary settings file.");
                 Terminal.WriteError(cleanupEx.ToString());
             }
         }

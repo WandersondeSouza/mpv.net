@@ -94,6 +94,10 @@ Usar quando:
 - gerar instalador;
 - preparar a release localmente.
 
+Por padrao, pacotes de release sao gerados com logs em arquivo desabilitados.
+Para gerar um pacote de diagnostico com logs diarios em `%LOCALAPPDATA%\mpv.net\Logs`,
+adicione `-EnableFileLogging`.
+
 ### Gerar apenas o ZIP portátil
 
 ```powershell
@@ -108,6 +112,8 @@ Usar quando:
 - quiser somente `MPV.NET-Media-Player-v<versao>-portable-x64.zip`;
 - nao quiser gerar instalador;
 - nao quiser publicar no GitHub.
+
+Para ZIP de diagnostico, adicione `-EnableFileLogging`.
 
 O script também cria a pasta extraída
 `artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\`.
@@ -126,6 +132,8 @@ Usar quando:
 - quiser somente `MPV.NET-Media-Player-v<versao>-setup-x64.exe`;
 - nao quiser gerar ZIP portatil;
 - nao quiser publicar no GitHub.
+
+Para instalador de diagnostico, adicione `-EnableFileLogging`.
 
 O script também prepara a pasta portátil base
 `artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\`, usada pelo instalador.

@@ -13,5 +13,7 @@
 		<Nullable>enable</Nullable>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">win-x64</RuntimeIdentifier>
+		<EnableFileLogging Condition="'$(EnableFileLogging)' == ''">false</EnableFileLogging>
+		<DefineConstants Condition="'$(EnableFileLogging)' == 'true'">$(DefineConstants);ENABLE_FILE_LOGGING</DefineConstants>
 	</PropertyGroup>
 </Project>

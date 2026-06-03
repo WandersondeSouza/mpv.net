@@ -14,7 +14,9 @@ param(
 
     [string] $Branch,
 
-    [switch] $CreateInstaller
+    [switch] $CreateInstaller,
+
+    [switch] $EnableFileLogging
 )
 
 $ErrorActionPreference = 'Stop'
@@ -61,7 +63,8 @@ try {
         $writer.Dispose()
     }
 
-    Invoke-Checked dotnet @('build', 'src\MpvNet.Windows\MpvNet.Windows.csproj', '--no-restore', '/p:EnsureBuildAssets=false')
+    $enableFileLoggingValue = if ($EnableFileLogging) { 'true' } else { 'false' }
+    Invoke-Checked dotnet @('build', 'src\MpvNet.Windows\MpvNet.Windows.csproj', '--no-restore', '/p:EnsureBuildAssets=false', "/p:EnableFileLogging=$enableFileLoggingValue")
     Invoke-Checked git @('add', 'src\BuildVersion.props')
     Invoke-Checked git @('commit', '-m', "Bump version to v$nextVersion")
     Invoke-Checked git @('push', 'origin', $Branch)
@@ -78,7 +81,9 @@ try {
         '-f',
         'create_release=true',
         '-f',
-        "create_installer=$createInstallerValue"
+        "create_installer=$createInstallerValue",
+        '-f',
+        "enable_file_logging=$enableFileLoggingValue"
     )
 
     Write-Host "Emergency release workflow started for v$nextVersion on $Repo ($Branch)."

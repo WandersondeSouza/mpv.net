@@ -18,7 +18,11 @@ public class WpfApplication
             new Application();
 
         Application.Current!.ShutdownMode = ShutdownMode.OnExplicitShutdown;
-        Application.Current!.DispatcherUnhandledException += (sender, e) => Terminal.WriteError(e.Exception);
+        Application.Current!.DispatcherUnhandledException += (sender, e) =>
+        {
+            Log.Error(e.Exception, "Unhandled WPF dispatcher exception.");
+            Terminal.WriteError(e.Exception);
+        };
 
         Translator.Current?.Gettext("");
 

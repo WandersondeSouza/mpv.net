@@ -113,6 +113,32 @@ var parsedCommandArguments = CommandLine.ParseArguments([
     "--title=${media-title}",
     "--=ignored"]);
 
+DateTime fixedLogDate = new(2026, 6, 2, 19, 45, 10, 123);
+string tempLogDir = Path.Combine(Path.GetTempPath(), "mpvnet-log-tests-" + Guid.NewGuid().ToString("N"));
+Directory.CreateDirectory(tempLogDir);
+File.WriteAllText(Path.Combine(tempLogDir, "mpvnet-2026-05-27.log"), "old");
+File.WriteAllText(Path.Combine(tempLogDir, "mpvnet-2026-05-28.log"), "keep");
+File.WriteAllText(Path.Combine(tempLogDir, "other-2026-05-01.log"), "unrelated");
+var logWriter = new FileLogWriter(tempLogDir, () => fixedLogDate);
+logWriter.Write(LogLevel.Info, "info message", null);
+logWriter.Write(LogLevel.Debug, "debug message", null);
+logWriter.Write(LogLevel.Error, "error message", new InvalidOperationException("outer", new Exception("inner")));
+string dailyLogFile = Path.Combine(tempLogDir, "mpvnet-2026-06-02.log");
+string dailyLogContent = File.ReadAllText(dailyLogFile);
+string blockedLogPath = Path.Combine(tempLogDir, "blocked");
+File.WriteAllText(blockedLogPath, "");
+var blockedLogWriter = new FileLogWriter(blockedLogPath, () => fixedLogDate);
+bool blockedWriteDidNotThrow = true;
+
+try
+{
+    blockedLogWriter.Write(LogLevel.Info, "ignored", null);
+}
+catch
+{
+    blockedWriteDidNotThrow = false;
+}
+
 var normalizedRemotePlaylistItems = PlaylistFile.Normalize(tempM3u, [
     new PlaylistFileItem("https://example.com/live/index.m3u8?token=abc", "remote live")]);
 var normalizedFileUriPlaylistItems = PlaylistFile.Normalize(tempM3u, [
@@ -220,6 +246,14 @@ var tests = new (string Name, bool Result)[]
     ("Command parser normalizes explicit title values", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "Sample Video")),
     ("Command parser preserves title templates", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "${media-title}")),
     ("Command parser normalizes force media title", parsedCommandArguments.Any(i => i.Name == "force-media-title" && i.Value == "Forced Title")),
+    ("File log writer creates folder and daily log file", File.Exists(dailyLogFile)),
+    ("File log writer writes Info", dailyLogContent.Contains("[INFO] info message")),
+    ("File log writer writes Debug", dailyLogContent.Contains("[DEBUG] debug message")),
+    ("File log writer writes Error exception", dailyLogContent.Contains("[ERROR] error message") && dailyLogContent.Contains("InvalidOperationException") && dailyLogContent.Contains("inner")),
+    ("File log writer deletes logs older than five days", !File.Exists(Path.Combine(tempLogDir, "mpvnet-2026-05-27.log"))),
+    ("File log writer keeps recent daily logs", File.Exists(Path.Combine(tempLogDir, "mpvnet-2026-05-28.log"))),
+    ("File log writer ignores unrelated files during cleanup", File.Exists(Path.Combine(tempLogDir, "other-2026-05-01.log"))),
+    ("File log writer does not throw on write failure", blockedWriteDidNotThrow),
     ("MediaInfo policy accepts enabled existing local file", MediaInfoPolicy.CanUseMediaInfo(true, tempMediaFile)),
     ("MediaInfo policy rejects disabled local file", !MediaInfoPolicy.CanUseMediaInfo(false, tempMediaFile)),
     ("MediaInfo policy rejects streaming URL", !MediaInfoPolicy.CanUseMediaInfo(true, "https://example.com/video.mp4")),
@@ -235,6 +269,7 @@ File.Delete(tempMediaFile);
 File.Delete(tempNormalizedM3u);
 File.Delete(tempNormalizedPlsM3u);
 Directory.Delete(tempPlaylistDir, true);
+Directory.Delete(tempLogDir, true);
 
 foreach (var test in tests)
     Console.WriteLine($"{(test.Result ? "PASS" : "FAIL")} {test.Name}");
