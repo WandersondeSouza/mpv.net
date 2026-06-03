@@ -299,54 +299,25 @@ public partial class MainForm : Form
                 var vidTracks = Player.MediaTracks.Where(track => track.Type == "v");
                 var ediTracks = Player.MediaTracks.Where(track => track.Type == "e");
 
-                foreach (MediaTrack track in vidTracks)
-                {
-                    var menuItem = new WpfControls.MenuItem() { Header = track.Text.Replace("_", "__") };
-                    menuItem.Click += (sender, args) => Player.CommandV("set", "vid", track.ID.ToString());
-                    menuItem.IsChecked = Player.VID == track.ID.ToString();
-                    trackMenuItem.Items.Add(menuItem);
-                }
+                AddTrackMenuItems(trackMenuItem, vidTracks, "vid", Player.VID);
 
                 if (vidTracks.Any())
                     trackMenuItem.Items.Add(new WpfControls.Separator());
 
-                foreach (MediaTrack track in audTracks)
-                {
-                    var menuItem = new WpfControls.MenuItem() { Header = track.Text.Replace("_", "__") };
-                    menuItem.Click += (sender, args) => Player.CommandV("set", "aid", track.ID.ToString());
-                    menuItem.IsChecked = Player.AID == track.ID.ToString();
-                    trackMenuItem.Items.Add(menuItem);
-                }
+                AddTrackMenuItems(trackMenuItem, audTracks, "aid", Player.AID);
 
                 if (subTracks.Any())
                     trackMenuItem.Items.Add(new WpfControls.Separator());
 
-                foreach (MediaTrack track in subTracks)
-                {
-                    var menuItem = new WpfControls.MenuItem() { Header = track.Text.Replace("_", "__") };
-                    menuItem.Click += (sender, args) => Player.CommandV("set", "sid", track.ID.ToString());
-                    menuItem.IsChecked = Player.SID == track.ID.ToString();
-                    trackMenuItem.Items.Add(menuItem);
-                }
+                AddTrackMenuItems(trackMenuItem, subTracks, "sid", Player.SID);
 
                 if (subTracks.Any())
-                {
-                    var menuItem = new WpfControls.MenuItem() { Header = "S: " + _("No subtitles") };
-                    menuItem.Click += (sender, args) => Player.CommandV("set", "sid", "no");
-                    menuItem.IsChecked = Player.SID == "no";
-                    trackMenuItem.Items.Add(menuItem);
-                }
+                    AddNoSubtitlesMenuItem(trackMenuItem);
 
                 if (ediTracks.Any())
                     trackMenuItem.Items.Add(new WpfControls.Separator());
 
-                foreach (MediaTrack track in ediTracks)
-                {
-                    var menuItem = new WpfControls.MenuItem() { Header = track.Text.Replace("_", "__") };
-                    menuItem.Click += (sender, args) => Player.CommandV("set", "edition", track.ID.ToString());
-                    menuItem.IsChecked = Player.Edition == track.ID;
-                    trackMenuItem.Items.Add(menuItem);
-                }
+                AddEditionMenuItems(trackMenuItem, ediTracks);
             }
         }
 
@@ -502,6 +473,39 @@ public partial class MainForm : Form
             }
         }
     }
+
+    void AddTrackMenuItems(WpfControls.MenuItem parent, IEnumerable<MediaTrack> tracks, string propertyName, string selectedId)
+    {
+        foreach (MediaTrack track in tracks)
+        {
+            var menuItem = CreateTrackMenuItem(track);
+            menuItem.Click += (sender, args) => Player.CommandV("set", propertyName, track.ID.ToString());
+            menuItem.IsChecked = selectedId == track.ID.ToString();
+            parent.Items.Add(menuItem);
+        }
+    }
+
+    void AddNoSubtitlesMenuItem(WpfControls.MenuItem parent)
+    {
+        var menuItem = new WpfControls.MenuItem() { Header = "S: " + _("No subtitles") };
+        menuItem.Click += (sender, args) => Player.CommandV("set", "sid", "no");
+        menuItem.IsChecked = Player.SID == "no";
+        parent.Items.Add(menuItem);
+    }
+
+    void AddEditionMenuItems(WpfControls.MenuItem parent, IEnumerable<MediaTrack> tracks)
+    {
+        foreach (MediaTrack track in tracks)
+        {
+            var menuItem = CreateTrackMenuItem(track);
+            menuItem.Click += (sender, args) => Player.CommandV("set", "edition", track.ID.ToString());
+            menuItem.IsChecked = Player.Edition == track.ID;
+            parent.Items.Add(menuItem);
+        }
+    }
+
+    static WpfControls.MenuItem CreateTrackMenuItem(MediaTrack track) =>
+        new() { Header = track.Text.Replace("_", "__") };
 
     void ApplyInterfaceLanguageFromAlang()
     {

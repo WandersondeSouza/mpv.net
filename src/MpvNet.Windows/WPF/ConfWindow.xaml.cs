@@ -196,60 +196,87 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
                 comment = "";
                 isSectionItem = true;
             }
-            else if (line.Contains('=') || Regex.Match(line, "^[\\w-]+$").Success)
+            else if (IsConfigValueLine(line))
             {
-                if (!line.Contains('='))
-                {
-                    if (line.StartsWith("no-"))
-                    {
-                        line = line.Substring(3);
-                        line += "=no";
-                    }
-                    else
-                        line += "=yes";
-                }
-
-                if (line.Contains(" =") || line.Contains("= "))
-                    _useSpace += 1;
-                else
-                    _useNoSpace += 1;
-
-                ConfItem item = new();
-                item.File = Path.GetFileNameWithoutExtension(file);
-                item.IsSectionItem = isSectionItem;
-                item.Comment = comment;
+                ConfItem item = CreateConfItem(line, file, comment, section, isSectionItem);
                 comment = "";
-                item.Section = section;
                 section = "";
-
-                if (line.Contains('#') && !line.Contains('\'') && !line.Contains('"'))
-                {
-                    item.LineComment = line.Substring(line.IndexOf("#")).Trim();
-                    line = line.Substring(0, line.IndexOf("#")).Trim();
-                }
-
-                int pos = line.IndexOf("=");
-                string left = line.Substring(0, pos).Trim().ToLower().TrimStart('-');
-                string right = line.Substring(pos + 1).Trim();
-                
-                if (right.StartsWith('\'') && right.EndsWith('\''))
-                    right = right.Trim('\'');
-
-                if (right.StartsWith('"') && right.EndsWith('"'))
-                    right = right.Trim('"');
-
-                if (left == "fs")
-                    left = "fullscreen";
-
-                if (left == "loop")
-                    left = "loop-file";
-
-                item.Name = left;
-                item.Value = right;
                 _confItems.Add(item);
             }
         }
     }
+
+    bool IsConfigValueLine(string line) =>
+        line.Contains('=') || Regex.Match(line, "^[\\w-]+$").Success;
+
+    ConfItem CreateConfItem(string line, string file, string comment, string section, bool isSectionItem)
+    {
+        line = EnsureExplicitValue(line);
+
+        if (line.Contains(" =") || line.Contains("= "))
+            _useSpace += 1;
+        else
+            _useNoSpace += 1;
+
+        ConfItem item = new()
+        {
+            File = Path.GetFileNameWithoutExtension(file),
+            IsSectionItem = isSectionItem,
+            Comment = comment,
+            Section = section
+        };
+
+        line = ExtractLineComment(line, item);
+
+        int pos = line.IndexOf("=");
+        string left = line.Substring(0, pos).Trim().ToLower().TrimStart('-');
+        string right = UnquoteValue(line.Substring(pos + 1).Trim());
+
+        item.Name = NormalizeSettingName(left);
+        item.Value = right;
+        return item;
+    }
+
+    static string EnsureExplicitValue(string line)
+    {
+        if (line.Contains('='))
+            return line;
+
+        if (line.StartsWith("no-"))
+            return line.Substring(3) + "=no";
+
+        return line + "=yes";
+    }
+
+    static string ExtractLineComment(string line, ConfItem item)
+    {
+        if (line.Contains('#') && !line.Contains('\'') && !line.Contains('"'))
+        {
+            item.LineComment = line.Substring(line.IndexOf("#")).Trim();
+            return line.Substring(0, line.IndexOf("#")).Trim();
+        }
+
+        return line;
+    }
+
+    static string UnquoteValue(string value)
+    {
+        if (value.StartsWith('\'') && value.EndsWith('\''))
+            return value.Trim('\'');
+
+        if (value.StartsWith('"') && value.EndsWith('"'))
+            return value.Trim('"');
+
+        return value;
+    }
+
+    static string NormalizeSettingName(string name) =>
+        name switch
+        {
+            "fs" => "fullscreen",
+            "loop" => "loop-file",
+            _ => name
+        };
 
     string GetKeyValueContent(string filename)
     {
