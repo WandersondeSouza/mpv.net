@@ -14,6 +14,11 @@ string tempAudio = Path.Combine(tempPlaylistDir, "audio.mp3");
 string tempVideo = Path.Combine(tempPlaylistDir, "video.mp4");
 string tempM3u = Path.Combine(tempPlaylistDir, "playlist.m3u");
 string tempPls = Path.Combine(tempPlaylistDir, "playlist.pls");
+string tempXspf = Path.Combine(tempPlaylistDir, "playlist.xspf");
+string tempAsx = Path.Combine(tempPlaylistDir, "playlist.asx");
+string tempWpl = Path.Combine(tempPlaylistDir, "playlist.wpl");
+string tempCue = Path.Combine(tempPlaylistDir, "playlist.cue");
+string tempJspf = Path.Combine(tempPlaylistDir, "playlist.jspf");
 string tempUnknown = Path.Combine(tempPlaylistDir, "ignored.txt");
 File.WriteAllText(tempAudio, "");
 File.WriteAllText(tempVideo, "");
@@ -33,12 +38,60 @@ File.WriteAllLines(tempPls, [
     "Title1=PLS video title",
     "Length1=-1",
     "NumberOfEntries=1"]);
+File.WriteAllText(tempXspf, """
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist version="1" xmlns="http://xspf.org/ns/0/">
+  <trackList>
+    <track>
+      <location>audio.mp3</location>
+      <title>XSPF audio title</title>
+    </track>
+  </trackList>
+</playlist>
+""");
+File.WriteAllText(tempAsx, """
+<asx version="3.0">
+  <entry>
+    <title>ASX video title</title>
+    <ref href="video.mp4" />
+  </entry>
+</asx>
+""");
+File.WriteAllText(tempWpl, """
+<smil>
+  <body>
+    <seq>
+      <media src="audio.mp3" title="WPL audio title" />
+    </seq>
+  </body>
+</smil>
+""");
+File.WriteAllLines(tempCue, [
+    "TITLE \"CUE audio title\"",
+    "FILE \"audio.mp3\" MP3"]);
+File.WriteAllText(tempJspf, """
+{
+  "playlist": {
+    "track": [
+      {
+        "title": "JSPF video title",
+        "location": ["video.mp4"]
+      }
+    ]
+  }
+}
+""");
 var parsedPlaylist = PlaylistFile.Read(tempM3u);
 string tempNormalizedM3u = PlaylistFile.WriteTempM3u(parsedPlaylist);
 string normalizedM3uContent = File.ReadAllText(tempNormalizedM3u);
 var parsedPlsPlaylist = PlaylistFile.Read(tempPls);
 string tempNormalizedPlsM3u = PlaylistFile.WriteTempM3u(parsedPlsPlaylist);
 string normalizedPlsM3uContent = File.ReadAllText(tempNormalizedPlsM3u);
+var parsedXspfPlaylist = PlaylistFile.Read(tempXspf);
+var parsedAsxPlaylist = PlaylistFile.Read(tempAsx);
+var parsedWplPlaylist = PlaylistFile.Read(tempWpl);
+var parsedCuePlaylist = PlaylistFile.Read(tempCue);
+var parsedJspfPlaylist = PlaylistFile.Read(tempJspf);
 
 string[] expectedAudioExts = [
     "mp3", "wav", "flac", "m4a", "aac", "ogg", "opus", "wma",
@@ -97,6 +150,16 @@ var tests = new (string Name, bool Result)[]
     ("Playlist writer preserves resolved paths", normalizedM3uContent.Contains(tempVideo)),
     ("PLS parser normalizes item title", parsedPlsPlaylist.Any(i => i.Title == "Pls Video Title" && i.Path == tempVideo)),
     ("PLS writer preserves normalized item titles", normalizedPlsM3uContent.Contains("#EXTINF:-1,Pls Video Title")),
+    ("XSPF parser resolves relative media paths", parsedXspfPlaylist.Single().Path == tempAudio),
+    ("XSPF parser normalizes item title", parsedXspfPlaylist.Single().Title == "Xspf Audio Title"),
+    ("ASX parser resolves relative media paths", parsedAsxPlaylist.Single().Path == tempVideo),
+    ("ASX parser normalizes item title", parsedAsxPlaylist.Single().Title == "Asx Video Title"),
+    ("WPL parser resolves relative media paths", parsedWplPlaylist.Single().Path == tempAudio),
+    ("WPL parser normalizes item title", parsedWplPlaylist.Single().Title == "Wpl Audio Title"),
+    ("CUE parser resolves relative media paths", parsedCuePlaylist.Single().Path == tempAudio),
+    ("CUE parser normalizes item title", parsedCuePlaylist.Single().Title == "Cue Audio Title"),
+    ("JSPF parser resolves array location", parsedJspfPlaylist.Single().Path == tempVideo),
+    ("JSPF parser normalizes item title", parsedJspfPlaylist.Single().Title == "Jspf Video Title"),
 };
 
 var failed = tests.Where(test => !test.Result).ToArray();

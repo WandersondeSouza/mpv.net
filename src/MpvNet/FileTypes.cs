@@ -44,7 +44,7 @@ public static class FileTypes
         if (string.IsNullOrEmpty(exts))
             return DefaultVideoExts;
 
-        return exts.Split(" ,;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(NormalizeExt).ToArray();
+        return SplitExtensions(exts).ToArray();
     }
 
     public static string[] GetSupportedVideoExts() => GetVideoExts().Union(DefaultVideoExts).ToArray();
@@ -56,7 +56,7 @@ public static class FileTypes
         if (string.IsNullOrEmpty(exts))
             return DefaultAudioExts;
 
-        return exts.Split(" ,;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(NormalizeExt).Distinct().ToArray();
+        return SplitExtensions(exts).Distinct().ToArray();
     }
 
     public static string[] GetImgExts()
@@ -81,6 +81,9 @@ public static class FileTypes
         string playlists = string.Join(";", Playlist.Select(ext => "*." + ext));
         return $"Video files|{video}|Playlists|{playlists}|All files (*.*)|*.*";
     }
+
+    static IEnumerable<string> SplitExtensions(string exts) =>
+        exts.Split(" ,;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(NormalizeExt);
 
     static string NormalizeExt(string ext) => ext.Trim().TrimStart('.').ToLowerInvariant();
 

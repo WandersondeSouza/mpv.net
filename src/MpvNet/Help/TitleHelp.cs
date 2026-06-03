@@ -73,16 +73,17 @@ public static class TitleHelp
 
         string normalizedExt = ext.TrimStart('.').ToLowerInvariant();
 
-        if (!FileTypes.IsVideo(normalizedExt) &&
-            !FileTypes.IsAudio(normalizedExt) &&
-            !FileTypes.IsPlaylist(normalizedExt) &&
-            !FileTypes.Subtitle.Contains(normalizedExt))
-        {
+        if (!IsSupportedTitleExtension(normalizedExt))
             return value;
-        }
 
         return value[..^ext.Length];
     }
+
+    static bool IsSupportedTitleExtension(string normalizedExt) =>
+        FileTypes.IsVideo(normalizedExt) ||
+        FileTypes.IsAudio(normalizedExt) ||
+        FileTypes.IsPlaylist(normalizedExt) ||
+        FileTypes.Subtitle.Contains(normalizedExt);
 
     static string NormalizeSpaces(string texto)
     {

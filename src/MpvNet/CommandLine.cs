@@ -67,21 +67,10 @@ public class CommandLine
     {
         foreach (var pair in Arguments)
         {
-            if (pair.Name.EndsWith("-add") ||
-                pair.Name.EndsWith("-set") ||
-                pair.Name.EndsWith("-pre") ||
-                pair.Name.EndsWith("-clr") ||
-                pair.Name.EndsWith("-append") ||
-                pair.Name.EndsWith("-remove") ||
-                pair.Name.EndsWith("-toggle"))
-            {
+            if (IsChangeListOperation(pair.Name))
                 continue;
-            }
 
-            Player.ProcessProperty(pair.Name, pair.Value);
-
-            if (!App.ProcessProperty(pair.Name, pair.Value))
-                Player.SetPropertyString(pair.Name, pair.Value);
+            ApplyPropertyArgument(pair);
         }
     }
 
@@ -92,27 +81,8 @@ public class CommandLine
             if (_preInitProperties.Contains(pair.Name))
                 continue;
 
-            if (pair.Name.EndsWith("-add"))
-                Player.CommandV("change-list", pair.Name[..^4], "add", pair.Value);
-            else if (pair.Name.EndsWith("-set"))
-                Player.CommandV("change-list", pair.Name[..^4], "set", pair.Value);
-            else if (pair.Name.EndsWith("-append"))
-                Player.CommandV("change-list", pair.Name[..^7], "append", pair.Value);
-            else if (pair.Name.EndsWith("-pre"))
-                Player.CommandV("change-list", pair.Name[..^4], "pre", pair.Value);
-            else if (pair.Name.EndsWith("-clr"))
-                Player.CommandV("change-list", pair.Name[..^4], "clr", "");
-            else if (pair.Name.EndsWith("-remove"))
-                Player.CommandV("change-list", pair.Name[..^7], "remove", pair.Value);
-            else if (pair.Name.EndsWith("-toggle"))
-                Player.CommandV("change-list", pair.Name[..^7], "toggle", pair.Value);
-            else
-            {
-                Player.ProcessProperty(pair.Name, pair.Value);
-
-                if (!App.ProcessProperty(pair.Name, pair.Value))
-                    Player.SetPropertyString(pair.Name, pair.Value);
-            }
+            if (!TryProcessChangeListArgument(pair))
+                ApplyPropertyArgument(pair);
         }
     }
 
@@ -184,4 +154,43 @@ public class CommandLine
 
         return name == "title" && !value.Contains("${");
     }
+
+    static void ApplyPropertyArgument(StringPair pair)
+    {
+        Player.ProcessProperty(pair.Name, pair.Value);
+
+        if (!App.ProcessProperty(pair.Name, pair.Value))
+            Player.SetPropertyString(pair.Name, pair.Value);
+    }
+
+    static bool TryProcessChangeListArgument(StringPair pair)
+    {
+        if (pair.Name.EndsWith("-add"))
+            Player.CommandV("change-list", pair.Name[..^4], "add", pair.Value);
+        else if (pair.Name.EndsWith("-set"))
+            Player.CommandV("change-list", pair.Name[..^4], "set", pair.Value);
+        else if (pair.Name.EndsWith("-append"))
+            Player.CommandV("change-list", pair.Name[..^7], "append", pair.Value);
+        else if (pair.Name.EndsWith("-pre"))
+            Player.CommandV("change-list", pair.Name[..^4], "pre", pair.Value);
+        else if (pair.Name.EndsWith("-clr"))
+            Player.CommandV("change-list", pair.Name[..^4], "clr", "");
+        else if (pair.Name.EndsWith("-remove"))
+            Player.CommandV("change-list", pair.Name[..^7], "remove", pair.Value);
+        else if (pair.Name.EndsWith("-toggle"))
+            Player.CommandV("change-list", pair.Name[..^7], "toggle", pair.Value);
+        else
+            return false;
+
+        return true;
+    }
+
+    static bool IsChangeListOperation(string name) =>
+        name.EndsWith("-add") ||
+        name.EndsWith("-set") ||
+        name.EndsWith("-pre") ||
+        name.EndsWith("-clr") ||
+        name.EndsWith("-append") ||
+        name.EndsWith("-remove") ||
+        name.EndsWith("-toggle");
 }

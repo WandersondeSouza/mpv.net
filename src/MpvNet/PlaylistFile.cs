@@ -59,7 +59,7 @@ public static class PlaylistFile
     public static List<PlaylistFileItem> Normalize(string playlistPath, IEnumerable<PlaylistFileItem> items)
     {
         HashSet<string> seen = new(StringComparer.OrdinalIgnoreCase);
-        List<PlaylistFileItem> ret = [];
+        List<PlaylistFileItem> normalizedItems = [];
 
         foreach (var item in items)
         {
@@ -73,10 +73,10 @@ public static class PlaylistFile
             if (!seen.Add(key))
                 continue;
 
-            ret.Add(new PlaylistFileItem(resolvedPath, GetDisplayTitle(resolvedPath, item.Title)));
+            normalizedItems.Add(new PlaylistFileItem(resolvedPath, GetDisplayTitle(resolvedPath, item.Title)));
         }
 
-        return ret;
+        return normalizedItems;
     }
 
     static List<PlaylistFileItem> ReadM3u(string path)
@@ -110,7 +110,7 @@ public static class PlaylistFile
 
     static List<PlaylistFileItem> ReadPls(string path)
     {
-        Dictionary<int, string> files = [];
+        Dictionary<int, string> pathsByIndex = [];
         Dictionary<int, string> titles = [];
 
         foreach (string rawLine in File.ReadLines(path))
@@ -125,43 +125,43 @@ public static class PlaylistFile
             string value = line[(equals + 1)..].Trim();
 
             if (TryReadNumberedKey(name, "File", out int fileIndex))
-                files[fileIndex] = value;
+                pathsByIndex[fileIndex] = value;
             else if (TryReadNumberedKey(name, "Title", out int titleIndex))
                 titles[titleIndex] = value;
         }
 
-        return Normalize(path, files.OrderBy(i => i.Key).Select(i =>
-            new PlaylistFileItem(i.Value, titles.GetValueOrDefault(i.Key, ""))));
+        return Normalize(path, pathsByIndex.OrderBy(pair => pair.Key).Select(pair =>
+            new PlaylistFileItem(pair.Value, titles.GetValueOrDefault(pair.Key, ""))));
     }
 
     static List<PlaylistFileItem> ReadXspf(string path)
     {
         XDocument doc = XDocument.Load(path);
 
-        return Normalize(path, doc.Descendants().Where(i => i.Name.LocalName == "track").Select(track =>
+        return Normalize(path, ElementsByName(doc, "track", false).Select(track =>
             new PlaylistFileItem(
-                track.Elements().FirstOrDefault(i => i.Name.LocalName == "location")?.Value.Trim() ?? "",
-                track.Elements().FirstOrDefault(i => i.Name.LocalName == "title")?.Value.Trim() ?? "")));
+                ElementValue(track, "location", false),
+                ElementValue(track, "title", false))));
     }
 
     static List<PlaylistFileItem> ReadAsx(string path)
     {
         XDocument doc = XDocument.Load(path);
 
-        return Normalize(path, doc.Descendants().Where(i => i.Name.LocalName.Equals("entry", StringComparison.OrdinalIgnoreCase)).Select(entry =>
+        return Normalize(path, ElementsByName(doc, "entry").Select(entry =>
             new PlaylistFileItem(
-                entry.Descendants().FirstOrDefault(i => i.Name.LocalName.Equals("ref", StringComparison.OrdinalIgnoreCase))?.Attributes().FirstOrDefault(i => i.Name.LocalName.Equals("href", StringComparison.OrdinalIgnoreCase))?.Value.Trim() ?? "",
-                entry.Elements().FirstOrDefault(i => i.Name.LocalName.Equals("title", StringComparison.OrdinalIgnoreCase))?.Value.Trim() ?? "")));
+                AttributeValue(DescendantByName(entry, "ref"), "href"),
+                ElementValue(entry, "title"))));
     }
 
     static List<PlaylistFileItem> ReadWpl(string path)
     {
         XDocument doc = XDocument.Load(path);
 
-        return Normalize(path, doc.Descendants().Where(i => i.Name.LocalName.Equals("media", StringComparison.OrdinalIgnoreCase)).Select(media =>
+        return Normalize(path, ElementsByName(doc, "media").Select(media =>
             new PlaylistFileItem(
-                media.Attributes().FirstOrDefault(i => i.Name.LocalName.Equals("src", StringComparison.OrdinalIgnoreCase))?.Value.Trim() ?? "",
-                media.Attributes().FirstOrDefault(i => i.Name.LocalName.Equals("title", StringComparison.OrdinalIgnoreCase))?.Value.Trim() ?? "")));
+                AttributeValue(media, "src"),
+                AttributeValue(media, "title"))));
     }
 
     static List<PlaylistFileItem> ReadCue(string path)
@@ -221,6 +221,31 @@ public static class PlaylistFile
         return name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) &&
             int.TryParse(name[prefix.Length..], out number);
     }
+
+    static IEnumerable<XElement> ElementsByName(XContainer container, string localName, bool ignoreCase = true) =>
+        container.Descendants().Where(element => HasLocalName(element, localName, ignoreCase));
+
+    static XElement? DescendantByName(XContainer container, string localName) =>
+        container.Descendants().FirstOrDefault(element => HasLocalName(element, localName));
+
+    static string ElementValue(XContainer container, string localName, bool ignoreCase = true) =>
+        container.Elements().FirstOrDefault(element => HasLocalName(element, localName, ignoreCase))?.Value.Trim() ?? "";
+
+    static string AttributeValue(XElement? element, string localName) =>
+        element?.Attributes().FirstOrDefault(attribute => HasLocalName(attribute, localName))?.Value.Trim() ?? "";
+
+    static bool HasLocalName(XObject node, string localName, bool ignoreCase = true) =>
+        node switch
+        {
+            XElement element => HasLocalName(element.Name.LocalName, localName, ignoreCase),
+            XAttribute attribute => HasLocalName(attribute.Name.LocalName, localName, ignoreCase),
+            _ => false
+        };
+
+    static bool HasLocalName(string value, string localName, bool ignoreCase) =>
+        ignoreCase
+            ? value.Equals(localName, StringComparison.OrdinalIgnoreCase)
+            : value == localName;
 
     static string ReadCueValue(string value)
     {
