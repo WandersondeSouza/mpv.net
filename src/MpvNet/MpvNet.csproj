@@ -22,4 +22,8 @@
 		<PackageReference Include="NGettext" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="MpvNet.Tests" />
+	</ItemGroup>
+
 </Project>

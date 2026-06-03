@@ -143,12 +143,9 @@ public class AppClass
         get {
             if (_Conf == null)
             {
-                _Conf = new Dictionary<string, string>();
-
-                if (File.Exists(ConfPath))
-                    foreach (string i in File.ReadAllLines(ConfPath))
-                        if (i.Contains('=') && !i.StartsWith("#"))
-                            _Conf[i[..i.IndexOf("=")].Trim()] = i[(i.IndexOf("=") + 1)..].Trim();
+                _Conf = File.Exists(ConfPath)
+                    ? ConfigFileParser.ParseKeyValueLines(File.ReadAllLines(ConfPath))
+                    : [];
             }
 
             return _Conf;

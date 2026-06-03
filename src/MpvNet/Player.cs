@@ -860,11 +860,7 @@ public class MainPlayer : MpvClient
     }
 
     public static bool CanUseMediaInfo(string path) =>
-        App.MediaInfo &&
-        !string.IsNullOrWhiteSpace(path) &&
-        !path.Contains("://") &&
-        !path.Contains(@"\\.\pipe\") &&
-        File.Exists(path);
+        MediaInfoPolicy.CanUseMediaInfo(App.MediaInfo, path);
 
     TimeSpan GetSafeDuration()
     {
@@ -1005,10 +1001,10 @@ public class MainPlayer : MpvClient
                 else if (codec == "DVVIDEO")
                     codec = "DV";
                 MediaTrack track = new MediaTrack();
-                Add(track, codec);
-                Add(track, GetPropertyString($"track-list/{i}/demux-w") + "x" + GetPropertyString($"track-list/{i}/demux-h"));
-                Add(track, GetPropertyString($"track-list/{i}/demux-fps").Replace(".000000", "") + " FPS");
-                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? _("Default") : null);
+                MediaTrackText.AddMpvValue(track, codec);
+                MediaTrackText.AddMpvValue(track, GetPropertyString($"track-list/{i}/demux-w") + "x" + GetPropertyString($"track-list/{i}/demux-h"));
+                MediaTrackText.AddMpvValue(track, GetPropertyString($"track-list/{i}/demux-fps").Replace(".000000", "") + " FPS");
+                MediaTrackText.AddMpvValue(track, GetPropertyBool($"track-list/{i}/default", false) ? _("Default") : null);
                 track.Text = "V: " + track.Text.Trim(' ', ',');
                 track.Type = "v";
                 track.ID = GetPropertyInt($"track-list/{i}/id");
@@ -1022,14 +1018,14 @@ public class MainPlayer : MpvClient
                     codec = "PCM";
                 MediaTrack track = new MediaTrack();
                 track.Language = language;
-                Add(track, GetLanguage(language));
-                Add(track, codec);
-                Add(track, GetPropertyInt($"track-list/{i}/audio-channels") + " ch");
-                Add(track, GetPropertyInt($"track-list/{i}/demux-samplerate") / 1000 + " kHz");
-                Add(track, GetPropertyBool($"track-list/{i}/forced", false) ? _("Forced") : null);
-                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? _("Default") : null);
-                Add(track, GetPropertyBool($"track-list/{i}/external", false) ? _("External") : null);
-                Add(track, title);
+                MediaTrackText.AddMpvValue(track, GetLanguage(language));
+                MediaTrackText.AddMpvValue(track, codec);
+                MediaTrackText.AddMpvValue(track, GetPropertyInt($"track-list/{i}/audio-channels") + " ch");
+                MediaTrackText.AddMpvValue(track, GetPropertyInt($"track-list/{i}/demux-samplerate") / 1000 + " kHz");
+                MediaTrackText.AddMpvValue(track, GetPropertyBool($"track-list/{i}/forced", false) ? _("Forced") : null);
+                MediaTrackText.AddMpvValue(track, GetPropertyBool($"track-list/{i}/default", false) ? _("Default") : null);
+                MediaTrackText.AddMpvValue(track, GetPropertyBool($"track-list/{i}/external", false) ? _("External") : null);
+                MediaTrackText.AddMpvValue(track, title);
                 track.Text = "A: " + track.Text.Trim(' ', ',');
                 track.Type = "a";
                 track.ID = GetPropertyInt($"track-list/{i}/id");
@@ -1052,12 +1048,12 @@ public class MainPlayer : MpvClient
                     codec = "VOB";
                 MediaTrack track = new MediaTrack();
                 track.Language = language;
-                Add(track, GetLanguage(language));
-                Add(track, codec);
-                Add(track, GetPropertyBool($"track-list/{i}/forced", false) ? _("Forced") : null);
-                Add(track, GetPropertyBool($"track-list/{i}/default", false) ? _("Default") : null);
-                Add(track, GetPropertyBool($"track-list/{i}/external", false) ? _("External") : null);
-                Add(track, title);
+                MediaTrackText.AddMpvValue(track, GetLanguage(language));
+                MediaTrackText.AddMpvValue(track, codec);
+                MediaTrackText.AddMpvValue(track, GetPropertyBool($"track-list/{i}/forced", false) ? _("Forced") : null);
+                MediaTrackText.AddMpvValue(track, GetPropertyBool($"track-list/{i}/default", false) ? _("Default") : null);
+                MediaTrackText.AddMpvValue(track, GetPropertyBool($"track-list/{i}/external", false) ? _("External") : null);
+                MediaTrackText.AddMpvValue(track, title);
                 track.Text = "S: " + track.Text.Trim(' ', ',');
                 track.Type = "s";
                 track.ID = GetPropertyInt($"track-list/{i}/id");
@@ -1090,13 +1086,6 @@ public class MainPlayer : MpvClient
 
         return tracks;
 
-        static void Add(MediaTrack track, object? value)
-        {
-            string str = (value + "").Trim();
-
-            if (str != "" && !track.Text.Contains(str))
-                track.Text += " " + str + ",";
-        }
     }
 
     List<MediaTrack> GetSafeMpvTracks(bool includeInternal = true, bool includeExternal = true)
@@ -1119,10 +1108,10 @@ public class MainPlayer : MpvClient
         using (MediaInfo mi = new MediaInfo(path))
         {
             MediaTrack track = new MediaTrack();
-            Add(track, mi.GetGeneral("Format"));
-            Add(track, mi.GetGeneral("FileSize/String"));
-            Add(track, mi.GetGeneral("Duration/String"));
-            Add(track, mi.GetGeneral("OverallBitRate/String"));
+            MediaTrackText.AddMediaInfoValue(track, mi.GetGeneral("Format"));
+            MediaTrackText.AddMediaInfoValue(track, mi.GetGeneral("FileSize/String"));
+            MediaTrackText.AddMediaInfoValue(track, mi.GetGeneral("Duration/String"));
+            MediaTrackText.AddMediaInfoValue(track, mi.GetGeneral("OverallBitRate/String"));
             track.Text = "G: " + track.Text.Trim(' ', ',');
             track.Type = "g";
             tracks.Add(track);
@@ -1137,12 +1126,12 @@ public class MainPlayer : MpvClient
                     fps = result.ToString(CultureInfo.InvariantCulture);
 
                 track = new MediaTrack();
-                Add(track, mi.GetVideo(i, "Format"));
-                Add(track, mi.GetVideo(i, "Format_Profile"));
-                Add(track, mi.GetVideo(i, "Width") + "x" + mi.GetVideo(i, "Height"));
-                Add(track, mi.GetVideo(i, "BitRate/String"));
-                Add(track, fps + " FPS");
-                Add(track, (videoCount > 1 && mi.GetVideo(i, "Default") == "Yes") ? _("Default") : "");
+                MediaTrackText.AddMediaInfoValue(track, mi.GetVideo(i, "Format"));
+                MediaTrackText.AddMediaInfoValue(track, mi.GetVideo(i, "Format_Profile"));
+                MediaTrackText.AddMediaInfoValue(track, mi.GetVideo(i, "Width") + "x" + mi.GetVideo(i, "Height"));
+                MediaTrackText.AddMediaInfoValue(track, mi.GetVideo(i, "BitRate/String"));
+                MediaTrackText.AddMediaInfoValue(track, fps + " FPS");
+                MediaTrackText.AddMediaInfoValue(track, (videoCount > 1 && mi.GetVideo(i, "Default") == "Yes") ? _("Default") : "");
                 track.Text = "V: " + track.Text.Trim(' ', ',');
                 track.Type = "v";
                 track.ID = i + 1;
@@ -1221,15 +1210,15 @@ public class MainPlayer : MpvClient
 
                 track = new MediaTrack();
                 track.Language = lang;
-                Add(track, lang);
-                Add(track, format);
-                Add(track, mi.GetAudio(i, "Format_Profile"));
-                Add(track, mi.GetAudio(i, "BitRate/String"));
-                Add(track, mi.GetAudio(i, "Channel(s)") + " ch");
-                Add(track, mi.GetAudio(i, "SamplingRate/String"));
-                Add(track, mi.GetAudio(i, "Forced") == "Yes" ? _("Forced") : "");
-                Add(track, (audioCount > 1 && mi.GetAudio(i, "Default") == "Yes") ? _("Default") : "");
-                Add(track, title);
+                MediaTrackText.AddMediaInfoValue(track, lang);
+                MediaTrackText.AddMediaInfoValue(track, format);
+                MediaTrackText.AddMediaInfoValue(track, mi.GetAudio(i, "Format_Profile"));
+                MediaTrackText.AddMediaInfoValue(track, mi.GetAudio(i, "BitRate/String"));
+                MediaTrackText.AddMediaInfoValue(track, mi.GetAudio(i, "Channel(s)") + " ch");
+                MediaTrackText.AddMediaInfoValue(track, mi.GetAudio(i, "SamplingRate/String"));
+                MediaTrackText.AddMediaInfoValue(track, mi.GetAudio(i, "Forced") == "Yes" ? _("Forced") : "");
+                MediaTrackText.AddMediaInfoValue(track, (audioCount > 1 && mi.GetAudio(i, "Default") == "Yes") ? _("Default") : "");
+                MediaTrackText.AddMediaInfoValue(track, title);
 
                 if (track.Text.Contains("MPEG Audio, Layer 2"))
                     track.Text = track.Text.Replace("MPEG Audio, Layer 2", "MP2");
@@ -1308,12 +1297,12 @@ public class MainPlayer : MpvClient
 
                 track = new MediaTrack();
                 track.Language = lang;
-                Add(track, lang);
-                Add(track, codec);
-                Add(track, mi.GetText(i, "Format_Profile"));
-                Add(track, forced ? _("Forced") : "");
-                Add(track, (subCount > 1 && mi.GetText(i, "Default") == "Yes") ? _("Default") : "");
-                Add(track, title);
+                MediaTrackText.AddMediaInfoValue(track, lang);
+                MediaTrackText.AddMediaInfoValue(track, codec);
+                MediaTrackText.AddMediaInfoValue(track, mi.GetText(i, "Format_Profile"));
+                MediaTrackText.AddMediaInfoValue(track, forced ? _("Forced") : "");
+                MediaTrackText.AddMediaInfoValue(track, (subCount > 1 && mi.GetText(i, "Default") == "Yes") ? _("Default") : "");
+                MediaTrackText.AddMediaInfoValue(track, title);
                 track.Text = "S: " + track.Text.Trim(' ', ',');
                 track.Type = "s";
                 track.ID = i + 1;
@@ -1342,13 +1331,6 @@ public class MainPlayer : MpvClient
 
         return tracks;
 
-        static void Add(MediaTrack track, object? value)
-        {
-            string str = value?.ToStringEx().Trim() ?? "";
-
-            if (str != "" && !(track.Text != null && track.Text.Contains(str)))
-                track.Text += " " + str + ",";
-        }
     }
 
     string[]? _profileNames;

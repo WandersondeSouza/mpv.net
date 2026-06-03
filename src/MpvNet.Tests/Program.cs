@@ -92,6 +92,23 @@ var parsedAsxPlaylist = PlaylistFile.Read(tempAsx);
 var parsedWplPlaylist = PlaylistFile.Read(tempWpl);
 var parsedCuePlaylist = PlaylistFile.Read(tempCue);
 var parsedJspfPlaylist = PlaylistFile.Read(tempJspf);
+var parsedConfig = ConfigFileParser.ParseKeyValueLines([
+    "#ignored=value",
+    "missing-separator",
+    "dark-mode = never",
+    "language= pt-BR ",
+    "duplicate=old",
+    "duplicate=new"]);
+
+MediaTrack mpvTrackText = new();
+MediaTrackText.AddMpvValue(mpvTrackText, " AAC ");
+MediaTrackText.AddMpvValue(mpvTrackText, "AAC");
+MediaTrackText.AddMpvValue(mpvTrackText, null);
+
+MediaTrack mediaInfoTrackText = new();
+MediaTrackText.AddMediaInfoValue(mediaInfoTrackText, " DTS ");
+MediaTrackText.AddMediaInfoValue(mediaInfoTrackText, "DTS");
+MediaTrackText.AddMediaInfoValue(mediaInfoTrackText, null);
 
 string[] expectedAudioExts = [
     "mp3", "wav", "flac", "m4a", "aac", "ogg", "opus", "wma",
@@ -160,6 +177,16 @@ var tests = new (string Name, bool Result)[]
     ("CUE parser normalizes item title", parsedCuePlaylist.Single().Title == "Cue Audio Title"),
     ("JSPF parser resolves array location", parsedJspfPlaylist.Single().Path == tempVideo),
     ("JSPF parser normalizes item title", parsedJspfPlaylist.Single().Title == "Jspf Video Title"),
+    ("Config parser skips comments and invalid lines", parsedConfig.Count == 3),
+    ("Config parser trims keys and values", parsedConfig["dark-mode"] == "never" && parsedConfig["language"] == "pt-BR"),
+    ("Config parser keeps last duplicate value", parsedConfig["duplicate"] == "new"),
+    ("MediaInfo policy accepts enabled existing local file", MediaInfoPolicy.CanUseMediaInfo(true, tempMediaFile)),
+    ("MediaInfo policy rejects disabled local file", !MediaInfoPolicy.CanUseMediaInfo(false, tempMediaFile)),
+    ("MediaInfo policy rejects streaming URL", !MediaInfoPolicy.CanUseMediaInfo(true, "https://example.com/video.mp4")),
+    ("MediaInfo policy rejects pipe path", !MediaInfoPolicy.CanUseMediaInfo(true, @"\\.\pipe\mpvnet-test")),
+    ("MediaInfo policy rejects missing local file", !MediaInfoPolicy.CanUseMediaInfo(true, tempMediaFile + ".missing")),
+    ("MPV track text helper trims and de-duplicates", mpvTrackText.Text == " AAC,"),
+    ("MediaInfo track text helper trims and de-duplicates", mediaInfoTrackText.Text == " DTS,"),
 };
 
 var failed = tests.Where(test => !test.Result).ToArray();
