@@ -18,7 +18,7 @@ public static class PlaylistFile
         using StreamWriter writer = new(path, false, new UTF8Encoding(false));
         writer.WriteLine("#EXTM3U");
 
-        foreach (var item in items)
+        foreach (var item in NormalizeDisplayTitles(items))
         {
             if (!string.IsNullOrWhiteSpace(item.Title))
                 writer.WriteLine("#EXTINF:-1," + item.Title.Trim());
@@ -78,6 +78,9 @@ public static class PlaylistFile
 
         return normalizedItems;
     }
+
+    public static List<PlaylistFileItem> NormalizeDisplayTitles(IEnumerable<PlaylistFileItem> items) =>
+        items.Select(item => item with { Title = GetDisplayTitle(item.Path, item.Title) }).ToList();
 
     static List<PlaylistFileItem> ReadM3u(string path)
     {

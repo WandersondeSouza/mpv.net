@@ -789,11 +789,7 @@ public class MainPlayer : MpvClient
                 if (!seen.Add(key))
                     continue;
 
-                string title = string.IsNullOrWhiteSpace(item.Title)
-                    ? TitleHelp.NormalizeMediaTitle(System.IO.Path.GetFileName(item.Path))
-                    : item.Title;
-
-                ret.Add(new PlaylistFileItem(item.Path, title));
+                ret.Add(item);
             }
         }
 
@@ -811,14 +807,14 @@ public class MainPlayer : MpvClient
             string title = GetPropertyString($"playlist/{index}/title");
             string filename = GetPropertyString($"playlist/{index}/filename");
             string path = ConvertFilePath(filename);
-            string value = string.IsNullOrWhiteSpace(title) ? System.IO.Path.GetFileName(path) : title;
-            string normalizedTitle = TitleHelp.NormalizeMediaTitle(value);
-
-            if (!string.Equals(normalizedTitle, title, StringComparison.Ordinal))
-                needsNormalization = true;
-
-            items.Add(new PlaylistFileItem(path, normalizedTitle));
+            items.Add(new PlaylistFileItem(path, title));
         }
+
+        List<PlaylistFileItem> normalizedItems = PlaylistFile.NormalizeDisplayTitles(items);
+
+        for (int index = 0; index < items.Count; index++)
+            if (!string.Equals(items[index].Title, normalizedItems[index].Title, StringComparison.Ordinal))
+                needsNormalization = true;
 
         if (!needsNormalization || items.Count == 0)
             return;
@@ -826,9 +822,9 @@ public class MainPlayer : MpvClient
         try
         {
             _isNormalizingAutocreatedPlaylist = true;
-            LoadPlaylistItems(items, false);
+            LoadPlaylistItems(normalizedItems, false);
 
-            if (playlistPos > 0 && playlistPos < items.Count)
+            if (playlistPos > 0 && playlistPos < normalizedItems.Count)
                 SetPropertyInt("playlist-pos", playlistPos);
         }
         finally

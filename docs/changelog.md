@@ -23,6 +23,9 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 - A playlist criada automaticamente pelo mpv ao abrir arquivos de uma pasta
   agora recebe titulos normalizados para o seletor de playlist, incluindo a
   remocao de aspas simples e duplas.
+- Centralizado o ponto de escrita da playlist temporaria para aplicar a mesma
+  normalizacao de titulos em playlists locais, playlists de pasta e listas ja
+  criadas pelo mpv.
 
 # Fork WandersondeSouza - v7.1.2.7 (2026-06-01)
 

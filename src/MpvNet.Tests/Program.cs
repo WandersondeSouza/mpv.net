@@ -148,6 +148,9 @@ var normalizedFileUriPlaylistItems = PlaylistFile.Normalize(tempM3u, [
     new PlaylistFileItem(new Uri(tempAudio).AbsoluteUri, "file uri audio")]);
 var normalizedQuotedPlaylistItems = PlaylistFile.Normalize(tempM3u, [
     new PlaylistFileItem(tempVideo, "\"quoted\" 'video' title.mp4")]);
+string tempRawTitleM3u = PlaylistFile.WriteTempM3u([
+    new PlaylistFileItem(tempVideo, "\"raw\" 'playlist' item.mp4")]);
+string rawTitleM3uContent = File.ReadAllText(tempRawTitleM3u);
 
 MediaTrack mpvTrackText = new();
 MediaTrackText.AddMpvValue(mpvTrackText, " AAC ");
@@ -229,6 +232,7 @@ var tests = new (string Name, bool Result)[]
     ("Playlist normalizer keeps streaming URLs", normalizedRemotePlaylistItems.Single().Path == "https://example.com/live/index.m3u8?token=abc"),
     ("Playlist normalizer resolves file URIs", Path.GetFullPath(normalizedFileUriPlaylistItems.Single().Path) == Path.GetFullPath(tempAudio)),
     ("Playlist normalizer removes quotes from titles", normalizedQuotedPlaylistItems.Single().Title == "Quoted Video Title"),
+    ("Playlist writer normalizes raw item titles", rawTitleM3uContent.Contains("#EXTINF:-1,Raw Playlist Item")),
     ("PLS parser normalizes item title", parsedPlsPlaylist.Any(i => i.Title == "Pls Video Title" && i.Path == tempVideo)),
     ("PLS writer preserves normalized item titles", normalizedPlsM3uContent.Contains("#EXTINF:-1,Pls Video Title")),
     ("XSPF parser resolves relative media paths", parsedXspfPlaylist.Single().Path == tempAudio),
@@ -280,6 +284,7 @@ var failed = tests.Where(test => !test.Result).ToArray();
 File.Delete(tempMediaFile);
 File.Delete(tempNormalizedM3u);
 File.Delete(tempNormalizedPlsM3u);
+File.Delete(tempRawTitleM3u);
 Directory.Delete(tempPlaylistDir, true);
 Directory.Delete(tempLogDir, true);
 
