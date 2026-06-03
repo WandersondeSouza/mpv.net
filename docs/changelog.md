@@ -20,6 +20,9 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   itens adicionados ao player.
 - Refinada a normalizacao do titulo da faixa exibido na interface, evitando que
   extensoes e nomes brutos prejudiquem a leitura da playlist.
+- A playlist criada automaticamente pelo mpv ao abrir arquivos de uma pasta
+  agora recebe titulos normalizados para o seletor de playlist, incluindo a
+  remocao de aspas simples e duplas.
 
 # Fork WandersondeSouza - v7.1.2.7 (2026-06-01)
 

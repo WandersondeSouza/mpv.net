@@ -21,6 +21,7 @@ namespace MpvNet;
 public class MainPlayer : MpvClient
 {
     static readonly HttpClient RemotePlaylistHttpClient = new() { Timeout = TimeSpan.FromSeconds(20) };
+    bool _isNormalizingAutocreatedPlaylist;
 
     public string ConfPath { get => ConfigFolder + "mpv.conf"; }
     public string CacheFolder => System.IO.Path.Combine(Folder.LocalAppData, "mpv.net", "Cache") + System.IO.Path.DirectorySeparatorChar;
@@ -730,8 +731,16 @@ public class MainPlayer : MpvClient
         {
             string path = GetPropertyString("path");
 
-            if (!File.Exists(path) || GetPropertyInt("playlist-count") != 1)
+            if (_isNormalizingAutocreatedPlaylist || !File.Exists(path))
                 return;
+
+            int playlistCount = GetPropertyInt("playlist-count");
+
+            if (playlistCount != 1)
+            {
+                NormalizeAutocreatedPlaylist(playlistCount);
+                return;
+            }
 
             string dir = Environment.CurrentDirectory;
 
@@ -789,6 +798,43 @@ public class MainPlayer : MpvClient
         }
 
         return ret;
+    }
+
+    void NormalizeAutocreatedPlaylist(int playlistCount)
+    {
+        int playlistPos = GetPropertyInt("playlist-pos");
+        List<PlaylistFileItem> items = [];
+        bool needsNormalization = false;
+
+        for (int index = 0; index < playlistCount; index++)
+        {
+            string title = GetPropertyString($"playlist/{index}/title");
+            string filename = GetPropertyString($"playlist/{index}/filename");
+            string path = ConvertFilePath(filename);
+            string value = string.IsNullOrWhiteSpace(title) ? System.IO.Path.GetFileName(path) : title;
+            string normalizedTitle = TitleHelp.NormalizeMediaTitle(value);
+
+            if (!string.Equals(normalizedTitle, title, StringComparison.Ordinal))
+                needsNormalization = true;
+
+            items.Add(new PlaylistFileItem(path, normalizedTitle));
+        }
+
+        if (!needsNormalization || items.Count == 0)
+            return;
+
+        try
+        {
+            _isNormalizingAutocreatedPlaylist = true;
+            LoadPlaylistItems(items, false);
+
+            if (playlistPos > 0 && playlistPos < items.Count)
+                SetPropertyInt("playlist-pos", playlistPos);
+        }
+        finally
+        {
+            _isNormalizingAutocreatedPlaylist = false;
+        }
     }
 
     bool _wasAviSynthLoaded;

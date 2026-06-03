@@ -146,6 +146,8 @@ var normalizedRemotePlaylistItems = PlaylistFile.Normalize(tempM3u, [
     new PlaylistFileItem("https://example.com/live/index.m3u8?token=abc", "remote live")]);
 var normalizedFileUriPlaylistItems = PlaylistFile.Normalize(tempM3u, [
     new PlaylistFileItem(new Uri(tempAudio).AbsoluteUri, "file uri audio")]);
+var normalizedQuotedPlaylistItems = PlaylistFile.Normalize(tempM3u, [
+    new PlaylistFileItem(tempVideo, "\"quoted\" 'video' title.mp4")]);
 
 MediaTrack mpvTrackText = new();
 MediaTrackText.AddMpvValue(mpvTrackText, " AAC ");
@@ -190,6 +192,7 @@ var tests = new (string Name, bool Result)[]
     ("Title normalization collapses repeated spaces", TitleHelp.NormalizeMediaTitle("  arquivo..com  ..pontos.mp4  ") == "Arquivo Com Pontos"),
     ("Title normalization replaces dot comma dash and underscore with spaces", TitleHelp.NormalizeMediaTitle("um,titulo-bem_trocado.mp4") == "Um Titulo Bem Trocado"),
     ("Title normalization removes configured characters", TitleHelp.NormalizeMediaTitle("@titulo#com$simbolos*.mp4") == "Titulocomsimbolos"),
+    ("Title normalization removes single and double quotes", TitleHelp.NormalizeMediaTitle("\"video\" 'aula'.mp4") == "Video Aula"),
     ("Title normalization uses default title when empty", TitleHelp.NormalizeMediaTitle("@#$*.mp4") == "Untitled Track"),
     ("Title normalization truncates long titles", TitleHelp.NormalizeMediaTitle(new string('a', 120) + ".mp4").Length == 100),
     ("Title normalization removes mpv.net suffix", TitleHelp.NormalizeMediaTitle("movie title - mpv.net") == "Movie Title"),
@@ -225,6 +228,7 @@ var tests = new (string Name, bool Result)[]
     ("Playlist writer preserves resolved paths", normalizedM3uContent.Contains(tempVideo)),
     ("Playlist normalizer keeps streaming URLs", normalizedRemotePlaylistItems.Single().Path == "https://example.com/live/index.m3u8?token=abc"),
     ("Playlist normalizer resolves file URIs", Path.GetFullPath(normalizedFileUriPlaylistItems.Single().Path) == Path.GetFullPath(tempAudio)),
+    ("Playlist normalizer removes quotes from titles", normalizedQuotedPlaylistItems.Single().Title == "Quoted Video Title"),
     ("PLS parser normalizes item title", parsedPlsPlaylist.Any(i => i.Title == "Pls Video Title" && i.Path == tempVideo)),
     ("PLS writer preserves normalized item titles", normalizedPlsM3uContent.Contains("#EXTINF:-1,Pls Video Title")),
     ("XSPF parser resolves relative media paths", parsedXspfPlaylist.Single().Path == tempAudio),
