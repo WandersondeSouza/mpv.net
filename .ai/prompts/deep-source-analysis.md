@@ -23,9 +23,7 @@ Identifique:
 Confirme também:
 
 - `docs/developer/architecture.md`;
-- `docs/developer/architecture.md`;
-- `docs/developer/architecture.md`;
-- `docs/developer/architecture.md`.
+- documentação técnica relacionada aos módulos analisados.
 
 ---
 
@@ -139,5 +137,6 @@ Antes de alterar qualquer código:
 - listar arquivos analisados;
 - listar riscos;
 - propor plano incremental.
+- atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
 
 

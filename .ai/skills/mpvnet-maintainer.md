@@ -15,7 +15,8 @@ Guia curto para manter o fork sem quebrar compatibilidade com mpv/libmpv.
 
 - preserve compatibilidade com arquivos e comandos existentes;
 - faça mudanças pequenas e verificáveis;
-- atualize documentação quando o comportamento mudar;
+- atualize documentação técnica apenas quando houver mudança consolidada;
+- prefira documentos existentes e evite criar arquivos redundantes;
 - trate integração com mpv/libmpv como área de alto risco;
 - valide UI, configuração, build e release conforme a área tocada.
 

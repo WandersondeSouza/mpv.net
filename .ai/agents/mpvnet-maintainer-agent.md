@@ -14,10 +14,8 @@ Ler nesta ordem:
 4. `docs/guia-operacional.md`;
 5. `docs/proximos-trabalhos.md`;
 6. `docs/developer/architecture.md`;
-7. `docs/developer/architecture.md` quando a tarefa envolver visão ampla;
-8. `docs/developer/architecture.md` quando a tarefa envolver análise de módulos e dependências;
-9. documentação da área afetada;
-10. `docs/changelog.md` quando a tarefa envolver trabalho já consolidado.
+7. documentação da área afetada;
+8. `docs/changelog.md` quando a tarefa envolver trabalho já consolidado.
 
 ## Conduta
 
@@ -27,6 +25,7 @@ Ler nesta ordem:
 - Separar fatos confirmados, hipóteses e pendências.
 - Quando encontrar risco em área crítica, recomendar etapa menor.
 - Quando a análise crescer demais, transferir a parte arquitetural para o agente específico.
+- Atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
 
 ## Entrega esperada
 

@@ -14,9 +14,7 @@ Antes de alterar qualquer arquivo, leia:
 6. `.ai/skills/mpvnet-maintainer.md`;
 7. `.ai/agents/mpvnet-architecture-agent.md`;
 8. `docs/developer/architecture.md`;
-9. `docs/developer/architecture.md`;
-10. `docs/developer/architecture.md`;
-11. documentação técnica relacionada à área analisada.
+9. documentação técnica relacionada à área analisada.
 
 ## Objetivo
 
@@ -51,7 +49,8 @@ Analisar o estado atual do fork e propor melhorias pequenas, seguras e bem docum
    - futuras correções técnicas que exigem análise de código.
 4. Listar arquivos que pretende alterar e explicar o motivo antes de editar.
 5. Fazer mudanças pequenas e revisáveis.
-6. Ao final, entregar:
+6. Atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes e evitando criar arquivos redundantes.
+7. Ao final, entregar:
    - resumo do que foi analisado;
    - arquivos alterados;
    - problemas encontrados;

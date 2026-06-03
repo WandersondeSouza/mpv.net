@@ -19,6 +19,7 @@ Verifique:
 - documentação redundante;
 - divergência entre docs do repositório e artefatos de IA em `.ai/`.
 - consistência entre `docs/developer/` e os agentes/prompts que citam esses arquivos.
+- se novas páginas são realmente necessárias ou se o conteúdo pertence a documentos existentes.
 
 Entregue:
 
@@ -34,3 +35,5 @@ Antes de alterar qualquer arquivo:
 - resumir entendimento atual;
 - listar arquivos relevantes;
 - identificar áreas críticas.
+- atualizar documentação técnica apenas quando houver mudança consolidada;
+- preferir documentos existentes e evitar criar arquivos redundantes.

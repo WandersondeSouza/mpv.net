@@ -34,7 +34,8 @@ Regras:
 - preservar `MPVNET_HOME`, `portable_config` e `%APPDATA%\mpv.net`;
 - preservar compatibilidade com arquivos existentes;
 - não reescrever arquivo do usuário sem necessidade;
-- documentar qualquer nova opção, fallback ou migração;
+- documentar qualquer nova opção, fallback ou migração consolidada em documento existente quando possível;
+- evitar criar documentação técnica redundante;
 - testar caminho instalado e portátil.
 
 Entrega esperada:

@@ -14,7 +14,7 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 6. `docs/developer/architecture.md`;
 7. `docs/changelog.md`;
 8. `docs/proximos-trabalhos.md` quando a mudança afetar a priorização do fluxo.
-9. `docs/developer/architecture.md` quando o release expuser dependências de fluxo amplo.
+9. documentação técnica relacionada quando o release expuser dependências de fluxo amplo.
 
 ## Arquivos críticos
 
@@ -35,6 +35,7 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 - Verificar se o ZIP portátil contém estrutura esperada.
 - Não commitar artefatos binários gerados sem pedido explícito.
 - Documentar pré-requisitos externos como 7-Zip, Inno Setup e GitHub CLI.
+- Atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
 - Se o empacotamento falhar por fluxo anterior, localizar o estágio exato antes de mexer no script final.
 
 ## Testes esperados

@@ -7,11 +7,9 @@ Leia:
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
 5. `docs/developer/mpv-integration.md`;
-6. `docs/developer/mpv-integration.md`;
-7. `docs/developer/mpv-integration.md`;
-8. `docs/developer/mpv-integration.md`.
+6. documentação técnica relacionada à área alterada.
 
-Se a alteração cruzar mais de um módulo, consulte também `docs/developer/architecture.md` e `docs/developer/architecture.md`.
+Se a alteração cruzar mais de um módulo, consulte também `docs/developer/architecture.md`.
 
 Objetivo:
 
@@ -34,7 +32,7 @@ Regras:
 - não renomear comando, opção ou propriedade sem migração;
 - não bloquear loop de eventos;
 - preferir correção pequena e testável;
-- atualizar documentação técnica quando comportamento mudar.
+- atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
 
 Plano de teste mínimo:
 

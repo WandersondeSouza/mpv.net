@@ -11,10 +11,8 @@ Analisar a arquitetura do MPV.NET Media Player, mapear módulos, classes, fluxos
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
 5. `docs/developer/architecture.md`;
-6. `docs/developer/architecture.md`;
-7. `docs/developer/architecture.md`;
-8. `docs/developer/architecture.md`;
-9. `docs/changelog.md` quando a mudança tocar comportamento já consolidado.
+6. documentação técnica relacionada aos módulos analisados;
+7. `docs/changelog.md` quando a mudança tocar comportamento já consolidado.
 
 ## Arquivos críticos
 
@@ -31,6 +29,7 @@ Analisar a arquitetura do MPV.NET Media Player, mapear módulos, classes, fluxos
 - Separar fatos confirmados, hipóteses e pendências.
 - Explicitar impacto em UI, configuração, build e libmpv quando existirem.
 - Recomendar corte em etapas pequenas quando o risco for alto.
+- Atualizar documentação técnica apenas quando houver mudança consolidada e evitar documentos redundantes.
 
 ## Entrega esperada
 

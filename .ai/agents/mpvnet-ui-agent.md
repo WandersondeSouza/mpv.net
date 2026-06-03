@@ -14,7 +14,7 @@ Analisar e alterar interface Windows do MPV.NET Media Player preservando comport
 6. `docs/developer/architecture.md`;
 7. `docs/developer/mpv-integration.md`;
 8. `docs/ATALHOS.md`.
-9. `docs/developer/architecture.md` quando a mudança envolver fluxo entre janelas, eventos e inicialização.
+9. documentação técnica relacionada quando a mudança envolver fluxo entre janelas, eventos e inicialização.
 
 ## Arquivos críticos
 
@@ -32,6 +32,7 @@ Analisar e alterar interface Windows do MPV.NET Media Player preservando comport
 - Não misturar correção visual com refatoração de arquitetura.
 - Preservar atalhos e menu de contexto.
 - Quando o problema parecer de layout mas afetar ciclo de vida, validar primeiro o fluxo de startup.
+- Atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
 
 ## Testes manuais esperados
 

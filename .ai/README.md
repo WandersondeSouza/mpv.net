@@ -12,6 +12,7 @@ Este diretório reúne materiais para tarefas recorrentes do fork.
 ## Regra
 
 Os arquivos aqui ajudam a manter consistência, mas não substituem a leitura do código atual nem a validação do comportamento real.
+Atualize documentação técnica apenas quando houver mudança consolidada; prefira documentos existentes e evite criar arquivos redundantes.
 
 ## Fluxo recomendado
 

@@ -26,6 +26,8 @@ Regras:
 - preservar nomes oficiais de arquivos, opções, comandos e caminhos;
 - não traduzir comandos mpv, opções de configuração ou nomes de classes;
 - marcar como pendência aquilo que ainda não foi confirmado no código.
+- atualizar documentação técnica apenas quando houver mudança consolidada;
+- preferir documentos existentes e evitar criar arquivos redundantes.
 
 Se a documentação estiver desatualizada em mais de um subsistema, separar o que é correção textual do que exige mudança de comportamento.
 

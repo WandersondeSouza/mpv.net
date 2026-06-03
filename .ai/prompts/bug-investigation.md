@@ -1,7 +1,7 @@
 ﻿# Prompt — Investigação de bug no MPV.NET Media Player
 
 Leia `AGENTS.md`, `README.md`, `docs/manual.md` e `docs/guia-operacional.md`.
-Se o bug parecer amplo, leia também `docs/developer/architecture.md` e `docs/developer/architecture.md` antes de alterar.
+Se o bug parecer amplo, leia também `docs/developer/architecture.md` antes de alterar.
 
 Vamos investigar apenas este bug:
 
@@ -41,6 +41,6 @@ Regras:
 - não fazer refatoração ampla;
 - não alterar comportamento não relacionado;
 - preservar compatibilidade com mpv;
-- atualizar documentação se o comportamento mudar;
+- atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes;
 - ao final, informar arquivos alterados e validação feita.
 

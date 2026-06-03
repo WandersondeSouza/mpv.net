@@ -11,10 +11,7 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
 5. `docs/developer/mpv-integration.md`;
-6. `docs/developer/mpv-integration.md`;
-7. `docs/developer/mpv-integration.md`;
-8. `docs/developer/mpv-integration.md`.
-9. `docs/developer/architecture.md` quando a alteração envolver múltiplos módulos.
+6. `docs/developer/architecture.md` quando a alteração envolver múltiplos módulos.
 
 ## Arquivos críticos
 
@@ -33,6 +30,7 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 - Validar scripts Lua/JavaScript quando tocar input, comandos ou eventos.
 - Evitar bloquear thread de evento do mpv.
 - Se o efeito observado vier de uma camada acima do wrapper, apontar a camada correta antes de mexer no nativo.
+- Atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
 
 ## Testes manuais esperados
 
