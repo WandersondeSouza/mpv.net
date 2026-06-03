@@ -34,6 +34,58 @@ Nos scripts do fork, use `-EnableFileLogging`:
 No workflow manual `.github/workflows/release-packages.yml`, selecione
 `enable_file_logging=true` apenas para pacotes de diagnostico/suporte.
 
+## Gerar ZIP e instalador para teste
+
+Execute estes comandos na raiz do repositorio para gerar artefatos locais com
+logs habilitados.
+
+### Gerar apenas o ZIP portatil com logs
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release -EnableFileLogging
+```
+
+Saidas esperadas:
+
+```text
+artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\
+artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64.zip
+```
+
+Para testar, extraia o ZIP e execute `mpvnet.exe` dentro da pasta extraida.
+
+### Gerar apenas o instalador executavel com logs
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release -EnableFileLogging
+```
+
+Saidas esperadas:
+
+```text
+artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\
+artifacts\release\MPV.NET-Media-Player-v<versao>-setup-x64.exe
+```
+
+Para testar, execute o instalador `setup-x64.exe`, abra o aplicativo instalado e
+reproduza os cenarios que deseja diagnosticar.
+
+### Gerar ZIP e instalador juntos com logs
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease -EnableFileLogging
+```
+
+Esse comando gera os artefatos locais sem publicar no GitHub.
+
+Depois de abrir o aplicativo gerado, verifique o log em:
+
+```powershell
+explorer "$env:LOCALAPPDATA\mpv.net\Logs"
+```
+
+O arquivo do dia deve seguir o formato `mpvnet-YYYY-MM-DD.log`.
+
 ## Onde os logs ficam
 
 Quando habilitado, o aplicativo grava em:
