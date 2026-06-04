@@ -148,6 +148,8 @@ var normalizedFileUriPlaylistItems = PlaylistFile.Normalize(tempM3u, [
     new PlaylistFileItem(new Uri(tempAudio).AbsoluteUri, "file uri audio")]);
 var normalizedQuotedPlaylistItems = PlaylistFile.Normalize(tempM3u, [
     new PlaylistFileItem(tempVideo, "\"quoted\" 'video' title.mp4")]);
+var normalizedAutocreatedPlaylistItems = PlaylistFile.NormalizeDisplayTitles([
+    new PlaylistFileItem(tempVideo, "Vue.js parte 2 Aula 1 - Atividade 3 Criando Nossa Primeira Diretiva Alura Cursos Online De Tecnologia.mp4")]);
 string tempRawTitleM3u = PlaylistFile.WriteTempM3u([
     new PlaylistFileItem(tempVideo, "\"raw\" 'playlist' item.mp4")]);
 string rawTitleM3uContent = File.ReadAllText(tempRawTitleM3u);
@@ -232,6 +234,7 @@ var tests = new (string Name, bool Result)[]
     ("Playlist normalizer keeps streaming URLs", normalizedRemotePlaylistItems.Single().Path == "https://example.com/live/index.m3u8?token=abc"),
     ("Playlist normalizer resolves file URIs", Path.GetFullPath(normalizedFileUriPlaylistItems.Single().Path) == Path.GetFullPath(tempAudio)),
     ("Playlist normalizer removes quotes from titles", normalizedQuotedPlaylistItems.Single().Title == "Quoted Video Title"),
+    ("Autocreated playlist title normalization removes extension", normalizedAutocreatedPlaylistItems.Single().Title == "Vue Js Parte 2 Aula 1 Atividade 3 Criando Nossa Primeira Diretiva Alura Cursos Online De Tecnologia"),
     ("Playlist writer normalizes raw item titles", rawTitleM3uContent.Contains("#EXTINF:-1,Raw Playlist Item")),
     ("PLS parser normalizes item title", parsedPlsPlaylist.Any(i => i.Title == "Pls Video Title" && i.Path == tempVideo)),
     ("PLS writer preserves normalized item titles", normalizedPlsM3uContent.Contains("#EXTINF:-1,Pls Video Title")),

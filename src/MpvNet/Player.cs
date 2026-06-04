@@ -21,6 +21,7 @@ namespace MpvNet;
 public class MainPlayer : MpvClient
 {
     static readonly HttpClient RemotePlaylistHttpClient = new() { Timeout = TimeSpan.FromSeconds(20) };
+    static readonly TimeSpan PlaylistNormalizationDelay = TimeSpan.FromMilliseconds(200);
     bool _isNormalizingAutocreatedPlaylist;
 
     public string ConfPath { get => ConfigFolder + "mpv.conf"; }
@@ -211,6 +212,8 @@ public class MainPlayer : MpvClient
                 if (GetPropertyString("keep-open") == "no" && App.Exit)
                     CommandV("quit");
         });
+
+        ObserveProperty("playlist", ScheduleAutocreatedPlaylistNormalization);
 
         Initialized?.Invoke();
         Log.Info("mpv player initialized.");
@@ -738,7 +741,7 @@ public class MainPlayer : MpvClient
 
             if (playlistCount != 1)
             {
-                NormalizeAutocreatedPlaylist(playlistCount);
+                NormalizeAutocreatedPlaylist();
                 return;
             }
 
@@ -796,8 +799,22 @@ public class MainPlayer : MpvClient
         return ret;
     }
 
-    void NormalizeAutocreatedPlaylist(int playlistCount)
+    void ScheduleAutocreatedPlaylistNormalization() =>
+        TaskHelp.Run(() => {
+            Thread.Sleep(PlaylistNormalizationDelay);
+            NormalizeAutocreatedPlaylist();
+        });
+
+    void NormalizeAutocreatedPlaylist()
     {
+        if (_isNormalizingAutocreatedPlaylist)
+            return;
+
+        int playlistCount = GetPropertyInt("playlist-count");
+
+        if (playlistCount <= 1)
+            return;
+
         int playlistPos = GetPropertyInt("playlist-pos");
         List<PlaylistFileItem> items = [];
         bool needsNormalization = false;
@@ -824,7 +841,7 @@ public class MainPlayer : MpvClient
             _isNormalizingAutocreatedPlaylist = true;
             LoadPlaylistItems(normalizedItems, false);
 
-            if (playlistPos > 0 && playlistPos < normalizedItems.Count)
+            if (playlistPos >= 0 && playlistPos < normalizedItems.Count)
                 SetPropertyInt("playlist-pos", playlistPos);
         }
         finally
