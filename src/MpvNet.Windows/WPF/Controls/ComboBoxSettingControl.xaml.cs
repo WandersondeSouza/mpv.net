@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 using MpvNet.Windows.UI;
+using MpvNet.Windows.WinForms;
 
 namespace MpvNet.Windows.WPF;
 
@@ -70,6 +71,7 @@ public partial class ComboBoxSettingControl : UserControl, ISettingControl
         {
             App.Language = OptionSetting.Value ?? "";
             Translator.Current?.Gettext("");
+            MainForm.Instance?.RebuildContextMenu();
         }
     }
 }

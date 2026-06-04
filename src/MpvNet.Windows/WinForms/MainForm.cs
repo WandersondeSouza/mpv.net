@@ -41,6 +41,7 @@ public partial class MainForm : Form
     int _cursorAutohide = 1000;
 
     bool _contextMenuIsReady;
+    bool _contextMenuClosedHandlerAttached;
     bool _wasMaximized;
     bool _maxSizeSet;
     bool _isCursorVisible = true;
@@ -522,6 +523,7 @@ public partial class MainForm : Form
         App.Language = language;
         Translator.Current?.Gettext("");
         Player.SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
+        RebuildContextMenu();
     }
 
     public WpfControls.MenuItem? FindMenuItem(string text, string text2 = "") {
@@ -861,7 +863,14 @@ public partial class MainForm : Form
 
     public void InitAndBuildContextMenu()
     {
-        ContextMenu.Closed += ContextMenu_Closed;
+        if (!_contextMenuClosedHandlerAttached)
+        {
+            ContextMenu.Closed += ContextMenu_Closed;
+            _contextMenuClosedHandlerAttached = true;
+        }
+
+        _contextMenuIsReady = false;
+        ContextMenu.Items.Clear();
         ContextMenu.UseLayoutRounding = true;
 
         var (menuBindings, confBindings) = App.InputConf.GetBindings();
@@ -899,6 +908,25 @@ public partial class MainForm : Form
         }
 
         _contextMenuIsReady = true;
+    }
+
+    public void RebuildContextMenu()
+    {
+        if (!_contextMenuIsReady)
+            return;
+
+        bool wasOpen = ContextMenu.IsOpen;
+
+        if (wasOpen)
+            ContextMenu.IsOpen = false;
+
+        InitAndBuildContextMenu();
+
+        if (wasOpen)
+        {
+            UpdateMenu();
+            ContextMenu.IsOpen = true;
+        }
     }
     
     void Player_FileLoaded()
