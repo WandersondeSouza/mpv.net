@@ -14,6 +14,7 @@ Os itens aqui são pendências ou verificações em aberto. Quando algo for cons
 
 - Etapa segura recomendada: extrair helpers privados ou classes pequenas por tema, sem mover fluxo de UI/fullscreen/libmpv em bloco único.
 - Antes de cada extração, proteger comportamento com build e validação do executável `src/MpvNet.Tests/MpvNet.Tests.csproj` quando a área tocar parser, paths, playlist, título, logs ou configuração.
+- Checklist manual para mudanças de UI/libmpv: abrir arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento do player.
 
 ## Itens já entendidos e não prioritários
 

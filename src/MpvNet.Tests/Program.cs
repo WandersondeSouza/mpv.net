@@ -21,9 +21,11 @@ string tempWpl = Path.Combine(tempPlaylistDir, "playlist.wpl");
 string tempCue = Path.Combine(tempPlaylistDir, "playlist.cue");
 string tempJspf = Path.Combine(tempPlaylistDir, "playlist.jspf");
 string tempUnknown = Path.Combine(tempPlaylistDir, "ignored.txt");
+string relativeMediaFile = "mpvnet-tests-relative-media.mkv";
 File.WriteAllText(tempAudio, "");
 File.WriteAllText(tempVideo, "");
 File.WriteAllText(tempUnknown, "");
+File.WriteAllText(relativeMediaFile, "");
 File.WriteAllLines(tempM3u, [
     "#EXTM3U",
     "#EXTINF:-1,Audio title",
@@ -98,6 +100,8 @@ var parsedConfig = ConfigFileParser.ParseKeyValueLines([
     "missing-separator",
     "dark-mode = never",
     "language= pt-BR ",
+    "--fullscreen=yes",
+    "path = C:\\Media=WithEquals\\video.mkv",
     "duplicate=old",
     "duplicate=new"]);
 var parsedCommandArguments = CommandLine.ParseArguments([
@@ -113,6 +117,20 @@ var parsedCommandArguments = CommandLine.ParseArguments([
     "--force-media-title=forced.title.mp4",
     "--title=${media-title}",
     "--=ignored"]);
+var parsedChangeListArguments = CommandLine.ParseArguments([
+    "--script-opts-add=osc-layout=bottombar",
+    "--script-opts-set=osc-layout=box",
+    "--script-opts-append=thumbfast=yes",
+    "--script-opts-pre=first=yes",
+    "--script-opts-clr",
+    "--script-opts-remove=old=yes",
+    "--script-opts-toggle=flag"]);
+var activeBindings = InputHelp.GetActiveBindings([
+    new Binding(command: "cycle pause", input: "SPACE"),
+    new Binding(command: "cycle pause", input: "p"),
+    new Binding(command: "ignored", input: ""),
+    new Binding(command: "", input: "x")]);
+string pauseBindings = InputHelp.GetBindingsForCommand(activeBindings, "cycle pause");
 
 DateTime fixedLogDate = new(2026, 6, 2, 19, 45, 10, 123);
 string tempLogDir = Path.Combine(Path.GetTempPath(), "mpvnet-log-tests-" + Guid.NewGuid().ToString("N"));
@@ -242,6 +260,9 @@ var tests = new (string Name, bool Result)[]
     ("Command line rejects options as files", !CommandLine.IsLoadableFileArgument("--fullscreen")),
     ("Command line accepts absolute Windows path without existence check", CommandLine.IsLoadableFileArgument(@"C:\missing\movie.mkv")),
     ("Command line accepts relative dot path", CommandLine.IsLoadableFileArgument(@".\movie.mkv")),
+    ("ConvertFilePath resolves existing relative file", Path.GetFullPath(MainPlayer.ConvertFilePath(relativeMediaFile)) == Path.GetFullPath(relativeMediaFile)),
+    ("ConvertFilePath keeps missing relative file unchanged", MainPlayer.ConvertFilePath("missing-relative-file.mkv") == "missing-relative-file.mkv"),
+    ("ConvertFilePath normalizes mixed Windows separators", MainPlayer.ConvertFilePath("C:/Media/video.mkv") == @"C:\Media\video.mkv"),
     ("Local file can use optional MediaInfo when present", MainPlayer.CanUseMediaInfo(tempMediaFile)),
     ("Missing local file skips optional MediaInfo", !MainPlayer.CanUseMediaInfo(tempMediaFile + ".missing")),
     ("Streaming URL skips optional MediaInfo", !MainPlayer.CanUseMediaInfo("https://example.com/live/index.m3u8")),
@@ -282,8 +303,10 @@ var tests = new (string Name, bool Result)[]
     ("CUE parser normalizes item title", parsedCuePlaylist.Single().Title == "Cue Audio Title"),
     ("JSPF parser resolves array location", parsedJspfPlaylist.Single().Path == tempVideo),
     ("JSPF parser normalizes item title", parsedJspfPlaylist.Single().Title == "Jspf Video Title"),
-    ("Config parser skips comments and invalid lines", parsedConfig.Count == 3),
+    ("Config parser skips comments and invalid lines", parsedConfig.Count == 5),
     ("Config parser trims keys and values", parsedConfig["dark-mode"] == "never" && parsedConfig["language"] == "pt-BR"),
+    ("Config parser keeps leading option dashes", parsedConfig["--fullscreen"] == "yes"),
+    ("Config parser preserves equals in values", parsedConfig["path"] == @"C:\Media=WithEquals\video.mkv"),
     ("Config parser keeps last duplicate value", parsedConfig["duplicate"] == "new"),
     ("Command parser ignores non-options and empty names", parsedCommandArguments.Count == 10),
     ("Command parser handles boolean flags", parsedCommandArguments.Any(i => i.Name == "terminal" && i.Value == "yes")),
@@ -296,6 +319,16 @@ var tests = new (string Name, bool Result)[]
     ("Command parser normalizes explicit title values", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "Sample Video")),
     ("Command parser preserves title templates", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "${media-title}")),
     ("Command parser normalizes force media title", parsedCommandArguments.Any(i => i.Name == "force-media-title" && i.Value == "Forced Title")),
+    ("Command parser keeps change-list operation names", parsedChangeListArguments.Select(i => i.Name).SequenceEqual([
+        "script-opts-add",
+        "script-opts-set",
+        "script-opts-append",
+        "script-opts-pre",
+        "script-opts-clr",
+        "script-opts-remove",
+        "script-opts-toggle"])),
+    ("Input bindings ignore incomplete entries", activeBindings.Count == 2),
+    ("Input bindings list keys for command", pauseBindings == "SPACE, p"),
     ("File log writer creates folder and daily log file", File.Exists(dailyLogFile)),
     ("File log writer writes Info", dailyLogContent.Contains("[INFO] info message")),
     ("File log writer writes Debug", dailyLogContent.Contains("[DEBUG] debug message")),
@@ -327,6 +360,7 @@ var tests = new (string Name, bool Result)[]
 var failed = tests.Where(test => !test.Result).ToArray();
 
 File.Delete(tempMediaFile);
+File.Delete(relativeMediaFile);
 File.Delete(tempNormalizedM3u);
 File.Delete(tempNormalizedPlsM3u);
 File.Delete(tempRawTitleM3u);
