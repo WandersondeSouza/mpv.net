@@ -301,16 +301,9 @@ public class GuiCommand
 
         try
         {
-            using Process proc = new Process();
-            proc.StartInfo.FileName = Environment.ProcessPath;
-            proc.StartInfo.Arguments = "--register-file-associations " +
-                perceivedType + " " + string.Join(" ", extensions);
-            proc.StartInfo.Verb = "runas";
-            proc.StartInfo.UseShellExecute = true;
-            proc.Start();
-            proc.WaitForExit();
+            int exitCode = FileAssociationRegistrar.RegisterElevated(perceivedType, extensions);
 
-            if (proc.ExitCode == 0)
+            if (exitCode == 0)
             {
                 string msgRestart = _("File Explorer icons will refresh after process restart.");
 

@@ -1590,15 +1590,6 @@ public partial class MainForm : Form
         return Math.Abs(screenPos.X - MousePosition.X) > len || Math.Abs(screenPos.Y - MousePosition.Y) > len;
     }
 
-    public static int GetDpi(IntPtr hwnd)
-    {
-        if (Environment.OSVersion.Version >= WindowsTen1607 && hwnd != IntPtr.Zero)
-            return GetDpiForWindow(hwnd);
-        else
-            using (Graphics gx = Graphics.FromHwnd(hwnd))
-                return GetDeviceCaps(gx.GetHdc(), 88 /*LOGPIXELSX*/);
-    }
-
     [DllImport("DwmApi")]
     static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, int[] attrValue, int attrSize);
 }

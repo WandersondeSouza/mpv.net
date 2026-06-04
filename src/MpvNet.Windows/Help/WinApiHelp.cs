@@ -68,6 +68,15 @@ public static class WinApiHelp
         return -rect.Top;
     }
 
+    public static int GetDpi(IntPtr hwnd)
+    {
+        if (Environment.OSVersion.Version >= WindowsTen1607 && hwnd != IntPtr.Zero)
+            return GetDpiForWindow(hwnd);
+
+        using Graphics gx = Graphics.FromHwnd(hwnd);
+        return GetDeviceCaps(gx.GetHdc(), 88 /*LOGPIXELSX*/);
+    }
+
     public static Rectangle GetWorkingArea(IntPtr handle, Rectangle workingArea)
     {
         if (handle != IntPtr.Zero && GetDwmWindowRect(handle, out RECT dwmRect) &&
