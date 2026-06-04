@@ -19,6 +19,7 @@ Analisar e alterar interface Windows do MPV.NET Media Player preservando comport
 ## Arquivos críticos
 
 - `src/MpvNet.Windows/WinForms/MainForm.cs`;
+- `src/MpvNet.Windows/WinForms/MainForm.*.cs`;
 - `src/MpvNet.Windows/WPF/`;
 - `src/MpvNet.Windows/UI/`;
 - `src/MpvNet.Windows/Native/`;
@@ -39,6 +40,12 @@ Analisar e alterar interface Windows do MPV.NET Media Player preservando comport
 - Abrir janela normal.
 - Alternar fullscreen.
 - Abrir menu de contexto.
+- Abrir arquivo local, URL/stream, playlist e pasta com mídia.
+- Testar drag/drop.
+- Testar cursor/OSC.
+- Alternar faixa/legenda quando aplicável.
+- Testar comandos de janela quando a mudança tocar `GuiCommand`.
+- Fechar o player e confirmar encerramento normal.
 - Alternar tema quando aplicável.
 - Testar foco do teclado e comandos básicos.
 

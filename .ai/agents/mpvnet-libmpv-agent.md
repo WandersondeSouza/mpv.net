@@ -16,6 +16,7 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 ## Arquivos críticos
 
 - `src/MpvNet/Player.cs`;
+- `src/MpvNet/Player.*.cs`;
 - `src/MpvNet/MpvClient.cs`;
 - `src/MpvNet/Native/LibMpv.cs`;
 - `src/MpvNet/Command.cs`;
@@ -31,6 +32,9 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 - Evitar bloquear thread de evento do mpv.
 - Se o efeito observado vier de uma camada acima do wrapper, apontar a camada correta antes de mexer no nativo.
 - Atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
+- Preservar a ordem de inicialização em `Player.Initialization.cs`.
+- Não misturar carregamento de mídia, eventos, propriedades observadas e shutdown em uma mesma alteração quando uma mudança puder ser menor.
+- Rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` quando tocar paths, playlist, parser de comandos, títulos ou MediaInfo.
 
 ## Testes manuais esperados
 

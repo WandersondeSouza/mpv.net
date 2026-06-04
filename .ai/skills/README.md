@@ -19,6 +19,13 @@ Use esta skill quando a tarefa envolver:
 
 Para tarefas muito específicas, combine esta skill com um perfil em `.ai/agents/` e um prompt em `.ai/prompts/`. Para refatoração larga, use também o agente de arquitetura.
 
+Topologia atual consolidada:
+
+- UI Windows: `src/MpvNet.Windows/WinForms/MainForm.cs` mais partials `MainForm.*.cs`;
+- Player/libmpv: `src/MpvNet/Player.cs` mais partials `Player.*.cs`.
+
+Para mudanças em parser, paths, playlist, título, logs, configuração ou MediaInfo, valide com `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
+
 ## Leitura que esta skill assume
 
 - `AGENTS.md`;

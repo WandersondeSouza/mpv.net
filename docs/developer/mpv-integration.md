@@ -32,11 +32,17 @@ Arquivos principais:
 
 - `src/MpvNet/Native/LibMpv.cs` - P/Invoke para `libmpv-2.dll`;
 - `src/MpvNet/MpvClient.cs` - wrapper de cliente, comandos, propriedades e eventos;
-- `src/MpvNet/Player.cs` - inicialização, configuração inicial e estado do player.
+- `src/MpvNet/Player.cs` - estado principal do player;
+- `src/MpvNet/Player.Initialization.cs` - inicialização e configuração inicial do mpv/libmpv;
+- `src/MpvNet/Player.ObservedProperties.cs` - propriedades observadas;
+- `src/MpvNet/Player.Events.cs` - eventos vindos do mpv;
+- `src/MpvNet/Player.Lifecycle.cs` - loop principal, shutdown e destruição de handles;
+- `src/MpvNet/Player.MediaLoading.cs` - carregamento de mídia, playlists, URLs, ISO/DVD/BD e pasta automática;
+- `src/MpvNet/Player.Capabilities.cs` - perfis, decoders, protocolos, demuxers e criação de clientes adicionais.
 
 ## Ciclo de vida
 
-Fluxo principal em `Player.Init`:
+Fluxo principal em `Player.Initialization.cs`:
 
 1. cria contexto com `mpv_create`;
 2. registra eventos com `mpv_request_event`;
@@ -131,6 +137,8 @@ Atalhos e comandos podem depender da integração com mpv.
 4. Validar fullscreen.
 5. Validar comandos.
 6. Validar propriedades.
+7. Preservar a ordem de inicialização de `Player.Initialization.cs`.
+8. Rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` quando tocar paths, playlist, parser de comandos, títulos ou MediaInfo.
 
 ---
 

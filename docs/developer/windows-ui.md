@@ -25,6 +25,16 @@ A interface gráfica é uma das principais diferenças entre o mpv original e o 
 - mouse;
 - controles na tela.
 
+## Topologia da janela principal
+
+- `src/MpvNet.Windows/WinForms/MainForm.cs` - estado principal da janela e ciclo de vida WinForms;
+- `src/MpvNet.Windows/WinForms/MainForm.ContextMenu.cs` - menu de contexto, faixas, capítulos e busca de itens;
+- `src/MpvNet.Windows/WinForms/MainForm.Commands.cs` - comandos de UI vindos de `GuiCommand`;
+- `src/MpvNet.Windows/WinForms/MainForm.Cursor.cs` - cursor e OSC;
+- `src/MpvNet.Windows/WinForms/MainForm.DragDrop.cs` - drag/drop;
+- `src/MpvNet.Windows/WinForms/MainForm.Fullscreen.cs` - fullscreen;
+- `src/MpvNet.Windows/WinForms/MainForm.PlayerEvents.cs` - reação da UI a eventos do player.
+
 ---
 
 # Áreas críticas
@@ -71,6 +81,7 @@ O projeto suporta:
 4. Validar temas.
 5. Validar comportamento do mouse.
 6. Preservar compatibilidade visual.
+7. Quando tocar `MainForm.*.cs`, validar arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento do player.
 
 ---
 

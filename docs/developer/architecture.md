@@ -77,8 +77,10 @@ Arquivos centrais para entender o fluxo sem abrir vários documentos:
 
 - `src/MpvNet.Windows/Program.cs` - entry point da aplicação Windows;
 - `src/MpvNet/App.cs` - inicialização, configuração e opções do frontend;
-- `src/MpvNet.Windows/WinForms/MainForm.cs` - janela principal;
-- `src/MpvNet/Player.cs` - ciclo do player e configuração do mpv;
+- `src/MpvNet.Windows/WinForms/MainForm.cs` - estado principal da janela WinForms;
+- `src/MpvNet.Windows/WinForms/MainForm.*.cs` - responsabilidades separadas da janela principal por tema;
+- `src/MpvNet/Player.cs` - estado principal do player;
+- `src/MpvNet/Player.*.cs` - inicialização, eventos, ciclo de vida, carregamento de mídia e capacidades do player;
 - `src/MpvNet/MpvClient.cs` - wrapper de cliente e loop de eventos;
 - `src/MpvNet/Native/LibMpv.cs` - P/Invoke e estruturas nativas;
 - `src/MpvNet/InputConf.cs` - leitura e migração do `input.conf`;
@@ -149,6 +151,15 @@ Responsabilidades:
 
 Essa camada é a área de maior risco do projeto.
 
+Topologia atual do player:
+
+- `src/MpvNet/Player.Initialization.cs` - sequência de inicialização do mpv/libmpv e criação do cliente `mpvnet`;
+- `src/MpvNet/Player.ObservedProperties.cs` - propriedades observadas como `pause`, `video-rotate`, `playlist-pos` e `playlist`;
+- `src/MpvNet/Player.Events.cs` - callbacks de eventos de arquivo, log, reconfiguração de vídeo e títulos Blu-ray;
+- `src/MpvNet/Player.Lifecycle.cs` - `MainEventLoop`, shutdown e destruição dos handles;
+- `src/MpvNet/Player.MediaLoading.cs` - carregamento de mídia, playlists, URLs, ISO/DVD/BD, pasta automática e normalização de playlist;
+- `src/MpvNet/Player.Capabilities.cs` - perfis, decoders, protocolos, demuxers e criação de clientes adicionais.
+
 ---
 
 # Interface gráfica
@@ -164,6 +175,15 @@ Arquivos principais:
 - `src/MpvNet.Windows/UI/GlobalHotkey.cs`.
 
 A janela principal é WinForms. Janelas auxiliares e editores usam WPF. Essa combinação exige cuidado com ownership de janela, DPI, fullscreen e integração com o handle nativo usado pelo libmpv.
+
+Topologia atual da janela principal:
+
+- `src/MpvNet.Windows/WinForms/MainForm.ContextMenu.cs` - helpers de menu, faixas, capítulos e busca de itens;
+- `src/MpvNet.Windows/WinForms/MainForm.Commands.cs` - handlers de comandos de UI acionados por `GuiCommand`;
+- `src/MpvNet.Windows/WinForms/MainForm.Cursor.cs` - cursor e detecção de OSC;
+- `src/MpvNet.Windows/WinForms/MainForm.DragDrop.cs` - entrada por drag/drop;
+- `src/MpvNet.Windows/WinForms/MainForm.Fullscreen.cs` - transição de fullscreen e restauração de janela;
+- `src/MpvNet.Windows/WinForms/MainForm.PlayerEvents.cs` - reação da UI a eventos do player.
 
 ---
 
@@ -304,3 +324,5 @@ Risco médio:
 4. Atualizar documentação quando comportamento mudar.
 5. Validar manualmente fullscreen, input e configuração quando tocar UI ou libmpv.
 6. Separar documentação validada de hipóteses ainda pendentes.
+7. Para mudanças em parsers, paths, playlist, título, logs, configuração ou políticas de MediaInfo, rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
+8. Para mudanças em UI/libmpv, além do build e dos testes automatizados, executar checklist manual com arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento.

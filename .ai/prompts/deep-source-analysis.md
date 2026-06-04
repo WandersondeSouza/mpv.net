@@ -36,6 +36,7 @@ Explique:
 - carregamento de configuração;
 - criação da janela principal;
 - inicialização da integração com mpv/libmpv.
+- a separação atual de `Player.Initialization.cs` e o que deve permanecer na ordem original.
 
 ---
 
@@ -51,6 +52,7 @@ Mapeie:
 - sincronização.
 
 Explique o fluxo de comunicação.
+Considere a topologia atual de `Player.*.cs`: inicialização, propriedades observadas, eventos, ciclo de vida, carregamento de mídia e capacidades.
 
 ---
 
@@ -66,6 +68,8 @@ Explique:
 - controles;
 - mouse;
 - teclado.
+
+Considere a topologia atual de `MainForm.*.cs`: comandos, menu, cursor/OSC, drag/drop, fullscreen e eventos do player.
 
 ---
 
@@ -138,5 +142,6 @@ Antes de alterar qualquer código:
 - listar riscos;
 - propor plano incremental.
 - atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
+- validar com `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore`, `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` e checklist manual para UI/libmpv quando aplicável.
 
 

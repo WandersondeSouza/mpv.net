@@ -18,6 +18,8 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 ## Arquivos críticos
 
 - `src/MpvNet/Player.cs`;
+- `src/MpvNet/Player.Initialization.cs`;
+- `src/MpvNet/Player.MediaLoading.cs`;
 - `src/MpvNet/App.cs`;
 - `src/MpvNet/InputConf.cs`;
 - `src/MpvNet/Settings.cs`;
@@ -41,5 +43,6 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 - Executar com `MPVNET_HOME`.
 - Testar `input.conf` padrão e customizado.
 - Testar menu de contexto quando `input.conf` contém sintaxe de menu.
+- Rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` quando tocar parser, paths, playlist, título, configuração ou MediaInfo.
 
 

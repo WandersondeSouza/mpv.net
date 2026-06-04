@@ -14,6 +14,13 @@ Este diretório reúne materiais para tarefas recorrentes do fork.
 Os arquivos aqui ajudam a manter consistência, mas não substituem a leitura do código atual nem a validação do comportamento real.
 Atualize documentação técnica apenas quando houver mudança consolidada; prefira documentos existentes e evite criar arquivos redundantes.
 
+Após a refatoração validada, a topologia principal do código usa partials por responsabilidade:
+
+- `src/MpvNet.Windows/WinForms/MainForm.*.cs` para UI Windows por tema;
+- `src/MpvNet/Player.*.cs` para player/libmpv por tema.
+
+Consulte `docs/developer/architecture.md`, `docs/developer/windows-ui.md` e `docs/developer/mpv-integration.md` para o mapa consolidado antes de alterar essas áreas.
+
 ## Fluxo recomendado
 
 Antes de editar código ou documentação:
@@ -27,6 +34,7 @@ Antes de editar código ou documentação:
 7. ler `docs/developer/architecture.md` quando a tarefa envolver análise ampla ou refatoração;
 8. ler `docs/developer/configuration.md`, `docs/developer/mpv-integration.md`, `docs/developer/windows-ui.md`, `docs/developer/build-release.md` e `docs/developer/localization.md` conforme a área tocada;
 9. usar o arquivo de `skills/`, `agents/` e `prompts/` que melhor corresponda ao tipo de trabalho.
+10. rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` quando a mudança tocar parser, paths, playlist, título, logs, configuração ou MediaInfo.
 
 ## Observação sobre MCP
 
