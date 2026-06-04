@@ -3,6 +3,27 @@
 Este arquivo registra apenas as versoes publicadas pelo fork
 `WandersondeSouza/mpv.net`.
 
+# Fork WandersondeSouza - v7.1.2.9 (2026-06-04)
+
+## Refatoracao segura
+
+- Incorporada a branch `codex/refatoracao-segura` ao `main`, preservando a
+  compatibilidade com mpv/libmpv e arquivos de configuracao existentes.
+- Separados helpers menores para configuracao, midia, texto de faixas,
+  limpeza de temporarios e logging, reduzindo duplicacao sem alterar o fluxo
+  principal de reproducao.
+- Adicionados testes de parser, midia e comportamento de playlists para cobrir
+  os pontos centrais da refatoracao.
+
+## Operacao e diagnostico
+
+- Adicionado suporte documentado a logging em arquivo para diagnostico de
+  pacotes de teste, mantendo logs desabilitados por padrao em releases normais.
+- Ajustados scripts de geracao de ZIP, instalador e release emergencial para
+  propagar corretamente o modo de logging diagnostico.
+- Atualizados documentos tecnicos, prompts e agentes de IA para refletir as
+  novas regras de manutencao conservadora do fork.
+
 # Fork WandersondeSouza - v7.1.2.8 (2026-06-02)
 
 ## Cache e temporarios
