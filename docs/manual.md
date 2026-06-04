@@ -27,12 +27,17 @@ Use as releases do fork em:
 - Runtime .NET Desktop compatível com o projeto.
 - Para streaming, `yt-dlp.exe` precisa estar disponível no `PATH` ou ao lado do executável.
 
-O instalador registra os formatos de mídia comuns e playlists IPTV suportados pelo fork.
+O instalador registra os formatos de mídia comuns e playlists IPTV suportados
+pelo fork. Imagens não são associadas automaticamente na instalação; use
+`Config > Setup > Register image file associations` no menu de contexto se
+quiser associá-las manualmente. Ao desinstalar, o instalador remove também as
+associações do mpv.net criadas manualmente para imagens.
 
 As associações atuais incluem:
 
 - Vídeo e playlists: `.mp4`, `.m4v`, `.mkv`, `.webm`, `.avi`, `.mov`, `.qt`, `.wmv`, `.asf`, `.flv`, `.f4v`, `.mpg`, `.mpeg`, `.mpe`, `.m1v`, `.m2v`, `.vob`, `.ts`, `.mts`, `.m2ts`, `.3gp`, `.3g2`, `.ogv`, `.ogg`, `.rm`, `.rmvb`, `.divx`, `.xvid`, `.dv`, `.nut`, `.nsv`, `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`, `.wpl`, `.cue`, `.jspf`;
 - Áudio: `.mp3`, `.wav`, `.flac`, `.m4a`, `.aac`, `.ogg`, `.opus`, `.wma`, `.alac`, `.aiff`, `.aif`, `.ape`, `.wv`, `.mka`, `.ac3`, `.dts`, `.eac3`, `.amr`, `.au`, `.mp2`, `.mpa`, `.mpc`, `.thd`, `.w64`, `.oga`, `.ogm`, `.dtshd`, `.dtshr`, `.dtsma`.
+- Imagem, apenas quando associada manualmente pelo menu: `.avif`, `.bmp`, `.gif`, `.j2k`, `.jp2`, `.jpeg`, `.jpg`, `.jxl`, `.png`, `.svg`, `.tga`, `.tif`, `.tiff`, `.webp`.
 
 ## Configuração
 

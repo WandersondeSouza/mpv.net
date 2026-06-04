@@ -224,6 +224,7 @@ string[] expectedAudioExts = [
 string[] legacyAudioExts = ["au", "mp2", "mpa", "mpc", "thd", "w64", "oga", "ogm", "dtshd", "dtshr", "dtsma"];
 
 string[] audioExts = FileTypes.GetAudioExts();
+string[] imageExts = FileTypes.GetImgExts();
 
 var tests = new (string Name, bool Result)[]
 {
@@ -234,6 +235,10 @@ var tests = new (string Name, bool Result)[]
     ("IsPlaylistFile .asx", FileTypes.IsPlaylistFile(".asx")),
     ("IsPlaylistFile .wpl", FileTypes.IsPlaylistFile(".wpl")),
     ("IsPlaylistFile .jspf", FileTypes.IsPlaylistFile(".jspf")),
+    ("Default image extensions include avif", imageExts.Contains("avif")),
+    ("Default image extensions include jpeg", imageExts.Contains("jpeg")),
+    ("Default image extensions include jxl", imageExts.Contains("jxl")),
+    ("Default image extensions include tiff", imageExts.Contains("tiff")),
     ("IsStreamingUrl https HLS", FileTypes.IsStreamingUrl("https://example.com/live.m3u8")),
     ("IsStreamingUrl rtmp", FileTypes.IsStreamingUrl("rtmp://server/live")),
     ("IsStreamingUrl rtsp", FileTypes.IsStreamingUrl("rtsp://server/stream")),

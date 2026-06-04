@@ -19,6 +19,9 @@ public static class FileTypes
         "3g2", "ogv", "ogg", "rm", "rmvb", "divx", "xvid", "dv", "nut", "nsv",
         "264", "265", "avc", "avs", "dav", "h264", "h265", "hevc", "m2t", "mj2",
         "mpv", "vpy", "y4m"];
+    public static string[] DefaultImageExts { get; } = [
+        "avif", "bmp", "gif", "j2k", "jp2", "jpeg", "jpg", "jxl", "png",
+        "svg", "tga", "tif", "tiff", "webp"];
 
     public static bool IsVideo(string[] exts, string ext) => exts?.Contains(ext) ?? false;
     public static bool IsAudio(string[] exts, string ext) => exts?.Contains(ext) ?? false;
@@ -64,9 +67,9 @@ public static class FileTypes
         string exts = Player.GetPropertyString("image-exts");
 
         if (string.IsNullOrEmpty(exts))
-            return ["jpg", "bmp", "png", "gif", "webp"];
+            return DefaultImageExts;
 
-        return exts.Split(" ,;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+        return SplitExtensions(exts).Distinct().ToArray();
     }
 
     public static bool IsMedia(string[] exts, string ext) =>

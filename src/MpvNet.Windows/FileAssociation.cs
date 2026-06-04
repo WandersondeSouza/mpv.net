@@ -41,6 +41,7 @@ public static class FileAssociation
             RegistryHelp.SetValue(@"HKCR\Applications\" + exeFilename + @"\shell\open\command", "", $"\"{exePath}\" \"%1\"");
             RegistryHelp.SetValue(@"HKCR\SystemFileAssociations\video\OpenWithList\" + exeFilename, "", "");
             RegistryHelp.SetValue(@"HKCR\SystemFileAssociations\audio\OpenWithList\" + exeFilename, "", "");
+            RegistryHelp.SetValue(@"HKCR\SystemFileAssociations\" + perceivedType + @"\OpenWithList\" + exeFilename, "", "");
             RegistryHelp.SetValue(@"HKLM\SOFTWARE\RegisteredApplications", "mpv.net", @"SOFTWARE\Clients\Media\mpv.net\Capabilities");
             RegistryHelp.SetValue(@"HKLM\SOFTWARE\Clients\Media\mpv.net\Capabilities", "ApplicationDescription", AppInfo.Product);
             RegistryHelp.SetValue(@"HKLM\SOFTWARE\Clients\Media\mpv.net\Capabilities", "ApplicationName", AppInfo.Product);
@@ -65,6 +66,7 @@ public static class FileAssociation
             RegistryHelp.RemoveKey(@"HKLM\SOFTWARE\Clients\Media\mpv.net");
             RegistryHelp.RemoveKey(@"HKCR\SystemFileAssociations\video\OpenWithList\" + exeFilename);
             RegistryHelp.RemoveKey(@"HKCR\SystemFileAssociations\audio\OpenWithList\" + exeFilename);
+            RegistryHelp.RemoveKey(@"HKCR\SystemFileAssociations\image\OpenWithList\" + exeFilename);
 
             RegistryHelp.RemoveValue(@"HKLM\SOFTWARE\RegisteredApplications", "mpv.net");
 

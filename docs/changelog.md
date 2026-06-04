@@ -24,6 +24,15 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 - Atualizados documentos tecnicos, prompts e agentes de IA para refletir as
   novas regras de manutencao conservadora do fork.
 
+## Associacoes de arquivo
+
+- Ampliada a lista padrao da opcao manual `Register image file associations`
+  para incluir `.avif`, `.j2k`, `.jp2`, `.jpeg`, `.jxl`, `.svg`, `.tga`,
+  `.tif` e `.tiff`, mantendo imagens fora das associacoes automaticas do
+  instalador.
+- Ajustada a remocao de associacoes para limpar tambem o grupo de imagens
+  registrado manualmente pelo mpv.net durante a desinstalacao.
+
 # Fork WandersondeSouza - v7.1.2.8 (2026-06-02)
 
 ## Cache e temporarios

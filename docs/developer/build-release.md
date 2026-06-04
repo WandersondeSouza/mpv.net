@@ -247,7 +247,8 @@ O script:
 13. executa `Setup/Inno/build-windows-installer.iss` para gerar o instalador x64, exceto com `-SkipInstaller`;
 14. o instalador executa `mpvnet.exe --register-file-associations video` e
     `mpvnet.exe --register-file-associations audio` para registrar as
-    associacoes de video, audio e playlists IPTV apos a instalacao;
+    associacoes de video, audio e playlists IPTV apos a instalacao; imagens
+    continuam opt-in pelo menu `Config > Setup > Register image file associations`;
 15. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`.
 
 As dependencias baixadas automaticamente usam estas fontes:
