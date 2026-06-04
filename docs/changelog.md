@@ -5,6 +5,17 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 
 # Fork WandersondeSouza - v7.1.2.8 (2026-06-02)
 
+## Cache e temporarios
+
+- Adicionada limpeza não bloqueante, na inicialização, de arquivos antigos com
+  mais de 1 dia em `%LOCALAPPDATA%\mpv.net\Cache` e
+  `%LOCALAPPDATA%\mpv.net\Temp`.
+- Playlists temporárias criadas pelo frontend agora usam
+  `%LOCALAPPDATA%\mpv.net\Temp`, permitindo remover resíduos antigos sem tocar
+  arquivos genéricos do `%TEMP%`.
+- Falhas de limpeza são ignoradas para a abertura do player e registradas
+  apenas quando o build possui logging em arquivo habilitado.
+
 ## Identidade e distribuicao
 
 - Reforcada a identidade do fork como `MPV.NET Media Player` em metadados,

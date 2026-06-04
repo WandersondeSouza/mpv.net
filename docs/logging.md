@@ -100,6 +100,11 @@ Essa pasta compartilha a mesma raiz usada pelo cache temporario do mpv:
 %LOCALAPPDATA%\mpv.net\Cache
 ```
 
+Na inicializacao, falhas ao limpar arquivos antigos em
+`%LOCALAPPDATA%\mpv.net\Cache` ou `%LOCALAPPDATA%\mpv.net\Temp` tambem entram
+nesse log apenas quando o build foi gerado com logging em arquivo habilitado.
+Essas falhas nao bloqueiam a abertura do player.
+
 O arquivo diario usa este padrao:
 
 ```text

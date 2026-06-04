@@ -13,7 +13,8 @@ public static class PlaylistFile
 {
     public static string WriteTempM3u(IEnumerable<PlaylistFileItem> items)
     {
-        string path = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".m3u8");
+        Directory.CreateDirectory(App.TempFolder);
+        string path = Path.Combine(App.TempFolder, Guid.NewGuid() + ".m3u8");
 
         using StreamWriter writer = new(path, false, new UTF8Encoding(false));
         writer.WriteLine("#EXTM3U");

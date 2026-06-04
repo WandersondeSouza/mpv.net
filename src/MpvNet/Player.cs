@@ -25,7 +25,7 @@ public class MainPlayer : MpvClient
     bool _isNormalizingAutocreatedPlaylist;
 
     public string ConfPath { get => ConfigFolder + "mpv.conf"; }
-    public string CacheFolder => System.IO.Path.Combine(Folder.LocalAppData, "mpv.net", "Cache") + System.IO.Path.DirectorySeparatorChar;
+    public string CacheFolder => TemporaryFileCleanup.DefaultCacheFolder + System.IO.Path.DirectorySeparatorChar;
     public string GPUAPI { get; set; } = "auto";
     public string Path { get; set; } = "";
     public string VO { get; set; } = "gpu";
@@ -543,7 +543,8 @@ public class MainPlayer : MpvClient
                 return false;
 
             string content = RemotePlaylistHttpClient.GetStringAsync(file).GetAwaiter().GetResult();
-            string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Guid.NewGuid() + ".m3u8");
+            Directory.CreateDirectory(App.TempFolder);
+            string tempFile = System.IO.Path.Combine(App.TempFolder, Guid.NewGuid() + ".m3u8");
             File.WriteAllText(tempFile, content, Encoding.UTF8);
             App.TempFiles.Add(tempFile);
             playlistFile = tempFile;

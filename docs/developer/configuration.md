@@ -59,6 +59,7 @@ Cache e logs:
 | Pasta | Função |
 | --- | --- |
 | `%LOCALAPPDATA%\mpv.net\Cache` | Cache temporário do mpv para demuxer, ICC e shaders. |
+| `%LOCALAPPDATA%\mpv.net\Temp` | Arquivos temporários criados pelo frontend, como playlists normalizadas. |
 | `%LOCALAPPDATA%\mpv.net\Logs` | Logs diários quando o build é gerado com logging em arquivo habilitado. |
 
 Para scripts como `thumbfast`, a versão portátil deve usar `portable_config/scripts` e `portable_config/script-opts`. No mpv.net v7, `thumbfast` tem suporte direto; `mpv_path` para um `mpv.exe` separado deve ser tratado como fallback para versões antigas ou casos específicos documentados pelo próprio script.
@@ -207,12 +208,14 @@ Quando `--config-dir` é usado, o caminho do `input.conf` também é ajustado pa
 
 1. A aplicação inicia.
 2. `Player.ConfigFolder` resolve `MPVNET_HOME`, `portable_config` ou `%APPDATA%\mpv.net`.
-3. O cache do mpv é direcionado para `%LOCALAPPDATA%\mpv.net\Cache`.
-4. Os arquivos de configuração são lidos.
-5. `mpv.conf`, `mpvnet.conf` e `input.conf` recebem tratamento específico.
-6. `settings.xml`, `theme.conf` e `global-input.conf` completam o estado do frontend.
-7. A UI e o libmpv usam esse estado inicial.
-8. Alterações podem ser persistidas em `settings.xml` ou nos arquivos do usuário quando a migração for necessária.
+3. Arquivos antigos em `%LOCALAPPDATA%\mpv.net\Cache` e `%LOCALAPPDATA%\mpv.net\Temp`
+   com mais de 1 dia são removidos de forma não bloqueante.
+4. O cache do mpv é direcionado para `%LOCALAPPDATA%\mpv.net\Cache`.
+5. Os arquivos de configuração são lidos.
+6. `mpv.conf`, `mpvnet.conf` e `input.conf` recebem tratamento específico.
+7. `settings.xml`, `theme.conf` e `global-input.conf` completam o estado do frontend.
+8. A UI e o libmpv usam esse estado inicial.
+9. Alterações podem ser persistidas em `settings.xml` ou nos arquivos do usuário quando a migração for necessária.
 
 ---
 
@@ -228,6 +231,16 @@ Não alterar nomes de arquivos, ordem de resolução ou sintaxe sem migração.
 Arquivos de configuração ficam em `portable_config`, mas cache temporário e logs
 de diagnóstico continuam em `%LOCALAPPDATA%\mpv.net`, para não misturar estado
 descartável com configuração portátil.
+
+## Limpeza de estado descartável
+
+Na inicialização, o aplicativo tenta limpar arquivos e diretórios vazios com
+mais de 1 dia em `%LOCALAPPDATA%\mpv.net\Cache` e
+`%LOCALAPPDATA%\mpv.net\Temp`.
+
+Essa limpeza não altera arquivos de configuração e não deve bloquear a abertura
+do player. Falhas individuais ou gerais são capturadas e registradas apenas
+quando o build foi gerado com logging em arquivo habilitado.
 
 ## Migrações automáticas
 

@@ -132,6 +132,40 @@ var blockedLogWriter = new FileLogWriter(blockedLogPath, () => fixedLogDate);
 bool blockedWriteDidNotThrow = true;
 string expectedLocalAppDataRoot = Path.Combine(Folder.LocalAppData, "mpv.net");
 string defaultCacheFolder = new MainPlayer().CacheFolder;
+string defaultTempFolder = Global.App.TempFolder;
+
+DateTime fixedCleanupDate = new(2026, 6, 2, 12, 0, 0);
+string tempCleanupDir = Path.Combine(Path.GetTempPath(), "mpvnet-cleanup-tests-" + Guid.NewGuid().ToString("N"));
+string cleanupCacheDir = Path.Combine(tempCleanupDir, "Cache");
+string cleanupTempDir = Path.Combine(tempCleanupDir, "Temp");
+Directory.CreateDirectory(cleanupCacheDir);
+Directory.CreateDirectory(cleanupTempDir);
+string oldCacheFile = Path.Combine(cleanupCacheDir, "old-cache.bin");
+string recentCacheFile = Path.Combine(cleanupCacheDir, "recent-cache.bin");
+string oldTempFile = Path.Combine(cleanupTempDir, "old-temp.m3u8");
+string recentTempFile = Path.Combine(cleanupTempDir, "recent-temp.m3u8");
+string oldEmptyDir = Path.Combine(cleanupCacheDir, "old-empty");
+Directory.CreateDirectory(oldEmptyDir);
+File.WriteAllText(oldCacheFile, "old");
+File.WriteAllText(recentCacheFile, "recent");
+File.WriteAllText(oldTempFile, "old");
+File.WriteAllText(recentTempFile, "recent");
+File.SetLastWriteTime(oldCacheFile, fixedCleanupDate.AddDays(-2));
+File.SetLastWriteTime(oldTempFile, fixedCleanupDate.AddDays(-2));
+File.SetLastWriteTime(recentCacheFile, fixedCleanupDate.AddHours(-12));
+File.SetLastWriteTime(recentTempFile, fixedCleanupDate.AddHours(-12));
+Directory.SetLastWriteTime(oldEmptyDir, fixedCleanupDate.AddDays(-2));
+TemporaryFileCleanup.Cleanup(fixedCleanupDate, cleanupCacheDir, cleanupTempDir);
+bool missingCleanupFolderDidNotThrow = true;
+
+try
+{
+    TemporaryFileCleanup.Cleanup(fixedCleanupDate, Path.Combine(tempCleanupDir, "missing"));
+}
+catch
+{
+    missingCleanupFolderDidNotThrow = false;
+}
 
 try
 {
@@ -273,6 +307,14 @@ var tests = new (string Name, bool Result)[]
     ("Default log folder uses mpv.net LocalAppData root", Path.GetFullPath(Log.LogFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
     ("Default cache folder uses mpv.net LocalAppData root", Path.GetFullPath(defaultCacheFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
     ("Default cache folder is separate from logs", !StringComparer.OrdinalIgnoreCase.Equals(Path.GetFullPath(defaultCacheFolder), Path.GetFullPath(Log.LogFolder))),
+    ("Default temp folder uses mpv.net LocalAppData root", Path.GetFullPath(defaultTempFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
+    ("Default temp folder is separate from cache", !StringComparer.OrdinalIgnoreCase.Equals(Path.GetFullPath(defaultTempFolder), Path.GetFullPath(defaultCacheFolder))),
+    ("Temporary cleanup deletes old cache files", !File.Exists(oldCacheFile)),
+    ("Temporary cleanup deletes old temp files", !File.Exists(oldTempFile)),
+    ("Temporary cleanup keeps recent cache files", File.Exists(recentCacheFile)),
+    ("Temporary cleanup keeps recent temp files", File.Exists(recentTempFile)),
+    ("Temporary cleanup deletes old empty directories", !Directory.Exists(oldEmptyDir)),
+    ("Temporary cleanup ignores missing folders", missingCleanupFolderDidNotThrow),
     ("MediaInfo policy accepts enabled existing local file", MediaInfoPolicy.CanUseMediaInfo(true, tempMediaFile)),
     ("MediaInfo policy rejects disabled local file", !MediaInfoPolicy.CanUseMediaInfo(false, tempMediaFile)),
     ("MediaInfo policy rejects streaming URL", !MediaInfoPolicy.CanUseMediaInfo(true, "https://example.com/video.mp4")),
@@ -290,6 +332,7 @@ File.Delete(tempNormalizedPlsM3u);
 File.Delete(tempRawTitleM3u);
 Directory.Delete(tempPlaylistDir, true);
 Directory.Delete(tempLogDir, true);
+Directory.Delete(tempCleanupDir, true);
 
 foreach (var test in tests)
     Console.WriteLine($"{(test.Result ? "PASS" : "FAIL")} {test.Name}");

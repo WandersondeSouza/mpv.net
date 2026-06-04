@@ -11,6 +11,7 @@ public class AppClass
 {
     public List<string> TempFiles { get; } = new ();
 
+    public string TempFolder => TemporaryFileCleanup.DefaultTempFolder + Path.DirectorySeparatorChar;
     public string ConfPath { get => Player.ConfigFolder + "mpvnet.conf"; }
     public string ProcessInstance { get; set; } = "single";
     public string DarkMode { get; set; } = "always";
@@ -61,6 +62,7 @@ public class AppClass
     public void Init()
     {
         Log.Info("Initializing application configuration.");
+        TemporaryFileCleanup.CleanupDefaultFolders();
         var useless1 = Player.ConfigFolder;
         EnsureInitialMpvConf();
         var useless2 = Player.Conf;
