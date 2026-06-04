@@ -28,10 +28,12 @@ Use as releases do fork em:
 - Para streaming, `yt-dlp.exe` precisa estar disponível no `PATH` ou ao lado do executável.
 
 O instalador registra os formatos de mídia comuns e playlists IPTV suportados
-pelo fork. Imagens não são associadas automaticamente na instalação; use
-`Config > Setup > Register image file associations` no menu de contexto se
-quiser associá-las manualmente. Ao desinstalar, o instalador remove também as
-associações do mpv.net criadas manualmente para imagens.
+pelo fork e adiciona a pasta instalada ao `PATH` do Windows, permitindo executar
+`mpvnet.exe` pelo terminal após abrir uma nova sessão. Imagens não são
+associadas automaticamente na instalação; use `Config > Setup > Register image
+file associations` no menu de contexto se quiser associá-las manualmente. Ao
+desinstalar, o instalador remove também as associações do mpv.net criadas
+manualmente para imagens e remove a pasta instalada do `PATH`.
 
 As associações atuais incluem:
 

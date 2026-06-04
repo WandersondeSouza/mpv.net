@@ -32,6 +32,8 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   instalador.
 - Ajustada a remocao de associacoes para limpar tambem o grupo de imagens
   registrado manualmente pelo mpv.net durante a desinstalacao.
+- O instalador passa a adicionar a pasta instalada ao `PATH` do Windows e a
+  remover essa entrada durante a desinstalacao.
 
 # Fork WandersondeSouza - v7.1.2.8 (2026-06-02)
 
