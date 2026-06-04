@@ -21,10 +21,14 @@ string tempWpl = Path.Combine(tempPlaylistDir, "playlist.wpl");
 string tempCue = Path.Combine(tempPlaylistDir, "playlist.cue");
 string tempJspf = Path.Combine(tempPlaylistDir, "playlist.jspf");
 string tempUnknown = Path.Combine(tempPlaylistDir, "ignored.txt");
+string tempImage = Path.Combine(tempPlaylistDir, "image.jpg");
+string tempSecondImage = Path.Combine(tempPlaylistDir, "second.png");
 string relativeMediaFile = "mpvnet-tests-relative-media.mkv";
 File.WriteAllText(tempAudio, "");
 File.WriteAllText(tempVideo, "");
 File.WriteAllText(tempUnknown, "");
+File.WriteAllText(tempImage, "");
+File.WriteAllText(tempSecondImage, "");
 File.WriteAllText(relativeMediaFile, "");
 File.WriteAllLines(tempM3u, [
     "#EXTM3U",
@@ -285,6 +289,9 @@ var tests = new (string Name, bool Result)[]
     ("Audio defaults add modern formats", expectedAudioExts.All(audioExts.Contains)),
     ("Folder media filter includes playlists", FileTypes.GetMediaFiles([tempAudio, tempVideo, tempM3u, tempUnknown]).Count() == 3),
     ("Folder media filter keeps playlist files", FileTypes.GetMediaFiles([tempM3u]).Single() == tempM3u),
+    ("Folder autoload for video includes audio video and playlists", FileTypes.GetFolderMediaFiles([tempAudio, tempVideo, tempM3u, tempImage, tempUnknown], tempVideo).SequenceEqual([tempAudio, tempVideo, tempM3u])),
+    ("Folder autoload for image includes only images", FileTypes.GetFolderMediaFiles([tempAudio, tempVideo, tempM3u, tempImage, tempSecondImage, tempUnknown], tempImage).SequenceEqual([tempImage, tempSecondImage])),
+    ("Folder autoload detects uppercase image extension", FileTypes.GetFolderMediaFiles([tempAudio, tempImage.ToUpperInvariant()], tempImage.ToUpperInvariant()).Single() == tempImage.ToUpperInvariant()),
     ("Empty media track defaults avoid null bindings", new MediaTrack().Text == "" && new MediaTrack().Language == ""),
     ("Playlist parser keeps playable unique items", parsedPlaylist.Count == 2),
     ("Playlist parser resolves relative media paths", parsedPlaylist.Any(i => i.Path == tempAudio)),

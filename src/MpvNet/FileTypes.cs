@@ -38,7 +38,7 @@ public static class FileTypes
 
     public static bool IsVideo(string ext) => GetSupportedVideoExts().Contains(NormalizeExt(ext));
     public static bool IsAudio(string ext) => GetAudioExts().Contains(NormalizeExt(ext));
-    public static bool IsImage(string ext) => GetImgExts().Contains(ext);
+    public static bool IsImage(string ext) => GetImgExts().Contains(NormalizeExt(ext));
 
     public static string[] GetVideoExts()
     {
@@ -77,6 +77,11 @@ public static class FileTypes
 
     public static IEnumerable<string> GetMediaFiles(string[] files) =>
         files.Where(i => IsVideo(i.Ext()) || IsAudio(i.Ext()) || IsPlaylist(i.Ext()));
+
+    public static IEnumerable<string> GetFolderMediaFiles(string[] files, string currentFile) =>
+        IsImage(currentFile.Ext())
+            ? files.Where(i => IsImage(i.Ext()))
+            : GetMediaFiles(files);
 
     public static string GetOpenFileDialogFilter()
     {

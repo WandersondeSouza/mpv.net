@@ -60,6 +60,12 @@ Arquivos principais:
 
 O frontend aceita arquivos locais, playlists e URLs de streaming compatíveis com o mpv.
 
+Quando `auto-load-folder=yes` está ativo e o usuário abre um arquivo local de
+áudio ou vídeo, o mpv.net adiciona à playlist interna os outros arquivos de
+áudio, vídeo e playlists compatíveis da mesma pasta. Quando o arquivo aberto é
+uma imagem, o carregamento automático da pasta adiciona apenas outras imagens
+compatíveis da mesma pasta.
+
 Playlists locais nos formatos `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`,
 `.wpl`, `.cue` e `.jspf` são expandidas pelo frontend antes do envio ao
 mpv/libmpv. O mpv.net usa o título informado pela playlist quando disponível

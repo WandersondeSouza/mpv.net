@@ -323,7 +323,7 @@ public partial class MainPlayer
             if (path.Contains('\\'))
                 dir = System.IO.Path.GetDirectoryName(path)!;
 
-            List<string> files = FileTypes.GetMediaFiles(Directory.GetFiles(dir)).ToList();
+            List<string> files = FileTypes.GetFolderMediaFiles(Directory.GetFiles(dir), path).ToList();
 
             if (OperatingSystem.IsWindows())
                 files.Sort(new StringLogicalComparer());
