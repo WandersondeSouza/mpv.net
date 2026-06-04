@@ -162,7 +162,7 @@ public class GuiCommand
 
     void Open_DVD_Or_BD_Folder(IList<string> args)
     {
-        var dialog = new FolderBrowserDialog();
+        using var dialog = new FolderBrowserDialog();
 
         if (dialog.ShowDialog() == DialogResult.OK)
             Player.LoadDiskFolder(dialog.SelectedPath);
@@ -322,7 +322,10 @@ public class GuiCommand
             else
                 Msg.ShowError(_("Error creating file associations."));
         }
-        catch { }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Failed to register file associations.");
+        }
     }
 
     class Obj

@@ -6,15 +6,18 @@ Os itens aqui são pendências ou verificações em aberto. Quando algo for cons
 
 ## Foco imediato
 
-Nenhuma pendência imediata registrada.
+- Reduzir responsabilidades de `src/MpvNet.Windows/WinForms/MainForm.cs` em etapas pequenas. Inventário inicial: janela principal, fullscreen, menu de contexto, encaminhamento de mensagens Win32, drag/drop, integração com `Player`, comandos de UI e eventos de mouse/teclado estão concentrados no mesmo arquivo.
+- Reduzir responsabilidades de `src/MpvNet/Player.cs` em etapas pequenas. Inventário inicial: inicialização do mpv/libmpv, propriedades observadas, carregamento de mídia, playlist, títulos, MediaInfo opcional, comandos e encerramento do player estão concentrados no mesmo arquivo.
+- Revisar `src/MpvNet.Windows/WPF/ConfWindow.xaml.cs` antes de novas mudanças de configuração, porque o arquivo concentra montagem da árvore, busca/filtro, edição e persistência visual do editor.
 
 ## Desenvolvimento prioritario
 
-Nenhum item prioritário em aberto após a validação local do fork.
+- Etapa segura recomendada: extrair helpers privados ou classes pequenas por tema, sem mover fluxo de UI/fullscreen/libmpv em bloco único.
+- Antes de cada extração, proteger comportamento com build e validação do executável `src/MpvNet.Tests/MpvNet.Tests.csproj` quando a área tocar parser, paths, playlist, título, logs ou configuração.
 
 ## Itens já entendidos e não prioritários
 
-Nenhum item não prioritário pendente no momento.
+- `src/MpvNet.Windows/WPF/HandyControl/` e `src/MpvNet.Windows/WPF/MsgBox/` incluem código de UI auxiliar/terceirizado ou derivado. Evitar reorganização ampla desses arquivos sem motivo funcional claro.
 
 ## Navegação técnica
 

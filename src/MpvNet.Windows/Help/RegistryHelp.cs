@@ -13,7 +13,7 @@ public static class RegistryHelp
         get
         {
             if (ProductName == null)
-                throw new Exception("ProductName cannot be null.");
+                throw new InvalidOperationException("ProductName cannot be null.");
 
             return _appKey ??= @"HKCU\Software\" + ProductName;
         }
@@ -53,7 +53,9 @@ public static class RegistryHelp
     {
         try {
             GetRootKey(path).DeleteSubKeyTree(path[5..], false);
-        } catch { }
+        } catch (Exception ex) {
+            Log.Error(ex, "Failed to remove registry key.");
+        }
     }
 
     public static void RemoveValue(string path, string name)
@@ -61,7 +63,9 @@ public static class RegistryHelp
         try {
             using RegistryKey? regKey = GetRootKey(path).OpenSubKey(path[5..], true);
             regKey?.DeleteValue(name, false);
-        } catch { }
+        } catch (Exception ex) {
+            Log.Error(ex, "Failed to remove registry value.");
+        }
     }
 
     static RegistryKey GetRootKey(string path) => path[..4] switch
@@ -69,6 +73,6 @@ public static class RegistryHelp
         "HKLM" => Registry.LocalMachine,
         "HKCU" => Registry.CurrentUser,
         "HKCR" => Registry.ClassesRoot,
-        _ => throw new Exception(),
+        _ => throw new ArgumentException($"Unsupported registry root in path '{path}'.", nameof(path)),
     };
 }

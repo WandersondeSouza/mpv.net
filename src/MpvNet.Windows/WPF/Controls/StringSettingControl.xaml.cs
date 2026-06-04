@@ -68,7 +68,7 @@ public partial class StringSettingControl : UserControl, ISettingControl
         {
             case "folder":
                 {
-                    var dialog = new Forms.FolderBrowserDialog { InitialDirectory = ValueTextBox.Text };
+                    using var dialog = new Forms.FolderBrowserDialog { InitialDirectory = ValueTextBox.Text };
 
                     if (dialog.ShowDialog() == Forms.DialogResult.OK)
                         ValueTextBox.Text = dialog.SelectedPath;
@@ -79,14 +79,10 @@ public partial class StringSettingControl : UserControl, ISettingControl
                 {
                     dialog.FullOpen = true;
 
-                    try
+                    if (!string.IsNullOrEmpty(ValueTextBox.Text) && TryGetColor(ValueTextBox.Text, out Color col))
                     {
-                        if (!string.IsNullOrEmpty(ValueTextBox.Text))
-                        {
-                            Color col = GetColor(ValueTextBox.Text);
-                            dialog.Color = System.Drawing.Color.FromArgb(col.A, col.R, col.G, col.B); 
-                        }
-                    } catch {}
+                        dialog.Color = System.Drawing.Color.FromArgb(col.A, col.R, col.G, col.B);
+                    }
 
                     if (dialog.ShowDialog() == Forms.DialogResult.OK)
                         ValueTextBox.Text = "#" + dialog.Color.ToArgb().ToString("X8");
@@ -120,12 +116,21 @@ public partial class StringSettingControl : UserControl, ISettingControl
         {
             Color color = Colors.Transparent;
 
-            if (ValueTextBox.Text != "")
-                try {
-                    color = GetColor(ValueTextBox.Text);
-                } catch {}
+            if (ValueTextBox.Text != "" && TryGetColor(ValueTextBox.Text, out Color parsedColor))
+                color = parsedColor;
 
             ValueTextBox.Background = new SolidColorBrush(color);
+        }
+    }
+
+    bool TryGetColor(string value, out Color color)
+    {
+        try {
+            color = GetColor(value);
+            return true;
+        } catch {
+            color = Colors.Transparent;
+            return false;
         }
     }
 }

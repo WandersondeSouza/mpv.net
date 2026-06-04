@@ -122,13 +122,18 @@ public partial class MessageBoxEx : Window, INotifyPropertyChanged
 
     public static Color ColorFromString(string colorString)
     {
-        Color wpfColor = Colors.Black;
+        return TryColorFromString(colorString, out Color wpfColor) ? wpfColor : Colors.Black;
+    }
 
+    private static bool TryColorFromString(string colorString, out Color color)
+    {
         try {
-            wpfColor = (Color)ColorConverter.ConvertFromString(colorString);
-        } catch (Exception) { }
-
-        return wpfColor;
+            color = (Color)ColorConverter.ConvertFromString(colorString);
+            return true;
+        } catch {
+            color = Colors.Black;
+            return false;
+        }
     }
 
     public static void SetFont()
