@@ -157,131 +157,7 @@ public partial class MainForm : Form
             DwmSetWindowAttribute(Handle, 20, new[] { Theme.DarkMode ? 1 : 0 }, 4);  // DWMWA_USE_IMMERSIVE_DARK_MODE = 20
     }
 
-    void Player_ClientMessage(string[] args)
-    {
-        if (Command.Current.Commands.ContainsKey(args[0]))
-            Command.Current.Commands[args[0]].Invoke(new ArraySegment<string>(args, 1, args.Length - 1));
-        else if (GuiCommand.Current.Commands.ContainsKey(args[0]))
-            BeginInvoke(() => GuiCommand.Current.Commands[args[0]].Invoke(new ArraySegment<string>(args, 1, args.Length - 1)));
-    }
-
-    void Player_PlaylistPosChanged(int pos)
-    {
-        if (pos == -1)
-            SetTitle();
-    }
-
-    void PropChangeWindowScale(double scale)
-    {
-        if (!WasShown)
-            return;
-
-        BeginInvoke(() => {
-            SetSize(
-                (int)(Player.VideoSize.Width * scale),
-                (int)Math.Floor(Player.VideoSize.Height * scale),
-                Screen.FromControl(this), false);
-        });
-    }
-
-    void Player_Shutdown() => BeginInvoke(Close);
-
-    void Player_VideoSizeChanged(Size value) => BeginInvoke(() =>
-    {
-        if (!KeepSize())
-            SetFormPosAndSize();
-    });
-
-    void GuiCommand_ScaleWindow(float scale)
-    {
-        BeginInvoke(() => {
-            int w, h;
-
-            if (KeepSize())
-            {
-                w = (int)(ClientSize.Width * scale);
-                h = (int)(ClientSize.Height * scale);
-            }
-            else
-            {
-                w = (int)(ClientSize.Width * scale);
-                h = (int)Math.Floor(w * Player.VideoSize.Height / (double)Player.VideoSize.Width);
-            }
-
-            SetSize(w, h, Screen.FromControl(this), false);
-        });
-    }
-
-    void GuiCommand_MoveWindow(string direction)
-    {
-        BeginInvoke(() => {
-            Screen screen = Screen.FromControl(this);
-            Rectangle workingArea = GetWorkingArea(Handle, screen.WorkingArea);
-
-            switch (direction)
-            {
-                case "left":
-                    Left = workingArea.Left;
-                    break;
-                case "top":
-                    Top = 0;
-                    break;
-                case "right":
-                    Left = workingArea.Width - Width + workingArea.Left;
-                    break;
-                case "bottom":
-                    Top = workingArea.Height - Height;
-                    break;
-                case "center":
-                    Left = (screen.Bounds.Width - Width) / 2;
-                    Top = (screen.Bounds.Height - Height) / 2;
-                    break;
-            }
-        });
-    }
-
-    void GuiCommand_WindowScaleNet(float scale)
-    {
-        BeginInvoke(() => {
-            SetSize(
-                (int)(Player.VideoSize.Width * scale),
-                (int)Math.Floor(Player.VideoSize.Height * scale),
-                Screen.FromControl(this), false);
-            Player.Command($"show-text \"window-scale {scale.ToString(CultureInfo.InvariantCulture)}\"");
-        });
-    }
-
-    void GuiCommand_ShowMenu()
-    {
-        BeginInvoke(() => {
-            if (IsMouseInOsc())
-                return;
-
-            ShowCursor();
-            UpdateMenu();
-            ContextMenu.IsOpen = true;
-        });
-    }
-
-    void PropChangeFullscreen(bool value) => BeginInvoke(() => CycleFullscreen(value));
-
-    bool IsFullscreen => WindowState == FormWindowState.Maximized && FormBorderStyle == FormBorderStyle.None;
-
     bool KeepSize() => App.StartSize == "session" || App.StartSize == "always";
-
-    bool IsMouseInOsc()
-    {
-        Point pos = PointToClient(MousePosition);
-        float top = 0;
-
-        if (!Player.Border)
-            top = ClientSize.Height * 0.1f;
-
-        return pos.X < ClientSize.Width * 0.1 ||
-               pos.X > ClientSize.Width * 0.9 ||
-               pos.Y < top ||
-               pos.Y > ClientSize.Height * 0.78;
-    }
 
     void UpdateMenu()
     {
@@ -475,39 +351,6 @@ public partial class MainForm : Form
         }
     }
 
-    void AddTrackMenuItems(WpfControls.MenuItem parent, IEnumerable<MediaTrack> tracks, string propertyName, string selectedId)
-    {
-        foreach (MediaTrack track in tracks)
-        {
-            var menuItem = CreateTrackMenuItem(track);
-            menuItem.Click += (sender, args) => Player.CommandV("set", propertyName, track.ID.ToString());
-            menuItem.IsChecked = selectedId == track.ID.ToString();
-            parent.Items.Add(menuItem);
-        }
-    }
-
-    void AddNoSubtitlesMenuItem(WpfControls.MenuItem parent)
-    {
-        var menuItem = new WpfControls.MenuItem() { Header = "S: " + _("No subtitles") };
-        menuItem.Click += (sender, args) => Player.CommandV("set", "sid", "no");
-        menuItem.IsChecked = Player.SID == "no";
-        parent.Items.Add(menuItem);
-    }
-
-    void AddEditionMenuItems(WpfControls.MenuItem parent, IEnumerable<MediaTrack> tracks)
-    {
-        foreach (MediaTrack track in tracks)
-        {
-            var menuItem = CreateTrackMenuItem(track);
-            menuItem.Click += (sender, args) => Player.CommandV("set", "edition", track.ID.ToString());
-            menuItem.IsChecked = Player.Edition == track.ID;
-            parent.Items.Add(menuItem);
-        }
-    }
-
-    static WpfControls.MenuItem CreateTrackMenuItem(MediaTrack track) =>
-        new() { Header = track.Text.Replace("_", "__") };
-
     void ApplyInterfaceLanguageFromAlang()
     {
         string alang = Player.GetPropertyString("alang");
@@ -524,37 +367,6 @@ public partial class MainForm : Form
         Translator.Current?.Gettext("");
         Player.SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
         RebuildContextMenu();
-    }
-
-    public WpfControls.MenuItem? FindMenuItem(string text, string text2 = "") {
-        var ret = FindMenuItem(text, ContextMenu.Items);
-
-        if (ret == null && text2 != "")
-            return FindMenuItem(text2, ContextMenu.Items);
-
-        return ret;
-    }
-
-    WpfControls.MenuItem? FindMenuItem(string text, WpfControls.ItemCollection? items)
-    {
-        foreach (object item in items!)
-        {
-            if (item is WpfControls.MenuItem mi)
-            {
-                if (mi.Header.ToString().StartsWithEx(text) && mi.Header.ToString().TrimEx() == text)
-                    return mi;
-
-                if (mi.Items.Count > 0)
-                {
-                    WpfControls.MenuItem? val = FindMenuItem(text, mi.Items);
-
-                    if (val != null)
-                        return val;
-                }
-            }
-        }
-
-        return null;
     }
 
     void SetFormPosAndSize(bool force = false, bool checkAutofit = true, bool load = false)
@@ -784,49 +596,6 @@ public partial class MainForm : Form
         return new Point(x, y);
     }
 
-    public void CycleFullscreen(bool enabled)
-    {
-        _lastCycleFullscreen = Environment.TickCount;
-        Player.Fullscreen = enabled;
-
-        if (enabled)
-        {
-            if (WindowState != FormWindowState.Maximized || FormBorderStyle != FormBorderStyle.None)
-            {
-                FormBorderStyle = FormBorderStyle.None;
-                WindowState = FormWindowState.Maximized;
-
-                if (_wasMaximized)
-                {
-                    Rectangle bounds = Screen.FromControl(this).Bounds;
-                    uint SWP_SHOWWINDOW = 0x0040;
-                    IntPtr HWND_TOP= IntPtr.Zero;
-                    SetWindowPos(Handle, HWND_TOP, bounds.X, bounds.Y, bounds.Width, bounds.Height, SWP_SHOWWINDOW);
-                }
-            }
-        }
-        else
-        {
-            if (WindowState == FormWindowState.Maximized && FormBorderStyle == FormBorderStyle.None)
-            {
-                if (_wasMaximized)
-                    WindowState = FormWindowState.Maximized;
-                else
-                {
-                    WindowState = FormWindowState.Normal;
-
-                    if (!Player.WasInitialSizeSet)
-                        SetFormPosAndSize();
-                }
-
-                FormBorderStyle = Player.Border ? FormBorderStyle.Sizable : FormBorderStyle.None;
-
-                if (!KeepSize())
-                    SetFormPosAndSize();
-            }
-        }
-    }
-
     public int GetHorizontalLocation(Screen screen)
     {
         Rectangle workingArea = GetWorkingArea(Handle, screen.WorkingArea);
@@ -929,52 +698,6 @@ public partial class MainForm : Form
         }
     }
     
-    void Player_FileLoaded()
-    {
-        NormalizeLoadedMediaTitle();
-        TaskHelp.Run(() => {
-            Player.UpdateTracks();
-        });
-
-        BeginInvoke(() => {
-            SetTitleInternal();
-
-            int interval = (int)(Player.Duration.TotalMilliseconds / 100);
-
-            if (interval < 100)
-                interval = 100;
-
-            if (interval > 1000)
-                interval = 1000;
-
-            ProgressTimer.Interval = interval;
-            UpdateProgressBar();
-        });
-
-        string path = Player.GetPropertyString("path");
-
-        path = MainPlayer.ConvertFilePath(path);
-
-        if (path.Contains("://"))
-        {
-            string title = Player.GetPropertyString("media-title");
-
-            if (!string.IsNullOrEmpty(title) && path != title)
-                path = path + "|" + title;
-        }
-
-        if (!string.IsNullOrEmpty(path) && path != "-" && path != @"bd://" && path != @"dvd://")
-        {
-            if (App.Settings.RecentFiles.Contains(path))
-                App.Settings.RecentFiles.Remove(path);
-
-            App.Settings.RecentFiles.Insert(0, path);
-
-            while (App.Settings.RecentFiles.Count > App.RecentCount)
-                App.Settings.RecentFiles.RemoveAt(App.RecentCount);
-        }
-    }
-
     void SetTitle() => BeginInvoke(SetTitleInternal);
 
     void SetTitleInternal()
@@ -1429,12 +1152,6 @@ public partial class MainForm : Form
         });
     }
 
-    void Player_Pause()
-    {
-        if (_taskbar != null && Player.TaskbarProgress)
-            _taskbar.SetState(Player.Paused ? TaskbarStates.Paused : TaskbarStates.Normal);
-    }
-
     protected override void OnLoad(EventArgs e)
     {
         base.OnLoad(e);
@@ -1537,26 +1254,6 @@ public partial class MainForm : Form
         SaveWindowProperties();
     }
 
-    protected override void OnDragEnter(DragEventArgs e)
-    {
-        base.OnDragEnter(e);
-
-        if (e.Data!.GetDataPresent(DataFormats.FileDrop) || e.Data.GetDataPresent(DataFormats.Text))
-            e.Effect = DragDropEffects.Copy;
-    }
-
-    protected override void OnDragDrop(DragEventArgs e)
-    {
-        base.OnDragDrop(e);
-
-        bool append = ModifierKeys == Keys.Shift;
-
-        if (e.Data!.GetDataPresent(DataFormats.FileDrop))
-            Player.LoadFiles(e.Data.GetData(DataFormats.FileDrop) as string[], true, append);
-        else if (e.Data.GetDataPresent(DataFormats.Text))
-            Player.LoadFiles(new[] { e.Data.GetData(DataFormats.Text)!.ToString()! }, true, append);
-    }
-
     protected override void OnKeyDown(KeyEventArgs e)
     {
         // prevent annoying beep using alt key
@@ -1564,30 +1261,6 @@ public partial class MainForm : Form
             e.SuppressKeyPress = true;
 
         base.OnKeyDown(e);
-    }
-
-    void ShowCursor()
-    {
-        if (!_isCursorVisible && _cursorAutohide != -1)
-        {
-            Cursor.Show();
-            _isCursorVisible = true;
-        }
-    }
-
-    void HideCursor()
-    {
-        if (_isCursorVisible && _cursorAutohide != 0)
-        {
-            Cursor.Hide();
-            _isCursorVisible = false;
-        }
-    }
-
-    bool IsCursorPosDifferent(Point screenPos)
-    {
-        float len = 5 * (GetDpi(Handle) / 96f);
-        return Math.Abs(screenPos.X - MousePosition.X) > len || Math.Abs(screenPos.Y - MousePosition.Y) > len;
     }
 
     [DllImport("DwmApi")]
