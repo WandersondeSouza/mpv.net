@@ -23,7 +23,7 @@ param(
     [string] $MediaInfoVersion = $env:MPVNET_MEDIAINFO_VERSION,
 
     [ValidateSet('normal', 'x86_64-v3')]
-    [string] $MpvBuildVariant = $(if ($env:MPVNET_MPV_BUILD_VARIANT) { $env:MPVNET_MPV_BUILD_VARIANT } else { 'normal' }),
+    [string] $MpvBuildVariant = $(if ($env:MPVNET_MPV_BUILD_VARIANT) { $env:MPVNET_MPV_BUILD_VARIANT } else { 'x86_64-v3' }),
 
     [string] $MediaInfoFile,
 
@@ -132,6 +132,19 @@ function Invoke-FileDownload($uri, $outputFile) {
 function Get-FreshCachedFile($downloadDir, $filePattern) {
     $matches = @(Get-ChildItem $downloadDir -Filter $filePattern -File -ErrorAction SilentlyContinue |
         Where-Object { Test-FreshFile $_.FullName } |
+        Sort-Object LastWriteTime -Descending)
+
+    if ($matches.Count) {
+        Write-Host "Using cached download: $($matches[0].FullName)"
+        return Test-RequiredFile $matches[0].FullName
+    }
+
+    return $null
+}
+
+function Get-FreshCachedFileMatchingRegex($downloadDir, $filePattern, $namePattern) {
+    $matches = @(Get-ChildItem $downloadDir -Filter $filePattern -File -ErrorAction SilentlyContinue |
+        Where-Object { ($_.Name -match $namePattern) -and (Test-FreshFile $_.FullName) } |
         Sort-Object LastWriteTime -Descending)
 
     if ($matches.Count) {
@@ -282,7 +295,7 @@ function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
     $cachePattern = if ($MpvBuildVariant -eq 'x86_64-v3') { 'mpv-dev-x86_64-v3-*.7z' } else { 'mpv-dev-x86_64-*.7z' }
 
     Write-Host "Preparing libmpv build variant: $MpvBuildVariant"
-    $libmpvArchive = Get-FreshCachedFile $downloadsDir $cachePattern
+    $libmpvArchive = Get-FreshCachedFileMatchingRegex $downloadsDir $cachePattern $assetPattern
     if (-not $libmpvArchive) {
         $libmpvArchive = Download-GitHubLatestAsset `
             'https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest' `

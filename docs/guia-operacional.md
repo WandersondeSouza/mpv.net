@@ -66,7 +66,7 @@ Arquivos nativos esperados ao lado de `mpvnet.exe`:
 
 O script de dependencias reutiliza downloads em `artifacts\native-dependencies\downloads`. Se o arquivo esperado nao existir ou tiver mais de 2 dias, ele baixa novamente a versao mais recente encontrada nas fontes oficiais configuradas no script.
 
-Por padrao, o fork usa a build 64bit normal do mpv/libmpv para maxima compatibilidade. A opcao avancada `-MpvBuildVariant x86_64-v3` usa a build 64bit-v3, mantendo o nome `libmpv-2.dll`, mas exige CPU compativel com x86_64-v3, como Intel Haswell/AMD Excavator ou mais recente.
+Por padrao, o fork usa a build 64bit-v3 do mpv/libmpv. Essa variante mantem o nome `libmpv-2.dll`, mas exige CPU compativel com x86_64-v3, como Intel Haswell/AMD Excavator ou mais recente. Use `-MpvBuildVariant normal` apenas quando precisar gerar pacote para CPUs x64 mais antigas.
 
 Validação:
 

@@ -31,9 +31,15 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 
 ## Empacotamento e instalador
 
-- Adicionado suporte opt-in a `-MpvBuildVariant x86_64-v3` nos scripts de build,
-  ZIP, instalador, workflow de release e preparacao de dependencias nativas,
-  mantendo `normal` como padrao por compatibilidade.
+- A variante padrao de mpv/libmpv nos scripts de build/release passou a ser
+  `x86_64-v3`, garantindo que a DLL venha de assets como
+  `mpv-dev-x86_64-v3-[data]-git-[hash].7z` por padrao.
+- Corrigida a selecao de cache da libmpv para validar o nome do asset por regex
+  antes de reutilizar downloads, evitando reaproveitar a build normal quando a
+  variante solicitada for `x86_64-v3`.
+- Mantido suporte explicito a `-MpvBuildVariant normal` nos scripts de build,
+  ZIP, instalador, workflow de release e preparacao de dependencias nativas
+  para pacotes destinados a CPUs x64 mais antigas.
 - Incluido marcador `libmpv-2.variant.txt` nos pacotes para registrar a variante
   de libmpv usada e evitar reutilizacao incorreta do cache de dependencias.
 - Reforcada a validacao de pacotes para conferir tambem `libmpv-2.dll`,

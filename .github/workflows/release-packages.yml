@@ -30,7 +30,7 @@ on:
       mpv_build_variant:
         description: mpv/libmpv build variant
         required: true
-        default: "normal"
+        default: "x86_64-v3"
         type: choice
         options:
           - "normal"

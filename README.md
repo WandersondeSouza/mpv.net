@@ -38,7 +38,7 @@ O mpv.net aceita arquivos locais, playlists e URLs de streaming compatíveis com
 
 ## Build
 
-A build 64bit normal do mpv/libmpv é o padrão para máxima compatibilidade. A variante avançada 64bit-v3 pode ser selecionada nos scripts de build/release para CPUs compatíveis com x86_64-v3; veja [Build e release](docs/developer/build-release.md).
+A build 64bit-v3 do mpv/libmpv é o padrão nos scripts de build/release do fork. A variante normal ainda pode ser selecionada explicitamente para compatibilidade com CPUs x64 mais antigas; veja [Build e release](docs/developer/build-release.md).
 
 ## Para agentes
 
