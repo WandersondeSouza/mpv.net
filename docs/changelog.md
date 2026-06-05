@@ -3,6 +3,42 @@
 Este arquivo registra apenas as versoes publicadas pelo fork
 `WandersondeSouza/mpv.net`.
 
+# Fork WandersondeSouza - v7.1.2.10 (2026-06-05)
+
+## Refatoracao conservadora
+
+- Separadas responsabilidades grandes de `Player.cs` em partials de
+  inicializacao, eventos, ciclo de vida, propriedades observadas, carregamento
+  de midia e capacidades, preservando o contrato com mpv/libmpv.
+- Separadas responsabilidades da janela principal em partials para comandos,
+  menu de contexto, cursor/OSC, drag and drop, fullscreen e eventos do player,
+  reduzindo o tamanho do arquivo central sem mudar os fluxos de UI.
+- Ampliada a cobertura de testes para parser de configuracao, argumentos de
+  linha de comando, atalhos de input, extensoes de imagem, auto-load de pasta,
+  normalizacao de caminhos e selecao de idioma.
+
+## Idiomas e midia
+
+- Centralizado o catalogo de idiomas em `LanguageCatalog`, com normalizacao de
+  codigos ISO/BCP 47, aliases comuns, fallback seguro por cultura e resolucao
+  da interface a partir de `language=system` e `alang`.
+- Documentada a separacao entre idioma da interface (`language`) e preferencias
+  nativas de midia do mpv (`alang`, `slang`, `aid`, `sid`), mantendo o mpv como
+  autoridade final para audio e legenda.
+- Ajustada a exibicao/comparacao de idiomas de faixas para usar o normalizador
+  central, evitando fallbacks inseguros entre variantes de escrita como
+  `zh-CN`/`zh-TW` e `sr-Cyrl`/`sr-Latn`.
+
+## Empacotamento e instalador
+
+- Adicionado suporte opt-in a `-MpvBuildVariant x86_64-v3` nos scripts de build,
+  ZIP, instalador, workflow de release e preparacao de dependencias nativas,
+  mantendo `normal` como padrao por compatibilidade.
+- Incluido marcador `libmpv-2.variant.txt` nos pacotes para registrar a variante
+  de libmpv usada e evitar reutilizacao incorreta do cache de dependencias.
+- Reforcada a validacao de pacotes para conferir tambem `libmpv-2.dll`,
+  FFmpeg, `ffprobe.exe`, `ffplay.exe` e `yt-dlp.exe`.
+
 # Fork WandersondeSouza - v7.1.2.9 (2026-06-04)
 
 ## Refatoracao segura

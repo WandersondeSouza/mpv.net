@@ -72,7 +72,7 @@ Validação:
 
 ```powershell
 .\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Release\win-x64\publish
-.\src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\MPV.NET-Media-Player-v7.1.2.7-portable-x64.zip
+.\src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64.zip
 ```
 
 ## Scripts
