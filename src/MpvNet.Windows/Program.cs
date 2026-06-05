@@ -49,9 +49,11 @@ static class Program
                 WinApi.AttachConsole(-1 /*ATTACH_PARENT_PROCESS*/);
 
             string[] args = Environment.GetCommandLineArgs().Skip(1).ToArray();
+            Log.Debug($"Command line arguments received: count={args.Length}, args={Log.SafeValues(args)}");
 
             if (args.Length > 1 && args[0] == "--register-file-associations")
             {
+                Log.Info($"Registering file associations from command line. perceivedType='{Log.SafeValue(args[1])}', extensions={Log.SafeValues(args.Skip(2))}");
                 FileAssociation.Register(args[1], args.Skip(2).ToArray());
                 return;
             }
@@ -66,22 +68,31 @@ static class Program
                 App.CommandLine.Contains("--o="))
             {
                 App.ProcessInstance = "multi";
+                Log.Debug($"Process instance forced to multi. shift={Control.ModifierKeys == Keys.Shift}, containsMulti={App.CommandLine.Contains("--process-instance=multi")}, containsOutputOption={App.CommandLine.Contains("--o=")}");
             }
 
             if ((App.ProcessInstance == "single" || App.ProcessInstance == "queue") && !isFirst)
             {
+                Log.Info($"Forwarding command line to existing mpv.net instance. mode={App.ProcessInstance}");
                 List<string> args2 = new List<string> { App.ProcessInstance };
 
                 foreach (string arg in args)
                 {
                     if (CommandLine.IsLoadableFileArgument(arg))
+                    {
+                        Log.Debug($"Forwarding loadable argument to existing instance: '{Log.SafeValue(arg)}'");
                         args2.Add(arg);
+                    }
                     else if (arg == "--queue")
+                    {
+                        Log.Debug("Forwarding request switches existing instance mode to queue.");
                         args2[0] = "queue";
+                    }
                     else if (arg.StartsWith("--command="))
                     {
                         args2[0] = "command";
                         args2.Add(arg[10..]);
+                        Log.Debug($"Forwarding command to existing instance: '{Log.SafeValue(arg[10..])}'");
                     }
                 }
 
@@ -102,6 +113,7 @@ static class Program
                             if (App.IsTerminalAttached)
                                 WinApi.FreeConsole();
 
+                            Log.Info("Command line forwarded to existing instance.");
                             return;
                         }
                     }
@@ -113,13 +125,18 @@ static class Program
             }
 
             if (ProcessCommandLineArguments())
+            {
+                Log.Info("Processed informational command line argument.");
                 Environment.GetCommandLineArgs();
+            }
             else if (App.CommandLine.Contains("--o="))
             {
+                Log.Info("Starting headless output mode because --o= was supplied.");
                 App.AutoLoadFolder = false;
                 Player.Init(IntPtr.Zero, true);
                 CommandLine.ProcessCommandLineArgsPostInit();
                 CommandLine.ProcessCommandLineFiles();
+                Log.Debug("Headless output mode sets idle=no before entering mpv event loop.");
                 Player.SetPropertyString("idle", "no");
                 Player.EventLoop();
                 Player.Destroy();
@@ -146,8 +163,11 @@ static class Program
     {
         foreach (string arg in Environment.GetCommandLineArgs().Skip(1))
         {
+            Log.Debug($"Checking informational command line argument: '{Log.SafeValue(arg)}'");
+
             if (arg == "--profile=help")
             {
+                Log.Info("Processing --profile=help.");
                 Player.Init(IntPtr.Zero, false);
                 Console.WriteLine(Player.GetProfiles());
                 Player.Destroy();
@@ -155,6 +175,7 @@ static class Program
             }
             else if (arg == "--vd=help" || arg == "--ad=help")
             {
+                Log.Info($"Processing decoder help argument: '{arg}'.");
                 Player.Init(IntPtr.Zero, false);
                 Console.WriteLine(Player.GetDecoders());
                 Player.Destroy();
@@ -162,6 +183,7 @@ static class Program
             }
             else if (arg == "--audio-device=help")
             {
+                Log.Info("Processing --audio-device=help.");
                 Player.Init(IntPtr.Zero, false);
                 Console.WriteLine(Player.GetPropertyOsdString("audio-device-list"));
                 Player.Destroy();
@@ -169,6 +191,7 @@ static class Program
             }
             else if (arg == "--input-keylist")
             {
+                Log.Info("Processing --input-keylist.");
                 Player.Init(IntPtr.Zero, false);
                 Console.WriteLine(Player.GetPropertyString("input-key-list").Replace(",", BR));
                 Player.Destroy();
@@ -176,6 +199,7 @@ static class Program
             }
             else if (arg == "--version")
             {
+                Log.Info("Processing --version.");
                 Player.Init(IntPtr.Zero, false);
                 Console.WriteLine(AppClass.About);
                 Player.Destroy();

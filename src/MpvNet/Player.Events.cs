@@ -23,6 +23,7 @@ public partial class MainPlayer
 
     protected override void OnEndFile(mpv_event_end_file data)
     {
+        Log.Info($"mpv end-file event. reason={(mpv_end_file_reason)data.reason}, error={data.error}, errorText='{GetError((mpv_error)data.error)}', path='{Log.SafeValue(GetPropertyString("path"))}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}");
         base.OnEndFile(data);
         FileEnded = true;
     }
@@ -37,6 +38,7 @@ public partial class MainPlayer
     protected override void OnStartFile()
     {
         Path = GetPropertyString("path");
+        Log.Info($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}");
         base.OnStartFile();
         TaskHelp.Run(LoadFolder);
     }
@@ -45,6 +47,7 @@ public partial class MainPlayer
     protected override void OnFileLoaded()
     {
         Duration = GetSafeDuration();
+        Log.Info($"mpv file-loaded event. path='{Log.SafeValue(GetPropertyString("path"))}', duration={Duration}, mediaTitle='{Log.SafeValue(GetPropertyString("media-title"))}'");
 
         if (App.StartSize == "video")
             WasInitialSizeSet = false;

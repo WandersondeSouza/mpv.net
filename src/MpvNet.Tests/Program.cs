@@ -198,6 +198,8 @@ logWriter.Write(LogLevel.Debug, "debug message", null);
 logWriter.Write(LogLevel.Error, "error message", new InvalidOperationException("outer", new Exception("inner")));
 string dailyLogFile = Path.Combine(tempLogDir, "mpvnet-2026-06-02.log");
 string dailyLogContent = File.ReadAllText(dailyLogFile);
+string safeUrlWithSecret = Log.SafeValue("https://example.com/live/index.m3u8?token=secret#fragment");
+string safePlainUrl = Log.SafeValue("https://example.com/live/index.m3u8");
 string blockedLogPath = Path.Combine(tempLogDir, "blocked");
 File.WriteAllText(blockedLogPath, "");
 var blockedLogWriter = new FileLogWriter(blockedLogPath, () => fixedLogDate);
@@ -428,6 +430,8 @@ var tests = new (string Name, bool Result)[]
     ("File log writer keeps recent daily logs", File.Exists(Path.Combine(tempLogDir, "mpvnet-2026-05-28.log"))),
     ("File log writer ignores unrelated files during cleanup", File.Exists(Path.Combine(tempLogDir, "other-2026-05-01.log"))),
     ("File log writer does not throw on write failure", blockedWriteDidNotThrow),
+    ("Log safe value masks URL query and fragment", safeUrlWithSecret == "https://example.com/live/index.m3u8?***#***"),
+    ("Log safe value keeps plain URL unchanged", safePlainUrl == "https://example.com/live/index.m3u8"),
     ("Default log folder uses mpv.net LocalAppData root", Path.GetFullPath(Log.LogFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
     ("Default cache folder uses mpv.net LocalAppData root", Path.GetFullPath(defaultCacheFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
     ("Default cache folder is separate from logs", !StringComparer.OrdinalIgnoreCase.Equals(Path.GetFullPath(defaultCacheFolder), Path.GetFullPath(Log.LogFolder))),

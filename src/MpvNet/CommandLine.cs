@@ -30,7 +30,14 @@ public class CommandLine
         foreach (string input in args)
         {
             if (TryParseArgument(input, out StringPair? pair))
+            {
                 arguments.Add(pair!);
+                Log.Debug($"Parsed command line option: {pair!.Name}='{Log.SafeValue(pair.Value)}'");
+            }
+            else
+            {
+                Log.Debug($"Ignored non-option command line argument while parsing properties: '{Log.SafeValue(input)}'");
+            }
         }
 
         return arguments;
@@ -38,24 +45,34 @@ public class CommandLine
 
     public static void ProcessCommandLineArgsPreInit()
     {
+        Log.Debug($"Processing pre-init command line properties. count={Arguments.Count}");
+
         foreach (var pair in Arguments)
         {
             if (IsChangeListOperation(pair.Name))
+            {
+                Log.Debug($"Skipping change-list command before mpv initialization: {pair.Name}='{Log.SafeValue(pair.Value)}'");
                 continue;
+            }
 
-            ApplyPropertyArgument(pair);
+            ApplyPropertyArgument(pair, "pre-init");
         }
     }
 
     public static void ProcessCommandLineArgsPostInit()
     {
+        Log.Debug($"Processing post-init command line properties. count={Arguments.Count}");
+
         foreach (var pair in Arguments)
         {
             if (_preInitProperties.Contains(pair.Name))
+            {
+                Log.Debug($"Skipping pre-init property during post-init processing: {pair.Name}='{Log.SafeValue(pair.Value)}'");
                 continue;
+            }
 
             if (!TryProcessChangeListArgument(pair))
-                ApplyPropertyArgument(pair);
+                ApplyPropertyArgument(pair, "post-init");
         }
     }
 
@@ -65,14 +82,19 @@ public class CommandLine
 
         foreach (string arg in Environment.GetCommandLineArgs().Skip(1))
         {
-            if (IsLoadableFileArgument(arg))
+            bool isLoadable = IsLoadableFileArgument(arg);
+            Log.Debug($"Command line file candidate: loadable={isLoadable}, value='{Log.SafeValue(arg)}'");
+
+            if (isLoadable)
                 files.Add(arg);
         }
 
+        Log.Info($"Command line media inputs selected: count={files.Count}, queue={App.Queue}, loadFolder={!App.Queue}, inputs={Log.SafeValues(files)}");
         Player.LoadFiles([.. files], !App.Queue, App.Queue);
 
         if (App.CommandLine.Contains("--shuffle"))
         {
+            Log.Info("Applying command line shuffle to playlist.");
             Player.Command("playlist-shuffle");
             Player.SetPropertyInt("playlist-pos", 0);
         }
@@ -173,12 +195,20 @@ public class CommandLine
             _ => name
         };
 
-    static void ApplyPropertyArgument(StringPair pair)
+    static void ApplyPropertyArgument(StringPair pair, string phase)
     {
+        Log.Debug($"Applying {phase} command line property: {pair.Name}='{Log.SafeValue(pair.Value)}'");
         Player.ProcessProperty(pair.Name, pair.Value);
 
         if (!App.ProcessProperty(pair.Name, pair.Value))
+        {
+            Log.Debug($"Forwarding {phase} property to mpv: {pair.Name}='{Log.SafeValue(pair.Value)}'");
             Player.SetPropertyString(pair.Name, pair.Value);
+        }
+        else
+        {
+            Log.Debug($"Applied {phase} property in mpv.net frontend: {pair.Name}='{Log.SafeValue(pair.Value)}'");
+        }
     }
 
     static bool TryProcessChangeListArgument(StringPair pair)
@@ -200,6 +230,7 @@ public class CommandLine
         else
             return false;
 
+        Log.Debug($"Applied command line change-list operation: {pair.Name}='{Log.SafeValue(pair.Value)}'");
         return true;
     }
 

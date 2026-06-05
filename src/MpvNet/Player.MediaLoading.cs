@@ -23,36 +23,62 @@ public partial class MainPlayer
     public void LoadFiles(string[]? files, bool loadFolder, bool append)
     {
         if (files == null || files.Length == 0)
+        {
+            Log.Info($"LoadFiles skipped because no files were supplied. loadFolder={loadFolder}, append={append}");
             return;
+        }
 
         if ((DateTime.Now - LastLoad).TotalMilliseconds < 1000)
+        {
+            Log.Debug("LoadFiles called within 1000 ms of previous load; forcing append mode.");
             append = true;
+        }
 
         LastLoad = DateTime.Now;
+        Log.Info($"Loading media inputs. count={files.Length}, loadFolder={loadFolder}, append={append}, inputs={Log.SafeValues(files)}");
 
         for (int i = 0; i < files.Length; i++)
         {
             string file = files[i];
 
             if (string.IsNullOrEmpty(file))
+            {
+                Log.Debug($"Skipping empty media input at index {i}.");
                 continue;
+            }
 
             if (file.Contains('|'))
+            {
+                Log.Debug($"Removing display-title suffix from media input at index {i}: '{Log.SafeValue(file)}'");
                 file = file[..file.IndexOf("|")];
+            }
 
+            string originalFile = file;
             file = ConvertFilePath(file);
+            Log.Debug($"Prepared media input at index {i}: original='{Log.SafeValue(originalFile)}', converted='{Log.SafeValue(file)}'");
 
             if (TryDownloadRemotePlaylist(file, out string remotePlaylistFile))
+            {
+                Log.Info($"Remote playlist detected and downloaded. source='{Log.SafeValue(file)}', tempFile='{Log.SafeValue(remotePlaylistFile)}'");
                 file = remotePlaylistFile;
+            }
 
             string ext = file.Ext();
+            Log.Debug($"Media input extension classified. index={i}, extension='{ext}', path='{Log.SafeValue(file)}'");
 
             if (OperatingSystem.IsWindows())
             {
                 switch (ext)
                 {
-                    case "avs": LoadAviSynth(); break;
-                    case "lnk": file = GetShortcutTarget(file); break;
+                    case "avs":
+                        Log.Debug("Loading AviSynth support for .avs input.");
+                        LoadAviSynth();
+                        break;
+                    case "lnk":
+                        string shortcutTarget = GetShortcutTarget(file);
+                        Log.Debug($"Resolved shortcut target. shortcut='{Log.SafeValue(file)}', target='{Log.SafeValue(shortcutTarget)}'");
+                        file = shortcutTarget;
+                        break;
                 }
             }
 
@@ -61,33 +87,59 @@ public partial class MainPlayer
                 var playlistItems = PlaylistFile.Read(file);
                 bool appendPlaylist = append || i > 0 || !string.IsNullOrEmpty(GetPropertyString("path"));
                 List<PlaylistFileItem> itemsToLoad = [];
+                Log.Info($"Playlist file expanded. path='{Log.SafeValue(file)}', parsedItems={playlistItems.Count}, appendPlaylist={appendPlaylist}");
 
                 foreach (var item in playlistItems)
                 {
                     if (PlaylistContainsPath(item.Path))
+                    {
+                        Log.Debug($"Skipping playlist duplicate item: '{Log.SafeValue(item.Path)}'");
                         continue;
+                    }
 
                     itemsToLoad.Add(item);
                 }
 
                 if (itemsToLoad.Count > 0)
+                {
+                    Log.Info($"Loading playlist items. playlist='{Log.SafeValue(file)}', count={itemsToLoad.Count}, append={appendPlaylist}");
                     LoadPlaylistItems(itemsToLoad, appendPlaylist);
+                }
+                else
+                {
+                    Log.Info($"Playlist file did not add new items. path='{Log.SafeValue(file)}'");
+                }
             }
             else if (ext == "iso")
+            {
+                Log.Info($"Loading ISO media input: '{Log.SafeValue(file)}'");
                 LoadISO(file);
+            }
             else if(FileTypes.Subtitle.Contains(ext))
+            {
+                Log.Info($"Adding subtitle from media input: '{Log.SafeValue(file)}'");
                 CommandV("sub-add", file);
+            }
             else
             {
                 if (i == 0 && !append)
+                {
+                    Log.Info($"Sending loadfile replace to mpv: '{Log.SafeValue(file)}'");
                     CommandV("loadfile", file);
+                }
                 else
+                {
+                    Log.Info($"Sending loadfile append to mpv: '{Log.SafeValue(file)}'");
                     CommandV("loadfile", file, "append");
+                }
             }
         }
 
         if (string.IsNullOrEmpty(GetPropertyString("path")))
+        {
+            Log.Debug("mpv path property is empty after LoadFiles; setting playlist-pos to 0.");
             SetPropertyInt("playlist-pos", 0);
+        }
     }
 
     static bool TryDownloadRemotePlaylist(string file, out string playlistFile)
@@ -176,6 +228,7 @@ public partial class MainPlayer
     void LoadPlaylistItems(List<PlaylistFileItem> items, bool append)
     {
         string playlist = PlaylistFile.WriteTempM3u(items);
+        Log.Info($"Sending loadlist to mpv. tempPlaylist='{Log.SafeValue(playlist)}', itemCount={items.Count}, mode={(append ? "append" : "replace")}");
         CommandV("loadlist", playlist, append ? "append" : "replace");
     }
 
@@ -303,6 +356,7 @@ public partial class MainPlayer
         lock (LoadFolderLockObject)
         {
             string path = GetPropertyString("path");
+            Log.Debug($"Auto-load folder check. currentPath='{Log.SafeValue(path)}'");
 
             if (_isNormalizingAutocreatedPlaylist || !File.Exists(path))
                 return;
@@ -324,6 +378,7 @@ public partial class MainPlayer
                 dir = System.IO.Path.GetDirectoryName(path)!;
 
             List<string> files = FileTypes.GetFolderMediaFiles(Directory.GetFiles(dir), path).ToList();
+            Log.Debug($"Auto-load folder found candidate files. directory='{Log.SafeValue(dir)}', count={files.Count}");
 
             if (OperatingSystem.IsWindows())
                 files.Sort(new StringLogicalComparer());

@@ -120,6 +120,20 @@ mpvnet-2026-06-02.log
 Cada entrada contem data/hora completa, nivel e mensagem. Quando existe excecao,
 o arquivo tambem inclui a excecao completa com stack trace e inner exception.
 
+## Diagnostico de abertura por parametro
+
+Builds com logs habilitados registram detalhes adicionais do fluxo de abertura:
+
+- argumentos recebidos pela linha de comando;
+- opcoes aplicadas antes e depois de `mpv_initialize`;
+- arquivos, playlists ou URLs classificados como entrada de midia;
+- comandos `loadfile` e `loadlist` enviados ao mpv;
+- valor final de `idle` e se o frontend deve sair ao fim da reproducao;
+- eventos `start-file`, `file-loaded`, `end-file` e `shutdown` emitidos pelo mpv.
+
+URLs com query string ou fragmento sao mascaradas no log para evitar expor
+tokens de playlists privadas.
+
 ## Retencao
 
 Na inicializacao do logger, arquivos `mpvnet-YYYY-MM-DD.log` com mais de 5 dias

@@ -12,6 +12,8 @@ public enum LogLevel
 
 public static class Log
 {
+    const int MaxValueLength = 500;
+
 #if ENABLE_FILE_LOGGING
     static readonly FileLogWriter Writer = new FileLogWriter();
     public static bool IsEnabled => true;
@@ -25,6 +27,34 @@ public static class Log
     public static void Debug(string message) => Write(LogLevel.Debug, message, null);
     public static void Error(string message) => Write(LogLevel.Error, message, null);
     public static void Error(Exception exception, string? message = null) => Write(LogLevel.Error, message, exception);
+
+    public static string SafeValue(string? value)
+    {
+        if (string.IsNullOrEmpty(value))
+            return "";
+
+        string ret = value;
+
+        if (Uri.TryCreate(ret, UriKind.Absolute, out Uri? uri) &&
+            (!string.IsNullOrEmpty(uri.Query) || !string.IsNullOrEmpty(uri.Fragment)))
+        {
+            ret = uri.GetLeftPart(UriPartial.Path);
+
+            if (!string.IsNullOrEmpty(uri.Query))
+                ret += "?***";
+
+            if (!string.IsNullOrEmpty(uri.Fragment))
+                ret += "#***";
+        }
+
+        if (ret.Length > MaxValueLength)
+            ret = ret[..MaxValueLength] + "...";
+
+        return ret;
+    }
+
+    public static string SafeValues(IEnumerable<string> values) =>
+        "[" + string.Join(", ", values.Select(i => "'" + SafeValue(i) + "'")) + "]";
 
     static void Write(LogLevel level, string? message, Exception? exception)
     {

@@ -26,6 +26,7 @@ public partial class MainPlayer
 
     protected override void OnShutdown()
     {
+        Log.Info($"mpv shutdown event received. path='{Log.SafeValue(GetPropertyString("path"))}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}, isQuitNeeded={IsQuitNeeded}");
         IsQuitNeeded = false;
         base.OnShutdown();
         ShutdownAutoResetEvent.Set();

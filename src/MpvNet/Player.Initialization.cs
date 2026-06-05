@@ -10,7 +10,7 @@ public partial class MainPlayer
 {
     public void Init(IntPtr formHandle, bool processCommandLine)
     {
-        Log.Info("Initializing mpv player.");
+        Log.Info($"Initializing mpv player. formHandle={formHandle}, processCommandLine={processCommandLine}");
         App.ApplyShowMenuFix();
 
         MainHandle = mpv_create();
@@ -36,12 +36,14 @@ public partial class MainPlayer
 
         if (App.IsTerminalAttached)
         {
+            Log.Debug("Terminal is attached; enabling mpv terminal input.");
             SetPropertyString("terminal", "yes");
             SetPropertyString("input-terminal", "yes");
         }
 
         if (formHandle != IntPtr.Zero)
         {
+            Log.Debug("Configuring mpv for embedded window output.");
             SetPropertyString("force-window", "yes");
             SetPropertyLong("wid", formHandle.ToInt64());
         }
@@ -56,7 +58,9 @@ public partial class MainPlayer
         SetPropertyString("media-controls", "yes");
         SetPropertyString("idle", "yes");
         SetPropertyString("config-dir", ConfigFolder);
+        Log.Debug($"Using mpv config directory: '{Log.SafeValue(ConfigFolder)}'");
         Directory.CreateDirectory(CacheFolder);
+        Log.Debug($"Using mpv cache directory: '{Log.SafeValue(CacheFolder)}'");
         SetPropertyString("demuxer-cache-dir", CacheFolder);
         SetPropertyString("icc-cache-dir", CacheFolder);
         SetPropertyString("gpu-shader-cache-dir", CacheFolder);
@@ -71,7 +75,10 @@ public partial class MainPlayer
         UsedInputConfContent = App.InputConf.GetContent();
 
         if (!string.IsNullOrEmpty(UsedInputConfContent))
+        {
+            Log.Debug($"Loading input.conf from memory. path='{Log.SafeValue(App.InputConf.Path)}', length={UsedInputConfContent.Length}");
             SetPropertyString("input-conf", @"memory://" + UsedInputConfContent);
+        }
 
         if (processCommandLine)
             CommandLine.ProcessCommandLineArgsPreInit();
@@ -82,6 +89,7 @@ public partial class MainPlayer
             string fullPath = System.IO.Path.GetFullPath(configDir);
             App.InputConf.Path = fullPath.Separator() + "input.conf";
             string content = App.InputConf.GetContent();
+            Log.Debug($"Command line config-dir changed input.conf path. configDir='{Log.SafeValue(configDir)}', resolved='{Log.SafeValue(App.InputConf.Path)}', length={content.Length}");
 
             if (!string.IsNullOrEmpty(content))
                 SetPropertyString("input-conf", @"memory://" + content);
@@ -101,6 +109,7 @@ public partial class MainPlayer
 
         string idle = GetPropertyString("idle");
         App.Exit = idle == "no" || idle == "once";
+        Log.Info($"mpv initialized. idle='{idle}', appExitOnIdle={App.Exit}, processCommandLine={processCommandLine}");
 
         Handle = mpv_create_client(MainHandle, "mpvnet");
 
@@ -118,6 +127,7 @@ public partial class MainPlayer
         // otherwise shutdown is raised before media files are loaded,
         // this means Lua scripts that use idle might not work correctly
         SetPropertyString("idle", "yes");
+        Log.Debug("Reset mpv idle property to yes after mpvnet client creation.");
 
         SetPropertyString("user-data/frontend/name", "mpv.net");
         SetPropertyString("user-data/frontend/version", AppInfo.Version.ToString());
