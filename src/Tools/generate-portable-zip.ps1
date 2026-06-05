@@ -15,6 +15,9 @@ param(
 
     [string] $MediaInfoVersion = $env:MPVNET_MEDIAINFO_VERSION,
 
+    [ValidateSet('normal', 'x86_64-v3')]
+    [string] $MpvBuildVariant = $(if ($env:MPVNET_MPV_BUILD_VARIANT) { $env:MPVNET_MPV_BUILD_VARIANT } else { 'normal' }),
+
     [switch] $EnableFileLogging,
 
     [string] $MediaInfoFile,
@@ -36,6 +39,7 @@ $argsForRelease = @{
 }
 
 if ($MediaInfoVersion) { $argsForRelease.MediaInfoVersion = $MediaInfoVersion }
+if ($MpvBuildVariant) { $argsForRelease.MpvBuildVariant = $MpvBuildVariant }
 if ($EnableFileLogging) { $argsForRelease.EnableFileLogging = $true }
 if ($MediaInfoFile) { $argsForRelease.MediaInfoFile = $MediaInfoFile }
 if ($MpvNetComFile) { $argsForRelease.MpvNetComFile = $MpvNetComFile }

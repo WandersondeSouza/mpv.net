@@ -27,6 +27,14 @@ on:
         options:
           - "false"
           - "true"
+      mpv_build_variant:
+        description: mpv/libmpv build variant
+        required: true
+        default: "normal"
+        type: choice
+        options:
+          - "normal"
+          - "x86_64-v3"
 
 permissions:
   contents: write
@@ -81,6 +89,8 @@ jobs:
           if ('${{ inputs.enable_file_logging }}' -eq 'true') {
             $releaseArgs.EnableFileLogging = $true
           }
+
+          $releaseArgs.MpvBuildVariant = '${{ inputs.mpv_build_variant }}'
 
           & .\src\Tools\build-release-package.ps1 @releaseArgs
 

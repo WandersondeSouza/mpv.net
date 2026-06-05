@@ -66,6 +66,8 @@ Arquivos nativos esperados ao lado de `mpvnet.exe`:
 
 O script de dependencias reutiliza downloads em `artifacts\native-dependencies\downloads`. Se o arquivo esperado nao existir ou tiver mais de 2 dias, ele baixa novamente a versao mais recente encontrada nas fontes oficiais configuradas no script.
 
+Por padrao, o fork usa a build 64bit normal do mpv/libmpv para maxima compatibilidade. A opcao avancada `-MpvBuildVariant x86_64-v3` usa a build 64bit-v3, mantendo o nome `libmpv-2.dll`, mas exige CPU compativel com x86_64-v3, como Intel Haswell/AMD Excavator ou mais recente.
+
 Validação:
 
 ```powershell
@@ -107,6 +109,12 @@ Set-Location $RepoDir
 powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
 
+Gerar ZIP portatil com mpv/libmpv 64bit-v3:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release -MpvBuildVariant x86_64-v3
+```
+
 Usar quando:
 
 - quiser somente `MPV.NET-Media-Player-v<versao>-portable-x64.zip`;
@@ -144,12 +152,27 @@ O script também prepara a pasta portátil base
 .\src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Release\win-x64
 ```
 
+Preparar dependencias com mpv/libmpv 64bit-v3:
+
+```powershell
+.\src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Release\win-x64 -MpvBuildVariant x86_64-v3 -UpdateExisting
+```
+
 Usar quando:
 
 - precisar baixar ou validar `MediaInfo.dll`, `libmpv-2.dll`, FFmpeg e `yt-dlp.exe`;
 - preparar a pasta de execução antes do empacotamento.
 - reutilizar downloads recentes em `artifacts\native-dependencies\downloads`;
 - baixar novamente arquivos ausentes ou baixados ha mais de 2 dias.
+- alternar explicitamente entre `normal` e `x86_64-v3` sem mudar o `DllImport`.
+
+Smoke test de preparacao das duas variantes:
+
+```powershell
+.\src\Tools\test-mpv-build-variants.ps1
+```
+
+Para validar execucao real dos pacotes normal e v3, abrir cada pacote na maquina de destino e testar: inicializacao, reproducao, pause/play, seek, fullscreen, legendas, audio e fechamento.
 
 ### Validar dependências nativas
 

@@ -13,6 +13,7 @@ Optional parameters:
     -SkipInstaller Skips Inno Setup package generation.
     -SkipGitHubRelease Creates local artifacts without publishing a GitHub release.
     -EnableFileLogging Builds a diagnostic package with file logging enabled. Default: disabled.
+    -MpvBuildVariant mpv/libmpv build variant. Default: normal. Use x86_64-v3 only for compatible modern CPUs.
     -MediaInfoFile Optional override path to MediaInfo.dll. Defaults to automatic MediaArea download when missing.
     -MediaInfoVersion Optional MediaInfo version pin, for example 26.05. Defaults to the latest stable x64 DLL archive listed by MediaArea.
     -MpvNetComFile Optional override path to mpvnet.com. Defaults to the upstream helper download.
@@ -46,6 +47,9 @@ param(
     [switch] $SkipGitHubRelease,
 
     [switch] $EnableFileLogging,
+
+    [ValidateSet('normal', 'x86_64-v3')]
+    [string] $MpvBuildVariant = $(if ($env:MPVNET_MPV_BUILD_VARIANT) { $env:MPVNET_MPV_BUILD_VARIANT } else { 'normal' }),
 
     [string] $MediaInfoFile,
 
@@ -229,6 +233,7 @@ $EnsureDependenciesArgs = @{
     PublishDir = $PublishDir64
     ArtifactsDir = Join-Path (Split-Path $SourceDir -Parent) 'artifacts\native-dependencies'
     MaxCacheAgeDays = 2
+    MpvBuildVariant = $MpvBuildVariant
 }
 if ($MediaInfoVersion) {
     $EnsureDependenciesArgs.MediaInfoVersion = $MediaInfoVersion
@@ -257,7 +262,7 @@ mkdir $OutputDir64
 Copy-Item ($PublishDir64 + '*') $OutputDir64
 & $EnsureDependenciesScript @EnsureDependenciesArgs
 if ($LastExitCode) { throw $LastExitCode }
-$ExtraFiles = 'mpvnet.com', 'MediaInfo.dll', 'libmpv-2.dll', 'ffmpeg.exe', 'ffplay.exe', 'ffprobe.exe', 'yt-dlp.exe'
+$ExtraFiles = 'mpvnet.com', 'MediaInfo.dll', 'libmpv-2.dll', 'libmpv-2.variant.txt', 'ffmpeg.exe', 'ffplay.exe', 'ffprobe.exe', 'yt-dlp.exe'
 CopyExtraFiles $BinDirX64 $OutputDir64 $ExtraFiles
 CopyExtraFiles $BinDirX64 $PublishDir64 $ExtraFiles
 $LocaleDir = EnsureLocale `

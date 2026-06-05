@@ -19,6 +19,9 @@ param(
 
     [string] $MediaInfoVersion = $env:MPVNET_MEDIAINFO_VERSION,
 
+    [ValidateSet('normal', 'x86_64-v3')]
+    [string] $MpvBuildVariant = $(if ($env:MPVNET_MPV_BUILD_VARIANT) { $env:MPVNET_MPV_BUILD_VARIANT } else { 'normal' }),
+
     [string] $SevenZipPath = 'C:\Program Files\7-Zip\7z.exe'
 )
 
@@ -113,6 +116,7 @@ $ensureNativeArgs = @{
     TargetDir = $TargetDir
     ArtifactsDir = (Join-Path $ArtifactsDir "native-dependencies-$PID")
     SevenZipPath = $SevenZipPath
+    MpvBuildVariant = $MpvBuildVariant
 }
 
 if ($MediaInfoVersion) {

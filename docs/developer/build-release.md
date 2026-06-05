@@ -22,7 +22,7 @@ Para execução:
 
 - Windows;
 - SDK .NET 10.0 para publicar self-contained `win-x64`;
-- `libmpv-2.dll` x64;
+- `libmpv-2.dll` x64, usando por padrao a build 64bit normal do mpv/libmpv;
 - `MediaInfo.dll` x64 baixada da MediaArea oficial durante a release;
 - `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` no pacote portatil do fork;
 - arquivos de `Locale`, quando aplicável.
@@ -37,6 +37,7 @@ Para release:
 
 Observacao: Inno Setup, GitHub CLI e `GH_TOKEN` deixam de ser obrigatorios quando o script e executado, respectivamente, com `-SkipInstaller` e `-SkipGitHubRelease`.
 Os downloads de dependencias nativas e auxiliares ficam em `artifacts\native-dependencies\downloads` e sao reutilizados por ate 2 dias. Se o arquivo nao existir ou estiver mais antigo, o script baixa novamente a versao mais recente encontrada nas fontes configuradas.
+O parametro `-MpvBuildVariant normal` e o padrao para maxima compatibilidade. A opcao avancada `-MpvBuildVariant x86_64-v3` baixa a build 64bit-v3 do mpv/libmpv, que continua fornecendo `libmpv-2.dll`, mas exige CPU compativel com x86_64-v3, como Intel Haswell/AMD Excavator ou mais recente.
 
 ---
 
@@ -108,7 +109,7 @@ Para compilar e baixar/validar automaticamente os binarios nativos e auxiliares 
 dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj -c Release
 ```
 
-Esse alvo opt-in chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` na pasta da configuracao compilada, baixando apenas o que estiver faltando. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained.
+Esse alvo opt-in chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` na pasta da configuracao compilada, baixando apenas o que estiver faltando. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained. Para testar a variante otimizada localmente, use `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:MpvBuildVariant=x86_64-v3`.
 
 Para publicar como o script de release atual faz:
 
@@ -157,6 +158,12 @@ $RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
 if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
 Set-Location $RepoDir
 powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
+```
+
+Para gerar um pacote avancado com mpv/libmpv 64bit-v3:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release -MpvBuildVariant x86_64-v3
 ```
 
 Resultado esperado:
@@ -256,13 +263,21 @@ O script:
 As dependencias baixadas automaticamente usam estas fontes:
 
 - FFmpeg: `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, asset `ffmpeg-master-latest-win64-gpl.zip`;
-- libmpv: `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, asset `mpv-dev-x86_64-[data]-git-[hash].7z`;
+- libmpv: `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, asset normal `mpv-dev-x86_64-[data]-git-[hash].7z` ou asset v3 `mpv-dev-x86_64-v3-[data]-git-[hash].7z`;
 - yt-dlp: `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`;
 - MediaInfo: `https://mediaarea.net/en/MediaInfo/Download/Windows`, asset `MediaInfo_DLL_[versao]_Windows_x64_WithoutInstaller.7z`;
 - DLLs WPF/.NET e `vcruntime140_cor3.dll`: publish self-contained oficial do SDK .NET Desktop/WPF.
 - Gettext.Tools: `https://api.nuget.org/v3-flatcontainer/gettext.tools/`, usado para obter `msgfmt.exe` e gerar `Locale` quando `msgfmt.exe` nao esta no `PATH`.
 
-O script usa o asset x64 generico de libmpv, nao `x86_64-v3`, para preservar compatibilidade com mais CPUs x64. Se o GitHub mudar os nomes dos assets, se a MediaArea mudar o link de download, se o NuGet mudar a resolucao de `Gettext.Tools`, se o download falhar, se a extracao falhar, se algum arquivo baixado estiver vazio ou se uma DLL obrigatoria nao for x64, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` pode ser pinada por `-MediaInfoVersion`/`MPVNET_MEDIAINFO_VERSION` ou sobrescrita por `-MediaInfoFile`.
+O script usa o asset x64 generico de libmpv por padrao, nao `x86_64-v3`, para preservar compatibilidade com mais CPUs x64. A variante v3 e opt-in por `-MpvBuildVariant x86_64-v3` ou `MPVNET_MPV_BUILD_VARIANT=x86_64-v3`; ela nao altera o nome da DLL nem a ABI esperada pelo P/Invoke. Se o GitHub mudar os nomes dos assets, se a MediaArea mudar o link de download, se o NuGet mudar a resolucao de `Gettext.Tools`, se o download falhar, se a extracao falhar, se algum arquivo baixado estiver vazio ou se uma DLL obrigatoria nao for x64, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` pode ser pinada por `-MediaInfoVersion`/`MPVNET_MEDIAINFO_VERSION` ou sobrescrita por `-MediaInfoFile`.
+
+Smoke test das duas variantes de dependencias:
+
+```powershell
+.\src\Tools\test-mpv-build-variants.ps1
+```
+
+Depois de gerar os pacotes normal e `x86_64-v3`, execute a revisao manual em uma CPU compativel com a variante escolhida: inicializacao, reproducao de arquivo local, pause/play, seek, fullscreen, legenda, audio e fechamento.
 
 O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo script no GitHub Actions. Ele sempre publica os pacotes como artefato do workflow e, quando executado com `create_release=true`, tambem cria a Release no repositorio. O workflow roda `validate-native-dependencies.ps1` antes do upload dos artefatos.
 
@@ -311,7 +326,7 @@ Confira os `TargetFramework` dos projetos e instale o SDK/runtime correspondente
 
 ## Dependência nativa ausente
 
-Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução. Para o pacote portatil, verifique tambem `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. No fluxo de build/release, FFmpeg, libmpv, yt-dlp e `MediaInfo.dll` devem ser baixados ou atualizados automaticamente por `src\Tools\prepare-native-dependencies.ps1`.
+Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64, variante de CPU e diretório de execução. Para o pacote portatil, verifique tambem `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. No fluxo de build/release, FFmpeg, libmpv, yt-dlp e `MediaInfo.dll` devem ser baixados ou atualizados automaticamente por `src\Tools\prepare-native-dependencies.ps1`.
 
 ## Ferramenta de release ausente
 

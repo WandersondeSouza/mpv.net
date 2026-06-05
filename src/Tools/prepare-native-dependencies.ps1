@@ -22,6 +22,9 @@ param(
 
     [string] $MediaInfoVersion = $env:MPVNET_MEDIAINFO_VERSION,
 
+    [ValidateSet('normal', 'x86_64-v3')]
+    [string] $MpvBuildVariant = $(if ($env:MPVNET_MPV_BUILD_VARIANT) { $env:MPVNET_MPV_BUILD_VARIANT } else { 'normal' }),
+
     [string] $MediaInfoFile,
 
     [string] $MpvNetComFile,
@@ -261,22 +264,36 @@ function Ensure-FFmpeg($targetDir, $downloadsDir, $extractDir) {
 
 function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
     $targetFile = Join-Path $targetDir 'libmpv-2.dll'
-    if ((-not $UpdateExisting) -and (Test-FreshFile $targetFile)) {
+    $variantMarkerFile = Join-Path $targetDir 'libmpv-2.variant.txt'
+    $currentVariant = if (Test-Path $variantMarkerFile) { (Get-Content $variantMarkerFile -Raw).Trim() } else { 'normal' }
+    if ((-not $UpdateExisting) -and (Test-FreshFile $targetFile) -and ($currentVariant -eq $MpvBuildVariant)) {
         Assert-PeX64 $targetFile | Out-Null
+        if (-not (Test-Path $variantMarkerFile)) {
+            Set-Content -Path $variantMarkerFile -Value $MpvBuildVariant -Encoding ascii
+        }
         return
     }
 
-    $libmpvArchive = Get-FreshCachedFile $downloadsDir 'mpv-dev-x86_64-*.7z'
+    $assetPattern = if ($MpvBuildVariant -eq 'x86_64-v3') {
+        '^mpv-dev-x86_64-v3-[0-9]{8}-git-[0-9a-z]+\.7z$'
+    } else {
+        '^mpv-dev-x86_64-[0-9]{8}-git-[0-9a-z]+\.7z$'
+    }
+    $cachePattern = if ($MpvBuildVariant -eq 'x86_64-v3') { 'mpv-dev-x86_64-v3-*.7z' } else { 'mpv-dev-x86_64-*.7z' }
+
+    Write-Host "Preparing libmpv build variant: $MpvBuildVariant"
+    $libmpvArchive = Get-FreshCachedFile $downloadsDir $cachePattern
     if (-not $libmpvArchive) {
         $libmpvArchive = Download-GitHubLatestAsset `
             'https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest' `
-            '^mpv-dev-x86_64-[0-9]{8}-git-[0-9a-z]+\.7z$' `
+            $assetPattern `
             $downloadsDir
     }
 
     $libmpvExtractDir = Expand-ArchiveWith7Zip $libmpvArchive.FullName (Join-Path $extractDir 'libmpv')
     Copy-ExtractedFile $libmpvExtractDir 'libmpv-2.dll' $targetDir | Out-Null
     Assert-PeX64 $targetFile | Out-Null
+    Set-Content -Path $variantMarkerFile -Value $MpvBuildVariant -Encoding ascii
 }
 
 function Ensure-YtDlp($targetDir, $downloadsDir) {
