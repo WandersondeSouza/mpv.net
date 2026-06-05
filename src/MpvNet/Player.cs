@@ -20,7 +20,8 @@ namespace MpvNet;
 
 public partial class MainPlayer : MpvClient
 {
-    static readonly HttpClient RemotePlaylistHttpClient = new() { Timeout = TimeSpan.FromSeconds(20) };
+    internal static readonly TimeSpan RemotePlaylistTimeout = TimeSpan.FromSeconds(60);
+    static readonly HttpClient RemotePlaylistHttpClient = new() { Timeout = RemotePlaylistTimeout };
     static readonly TimeSpan PlaylistNormalizationDelay = TimeSpan.FromMilliseconds(200);
     bool _isNormalizingAutocreatedPlaylist;
 

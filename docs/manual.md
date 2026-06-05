@@ -90,7 +90,8 @@ aberta, os itens da playlist são adicionados à playlist atual.
 URLs HTTP/HTTPS sem extensão reconhecida também são verificadas de forma
 conservadora. Quando o conteúdo começa com `#EXTM3U`, a playlist remota é
 baixada para um arquivo temporário e expandida pelo frontend antes do envio ao
-mpv/libmpv.
+mpv/libmpv. Essa verificação usa timeout de pelo menos 60 segundos; se expirar
+ou falhar, a URL original ainda é enviada ao mpv/libmpv.
 
 Exemplo:
 

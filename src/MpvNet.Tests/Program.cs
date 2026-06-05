@@ -331,6 +331,7 @@ var tests = new (string Name, bool Result)[]
     ("Remote M3U detection accepts UTF-8 BOM", MainPlayer.LooksLikeM3u(Encoding.UTF8.GetPreamble().Concat(Encoding.UTF8.GetBytes("#EXTM3U")).ToArray())),
     ("Remote M3U detection accepts leading whitespace", MainPlayer.LooksLikeM3u(Encoding.UTF8.GetBytes("\r\n  #EXTM3U\r\n"))),
     ("Remote M3U detection rejects normal media", !MainPlayer.LooksLikeM3u(Encoding.UTF8.GetBytes("not a playlist"))),
+    ("Remote playlist probe timeout is at least 60 seconds", MainPlayer.RemotePlaylistTimeout >= TimeSpan.FromSeconds(60)),
     ("Remote playlist probe timeout is expected diagnostic", MainPlayer.IsRemotePlaylistProbeTimeout(new TaskCanceledException("request canceled", new TimeoutException("timeout")))),
     ("Remote playlist probe non-timeout stays unexpected", !MainPlayer.IsRemotePlaylistProbeTimeout(new InvalidOperationException("bad response"))),
     ("Invalid empty URL is not loadable", !CommandLine.IsLoadableFileArgument("")),
