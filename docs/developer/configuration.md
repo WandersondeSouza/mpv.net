@@ -125,6 +125,22 @@ Opções observadas:
 
 Opções desconhecidas são registradas como erro quando `App.Init()` processa o arquivo.
 
+`language` controla apenas a interface. Preferencias de audio e legenda continuam
+no `mpv.conf`, usando as opcoes nativas do mpv:
+
+| Opção | Arquivo | Função |
+| --- | --- | --- |
+| `alang` | `mpv.conf` | Lista de prioridade de idiomas de audio. |
+| `slang` | `mpv.conf` | Lista de prioridade de idiomas de legenda. |
+| `aid` | `mpv.conf` ou runtime | Seleciona faixa de audio manualmente. |
+| `sid` | `mpv.conf` ou runtime | Seleciona legenda manualmente; `no` mantem legenda desligada. |
+| `sub-auto` | `mpv.conf` | Controla carregamento automatico de legendas externas. |
+| `track-auto-selection` | `mpv.conf` | Controla a selecao automatica de faixas pelo mpv. |
+
+O mpv.net normaliza e compara codigos de idioma em um ponto central, mas nao
+reescreve `mpv.conf` nem sobrescreve configuracoes avancadas do usuario para
+audio/legenda.
+
 ---
 
 # `input.conf`

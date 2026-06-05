@@ -16,7 +16,8 @@ Arquivos e responsabilidades:
 - `tools/localization/checks/*.py`: utilitarios de leitura para detectar duplicatas e inconsistencias.
 - `tools/localization/cleanup/*.py`: utilitarios que limpam ou reescrevem arquivos de traducao.
 - `tools/localization/reference/msgattrib_help.txt`: referencia textual do `msgattrib` usada na manutencao do gettext.
-- `src/MpvNet.Windows/WPF/WpfTranslator.cs`: converte o valor de `language` em uma `CultureInfo`.
+- `src/MpvNet/LanguageCatalog.cs`: centraliza catalogo de idiomas, normalizacao, fallback e selecao auxiliar de idiomas de midia.
+- `src/MpvNet.Windows/WPF/WpfTranslator.cs`: aplica o idioma de interface resolvido pelo servico central em uma `CultureInfo`.
 - `src/MpvNet.Windows/Resources/editor_conf.txt`: lista os valores aceitos pelo editor de configuracao para a opcao `language`.
 - `src/Tools/build-release-package.ps1`: gera ou reaproveita a pasta `Locale` durante o fluxo de release.
 
@@ -61,6 +62,53 @@ O valor `system` continua selecionando o idioma do Windows quando houver mapeame
 
 Quando `alang` esta definido, a interface usa o primeiro idioma suportado dessa lista de prioridade como preferencia de idioma. Essa escolha vem do valor declarado em `alang`, nao do idioma real da faixa de audio ou legenda selecionada pelo arquivo em reproducao. Se nenhum item de `alang` for suportado, a interface usa o idioma do Windows quando houver mapeamento conhecido; caso contrario, volta para ingles. A legenda (`slang`/`sid`) nao participa dessa escolha.
 
+## Arquitetura central de idiomas
+
+O codigo de idioma fica centralizado em `src/MpvNet/LanguageCatalog.cs`:
+
+- `LanguageNormalizer`: normaliza codigos ISO 639-1, ISO 639-2, nomes comuns e valores BCP 47 para um formato interno consistente, como `pt-BR`, `es-MX`, `zh-CN` e `sr-Cyrl`.
+- `LanguageFallbackResolver`: gera a ordem de fallback reutilizavel para interface, audio e legenda.
+- `LocalizationService`: resolve `language=system`, escolhas manuais e listas vindas de `alang` para o nome publico aceito pelo mpv.net.
+- `MediaLanguageService`: monta prioridades e compara faixas de audio/legenda com as mesmas regras de normalizacao e fallback.
+
+Nao criar normalizadores ou fallbacks paralelos em `WpfTranslator`, `Player.cs` ou controles de configuracao. Novos idiomas devem entrar pelo catalogo central e, quando forem idiomas de interface traduzidos, tambem pelo bloco `language` em `editor_conf.txt` e pelos catalogos gettext.
+
+## Normalizacao e fallback
+
+A normalizacao aceita codigos e nomes como `eng`, `en_US`, `Portuguese`, `Português do Brasil`, `spa`, `fr_CA`, `zho`, `Simplified Chinese`, `jpn`, `ger` e `Italian`, retornando valores BCP 47 quando possivel.
+
+A ordem geral de fallback e:
+
+1. cultura completa, como `pt-BR`, `es-MX`, `fr-CA`;
+2. variante segura, quando existir, como `es-419` para `es-MX`, `zh-Hans` para `zh-CN` e `zh-Hant` para `zh-TW`;
+3. idioma base quando for seguro, como `pt`, `es`, `fr` e `de`;
+4. idioma padrao, hoje ingles, quando o chamador permitir fallback padrao;
+5. texto nativo/fonte caso o gettext nao encontre catalogo.
+
+Variantes com escrita diferente exigem cuidado. O fallback central nao cruza automaticamente `zh-CN` com `zh-TW` nem `sr-Cyrl` com `sr-Latn`.
+
+## Interface, audio e legenda
+
+Idioma da interface e idioma de midia sao configuracoes diferentes:
+
+- Interface: `mpvnet.conf`, opcao `language`, com valores como `system`, `english`, `portuguese-brazil` e `portuguese-portugal`.
+- Audio preferido: `mpv.conf`, opcao nativa do mpv `alang`.
+- Legenda preferida: `mpv.conf`, opcao nativa do mpv `slang`.
+- Selecao manual em runtime: propriedades nativas `aid` e `sid`.
+- Carregamento automatico de legendas externas: opcao nativa `sub-auto`.
+
+O mpv/libmpv continua sendo a autoridade final para selecionar audio e legenda por `alang`, `slang`, `aid`, `sid`, `track-list`, `sub-auto` e `track-auto-selection`. O mpv.net usa logica propria apenas para normalizar, comparar, resolver fallback e exibir metadados de faixas sem duplicar o seletor de faixas do mpv.
+
+Exemplos de configuracao em `mpv.conf`:
+
+```ini
+alang=por,pt-BR,eng
+slang=pt-BR,por,eng
+sub-auto=exact
+```
+
+Use `language` apenas para a interface. Nao usar `language` para escolher audio ou legenda.
+
 ## Implementacao atual
 
 O fork possui traducoes gettext para os idiomas listados na tabela acima. Ingles continua nativo e nao usa arquivo `.po`.
@@ -99,13 +147,13 @@ option = portuguese-brazil
 
 O nome deve seguir o estilo dos valores existentes, como `chinese-china`, `portuguese-brazil` e `portuguese-portugal`.
 
-5. Adicionar o idioma em `src/MpvNet.Windows/WPF/WpfTranslator.cs`:
+5. Adicionar o idioma em `src/MpvNet/LanguageCatalog.cs`:
 
 ```csharp
-new("portuguese-brazil", "pt-BR", "pt"),
+new("portuguese-brazil", "pt-BR", "pt_BR", true, "por-br", "pt-br", "pt_br", "brazilian portuguese", "português do brasil"),
 ```
 
-6. Quando necessario, ajustar o tratamento de `system` para regioes especificas, como `pt-BR` e `pt-PT`, sem mudar o comportamento dos outros idiomas.
+6. Quando necessario, ajustar o fallback central para regioes especificas, sem mudar o comportamento dos outros idiomas.
 
 7. Gerar os arquivos `.mo`:
 
@@ -128,6 +176,7 @@ src/MpvNet.Windows/bin/Debug/win-x64/Locale/pt_BR/LC_MESSAGES/mpvnet.mo
 - Nao remover nem substituir a referencia historica a Transifex/upstream.
 - Nao tratar `.resx` como fonte principal da traducao gettext da interface.
 - Nao alterar o formato de `mpvnet.conf`; o usuario deve continuar podendo definir `language=<valor>`.
+- Nao misturar `language` com preferencia de audio ou legenda; para midia, preservar `alang` e `slang` do mpv.
 
 ## Validacao recomendada
 
@@ -140,6 +189,7 @@ Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_BR\LC_MESSAGES\mpvnet
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_PT\LC_MESSAGES\mpvnet.mo
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\es\LC_MESSAGES\mpvnet.mo
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\it\LC_MESSAGES\mpvnet.mo
+dotnet run --project .\src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
 dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore
 ```
 
@@ -166,3 +216,13 @@ O maior risco e desalinhamento entre o nome publico da opcao, o nome do arquivo 
 | Arquivo PO | `lang/po/pt_BR.po` |
 | Pasta Locale | `Locale/pt_BR/LC_MESSAGES/` |
 | CultureInfo | `pt-BR` |
+
+## Auditoria de traducao
+
+A auditoria automatizada principal e:
+
+```powershell
+.\lang\validate-po-files.ps1 -ValidateOnly
+```
+
+Ela compara todos os `lang/po/*.po` com `lang/source.pot`, rejeita `lang/po/en.po`, detecta chaves ausentes, extras, duplicadas e textos vazios. Placeholders devem permanecer iguais aos `msgid`; quando houver duvida, nao inventar traducao automaticamente. Marcar para revisao humana ou manter fallback seguro.

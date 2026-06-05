@@ -213,37 +213,21 @@ public partial class MainPlayer : MpvClient
 
     static string GetLanguage(string id)
     {
-        foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.NeutralCultures))
-            if (ci.ThreeLetterISOLanguageName == id || Convert(ci.ThreeLetterISOLanguageName) == id)
-                return ci.EnglishName;
-
-        return id;
-
-        static string Convert(string id2) => id2 switch
-        {
-            "bng" => "ben",
-            "ces" => "cze",
-            "deu" => "ger",
-            "ell" => "gre",
-            "eus" => "baq",
-            "fra" => "fre",
-            "hye" => "arm",
-            "isl" => "ice",
-            "kat" => "geo",
-            "mya" => "bur",
-            "nld" => "dut",
-            "sqi" => "alb",
-            "zho" => "chi",
-            _ => id2,
-        };
+        return LanguageNormalizer.GetDisplayName(id);
     }
 
     static string GetNativeLanguage(string name)
     {
-        foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.NeutralCultures))
+        string? normalized = LanguageNormalizer.Normalize(name);
+        if (normalized != null)
         {
-            if (ci.EnglishName == name)
-                return ci.NativeName;
+            try
+            {
+                return CultureInfo.GetCultureInfo(normalized).NativeName;
+            }
+            catch (CultureNotFoundException)
+            {
+            }
         }
 
         return name;
