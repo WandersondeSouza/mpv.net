@@ -95,6 +95,7 @@ public partial class MainForm : Form
             CommandLine.ProcessCommandLineArgsPostInit();
             ApplyInterfaceLanguageFromAlang();
             CommandLine.ProcessCommandLineFiles();
+            CommandLine.ProcessCommandLineArgsPostFile();
 
             _taskbarButtonCreatedMessage = RegisterWindowMessage("TaskbarButtonCreated");
 

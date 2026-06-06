@@ -11,6 +11,9 @@ public class CommandLine
         "load-scripts", "scripts", "script-opts", "player-operation-mode", "idle", "log-file",
         "msg-color", "dump-stats", "msg-level", "really-quiet" };
 
+    static string[] _postFileProperties { get; } = {
+        "profile" };
+
     public static List<StringPair> Arguments
     {
         get
@@ -65,7 +68,13 @@ public class CommandLine
 
         foreach (var pair in Arguments)
         {
-            if (_preInitProperties.Contains(pair.Name))
+            if (IsPostFileProperty(pair.Name))
+            {
+                Log.Debug($"Deferring command line property until after media loading: {pair.Name}='{Log.SafeValue(pair.Value)}'");
+                continue;
+            }
+
+            if (IsPreInitProperty(pair.Name))
             {
                 Log.Debug($"Skipping pre-init property during post-init processing: {pair.Name}='{Log.SafeValue(pair.Value)}'");
                 continue;
@@ -73,6 +82,34 @@ public class CommandLine
 
             if (!TryProcessChangeListArgument(pair))
                 ApplyPropertyArgument(pair, "post-init");
+        }
+    }
+
+    public static void ProcessCommandLineArgsPostFile()
+    {
+        Log.Debug($"Processing post-file command line properties. count={Arguments.Count}");
+
+        bool appliedProfile = false;
+
+        foreach (var pair in Arguments)
+        {
+            if (!IsPostFileProperty(pair.Name))
+                continue;
+
+            Log.Debug($"Applying post-file command line profile: {pair.Name}='{Log.SafeValue(pair.Value)}'");
+            Player.CommandV("apply-profile", pair.Value);
+            appliedProfile = true;
+        }
+
+        if (!appliedProfile)
+            return;
+
+        foreach (var pair in Arguments)
+        {
+            if (!IsPostProfileOverrideProperty(pair.Name))
+                continue;
+
+            ApplyPropertyArgument(pair, "post-profile override");
         }
     }
 
@@ -90,7 +127,11 @@ public class CommandLine
         }
 
         Log.Info($"Command line media inputs selected: count={files.Count}, queue={App.Queue}, loadFolder={!App.Queue}, inputs={Log.SafeValues(files)}");
-        Player.LoadFiles([.. files], !App.Queue, App.Queue);
+
+        if (TryCreateCommandLinePlaylist(files, out string playlist))
+            Player.LoadFiles([playlist], false, App.Queue);
+        else
+            Player.LoadFiles([.. files], !App.Queue, App.Queue);
 
         if (App.CommandLine.Contains("--shuffle"))
         {
@@ -137,6 +178,44 @@ public class CommandLine
         }
 
         return "";
+    }
+
+    internal static bool TryCreateCommandLinePlaylist(List<string> files, out string playlist) =>
+        TryCreateCommandLinePlaylist(files, Arguments, out playlist);
+
+    internal static bool TryCreateCommandLinePlaylist(
+        List<string> files,
+        IEnumerable<StringPair> arguments,
+        out string playlist)
+    {
+        playlist = "";
+
+        if (files.Count != 1 || !FileTypes.IsStreamingUrl(files[0]))
+            return false;
+
+        string title = GetCommandLinePlaylistTitle(arguments);
+
+        if (string.IsNullOrWhiteSpace(title))
+            return false;
+
+        playlist = PlaylistFile.WriteTempM3u([new PlaylistFileItem(files[0], title)]);
+        Log.Info($"Command line URL and title converted to temporary playlist. playlist='{Log.SafeValue(playlist)}', url='{Log.SafeValue(files[0])}', title='{Log.SafeValue(title)}'");
+        return true;
+    }
+
+    internal static string GetCommandLinePlaylistTitle(IEnumerable<StringPair> arguments)
+    {
+        string title = "";
+
+        foreach (var pair in arguments)
+        {
+            if (pair.Name == "force-media-title")
+                title = pair.Value;
+            else if (pair.Name == "title" && !pair.Value.Contains("${"))
+                title = pair.Value;
+        }
+
+        return title;
     }
 
     static bool ShouldNormalizeTitleArgument(string name, string value)
@@ -194,6 +273,21 @@ public class CommandLine
             "external-file" => "external-files",
             _ => name
         };
+
+    internal static bool IsPreInitProperty(string name) => _preInitProperties.Contains(name);
+
+    internal static bool IsPostFileProperty(string name) => _postFileProperties.Contains(name);
+
+    internal static bool IsPostProfileOverrideProperty(string name) =>
+        !IsChangeListOperation(name) &&
+        !IsPostFileProperty(name) &&
+        !IsStrictlyInitOnlyProperty(name);
+
+    static bool IsStrictlyInitOnlyProperty(string name) =>
+        name is "input-terminal" or "terminal" or "input-file" or "config" or "o" or
+            "config-dir" or "input-conf" or "load-scripts" or "scripts" or "script-opts" or
+            "player-operation-mode" or "log-file" or "msg-color" or "dump-stats" or
+            "msg-level" or "really-quiet";
 
     static void ApplyPropertyArgument(StringPair pair, string phase)
     {

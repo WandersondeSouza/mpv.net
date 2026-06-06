@@ -129,6 +129,14 @@ var parsedChangeListArguments = CommandLine.ParseArguments([
     "--script-opts-clr",
     "--script-opts-remove=old=yes",
     "--script-opts-toggle=flag"]);
+string commandLinePlaylistTitle = CommandLine.GetCommandLinePlaylistTitle(parsedCommandArguments);
+bool commandLinePlaylistCreated = CommandLine.TryCreateCommandLinePlaylist(
+    ["https://example.com/video.mp4"],
+    parsedCommandArguments,
+    out string commandLinePlaylistPath);
+string commandLinePlaylistContent = commandLinePlaylistCreated ? File.ReadAllText(commandLinePlaylistPath) : "";
+string templateOnlyPlaylistTitle = CommandLine.GetCommandLinePlaylistTitle(
+    CommandLine.ParseArguments(["--title=${media-title}"]));
 var activeBindings = InputHelp.GetActiveBindings([
     new Binding(command: "cycle pause", input: "SPACE"),
     new Binding(command: "cycle pause", input: "p"),
@@ -319,6 +327,9 @@ var tests = new (string Name, bool Result)[]
     ("Command line accepts playlist file extension", CommandLine.IsLoadableFileArgument("iptv.m3u")),
     ("Command line accepts stdin pipe marker", CommandLine.IsLoadableFileArgument("-")),
     ("Command line rejects options as files", !CommandLine.IsLoadableFileArgument("--fullscreen")),
+    ("Command line defers profile until after media loading", CommandLine.IsPostFileProperty("profile")),
+    ("Command line lets idle override a deferred profile", CommandLine.IsPostProfileOverrideProperty("idle")),
+    ("Command line keeps script opts init-only after profile", !CommandLine.IsPostProfileOverrideProperty("script-opts")),
     ("Command line accepts absolute Windows path without existence check", CommandLine.IsLoadableFileArgument(@"C:\missing\movie.mkv")),
     ("Command line accepts relative dot path", CommandLine.IsLoadableFileArgument(@".\movie.mkv")),
     ("ConvertFilePath resolves existing relative file", Path.GetFullPath(MainPlayer.ConvertFilePath(relativeMediaFile)) == Path.GetFullPath(relativeMediaFile)),
@@ -412,6 +423,9 @@ var tests = new (string Name, bool Result)[]
     ("Command parser normalizes explicit title values", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "Sample Video")),
     ("Command parser preserves title templates", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "${media-title}")),
     ("Command parser normalizes force media title", parsedCommandArguments.Any(i => i.Name == "force-media-title" && i.Value == "Forced Title")),
+    ("Command parser uses force media title for URL playlist title", commandLinePlaylistTitle == "Forced Title"),
+    ("Command parser ignores title templates for URL playlist title", templateOnlyPlaylistTitle == ""),
+    ("Command line URL title creates temporary playlist", commandLinePlaylistCreated && commandLinePlaylistContent.Contains("#EXTINF:-1,Forced Title") && commandLinePlaylistContent.Contains("https://example.com/video.mp4")),
     ("Command parser keeps change-list operation names", parsedChangeListArguments.Select(i => i.Name).SequenceEqual([
         "script-opts-add",
         "script-opts-set",

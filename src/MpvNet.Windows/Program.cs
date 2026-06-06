@@ -136,6 +136,7 @@ static class Program
                 Player.Init(IntPtr.Zero, true);
                 CommandLine.ProcessCommandLineArgsPostInit();
                 CommandLine.ProcessCommandLineFiles();
+                CommandLine.ProcessCommandLineArgsPostFile();
                 Log.Debug("Headless output mode sets idle=no before entering mpv event loop.");
                 Player.SetPropertyString("idle", "no");
                 Player.EventLoop();
