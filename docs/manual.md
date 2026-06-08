@@ -102,6 +102,29 @@ baixada para um arquivo temporário e expandida pelo frontend antes do envio ao
 mpv/libmpv. Essa verificação usa timeout de pelo menos 60 segundos; se expirar
 ou falhar, a URL original ainda é enviada ao mpv/libmpv.
 
+Se uma URL do YouTube falhar com `unrecognized file format`, teste o extrator
+diretamente. Em muitos casos o problema é autenticação ou cookies do navegador,
+não o frontend:
+
+```powershell
+.\yt-dlp.exe --no-playlist --dump-single-json "https://www.youtube.com/watch?v=DuVaLWf2114"
+.\yt-dlp.exe --no-playlist --cookies-from-browser chrome --dump-single-json "https://www.youtube.com/watch?v=DuVaLWf2114"
+```
+
+Troque `chrome` por `edge`, `firefox` ou outro navegador que contenha a sessão
+autenticada, se necessário. Se preferir exportar cookies para um arquivo, use
+um arquivo no formato Mozilla/Netscape e garanta que a primeira linha seja
+`# HTTP Cookie File` ou `# Netscape HTTP Cookie File`.
+
+Para reduzir o risco de cookies rotacionados pelo YouTube, a wiki do `yt-dlp`
+recomenda abrir uma janela privada/incognita, fazer login nela, acessar
+`https://www.youtube.com/robots.txt` na mesma aba e exportar os cookies logo em
+seguida. Evite manter essa mesma sessão privada aberta depois da exportação.
+
+Se o vídeo continuar falhando mesmo com cookies válidos, o YouTube pode estar
+exigindo PO Token em vez de apenas autenticação. O `yt-dlp` não gera esse token
+sozinho, então esse caso ainda pode exigir ajuste externo no lado do extrator.
+
 Falhas auxiliares ao criar ou expandir playlists nao devem impedir a tentativa
 de reproducao da midia principal. Quando houver uma URL ou caminho valido, o
 frontend tenta enviar a midia bruta ao mpv/libmpv; o titulo informado por linha
