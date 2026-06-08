@@ -24,6 +24,7 @@ string tempUnknown = Path.Combine(tempPlaylistDir, "ignored.txt");
 string tempImage = Path.Combine(tempPlaylistDir, "image.jpg");
 string tempSecondImage = Path.Combine(tempPlaylistDir, "second.png");
 string tempVideoWithSpaces = Path.Combine(tempPlaylistDir, "video com espacos.mp4");
+string tempCustomInputConf = Path.Combine(tempPlaylistDir, "custom-input.conf");
 string relativeMediaFile = "mpvnet-tests-relative-media.mkv";
 File.WriteAllText(tempAudio, "");
 File.WriteAllText(tempVideo, "");
@@ -32,6 +33,9 @@ File.WriteAllText(tempImage, "");
 File.WriteAllText(tempSecondImage, "");
 File.WriteAllText(tempVideoWithSpaces, "");
 File.WriteAllText(relativeMediaFile, "");
+File.WriteAllText(tempCustomInputConf, """
+x script-message-to mpvnet custom-action #menu: Custom > Custom Item
+""");
 File.WriteAllLines(tempM3u, [
     "#EXTM3U",
     "#EXTINF:-1,Audio title",
@@ -168,6 +172,7 @@ var activeBindings = InputHelp.GetActiveBindings([
     new Binding(command: "ignored", input: ""),
     new Binding(command: "", input: "x")]);
 string pauseBindings = InputHelp.GetBindingsForCommand(activeBindings, "cycle pause");
+var customMenuBindings = new InputConf(tempCustomInputConf).GetBindings().menuBindings;
 var languageNormalizationCases = new (string Input, string Expected)[]
 {
     ("eng", "en"),
@@ -475,6 +480,8 @@ var tests = new (string Name, bool Result)[]
         "script-opts-toggle"])),
     ("Input bindings ignore incomplete entries", activeBindings.Count == 2),
     ("Input bindings list keys for command", pauseBindings == "SPACE, p"),
+    ("Custom menu keeps open files", customMenuBindings.Any(binding => binding.Command == "script-message-to mpvnet open-files")),
+    ("Custom menu keeps about", customMenuBindings.Any(binding => binding.Command == "script-message-to mpvnet show-about")),
     ("File log writer creates folder and daily log file", File.Exists(dailyLogFile)),
     ("File log writer writes Info", dailyLogContent.Contains("[INFO] info message")),
     ("File log writer writes Debug", dailyLogContent.Contains("[DEBUG] debug message")),

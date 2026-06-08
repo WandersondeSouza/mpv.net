@@ -29,7 +29,11 @@ public class InputConf
         var confbindings = InputHelp.Parse(Content);
 
         if (HasMenu)
-            return (confbindings, confbindings);
+        {
+            var menuBindings = new List<Binding>(confbindings);
+            PreserveCoreMenuItems(menuBindings);
+            return (menuBindings, confbindings);
+        }
 
         var defaultBindings = InputHelp.GetDefaults();
 
@@ -55,6 +59,49 @@ public class InputConf
         }
 
         return (defaultBindings, confbindings);
+    }
+
+    static void PreserveCoreMenuItems(List<Binding> menuBindings)
+    {
+        string[] requiredCommands =
+        [
+            "script-message-to mpvnet open-files",
+            "script-message-to mpvnet show-about"
+        ];
+
+        foreach (Binding defaultBinding in InputHelp.GetDefaults())
+        {
+            if (!defaultBinding.IsMenu)
+                continue;
+
+            bool required = false;
+
+            foreach (string requiredCommand in requiredCommands)
+            {
+                if (defaultBinding.Command == requiredCommand)
+                {
+                    required = true;
+                    break;
+                }
+            }
+
+            if (!required)
+                continue;
+
+            bool exists = false;
+
+            foreach (Binding binding in menuBindings)
+            {
+                if (binding.Command == defaultBinding.Command)
+                {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if (!exists)
+                menuBindings.Add(defaultBinding);
+        }
     }
 
     public string GetContent()

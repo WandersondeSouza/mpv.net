@@ -35,6 +35,7 @@ portable_config/
 
 - `mpv.conf` deve continuar compatível com o mpv.
 - `input.conf` pode ser usado para atalhos personalizados e menu.
+- Se `input.conf` usar menu personalizado, os itens base `Open Files...` e `About mpv.net` continuam sendo preservados quando estiverem ausentes.
 - O menu OSD do `Ctrl+p` usa `menu.conf` quando existe; o mpv.net gera esse arquivo com rótulos localizados se ele ainda não existir.
 - Scripts e opções de scripts ficam em `scripts/` e `script-opts/`.
 - O exemplo de `thumbfast` do fork fica em `docs/exemplos/thumbfast.conf`.
