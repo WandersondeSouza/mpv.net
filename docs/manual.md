@@ -65,7 +65,7 @@ Idiomas:
 - legenda preferida: configure `slang` em `mpv.conf`;
 - legenda desligada: use `sid=no` ou selecione sem legenda na interface.
 
-Se `language` nao estiver definido, o mpv.net inicia no idioma do Windows quando houver mapeamento suportado; caso contrario, usa ingles.
+Se `language` não estiver definido, o mpv.net inicia no idioma do Windows quando houver mapeamento suportado; caso contrário, usa inglês.
 
 O mpv.net normaliza codigos como `eng`, `por`, `pt_BR`, `es_MX` e nomes comuns
 de idioma, mas a selecao final de audio e legenda continua sendo feita pelo
@@ -74,7 +74,7 @@ mpv/libmpv.
 ## Linha de comando
 
 O frontend aceita arquivos locais, playlists e URLs de streaming compatíveis com o mpv.
-Tambem aceita um titulo separado antes de uma URL, usando esse texto apenas
+Também aceita um título separado antes de uma URL, usando esse texto apenas
 como metadado visual:
 
 ```powershell

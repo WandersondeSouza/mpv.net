@@ -28,7 +28,7 @@ Detalhes em `docs/logging.md`.
 
 ## Build
 
-Gerar apenas o ZIP portatil:
+Gerar apenas o ZIP portátil:
 
 ```powershell
 $RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
@@ -75,9 +75,9 @@ Arquivos nativos esperados ao lado de `mpvnet.exe`:
 - `PenImc_cor3.dll`
 - `PresentationNative_cor3.dll`
 
-O script de dependencias reutiliza downloads em `artifacts\native-dependencies\downloads`. Se o arquivo esperado nao existir ou tiver mais de 2 dias, ele baixa novamente a versao mais recente encontrada nas fontes oficiais configuradas no script.
+O script de dependências reutiliza downloads em `artifacts\native-dependencies\downloads`. Se o arquivo esperado não existir ou tiver mais de 2 dias, ele baixa novamente a versão mais recente encontrada nas fontes oficiais configuradas no script.
 
-Por padrao, o fork usa a build 64bit-v3 do mpv/libmpv. Essa variante mantem o nome `libmpv-2.dll`, mas exige CPU compativel com x86_64-v3, como Intel Haswell/AMD Excavator ou mais recente. Use `-MpvBuildVariant normal` apenas quando precisar gerar pacote para CPUs x64 mais antigas.
+Por padrão, o fork usa a build 64bit-v3 do mpv/libmpv. Essa variante mantém o nome `libmpv-2.dll`, mas exige CPU compatível com x86_64-v3, como Intel Haswell/AMD Excavator ou mais recente. Use `-MpvBuildVariant normal` apenas quando precisar gerar pacote para CPUs x64 mais antigas.
 
 Validação:
 
@@ -107,8 +107,8 @@ Usar quando:
 - gerar instalador;
 - preparar a release localmente.
 
-Por padrao, pacotes de release sao gerados com logs detalhados em arquivo desabilitados.
-Erros continuam sendo gravados em arquivo. Para gerar um pacote de diagnostico
+Por padrão, pacotes de release são gerados com logs detalhados em arquivo desabilitados.
+Erros continuam sendo gravados em arquivo. Para gerar um pacote de diagnóstico
 com logs diarios completos em `%LOCALAPPDATA%\mpv.net\Logs`, adicione
 `-EnableFileLogging`.
 
@@ -121,7 +121,7 @@ Set-Location $RepoDir
 powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
 
-Gerar ZIP portatil com mpv/libmpv 64bit-v3:
+Gerar ZIP portátil com mpv/libmpv 64bit-v3:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release -MpvBuildVariant x86_64-v3
@@ -130,10 +130,10 @@ powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -
 Usar quando:
 
 - quiser somente `MPV.NET-Media-Player-v<versao>-portable-x64.zip`;
-- nao quiser gerar instalador;
-- nao quiser publicar no GitHub.
+- não quiser gerar instalador;
+- não quiser publicar no GitHub.
 
-Para ZIP de diagnostico, adicione `-EnableFileLogging`.
+Para ZIP de diagnóstico, adicione `-EnableFileLogging`.
 
 O script também cria a pasta extraída
 `artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\`.
@@ -150,10 +150,10 @@ powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 
 Usar quando:
 
 - quiser somente `MPV.NET-Media-Player-v<versao>-setup-x64.exe`;
-- nao quiser gerar ZIP portatil;
-- nao quiser publicar no GitHub.
+- não quiser gerar ZIP portátil;
+- não quiser publicar no GitHub.
 
-Para instalador de diagnostico, adicione `-EnableFileLogging`.
+Para instalador de diagnóstico, adicione `-EnableFileLogging`.
 
 O script também prepara a pasta portátil base
 `artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\`, usada pelo instalador.

@@ -1,59 +1,59 @@
 # Changelog
 
-Este arquivo registra apenas as versoes publicadas pelo fork
+Este arquivo registra apenas as versões publicadas pelo fork
 `WandersondeSouza/mpv.net`.
 
 # Fork WandersondeSouza - v7.1.2.12 (2026-06-08)
 
 ## Publicacao de rotina
 
-- Atualizacao de versao para manter o historico de releases do fork alinhado
-  com a publicacao atual.
-- Sem alteracao adicional de comportamento nesta release.
+- Atualização de versão para manter o histórico de releases do fork alinhado
+  com a publicação atual.
+- Sem alteração adicional de comportamento nesta release.
 
 # Fork WandersondeSouza - v7.1.2.11 (2026-06-08)
 
 ## Reproducao e inicializacao
 
-- Ajustado o fluxo de abertura e reproducao para lidar melhor com arquivos,
+- Ajustado o fluxo de abertura e reprodução para lidar melhor com arquivos,
   playlists vazias e caminhos normalizados antes de chegar ao mpv/libmpv.
 - Refinado o tratamento de argumentos de linha de comando e do arranque da
-  aplicacao para reduzir falhas de timeout e manter o comportamento previsivel.
-- Corrigida a abertura do menu de contexto por clique direito ao forcar a
+  aplicação para reduzir falhas de timeout e manter o comportamento previsível.
+- Corrigida a abertura do menu de contexto por clique direito ao forçar a
   posicao do popup no ponto do mouse.
-- Tornada tolerante a montagem dos rotulos padrao do menu para ignorar
+- Tornada tolerante a montagem dos rótulos padrão do menu para ignorar
   comandos repetidos no mapeamento de atalho, evitando falha de inicializacao.
 - Mantida a separacao interna de responsabilidades em `Player.cs` e
   `MainForm.cs` para preservar o contrato existente sem refatoracao ampla.
 
 ## Interface e suporte
 
-- O item `Support` do menu agora abre o cliente de e-mail padrao com
+- O item `Support` do menu agora abre o cliente de e-mail padrão com
   `wanderson_souza@hotmail.com` e o menu gerado foi atualizado para
-  regenerar essa entrada nas configuracoes existentes quando a versao do
+  regenerar essa entrada nas configurações existentes quando a versão do
   gerador muda.
-- Elevada a versao do gerador do `menu.conf` para substituir instalacoes
+- Elevada a versão do gerador do `menu.conf` para substituir instalações
   antigas que ainda tinham a URL `web.libera.chat/#mpv` no item `Support`.
-- Ajustada a inicializacao do idioma da interface para usar o idioma do
-  Windows quando houver mapeamento suportado, cair para ingles quando nao
-  houver e respeitar parametros ou configuracoes explicitas.
+- Ajustada a inicialização do idioma da interface para usar o idioma do
+  Windows quando houver mapeamento suportado, cair para inglês quando não
+  houver e respeitar parâmetros ou configurações explícitas.
 
 ## Idiomas e midia
 
-- Melhorado o registro de informacoes de inicializacao e reproducao para
-  facilitar diagnostico sem alterar o caminho principal de execucao.
-- Ajustada a leitura das dependencias nativas para buscar o pacote correto de
+- Melhorado o registro de informações de inicialização e reprodução para
+  facilitar diagnóstico sem alterar o caminho principal de execução.
+- Ajustada a leitura das dependências nativas para buscar o pacote correto de
   DLLs e manter a compatibilidade com o binario esperado.
 - Ampliada a cobertura automatizada para parser de argumentos, auto-load de
-  pasta, associacoes de imagens, normalizacao de caminhos e selecao de idioma.
+  pasta, associações de imagens, normalização de caminhos e seleção de idioma.
 
 ## Empacotamento e instalador
 
-- Reforcada a preparacao de build e release para validar melhor o runtime x64
+- Reforçada a preparação de build e release para validar melhor o runtime x64
   e o pacote correto de dependencias nativas antes de gerar os artefatos.
 - Atualizados os scripts de ZIP, instalador e release para seguir o mesmo fluxo
-  de preparacao de dependencias e manter a publicacao consistente.
-- Mantida a validacao dos artefatos gerados com `libmpv-2.dll`, FFmpeg,
+  de preparação de dependências e manter a publicação consistente.
+- Mantida a validação dos artefatos gerados com `libmpv-2.dll`, FFmpeg,
   `ffprobe.exe`, `ffplay.exe` e `yt-dlp.exe`.
 
 # Fork WandersondeSouza - v7.1.2.9 (2026-06-04)
