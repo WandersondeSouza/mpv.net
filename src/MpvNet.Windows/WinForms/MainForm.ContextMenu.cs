@@ -6,6 +6,32 @@ namespace MpvNet.Windows.WinForms;
 
 public partial class MainForm
 {
+    static string GetLocalizedMenuPath(Binding binding, IReadOnlyDictionary<string, string> defaultMenuLabels)
+    {
+        if (binding.Command != "" && defaultMenuLabels.TryGetValue(binding.Command, out string? defaultLabel))
+            return defaultLabel;
+
+        return TranslateMenuPath(binding.Comment);
+    }
+
+    static string TranslateMenuPath(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+            return path;
+
+        string[] parts = path.Split(new[] { " > ", " | " }, StringSplitOptions.None);
+
+        for (int i = 0; i < parts.Length; i++)
+        {
+            if (parts[i] == "-" || parts[i] == "")
+                continue;
+
+            parts[i] = _(parts[i]);
+        }
+
+        return string.Join(" > ", parts);
+    }
+
     void AddTrackMenuItems(WpfControls.MenuItem parent, IEnumerable<MediaTrack> tracks, string propertyName, string selectedId)
     {
         foreach (MediaTrack track in tracks)

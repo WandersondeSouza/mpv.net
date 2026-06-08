@@ -42,6 +42,7 @@ Essa ordem é crítica para compatibilidade com instalações existentes e modo 
 | `mpv.conf` | `Player.ConfPath` | Opções do mpv e algumas opções processadas por `Player.ProcessProperty`. |
 | `mpvnet.conf` | `App.ConfPath` | Opções específicas do frontend mpv.net. |
 | `input.conf` | `App.InputConf` | Atalhos, comandos e menu. |
+| `menu.conf` | `App.EnsureInitialSelectMenuConf()` | Menu OSD do `select.lua` com rótulos localizados por idioma. |
 | `settings.xml` | `SettingsManager.SettingsFile` | Preferências persistidas pelo mpv.net. |
 | `theme.conf` | `Theme.Init()` | Tema visual customizado. |
 | `global-input.conf` | `GlobalHotkey` | Hotkeys globais. |
@@ -161,6 +162,8 @@ Comportamento importante:
 - caso contrário, os atalhos padrão de `InputHelp.GetDefaults()` são combinados com os atalhos do usuário;
 - atalhos do usuário podem substituir atalhos padrão;
 - o conteúdo final pode ser passado ao mpv via `input-conf=memory://...`.
+- os rótulos padrão do menu são resolvidos no momento da renderização, usando o idioma ativo da interface;
+- rótulos personalizados continuam sendo respeitados como estão no `input.conf`.
 
 Migração automática observada:
 

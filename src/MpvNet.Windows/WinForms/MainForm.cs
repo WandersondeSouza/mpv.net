@@ -367,6 +367,7 @@ public partial class MainForm : Form
         App.Language = language;
         Translator.Current?.Gettext("");
         Player.SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
+        App.EnsureInitialSelectMenuConf();
         RebuildContextMenu();
     }
 
@@ -646,6 +647,9 @@ public partial class MainForm : Form
         var (menuBindings, confBindings) = App.InputConf.GetBindings();
         _confBindings = confBindings;
         var activeBindings = InputHelp.GetActiveBindings(menuBindings);
+        var defaultMenuLabels = InputHelp.GetDefaults()
+            .Where(binding => binding.IsMenu && !string.IsNullOrWhiteSpace(binding.Command))
+            .ToDictionary(binding => binding.Command, binding => binding.Comment);
 
         foreach (Binding binding in menuBindings)
         {
@@ -654,7 +658,8 @@ public partial class MainForm : Form
             if (!binding.IsMenu)
                 continue;
 
-            var menuItem = MenuHelp.Add(ContextMenu.Items, tempBinding.Comment);
+            string menuPath = GetLocalizedMenuPath(tempBinding, defaultMenuLabels);
+            var menuItem = MenuHelp.Add(ContextMenu.Items, menuPath);
 
             if (menuItem != null)
             {

@@ -13,6 +13,7 @@ Este documento resume onde o fork procura as configurações e quais arquivos o 
 - `mpv.conf`: opções do mpv
 - `mpvnet.conf`: opções do mpv.net
 - `input.conf`: atalhos, ações e menu
+- `menu.conf`: menu OSD do `select.lua`, gerado automaticamente no idioma ativo quando ausente
 - `global-input.conf`: atalhos globais
 - `settings.xml`: estado interno salvo pelo aplicativo
 - `theme.conf`: tema visual
@@ -34,5 +35,6 @@ portable_config/
 
 - `mpv.conf` deve continuar compatível com o mpv.
 - `input.conf` pode ser usado para atalhos personalizados e menu.
+- O menu OSD do `Ctrl+p` usa `menu.conf` quando existe; o mpv.net gera esse arquivo com rótulos localizados se ele ainda não existir.
 - Scripts e opções de scripts ficam em `scripts/` e `script-opts/`.
 - O exemplo de `thumbfast` do fork fica em `docs/exemplos/thumbfast.conf`.
