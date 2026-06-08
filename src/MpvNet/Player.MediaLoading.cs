@@ -20,7 +20,7 @@ public partial class MainPlayer
 
     public DateTime LastLoad;
 
-    public void LoadFiles(string[]? files, bool loadFolder, bool append)
+    public void LoadFiles(string[]? files, bool loadFolder, bool append, string? fallbackInput = null)
     {
         if (files == null || files.Length == 0)
         {
@@ -35,7 +35,7 @@ public partial class MainPlayer
         }
 
         LastLoad = DateTime.Now;
-        Log.Info($"Loading media inputs. count={files.Length}, loadFolder={loadFolder}, append={append}, inputs={Log.SafeValues(files)}");
+        Log.Info($"Loading media inputs. count={files.Length}, loadFolder={loadFolder}, append={append}, fallback='{Log.SafeValue(fallbackInput)}', inputs={Log.SafeValues(files)}");
 
         for (int i = 0; i < files.Length; i++)
         {
@@ -84,30 +84,47 @@ public partial class MainPlayer
 
             if (FileTypes.IsPlaylist(ext) && File.Exists(file))
             {
-                var playlistItems = PlaylistFile.Read(file);
                 bool appendPlaylist = append || i > 0 || !string.IsNullOrEmpty(GetPropertyString("path"));
-                List<PlaylistFileItem> itemsToLoad = [];
-                Log.Info($"Playlist file expanded. path='{Log.SafeValue(file)}', parsedItems={playlistItems.Count}, appendPlaylist={appendPlaylist}");
 
-                foreach (var item in playlistItems)
+                try
                 {
-                    if (PlaylistContainsPath(item.Path))
+                    var playlistItems = PlaylistFile.Read(file);
+                    List<PlaylistFileItem> itemsToLoad = [];
+                    Log.Info($"Playlist file expanded. path='{Log.SafeValue(file)}', parsedItems={playlistItems.Count}, appendPlaylist={appendPlaylist}");
+
+                    foreach (var item in playlistItems)
                     {
-                        Log.Debug($"Skipping playlist duplicate item: '{Log.SafeValue(item.Path)}'");
-                        continue;
+                        if (PlaylistContainsPath(item.Path))
+                        {
+                            Log.Debug($"Skipping playlist duplicate item: '{Log.SafeValue(item.Path)}'");
+                            continue;
+                        }
+
+                        itemsToLoad.Add(item);
                     }
 
-                    itemsToLoad.Add(item);
-                }
+                    if (itemsToLoad.Count > 0)
+                    {
+                        Log.Info($"Loading playlist items. playlist='{Log.SafeValue(file)}', count={itemsToLoad.Count}, append={appendPlaylist}");
+                        LoadPlaylistItems(itemsToLoad, appendPlaylist);
+                    }
+                    else
+                    {
+                        Log.Info($"Playlist file did not add new items. path='{Log.SafeValue(file)}'");
 
-                if (itemsToLoad.Count > 0)
-                {
-                    Log.Info($"Loading playlist items. playlist='{Log.SafeValue(file)}', count={itemsToLoad.Count}, append={appendPlaylist}");
-                    LoadPlaylistItems(itemsToLoad, appendPlaylist);
+                        if (string.IsNullOrEmpty(GetPropertyString("path")))
+                            TryLoadFallbackDirect(fallbackInput, file, appendPlaylist, "empty playlist expansion");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Log.Info($"Playlist file did not add new items. path='{Log.SafeValue(file)}'");
+                    Log.Error(ex, $"Playlist expansion failed; playback fallback will be attempted. playlist='{Log.SafeValue(file)}', fallback='{Log.SafeValue(fallbackInput)}'");
+
+                    if (!TryLoadFallbackDirect(fallbackInput, file, appendPlaylist, "playlist expansion failure"))
+                    {
+                        Log.Info($"Falling back to raw playlist file through mpv. playlist='{Log.SafeValue(file)}'");
+                        SendLoadfile(file, i, append);
+                    }
                 }
             }
             else if (ext == "iso")
@@ -122,16 +139,7 @@ public partial class MainPlayer
             }
             else
             {
-                if (i == 0 && !append)
-                {
-                    Log.Info($"Sending loadfile replace to mpv: '{Log.SafeValue(file)}'");
-                    CommandV("loadfile", file);
-                }
-                else
-                {
-                    Log.Info($"Sending loadfile append to mpv: '{Log.SafeValue(file)}'");
-                    CommandV("loadfile", file, "append");
-                }
+                SendLoadfile(file, i, append);
             }
         }
 
@@ -230,6 +238,37 @@ public partial class MainPlayer
         string playlist = PlaylistFile.WriteTempM3u(items);
         Log.Info($"Sending loadlist to mpv. tempPlaylist='{Log.SafeValue(playlist)}', itemCount={items.Count}, mode={(append ? "append" : "replace")}");
         CommandV("loadlist", playlist, append ? "append" : "replace");
+    }
+
+    bool TryLoadFallbackDirect(string? fallbackInput, string failedInput, bool append, string reason)
+    {
+        if (string.IsNullOrWhiteSpace(fallbackInput))
+            return false;
+
+        if (GetPlaylistPathKey(fallbackInput) == GetPlaylistPathKey(failedInput))
+            return false;
+
+        Log.Info($"Playback fallback activated. reason='{reason}', fallback='{Log.SafeValue(fallbackInput)}', failedInput='{Log.SafeValue(failedInput)}', append={append}");
+        if (append)
+            CommandV("loadfile", ConvertFilePath(fallbackInput), "append");
+        else
+            CommandV("loadfile", ConvertFilePath(fallbackInput));
+
+        return true;
+    }
+
+    void SendLoadfile(string file, int index, bool append)
+    {
+        if (index == 0 && !append)
+        {
+            Log.Info($"Sending loadfile replace to mpv: '{Log.SafeValue(file)}'");
+            CommandV("loadfile", file);
+        }
+        else
+        {
+            Log.Info($"Sending loadfile append to mpv: '{Log.SafeValue(file)}'");
+            CommandV("loadfile", file, "append");
+        }
     }
 
     bool PlaylistContainsPath(string path)
@@ -406,9 +445,19 @@ public partial class MainPlayer
 
         foreach (string file in files)
         {
-            IEnumerable<PlaylistFileItem> items = FileTypes.IsPlaylist(file.Ext())
-                ? PlaylistFile.Read(file)
-                : [new PlaylistFileItem(file, "")];
+            IEnumerable<PlaylistFileItem> items;
+
+            try
+            {
+                items = FileTypes.IsPlaylist(file.Ext())
+                    ? PlaylistFile.Read(file)
+                    : [new PlaylistFileItem(file, "")];
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, $"Folder playlist expansion skipped because a playlist file failed. path='{Log.SafeValue(file)}'");
+                continue;
+            }
 
             foreach (var item in items)
             {

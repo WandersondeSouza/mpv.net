@@ -93,6 +93,14 @@ frontend devem rejeitar apenas entradas claramente inválidas antes do `loadfile
 ausência de legenda, áudio, duração, título ou dados de MediaInfo é falha não
 bloqueante.
 
+O mesmo vale para playlists criadas ou expandidas pelo frontend. A linha de
+comando pode receber somente uma URL, um arquivo local, ou um titulo visual
+seguido de uma URL. Quando a midia principal e resolvida, o titulo deve ser
+aplicado como metadado e a URL ou caminho bruto deve ser enviado ao mpv/libmpv
+sem depender de playlist. Expansoes auxiliares de playlist devem continuar
+opcionais: se falharem, o frontend deve preservar a tentativa de reproducao da
+midia principal antes de desistir.
+
 ---
 
 # Compatibilidade

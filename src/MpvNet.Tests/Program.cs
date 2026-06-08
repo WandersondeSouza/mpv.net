@@ -23,12 +23,14 @@ string tempJspf = Path.Combine(tempPlaylistDir, "playlist.jspf");
 string tempUnknown = Path.Combine(tempPlaylistDir, "ignored.txt");
 string tempImage = Path.Combine(tempPlaylistDir, "image.jpg");
 string tempSecondImage = Path.Combine(tempPlaylistDir, "second.png");
+string tempVideoWithSpaces = Path.Combine(tempPlaylistDir, "video com espacos.mp4");
 string relativeMediaFile = "mpvnet-tests-relative-media.mkv";
 File.WriteAllText(tempAudio, "");
 File.WriteAllText(tempVideo, "");
 File.WriteAllText(tempUnknown, "");
 File.WriteAllText(tempImage, "");
 File.WriteAllText(tempSecondImage, "");
+File.WriteAllText(tempVideoWithSpaces, "");
 File.WriteAllText(relativeMediaFile, "");
 File.WriteAllLines(tempM3u, [
     "#EXTM3U",
@@ -130,13 +132,36 @@ var parsedChangeListArguments = CommandLine.ParseArguments([
     "--script-opts-remove=old=yes",
     "--script-opts-toggle=flag"]);
 string commandLinePlaylistTitle = CommandLine.GetCommandLinePlaylistTitle(parsedCommandArguments);
-bool commandLinePlaylistCreated = CommandLine.TryCreateCommandLinePlaylist(
-    ["https://example.com/video.mp4"],
-    parsedCommandArguments,
-    out string commandLinePlaylistPath);
-string commandLinePlaylistContent = commandLinePlaylistCreated ? File.ReadAllText(commandLinePlaylistPath) : "";
 string templateOnlyPlaylistTitle = CommandLine.GetCommandLinePlaylistTitle(
     CommandLine.ParseArguments(["--title=${media-title}"]));
+var separatedTitleArguments = CommandLine.ParseArguments(["--title", "Nome do vídeo", "https://example.com/video.mp4"]);
+var titleAndUrlRequest = CommandLine.ResolveMediaRequest(
+    ["Nome do vídeo", "https://example.com/video.mp4"],
+    CommandLine.ParseArguments(["Nome do vídeo", "https://example.com/video.mp4"]));
+var separatedTitleRequest = CommandLine.ResolveMediaRequest(
+    ["--title", "Nome do vídeo", "https://example.com/video.mp4"],
+    separatedTitleArguments);
+var directUrlRequest = CommandLine.ResolveMediaRequest(
+    ["https://example.com/video.mp4"],
+    CommandLine.ParseArguments(["https://example.com/video.mp4"]));
+var directFileRequest = CommandLine.ResolveMediaRequest(
+    [tempVideo],
+    CommandLine.ParseArguments([tempVideo]));
+var multipleFilesRequest = CommandLine.ResolveMediaRequest(
+    [tempAudio, tempVideo],
+    CommandLine.ParseArguments([tempAudio, tempVideo]));
+var invalidTitleUrlRequest = CommandLine.ResolveMediaRequest(
+    ["@#$", "https://example.com/video.mp4"],
+    CommandLine.ParseArguments(["@#$", "https://example.com/video.mp4"]));
+var queryUrlRequest = CommandLine.ResolveMediaRequest(
+    ["https://example.com/live/index.m3u8?token=secret&name=video"],
+    CommandLine.ParseArguments(["https://example.com/live/index.m3u8?token=secret&name=video"]));
+var escapedUrlRequest = CommandLine.ResolveMediaRequest(
+    ["https://example.com/video%20com%20espacos.mp4"],
+    CommandLine.ParseArguments(["https://example.com/video%20com%20espacos.mp4"]));
+var invalidUrlRequest = CommandLine.ResolveMediaRequest(
+    ["not-a-valid-url"],
+    CommandLine.ParseArguments(["not-a-valid-url"]));
 var activeBindings = InputHelp.GetActiveBindings([
     new Binding(command: "cycle pause", input: "SPACE"),
     new Binding(command: "cycle pause", input: "p"),
@@ -332,6 +357,8 @@ var tests = new (string Name, bool Result)[]
     ("Command line keeps script opts init-only after profile", !CommandLine.IsPostProfileOverrideProperty("script-opts")),
     ("Command line accepts absolute Windows path without existence check", CommandLine.IsLoadableFileArgument(@"C:\missing\movie.mkv")),
     ("Command line accepts relative dot path", CommandLine.IsLoadableFileArgument(@".\movie.mkv")),
+    ("Command line rejects unknown relative path", !CommandLine.IsLoadableFileArgument("missing-relative-file.unknown")),
+    ("Command line accepts local path with spaces", CommandLine.IsLoadableFileArgument(tempVideoWithSpaces)),
     ("ConvertFilePath resolves existing relative file", Path.GetFullPath(MainPlayer.ConvertFilePath(relativeMediaFile)) == Path.GetFullPath(relativeMediaFile)),
     ("ConvertFilePath keeps missing relative file unchanged", MainPlayer.ConvertFilePath("missing-relative-file.mkv") == "missing-relative-file.mkv"),
     ("ConvertFilePath normalizes mixed Windows separators", MainPlayer.ConvertFilePath("C:/Media/video.mkv") == @"C:\Media\video.mkv"),
@@ -421,11 +448,23 @@ var tests = new (string Name, bool Result)[]
         parsedCommandArguments.Any(i => i.Name == "sub-files" && i.Value == "sub.srt") &&
         parsedCommandArguments.Any(i => i.Name == "external-files" && i.Value == "cover.jpg")),
     ("Command parser normalizes explicit title values", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "Sample Video")),
+    ("Command parser consumes separated title values", separatedTitleArguments.Any(i => i.Name == "title" && i.Value == "Nome Do Vídeo")),
     ("Command parser preserves title templates", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "${media-title}")),
     ("Command parser normalizes force media title", parsedCommandArguments.Any(i => i.Name == "force-media-title" && i.Value == "Forced Title")),
     ("Command parser uses force media title for URL playlist title", commandLinePlaylistTitle == "Forced Title"),
     ("Command parser ignores title templates for URL playlist title", templateOnlyPlaylistTitle == ""),
-    ("Command line URL title creates temporary playlist", commandLinePlaylistCreated && commandLinePlaylistContent.Contains("#EXTINF:-1,Forced Title") && commandLinePlaylistContent.Contains("https://example.com/video.mp4")),
+    ("Command line title metadata keeps direct URL media", separatedTitleRequest.Files.SequenceEqual(["https://example.com/video.mp4"]) && separatedTitleRequest.Title == "Nome Do Vídeo"),
+    ("Command line name plus URL resolves URL as primary media", titleAndUrlRequest.PrimaryMedia == "https://example.com/video.mp4" && titleAndUrlRequest.Title == "Nome Do Vídeo"),
+    ("Command line separated title plus URL resolves URL as primary media", separatedTitleRequest.PrimaryMedia == "https://example.com/video.mp4" && separatedTitleRequest.Title == "Nome Do Vídeo"),
+    ("Command line direct URL resolves without playlist dependency", directUrlRequest.Files.SequenceEqual(["https://example.com/video.mp4"]) && directUrlRequest.Title == ""),
+    ("Command line direct local file resolves without playlist dependency", directFileRequest.Files.Single() == tempVideo && directFileRequest.PrimaryMedia == tempVideo),
+    ("Command line multiple files keeps order", multipleFilesRequest.Files.SequenceEqual([tempAudio, tempVideo])),
+    ("Command line invalid title still preserves valid URL", invalidTitleUrlRequest.PrimaryMedia == "https://example.com/video.mp4" && invalidTitleUrlRequest.Title == "Untitled Track"),
+    ("Command line IPTV URL resolves as primary media", CommandLine.ResolveMediaRequest(["https://example.com/live/index.m3u8"], []).PrimaryMedia == "https://example.com/live/index.m3u8"),
+    ("Command line URL with query string resolves as primary media", queryUrlRequest.PrimaryMedia == "https://example.com/live/index.m3u8?token=secret&name=video"),
+    ("Command line escaped URL resolves as primary media", escapedUrlRequest.PrimaryMedia == "https://example.com/video%20com%20espacos.mp4"),
+    ("Command line invalid URL is not selected as media", invalidUrlRequest.Files.Count == 0 && invalidUrlRequest.PrimaryMedia == ""),
+    ("Command line title does not replace raw primary media", titleAndUrlRequest.Files.SequenceEqual(["https://example.com/video.mp4"]) && titleAndUrlRequest.PrimaryMedia == "https://example.com/video.mp4"),
     ("Command parser keeps change-list operation names", parsedChangeListArguments.Select(i => i.Name).SequenceEqual([
         "script-opts-add",
         "script-opts-set",

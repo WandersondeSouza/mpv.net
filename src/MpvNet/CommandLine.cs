@@ -29,11 +29,20 @@ public class CommandLine
     internal static List<StringPair> ParseArguments(IEnumerable<string> args)
     {
         List<StringPair> arguments = [];
+        string[] inputs = args.ToArray();
 
-        foreach (string input in args)
+        for (int index = 0; index < inputs.Length; index++)
         {
+            string input = inputs[index];
+
             if (TryParseArgument(input, out StringPair? pair))
             {
+                if (ShouldConsumeSeparatedValue(pair!.Name, pair.Value, inputs, index))
+                {
+                    pair = new StringPair(pair.Name, NormalizeSeparatedValue(pair.Name, inputs[index + 1]));
+                    index++;
+                }
+
                 arguments.Add(pair!);
                 Log.Debug($"Parsed command line option: {pair!.Name}='{Log.SafeValue(pair.Value)}'");
             }
@@ -115,23 +124,18 @@ public class CommandLine
 
     public static void ProcessCommandLineFiles()
     {
-        List<string> files = [];
+        CommandLineMediaRequest request = ResolveMediaRequest(Environment.GetCommandLineArgs().Skip(1), Arguments);
+        List<string> files = request.Files;
 
-        foreach (string arg in Environment.GetCommandLineArgs().Skip(1))
+        Log.Info($"Command line media inputs selected: count={files.Count}, queue={App.Queue}, loadFolder={!App.Queue}, primary='{Log.SafeValue(request.PrimaryMedia)}', title='{Log.SafeValue(request.Title)}', source='{request.Source}', inputs={Log.SafeValues(files)}");
+
+        if (!string.IsNullOrWhiteSpace(request.Title) && !string.IsNullOrWhiteSpace(request.PrimaryMedia))
         {
-            bool isLoadable = IsLoadableFileArgument(arg);
-            Log.Debug($"Command line file candidate: loadable={isLoadable}, value='{Log.SafeValue(arg)}'");
-
-            if (isLoadable)
-                files.Add(arg);
+            Log.Info($"Applying command line media title before playback. title='{Log.SafeValue(request.Title)}', media='{Log.SafeValue(request.PrimaryMedia)}'");
+            Player.SetPropertyString("force-media-title", request.Title);
         }
 
-        Log.Info($"Command line media inputs selected: count={files.Count}, queue={App.Queue}, loadFolder={!App.Queue}, inputs={Log.SafeValues(files)}");
-
-        if (TryCreateCommandLinePlaylist(files, out string playlist))
-            Player.LoadFiles([playlist], false, App.Queue);
-        else
-            Player.LoadFiles([.. files], !App.Queue, App.Queue);
+        Player.LoadFiles([.. files], !App.Queue, App.Queue);
 
         if (App.CommandLine.Contains("--shuffle"))
         {
@@ -180,29 +184,6 @@ public class CommandLine
         return "";
     }
 
-    internal static bool TryCreateCommandLinePlaylist(List<string> files, out string playlist) =>
-        TryCreateCommandLinePlaylist(files, Arguments, out playlist);
-
-    internal static bool TryCreateCommandLinePlaylist(
-        List<string> files,
-        IEnumerable<StringPair> arguments,
-        out string playlist)
-    {
-        playlist = "";
-
-        if (files.Count != 1 || !FileTypes.IsStreamingUrl(files[0]))
-            return false;
-
-        string title = GetCommandLinePlaylistTitle(arguments);
-
-        if (string.IsNullOrWhiteSpace(title))
-            return false;
-
-        playlist = PlaylistFile.WriteTempM3u([new PlaylistFileItem(files[0], title)]);
-        Log.Info($"Command line URL and title converted to temporary playlist. playlist='{Log.SafeValue(playlist)}', url='{Log.SafeValue(files[0])}', title='{Log.SafeValue(title)}'");
-        return true;
-    }
-
     internal static string GetCommandLinePlaylistTitle(IEnumerable<StringPair> arguments)
     {
         string title = "";
@@ -217,6 +198,46 @@ public class CommandLine
 
         return title;
     }
+
+    internal static CommandLineMediaRequest ResolveMediaRequest(
+        IEnumerable<string> rawArgs,
+        IEnumerable<StringPair> parsedArguments)
+    {
+        List<string> files = [];
+        List<string> positionalNonFiles = [];
+
+        foreach (string arg in rawArgs)
+        {
+            bool isLoadable = IsLoadableFileArgument(arg);
+            Log.Debug($"Command line file candidate: loadable={isLoadable}, value='{Log.SafeValue(arg)}'");
+
+            if (isLoadable)
+                files.Add(arg);
+            else if (!arg.StartsWith("--"))
+                positionalNonFiles.Add(arg);
+        }
+
+        string title = GetCommandLinePlaylistTitle(parsedArguments);
+        string source = "command-line";
+
+        if (string.IsNullOrWhiteSpace(title) && files.Count == 1 && positionalNonFiles.Count > 0)
+        {
+            title = TitleHelp.NormalizeMediaTitle(positionalNonFiles[0]);
+            source = "command-line-title-and-media";
+        }
+
+        string primary = files.FirstOrDefault("") ?? "";
+        return new CommandLineMediaRequest(files, primary, title, source);
+    }
+
+    static bool ShouldConsumeSeparatedValue(string name, string value, string[] inputs, int index) =>
+        string.Equals(value, "yes", StringComparison.OrdinalIgnoreCase) &&
+        index + 1 < inputs.Length &&
+        ShouldNormalizeTitleArgument(name, inputs[index + 1]) &&
+        !inputs[index + 1].StartsWith("--");
+
+    static string NormalizeSeparatedValue(string name, string value) =>
+        ShouldNormalizeTitleArgument(name, value) ? TitleHelp.NormalizeMediaTitle(value) : value;
 
     static bool ShouldNormalizeTitleArgument(string name, string value)
     {
@@ -337,3 +358,9 @@ public class CommandLine
         name.EndsWith("-remove") ||
         name.EndsWith("-toggle");
 }
+
+public sealed record CommandLineMediaRequest(
+    List<string> Files,
+    string PrimaryMedia,
+    string Title,
+    string Source);

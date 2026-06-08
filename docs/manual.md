@@ -72,6 +72,13 @@ mpv/libmpv.
 ## Linha de comando
 
 O frontend aceita arquivos locais, playlists e URLs de streaming compatíveis com o mpv.
+Tambem aceita um titulo separado antes de uma URL, usando esse texto apenas
+como metadado visual:
+
+```powershell
+mpvnet.exe "Nome do video" "https://example.com/video.mp4"
+mpvnet.exe --title "Nome do video" "https://example.com/video.mp4"
+```
 
 Quando `auto-load-folder=yes` está ativo e o usuário abre um arquivo local de
 áudio ou vídeo, o mpv.net adiciona à playlist interna os outros arquivos de
@@ -93,11 +100,17 @@ baixada para um arquivo temporário e expandida pelo frontend antes do envio ao
 mpv/libmpv. Essa verificação usa timeout de pelo menos 60 segundos; se expirar
 ou falhar, a URL original ainda é enviada ao mpv/libmpv.
 
+Falhas auxiliares ao criar ou expandir playlists nao devem impedir a tentativa
+de reproducao da midia principal. Quando houver uma URL ou caminho valido, o
+frontend tenta enviar a midia bruta ao mpv/libmpv; o titulo informado por linha
+de comando e aplicado como metadado visual, nao como requisito de playlist.
+
 Exemplo:
 
 ```powershell
 mpvnet.exe "C:\Videos\filme.mp4"
 mpvnet.exe "https://example.com/live/index.m3u8"
+mpvnet.exe "Canal IPTV" "https://example.com/live/index.m3u8"
 ```
 
 ## Modo portátil
