@@ -25,17 +25,6 @@
         <StackPanel HorizontalAlignment="Center">
             <TextBox
                 IsReadOnly="True"
-                FontSize="30"
-                TextAlignment="Center"
-                Margin="10,10,10,0"
-                BorderThickness="0"
-                Foreground="{Binding Theme.Foreground}"
-                Background="{Binding Theme.Background}"
-                Text="{Binding ProductName, Mode=OneWay}"
-                >
-            </TextBox>
-            <TextBox
-                IsReadOnly="True"
                 Text="{Binding About, Mode=OneWay}"
                 TextWrapping="Wrap"
                 TextAlignment="Center"
