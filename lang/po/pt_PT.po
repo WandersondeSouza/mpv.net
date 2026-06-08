@@ -634,6 +634,10 @@ msgstr "Se quiser fazer uma doação via Pix, use o código QR ao lado ou copie 
 msgid "Pix copy and paste:"
 msgstr "Pix copiar e colar:"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:102
+msgid "Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer."
+msgstr "O Pix foi copiado para a área de transferência do Windows. Abre a aplicação ou o site do teu banco para concluir a transferência Pix."
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
 msgstr "Associações ativas no editor de texto"

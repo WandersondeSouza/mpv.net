@@ -106,6 +106,7 @@ public class AppClass
     public static string CodecGuideTip => _("Tip: installing Codec Guide can improve codec support and playback.");
     public static string DonationTitle => _("If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below.");
     public static string DonationCopyPaste => _("Pix copy and paste:");
+    public static string DonationCopied => _("Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer.");
 
     static string GetLastWriteTime(string path) => $" ({File.GetLastWriteTime(path).ToShortDateString()})";
 

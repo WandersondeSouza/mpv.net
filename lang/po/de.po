@@ -640,6 +640,10 @@ msgstr "Wenn du per Pix spenden möchtest, verwende den QR-Code daneben oder kop
 msgid "Pix copy and paste:"
 msgstr "Pix kopieren und einfügen:"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:102
+msgid "Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer."
+msgstr "Pix wurde in die Windows-Zwischenablage kopiert. Öffne deine Banking-App oder Website, um die Pix-Überweisung abzuschließen."
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
 msgstr "Aktive Tastaturkombinationen Im Texteditor"

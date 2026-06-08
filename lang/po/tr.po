@@ -642,6 +642,10 @@ msgstr "Pix ile bağış yapmak isterseniz yanındaki QR kodu kullanın veya aş
 msgid "Pix copy and paste:"
 msgstr "Pix kopyala ve yapıştır:"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:102
+msgid "Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer."
+msgstr "Pix Windows panosuna kopyalandı. Pix transferini tamamlamak için banka uygulamanızı veya web sitenizi açın."
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
 msgstr "Metin Düzenleyicide Aktif Kısayol Atamalarını Göster"

@@ -631,6 +631,10 @@ msgstr "Ако искате да дарите чрез Pix, използвайт
 msgid "Pix copy and paste:"
 msgstr "Pix копиране и поставяне:"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:102
+msgid "Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer."
+msgstr "Pix е копиран в клипборда на Windows. Отворете банковото си приложение или уебсайта, за да завършите Pix превода."
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
 msgstr "Активни назначения в текстовия редактор"

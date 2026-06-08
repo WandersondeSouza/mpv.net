@@ -68,15 +68,20 @@
                             FontWeight="Bold"
                             Foreground="{Binding Theme.Foreground}" />
 
-                        <TextBox
+                        <Button
                             Margin="0,6,0,0"
-                            Text="00020126490014BR.GOV.BCB.PIX0127wanderson_souza@hotmail.com5204000053039865802BR5901N6001C62070503***630410BE"
-                            IsReadOnly="True"
-                            TextWrapping="Wrap"
-                            BorderThickness="1"
                             Padding="8"
+                            BorderThickness="1"
+                            HorizontalContentAlignment="Left"
+                            VerticalContentAlignment="Center"
                             Foreground="{Binding Theme.Foreground}"
-                            Background="{Binding Theme.Background}" />
+                            Background="{Binding Theme.Background}"
+                            Click="DonationPixKey_Click">
+                            <TextBlock
+                                Text="{Binding DonationPixKey}"
+                                TextWrapping="Wrap"
+                                Foreground="{Binding Theme.Foreground}" />
+                        </Button>
                     </StackPanel>
 
                     <Image

@@ -640,6 +640,10 @@ msgstr "Если вы хотите сделать пожертвование ч�
 msgid "Pix copy and paste:"
 msgstr "Pix копировать и вставить:"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:102
+msgid "Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer."
+msgstr "Pix скопирован в буфер обмена Windows. Откройте приложение или сайт вашего банка, чтобы завершить перевод Pix."
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
 msgstr "Активные привязки в текстовом редакторе"

@@ -640,6 +640,10 @@ msgstr "Pix로 후원하려면 옆의 QR 코드를 사용하거나 아래 키를
 msgid "Pix copy and paste:"
 msgstr "Pix 복사 및 붙여넣기:"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:102
+msgid "Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer."
+msgstr "Pix가 Windows 클립보드에 복사되었습니다. Pix 이체를 완료하려면 은행 앱이나 웹사이트를 여세요."
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
 msgstr "Active Bindings 에 텍스트 편집기"

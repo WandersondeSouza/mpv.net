@@ -641,6 +641,10 @@ msgstr "如果你想通过 Pix 捐助，请使用旁边的二维码或复制并�
 msgid "Pix copy and paste:"
 msgstr "Pix 复制粘贴："
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:102
+msgid "Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer."
+msgstr "Pix 已复制到 Windows 剪贴板。请打开你的银行应用或网站以完成 Pix 转账。"
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
 msgstr "文本编辑器中的活动绑定"
