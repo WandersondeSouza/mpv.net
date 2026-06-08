@@ -57,6 +57,7 @@ Projetos principais:
 | `src/MpvNet.Windows/MpvNet.Windows.csproj` | aplicação Windows | `net10.0-windows7.0`, `win-x64` | `mpvnet.exe` x64 |
 | `src/NGettext.Wpf/NGettext.Wpf.csproj` | biblioteca | legado/packages.config | suporte WPF/NGettext |
 | `src/MpvNet.Extension/ExampleExtension/ExampleExtension.csproj` | exemplo | extensão .NET | exemplo carregável |
+| `src/MpvNet.Pacote/MpvNet.Pacote.wapproj` | empacotamento MSIX/WAP | `net10.0-windows10.0.26100.0` | pacote para Microsoft Store |
 
 Pacotes NuGet versionados em `src/Directory.Packages.props`:
 
@@ -116,6 +117,29 @@ Para publicar como o script de release atual faz:
 ```powershell
 dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained true --configuration Release --runtime win-x64 /p:IncludeNativeLibrariesForSelfExtract=false
 ```
+
+## Empacotamento Microsoft Store
+
+O fork agora inclui um projeto WAP/MSIX separado em `src/MpvNet.Pacote/MpvNet.Pacote.wapproj`.
+Ele referencia `src/MpvNet.Windows/MpvNet.Windows.csproj`, usa `src/BuildVersion.props` como fonte da versão e inclui um conjunto básico de assets `Images\` para a Store.
+
+Pontos importantes:
+
+- o `Identity Name` e o `Publisher` em `Package.appxmanifest` ainda precisam ser trocados pelos valores reais do Partner Center/certificado antes da publicação;
+- os assets de Store foram gerados a partir do `mpv-icon.ico` atual para permitir a montagem do projeto no fork;
+- o projeto foi adicionado à solução `src/MpvNet.sln`, mas depende do Desktop Bridge/MSIX instalado no Visual Studio para gerar o pacote de fato.
+- o arquivo real `src/MpvNet.Pacote/Packaging.Distribution.props` fica fora do Git por padrao e deve conter apenas dados locais/secretos do certificado.
+- se o `.pfx` tiver senha, use `MPVNET_STORE_CERTIFICATE_PASSWORD` no CI ou `-PackageCertificatePassword` no script local.
+- se existir um `.pfx` comum ao lado de `src/MpvNet.Pacote` ou em `src/`, o script tenta descobri-lo automaticamente antes de exigir parametros.
+
+Script de build dedicado:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\build-store-package.ps1 .\src .\artifacts\store
+```
+
+Para envio real, copie `src\MpvNet.Pacote\Packaging.Distribution.props.example` para `src\MpvNet.Pacote\Packaging.Distribution.props` e ajuste `PackagePublisher` e `PackageCertificateKeyFile` para o certificado usado na publicação.
+No CI ou em maquina local, o script tambem aceita `MPVNET_STORE_CERTIFICATE_KEYFILE`, `MPVNET_STORE_CERTIFICATE_PASSWORD` e `MPVNET_STORE_PUBLISHER` como variaveis de ambiente.
 
 Observacao: o script de release publica em `Release`. Ele chama o publish com `/p:EnsureBuildAssets=false`, porque prepara e valida os binarios nativos em uma etapa propria depois do publish.
 Logs detalhados em arquivo ficam desligados por padrao com `/p:EnableFileLogging=false`.

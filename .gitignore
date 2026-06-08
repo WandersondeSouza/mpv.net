@@ -176,6 +176,7 @@ rcf/
 AppPackages/
 BundleArtifacts/
 Package.StoreAssociation.xml
+src/MpvNet.Pacote/Packaging.Distribution.props
 _pkginfo.txt
 
 # Visual Studio cache files

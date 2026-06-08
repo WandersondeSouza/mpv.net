@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGettext.Wpf", "NGettext.Wp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MpvNet.Tests", "MpvNet.Tests\MpvNet.Tests.csproj", "{8C83B133-6299-41C9-AA7C-8CF922ED6478}"
 EndProject
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "MpvNet.Pacote", "MpvNet.Pacote\MpvNet.Pacote.wapproj", "{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +116,26 @@ Global
 		{8C83B133-6299-41C9-AA7C-8CF922ED6478}.Release|x64.Build.0 = Release|Any CPU
 		{8C83B133-6299-41C9-AA7C-8CF922ED6478}.Release|x86.ActiveCfg = Release|Any CPU
 		{8C83B133-6299-41C9-AA7C-8CF922ED6478}.Release|x86.Build.0 = Release|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Debug|ARM.Build.0 = Debug|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Debug|x64.Build.0 = Debug|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Debug|x86.Build.0 = Debug|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Release|ARM.ActiveCfg = Release|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Release|ARM.Build.0 = Release|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Release|ARM64.Build.0 = Release|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Release|x64.ActiveCfg = Release|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Release|x64.Build.0 = Release|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Release|x86.ActiveCfg = Release|Any CPU
+		{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

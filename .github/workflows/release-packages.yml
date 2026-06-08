@@ -35,6 +35,14 @@ on:
         options:
           - "normal"
           - "x86_64-v3"
+      create_store_package:
+        description: Also generate the Microsoft Store MSIX package
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 permissions:
   contents: write
@@ -71,6 +79,9 @@ jobs:
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
+          MPVNET_STORE_CERTIFICATE_KEYFILE: ${{ secrets.MPVNET_STORE_CERTIFICATE_KEYFILE }}
+          MPVNET_STORE_CERTIFICATE_PASSWORD: ${{ secrets.MPVNET_STORE_CERTIFICATE_PASSWORD }}
+          MPVNET_STORE_PUBLISHER: ${{ secrets.MPVNET_STORE_PUBLISHER }}
         run: |
           $releaseArgs = @{
             SourceDir = Join-Path $env:GITHUB_WORKSPACE 'src'
@@ -94,6 +105,34 @@ jobs:
 
           & .\src\Tools\build-release-package.ps1 @releaseArgs
 
+      - name: Generate Microsoft Store package
+        if: ${{ inputs.create_store_package == 'true' }}
+        shell: pwsh
+        env:
+          MPVNET_STORE_CERTIFICATE_KEYFILE: ${{ secrets.MPVNET_STORE_CERTIFICATE_KEYFILE }}
+          MPVNET_STORE_CERTIFICATE_PASSWORD: ${{ secrets.MPVNET_STORE_CERTIFICATE_PASSWORD }}
+          MPVNET_STORE_PUBLISHER: ${{ secrets.MPVNET_STORE_PUBLISHER }}
+        run: |
+          $storeArgs = @{
+            SourceDir = Join-Path $env:GITHUB_WORKSPACE 'src'
+            OutputRootDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts\store'
+          }
+
+          if ($env:MPVNET_STORE_CERTIFICATE_KEYFILE) {
+            $storeArgs.PackageCertificateKeyFile = $env:MPVNET_STORE_CERTIFICATE_KEYFILE
+            $storeArgs.PackageSigningMode = 'Distribution'
+          }
+
+          if ($env:MPVNET_STORE_CERTIFICATE_PASSWORD) {
+            $storeArgs.PackageCertificatePassword = $env:MPVNET_STORE_CERTIFICATE_PASSWORD
+          }
+
+          if ($env:MPVNET_STORE_PUBLISHER) {
+            $storeArgs.PackagePublisher = $env:MPVNET_STORE_PUBLISHER
+          }
+
+          & .\src\Tools\build-store-package.ps1 @storeArgs
+
       - name: Validate native dependencies in packages
         shell: pwsh
         run: |
@@ -110,3 +149,10 @@ jobs:
         with:
           name: mpv.net-release-packages
           path: artifacts/release/*
+
+      - name: Upload Microsoft Store package
+        if: ${{ inputs.create_store_package == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: mpv.net-store-package
+          path: artifacts/store/*

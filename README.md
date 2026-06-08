@@ -37,6 +37,11 @@ O mpv.net aceita arquivos locais, playlists e URLs de streaming compatíveis com
 
 ## Build
 
+O fork tambem inclui um projeto MSIX/WAP em `src/MpvNet.Pacote/MpvNet.Pacote.wapproj` para publicacao na Microsoft Store.
+O fluxo dedicado de build esta em `src/Tools/build-store-package.ps1` e usa os assets do proprio repositorio.
+O arquivo real `src/MpvNet.Pacote/Packaging.Distribution.props` nao deve ser versionado; use o exemplo e variaveis de ambiente para segredos. Se o `.pfx` tiver senha, use `MPVNET_STORE_CERTIFICATE_PASSWORD`.
+Se houver um `.pfx` local comum ao lado de `src/MpvNet.Pacote` ou em `src/`, o script tenta encontra-lo automaticamente.
+
 A build 64bit-v3 do mpv/libmpv é o padrão nos scripts de build/release do fork. A variante normal ainda pode ser selecionada explicitamente para compatibilidade com CPUs x64 mais antigas; veja [Build e release](docs/developer/build-release.md).
 
 ## Logs
