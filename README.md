@@ -40,6 +40,17 @@ O mpv.net aceita arquivos locais, playlists e URLs de streaming compatíveis com
 
 A build 64bit-v3 do mpv/libmpv é o padrão nos scripts de build/release do fork. A variante normal ainda pode ser selecionada explicitamente para compatibilidade com CPUs x64 mais antigas; veja [Build e release](docs/developer/build-release.md).
 
+## Logs
+
+Resumo rápido:
+
+- `Error` sempre vai para arquivo.
+- `Info` e `Debug` só vão para arquivo em build de diagnóstico.
+- Logs diários são retidos por 3 dias.
+- Limpeza de `Cache` e `Temp` também usa 3 dias.
+
+Detalhes em [Logs de diagnostico](docs/logging.md).
+
 ## Para agentes
 
 Antes de alterar código ou documentação, leia:

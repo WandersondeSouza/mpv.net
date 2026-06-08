@@ -15,6 +15,17 @@ Documento único para build, dependências nativas, scripts, modo portátil, con
 - Para mudanças de configuração, leia `docs/developer/configuration.md`.
 - Para mudanças de build e release, leia `docs/developer/build-release.md`.
 
+## Logs
+
+Resumo rápido:
+
+- `Error` sempre vai para arquivo.
+- `Info` e `Debug` só vão para arquivo em build de diagnóstico.
+- Logs diários são retidos por 3 dias.
+- Limpeza de `Cache` e `Temp` também usa 3 dias.
+
+Detalhes em `docs/logging.md`.
+
 ## Build
 
 Gerar apenas o ZIP portatil:
