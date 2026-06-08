@@ -3,47 +3,34 @@
 Este arquivo registra apenas as versoes publicadas pelo fork
 `WandersondeSouza/mpv.net`.
 
-# Fork WandersondeSouza - v7.1.2.10 (2026-06-05)
+# Fork WandersondeSouza - v7.1.2.11 (2026-06-08)
 
-## Refatoracao conservadora
+## Reproducao e inicializacao
 
-- Separadas responsabilidades grandes de `Player.cs` em partials de
-  inicializacao, eventos, ciclo de vida, propriedades observadas, carregamento
-  de midia e capacidades, preservando o contrato com mpv/libmpv.
-- Separadas responsabilidades da janela principal em partials para comandos,
-  menu de contexto, cursor/OSC, drag and drop, fullscreen e eventos do player,
-  reduzindo o tamanho do arquivo central sem mudar os fluxos de UI.
-- Ampliada a cobertura de testes para parser de configuracao, argumentos de
-  linha de comando, atalhos de input, extensoes de imagem, auto-load de pasta,
-  normalizacao de caminhos e selecao de idioma.
+- Ajustado o fluxo de abertura e reproducao para lidar melhor com arquivos,
+  playlists vazias e caminhos normalizados antes de chegar ao mpv/libmpv.
+- Refinado o tratamento de argumentos de linha de comando e do arranque da
+  aplicacao para reduzir falhas de timeout e manter o comportamento previsivel.
+- Mantida a separacao interna de responsabilidades em `Player.cs` e
+  `MainForm.cs` para preservar o contrato existente sem refatoracao ampla.
 
 ## Idiomas e midia
 
-- Centralizado o catalogo de idiomas em `LanguageCatalog`, com normalizacao de
-  codigos ISO/BCP 47, aliases comuns, fallback seguro por cultura e resolucao
-  da interface a partir de `language=system` e `alang`.
-- Documentada a separacao entre idioma da interface (`language`) e preferencias
-  nativas de midia do mpv (`alang`, `slang`, `aid`, `sid`), mantendo o mpv como
-  autoridade final para audio e legenda.
-- Ajustada a exibicao/comparacao de idiomas de faixas para usar o normalizador
-  central, evitando fallbacks inseguros entre variantes de escrita como
-  `zh-CN`/`zh-TW` e `sr-Cyrl`/`sr-Latn`.
+- Melhorado o registro de informacoes de inicializacao e reproducao para
+  facilitar diagnostico sem alterar o caminho principal de execucao.
+- Ajustada a leitura das dependencias nativas para buscar o pacote correto de
+  DLLs e manter a compatibilidade com o binario esperado.
+- Ampliada a cobertura automatizada para parser de argumentos, auto-load de
+  pasta, associacoes de imagens, normalizacao de caminhos e selecao de idioma.
 
 ## Empacotamento e instalador
 
-- A variante padrao de mpv/libmpv nos scripts de build/release passou a ser
-  `x86_64-v3`, garantindo que a DLL venha de assets como
-  `mpv-dev-x86_64-v3-[data]-git-[hash].7z` por padrao.
-- Corrigida a selecao de cache da libmpv para validar o nome do asset por regex
-  antes de reutilizar downloads, evitando reaproveitar a build normal quando a
-  variante solicitada for `x86_64-v3`.
-- Mantido suporte explicito a `-MpvBuildVariant normal` nos scripts de build,
-  ZIP, instalador, workflow de release e preparacao de dependencias nativas
-  para pacotes destinados a CPUs x64 mais antigas.
-- Incluido marcador `libmpv-2.variant.txt` nos pacotes para registrar a variante
-  de libmpv usada e evitar reutilizacao incorreta do cache de dependencias.
-- Reforcada a validacao de pacotes para conferir tambem `libmpv-2.dll`,
-  FFmpeg, `ffprobe.exe`, `ffplay.exe` e `yt-dlp.exe`.
+- Reforcada a preparacao de build e release para validar melhor o runtime x64
+  e o pacote correto de dependencias nativas antes de gerar os artefatos.
+- Atualizados os scripts de ZIP, instalador e release para seguir o mesmo fluxo
+  de preparacao de dependencias e manter a publicacao consistente.
+- Mantida a validacao dos artefatos gerados com `libmpv-2.dll`, FFmpeg,
+  `ffprobe.exe`, `ffplay.exe` e `yt-dlp.exe`.
 
 # Fork WandersondeSouza - v7.1.2.9 (2026-06-04)
 
