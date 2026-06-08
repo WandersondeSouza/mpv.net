@@ -27,7 +27,9 @@ param(
 
     [string] $PackageCertificatePassword = $env:MPVNET_STORE_CERTIFICATE_PASSWORD,
 
-    [string] $PackagePublisher = $env:MPVNET_STORE_PUBLISHER
+    [string] $PackagePublisher = $env:MPVNET_STORE_PUBLISHER,
+
+    [switch] $AllowTemporarySigningFallback
 )
 
 $ErrorActionPreference = 'Stop'
@@ -84,6 +86,33 @@ function Resolve-LocalCertificate([string] $SourceDir) {
     return $null
 }
 
+function New-TemporarySigningCertificate([string] $SourceDir) {
+    $certDir = Join-Path $SourceDir 'artifacts\store-temp'
+    New-Item -ItemType Directory -Force $certDir | Out-Null
+
+    $certPath = Join-Path $certDir 'MpvNet.Pacote_TemporaryKey.pfx'
+    $passwordText = 'MpvNetTemporarySigning!123'
+    $password = ConvertTo-SecureString $passwordText -AsPlainText -Force
+
+    $subject = 'CN=MPV.NET Temporary Signing'
+    $cert = New-SelfSignedCertificate `
+        -Subject $subject `
+        -Type Custom `
+        -KeyUsage DigitalSignature `
+        -KeyExportPolicy Exportable `
+        -CertStoreLocation 'Cert:\CurrentUser\My' `
+        -HashAlgorithm SHA256 `
+        -NotAfter (Get-Date).AddYears(5)
+
+    Export-PfxCertificate -Cert $cert -FilePath $certPath -Password $password | Out-Null
+    return @{
+        Path = $certPath
+        Password = $passwordText
+        Subject = $subject
+        Thumbprint = $cert.Thumbprint
+    }
+}
+
 $SourceDir = Test-PathOrThrow $SourceDir
 New-Item -ItemType Directory -Force $OutputRootDir | Out-Null
 $OutputRootDir = (Resolve-Path $OutputRootDir).Path
@@ -101,7 +130,27 @@ elseif (-not $PackageCertificateKeyFile) {
 }
 
 if ($PackageSigningMode -eq 'Distribution' -and (-not $PackageCertificateKeyFile -or -not $PackagePublisher)) {
-    throw 'Distribution signing requires PackageCertificateKeyFile and PackagePublisher or a Packaging.Distribution.props file.'
+    if ($AllowTemporarySigningFallback) {
+        Write-Warning 'Distribution signing was requested, but no certificate or publisher was provided. Falling back to Temporary signing for local MSIX generation.'
+        $PackageSigningMode = 'Temporary'
+        $temporaryCert = New-TemporarySigningCertificate $SourceDir
+        $PackageCertificateKeyFile = $temporaryCert.Path
+        $PackageCertificatePassword = $temporaryCert.Password
+        $PackageCertificateThumbprint = $temporaryCert.Thumbprint
+        $PackagePublisher = $null
+        Write-Host "Temporary signing certificate created: $($temporaryCert.Path)"
+    }
+    else {
+        throw 'Distribution signing requires PackageCertificateKeyFile and PackagePublisher or a Packaging.Distribution.props file.'
+    }
+}
+
+if ($PackageSigningMode -eq 'Temporary' -and -not $PackageCertificateKeyFile) {
+    $temporaryCert = New-TemporarySigningCertificate $SourceDir
+    $PackageCertificateKeyFile = $temporaryCert.Path
+    $PackageCertificatePassword = $temporaryCert.Password
+    $PackageCertificateThumbprint = $temporaryCert.Thumbprint
+    Write-Host "Temporary signing certificate created: $($temporaryCert.Path)"
 }
 
 $wapProject = Join-Path $SourceDir 'MpvNet.Pacote\MpvNet.Pacote.wapproj'
@@ -124,6 +173,10 @@ if ($PackageCertificateKeyFile) {
 
 if ($PackageCertificatePassword) {
     $buildArgs += "/p:PackageCertificatePassword=$PackageCertificatePassword"
+}
+
+if ($PackageCertificateThumbprint) {
+    $buildArgs += "/p:PackageCertificateThumbprint=$PackageCertificateThumbprint"
 }
 
 if ($PackagePublisher) {
