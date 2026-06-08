@@ -11,6 +11,8 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   playlists vazias e caminhos normalizados antes de chegar ao mpv/libmpv.
 - Refinado o tratamento de argumentos de linha de comando e do arranque da
   aplicacao para reduzir falhas de timeout e manter o comportamento previsivel.
+- Corrigida a abertura do menu de contexto por clique direito ao forcar a
+  posicao do popup no ponto do mouse.
 - Mantida a separacao interna de responsabilidades em `Player.cs` e
   `MainForm.cs` para preservar o contrato existente sem refatoracao ampla.
 

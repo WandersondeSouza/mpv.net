@@ -700,6 +700,7 @@ public partial class MainForm : Form
         if (wasOpen)
         {
             UpdateMenu();
+            ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
             ContextMenu.IsOpen = true;
         }
     }

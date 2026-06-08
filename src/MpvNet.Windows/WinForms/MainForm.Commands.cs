@@ -75,6 +75,7 @@ public partial class MainForm
 
             ShowCursor();
             UpdateMenu();
+            ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
             ContextMenu.IsOpen = true;
         });
     }
