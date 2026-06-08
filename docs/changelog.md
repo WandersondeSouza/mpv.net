@@ -13,6 +13,8 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   aplicacao para reduzir falhas de timeout e manter o comportamento previsivel.
 - Corrigida a abertura do menu de contexto por clique direito ao forcar a
   posicao do popup no ponto do mouse.
+- Tornada tolerante a montagem dos rotulos padrao do menu para ignorar
+  comandos repetidos no mapeamento de atalho, evitando falha de inicializacao.
 - Mantida a separacao interna de responsabilidades em `Player.cs` e
   `MainForm.cs` para preservar o contrato existente sem refatoracao ampla.
 

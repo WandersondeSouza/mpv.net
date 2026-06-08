@@ -171,6 +171,14 @@ var activeBindings = InputHelp.GetActiveBindings([
     new Binding(command: "cycle pause", input: "p"),
     new Binding(command: "ignored", input: ""),
     new Binding(command: "", input: "x")]);
+var defaultMenuLabels = new Dictionary<string, string>();
+foreach (Binding binding in InputHelp.GetDefaults())
+{
+    if (!binding.IsMenu || string.IsNullOrWhiteSpace(binding.Command))
+        continue;
+
+    defaultMenuLabels.TryAdd(binding.Command, binding.Comment);
+}
 string pauseBindings = InputHelp.GetBindingsForCommand(activeBindings, "cycle pause");
 var customMenuBindings = new InputConf(tempCustomInputConf).GetBindings().menuBindings;
 var languageNormalizationCases = new (string Input, string Expected)[]
@@ -480,6 +488,7 @@ var tests = new (string Name, bool Result)[]
         "script-opts-toggle"])),
     ("Input bindings ignore incomplete entries", activeBindings.Count == 2),
     ("Input bindings list keys for command", pauseBindings == "SPACE, p"),
+    ("Default menu labels keep first playlist label", defaultMenuLabels["script-binding select/select-playlist"] == "Playlist"),
     ("Custom menu keeps open files", customMenuBindings.Any(binding => binding.Command == "script-message-to mpvnet open-files")),
     ("Custom menu keeps about", customMenuBindings.Any(binding => binding.Command == "script-message-to mpvnet show-about")),
     ("File log writer creates folder and daily log file", File.Exists(dailyLogFile)),

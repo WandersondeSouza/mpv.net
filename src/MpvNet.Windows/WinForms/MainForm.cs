@@ -647,9 +647,7 @@ public partial class MainForm : Form
         var (menuBindings, confBindings) = App.InputConf.GetBindings();
         _confBindings = confBindings;
         var activeBindings = InputHelp.GetActiveBindings(menuBindings);
-        var defaultMenuLabels = InputHelp.GetDefaults()
-            .Where(binding => binding.IsMenu && !string.IsNullOrWhiteSpace(binding.Command))
-            .ToDictionary(binding => binding.Command, binding => binding.Comment);
+        var defaultMenuLabels = GetDefaultMenuLabels();
 
         foreach (Binding binding in menuBindings)
         {

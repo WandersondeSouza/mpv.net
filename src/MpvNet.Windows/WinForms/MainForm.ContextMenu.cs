@@ -6,6 +6,21 @@ namespace MpvNet.Windows.WinForms;
 
 public partial class MainForm
 {
+    static IReadOnlyDictionary<string, string> GetDefaultMenuLabels()
+    {
+        Dictionary<string, string> labels = new(StringComparer.Ordinal);
+
+        foreach (Binding binding in InputHelp.GetDefaults())
+        {
+            if (!binding.IsMenu || string.IsNullOrWhiteSpace(binding.Command))
+                continue;
+
+            labels.TryAdd(binding.Command, binding.Comment);
+        }
+
+        return labels;
+    }
+
     static string GetLocalizedMenuPath(Binding binding, IReadOnlyDictionary<string, string> defaultMenuLabels)
     {
         if (binding.Command != "" && defaultMenuLabels.TryGetValue(binding.Command, out string? defaultLabel))
