@@ -93,6 +93,7 @@
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <PackageCertificateThumbprint>BCDF895168CC0300EE778E914D93BE0B353B8707</PackageCertificateThumbprint>
   </PropertyGroup>
   <Target Name="ValidateDistributionSigning" BeforeTargets="GenerateAppxPackageOnBuild">
     <Message Importance="High" Condition="'$(PackageSigningMode)'=='Temporary'" Text="Empacotamento usando certificado temporario de desenvolvimento. Para distribuicao publica, crie MpvNet.Pacote\\Packaging.Distribution.props com certificado valido." />
@@ -100,18 +101,11 @@
     <Error Condition="'$(PackageSigningMode)'=='Distribution' and '$(PackagePublisher)'==''" Text="PackageSigningMode=Distribution exige PackagePublisher configurado em Packaging.Distribution.props." />
   </Target>
   <Target Name="ValidatePackageManifestVersion" BeforeTargets="GenerateAppxPackageOnBuild">
-    <XmlPeek
-      XmlInputPath="Package.appxmanifest"
-      Namespaces="&lt;Namespace Prefix='appx' Uri='http://schemas.microsoft.com/appx/manifest/foundation/windows10' /&gt;"
-      Query="/appx:Package/appx:Identity/@Version">
+    <XmlPeek XmlInputPath="Package.appxmanifest" Namespaces="&lt;Namespace Prefix='appx' Uri='http://schemas.microsoft.com/appx/manifest/foundation/windows10' /&gt;" Query="/appx:Package/appx:Identity/@Version">
       <Output TaskParameter="Result" PropertyName="PackageManifestVersion" />
     </XmlPeek>
-    <Error
-      Condition="'$(MpvNetVersion)'==''"
-      Text="MpvNetVersion nao foi carregado. Verifique BuildVersion.props antes de gerar o pacote." />
-    <Error
-      Condition="'$(PackageManifestVersion)'!='$(MpvNetVersion)'"
-      Text="Versao desalinhada para publicacao: BuildVersion.props define $(MpvNetVersion), mas Package.appxmanifest esta em $(PackageManifestVersion). Atualize os dois antes de gerar o pacote para a Microsoft Store." />
+    <Error Condition="'$(MpvNetVersion)'==''" Text="MpvNetVersion nao foi carregado. Verifique BuildVersion.props antes de gerar o pacote." />
+    <Error Condition="'$(PackageManifestVersion)'!='$(MpvNetVersion)'" Text="Versao desalinhada para publicacao: BuildVersion.props define $(MpvNetVersion), mas Package.appxmanifest esta em $(PackageManifestVersion). Atualize os dois antes de gerar o pacote para a Microsoft Store." />
   </Target>
   <Target Name="ValidateStorePackage" DependsOnTargets="ValidateDistributionSigning;ValidatePackageManifestVersion">
     <Message Importance="High" Text="Validacao do pacote Store concluida: assinatura e versao do manifest estao consistentes." />
@@ -204,6 +198,8 @@
     <Content Include="Images\Wide310x150Logo.scale-150.png" />
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
     <Content Include="Images\Wide310x150Logo.scale-400.png" />
+    <None Include="MpvNet.Pacote_TemporaryKey.pfx" />
+    <None Include="Package.StoreAssociation.xml" />
     <None Include="MpvNet.Pacote_TemporaryKey.pfx" Condition="Exists('MpvNet.Pacote_TemporaryKey.pfx')" />
   </ItemGroup>
   <Target Name="Build" Condition="'$(HasDesktopBridgeTargets)'!='true'">

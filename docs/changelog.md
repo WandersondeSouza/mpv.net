@@ -10,6 +10,9 @@ Este arquivo registra apenas as versÃµes publicadas pelo fork
 - AtualizaÃ§Ã£o de versÃ£o para manter o histÃ³rico de releases do fork alinhado
   com a publicaÃ§Ã£o atual.
 - Sem alteraÃ§Ã£o adicional de comportamento nesta release.
+- Revisada a publicacao MSIX/WAP do projeto `MpvNet.Pacote`, com o
+  `Package.appxmanifest` alinhado a `src\BuildVersion.props` e a validacao
+  `ValidateStorePackage` concluida com sucesso no Visual Studio 2026 Community.
 
 # Fork WandersondeSouza - v7.1.2.11 (2026-06-08)
 
