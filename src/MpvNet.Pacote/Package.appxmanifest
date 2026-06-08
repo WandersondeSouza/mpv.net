@@ -7,13 +7,13 @@
   IgnorableNamespaces="uap rescap uap18">
 
   <Identity
-    Name="WandersondeSouza.MpvNet.MediaPlayer"
-    Publisher="CN=REPLACE-WITH-STORE-CERTIFICATE-COMMON-NAME"
+    Name="24183GestodeSistemas.MPV.NETMediaPlayer"
+    Publisher="CN=6581967D-2DE4-48DE-A846-C6F69ECA7701"
     Version="7.1.2.12" />
 
   <Properties>
     <DisplayName>MPV.NET Media Player</DisplayName>
-    <PublisherDisplayName>Wanderson de Souza</PublisherDisplayName>
+    <PublisherDisplayName>Gestão de Sistemas</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 

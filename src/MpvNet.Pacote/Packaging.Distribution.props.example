@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <PackageSigningMode>Distribution</PackageSigningMode>
-    <PackagePublisher>CN=REPLACE-WITH-REAL-STORE-CERTIFICATE-COMMON-NAME</PackagePublisher>
+    <PackagePublisher>CN=6581967D-2DE4-48DE-A846-C6F69ECA7701</PackagePublisher>
     <PackageCertificateKeyFile>C:\certs\MpvNet.Store.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
 </Project>

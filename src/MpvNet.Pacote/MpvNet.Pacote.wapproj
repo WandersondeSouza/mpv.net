@@ -62,9 +62,9 @@
     <HasDesktopBridgeTargets Condition="'$(HasDesktopBridgeTargets)'==''">false</HasDesktopBridgeTargets>
   </PropertyGroup>
   <PropertyGroup>
-    <PackageIdentityName Condition="'$(PackageIdentityName)'==''">WandersondeSouza.MpvNet.MediaPlayer</PackageIdentityName>
-    <PackagePublisher Condition="'$(PackagePublisher)'==''">CN=REPLACE-WITH-STORE-CERTIFICATE-COMMON-NAME</PackagePublisher>
-    <PackagePublisherDisplayName Condition="'$(PackagePublisherDisplayName)'==''">Wanderson de Souza</PackagePublisherDisplayName>
+    <PackageIdentityName Condition="'$(PackageIdentityName)'==''">24183GestodeSistemas.MPV.NETMediaPlayer</PackageIdentityName>
+    <PackagePublisher Condition="'$(PackagePublisher)'==''">CN=6581967D-2DE4-48DE-A846-C6F69ECA7701</PackagePublisher>
+    <PackagePublisherDisplayName Condition="'$(PackagePublisherDisplayName)'==''">Gestão de Sistemas</PackagePublisherDisplayName>
     <PackageDisplayName Condition="'$(PackageDisplayName)'==''">MPV.NET Media Player</PackageDisplayName>
     <ProjectPriIndexName Condition="'$(ProjectPriIndexName)'==''">$(PackageIdentityName)</ProjectPriIndexName>
     <PackageSigningMode Condition="'$(PackageSigningMode)'==''">Temporary</PackageSigningMode>
@@ -112,6 +112,9 @@
     <Error
       Condition="'$(PackageManifestVersion)'!='$(MpvNetVersion)'"
       Text="Versao desalinhada para publicacao: BuildVersion.props define $(MpvNetVersion), mas Package.appxmanifest esta em $(PackageManifestVersion). Atualize os dois antes de gerar o pacote para a Microsoft Store." />
+  </Target>
+  <Target Name="ValidateStorePackage" DependsOnTargets="ValidateDistributionSigning;ValidatePackageManifestVersion">
+    <Message Importance="High" Text="Validacao do pacote Store concluida: assinatura e versao do manifest estao consistentes." />
   </Target>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <AppxBundle>Always</AppxBundle>

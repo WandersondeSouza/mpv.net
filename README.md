@@ -39,6 +39,7 @@ O mpv.net aceita arquivos locais, playlists e URLs de streaming compatíveis com
 
 O fork tambem inclui um projeto MSIX/WAP em `src/MpvNet.Pacote/MpvNet.Pacote.wapproj` para publicacao na Microsoft Store.
 O fluxo unico de publicacao para humanos e CI e `src/Tools/publish-store-package.ps1`.
+A identidade reservada do pacote atualmente e `24183GestodeSistemas.MPV.NETMediaPlayer`, com `Publisher` `CN=6581967D-2DE4-48DE-A846-C6F69ECA7701` e `PublisherDisplayName` `Gestão de Sistemas`.
 O arquivo real `src/MpvNet.Pacote/Packaging.Distribution.props` nao deve ser versionado; use o exemplo e variaveis de ambiente para segredos. Se o `.pfx` tiver senha, use `MPVNET_STORE_CERTIFICATE_PASSWORD`.
 Se houver um `.pfx` local comum ao lado de `src/MpvNet.Pacote` ou em `src/`, o script tenta encontra-lo automaticamente.
 

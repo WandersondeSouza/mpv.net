@@ -109,7 +109,6 @@ Test-PathOrThrow $wapProject | Out-Null
 
 $buildArgs = @(
     $wapProject,
-    '/t:Build',
     "/p:Configuration=$Configuration",
     "/p:Platform=$Platform",
     "/p:UapAppxPackageBuildMode=$PackageMode",
@@ -132,6 +131,10 @@ if ($PackagePublisher) {
 }
 
 $msbuild = Get-MsBuildExe
+Write-Host "Validating Store package with $msbuild"
+& $msbuild @($buildArgs + '/t:ValidateStorePackage')
+if ($LastExitCode) { throw $LastExitCode }
+
 Write-Host "Building Store package with $msbuild"
-& $msbuild @buildArgs
+& $msbuild @($buildArgs + '/t:Build')
 if ($LastExitCode) { throw $LastExitCode }

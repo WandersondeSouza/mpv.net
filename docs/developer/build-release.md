@@ -102,6 +102,23 @@ cd mpv.net
 5. Compile em Debug.
 6. Builds Debug/Release do projeto Windows preparam automaticamente os binarios nativos/auxiliares e `Locale` com `src\Tools\prepare-build-output.ps1`; para uma compilacao rapida sem preparar assets, use `/p:EnsureBuildAssets=false`.
 
+## Validacao do pacote Microsoft Store no Visual Studio
+
+O projeto `src\MpvNet.Pacote\MpvNet.Pacote.wapproj` ja valida automaticamente:
+
+- assinatura de distribuicao;
+- alinhamento entre `src\BuildVersion.props` e `src\MpvNet.Pacote\Package.appxmanifest`.
+
+Para usar o Visual Studio nesse fluxo:
+
+1. Instale o workload/componente de Desktop Bridge/MSIX no Visual Studio.
+2. Abra `src\MpvNet.sln`.
+3. Carregue o projeto `MpvNet.Pacote`.
+4. Se for publicar de verdade, crie `src\MpvNet.Pacote\Packaging.Distribution.props` com `PackagePublisher` e `PackageCertificateKeyFile`.
+5. Compile `Release|x64` no projeto de pacote.
+
+Se os targets do Desktop Bridge/MSIX estiverem instalados, o build do projeto de pacote passa pela validacao antes de gerar o pacote. Se o ambiente nao tiver esses componentes, o projeto apenas avisa e ignora a compilacao do pacote.
+
 ---
 
 # Build via terminal
@@ -138,7 +155,8 @@ dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained true --
 ## Empacotamento Microsoft Store
 
 O fork agora inclui um projeto WAP/MSIX separado em `src/MpvNet.Pacote/MpvNet.Pacote.wapproj`.
-Ele referencia `src/MpvNet.Windows/MpvNet.Windows.csproj`, usa `src/BuildVersion.props` como fonte da versão e inclui um conjunto básico de assets `Images\` para a Store.
+Ele referencia `src/MpvNet.Windows/MpvNet.Windows.csproj`, usa `src/BuildVersion.props` como fonte da versao e inclui um conjunto basico de assets `Images\` para a Store.
+A identidade reservada atual do pacote e `24183GestodeSistemas.MPV.NETMediaPlayer`, com `Publisher` `CN=6581967D-2DE4-48DE-A846-C6F69ECA7701`.
 
 Pontos importantes:
 
@@ -155,7 +173,8 @@ Script de publicacao dedicado:
 powershell -ExecutionPolicy Bypass -File .\src\Tools\publish-store-package.ps1 .\src .\artifacts\store
 ```
 
-Para envio real, copie `src\MpvNet.Pacote\Packaging.Distribution.props.example` para `src\MpvNet.Pacote\Packaging.Distribution.props` e ajuste `PackagePublisher` e `PackageCertificateKeyFile` para o certificado usado na publicação.
+O script primeiro executa `ValidateStorePackage` e depois faz o `Build` do projeto WAP, para falhar cedo quando a assinatura ou a versao do manifest estao incorretas.
+Para envio real, copie `src\MpvNet.Pacote\Packaging.Distribution.props.example` para `src\MpvNet.Pacote\Packaging.Distribution.props` e ajuste `PackagePublisher` e `PackageCertificateKeyFile` para o certificado usado na publicacao.
 No CI ou em maquina local, o script tambem aceita `MPVNET_STORE_CERTIFICATE_KEYFILE`, `MPVNET_STORE_CERTIFICATE_PASSWORD` e `MPVNET_STORE_PUBLISHER` como variaveis de ambiente.
 O script resolve automaticamente um `.pfx` local em caminhos comuns e mostra o certificado usado quando encontra um candidato.
 
@@ -412,3 +431,5 @@ Após compilar:
 - Rodar e registrar resultado de `dotnet publish` x64 em rodada futura.
 - Validar revisão manual completa de UI, fullscreen, menu, atalhos, temas e persistência.
 - Validar o workflow manual `.github/workflows/release-packages.yml`.
+
+
