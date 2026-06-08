@@ -1,20 +1,8 @@
 <#
 
-Builds the MPV.NET Media Player MSIX/WAP project for Microsoft Store upload.
+Deprecated compatibility wrapper.
 
-The script keeps the Store packaging flow separate from the normal portable
-release flow.
-
-Parameters:
-    -SourceDir        Path to the repository src folder.
-    -OutputRootDir    Output root for the package artifacts.
-    -Configuration    Build configuration. Default: Release.
-    -Platform         MSBuild platform. Default: x64.
-    -PackageMode      Package build mode. Default: StoreUpload.
-    -PackageSigningMode  Temporary or Distribution. Default: Temporary.
-    -PackageCertificateKeyFile  Optional distribution certificate path.
-    -PackageCertificatePassword Optional certificate password.
-    -PackagePublisher  Optional package publisher CN.
+Use publish-store-package.ps1 as the single supported entry point.
 
 #>
 
@@ -32,7 +20,7 @@ param(
     [string] $PackageMode = 'StoreUpload',
 
     [ValidateSet('Temporary', 'Distribution')]
-    [string] $PackageSigningMode = 'Temporary',
+    [string] $PackageSigningMode = 'Distribution',
 
     [string] $PackageCertificateKeyFile = $env:MPVNET_STORE_CERTIFICATE_KEYFILE,
 
@@ -42,106 +30,17 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+Write-Warning 'build-store-package.ps1 is deprecated. Use publish-store-package.ps1 instead.'
 
-function Test-PathOrThrow([string] $Path) {
-    if (-not (Test-Path $Path)) {
-        throw "Path not found: $Path"
-    }
-    return (Resolve-Path $Path).Path
-}
+& (Join-Path $PSScriptRoot 'publish-store-package.ps1') `
+    -SourceDir $SourceDir `
+    -OutputRootDir $OutputRootDir `
+    -Configuration $Configuration `
+    -Platform $Platform `
+    -PackageMode $PackageMode `
+    -PackageSigningMode $PackageSigningMode `
+    -PackageCertificateKeyFile $PackageCertificateKeyFile `
+    -PackageCertificatePassword $PackageCertificatePassword `
+    -PackagePublisher $PackagePublisher
 
-function Get-MsBuildExe {
-    $vsWhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
-    if (Test-Path $vsWhere) {
-        $instance = & $vsWhere -latest -products * -requires Microsoft.Component.MSBuild -find MSBuild\Current\Bin\MSBuild.exe
-        if ($instance) {
-            return $instance | Select-Object -First 1
-        }
-    }
-
-    $fallback = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe'
-    if (Test-Path $fallback) { return $fallback }
-
-    $fallback = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe'
-    if (Test-Path $fallback) { return $fallback }
-
-    throw 'MSBuild.exe not found. Install Visual Studio or Build Tools with Desktop Bridge/MSIX components.'
-}
-
-function Resolve-CertificatePath([string] $SourceDir) {
-    $candidateNames = @(
-        'Packaging.Distribution.pfx',
-        'MpvNet.Store.pfx',
-        'MpvNet.Pacote.pfx',
-        'SigningCertificate.pfx',
-        'GitHubActionsWorkflow.pfx'
-    )
-
-    $searchRoots = @(
-        (Join-Path $SourceDir 'MpvNet.Pacote'),
-        $SourceDir,
-        (Split-Path $SourceDir -Parent)
-    ) | Select-Object -Unique
-
-    foreach ($root in $searchRoots) {
-        foreach ($candidate in $candidateNames) {
-            $path = Join-Path $root $candidate
-            if (Test-Path $path) {
-                return (Resolve-Path $path).Path
-            }
-        }
-    }
-
-    return $null
-}
-
-$SourceDir = Test-PathOrThrow $SourceDir
-New-Item -ItemType Directory -Force $OutputRootDir | Out-Null
-$OutputRootDir = (Resolve-Path $OutputRootDir).Path
-
-$distributionProps = Join-Path $SourceDir 'MpvNet.Pacote\Packaging.Distribution.props'
-if (Test-Path $distributionProps) {
-    Write-Host "Using distribution props from $distributionProps"
-}
-elseif (-not $PackageCertificateKeyFile) {
-    $discoveredCertificate = Resolve-CertificatePath $SourceDir
-    if ($discoveredCertificate) {
-        $PackageCertificateKeyFile = $discoveredCertificate
-        Write-Host "Using discovered local certificate: $PackageCertificateKeyFile"
-    }
-}
-elseif ($PackageSigningMode -eq 'Distribution' -and (-not $PackageCertificateKeyFile -or -not $PackagePublisher)) {
-    throw 'Distribution signing requires PackageCertificateKeyFile and PackagePublisher or a Packaging.Distribution.props file.'
-}
-
-$wapProject = Join-Path $SourceDir 'MpvNet.Pacote\MpvNet.Pacote.wapproj'
-Test-PathOrThrow $wapProject | Out-Null
-
-$buildArgs = @(
-    $wapProject,
-    '/t:Build',
-    "/p:Configuration=$Configuration",
-    "/p:Platform=$Platform",
-    "/p:UapAppxPackageBuildMode=$PackageMode",
-    '/p:AppxBundle=Always',
-    '/p:AppxBundlePlatforms=x64',
-    "/p:PackageSigningMode=$PackageSigningMode",
-    "/p:OutDir=$OutputRootDir\"
-)
-
-if ($PackageCertificateKeyFile) {
-    $buildArgs += "/p:PackageCertificateKeyFile=$PackageCertificateKeyFile"
-}
-
-if ($PackageCertificatePassword) {
-    $buildArgs += "/p:PackageCertificatePassword=$PackageCertificatePassword"
-}
-
-if ($PackagePublisher) {
-    $buildArgs += "/p:PackagePublisher=$PackagePublisher"
-}
-
-$msbuild = Get-MsBuildExe
-Write-Host "Building Store package with $msbuild"
-& $msbuild @buildArgs
 if ($LastExitCode) { throw $LastExitCode }

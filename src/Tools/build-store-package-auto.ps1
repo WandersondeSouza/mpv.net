@@ -1,9 +1,8 @@
 <#
 
-Builds the MPV.NET Store package using a locally discovered certificate when
-no explicit certificate path is provided.
+Deprecated compatibility wrapper.
 
-This is a convenience wrapper around build-store-package.ps1 for local use.
+Use publish-store-package.ps1 as the single supported entry point.
 
 #>
 
@@ -31,15 +30,9 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+Write-Warning 'build-store-package-auto.ps1 is deprecated. Use publish-store-package.ps1 instead.'
 
-$SourceDir = (Resolve-Path $SourceDir).Path
-$autoCertificate = & (Join-Path $PSScriptRoot 'find-store-certificate.ps1') $SourceDir
-if (-not $PackageCertificateKeyFile -and $LASTEXITCODE -eq 0 -and $autoCertificate) {
-    $PackageCertificateKeyFile = $autoCertificate.Trim()
-    Write-Host "Auto-selected certificate: $PackageCertificateKeyFile"
-}
-
-& (Join-Path $PSScriptRoot 'build-store-package.ps1') `
+& (Join-Path $PSScriptRoot 'publish-store-package.ps1') `
     -SourceDir $SourceDir `
     -OutputRootDir $OutputRootDir `
     -Configuration $Configuration `

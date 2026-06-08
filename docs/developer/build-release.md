@@ -138,7 +138,7 @@ Script de publicacao dedicado:
 powershell -ExecutionPolicy Bypass -File .\src\Tools\publish-store-package.ps1 .\src .\artifacts\store
 ```
 
-Wrapper automatico antigo para uso local com certificado descoberto:
+Wrappers antigos mantidos apenas por compatibilidade:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\src\Tools\build-store-package-auto.ps1 .\src .\artifacts\store
@@ -150,7 +150,7 @@ Para descobrir rapidamente qual certificado local sera usado:
 powershell -ExecutionPolicy Bypass -File .\src\Tools\find-store-certificate.ps1 .\src
 ```
 
-O script `build-store-package.ps1` continua disponivel como implementacao interna do fluxo, mas o ponto unico de entrada para uso humano e CI e `publish-store-package.ps1`.
+Os scripts `build-store-package.ps1`, `build-store-package-auto.ps1` e `find-store-certificate.ps1` continuam disponiveis so para compatibilidade e suporte interno; o ponto unico de entrada para uso humano e CI e `publish-store-package.ps1`.
 
 Para envio real, copie `src\MpvNet.Pacote\Packaging.Distribution.props.example` para `src\MpvNet.Pacote\Packaging.Distribution.props` e ajuste `PackagePublisher` e `PackageCertificateKeyFile` para o certificado usado na publicação.
 No CI ou em maquina local, o script tambem aceita `MPVNET_STORE_CERTIFICATE_KEYFILE`, `MPVNET_STORE_CERTIFICATE_PASSWORD` e `MPVNET_STORE_PUBLISHER` como variaveis de ambiente.
