@@ -17,7 +17,6 @@ Fork de manutenção do **MPV.NET Media Player** para Windows, baseado no mpv.ne
 - [Guia operacional](docs/guia-operacional.md)
 - [Logs de diagnostico](docs/logging.md)
 - [Atalhos](docs/ATALHOS.md)
-- [Próximos trabalhos](docs/proximos-trabalhos.md)
 - [Arquitetura técnica](docs/developer/architecture.md)
 - [Configuração técnica](docs/developer/configuration.md)
 - [Integração com mpv/libmpv](docs/developer/mpv-integration.md)
@@ -59,10 +58,9 @@ Antes de alterar código ou documentação, leia:
 2. `README.md`
 3. `docs/manual.md`
 4. `docs/guia-operacional.md`
-5. `docs/proximos-trabalhos.md`
-6. `.ai/README.md`
-7. `docs/developer/architecture.md` quando a mudança for ampla
-8. a documentação da área tocada em `docs/developer/`
+5. `.ai/README.md`
+6. `docs/developer/architecture.md` quando a mudança for ampla
+7. a documentação da área tocada em `docs/developer/`
 
 Os arquivos em `.ai/` existem para orientar tarefas recorrentes do fork, mas não substituem a análise do código atual.
 
