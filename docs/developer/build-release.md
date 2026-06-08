@@ -65,6 +65,23 @@ Pacotes NuGet versionados em `src/Directory.Packages.props`:
 - `NGettext` `0.6.7`;
 - `Microsoft.Xaml.Behaviors.Wpf` `1.1.142`.
 
+## Scripts de `src/Tools`
+
+Esta e a lista canonica de scripts do fork. Os demais documentos devem apontar para esta secao em vez de repetir a lista inteira.
+
+| Script | Uso |
+| --- | --- |
+| `build-release-package.ps1` | fluxo completo de release local |
+| `generate-portable-zip.ps1` | ZIP portatil |
+| `generate-installer-exe.ps1` | instalador Inno Setup |
+| `prepare-native-dependencies.ps1` | dependencias nativas e auxiliares |
+| `prepare-build-output.ps1` | preparo automatico do output no build do app Windows |
+| `validate-native-dependencies.ps1` | validacao de DLLs nativas em pasta ou ZIP |
+| `publish-emergency-release.ps1` | release emergencial com bump de versao |
+| `update-mpv-runtime.ps1` | atualizacao do runtime mpv |
+| `test-mpv-build-variants.ps1` | smoke test das variantes de build |
+| `publish-store-package.ps1` | publicacao do pacote Microsoft Store |
+
 ---
 
 # Clonando o fork
