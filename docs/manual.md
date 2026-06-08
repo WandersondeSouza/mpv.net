@@ -142,6 +142,7 @@ Se você for manter ou auditar o fork, os pontos de entrada mais úteis são:
 ## Suporte
 
 - issues do fork: `https://github.com/WandersondeSouza/mpv.net/issues`
+- e-mail: `mailto:wanderson_souza@hotmail.com`
 - manual oficial do mpv: `https://mpv.io/manual/master/`
 
 ## Diferenças em relação ao mpv

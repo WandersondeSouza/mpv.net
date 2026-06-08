@@ -16,6 +16,12 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 - Mantida a separacao interna de responsabilidades em `Player.cs` e
   `MainForm.cs` para preservar o contrato existente sem refatoracao ampla.
 
+## Interface e suporte
+
+- O item `Support` do menu agora abre o cliente de e-mail padrao com
+  `wanderson_souza@hotmail.com` e o menu gerado foi atualizado para
+  regenerar essa entrada nas configuracoes existentes.
+
 ## Idiomas e midia
 
 - Melhorado o registro de informacoes de inicializacao e reproducao para
