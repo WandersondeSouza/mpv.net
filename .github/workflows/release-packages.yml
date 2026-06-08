@@ -113,25 +113,9 @@ jobs:
           MPVNET_STORE_CERTIFICATE_PASSWORD: ${{ secrets.MPVNET_STORE_CERTIFICATE_PASSWORD }}
           MPVNET_STORE_PUBLISHER: ${{ secrets.MPVNET_STORE_PUBLISHER }}
         run: |
-          $storeArgs = @{
-            SourceDir = Join-Path $env:GITHUB_WORKSPACE 'src'
-            OutputRootDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts\store'
-          }
-
-          if ($env:MPVNET_STORE_CERTIFICATE_KEYFILE) {
-            $storeArgs.PackageCertificateKeyFile = $env:MPVNET_STORE_CERTIFICATE_KEYFILE
-            $storeArgs.PackageSigningMode = 'Distribution'
-          }
-
-          if ($env:MPVNET_STORE_CERTIFICATE_PASSWORD) {
-            $storeArgs.PackageCertificatePassword = $env:MPVNET_STORE_CERTIFICATE_PASSWORD
-          }
-
-          if ($env:MPVNET_STORE_PUBLISHER) {
-            $storeArgs.PackagePublisher = $env:MPVNET_STORE_PUBLISHER
-          }
-
-          & .\src\Tools\build-store-package.ps1 @storeArgs
+          & .\src\Tools\publish-store-package.ps1 `
+            (Join-Path $env:GITHUB_WORKSPACE 'src') `
+            (Join-Path $env:GITHUB_WORKSPACE 'artifacts\store')
 
       - name: Validate native dependencies in packages
         shell: pwsh
