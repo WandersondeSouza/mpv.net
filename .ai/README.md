@@ -34,7 +34,9 @@ Antes de editar código ou documentação:
 7. ler `docs/developer/architecture.md` quando a tarefa envolver análise ampla ou refatoração;
 8. ler `docs/developer/configuration.md`, `docs/developer/mpv-integration.md`, `docs/developer/windows-ui.md`, `docs/developer/build-release.md` e `docs/developer/localization.md` conforme a área tocada;
 9. usar o arquivo de `skills/`, `agents/` e `prompts/` que melhor corresponda ao tipo de trabalho.
-10. rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` quando a mudança tocar parser, paths, playlist, título, logs, configuração ou MediaInfo.
+10. verificar se `src\MpvNet.Tests\Program.cs` cobre o comportamento antes de alterar parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo;
+11. ampliar `src\MpvNet.Tests\Program.cs` quando a mudança criar caso novo nessas áreas;
+12. rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` para validar a cobertura leve.
 
 ## Observação sobre MCP
 

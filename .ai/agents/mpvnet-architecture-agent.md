@@ -31,7 +31,7 @@ Analisar a arquitetura do MPV.NET Media Player, mapear módulos, classes, fluxos
 - Recomendar corte em etapas pequenas quando o risco for alto.
 - Atualizar documentação técnica apenas quando houver mudança consolidada e evitar documentos redundantes.
 - Considerar a topologia consolidada: `MainForm.*.cs` separa UI por tema e `Player.*.cs` separa inicialização, eventos, ciclo de vida, carregamento de mídia e capacidades.
-- Validar refatorações com build, `src/MpvNet.Tests/MpvNet.Tests.csproj` e checklist manual quando envolver UI/libmpv.
+- Antes de refatorar áreas já cobertas pelo harness leve, verificar e ampliar `src/MpvNet.Tests/Program.cs`; validar refatorações com build, `src/MpvNet.Tests/MpvNet.Tests.csproj` e checklist manual quando envolver UI/libmpv.
 
 ## Entrega esperada
 

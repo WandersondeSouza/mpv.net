@@ -34,7 +34,7 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 - Atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
 - Preservar a ordem de inicialização em `Player.Initialization.cs`.
 - Não misturar carregamento de mídia, eventos, propriedades observadas e shutdown em uma mesma alteração quando uma mudança puder ser menor.
-- Rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` quando tocar paths, playlist, parser de comandos, títulos ou MediaInfo.
+- Verificar e ampliar `src/MpvNet.Tests/Program.cs` quando tocar paths, playlist, parser de comandos, títulos, seleção de idioma ou MediaInfo; depois rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
 
 ## Testes manuais esperados
 

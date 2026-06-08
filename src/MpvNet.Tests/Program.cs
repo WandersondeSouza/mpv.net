@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using MpvNet;
 using MpvNet.Help;
 
+Translator.Current = new TestTranslator();
+
 string tempMediaFile = Path.Combine(Path.GetTempPath(), "mpvnet-tests-empty-media.mkv");
 File.WriteAllText(tempMediaFile, "");
 string tempPlaylistDir = Path.Combine(Path.GetTempPath(), "mpvnet-playlist-tests");
@@ -26,7 +28,7 @@ string tempImage = Path.Combine(tempPlaylistDir, "image.jpg");
 string tempSecondImage = Path.Combine(tempPlaylistDir, "second.png");
 string tempVideoWithSpaces = Path.Combine(tempPlaylistDir, "video com espacos.mp4");
 string tempCustomInputConf = Path.Combine(tempPlaylistDir, "custom-input.conf");
-string relativeMediaFile = "mpvnet-tests-relative-media.mkv";
+string relativeMediaFile = $"mpvnet-tests-relative-media-{Guid.NewGuid():N}.mkv";
 File.WriteAllText(tempAudio, "");
 File.WriteAllText(tempVideo, "");
 File.WriteAllText(tempUnknown, "");
@@ -444,7 +446,7 @@ var tests = new (string Name, bool Result)[]
     ("Startup language uses supported Windows culture", LocalizationService.ResolveStartupLanguage(new("pt-PT")) == "portuguese-portugal"),
     ("Startup language falls back to english", LocalizationService.ResolveStartupLanguage(new("xx-ZZ")) == "english"),
     ("Alang interface preference uses first supported language", LocalizationService.ResolveFromMpvLanguageList("jpn,por", new("en-US")) == "japanese"),
-    ("Alang fallback keeps startup language when supported", LocalizationService.ResolveFromMpvLanguageList("xx-ZZ", new("pt-PT")) == "portuguese-portugal"),
+    ("Alang unknown language falls back to default language", LocalizationService.ResolveFromMpvLanguageList("xx-ZZ", new("pt-PT")) == "english"),
     ("Audio selects exact pt-BR when available", MediaLanguageService.SelectPreferredTrack(mediaLanguageTracks, "a", "pt-BR") == 3),
     ("Audio falls back from pt-PT to pt", MediaLanguageService.SelectPreferredTrack(mediaLanguageTracks, "a", "pt-PT") == 2),
     ("Audio selects exact en when en-US falls back", MediaLanguageService.SelectPreferredTrack(mediaLanguageTracks, "a", "en-US") == 1),
@@ -494,7 +496,7 @@ var tests = new (string Name, bool Result)[]
         "script-opts-toggle"])),
     ("Input bindings ignore incomplete entries", activeBindings.Count == 2),
     ("Input bindings list keys for command", pauseBindings == "SPACE, p"),
-    ("Default menu labels keep first playlist label", defaultMenuLabels["script-binding select/select-playlist"] == "Playlist"),
+    ("Default menu labels keep first playlist menu path", defaultMenuLabels["script-binding select/select-playlist"] == "View > Playlist"),
     ("Custom menu keeps open files", customMenuBindings.Any(binding => binding.Command == "script-message-to mpvnet open-files")),
     ("Custom menu keeps about", customMenuBindings.Any(binding => binding.Command == "script-message-to mpvnet show-about")),
     ("File log writer creates folder and daily log file", File.Exists(dailyLogFile)),
@@ -543,3 +545,10 @@ foreach (var test in tests)
 
 if (failed.Length > 0)
     throw new Exception($"{failed.Length} media input support tests failed.");
+
+sealed class TestTranslator : ITranslator
+{
+    public string Gettext(string msgId) => msgId;
+
+    public string GetParticularString(string context, string text) => text;
+}

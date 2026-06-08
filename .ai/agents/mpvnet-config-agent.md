@@ -43,6 +43,6 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 - Executar com `MPVNET_HOME`.
 - Testar `input.conf` padrão e customizado.
 - Testar menu de contexto quando `input.conf` contém sintaxe de menu.
-- Rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` quando tocar parser, paths, playlist, título, configuração ou MediaInfo.
+- Verificar e ampliar `src/MpvNet.Tests/Program.cs` quando tocar parser, paths, playlist, título, configuração, seleção de idioma ou MediaInfo; depois rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
 
 

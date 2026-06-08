@@ -25,8 +25,8 @@ Este arquivo orienta agentes de IA, Codex, GitHub Copilot e ferramentas automati
 - README.md
 - docs/manual.md
 - docs/changelog.md
-- docs/ROADMAP.md
-- docs/release-checklist-ptbr.md
+- docs/guia-operacional.md
+- docs/proximos-trabalhos.md
 - documentação técnica em docs/developer/
 - arquivos relacionados à funcionalidade alterada
 
@@ -60,6 +60,12 @@ Mudanças de UI devem validar:
 - tela cheia;
 - atalhos;
 - menu de contexto.
+
+### Testes e validação
+
+Antes de alterar comportamento em parser, caminhos, playlists, títulos, logs, configuração, seleção de idioma ou MediaInfo, verificar se existe cobertura em `src/MpvNet.Tests/Program.cs` e ampliá-la quando a mudança criar um caso novo.
+
+Para mudanças em UI ou integração com libmpv, combinar build/testes automatizados com checklist manual de execução: arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento.
 
 ## Formato recomendado antes de alterar código
 
