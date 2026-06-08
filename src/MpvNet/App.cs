@@ -10,7 +10,7 @@ namespace MpvNet;
 
 public class AppClass
 {
-    const int SelectMenuVersion = 2;
+    const int SelectMenuVersion = 3;
 
     public List<string> TempFiles { get; } = new ();
 

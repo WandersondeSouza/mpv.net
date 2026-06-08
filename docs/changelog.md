@@ -24,6 +24,8 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   `wanderson_souza@hotmail.com` e o menu gerado foi atualizado para
   regenerar essa entrada nas configuracoes existentes quando a versao do
   gerador muda.
+- Elevada a versao do gerador do `menu.conf` para substituir instalacoes
+  antigas que ainda tinham a URL `web.libera.chat/#mpv` no item `Support`.
 
 ## Idiomas e midia
 
