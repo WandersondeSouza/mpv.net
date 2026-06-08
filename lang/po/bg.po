@@ -615,6 +615,22 @@ msgstr "About"
 msgid "About mpv.net"
 msgstr "Относно mpv.net"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:98
+msgid "Tip: installing Codec Guide can improve codec support and playback."
+msgstr "Съвет: инсталирането на Codec Guide може да подобри поддръжката на кодеци и възпроизвеждането."
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:99
+msgid "Codec Guide: "
+msgstr "Codec Guide: "
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
+msgid "If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below."
+msgstr "Ако искате да дарите чрез Pix, използвайте QR кода до него или копирайте и поставете ключа по-долу."
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:101
+msgid "Pix copy and paste:"
+msgstr "Pix копиране и поставяне:"
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
 msgstr "Активни назначения в текстовия редактор"

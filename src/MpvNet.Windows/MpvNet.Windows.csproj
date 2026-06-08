@@ -30,6 +30,7 @@
 
 	<ItemGroup>
 		<Content Include="mpv-icon.ico" />
+		<Resource Include="pix-donation-qr.png" />
 	</ItemGroup>
 
 	<ItemGroup>

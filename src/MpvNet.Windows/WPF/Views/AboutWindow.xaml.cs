@@ -1,4 +1,8 @@
 ﻿
+using System.Windows;
+using System.Windows.Documents;
+
+using MpvNet.Help;
 using MpvNet.Windows.WPF.ViewModels;
 
 namespace MpvNet.Windows.WPF.Views;
@@ -13,4 +17,7 @@ public partial class AboutWindow
         DataContext = vm;
         vm.CloseAction = Close;
     }
+
+    void CodecGuideLink_Click(object sender, RoutedEventArgs e) =>
+        ProcessHelp.ShellExecute("https://codecguide.com/");
 }

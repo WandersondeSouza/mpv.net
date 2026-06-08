@@ -624,6 +624,22 @@ msgstr "About"
 msgid "About mpv.net"
 msgstr "About mpv.net"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:98
+msgid "Tip: installing Codec Guide can improve codec support and playback."
+msgstr "ヒント: Codec Guide をインストールすると、コーデック対応と再生が改善される場合があります。"
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:99
+msgid "Codec Guide: "
+msgstr "Codec Guide: "
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
+msgid "If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below."
+msgstr "Pix で寄付する場合は、横の QR コードを使うか、下のキーをコピーして貼り付けてください。"
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:101
+msgid "Pix copy and paste:"
+msgstr "Pix コピー＆ペースト:"
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
 msgstr "キーバインドをエディタで編集"

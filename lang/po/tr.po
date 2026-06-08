@@ -626,6 +626,22 @@ msgstr "About"
 msgid "About mpv.net"
 msgstr "Mpv.net hakkında"
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:98
+msgid "Tip: installing Codec Guide can improve codec support and playback."
+msgstr "İpucu: Codec Guide yüklemek kodek desteğini ve oynatmayı iyileştirebilir."
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjеtos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:99
+msgid "Codec Guide: "
+msgstr "Codec Guide: "
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
+msgid "If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below."
+msgstr "Pix ile bağış yapmak isterseniz yanındaki QR kodu kullanın veya aşağıdaki anahtarı kopyalayıp yapıştırın."
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:101
+msgid "Pix copy and paste:"
+msgstr "Pix kopyala ve yapıştır:"
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
 msgstr "Metin Düzenleyicide Aktif Kısayol Atamalarını Göster"

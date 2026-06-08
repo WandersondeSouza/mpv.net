@@ -29,11 +29,66 @@
                 TextWrapping="Wrap"
                 TextAlignment="Center"
                 MaxWidth="720"
-                Margin="20,10,20,20"
+                Margin="20,10,20,12"
                 BorderThickness="0"
                 Foreground="{Binding Theme.Foreground}"
                 Background="{Binding Theme.Background}">
             </TextBox>
+
+            <TextBlock
+                TextAlignment="Center"
+                Margin="20,0,20,20"
+                Foreground="{Binding Theme.Foreground}">
+                <Run Text="{Binding CodecGuideLabel}" />
+                <Hyperlink Click="CodecGuideLink_Click">codecguide.com</Hyperlink>
+            </TextBlock>
+
+            <Border
+                Margin="20,0,20,20"
+                Padding="16"
+                CornerRadius="10"
+                BorderThickness="1"
+                BorderBrush="{Binding Theme.Foreground}"
+                Background="{Binding Theme.Background}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0,0,16,0" VerticalAlignment="Center">
+                        <TextBlock
+                            Text="{Binding DonationTitle}"
+                            TextWrapping="Wrap"
+                            Foreground="{Binding Theme.Foreground}" />
+
+                        <TextBlock
+                            Margin="0,10,0,0"
+                            Text="{Binding DonationCopyPaste}"
+                            FontWeight="Bold"
+                            Foreground="{Binding Theme.Foreground}" />
+
+                        <TextBox
+                            Margin="0,6,0,0"
+                            Text="00020126490014BR.GOV.BCB.PIX0127wanderson_souza@hotmail.com5204000053039865802BR5901N6001C62070503***630410BE"
+                            IsReadOnly="True"
+                            TextWrapping="Wrap"
+                            BorderThickness="1"
+                            Padding="8"
+                            Foreground="{Binding Theme.Foreground}"
+                            Background="{Binding Theme.Background}" />
+                    </StackPanel>
+
+                    <Image
+                        Grid.Column="1"
+                        Width="240"
+                        Height="240"
+                        Stretch="Uniform"
+                        Source="/MpvNet.Windows;component/pix-donation-qr.png"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" />
+                </Grid>
+            </Border>
         </StackPanel>
     </Grid>
 </Window>
