@@ -20,7 +20,8 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 
 - O item `Support` do menu agora abre o cliente de e-mail padrao com
   `wanderson_souza@hotmail.com` e o menu gerado foi atualizado para
-  regenerar essa entrada nas configuracoes existentes.
+  regenerar essa entrada nas configuracoes existentes quando a versao do
+  gerador muda.
 
 ## Idiomas e midia
 
