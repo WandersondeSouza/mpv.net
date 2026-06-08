@@ -3,6 +3,14 @@
 Este arquivo registra apenas as versoes publicadas pelo fork
 `WandersondeSouza/mpv.net`.
 
+# Fork WandersondeSouza - v7.1.2.12 (2026-06-08)
+
+## Publicacao de rotina
+
+- Atualizacao de versao para manter o historico de releases do fork alinhado
+  com a publicacao atual.
+- Sem alteracao adicional de comportamento nesta release.
+
 # Fork WandersondeSouza - v7.1.2.11 (2026-06-08)
 
 ## Reproducao e inicializacao
