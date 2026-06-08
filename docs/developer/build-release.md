@@ -138,6 +138,12 @@ Script de build dedicado:
 powershell -ExecutionPolicy Bypass -File .\src\Tools\build-store-package.ps1 .\src .\artifacts\store
 ```
 
+Para descobrir rapidamente qual certificado local sera usado:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\find-store-certificate.ps1 .\src
+```
+
 Para envio real, copie `src\MpvNet.Pacote\Packaging.Distribution.props.example` para `src\MpvNet.Pacote\Packaging.Distribution.props` e ajuste `PackagePublisher` e `PackageCertificateKeyFile` para o certificado usado na publicação.
 No CI ou em maquina local, o script tambem aceita `MPVNET_STORE_CERTIFICATE_KEYFILE`, `MPVNET_STORE_CERTIFICATE_PASSWORD` e `MPVNET_STORE_PUBLISHER` como variaveis de ambiente.
 
