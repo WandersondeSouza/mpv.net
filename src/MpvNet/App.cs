@@ -21,7 +21,7 @@ public class AppClass
     public string DarkTheme { get; set; } = "dark";
     public string LightTheme { get; set; } = "light";
     public string StartSize { get; set; } = "height-session";
-    public string Language { get; set; } = "system";
+    public string Language { get; set; } = LocalizationService.ResolveStartupLanguage();
     public string CommandLine { get; set; } = Environment.CommandLine;
     public string MenuSyntax { get; set; } = "#menu:";
 
@@ -235,7 +235,11 @@ public class AppClass
             case "dark-mode": DarkMode = value; return true;
             case "dark-theme": DarkTheme = value.Trim('\'', '"'); return true;
             case "debug-mode": DebugMode = value == "yes"; return true;
-            case "language": Language = value; return true;
+            case "language":
+                Language = string.Equals(value, "system", StringComparison.OrdinalIgnoreCase)
+                    ? LocalizationService.ResolveStartupLanguage()
+                    : LocalizationService.ResolveMpvNetLanguage(value);
+                return true;
             case "light-theme": LightTheme = value.Trim('\'', '"'); return true;
             case "media-info": MediaInfo = value == "yes"; return true;
             case "menu-syntax": MenuSyntax = value; return true;

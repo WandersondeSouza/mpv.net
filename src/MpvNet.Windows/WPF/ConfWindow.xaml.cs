@@ -131,7 +131,11 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
                     setting.PersistedValue = item.Value;
 
                     if (setting.Name == "language" && item.Value == "system")
-                        setting.Value = WpfTranslator.GetEffectiveLanguage(item.Value);
+                    {
+                        item.Value = App.Language;
+                        setting.Value = item.Value;
+                        setting.PersistedValue = item.Value;
+                    }
 
                     setting.StartValue = setting.Value;
                     setting.ConfItem = item;
@@ -141,8 +145,14 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
 
             if (setting.Name == "language" && setting.Value == "system")
             {
-                setting.PersistedValue = "system";
-                setting.Value = WpfTranslator.GetEffectiveLanguage(setting.Value);
+                setting.PersistedValue = App.Language;
+                setting.Value = App.Language;
+                setting.StartValue = setting.Value;
+            }
+            else if (setting.Name == "language" && setting.ConfItem == null)
+            {
+                setting.PersistedValue = App.Language;
+                setting.Value = App.Language;
                 setting.StartValue = setting.Value;
             }
 

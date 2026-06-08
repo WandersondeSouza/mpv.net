@@ -26,6 +26,9 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   gerador muda.
 - Elevada a versao do gerador do `menu.conf` para substituir instalacoes
   antigas que ainda tinham a URL `web.libera.chat/#mpv` no item `Support`.
+- Ajustada a inicializacao do idioma da interface para usar o idioma do
+  Windows quando houver mapeamento suportado, cair para ingles quando nao
+  houver e respeitar parametros ou configuracoes explicitas.
 
 ## Idiomas e midia
 
@@ -246,11 +249,10 @@ Este arquivo registra apenas as versoes publicadas pelo fork
 
 - Adicionada traducao inicial da interface para portugues brasileiro (`pt-BR`),
   selecionavel por `language=portuguese-brazil`.
-- O modo `language=system` agora reconhece Windows em `pt-BR` e seleciona a
-  traducao brasileira automaticamente.
+- O idioma da interface passou a nascer do idioma suportado da maquina quando
+  nao ha parametro ou configuracao explicita.
 - O editor de configuracao passou a traduzir textos visiveis da propria tela e
-  a mostrar o idioma efetivo no combo quando `language=system`, preservando
-  `system` no arquivo enquanto o usuario nao alterar o idioma manualmente.
+  a mostrar o idioma efetivo no combo quando a configuracao nao esta definida.
 - Os textos explicativos e ajudas das opcoes do editor de configuracao foram
   sincronizados em todos os catalogos gettext suportados.
 - Builds Debug/Release do projeto Windows agora preparam automaticamente

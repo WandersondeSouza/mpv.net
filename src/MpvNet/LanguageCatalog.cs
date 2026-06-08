@@ -303,13 +303,15 @@ public static class LanguageFallbackResolver
 
 public static class LocalizationService
 {
+    public static string ResolveStartupLanguage(CultureInfo? systemCulture = null)
+    {
+        CultureInfo culture = systemCulture ?? CultureInfo.CurrentUICulture;
+        return ResolveDefinition(culture.Name)?.MpvNetName ?? LanguageCatalog.DefaultLanguage.MpvNetName;
+    }
+
     public static string ResolveMpvNetLanguage(string? configuredLanguage, CultureInfo? systemCulture = null)
     {
-        if (!string.Equals(configuredLanguage, "system", StringComparison.OrdinalIgnoreCase))
-            return ResolveManualLanguage(configuredLanguage);
-
-        CultureInfo culture = systemCulture ?? CultureInfo.CurrentUICulture;
-        return ResolveByCulture(culture.Name);
+        return ResolveManualLanguage(configuredLanguage);
     }
 
     public static string ResolveFromMpvLanguageList(string? mpvLanguageList, CultureInfo? systemCulture = null)
@@ -321,7 +323,7 @@ public static class LocalizationService
                 return language.MpvNetName;
         }
 
-        return ResolveMpvNetLanguage("system", systemCulture);
+        return ResolveStartupLanguage(systemCulture);
     }
 
     public static CultureInfo GetCulture(string? configuredLanguage)
@@ -333,9 +335,6 @@ public static class LocalizationService
 
     static string ResolveManualLanguage(string? configuredLanguage) =>
         ResolveDefinition(configuredLanguage)?.MpvNetName ?? LanguageCatalog.DefaultLanguage.MpvNetName;
-
-    static string ResolveByCulture(string? cultureName) =>
-        ResolveDefinition(cultureName)?.MpvNetName ?? LanguageCatalog.DefaultLanguage.MpvNetName;
 
     static LanguageDefinition? ResolveDefinition(string? value)
     {

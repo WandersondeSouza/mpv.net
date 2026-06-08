@@ -58,9 +58,9 @@ Os idiomas abaixo possuem mapeamento em `WpfTranslator.cs` e valor publico aceit
 | Russo | `russian` | `lang/po/ru.po` | `Locale/ru/LC_MESSAGES/` | `ru` |
 | Turco | `turkish` | `lang/po/tr.po` | `Locale/tr/LC_MESSAGES/` | `tr` |
 
-O valor `system` continua selecionando o idioma do Windows quando houver mapeamento conhecido; caso contrario, o fallback continua sendo ingles. No editor de configuracao, `language=system` e exibido como o idioma efetivo detectado, mas continua sendo salvo como `system` se o usuario nao trocar manualmente o combo.
+O valor `system` nao faz mais parte do contrato da interface. O idioma de inicializacao vem do idioma do Windows quando houver mapeamento suportado ou do valor explicitamente passado por parametro/configuracao; se nao houver suporte, o fallback continua sendo ingles. No editor de configuracao, o combo de idioma deve mostrar apenas valores publicos suportados e carregar configs antigas com `system` como o idioma efetivo de startup.
 
-Quando `alang` esta definido, a interface usa o primeiro idioma suportado dessa lista de prioridade como preferencia de idioma. Essa escolha vem do valor declarado em `alang`, nao do idioma real da faixa de audio ou legenda selecionada pelo arquivo em reproducao. Se nenhum item de `alang` for suportado, a interface usa o idioma do Windows quando houver mapeamento conhecido; caso contrario, volta para ingles. A legenda (`slang`/`sid`) nao participa dessa escolha.
+Quando `alang` esta definido, a interface usa o primeiro idioma suportado dessa lista de prioridade como preferencia de idioma. Essa escolha vem do valor declarado em `alang`, nao do idioma real da faixa de audio ou legenda selecionada pelo arquivo em reproducao. Se nenhum item de `alang` for suportado, a interface usa o idioma de inicializacao; se ele nao for suportado, volta para ingles. A legenda (`slang`/`sid`) nao participa dessa escolha.
 
 ## Arquitetura central de idiomas
 
@@ -68,7 +68,7 @@ O codigo de idioma fica centralizado em `src/MpvNet/LanguageCatalog.cs`:
 
 - `LanguageNormalizer`: normaliza codigos ISO 639-1, ISO 639-2, nomes comuns e valores BCP 47 para um formato interno consistente, como `pt-BR`, `es-MX`, `zh-CN` e `sr-Cyrl`.
 - `LanguageFallbackResolver`: gera a ordem de fallback reutilizavel para interface, audio e legenda.
-- `LocalizationService`: resolve `language=system`, escolhas manuais e listas vindas de `alang` para o nome publico aceito pelo mpv.net.
+- `LocalizationService`: resolve o idioma de inicializacao, escolhas manuais e listas vindas de `alang` para o nome publico aceito pelo mpv.net.
 - `MediaLanguageService`: monta prioridades e compara faixas de audio/legenda com as mesmas regras de normalizacao e fallback.
 
 Nao criar normalizadores ou fallbacks paralelos em `WpfTranslator`, `Player.cs` ou controles de configuracao. Novos idiomas devem entrar pelo catalogo central e, quando forem idiomas de interface traduzidos, tambem pelo bloco `language` em `editor_conf.txt` e pelos catalogos gettext.
@@ -91,7 +91,7 @@ Variantes com escrita diferente exigem cuidado. O fallback central nao cruza aut
 
 Idioma da interface e idioma de midia sao configuracoes diferentes:
 
-- Interface: `mpvnet.conf`, opcao `language`, com valores como `system`, `english`, `portuguese-brazil` e `portuguese-portugal`.
+- Interface: `mpvnet.conf`, opcao `language`, com valores como `english`, `portuguese-brazil` e `portuguese-portugal`.
 - Audio preferido: `mpv.conf`, opcao nativa do mpv `alang`.
 - Legenda preferida: `mpv.conf`, opcao nativa do mpv `slang`.
 - Selecao manual em runtime: propriedades nativas `aid` e `sid`.
@@ -170,7 +170,7 @@ src/MpvNet.Windows/bin/Debug/win-x64/Locale/pt_BR/LC_MESSAGES/mpvnet.mo
 ## O que preservar
 
 - Nao renomear idiomas existentes.
-- Nao mudar o padrao `language=system`.
+- Nao reintroduzir `language=system`.
 - Nao criar `lang/po/en.po` sem uma decisao explicita de mudar o contrato de localizacao.
 - Manter `lang/source.pot` como base inglesa oficial para paridade dos `.po`.
 - Nao remover nem substituir a referencia historica a Transifex/upstream.

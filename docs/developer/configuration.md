@@ -110,7 +110,7 @@ Opções observadas:
 | `dark-mode` | `always` | Modo escuro/claro. |
 | `dark-theme` | `dark` | Tema escuro. |
 | `debug-mode` | `no` | Ativa log `MpvNet-debug.log`. |
-| `language` | `system` | Idioma da interface. |
+| `language` | `english` | Idioma da interface. Se ausente, o app usa o idioma do Windows quando suportado e cai para ingles. |
 | `light-theme` | `light` | Tema claro. |
 | `media-info` | `yes` | Controla recurso de media info. |
 | `menu-syntax` | `#menu:` | Sintaxe antiga/nova para menu em `input.conf`. |

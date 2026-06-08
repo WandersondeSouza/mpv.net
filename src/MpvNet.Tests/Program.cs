@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 using System.IO;
 using System.Linq;
@@ -436,9 +437,11 @@ var tests = new (string Name, bool Result)[]
     ("Interface fallback zh-TW keeps zh-TW", LanguageFallbackResolver.GetFallbacks("zh-TW", interfaceFallbackAvailable).SequenceEqual(["zh-TW", "en"])),
     ("Interface fallback de-DE falls back to de", LanguageFallbackResolver.GetFallbacks("de-DE", interfaceFallbackAvailable).SequenceEqual(["de", "en"])),
     ("Interface unknown language falls back to default", LanguageFallbackResolver.GetFallbacks("xx-ZZ", interfaceFallbackAvailable).SequenceEqual(["en"])),
-    ("Manual interface language is not overwritten by system", LocalizationService.ResolveMpvNetLanguage("portuguese-brazil", new("en-US")) == "portuguese-brazil"),
-    ("System interface language uses fallback resolver", LocalizationService.ResolveMpvNetLanguage("system", new("pt-PT")) == "portuguese-portugal"),
+    ("Manual interface language keeps the selected value", LocalizationService.ResolveMpvNetLanguage("portuguese-brazil", new("en-US")) == "portuguese-brazil"),
+    ("Startup language uses supported Windows culture", LocalizationService.ResolveStartupLanguage(new("pt-PT")) == "portuguese-portugal"),
+    ("Startup language falls back to english", LocalizationService.ResolveStartupLanguage(new("xx-ZZ")) == "english"),
     ("Alang interface preference uses first supported language", LocalizationService.ResolveFromMpvLanguageList("jpn,por", new("en-US")) == "japanese"),
+    ("Alang fallback keeps startup language when supported", LocalizationService.ResolveFromMpvLanguageList("xx-ZZ", new("pt-PT")) == "portuguese-portugal"),
     ("Audio selects exact pt-BR when available", MediaLanguageService.SelectPreferredTrack(mediaLanguageTracks, "a", "pt-BR") == 3),
     ("Audio falls back from pt-PT to pt", MediaLanguageService.SelectPreferredTrack(mediaLanguageTracks, "a", "pt-PT") == 2),
     ("Audio selects exact en when en-US falls back", MediaLanguageService.SelectPreferredTrack(mediaLanguageTracks, "a", "en-US") == 1),

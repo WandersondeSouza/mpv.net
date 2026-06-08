@@ -60,10 +60,12 @@ Arquivos principais:
 
 Idiomas:
 
-- interface: configure `language` em `mpvnet.conf`, por exemplo `language=system` ou `language=portuguese-brazil`;
+- interface: configure `language` em `mpvnet.conf`, por exemplo `language=english` ou `language=portuguese-brazil`;
 - audio preferido: configure `alang` em `mpv.conf`;
 - legenda preferida: configure `slang` em `mpv.conf`;
 - legenda desligada: use `sid=no` ou selecione sem legenda na interface.
+
+Se `language` nao estiver definido, o mpv.net inicia no idioma do Windows quando houver mapeamento suportado; caso contrario, usa ingles.
 
 O mpv.net normaliza codigos como `eng`, `por`, `pt_BR`, `es_MX` e nomes comuns
 de idioma, mas a selecao final de audio e legenda continua sendo feita pelo
