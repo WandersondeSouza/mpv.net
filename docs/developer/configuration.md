@@ -65,6 +65,10 @@ Cache e logs:
 
 Para scripts como `thumbfast`, a versão portátil deve usar `portable_config/scripts` e `portable_config/script-opts`. No mpv.net v7, `thumbfast` tem suporte direto; `mpv_path` para um `mpv.exe` separado deve ser tratado como fallback para versões antigas ou casos específicos documentados pelo próprio script.
 
+Na primeira execução, o `mpv.conf` inicial criado pelo aplicativo inclui os
+perfis `[streaming-iptv]` e `[iptv-media-center]`. O pacote portátil usa o
+mesmo modelo base em `portable_config/mpv.conf`.
+
 ---
 
 # `mpv.conf`

@@ -118,6 +118,13 @@ public class AppClass
             "# Initial mpv/mpv.net configuration." + BR +
             "# This file is created only when no user mpv.conf exists." + BR +
             BR +
+            "# Optional profile for HTTP/IPTV/Xtream streams with unstable buffering." + BR +
+            "# Use it with: --profile=streaming-iptv" + BR +
+            "[streaming-iptv]" + BR +
+            "cache=yes" + BR +
+            "cache-pause-initial=yes" + BR +
+            "demuxer-max-bytes=128MiB" + BR +
+            BR +
             "# Profile used by IPTV Media Center when it launches mpv.net." + BR +
             "# It is applied only with: --profile=iptv-media-center" + BR +
             "[iptv-media-center]" + BR +

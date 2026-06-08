@@ -102,6 +102,22 @@ baixada para um arquivo temporário e expandida pelo frontend antes do envio ao
 mpv/libmpv. Essa verificação usa timeout de pelo menos 60 segundos; se expirar
 ou falhar, a URL original ainda é enviada ao mpv/libmpv.
 
+Na primeira execução, o `mpv.conf` inicial criado pelo aplicativo e o modelo
+do ZIP portátil já incluem o perfil `[streaming-iptv]`.
+
+Para URLs de streaming HTTP/IPTV/Xtream com buffer instavel, o ajuste mais
+util costuma ser um perfil explicito no `mpv.conf`. Um ponto de partida seguro
+e este:
+
+```ini
+[streaming-iptv]
+cache=yes
+cache-pause-initial=yes
+demuxer-max-bytes=128MiB
+```
+
+Ative esse perfil apenas quando o stream precisar de mais buffer inicial.
+
 Se uma URL do YouTube falhar com `unrecognized file format`, teste o extrator
 diretamente. Em muitos casos o problema é autenticação ou cookies do navegador,
 não o frontend:
