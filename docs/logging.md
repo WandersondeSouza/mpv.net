@@ -4,6 +4,13 @@ O MPV.NET Media Player possui um logger interno simples para diagnostico de supo
 Ele grava erros em arquivo em qualquer build e habilita logs detalhados apenas
 quando o build e gerado com logging habilitado.
 
+Resumo rapido:
+
+- `Error` sempre vai para arquivo.
+- `Info` e `Debug` so vao para arquivo em build de diagnostico.
+- Logs diarios sao retidos por 3 dias.
+- Limpeza de `Cache` e `Temp` tambem usa 3 dias.
+
 ## Estado padrao
 
 Logs detalhados em arquivo ficam desabilitados por padrao.
