@@ -138,6 +138,12 @@ Script de build dedicado:
 powershell -ExecutionPolicy Bypass -File .\src\Tools\build-store-package.ps1 .\src .\artifacts\store
 ```
 
+Wrapper automatico para uso local com certificado descoberto:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\build-store-package-auto.ps1 .\src .\artifacts\store
+```
+
 Para descobrir rapidamente qual certificado local sera usado:
 
 ```powershell
