@@ -1,11 +1,13 @@
 # Logs de diagnostico
 
 O MPV.NET Media Player possui um logger interno simples para diagnostico de suporte.
-Ele grava arquivos diarios somente quando o build e gerado com logging habilitado.
+Ele grava erros em arquivo em qualquer build e habilita logs detalhados apenas
+quando o build e gerado com logging habilitado.
 
 ## Estado padrao
 
-Logs em arquivo ficam desabilitados por padrao.
+Logs detalhados em arquivo ficam desabilitados por padrao.
+Erros continuam sendo gravados em arquivo.
 
 Use esse padrao para releases publicas:
 
@@ -17,7 +19,7 @@ O mesmo padrao e usado pelos scripts de release quando nenhum parametro extra e 
 
 ## Como habilitar
 
-Para gerar uma versao de diagnostico com logs em arquivo:
+Para gerar uma versao de diagnostico com logs detalhados em arquivo:
 
 ```powershell
 dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj -c Release -r win-x64 /p:EnableFileLogging=true
@@ -88,7 +90,7 @@ O arquivo do dia deve seguir o formato `mpvnet-YYYY-MM-DD.log`.
 
 ## Onde os logs ficam
 
-Quando habilitado, o aplicativo grava em:
+Quando existe escrita em arquivo, o aplicativo grava em:
 
 ```text
 %LOCALAPPDATA%\mpv.net\Logs
@@ -102,7 +104,8 @@ Essa pasta compartilha a mesma raiz usada pelo cache temporario do mpv:
 
 Na inicializacao, falhas ao limpar arquivos antigos em
 `%LOCALAPPDATA%\mpv.net\Cache` ou `%LOCALAPPDATA%\mpv.net\Temp` tambem entram
-nesse log apenas quando o build foi gerado com logging em arquivo habilitado.
+nesse log. Em builds de diagnostico, essas falhas aparecem junto com os logs
+`Info` e `Debug`; nos demais builds, apenas erros sao persistidos.
 Essas falhas nao bloqueiam a abertura do player.
 
 O arquivo diario usa este padrao:
@@ -136,7 +139,7 @@ tokens de playlists privadas.
 
 ## Retencao
 
-Na inicializacao do logger, arquivos `mpvnet-YYYY-MM-DD.log` com mais de 5 dias
+Na inicializacao do logger, arquivos `mpvnet-YYYY-MM-DD.log` com mais de 3 dias
 sao apagados automaticamente.
 
 A limpeza atua apenas dentro da pasta de logs e apenas em arquivos que seguem o

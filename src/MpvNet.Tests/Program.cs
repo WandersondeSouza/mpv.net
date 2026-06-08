@@ -236,8 +236,8 @@ var mediaLanguageTracks = new[]
 DateTime fixedLogDate = new(2026, 6, 2, 19, 45, 10, 123);
 string tempLogDir = Path.Combine(Path.GetTempPath(), "mpvnet-log-tests-" + Guid.NewGuid().ToString("N"));
 Directory.CreateDirectory(tempLogDir);
-File.WriteAllText(Path.Combine(tempLogDir, "mpvnet-2026-05-27.log"), "old");
-File.WriteAllText(Path.Combine(tempLogDir, "mpvnet-2026-05-28.log"), "keep");
+File.WriteAllText(Path.Combine(tempLogDir, "mpvnet-2026-05-29.log"), "old");
+File.WriteAllText(Path.Combine(tempLogDir, "mpvnet-2026-05-30.log"), "keep");
 File.WriteAllText(Path.Combine(tempLogDir, "other-2026-05-01.log"), "unrelated");
 var logWriter = new FileLogWriter(tempLogDir, () => fixedLogDate);
 logWriter.Write(LogLevel.Info, "info message", null);
@@ -271,11 +271,11 @@ File.WriteAllText(oldCacheFile, "old");
 File.WriteAllText(recentCacheFile, "recent");
 File.WriteAllText(oldTempFile, "old");
 File.WriteAllText(recentTempFile, "recent");
-File.SetLastWriteTime(oldCacheFile, fixedCleanupDate.AddDays(-2));
-File.SetLastWriteTime(oldTempFile, fixedCleanupDate.AddDays(-2));
-File.SetLastWriteTime(recentCacheFile, fixedCleanupDate.AddHours(-12));
-File.SetLastWriteTime(recentTempFile, fixedCleanupDate.AddHours(-12));
-Directory.SetLastWriteTime(oldEmptyDir, fixedCleanupDate.AddDays(-2));
+File.SetLastWriteTime(oldCacheFile, fixedCleanupDate.AddDays(-4));
+File.SetLastWriteTime(oldTempFile, fixedCleanupDate.AddDays(-4));
+File.SetLastWriteTime(recentCacheFile, fixedCleanupDate.AddDays(-1));
+File.SetLastWriteTime(recentTempFile, fixedCleanupDate.AddDays(-1));
+Directory.SetLastWriteTime(oldEmptyDir, fixedCleanupDate.AddDays(-4));
 TemporaryFileCleanup.Cleanup(fixedCleanupDate, cleanupCacheDir, cleanupTempDir);
 bool missingCleanupFolderDidNotThrow = true;
 
@@ -501,8 +501,8 @@ var tests = new (string Name, bool Result)[]
     ("File log writer writes Info", dailyLogContent.Contains("[INFO] info message")),
     ("File log writer writes Debug", dailyLogContent.Contains("[DEBUG] debug message")),
     ("File log writer writes Error exception", dailyLogContent.Contains("[ERROR] error message") && dailyLogContent.Contains("InvalidOperationException") && dailyLogContent.Contains("inner")),
-    ("File log writer deletes logs older than five days", !File.Exists(Path.Combine(tempLogDir, "mpvnet-2026-05-27.log"))),
-    ("File log writer keeps recent daily logs", File.Exists(Path.Combine(tempLogDir, "mpvnet-2026-05-28.log"))),
+    ("File log writer deletes logs older than three days", !File.Exists(Path.Combine(tempLogDir, "mpvnet-2026-05-29.log"))),
+    ("File log writer keeps recent daily logs", File.Exists(Path.Combine(tempLogDir, "mpvnet-2026-05-30.log"))),
     ("File log writer ignores unrelated files during cleanup", File.Exists(Path.Combine(tempLogDir, "other-2026-05-01.log"))),
     ("File log writer does not throw on write failure", blockedWriteDidNotThrow),
     ("Log safe value masks URL query and fragment", safeUrlWithSecret == "https://example.com/live/index.m3u8?***#***"),

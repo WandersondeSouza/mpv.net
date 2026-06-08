@@ -2,7 +2,7 @@ namespace MpvNet;
 
 internal static class TemporaryFileCleanup
 {
-    internal static readonly TimeSpan Retention = TimeSpan.FromDays(1);
+    internal static readonly TimeSpan Retention = TimeSpan.FromDays(3);
 
     public static string DefaultRootFolder =>
         Path.Combine(Folder.LocalAppData, "mpv.net");

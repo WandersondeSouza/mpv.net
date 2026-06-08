@@ -14,12 +14,8 @@ public static class Log
 {
     const int MaxValueLength = 500;
 
-#if ENABLE_FILE_LOGGING
     static readonly FileLogWriter Writer = new FileLogWriter();
     public static bool IsEnabled => true;
-#else
-    public static bool IsEnabled => false;
-#endif
 
     public static string LogFolder => FileLogWriter.DefaultLogFolder;
 
@@ -58,6 +54,12 @@ public static class Log
 
     static void Write(LogLevel level, string? message, Exception? exception)
     {
+        if (level == LogLevel.Error)
+        {
+            Writer.Write(level, message, exception);
+            return;
+        }
+
 #if ENABLE_FILE_LOGGING
         Writer.Write(level, message, exception);
 #endif
@@ -68,7 +70,7 @@ internal sealed class FileLogWriter
 {
     const string FilePrefix = "mpvnet-";
     const string FileExtension = ".log";
-    const int RetentionDays = 5;
+    const int RetentionDays = 3;
 
     readonly object _lock = new();
     readonly Func<DateTime> _now;

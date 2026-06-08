@@ -96,9 +96,10 @@ Usar quando:
 - gerar instalador;
 - preparar a release localmente.
 
-Por padrao, pacotes de release sao gerados com logs em arquivo desabilitados.
-Para gerar um pacote de diagnostico com logs diarios em `%LOCALAPPDATA%\mpv.net\Logs`,
-adicione `-EnableFileLogging`.
+Por padrao, pacotes de release sao gerados com logs detalhados em arquivo desabilitados.
+Erros continuam sendo gravados em arquivo. Para gerar um pacote de diagnostico
+com logs diarios completos em `%LOCALAPPDATA%\mpv.net\Logs`, adicione
+`-EnableFileLogging`.
 
 ### Gerar apenas o ZIP portátil
 
