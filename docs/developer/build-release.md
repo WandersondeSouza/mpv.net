@@ -4,7 +4,7 @@
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **MPV.NET Media Player**.
 
-> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale e validacao de dependencias nativas. A versao atual preparada para publicacao e `7.1.2.11`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
+> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale e validacao de dependencias nativas. A versao atual preparada para publicacao e `7.1.2.12`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
 
 ---
 
@@ -309,7 +309,7 @@ Pendente real: validar o workflow manual do GitHub Actions e a revisao manual co
 A versão atual do executável está centralizada em `src/BuildVersion.props`:
 
 ```xml
-<MpvNetVersion>7.1.2.11</MpvNetVersion>
+<MpvNetVersion>7.1.2.12</MpvNetVersion>
 ```
 
 O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
