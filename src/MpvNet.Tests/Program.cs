@@ -343,7 +343,7 @@ var tests = new (string Name, bool Result)[]
     ("Title normalization collapses repeated spaces", TitleHelp.NormalizeMediaTitle("  arquivo..com  ..pontos.mp4  ") == "Arquivo Com Pontos"),
     ("Title normalization replaces dot comma dash and underscore with spaces", TitleHelp.NormalizeMediaTitle("um,titulo-bem_trocado.mp4") == "Um Titulo Bem Trocado"),
     ("Title normalization removes configured characters", TitleHelp.NormalizeMediaTitle("@titulo#com$simbolos*.mp4") == "Titulocomsimbolos"),
-    ("Title normalization removes single and double quotes", TitleHelp.NormalizeMediaTitle("\"video\" 'aula'.mp4") == "Video Aula"),
+    ("Title normalization treats single and double quotes as word separators", TitleHelp.NormalizeMediaTitle("video\"aula'novo.mp4") == "Video Aula Novo"),
     ("Title normalization uses default title when empty", TitleHelp.NormalizeMediaTitle("@#$*.mp4") == "Untitled Track"),
     ("Title normalization truncates long titles", TitleHelp.NormalizeMediaTitle(new string('a', 120) + ".mp4").Length == 100),
     ("Title normalization removes mpv.net suffix", TitleHelp.NormalizeMediaTitle("movie title - mpv.net") == "Movie Title"),

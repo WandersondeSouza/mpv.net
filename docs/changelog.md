@@ -92,6 +92,8 @@ Este arquivo registra apenas as versoes publicadas pelo fork
   itens adicionados ao player.
 - Refinada a normalizacao do titulo da faixa exibido na interface, evitando que
   extensoes e nomes brutos prejudiquem a leitura da playlist.
+- Aspas simples e duplas agora viram separadores antes da normalizacao de
+  espacos, preservando melhor as palavras no titulo final.
 - A playlist criada automaticamente pelo mpv ao abrir arquivos de uma pasta
   agora recebe titulos normalizados para o seletor de playlist, incluindo a
   remocao de aspas simples e duplas.

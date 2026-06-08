@@ -7,8 +7,8 @@ public static class TitleHelp
 {
     const int MaxMediaTitleLength = 100;
     const string DefaultMediaTitle = "Untitled Track";
-    const string SpaceChars = ".,-_";
-    const string RemovedChars = "@\"'\\\u00b4`^\u00a8~#$*()+=[{}]|/;:><\u00b0\u00ba\u00aa" +
+    const string SpaceChars = ".,-_'\"";
+    const string RemovedChars = "@\\\u00b4`^\u00a8~#$*()+=[{}]|/;:><\u00b0\u00ba\u00aa" +
         "\u00ac\u00a2\u00a3\u00b3\u00b2\u00b9\u00a7\u00bd\u00bc\u00be\u00b1\u00a9" +
         "\u00b5\u2021\u0161\u2030\u2729";
 
