@@ -1,59 +1,65 @@
-# Changelog
+﻿# Changelog
 
-Este arquivo registra apenas as versões publicadas pelo fork
+Este arquivo registra apenas as versÃµes publicadas pelo fork
 `WandersondeSouza/mpv.net`.
 
 # Fork WandersondeSouza - v7.1.2.12 (2026-06-08)
 
 ## Publicacao de rotina
 
-- Atualização de versão para manter o histórico de releases do fork alinhado
-  com a publicação atual.
-- Sem alteração adicional de comportamento nesta release.
+- AtualizaÃ§Ã£o de versÃ£o para manter o histÃ³rico de releases do fork alinhado
+  com a publicaÃ§Ã£o atual.
+- Sem alteraÃ§Ã£o adicional de comportamento nesta release.
 
 # Fork WandersondeSouza - v7.1.2.11 (2026-06-08)
 
 ## Reproducao e inicializacao
 
-- Ajustado o fluxo de abertura e reprodução para lidar melhor com arquivos,
+- Ajustado o fluxo de abertura e reproduÃ§Ã£o para lidar melhor com arquivos,
   playlists vazias e caminhos normalizados antes de chegar ao mpv/libmpv.
 - Refinado o tratamento de argumentos de linha de comando e do arranque da
-  aplicação para reduzir falhas de timeout e manter o comportamento previsível.
-- Corrigida a abertura do menu de contexto por clique direito ao forçar a
+  aplicaÃ§Ã£o para reduzir falhas de timeout e manter o comportamento previsÃ­vel.
+- Corrigida a abertura do menu de contexto por clique direito ao forÃ§ar a
   posicao do popup no ponto do mouse.
-- Tornada tolerante a montagem dos rótulos padrão do menu para ignorar
+- Tornada tolerante a montagem dos rÃ³tulos padrÃ£o do menu para ignorar
   comandos repetidos no mapeamento de atalho, evitando falha de inicializacao.
 - Mantida a separacao interna de responsabilidades em `Player.cs` e
   `MainForm.cs` para preservar o contrato existente sem refatoracao ampla.
 
 ## Interface e suporte
 
-- O item `Support` do menu agora abre o cliente de e-mail padrão com
+- O item `Support` do menu agora abre o cliente de e-mail padrÃ£o com
   `wanderson_souza@hotmail.com` e o menu gerado foi atualizado para
-  regenerar essa entrada nas configurações existentes quando a versão do
+  regenerar essa entrada nas configuraÃ§Ãµes existentes quando a versÃ£o do
   gerador muda.
-- Elevada a versão do gerador do `menu.conf` para substituir instalações
+- Elevada a versÃ£o do gerador do `menu.conf` para substituir instalaÃ§Ãµes
   antigas que ainda tinham a URL `web.libera.chat/#mpv` no item `Support`.
-- Ajustada a inicialização do idioma da interface para usar o idioma do
-  Windows quando houver mapeamento suportado, cair para inglês quando não
-  houver e respeitar parâmetros ou configurações explícitas.
+- Ajustada a inicializaÃ§Ã£o do idioma da interface para usar o idioma do
+  Windows quando houver mapeamento suportado, cair para inglÃªs quando nÃ£o
+  houver e respeitar parÃ¢metros ou configuraÃ§Ãµes explÃ­citas.
 
 ## Idiomas e midia
 
-- Melhorado o registro de informações de inicialização e reprodução para
-  facilitar diagnóstico sem alterar o caminho principal de execução.
-- Ajustada a leitura das dependências nativas para buscar o pacote correto de
+- Melhorado o registro de informaÃ§Ãµes de inicializaÃ§Ã£o e reproduÃ§Ã£o para
+  facilitar diagnÃ³stico sem alterar o caminho principal de execuÃ§Ã£o.
+- Ajustada a leitura das dependÃªncias nativas para buscar o pacote correto de
   DLLs e manter a compatibilidade com o binario esperado.
 - Ampliada a cobertura automatizada para parser de argumentos, auto-load de
-  pasta, associações de imagens, normalização de caminhos e seleção de idioma.
+  pasta, associaÃ§Ãµes de imagens, normalizaÃ§Ã£o de caminhos e seleÃ§Ã£o de idioma.
 
 ## Empacotamento e instalador
 
-- Reforçada a preparação de build e release para validar melhor o runtime x64
+- Padronizada a solucao sem `Any CPU`, deixando apenas `x64` e demais
+  plataformas suportadas no arquivo `.sln`.
+- Corrigido o mapeamento da solucao para que `MpvNet.Pacote` seja compilado
+  como `x64`, evitando a incompatibilidade `MSIL` versus `AMD64` durante a
+  referencia do `mpvnet.dll`.
+
+- ReforÃ§ada a preparaÃ§Ã£o de build e release para validar melhor o runtime x64
   e o pacote correto de dependencias nativas antes de gerar os artefatos.
 - Atualizados os scripts de ZIP, instalador e release para seguir o mesmo fluxo
-  de preparação de dependências e manter a publicação consistente.
-- Mantida a validação dos artefatos gerados com `libmpv-2.dll`, FFmpeg,
+  de preparaÃ§Ã£o de dependÃªncias e manter a publicaÃ§Ã£o consistente.
+- Mantida a validaÃ§Ã£o dos artefatos gerados com `libmpv-2.dll`, FFmpeg,
   `ffprobe.exe`, `ffplay.exe` e `yt-dlp.exe`.
 
 # Fork WandersondeSouza - v7.1.2.9 (2026-06-04)
@@ -92,13 +98,13 @@ Este arquivo registra apenas as versões publicadas pelo fork
 
 ## Cache e temporarios
 
-- Adicionada limpeza não bloqueante, na inicialização, de arquivos antigos com
+- Adicionada limpeza nÃ£o bloqueante, na inicializaÃ§Ã£o, de arquivos antigos com
   mais de 1 dia em `%LOCALAPPDATA%\mpv.net\Cache` e
   `%LOCALAPPDATA%\mpv.net\Temp`.
-- Playlists temporárias criadas pelo frontend agora usam
-  `%LOCALAPPDATA%\mpv.net\Temp`, permitindo remover resíduos antigos sem tocar
-  arquivos genéricos do `%TEMP%`.
-- Falhas de limpeza são ignoradas para a abertura do player e registradas
+- Playlists temporÃ¡rias criadas pelo frontend agora usam
+  `%LOCALAPPDATA%\mpv.net\Temp`, permitindo remover resÃ­duos antigos sem tocar
+  arquivos genÃ©ricos do `%TEMP%`.
+- Falhas de limpeza sÃ£o ignoradas para a abertura do player e registradas
   apenas quando o build possui logging em arquivo habilitado.
 
 ## Identidade e distribuicao
@@ -386,4 +392,3 @@ Este arquivo registra apenas as versões publicadas pelo fork
 - Este fork, por enquanto, nao publica pacote NuGet/container no GitHub
   Packages. Os artefatos de distribuicao ficam em GitHub Releases ou como
   artefatos de workflow.
-
