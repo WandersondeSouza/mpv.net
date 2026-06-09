@@ -35,16 +35,3 @@ mpvnet.exe "https://example.com/live/index.m3u8"
 
 O mpv.net aceita arquivos locais, playlists e URLs de streaming compatíveis com o mpv.
 
-## Build
-
-Veja [Build e release](docs/developer/build-release.md).
-
-## Logs
-
-Veja [Logs de diagnostico](docs/logging.md).
-
-## Para agentes
-
-Veja [AGENTS.md](AGENTS.md) e [Artefatos de IA](.ai/README.md).
-
-
