@@ -10,7 +10,8 @@ public partial class AboutViewModel : ViewModelBase
     public string WindowTitle { get; } = _("About") + " " + AppInfo.Product;
     public string About { get; } = AppClass.About;
     public string AboutTitle { get; } = AppClass.About.Split('\n')[0];
-    public string AboutDetails { get; } = string.Join('\n', AppClass.About.Split('\n').Skip(1));
+    public string AboutDetails { get; } = string.Join('\n', AppClass.About.Split('\n').Skip(1).Where(i => i != AppClass.CodecGuideTip));
+    public string CodecGuideTip { get; } = AppClass.CodecGuideTip;
     public string CodecGuideLabel { get; } = _("Codec Guide: ");
     public string DonationTitle { get; } = AppClass.DonationTitle;
     public string DonationCopyPaste { get; } = AppClass.DonationCopyPaste;

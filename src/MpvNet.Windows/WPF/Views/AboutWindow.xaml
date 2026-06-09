@@ -41,6 +41,14 @@
                 Foreground="{Binding Theme.Foreground}" />
 
             <TextBlock
+                Text="{Binding CodecGuideTip, Mode=OneWay}"
+                TextWrapping="Wrap"
+                TextAlignment="Center"
+                MaxWidth="720"
+                Margin="20,0,20,2"
+                Foreground="{Binding Theme.Foreground}" />
+
+            <TextBlock
                 TextAlignment="Center"
                 Margin="20,0,20,20"
                 Foreground="{Binding Theme.Foreground}">
@@ -58,8 +66,8 @@
                 Background="{Binding Theme.Background}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="420" />
+                        <ColumnDefinition Width="236" />
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Margin="0,0,16,0" VerticalAlignment="Center">
@@ -98,7 +106,7 @@
                         Width="220"
                         Height="220"
                         Stretch="Uniform"
-                        Source="/MpvNet.Windows;component/pix-donation-qr.png"
+                        Source="pack://application:,,,/pix-donation-qr.png"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center" />
                 </Grid>
