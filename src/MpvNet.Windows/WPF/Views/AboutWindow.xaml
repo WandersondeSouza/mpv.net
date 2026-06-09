@@ -24,17 +24,21 @@
     
     <Grid>
         <StackPanel HorizontalAlignment="Center">
-            <TextBox
-                IsReadOnly="True"
-                Text="{Binding About, Mode=OneWay}"
+            <TextBlock
+                Text="{Binding AboutTitle, Mode=OneWay}"
+                TextAlignment="Center"
+                FontSize="21"
+                FontWeight="SemiBold"
+                Margin="20,12,20,4"
+                Foreground="{Binding Theme.Foreground}" />
+
+            <TextBlock
+                Text="{Binding AboutDetails, Mode=OneWay}"
                 TextWrapping="Wrap"
                 TextAlignment="Center"
                 MaxWidth="720"
-                Margin="20,10,20,12"
-                BorderThickness="0"
-                Foreground="{Binding Theme.Foreground}"
-                Background="{Binding Theme.Background}">
-            </TextBox>
+                Margin="20,0,20,12"
+                Foreground="{Binding Theme.Foreground}" />
 
             <TextBlock
                 TextAlignment="Center"
