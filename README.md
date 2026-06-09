@@ -37,37 +37,14 @@ O mpv.net aceita arquivos locais, playlists e URLs de streaming compatíveis com
 
 ## Build
 
-O fork tambem inclui um projeto MSIX/WAP em `src/MpvNet.Pacote/MpvNet.Pacote.wapproj` para publicacao na Microsoft Store.
-O fluxo unico de publicacao para humanos e CI e `src/Tools/publish-store-package.ps1`.
-A identidade reservada do pacote atualmente e `24183GestodeSistemas.MPV.NETMediaPlayer`, com `Publisher` `CN=6581967D-2DE4-48DE-A846-C6F69ECA7701` e `PublisherDisplayName` `Gestão de Sistemas`.
-O arquivo real `src/MpvNet.Pacote/Packaging.Distribution.props` nao deve ser versionado; use o exemplo e variaveis de ambiente para segredos. Se o `.pfx` tiver senha, use `MPVNET_STORE_CERTIFICATE_PASSWORD`.
-Se houver um `.pfx` local comum ao lado de `src/MpvNet.Pacote` ou em `src/`, o script tenta encontra-lo automaticamente.
-
-A build 64bit-v3 do mpv/libmpv é o padrão nos scripts de build/release do fork. A variante normal ainda pode ser selecionada explicitamente para compatibilidade com CPUs x64 mais antigas; veja [Build e release](docs/developer/build-release.md).
+Veja [Build e release](docs/developer/build-release.md).
 
 ## Logs
 
-Resumo rápido:
-
-- `Error` sempre vai para arquivo.
-- `Info` e `Debug` só vão para arquivo em build de diagnóstico.
-- Logs diários são retidos por 3 dias.
-- Limpeza de `Cache` e `Temp` também usa 3 dias.
-
-Detalhes em [Logs de diagnostico](docs/logging.md).
+Veja [Logs de diagnostico](docs/logging.md).
 
 ## Para agentes
 
-Antes de alterar código ou documentação, leia:
-
-1. `AGENTS.md`
-2. `README.md`
-3. `docs/manual.md`
-4. `docs/guia-operacional.md`
-5. `.ai/README.md`
-6. `docs/developer/architecture.md` quando a mudança for ampla
-7. a documentação da área tocada em `docs/developer/`
-
-Os arquivos em `.ai/` existem para orientar tarefas recorrentes do fork, mas não substituem a análise do código atual.
+Veja [AGENTS.md](AGENTS.md) e [Artefatos de IA](.ai/README.md).
 
 
