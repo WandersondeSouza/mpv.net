@@ -756,7 +756,7 @@ msgstr "Campionamento bilineare (molto veloce)."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:128
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:246
 msgid "Bindings"
-msgstr "Attacchi"
+msgstr "Scorciatoie"
 
 msgid "Box averaging (very fast)"
 msgstr "Media box (molto veloce)"
@@ -4040,3 +4040,12 @@ msgstr "winvk"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:997
 msgid "yes"
 msgstr "yes"
+
+msgid "Application Message"
+msgstr "Messaggio dell'applicazione"
+
+msgid "Click this icon for additional info/actions."
+msgstr "Fare clic su questa icona per informazioni o azioni aggiuntive."
+
+msgid "Manual"
+msgstr "Manuale"

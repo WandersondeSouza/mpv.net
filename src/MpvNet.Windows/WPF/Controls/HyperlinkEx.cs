@@ -19,6 +19,6 @@ public class HyperlinkEx : Hyperlink
         NavigateUri = new Uri(url);
         RequestNavigate += HyperLinkEx_RequestNavigate;
         Inlines.Clear();
-        Inlines.Add("Manual");
+        Inlines.Add(_("Manual"));
     }
 }

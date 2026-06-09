@@ -341,7 +341,7 @@ public partial class MessageBoxEx : Window, INotifyPropertyChanged
 
         // configure the form based on specified criteria
         Message = msg;
-        MessageTitle = (string.IsNullOrEmpty(title.Trim())) ? "Application Message" : title;
+        MessageTitle = (string.IsNullOrEmpty(title.Trim())) ? _("Application Message") : title;
 
         // url (if specified)
         if (Url != null)

@@ -4040,3 +4040,15 @@ msgstr ""
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:997
 msgid "yes"
 msgstr ""
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml.cs
+msgid "Application Message"
+msgstr ""
+
+#: src\MpvNet.Windows\WPF\MsgBox\MsgBoxExtendedFunctionality.cs
+msgid "Click this icon for additional info/actions."
+msgstr ""
+
+#: src\MpvNet.Windows\WPF\Controls\HyperlinkEx.cs
+msgid "Manual"
+msgstr ""

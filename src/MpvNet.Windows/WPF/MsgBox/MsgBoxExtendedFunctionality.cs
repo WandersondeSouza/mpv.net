@@ -19,6 +19,6 @@ public class MsgBoxExtendedFunctionality
         CheckBoxData = null;
         MessageDelegate = null;
         URL = null;
-        DelegateToolTip = "Click this icon for additional info/actions.";
+        DelegateToolTip = _("Click this icon for additional info/actions.");
     }
 }

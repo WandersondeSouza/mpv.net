@@ -765,7 +765,7 @@ msgstr "Échantillonnage bilinéaire (très rapide)."
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:128
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:246
 msgid "Bindings"
-msgstr "Liens"
+msgstr "Raccourcis"
 
 msgid "Box averaging (very fast)"
 msgstr "Moyenne de la boîte (très rapide)"
@@ -4049,3 +4049,12 @@ msgstr "winvk"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:997
 msgid "yes"
 msgstr "yes"
+
+msgid "Application Message"
+msgstr "Message de l'application"
+
+msgid "Click this icon for additional info/actions."
+msgstr "Cliquez sur cette icône pour obtenir des informations ou actions supplémentaires."
+
+msgid "Manual"
+msgstr "Manuel"

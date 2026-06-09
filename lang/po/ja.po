@@ -4049,3 +4049,12 @@ msgstr "winvk"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:997
 msgid "yes"
 msgstr "yes"
+
+msgid "Application Message"
+msgstr "アプリケーション メッセージ"
+
+msgid "Click this icon for additional info/actions."
+msgstr "追加情報または操作を表示するには、このアイコンをクリックしてください。"
+
+msgid "Manual"
+msgstr "マニュアル"

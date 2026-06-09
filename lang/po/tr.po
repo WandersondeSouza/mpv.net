@@ -4051,3 +4051,12 @@ msgstr "winvk"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:997
 msgid "yes"
 msgstr "yes"
+
+msgid "Application Message"
+msgstr "Uygulama iletisi"
+
+msgid "Click this icon for additional info/actions."
+msgstr "Ek bilgi veya eylemler için bu simgeye tıklayın."
+
+msgid "Manual"
+msgstr "Kılavuz"
