@@ -4,6 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<Platforms>x64</Platforms>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<OutputPath>C:\Users\frank\AppData\Roaming\mpv.net-experimental\extensions\ExampleExtension</OutputPath>
 	</PropertyGroup>
