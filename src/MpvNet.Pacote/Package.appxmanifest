@@ -3,8 +3,9 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
   xmlns:uap18="http://schemas.microsoft.com/appx/manifest/uap/windows10/18"
-  IgnorableNamespaces="uap rescap uap18">
+  IgnorableNamespaces="uap rescap uap5 uap18">
 
   <Identity
     Name="24183GestodeSistemas.MPV.NETMediaPlayer"
@@ -42,6 +43,115 @@
           <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
         <uap:LockScreen BadgeLogo="Images\BadgeLogo.png" Notification="badgeAndTileText"/>
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="mpvnetvideo">
+            <uap:DisplayName>MPV.NET Media Player</uap:DisplayName>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mp4</uap:FileType>
+              <uap:FileType>.m4v</uap:FileType>
+              <uap:FileType>.mkv</uap:FileType>
+              <uap:FileType>.webm</uap:FileType>
+              <uap:FileType>.avi</uap:FileType>
+              <uap:FileType>.mov</uap:FileType>
+              <uap:FileType>.qt</uap:FileType>
+              <uap:FileType>.wmv</uap:FileType>
+              <uap:FileType>.asf</uap:FileType>
+              <uap:FileType>.flv</uap:FileType>
+              <uap:FileType>.f4v</uap:FileType>
+              <uap:FileType>.mpg</uap:FileType>
+              <uap:FileType>.mpeg</uap:FileType>
+              <uap:FileType>.mpe</uap:FileType>
+              <uap:FileType>.m1v</uap:FileType>
+              <uap:FileType>.m2v</uap:FileType>
+              <uap:FileType>.vob</uap:FileType>
+              <uap:FileType>.ts</uap:FileType>
+              <uap:FileType>.mts</uap:FileType>
+              <uap:FileType>.m2ts</uap:FileType>
+              <uap:FileType>.3gp</uap:FileType>
+              <uap:FileType>.3g2</uap:FileType>
+              <uap:FileType>.ogv</uap:FileType>
+              <uap:FileType>.ogg</uap:FileType>
+              <uap:FileType>.rm</uap:FileType>
+              <uap:FileType>.rmvb</uap:FileType>
+              <uap:FileType>.divx</uap:FileType>
+              <uap:FileType>.xvid</uap:FileType>
+              <uap:FileType>.dv</uap:FileType>
+              <uap:FileType>.nut</uap:FileType>
+              <uap:FileType>.nsv</uap:FileType>
+              <uap:FileType>.264</uap:FileType>
+              <uap:FileType>.265</uap:FileType>
+              <uap:FileType>.avc</uap:FileType>
+              <uap:FileType>.avs</uap:FileType>
+              <uap:FileType>.dav</uap:FileType>
+              <uap:FileType>.h264</uap:FileType>
+              <uap:FileType>.h265</uap:FileType>
+              <uap:FileType>.hevc</uap:FileType>
+              <uap:FileType>.m2t</uap:FileType>
+              <uap:FileType>.mj2</uap:FileType>
+              <uap:FileType>.mpv</uap:FileType>
+              <uap:FileType>.vpy</uap:FileType>
+              <uap:FileType>.y4m</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="mpvnetaudio">
+            <uap:DisplayName>MPV.NET Media Player</uap:DisplayName>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.mp3</uap:FileType>
+              <uap:FileType>.wav</uap:FileType>
+              <uap:FileType>.flac</uap:FileType>
+              <uap:FileType>.m4a</uap:FileType>
+              <uap:FileType>.aac</uap:FileType>
+              <uap:FileType>.ogg</uap:FileType>
+              <uap:FileType>.opus</uap:FileType>
+              <uap:FileType>.wma</uap:FileType>
+              <uap:FileType>.alac</uap:FileType>
+              <uap:FileType>.aiff</uap:FileType>
+              <uap:FileType>.aif</uap:FileType>
+              <uap:FileType>.ape</uap:FileType>
+              <uap:FileType>.wv</uap:FileType>
+              <uap:FileType>.mka</uap:FileType>
+              <uap:FileType>.ac3</uap:FileType>
+              <uap:FileType>.dts</uap:FileType>
+              <uap:FileType>.eac3</uap:FileType>
+              <uap:FileType>.amr</uap:FileType>
+              <uap:FileType>.au</uap:FileType>
+              <uap:FileType>.mp2</uap:FileType>
+              <uap:FileType>.mpa</uap:FileType>
+              <uap:FileType>.mpc</uap:FileType>
+              <uap:FileType>.thd</uap:FileType>
+              <uap:FileType>.w64</uap:FileType>
+              <uap:FileType>.oga</uap:FileType>
+              <uap:FileType>.ogm</uap:FileType>
+              <uap:FileType>.dtshd</uap:FileType>
+              <uap:FileType>.dtshr</uap:FileType>
+              <uap:FileType>.dtsma</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="mpvnetplaylist">
+            <uap:DisplayName>MPV.NET Media Player</uap:DisplayName>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.m3u</uap:FileType>
+              <uap:FileType>.m3u8</uap:FileType>
+              <uap:FileType>.pls</uap:FileType>
+              <uap:FileType>.xspf</uap:FileType>
+              <uap:FileType>.asx</uap:FileType>
+              <uap:FileType>.wpl</uap:FileType>
+              <uap:FileType>.cue</uap:FileType>
+              <uap:FileType>.jspf</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap5:Extension Category="windows.appExecutionAlias">
+          <uap5:AppExecutionAlias>
+            <uap5:ExecutionAlias Alias="mpvnet.exe" />
+          </uap5:AppExecutionAlias>
+        </uap5:Extension>
+      </Extensions>
     </Application>
   </Applications>
 

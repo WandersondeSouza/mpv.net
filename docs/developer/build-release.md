@@ -164,6 +164,8 @@ Pontos importantes:
 - o `Identity Name` e o `Publisher` em `Package.appxmanifest` ainda precisam ser trocados pelos valores reais do Partner Center/certificado antes da publicação;
 - os assets de Store foram gerados a partir do `mpv-icon.ico` atual para permitir a montagem do projeto no fork;
 - o projeto foi adicionado à solução `src/MpvNet.sln`, mas depende do Desktop Bridge/MSIX instalado no Visual Studio para gerar o pacote de fato.
+- o manifesto MSIX declara associacoes de video, audio e playlists para o Windows listar o app como abridor desses arquivos.
+- o pacote MSIX nao grava a pasta instalada diretamente no `PATH` como o Inno Setup; para terminal, ele declara o alias `mpvnet.exe`, resolvido pelo Windows via App Execution Alias.
 - o arquivo real `src/MpvNet.Pacote/Packaging.Distribution.props` fica fora do Git por padrao e deve conter apenas dados locais/secretos do certificado.
 - se o `.pfx` tiver senha, use `MPVNET_STORE_CERTIFICATE_PASSWORD` no CI ou `-PackageCertificatePassword` no script local.
 - se existir um `.pfx` comum ao lado de `src/MpvNet.Pacote` ou em `src/`, o script tenta descobri-lo automaticamente antes de exigir parametros.
