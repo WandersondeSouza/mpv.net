@@ -28,6 +28,6 @@ public partial class AboutWindow
             return;
 
         System.Windows.Clipboard.SetText(vm.DonationPixKey);
-        Msg.ShowInfo(vm.DonationCopied);
+        Msg.ShowInfo(vm.DonationCopied.Replace(". ", "." + Environment.NewLine));
     }
 }

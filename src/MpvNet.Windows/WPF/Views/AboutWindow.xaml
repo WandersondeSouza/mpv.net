@@ -13,6 +13,7 @@
     WindowStartupLocation="CenterOwner"
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
+    MaxWidth="760"
     Foreground="{Binding Theme.Foreground}"
     Background="{Binding Theme.Background}"
     >
@@ -47,6 +48,7 @@
                 Margin="20,0,20,20"
                 Padding="16"
                 CornerRadius="10"
+                MaxWidth="720"
                 BorderThickness="1"
                 BorderBrush="{Binding Theme.Foreground}"
                 Background="{Binding Theme.Background}">
@@ -60,6 +62,7 @@
                         <TextBlock
                             Text="{Binding DonationTitle}"
                             TextWrapping="Wrap"
+                            MaxWidth="420"
                             Foreground="{Binding Theme.Foreground}" />
 
                         <TextBlock
@@ -71,6 +74,7 @@
                         <Button
                             Margin="0,6,0,0"
                             Padding="8"
+                            MaxWidth="420"
                             BorderThickness="1"
                             HorizontalContentAlignment="Left"
                             VerticalContentAlignment="Center"
@@ -80,14 +84,15 @@
                             <TextBlock
                                 Text="{Binding DonationPixKey}"
                                 TextWrapping="Wrap"
+                                MaxWidth="390"
                                 Foreground="{Binding Theme.Foreground}" />
                         </Button>
                     </StackPanel>
 
                     <Image
                         Grid.Column="1"
-                        Width="240"
-                        Height="240"
+                        Width="220"
+                        Height="220"
                         Stretch="Uniform"
                         Source="/MpvNet.Windows;component/pix-donation-qr.png"
                         HorizontalAlignment="Center"
