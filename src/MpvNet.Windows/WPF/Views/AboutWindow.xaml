@@ -39,7 +39,7 @@
                 TextAlignment="Center"
                 Margin="20,0,20,20"
                 Foreground="{Binding Theme.Foreground}">
-                <Run Text="{Binding CodecGuideLabel}" />
+                <Run Text="{Binding CodecGuideLabel, Mode=OneWay}" />
                 <Hyperlink Click="CodecGuideLink_Click">codecguide.com</Hyperlink>
             </TextBlock>
 
