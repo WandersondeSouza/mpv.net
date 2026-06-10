@@ -10,7 +10,7 @@
   <Identity
     Name="24183GestodeSistemas.MPV.NETMediaPlayer"
     Publisher="CN=6581967D-2DE4-48DE-A846-C6F69ECA7701"
-    Version="7.1.3.12" />
+    Version="7.1.4.12" />
 
   <Properties>
     <DisplayName>MPV.NET Media Player</DisplayName>
