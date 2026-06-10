@@ -3,6 +3,16 @@
 Este arquivo registra apenas as versÃµes publicadas pelo fork
 `WandersondeSouza/mpv.net`.
 
+# Fork WandersondeSouza - v7.1.3.12 (2026-06-10)
+
+## Empacotamento Microsoft Store
+
+- Ajustado o pacote MSIX/WAP apos analise do Windows App Certification Kit:
+  `mpvnet.exe` passa a embutir explicitamente o manifesto com `PerMonitorV2`,
+  os assets `BadgeLogo` agora seguem a regra de pixels brancos ou
+  transparentes da Store, e a documentacao registra como tratar o teste
+  opcional de executaveis bloqueados sem quebrar compatibilidade com mpv.
+
 # Fork WandersondeSouza - v7.1.2.12 (2026-06-08)
 
 ## Publicacao de rotina

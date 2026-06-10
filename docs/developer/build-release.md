@@ -181,6 +181,14 @@ Para envio real, copie `src\MpvNet.Pacote\Packaging.Distribution.props.example` 
 No CI ou em maquina local, o script tambem aceita `MPVNET_STORE_CERTIFICATE_KEYFILE`, `MPVNET_STORE_CERTIFICATE_PASSWORD` e `MPVNET_STORE_PUBLISHER` como variaveis de ambiente.
 O script resolve automaticamente um `.pfx` local em caminhos comuns e mostra o certificado usado quando encontra um candidato.
 
+## Validacao WACK
+
+O relatorio do Windows App Certification Kit de 2026-06-10 para o pacote `7.1.3.12` retornou aprovado com avisos. Os ajustes consolidados foram:
+
+- `MpvNet.Windows.csproj` declara explicitamente `app.manifest`, garantindo que o executavel empacotado preserve `PerMonitorV2`;
+- `BadgeLogo.png` e `BadgeLogo.scale-200.png` usam fundo transparente e glifo branco, conforme a regra de badge da Store;
+- o teste opcional de executaveis bloqueados pode listar chamadas intencionais do app e referencias do runtime .NET/WPF. Remova somente chamadas proprias desnecessarias; nao tente limpar assemblies do runtime nem quebrar comandos compativeis com mpv como `shell-execute`, abertura de URLs/manuais e pasta de configuracao.
+
 Observacao: o script de release publica em `Release`. Ele chama o publish com `/p:EnsureBuildAssets=false`, porque prepara e valida os binarios nativos em uma etapa propria depois do publish.
 Logs detalhados em arquivo ficam desligados por padrao com `/p:EnableFileLogging=false`.
 Erros continuam sendo gravados em qualquer build. Para pacote de diagnostico,
