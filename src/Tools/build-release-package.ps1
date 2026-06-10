@@ -201,6 +201,45 @@ function EnsureLocale($sourceDir, $localeDir, $workDir) {
     return Test $localeDir
 }
 
+function GetReleaseNotes($docsDir, $versionName, $repo) {
+    $fallback = "- [Changelog](https://github.com/$repo/blob/main/docs/changelog.md)"
+    $changelogFile = Join-Path $docsDir 'changelog.md'
+    if (-not (Test-Path $changelogFile)) {
+        return $fallback
+    }
+
+    $lines = @(Get-Content -LiteralPath $changelogFile -Encoding UTF8)
+    $escapedVersion = [regex]::Escape("v$versionName")
+    $headerPattern = "^#\s+Fork\s+WandersondeSouza\s+-\s+$escapedVersion(?:\s|\()"
+
+    $startIndex = -1
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -match $headerPattern) {
+            $startIndex = $i
+            break
+        }
+    }
+
+    if ($startIndex -lt 0) {
+        return $fallback
+    }
+
+    $endIndex = $lines.Count
+    for ($i = $startIndex + 1; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -match '^#\s+Fork\s+WandersondeSouza\s+-\s+v') {
+            $endIndex = $i
+            break
+        }
+    }
+
+    $notes = (($lines[$startIndex..($endIndex - 1)]) -join [Environment]::NewLine).Trim()
+    if (-not $notes) {
+        return $fallback
+    }
+
+    return $notes
+}
+
 # Variables
 $SourceDir     = Test $SourceDir
 New-Item -ItemType Directory -Force $OutputRootDir | Out-Null
@@ -213,8 +252,6 @@ $7zFile            = Test 'C:\Program Files\7-Zip\7z.exe'
 if (-not $SkipInstaller) {
     $InnoSetupCompiler = Test 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
 }
-
-$ReleaseNotes = "- [Changelog](https://github.com/$Repo/blob/main/docs/changelog.md)"
 
 # Dotnet Publish
 $BuildConfiguration = 'Release'
@@ -250,6 +287,7 @@ $VersionInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($PublishedExeFile64
 $IsBeta = $VersionInfo.ProductVersion -match '(?i)(^|[-+.])(alpha|beta|preview|rc)([-+.]|$)'
 $BetaString = if ($IsBeta) { '-beta' } else { '' }
 $VersionName = $VersionInfo.FileVersion
+$ReleaseNotes = GetReleaseNotes $DocsDir $VersionName $Repo
 $InstallerOutputName64 = 'MPV.NET-Media-Player-v' + $VersionName
 $OutputName64 = $InstallerOutputName64 + $BetaString + '-portable-x64'
 

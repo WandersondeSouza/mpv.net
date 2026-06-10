@@ -8,10 +8,14 @@ Este arquivo registra apenas as versÃµes publicadas pelo fork
 ## Empacotamento Microsoft Store
 
 - Ajustado o pacote MSIX/WAP apos analise do Windows App Certification Kit:
-  `mpvnet.exe` passa a embutir explicitamente o manifesto com `PerMonitorV2`,
-  os assets `BadgeLogo` agora seguem a regra de pixels brancos ou
-  transparentes da Store, e a documentacao registra como tratar o teste
-  opcional de executaveis bloqueados sem quebrar compatibilidade com mpv.
+  `mpvnet.exe` passa a embutir explicitamente o manifesto com `PerMonitorV2`.
+- Atualizados os assets `BadgeLogo` para seguir a regra de pixels brancos ou
+  transparentes da Microsoft Store.
+- Documentado como tratar o teste opcional de executaveis bloqueados sem
+  remover chamadas intencionais nem quebrar compatibilidade com mpv.
+- Mantida a compatibilidade do pacote com associacoes de video, audio e
+  playlists, alias `mpvnet.exe` e validacao alinhada a
+  `src\BuildVersion.props`.
 
 # Fork WandersondeSouza - v7.1.2.12 (2026-06-08)
 
