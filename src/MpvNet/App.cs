@@ -129,7 +129,9 @@ public class AppClass
             "[streaming-iptv]" + BR +
             "cache=yes" + BR +
             "cache-pause-initial=yes" + BR +
+            "cache-pause-wait=60" + BR +
             "demuxer-max-bytes=128MiB" + BR +
+            "network-timeout=60" + BR +
             BR +
             "# Profile used by IPTV Media Center when it launches mpv.net." + BR +
             "# It is applied only with: --profile=iptv-media-center" + BR +
@@ -137,6 +139,10 @@ public class AppClass
             "force-window=yes" + BR +
             "idle=no" + BR +
             "cache=yes" + BR +
+            "cache-pause-initial=yes" + BR +
+            "cache-pause-wait=60" + BR +
+            "demuxer-max-bytes=128MiB" + BR +
+            "network-timeout=60" + BR +
             "volume=100" + BR);
     }
 

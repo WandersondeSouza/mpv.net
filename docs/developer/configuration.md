@@ -69,6 +69,17 @@ Na primeira execução, o `mpv.conf` inicial criado pelo aplicativo inclui os
 perfis `[streaming-iptv]` e `[iptv-media-center]`. O pacote portátil usa o
 mesmo modelo base em `portable_config/mpv.conf`.
 
+Os perfis `[streaming-iptv]` e `[iptv-media-center]` são opt-in e devem ser
+aplicados com `--profile=streaming-iptv` ou `--profile=iptv-media-center`. Eles
+mantêm o comportamento normal do player fora de streams instáveis e usam opções
+nativas do mpv para cache, rebuffer e timeout de rede, incluindo uma tolerância
+inicial de 60 segundos para quedas curtas.
+
+Além dos perfis, `Player.MediaLoading` aplica a mesma tolerância como opções
+locais do comando `loadfile` quando a entrada aberta diretamente é uma URL de
+streaming. Essa aplicação automática não altera arquivos locais nem torna as
+opções globais para o próximo item carregado.
+
 ---
 
 # `mpv.conf`

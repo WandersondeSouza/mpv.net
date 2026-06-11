@@ -16,6 +16,9 @@ namespace MpvNet;
 
 public partial class MainPlayer
 {
+    public const string AutomaticStreamingLoadOptions =
+        "cache=yes,cache-pause-initial=yes,cache-pause-wait=60,demuxer-max-bytes=128MiB,network-timeout=60";
+
     public void SetBluRayTitle(int id) => LoadFiles(new[] { @"bd://" + id }, false, false);
 
     public DateTime LastLoad;
@@ -249,27 +252,39 @@ public partial class MainPlayer
             return false;
 
         Log.Info($"Playback fallback activated. reason='{reason}', fallback='{Log.SafeValue(fallbackInput)}', failedInput='{Log.SafeValue(failedInput)}', append={append}");
-        if (append)
-            CommandV("loadfile", ConvertFilePath(fallbackInput), "append");
-        else
-            CommandV("loadfile", ConvertFilePath(fallbackInput));
+        SendLoadfile(ConvertFilePath(fallbackInput), append ? 1 : 0, append);
 
         return true;
     }
 
     void SendLoadfile(string file, int index, bool append)
     {
+        bool useStreamingOptions = ShouldUseAutomaticStreamingOptions(file);
+        string mode = index == 0 && !append ? "replace" : "append";
+
+        if (useStreamingOptions)
+            Log.Info($"Applying automatic streaming network tolerance to loadfile. path='{Log.SafeValue(file)}', options='{AutomaticStreamingLoadOptions}'");
+
         if (index == 0 && !append)
         {
             Log.Info($"Sending loadfile replace to mpv: '{Log.SafeValue(file)}'");
-            CommandV("loadfile", file);
+            if (useStreamingOptions)
+                CommandV("loadfile", file, mode, AutomaticStreamingLoadOptions);
+            else
+                CommandV("loadfile", file);
         }
         else
         {
             Log.Info($"Sending loadfile append to mpv: '{Log.SafeValue(file)}'");
-            CommandV("loadfile", file, "append");
+            if (useStreamingOptions)
+                CommandV("loadfile", file, mode, AutomaticStreamingLoadOptions);
+            else
+                CommandV("loadfile", file, mode);
         }
     }
+
+    public static bool ShouldUseAutomaticStreamingOptions(string file) =>
+        FileTypes.IsStreamingUrl(file);
 
     bool PlaylistContainsPath(string path)
     {
