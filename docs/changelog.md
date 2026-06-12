@@ -6,6 +6,24 @@ As notas principais de cada release devem continuar no cabecalho da
 publicacao no GitHub; este arquivo serve como historico consolidado e
 referencia para builds, documentacao e revisao de versoes anteriores.
 
+# Fork WandersondeSouza - v7.1.3.13 (2026-06-12)
+
+## Streaming e URLs
+
+- Ajustada a abertura de URLs de streaming para aplicar automaticamente
+  opcoes locais de cache e rede, tolerando quedas curtas sem alterar o
+  comportamento de arquivos locais.
+- A deteccao agora considera o protocolo da entrada, incluindo `http`,
+  `https`, `ftp`, `rtsp`, `rtmp` e similares, em vez de depender apenas de
+  perfis especificos de IPTV.
+- `cache-pause-wait=60` permite aguardar cerca de 60 segundos para rebuffer
+  antes de retomar, e `network-timeout=60` amplia o tempo de operacoes de
+  rede antes de o mpv encerrar a conexao.
+- Mantida a compatibilidade com playlists e arquivos locais: as opcoes extras
+  sao aplicadas somente quando a entrada carregada e uma URL de streaming.
+- Atualizados manual, exemplos de configuracao e cobertura de testes para
+  registrar o comportamento esperado desse fluxo.
+
 # Fork WandersondeSouza - v7.1.3.12 (2026-06-10)
 
 ## Empacotamento Microsoft Store

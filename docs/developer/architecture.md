@@ -443,7 +443,7 @@ o fork:
 - gettext foi revalidado e a string visivel de criacao de arquivo de
   configuracao passou a usar catalogo de localizacao;
 - o manifesto MSIX/WAP foi realinhado com a versao central
-  `src/BuildVersion.props` (`7.1.3.12`).
+  `src/BuildVersion.props` (`7.1.3.13`).
 
 Validacoes finais executadas na Etapa 8:
 
@@ -465,9 +465,9 @@ Resultado da Etapa 8:
 - o projeto MSIX/WAP foi ignorado no build de solucao desta maquina porque os
   targets Desktop Bridge/MSIX nao estavam instalados no local esperado;
 - o pacote local sem publicacao no GitHub gerou:
-  `artifacts\release\MPV.NET-Media-Player-v7.1.3.12-portable-x64\`,
-  `artifacts\release\MPV.NET-Media-Player-v7.1.3.12-portable-x64.zip` e
-  `artifacts\release\MPV.NET-Media-Player-v7.1.3.12-setup-x64.exe`;
+  `artifacts\release\MPV.NET-Media-Player-v7.1.3.13-portable-x64\`,
+  `artifacts\release\MPV.NET-Media-Player-v7.1.3.13-portable-x64.zip` e
+  `artifacts\release\MPV.NET-Media-Player-v7.1.3.13-setup-x64.exe`;
 - o script de release compilou `Locale`, validou dependencias nativas no
   publish, na pasta portatil e no ZIP, e concluiu o instalador Inno Setup;
 - nenhuma release foi publicada no GitHub porque o comando foi executado com
