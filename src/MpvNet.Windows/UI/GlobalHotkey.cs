@@ -81,8 +81,22 @@ class GlobalHotkey
 
     public static void Execute(int id)
     {
-        if (Commands!.ContainsKey(id))
-            Player.Command(Commands[id]);
+        if (Commands?.TryGetValue(id, out string? command) == true)
+            Player.Command(command);
+    }
+
+    public static void UnregisterGlobalHotkeys()
+    {
+        if (Commands != null)
+        {
+            foreach (int id in Commands.Keys)
+                UnregisterHotKey(HWND, id);
+
+            Commands.Clear();
+        }
+
+        ID = 0;
+        HWND = IntPtr.Zero;
     }
 
     static int Mpv_to_VK(string value)
@@ -170,6 +184,9 @@ class GlobalHotkey
 
     [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     static extern bool RegisterHotKey(IntPtr hWnd, int id, KeyModifiers fsModifiers, int vk);
+
+    [DllImport("user32.dll", SetLastError = true)]
+    static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
     [Flags]
     enum KeyModifiers

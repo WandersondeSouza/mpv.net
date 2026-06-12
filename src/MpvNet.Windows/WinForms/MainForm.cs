@@ -42,6 +42,7 @@ public partial class MainForm : Form
 
     bool _contextMenuIsReady;
     bool _contextMenuClosedHandlerAttached;
+    bool _managedResourcesDisposed;
     bool _wasMaximized;
     bool _maxSizeSet;
     bool _isCursorVisible = true;
@@ -1190,6 +1191,41 @@ public partial class MainForm : Form
     }
 
     void ContextMenu_Closed(object sender, System.Windows.RoutedEventArgs e) => MenuAutoResetEvent.Set();
+
+    void DisposeManagedResources()
+    {
+        if (_managedResourcesDisposed)
+            return;
+
+        _managedResourcesDisposed = true;
+
+        Player.FileLoaded -= Player_FileLoaded;
+        Player.Pause -= Player_Pause;
+        Player.PlaylistPosChanged -= Player_PlaylistPosChanged;
+        Player.Seek -= UpdateProgressBar;
+        Player.Shutdown -= Player_Shutdown;
+        Player.VideoSizeChanged -= Player_VideoSizeChanged;
+        Player.ClientMessage -= Player_ClientMessage;
+
+        GuiCommand.Current.ScaleWindow -= GuiCommand_ScaleWindow;
+        GuiCommand.Current.MoveWindow -= GuiCommand_MoveWindow;
+        GuiCommand.Current.WindowScaleNet -= GuiCommand_WindowScaleNet;
+        GuiCommand.Current.ShowMenu -= GuiCommand_ShowMenu;
+
+        if (_contextMenuClosedHandlerAttached)
+        {
+            ContextMenu.Closed -= ContextMenu_Closed;
+            _contextMenuClosedHandlerAttached = false;
+        }
+
+        ContextMenu.Items.Clear();
+        GlobalHotkey.UnregisterGlobalHotkeys();
+        MenuAutoResetEvent.Set();
+        MenuAutoResetEvent.Dispose();
+
+        if (ReferenceEquals(Instance, this))
+            Instance = null;
+    }
 
     protected override void OnResize(EventArgs e)
     {
