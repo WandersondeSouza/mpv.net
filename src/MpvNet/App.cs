@@ -124,26 +124,7 @@ public class AppClass
             "# Initial mpv/mpv.net configuration." + BR +
             "# This file is created only when no user mpv.conf exists." + BR +
             BR +
-            "# Optional profile for HTTP/IPTV/Xtream streams with unstable buffering." + BR +
-            "# Use it with: --profile=streaming-iptv" + BR +
-            "[streaming-iptv]" + BR +
-            "cache=yes" + BR +
-            "cache-pause-initial=yes" + BR +
-            "cache-pause-wait=60" + BR +
-            "demuxer-max-bytes=128MiB" + BR +
-            "network-timeout=60" + BR +
-            BR +
-            "# Profile used by IPTV Media Center when it launches mpv.net." + BR +
-            "# It is applied only with: --profile=iptv-media-center" + BR +
-            "[iptv-media-center]" + BR +
-            "force-window=yes" + BR +
-            "idle=no" + BR +
-            "cache=yes" + BR +
-            "cache-pause-initial=yes" + BR +
-            "cache-pause-wait=60" + BR +
-            "demuxer-max-bytes=128MiB" + BR +
-            "network-timeout=60" + BR +
-            "volume=100" + BR);
+            "# Streaming URLs are detected by protocol and receive network tolerance automatically." + BR);
     }
 
     public void EnsureInitialSelectMenuConf()

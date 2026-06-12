@@ -16,6 +16,7 @@ namespace MpvNet;
 
 public partial class MainPlayer
 {
+    public const string LoadfileOptionsInsertionIndex = "-1";
     public const string AutomaticStreamingLoadOptions =
         "cache=yes,cache-pause-initial=yes,cache-pause-wait=60,demuxer-max-bytes=128MiB,network-timeout=60";
 
@@ -269,7 +270,7 @@ public partial class MainPlayer
         {
             Log.Info($"Sending loadfile replace to mpv: '{Log.SafeValue(file)}'");
             if (useStreamingOptions)
-                CommandV("loadfile", file, mode, AutomaticStreamingLoadOptions);
+                CommandV("loadfile", file, mode, LoadfileOptionsInsertionIndex, AutomaticStreamingLoadOptions);
             else
                 CommandV("loadfile", file);
         }
@@ -277,7 +278,7 @@ public partial class MainPlayer
         {
             Log.Info($"Sending loadfile append to mpv: '{Log.SafeValue(file)}'");
             if (useStreamingOptions)
-                CommandV("loadfile", file, mode, AutomaticStreamingLoadOptions);
+                CommandV("loadfile", file, mode, LoadfileOptionsInsertionIndex, AutomaticStreamingLoadOptions);
             else
                 CommandV("loadfile", file, mode);
         }

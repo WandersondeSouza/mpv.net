@@ -404,7 +404,7 @@ referencia para builds, documentacao e revisao de versoes anteriores.
 - Adicionados exemplos de configuracao em `docs/exemplos/`, incluindo
   `mpv.conf`, `input.conf`, `thumbfast.conf` e exemplos para `portable_config`.
 - Documentados atalhos, caminhos longos no Windows, `thumbfast` no modo
-  portatil e o perfil `[iptv-media-center]` usado sob demanda.
+  portatil e exemplos de configuracao do fork.
 - Corrigido o carregamento de arquivos locais com caminho acima de 260
   caracteres, normalizando o caminho para o formato estendido `\\?\` antes de
   entregar ao mpv/libmpv.

@@ -102,34 +102,15 @@ baixada para um arquivo temporário e expandida pelo frontend antes do envio ao
 mpv/libmpv. Essa verificação usa timeout de pelo menos 60 segundos; se expirar
 ou falhar, a URL original ainda é enviada ao mpv/libmpv.
 
-Na primeira execução, o `mpv.conf` inicial criado pelo aplicativo e o modelo
-do ZIP portátil já incluem o perfil `[streaming-iptv]`.
-
 Ao abrir uma URL de streaming diretamente, o frontend aplica automaticamente
 opções locais de cache e rede para tolerar quedas curtas de fluxo sem alterar
 o comportamento de arquivos locais.
 
-Para URLs de streaming HTTP/IPTV/Xtream com buffer instável, o mesmo ajuste
-também fica disponível como perfil explícito no `mpv.conf`. Um ponto de partida
-seguro é este:
-
-```ini
-[streaming-iptv]
-cache=yes
-cache-pause-initial=yes
-cache-pause-wait=60
-demuxer-max-bytes=128MiB
-network-timeout=60
-```
-
-Use esse perfil quando quiser aplicar a mesma política de forma explícita ou
-ao iniciar o player por linha de comando. `cache-pause-wait=60` permite
-aguardar até cerca de 60 segundos para rebuffer antes de retomar, enquanto
-`network-timeout=60` dá mais tempo para operações de rede HTTP antes de o mpv
-considerar a conexão encerrada.
-
-O perfil `[iptv-media-center]`, usado quando o IPTV Media Center inicia o
-player, usa a mesma tolerância de cache e rede.
+Essa regra é baseada no protocolo da entrada (`http`, `https`, `ftp`, `rtsp`,
+`rtmp` e similares), não em perfis específicos de IPTV. `cache-pause-wait=60`
+permite aguardar até cerca de 60 segundos para rebuffer antes de retomar,
+enquanto `network-timeout=60` dá mais tempo para operações de rede HTTP antes
+de o mpv considerar a conexão encerrada.
 
 Se uma URL do YouTube falhar com `unrecognized file format`, teste o extrator
 diretamente. Em muitos casos o problema é autenticação ou cookies do navegador,
