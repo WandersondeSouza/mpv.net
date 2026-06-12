@@ -316,6 +316,118 @@ Risco médio:
 
 ---
 
+<a id="relatorio-tecnico-inicial-2026-06-12"></a>
+
+# Relatório técnico inicial - 2026-06-12
+
+## Escopo analisado
+
+Este diagnóstico consolida a leitura inicial do fork antes de novas mudanças
+de estabilização. Foram considerados:
+
+- regras de manutenção em `AGENTS.md`;
+- documentação principal em `README.md`, `docs/manual.md` e
+  `docs/guia-operacional.md`;
+- documentação técnica em `docs/developer/`;
+- superfície de código em `src/MpvNet`, `src/MpvNet.Windows`,
+  `src/NGettext.Wpf`, `src/MpvNet.Tests` e `src/Tools`;
+- artefatos de agentes e prompts em `.ai/`;
+- fluxo de localização em `lang/source.pot` e `lang/po/*.po`.
+
+O objetivo desta etapa não é refatorar o player. O objetivo é registrar o
+estado técnico, separar riscos reais de melhorias possíveis e orientar mudanças
+pequenas, verificáveis e compatíveis com mpv/libmpv.
+
+## Diagnóstico resumido
+
+- A arquitetura atual já tem camadas reconhecíveis: núcleo `MpvNet`, frontend
+  `MpvNet.Windows`, suporte WPF/gettext em `NGettext.Wpf`, exemplo de extensão
+  e projeto de pacote MSIX/WAP.
+- O projeto já usa recursos modernos no build, como `LangVersion` 12.0,
+  nullable reference types habilitado, pacotes NuGet centralizados e `win-x64`
+  como runtime padrão.
+- `Player.cs` e `MainForm.cs` continuam sendo pontos de estado central. A
+  separação em partials reduziu o acoplamento visível, mas esses arquivos ainda
+  devem ser tratados como áreas de alto risco.
+- O harness `src/MpvNet.Tests/Program.cs` cobre parser de argumentos,
+  playlists, títulos, configuração, idiomas, logs, limpeza temporária e
+  políticas auxiliares de MediaInfo. Ele deve crescer junto de qualquer mudança
+  nova nessas áreas.
+- A localização está centralizada em `LanguageCatalog.cs`, com validação de
+  paridade dos catálogos gettext contra `lang/source.pot`.
+- O fluxo de release e dependências nativas está documentado em
+  `docs/developer/build-release.md` e `docs/guia-operacional.md`, com scripts
+  canônicos em `src/Tools/`.
+- A documentação de agentes em `.ai/` é parte da superfície de manutenção e
+  precisa permanecer alinhada ao mapa técnico real do repositório.
+
+## Decisões de arquitetura
+
+- Preservar `mpvnet.exe`, `%APPDATA%\mpv.net`, `MPVNET_HOME`,
+  `portable_config`, `mpv.conf`, `mpvnet.conf` e `input.conf` como contratos de
+  compatibilidade.
+- Manter `src/MpvNet/Player.cs` como estado principal do player e mover apenas
+  responsabilidades bem delimitadas para partials ou classes auxiliares já
+  justificadas por testes.
+- Manter `src/MpvNet.Windows/WinForms/MainForm.cs` como estado principal da
+  janela e isolar mudanças por tema nos partials `MainForm.*.cs`.
+- Não substituir a lógica do mpv/libmpv por validações próprias do frontend. O
+  frontend deve rejeitar apenas entradas claramente inválidas e deixar a decisão
+  final de reprodução para o mpv/libmpv.
+- Não criar normalizadores paralelos de idioma. Novas regras devem passar pelo
+  catálogo central e pelos testes de fallback.
+- Não criar novos documentos técnicos quando um documento existente puder
+  receber a informação de forma clara e durável.
+
+## Riscos técnicos atuais
+
+- Alterações em eventos, callbacks e shutdown de `MpvClient`/`Player` podem
+  afetar reprodução, scripts e encerramento do processo.
+- Alterações em `MainForm` podem impactar fullscreen, DPI, menu de contexto,
+  foco, atalhos, cursor/OSC e múltiplos monitores.
+- Migrações automáticas em arquivos do usuário precisam ser conservadoras e
+  manter backup quando alterarem configuração existente.
+- Scripts de release dependem de fontes externas e ferramentas locais; qualquer
+  mudança deve validar falha cedo para evitar pacote parcial.
+- Atualizações de texto visível podem exigir sincronização gettext, compilação
+  de `Locale` e validação de paridade.
+
+## Plano de execução recomendado
+
+1. Corrigir primeiro documentação e artefatos `.ai` que apontem para caminhos
+   obsoletos ou fluxos inexistentes.
+2. Auditar recursos e ciclo de vida em `MainForm`, `Player`, `MpvClient` e
+   comandos de UI antes de alterar comportamento.
+3. Para cada problema confirmado, criar uma mudança pequena com teste ou
+   validação direta.
+4. Rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`
+   quando tocar parser, paths, playlists, títulos, logs, configuração, idioma
+   ou MediaInfo.
+5. Rodar `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore
+   /p:EnsureBuildAssets=false` como prova rápida para mudanças de código ou UI.
+6. Para localização, rodar `.\lang\validate-po-files.ps1 -ValidateOnly`.
+7. Para release, validar scripts, dependências nativas e conteúdo dos pacotes
+   antes de publicar ou registrar mudança no changelog.
+
+## Validação de base registrada
+
+Na rodada inicial de 2026-06-12, antes de alterações de comportamento, a base
+foi validada com:
+
+```powershell
+dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
+dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore /p:EnsureBuildAssets=false
+.\lang\validate-po-files.ps1 -ValidateOnly
+git diff --check
+```
+
+Resultado: testes, build rápido, validação gettext e checagem de whitespace
+passaram. Revisões manuais completas de UI, pacote portátil, instalador e
+workflow de release continuam pendentes conforme `docs/guia-operacional.md` e
+`docs/developer/build-release.md`.
+
+---
+
 # Recomendações para agentes
 
 1. Antes de alterar código, localizar a camada correta.
