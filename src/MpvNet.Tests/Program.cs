@@ -175,6 +175,10 @@ var activeBindings = InputHelp.GetActiveBindings([
     new Binding(command: "cycle pause", input: "p"),
     new Binding(command: "ignored", input: ""),
     new Binding(command: "", input: "x")]);
+var duplicateInputActiveBindings = InputHelp.GetActiveBindings([
+    new Binding(command: "first command", input: "X"),
+    new Binding(command: "second command", input: "X")]);
+var normalizedModifierBindings = InputHelp.Parse("ctrl+shift+alt+x cycle pause # Modified Pause");
 var defaultMenuLabels = new Dictionary<string, string>();
 foreach (Binding binding in InputHelp.GetDefaults())
 {
@@ -372,6 +376,7 @@ var tests = new (string Name, bool Result)[]
     ("Title normalization uses default title when empty", TitleHelp.NormalizeMediaTitle("@#$*.mp4") == "Untitled Track"),
     ("Title normalization truncates long titles", TitleHelp.NormalizeMediaTitle(new string('a', 120) + ".mp4").Length == 100),
     ("Title normalization removes mpv.net suffix", TitleHelp.NormalizeMediaTitle("movie title - mpv.net") == "Movie Title"),
+    ("Title normalization removes mpv suffix after pipe", TitleHelp.NormalizeMediaTitle("movie title | mpv") == "Movie Title"),
     ("Title normalization keeps unsupported extension text", TitleHelp.NormalizeMediaTitle("notes.backup") == "Notes Backup"),
     ("Command line accepts streaming URL", CommandLine.IsLoadableFileArgument("rtmps://example.com/live")),
     ("Command line accepts playlist file extension", CommandLine.IsLoadableFileArgument("iptv.m3u")),
@@ -486,6 +491,7 @@ var tests = new (string Name, bool Result)[]
         parsedCommandArguments.Any(i => i.Name == "external-files" && i.Value == "cover.jpg")),
     ("Command parser normalizes explicit title values", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "Sample Video")),
     ("Command parser consumes separated title values", separatedTitleArguments.Any(i => i.Name == "title" && i.Value == "Nome Do Vídeo")),
+    ("Command parser consumes separated force media title", CommandLine.ParseArguments(["--force-media-title", "canal ao vivo"]).Single(i => i.Name == "force-media-title").Value == "Canal Ao Vivo"),
     ("Command parser preserves title templates", parsedCommandArguments.Any(i => i.Name == "title" && i.Value == "${media-title}")),
     ("Command parser normalizes force media title", parsedCommandArguments.Any(i => i.Name == "force-media-title" && i.Value == "Forced Title")),
     ("Command parser uses force media title for URL playlist title", commandLinePlaylistTitle == "Forced Title"),
@@ -511,6 +517,8 @@ var tests = new (string Name, bool Result)[]
         "script-opts-remove",
         "script-opts-toggle"])),
     ("Input bindings ignore incomplete entries", activeBindings.Count == 2),
+    ("Input bindings keep last command for duplicate key", duplicateInputActiveBindings["X"].Command == "second command"),
+    ("Input parser normalizes shortcut modifiers", normalizedModifierBindings.Single().Input == "Ctrl+Shift+Alt+x"),
     ("Input bindings list keys for command", pauseBindings == "SPACE, p"),
     ("Default menu labels keep first playlist menu path", defaultMenuLabels["script-binding select/select-playlist"] == "View > Playlist"),
     ("Custom menu keeps open files", customMenuBindings.Any(binding => binding.Command == "script-message-to mpvnet open-files")),
@@ -546,6 +554,15 @@ var tests = new (string Name, bool Result)[]
     ("Native UTF-8 conversion accepts null pointer", LibMpv.ConvertFromUtf8(IntPtr.Zero) == ""),
     ("Native UTF-8 string array accepts null pointer", LibMpv.ConvertFromUtf8Strings(IntPtr.Zero, 0).Length == 0),
 };
+
+var duplicateTestNames = tests
+    .GroupBy(test => test.Name)
+    .Where(group => group.Count() > 1)
+    .Select(group => group.Key)
+    .ToArray();
+
+if (duplicateTestNames.Length > 0)
+    throw new Exception("Duplicate test names: " + string.Join(", ", duplicateTestNames));
 
 var failed = tests.Where(test => !test.Result).ToArray();
 
