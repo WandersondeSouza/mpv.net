@@ -32,5 +32,4 @@ Para mudanças em parser, paths, playlist, título, logs, configuração, seleç
 - `README.md`;
 - `docs/manual.md`;
 - `docs/guia-operacional.md`;
-- `docs/proximos-trabalhos.md`;
 - a documentação técnica da área tocada em `docs/developer/`.

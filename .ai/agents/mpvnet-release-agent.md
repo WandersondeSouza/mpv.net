@@ -13,7 +13,7 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 5. `docs/developer/build-release.md`;
 6. `docs/developer/architecture.md`;
 7. `docs/changelog.md`;
-8. `docs/proximos-trabalhos.md` quando a mudança afetar a priorização do fluxo.
+8. pendências registradas em `docs/guia-operacional.md` ou `docs/developer/build-release.md` quando a mudança afetar a priorização do fluxo;
 9. documentação técnica relacionada quando o release expuser dependências de fluxo amplo.
 
 ## Arquivos críticos

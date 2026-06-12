@@ -11,7 +11,7 @@ Todo agente deve seguir:
 1. preservar compatibilidade com mpv/libmpv;
 2. ler `AGENTS.md`, `README.md` e `docs/manual.md`;
 3. consultar `docs/guia-operacional.md` quando a tarefa envolver build, release, scripts ou manutenção geral;
-4. consultar `docs/proximos-trabalhos.md` quando a tarefa envolver priorização ou planejamento;
+4. consultar o roadmap e as pendências em `docs/guia-operacional.md` e nos documentos técnicos da área quando a tarefa envolver priorização ou planejamento;
 5. consultar a documentação técnica em `docs/developer/` que corresponda à área tocada;
 6. confirmar comportamento no código antes de editar;
 7. propor mudança pequena;

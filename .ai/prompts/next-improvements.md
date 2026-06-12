@@ -10,11 +10,10 @@ Antes de alterar qualquer arquivo, leia:
 2. `README.md`;
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
-5. `docs/proximos-trabalhos.md`;
-6. `.ai/skills/mpvnet-maintainer.md`;
-7. `.ai/agents/mpvnet-architecture-agent.md`;
-8. `docs/developer/architecture.md`;
-9. documentação técnica relacionada à área analisada.
+5. `.ai/skills/mpvnet-maintainer.md`;
+6. `.ai/agents/mpvnet-architecture-agent.md`;
+7. `docs/developer/architecture.md`;
+8. documentação técnica relacionada à área analisada.
 
 ## Objetivo
 
@@ -24,7 +23,6 @@ Analisar o estado atual do fork e propor melhorias pequenas, seguras e bem docum
 
 - `README.md`;
 - `docs/guia-operacional.md`;
-- `docs/proximos-trabalhos.md`;
 - `docs/developer/`;
 - `.ai/prompts/`;
 - `.ai/agents/`;
@@ -41,7 +39,7 @@ Analisar o estado atual do fork e propor melhorias pequenas, seguras e bem docum
 ## Tarefas
 
 1. Verificar se o README está claro para usuário e mantenedor.
-2. Identificar tarefas pendentes e tarefas já consolidadas em `docs/proximos-trabalhos.md` e `docs/changelog.md`.
+2. Identificar tarefas pendentes em `docs/guia-operacional.md` e nos documentos técnicos da área, e tarefas já consolidadas em `docs/changelog.md`.
 3. Separar melhorias em quatro grupos:
    - documentação;
    - prompts, agentes e fluxo de IA;
@@ -77,7 +75,7 @@ Plano de teste:
 
 - Rodar `git status --short` antes de editar.
 - Revisar links Markdown locais após alterações.
-- Conferir se `README.md`, `docs/proximos-trabalhos.md` e `.ai/prompts/` não duplicam informação com nomes diferentes.
+- Conferir se `README.md`, `docs/guia-operacional.md`, `docs/developer/` e `.ai/prompts/` não duplicam informação com nomes diferentes.
 - Não marcar como concluído nada que não tenha evidência no repositório atual ou validação local.
 
 

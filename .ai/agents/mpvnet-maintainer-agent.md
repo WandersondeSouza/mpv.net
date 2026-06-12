@@ -12,10 +12,10 @@ Ler nesta ordem:
 2. `README.md`;
 3. `docs/manual.md`;
 4. `docs/guia-operacional.md`;
-5. `docs/proximos-trabalhos.md`;
-6. `docs/developer/architecture.md`;
-7. documentação da área afetada;
-8. `docs/changelog.md` quando a tarefa envolver trabalho já consolidado.
+5. `docs/developer/architecture.md`;
+6. documentação da área afetada em `docs/developer/`;
+7. `docs/changelog.md` quando a tarefa envolver trabalho já consolidado;
+8. pendências registradas em `docs/guia-operacional.md` ou na documentação técnica da área quando a tarefa envolver priorização.
 
 ## Conduta
 
