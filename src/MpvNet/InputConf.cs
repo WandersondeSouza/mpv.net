@@ -117,7 +117,7 @@ public class InputConf
                     if (updatedContent != Content)
                     {
                         File.Copy(Path, Path + ".backup", true);
-                        File.WriteAllText(Path, Content = updatedContent);
+                        FileHelp.WriteAllTextAtomic(Path, Content = updatedContent);
                     }
 
                     App.Settings.MenuUpdateVersion = 1;

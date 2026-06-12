@@ -484,8 +484,8 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
             }
         }
 
-        File.WriteAllText(Player.ConfPath, GetContent("mpv"));
-        File.WriteAllText(App.ConfPath, GetContent("mpvnet"));
+        FileHelp.WriteAllTextAtomic(Player.ConfPath, GetContent("mpv"));
+        FileHelp.WriteAllTextAtomic(App.ConfPath, GetContent("mpvnet"));
 
         foreach (Setting it in _settings)
         {

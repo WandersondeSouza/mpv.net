@@ -310,6 +310,14 @@ var normalizedAutocreatedPlaylistItems = PlaylistFile.NormalizeDisplayTitles([
 string tempRawTitleM3u = PlaylistFile.WriteTempM3u([
     new PlaylistFileItem(tempVideo, "\"raw\" 'playlist' item.mp4")]);
 string rawTitleM3uContent = File.ReadAllText(tempRawTitleM3u);
+string tempAtomicWriteFile = Path.Combine(tempPlaylistDir, "atomic-write.txt");
+string tempAtomicNestedFile = Path.Combine(tempPlaylistDir, "nested", "atomic-write.txt");
+File.WriteAllText(tempAtomicWriteFile, "old");
+FileHelp.WriteAllTextAtomic(tempAtomicWriteFile, "new");
+FileHelp.WriteAllTextAtomic(tempAtomicNestedFile, "created");
+string atomicWriteContent = File.ReadAllText(tempAtomicWriteFile);
+string atomicNestedWriteContent = File.ReadAllText(tempAtomicNestedFile);
+bool atomicWriteCleanedTempFiles = !Directory.EnumerateFiles(tempPlaylistDir, "atomic-write.txt.*.tmp").Any();
 
 MediaTrack mpvTrackText = new();
 MediaTrackText.AddMpvValue(mpvTrackText, " AAC ");
@@ -417,6 +425,9 @@ var tests = new (string Name, bool Result)[]
     ("Playlist normalizer removes quotes from titles", normalizedQuotedPlaylistItems.Single().Title == "Quoted Video Title"),
     ("Autocreated playlist title normalization removes extension", normalizedAutocreatedPlaylistItems.Single().Title == "Vue Js Parte 2 Aula 1 Atividade 3 Criando Nossa Primeira Diretiva Alura Cursos Online De Tecnologia"),
     ("Playlist writer normalizes raw item titles", rawTitleM3uContent.Contains("#EXTINF:-1,Raw Playlist Item")),
+    ("Atomic text write replaces existing content", atomicWriteContent == "new"),
+    ("Atomic text write creates missing folders", atomicNestedWriteContent == "created"),
+    ("Atomic text write removes temporary file", atomicWriteCleanedTempFiles),
     ("PLS parser normalizes item title", parsedPlsPlaylist.Any(i => i.Title == "Pls Video Title" && i.Path == tempVideo)),
     ("PLS writer preserves normalized item titles", normalizedPlsM3uContent.Contains("#EXTINF:-1,Pls Video Title")),
     ("XSPF parser resolves relative media paths", parsedXspfPlaylist.Single().Path == tempAudio),

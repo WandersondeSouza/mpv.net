@@ -180,7 +180,7 @@ public class GuiCommand
             string msg = $"{configFile} does not exist. Would you like to create it?";
 
             if (Msg.ShowQuestion(msg) == MessageBoxResult.OK)
-                File.WriteAllText(file, "");
+                FileHelp.WriteAllTextAtomic(file, "");
         }
         
         if (File.Exists(file))

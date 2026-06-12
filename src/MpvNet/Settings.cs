@@ -55,7 +55,8 @@ class SettingsManager
 
     public static void Save(object obj)
     {
-        string tempFile = SettingsFile + ".tmp";
+        Directory.CreateDirectory(Path.GetDirectoryName(SettingsFile)!);
+        string tempFile = SettingsFile + "." + Guid.NewGuid().ToString("N") + ".tmp";
 
         try
         {

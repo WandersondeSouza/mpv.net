@@ -120,7 +120,7 @@ public class AppClass
         if (File.Exists(Player.ConfPath))
             return;
 
-        File.WriteAllText(Player.ConfPath,
+        FileHelp.WriteAllTextAtomic(Player.ConfPath,
             "# Initial mpv/mpv.net configuration." + BR +
             "# This file is created only when no user mpv.conf exists." + BR +
             BR +
@@ -164,7 +164,7 @@ public class AppClass
         }
 
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-        File.WriteAllText(path, BuildSelectMenuConf(culture), new UTF8Encoding(false));
+        FileHelp.WriteAllTextAtomic(path, BuildSelectMenuConf(culture), new UTF8Encoding(false));
     }
 
     string BuildSelectMenuConf(string culture)
@@ -309,9 +309,11 @@ public class AppClass
 
             if (!content.Contains("script-message mpvnet show-menu") &&
                 !content.Contains("script-message-to mpvnet show-menu"))
-
-                File.WriteAllText(InputConf.Path, BR + content.Trim() + BR +
+            {
+                File.Copy(InputConf.Path, InputConf.Path + ".backup", true);
+                FileHelp.WriteAllTextAtomic(InputConf.Path, BR + content.Trim() + BR +
                     "MBTN_Right script-message-to mpvnet show-menu" + BR);
+            }
         }
 
         Settings.ShowMenuFixApplied = true;
@@ -325,12 +327,15 @@ public class AppClass
         if (File.Exists(Player.ConfPath))
         {
             string content = File.ReadAllText(Player.ConfPath);
+            string updatedContent = content
+                .Replace("input-default-bindings = no", "")
+                .Replace("input-default-bindings=no", "");
 
-            if (content.Contains("input-default-bindings = no"))
-                File.WriteAllText(ConfPath, content.Replace("input-default-bindings = no", ""));
-
-            if (content.Contains("input-default-bindings=no"))
-                File.WriteAllText(ConfPath, content.Replace("input-default-bindings=no", ""));
+            if (updatedContent != content)
+            {
+                File.Copy(Player.ConfPath, Player.ConfPath + ".backup", true);
+                FileHelp.WriteAllTextAtomic(Player.ConfPath, updatedContent);
+            }
         }
 
         Settings.InputDefaultBindingsFixApplied = true;

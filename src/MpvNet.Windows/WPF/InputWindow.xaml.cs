@@ -6,6 +6,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 
 using MpvNet.Windows.UI;
+using MpvNet.Help;
 
 namespace MpvNet.Windows.WPF;
 
@@ -114,12 +115,12 @@ public partial class InputWindow : Window
         }
 
         if (App.InputConf.HasMenu)
-            File.WriteAllText(App.InputConf.Path, App.InputConf.Content = newContent);
+            FileHelp.WriteAllTextAtomic(App.InputConf.Path, App.InputConf.Content = newContent);
         else
         {
             newContent = InputHelp.ConvertToString(InputHelp.GetReducedBindings(Bindings));
             newContent = newContent.Replace(App.MenuSyntax + " ", "# ");
-            File.WriteAllText(App.InputConf.Path, App.InputConf.Content = newContent);
+            FileHelp.WriteAllTextAtomic(App.InputConf.Path, App.InputConf.Content = newContent);
         }
 
         Msg.ShowInfo(_("Changes will be available on next startup."));
