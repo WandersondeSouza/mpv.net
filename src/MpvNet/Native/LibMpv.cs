@@ -214,6 +214,9 @@ public static class LibMpv
 
     public static string[] ConvertFromUtf8Strings(nint utf8StringArray, int stringCount)
     {
+        if (utf8StringArray == 0 || stringCount <= 0)
+            return [];
+
         nint[] intPtrArray = new nint[stringCount];
         string[] stringArray = new string[stringCount];
         Marshal.Copy(utf8StringArray, intPtrArray, 0, stringCount);
@@ -226,6 +229,9 @@ public static class LibMpv
 
     public static string ConvertFromUtf8(nint nativeUtf8)
     {
+        if (nativeUtf8 == 0)
+            return "";
+
         int len = 0;
 
         while (Marshal.ReadByte(nativeUtf8, len) != 0)
@@ -236,7 +242,11 @@ public static class LibMpv
         return Encoding.UTF8.GetString(buffer);
     }
 
-    public static string GetError(mpv_error err) => ConvertFromUtf8(mpv_error_string(err));
+    public static string GetError(mpv_error err)
+    {
+        string error = ConvertFromUtf8(mpv_error_string(err));
+        return error == "" ? err.ToString() : error;
+    }
 
     public static byte[] GetUtf8Bytes(string s) => Encoding.UTF8.GetBytes(s + "\0");
 }

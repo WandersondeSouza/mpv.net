@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using MpvNet;
 using MpvNet.Help;
+using MpvNet.Native;
 
 Translator.Current = new TestTranslator();
 
@@ -542,6 +543,8 @@ var tests = new (string Name, bool Result)[]
     ("MediaInfo policy rejects missing local file", !MediaInfoPolicy.CanUseMediaInfo(true, tempMediaFile + ".missing")),
     ("MPV track text helper trims and de-duplicates", mpvTrackText.Text == " AAC,"),
     ("MediaInfo track text helper trims and de-duplicates", mediaInfoTrackText.Text == " DTS,"),
+    ("Native UTF-8 conversion accepts null pointer", LibMpv.ConvertFromUtf8(IntPtr.Zero) == ""),
+    ("Native UTF-8 string array accepts null pointer", LibMpv.ConvertFromUtf8Strings(IntPtr.Zero, 0).Length == 0),
 };
 
 var failed = tests.Where(test => !test.Result).ToArray();
