@@ -37,6 +37,9 @@ referencia para builds, documentacao e revisao de versoes anteriores.
 - Mantida a compatibilidade do pacote com associacoes de video, audio e
   playlists, alias `mpvnet.exe` e validacao alinhada a
   `src\BuildVersion.props`.
+- Separado o registro automatico de playlists no instalador Inno Setup para a
+  rota `--register-file-associations playlist`, evitando que playlists sejam
+  registradas de forma duplicada pelas rotas de audio e video.
 
 # Fork WandersondeSouza - v7.1.2.12 (2026-06-08)
 

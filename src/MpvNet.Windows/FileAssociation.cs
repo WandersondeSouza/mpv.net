@@ -11,8 +11,9 @@ public static class FileAssociation
     public static string[] GetExtensionsForPerceivedType(string perceivedType) =>
         perceivedType switch
         {
-            "video" => [.. FileTypes.GetSupportedVideoExts(), .. FileTypes.Playlist],
-            "audio" => [.. FileTypes.GetAudioExts(), .. FileTypes.Playlist],
+            "video" => FileTypes.GetSupportedVideoExts(),
+            "audio" => FileTypes.GetAudioExts(),
+            "playlist" => FileTypes.Playlist,
             "image" => FileTypes.GetImgExts(),
             _ => []
         };
@@ -66,6 +67,7 @@ public static class FileAssociation
             RegistryHelp.RemoveKey(@"HKLM\SOFTWARE\Clients\Media\mpv.net");
             RegistryHelp.RemoveKey(@"HKCR\SystemFileAssociations\video\OpenWithList\" + exeFilename);
             RegistryHelp.RemoveKey(@"HKCR\SystemFileAssociations\audio\OpenWithList\" + exeFilename);
+            RegistryHelp.RemoveKey(@"HKCR\SystemFileAssociations\playlist\OpenWithList\" + exeFilename);
             RegistryHelp.RemoveKey(@"HKCR\SystemFileAssociations\image\OpenWithList\" + exeFilename);
 
             RegistryHelp.RemoveValue(@"HKLM\SOFTWARE\RegisteredApplications", "mpv.net");
