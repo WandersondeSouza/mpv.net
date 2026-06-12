@@ -426,6 +426,62 @@ passaram. Revisões manuais completas de UI, pacote portátil, instalador e
 workflow de release continuam pendentes conforme `docs/guia-operacional.md` e
 `docs/developer/build-release.md`.
 
+## Relatorio final da rodada segura - 2026-06-12
+
+As etapas executadas nesta rodada mantiveram o escopo conservador definido para
+o fork:
+
+- documentacao e artefatos `.ai` foram alinhados ao fluxo atual de manutencao;
+- este relatorio tecnico foi consolidado no documento de arquitetura existente;
+- ciclo de vida, recursos e pontos de encerramento foram revisados sem
+  refatoracao ampla;
+- gravacoes de configuracao e arquivos gerados pelo aplicativo foram
+  fortalecidas com escrita mais segura onde havia risco de arquivo parcial;
+- integracao com mpv/libmpv foi mantida compativel, com ajustes pequenos e
+  cobertos por testes;
+- a cobertura de testes foi ampliada nos pontos tocados;
+- gettext foi revalidado e a string visivel de criacao de arquivo de
+  configuracao passou a usar catalogo de localizacao;
+- o manifesto MSIX/WAP foi realinhado com a versao central
+  `src/BuildVersion.props` (`7.1.3.12`).
+
+Validacoes finais executadas na Etapa 8:
+
+```powershell
+dotnet run --project .\src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
+.\lang\validate-po-files.ps1 -ValidateOnly
+dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore /p:EnsureBuildAssets=false
+dotnet build .\src\MpvNet.sln -c Release -p:Platform=x64 --no-restore /p:EnsureBuildAssets=false
+powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
+git diff --check
+```
+
+Resultado da Etapa 8:
+
+- testes automatizados passaram;
+- validacao gettext passou com 850 entradas em todos os catalogos ativos;
+- build rapido do projeto Windows passou sem avisos ou erros;
+- build `Release|x64` da solucao passou sem avisos ou erros;
+- o projeto MSIX/WAP foi ignorado no build de solucao desta maquina porque os
+  targets Desktop Bridge/MSIX nao estavam instalados no local esperado;
+- o pacote local sem publicacao no GitHub gerou:
+  `artifacts\release\MPV.NET-Media-Player-v7.1.3.12-portable-x64\`,
+  `artifacts\release\MPV.NET-Media-Player-v7.1.3.12-portable-x64.zip` e
+  `artifacts\release\MPV.NET-Media-Player-v7.1.3.12-setup-x64.exe`;
+- o script de release compilou `Locale`, validou dependencias nativas no
+  publish, na pasta portatil e no ZIP, e concluiu o instalador Inno Setup;
+- nenhuma release foi publicada no GitHub porque o comando foi executado com
+  `-SkipGitHubRelease`.
+
+Pendencias restantes:
+
+- validar manualmente UI, fullscreen, menu, atalhos, temas, persistencia,
+  arquivo local, URL/stream, playlist, pasta com midia, drag/drop,
+  alternancia de faixas/legendas, cursor/OSC, comandos de janela e fechamento;
+- validar o workflow manual `.github/workflows/release-packages.yml`;
+- validar o pacote MSIX/WAP em ambiente com Desktop Bridge/MSIX instalado e
+  credenciais de assinatura configuradas quando houver publicacao Store.
+
 ---
 
 # Recomendações para agentes

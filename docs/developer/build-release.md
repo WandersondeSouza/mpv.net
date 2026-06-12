@@ -372,7 +372,14 @@ Esse script exige arvore Git limpa antes de alterar `src\BuildVersion.props`. El
 
 A partir de 2026-06-02, o fluxo de release publica em `Release` e nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-setup-x64.exe` para o instalador e `MPV.NET-Media-Player-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/FFmpeg/libmpv/yt-dlp, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
 
-Pendente real: validar o workflow manual do GitHub Actions e a revisao manual completa da UI no pacote gerado.
+Validacao local registrada em 2026-06-12: `build-release-package.ps1` concluiu
+com `-SkipGitHubRelease`, gerando ZIP portatil e instalador x64, compilando
+`Locale` e validando dependencias nativas no publish, na pasta portatil e no
+ZIP.
+
+Pendente real: validar o workflow manual do GitHub Actions, o pacote MSIX/WAP em
+ambiente com Desktop Bridge/MSIX instalado e a revisao manual completa da UI no
+pacote gerado.
 
 ---
 
@@ -438,8 +445,10 @@ Após compilar:
 
 # Pendências deste guia
 
-- Rodar e registrar resultado de `dotnet build src\MpvNet.sln`.
-- Rodar e registrar resultado de `dotnet publish` x64 em rodada futura.
+- Revalidar `dotnet build src\MpvNet.sln` quando houver mudanca relevante no
+  build.
+- Revalidar `dotnet publish` x64 quando houver mudanca relevante no fluxo de
+  publish.
 - Validar revisão manual completa de UI, fullscreen, menu, atalhos, temas e persistência.
 - Validar o workflow manual `.github/workflows/release-packages.yml`.
 
