@@ -343,6 +343,8 @@ string[] legacyAudioExts = ["au", "mp2", "mpa", "mpc", "thd", "w64", "oga", "ogm
 
 string[] audioExts = FileTypes.GetAudioExts();
 string[] imageExts = FileTypes.GetImgExts();
+string openFileDialogFilter = FileTypes.GetOpenFileDialogFilter();
+string openFileDialogFirstFilter = openFileDialogFilter.Split('|')[1];
 
 var tests = new (string Name, bool Result)[]
 {
@@ -353,6 +355,7 @@ var tests = new (string Name, bool Result)[]
     ("IsPlaylistFile .asx", FileTypes.IsPlaylistFile(".asx")),
     ("IsPlaylistFile .wpl", FileTypes.IsPlaylistFile(".wpl")),
     ("IsPlaylistFile .jspf", FileTypes.IsPlaylistFile(".jspf")),
+    ("IsAudioFile .mp3", FileTypes.IsAudioFile(".mp3")),
     ("Default image extensions include avif", imageExts.Contains("avif")),
     ("Default image extensions include jpeg", imageExts.Contains("jpeg")),
     ("Default image extensions include jxl", imageExts.Contains("jxl")),
@@ -366,6 +369,7 @@ var tests = new (string Name, bool Result)[]
     ("URL fragment supported", FileTypes.IsSupportedMediaInput("https://example.com/live/index.m3u8#stream")),
     ("Uppercase media extension supported", FileTypes.IsVideoFile("MOVIE.MKV")),
     ("Unknown file false", !FileTypes.IsSupportedMediaInput("example.unknown")),
+    ("Supported media input accepts audio", FileTypes.IsSupportedMediaInput("audio.mp3")),
     ("Empty text false", !FileTypes.IsSupportedMediaInput("")),
     ("URL does not depend on File.Exists", FileTypes.IsSupportedMediaInput("https://example.com/video.mp4")),
     ("Title normalization removes extension and dot separators", TitleHelp.NormalizeMediaTitle("filme.exemplo.2024.mkv") == "Filme Exemplo 2024"),
@@ -415,6 +419,8 @@ var tests = new (string Name, bool Result)[]
     ("Invalid unknown local path is not supported media input", !FileTypes.IsSupportedMediaInput(@"C:\missing\file.unknown")),
     ("Audio defaults keep legacy formats", legacyAudioExts.All(audioExts.Contains)),
     ("Audio defaults add modern formats", expectedAudioExts.All(audioExts.Contains)),
+    ("Open file dialog first filter includes video audio and playlists", openFileDialogFirstFilter.Contains("*.mp4") && openFileDialogFirstFilter.Contains("*.mp3") && openFileDialogFirstFilter.Contains("*.m3u8")),
+    ("Open file dialog keeps separate playlist filter", openFileDialogFilter.Contains("|Playlists|*.m3u;*.m3u8;*.pls;*.xspf;*.asx;*.wpl;*.cue;*.jspf|")),
     ("Folder media filter includes playlists", FileTypes.GetMediaFiles([tempAudio, tempVideo, tempM3u, tempUnknown]).Count() == 3),
     ("Folder media filter keeps playlist files", FileTypes.GetMediaFiles([tempM3u]).Single() == tempM3u),
     ("Folder autoload for video includes audio video and playlists", FileTypes.GetFolderMediaFiles([tempAudio, tempVideo, tempM3u, tempImage, tempUnknown], tempVideo).SequenceEqual([tempAudio, tempVideo, tempM3u])),
