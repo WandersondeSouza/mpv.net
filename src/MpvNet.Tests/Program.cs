@@ -345,6 +345,9 @@ string[] audioExts = FileTypes.GetAudioExts();
 string[] imageExts = FileTypes.GetImgExts();
 string openFileDialogFilter = FileTypes.GetOpenFileDialogFilter();
 string openFileDialogFirstFilter = openFileDialogFilter.Split('|')[1];
+string[] httpStreamingLoadfileArgs = MainPlayer.BuildLoadfileArgs("https://example.com/video.mp4", 0, false);
+string[] ftpStreamingLoadfileArgs = MainPlayer.BuildLoadfileArgs("ftp://example.com/video.mp4", 1, true);
+string[] localLoadfileArgs = MainPlayer.BuildLoadfileArgs(tempVideo, 0, false);
 
 var tests = new (string Name, bool Result)[]
 {
@@ -404,6 +407,9 @@ var tests = new (string Name, bool Result)[]
     ("Local file skips automatic network tolerance", !MainPlayer.ShouldUseAutomaticStreamingOptions(tempVideo)),
     ("Automatic streaming options keep 60 second timeout", MainPlayer.AutomaticStreamingLoadOptions.Contains("network-timeout=60") && MainPlayer.AutomaticStreamingLoadOptions.Contains("cache-pause-wait=60")),
     ("Automatic streaming loadfile options use current mpv argument slot", MainPlayer.LoadfileOptionsInsertionIndex == "-1"),
+    ("HTTP streaming loadfile passes options in fourth mpv argument", httpStreamingLoadfileArgs.SequenceEqual(["loadfile", "https://example.com/video.mp4", "replace", "-1", MainPlayer.AutomaticStreamingLoadOptions])),
+    ("FTP streaming append loadfile keeps automatic network tolerance", ftpStreamingLoadfileArgs.SequenceEqual(["loadfile", "ftp://example.com/video.mp4", "append", "-1", MainPlayer.AutomaticStreamingLoadOptions])),
+    ("Local loadfile keeps normal mpv arguments", localLoadfileArgs.SequenceEqual(["loadfile", tempVideo])),
     ("Pipe input skips optional MediaInfo", !MainPlayer.CanUseMediaInfo(@"\\.\pipe\mpvnet-test")),
     ("Streaming without duration is still loadable", CommandLine.IsLoadableFileArgument("https://example.com/live/no-duration")),
     ("Streaming without title is still loadable", CommandLine.IsLoadableFileArgument("rtsp://example.com/stream")),

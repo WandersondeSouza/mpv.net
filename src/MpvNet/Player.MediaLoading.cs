@@ -261,31 +261,32 @@ public partial class MainPlayer
     void SendLoadfile(string file, int index, bool append)
     {
         bool useStreamingOptions = ShouldUseAutomaticStreamingOptions(file);
-        string mode = index == 0 && !append ? "replace" : "append";
 
         if (useStreamingOptions)
             Log.Info($"Applying automatic streaming network tolerance to loadfile. path='{Log.SafeValue(file)}', options='{AutomaticStreamingLoadOptions}'");
 
         if (index == 0 && !append)
-        {
             Log.Info($"Sending loadfile replace to mpv: '{Log.SafeValue(file)}'");
-            if (useStreamingOptions)
-                CommandV("loadfile", file, mode, LoadfileOptionsInsertionIndex, AutomaticStreamingLoadOptions);
-            else
-                CommandV("loadfile", file);
-        }
         else
-        {
             Log.Info($"Sending loadfile append to mpv: '{Log.SafeValue(file)}'");
-            if (useStreamingOptions)
-                CommandV("loadfile", file, mode, LoadfileOptionsInsertionIndex, AutomaticStreamingLoadOptions);
-            else
-                CommandV("loadfile", file, mode);
-        }
+
+        CommandV(BuildLoadfileArgs(file, index, append));
     }
 
     public static bool ShouldUseAutomaticStreamingOptions(string file) =>
         FileTypes.IsStreamingUrl(file);
+
+    public static string[] BuildLoadfileArgs(string file, int index, bool append)
+    {
+        string mode = index == 0 && !append ? "replace" : "append";
+
+        if (ShouldUseAutomaticStreamingOptions(file))
+            return ["loadfile", file, mode, LoadfileOptionsInsertionIndex, AutomaticStreamingLoadOptions];
+
+        return index == 0 && !append
+            ? ["loadfile", file]
+            : ["loadfile", file, mode];
+    }
 
     bool PlaylistContainsPath(string path)
     {
