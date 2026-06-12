@@ -4058,3 +4058,6 @@ msgstr "追加情報または操作を表示するには、このアイコンを
 
 msgid "Manual"
 msgstr "マニュアル"
+
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "{0} は存在しません。作成しますか?"

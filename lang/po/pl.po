@@ -4058,3 +4058,6 @@ msgstr "Kliknij tę ikonę, aby wyświetlić dodatkowe informacje lub działania
 
 msgid "Manual"
 msgstr "Podręcznik"
+
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "{0} nie istnieje. Czy chcesz go utworzyć?"

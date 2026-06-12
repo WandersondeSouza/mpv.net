@@ -4052,3 +4052,6 @@ msgstr "Haga clic en este icono para ver información o acciones adicionales."
 
 msgid "Manual"
 msgstr "Manual"
+
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "{0} no existe. ¿Quieres crearlo?"

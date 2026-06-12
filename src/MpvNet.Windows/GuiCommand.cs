@@ -177,7 +177,9 @@ public class GuiCommand
 
         if (!File.Exists(file))
         {
-            string msg = $"{configFile} does not exist. Would you like to create it?";
+            string msg = string.Format(
+                _("{0} does not exist. Would you like to create it?"),
+                configFile);
 
             if (Msg.ShowQuestion(msg) == MessageBoxResult.OK)
                 FileHelp.WriteAllTextAtomic(file, "");

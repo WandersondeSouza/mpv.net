@@ -4052,3 +4052,7 @@ msgstr ""
 #: src\MpvNet.Windows\WPF\Controls\HyperlinkEx.cs
 msgid "Manual"
 msgstr ""
+
+#: src\MpvNet.Windows\GuiCommand.cs
+msgid "{0} does not exist. Would you like to create it?"
+msgstr ""

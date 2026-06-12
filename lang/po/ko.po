@@ -4058,3 +4058,6 @@ msgstr "추가 정보 또는 작업을 보려면 이 아이콘을 클릭하세�
 
 msgid "Manual"
 msgstr "설명서"
+
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "{0}이(가) 없습니다. 만들까요?"

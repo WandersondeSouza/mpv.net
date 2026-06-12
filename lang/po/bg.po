@@ -4049,3 +4049,6 @@ msgstr "Щракнете върху тази икона за допълните�
 
 msgid "Manual"
 msgstr "Ръководство"
+
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "{0} не съществува. Искате ли да го създадете?"

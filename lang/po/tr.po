@@ -4060,3 +4060,6 @@ msgstr "Ek bilgi veya eylemler için bu simgeye tıklayın."
 
 msgid "Manual"
 msgstr "Kılavuz"
+
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "{0} mevcut değil. Oluşturmak ister misiniz?"

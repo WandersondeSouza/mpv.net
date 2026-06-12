@@ -4059,3 +4059,6 @@ msgstr "单击此图标可查看其他信息或操作。"
 
 msgid "Manual"
 msgstr "手册"
+
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "{0} 不存在。是否要创建它？"
