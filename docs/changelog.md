@@ -1,7 +1,10 @@
-﻿# Changelog
+# Changelog
 
-Este arquivo registra apenas as versÃµes publicadas pelo fork
+Este arquivo registra apenas as versoes ja publicadas pelo fork
 `WandersondeSouza/mpv.net`.
+As notas principais de cada release devem continuar no cabecalho da
+publicacao no GitHub; este arquivo serve como historico consolidado e
+referencia para builds, documentacao e revisao de versoes anteriores.
 
 # Fork WandersondeSouza - v7.1.3.12 (2026-06-10)
 

@@ -309,7 +309,7 @@ Pontos ainda abertos ou reservados:
 - evitar mudanças grandes sem bug ou necessidade clara;
 - manter a documentação alinhada ao que foi consolidado aqui.
 
-Quando um item estiver corrigido e validado, ele sai desta lista e entra no `docs/changelog.md`.
+Quando um item estiver corrigido e validado, ele sai desta lista e passa para o historico consolidado de releases em `docs/changelog.md`.
 
 ## Tradução e manutenção
 
