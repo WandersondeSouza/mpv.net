@@ -4,7 +4,7 @@
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **MPV.NET Media Player**.
 
-> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale, validacao de dependencias nativas e validacao do pacote MSIX/WAP no Visual Studio 2026 Community. A versao atual preparada para publicacao e `7.1.3.13`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
+> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale, validacao de dependencias nativas e validacao do pacote MSIX/WAP no Visual Studio 2026 Community. A versao atual preparada para publicacao e `7.1.4.13`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
 
 ---
 
@@ -77,6 +77,7 @@ Esta e a lista canonica de scripts do fork. Os demais documentos devem apontar p
 | `prepare-native-dependencies.ps1` | dependencias nativas e auxiliares |
 | `prepare-build-output.ps1` | preparo automatico do output no build do app Windows |
 | `validate-native-dependencies.ps1` | validacao de DLLs nativas em pasta ou ZIP |
+| `set-release-version.ps1` | sincroniza a versao publica em `BuildVersion.props` e `Package.appxmanifest` |
 | `publish-emergency-release.ps1` | release emergencial com bump de versao |
 | `update-mpv-runtime.ps1` | atualizacao do runtime mpv |
 | `test-mpv-build-variants.ps1` | smoke test das variantes de build |
@@ -158,6 +159,7 @@ dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained true --
 O fork agora inclui um projeto WAP/MSIX separado em `src/MpvNet.Pacote/MpvNet.Pacote.wapproj`.
 Ele referencia `src/MpvNet.Windows/MpvNet.Windows.csproj`, usa `src/BuildVersion.props` como fonte da versao e inclui um conjunto basico de assets `Images\` para a Store.
 A identidade reservada atual do pacote e `24183GestodeSistemas.MPV.NETMediaPlayer`, com `Publisher` `CN=6581967D-2DE4-48DE-A846-C6F69ECA7701`.
+O auto incremento de revisao do MSIX fica desativado para evitar que a Store gere um numero diferente do ZIP, do instalador e do executavel. Quando precisar alterar a versao, use `src\Tools\set-release-version.ps1` para atualizar `BuildVersion.props` e `Package.appxmanifest` juntos.
 
 Pontos importantes:
 
@@ -193,6 +195,8 @@ Observacao: o script de release publica em `Release`. Ele chama o publish com `/
 Logs detalhados em arquivo ficam desligados por padrao com `/p:EnableFileLogging=false`.
 Erros continuam sendo gravados em qualquer build. Para pacote de diagnostico,
 use `/p:EnableFileLogging=true` ou `-EnableFileLogging` nos scripts de release.
+Pacotes de diagnostico usam a mesma versao publica do pacote normal e recebem
+apenas o sufixo `-diagnostic` no nome do artefato.
 Detalhes: `docs/logging.md`.
 
 ---
@@ -369,9 +373,14 @@ Para incluir o instalador no workflow emergencial:
 src\Tools\publish-emergency-release.ps1 -CreateInstaller
 ```
 
-Esse script exige arvore Git limpa antes de alterar `src\BuildVersion.props`. Ele nao substitui a revisao manual de changelog, UI e compatibilidade; e uma rota curta para publicar uma nova versao do branch atual quando necessario.
+Esse script exige arvore Git limpa antes de alterar a versao. Ele usa
+`src\Tools\set-release-version.ps1 -IncrementRevision`, portanto atualiza
+`src\BuildVersion.props` e `src\MpvNet.Pacote\Package.appxmanifest` no mesmo
+commit. Ele nao substitui a revisao manual de changelog, UI e compatibilidade;
+e uma rota curta para publicar uma nova versao do branch atual quando
+necessario.
 
-A partir de 2026-06-02, o fluxo de release publica em `Release` e nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-setup-x64.exe` para o instalador e `MPV.NET-Media-Player-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/FFmpeg/libmpv/yt-dlp, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP.
+A partir de 2026-06-02, o fluxo de release publica em `Release` e nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-setup-x64.exe` para o instalador e `MPV.NET-Media-Player-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/FFmpeg/libmpv/yt-dlp, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. Quando `-EnableFileLogging` e usado, os artefatos recebem `-diagnostic` antes do tipo de pacote sem alterar a versao publica.
 
 Validacao local registrada em 2026-06-12: `build-release-package.ps1` concluiu
 com `-SkipGitHubRelease`, gerando ZIP portatil e instalador x64, compilando
@@ -386,16 +395,30 @@ pacote gerado.
 
 # Versão
 
-A versão atual do executável está centralizada em `src/BuildVersion.props`:
+A versão publica está centralizada em `src/BuildVersion.props`:
 
 ```xml
-<MpvNetVersion>7.1.3.13</MpvNetVersion>
+<MpvNetVersion>7.1.4.13</MpvNetVersion>
 ```
 
 O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
 usa `MpvNetVersion` para `FileVersion`, `AssemblyVersion` e
 `InformationalVersion`. O script de release usa a versão do arquivo publicado
 para montar os nomes dos artefatos e a tag da release.
+O manifesto MSIX ainda exige um valor literal em `Package.appxmanifest`; por
+isso a alteracao de versao deve ser feita por:
+
+```powershell
+.\src\Tools\set-release-version.ps1 -Version 7.1.4.14
+```
+
+Para apenas incrementar o ultimo numero:
+
+```powershell
+.\src\Tools\set-release-version.ps1 -IncrementRevision
+```
+
+Nao edite `BuildVersion.props` e `Package.appxmanifest` separadamente.
 
 ---
 

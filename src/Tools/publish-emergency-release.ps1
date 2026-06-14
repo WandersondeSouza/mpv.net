@@ -46,26 +46,12 @@ try {
         throw 'Could not determine the current Git branch. Pass -Branch explicitly.'
     }
 
-    $versionFile = Join-Path $repoRoot 'src\BuildVersion.props'
-    [xml] $versionXml = Get-Content -LiteralPath $versionFile
-    $currentVersion = [version] $versionXml.Project.PropertyGroup.MpvNetVersion
-    $nextVersion = [version]::new($currentVersion.Major, $currentVersion.Minor, $currentVersion.Build, $currentVersion.Revision + 1)
-
-    $versionXml.Project.PropertyGroup.MpvNetVersion = $nextVersion.ToString()
-    $settings = [System.Xml.XmlWriterSettings]::new()
-    $settings.Indent = $true
-    $settings.OmitXmlDeclaration = $true
-    $writer = [System.Xml.XmlWriter]::Create($versionFile, $settings)
-    try {
-        $versionXml.Save($writer)
-    }
-    finally {
-        $writer.Dispose()
-    }
+    $setVersionScript = Join-Path $repoRoot 'src\Tools\set-release-version.ps1'
+    $nextVersion = (& $setVersionScript -IncrementRevision | Select-Object -Last 1).Trim()
 
     $enableFileLoggingValue = if ($EnableFileLogging) { 'true' } else { 'false' }
     Invoke-Checked dotnet @('build', 'src\MpvNet.Windows\MpvNet.Windows.csproj', '--no-restore', '/p:EnsureBuildAssets=false', "/p:EnableFileLogging=$enableFileLoggingValue")
-    Invoke-Checked git @('add', 'src\BuildVersion.props')
+    Invoke-Checked git @('add', 'src\BuildVersion.props', 'src\MpvNet.Pacote\Package.appxmanifest')
     Invoke-Checked git @('commit', '-m', "Bump version to v$nextVersion")
     Invoke-Checked git @('push', 'origin', $Branch)
 

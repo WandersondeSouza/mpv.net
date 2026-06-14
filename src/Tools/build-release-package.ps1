@@ -286,10 +286,11 @@ if ($MpvNetComFile) {
 $VersionInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($PublishedExeFile64)
 $IsBeta = $VersionInfo.ProductVersion -match '(?i)(^|[-+.])(alpha|beta|preview|rc)([-+.]|$)'
 $BetaString = if ($IsBeta) { '-beta' } else { '' }
+$DiagnosticString = if ($EnableFileLogging) { '-diagnostic' } else { '' }
 $VersionName = $VersionInfo.FileVersion
 $ReleaseNotes = GetReleaseNotes $DocsDir $VersionName $Repo
 $InstallerOutputName64 = 'MPV.NET-Media-Player-v' + $VersionName
-$OutputName64 = $InstallerOutputName64 + $BetaString + '-portable-x64'
+$OutputName64 = $InstallerOutputName64 + $BetaString + $DiagnosticString + '-portable-x64'
 
 # Create OutputFolder
 $OutputDir64   = Join-Path $OutputRootDir ($OutputName64 + '\')
@@ -339,8 +340,8 @@ if (-not $SkipInstaller) {
     if ($LastExitCode) { throw $LastExitCode }
     $SetupFile = Test (Join-Path $OutputRootDir "$InstallerOutputName64-setup-x64.exe")
 
-    if ($IsBeta) {
-        $NewSetupFile = Join-Path $OutputRootDir "$InstallerOutputName64-beta-setup-x64.exe"
+    if ($IsBeta -or $EnableFileLogging) {
+        $NewSetupFile = Join-Path $OutputRootDir "$InstallerOutputName64$BetaString$DiagnosticString-setup-x64.exe"
         Move-Item $SetupFile $NewSetupFile
         $SetupFile = $NewSetupFile
     }

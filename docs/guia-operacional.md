@@ -111,6 +111,8 @@ Por padrão, pacotes de release são gerados com logs detalhados em arquivo desa
 Erros continuam sendo gravados em arquivo. Para gerar um pacote de diagnóstico
 com logs diarios completos em `%LOCALAPPDATA%\mpv.net\Logs`, adicione
 `-EnableFileLogging`.
+Pacotes de diagnostico mantem a mesma versao publica do pacote normal e usam
+o sufixo `-diagnostic` no nome do artefato.
 
 ### Gerar apenas o ZIP portátil
 
@@ -133,10 +135,12 @@ Usar quando:
 - não quiser gerar instalador;
 - não quiser publicar no GitHub.
 
-Para ZIP de diagnóstico, adicione `-EnableFileLogging`.
+Para ZIP de diagnóstico, adicione `-EnableFileLogging`. O arquivo gerado usa
+o nome `MPV.NET-Media-Player-v<versao>-diagnostic-portable-x64.zip`.
 
 O script também cria a pasta extraída
-`artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\`.
+`artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\` ou
+`artifacts\release\MPV.NET-Media-Player-v<versao>-diagnostic-portable-x64\`.
 
 ### Gerar apenas o instalador executável
 
@@ -153,10 +157,13 @@ Usar quando:
 - não quiser gerar ZIP portátil;
 - não quiser publicar no GitHub.
 
-Para instalador de diagnóstico, adicione `-EnableFileLogging`.
+Para instalador de diagnóstico, adicione `-EnableFileLogging`. O arquivo gerado
+usa o nome `MPV.NET-Media-Player-v<versao>-diagnostic-setup-x64.exe`.
 
 O script também prepara a pasta portátil base
-`artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\`, usada pelo instalador.
+`artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\`, usada pelo
+instalador. Com `-EnableFileLogging`, essa pasta recebe o sufixo
+`-diagnostic-portable-x64`.
 
 ### Preparar dependências nativas
 
@@ -231,11 +238,21 @@ O script:
 
 1. valida `git diff --check`;
 2. exige arvore Git limpa;
-3. incrementa o ultimo numero de `src\BuildVersion.props`;
+3. incrementa o ultimo numero com `src\Tools\set-release-version.ps1`;
 4. compila `src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore`;
-5. commita a alteracao de versao;
+5. commita a alteracao de versao em `src\BuildVersion.props` e
+   `src\MpvNet.Pacote\Package.appxmanifest`;
 6. faz `git push origin <branch-atual>`;
 7. dispara `.github/workflows/release-packages.yml` com `create_release=true`.
+
+Para definir uma versao manualmente antes de uma release, use:
+
+```powershell
+.\src\Tools\set-release-version.ps1 -Version 7.1.4.14
+```
+
+O pacote Microsoft Store nao deve incrementar revisao automaticamente. A mesma
+versao publica deve valer para ZIP, instalador, executavel e MSIX.
 
 Para tambem gerar o instalador no workflow:
 
