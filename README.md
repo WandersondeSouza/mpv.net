@@ -36,3 +36,11 @@ mpvnet.exe "https://example.com/live/index.m3u8"
 
 O mpv.net aceita arquivos locais, playlists e URLs de streaming compatíveis com o mpv.
 
+## Apresentação do player
+
+![MPV.NET Media Player em Português do Brasil](docs/img/player/Player00.png)
+
+![Menu de contexto do MPV.NET Media Player em Português do Brasil](docs/img/player/Player01.png)
+
+![Reprodução de vídeo no MPV.NET Media Player](docs/img/player/Player02.png)
+
