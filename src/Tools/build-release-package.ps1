@@ -55,7 +55,11 @@ param(
 
     [string] $MediaInfoVersion,
 
-    [string] $MpvNetComFile
+    [string] $MpvNetComFile,
+
+    [string] $ReleaseNotes,
+
+    [string] $ReleaseNotesFile
 )
 
 # Stop when the first error occurs
@@ -201,43 +205,28 @@ function EnsureLocale($sourceDir, $localeDir, $workDir) {
     return Test $localeDir
 }
 
-function GetReleaseNotes($docsDir, $versionName, $repo) {
-    $fallback = "- [Changelog](https://github.com/$repo/blob/main/docs/changelog.md)"
-    $changelogFile = Join-Path $docsDir 'changelog.md'
-    if (-not (Test-Path $changelogFile)) {
-        return $fallback
+function GetReleaseNotes($versionName, $explicitNotes, $notesFile) {
+    if ($explicitNotes) {
+        return $explicitNotes.Trim()
     }
 
-    $lines = @(Get-Content -LiteralPath $changelogFile -Encoding UTF8)
-    $escapedVersion = [regex]::Escape("v$versionName")
-    $headerPattern = "^#\s+Fork\s+WandersondeSouza\s+-\s+$escapedVersion(?:\s|\()"
-
-    $startIndex = -1
-    for ($i = 0; $i -lt $lines.Count; $i++) {
-        if ($lines[$i] -match $headerPattern) {
-            $startIndex = $i
-            break
+    if ($notesFile) {
+        $resolvedNotesFile = TestFile $notesFile
+        $notes = (Get-Content -LiteralPath $resolvedNotesFile -Encoding UTF8 -Raw).Trim()
+        if ($notes) {
+            return $notes
         }
+
+        throw "Release notes file is empty: $resolvedNotesFile"
     }
 
-    if ($startIndex -lt 0) {
-        return $fallback
-    }
+    return @"
+# MPV.NET Media Player v$versionName
 
-    $endIndex = $lines.Count
-    for ($i = $startIndex + 1; $i -lt $lines.Count; $i++) {
-        if ($lines[$i] -match '^#\s+Fork\s+WandersondeSouza\s+-\s+v') {
-            $endIndex = $i
-            break
-        }
-    }
+Release de manutencao do fork `WandersondeSouza/mpv.net`.
 
-    $notes = (($lines[$startIndex..($endIndex - 1)]) -join [Environment]::NewLine).Trim()
-    if (-not $notes) {
-        return $fallback
-    }
-
-    return $notes
+Preencha a descricao desta versao diretamente no corpo da publicacao do GitHub antes da publicacao final.
+"@.Trim()
 }
 
 # Variables
@@ -288,7 +277,7 @@ $IsBeta = $VersionInfo.ProductVersion -match '(?i)(^|[-+.])(alpha|beta|preview|r
 $BetaString = if ($IsBeta) { '-beta' } else { '' }
 $DiagnosticString = if ($EnableFileLogging) { '-diagnostic' } else { '' }
 $VersionName = $VersionInfo.FileVersion
-$ReleaseNotes = GetReleaseNotes $DocsDir $VersionName $Repo
+$ReleaseNotes = GetReleaseNotes $VersionName $ReleaseNotes $ReleaseNotesFile
 $InstallerOutputName64 = 'MPV.NET-Media-Player-v' + $VersionName
 $OutputName64 = $InstallerOutputName64 + $BetaString + $DiagnosticString + '-portable-x64'
 

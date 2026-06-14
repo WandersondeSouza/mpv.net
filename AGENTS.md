@@ -24,7 +24,6 @@ Este arquivo orienta agentes de IA, Codex, GitHub Copilot e ferramentas automati
 
 - README.md
 - docs/manual.md
-- docs/changelog.md
 - docs/guia-operacional.md
 - documentação técnica em docs/developer/
 - arquivos relacionados à funcionalidade alterada

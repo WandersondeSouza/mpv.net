@@ -4,7 +4,7 @@
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **MPV.NET Media Player**.
 
-> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale, validacao de dependencias nativas e validacao do pacote MSIX/WAP no Visual Studio 2026 Community. A versao atual preparada para publicacao e `7.1.4.13`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
+> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale, validacao de dependencias nativas e validacao do pacote MSIX/WAP no Visual Studio 2026 Community. A versao atual preparada para publicacao e `7.1.3.14`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
 
 ---
 
@@ -312,10 +312,10 @@ Para gerar apenas o instalador executável, sem ZIP e sem publicação:
 powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
 
-Quando for necessario sobrescrever `MediaInfo.dll` ou fornecer um `mpvnet.com` local, informe os arquivos explicitamente:
+Quando for necessario sobrescrever `MediaInfo.dll`, fornecer um `mpvnet.com` local ou informar uma descricao explicita para a publicacao do GitHub, passe os parametros correspondentes:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease -MediaInfoFile C:\deps\MediaInfo.dll -MpvNetComFile C:\deps\mpvnet.com
+powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease -MediaInfoFile C:\deps\MediaInfo.dll -MpvNetComFile C:\deps\mpvnet.com -ReleaseNotesFile .\release-notes.md
 ```
 
 O script:
@@ -340,7 +340,7 @@ O script:
     `mpvnet.exe --register-file-associations playlist` para registrar as
     associacoes de video, audio e playlists IPTV apos a instalacao; imagens
     continuam opt-in pelo menu `Config > Setup > Register image file associations`;
-16. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`.
+16. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`; quando publicar, use `-ReleaseNotes` ou `-ReleaseNotesFile` para colocar a descricao diretamente no corpo da release.
 
 As dependencias baixadas automaticamente usam estas fontes:
 
@@ -380,7 +380,7 @@ src\Tools\publish-emergency-release.ps1 -CreateInstaller
 Esse script exige arvore Git limpa antes de alterar a versao. Ele usa
 `src\Tools\set-release-version.ps1 -IncrementRevision`, portanto atualiza
 `src\BuildVersion.props` e `src\MpvNet.Pacote\Package.appxmanifest` no mesmo
-commit. Ele nao substitui a revisao manual de changelog, UI e compatibilidade;
+commit. Ele nao substitui a revisao manual de descricao da release, UI e compatibilidade;
 e uma rota curta para publicar uma nova versao do branch atual quando
 necessario. Como a release emergencial publica assets no GitHub, ela nao aceita
 `-EnableFileLogging`; pacotes de diagnostico devem ser gerados separadamente
@@ -404,7 +404,7 @@ pacote gerado.
 A versão publica está centralizada em `src/BuildVersion.props`:
 
 ```xml
-<MpvNetVersion>7.1.4.13</MpvNetVersion>
+<MpvNetVersion>7.1.3.14</MpvNetVersion>
 ```
 
 O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
@@ -415,7 +415,7 @@ O manifesto MSIX ainda exige um valor literal em `Package.appxmanifest`; por
 isso a alteracao de versao deve ser feita por:
 
 ```powershell
-.\src\Tools\set-release-version.ps1 -Version 7.1.4.14
+.\src\Tools\set-release-version.ps1 -Version 7.1.3.14
 ```
 
 Para apenas incrementar o ultimo numero:

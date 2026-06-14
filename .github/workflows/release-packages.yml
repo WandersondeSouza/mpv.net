@@ -43,6 +43,11 @@ on:
         options:
           - "false"
           - "true"
+      release_notes:
+        description: Release description written directly to the GitHub release body
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: write
@@ -89,6 +94,7 @@ jobs:
           MPVNET_STORE_CERTIFICATE_KEYFILE: ${{ secrets.MPVNET_STORE_CERTIFICATE_KEYFILE }}
           MPVNET_STORE_CERTIFICATE_PASSWORD: ${{ secrets.MPVNET_STORE_CERTIFICATE_PASSWORD }}
           MPVNET_STORE_PUBLISHER: ${{ secrets.MPVNET_STORE_PUBLISHER }}
+          MPVNET_RELEASE_NOTES: ${{ inputs.release_notes }}
         run: |
           $releaseArgs = @{
             SourceDir = Join-Path $env:GITHUB_WORKSPACE 'src'
@@ -109,6 +115,10 @@ jobs:
           }
 
           $releaseArgs.MpvBuildVariant = '${{ inputs.mpv_build_variant }}'
+
+          if ($env:MPVNET_RELEASE_NOTES) {
+            $releaseArgs.ReleaseNotes = $env:MPVNET_RELEASE_NOTES
+          }
 
           & .\src\Tools\build-release-package.ps1 @releaseArgs
 

@@ -32,7 +32,7 @@ function Read-MpvNetVersion([string] $VersionFile) {
 
 function Assert-FourPartVersion([version] $ParsedVersion) {
     if ($ParsedVersion.Build -lt 0 -or $ParsedVersion.Revision -lt 0) {
-        throw "Release version must have four numeric parts, for example 7.1.4.14."
+        throw "Release version must have four numeric parts, for example 7.1.3.14."
     }
 }
 

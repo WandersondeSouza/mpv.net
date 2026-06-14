@@ -259,8 +259,12 @@ e `-SkipGitHubRelease -EnableFileLogging`.
 Para definir uma versao manualmente antes de uma release, use:
 
 ```powershell
-.\src\Tools\set-release-version.ps1 -Version 7.1.4.14
+.\src\Tools\set-release-version.ps1 -Version 7.1.3.14
 ```
+
+Antes de publicar no GitHub, passe a descricao da release diretamente ao script
+com `-ReleaseNotes` ou `-ReleaseNotesFile`; nao use um link para arquivo de
+changelog como corpo da publicacao.
 
 O pacote Microsoft Store nao deve incrementar revisao automaticamente. A mesma
 versao publica deve valer para ZIP, instalador, executavel e MSIX.
@@ -337,7 +341,9 @@ Pontos ainda abertos ou reservados:
 - evitar mudanças grandes sem bug ou necessidade clara;
 - manter a documentação alinhada ao que foi consolidado aqui.
 
-Quando um item estiver corrigido e validado, ele sai desta lista e passa para o historico consolidado de releases em `docs/changelog.md`.
+Quando um item estiver corrigido, validado e publicado, registre o resultado na
+descricao da release correspondente no GitHub e mantenha esta lista apenas com
+pendencias reais.
 
 ## Tradução e manutenção
 

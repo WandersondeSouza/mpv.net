@@ -8,7 +8,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\docs\changelog.md" Link="Docs\changelog.md" />
 		<None Include="..\..\docs\manual.md" Link="Docs\manual.md" />
 		<None Include="..\..\README.md" Link="Docs\README.md" />
 	</ItemGroup>

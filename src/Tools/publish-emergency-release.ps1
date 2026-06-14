@@ -14,6 +14,8 @@ param(
 
     [string] $Branch,
 
+    [string] $ReleaseNotes,
+
     [switch] $CreateInstaller,
 
     [switch] $EnableFileLogging
@@ -60,7 +62,7 @@ try {
     Invoke-Checked git @('push', 'origin', $Branch)
 
     $createInstallerValue = if ($CreateInstaller) { 'true' } else { 'false' }
-    Invoke-Checked gh @(
+    $workflowArgs = @(
         'workflow',
         'run',
         'release-packages.yml',
@@ -76,6 +78,11 @@ try {
         "enable_file_logging=$enableFileLoggingValue"
     )
 
+    if ($ReleaseNotes) {
+        $workflowArgs += @('-f', "release_notes=$ReleaseNotes")
+    }
+
+    Invoke-Checked gh $workflowArgs
     Write-Host "Emergency release workflow started for v$nextVersion on $Repo ($Branch)."
 }
 finally {

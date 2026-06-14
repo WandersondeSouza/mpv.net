@@ -14,7 +14,7 @@ Ler nesta ordem:
 4. `docs/guia-operacional.md`;
 5. `docs/developer/architecture.md`;
 6. documentação da área afetada em `docs/developer/`;
-7. `docs/changelog.md` quando a tarefa envolver trabalho já consolidado;
+7. descricao da release no GitHub quando a tarefa envolver publicacao;
 8. pendências registradas em `docs/guia-operacional.md` ou na documentação técnica da área quando a tarefa envolver priorização.
 
 ## Conduta

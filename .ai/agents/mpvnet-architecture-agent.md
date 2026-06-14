@@ -12,7 +12,7 @@ Analisar a arquitetura do MPV.NET Media Player, mapear módulos, classes, fluxos
 4. `docs/guia-operacional.md`;
 5. `docs/developer/architecture.md`;
 6. documentação técnica relacionada aos módulos analisados;
-7. `docs/changelog.md` quando a mudança tocar comportamento já consolidado.
+7. descricao da release no GitHub quando a mudanca tocar publicacao.
 
 ## Arquivos críticos
 

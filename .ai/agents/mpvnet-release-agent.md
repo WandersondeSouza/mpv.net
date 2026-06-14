@@ -12,7 +12,7 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 4. `docs/guia-operacional.md`;
 5. `docs/developer/build-release.md`;
 6. `docs/developer/architecture.md`;
-7. `docs/changelog.md`;
+7. descricao da release no GitHub, quando a tarefa envolver publicacao;
 8. pendências registradas em `docs/guia-operacional.md` ou `docs/developer/build-release.md` quando a mudança afetar a priorização do fluxo;
 9. documentação técnica relacionada quando o release expuser dependências de fluxo amplo.
 

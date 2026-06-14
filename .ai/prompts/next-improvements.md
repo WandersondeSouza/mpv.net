@@ -39,7 +39,7 @@ Analisar o estado atual do fork e propor melhorias pequenas, seguras e bem docum
 ## Tarefas
 
 1. Verificar se o README está claro para usuário e mantenedor.
-2. Identificar tarefas pendentes em `docs/guia-operacional.md` e nos documentos técnicos da área, e tarefas já consolidadas em `docs/changelog.md`.
+2. Identificar tarefas pendentes em `docs/guia-operacional.md` e nos documentos técnicos da área, e tarefas já consolidadas nas descrições das releases do GitHub.
 3. Separar melhorias em quatro grupos:
    - documentação;
    - prompts, agentes e fluxo de IA;

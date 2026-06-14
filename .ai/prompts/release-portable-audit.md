@@ -8,7 +8,7 @@ Leia:
 4. `docs/guia-operacional.md`;
 5. `docs/developer/build-release.md`;
 6. `docs/developer/architecture.md`;
-7. `docs/changelog.md`;
+7. descricao da release no GitHub, quando houver publicacao;
 8. documentação da área de build ou release que esteja ligada à mudança.
 
 Objetivo:

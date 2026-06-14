@@ -7,7 +7,7 @@ Leia:
 3. `README.pt-br.md`, se existir;
 4. `docs/manual.md`;
 5. `docs/CONFIGURACAO.md`;
-6. `docs/changelog.md`;
+6. descricao da release no GitHub, quando houver publicacao;
 7. `docs/developer/localization.md`;
 8. `docs/developer/architecture.md` quando a mudança tocar texto distribuído em várias áreas;
 9. documentos relacionados ao tema.

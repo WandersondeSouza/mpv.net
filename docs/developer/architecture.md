@@ -407,7 +407,7 @@ pequenas, verificáveis e compatíveis com mpv/libmpv.
    /p:EnsureBuildAssets=false` como prova rápida para mudanças de código ou UI.
 6. Para localização, rodar `.\lang\validate-po-files.ps1 -ValidateOnly`.
 7. Para release, validar scripts, dependências nativas e conteúdo dos pacotes
-   antes de publicar ou registrar mudança no changelog.
+   antes de publicar ou registrar a descricao da release no GitHub.
 
 ## Validação de base registrada
 
