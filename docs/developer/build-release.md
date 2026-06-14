@@ -77,7 +77,7 @@ Esta e a lista canonica de scripts do fork. Os demais documentos devem apontar p
 | `prepare-native-dependencies.ps1` | dependencias nativas e auxiliares |
 | `prepare-build-output.ps1` | preparo automatico do output no build do app Windows |
 | `validate-native-dependencies.ps1` | validacao de DLLs nativas em pasta ou ZIP |
-| `set-release-version.ps1` | sincroniza a versao publica em `BuildVersion.props` e `Package.appxmanifest` |
+| `set-release-version.ps1` | atualiza a versao publica em `BuildVersion.props` e grava a versao Store em `Package.appxmanifest` com revisao zero |
 | `publish-emergency-release.ps1` | release emergencial com bump de versao |
 | `update-mpv-runtime.ps1` | atualizacao do runtime mpv |
 | `test-mpv-build-variants.ps1` | smoke test das variantes de build |
@@ -108,7 +108,7 @@ cd mpv.net
 O projeto `src\MpvNet.Pacote\MpvNet.Pacote.wapproj` ja valida automaticamente:
 
 - assinatura de distribuicao;
-- alinhamento entre `src\BuildVersion.props` e `src\MpvNet.Pacote\Package.appxmanifest`.
+- alinhamento entre `src\BuildVersion.props` e `src\MpvNet.Pacote\Package.appxmanifest`, considerando que a Microsoft Store exige revisao zero no manifesto MSIX.
 
 Para usar o Visual Studio nesse fluxo:
 
@@ -159,7 +159,7 @@ dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained true --
 O fork agora inclui um projeto WAP/MSIX separado em `src/MpvNet.Pacote/MpvNet.Pacote.wapproj`.
 Ele referencia `src/MpvNet.Windows/MpvNet.Windows.csproj`, usa `src/BuildVersion.props` como fonte da versao e inclui um conjunto basico de assets `Images\` para a Store.
 A identidade reservada atual do pacote e `24183GestodeSistemas.MPV.NETMediaPlayer`, com `Publisher` `CN=6581967D-2DE4-48DE-A846-C6F69ECA7701`.
-O auto incremento de revisao do MSIX fica desativado para evitar que a Store gere um numero diferente do ZIP, do instalador e do executavel. Quando precisar alterar a versao, use `src\Tools\set-release-version.ps1` para atualizar `BuildVersion.props` e `Package.appxmanifest` juntos.
+O auto incremento de revisao do MSIX fica desativado. A Microsoft Store nao aceita pacote com quarto componente diferente de zero no `Identity Version`, entao `BuildVersion.props` mantem a versao publica completa para executavel, ZIP e instalador, enquanto `Package.appxmanifest` usa a mesma versao com revisao zero. Exemplo: release `7.1.3.14` gera manifesto Store `7.1.3.0`. Quando precisar alterar a versao, use `src\Tools\set-release-version.ps1` para atualizar `BuildVersion.props` e `Package.appxmanifest` juntos.
 
 Pontos importantes:
 
@@ -178,7 +178,7 @@ Script de publicacao dedicado:
 powershell -ExecutionPolicy Bypass -File .\src\Tools\publish-store-package.ps1 .\src .\artifacts\store
 ```
 
-O script primeiro executa `ValidateStorePackage` e depois faz o `Build` do projeto WAP, para falhar cedo quando a assinatura ou a versao do manifest estao incorretas.
+O script primeiro executa `ValidateStorePackage` e depois faz o `Build` do projeto WAP, para falhar cedo quando a assinatura ou a versao do manifest estao incorretas. Essa validacao rejeita manifesto com revisao diferente de zero para Store.
 Para envio real, copie `src\MpvNet.Pacote\Packaging.Distribution.props.example` para `src\MpvNet.Pacote\Packaging.Distribution.props` e ajuste `PackagePublisher` e `PackageCertificateKeyFile` para o certificado usado na publicacao.
 No CI ou em maquina local, o script tambem aceita `MPVNET_STORE_CERTIFICATE_KEYFILE`, `MPVNET_STORE_CERTIFICATE_PASSWORD` e `MPVNET_STORE_PUBLISHER` como variaveis de ambiente.
 O script resolve automaticamente um `.pfx` local em caminhos comuns e mostra o certificado usado quando encontra um candidato.
@@ -417,6 +417,10 @@ isso a alteracao de versao deve ser feita por:
 ```powershell
 .\src\Tools\set-release-version.ps1 -Version 7.1.3.14
 ```
+
+Esse comando grava `7.1.3.14` em `BuildVersion.props` e `7.1.3.0` no
+`Identity Version` do manifesto MSIX, atendendo a regra da Microsoft Store de
+revisao zero no pacote.
 
 Para apenas incrementar o ultimo numero:
 

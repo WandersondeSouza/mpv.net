@@ -267,7 +267,10 @@ com `-ReleaseNotes` ou `-ReleaseNotesFile`; nao use um link para arquivo de
 changelog como corpo da publicacao.
 
 O pacote Microsoft Store nao deve incrementar revisao automaticamente. A mesma
-versao publica deve valer para ZIP, instalador, executavel e MSIX.
+versao publica deve valer para ZIP, instalador e executavel; no MSIX enviado a
+Store, o `Identity Version` usa a mesma versao com revisao zero, porque a
+Microsoft Store rejeita pacotes com quarto componente diferente de zero. Exemplo:
+release `7.1.3.14` usa manifesto `7.1.3.0`.
 
 Para tambem gerar o instalador no workflow:
 

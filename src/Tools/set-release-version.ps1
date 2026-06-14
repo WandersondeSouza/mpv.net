@@ -5,7 +5,8 @@ store a literal value.
 
 BuildVersion.props remains the canonical source for the Windows executable,
 portable ZIP and Inno Setup installer. The MSIX manifest also needs a literal
-Identity Version, so this script updates both files together.
+Identity Version, but Microsoft Store packages require the revision component
+to be zero, so this script writes major.minor.build.0 to Package.appxmanifest.
 
 #>
 
@@ -36,6 +37,14 @@ function Assert-FourPartVersion([version] $ParsedVersion) {
     }
 }
 
+function Get-StorePackageVersion([version] $ReleaseVersion) {
+    return [version]::new(
+        $ReleaseVersion.Major,
+        $ReleaseVersion.Minor,
+        $ReleaseVersion.Build,
+        0)
+}
+
 if ($Version -and $IncrementRevision) {
     throw 'Use either -Version or -IncrementRevision, not both.'
 }
@@ -62,6 +71,7 @@ else {
 }
 
 $nextVersionText = $nextVersion.ToString()
+$storePackageVersionText = (Get-StorePackageVersion $nextVersion).ToString()
 
 $versionText = [System.IO.File]::ReadAllText($versionFile)
 $updatedVersionText = [regex]::Replace(
@@ -83,9 +93,10 @@ if ($manifestText -notmatch '(?s)<Identity\b[^>]*\bVersion="[^"]+"') {
 $updatedManifestText = [regex]::Replace(
     $manifestText,
     '(?s)(<Identity\b[^>]*\bVersion=")[^"]+(")',
-    "`${1}$nextVersionText`${2}",
+    "`${1}$storePackageVersionText`${2}",
     1)
 [System.IO.File]::WriteAllText($manifestFile, $updatedManifestText, [System.Text.UTF8Encoding]::new($true))
 
 Write-Host "Release version set to $nextVersionText"
+Write-Host "Store package manifest version set to $storePackageVersionText"
 Write-Output $nextVersionText
