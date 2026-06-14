@@ -71,6 +71,13 @@ jobs:
             choco install innosetup -y --no-progress
           }
 
+      - name: Guard diagnostic release publishing
+        shell: pwsh
+        run: |
+          if ('${{ inputs.create_release }}' -eq 'true' -and '${{ inputs.enable_file_logging }}' -eq 'true') {
+            throw 'Diagnostic packages are support artifacts only. Run with create_release=false when enable_file_logging=true.'
+          }
+
       - name: Restore and build
         shell: pwsh
         run: dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj

@@ -113,6 +113,9 @@ com logs diarios completos em `%LOCALAPPDATA%\mpv.net\Logs`, adicione
 `-EnableFileLogging`.
 Pacotes de diagnostico mantem a mesma versao publica do pacote normal e usam
 o sufixo `-diagnostic` no nome do artefato.
+Eles sao artefatos de suporte. Nao publique pacotes `-diagnostic` como assets
+da Release do GitHub; gere com `-SkipGitHubRelease` ou pelo workflow manual com
+`create_release=false`.
 
 ### Gerar apenas o ZIP portátil
 
@@ -226,6 +229,10 @@ Fluxo resumido:
 5. validar o conteúdo final;
 6. publicar a release quando solicitado.
 
+Pacotes de diagnostico com logs detalhados sao para suporte e investigacao.
+Eles podem ser baixados como artefatos do workflow, mas nao devem entrar nos
+assets publicos da Release do GitHub.
+
 ### Release de emergência pelo GitHub
 
 Use este script apenas quando a arvore Git estiver limpa e voce quiser gerar uma nova versao a partir do branch atual:
@@ -244,6 +251,10 @@ O script:
    `src\MpvNet.Pacote\Package.appxmanifest`;
 6. faz `git push origin <branch-atual>`;
 7. dispara `.github/workflows/release-packages.yml` com `create_release=true`.
+
+Como esse fluxo publica assets no GitHub, ele bloqueia `-EnableFileLogging`.
+Para diagnostico, gere o pacote separadamente com `build-release-package.ps1`
+e `-SkipGitHubRelease -EnableFileLogging`.
 
 Para definir uma versao manualmente antes de uma release, use:
 

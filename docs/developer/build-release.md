@@ -197,6 +197,10 @@ Erros continuam sendo gravados em qualquer build. Para pacote de diagnostico,
 use `/p:EnableFileLogging=true` ou `-EnableFileLogging` nos scripts de release.
 Pacotes de diagnostico usam a mesma versao publica do pacote normal e recebem
 apenas o sufixo `-diagnostic` no nome do artefato.
+Eles sao artefatos de suporte e nao devem ser publicados como assets da Release
+do GitHub. No workflow manual, `create_release=true` com
+`enable_file_logging=true` e bloqueado; gere diagnostico com
+`create_release=false` e baixe pelo artefato do workflow.
 Detalhes: `docs/logging.md`.
 
 ---
@@ -357,7 +361,7 @@ Smoke test das duas variantes de dependencias:
 
 Depois de gerar os pacotes normal e `x86_64-v3`, execute a revisao manual em uma CPU compativel com a variante escolhida: inicializacao, reproducao de arquivo local, pause/play, seek, fullscreen, legenda, audio e fechamento.
 
-O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo script no GitHub Actions. Ele sempre publica os pacotes como artefato do workflow e, quando executado com `create_release=true`, tambem cria a Release no repositorio. O workflow roda `validate-native-dependencies.ps1` antes do upload dos artefatos.
+O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo script no GitHub Actions. Ele sempre publica os pacotes como artefato do workflow e, quando executado com `create_release=true`, tambem cria a Release no repositorio. O workflow roda `validate-native-dependencies.ps1` antes do upload dos artefatos. Pacotes de diagnostico com `enable_file_logging=true` so podem ser gerados como artefato do workflow; o workflow bloqueia a combinacao `create_release=true` e `enable_file_logging=true`.
 
 Este fork nao publica um pacote NuGet/container no GitHub Packages por enquanto; os pacotes de distribuicao do aplicativo sao assets de GitHub Releases e artefatos do workflow.
 
@@ -378,7 +382,9 @@ Esse script exige arvore Git limpa antes de alterar a versao. Ele usa
 `src\BuildVersion.props` e `src\MpvNet.Pacote\Package.appxmanifest` no mesmo
 commit. Ele nao substitui a revisao manual de changelog, UI e compatibilidade;
 e uma rota curta para publicar uma nova versao do branch atual quando
-necessario.
+necessario. Como a release emergencial publica assets no GitHub, ela nao aceita
+`-EnableFileLogging`; pacotes de diagnostico devem ser gerados separadamente
+sem publicacao.
 
 A partir de 2026-06-02, o fluxo de release publica em `Release` e nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-setup-x64.exe` para o instalador e `MPV.NET-Media-Player-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/FFmpeg/libmpv/yt-dlp, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. Quando `-EnableFileLogging` e usado, os artefatos recebem `-diagnostic` antes do tipo de pacote sem alterar a versao publica.
 

@@ -21,6 +21,10 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+if ($EnableFileLogging) {
+    throw 'Emergency releases publish GitHub Release assets, so diagnostic logging packages are not allowed here. Generate diagnostic packages with build-release-package.ps1 -SkipGitHubRelease -EnableFileLogging.'
+}
+
 function Invoke-Checked($command, $arguments) {
     & $command @arguments
     if ($LastExitCode) {
