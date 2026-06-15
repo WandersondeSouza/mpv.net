@@ -1,2 +1,5 @@
 github: stax76
 ko_fi: stax76
+# Add your Stripe Payment Link here if you want GitHub's sponsor button to point
+# to an external donation page as well:
+# custom: ["https://buy.stripe.com/your-payment-link"]

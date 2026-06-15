@@ -178,6 +178,9 @@ Se você for manter ou auditar o fork, os pontos de entrada mais úteis são:
 ## Suporte
 
 - issues do fork: `https://github.com/WandersondeSouza/mpv.net/issues`
+- GitHub Sponsors: `https://github.com/sponsors/stax76`
+- Stripe donation: configure `MPVNET_STRIPE_DONATION_URL` with your Stripe Payment Link
+- menu de suporte: GitHub Sponsors, Stripe donation e e-mail
 - e-mail: `mailto:wanderson_souza@hotmail.com`
 - manual oficial do mpv: `https://mpv.io/manual/master/`
 

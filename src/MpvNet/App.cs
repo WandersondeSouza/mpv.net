@@ -107,6 +107,8 @@ public class AppClass
     public static string DonationTitle => _("If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below.");
     public static string DonationCopyPaste => _("Pix copy and paste:");
     public static string DonationCopied => _("Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer.");
+    public static string GitHubSponsorsUrl => "https://github.com/sponsors/stax76";
+    public static string StripeDonationUrl => Environment.GetEnvironmentVariable("MPVNET_STRIPE_DONATION_URL")?.Trim() ?? "";
 
     static string GetLastWriteTime(string path) => $" ({File.GetLastWriteTime(path).ToShortDateString()})";
 
@@ -174,7 +176,13 @@ public class AppClass
         AddMenuItem("Edit key bindings", "script-binding select/edit-input-conf");
         AddMenuItem("Help", "script-binding stats/display-page-4-toggle");
         AddMenuItem("Online documentation", "script-binding select/open-docs");
-        AddMenuItem("Support", "script-message-to mpvnet shell-execute mailto:wanderson_souza@hotmail.com");
+        AddMenuItem("Support", "-");
+        AddMenuItem("GitHub Sponsors", $"script-message-to mpvnet shell-execute {GitHubSponsorsUrl}");
+
+        if (!string.IsNullOrWhiteSpace(StripeDonationUrl))
+            AddMenuItem("Stripe donation", $"script-message-to mpvnet shell-execute {StripeDonationUrl}");
+
+        AddMenuItem("E-mail support", "script-message-to mpvnet shell-execute mailto:wanderson_souza@hotmail.com");
 
         return sb.ToString();
 
