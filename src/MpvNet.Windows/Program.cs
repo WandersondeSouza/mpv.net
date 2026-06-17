@@ -49,7 +49,7 @@ static class Program
                 WinApi.AttachConsole(-1 /*ATTACH_PARENT_PROCESS*/);
 
             RuntimeComponents.RegisterNativeResolver();
-            Task.Run(() => RuntimeComponents.EnsureComponentsAsync());
+            StartComponentBootstrap();
 
             string[] args = Environment.GetCommandLineArgs().Skip(1).ToArray();
             Log.Debug($"Command line arguments received: count={args.Length}, args={Log.SafeValues(args)}");
@@ -212,5 +212,20 @@ static class Program
         }
 
         return false;
+    }
+
+    static void StartComponentBootstrap()
+    {
+        Task.Run(async () =>
+        {
+            try
+            {
+                await RuntimeComponents.EnsureComponentsAsync().ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Component bootstrap failed.");
+            }
+        });
     }
 }

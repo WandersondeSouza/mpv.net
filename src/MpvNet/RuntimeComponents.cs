@@ -69,7 +69,14 @@ public static class RuntimeComponents
 
         foreach (var component in Definitions)
         {
-            await EnsureComponentAsync(component, cancellationToken).ConfigureAwait(false);
+            try
+            {
+                await EnsureComponentAsync(component, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, $"Component update failed for {component.FileName}.");
+            }
         }
     }
 
