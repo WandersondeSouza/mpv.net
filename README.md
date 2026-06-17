@@ -13,6 +13,7 @@ Fork de manutenção do **MPV.NET Media Player** para Windows, baseado no mpv.ne
 ## Documentação principal
 
 - [Manual](docs/manual.md)
+- [Microsoft Store](https://apps.microsoft.com/detail/9N441SP6XHLD)
 - [Configuração](docs/CONFIGURACAO.md)
 - [Guia operacional](docs/guia-operacional.md)
 - [Logs de diagnóstico](docs/logging.md)
@@ -37,6 +38,11 @@ mpvnet.exe "https://example.com/live/index.m3u8"
 O mpv.net aceita arquivos locais, playlists e URLs de streaming compatíveis com o mpv.
 
 ## Apresentação do player
+
+O MPV.NET Media Player também está disponível na Microsoft Store:
+
+- Link profundo: `ms-windows-store://pdp/?productid=9N441SP6XHLD`
+- URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
 
 ![MPV.NET Media Player em Português do Brasil](docs/img/player/Player00.png)
 

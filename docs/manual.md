@@ -21,6 +21,11 @@ Use as releases do fork em:
 
 `https://github.com/WandersondeSouza/mpv.net/releases`
 
+O aplicativo também está publicado na Microsoft Store:
+
+- Link profundo: `ms-windows-store://pdp/?productid=9N441SP6XHLD`
+- URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
+
 ## Instalação
 
 - Windows 10 ou superior.
