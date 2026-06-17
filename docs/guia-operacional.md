@@ -65,14 +65,13 @@ Arquivos nativos esperados ao lado de `mpvnet.exe`:
 
 - `libmpv-2.dll`
 - `MediaInfo.dll`
-- `yt-dlp.exe`
 - `D3DCompiler_47_cor3.dll`
 - `vcruntime140_cor3.dll`
 - `wpfgfx_cor3.dll`
 - `PenImc_cor3.dll`
 - `PresentationNative_cor3.dll`
 
-O script de dependências reutiliza downloads em `artifacts\native-dependencies\downloads`. Se o arquivo esperado não existir ou tiver mais de 2 dias, ele baixa novamente a versão mais recente encontrada nas fontes oficiais configuradas no script.
+O script de dependências reutiliza downloads em `artifacts\native-dependencies\downloads`. Se o arquivo esperado não existir ou tiver mais de 20 dias, ele baixa novamente a versão mais recente encontrada nas fontes oficiais configuradas no script.
 
 Por padrão, o fork usa a build 64bit-v3 do mpv/libmpv. Essa variante mantém o nome `libmpv-2.dll`, mas exige CPU compatível com x86_64-v3, como Intel Haswell/AMD Excavator ou mais recente. Use `-MpvBuildVariant normal` apenas quando precisar gerar pacote para CPUs x64 mais antigas.
 
@@ -179,10 +178,10 @@ Preparar dependencias com mpv/libmpv 64bit-v3:
 
 Usar quando:
 
-- precisar baixar ou validar `MediaInfo.dll`, `libmpv-2.dll` e `yt-dlp.exe`;
+- precisar baixar ou validar `MediaInfo.dll` e `libmpv-2.dll`;
 - preparar a pasta de execução antes do empacotamento.
 - reutilizar downloads recentes em `artifacts\native-dependencies\downloads`;
-- baixar novamente arquivos ausentes ou baixados ha mais de 2 dias.
+- baixar novamente arquivos ausentes ou baixados ha mais de 20 dias.
 - alternar explicitamente entre `normal` e `x86_64-v3` sem mudar o `DllImport`.
 
 Smoke test de preparacao das duas variantes:
@@ -288,7 +287,6 @@ vcruntime140_cor3.dll
 wpfgfx_cor3.dll
 PenImc_cor3.dll
 PresentationNative_cor3.dll
-yt-dlp.exe
 portable_config/
   mpv.conf
   input.conf

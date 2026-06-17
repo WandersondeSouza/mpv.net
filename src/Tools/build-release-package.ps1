@@ -22,7 +22,7 @@ Dependencies:
     7zip installation found at: 'C:\Program Files\7-Zip\7z.exe'.
     Inno Setup compiler installation found at: 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' unless -SkipInstaller is used.
     GitHub CLI https://cli.github.com, the env var GH_TOKEN must be defined unless -SkipGitHubRelease is used.
-    Internet access to download libmpv, yt-dlp, mpvnet.com and MediaInfo for the portable package.
+    Internet access to download libmpv, mpvnet.com and MediaInfo for the portable package.
     Internet access to download Gettext.Tools from NuGet when msgfmt.exe is not available on PATH.
 
 Notes:
@@ -257,7 +257,7 @@ $EnsureDependenciesArgs = @{
     TargetDir = $BinDirX64
     PublishDir = $PublishDir64
     ArtifactsDir = Join-Path (Split-Path $SourceDir -Parent) 'artifacts\native-dependencies'
-    MaxCacheAgeDays = 2
+    MaxCacheAgeDays = 20
     MpvBuildVariant = $MpvBuildVariant
 }
 if ($MediaInfoVersion) {

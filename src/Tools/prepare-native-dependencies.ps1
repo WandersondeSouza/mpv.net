@@ -2,7 +2,7 @@
 
 Ensures the native and helper binaries expected beside mpvnet.exe exist.
 
-libmpv, yt-dlp and MediaInfo are downloaded from the same sources used
+libmpv and MediaInfo are downloaded from the same sources used
 by the release flow. Microsoft .NET/WPF native DLLs are never downloaded from
 third-party sites; when a publish directory is supplied they are copied from the
 self-contained publish output.
@@ -31,7 +31,7 @@ param(
 
     [switch] $UpdateExisting,
 
-    [int] $MaxCacheAgeDays = 2,
+    [int] $MaxCacheAgeDays = 20,
 
     [string] $SevenZipPath = 'C:\Program Files\7-Zip\7z.exe'
 )
@@ -286,19 +286,6 @@ function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
     Set-Content -Path $variantMarkerFile -Value $MpvBuildVariant -Encoding ascii
 }
 
-function Ensure-YtDlp($targetDir, $downloadsDir) {
-    $targetFile = Join-Path $targetDir 'yt-dlp.exe'
-    if ($UpdateExisting -or (-not (Test-FreshFile $targetFile))) {
-        $downloadFile = Join-Path $downloadsDir 'yt-dlp.exe'
-        Invoke-FileDownload `
-            'https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe' `
-            $downloadFile | Out-Null
-        Copy-Item (Test-RequiredFile $downloadFile).FullName $targetFile -Force
-    }
-
-    Assert-PeX64 $targetFile | Out-Null
-}
-
 function Ensure-MpvNetCom($targetDir, $downloadsDir) {
     $targetFile = Join-Path $targetDir 'mpvnet.com'
     if ($MpvNetComFile) {
@@ -363,7 +350,6 @@ $ExtractDir = New-CleanDir (Join-Path $ArtifactsDir 'extract')
 
 Ensure-MediaInfo $TargetDir $DownloadsDir $ExtractDir
 Ensure-LibMpv $TargetDir $DownloadsDir $ExtractDir
-Ensure-YtDlp $TargetDir $DownloadsDir
 Ensure-MpvNetCom $TargetDir $DownloadsDir
 Ensure-DotNetNativeDlls $TargetDir $PublishDir
 

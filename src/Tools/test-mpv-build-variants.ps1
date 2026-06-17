@@ -27,8 +27,7 @@ $ArtifactsDir = (Resolve-Path $ArtifactsDir).Path
 $prepareScript = Join-Path $PSScriptRoot 'prepare-native-dependencies.ps1'
 $requiredPreparedFiles = @(
     'libmpv-2.dll',
-    'MediaInfo.dll',
-    'yt-dlp.exe'
+    'MediaInfo.dll'
 )
 
 function Test-RequiredFile($path) {
