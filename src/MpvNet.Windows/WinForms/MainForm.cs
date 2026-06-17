@@ -46,6 +46,7 @@ public partial class MainForm : Form
     bool _wasMaximized;
     bool _maxSizeSet;
     bool _isCursorVisible = true;
+    bool _componentBootstrapStarted;
 
     public MainForm()
     {
@@ -146,6 +147,15 @@ public partial class MainForm : Form
                 SetFormPosAndSize(true);
                 WindowState = FormWindowState.Minimized;
             }
+
+            Shown += (_, _) =>
+            {
+                if (_componentBootstrapStarted)
+                    return;
+
+                _componentBootstrapStarted = true;
+                Program.StartComponentBootstrap();
+            };
         }
         catch (Exception ex)
         {

@@ -49,7 +49,6 @@ static class Program
                 WinApi.AttachConsole(-1 /*ATTACH_PARENT_PROCESS*/);
 
             RuntimeComponents.RegisterNativeResolver();
-            StartComponentBootstrap();
 
             string[] args = Environment.GetCommandLineArgs().Skip(1).ToArray();
             Log.Debug($"Command line arguments received: count={args.Length}, args={Log.SafeValues(args)}");
@@ -137,6 +136,7 @@ static class Program
                 Log.Info("Starting headless output mode because --o= was supplied.");
                 App.AutoLoadFolder = false;
                 Player.Init(IntPtr.Zero, true);
+                StartComponentBootstrap();
                 CommandLine.ProcessCommandLineArgsPostInit();
                 CommandLine.ProcessCommandLineFiles();
                 CommandLine.ProcessCommandLineArgsPostFile();
@@ -214,8 +214,9 @@ static class Program
         return false;
     }
 
-    static void StartComponentBootstrap()
+    internal static void StartComponentBootstrap()
     {
+        Log.Info("Starting runtime component bootstrap in background.");
         Task.Run(async () =>
         {
             try

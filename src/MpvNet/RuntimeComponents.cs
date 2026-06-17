@@ -172,6 +172,12 @@ public static class RuntimeComponents
         {
             await FinalizeComponentAsync(downloaded, targetPath, metadataPath, definition, cancellationToken).ConfigureAwait(false);
         }
+        catch (IOException ex)
+        {
+            Log.Info($"Runtime component is in use; skipping update for now. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
+            Log.Debug($"Runtime component update skipped because the target file is locked. file='{definition.FileName}'");
+            Log.Error(ex, $"Component update failed for {definition.FileName}; continuing with the next component.");
+        }
         finally
         {
             DeleteIfExists(downloaded);
@@ -211,6 +217,13 @@ public static class RuntimeComponents
         string digest = GetFileDigest(targetPath);
         string remoteDigest = await GetRemoteDigestAsync(definition, cancellationToken).ConfigureAwait(false);
         Log.Debug($"Validated component digest. file='{definition.FileName}', localDigest='{digest}', remoteDigest='{remoteDigest}'");
+
+        if (string.IsNullOrWhiteSpace(remoteDigest))
+        {
+            Log.Info($"Runtime component updated without remote digest validation. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
+            await SaveMetadataAsync(metadataPath, digest, cancellationToken).ConfigureAwait(false);
+            return;
+        }
 
         if (!string.Equals(digest, remoteDigest, StringComparison.OrdinalIgnoreCase))
         {
