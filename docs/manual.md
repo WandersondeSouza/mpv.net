@@ -30,7 +30,7 @@ O aplicativo tambÃ©m estÃ¡ publicado na Microsoft Store:
 
 - Windows 10 ou superior.
 - Runtime .NET Desktop compatÃ­vel com o projeto.
-- Para streaming, `yt-dlp.exe` precisa estar disponÃ­vel no `PATH` ou ao lado do executÃ¡vel.
+- Para streaming, o player baixa e atualiza `yt-dlp.exe` no cache de componentes em `%LOCALAPPDATA%\mpv.net\Component`. Se quiser testar manualmente, tambÃ©m vale deixÃ¡-lo ao lado do executÃ¡vel ou no `PATH`.
 
 O instalador registra os formatos de mÃ­dia comuns e playlists IPTV suportados
 pelo fork e adiciona a pasta instalada ao `PATH` do Windows, permitindo executar
@@ -79,8 +79,8 @@ mpv/libmpv.
 
 ## Linha de comando
 
-O frontend aceita arquivos locais, playlists e URLs de streaming compatÃ­veis com o mpv.
-TambÃ©m aceita um tÃ­tulo separado antes de uma URL, usando esse texto apenas
+O frontend aceita arquivos locais, playlists e URLs de streaming compativeis com o mpv.
+Tambem aceita um titulo separado antes de uma URL. Esse texto e usado apenas
 como metadado visual:
 
 ```powershell
@@ -88,63 +88,69 @@ mpvnet.exe "Nome do video" "https://example.com/video.mp4"
 mpvnet.exe --title "Nome do video" "https://example.com/video.mp4"
 ```
 
-Quando `auto-load-folder=yes` estÃ¡ ativo e o usuÃ¡rio abre um arquivo local de
-Ã¡udio ou vÃ­deo, o mpv.net adiciona Ã  playlist interna os outros arquivos de
-Ã¡udio, vÃ­deo e playlists compatÃ­veis da mesma pasta. Quando o arquivo aberto Ã©
-uma imagem, o carregamento automÃ¡tico da pasta adiciona apenas outras imagens
-compatÃ­veis da mesma pasta.
+Quando `auto-load-folder=yes` esta ativo e o usuario abre um arquivo local de
+audio ou video, o mpv.net adiciona a playlist interna os outros arquivos de
+audio, video e playlists compativeis da mesma pasta. Quando o arquivo aberto e
+uma imagem, o carregamento automatico da pasta adiciona apenas outras imagens
+compativeis da mesma pasta.
 
 Playlists locais nos formatos `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`,
-`.wpl`, `.cue` e `.jspf` sÃ£o expandidas pelo frontend antes do envio ao
-mpv/libmpv. O mpv.net usa o tÃ­tulo informado pela playlist quando disponÃ­vel
-em todos esses formatos, inclusive no seletor de playlist antes de o item ser reproduzido, mantÃ©m
-apenas entradas de Ã¡udio/vÃ­deo ou URLs de streaming e ignora itens repetidos
-que apontem para o mesmo caminho ou URL. Se uma instÃ¢ncia do player jÃ¡ estiver
-aberta, os itens da playlist sÃ£o adicionados Ã  playlist atual.
+`.wpl`, `.cue` e `.jspf` sao expandidas pelo frontend antes do envio ao
+mpv/libmpv. O mpv.net usa o titulo informado pela playlist quando disponivel,
+mantem apenas entradas de audio/video ou URLs de streaming e ignora itens
+repetidos que apontem para o mesmo caminho ou URL. Se uma instancia do player
+ja estiver aberta, os itens da playlist sao adicionados a playlist atual.
 
-URLs HTTP/HTTPS sem extensÃ£o reconhecida tambÃ©m sÃ£o verificadas de forma
-conservadora. Quando o conteÃºdo comeÃ§a com `#EXTM3U`, a playlist remota Ã©
-baixada para um arquivo temporÃ¡rio e expandida pelo frontend antes do envio ao
-mpv/libmpv. Essa verificaÃ§Ã£o usa timeout de pelo menos 60 segundos; se expirar
-ou falhar, a URL original ainda Ã© enviada ao mpv/libmpv.
+URLs HTTP/HTTPS sem extensao reconhecida tambem sao verificadas de forma
+conservadora. Quando o conteudo comeca com `#EXTM3U`, a playlist remota e
+baixada para um arquivo temporario e expandida pelo frontend antes do envio ao
+mpv/libmpv. Essa verificacao usa timeout de pelo menos 60 segundos; se expirar
+ou falhar, a URL original ainda e enviada ao mpv/libmpv.
 
-Ao abrir uma URL de streaming diretamente, o frontend aplica automaticamente
-opÃ§Ãµes locais de cache e rede para tolerar quedas curtas de fluxo sem alterar
-o comportamento de arquivos locais.
+Ao abrir uma URL de streaming diretamente, o frontend aplica opcoes locais de
+cache e rede para tolerar quedas curtas de fluxo sem alterar o comportamento
+de arquivos locais.
 
-Essa regra Ã© baseada no protocolo da entrada (`http`, `https`, `ftp`, `rtsp`,
-`rtmp` e similares), nÃ£o em perfis especÃ­ficos de IPTV. `cache-pause-wait=60`
-permite aguardar atÃ© cerca de 60 segundos para rebuffer antes de retomar,
-enquanto `network-timeout=60` dÃ¡ mais tempo para operaÃ§Ãµes de rede HTTP antes
-de o mpv considerar a conexÃ£o encerrada.
+Essa regra usa o protocolo da entrada (`http`, `https`, `ftp`, `rtsp`, `rtmp`
+e similares), nao perfis especificos de IPTV. `cache-pause-wait=60` permite
+aguardar ate cerca de 60 segundos para rebuffer antes de retomar, enquanto
+`network-timeout=60` da mais tempo para operacoes de rede HTTP antes de o mpv
+considerar a conexao encerrada.
 
 Se uma URL do YouTube falhar com `unrecognized file format`, teste o extrator
-diretamente. Em muitos casos o problema Ã© autenticaÃ§Ã£o ou cookies do navegador,
-nÃ£o o frontend:
+diretamente. Em muitos casos o problema e autenticacao ou cookies do navegador,
+nao o frontend:
 
 ```powershell
 .\yt-dlp.exe --no-playlist --dump-single-json "https://www.youtube.com/watch?v=DuVaLWf2114"
 .\yt-dlp.exe --no-playlist --cookies-from-browser chrome --dump-single-json "https://www.youtube.com/watch?v=DuVaLWf2114"
 ```
 
-Troque `chrome` por `edge`, `firefox` ou outro navegador que contenha a sessÃ£o
-autenticada, se necessÃ¡rio. Se preferir exportar cookies para um arquivo, use
+Troque `chrome` por `edge`, `firefox` ou outro navegador que contenha a sessao
+autenticada, se necessario. Se preferir exportar cookies para um arquivo, use
 um arquivo no formato Mozilla/Netscape e garanta que a primeira linha seja
 `# HTTP Cookie File` ou `# Netscape HTTP Cookie File`.
 
 Para reduzir o risco de cookies rotacionados pelo YouTube, a wiki do `yt-dlp`
 recomenda abrir uma janela privada/incognita, fazer login nela, acessar
 `https://www.youtube.com/robots.txt` na mesma aba e exportar os cookies logo em
-seguida. Evite manter essa mesma sessÃ£o privada aberta depois da exportaÃ§Ã£o.
+seguida. Evite manter essa mesma sessao privada aberta depois da exportacao.
 
-Se o vÃ­deo continuar falhando mesmo com cookies vÃ¡lidos, o YouTube pode estar
-exigindo PO Token em vez de apenas autenticaÃ§Ã£o. O `yt-dlp` nÃ£o gera esse token
-sozinho, entÃ£o esse caso ainda pode exigir ajuste externo no lado do extrator.
+Se o video continuar falhando mesmo com cookies validos, o YouTube pode estar
+exigindo PO Token em vez de apenas autenticacao. O `yt-dlp` nao gera esse
+token sozinho, entao esse caso ainda pode exigir ajuste externo no lado do
+extrator.
 
 Falhas auxiliares ao criar ou expandir playlists nao devem impedir a tentativa
 de reproducao da midia principal. Quando houver uma URL ou caminho valido, o
 frontend tenta enviar a midia bruta ao mpv/libmpv; o titulo informado por linha
 de comando e aplicado como metadado visual, nao como requisito de playlist.
+
+Os componentes auxiliares de runtime usam o cache local em
+`%LOCALAPPDATA%\mpv.net\Component`. Nesse fluxo, `libmpv-2.dll` e
+`MediaInfo.dll` continuam ao lado do executavel ou no pacote preparado, enquanto
+`ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` podem
+ser baixados e atualizados em segundo plano quando necessario.
 
 Exemplo:
 
