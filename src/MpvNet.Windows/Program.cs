@@ -216,13 +216,16 @@ static class Program
 
     static void StartComponentBootstrap()
     {
-        try
+        Task.Run(async () =>
         {
-            RuntimeComponents.EnsureComponentsAsync().GetAwaiter().GetResult();
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex, "Component bootstrap failed.");
-        }
+            try
+            {
+                await RuntimeComponents.EnsureComponentsAsync().ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Component bootstrap failed.");
+            }
+        });
     }
 }
