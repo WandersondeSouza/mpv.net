@@ -148,7 +148,7 @@ dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj -c Release
 
 Esse alvo opt-in chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll` e `libmpv-2.dll` na pasta da configuracao compilada, baixando apenas o que estiver faltando. O fluxo novo do player passa a manter `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` em `%LOCALAPPDATA%\mpv.net\Component` quando necessario. O `yt-dlp.exe` fica sob responsabilidade do bootstrap do player em runtime. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained. Para testar a variante otimizada localmente, use `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:MpvBuildVariant=x86_64-v3`.
 
-No runtime, o player passa a usar `%LOCALAPPDATA%\mpv.net\Component` como cache de componentes baixados em segundo plano, com fallback para os binarios que vierem junto da instalacao. O contrato desta etapa preserva `libmpv-2.dll`, `MediaInfo.dll` e as DLLs do runtime ao lado do executavel, enquanto `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` migram para a pasta de componente quando a rede estiver disponivel. O `yt-dlp.exe` e baixado e renovado pelo proprio player.
+No runtime, o player passa a usar `%LOCALAPPDATA%\mpv.net\Component` como cache de componentes baixados antes da interface abrir, com fallback para os binarios que vierem junto da instalacao. O contrato desta etapa preserva `libmpv-2.dll`, `MediaInfo.dll` e as DLLs do runtime ao lado do executavel, enquanto `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` migram para a pasta de componente quando a rede estiver disponivel. O `yt-dlp.exe` e baixado e renovado pelo proprio player.
 
 Para publicar como o script de release atual faz:
 
@@ -443,7 +443,7 @@ Confira os `TargetFramework` dos projetos e instale o SDK/runtime correspondente
 
 ## Dependência nativa ausente
 
-Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64, variante de CPU e diretório de execução. `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` passam a ser obtidos pelo cache de componentes do player em `%LOCALAPPDATA%\mpv.net\Component` quando necessário. O `yt-dlp.exe` e renovado pelo bootstrap do player em runtime. No fluxo de build/release, `libmpv-2.dll` e `MediaInfo.dll` devem continuar sendo preparados automaticamente por `src\Tools\prepare-native-dependencies.ps1`.
+Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64, variante de CPU e diretório de execução. `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` passam a ser obtidos pelo cache de componentes do player em `%LOCALAPPDATA%\mpv.net\Component` quando necessário. O `yt-dlp.exe` e renovado pelo bootstrap do player em runtime. O bootstrap baixa e extrai cada componente em sequência, e se algum item falhar ele fica ausente do cache para ser tentado novamente na próxima abertura do player. No fluxo de build/release, `libmpv-2.dll` e `MediaInfo.dll` devem continuar sendo preparados automaticamente por `src\Tools\prepare-native-dependencies.ps1`.
 
 ## Ferramenta de release ausente
 
