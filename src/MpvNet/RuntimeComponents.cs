@@ -281,9 +281,9 @@ public static class RuntimeComponents
     static async Task<string> DownloadSharedZipComponentAsync(ComponentDefinition definition, Dictionary<string, string> stagedZipComponents, CancellationToken cancellationToken)
     {
         string zipCacheKey = $"{definition.ReleaseApiUrl}|{definition.AssetPattern}";
-        if (definition.Kind == ComponentDownloadKind.GitHubZip && stagedZipComponents.TryGetValue(zipCacheKey, out string? cachedPath) && File.Exists(cachedPath))
+        if (stagedZipComponents.TryGetValue(zipCacheKey, out string? cachedPath) && File.Exists(cachedPath))
         {
-            Log.Debug($"Reusing staged runtime component from shared FFmpeg zip cache. file='{definition.FileName}', cachedPath='{Log.SafeValue(cachedPath)}'");
+            Log.Debug($"Reusing staged runtime component from shared ZIP cache. file='{definition.FileName}', cachedPath='{Log.SafeValue(cachedPath)}'");
             return cachedPath;
         }
 
@@ -305,7 +305,7 @@ public static class RuntimeComponents
     static async Task<string> DownloadComponentArchiveAsync(ComponentDefinition definition, CancellationToken cancellationToken)
     {
         string downloadedPath = await DownloadReleaseAssetAsync(definition, cancellationToken).ConfigureAwait(false);
-        Log.Debug($"Downloaded runtime component archive to temp path. file='{definition.FileName}', path='{Log.SafeValue(downloadedPath)}'");
+        Log.Debug($"Downloaded runtime component archive to temp path. file='{definition.FileName}', zip='{Log.SafeValue(downloadedPath)}'");
         return downloadedPath;
     }
 
@@ -319,7 +319,7 @@ public static class RuntimeComponents
         }
 
         string assetUrl = asset.BrowserDownloadUrl ?? throw new InvalidOperationException($"Missing download URL for {definition.FileName}.");
-        Log.Info($"Downloading runtime component. file='{definition.FileName}', asset='{Log.SafeValue(asset.Name)}', kind={definition.Kind}, url='{Log.SafeValue(assetUrl)}'");
+        Log.Info($"Downloading runtime component asset. file='{definition.FileName}', asset='{Log.SafeValue(asset.Name)}', kind={definition.Kind}, url='{Log.SafeValue(assetUrl)}'");
         string tempDownloadPath = Path.Combine(TempFolder, asset.Name ?? definition.FileName);
         Log.Debug($"Downloading runtime component into temp file. file='{definition.FileName}', tempPath='{Log.SafeValue(tempDownloadPath)}'");
         try
