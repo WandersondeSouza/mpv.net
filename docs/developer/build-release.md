@@ -24,7 +24,7 @@ Para execução:
 - SDK .NET 10.0 para publicar self-contained `win-x64`;
 - `libmpv-2.dll` x64, usando por padrao a build 64bit-v3 do mpv/libmpv;
 - `MediaInfo.dll` x64 baixada da MediaArea oficial durante a release;
-- `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` no pacote portatil do fork;
+- `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` baixados sob demanda para `%LOCALAPPDATA%\mpv.net\Component`;
 - arquivos de `Locale`, quando aplicável.
 
 Para release:
@@ -33,7 +33,7 @@ Para release:
 - Inno Setup 6 em `C:\Program Files (x86)\Inno Setup 6\ISCC.exe`, exceto quando `-SkipInstaller` for usado;
 - GitHub CLI (`gh`), exceto quando `-SkipGitHubRelease` for usado;
 - variável `GH_TOKEN` configurada para criação de release;
-- acesso a internet para baixar FFmpeg, libmpv, yt-dlp, MediaInfo, `mpvnet.com` e `Gettext.Tools` no momento da release, quando esses arquivos/ferramentas ainda nao estiverem disponiveis localmente.
+- acesso a internet para baixar FFmpeg, libmpv, yt-dlp, MediaInfo, `mpvnet.com` e `Gettext.Tools` no momento da release, quando esses arquivos/ferramentas ainda nao estiverem disponiveis localmente ou para semear o cache de componentes na primeira execucao.
 
 Observacao: Inno Setup, GitHub CLI e `GH_TOKEN` deixam de ser obrigatorios quando o script e executado, respectivamente, com `-SkipInstaller` e `-SkipGitHubRelease`.
 Os downloads de dependencias nativas e auxiliares ficam em `artifacts\native-dependencies\downloads` e sao reutilizados por ate 2 dias. Se o arquivo nao existir ou estiver mais antigo, o script baixa novamente a versao mais recente encontrada nas fontes configuradas.
@@ -146,7 +146,9 @@ Para compilar e baixar/validar automaticamente os binarios nativos e auxiliares 
 dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj -c Release
 ```
 
-Esse alvo opt-in chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` na pasta da configuracao compilada, baixando apenas o que estiver faltando. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained. Para testar a variante otimizada localmente, use `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:MpvBuildVariant=x86_64-v3`.
+Esse alvo opt-in chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll` e `libmpv-2.dll` na pasta da configuracao compilada, baixando apenas o que estiver faltando. O fluxo novo do player passa a manter `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` em `%LOCALAPPDATA%\mpv.net\Component` quando necessario. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained. Para testar a variante otimizada localmente, use `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:MpvBuildVariant=x86_64-v3`.
+
+No runtime, o player passa a usar `%LOCALAPPDATA%\mpv.net\Component` como cache de componentes baixados em segundo plano, com fallback para os binarios que vierem junto da instalacao. O contrato desta etapa preserva `libmpv-2.dll`, `MediaInfo.dll` e as DLLs do runtime ao lado do executavel, enquanto `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` migram para a pasta de componente quando a rede estiver disponivel.
 
 Para publicar como o script de release atual faz:
 
@@ -328,9 +330,9 @@ O script:
 3. publica `MpvNet.Windows.csproj` self-contained para `win-x64`;
 4. cria nomes com base na versão do `mpvnet.exe`;
 5. copia arquivos publicados;
-6. chama `src\Tools\prepare-native-dependencies.ps1` para baixar ou validar `MediaInfo.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `libmpv-2.dll`, `yt-dlp.exe` e `mpvnet.com`, reutilizando downloads com ate 2 dias em `artifacts\native-dependencies\downloads`;
+6. chama `src\Tools\prepare-native-dependencies.ps1` para baixar ou validar `MediaInfo.dll` e `libmpv-2.dll`, reutilizando downloads com ate 2 dias em `artifacts\native-dependencies\downloads`;
 7. valida e copia as DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vindas do publish self-contained;
-8. copia `MediaInfo.dll`, `libmpv-2.dll`, `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` x64;
+8. copia `MediaInfo.dll` e `libmpv-2.dll` x64;
 9. copia `Locale`;
 10. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
 11. valida as DLLs nativas no publish, na pasta portatil e no ZIP com `validate-native-dependencies.ps1`;
@@ -443,7 +445,7 @@ Confira os `TargetFramework` dos projetos e instale o SDK/runtime correspondente
 
 ## Dependência nativa ausente
 
-Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64, variante de CPU e diretório de execução. Para o pacote portatil, verifique tambem `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` ao lado de `mpvnet.exe`. No fluxo de build/release, FFmpeg, libmpv, yt-dlp e `MediaInfo.dll` devem ser baixados ou atualizados automaticamente por `src\Tools\prepare-native-dependencies.ps1`.
+Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64, variante de CPU e diretório de execução. `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` passam a ser obtidos pelo cache de componentes do player em `%LOCALAPPDATA%\mpv.net\Component` quando necessário. No fluxo de build/release, `libmpv-2.dll` e `MediaInfo.dll` devem continuar sendo preparados automaticamente por `src\Tools\prepare-native-dependencies.ps1`.
 
 ## Ferramenta de release ausente
 

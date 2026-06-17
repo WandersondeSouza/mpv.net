@@ -173,21 +173,6 @@
       <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\MediaInfo.dll">
         <TargetPath>MpvNet.Windows\MediaInfo.dll</TargetPath>
       </_MpvNetStorePackagePayload>
-      <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\ffmpeg.exe">
-        <TargetPath>MpvNet.Windows\ffmpeg.exe</TargetPath>
-      </_MpvNetStorePackagePayload>
-      <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\ffplay.exe">
-        <TargetPath>MpvNet.Windows\ffplay.exe</TargetPath>
-      </_MpvNetStorePackagePayload>
-      <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\ffprobe.exe">
-        <TargetPath>MpvNet.Windows\ffprobe.exe</TargetPath>
-      </_MpvNetStorePackagePayload>
-      <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\yt-dlp.exe">
-        <TargetPath>MpvNet.Windows\yt-dlp.exe</TargetPath>
-      </_MpvNetStorePackagePayload>
-      <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\mpvnet.com">
-        <TargetPath>MpvNet.Windows\mpvnet.com</TargetPath>
-      </_MpvNetStorePackagePayload>
       <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\Locale\bg\LC_MESSAGES\mpvnet.mo">
         <TargetPath>MpvNet.Windows\Locale\bg\LC_MESSAGES\mpvnet.mo</TargetPath>
       </_MpvNetStorePackagePayload>

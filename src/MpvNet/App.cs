@@ -98,10 +98,10 @@ public class AppClass
         $"{_("Tip: installing Codec Guide can improve codec support and playback.")}\n" +
         "Copyright (C) 2000-2024 mpv.net/mpv/mplayer\n" +
         $"{AppInfo.Product} v{AppInfo.Version}" + GetLastWriteTime(Environment.ProcessPath!) + "\n" +
-        $"{Player.GetPropertyString("mpv-version")}" + GetLastWriteTime(Folder.Startup + "libmpv-2.dll") + "\n" +
+        $"{Player.GetPropertyString("mpv-version")}" + GetLastWriteTime(RuntimeComponents.ResolveComponentPath("libmpv-2.dll")) + "\n" +
         $"ffmpeg {Player.GetPropertyString("ffmpeg-version")}\n" +
-        $"MediaInfo v{FileVersionInfo.GetVersionInfo(Folder.Startup + "MediaInfo.dll").FileVersion}" +
-        $"{GetLastWriteTime(Folder.Startup + "MediaInfo.dll")}" + "\n" + "GPL v2 License";
+        $"MediaInfo v{FileVersionInfo.GetVersionInfo(RuntimeComponents.ResolveComponentPath("MediaInfo.dll")).FileVersion}" +
+        $"{GetLastWriteTime(RuntimeComponents.ResolveComponentPath("MediaInfo.dll"))}" + "\n" + "GPL v2 License";
 
     public static string CodecGuideTip => _("Tip: installing Codec Guide can improve codec support and playback.");
     public static string DonationTitle => _("If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below.");

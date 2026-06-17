@@ -60,6 +60,7 @@ Cache e logs:
 | Pasta | Função |
 | --- | --- |
 | `%LOCALAPPDATA%\mpv.net\Cache` | Cache temporário do mpv para demuxer, ICC e shaders. |
+| `%LOCALAPPDATA%\mpv.net\Component` | Componentes nativos baixados/atualizados em segundo plano, com fallback para os binários que vierem junto do app. |
 | `%LOCALAPPDATA%\mpv.net\Temp` | Arquivos temporários criados pelo frontend, como playlists normalizadas. |
 | `%LOCALAPPDATA%\mpv.net\Logs` | Logs diários quando o build é gerado com logging em arquivo habilitado. |
 

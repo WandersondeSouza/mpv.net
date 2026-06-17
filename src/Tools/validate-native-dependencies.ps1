@@ -24,13 +24,6 @@ $RequiredDlls = @(
     'PresentationNative_cor3.dll'
 )
 
-$RequiredExecutables = @(
-    'ffmpeg.exe',
-    'ffplay.exe',
-    'ffprobe.exe',
-    'yt-dlp.exe'
-)
-
 function Test-RequiredFile($path) {
     if (-not (Test-Path $path)) {
         throw "Required native dependency not found: $path"
@@ -117,17 +110,6 @@ try {
         $file = Assert-PeX64 $matches[0].FullName
         $version = [Diagnostics.FileVersionInfo]::GetVersionInfo($file.FullName).FileVersion
         Write-Host "OK $dll $($file.Length) bytes $version"
-    }
-
-    foreach ($exe in $RequiredExecutables) {
-        $matches = @(Get-ChildItem $root -Filter $exe -Recurse -File)
-        if ($matches.Count -lt 1) {
-            throw "Required native helper not found under ${root}: $exe"
-        }
-
-        $file = Assert-PeX64 $matches[0].FullName
-        $version = [Diagnostics.FileVersionInfo]::GetVersionInfo($file.FullName).FileVersion
-        Write-Host "OK $exe $($file.Length) bytes $version"
     }
 
     Write-Host "Native dependency validation completed: $root"

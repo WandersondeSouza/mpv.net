@@ -22,8 +22,7 @@ Dependencies:
     7zip installation found at: 'C:\Program Files\7-Zip\7z.exe'.
     Inno Setup compiler installation found at: 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' unless -SkipInstaller is used.
     GitHub CLI https://cli.github.com, the env var GH_TOKEN must be defined unless -SkipGitHubRelease is used.
-    Internet access to download FFmpeg, libmpv, yt-dlp and MediaInfo for the portable package.
-    Internet access to download mpvnet.com when -MpvNetComFile is not provided and the build output does not already contain it.
+    Internet access to download FFmpeg, libmpv, yt-dlp, mpvnet.com and MediaInfo for the portable package.
     Internet access to download Gettext.Tools from NuGet when msgfmt.exe is not available on PATH.
 
 Notes:
@@ -290,7 +289,7 @@ mkdir $OutputDir64
 Copy-Item ($PublishDir64 + '*') $OutputDir64
 & $EnsureDependenciesScript @EnsureDependenciesArgs
 if ($LastExitCode) { throw $LastExitCode }
-$ExtraFiles = 'mpvnet.com', 'MediaInfo.dll', 'libmpv-2.dll', 'libmpv-2.variant.txt', 'ffmpeg.exe', 'ffplay.exe', 'ffprobe.exe', 'yt-dlp.exe'
+$ExtraFiles = 'libmpv-2.dll', 'libmpv-2.variant.txt', 'MediaInfo.dll'
 CopyExtraFiles $BinDirX64 $OutputDir64 $ExtraFiles
 CopyExtraFiles $BinDirX64 $PublishDir64 $ExtraFiles
 $LocaleDir = EnsureLocale `
