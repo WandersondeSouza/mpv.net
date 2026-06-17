@@ -109,16 +109,24 @@ public static class RuntimeComponents
         string componentPath = Path.Combine(ComponentsFolder, fileName);
         if (File.Exists(componentPath))
         {
+            Log.Info($"Resolved runtime component from component folder. file='{fileName}', path='{Log.SafeValue(componentPath)}'");
             return componentPath;
         }
 
         string startupPath = Path.Combine(Folder.Startup, fileName);
         if (File.Exists(startupPath))
         {
+            Log.Info($"Resolved runtime component from startup folder. file='{fileName}', path='{Log.SafeValue(startupPath)}'");
             return startupPath;
         }
 
         string? pathCandidate = ResolveFromWindowsPath(fileName);
+        if (!string.IsNullOrWhiteSpace(pathCandidate))
+        {
+            Log.Info($"Resolved runtime component from PATH. file='{fileName}', path='{Log.SafeValue(pathCandidate)}'");
+        }
+
+        Log.Debug($"Resolved runtime component fallback. file='{fileName}', componentPath='{Log.SafeValue(componentPath)}', startupPath='{Log.SafeValue(startupPath)}', pathCandidate='{Log.SafeValue(pathCandidate)}'");
         return pathCandidate ?? componentPath;
     }
 
@@ -142,6 +150,13 @@ public static class RuntimeComponents
         string targetPath = Path.Combine(ComponentsFolder, definition.FileName);
         string metadataPath = targetPath + ".json";
         string? currentDigest = null;
+
+        Log.Debug(
+            $"Runtime component resolution snapshot. file='{definition.FileName}', " +
+            $"componentExists={File.Exists(targetPath)}, " +
+            $"startupExists={File.Exists(Path.Combine(Folder.Startup, definition.FileName))}, " +
+            $"pathExists={ResolveFromWindowsPath(definition.FileName) is not null}, " +
+            $"targetPath='{Log.SafeValue(targetPath)}', startupPath='{Log.SafeValue(Path.Combine(Folder.Startup, definition.FileName))}'");
 
         if (File.Exists(metadataPath))
         {
@@ -174,9 +189,15 @@ public static class RuntimeComponents
         }
         catch (IOException ex)
         {
-            Log.Info($"Runtime component is in use; skipping update for now. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
-            Log.Debug($"Runtime component update skipped because the target file is locked. file='{definition.FileName}'");
-            Log.Error(ex, $"Component update failed for {definition.FileName}; continuing with the next component.");
+            if (IsFileLocked(targetPath))
+            {
+                Log.Info($"Runtime component is in use; skipping update for now. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
+                Log.Debug($"Runtime component update skipped because the target file is locked. file='{definition.FileName}'");
+            }
+            else
+            {
+                Log.Error(ex, $"Component update failed for {definition.FileName}; continuing with the next component.");
+            }
         }
         finally
         {
@@ -369,6 +390,28 @@ public static class RuntimeComponents
         catch (Exception ex)
         {
             Log.Error(ex, $"Failed to delete temporary runtime component path. path='{Log.SafeValue(path)}'");
+        }
+    }
+
+    static bool IsFileLocked(string path)
+    {
+        if (!File.Exists(path))
+        {
+            return false;
+        }
+
+        try
+        {
+            using FileStream stream = new(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            return false;
+        }
+        catch (IOException)
+        {
+            return true;
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return true;
         }
     }
 
