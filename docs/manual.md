@@ -150,7 +150,7 @@ Os componentes auxiliares de runtime usam o cache local em
 `%LOCALAPPDATA%\mpv.net\Component`. Nesse fluxo, `libmpv-2.dll` e
 `MediaInfo.dll` continuam ao lado do executavel ou no pacote preparado, enquanto
 `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` podem
-ser baixados e atualizados em segundo plano quando necessario.
+ser baixados e atualizados em segundo plano pelo player quando necessario.
 
 Exemplo:
 

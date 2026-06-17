@@ -65,9 +65,6 @@ Arquivos nativos esperados ao lado de `mpvnet.exe`:
 
 - `libmpv-2.dll`
 - `MediaInfo.dll`
-- `ffmpeg.exe`
-- `ffplay.exe`
-- `ffprobe.exe`
 - `yt-dlp.exe`
 - `D3DCompiler_47_cor3.dll`
 - `vcruntime140_cor3.dll`
@@ -182,7 +179,7 @@ Preparar dependencias com mpv/libmpv 64bit-v3:
 
 Usar quando:
 
-- precisar baixar ou validar `MediaInfo.dll`, `libmpv-2.dll`, FFmpeg e `yt-dlp.exe`;
+- precisar baixar ou validar `MediaInfo.dll`, `libmpv-2.dll` e `yt-dlp.exe`;
 - preparar a pasta de execução antes do empacotamento.
 - reutilizar downloads recentes em `artifacts\native-dependencies\downloads`;
 - baixar novamente arquivos ausentes ou baixados ha mais de 2 dias.
@@ -291,9 +288,6 @@ vcruntime140_cor3.dll
 wpfgfx_cor3.dll
 PenImc_cor3.dll
 PresentationNative_cor3.dll
-ffmpeg.exe
-ffplay.exe
-ffprobe.exe
 yt-dlp.exe
 portable_config/
   mpv.conf

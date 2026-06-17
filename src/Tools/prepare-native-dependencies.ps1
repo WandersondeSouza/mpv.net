@@ -2,7 +2,7 @@
 
 Ensures the native and helper binaries expected beside mpvnet.exe exist.
 
-FFmpeg, libmpv, yt-dlp and MediaInfo are downloaded from the same sources used
+libmpv, yt-dlp and MediaInfo are downloaded from the same sources used
 by the release flow. Microsoft .NET/WPF native DLLs are never downloaded from
 third-party sites; when a publish directory is supplied they are copied from the
 self-contained publish output.
@@ -252,29 +252,6 @@ function Ensure-MediaInfo($targetDir, $downloadsDir, $extractDir) {
     Copy-MediaInfoDll $mediaInfoExtractDir $targetDir | Out-Null
 }
 
-function Ensure-FFmpeg($targetDir, $downloadsDir, $extractDir) {
-    $requiredFiles = 'ffmpeg.exe', 'ffplay.exe', 'ffprobe.exe'
-    $staleOrMissingFiles = @($requiredFiles | Where-Object { -not (Test-FreshFile (Join-Path $targetDir $_)) })
-    if ((-not $UpdateExisting) -and (-not $staleOrMissingFiles.Count)) {
-        foreach ($file in $requiredFiles) { Assert-PeX64 (Join-Path $targetDir $file) | Out-Null }
-        return
-    }
-
-    $ffmpegArchive = Get-FreshCachedFile $downloadsDir 'ffmpeg-*-win64-gpl.zip'
-    if (-not $ffmpegArchive) {
-        $ffmpegArchive = Download-GitHubLatestAsset `
-            'https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest' `
-            '^ffmpeg-(?:N-[0-9]+-g[0-9a-f]+|master-latest)-win64-gpl\.zip$' `
-            $downloadsDir
-    }
-
-    $ffmpegExtractDir = Expand-ArchiveWith7Zip $ffmpegArchive.FullName (Join-Path $extractDir 'ffmpeg')
-    foreach ($file in $requiredFiles) {
-        Copy-ExtractedFile $ffmpegExtractDir $file $targetDir | Out-Null
-        Assert-PeX64 (Join-Path $targetDir $file) | Out-Null
-    }
-}
-
 function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
     $targetFile = Join-Path $targetDir 'libmpv-2.dll'
     $variantMarkerFile = Join-Path $targetDir 'libmpv-2.variant.txt'
@@ -385,7 +362,6 @@ $DownloadsDir = Test-RequiredPath (Join-Path $ArtifactsDir 'downloads')
 $ExtractDir = New-CleanDir (Join-Path $ArtifactsDir 'extract')
 
 Ensure-MediaInfo $TargetDir $DownloadsDir $ExtractDir
-Ensure-FFmpeg $TargetDir $DownloadsDir $ExtractDir
 Ensure-LibMpv $TargetDir $DownloadsDir $ExtractDir
 Ensure-YtDlp $TargetDir $DownloadsDir
 Ensure-MpvNetCom $TargetDir $DownloadsDir

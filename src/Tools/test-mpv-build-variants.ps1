@@ -28,9 +28,6 @@ $prepareScript = Join-Path $PSScriptRoot 'prepare-native-dependencies.ps1'
 $requiredPreparedFiles = @(
     'libmpv-2.dll',
     'MediaInfo.dll',
-    'ffmpeg.exe',
-    'ffplay.exe',
-    'ffprobe.exe',
     'yt-dlp.exe'
 )
 

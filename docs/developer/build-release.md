@@ -24,7 +24,7 @@ Para execução:
 - SDK .NET 10.0 para publicar self-contained `win-x64`;
 - `libmpv-2.dll` x64, usando por padrao a build 64bit-v3 do mpv/libmpv;
 - `MediaInfo.dll` x64 baixada da MediaArea oficial durante a release;
-- `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` baixados sob demanda para `%LOCALAPPDATA%\mpv.net\Component`;
+- `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `yt-dlp.exe` baixados sob demanda para `%LOCALAPPDATA%\mpv.net\Component` pelo player;
 - arquivos de `Locale`, quando aplicável.
 
 Para release:
@@ -33,7 +33,7 @@ Para release:
 - Inno Setup 6 em `C:\Program Files (x86)\Inno Setup 6\ISCC.exe`, exceto quando `-SkipInstaller` for usado;
 - GitHub CLI (`gh`), exceto quando `-SkipGitHubRelease` for usado;
 - variável `GH_TOKEN` configurada para criação de release;
-- acesso a internet para baixar FFmpeg, libmpv, yt-dlp, MediaInfo, `mpvnet.com` e `Gettext.Tools` no momento da release, quando esses arquivos/ferramentas ainda nao estiverem disponiveis localmente ou para semear o cache de componentes na primeira execucao.
+- acesso a internet para baixar libmpv, yt-dlp, MediaInfo, `mpvnet.com` e `Gettext.Tools` no momento da release, quando esses arquivos/ferramentas ainda nao estiverem disponiveis localmente ou para semear o cache de componentes na primeira execucao do player.
 
 Observacao: Inno Setup, GitHub CLI e `GH_TOKEN` deixam de ser obrigatorios quando o script e executado, respectivamente, com `-SkipInstaller` e `-SkipGitHubRelease`.
 Os downloads de dependencias nativas e auxiliares ficam em `artifacts\native-dependencies\downloads` e sao reutilizados por ate 2 dias. Se o arquivo nao existir ou estiver mais antigo, o script baixa novamente a versao mais recente encontrada nas fontes configuradas.
@@ -349,7 +349,6 @@ O script:
 
 As dependencias baixadas automaticamente usam estas fontes:
 
-- FFmpeg: `https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest`, asset `ffmpeg-master-latest-win64-gpl.zip`;
 - libmpv: `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, asset normal `mpv-dev-x86_64-[data]-git-[hash].7z` ou asset v3 `mpv-dev-x86_64-v3-[data]-git-[hash].7z`;
 - yt-dlp: `https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe`;
 - MediaInfo: `https://mediaarea.net/en/MediaInfo/Download/Windows`, asset `MediaInfo_DLL_[versao]_Windows_x64_WithoutInstaller.7z`;
@@ -391,7 +390,7 @@ necessario. Como a release emergencial publica assets no GitHub, ela nao aceita
 `-EnableFileLogging`; pacotes de diagnostico devem ser gerados separadamente
 sem publicacao.
 
-A partir de 2026-06-02, o fluxo de release publica em `Release` e nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-setup-x64.exe` para o instalador e `MPV.NET-Media-Player-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/FFmpeg/libmpv/yt-dlp, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. Quando `-EnableFileLogging` e usado, os artefatos recebem `-diagnostic` antes do tipo de pacote sem alterar a versao publica.
+A partir de 2026-06-02, o fluxo de release publica em `Release` e nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-setup-x64.exe` para o instalador e `MPV.NET-Media-Player-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/libmpv/yt-dlp, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. Quando `-EnableFileLogging` e usado, os artefatos recebem `-diagnostic` antes do tipo de pacote sem alterar a versao publica.
 
 Validacao local registrada em 2026-06-12: `build-release-package.ps1` concluiu
 com `-SkipGitHubRelease`, gerando ZIP portatil e instalador x64, compilando
