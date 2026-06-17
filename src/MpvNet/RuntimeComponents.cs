@@ -65,12 +65,14 @@ public static class RuntimeComponents
 
     public static async Task EnsureComponentsAsync(CancellationToken cancellationToken = default)
     {
+        Log.Info($"Starting runtime component bootstrap. folder='{Log.SafeValue(ComponentsFolder)}', count={Definitions.Count}");
         Directory.CreateDirectory(ComponentsFolder);
 
         foreach (var component in Definitions)
         {
             try
             {
+                Log.Debug($"Ensuring runtime component: file='{component.FileName}', kind={component.Kind}, releaseApi='{Log.SafeValue(component.ReleaseApiUrl)}'");
                 await EnsureComponentAsync(component, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception ex)
@@ -78,6 +80,8 @@ public static class RuntimeComponents
                 Log.Error(ex, $"Component update failed for {component.FileName}.");
             }
         }
+
+        Log.Info("Runtime component bootstrap finished.");
     }
 
     public static string ResolveComponentPath(string fileName)
@@ -125,15 +129,22 @@ public static class RuntimeComponents
             {
                 var metadata = JsonSerializer.Deserialize<ComponentMetadata>(await File.ReadAllTextAsync(metadataPath, cancellationToken).ConfigureAwait(false), JsonOptions);
                 currentDigest = metadata?.Digest;
+                Log.Debug($"Loaded component metadata: file='{definition.FileName}', digest='{currentDigest}', lastCheckedUtc={metadata?.LastCheckedUtc:O}");
                 if (metadata is not null && metadata.LastCheckedUtc > DateTimeOffset.UtcNow.Subtract(RefreshInterval) && File.Exists(targetPath))
                 {
+                    Log.Info($"Runtime component is fresh; skipping download. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
                     return;
                 }
             }
             catch
             {
+                Log.Debug($"Failed to read component metadata; forcing refresh. file='{definition.FileName}', metadataPath='{Log.SafeValue(metadataPath)}'");
                 currentDigest = null;
             }
+        }
+        else
+        {
+            Log.Debug($"No component metadata found; forcing refresh. file='{definition.FileName}', metadataPath='{Log.SafeValue(metadataPath)}'");
         }
 
         string downloaded = await DownloadLatestComponentAsync(definition, targetPath, cancellationToken).ConfigureAwait(false);
@@ -171,11 +182,13 @@ public static class RuntimeComponents
         Directory.CreateDirectory(Path.GetDirectoryName(targetPath)!);
         if (!string.Equals(downloadedPath, targetPath, StringComparison.OrdinalIgnoreCase))
         {
+            Log.Debug($"Copying downloaded component into place. source='{Log.SafeValue(downloadedPath)}', target='{Log.SafeValue(targetPath)}'");
             File.Copy(downloadedPath, targetPath, overwrite: true);
         }
 
         string digest = GetFileDigest(targetPath);
         string remoteDigest = await GetRemoteDigestAsync(definition, cancellationToken).ConfigureAwait(false);
+        Log.Debug($"Validated component digest. file='{definition.FileName}', localDigest='{digest}', remoteDigest='{remoteDigest}'");
 
         if (!string.Equals(digest, remoteDigest, StringComparison.OrdinalIgnoreCase))
         {
@@ -183,6 +196,7 @@ public static class RuntimeComponents
         }
 
         await SaveMetadataAsync(metadataPath, digest, cancellationToken).ConfigureAwait(false);
+        Log.Info($"Runtime component updated successfully. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
     }
 
     static async Task<string> DownloadLatestComponentAsync(ComponentDefinition definition, string targetPath, CancellationToken cancellationToken)
@@ -195,6 +209,7 @@ public static class RuntimeComponents
         }
 
         string assetUrl = asset.BrowserDownloadUrl ?? throw new InvalidOperationException($"Missing download URL for {definition.FileName}.");
+        Log.Info($"Downloading runtime component. file='{definition.FileName}', asset='{Log.SafeValue(asset.Name)}', kind={definition.Kind}, url='{Log.SafeValue(assetUrl)}'");
         string outputFile = definition.Kind == ComponentDownloadKind.GitHubZip
             ? Path.Combine(ComponentsFolder, asset.Name!)
             : targetPath;
@@ -209,6 +224,7 @@ public static class RuntimeComponents
             return ExtractRequiredGitHubZipAsset(outputFile, definition, targetPath);
         }
 
+        Log.Debug($"Downloaded direct runtime component to target path. file='{definition.FileName}', path='{Log.SafeValue(outputFile)}'");
         return outputFile;
     }
 
@@ -222,9 +238,11 @@ public static class RuntimeComponents
         string extractDir = Path.Combine(ComponentsFolder, Path.GetFileNameWithoutExtension(zipFile) + "-extract");
         if (Directory.Exists(extractDir))
         {
+            Log.Debug($"Removing stale extraction directory. dir='{Log.SafeValue(extractDir)}'");
             Directory.Delete(extractDir, true);
         }
 
+        Log.Info($"Extracting runtime component archive. file='{definition.FileName}', zip='{Log.SafeValue(zipFile)}', extractDir='{Log.SafeValue(extractDir)}'");
         Directory.CreateDirectory(extractDir);
         System.IO.Compression.ZipFile.ExtractToDirectory(zipFile, extractDir);
 
@@ -235,6 +253,7 @@ public static class RuntimeComponents
             throw new InvalidOperationException($"Required extracted file not found: {required}");
         }
 
+        Log.Debug($"Copying extracted runtime component into place. file='{definition.FileName}', extracted='{Log.SafeValue(match)}', target='{Log.SafeValue(targetPath)}'");
         File.Copy(match, targetPath, overwrite: true);
         return targetPath;
     }
