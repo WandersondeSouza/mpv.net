@@ -87,7 +87,8 @@ public static class RuntimeComponents
             return startupPath;
         }
 
-        return componentPath;
+        string? pathCandidate = ResolveFromWindowsPath(fileName);
+        return pathCandidate ?? componentPath;
     }
 
     static IntPtr ResolveNativeLibrary(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
@@ -128,46 +129,34 @@ public static class RuntimeComponents
             }
         }
 
-        if (File.Exists(targetPath))
-        {
-            string remoteDigest = await GetRemoteDigestAsync(definition, cancellationToken).ConfigureAwait(false);
-            if (string.Equals(currentDigest, remoteDigest, StringComparison.OrdinalIgnoreCase) &&
-                string.Equals(GetFileDigest(targetPath), remoteDigest, StringComparison.OrdinalIgnoreCase))
-            {
-                await SaveMetadataAsync(metadataPath, remoteDigest, cancellationToken).ConfigureAwait(false);
-                return;
-            }
-
-            string downloadedPath = await DownloadLatestComponentAsync(definition, targetPath, cancellationToken).ConfigureAwait(false);
-            await FinalizeComponentAsync(downloadedPath, targetPath, metadataPath, definition, cancellationToken).ConfigureAwait(false);
-            return;
-        }
-
-        string packagedPath = Path.Combine(Folder.Startup, definition.FileName);
-        if (File.Exists(packagedPath))
-        {
-            File.Copy(packagedPath, targetPath, overwrite: true);
-            string digest = GetFileDigest(targetPath);
-            await SaveMetadataAsync(metadataPath, digest, cancellationToken).ConfigureAwait(false);
-#pragma warning disable CS4014
-            Task.Run(async () =>
-            {
-                try
-                {
-                    string downloadedPath = await DownloadLatestComponentAsync(definition, targetPath, CancellationToken.None).ConfigureAwait(false);
-                    await FinalizeComponentAsync(downloadedPath, targetPath, metadataPath, definition, CancellationToken.None).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Component refresh failed for {definition.FileName}: {ex.Message}");
-                }
-            });
-#pragma warning restore CS4014
-            return;
-        }
-
         string downloaded = await DownloadLatestComponentAsync(definition, targetPath, cancellationToken).ConfigureAwait(false);
         await FinalizeComponentAsync(downloaded, targetPath, metadataPath, definition, cancellationToken).ConfigureAwait(false);
+    }
+
+    static string? ResolveFromWindowsPath(string fileName)
+    {
+        string? windowsPath = Environment.GetEnvironmentVariable("PATH");
+        if (string.IsNullOrWhiteSpace(windowsPath))
+        {
+            return null;
+        }
+
+        foreach (string rawDir in windowsPath.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries))
+        {
+            string dir = rawDir.Trim();
+            if (dir.Length == 0)
+            {
+                continue;
+            }
+
+            string candidate = Path.Combine(dir, fileName);
+            if (File.Exists(candidate))
+            {
+                return candidate;
+            }
+        }
+
+        return null;
     }
 
     static async Task FinalizeComponentAsync(string downloadedPath, string targetPath, string metadataPath, ComponentDefinition definition, CancellationToken cancellationToken)
