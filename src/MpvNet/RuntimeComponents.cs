@@ -16,10 +16,12 @@ public static class RuntimeComponents
     public static string ComponentsFolder { get; } = Path.Combine(Folder.LocalAppData, "mpv.net", "Component");
     public static string TempFolder { get; } = Path.Combine(TemporaryFileCleanup.DefaultTempFolder, "RuntimeComponents");
     static readonly TimeSpan RefreshInterval = TimeSpan.FromDays(20);
+    static readonly TimeSpan ReleaseRequestTimeout = TimeSpan.FromSeconds(30);
+    static readonly TimeSpan DownloadTimeout = TimeSpan.FromMinutes(10);
 
     static readonly HttpClient Http = new()
     {
-        Timeout = TimeSpan.FromSeconds(60)
+        Timeout = DownloadTimeout
     };
 
     static readonly JsonSerializerOptions JsonOptions = new()
@@ -79,7 +81,7 @@ public static class RuntimeComponents
             }
             catch (Exception ex)
             {
-                Log.Error(ex, $"Component update failed for {component.FileName}.");
+                Log.Error(ex, $"Component update failed for {component.FileName}; continuing with the next component.");
             }
         }
 
@@ -303,10 +305,20 @@ public static class RuntimeComponents
     {
         using var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.UserAgent.Add(new ProductInfoHeaderValue("mpv.net", AppInfo.Version.ToString()));
-        using var response = await Http.SendAsync(request, cancellationToken).ConfigureAwait(false);
-        response.EnsureSuccessStatusCode();
-        string json = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-        return JsonSerializer.Deserialize<GithubRelease>(json, JsonOptions) ?? throw new InvalidOperationException("Invalid GitHub release payload.");
+        using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        timeoutCts.CancelAfter(ReleaseRequestTimeout);
+        try
+        {
+            using var response = await Http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, timeoutCts.Token).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            string json = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+            return JsonSerializer.Deserialize<GithubRelease>(json, JsonOptions) ?? throw new InvalidOperationException("Invalid GitHub release payload.");
+        }
+        catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested && timeoutCts.IsCancellationRequested)
+        {
+            Log.Error($"Timed out while reading GitHub release metadata after {ReleaseRequestTimeout.TotalSeconds:0}s. url='{Log.SafeValue(url)}'");
+            throw;
+        }
     }
 
     static string GetFileDigest(string path)
@@ -361,8 +373,13 @@ public static class RuntimeComponents
 
     sealed class GithubAsset
     {
+        [JsonPropertyName("name")]
         public string? Name { get; set; }
+
+        [JsonPropertyName("browser_download_url")]
         public string? BrowserDownloadUrl { get; set; }
+
+        [JsonPropertyName("digest")]
         public string? Digest { get; set; }
     }
 

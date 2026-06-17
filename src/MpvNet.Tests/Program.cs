@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 using MpvNet;
@@ -254,6 +255,17 @@ string dailyLogFile = Path.Combine(tempLogDir, "mpvnet-2026-06-02.log");
 string dailyLogContent = File.ReadAllText(dailyLogFile);
 string safeUrlWithSecret = Log.SafeValue("https://example.com/live/index.m3u8?token=secret#fragment");
 string safePlainUrl = Log.SafeValue("https://example.com/live/index.m3u8");
+var runtimeRelease = JsonSerializer.Deserialize<RuntimeReleaseProbe>("""
+{
+  "assets": [
+    {
+      "name": "yt-dlp.exe",
+      "browser_download_url": "https://example.com/yt-dlp.exe",
+      "digest": "sha256:123"
+    }
+  ]
+}
+""");
 string blockedLogPath = Path.Combine(tempLogDir, "blocked");
 File.WriteAllText(blockedLogPath, "");
 var blockedLogWriter = new FileLogWriter(blockedLogPath, () => fixedLogDate);
@@ -546,6 +558,8 @@ var tests = new (string Name, bool Result)[]
     ("File log writer does not throw on write failure", blockedWriteDidNotThrow),
     ("Log safe value masks URL query and fragment", safeUrlWithSecret == "https://example.com/live/index.m3u8?***#***"),
     ("Log safe value keeps plain URL unchanged", safePlainUrl == "https://example.com/live/index.m3u8"),
+    ("Runtime release JSON maps GitHub browser download URL", runtimeRelease?.Assets.Single().BrowserDownloadUrl == "https://example.com/yt-dlp.exe"),
+    ("Runtime release JSON maps GitHub digest", runtimeRelease?.Assets.Single().Digest == "sha256:123"),
     ("Default log folder uses mpv.net LocalAppData root", Path.GetFullPath(Log.LogFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
     ("Default cache folder uses mpv.net LocalAppData root", Path.GetFullPath(defaultCacheFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
     ("Default cache folder is separate from logs", !StringComparer.OrdinalIgnoreCase.Equals(Path.GetFullPath(defaultCacheFolder), Path.GetFullPath(Log.LogFolder))),
@@ -599,4 +613,21 @@ sealed class TestTranslator : ITranslator
     public string Gettext(string msgId) => msgId;
 
     public string GetParticularString(string context, string text) => text;
+}
+
+sealed class RuntimeReleaseProbe
+{
+    public RuntimeAssetProbe[] Assets { get; set; } = [];
+}
+
+sealed class RuntimeAssetProbe
+{
+    [System.Text.Json.Serialization.JsonPropertyName("name")]
+    public string? Name { get; set; }
+
+    [System.Text.Json.Serialization.JsonPropertyName("browser_download_url")]
+    public string? BrowserDownloadUrl { get; set; }
+
+    [System.Text.Json.Serialization.JsonPropertyName("digest")]
+    public string? Digest { get; set; }
 }
