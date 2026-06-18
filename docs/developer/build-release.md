@@ -77,7 +77,7 @@ Esta e a lista canonica de scripts do fork. Os demais documentos devem apontar p
 | `prepare-native-dependencies.ps1` | dependencias nativas e auxiliares |
 | `prepare-build-output.ps1` | preparo automatico do output no build do app Windows |
 | `validate-native-dependencies.ps1` | validacao de DLLs nativas em pasta ou ZIP |
-| `set-release-version.ps1` | atualiza a versao publica em `BuildVersion.props` e grava a versao Store em `Package.appxmanifest` com revisao zero |
+| `set-release-version.ps1` | atualiza a versao publica em `BuildVersion.props` e grava a mesma versao em `Package.appxmanifest` para a Store |
 | `publish-emergency-release.ps1` | release emergencial com bump de versao |
 | `update-mpv-runtime.ps1` | atualizacao do runtime mpv |
 | `test-mpv-build-variants.ps1` | smoke test das variantes de build |
@@ -108,7 +108,7 @@ cd mpv.net
 O projeto `src\MpvNet.Pacote\MpvNet.Pacote.wapproj` ja valida automaticamente:
 
 - assinatura de distribuicao;
-- alinhamento entre `src\BuildVersion.props` e `src\MpvNet.Pacote\Package.appxmanifest`, considerando que a Microsoft Store exige revisao zero no manifesto MSIX.
+- alinhamento entre `src\BuildVersion.props` e `src\MpvNet.Pacote\Package.appxmanifest`, usando a mesma versao completa para evitar conflito de nome de pacote.
 
 Para usar o Visual Studio nesse fluxo:
 
@@ -164,7 +164,7 @@ A identidade reservada atual do pacote e `24183GestodeSistemas.MPV.NETMediaPlaye
 O pacote publicado na Microsoft Store usa o `Package/Properties/PublisherDisplayName` `Gestão de Sistemas`, o `Package Family Name` `24183GestodeSistemas.MPV.NETMediaPlayer_ex0zyz39hzsk6` e o `ID da Store` `9N441SP6XHLD`.
 Link profundo da Store: `ms-windows-store://pdp/?productid=9N441SP6XHLD`
 URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
-O auto incremento de revisao do MSIX fica desativado. A Microsoft Store nao aceita pacote com quarto componente diferente de zero no `Identity Version`, entao `BuildVersion.props` mantem a versao publica completa para executavel, ZIP e instalador, enquanto `Package.appxmanifest` usa a mesma versao com revisao zero. Exemplo: release `7.1.3.15` gera manifesto Store `7.1.3.0`. Quando precisar alterar a versao, use `src\Tools\set-release-version.ps1` para atualizar `BuildVersion.props` e `Package.appxmanifest` juntos.
+O pacote Store usa a mesma versao completa do release para evitar colisao de nome de pacote entre envios. `BuildVersion.props` continua sendo a fonte da versao publica para executavel, ZIP e instalador, e `Package.appxmanifest` acompanha a mesma versao para o MSIX da Store. Quando precisar alterar a versao, use `src\Tools\set-release-version.ps1` para atualizar `BuildVersion.props` e `Package.appxmanifest` juntos.
 
 Pontos importantes:
 
@@ -421,9 +421,9 @@ isso a alteracao de versao deve ser feita por:
 .\src\Tools\set-release-version.ps1 -Version 7.1.3.15
 ```
 
-Esse comando grava `7.1.3.15` em `BuildVersion.props` e `7.1.3.0` no
-`Identity Version` do manifesto MSIX, atendendo a regra da Microsoft Store de
-revisao zero no pacote.
+Esse comando grava `7.1.3.15` em `BuildVersion.props` e no `Identity Version`
+do manifesto MSIX, mantendo o nome completo do pacote unico para o upload na
+Microsoft Store.
 
 Para apenas incrementar o ultimo numero:
 

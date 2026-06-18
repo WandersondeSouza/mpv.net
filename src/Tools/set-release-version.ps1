@@ -5,8 +5,8 @@ store a literal value.
 
 BuildVersion.props remains the canonical source for the Windows executable,
 portable ZIP and Inno Setup installer. The MSIX manifest also needs a literal
-Identity Version, but Microsoft Store packages require the revision component
-to be zero, so this script writes major.minor.build.0 to Package.appxmanifest.
+Identity Version, so this script writes the same four-part version to
+Package.appxmanifest to keep Store package names unique across uploads.
 
 #>
 
@@ -37,14 +37,6 @@ function Assert-FourPartVersion([version] $ParsedVersion) {
     }
 }
 
-function Get-StorePackageVersion([version] $ReleaseVersion) {
-    return [version]::new(
-        $ReleaseVersion.Major,
-        $ReleaseVersion.Minor,
-        $ReleaseVersion.Build,
-        0)
-}
-
 if ($Version -and $IncrementRevision) {
     throw 'Use either -Version or -IncrementRevision, not both.'
 }
@@ -71,7 +63,7 @@ else {
 }
 
 $nextVersionText = $nextVersion.ToString()
-$storePackageVersionText = (Get-StorePackageVersion $nextVersion).ToString()
+$storePackageVersionText = $nextVersion.ToString()
 
 $versionText = [System.IO.File]::ReadAllText($versionFile)
 $updatedVersionText = [regex]::Replace(

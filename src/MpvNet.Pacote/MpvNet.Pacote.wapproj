@@ -73,11 +73,7 @@
       <Output TaskParameter="Result" PropertyName="PackageManifestVersion" />
     </XmlPeek>
     <Error Condition="'$(MpvNetVersion)'==''" Text="MpvNetVersion nao foi carregado. Verifique BuildVersion.props antes de gerar o pacote." />
-    <PropertyGroup>
-      <MpvNetVersionParts>$([System.Version]::Parse('$(MpvNetVersion)'))</MpvNetVersionParts>
-      <ExpectedPackageManifestVersion>$([System.Version]::new($([System.Version]::Parse('$(MpvNetVersion)').Major), $([System.Version]::Parse('$(MpvNetVersion)').Minor), $([System.Version]::Parse('$(MpvNetVersion)').Build), 0))</ExpectedPackageManifestVersion>
-    </PropertyGroup>
-    <Error Condition="'$(PackageManifestVersion)'!='$(ExpectedPackageManifestVersion)'" Text="Versao desalinhada para publicacao: BuildVersion.props define $(MpvNetVersion), mas Package.appxmanifest esta em $(PackageManifestVersion). Para a Microsoft Store, use $(ExpectedPackageManifestVersion), pois o quarto componente da versao do pacote deve ser zero." />
+    <Error Condition="'$(PackageManifestVersion)'!='$(MpvNetVersion)'" Text="Versao desalinhada para publicacao: BuildVersion.props define $(MpvNetVersion), mas Package.appxmanifest esta em $(PackageManifestVersion). Para a Microsoft Store, use a mesma versao completa em ambos os arquivos para evitar conflito de nome de pacote." />
   </Target>
   <Target Name="ValidateStorePackage" DependsOnTargets="ValidateDistributionSigning;ValidatePackageManifestVersion">
     <Message Importance="High" Text="Validacao do pacote Store concluida: assinatura e versao do manifest estao consistentes." />
