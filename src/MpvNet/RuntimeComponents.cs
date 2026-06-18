@@ -72,14 +72,14 @@ public static class RuntimeComponents
         Log.Info($"Starting runtime component bootstrap. folder='{Log.SafeValue(ComponentsFolder)}', count={Definitions.Count}");
         Directory.CreateDirectory(ComponentsFolder);
         CleanupTempFolder();
-        Dictionary<string, string> stagedZipComponents = new(StringComparer.OrdinalIgnoreCase);
+        Dictionary<string, DownloadedComponent> stagedBundleComponents = new(StringComparer.OrdinalIgnoreCase);
 
         foreach (var component in Definitions)
         {
             try
             {
                 Log.Debug($"Ensuring runtime component: file='{component.FileName}', kind={component.Kind}, releaseApi='{Log.SafeValue(component.ReleaseApiUrl)}'");
-                await EnsureComponentAsync(component, stagedZipComponents, cancellationToken).ConfigureAwait(false);
+                await EnsureComponentAsync(component, stagedBundleComponents, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -87,14 +87,14 @@ public static class RuntimeComponents
             }
         }
 
-        CleanupStagedZipComponents(stagedZipComponents);
+        CleanupStagedBundleComponents(stagedBundleComponents);
 
         Log.Info("Runtime component bootstrap finished.");
     }
 
-    static void CleanupStagedZipComponents(Dictionary<string, string> stagedZipComponents)
+    static void CleanupStagedBundleComponents(Dictionary<string, DownloadedComponent> stagedBundleComponents)
     {
-        foreach (string stagedPath in stagedZipComponents.Values.Distinct(StringComparer.OrdinalIgnoreCase))
+        foreach (string stagedPath in stagedBundleComponents.Values.Select(component => component.Path).Distinct(StringComparer.OrdinalIgnoreCase))
         {
             DeleteIfExists(stagedPath);
         }
@@ -156,11 +156,12 @@ public static class RuntimeComponents
         return IntPtr.Zero;
     }
 
-    static async Task EnsureComponentAsync(ComponentDefinition definition, Dictionary<string, string> stagedZipComponents, CancellationToken cancellationToken)
+    static async Task EnsureComponentAsync(ComponentDefinition definition, Dictionary<string, DownloadedComponent> stagedBundleComponents, CancellationToken cancellationToken)
     {
         string targetPath = Path.Combine(ComponentsFolder, definition.FileName);
-        string metadataPath = targetPath + ".json";
-        string? currentDigest = null;
+        string metadataPath = definition.Kind == ComponentDownloadKind.GitHubZip
+            ? GetBundleMetadataPath()
+            : targetPath + ".json";
 
         Log.Debug(
             $"Runtime component resolution snapshot. file='{definition.FileName}', " +
@@ -174,9 +175,8 @@ public static class RuntimeComponents
             try
             {
                 var metadata = JsonSerializer.Deserialize<ComponentMetadata>(await File.ReadAllTextAsync(metadataPath, cancellationToken).ConfigureAwait(false), JsonOptions);
-                currentDigest = metadata?.Digest;
-                Log.Debug($"Loaded component metadata: file='{definition.FileName}', digest='{currentDigest}', lastCheckedUtc={metadata?.LastCheckedUtc:O}");
-                if (metadata is not null && metadata.LastCheckedUtc > DateTimeOffset.UtcNow.Subtract(RefreshInterval) && File.Exists(targetPath))
+                Log.Debug($"Loaded component metadata: file='{definition.FileName}', digest='{metadata?.Digest}', lastCheckedUtc={metadata?.LastCheckedUtc:O}");
+                if (metadata is not null && metadata.LastCheckedUtc > DateTimeOffset.UtcNow.Subtract(RefreshInterval) && IsComponentReady(definition))
                 {
                     Log.Info($"Runtime component is fresh; skipping download. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
                     return;
@@ -185,7 +185,6 @@ public static class RuntimeComponents
             catch
             {
                 Log.Debug($"Failed to read component metadata; forcing refresh. file='{definition.FileName}', metadataPath='{Log.SafeValue(metadataPath)}'");
-                currentDigest = null;
             }
         }
         else
@@ -193,10 +192,10 @@ public static class RuntimeComponents
             Log.Debug($"No component metadata found; forcing refresh. file='{definition.FileName}', metadataPath='{Log.SafeValue(metadataPath)}'");
         }
 
-        string downloaded = await DownloadComponentAsync(definition, stagedZipComponents, cancellationToken).ConfigureAwait(false);
+        DownloadedComponent downloaded = await DownloadComponentAsync(definition, stagedBundleComponents, cancellationToken).ConfigureAwait(false);
         try
         {
-            await CopyAndValidateComponentAsync(downloaded, targetPath, metadataPath, definition, cancellationToken).ConfigureAwait(false);
+            await CopyAndPersistComponentAsync(downloaded, targetPath, metadataPath, definition, cancellationToken).ConfigureAwait(false);
         }
         catch (IOException ex)
         {
@@ -212,7 +211,7 @@ public static class RuntimeComponents
         }
         finally
         {
-            DeleteIfExists(downloaded);
+            DeleteIfExists(downloaded.Path);
         }
     }
 
@@ -242,64 +241,84 @@ public static class RuntimeComponents
         return null;
     }
 
-    static async Task CopyAndValidateComponentAsync(string stagedPath, string targetPath, string metadataPath, ComponentDefinition definition, CancellationToken cancellationToken)
+    static async Task CopyAndPersistComponentAsync(DownloadedComponent stagedComponent, string targetPath, string metadataPath, ComponentDefinition definition, CancellationToken cancellationToken)
     {
         Directory.CreateDirectory(Path.GetDirectoryName(targetPath)!);
-        Log.Debug($"Copying staged runtime component into place. file='{definition.FileName}', staged='{Log.SafeValue(stagedPath)}', target='{Log.SafeValue(targetPath)}'");
-        File.Copy(stagedPath, targetPath, overwrite: true);
-        string digest = GetFileDigest(targetPath);
-        string remoteDigest = await GetRemoteDigestAsync(definition, cancellationToken).ConfigureAwait(false);
-        Log.Debug($"Validated component digest. file='{definition.FileName}', localDigest='{digest}', remoteDigest='{remoteDigest}'");
+        Log.Debug($"Copying staged runtime component into place. file='{definition.FileName}', staged='{Log.SafeValue(stagedComponent.Path)}', target='{Log.SafeValue(targetPath)}'");
+        File.Copy(stagedComponent.Path, targetPath, overwrite: true);
 
-        if (string.IsNullOrWhiteSpace(remoteDigest))
+        if (string.IsNullOrWhiteSpace(stagedComponent.Digest))
         {
-            Log.Info($"Runtime component updated without remote digest validation. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
-            await SaveMetadataAsync(metadataPath, digest, cancellationToken).ConfigureAwait(false);
-            return;
+            stagedComponent = stagedComponent with { Digest = GetFileDigest(targetPath) };
         }
 
-        if (!string.Equals(digest, remoteDigest, StringComparison.OrdinalIgnoreCase))
-        {
-            DeleteIfExists(targetPath);
-            throw new InvalidOperationException($"Digest mismatch for {definition.FileName}.");
-        }
-
-        await SaveMetadataAsync(metadataPath, digest, cancellationToken).ConfigureAwait(false);
+        Log.Debug($"Validated component digest. file='{definition.FileName}', localDigest='{stagedComponent.Digest}'");
+        await SaveMetadataAsync(metadataPath, stagedComponent.Digest!, cancellationToken).ConfigureAwait(false);
         Log.Info($"Runtime component updated successfully. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
     }
 
-    static async Task<string> DownloadComponentAsync(ComponentDefinition definition, Dictionary<string, string> stagedZipComponents, CancellationToken cancellationToken)
+    static async Task<DownloadedComponent> DownloadComponentAsync(ComponentDefinition definition, Dictionary<string, DownloadedComponent> stagedBundleComponents, CancellationToken cancellationToken)
     {
         if (definition.Kind == ComponentDownloadKind.GitHubZip)
         {
-            return await DownloadSharedZipComponentAsync(definition, stagedZipComponents, cancellationToken).ConfigureAwait(false);
+            return await DownloadSharedBundleComponentAsync(definition, stagedBundleComponents, cancellationToken).ConfigureAwait(false);
         }
 
         return await DownloadDirectComponentAsync(definition, cancellationToken).ConfigureAwait(false);
     }
 
-    static async Task<string> DownloadSharedZipComponentAsync(ComponentDefinition definition, Dictionary<string, string> stagedZipComponents, CancellationToken cancellationToken)
+    static async Task<DownloadedComponent> DownloadSharedBundleComponentAsync(ComponentDefinition definition, Dictionary<string, DownloadedComponent> stagedBundleComponents, CancellationToken cancellationToken)
     {
         string zipCacheKey = $"{definition.ReleaseApiUrl}|{definition.AssetPattern}";
-        if (stagedZipComponents.TryGetValue(zipCacheKey, out string? cachedPath) && File.Exists(cachedPath))
+        if (stagedBundleComponents.TryGetValue(zipCacheKey, out DownloadedComponent? cachedComponent) && File.Exists(cachedComponent.Path))
         {
-            Log.Debug($"Reusing staged runtime component from shared ZIP cache. file='{definition.FileName}', cachedPath='{Log.SafeValue(cachedPath)}'");
-            return cachedPath;
+            Log.Debug($"Reusing staged runtime component from shared ZIP cache. file='{definition.FileName}', cachedPath='{Log.SafeValue(cachedComponent.Path)}'");
+            return cachedComponent;
         }
 
         Directory.CreateDirectory(TempFolder);
         string downloadedZipPath = await DownloadComponentArchiveAsync(definition, cancellationToken).ConfigureAwait(false);
+        string remoteDigest = await GetRemoteDigestAsync(definition, cancellationToken).ConfigureAwait(false);
+        string localDigest = GetFileDigest(downloadedZipPath);
+        Log.Debug($"Validated runtime component archive digest. file='{definition.FileName}', localDigest='{localDigest}', remoteDigest='{remoteDigest}'");
+
+        if (string.IsNullOrWhiteSpace(remoteDigest))
+        {
+            Log.Info($"Runtime component archive updated without remote digest validation. file='{definition.FileName}', zip='{Log.SafeValue(downloadedZipPath)}'");
+        }
+        else if (!string.Equals(localDigest, remoteDigest, StringComparison.OrdinalIgnoreCase))
+        {
+            DeleteIfExists(downloadedZipPath);
+            throw new InvalidOperationException($"Digest mismatch for {definition.FileName} archive.");
+        }
+
         string stagedPath = ExtractRequiredGitHubZipAsset(downloadedZipPath, definition);
-        stagedZipComponents[zipCacheKey] = stagedPath;
-        return stagedPath;
+        stagedBundleComponents[zipCacheKey] = new DownloadedComponent(stagedPath, remoteDigest);
+        return new DownloadedComponent(stagedPath, remoteDigest);
     }
 
-    static async Task<string> DownloadDirectComponentAsync(ComponentDefinition definition, CancellationToken cancellationToken)
+    static async Task<DownloadedComponent> DownloadDirectComponentAsync(ComponentDefinition definition, CancellationToken cancellationToken)
     {
         Directory.CreateDirectory(TempFolder);
         string downloadedPath = await DownloadReleaseAssetAsync(definition, cancellationToken).ConfigureAwait(false);
         Log.Debug($"Downloaded direct runtime component to temp path. file='{definition.FileName}', path='{Log.SafeValue(downloadedPath)}'");
-        return downloadedPath;
+        string remoteDigest = await GetRemoteDigestAsync(definition, cancellationToken).ConfigureAwait(false);
+        string localDigest = GetFileDigest(downloadedPath);
+        Log.Debug($"Validated component digest. file='{definition.FileName}', localDigest='{localDigest}', remoteDigest='{remoteDigest}'");
+
+        if (string.IsNullOrWhiteSpace(remoteDigest))
+        {
+            Log.Info($"Runtime component updated without remote digest validation. file='{definition.FileName}', path='{Log.SafeValue(downloadedPath)}'");
+            return new DownloadedComponent(downloadedPath, localDigest);
+        }
+
+        if (!string.Equals(localDigest, remoteDigest, StringComparison.OrdinalIgnoreCase))
+        {
+            DeleteIfExists(downloadedPath);
+            throw new InvalidOperationException($"Digest mismatch for {definition.FileName}.");
+        }
+
+        return new DownloadedComponent(downloadedPath, remoteDigest);
     }
 
     static async Task<string> DownloadComponentArchiveAsync(ComponentDefinition definition, CancellationToken cancellationToken)
@@ -463,7 +482,26 @@ public static class RuntimeComponents
         }
     }
 
+    static string GetBundleMetadataPath()
+    {
+        return Path.Combine(ComponentsFolder, "ffmpeg-bundle.json");
+    }
+
+    static bool IsComponentReady(ComponentDefinition definition)
+    {
+        if (definition.Kind != ComponentDownloadKind.GitHubZip)
+        {
+            return File.Exists(Path.Combine(ComponentsFolder, definition.FileName));
+        }
+
+        return Definitions
+            .Where(item => item.Kind == ComponentDownloadKind.GitHubZip && item.ReleaseApiUrl == definition.ReleaseApiUrl && item.AssetPattern == definition.AssetPattern)
+            .All(item => File.Exists(Path.Combine(ComponentsFolder, item.FileName)));
+    }
+
     sealed record ComponentDefinition(string FileName, string ReleaseApiUrl, string AssetPattern, ComponentDownloadKind Kind, params string[] ExtractedFiles);
+
+    sealed record DownloadedComponent(string Path, string? Digest);
 
     enum ComponentDownloadKind
     {
