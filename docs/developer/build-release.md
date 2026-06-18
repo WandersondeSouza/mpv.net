@@ -4,7 +4,7 @@
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **MPV.NET Media Player**.
 
-> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale, validacao de dependencias nativas e validacao do pacote MSIX/WAP no Visual Studio 2026 Community. A versao atual preparada para publicacao e `7.1.3.14`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
+> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale, validacao de dependencias nativas e validacao do pacote MSIX/WAP no Visual Studio 2026 Community. A versao atual preparada para publicacao e `7.1.3.15`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
 
 ---
 
@@ -164,7 +164,7 @@ A identidade reservada atual do pacote e `24183GestodeSistemas.MPV.NETMediaPlaye
 O pacote publicado na Microsoft Store usa o `Package/Properties/PublisherDisplayName` `Gestão de Sistemas`, o `Package Family Name` `24183GestodeSistemas.MPV.NETMediaPlayer_ex0zyz39hzsk6` e o `ID da Store` `9N441SP6XHLD`.
 Link profundo da Store: `ms-windows-store://pdp/?productid=9N441SP6XHLD`
 URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
-O auto incremento de revisao do MSIX fica desativado. A Microsoft Store nao aceita pacote com quarto componente diferente de zero no `Identity Version`, entao `BuildVersion.props` mantem a versao publica completa para executavel, ZIP e instalador, enquanto `Package.appxmanifest` usa a mesma versao com revisao zero. Exemplo: release `7.1.3.14` gera manifesto Store `7.1.3.0`. Quando precisar alterar a versao, use `src\Tools\set-release-version.ps1` para atualizar `BuildVersion.props` e `Package.appxmanifest` juntos.
+O auto incremento de revisao do MSIX fica desativado. A Microsoft Store nao aceita pacote com quarto componente diferente de zero no `Identity Version`, entao `BuildVersion.props` mantem a versao publica completa para executavel, ZIP e instalador, enquanto `Package.appxmanifest` usa a mesma versao com revisao zero. Exemplo: release `7.1.3.15` gera manifesto Store `7.1.3.0`. Quando precisar alterar a versao, use `src\Tools\set-release-version.ps1` para atualizar `BuildVersion.props` e `Package.appxmanifest` juntos.
 
 Pontos importantes:
 
@@ -407,7 +407,7 @@ pacote gerado.
 A versão publica está centralizada em `src/BuildVersion.props`:
 
 ```xml
-<MpvNetVersion>7.1.3.14</MpvNetVersion>
+<MpvNetVersion>7.1.3.15</MpvNetVersion>
 ```
 
 O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
@@ -418,10 +418,10 @@ O manifesto MSIX ainda exige um valor literal em `Package.appxmanifest`; por
 isso a alteracao de versao deve ser feita por:
 
 ```powershell
-.\src\Tools\set-release-version.ps1 -Version 7.1.3.14
+.\src\Tools\set-release-version.ps1 -Version 7.1.3.15
 ```
 
-Esse comando grava `7.1.3.14` em `BuildVersion.props` e `7.1.3.0` no
+Esse comando grava `7.1.3.15` em `BuildVersion.props` e `7.1.3.0` no
 `Identity Version` do manifesto MSIX, atendendo a regra da Microsoft Store de
 revisao zero no pacote.
 
