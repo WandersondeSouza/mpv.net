@@ -262,11 +262,11 @@ Antes de publicar no GitHub, passe a descricao da release diretamente ao script
 com `-ReleaseNotes` ou `-ReleaseNotesFile`; nao use um link para arquivo de
 changelog como corpo da publicacao.
 
-O pacote Microsoft Store deve usar a mesma versao completa do release para que
-cada upload tenha um nome de pacote unico. A mesma versao publica continua
-valendo para ZIP, instalador e executavel; no MSIX enviado a Store, o
-`Identity Version` acompanha o release. Exemplo: release `7.1.3.15` usa
-manifesto `7.1.3.15`.
+O pacote Microsoft Store nao deve incrementar revisao automaticamente. A mesma
+versao publica deve valer para ZIP, instalador e executavel; no MSIX enviado a
+Store, o `Identity Version` usa a mesma versao com revisao zero, porque a
+Microsoft Store rejeita pacotes com quarto componente diferente de zero. Exemplo:
+release `7.1.3.15` usa manifesto `7.1.3.0`.
 
 Para tambem gerar o instalador no workflow:
 
