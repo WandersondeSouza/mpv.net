@@ -1,4 +1,4 @@
-# Prompt — Auditoria profunda de arquitetura e código-fonte
+﻿# Prompt — Auditoria profunda de arquitetura e código-fonte
 
 Analise profundamente este repositório.
 
@@ -143,5 +143,6 @@ Antes de alterar qualquer código:
 - propor plano incremental.
 - atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
 - validar com `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore`, `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` e checklist manual para UI/libmpv quando aplicável.
+
 
 

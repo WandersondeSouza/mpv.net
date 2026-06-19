@@ -1,4 +1,4 @@
-# Pull Request
+﻿# Pull Request
 
 ## Objetivo da alteração
 
@@ -61,3 +61,4 @@ Descreva:
 ---
 
 # Observações adicionais
+

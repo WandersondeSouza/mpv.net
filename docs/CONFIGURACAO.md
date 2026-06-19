@@ -1,4 +1,4 @@
-# Configuração do MPV.NET Media Player
+﻿# Configuração do MPV.NET Media Player
 
 Este documento resume onde o fork procura as configurações e quais arquivos o usuário normalmente edita.
 
@@ -39,3 +39,5 @@ portable_config/
 - O menu OSD do `Ctrl+p` usa `menu.conf` quando existe; o mpv.net gera esse arquivo com rótulos localizados se ele ainda não existir.
 - Scripts e opções de scripts ficam em `scripts/` e `script-opts/`.
 - O exemplo de `thumbfast` do fork fica em `docs/exemplos/thumbfast.conf`.
+
+

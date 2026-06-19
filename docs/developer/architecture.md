@@ -1,4 +1,4 @@
-# Arquitetura do MPV.NET Media Player
+﻿# Arquitetura do MPV.NET Media Player
 
 ## Objetivo
 
@@ -269,7 +269,7 @@ O executável é `mpvnet.exe`. O projeto da aplicação define `win-x64` como ru
 
 ---
 
-# Áreas consideradas sensíveis
+# Áreas consideradas sensíveis
 
 ## Integração com libmpv
 
@@ -494,3 +494,4 @@ Pendencias restantes:
 6. Separar documentação validada de hipóteses ainda pendentes.
 7. Para mudanças em parsers, paths, playlist, título, logs, configuração ou políticas de MediaInfo, rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
 8. Para mudanças em UI/libmpv, além do build e dos testes automatizados, executar checklist manual com arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento.
+

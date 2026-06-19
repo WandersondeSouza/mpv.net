@@ -1,4 +1,4 @@
-# Agente: Mantenedor geral do MPV.NET Media Player
+﻿# Agente: Mantenedor geral do MPV.NET Media Player
 
 ## Missão
 
@@ -39,5 +39,6 @@ Plano de teste:
 ```
 
 Depois da execução, informar arquivos alterados e validação feita.
+
 
 

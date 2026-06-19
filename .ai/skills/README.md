@@ -1,4 +1,4 @@
-# Skills
+﻿# Skills
 
 ## Disponível
 
@@ -33,3 +33,4 @@ Para mudanças em parser, paths, playlist, título, logs, configuração, seleç
 - `docs/manual.md`;
 - `docs/guia-operacional.md`;
 - a documentação técnica da área tocada em `docs/developer/`.
+

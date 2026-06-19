@@ -1,4 +1,4 @@
-# Agente: Arquitetura e análise de código do MPV.NET Media Player
+﻿# Agente: Arquitetura e análise de código do MPV.NET Media Player
 
 ## Missão
 
@@ -46,5 +46,6 @@ Plano de teste:
 ```
 
 Depois da execução, informar arquivos alterados, validação feita e riscos remanescentes.
+
 
 

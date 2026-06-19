@@ -1,4 +1,4 @@
-# Agente: Configuração e atalhos do MPV.NET Media Player
+﻿# Agente: Configuração e atalhos do MPV.NET Media Player
 
 ## Missão
 
@@ -44,5 +44,6 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 - Testar `input.conf` padrão e customizado.
 - Testar menu de contexto quando `input.conf` contém sintaxe de menu.
 - Verificar e ampliar `src/MpvNet.Tests/Program.cs` quando tocar parser, paths, playlist, título, configuração, seleção de idioma ou MediaInfo; depois rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
+
 
 

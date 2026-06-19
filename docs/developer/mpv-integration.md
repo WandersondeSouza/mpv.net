@@ -1,4 +1,4 @@
-# Integração com mpv/libmpv
+﻿# Integração com mpv/libmpv
 
 ## Objetivo
 
@@ -158,3 +158,5 @@ Atalhos e comandos podem depender da integração com mpv.
 - logs estruturados;
 - diagnóstico avançado;
 - ferramentas de debug.
+
+

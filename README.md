@@ -1,4 +1,4 @@
-# MPV.NET Media Player
+﻿# MPV.NET Media Player
 
 Fork de manutenção do **MPV.NET Media Player** para Windows, baseado no mpv.net e focado em compatibilidade com mpv/libmpv, documentação objetiva e mudanças pequenas e verificadas.
 
@@ -50,10 +50,10 @@ O MPV.NET Media Player também está disponível na Microsoft Store:
 
 ![Reprodução de vídeo no MPV.NET Media Player](docs/img/player/Player02.png)
 
-## Doacao
+## Doação
 
 Se quiser apoiar o projeto, use este link:
 
 - Stripe: [https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00](https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00)
 
-Na tela "Sobre" do aplicativo, o link Stripe aparece acima da area do Pix.
+Na tela "Sobre" do aplicativo, o link Stripe aparece acima da área do Pix.

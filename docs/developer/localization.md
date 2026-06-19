@@ -1,4 +1,4 @@
-# Localização do MPV.NET Media Player
+﻿# Localização do MPV.NET Media Player
 
 ## Objetivo
 
@@ -226,3 +226,4 @@ A auditoria automatizada principal e:
 ```
 
 Ela compara todos os `lang/po/*.po` com `lang/source.pot`, rejeita `lang/po/en.po`, detecta chaves ausentes, extras, duplicadas e textos vazios. Placeholders devem permanecer iguais aos `msgid`; quando houver duvida, nao inventar traducao automaticamente. Marcar para revisao humana ou manter fallback seguro.
+

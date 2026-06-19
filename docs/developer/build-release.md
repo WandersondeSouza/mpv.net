@@ -1,4 +1,4 @@
-# Build e release do MPV.NET Media Player
+﻿# Build e release do MPV.NET Media Player
 
 ## Objetivo
 
@@ -488,5 +488,7 @@ Após compilar:
   publish.
 - Validar revisão manual completa de UI, fullscreen, menu, atalhos, temas e persistência.
 - Validar o workflow manual `.github/workflows/release-packages.yml`.
+
+
 
 

@@ -1,4 +1,4 @@
-# mpv.net Maintainer
+﻿# mpv.net Maintainer
 
 Guia curto para manter o fork sem quebrar compatibilidade com mpv/libmpv.
 
@@ -39,3 +39,5 @@ Mudança proposta:
 Riscos:
 Plano de teste:
 ```
+
+

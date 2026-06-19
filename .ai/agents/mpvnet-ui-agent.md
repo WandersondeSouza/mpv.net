@@ -1,4 +1,4 @@
-# Agente: UI Windows do MPV.NET Media Player
+﻿# Agente: UI Windows do MPV.NET Media Player
 
 ## Missão
 
@@ -48,5 +48,6 @@ Analisar e alterar interface Windows do MPV.NET Media Player preservando comport
 - Fechar o player e confirmar encerramento normal.
 - Alternar tema quando aplicável.
 - Testar foco do teclado e comandos básicos.
+
 
 

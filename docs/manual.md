@@ -1,19 +1,19 @@
 ﻿# Manual do MPV.NET Media Player
 
-O MPV.NET Media Player Ã© um player de mÃ­dia para Windows baseado no mpv/libmpv e no mpv.net.
+O MPV.NET Media Player é um player de mídia para Windows baseado no mpv/libmpv e no mpv.net.
 
 Este manual cobre apenas o que importa para o uso cotidiano do fork.
 
-## TÃ³picos
+## Tópicos
 
 - [Download](#download)
-- [InstalaÃ§Ã£o](#instalaÃ§Ã£o)
-- [ConfiguraÃ§Ã£o](#configuraÃ§Ã£o)
+- [Instalação](#instalação)
+- [Configuração](#configuração)
 - [Linha de comando](#linha-de-comando)
-- [Modo portÃ¡til](#modo-portÃ¡til)
-- [DocumentaÃ§Ã£o tÃ©cnica](#documentaÃ§Ã£o-tÃ©cnica)
+- [Modo portátil](#modo-portátil)
+- [Documentação técnica](#documentação-técnica)
 - [Suporte](#suporte)
-- [DiferenÃ§as em relaÃ§Ã£o ao mpv](#diferenÃ§as-em-relaÃ§Ã£o-ao-mpv)
+- [Diferenças em relação ao mpv](#diferenças-em-relação-ao-mpv)
 
 ## Download
 
@@ -21,35 +21,35 @@ Use as releases do fork em:
 
 `https://github.com/WandersondeSouza/mpv.net/releases`
 
-O aplicativo tambÃ©m estÃ¡ publicado na Microsoft Store:
+O aplicativo também está publicado na Microsoft Store:
 
 - Link profundo: `ms-windows-store://pdp/?productid=9N441SP6XHLD`
 - URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
 
-## InstalaÃ§Ã£o
+## Instalação
 
 - Windows 10 ou superior.
-- Runtime .NET Desktop compatÃ­vel com o projeto.
-- Para streaming, o player baixa e atualiza `yt-dlp.exe` no cache de componentes em `%LOCALAPPDATA%\mpv.net\Component`. Se quiser testar manualmente, tambÃ©m vale deixÃ¡-lo ao lado do executÃ¡vel ou no `PATH`.
+- Runtime .NET Desktop compatível com o projeto.
+- Para streaming, o player baixa e atualiza `yt-dlp.exe` no cache de componentes em `%LOCALAPPDATA%\mpv.net\Component`. Se quiser testar manualmente, também vale deixá-lo ao lado do executável ou no `PATH`.
 
-O instalador registra os formatos de mÃ­dia comuns e playlists IPTV suportados
+O instalador registra os formatos de mídia comuns e playlists IPTV suportados
 pelo fork e adiciona a pasta instalada ao `PATH` do Windows, permitindo executar
-`mpvnet.exe` pelo terminal apÃ³s abrir uma nova sessÃ£o. Imagens nÃ£o sÃ£o
-associadas automaticamente na instalaÃ§Ã£o; use `Config > Setup > Register image
-file associations` no menu de contexto se quiser associÃ¡-las manualmente. Ao
-desinstalar, o instalador remove tambÃ©m as associaÃ§Ãµes do mpv.net criadas
+`mpvnet.exe` pelo terminal após abrir uma nova sessão. Imagens não são
+associadas automaticamente na instalação; use `Config > Setup > Register image
+file associations` no menu de contexto se quiser associá-las manualmente. Ao
+desinstalar, o instalador remove também as associações do mpv.net criadas
 manualmente para imagens e remove a pasta instalada do `PATH`.
 
-As associaÃ§Ãµes automÃ¡ticas atuais incluem:
+As associações automáticas atuais incluem:
 
-- VÃ­deo: `.mp4`, `.m4v`, `.mkv`, `.webm`, `.avi`, `.mov`, `.qt`, `.wmv`, `.asf`, `.flv`, `.f4v`, `.mpg`, `.mpeg`, `.mpe`, `.m1v`, `.m2v`, `.vob`, `.ts`, `.mts`, `.m2ts`, `.3gp`, `.3g2`, `.ogv`, `.ogg`, `.rm`, `.rmvb`, `.divx`, `.xvid`, `.dv`, `.nut`, `.nsv`, `.264`, `.265`, `.avc`, `.avs`, `.dav`, `.h264`, `.h265`, `.hevc`, `.m2t`, `.mj2`, `.mpv`, `.vpy`, `.y4m`;
-- Ãudio: `.mp3`, `.wav`, `.flac`, `.m4a`, `.aac`, `.ogg`, `.opus`, `.wma`, `.alac`, `.aiff`, `.aif`, `.ape`, `.wv`, `.mka`, `.ac3`, `.dts`, `.eac3`, `.amr`, `.au`, `.mp2`, `.mpa`, `.mpc`, `.thd`, `.w64`, `.oga`, `.ogm`, `.dtshd`, `.dtshr`, `.dtsma`;
+- Vídeo: `.mp4`, `.m4v`, `.mkv`, `.webm`, `.avi`, `.mov`, `.qt`, `.wmv`, `.asf`, `.flv`, `.f4v`, `.mpg`, `.mpeg`, `.mpe`, `.m1v`, `.m2v`, `.vob`, `.ts`, `.mts`, `.m2ts`, `.3gp`, `.3g2`, `.ogv`, `.ogg`, `.rm`, `.rmvb`, `.divx`, `.xvid`, `.dv`, `.nut`, `.nsv`, `.264`, `.265`, `.avc`, `.avs`, `.dav`, `.h264`, `.h265`, `.hevc`, `.m2t`, `.mj2`, `.mpv`, `.vpy`, `.y4m`;
+- Áudio: `.mp3`, `.wav`, `.flac`, `.m4a`, `.aac`, `.ogg`, `.opus`, `.wma`, `.alac`, `.aiff`, `.aif`, `.ape`, `.wv`, `.mka`, `.ac3`, `.dts`, `.eac3`, `.amr`, `.au`, `.mp2`, `.mpa`, `.mpc`, `.thd`, `.w64`, `.oga`, `.ogm`, `.dtshd`, `.dtshr`, `.dtsma`;
 - Playlists: `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`, `.wpl`, `.cue`, `.jspf`;
 - Imagem, apenas quando associada manualmente pelo menu: `.avif`, `.bmp`, `.gif`, `.j2k`, `.jp2`, `.jpeg`, `.jpg`, `.jxl`, `.png`, `.svg`, `.tga`, `.tif`, `.tiff`, `.webp`.
 
-## ConfiguraÃ§Ã£o
+## Configuração
 
-O mpv.net lÃª a configuraÃ§Ã£o nesta ordem:
+O mpv.net lê a configuração nesta ordem:
 
 1. `MPVNET_HOME`
 2. `portable_config`
@@ -71,7 +71,7 @@ Idiomas:
 - legenda preferida: configure `slang` em `mpv.conf`;
 - legenda desligada: use `sid=no` ou selecione sem legenda na interface.
 
-Se `language` nÃ£o estiver definido, o mpv.net inicia no idioma do Windows quando houver mapeamento suportado; caso contrÃ¡rio, usa inglÃªs.
+Se `language` não estiver definido, o mpv.net inicia no idioma do Windows quando houver mapeamento suportado; caso contrário, usa inglês.
 
 O mpv.net normaliza codigos como `eng`, `por`, `pt_BR`, `es_MX` e nomes comuns
 de idioma, mas a selecao final de audio e legenda continua sendo feita pelo
@@ -162,9 +162,9 @@ mpvnet.exe "https://example.com/live/index.m3u8"
 mpvnet.exe "Canal IPTV" "https://example.com/live/index.m3u8"
 ```
 
-## Modo portÃ¡til
+## Modo portátil
 
-Crie `portable_config` ao lado de `mpvnet.exe` para manter as configuraÃ§Ãµes dentro da pasta do player.
+Crie `portable_config` ao lado de `mpvnet.exe` para manter as configurações dentro da pasta do player.
 
 ```text
 mpvnet.exe
@@ -177,16 +177,16 @@ portable_config/
 
 Veja [Guia operacional](guia-operacional.md) para o layout recomendado.
 
-## DocumentaÃ§Ã£o tÃ©cnica
+## Documentação técnica
 
-Se vocÃª for manter ou auditar o fork, os pontos de entrada mais Ãºteis sÃ£o:
+Se você for manter ou auditar o fork, os pontos de entrada mais úteis são:
 
 - [Arquitetura](developer/architecture.md)
-- [ConfiguraÃ§Ã£o](developer/configuration.md)
-- [IntegraÃ§Ã£o com mpv/libmpv](developer/mpv-integration.md)
+- [Configuração](developer/configuration.md)
+- [Integração com mpv/libmpv](developer/mpv-integration.md)
 - [Interface Windows](developer/windows-ui.md)
 - [Build e release](developer/build-release.md)
-- [LocalizaÃ§Ã£o](developer/localization.md)
+- [Localização](developer/localization.md)
 
 ## Suporte
 
@@ -197,7 +197,9 @@ Se vocÃª for manter ou auditar o fork, os pontos de entrada mais Ãºteis sÃ�
 - e-mail: `mailto:wanderson_souza@hotmail.com`
 - manual oficial do mpv: `https://mpv.io/manual/master/`
 
-## DiferenÃ§as em relaÃ§Ã£o ao mpv
+## Diferenças em relação ao mpv
 
-O mpv.net preserva a maior parte do comportamento do mpv e adiciona interface grÃ¡fica, menu de contexto, atalhos globais, editor de configuraÃ§Ã£o e integraÃ§Ã£o com o Windows.
+O mpv.net preserva a maior parte do comportamento do mpv e adiciona interface gráfica, menu de contexto, atalhos globais, editor de configuração e integração com o Windows.
+
+
 

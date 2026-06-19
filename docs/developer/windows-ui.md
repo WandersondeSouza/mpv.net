@@ -1,4 +1,4 @@
-# Interface Windows do MPV.NET Media Player
+﻿# Interface Windows do MPV.NET Media Player
 
 ## Objetivo
 
@@ -93,3 +93,5 @@ O projeto suporta:
 - testes automatizados de UI;
 - modo compacto;
 - perfis visuais.
+
+

@@ -1,4 +1,4 @@
-# Configuração do MPV.NET Media Player
+﻿# Configuração do MPV.NET Media Player
 
 ## Objetivo
 
@@ -295,3 +295,5 @@ A configuração é lida no startup. Evite leituras repetidas ou validações pe
 - Gerar documentação automática a partir de `App.ProcessProperty`, `Player.ProcessProperty` e comandos registrados.
 - Validar manualmente o ZIP portátil gerado com `portable_config`.
 - Documentar exemplos avançados de `theme.conf` e `global-input.conf`.
+
+

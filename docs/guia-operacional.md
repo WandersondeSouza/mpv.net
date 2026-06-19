@@ -1,4 +1,4 @@
-# Guia operacional do MPV.NET Media Player
+﻿# Guia operacional do MPV.NET Media Player
 
 Documento único para build, dependências nativas, scripts, modo portátil, contribuição, release e direção do fork.
 
@@ -346,5 +346,7 @@ pendencias reais.
 - Sempre que um script mudar, ajuste esta página primeiro.
 - Se um comando aqui deixar de funcionar, atualize o caminho completo e a descrição do uso.
 - Para mudanças amplas de arquitetura ou módulos, comece pela documentação técnica em `docs/developer/`.
+
+
 
 

@@ -1,6 +1,6 @@
----
+﻿---
 name: Relatar bug
-about: Informe um problema reproduzivel no mpv.net
+about: Informe um problema reproduzível no mpv.net
 title: "[Bug] "
 labels: bug
 assignees: ''
@@ -12,18 +12,18 @@ Descreva o problema de forma curta e objetiva.
 
 ## Ambiente
 
-- Versao do mpv.net:
-- Versao do Windows:
+- Versão do mpv.net:
+- Versão do Windows:
 - Tipo de instalacao: instalada ou portatil?
 - GPU/placa de video:
 
 ## Comparacao com mpv.exe
 
-O problema tambem acontece no `mpv.exe` original?
+O problema também acontece no `mpv.exe` original?
 
 - [ ] Sim
-- [ ] Nao
-- [ ] Nao testei
+- [ ] Não
+- [ ] Não testei
 
 Se testou, descreva o resultado.
 
@@ -56,3 +56,4 @@ Anexe logs, prints ou videos, se possivel.
 ## Observacoes adicionais
 
 Inclua qualquer detalhe que possa ajudar na reproducao.
+
