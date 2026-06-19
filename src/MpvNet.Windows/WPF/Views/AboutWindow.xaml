@@ -33,6 +33,14 @@
                 Foreground="{Binding Theme.Foreground}" />
 
             <TextBlock
+                TextAlignment="Center"
+                Margin="20,0,20,0"
+                Foreground="{Binding Theme.Foreground}">
+                <Run Text="{Binding RepositoryLabel, Mode=OneWay}" />
+                <Hyperlink Click="RepositoryLink_Click">WandersondeSouza/mpv.net</Hyperlink>
+            </TextBlock>
+
+            <TextBlock
                 Text="{Binding AboutDetails, Mode=OneWay}"
                 TextWrapping="Wrap"
                 TextAlignment="Center"
@@ -40,24 +48,34 @@
                 Margin="20,0,20,12"
                 Foreground="{Binding Theme.Foreground}" />
 
-            <TextBlock
-                Text="{Binding CodecGuideTip, Mode=OneWay}"
-                TextWrapping="Wrap"
-                TextAlignment="Center"
-                MaxWidth="720"
-                Margin="20,0,20,2"
-                Foreground="{Binding Theme.Foreground}" />
-
-            <TextBlock
-                TextAlignment="Center"
+            <Border
                 Margin="20,0,20,20"
-                Foreground="{Binding Theme.Foreground}">
-                <Run Text="{Binding CodecGuideLabel, Mode=OneWay}" />
-                <Hyperlink Click="CodecGuideLink_Click">codecguide.com</Hyperlink>
-            </TextBlock>
+                Padding="12"
+                CornerRadius="10"
+                MaxWidth="720"
+                BorderThickness="1"
+                BorderBrush="{Binding Theme.Foreground}"
+                Background="{Binding Theme.Background}">
+                <StackPanel>
+                    <TextBlock
+                        Text="{Binding CodecGuideTip, Mode=OneWay}"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center"
+                        Foreground="{Binding Theme.Foreground}" />
+
+                    <TextBlock
+                        TextAlignment="Center"
+                        Margin="0,4,0,0"
+                        Foreground="{Binding Theme.Foreground}">
+                        <Run Text="{Binding CodecGuideLabel, Mode=OneWay}" />
+                        <Hyperlink Click="CodecGuideLink_Click">codecguide.com</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
 
             <TextBlock
-                Text="{Binding DonationStripeTitle, Mode=OneWay}"
+                Text="{Binding DonationLinkTitle, Mode=OneWay}"
+                FontWeight="SemiBold"
                 TextWrapping="Wrap"
                 TextAlignment="Center"
                 MaxWidth="720"
@@ -66,10 +84,18 @@
 
             <TextBlock
                 TextAlignment="Center"
-                Margin="20,0,20,18"
+                Margin="20,0,20,8"
                 Foreground="{Binding Theme.Foreground}">
                 <Hyperlink Click="DonationStripeLink_Click">https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00</Hyperlink>
             </TextBlock>
+
+            <TextBlock
+                Text="{Binding DonationLinkDescription, Mode=OneWay}"
+                TextWrapping="Wrap"
+                TextAlignment="Center"
+                MaxWidth="720"
+                Margin="20,0,20,18"
+                Foreground="{Binding Theme.Foreground}" />
 
             <Border
                 Margin="20,0,20,20"

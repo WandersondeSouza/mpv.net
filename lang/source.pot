@@ -624,7 +624,11 @@ msgid "Codec Guide: "
 msgstr ""
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
-msgid "You can also donate via Stripe using the link below."
+msgid "Make a donation to help maintain the project."
+msgstr ""
+
+#: src/MpvNet/App.cs
+msgid "Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support."
 msgstr ""
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100

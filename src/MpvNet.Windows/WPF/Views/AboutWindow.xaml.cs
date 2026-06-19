@@ -22,6 +22,9 @@ public partial class AboutWindow
     void CodecGuideLink_Click(object sender, RoutedEventArgs e) =>
         ProcessHelp.ShellExecute("https://codecguide.com/");
 
+    void RepositoryLink_Click(object sender, RoutedEventArgs e) =>
+        ProcessHelp.ShellExecute("https://github.com/WandersondeSouza/mpv.net");
+
     void DonationStripeLink_Click(object sender, RoutedEventArgs e) =>
         ProcessHelp.ShellExecute("https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00");
 
