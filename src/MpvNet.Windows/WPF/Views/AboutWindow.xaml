@@ -56,6 +56,21 @@
                 <Hyperlink Click="CodecGuideLink_Click">codecguide.com</Hyperlink>
             </TextBlock>
 
+            <TextBlock
+                Text="{Binding DonationStripeTitle, Mode=OneWay}"
+                TextWrapping="Wrap"
+                TextAlignment="Center"
+                MaxWidth="720"
+                Margin="20,0,20,8"
+                Foreground="{Binding Theme.Foreground}" />
+
+            <TextBlock
+                TextAlignment="Center"
+                Margin="20,0,20,18"
+                Foreground="{Binding Theme.Foreground}">
+                <Hyperlink Click="DonationStripeLink_Click">https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00</Hyperlink>
+            </TextBlock>
+
             <Border
                 Margin="20,0,20,20"
                 Padding="16"

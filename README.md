@@ -50,3 +50,10 @@ O MPV.NET Media Player também está disponível na Microsoft Store:
 
 ![Reprodução de vídeo no MPV.NET Media Player](docs/img/player/Player02.png)
 
+## Doacao
+
+Se quiser apoiar o projeto, use este link:
+
+- Stripe: [https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00](https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00)
+
+Na tela "Sobre" do aplicativo, o link Stripe aparece acima da area do Pix.

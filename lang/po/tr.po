@@ -635,6 +635,10 @@ msgid "Codec Guide: "
 msgstr "Codec Guide: "
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
+msgid "You can also donate via Stripe using the link below."
+msgstr "Aşağıdaki bağlantıyı kullanarak Stripe üzerinden de bağış yapabilirsiniz."
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
 msgid "If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below."
 msgstr "Pix ile bağış yapmak isterseniz yanındaki QR kodu kullanın veya aşağıdaki anahtarı kopyalayıp yapıştırın."
 

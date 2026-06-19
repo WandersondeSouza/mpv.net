@@ -623,6 +623,10 @@ msgstr "Съвет: инсталирането на Codec Guide може да п
 msgid "Codec Guide: "
 msgstr "Codec Guide: "
 
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
+msgid "You can also donate via Stripe using the link below."
+msgstr "Можете също да дарите чрез Stripe, като използвате връзката по-долу."
+
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
 msgid "If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below."
 msgstr "Ако искате да дарите чрез Pix, използвайте QR кода до него или копирайте и поставете ключа по-долу."

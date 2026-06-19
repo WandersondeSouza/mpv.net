@@ -13,6 +13,7 @@ public partial class AboutViewModel : ViewModelBase
     public string AboutDetails { get; } = string.Join('\n', AppClass.About.Split('\n').Skip(1).Where(i => i != AppClass.CodecGuideTip));
     public string CodecGuideTip { get; } = AppClass.CodecGuideTip;
     public string CodecGuideLabel { get; } = _("Codec Guide: ");
+    public string DonationStripeTitle { get; } = AppClass.DonationStripeTitle;
     public string DonationTitle { get; } = AppClass.DonationTitle;
     public string DonationCopyPaste { get; } = AppClass.DonationCopyPaste;
     public string DonationCopied { get; } = AppClass.DonationCopied;

@@ -104,11 +104,12 @@ public class AppClass
         $"{GetLastWriteTime(RuntimeComponents.ResolveComponentPath("MediaInfo.dll"))}" + "\n" + "GPL v2 License";
 
     public static string CodecGuideTip => _("Tip: installing Codec Guide can improve codec support and playback.");
+    public static string DonationStripeTitle => _("You can also donate via Stripe using the link below.");
     public static string DonationTitle => _("If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below.");
     public static string DonationCopyPaste => _("Pix copy and paste:");
     public static string DonationCopied => _("Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer.");
     public static string GitHubSponsorsUrl => "https://github.com/sponsors/stax76";
-    public static string StripeDonationUrl => Environment.GetEnvironmentVariable("MPVNET_STRIPE_DONATION_URL")?.Trim() ?? "";
+    public static string StripeDonationUrl => "https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00";
 
     static string GetLastWriteTime(string path) => $" ({File.GetLastWriteTime(path).ToShortDateString()})";
 

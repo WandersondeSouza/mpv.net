@@ -22,6 +22,9 @@ public partial class AboutWindow
     void CodecGuideLink_Click(object sender, RoutedEventArgs e) =>
         ProcessHelp.ShellExecute("https://codecguide.com/");
 
+    void DonationStripeLink_Click(object sender, RoutedEventArgs e) =>
+        ProcessHelp.ShellExecute("https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00");
+
     void DonationPixKey_Click(object sender, RoutedEventArgs e)
     {
         if (DataContext is not AboutViewModel vm)
