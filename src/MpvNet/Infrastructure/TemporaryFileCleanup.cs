@@ -5,7 +5,7 @@ internal static class TemporaryFileCleanup
     internal static readonly TimeSpan Retention = TimeSpan.FromDays(3);
 
     public static string DefaultRootFolder =>
-        Path.Combine(Folder.LocalAppData, "mpv.net");
+        Path.Combine(AppPaths.LocalAppData, "mpv.net");
 
     public static string DefaultCacheFolder =>
         Path.Combine(DefaultRootFolder, "Cache");

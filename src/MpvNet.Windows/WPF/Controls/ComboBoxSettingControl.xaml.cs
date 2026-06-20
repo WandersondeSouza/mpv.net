@@ -70,7 +70,7 @@ public partial class ComboBoxSettingControl : UserControl, ISettingControl
         if (OptionSetting.Name == "language")
         {
             App.Language = OptionSetting.Value ?? "";
-            Translator.Current?.Gettext("");
+            TranslationProvider.Current?.Gettext("");
             MainForm.Instance?.RebuildContextMenu();
         }
     }

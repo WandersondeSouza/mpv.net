@@ -103,7 +103,7 @@ public static class TitleHelp
         return title[..MaxMediaTitleLength].Trim();
     }
 
-    static string GetDefaultMediaTitle() => Translator.Current?.Gettext(DefaultMediaTitle) ?? DefaultMediaTitle;
+    static string GetDefaultMediaTitle() => TranslationProvider.Current?.Gettext(DefaultMediaTitle) ?? DefaultMediaTitle;
 
     static string FormatWord(string word)
     {

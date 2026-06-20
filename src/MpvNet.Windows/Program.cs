@@ -20,7 +20,7 @@ static class Program
         {
             Log.Info("Application starting.");
             RegistryHelp.ProductName = AppInfo.Product;
-            Translator.Current = new WpfTranslator();
+            TranslationProvider.Current = new WpfTranslator();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

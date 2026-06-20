@@ -42,13 +42,13 @@ public class AppClass
     public float MinimumAspectRatio { get; set; }
     public float MinimumAspectRatioAudio { get; set; }
 
-    readonly ExtensionLoader _extensionManager = new ExtensionLoader();
+    readonly ExtensionService _extensionService = new();
 
     AppSettings? _settings;
 
     public AppClass()
     {
-        _extensionManager.UnhandledException += ex =>
+        _extensionService.UnhandledException += ex =>
         {
             Log.Error(ex, "Extension failed with an unhandled exception.");
             Terminal.WriteError(ex);
@@ -56,11 +56,11 @@ public class AppClass
 
         StrongReferenceMessenger.Default.Register<MainWindowIsLoadedMessage>(this, (r, msg) =>
         {
-            TaskHelp.Run(() => _extensionManager.LoadFolder(Player.ConfigFolder + "extensions"));
+            TaskHelp.Run(() => _extensionService.LoadFolder(Player.ConfigFolder + "extensions"));
         });
     }
 
-    public AppSettings Settings => _settings ??= SettingsManager.Load();
+    public AppSettings Settings => _settings ??= SettingsStore.Load();
 
     public void Init()
     {
@@ -116,7 +116,7 @@ public class AppClass
 
     void EnsureInitialMpvConf()
     {
-        string appDataConfigFolder = (Folder.AppData + "mpv.net").Separator();
+        string appDataConfigFolder = (AppPaths.AppData + "mpv.net").Separator();
 
         if (!StringComparer.OrdinalIgnoreCase.Equals(Player.ConfigFolder, appDataConfigFolder))
             return;
@@ -214,7 +214,7 @@ public class AppClass
         Settings.Volume = Player.GetPropertyInt("volume");
         Settings.Mute = Player.GetPropertyString("mute");
 
-        SettingsManager.Save(Settings);
+        SettingsStore.Save(Settings);
 
         foreach (string file in TempFiles)
             FileHelp.Delete(file);

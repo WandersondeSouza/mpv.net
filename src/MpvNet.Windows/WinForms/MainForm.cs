@@ -376,7 +376,7 @@ public partial class MainForm : Form
             return;
 
         App.Language = language;
-        Translator.Current?.Gettext("");
+        TranslationProvider.Current?.Gettext("");
         Player.SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
         App.EnsureInitialSelectMenuConf();
         RebuildContextMenu();

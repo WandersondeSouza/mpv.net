@@ -23,7 +23,7 @@ public class AppSettings
     public string StartupFolder = "";
 }
 
-class SettingsManager
+internal static class SettingsStore
 {
     public static string SettingsFile => Player.ConfigFolder + "settings.xml";
 
@@ -53,7 +53,7 @@ class SettingsManager
         }
     }
 
-    public static void Save(object obj)
+    public static void Save(AppSettings settings)
     {
         Directory.CreateDirectory(Path.GetDirectoryName(SettingsFile)!);
         string tempFile = SettingsFile + "." + Guid.NewGuid().ToString("N") + ".tmp";
@@ -64,8 +64,8 @@ class SettingsManager
             {
                 writer.Formatting = Formatting.Indented;
                 writer.Indentation = 4;
-                XmlSerializer serializer = new XmlSerializer(obj.GetType());
-                serializer.Serialize(writer, obj);
+                XmlSerializer serializer = new XmlSerializer(typeof(AppSettings));
+                serializer.Serialize(writer, settings);
             }
 
             File.Move(tempFile, SettingsFile, true);

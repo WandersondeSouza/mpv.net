@@ -5,7 +5,10 @@ using MpvNet.Extensions;
 
 namespace MpvNet;
 
-public class ExtensionLoader
+/// <summary>
+/// Discovers and loads managed MPV.NET extensions from configuration folders.
+/// </summary>
+public class ExtensionService
 {
     public event Action<Exception>? UnhandledException;
 
@@ -28,18 +31,29 @@ public class ExtensionLoader
         }
     }
 
-    public void LoadFolder(string path)
+    public void LoadFolder(string folderPath)
     {
-        if (Directory.Exists(path))
+        if (Directory.Exists(folderPath))
         {
-            foreach (string dir in Directory.GetDirectories(path))
+            foreach (string directory in Directory.GetDirectories(folderPath))
             {
-                LoadDll(dir.Separator() + Path.GetFileName(dir) + ".dll");
+                LoadDll(directory.Separator() + Path.GetFileName(directory) + ".dll");
             }
         }
     }
 }
 
+/// <summary>
+/// Compatibility facade for the former extension service name.
+/// </summary>
+[Obsolete($"Use {nameof(ExtensionService)} instead.")]
+public class ExtensionLoader : ExtensionService
+{
+}
+
+/// <summary>
+/// Marker contract implemented by managed MPV.NET extensions.
+/// </summary>
 public interface IExtension
 {
 }

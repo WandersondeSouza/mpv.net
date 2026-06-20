@@ -24,7 +24,7 @@ public class WpfApplication
             Terminal.WriteError(e.Exception);
         };
 
-        Translator.Current?.Gettext("");
+        TranslationProvider.Current?.Gettext("");
 
         var resourcesSource = "mpvnet;component/WPF/Resources.xaml";
         if (!Application.Current.Resources.MergedDictionaries.Any(rd => rd.Source?.OriginalString == resourcesSource))

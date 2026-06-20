@@ -433,14 +433,14 @@ public class GuiCommand
     {
         string path = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.User)!;
 
-        if (path.Contains(Folder.Startup.TrimEnd(Path.DirectorySeparatorChar), StringComparison.CurrentCultureIgnoreCase))
+        if (path.Contains(AppPaths.Startup.TrimEnd(Path.DirectorySeparatorChar), StringComparison.CurrentCultureIgnoreCase))
         {
             Msg.ShowWarning(_("mpv.net is already in the Path environment variable."));
             return;
         }
 
         Environment.SetEnvironmentVariable("Path",
-            Folder.Startup.TrimEnd(Path.DirectorySeparatorChar) + ";" + path,
+            AppPaths.Startup.TrimEnd(Path.DirectorySeparatorChar) + ";" + path,
             EnvironmentVariableTarget.User);
 
         Msg.ShowInfo(_("mpv.net was successfully added to the Path environment variable."));
@@ -450,13 +450,13 @@ public class GuiCommand
     {
         string path = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.User)!;
 
-        if (!path.Contains(Folder.Startup.TrimEnd(Path.DirectorySeparatorChar)))
+        if (!path.Contains(AppPaths.Startup.TrimEnd(Path.DirectorySeparatorChar)))
         {
             Msg.ShowWarning(_("mpv.net was not found in the Path environment variable."));
             return;
         }
 
-        path = path.Replace(Folder.Startup.TrimEnd(Path.DirectorySeparatorChar), "");
+        path = path.Replace(AppPaths.Startup.TrimEnd(Path.DirectorySeparatorChar), "");
         path = path.Replace(";;", ";").Trim(';');
 
         Environment.SetEnvironmentVariable("Path", path, EnvironmentVariableTarget.User);

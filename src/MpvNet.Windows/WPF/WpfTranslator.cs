@@ -31,7 +31,7 @@ public class WpfTranslator : ITranslator
 
         if (Translation.Localizer == null)
         {
-            CompositionRoot.Compose("mpvnet", culture, Folder.Startup + "Locale");
+            CompositionRoot.Compose("mpvnet", culture, AppPaths.Startup + "Locale");
             _localizerLangauge = App.Language;
             return;
         }

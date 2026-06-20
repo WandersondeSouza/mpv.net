@@ -10,7 +10,7 @@ using MpvNet;
 using MpvNet.Help;
 using MpvNet.Native;
 
-Translator.Current = new TestTranslator();
+TranslationProvider.Current = new TestTranslator();
 
 string tempMediaFile = Path.Combine(Path.GetTempPath(), "mpvnet-tests-empty-media.mkv");
 File.WriteAllText(tempMediaFile, "");
@@ -270,7 +270,7 @@ string blockedLogPath = Path.Combine(tempLogDir, "blocked");
 File.WriteAllText(blockedLogPath, "");
 var blockedLogWriter = new FileLogWriter(blockedLogPath, () => fixedLogDate);
 bool blockedWriteDidNotThrow = true;
-string expectedLocalAppDataRoot = Path.Combine(Folder.LocalAppData, "mpv.net");
+string expectedLocalAppDataRoot = Path.Combine(AppPaths.LocalAppData, "mpv.net");
 string defaultCacheFolder = new MainPlayer().CacheFolder;
 string defaultTempFolder = Global.App.TempFolder;
 

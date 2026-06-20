@@ -62,6 +62,19 @@ devem ser criados apenas quando houver uma extração concreta. Sufixos como
 `Service`, `Store`, `Provider`, `Resolver`, `Parser` e `Client` descrevem uma
 responsabilidade real; não são aplicados mecanicamente a modelos.
 
+Contratos de nomenclatura consolidados:
+
+- `AppPaths` é o provedor de diretórios; `Folder` permanece como fachada
+  obsoleta para compatibilidade;
+- `TranslationProvider` mantém o tradutor ativo; `Translator` permanece como
+  fachada obsoleta;
+- `ExtensionService` carrega extensões gerenciadas; `ExtensionLoader` permanece
+  como adaptador obsoleto;
+- `SettingsStore` representa a persistência interna de `settings.xml`;
+- `NamedValue` é o modelo descritivo para pares nome/valor. `StringPair`
+  permanece suportado nos contratos públicos existentes para evitar quebra de
+  extensões e chamadas que usam `List<StringPair>`.
+
 ## `MpvNet.Windows`
 
 Frontend Windows:

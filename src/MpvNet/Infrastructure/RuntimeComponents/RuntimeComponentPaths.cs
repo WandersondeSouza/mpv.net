@@ -3,7 +3,7 @@ namespace MpvNet;
 internal static class RuntimeComponentPaths
 {
     public static string ComponentsFolder { get; } =
-        Path.Combine(Folder.LocalAppData, "mpv.net", "Component");
+        Path.Combine(AppPaths.LocalAppData, "mpv.net", "Component");
 
     public static string TempFolder { get; } =
         Path.Combine(TemporaryFileCleanup.DefaultTempFolder, "RuntimeComponents");
@@ -27,7 +27,7 @@ internal static class RuntimeComponentPathResolver
             return componentPath;
         }
 
-        string startupPath = Path.Combine(Folder.Startup, fileName);
+        string startupPath = Path.Combine(AppPaths.Startup, fileName);
         if (File.Exists(startupPath))
         {
             Log.Info($"Resolved runtime component from startup folder. file='{fileName}', path='{Log.SafeValue(startupPath)}'");
