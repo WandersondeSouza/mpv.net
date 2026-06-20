@@ -30,7 +30,7 @@ Antes de editar código ou documentação:
 3. ler `docs/manual.md`;
 4. ler `docs/CONFIGURACAO.md` ou a documentação da área tocada;
 5. ler `docs/guia-operacional.md` quando a tarefa envolver build, release, scripts ou manutenção geral;
-6. ler `docs/proximos-trabalhos.md` quando a tarefa envolver planejamento ou priorização;
+6. ler o `Roadmap` em `docs/guia-operacional.md` e as pendências da documentação técnica da área quando a tarefa envolver planejamento ou priorização;
 7. ler `docs/developer/architecture.md` quando a tarefa envolver análise ampla ou refatoração;
 8. ler `docs/developer/configuration.md`, `docs/developer/mpv-integration.md`, `docs/developer/windows-ui.md`, `docs/developer/build-release.md` e `docs/developer/localization.md` conforme a área tocada;
 9. usar o arquivo de `skills/`, `agents/` e `prompts/` que melhor corresponda ao tipo de trabalho.

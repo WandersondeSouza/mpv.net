@@ -255,7 +255,7 @@ e `-SkipGitHubRelease -EnableFileLogging`.
 Para definir uma versao manualmente antes de uma release, use:
 
 ```powershell
-.\src\Tools\set-release-version.ps1 -Version 7.1.3.15
+.\src\Tools\set-release-version.ps1 -Version 7.1.4.1
 ```
 
 Antes de publicar no GitHub, passe a descricao da release diretamente ao script
@@ -266,7 +266,7 @@ O pacote Microsoft Store nao deve incrementar revisao automaticamente. A mesma
 versao publica deve valer para ZIP, instalador e executavel; no MSIX enviado a
 Store, o `Identity Version` usa a mesma versao com revisao zero, porque a
 Microsoft Store rejeita pacotes com quarto componente diferente de zero. Exemplo:
-release `7.1.3.15` usa manifesto `7.1.3.0`.
+release `7.1.4.1` usa manifesto `7.1.4.0`.
 
 Para tambem gerar o instalador no workflow:
 
@@ -330,9 +330,13 @@ Fluxo recomendado:
 
 Pontos ainda abertos ou reservados:
 
-- validar instalador, ZIP portátil e release do GitHub;
-- validar UI, fullscreen, menu, atalhos e persistência de configuração;
-- validar caminhos longos, `input.conf` e `thumbfast`;
+- concluir a revisão manual do pacote publicado em tema claro/escuro, DPI,
+  fullscreen, menu, atalhos, persistência e fechamento;
+- validar em máquina de uso final arquivo local, URL/stream, playlist, pasta
+  com mídia, drag/drop e alternância de áudio/legenda;
+- validar caminhos longos, migração de `input.conf` e integração com
+  `thumbfast`;
+- validar o pacote MSIX/WAP assinado antes do próximo envio à Microsoft Store;
 - evitar mudanças grandes sem bug ou necessidade clara;
 - manter a documentação alinhada ao que foi consolidado aqui.
 
