@@ -16,7 +16,7 @@ Arquivos e responsabilidades:
 - `tools/localization/checks/*.py`: utilitarios de leitura para detectar duplicatas e inconsistencias.
 - `tools/localization/cleanup/*.py`: utilitarios que limpam ou reescrevem arquivos de traducao.
 - `tools/localization/reference/msgattrib_help.txt`: referencia textual do `msgattrib` usada na manutencao do gettext.
-- `src/MpvNet/LanguageCatalog.cs`: centraliza catalogo de idiomas, normalizacao, fallback e selecao auxiliar de idiomas de midia.
+- `src/MpvNet/Services/LanguageCatalog.cs`: centraliza catalogo de idiomas, normalizacao, fallback e selecao auxiliar de idiomas de midia.
 - `src/MpvNet.Windows/WPF/WpfTranslator.cs`: aplica o idioma de interface resolvido pelo servico central em uma `CultureInfo`.
 - `src/MpvNet.Windows/Resources/editor_conf.txt`: lista os valores aceitos pelo editor de configuracao para a opcao `language`.
 - `src/Tools/build-release-package.ps1`: gera ou reaproveita a pasta `Locale` durante o fluxo de release.
@@ -64,7 +64,7 @@ Quando `alang` esta definido, a interface usa o primeiro idioma suportado dessa 
 
 ## Arquitetura central de idiomas
 
-O codigo de idioma fica centralizado em `src/MpvNet/LanguageCatalog.cs`:
+O codigo de idioma fica centralizado em `src/MpvNet/Services/LanguageCatalog.cs`:
 
 - `LanguageNormalizer`: normaliza codigos ISO 639-1, ISO 639-2, nomes comuns e valores BCP 47 para um formato interno consistente, como `pt-BR`, `es-MX`, `zh-CN` e `sr-Cyrl`.
 - `LanguageFallbackResolver`: gera a ordem de fallback reutilizavel para interface, audio e legenda.
@@ -147,7 +147,7 @@ option = portuguese-brazil
 
 O nome deve seguir o estilo dos valores existentes, como `chinese-china`, `portuguese-brazil` e `portuguese-portugal`.
 
-5. Adicionar o idioma em `src/MpvNet/LanguageCatalog.cs`:
+5. Adicionar o idioma em `src/MpvNet/Services/LanguageCatalog.cs`:
 
 ```csharp
 new("portuguese-brazil", "pt-BR", "pt_BR", true, "por-br", "pt-br", "pt_br", "brazilian portuguese", "português do brasil"),

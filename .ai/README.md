@@ -17,7 +17,7 @@ Atualize documentação técnica apenas quando houver mudança consolidada; pref
 Após a refatoração validada, a topologia principal do código usa partials por responsabilidade:
 
 - `src/MpvNet.Windows/WinForms/MainForm.*.cs` para UI Windows por tema;
-- `src/MpvNet/Player.*.cs` para player/libmpv por tema.
+- `src/MpvNet/Integration/Mpv/Player.*.cs` para player/libmpv por tema.
 
 Consulte `docs/developer/architecture.md`, `docs/developer/windows-ui.md` e `docs/developer/mpv-integration.md` para o mapa consolidado antes de alterar essas áreas.
 

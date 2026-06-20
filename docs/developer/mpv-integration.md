@@ -31,8 +31,8 @@ A integração com libmpv é considerada uma das áreas mais críticas do projet
 Arquivos principais:
 
 - `src/MpvNet/Native/LibMpv.cs` - P/Invoke para `libmpv-2.dll`;
-- `src/MpvNet/MpvClient.cs` - wrapper de cliente, comandos, propriedades e eventos;
-- `src/MpvNet/Player.cs` - estado principal do player;
+- `src/MpvNet/Integration/Mpv/MpvClient.cs` - wrapper de cliente, comandos, propriedades e eventos;
+- `src/MpvNet/Integration/Mpv/Player.cs` - estado principal do player;
 - `src/MpvNet/Player.Initialization.cs` - inicialização e configuração inicial do mpv/libmpv;
 - `src/MpvNet/Player.ObservedProperties.cs` - propriedades observadas;
 - `src/MpvNet/Player.Events.cs` - eventos vindos do mpv;

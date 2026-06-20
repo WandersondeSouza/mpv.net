@@ -15,13 +15,13 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 
 ## Arquivos críticos
 
-- `src/MpvNet/Player.cs`;
-- `src/MpvNet/Player.*.cs`;
-- `src/MpvNet/MpvClient.cs`;
+- `src/MpvNet/Integration/Mpv/Player.cs`;
+- `src/MpvNet/Integration/Mpv/Player.*.cs`;
+- `src/MpvNet/Integration/Mpv/MpvClient.cs`;
 - `src/MpvNet/Native/LibMpv.cs`;
 - `src/MpvNet/Command.cs`;
-- `src/MpvNet/CommandLine.cs`;
-- `src/MpvNet/InputConf.cs`.
+- `src/MpvNet/Configuration/CommandLine.cs`;
+- `src/MpvNet/Configuration/InputConf.cs`.
 
 ## Regras
 

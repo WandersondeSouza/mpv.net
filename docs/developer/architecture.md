@@ -93,15 +93,15 @@ Arquivos centrais para entender o fluxo sem abrir vários documentos:
 - `src/MpvNet/App.cs` - inicialização, configuração e opções do frontend;
 - `src/MpvNet.Windows/WinForms/MainForm.cs` - estado principal da janela WinForms;
 - `src/MpvNet.Windows/WinForms/MainForm.*.cs` - responsabilidades separadas da janela principal por tema;
-- `src/MpvNet/Player.cs` - estado principal do player;
-- `src/MpvNet/Player.*.cs` - inicialização, eventos, ciclo de vida, carregamento de mídia e capacidades do player;
-- `src/MpvNet/MpvClient.cs` - wrapper de cliente e loop de eventos;
+- `src/MpvNet/Integration/Mpv/Player.cs` - estado principal do player;
+- `src/MpvNet/Integration/Mpv/Player.*.cs` - inicialização, eventos, ciclo de vida, carregamento de mídia e capacidades do player;
+- `src/MpvNet/Integration/Mpv/MpvClient.cs` - wrapper de cliente e loop de eventos;
 - `src/MpvNet/Native/LibMpv.cs` - P/Invoke e estruturas nativas;
-- `src/MpvNet/InputConf.cs` - leitura e migração do `input.conf`;
-- `src/MpvNet/Settings.cs` - persistência de estado do frontend;
-- `src/MpvNet/CommandLine.cs` - argumentos de linha de comando;
+- `src/MpvNet/Configuration/InputConf.cs` - leitura e migração do `input.conf`;
+- `src/MpvNet/Configuration/Settings.cs` - persistência de estado do frontend;
+- `src/MpvNet/Configuration/CommandLine.cs` - argumentos de linha de comando;
 - `src/MpvNet.Windows/UI/Theme.cs` e `src/MpvNet.Windows/UI/GlobalHotkey.cs` - tema e hotkeys globais;
-- `src/MpvNet.Windows/GuiCommand.cs` e `src/MpvNet/Command.cs` - comandos da UI e comandos internos.
+- `src/MpvNet.Windows/Commands/GuiCommand.cs` e `src/MpvNet/Command.cs` - comandos da UI e comandos internos.
 
 ---
 
@@ -125,7 +125,7 @@ Fluxo:
 Arquivos relacionados:
 
 - `src/MpvNet/App.cs`;
-- `src/MpvNet/CommandLine.cs`;
+- `src/MpvNet/Configuration/CommandLine.cs`;
 - `src/MpvNet.Windows/WinForms/MainForm.cs`;
 - `src/MpvNet.Windows/UI/Theme.cs`.
 
@@ -145,8 +145,8 @@ Fluxo resumido adicional:
 
 Arquivos principais:
 
-- `src/MpvNet/Player.cs`;
-- `src/MpvNet/MpvClient.cs`;
+- `src/MpvNet/Integration/Mpv/Player.cs`;
+- `src/MpvNet/Integration/Mpv/MpvClient.cs`;
 - `src/MpvNet/Native/LibMpv.cs`.
 
 Responsabilidades:
@@ -205,10 +205,10 @@ Topologia atual da janela principal:
 
 Arquivos:
 
-- `src/MpvNet/Player.cs`;
+- `src/MpvNet/Integration/Mpv/Player.cs`;
 - `src/MpvNet/App.cs`;
-- `src/MpvNet/Settings.cs`;
-- `src/MpvNet/InputConf.cs`;
+- `src/MpvNet/Configuration/Settings.cs`;
+- `src/MpvNet/Configuration/InputConf.cs`;
 - `src/MpvNet.Windows/UI/Theme.cs`;
 - `src/MpvNet.Windows/UI/GlobalHotkey.cs`.
 
@@ -234,10 +234,10 @@ Arquivos:
 Arquivos:
 
 - `src/MpvNet/Command.cs`;
-- `src/MpvNet.Windows/GuiCommand.cs`;
-- `src/MpvNet/InputHelp.cs`;
-- `src/MpvNet/InputConf.cs`;
-- `src/MpvNet/CommandLine.cs`.
+- `src/MpvNet.Windows/Commands/GuiCommand.cs`;
+- `src/MpvNet/Utilities/InputHelp.cs`;
+- `src/MpvNet/Configuration/InputConf.cs`;
+- `src/MpvNet/Configuration/CommandLine.cs`.
 
 O projeto aceita comandos mpv diretamente e adiciona comandos próprios, normalmente chamados por:
 
@@ -416,7 +416,7 @@ pequenas, verificáveis e compatíveis com mpv/libmpv.
 - Preservar `mpvnet.exe`, `%APPDATA%\mpv.net`, `MPVNET_HOME`,
   `portable_config`, `mpv.conf`, `mpvnet.conf` e `input.conf` como contratos de
   compatibilidade.
-- Manter `src/MpvNet/Player.cs` como estado principal do player e mover apenas
+- Manter `src/MpvNet/Integration/Mpv/Player.cs` como estado principal do player e mover apenas
   responsabilidades bem delimitadas para partials ou classes auxiliares já
   justificadas por testes.
 - Manter `src/MpvNet.Windows/WinForms/MainForm.cs` como estado principal da

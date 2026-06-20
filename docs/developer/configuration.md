@@ -12,10 +12,10 @@ O mpv.net mantém compatibilidade com o modelo do mpv: arquivos de texto simples
 
 O núcleo da resolução de configuração está em:
 
-- `src/MpvNet/Player.cs`;
+- `src/MpvNet/Integration/Mpv/Player.cs`;
 - `src/MpvNet/App.cs`;
-- `src/MpvNet/InputConf.cs`;
-- `src/MpvNet/Settings.cs`;
+- `src/MpvNet/Configuration/InputConf.cs`;
+- `src/MpvNet/Configuration/Settings.cs`;
 - `src/MpvNet.Windows/UI/Theme.cs`;
 - `src/MpvNet.Windows/UI/GlobalHotkey.cs`.
 
@@ -158,11 +158,11 @@ Responsável por atalhos, comandos e menu.
 
 Arquivos envolvidos:
 
-- `src/MpvNet/InputConf.cs`;
-- `src/MpvNet/InputHelp.cs`;
+- `src/MpvNet/Configuration/InputConf.cs`;
+- `src/MpvNet/Utilities/InputHelp.cs`;
 - `src/MpvNet/Binding.cs`;
 - `src/MpvNet/Command.cs`;
-- `src/MpvNet.Windows/GuiCommand.cs`.
+- `src/MpvNet.Windows/Commands/GuiCommand.cs`.
 
 Comportamento importante:
 

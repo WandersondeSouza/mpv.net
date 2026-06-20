@@ -23,7 +23,7 @@ Analisar e alterar interface Windows do MPV.NET Media Player preservando comport
 - `src/MpvNet.Windows/WPF/`;
 - `src/MpvNet.Windows/UI/`;
 - `src/MpvNet.Windows/Native/`;
-- `src/MpvNet.Windows/GuiCommand.cs`.
+- `src/MpvNet.Windows/Commands/GuiCommand.cs`.
 
 ## Regras
 
