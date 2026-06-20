@@ -14,13 +14,27 @@ internal static class RuntimeComponentService
         Log.Info($"Starting runtime component bootstrap. folder='{Log.SafeValue(RuntimeComponentPaths.ComponentsFolder)}', count={definitions.Count}");
         Directory.CreateDirectory(RuntimeComponentPaths.ComponentsFolder);
         CleanupTempFolder();
-        var stagedBundles = new Dictionary<string, StagedRuntimeComponent>(StringComparer.OrdinalIgnoreCase);
 
-        foreach (RuntimeComponentDefinition definition in definitions)
+        foreach (IGrouping<string, RuntimeComponentDefinition> bundle in definitions
+                     .Where(item => item.Kind == RuntimeComponentDownloadKind.GitHubZip)
+                     .GroupBy(item => $"{item.ReleaseApiUrl}|{item.AssetPattern}", StringComparer.OrdinalIgnoreCase))
         {
             try
             {
-                await EnsureComponentAsync(definition, stagedBundles, cancellationToken).ConfigureAwait(false);
+                await EnsureBundleAsync(bundle.ToArray(), cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "FFmpeg bundle update failed; continuing with the next component.");
+            }
+        }
+
+        foreach (RuntimeComponentDefinition definition in definitions.Where(
+                     item => item.Kind != RuntimeComponentDownloadKind.GitHubZip))
+        {
+            try
+            {
+                await EnsureComponentAsync(definition, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -28,15 +42,67 @@ internal static class RuntimeComponentService
             }
         }
 
-        foreach (string path in stagedBundles.Values.Select(item => item.Path).Distinct(StringComparer.OrdinalIgnoreCase))
-            RuntimeComponentFileSystem.DeleteIfExists(path);
-
         Log.Info("Runtime component bootstrap finished.");
+    }
+
+    static async Task EnsureBundleAsync(
+        IReadOnlyList<RuntimeComponentDefinition> definitions,
+        CancellationToken cancellationToken)
+    {
+        RuntimeComponentDefinition primary = definitions[0];
+        string metadataPath = RuntimeComponentPaths.GetMetadataPath(primary);
+
+        try
+        {
+            RuntimeComponentMetadata? metadata =
+                await RuntimeComponentMetadataStore.LoadAsync(metadataPath, cancellationToken).ConfigureAwait(false);
+            if (metadata is not null &&
+                metadata.LastCheckedUtc > DateTimeOffset.UtcNow.Subtract(RefreshInterval) &&
+                definitions.All(item => File.Exists(RuntimeComponentPaths.GetTargetPath(item.FileName))))
+            {
+                Log.Info("FFmpeg bundle is fresh and complete; skipping download.");
+                return;
+            }
+        }
+        catch
+        {
+            Log.Debug($"Failed to read FFmpeg bundle metadata; forcing refresh. metadataPath='{Log.SafeValue(metadataPath)}'");
+        }
+
+        Directory.CreateDirectory(RuntimeComponentPaths.TempFolder);
+        DownloadedRuntimeAsset archive =
+            await DownloadReleaseAssetAsync(primary, cancellationToken).ConfigureAwait(false);
+        string localDigest = RuntimeComponentFileSystem.GetFileDigest(archive.Path);
+        ValidateDigest(primary.FileName, localDigest, archive.Digest, archive.Path);
+        string digest = string.IsNullOrWhiteSpace(archive.Digest) ? localDigest : archive.Digest;
+        string extractDirectory = ExtractBundle(archive.Path, definitions);
+
+        try
+        {
+            foreach (RuntimeComponentDefinition definition in definitions)
+            {
+                string sourcePath = Path.Combine(extractDirectory, definition.FileName);
+                string targetPath = RuntimeComponentPaths.GetTargetPath(definition.FileName);
+                File.Copy(sourcePath, targetPath, overwrite: true);
+                Log.Info($"Runtime bundle component updated successfully. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
+            }
+
+            await RuntimeComponentMetadataStore.SaveAsync(metadataPath, digest, cancellationToken).ConfigureAwait(false);
+        }
+        catch (IOException ex) when (definitions.Any(item =>
+                   RuntimeComponentFileSystem.IsFileLocked(RuntimeComponentPaths.GetTargetPath(item.FileName))))
+        {
+            Log.Info("One or more FFmpeg bundle files are in use; skipping bundle update for now.");
+            Log.Debug($"FFmpeg bundle update skipped because a target file is locked. error='{Log.SafeValue(ex.Message)}'");
+        }
+        finally
+        {
+            RuntimeComponentFileSystem.DeleteIfExists(extractDirectory);
+        }
     }
 
     static async Task EnsureComponentAsync(
         RuntimeComponentDefinition definition,
-        Dictionary<string, StagedRuntimeComponent> stagedBundles,
         CancellationToken cancellationToken)
     {
         string targetPath = RuntimeComponentPaths.GetTargetPath(definition.FileName);
@@ -48,7 +114,7 @@ internal static class RuntimeComponentService
                 await RuntimeComponentMetadataStore.LoadAsync(metadataPath, cancellationToken).ConfigureAwait(false);
             if (metadata is not null &&
                 metadata.LastCheckedUtc > DateTimeOffset.UtcNow.Subtract(RefreshInterval) &&
-                IsComponentReady(definition))
+                File.Exists(targetPath))
             {
                 Log.Info($"Runtime component is fresh; skipping download. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
                 return;
@@ -60,7 +126,7 @@ internal static class RuntimeComponentService
         }
 
         StagedRuntimeComponent staged = await DownloadComponentAsync(
-            definition, stagedBundles, cancellationToken).ConfigureAwait(false);
+            definition, cancellationToken).ConfigureAwait(false);
         try
         {
             File.Copy(staged.Path, targetPath, overwrite: true);
@@ -83,41 +149,15 @@ internal static class RuntimeComponentService
 
     static async Task<StagedRuntimeComponent> DownloadComponentAsync(
         RuntimeComponentDefinition definition,
-        Dictionary<string, StagedRuntimeComponent> stagedBundles,
         CancellationToken cancellationToken)
     {
         Directory.CreateDirectory(RuntimeComponentPaths.TempFolder);
-        if (definition.Kind == RuntimeComponentDownloadKind.GitHubZip)
-            return await DownloadBundleComponentAsync(definition, stagedBundles, cancellationToken).ConfigureAwait(false);
-
         DownloadedRuntimeAsset downloaded =
             await DownloadReleaseAssetAsync(definition, cancellationToken).ConfigureAwait(false);
         string localDigest = RuntimeComponentFileSystem.GetFileDigest(downloaded.Path);
         ValidateDigest(definition.FileName, localDigest, downloaded.Digest, downloaded.Path);
         return new StagedRuntimeComponent(downloaded.Path,
             string.IsNullOrWhiteSpace(downloaded.Digest) ? localDigest : downloaded.Digest);
-    }
-
-    static async Task<StagedRuntimeComponent> DownloadBundleComponentAsync(
-        RuntimeComponentDefinition definition,
-        Dictionary<string, StagedRuntimeComponent> stagedBundles,
-        CancellationToken cancellationToken)
-    {
-        string cacheKey = $"{definition.ReleaseApiUrl}|{definition.AssetPattern}|{definition.FileName}";
-        if (stagedBundles.TryGetValue(cacheKey, out StagedRuntimeComponent? cached) && File.Exists(cached.Path))
-            return cached;
-
-        DownloadedRuntimeAsset archive =
-            await DownloadReleaseAssetAsync(definition, cancellationToken).ConfigureAwait(false);
-        ValidateDigest(
-            definition.FileName,
-            RuntimeComponentFileSystem.GetFileDigest(archive.Path),
-            archive.Digest,
-            archive.Path);
-        string stagedPath = ExtractRequiredAsset(archive.Path, definition);
-        var result = new StagedRuntimeComponent(stagedPath, archive.Digest);
-        stagedBundles[cacheKey] = result;
-        return result;
     }
 
     static async Task<DownloadedRuntimeAsset> DownloadReleaseAssetAsync(
@@ -137,7 +177,9 @@ internal static class RuntimeComponentService
         return new DownloadedRuntimeAsset(destination, digest);
     }
 
-    static string ExtractRequiredAsset(string archivePath, RuntimeComponentDefinition definition)
+    static string ExtractBundle(
+        string archivePath,
+        IReadOnlyList<RuntimeComponentDefinition> definitions)
     {
         string extractDirectory = Path.Combine(
             RuntimeComponentPaths.TempFolder, Path.GetFileNameWithoutExtension(archivePath) + "-extract");
@@ -146,13 +188,20 @@ internal static class RuntimeComponentService
             RuntimeComponentFileSystem.DeleteIfExists(extractDirectory);
             Directory.CreateDirectory(extractDirectory);
             System.IO.Compression.ZipFile.ExtractToDirectory(archivePath, extractDirectory);
-            string requiredFile = definition.ExtractedFiles.Single();
-            string sourcePath = Directory.GetFiles(
-                extractDirectory, requiredFile, SearchOption.AllDirectories).FirstOrDefault()
-                ?? throw new InvalidOperationException($"Required extracted file not found: {requiredFile}");
-            string stagedPath = Path.Combine(RuntimeComponentPaths.TempFolder, $"{definition.FileName}.extracted");
-            File.Copy(sourcePath, stagedPath, overwrite: true);
-            return stagedPath;
+            string stagedDirectory = Path.Combine(RuntimeComponentPaths.TempFolder, "ffmpeg-bundle");
+            RuntimeComponentFileSystem.DeleteIfExists(stagedDirectory);
+            Directory.CreateDirectory(stagedDirectory);
+
+            foreach (RuntimeComponentDefinition definition in definitions)
+            {
+                string requiredFile = definition.ExtractedFiles.Single();
+                string sourcePath = Directory.GetFiles(
+                    extractDirectory, requiredFile, SearchOption.AllDirectories).FirstOrDefault()
+                    ?? throw new InvalidOperationException($"Required extracted file not found: {requiredFile}");
+                File.Copy(sourcePath, Path.Combine(stagedDirectory, definition.FileName), overwrite: true);
+            }
+
+            return stagedDirectory;
         }
         finally
         {
@@ -169,18 +218,6 @@ internal static class RuntimeComponentService
             RuntimeComponentFileSystem.DeleteIfExists(downloadedPath);
             throw new InvalidOperationException($"Digest mismatch for {fileName}.");
         }
-    }
-
-    static bool IsComponentReady(RuntimeComponentDefinition definition)
-    {
-        if (definition.Kind != RuntimeComponentDownloadKind.GitHubZip)
-            return File.Exists(RuntimeComponentPaths.GetTargetPath(definition.FileName));
-
-        return RuntimeComponentCatalog.Definitions
-            .Where(item => item.Kind == RuntimeComponentDownloadKind.GitHubZip &&
-                           item.ReleaseApiUrl == definition.ReleaseApiUrl &&
-                           item.AssetPattern == definition.AssetPattern)
-            .All(item => File.Exists(RuntimeComponentPaths.GetTargetPath(item.FileName)));
     }
 
     static void CleanupTempFolder()
