@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace MpvNet.Help;
 
-public class TaskHelp
+public static class TaskHelp
 {
     public static void Run(Action action)
     {

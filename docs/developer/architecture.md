@@ -388,6 +388,17 @@ Risco médio:
   parsing das definições do editor; `ConfWindow` mantém apenas estado e
   interação visual. `Conf` permanece como fachada obsoleta.
 
+## Limpeza de redundância
+
+- aliases e comandos depreciados continuam disponíveis quando fazem parte de
+  configuração, extensão ou automação existente;
+- usos internos do alias `Core` foram migrados para `Player`;
+- inicializações intencionais por efeito colateral usam descarte explícito em
+  vez de variáveis temporárias sem significado;
+- o bootstrap de componentes resolve URL e digest do asset com uma única
+  consulta de metadata por download;
+- condições duplicadas e classes exclusivamente estáticas foram simplificadas.
+
 ---
 
 <a id="relatorio-tecnico-inicial-2026-06-12"></a>

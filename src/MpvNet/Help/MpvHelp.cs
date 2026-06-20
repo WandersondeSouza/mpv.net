@@ -1,7 +1,7 @@
 ﻿
 namespace MpvNet.Help;
 
-public class MpvHelp
+public static class MpvHelp
 {
     public static string? WM_APPCOMMAND_to_mpv_key(int value) => value switch
     {

@@ -66,9 +66,12 @@ public class AppClass
     {
         Log.Info("Initializing application configuration.");
         TemporaryFileCleanup.CleanupDefaultFolders();
-        var useless1 = Player.ConfigFolder;
+        string resolvedConfigFolder = Player.ConfigFolder;
         EnsureInitialMpvConf();
-        var useless2 = Player.Conf;
+        Dictionary<string, string> loadedPlayerConfiguration = Player.Conf;
+        Log.Debug(
+            $"Player configuration initialized. folder='{Log.SafeValue(resolvedConfigFolder)}', " +
+            $"propertyCount={loadedPlayerConfiguration.Count}");
 
         foreach (var i in Conf)
             ProcessProperty(i.Key, i.Value, true);

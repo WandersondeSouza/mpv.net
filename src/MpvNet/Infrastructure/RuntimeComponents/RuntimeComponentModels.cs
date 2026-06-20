@@ -17,6 +17,8 @@ internal sealed record RuntimeComponentDefinition(
 
 internal sealed record StagedRuntimeComponent(string Path, string? Digest);
 
+internal sealed record DownloadedRuntimeAsset(string Path, string Digest);
+
 internal sealed class GitHubRelease
 {
     public GitHubAsset[] Assets { get; set; } = [];

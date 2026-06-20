@@ -90,12 +90,12 @@ internal static class RuntimeComponentService
         if (definition.Kind == RuntimeComponentDownloadKind.GitHubZip)
             return await DownloadBundleComponentAsync(definition, stagedBundles, cancellationToken).ConfigureAwait(false);
 
-        string downloadedPath = await DownloadReleaseAssetAsync(definition, cancellationToken).ConfigureAwait(false);
-        string remoteDigest = await GetRemoteDigestAsync(definition, cancellationToken).ConfigureAwait(false);
-        string localDigest = RuntimeComponentFileSystem.GetFileDigest(downloadedPath);
-        ValidateDigest(definition.FileName, localDigest, remoteDigest, downloadedPath);
-        return new StagedRuntimeComponent(downloadedPath,
-            string.IsNullOrWhiteSpace(remoteDigest) ? localDigest : remoteDigest);
+        DownloadedRuntimeAsset downloaded =
+            await DownloadReleaseAssetAsync(definition, cancellationToken).ConfigureAwait(false);
+        string localDigest = RuntimeComponentFileSystem.GetFileDigest(downloaded.Path);
+        ValidateDigest(definition.FileName, localDigest, downloaded.Digest, downloaded.Path);
+        return new StagedRuntimeComponent(downloaded.Path,
+            string.IsNullOrWhiteSpace(downloaded.Digest) ? localDigest : downloaded.Digest);
     }
 
     static async Task<StagedRuntimeComponent> DownloadBundleComponentAsync(
@@ -107,16 +107,20 @@ internal static class RuntimeComponentService
         if (stagedBundles.TryGetValue(cacheKey, out StagedRuntimeComponent? cached) && File.Exists(cached.Path))
             return cached;
 
-        string archivePath = await DownloadReleaseAssetAsync(definition, cancellationToken).ConfigureAwait(false);
-        string remoteDigest = await GetRemoteDigestAsync(definition, cancellationToken).ConfigureAwait(false);
-        ValidateDigest(definition.FileName, RuntimeComponentFileSystem.GetFileDigest(archivePath), remoteDigest, archivePath);
-        string stagedPath = ExtractRequiredAsset(archivePath, definition);
-        var result = new StagedRuntimeComponent(stagedPath, remoteDigest);
+        DownloadedRuntimeAsset archive =
+            await DownloadReleaseAssetAsync(definition, cancellationToken).ConfigureAwait(false);
+        ValidateDigest(
+            definition.FileName,
+            RuntimeComponentFileSystem.GetFileDigest(archive.Path),
+            archive.Digest,
+            archive.Path);
+        string stagedPath = ExtractRequiredAsset(archive.Path, definition);
+        var result = new StagedRuntimeComponent(stagedPath, archive.Digest);
         stagedBundles[cacheKey] = result;
         return result;
     }
 
-    static async Task<string> DownloadReleaseAssetAsync(
+    static async Task<DownloadedRuntimeAsset> DownloadReleaseAssetAsync(
         RuntimeComponentDefinition definition, CancellationToken cancellationToken)
     {
         GitHubRelease release = await GitHubReleaseClient.GetReleaseAsync(
@@ -127,19 +131,10 @@ internal static class RuntimeComponentService
         string url = asset.BrowserDownloadUrl
             ?? throw new InvalidOperationException($"Missing download URL for {definition.FileName}.");
         string destination = Path.Combine(RuntimeComponentPaths.TempFolder, asset.Name ?? definition.FileName);
+        string digest = asset.Digest?.Split(':', 2, StringSplitOptions.TrimEntries).LastOrDefault() ?? "";
         Log.Info($"Downloading runtime component asset. file='{definition.FileName}', asset='{Log.SafeValue(asset.Name)}', kind={definition.Kind}, url='{Log.SafeValue(url)}'");
         await GitHubReleaseClient.DownloadAsync(url, destination, cancellationToken).ConfigureAwait(false);
-        return destination;
-    }
-
-    static async Task<string> GetRemoteDigestAsync(
-        RuntimeComponentDefinition definition, CancellationToken cancellationToken)
-    {
-        GitHubRelease release = await GitHubReleaseClient.GetReleaseAsync(
-            definition.ReleaseApiUrl, cancellationToken).ConfigureAwait(false);
-        GitHubAsset? asset = release.Assets.FirstOrDefault(item =>
-            Regex.IsMatch(item.Name ?? "", definition.AssetPattern, RegexOptions.IgnoreCase));
-        return asset?.Digest?.Split(':', 2, StringSplitOptions.TrimEntries).LastOrDefault() ?? "";
+        return new DownloadedRuntimeAsset(destination, digest);
     }
 
     static string ExtractRequiredAsset(string archivePath, RuntimeComponentDefinition definition)

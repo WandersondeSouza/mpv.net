@@ -171,7 +171,7 @@ public class GuiCommand
 
     void ShowCommands()
     {
-        string json = Core.GetPropertyString("command-list");
+        string json = Player.GetPropertyString("command-list");
         var enumerator = JsonDocument.Parse(json).RootElement.EnumerateArray();
         var commands = enumerator.OrderBy(it => it.GetProperty("name").GetString());
         StringBuilder sb = new StringBuilder();
@@ -200,16 +200,16 @@ public class GuiCommand
     }
 
     void ShowKeys() =>
-        ShowTextWithEditor("Keys", Core.GetPropertyString("input-key-list").Replace(",", BR));
+        ShowTextWithEditor("Keys", Player.GetPropertyString("input-key-list").Replace(",", BR));
 
     void ShowProtocols() =>
-        ShowTextWithEditor("Protocols", Core.GetPropertyString("protocol-list").Replace(",", BR));
+        ShowTextWithEditor("Protocols", Player.GetPropertyString("protocol-list").Replace(",", BR));
 
     void ShowDecoders() =>
-        ShowTextWithEditor("Decoders", Core.GetPropertyOsdString("decoder-list").Replace(",", BR));
+        ShowTextWithEditor("Decoders", Player.GetPropertyOsdString("decoder-list").Replace(",", BR));
 
     void ShowDemuxers() =>
-        ShowTextWithEditor("Demuxers", Core.GetPropertyOsdString("demuxer-lavf-list").Replace(",", BR));
+        ShowTextWithEditor("Demuxers", Player.GetPropertyOsdString("demuxer-lavf-list").Replace(",", BR));
 
     void OpenFromClipboard(IList<string> args)
     {
@@ -348,8 +348,7 @@ public class GuiCommand
 
         if (path.Contains("://"))
         {
-            if (path.Contains("://"))
-                path = Player.GetPropertyString("media-title");
+            path = Player.GetPropertyString("media-title");
             string videoFormat = Player.GetPropertyString("video-format").ToUpper();
             string audioCodec = Player.GetPropertyString("audio-codec-name").ToUpper();
             int width = Player.GetPropertyInt("video-params/w");
