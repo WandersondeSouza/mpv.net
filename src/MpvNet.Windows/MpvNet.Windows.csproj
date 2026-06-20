@@ -32,6 +32,7 @@
 
 	<ItemGroup>
 		<Content Include="mpv-icon.ico" />
+		<Resource Include="codec-guide-logo.png" />
 		<Resource Include="pix-donation-qr.png" />
 	</ItemGroup>
 
