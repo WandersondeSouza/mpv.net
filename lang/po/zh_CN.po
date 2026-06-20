@@ -635,11 +635,11 @@ msgstr "Codec Guide: "
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
 msgid "Make a donation to help maintain the project."
-msgstr "Make a donation to help maintain the project."
+msgstr "请捐助以帮助维护本项目。"
 
 #: src/MpvNet/App.cs
 msgid "Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support."
-msgstr "Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support."
+msgstr "您的捐助将支持 MPV.NET Media Player 的持续开发、功能改进、问题修复和项目维护。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
 msgid "If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below."
