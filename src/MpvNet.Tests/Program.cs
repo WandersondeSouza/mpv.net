@@ -617,6 +617,7 @@ sealed class TestTranslator : ITranslator
 
 sealed class RuntimeReleaseProbe
 {
+    [System.Text.Json.Serialization.JsonPropertyName("assets")]
     public RuntimeAssetProbe[] Assets { get; set; } = [];
 }
 

@@ -48,6 +48,20 @@ Núcleo da aplicação:
 - carregamento de extensões;
 - estado do player.
 
+Organização arquitetural adotada para novas extrações:
+
+- `Infrastructure/RuntimeComponents` - catálogo, GitHub, metadados, staging,
+  instalação e resolução dos componentes opcionais de runtime;
+- `Native` - contratos P/Invoke e estruturas nativas;
+- `Player.*.cs` - estado e coordenação do player, separados por capacidade;
+- classes públicas antigas permanecem como fachadas quando uma responsabilidade
+  é movida, preservando compatibilidade com extensões e consumidores existentes.
+
+Os diretórios `Services`, `Configuration`, `Media`, `Models` e `Utilities`
+devem ser criados apenas quando houver uma extração concreta. Sufixos como
+`Service`, `Store`, `Provider`, `Resolver`, `Parser` e `Client` descrevem uma
+responsabilidade real; não são aplicados mecanicamente a modelos.
+
 ## `MpvNet.Windows`
 
 Frontend Windows:
@@ -313,6 +327,42 @@ Risco médio:
 - dependências nativas;
 - publicação Debug;
 - ZIP portátil sem `portable_config`.
+
+---
+
+# Auditoria de modernização gradual - 2026-06-20
+
+## Diagnóstico
+
+- `RuntimeComponents` concentrava catálogo, acesso HTTP/GitHub, checksum,
+  extração, persistência de metadados, instalação e resolução de caminhos.
+- `MainPlayer` e `MainForm` continuam sendo agregadores de estado sensíveis;
+  suas extrações devem ser precedidas por testes de caracterização.
+- `ConfWindow`, `GuiCommand` e `InputHelp` misturam apresentação, parsing e
+  coordenação, mas dependem de XAML e comandos textuais que impedem remoções
+  baseadas somente em busca de referências C#.
+- `MpvClient` expõe o contrato de baixo nível necessário ao libmpv. Sua API não
+  deve ser escondida por uma camada genérica.
+- `NGettext.Wpf`, `HandyControl`, arquivos gerados e artefatos de build ficam
+  fora desta modernização.
+
+## Classificação de risco
+
+| Área | Risco | Estratégia |
+| --- | --- | --- |
+| Componentes de runtime | médio | fachada pública e serviços internos |
+| Parsing e persistência de configuração | alto | caracterização antes da extração |
+| Carregamento e eventos do player | alto | preservar ordem e contratos libmpv |
+| Estado e eventos da janela | alto | manter UI nos partials e extrair apenas lógica não visual |
+| Modelos e utilitários puros | baixo | mover quando houver benefício objetivo |
+
+## Regras para as próximas fases
+
+1. Uma fase deve compilar e passar nos testes antes da próxima.
+2. APIs públicas existentes recebem fachada ou adaptador.
+3. Código só é removido após considerar XAML, reflection, extensões e comandos.
+4. Não será introduzido contêiner de injeção de dependências.
+5. Documentação técnica será atualizada apenas para mudanças consolidadas.
 
 ---
 
