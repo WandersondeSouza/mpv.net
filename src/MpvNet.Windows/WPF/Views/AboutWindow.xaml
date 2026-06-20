@@ -73,31 +73,38 @@
                 </StackPanel>
             </Border>
 
-            <TextBlock
-                Text="{Binding DonationLinkTitle, Mode=OneWay}"
-                FontWeight="SemiBold"
-                TextWrapping="Wrap"
-                TextAlignment="Center"
+            <Border
+                Margin="20,0,20,20"
+                Padding="12"
+                CornerRadius="10"
                 MaxWidth="720"
-                Margin="20,0,20,8"
-                Foreground="{Binding Theme.Foreground}" />
+                BorderThickness="1"
+                BorderBrush="{Binding Theme.Foreground}"
+                Background="{Binding Theme.Background}">
+                <StackPanel>
+                    <TextBlock
+                        Text="{Binding DonationLinkTitle, Mode=OneWay}"
+                        FontWeight="SemiBold"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center"
+                        Foreground="{Binding Theme.Foreground}" />
 
-            <TextBlock
-                TextAlignment="Center"
-                Margin="20,0,20,8"
-                Foreground="{Binding Theme.Foreground}">
-                <Hyperlink Click="DonationStripeLink_Click">
-                    <Run Text="{Binding StripeDonationUrl, Mode=OneWay}" />
-                </Hyperlink>
-            </TextBlock>
+                    <TextBlock
+                        TextAlignment="Center"
+                        Margin="0,8,0,8"
+                        Foreground="{Binding Theme.Foreground}">
+                        <Hyperlink Click="DonationStripeLink_Click">
+                            <Run Text="{Binding StripeDonationUrl, Mode=OneWay}" />
+                        </Hyperlink>
+                    </TextBlock>
 
-            <TextBlock
-                Text="{Binding DonationLinkDescription, Mode=OneWay}"
-                TextWrapping="Wrap"
-                TextAlignment="Center"
-                MaxWidth="720"
-                Margin="20,0,20,18"
-                Foreground="{Binding Theme.Foreground}" />
+                    <TextBlock
+                        Text="{Binding DonationLinkDescription, Mode=OneWay}"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center"
+                        Foreground="{Binding Theme.Foreground}" />
+                </StackPanel>
+            </Border>
 
             <Border
                 Margin="20,0,20,20"
