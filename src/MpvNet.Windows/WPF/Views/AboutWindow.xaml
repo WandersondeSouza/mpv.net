@@ -97,29 +97,45 @@
                 BorderThickness="1"
                 BorderBrush="{Binding Theme.Foreground}"
                 Background="{Binding Theme.Background}">
-                <StackPanel>
-                    <TextBlock
-                        Text="{Binding DonationLinkTitle, Mode=OneWay}"
-                        FontWeight="SemiBold"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center"
-                        Foreground="{Binding Theme.Foreground}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="96" />
+                    </Grid.ColumnDefinitions>
 
-                    <TextBlock
-                        TextAlignment="Center"
-                        Margin="0,8,0,8"
-                        Foreground="{Binding Theme.Foreground}">
-                        <Hyperlink Click="DonationStripeLink_Click">
-                            <Run Text="{Binding StripeDonationUrl, Mode=OneWay}" />
-                        </Hyperlink>
-                    </TextBlock>
+                    <StackPanel Grid.Column="0" Margin="0,0,12,0" VerticalAlignment="Center">
+                        <TextBlock
+                            Text="{Binding DonationLinkTitle, Mode=OneWay}"
+                            FontWeight="SemiBold"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"
+                            Foreground="{Binding Theme.Foreground}" />
 
-                    <TextBlock
-                        Text="{Binding DonationLinkDescription, Mode=OneWay}"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center"
-                        Foreground="{Binding Theme.Foreground}" />
-                </StackPanel>
+                        <TextBlock
+                            TextAlignment="Center"
+                            Margin="0,8,0,8"
+                            Foreground="{Binding Theme.Foreground}">
+                            <Hyperlink Click="DonationStripeLink_Click">
+                                <Run Text="{Binding StripeDonationUrl, Mode=OneWay}" />
+                            </Hyperlink>
+                        </TextBlock>
+
+                        <TextBlock
+                            Text="{Binding DonationLinkDescription, Mode=OneWay}"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"
+                            Foreground="{Binding Theme.Foreground}" />
+                    </StackPanel>
+
+                    <Image
+                        Grid.Column="1"
+                        Width="80"
+                        Height="80"
+                        Stretch="Uniform"
+                        Source="pack://application:,,,/donation-support.png"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" />
+                </Grid>
             </Border>
 
             <Border
