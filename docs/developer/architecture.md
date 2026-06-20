@@ -377,6 +377,17 @@ Risco médio:
 4. Não será introduzido contêiner de injeção de dependências.
 5. Documentação técnica será atualizada apenas para mudanças consolidadas.
 
+## Extrações prioritárias consolidadas
+
+- `RemotePlaylistService` concentra detecção, download temporário e timeout de
+  playlists remotas; `MainPlayer` mantém os métodos públicos de compatibilidade
+  e a decisão de reprodução.
+- `GuiCommandArgumentParser` concentra validação de argumentos obrigatórios e
+  números invariantes; `GuiCommand` mantém o registro e a execução dos comandos.
+- `EditorConfigurationService` e `EditorConfigurationParser` concentram o
+  parsing das definições do editor; `ConfWindow` mantém apenas estado e
+  interação visual. `Conf` permanece como fachada obsoleta.
+
 ---
 
 <a id="relatorio-tecnico-inicial-2026-06-12"></a>

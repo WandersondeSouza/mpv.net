@@ -2,7 +2,6 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows;
@@ -71,7 +70,7 @@ public class GuiCommand
 
     void MoveWindowCommand(IList<string> args)
     {
-        if (!TryGetArg(args, "move-window", out string direction))
+        if (!GuiCommandArgumentParser.TryGetRequired(args, "move-window", out string direction))
             return;
 
         MoveWindow?.Invoke(direction);
@@ -79,7 +78,7 @@ public class GuiCommand
 
     void ScaleWindowCommand(IList<string> args)
     {
-        if (!TryGetFloatArg(args, "scale-window", out float scale))
+        if (!GuiCommandArgumentParser.TryGetInvariantFloat(args, "scale-window", out float scale))
             return;
 
         ScaleWindow?.Invoke(scale);
@@ -87,37 +86,10 @@ public class GuiCommand
 
     void WindowScaleCommand(IList<string> args)
     {
-        if (!TryGetFloatArg(args, "window-scale", out float scale))
+        if (!GuiCommandArgumentParser.TryGetInvariantFloat(args, "window-scale", out float scale))
             return;
 
         WindowScaleNet?.Invoke(scale);
-    }
-
-    static bool TryGetArg(IList<string> args, string commandName, out string value)
-    {
-        if (args.Count > 0 && !string.IsNullOrWhiteSpace(args[0]))
-        {
-            value = args[0];
-            return true;
-        }
-
-        value = "";
-        Terminal.WriteError($"Missing argument for mpv.net command: {commandName}");
-        return false;
-    }
-
-    static bool TryGetFloatArg(IList<string> args, string commandName, out float value)
-    {
-        value = 0;
-
-        if (!TryGetArg(args, commandName, out string rawValue))
-            return false;
-
-        if (float.TryParse(rawValue, NumberStyles.Float, CultureInfo.InvariantCulture, out value))
-            return true;
-
-        Terminal.WriteError($"Invalid numeric argument for mpv.net command: {commandName} {rawValue}");
-        return false;
     }
 
     void ShowDialog(Type winType)
@@ -170,7 +142,7 @@ public class GuiCommand
 
     void EditCongFile(IList<string> args)
     {
-        if (!TryGetArg(args, "edit-conf-file", out string configFile))
+        if (!GuiCommandArgumentParser.TryGetRequired(args, "edit-conf-file", out string configFile))
             return;
 
         string file = Player.ConfigFolder + configFile;
@@ -296,7 +268,7 @@ public class GuiCommand
 
     void RegisterFileAssociations(IList<string> args)
     {
-        if (!TryGetArg(args, "reg-file-assoc", out string perceivedType))
+        if (!GuiCommandArgumentParser.TryGetRequired(args, "reg-file-assoc", out string perceivedType))
             return;
 
         string[] extensions = Windows.FileAssociation.GetExtensionsForPerceivedType(perceivedType);

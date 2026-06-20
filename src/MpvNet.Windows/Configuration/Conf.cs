@@ -3,13 +3,13 @@ using MpvNet.Extensions;
 
 namespace MpvNet.Windows;
 
-public class Conf
+public static class EditorConfigurationService
 {
-    public static List<Setting> LoadConf(string content)
+    public static List<Setting> ParseSettings(string content)
     {
         List<Setting> settingsList = new List<Setting>();
 
-        foreach (ConfSection? section in ConfParser.Parse(content))
+        foreach (EditorConfigurationSection? section in EditorConfigurationParser.Parse(content))
         {
             Setting? baseSetting = null;
 
@@ -69,6 +69,16 @@ public class Conf
     }
 }
 
+/// <summary>
+/// Compatibility facade for the former configuration editor entry point.
+/// </summary>
+[Obsolete($"Use {nameof(EditorConfigurationService)} instead.")]
+public static class Conf
+{
+    public static List<Setting> LoadConf(string content) =>
+        EditorConfigurationService.ParseSettings(content);
+}
+
 static class EditorConfLocalization
 {
     public static string TranslateDirectory(string path) =>
@@ -92,13 +102,13 @@ public class ConfItem
     public Setting? SettingBase { get; set; }
 }
 
-public class ConfParser
+internal static class EditorConfigurationParser
 {
-    public static List<ConfSection> Parse(string content)
+    public static List<EditorConfigurationSection> Parse(string content)
     {
         string[] lines = content.Split('\n');
-        var sections = new List<ConfSection>();
-        ConfSection? currentGroup = null;
+        var sections = new List<EditorConfigurationSection>();
+        EditorConfigurationSection? currentGroup = null;
 
         foreach (string it in lines)
         {
@@ -109,7 +119,7 @@ public class ConfParser
 
             if (line == "")
             {
-                currentGroup = new ConfSection();
+                currentGroup = new EditorConfigurationSection();
                 sections.Add(currentGroup);
             }
             else if (line.Contains('='))
@@ -125,7 +135,7 @@ public class ConfParser
     }
 }
 
-public class ConfSection
+internal sealed class EditorConfigurationSection
 {
     public List<StringPair> Items { get; set; } = new List<StringPair>();
 

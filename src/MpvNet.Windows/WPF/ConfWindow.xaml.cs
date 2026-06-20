@@ -21,7 +21,7 @@ namespace MpvNet.Windows.WPF;
 
 public partial class ConfWindow : Window, INotifyPropertyChanged
 {
-    List<Setting> _settings = Conf.LoadConf(Properties.Resources.editor_conf.TrimEnd());
+    List<Setting> _settings = EditorConfigurationService.ParseSettings(Properties.Resources.editor_conf.TrimEnd());
     List<ConfItem> _confItems = new List<ConfItem>();
     string _initialContent;
     string _themeConf = GetThemeConf();

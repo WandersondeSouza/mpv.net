@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
-using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -155,87 +154,14 @@ public partial class MainPlayer
     }
 
     static bool TryDownloadRemotePlaylist(string file, out string playlistFile)
-    {
-        playlistFile = "";
-
-        if (!ShouldProbeRemotePlaylist(file))
-            return false;
-
-        try
-        {
-            using HttpRequestMessage probeRequest = new(HttpMethod.Get, file);
-            using HttpResponseMessage probeResponse = RemotePlaylistHttpClient.Send(
-                probeRequest, HttpCompletionOption.ResponseHeadersRead);
-
-            if (!probeResponse.IsSuccessStatusCode)
-                return false;
-
-            using Stream probeStream = probeResponse.Content.ReadAsStream();
-            byte[] buffer = new byte[4096];
-            int read = probeStream.Read(buffer, 0, buffer.Length);
-
-            if (!LooksLikeM3u(buffer.AsSpan(0, read)))
-                return false;
-
-            string content = RemotePlaylistHttpClient.GetStringAsync(file).GetAwaiter().GetResult();
-            Directory.CreateDirectory(App.TempFolder);
-            string tempFile = System.IO.Path.Combine(App.TempFolder, Guid.NewGuid() + ".m3u8");
-            File.WriteAllText(tempFile, content, Encoding.UTF8);
-            App.TempFiles.Add(tempFile);
-            playlistFile = tempFile;
-            return true;
-        }
-        catch (Exception ex)
-        {
-            LogRemotePlaylistDetectionFailure(file, ex);
-            return false;
-        }
-    }
-
-    static void LogRemotePlaylistDetectionFailure(string file, Exception ex)
-    {
-        if (IsRemotePlaylistProbeTimeout(ex))
-        {
-            Log.Debug($"Remote playlist detection timed out for '{file}': {ex.Message}");
-            return;
-        }
-
-        LogNonBlockingMetadataFailure("Remote playlist detection", file, ex);
-    }
+        => RemotePlaylistService.TryDownload(
+            file, RemotePlaylistHttpClient, App.TempFolder, App.TempFiles, out playlistFile);
 
     public static bool IsRemotePlaylistProbeTimeout(Exception ex) =>
-        ex is TaskCanceledException or TimeoutException ||
-        ex.InnerException != null && IsRemotePlaylistProbeTimeout(ex.InnerException);
+        RemotePlaylistService.IsProbeTimeout(ex);
 
-    static bool ShouldProbeRemotePlaylist(string file)
-    {
-        if (!Uri.TryCreate(file, UriKind.Absolute, out Uri? uri))
-            return false;
-
-        if (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps)
-            return false;
-
-        if (FileTypes.IsPlaylistFile(file) || FileTypes.IsVideoFile(file))
-            return false;
-
-        return true;
-    }
-
-    public static bool LooksLikeM3u(ReadOnlySpan<byte> bytes)
-    {
-        if (bytes.IsEmpty)
-            return false;
-
-        ReadOnlySpan<byte> utf8Bom = [0xEF, 0xBB, 0xBF];
-
-        if (bytes.StartsWith(utf8Bom))
-            bytes = bytes[utf8Bom.Length..];
-
-        while (!bytes.IsEmpty && (bytes[0] == ' ' || bytes[0] == '\t' || bytes[0] == '\r' || bytes[0] == '\n'))
-            bytes = bytes[1..];
-
-        return bytes.StartsWith("#EXTM3U"u8);
-    }
+    public static bool LooksLikeM3u(ReadOnlySpan<byte> bytes) =>
+        RemotePlaylistService.LooksLikeM3u(bytes);
 
     void LoadPlaylistItems(List<PlaylistFileItem> items, bool append)
     {
