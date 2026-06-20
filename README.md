@@ -58,4 +58,7 @@ O MPV.NET Media Player também está disponível na Microsoft Store:
 
 Sua doação ajuda a manter o MPV.NET Media Player em desenvolvimento, com melhorias, correções e suporte contínuo ao projeto.
 
-Na tela "Sobre" do aplicativo, esse link aparece acima da área do Pix.
+Na tela "Sobre" e no menu de suporte do aplicativo, o idioma da interface define
+o link apresentado: Português do Brasil usa o link em reais; os demais idiomas
+usam o link internacional em dólares. Ambos usam Adaptive Pricing para oferecer
+a moeda local compatível ao doador.

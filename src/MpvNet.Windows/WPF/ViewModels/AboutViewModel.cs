@@ -16,6 +16,7 @@ public partial class AboutViewModel : ViewModelBase
     public string CodecGuideLabel { get; } = _("Codec Guide: ");
     public string DonationLinkTitle { get; } = AppClass.DonationLinkTitle;
     public string DonationLinkDescription { get; } = AppClass.DonationLinkDescription;
+    public string StripeDonationUrl { get; } = App.StripeDonationUrl;
     public string DonationTitle { get; } = AppClass.DonationTitle;
     public string DonationCopyPaste { get; } = AppClass.DonationCopyPaste;
     public string DonationCopied { get; } = AppClass.DonationCopied;

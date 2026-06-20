@@ -86,7 +86,9 @@
                 TextAlignment="Center"
                 Margin="20,0,20,8"
                 Foreground="{Binding Theme.Foreground}">
-                <Hyperlink Click="DonationStripeLink_Click">https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00</Hyperlink>
+                <Hyperlink Click="DonationStripeLink_Click">
+                    <Run Text="{Binding StripeDonationUrl, Mode=OneWay}" />
+                </Hyperlink>
             </TextBlock>
 
             <TextBlock

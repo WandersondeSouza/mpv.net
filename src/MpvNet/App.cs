@@ -10,7 +10,9 @@ namespace MpvNet;
 
 public class AppClass
 {
-    const int SelectMenuVersion = 3;
+    const int SelectMenuVersion = 4;
+    const string BrazilianStripeDonationUrl = "https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00";
+    const string InternationalStripeDonationUrl = "https://donate.stripe.com/8x2fZi1Jh49O3dcdgPeIw01";
 
     public List<string> TempFiles { get; } = new ();
 
@@ -113,7 +115,15 @@ public class AppClass
     public static string DonationCopyPaste => _("Pix copy and paste:");
     public static string DonationCopied => _("Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer.");
     public static string GitHubSponsorsUrl => "https://github.com/sponsors/stax76";
-    public static string StripeDonationUrl => "https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00";
+    public string StripeDonationUrl => GetStripeDonationUrl(Language);
+
+    public static string GetStripeDonationUrl(string? language) =>
+        string.Equals(
+            LocalizationService.ResolveMpvNetLanguage(language),
+            "portuguese-brazil",
+            StringComparison.OrdinalIgnoreCase)
+                ? BrazilianStripeDonationUrl
+                : InternationalStripeDonationUrl;
 
     static string GetLastWriteTime(string path) => $" ({File.GetLastWriteTime(path).ToShortDateString()})";
 

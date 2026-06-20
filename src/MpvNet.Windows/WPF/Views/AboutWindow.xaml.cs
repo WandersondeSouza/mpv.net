@@ -25,8 +25,11 @@ public partial class AboutWindow
     void RepositoryLink_Click(object sender, RoutedEventArgs e) =>
         ProcessHelp.ShellExecute("https://github.com/WandersondeSouza/mpv.net");
 
-    void DonationStripeLink_Click(object sender, RoutedEventArgs e) =>
-        ProcessHelp.ShellExecute("https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00");
+    void DonationStripeLink_Click(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is AboutViewModel vm)
+            ProcessHelp.ShellExecute(vm.StripeDonationUrl);
+    }
 
     void DonationPixKey_Click(object sender, RoutedEventArgs e)
     {
