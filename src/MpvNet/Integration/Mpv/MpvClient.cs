@@ -29,6 +29,15 @@ public class MpvClient
 
     public nint Handle { get; set; }
 
+    internal void DestroyHandle()
+    {
+        if (Handle == IntPtr.Zero)
+            return;
+
+        mpv_destroy(Handle);
+        Handle = IntPtr.Zero;
+    }
+
     public void EventLoop()
     {
         while (true)

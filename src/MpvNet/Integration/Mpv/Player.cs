@@ -24,6 +24,8 @@ public partial class MainPlayer : MpvClient
     static readonly HttpClient RemotePlaylistHttpClient = new() { Timeout = RemotePlaylistTimeout };
     static readonly TimeSpan PlaylistNormalizationDelay = TimeSpan.FromMilliseconds(200);
     bool _isNormalizingAutocreatedPlaylist;
+    readonly object _destroyLock = new();
+    bool _isDestroyed;
 
     public string ConfPath { get => ConfigFolder + "mpv.conf"; }
     public string CacheFolder => TemporaryFileCleanup.DefaultCacheFolder + System.IO.Path.DirectorySeparatorChar;

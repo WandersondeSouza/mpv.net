@@ -13,10 +13,15 @@ public class MediaInfo : IDisposable
         ArgumentNullException.ThrowIfNull(file);
 
         if ((_handle = MediaInfo_New()) == IntPtr.Zero)
-            throw new Exception("Failed to call MediaInfo_New");
+            throw new InvalidOperationException("MediaInfo_New returned a null handle.");
 
         if (MediaInfo_Open(_handle, file) == 0)
-            throw new Exception("Error MediaInfo_Open");
+        {
+            MediaInfo_Delete(_handle);
+            _handle = IntPtr.Zero;
+            _disposed = true;
+            throw new InvalidOperationException($"MediaInfo could not open the file: {file}");
+        }
     }
 
     private void ThrowIfDisposed()

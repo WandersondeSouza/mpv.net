@@ -1230,6 +1230,8 @@ public partial class MainForm : Form
 
         ContextMenu.Items.Clear();
         GlobalHotkey.UnregisterGlobalHotkeys();
+        _taskbar?.Dispose();
+        _taskbar = null;
         MenuAutoResetEvent.Set();
         MenuAutoResetEvent.Dispose();
 

@@ -6,14 +6,34 @@ public partial class MainPlayer
 {
     public void Destroy()
     {
-        Log.Debug("Destroying mpv player.");
-        mpv_destroy(MainHandle);
-        mpv_destroy(Handle);
-
-        foreach (var client in Clients)
+        lock (_destroyLock)
         {
-            mpv_destroy(client.Handle);
+            if (_isDestroyed)
+                return;
+
+            _isDestroyed = true;
+            Log.Debug("Destroying mpv player.");
+
+            nint mainHandle = MainHandle;
+            nint clientHandle = Handle;
+            MainHandle = IntPtr.Zero;
+            Handle = IntPtr.Zero;
+            DestroyHandle(mainHandle);
+            DestroyHandle(clientHandle);
+
+            foreach (MpvClient client in Clients)
+                client.DestroyHandle();
+
+            Clients.Clear();
         }
+    }
+
+    static void DestroyHandle(nint handle)
+    {
+        if (handle == IntPtr.Zero)
+            return;
+
+        mpv_destroy(handle);
     }
 
     public void MainEventLoop()

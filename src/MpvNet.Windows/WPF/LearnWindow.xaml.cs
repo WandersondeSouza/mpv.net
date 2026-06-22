@@ -28,6 +28,8 @@ public partial class LearnWindow : Window
 
     bool _blockLeftMouseButton;
     bool _blockRightMouseButton;
+    HwndSource? _windowSource;
+    HwndSourceHook? _windowHook;
 
     public LearnWindow()
     {
@@ -227,9 +229,20 @@ public partial class LearnWindow : Window
 
     void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        HwndSource source = HwndSource.FromHwnd(new WindowInteropHelper(this).Handle);
-        source.AddHook(new HwndSourceHook(WndProc));
+        _windowSource = HwndSource.FromHwnd(new WindowInteropHelper(this).Handle);
+        _windowHook = WndProc;
+        _windowSource.AddHook(_windowHook);
         SetKey(InputItem?.Input);
+    }
+
+    protected override void OnClosed(EventArgs e)
+    {
+        if (_windowSource is not null && _windowHook is not null)
+            _windowSource.RemoveHook(_windowHook);
+
+        _windowHook = null;
+        _windowSource = null;
+        base.OnClosed(e);
     }
 
     void ConfirmButton_Click(object sender, RoutedEventArgs e)
