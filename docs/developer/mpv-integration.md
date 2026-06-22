@@ -93,6 +93,10 @@ frontend devem rejeitar apenas entradas claramente inválidas antes do `loadfile
 ausência de legenda, áudio, duração, título ou dados de MediaInfo é falha não
 bloqueante.
 
+URLs HTTP/HTTPS são encaminhadas diretamente por `loadfile`. O frontend não faz
+uma requisição de sondagem antes da reprodução; a identificação de mídia ou
+playlist remota fica a cargo do mpv/libmpv.
+
 O mesmo vale para playlists criadas ou expandidas pelo frontend. A linha de
 comando pode receber somente uma URL, um arquivo local, ou um titulo visual
 seguido de uma URL. Quando a midia principal e resolvida, o titulo deve ser

@@ -386,9 +386,9 @@ Risco médio:
 
 ## Extrações prioritárias consolidadas
 
-- `RemotePlaylistService` concentra detecção, download temporário e timeout de
-  playlists remotas; `MainPlayer` mantém os métodos públicos de compatibilidade
-  e a decisão de reprodução.
+- `MainPlayer` encaminha URLs HTTP/HTTPS diretamente ao mpv/libmpv, sem
+  sondagem HTTP bloqueante no frontend; o motor mantém a decisão final sobre
+  mídia e playlists remotas.
 - `GuiCommandArgumentParser` concentra validação de argumentos obrigatórios e
   números invariantes; `GuiCommand` mantém o registro e a execução dos comandos.
 - `InputBindingParser` e `InputBindingSerializer` concentram a conversão entre

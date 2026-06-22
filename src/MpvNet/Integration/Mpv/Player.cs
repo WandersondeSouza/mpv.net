@@ -1,7 +1,6 @@
 ﻿
 using System.Drawing;
 using System.Globalization;
-using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
@@ -20,8 +19,6 @@ namespace MpvNet;
 
 public partial class MainPlayer : MpvClient
 {
-    internal static readonly TimeSpan RemotePlaylistTimeout = TimeSpan.FromSeconds(60);
-    static readonly HttpClient RemotePlaylistHttpClient = new() { Timeout = RemotePlaylistTimeout };
     static readonly TimeSpan PlaylistNormalizationDelay = TimeSpan.FromMilliseconds(200);
     bool _isNormalizingAutocreatedPlaylist;
     readonly object _destroyLock = new();

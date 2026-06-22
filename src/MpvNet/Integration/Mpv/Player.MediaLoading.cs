@@ -1,4 +1,3 @@
-using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text.Json;
@@ -59,12 +58,6 @@ public partial class MainPlayer
             string originalFile = file;
             file = ConvertFilePath(file);
             Log.Debug($"Prepared media input at index {i}: original='{Log.SafeValue(originalFile)}', converted='{Log.SafeValue(file)}'");
-
-            if (TryDownloadRemotePlaylist(file, out string remotePlaylistFile))
-            {
-                Log.Debug($"Remote playlist detected and downloaded. source='{Log.SafeValue(file)}', tempFile='{Log.SafeValue(remotePlaylistFile)}'");
-                file = remotePlaylistFile;
-            }
 
             string ext = file.Ext();
             Log.Debug($"Media input extension classified. index={i}, extension='{ext}', path='{Log.SafeValue(file)}'");
@@ -152,16 +145,6 @@ public partial class MainPlayer
             SetPropertyInt("playlist-pos", 0);
         }
     }
-
-    static bool TryDownloadRemotePlaylist(string file, out string playlistFile)
-        => RemotePlaylistService.TryDownload(
-            file, RemotePlaylistHttpClient, App.TempFolder, App.TempFiles, out playlistFile);
-
-    public static bool IsRemotePlaylistProbeTimeout(Exception ex) =>
-        RemotePlaylistService.IsProbeTimeout(ex);
-
-    public static bool LooksLikeM3u(ReadOnlySpan<byte> bytes) =>
-        RemotePlaylistService.LooksLikeM3u(bytes);
 
     void LoadPlaylistItems(List<PlaylistFileItem> items, bool append)
     {

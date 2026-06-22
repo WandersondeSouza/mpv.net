@@ -101,11 +101,10 @@ mantem apenas entradas de audio/video ou URLs de streaming e ignora itens
 repetidos que apontem para o mesmo caminho ou URL. Se uma instancia do player
 ja estiver aberta, os itens da playlist sao adicionados a playlist atual.
 
-URLs HTTP/HTTPS sem extensao reconhecida tambem sao verificadas de forma
-conservadora. Quando o conteudo comeca com `#EXTM3U`, a playlist remota e
-baixada para um arquivo temporario e expandida pelo frontend antes do envio ao
-mpv/libmpv. Essa verificacao usa timeout de pelo menos 60 segundos; se expirar
-ou falhar, a URL original ainda e enviada ao mpv/libmpv.
+URLs HTTP/HTTPS novas são enviadas diretamente ao mpv/libmpv, sem uma sondagem
+HTTP bloqueante no frontend. Isso evita atraso antes do início do carregamento,
+inclusive para URLs sem extensão. A detecção de mídia ou playlist remota fica a
+cargo do mpv/libmpv.
 
 Ao abrir uma URL de streaming diretamente, o frontend aplica opcoes locais de
 cache e rede para tolerar quedas curtas de fluxo sem alterar o comportamento
