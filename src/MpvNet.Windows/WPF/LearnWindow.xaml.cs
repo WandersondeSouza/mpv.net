@@ -206,7 +206,7 @@ public partial class LearnWindow : Window
 
     void SetKey(string? key)
     {
-        _newKey = key!;
+        _newKey = key ?? "";
         KeyTextBlock.Text = key;
     }
 
@@ -247,13 +247,17 @@ public partial class LearnWindow : Window
 
     void ConfirmButton_Click(object sender, RoutedEventArgs e)
     {
-        InputItem!.Input = _newKey;
+        if (InputItem is not null)
+            InputItem.Input = _newKey;
+
         Close();
     }
 
     void ClearButton_Click(object sender, RoutedEventArgs e)
     {
-        InputItem!.Input = "";
+        if (InputItem is not null)
+            InputItem.Input = "";
+
         Close();
     }
 

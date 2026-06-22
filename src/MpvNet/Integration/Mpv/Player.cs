@@ -101,12 +101,12 @@ public partial class MainPlayer : MpvClient
             case "border": Border = value == "yes"; break;
             case "fs":
             case "fullscreen": Fullscreen = value == "yes"; break;
-            case "gpu-api": GPUAPI = value!; break;
+            case "gpu-api" when value is not null: GPUAPI = value; break;
             case "keepaspect-window": KeepaspectWindow = value == "yes"; break;
             case "screen": Screen = Convert.ToInt32(value); break;
             case "snap-window": SnapWindow = value == "yes"; break;
             case "taskbar-progress": TaskbarProgress = value == "yes"; break;
-            case "vo": VO = value!; break;
+            case "vo" when value is not null: VO = value; break;
             case "window-maximized": WindowMaximized = value == "yes"; break;
             case "window-minimized": WindowMinimized = value == "yes"; break;
             case "title-bar": TitleBar = value == "yes"; break;

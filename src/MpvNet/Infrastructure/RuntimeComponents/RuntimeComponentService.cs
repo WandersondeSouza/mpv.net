@@ -145,7 +145,7 @@ internal static class RuntimeComponentService
             string digest = string.IsNullOrWhiteSpace(staged.Digest)
                 ? RuntimeComponentFileSystem.GetFileDigest(targetPath)
                 : staged.Digest;
-            await RuntimeComponentMetadataStore.SaveAsync(metadataPath, digest!, cancellationToken).ConfigureAwait(false);
+            await RuntimeComponentMetadataStore.SaveAsync(metadataPath, digest, cancellationToken).ConfigureAwait(false);
             Log.Debug($"Runtime component updated successfully. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
         }
         catch (IOException ex) when (RuntimeComponentFileSystem.IsFileLocked(targetPath))

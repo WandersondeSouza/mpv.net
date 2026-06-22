@@ -20,7 +20,9 @@ public partial class MainPlayer
             string json = GetPropertyString("profile-list");
             return _profileNames = JsonDocument.Parse(json).RootElement.EnumerateArray()
                 .Select(it => it.GetProperty("name").GetString())
-                .Where(it => !ignore.Contains(it)).ToArray()!;
+                .OfType<string>()
+                .Where(it => !ignore.Contains(it))
+                .ToArray();
         }
     }
 

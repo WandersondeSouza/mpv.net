@@ -41,7 +41,9 @@ internal static class SettingsStore
         {
             XmlSerializer serializer = new XmlSerializer(typeof(AppSettings));
             using FileStream fs = new FileStream(SettingsFile, FileMode.Open);
-            var settings = (AppSettings)serializer.Deserialize(fs)!;
+            if (serializer.Deserialize(fs) is not AppSettings settings)
+                throw new InvalidDataException("The application settings file did not contain valid settings.");
+
             Log.Debug("Application settings loaded.");
             return settings;
         }
@@ -55,7 +57,10 @@ internal static class SettingsStore
 
     public static void Save(AppSettings settings)
     {
-        Directory.CreateDirectory(Path.GetDirectoryName(SettingsFile)!);
+        string? settingsDirectory = Path.GetDirectoryName(SettingsFile);
+
+        if (!string.IsNullOrEmpty(settingsDirectory))
+            Directory.CreateDirectory(settingsDirectory);
         string tempFile = SettingsFile + "." + Guid.NewGuid().ToString("N") + ".tmp";
 
         try

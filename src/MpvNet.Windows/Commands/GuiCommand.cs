@@ -94,9 +94,13 @@ public class GuiCommand
 
     void ShowDialog(Type winType)
     {
-        Window? win = Activator.CreateInstance(winType) as Window;
-        new WindowInteropHelper(win).Owner = MainForm.Instance!.Handle;
-        win?.ShowDialog();
+        if (Activator.CreateInstance(winType) is not Window window)
+            throw new InvalidOperationException($"Could not create WPF window: {winType.FullName}");
+
+        if (MainForm.Instance is { } mainForm)
+            new WindowInteropHelper(window).Owner = mainForm.Handle;
+
+        window.ShowDialog();
     }
 
     void LoadSubtitle(IList<string> args)
@@ -183,8 +187,9 @@ public class GuiCommand
 
             foreach (var args in cmd.GetProperty("args").EnumerateArray())
             {
-                string value = args.GetProperty("name").GetString() + " <" +
-                    args.GetProperty("type").GetString()!.ToLower() + ">";
+                string argumentName = args.GetProperty("name").GetString() ?? "";
+                string argumentType = args.GetProperty("type").GetString() ?? "";
+                string value = argumentName + " <" + argumentType.ToLowerInvariant() + ">";
 
                 if (args.GetProperty("optional").GetBoolean())
                     value = "[" + value + "]";
@@ -419,7 +424,7 @@ public class GuiCommand
 
     void AddToPath()
     {
-        string path = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.User)!;
+        string path = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.User) ?? "";
 
         if (path.Contains(AppPaths.Startup.TrimEnd(Path.DirectorySeparatorChar), StringComparison.CurrentCultureIgnoreCase))
         {
@@ -436,7 +441,7 @@ public class GuiCommand
 
     void RemoveFromPath()
     {
-        string path = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.User)!;
+        string path = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.User) ?? "";
 
         if (!path.Contains(AppPaths.Startup.TrimEnd(Path.DirectorySeparatorChar)))
         {
