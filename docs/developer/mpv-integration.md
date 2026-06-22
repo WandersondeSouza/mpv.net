@@ -33,12 +33,12 @@ Arquivos principais:
 - `src/MpvNet/Native/LibMpv.cs` - P/Invoke para `libmpv-2.dll`;
 - `src/MpvNet/Integration/Mpv/MpvClient.cs` - wrapper de cliente, comandos, propriedades e eventos;
 - `src/MpvNet/Integration/Mpv/Player.cs` - estado principal do player;
-- `src/MpvNet/Player.Initialization.cs` - inicialização e configuração inicial do mpv/libmpv;
-- `src/MpvNet/Player.ObservedProperties.cs` - propriedades observadas;
-- `src/MpvNet/Player.Events.cs` - eventos vindos do mpv;
-- `src/MpvNet/Player.Lifecycle.cs` - loop principal, shutdown e destruição de handles;
-- `src/MpvNet/Player.MediaLoading.cs` - carregamento de mídia, playlists, URLs, ISO/DVD/BD e pasta automática;
-- `src/MpvNet/Player.Capabilities.cs` - perfis, decoders, protocolos, demuxers e criação de clientes adicionais.
+- `src/MpvNet/Integration/Mpv/Player.Initialization.cs` - inicialização e configuração inicial do mpv/libmpv;
+- `src/MpvNet/Integration/Mpv/Player.ObservedProperties.cs` - propriedades observadas;
+- `src/MpvNet/Integration/Mpv/Player.Events.cs` - eventos vindos do mpv;
+- `src/MpvNet/Integration/Mpv/Player.Lifecycle.cs` - loop principal, shutdown e destruição de handles;
+- `src/MpvNet/Integration/Mpv/Player.MediaLoading.cs` - carregamento de mídia, playlists, URLs, ISO/DVD/BD e pasta automática;
+- `src/MpvNet/Integration/Mpv/Player.Capabilities.cs` - perfis, decoders, protocolos, demuxers e criação de clientes adicionais.
 
 ## Ciclo de vida
 

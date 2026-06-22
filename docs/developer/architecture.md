@@ -187,12 +187,12 @@ Essa camada é a área de maior risco do projeto.
 
 Topologia atual do player:
 
-- `src/MpvNet/Player.Initialization.cs` - sequência de inicialização do mpv/libmpv e criação do cliente `mpvnet`;
-- `src/MpvNet/Player.ObservedProperties.cs` - propriedades observadas como `pause`, `video-rotate`, `playlist-pos` e `playlist`;
-- `src/MpvNet/Player.Events.cs` - callbacks de eventos de arquivo, log, reconfiguração de vídeo e títulos Blu-ray;
-- `src/MpvNet/Player.Lifecycle.cs` - `MainEventLoop`, shutdown e destruição dos handles;
-- `src/MpvNet/Player.MediaLoading.cs` - carregamento de mídia, playlists, URLs, ISO/DVD/BD, pasta automática e normalização de playlist;
-- `src/MpvNet/Player.Capabilities.cs` - perfis, decoders, protocolos, demuxers e criação de clientes adicionais.
+- `src/MpvNet/Integration/Mpv/Player.Initialization.cs` - sequência de inicialização do mpv/libmpv e criação do cliente `mpvnet`;
+- `src/MpvNet/Integration/Mpv/Player.ObservedProperties.cs` - propriedades observadas como `pause`, `video-rotate`, `playlist-pos` e `playlist`;
+- `src/MpvNet/Integration/Mpv/Player.Events.cs` - callbacks de eventos de arquivo, log, reconfiguração de vídeo e títulos Blu-ray;
+- `src/MpvNet/Integration/Mpv/Player.Lifecycle.cs` - `MainEventLoop`, shutdown e destruição dos handles;
+- `src/MpvNet/Integration/Mpv/Player.MediaLoading.cs` - carregamento de mídia, playlists, URLs, ISO/DVD/BD, pasta automática e normalização de playlist;
+- `src/MpvNet/Integration/Mpv/Player.Capabilities.cs` - perfis, decoders, protocolos, demuxers e criação de clientes adicionais.
 
 ---
 
@@ -286,7 +286,9 @@ Extensões .NET são carregadas de:
 extensions
 ```
 
-O carregamento é feito por `ExtensionLoader` após a janela principal informar que está carregada.
+O carregamento é feito por `ExtensionService` após a janela principal informar
+que está carregada. `ExtensionLoader` permanece como adaptador público obsoleto
+para compatibilidade.
 
 ---
 

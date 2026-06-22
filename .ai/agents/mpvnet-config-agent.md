@@ -18,8 +18,8 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 ## Arquivos críticos
 
 - `src/MpvNet/Integration/Mpv/Player.cs`;
-- `src/MpvNet/Player.Initialization.cs`;
-- `src/MpvNet/Player.MediaLoading.cs`;
+- `src/MpvNet/Integration/Mpv/Player.Initialization.cs`;
+- `src/MpvNet/Integration/Mpv/Player.MediaLoading.cs`;
 - `src/MpvNet/App.cs`;
 - `src/MpvNet/Configuration/InputConf.cs`;
 - `src/MpvNet/Configuration/Settings.cs`;
