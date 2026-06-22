@@ -19,9 +19,15 @@ internal static class RuntimeComponentService
                      .Where(item => item.Kind == RuntimeComponentDownloadKind.GitHubZip)
                      .GroupBy(item => $"{item.ReleaseApiUrl}|{item.AssetPattern}", StringComparer.OrdinalIgnoreCase))
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             try
             {
                 await EnsureBundleAsync(bundle.ToArray(), cancellationToken).ConfigureAwait(false);
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -32,9 +38,15 @@ internal static class RuntimeComponentService
         foreach (RuntimeComponentDefinition definition in definitions.Where(
                      item => item.Kind != RuntimeComponentDownloadKind.GitHubZip))
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             try
             {
                 await EnsureComponentAsync(definition, cancellationToken).ConfigureAwait(false);
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                throw;
             }
             catch (Exception ex)
             {

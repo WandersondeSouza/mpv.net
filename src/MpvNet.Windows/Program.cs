@@ -13,6 +13,8 @@ namespace MpvNet.Windows;
 
 static class Program
 {
+    static readonly CancellationTokenSource _applicationCancellation = new();
+
     [STAThread]
     static void Main()
     {
@@ -162,6 +164,11 @@ static class Program
             Log.Error(ex, "Application startup failed.");
             Terminal.WriteError(ex);
         }
+        finally
+        {
+            _applicationCancellation.Cancel();
+            _applicationCancellation.Dispose();
+        }
     }
 
     static bool ProcessCommandLineArguments()
@@ -218,16 +225,9 @@ static class Program
     internal static void StartComponentBootstrap()
     {
         Log.Debug("Starting runtime component bootstrap in background.");
-        Task.Run(async () =>
-        {
-            try
-            {
-                await RuntimeComponents.EnsureComponentsAsync().ConfigureAwait(false);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Component bootstrap failed.");
-            }
-        });
+        BackgroundTaskRunner.Run(
+            RuntimeComponents.EnsureComponentsAsync,
+            _applicationCancellation.Token,
+            ex => Log.Error(ex, "Component bootstrap failed."));
     }
 }
