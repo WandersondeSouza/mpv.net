@@ -102,66 +102,11 @@ public partial class LearnWindow : Window
         bool firstEmpty = false;
         Keys key = (Keys)vk;
 
-        if (key == Keys.ControlKey ||
-            key == Keys.ShiftKey ||
-            key == Keys.Menu ||
-            key == Keys.None ||
-            key == Keys.Tab)
-
+        if (IsModifierOnlyKey(key))
             return;
 
         string text = ToUnicode(vk, ref firstEmpty);
-
-        if ((int)key > 111 && (int)key < 136)
-            text = "F" + ((int)key - 111);
-
-        if ((int)key > 95 && (int)key < 106)
-            text = "KP" + ((int)key - 96);
-
-        switch (text)
-        {
-            case "#":  text = "Sharp"; break;
-            case "´´": text = "´"; break;
-            case "``": text = "`"; break;
-            case "^^": text = "^"; break;
-        }
-
-        switch (key)
-        {
-            case Keys.Left:               text = "Left"; break;
-            case Keys.Up:                 text = "Up"; break;
-            case Keys.Right:              text = "Right"; break;
-            case Keys.Down:               text = "Down"; break;
-            case Keys.Space:              text = "Space"; break;
-            case Keys.Enter:              text = "Enter"; break;
-            case Keys.Tab:                text = "Tab"; break;
-            case Keys.Back:               text = "BS"; break;
-            case Keys.Delete:             text = "Del"; break;
-            case Keys.Insert:             text = "Ins"; break;
-            case Keys.Home:               text = "Home"; break;
-            case Keys.End:                text = "End"; break;
-            case Keys.PageUp:             text = "PGUP"; break;
-            case Keys.PageDown:           text = "PGDWN"; break;
-            case Keys.Escape:             text = "Esc"; break;
-            case Keys.Sleep:              text = "Sleep"; break;
-            case Keys.Cancel:             text = "Cancel"; break;
-            case Keys.PrintScreen:        text = "Print"; break;
-            case Keys.BrowserFavorites:   text = "Favorites"; break;
-            case Keys.BrowserSearch:      text = "Search"; break;
-            case Keys.BrowserHome:        text = "Homepage"; break;
-            case Keys.LaunchMail:         text = "Mail"; break;
-            case Keys.Play:               text = "Play"; break;
-            case Keys.Pause:              text = "Pause"; break;
-            case Keys.MediaPlayPause:     text = "PlayPause"; break;
-            case Keys.MediaStop:          text = "Stop"; break;
-            case Keys.MediaNextTrack:     text = "Next"; break;
-            case Keys.MediaPreviousTrack: text = "Prev"; break;
-
-            case Keys.VolumeUp:
-            case Keys.VolumeDown:
-            case Keys.VolumeMute:
-                text = ""; break;
-        }
+        text = NormalizeKeyText(key, text);
 
         bool isAlt   = GetKeyState(18) < 0;
         bool isShift = GetKeyState(16) < 0;
@@ -173,7 +118,75 @@ public partial class LearnWindow : Window
             text = text.ToUpper();
 
         string keyString = ToUnicode(vk, ref firstEmpty);
+        text = ApplyModifiers(text, keyString, firstEmpty, isAlt, isShift, isCtrl);
 
+        if (!string.IsNullOrEmpty(text))
+            SetKey(text);
+    }
+
+    static bool IsModifierOnlyKey(Keys key) =>
+        key is Keys.ControlKey or Keys.ShiftKey or Keys.Menu or Keys.None or Keys.Tab;
+
+    static string NormalizeKeyText(Keys key, string text)
+    {
+        if ((int)key is > 111 and < 136)
+            return "F" + ((int)key - 111);
+
+        if ((int)key is > 95 and < 106)
+            return "KP" + ((int)key - 96);
+
+        text = text switch
+        {
+            "#" => "Sharp",
+            "´´" => "´",
+            "``" => "`",
+            "^^" => "^",
+            _ => text
+        };
+
+        return key switch
+        {
+            Keys.Left => "Left",
+            Keys.Up => "Up",
+            Keys.Right => "Right",
+            Keys.Down => "Down",
+            Keys.Space => "Space",
+            Keys.Enter => "Enter",
+            Keys.Tab => "Tab",
+            Keys.Back => "BS",
+            Keys.Delete => "Del",
+            Keys.Insert => "Ins",
+            Keys.Home => "Home",
+            Keys.End => "End",
+            Keys.PageUp => "PGUP",
+            Keys.PageDown => "PGDWN",
+            Keys.Escape => "Esc",
+            Keys.Sleep => "Sleep",
+            Keys.Cancel => "Cancel",
+            Keys.PrintScreen => "Print",
+            Keys.BrowserFavorites => "Favorites",
+            Keys.BrowserSearch => "Search",
+            Keys.BrowserHome => "Homepage",
+            Keys.LaunchMail => "Mail",
+            Keys.Play => "Play",
+            Keys.Pause => "Pause",
+            Keys.MediaPlayPause => "PlayPause",
+            Keys.MediaStop => "Stop",
+            Keys.MediaNextTrack => "Next",
+            Keys.MediaPreviousTrack => "Prev",
+            Keys.VolumeUp or Keys.VolumeDown or Keys.VolumeMute => "",
+            _ => text
+        };
+    }
+
+    static string ApplyModifiers(
+        string text,
+        string keyString,
+        bool firstEmpty,
+        bool isAlt,
+        bool isShift,
+        bool isCtrl)
+    {
         if (isAlt && !isCtrl)
             text = "Alt+" + text;
 
@@ -181,12 +194,12 @@ public partial class LearnWindow : Window
             text = "Shift+" + text;
 
         if (isCtrl && isAlt && firstEmpty)
-            text = "Ctrl+Alt+" + text;
-        else if (isCtrl && !(keyString != "" && isCtrl && isAlt))
-            text = "Ctrl+" + text;
+            return "Ctrl+Alt+" + text;
 
-        if (!string.IsNullOrEmpty(text))
-            SetKey(text);
+        if (isCtrl && !(keyString != "" && isAlt))
+            return "Ctrl+" + text;
+
+        return text;
     }
 
     void SetKey(string? key)

@@ -323,73 +323,84 @@ public class GuiCommand
         bool full = args.Contains("full");
         bool raw = args.Contains("raw");
         bool editor = args.Contains("editor");
-        bool osd = args.Contains("osd") || args == null || args.Count == 0;
-
-        long fileSize = 0;
-
-        string text = "";
+        bool osd = args.Contains("osd") || args.Count == 0;
         string path = Player.GetPropertyString("path");
 
-        if (File.Exists(path) && osd)
-        {
-            if (FileTypes.IsAudio(path.Ext()))
-            {
-                text = Player.GetPropertyOsdString("filtered-metadata");
-                Player.CommandV("show-text", text, "5000");
-                return;
-            }
-            else if (FileTypes.IsImage(path.Ext()))
-            {
-                fileSize = new FileInfo(path).Length;
-
-                text = _("Width") + ": " + Player.GetPropertyInt("width") + "\n" +
-                       _("Height") + ": " + Player.GetPropertyInt("height") + "\n" +
-                       _("Size") + ": " + Convert.ToInt32(fileSize / 1024.0) + " KB\n" +
-                       _("Type") + ": " + path.Ext().ToUpper();
-
-                Player.CommandV("show-text", text, "5000");
-                return;
-            }
-        }
-
-        if (path.Contains("://"))
-        {
-            path = Player.GetPropertyString("media-title");
-            string videoFormat = Player.GetPropertyString("video-format").ToUpper();
-            string audioCodec = Player.GetPropertyString("audio-codec-name").ToUpper();
-            int width = Player.GetPropertyInt("video-params/w");
-            int height = Player.GetPropertyInt("video-params/h");
-            TimeSpan len = TimeSpan.FromSeconds(Player.GetPropertyDouble("duration"));
-            text = path.FileName() + "\n";
-            text += FormatTime(len.TotalMinutes) + ":" + FormatTime(len.Seconds) + "\n";
-            if (fileSize > 0)
-                text += Convert.ToInt32(fileSize / 1024.0 / 1024.0) + " MB\n";
-            text += $"{width} x {height}\n";
-            text += $"{videoFormat}\n{audioCodec}";
-            Player.CommandV("show-text", text, "5000");
+        if (TryShowSimpleOsdMediaInfo(path, osd) || TryShowStreamMediaInfo(path))
             return;
+
+        string text = GetDetailedMediaInfo(path, full, raw, osd).TrimEx();
+        ShowMediaInfoText(text, editor, osd);
+    }
+
+    bool TryShowSimpleOsdMediaInfo(string path, bool osd)
+    {
+        if (!osd || !File.Exists(path))
+            return false;
+
+        if (FileTypes.IsAudio(path.Ext()))
+        {
+            Player.CommandV("show-text", Player.GetPropertyOsdString("filtered-metadata"), "5000");
+            return true;
         }
 
+        if (!FileTypes.IsImage(path.Ext()))
+            return false;
+
+        long fileSize = new FileInfo(path).Length;
+        string text =
+            _("Width") + ": " + Player.GetPropertyInt("width") + "\n" +
+            _("Height") + ": " + Player.GetPropertyInt("height") + "\n" +
+            _("Size") + ": " + Convert.ToInt32(fileSize / 1024.0) + " KB\n" +
+            _("Type") + ": " + path.Ext().ToUpper();
+
+        Player.CommandV("show-text", text, "5000");
+        return true;
+    }
+
+    bool TryShowStreamMediaInfo(string path)
+    {
+        if (!path.Contains("://"))
+            return false;
+
+        string mediaTitle = Player.GetPropertyString("media-title");
+        string videoFormat = Player.GetPropertyString("video-format").ToUpper();
+        string audioCodec = Player.GetPropertyString("audio-codec-name").ToUpper();
+        int width = Player.GetPropertyInt("video-params/w");
+        int height = Player.GetPropertyInt("video-params/h");
+        TimeSpan duration = TimeSpan.FromSeconds(Player.GetPropertyDouble("duration"));
+        string text =
+            mediaTitle.FileName() + "\n" +
+            FormatTime(duration.TotalMinutes) + ":" + FormatTime(duration.Seconds) + "\n" +
+            $"{width} x {height}\n" +
+            $"{videoFormat}\n{audioCodec}";
+
+        Player.CommandV("show-text", text, "5000");
+        return true;
+    }
+
+    string GetDetailedMediaInfo(string path, bool full, bool raw, bool osd)
+    {
         if (App.MediaInfo && !osd && File.Exists(path) && !path.Contains(@"\\.\pipe\"))
         {
-            using MediaInfo mediaInfo = new MediaInfo(path);
-            text = Regex.Replace(mediaInfo.GetSummary(full, raw), "Unique ID.+", "");
+            using MediaInfo mediaInfo = new(path);
+            return Regex.Replace(mediaInfo.GetSummary(full, raw), "Unique ID.+", "");
         }
-        else
+
+        Player.UpdateExternalTracks();
+        StringBuilder text = new("N: " + Player.GetPropertyString("filename") + BR);
+
+        lock (Player.MediaTracksLock)
         {
-            Player.UpdateExternalTracks();
-            text = "N: " + Player.GetPropertyString("filename") + BR;
-            lock (Player.MediaTracksLock)
-            {
-                foreach (MediaTrack track in Player.MediaTracks)
-                {
-                    text += track.Text + BR;
-                }
-            }
+            foreach (MediaTrack track in Player.MediaTracks)
+                text.Append(track.Text).Append(BR);
         }
 
-        text = text.TrimEx();
+        return text.ToString();
+    }
 
+    void ShowMediaInfoText(string text, bool editor, bool osd)
+    {
         if (editor)
             ShowTextWithEditor("media-info", text);
         else if (osd)
