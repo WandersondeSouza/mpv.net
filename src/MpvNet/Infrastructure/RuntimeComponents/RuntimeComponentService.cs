@@ -11,7 +11,7 @@ internal static class RuntimeComponentService
     public static async Task EnsureComponentsAsync(CancellationToken cancellationToken)
     {
         IReadOnlyList<RuntimeComponentDefinition> definitions = RuntimeComponentCatalog.Definitions;
-        Log.Info($"Starting runtime component bootstrap. folder='{Log.SafeValue(RuntimeComponentPaths.ComponentsFolder)}', count={definitions.Count}");
+        Log.Debug($"Starting runtime component bootstrap. folder='{Log.SafeValue(RuntimeComponentPaths.ComponentsFolder)}', count={definitions.Count}");
         Directory.CreateDirectory(RuntimeComponentPaths.ComponentsFolder);
         CleanupTempFolder();
 
@@ -42,7 +42,7 @@ internal static class RuntimeComponentService
             }
         }
 
-        Log.Info("Runtime component bootstrap finished.");
+        Log.Debug("Runtime component bootstrap finished.");
     }
 
     static async Task EnsureBundleAsync(
@@ -60,7 +60,7 @@ internal static class RuntimeComponentService
                 metadata.LastCheckedUtc > DateTimeOffset.UtcNow.Subtract(RefreshInterval) &&
                 definitions.All(item => File.Exists(RuntimeComponentPaths.GetTargetPath(item.FileName))))
             {
-                Log.Info("FFmpeg bundle is fresh and complete; skipping download.");
+                Log.Debug("FFmpeg bundle is fresh and complete; skipping download.");
                 return;
             }
         }
@@ -84,7 +84,7 @@ internal static class RuntimeComponentService
                 string sourcePath = Path.Combine(extractDirectory, definition.FileName);
                 string targetPath = RuntimeComponentPaths.GetTargetPath(definition.FileName);
                 File.Copy(sourcePath, targetPath, overwrite: true);
-                Log.Info($"Runtime bundle component updated successfully. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
+                Log.Debug($"Runtime bundle component updated successfully. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
             }
 
             await RuntimeComponentMetadataStore.SaveAsync(metadataPath, digest, cancellationToken).ConfigureAwait(false);
@@ -92,7 +92,7 @@ internal static class RuntimeComponentService
         catch (IOException ex) when (definitions.Any(item =>
                    RuntimeComponentFileSystem.IsFileLocked(RuntimeComponentPaths.GetTargetPath(item.FileName))))
         {
-            Log.Info("One or more FFmpeg bundle files are in use; skipping bundle update for now.");
+            Log.Debug("One or more FFmpeg bundle files are in use; skipping bundle update for now.");
             Log.Debug($"FFmpeg bundle update skipped because a target file is locked. error='{Log.SafeValue(ex.Message)}'");
         }
         finally
@@ -116,7 +116,7 @@ internal static class RuntimeComponentService
                 metadata.LastCheckedUtc > DateTimeOffset.UtcNow.Subtract(RefreshInterval) &&
                 File.Exists(targetPath))
             {
-                Log.Info($"Runtime component is fresh; skipping download. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
+                Log.Debug($"Runtime component is fresh; skipping download. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
                 return;
             }
         }
@@ -134,11 +134,11 @@ internal static class RuntimeComponentService
                 ? RuntimeComponentFileSystem.GetFileDigest(targetPath)
                 : staged.Digest;
             await RuntimeComponentMetadataStore.SaveAsync(metadataPath, digest!, cancellationToken).ConfigureAwait(false);
-            Log.Info($"Runtime component updated successfully. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
+            Log.Debug($"Runtime component updated successfully. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
         }
         catch (IOException ex) when (RuntimeComponentFileSystem.IsFileLocked(targetPath))
         {
-            Log.Info($"Runtime component is in use; skipping update for now. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
+            Log.Debug($"Runtime component is in use; skipping update for now. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
             Log.Debug($"Runtime component update skipped because the target file is locked. file='{definition.FileName}', error='{Log.SafeValue(ex.Message)}'");
         }
         finally
@@ -172,7 +172,7 @@ internal static class RuntimeComponentService
             ?? throw new InvalidOperationException($"Missing download URL for {definition.FileName}.");
         string destination = Path.Combine(RuntimeComponentPaths.TempFolder, asset.Name ?? definition.FileName);
         string digest = asset.Digest?.Split(':', 2, StringSplitOptions.TrimEntries).LastOrDefault() ?? "";
-        Log.Info($"Downloading runtime component asset. file='{definition.FileName}', asset='{Log.SafeValue(asset.Name)}', kind={definition.Kind}, url='{Log.SafeValue(url)}'");
+        Log.Debug($"Downloading runtime component asset. file='{definition.FileName}', asset='{Log.SafeValue(asset.Name)}', kind={definition.Kind}, url='{Log.SafeValue(url)}'");
         await GitHubReleaseClient.DownloadAsync(url, destination, cancellationToken).ConfigureAwait(false);
         return new DownloadedRuntimeAsset(destination, digest);
     }

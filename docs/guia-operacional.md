@@ -20,7 +20,7 @@ Documento único para build, dependências nativas, scripts, modo portátil, con
 Resumo rápido:
 
 - `Error` sempre vai para arquivo.
-- `Info` e `Debug` só vão para arquivo em build de diagnóstico.
+- `Debug` só vai para arquivo em build de diagnóstico.
 - Logs diários são retidos por 3 dias.
 - Limpeza de `Cache` e `Temp` também usa 3 dias.
 

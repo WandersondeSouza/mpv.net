@@ -10,7 +10,7 @@ public partial class MainPlayer
 {
     public void Init(IntPtr formHandle, bool processCommandLine)
     {
-        Log.Info($"Initializing mpv player. formHandle={formHandle}, processCommandLine={processCommandLine}");
+        Log.Debug($"Initializing mpv player. formHandle={formHandle}, processCommandLine={processCommandLine}");
         App.ApplyShowMenuFix();
 
         MainHandle = mpv_create();
@@ -109,7 +109,7 @@ public partial class MainPlayer
 
         string idle = GetPropertyString("idle");
         App.Exit = idle == "no" || idle == "once";
-        Log.Info($"mpv initialized. idle='{idle}', appExitOnIdle={App.Exit}, processCommandLine={processCommandLine}");
+        Log.Debug($"mpv initialized. idle='{idle}', appExitOnIdle={App.Exit}, processCommandLine={processCommandLine}");
 
         Handle = mpv_create_client(MainHandle, "mpvnet");
 
@@ -136,6 +136,6 @@ public partial class MainPlayer
         ConfigureObservedProperties();
 
         Initialized?.Invoke();
-        Log.Info("mpv player initialized.");
+        Log.Debug("mpv player initialized.");
     }
 }

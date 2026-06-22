@@ -64,8 +64,10 @@ responsabilidade real; não são aplicados mecanicamente a modelos.
 
 Contratos de nomenclatura consolidados:
 
-- `AppPaths` é o provedor de diretórios; `Folder` permanece como fachada
-  obsoleta para compatibilidade;
+- `AppPaths` é o provedor único dos diretórios-base da aplicação: configuração
+  padrão e portátil, localização, raiz local, cache, componentes, logs e
+  temporários. O startup cria os diretórios locais de trabalho antes do
+  primeiro uso. `Folder` permanece como fachada obsoleta para compatibilidade;
 - `TranslationProvider` mantém o tradutor ativo; `Translator` permanece como
   fachada obsoleta;
 - `ExtensionService` carrega extensões gerenciadas; `ExtensionLoader` permanece
@@ -229,7 +231,7 @@ Pasta de configuração:
 
 1. `MPVNET_HOME`;
 2. `portable_config`;
-3. `%APPDATA%\mpv.net`.
+3. `%LOCALAPPDATA%\mpv.net`.
 
 Arquivos:
 
@@ -448,7 +450,7 @@ pequenas, verificáveis e compatíveis com mpv/libmpv.
 
 ## Decisões de arquitetura
 
-- Preservar `mpvnet.exe`, `%APPDATA%\mpv.net`, `MPVNET_HOME`,
+- Preservar `mpvnet.exe`, `%LOCALAPPDATA%\mpv.net`, `MPVNET_HOME`,
   `portable_config`, `mpv.conf`, `mpvnet.conf` e `input.conf` como contratos de
   compatibilidade.
 - Manter `src/MpvNet/Integration/Mpv/Player.cs` como estado principal do player e mover apenas

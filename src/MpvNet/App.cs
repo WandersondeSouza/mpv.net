@@ -66,7 +66,7 @@ public class AppClass
 
     public void Init()
     {
-        Log.Info("Initializing application configuration.");
+        Log.Debug("Initializing application configuration.");
         TemporaryFileCleanup.CleanupDefaultFolders();
         string resolvedConfigFolder = Player.ConfigFolder;
         EnsureInitialMpvConf();
@@ -93,7 +93,7 @@ public class AppClass
 
         Player.Shutdown += Player_Shutdown;
         Player.Initialized += Player_Initialized;
-        Log.Info("Application configuration initialized.");
+        Log.Debug("Application configuration initialized.");
     }
 
     public static string About => "MPV.NET Media Player\n" +
@@ -129,9 +129,9 @@ public class AppClass
 
     void EnsureInitialMpvConf()
     {
-        string appDataConfigFolder = (AppPaths.AppData + "mpv.net").Separator();
+        string defaultConfigFolder = AppPaths.WithTrailingSeparator(AppPaths.DefaultConfig);
 
-        if (!StringComparer.OrdinalIgnoreCase.Equals(Player.ConfigFolder, appDataConfigFolder))
+        if (!StringComparer.OrdinalIgnoreCase.Equals(Player.ConfigFolder, defaultConfigFolder))
             return;
 
         if (File.Exists(Player.ConfPath))
@@ -207,7 +207,7 @@ public class AppClass
 
     void Player_Initialized()
     {
-        Log.Info("Player initialized.");
+        Log.Debug("Player initialized.");
 
         if (RememberVolume)
         {
@@ -223,7 +223,7 @@ public class AppClass
 
     void Player_Shutdown()
     {
-        Log.Info("Player shutting down.");
+        Log.Debug("Player shutting down.");
         Settings.Volume = Player.GetPropertyInt("volume");
         Settings.Mute = Player.GetPropertyString("mute");
 

@@ -6,7 +6,7 @@ Este documento resume onde o fork procura as configurações e quais arquivos o 
 
 1. `MPVNET_HOME`
 2. `portable_config`
-3. `%APPDATA%\mpv.net`
+3. `%LOCALAPPDATA%\mpv.net`
 
 ## Arquivos principais
 

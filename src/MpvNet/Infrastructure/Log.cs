@@ -5,7 +5,6 @@ namespace MpvNet;
 
 public enum LogLevel
 {
-    Info,
     Debug,
     Error
 }
@@ -19,7 +18,6 @@ public static class Log
 
     public static string LogFolder => FileLogWriter.DefaultLogFolder;
 
-    public static void Info(string message) => Write(LogLevel.Info, message, null);
     public static void Debug(string message) => Write(LogLevel.Debug, message, null);
     public static void Error(string message) => Write(LogLevel.Error, message, null);
     public static void Error(Exception exception, string? message = null) => Write(LogLevel.Error, message, exception);
@@ -87,8 +85,7 @@ internal sealed class FileLogWriter
         DeleteOldLogs();
     }
 
-    public static string DefaultLogFolder =>
-        Path.Combine(AppPaths.LocalAppData, "mpv.net", "Logs");
+    public static string DefaultLogFolder => AppPaths.Logs;
 
     internal void Write(LogLevel level, string? message, Exception? exception)
     {

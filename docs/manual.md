@@ -53,7 +53,7 @@ O mpv.net lê a configuração nesta ordem:
 
 1. `MPVNET_HOME`
 2. `portable_config`
-3. `%APPDATA%\mpv.net`
+3. `%LOCALAPPDATA%\mpv.net`
 
 Arquivos principais:
 

@@ -28,7 +28,7 @@ public partial class MainPlayer
             if (FileEnded && value == -1)
                 if (GetPropertyString("keep-open") == "no" && App.Exit)
                 {
-                    Log.Info("Requesting mpv quit because playback ended, playlist is empty, keep-open=no, and App.Exit is true.");
+                    Log.Debug("Requesting mpv quit because playback ended, playlist is empty, keep-open=no, and App.Exit is true.");
                     CommandV("quit");
                 }
         });

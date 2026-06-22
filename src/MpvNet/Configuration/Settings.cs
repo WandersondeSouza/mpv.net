@@ -33,7 +33,7 @@ internal static class SettingsStore
 
         if (!File.Exists(SettingsFile))
         {
-            Log.Info("Application settings file was not found; using defaults.");
+            Log.Debug("Application settings file was not found; using defaults.");
             return new AppSettings();
         }
 
@@ -42,7 +42,7 @@ internal static class SettingsStore
             XmlSerializer serializer = new XmlSerializer(typeof(AppSettings));
             using FileStream fs = new FileStream(SettingsFile, FileMode.Open);
             var settings = (AppSettings)serializer.Deserialize(fs)!;
-            Log.Info("Application settings loaded.");
+            Log.Debug("Application settings loaded.");
             return settings;
         }
         catch (Exception ex)

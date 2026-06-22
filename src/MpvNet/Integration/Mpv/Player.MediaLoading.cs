@@ -27,7 +27,7 @@ public partial class MainPlayer
     {
         if (files == null || files.Length == 0)
         {
-            Log.Info($"LoadFiles skipped because no files were supplied. loadFolder={loadFolder}, append={append}");
+            Log.Debug($"LoadFiles skipped because no files were supplied. loadFolder={loadFolder}, append={append}");
             return;
         }
 
@@ -38,7 +38,7 @@ public partial class MainPlayer
         }
 
         LastLoad = DateTime.Now;
-        Log.Info($"Loading media inputs. count={files.Length}, loadFolder={loadFolder}, append={append}, fallback='{Log.SafeValue(fallbackInput)}', inputs={Log.SafeValues(files)}");
+        Log.Debug($"Loading media inputs. count={files.Length}, loadFolder={loadFolder}, append={append}, fallback='{Log.SafeValue(fallbackInput)}', inputs={Log.SafeValues(files)}");
 
         for (int i = 0; i < files.Length; i++)
         {
@@ -62,7 +62,7 @@ public partial class MainPlayer
 
             if (TryDownloadRemotePlaylist(file, out string remotePlaylistFile))
             {
-                Log.Info($"Remote playlist detected and downloaded. source='{Log.SafeValue(file)}', tempFile='{Log.SafeValue(remotePlaylistFile)}'");
+                Log.Debug($"Remote playlist detected and downloaded. source='{Log.SafeValue(file)}', tempFile='{Log.SafeValue(remotePlaylistFile)}'");
                 file = remotePlaylistFile;
             }
 
@@ -93,7 +93,7 @@ public partial class MainPlayer
                 {
                     var playlistItems = PlaylistFile.Read(file);
                     List<PlaylistFileItem> itemsToLoad = [];
-                    Log.Info($"Playlist file expanded. path='{Log.SafeValue(file)}', parsedItems={playlistItems.Count}, appendPlaylist={appendPlaylist}");
+                    Log.Debug($"Playlist file expanded. path='{Log.SafeValue(file)}', parsedItems={playlistItems.Count}, appendPlaylist={appendPlaylist}");
 
                     foreach (var item in playlistItems)
                     {
@@ -108,12 +108,12 @@ public partial class MainPlayer
 
                     if (itemsToLoad.Count > 0)
                     {
-                        Log.Info($"Loading playlist items. playlist='{Log.SafeValue(file)}', count={itemsToLoad.Count}, append={appendPlaylist}");
+                        Log.Debug($"Loading playlist items. playlist='{Log.SafeValue(file)}', count={itemsToLoad.Count}, append={appendPlaylist}");
                         LoadPlaylistItems(itemsToLoad, appendPlaylist);
                     }
                     else
                     {
-                        Log.Info($"Playlist file did not add new items. path='{Log.SafeValue(file)}'");
+                        Log.Debug($"Playlist file did not add new items. path='{Log.SafeValue(file)}'");
 
                         if (string.IsNullOrEmpty(GetPropertyString("path")))
                             TryLoadFallbackDirect(fallbackInput, file, appendPlaylist, "empty playlist expansion");
@@ -125,19 +125,19 @@ public partial class MainPlayer
 
                     if (!TryLoadFallbackDirect(fallbackInput, file, appendPlaylist, "playlist expansion failure"))
                     {
-                        Log.Info($"Falling back to raw playlist file through mpv. playlist='{Log.SafeValue(file)}'");
+                        Log.Debug($"Falling back to raw playlist file through mpv. playlist='{Log.SafeValue(file)}'");
                         SendLoadfile(file, i, append);
                     }
                 }
             }
             else if (ext == "iso")
             {
-                Log.Info($"Loading ISO media input: '{Log.SafeValue(file)}'");
+                Log.Debug($"Loading ISO media input: '{Log.SafeValue(file)}'");
                 LoadISO(file);
             }
             else if(FileTypes.Subtitle.Contains(ext))
             {
-                Log.Info($"Adding subtitle from media input: '{Log.SafeValue(file)}'");
+                Log.Debug($"Adding subtitle from media input: '{Log.SafeValue(file)}'");
                 CommandV("sub-add", file);
             }
             else
@@ -166,7 +166,7 @@ public partial class MainPlayer
     void LoadPlaylistItems(List<PlaylistFileItem> items, bool append)
     {
         string playlist = PlaylistFile.WriteTempM3u(items);
-        Log.Info($"Sending loadlist to mpv. tempPlaylist='{Log.SafeValue(playlist)}', itemCount={items.Count}, mode={(append ? "append" : "replace")}");
+        Log.Debug($"Sending loadlist to mpv. tempPlaylist='{Log.SafeValue(playlist)}', itemCount={items.Count}, mode={(append ? "append" : "replace")}");
         CommandV("loadlist", playlist, append ? "append" : "replace");
     }
 
@@ -178,7 +178,7 @@ public partial class MainPlayer
         if (GetPlaylistPathKey(fallbackInput) == GetPlaylistPathKey(failedInput))
             return false;
 
-        Log.Info($"Playback fallback activated. reason='{reason}', fallback='{Log.SafeValue(fallbackInput)}', failedInput='{Log.SafeValue(failedInput)}', append={append}");
+        Log.Debug($"Playback fallback activated. reason='{reason}', fallback='{Log.SafeValue(fallbackInput)}', failedInput='{Log.SafeValue(failedInput)}', append={append}");
         SendLoadfile(ConvertFilePath(fallbackInput), append ? 1 : 0, append);
 
         return true;
@@ -189,12 +189,12 @@ public partial class MainPlayer
         bool useStreamingOptions = ShouldUseAutomaticStreamingOptions(file);
 
         if (useStreamingOptions)
-            Log.Info($"Applying automatic streaming network tolerance to loadfile. path='{Log.SafeValue(file)}', options='{AutomaticStreamingLoadOptions}'");
+            Log.Debug($"Applying automatic streaming network tolerance to loadfile. path='{Log.SafeValue(file)}', options='{AutomaticStreamingLoadOptions}'");
 
         if (index == 0 && !append)
-            Log.Info($"Sending loadfile replace to mpv: '{Log.SafeValue(file)}'");
+            Log.Debug($"Sending loadfile replace to mpv: '{Log.SafeValue(file)}'");
         else
-            Log.Info($"Sending loadfile append to mpv: '{Log.SafeValue(file)}'");
+            Log.Debug($"Sending loadfile append to mpv: '{Log.SafeValue(file)}'");
 
         CommandV(BuildLoadfileArgs(file, index, append));
     }

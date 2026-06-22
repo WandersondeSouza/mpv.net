@@ -24,7 +24,7 @@ public partial class MainPlayer
     protected override void OnEndFile(mpv_event_end_file data)
     {
         string errorText = GetError((mpv_error)data.error);
-        Log.Info($"mpv end-file event. reason={(mpv_end_file_reason)data.reason}, error={data.error}, errorText='{errorText}', path='{Log.SafeValue(GetPropertyString("path"))}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}");
+        Log.Debug($"mpv end-file event. reason={(mpv_end_file_reason)data.reason}, error={data.error}, errorText='{errorText}', path='{Log.SafeValue(GetPropertyString("path"))}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}");
 
         if ((mpv_end_file_reason)data.reason == mpv_end_file_reason.MPV_END_FILE_REASON_ERROR &&
             errorText == "unrecognized file format" &&
@@ -51,7 +51,7 @@ public partial class MainPlayer
     protected override void OnStartFile()
     {
         Path = GetPropertyString("path");
-        Log.Info($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}");
+        Log.Debug($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}");
         base.OnStartFile();
         TaskHelp.Run(LoadFolder);
     }
@@ -60,7 +60,7 @@ public partial class MainPlayer
     protected override void OnFileLoaded()
     {
         Duration = GetSafeDuration();
-        Log.Info($"mpv file-loaded event. path='{Log.SafeValue(GetPropertyString("path"))}', duration={Duration}, mediaTitle='{Log.SafeValue(GetPropertyString("media-title"))}'");
+        Log.Debug($"mpv file-loaded event. path='{Log.SafeValue(GetPropertyString("path"))}', duration={Duration}, mediaTitle='{Log.SafeValue(GetPropertyString("media-title"))}'");
 
         if (App.StartSize == "video")
             WasInitialSizeSet = false;

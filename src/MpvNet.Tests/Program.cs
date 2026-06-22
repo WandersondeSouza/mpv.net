@@ -248,8 +248,8 @@ File.WriteAllText(Path.Combine(tempLogDir, "mpvnet-2026-05-29.log"), "old");
 File.WriteAllText(Path.Combine(tempLogDir, "mpvnet-2026-05-30.log"), "keep");
 File.WriteAllText(Path.Combine(tempLogDir, "other-2026-05-01.log"), "unrelated");
 var logWriter = new FileLogWriter(tempLogDir, () => fixedLogDate);
-logWriter.Write(LogLevel.Info, "info message", null);
-logWriter.Write(LogLevel.Debug, "debug message", null);
+logWriter.Write(LogLevel.Debug, "debug message 1", null);
+logWriter.Write(LogLevel.Debug, "debug message 2", null);
 logWriter.Write(LogLevel.Error, "error message", new InvalidOperationException("outer", new Exception("inner")));
 string dailyLogFile = Path.Combine(tempLogDir, "mpvnet-2026-06-02.log");
 string dailyLogContent = File.ReadAllText(dailyLogFile);
@@ -273,6 +273,16 @@ bool blockedWriteDidNotThrow = true;
 string expectedLocalAppDataRoot = Path.Combine(AppPaths.LocalAppData, "mpv.net");
 string defaultCacheFolder = new MainPlayer().CacheFolder;
 string defaultTempFolder = Global.App.TempFolder;
+bool centralizedAppPaths =
+    AppPaths.DefaultConfig == AppPaths.LocalRoot &&
+    AppPaths.PortableConfig == Path.Combine(AppPaths.Startup, "portable_config") &&
+    AppPaths.Locale == Path.Combine(AppPaths.Startup, "Locale") &&
+    AppPaths.LocalRoot == expectedLocalAppDataRoot &&
+    AppPaths.Cache == TemporaryFileCleanup.DefaultCacheFolder &&
+    AppPaths.Temp == TemporaryFileCleanup.DefaultTempFolder &&
+    AppPaths.Logs == Log.LogFolder &&
+    AppPaths.Components == RuntimeComponentPaths.ComponentsFolder &&
+    AppPaths.ComponentTemp == RuntimeComponentPaths.TempFolder;
 
 DateTime fixedCleanupDate = new(2026, 6, 2, 12, 0, 0);
 string tempCleanupDir = Path.Combine(Path.GetTempPath(), "mpvnet-cleanup-tests-" + Guid.NewGuid().ToString("N"));
@@ -309,7 +319,7 @@ catch
 
 try
 {
-    blockedLogWriter.Write(LogLevel.Info, "ignored", null);
+    blockedLogWriter.Write(LogLevel.Debug, "ignored", null);
 }
 catch
 {
@@ -552,8 +562,7 @@ var tests = new (string Name, bool Result)[]
     ("Custom menu keeps open files", customMenuBindings.Any(binding => binding.Command == "script-message-to mpvnet open-files")),
     ("Custom menu keeps about", customMenuBindings.Any(binding => binding.Command == "script-message-to mpvnet show-about")),
     ("File log writer creates folder and daily log file", File.Exists(dailyLogFile)),
-    ("File log writer writes Info", dailyLogContent.Contains("[INFO] info message")),
-    ("File log writer writes Debug", dailyLogContent.Contains("[DEBUG] debug message")),
+    ("File log writer writes Debug", dailyLogContent.Contains("[DEBUG] debug message 1") && dailyLogContent.Contains("[DEBUG] debug message 2")),
     ("File log writer writes Error exception", dailyLogContent.Contains("[ERROR] error message") && dailyLogContent.Contains("InvalidOperationException") && dailyLogContent.Contains("inner")),
     ("File log writer deletes logs older than three days", !File.Exists(Path.Combine(tempLogDir, "mpvnet-2026-05-29.log"))),
     ("File log writer keeps recent daily logs", File.Exists(Path.Combine(tempLogDir, "mpvnet-2026-05-30.log"))),
@@ -564,6 +573,7 @@ var tests = new (string Name, bool Result)[]
     ("Runtime release JSON maps GitHub browser download URL", runtimeRelease?.Assets.Single().BrowserDownloadUrl == "https://example.com/yt-dlp.exe"),
     ("Runtime release JSON maps GitHub digest", runtimeRelease?.Assets.Single().Digest == "sha256:123"),
     ("Default log folder uses mpv.net LocalAppData root", Path.GetFullPath(Log.LogFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
+    ("Application work folders use centralized AppPaths", centralizedAppPaths),
     ("Default cache folder uses mpv.net LocalAppData root", Path.GetFullPath(defaultCacheFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
     ("Default cache folder is separate from logs", !StringComparer.OrdinalIgnoreCase.Equals(Path.GetFullPath(defaultCacheFolder), Path.GetFullPath(Log.LogFolder))),
     ("Default temp folder uses mpv.net LocalAppData root", Path.GetFullPath(defaultTempFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),

@@ -7,7 +7,7 @@ quando o build e gerado com logging habilitado.
 Resumo rápido:
 
 - `Error` sempre vai para arquivo.
-- `Info` e `Debug` só vao para arquivo em build de diagnóstico.
+- `Debug` só vai para arquivo em build de diagnóstico.
 - Logs diarios sao retidos por 3 dias.
 - Limpeza de `Cache` e `Temp` tambem usa 3 dias.
 
@@ -112,7 +112,7 @@ Essa pasta compartilha a mesma raiz usada pelo cache temporário do mpv:
 Na inicialização, falhas ao limpar arquivos antigos em
 `%LOCALAPPDATA%\mpv.net\Cache` ou `%LOCALAPPDATA%\mpv.net\Temp` tambem entram
 nesse log. Em builds de diagnóstico, essas falhas aparecem junto com os logs
-`Info` e `Debug`; nos demais builds, apenas erros sao persistidos.
+`Debug`; nos demais builds, apenas erros sao persistidos.
 Essas falhas nao bloqueiam a abertura do player.
 
 O arquivo diario usa este padrão:

@@ -4,14 +4,11 @@ internal static class TemporaryFileCleanup
 {
     internal static readonly TimeSpan Retention = TimeSpan.FromDays(3);
 
-    public static string DefaultRootFolder =>
-        Path.Combine(AppPaths.LocalAppData, "mpv.net");
+    public static string DefaultRootFolder => AppPaths.LocalRoot;
 
-    public static string DefaultCacheFolder =>
-        Path.Combine(DefaultRootFolder, "Cache");
+    public static string DefaultCacheFolder => AppPaths.Cache;
 
-    public static string DefaultTempFolder =>
-        Path.Combine(DefaultRootFolder, "Temp");
+    public static string DefaultTempFolder => AppPaths.Temp;
 
     public static void CleanupDefaultFolders() =>
         Cleanup(DateTime.Now, DefaultCacheFolder, DefaultTempFolder);

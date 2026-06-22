@@ -2,11 +2,9 @@ namespace MpvNet;
 
 internal static class RuntimeComponentPaths
 {
-    public static string ComponentsFolder { get; } =
-        Path.Combine(AppPaths.LocalAppData, "mpv.net", "Component");
+    public static string ComponentsFolder { get; } = AppPaths.Components;
 
-    public static string TempFolder { get; } =
-        Path.Combine(TemporaryFileCleanup.DefaultTempFolder, "RuntimeComponents");
+    public static string TempFolder { get; } = AppPaths.ComponentTemp;
 
     public static string GetTargetPath(string fileName) => Path.Combine(ComponentsFolder, fileName);
 
@@ -23,21 +21,21 @@ internal static class RuntimeComponentPathResolver
         string componentPath = RuntimeComponentPaths.GetTargetPath(fileName);
         if (File.Exists(componentPath))
         {
-            Log.Info($"Resolved runtime component from component folder. file='{fileName}', path='{Log.SafeValue(componentPath)}'");
+            Log.Debug($"Resolved runtime component from component folder. file='{fileName}', path='{Log.SafeValue(componentPath)}'");
             return componentPath;
         }
 
         string startupPath = Path.Combine(AppPaths.Startup, fileName);
         if (File.Exists(startupPath))
         {
-            Log.Info($"Resolved runtime component from startup folder. file='{fileName}', path='{Log.SafeValue(startupPath)}'");
+            Log.Debug($"Resolved runtime component from startup folder. file='{fileName}', path='{Log.SafeValue(startupPath)}'");
             return startupPath;
         }
 
         string? pathCandidate = ResolveFromWindowsPath(fileName);
         if (!string.IsNullOrWhiteSpace(pathCandidate))
         {
-            Log.Info($"Resolved runtime component from PATH. file='{fileName}', path='{Log.SafeValue(pathCandidate)}'");
+            Log.Debug($"Resolved runtime component from PATH. file='{fileName}', path='{Log.SafeValue(pathCandidate)}'");
         }
 
         Log.Debug($"Resolved runtime component fallback. file='{fileName}', componentPath='{Log.SafeValue(componentPath)}', startupPath='{Log.SafeValue(startupPath)}', pathCandidate='{Log.SafeValue(pathCandidate)}'");

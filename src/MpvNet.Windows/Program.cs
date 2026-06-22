@@ -18,7 +18,8 @@ static class Program
     {
         try
         {
-            Log.Info("Application starting.");
+            AppPaths.EnsureLocalDirectories();
+            Log.Debug("Application starting.");
             RegistryHelp.ProductName = AppInfo.Product;
             TranslationProvider.Current = new WpfTranslator();
 
@@ -55,14 +56,14 @@ static class Program
 
             if (args.Length > 1 && args[0] == "--register-file-associations")
             {
-                Log.Info($"Registering file associations from command line. perceivedType='{Log.SafeValue(args[1])}', extensions={Log.SafeValues(args.Skip(2))}");
+                Log.Debug($"Registering file associations from command line. perceivedType='{Log.SafeValue(args[1])}', extensions={Log.SafeValues(args.Skip(2))}");
                 FileAssociation.Register(args[1], args.Skip(2).ToArray());
                 return;
             }
 
             App.Init();
             Theme.Init();
-            Log.Info("Application initialized.");
+            Log.Debug("Application initialized.");
             using Mutex mutex = new Mutex(true, StringHelp.GetMD5Hash(App.ConfPath), out bool isFirst);
 
             if (Control.ModifierKeys == Keys.Shift ||
@@ -75,7 +76,7 @@ static class Program
 
             if ((App.ProcessInstance == "single" || App.ProcessInstance == "queue") && !isFirst)
             {
-                Log.Info($"Forwarding command line to existing mpv.net instance. mode={App.ProcessInstance}");
+                Log.Debug($"Forwarding command line to existing mpv.net instance. mode={App.ProcessInstance}");
                 List<string> args2 = new List<string> { App.ProcessInstance };
 
                 foreach (string arg in args)
@@ -115,7 +116,7 @@ static class Program
                             if (App.IsTerminalAttached)
                                 WinApi.FreeConsole();
 
-                            Log.Info("Command line forwarded to existing instance.");
+                            Log.Debug("Command line forwarded to existing instance.");
                             return;
                         }
                     }
@@ -128,12 +129,12 @@ static class Program
 
             if (ProcessCommandLineArguments())
             {
-                Log.Info("Processed informational command line argument.");
+                Log.Debug("Processed informational command line argument.");
                 Environment.GetCommandLineArgs();
             }
             else if (App.CommandLine.Contains("--o="))
             {
-                Log.Info("Starting headless output mode because --o= was supplied.");
+                Log.Debug("Starting headless output mode because --o= was supplied.");
                 App.AutoLoadFolder = false;
                 Player.Init(IntPtr.Zero, true);
                 StartComponentBootstrap();
@@ -154,7 +155,7 @@ static class Program
             if (App.IsTerminalAttached)
                 WinApi.FreeConsole();
 
-            Log.Info("Application shutting down.");
+            Log.Debug("Application shutting down.");
         }
         catch (Exception ex)
         {
@@ -171,7 +172,7 @@ static class Program
 
             if (arg == "--profile=help")
             {
-                Log.Info("Processing --profile=help.");
+                Log.Debug("Processing --profile=help.");
                 Player.Init(IntPtr.Zero, false);
                 Console.WriteLine(Player.GetProfiles());
                 Player.Destroy();
@@ -179,7 +180,7 @@ static class Program
             }
             else if (arg == "--vd=help" || arg == "--ad=help")
             {
-                Log.Info($"Processing decoder help argument: '{arg}'.");
+                Log.Debug($"Processing decoder help argument: '{arg}'.");
                 Player.Init(IntPtr.Zero, false);
                 Console.WriteLine(Player.GetDecoders());
                 Player.Destroy();
@@ -187,7 +188,7 @@ static class Program
             }
             else if (arg == "--audio-device=help")
             {
-                Log.Info("Processing --audio-device=help.");
+                Log.Debug("Processing --audio-device=help.");
                 Player.Init(IntPtr.Zero, false);
                 Console.WriteLine(Player.GetPropertyOsdString("audio-device-list"));
                 Player.Destroy();
@@ -195,7 +196,7 @@ static class Program
             }
             else if (arg == "--input-keylist")
             {
-                Log.Info("Processing --input-keylist.");
+                Log.Debug("Processing --input-keylist.");
                 Player.Init(IntPtr.Zero, false);
                 Console.WriteLine(Player.GetPropertyString("input-key-list").Replace(",", BR));
                 Player.Destroy();
@@ -203,7 +204,7 @@ static class Program
             }
             else if (arg == "--version")
             {
-                Log.Info("Processing --version.");
+                Log.Debug("Processing --version.");
                 Player.Init(IntPtr.Zero, false);
                 Console.WriteLine(AppClass.About);
                 Player.Destroy();
@@ -216,7 +217,7 @@ static class Program
 
     internal static void StartComponentBootstrap()
     {
-        Log.Info("Starting runtime component bootstrap in background.");
+        Log.Debug("Starting runtime component bootstrap in background.");
         Task.Run(async () =>
         {
             try

@@ -6,7 +6,7 @@ public partial class MainPlayer
 {
     public void Destroy()
     {
-        Log.Info("Destroying mpv player.");
+        Log.Debug("Destroying mpv player.");
         mpv_destroy(MainHandle);
         mpv_destroy(Handle);
 
@@ -26,7 +26,7 @@ public partial class MainPlayer
 
     protected override void OnShutdown()
     {
-        Log.Info($"mpv shutdown event received. path='{Log.SafeValue(GetPropertyString("path"))}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}, isQuitNeeded={IsQuitNeeded}");
+        Log.Debug($"mpv shutdown event received. path='{Log.SafeValue(GetPropertyString("path"))}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}, isQuitNeeded={IsQuitNeeded}");
         IsQuitNeeded = false;
         base.OnShutdown();
         ShutdownAutoResetEvent.Set();

@@ -29,7 +29,7 @@ Ordem:
 
 1. variável de ambiente `MPVNET_HOME`, quando aponta para um diretório existente;
 2. pasta `portable_config` ao lado do executável;
-3. `%APPDATA%\mpv.net`, criada automaticamente se não existir.
+3. `%LOCALAPPDATA%\mpv.net`, criada automaticamente no startup.
 
 Essa ordem é crítica para compatibilidade com instalações existentes e modo portátil.
 
@@ -62,7 +62,11 @@ Cache e logs:
 | `%LOCALAPPDATA%\mpv.net\Cache` | Cache temporário do mpv para demuxer, ICC e shaders. |
 | `%LOCALAPPDATA%\mpv.net\Component` | Componentes nativos baixados/atualizados em segundo plano, com fallback para os binários que vierem junto do app. |
 | `%LOCALAPPDATA%\mpv.net\Temp` | Arquivos temporários criados pelo frontend, como playlists normalizadas. |
+| `%LOCALAPPDATA%\mpv.net\Temp\RuntimeComponents` | Downloads e extrações temporárias antes da instalação dos arquivos em `Component`. |
 | `%LOCALAPPDATA%\mpv.net\Logs` | Logs diários quando o build é gerado com logging em arquivo habilitado. |
+
+Esses diretórios são centralizados em `AppPaths` e criados no início da
+aplicação, antes da inicialização de logs, cache e atualização de componentes.
 
 Para scripts como `thumbfast`, a versão portátil deve usar `portable_config/scripts` e `portable_config/script-opts`. No mpv.net v7, `thumbfast` tem suporte direto; `mpv_path` para um `mpv.exe` separado deve ser tratado como fallback para versões antigas ou casos específicos documentados pelo próprio script.
 
@@ -234,7 +238,7 @@ Quando `--config-dir` é usado, o caminho do `input.conf` também é ajustado pa
 # Fluxo resumido de configuração
 
 1. A aplicação inicia.
-2. `Player.ConfigFolder` resolve `MPVNET_HOME`, `portable_config` ou `%APPDATA%\mpv.net`.
+2. `Player.ConfigFolder` resolve `MPVNET_HOME`, `portable_config` ou `%LOCALAPPDATA%\mpv.net`.
 3. Arquivos antigos em `%LOCALAPPDATA%\mpv.net\Cache` e `%LOCALAPPDATA%\mpv.net\Temp`
    com mais de 1 dia são removidos de forma não bloqueante.
 4. O cache do mpv é direcionado para `%LOCALAPPDATA%\mpv.net\Cache`.
@@ -281,7 +285,7 @@ A configuração é lida no startup. Evite leituras repetidas ou validações pe
 
 # Recomendações para manutenção
 
-1. Validar `MPVNET_HOME`, `portable_config` e `%APPDATA%\mpv.net`.
+1. Validar `MPVNET_HOME`, `portable_config` e `%LOCALAPPDATA%\mpv.net`.
 2. Testar `mpv.conf`, `mpvnet.conf` e `input.conf` separadamente.
 3. Preservar compatibilidade com arquivos antigos.
 4. Criar backup antes de qualquer migração que altere arquivo do usuário.

@@ -127,11 +127,11 @@ public class CommandLine
         CommandLineMediaRequest request = ResolveMediaRequest(Environment.GetCommandLineArgs().Skip(1), Arguments);
         List<string> files = request.Files;
 
-        Log.Info($"Command line media inputs selected: count={files.Count}, queue={App.Queue}, loadFolder={!App.Queue}, primary='{Log.SafeValue(request.PrimaryMedia)}', title='{Log.SafeValue(request.Title)}', source='{request.Source}', inputs={Log.SafeValues(files)}");
+        Log.Debug($"Command line media inputs selected: count={files.Count}, queue={App.Queue}, loadFolder={!App.Queue}, primary='{Log.SafeValue(request.PrimaryMedia)}', title='{Log.SafeValue(request.Title)}', source='{request.Source}', inputs={Log.SafeValues(files)}");
 
         if (!string.IsNullOrWhiteSpace(request.Title) && !string.IsNullOrWhiteSpace(request.PrimaryMedia))
         {
-            Log.Info($"Applying command line media title before playback. title='{Log.SafeValue(request.Title)}', media='{Log.SafeValue(request.PrimaryMedia)}'");
+            Log.Debug($"Applying command line media title before playback. title='{Log.SafeValue(request.Title)}', media='{Log.SafeValue(request.PrimaryMedia)}'");
             Player.SetPropertyString("force-media-title", request.Title);
         }
 
@@ -139,7 +139,7 @@ public class CommandLine
 
         if (App.CommandLine.Contains("--shuffle"))
         {
-            Log.Info("Applying command line shuffle to playlist.");
+            Log.Debug("Applying command line shuffle to playlist.");
             Player.Command("playlist-shuffle");
             Player.SetPropertyInt("playlist-pos", 0);
         }
