@@ -113,6 +113,8 @@ Arquivos centrais para entender o fluxo sem abrir vários documentos:
 - `src/MpvNet/Integration/Mpv/MpvClient.cs` - wrapper de cliente e loop de eventos;
 - `src/MpvNet/Native/LibMpv.cs` - P/Invoke e estruturas nativas;
 - `src/MpvNet/Configuration/InputConf.cs` - leitura e migração do `input.conf`;
+- `src/MpvNet/Configuration/InputBindingParser.cs` e
+  `InputBindingSerializer.cs` - parsing e serialização dos bindings;
 - `src/MpvNet/Configuration/Settings.cs` - persistência de estado do frontend;
 - `src/MpvNet/Configuration/CommandLine.cs` - argumentos de linha de comando;
 - `src/MpvNet.Windows/UI/Theme.cs` e `src/MpvNet.Windows/UI/GlobalHotkey.cs` - tema e hotkeys globais;
@@ -386,6 +388,9 @@ Risco médio:
   e a decisão de reprodução.
 - `GuiCommandArgumentParser` concentra validação de argumentos obrigatórios e
   números invariantes; `GuiCommand` mantém o registro e a execução dos comandos.
+- `InputBindingParser` e `InputBindingSerializer` concentram a conversão entre
+  texto de `input.conf` e modelos `Binding`; `InputHelp` preserva a API pública,
+  o catálogo padrão e as operações de composição usadas pela UI.
 - `EditorConfigurationService` e `EditorConfigurationParser` concentram o
   parsing das definições do editor; `ConfWindow` mantém apenas estado e
   interação visual. `Conf` permanece como fachada obsoleta.

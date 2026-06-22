@@ -1,6 +1,4 @@
 ﻿
-using System.Text;
-
 namespace MpvNet;
 
 public static class InputHelp
@@ -255,143 +253,10 @@ public static class InputHelp
     }
 
     public static string ConvertToString(List<Binding> bindings)
-    {
-        StringBuilder sb = new StringBuilder();
-        
-        foreach (Binding binding in bindings)
-        {
-            if (binding.IsEmpty())
-            {
-                sb.AppendLine();
-                continue;
-            }
-
-            if (binding.Comment != "" &&
-                binding.Command == "" &&
-                binding.Input == "" &&
-                !binding.IsMenu)
-            {
-                sb.AppendLine("#" + binding.Comment.Trim());
-                continue;
-            }
-
-            string command = binding.Command.Trim();
-            string input = binding.Input.Trim();
-            input = input == "" ? "_" : input;
-            string line = input.PadRight(10) + "  ";
-            line += command == "" ? "ignore" : command;
-
-            string comment;
-
-            if (binding.IsMenu)
-            {
-                if (binding.IsShortMenuSyntax)
-                    comment = "! " + binding.Comment.Trim();
-                else
-                    comment = "menu: " + binding.Comment.Trim();
-            }
-            else if (binding.IsCustomMenu)
-                comment = "custom-menu: " + binding.Comment.Trim();
-            else
-                comment = binding.Comment.Trim();
-
-            if (comment != "")
-            {
-                if (comment.StartsWith("menu: ") ||
-                    comment.StartsWith("custom-menu: ") ||
-                    comment.StartsWith("! "))
-
-                    comment = "  #" + comment;
-                else
-                    comment = "  # " + comment;
-
-                line = line.PadRight(40) + comment;
-            }
-
-            sb.AppendLine(line);
-        }
-
-        return sb.ToString().TrimEnd() + BR;
-    }
+        => InputBindingSerializer.Serialize(bindings);
 
     public static List<Binding> Parse(string content)
-    {
-        var bindings = new List<Binding>();
-
-        if (string.IsNullOrEmpty(content))
-            return bindings;
-
-        if (content.Contains('\t'))
-            content = content.Replace('\t', ' ');
-
-        foreach (string it in content.Split('\n'))
-        {
-            string line = it.Trim();
-
-            Binding binding = new Binding();
-
-            if (line == "")
-            {
-                bindings.Add(binding);
-                continue;
-            }
-
-            if (line.StartsWith("#"))
-            {
-                binding.Comment = line[1..].Trim();
-                bindings.Add(binding);
-                continue;
-            }
-
-            binding.Input = line[..line.IndexOf(" ")];
-
-            if (binding.Input == "_")
-                binding.Input = "";
-
-            if (binding.Input.Contains("CTRL+"))
-                binding.Input = binding.Input.Replace("CTRL+", "Ctrl+");
-            if (binding.Input.Contains("ctrl+"))
-                binding.Input = binding.Input.Replace("ctrl+", "Ctrl+");
-
-            if (binding.Input.Contains("SHIFT+"))
-                binding.Input = binding.Input.Replace("SHIFT+", "Shift+");
-            if (binding.Input.Contains("shift+"))
-                binding.Input = binding.Input.Replace("shift+", "Shift+");
-
-            if (binding.Input.Contains("ALT+"))
-                binding.Input = binding.Input.Replace("ALT+", "Alt+");
-            if (binding.Input.Contains("alt+"))
-                binding.Input = binding.Input.Replace("alt+", "Alt+");
-
-            line = line[(line.IndexOf(' ') + 1)..];
-
-            if (line.Contains(App.MenuSyntax))
-            {
-                binding.Comment = line[(line.IndexOf(App.MenuSyntax) + App.MenuSyntax.Length)..].Trim();
-                binding.IsMenu = true;
-                line = line[..line.IndexOf(App.MenuSyntax)];
-            }
-            else if (line.Contains("#custom-menu:"))
-            {
-                binding.Comment = line[(line.IndexOf("#custom-menu:") + 13)..].Trim();
-                binding.IsCustomMenu = true;
-                line = line[..line.IndexOf("#custom-menu:")];
-            }
-            else if (line.Contains('#'))
-            {
-                binding.Comment = line[(line.IndexOf('#') + 1)..].Trim();
-                line = line[..line.IndexOf('#')];
-            }
-
-            binding.Command = line.Trim();
-
-            if (binding.Command.ToLower() == "ignore")
-                binding.Command = "";
-
-            bindings.Add(binding);
-        }
-        return bindings;
-    }
+        => InputBindingParser.Parse(content);
 
     public static List<Binding> GetReducedBindings(List<Binding> bindings)
     {
