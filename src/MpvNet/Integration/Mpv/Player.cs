@@ -140,7 +140,7 @@ public partial class MainPlayer : MpvClient
         }
     }
 
-    private readonly Regex ConfRegex = new Regex("^[\\w-]+$", RegexOptions.Compiled);
+    readonly Regex _configurationOptionNameRegex = new("^[\\w-]+$", RegexOptions.Compiled);
 
     Dictionary<string, string>? _Conf;
 
@@ -165,7 +165,7 @@ public partial class MainPlayer : MpvClient
 
                     if (!line.Contains('='))
                     {
-                        if (ConfRegex.Match(line).Success)
+                        if (_configurationOptionNameRegex.IsMatch(line))
                             line += "=yes";
                         else
                             continue;
@@ -209,7 +209,7 @@ public partial class MainPlayer : MpvClient
         }
     }
 
-    static readonly object LoadFolderLockObject = new object();
+    static readonly object _loadFolderLock = new();
     bool _wasAviSynthLoaded;
 
     static string GetLanguage(string id)
@@ -384,7 +384,7 @@ public partial class MainPlayer : MpvClient
         }
     }
 
-    private readonly Regex TitleRegex = new Regex(@"^[\._\-]", RegexOptions.Compiled);
+    readonly Regex _leadingTitleSeparatorRegex = new(@"^[\._\-]", RegexOptions.Compiled);
 
     public List<MediaTrack> GetTracks(bool includeInternal = true, bool includeExternal = true)
     {
@@ -406,7 +406,7 @@ public partial class MainPlayer : MpvClient
             if (!string.IsNullOrEmpty(filename))
                 title = title.Replace(filename, "");
 
-            title = TitleRegex.Replace(title, "");
+            title = _leadingTitleSeparatorRegex.Replace(title, "");
 
             if (type == "video")
             {

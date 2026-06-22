@@ -62,7 +62,7 @@ public partial class MainPlayer
         if (client.Handle == IntPtr.Zero)
             throw new Exception("Error CreateNewPlayer");
 
-        TaskHelp.Run(client.EventLoop);
+        BackgroundTaskRunner.Run(client.EventLoop);
         Clients.Add(client);
         return client;
     }

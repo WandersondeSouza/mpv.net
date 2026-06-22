@@ -391,6 +391,9 @@ Risco médio:
 - `InputBindingParser` e `InputBindingSerializer` concentram a conversão entre
   texto de `input.conf` e modelos `Binding`; `InputHelp` preserva a API pública,
   o catálogo padrão e as operações de composição usadas pela UI.
+- `BackgroundTaskRunner` descreve explicitamente o trabalho em segundo plano
+  com captura de exceções; `TaskHelp` permanece como fachada obsoleta para
+  compatibilidade com consumidores existentes.
 - `EditorConfigurationService` e `EditorConfigurationParser` concentram o
   parsing das definições do editor; `ConfWindow` mantém apenas estado e
   interação visual. `Conf` permanece como fachada obsoleta.

@@ -9,12 +9,12 @@ namespace MpvNet.Windows.UI;
 class GlobalHotkey
 {
     public static Dictionary<int, string>? Commands { get; set; }
-    static int ID;
-    static IntPtr HWND;
+    static int _nextHotkeyId;
+    static IntPtr _windowHandle;
 
     public static void RegisterGlobalHotkeys(IntPtr hwnd)
     {
-        HWND = hwnd;
+        _windowHandle = hwnd;
         string path = Player.ConfigFolder + "global-input.conf";
 
         if (!File.Exists(path))
@@ -71,8 +71,9 @@ class GlobalHotkey
 
         if (vk > 0)
         {
-            Commands[ID] = command.Trim();
-            bool success = RegisterHotKey(HWND, ID++, mod, vk);
+            int hotkeyId = _nextHotkeyId++;
+            Commands[hotkeyId] = command.Trim();
+            bool success = RegisterHotKey(_windowHandle, hotkeyId, mod, vk);
 
             if (!success)
                 Terminal.WriteError(line + ": " + new Win32Exception().Message + "\n", "global-input.conf");
@@ -90,13 +91,13 @@ class GlobalHotkey
         if (Commands != null)
         {
             foreach (int id in Commands.Keys)
-                UnregisterHotKey(HWND, id);
+                UnregisterHotKey(_windowHandle, id);
 
             Commands.Clear();
         }
 
-        ID = 0;
-        HWND = IntPtr.Zero;
+        _nextHotkeyId = 0;
+        _windowHandle = IntPtr.Zero;
     }
 
     static int Mpv_to_VK(string value)

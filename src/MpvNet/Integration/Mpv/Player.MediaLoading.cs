@@ -335,7 +335,7 @@ public partial class MainPlayer
 
         Thread.Sleep(1000);
 
-        lock (LoadFolderLockObject)
+        lock (_loadFolderLock)
         {
             string path = GetPropertyString("path");
             Log.Debug($"Auto-load folder check. currentPath='{Log.SafeValue(path)}'");
@@ -417,7 +417,7 @@ public partial class MainPlayer
     }
 
     void ScheduleAutocreatedPlaylistNormalization() =>
-        TaskHelp.Run(() => {
+        BackgroundTaskRunner.Run(() => {
             Thread.Sleep(PlaylistNormalizationDelay);
             NormalizeAutocreatedPlaylist();
         });

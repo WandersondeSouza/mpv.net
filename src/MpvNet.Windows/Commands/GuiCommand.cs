@@ -295,18 +295,24 @@ public class GuiCommand
         }
     }
 
-    class Obj
+    sealed class SelectionDialogModel
     {
-        public string title { get; set; } = "";
-        public int selected_index { get; set; } = 0;
-        public Item[] items { get; set; } = [];
+        [JsonPropertyName("title")]
+        public string Title { get; set; } = "";
+        [JsonPropertyName("selected_index")]
+        public int SelectedIndex { get; set; }
+        [JsonPropertyName("items")]
+        public SelectionDialogItem[] Items { get; set; } = [];
     }
 
-    class Item
+    sealed class SelectionDialogItem
     {
-        public string[] value  { get; set; } = [];
-        public string title { get; set; } = "";
-        public string hint { get; set; } = "";
+        [JsonPropertyName("value")]
+        public string[] Value { get; set; } = [];
+        [JsonPropertyName("title")]
+        public string Title { get; set; } = "";
+        [JsonPropertyName("hint")]
+        public string Hint { get; set; } = "";
     }
 
     void ShowMediaInfo(IList<string> args)

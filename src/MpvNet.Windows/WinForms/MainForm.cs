@@ -674,7 +674,7 @@ public partial class MainForm : Form
             {
                 menuItem.Click += (sender, args) => {
                     try {
-                        TaskHelp.Run(() => {
+                        BackgroundTaskRunner.Run(() => {
                             MenuAutoResetEvent.WaitOne();
                             System.Windows.Application.Current.Dispatcher.Invoke(
                                 DispatcherPriority.Background, new Action(delegate { }));
@@ -1044,7 +1044,7 @@ public partial class MainForm : Form
 
         if (_maxSizeSet)
         {
-            TaskHelp.Run(() => {
+            BackgroundTaskRunner.Run(() => {
                 Thread.Sleep(200);
                 BeginInvoke(() => {
                     if (!IsDisposed && !Disposing)
@@ -1084,7 +1084,7 @@ public partial class MainForm : Form
     void PropChangeAid(string value)
     {
         Player.AID = value;
-        TaskHelp.Run(Player.UpdateTracks);
+        BackgroundTaskRunner.Run(Player.UpdateTracks);
     }
 
     void PropChangeSid(string value) => Player.SID = value;

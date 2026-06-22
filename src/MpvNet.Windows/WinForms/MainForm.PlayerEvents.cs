@@ -45,7 +45,7 @@ public partial class MainForm
     void Player_FileLoaded()
     {
         NormalizeLoadedMediaTitle();
-        TaskHelp.Run(() => {
+        BackgroundTaskRunner.Run(() => {
             Player.UpdateTracks();
         });
 

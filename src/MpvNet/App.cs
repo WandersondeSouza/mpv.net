@@ -58,7 +58,7 @@ public class AppClass
 
         StrongReferenceMessenger.Default.Register<MainWindowIsLoadedMessage>(this, (r, msg) =>
         {
-            TaskHelp.Run(() => _extensionService.LoadFolder(Player.ConfigFolder + "extensions"));
+            BackgroundTaskRunner.Run(() => _extensionService.LoadFolder(Player.ConfigFolder + "extensions"));
         });
     }
 

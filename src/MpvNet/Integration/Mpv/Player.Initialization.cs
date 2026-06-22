@@ -26,7 +26,7 @@ public partial class MainPlayer
         mpv_request_log_messages(MainHandle, "no");
 
         if (formHandle != IntPtr.Zero)
-            TaskHelp.Run(MainEventLoop);
+            BackgroundTaskRunner.Run(MainEventLoop);
 
         if (MainHandle == IntPtr.Zero)
         {
@@ -122,7 +122,7 @@ public partial class MainPlayer
         mpv_request_log_messages(Handle, "info");
 
         if (formHandle != IntPtr.Zero)
-            TaskHelp.Run(EventLoop);
+            BackgroundTaskRunner.Run(EventLoop);
 
         // otherwise shutdown is raised before media files are loaded,
         // this means Lua scripts that use idle might not work correctly

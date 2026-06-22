@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace MpvNet.Help;
 
-public static class TaskHelp
+public static class BackgroundTaskRunner
 {
     public static void Run(Action action)
     {
@@ -12,10 +12,16 @@ public static class TaskHelp
             {
                 action.Invoke();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Terminal.WriteError(e);
+                Terminal.WriteError(ex);
             }
         });
     }
+}
+
+[Obsolete($"Use {nameof(BackgroundTaskRunner)} instead.")]
+public static class TaskHelp
+{
+    public static void Run(Action action) => BackgroundTaskRunner.Run(action);
 }
