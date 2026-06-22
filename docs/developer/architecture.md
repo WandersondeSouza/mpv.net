@@ -52,6 +52,9 @@ Organização arquitetural adotada para novas extrações:
 
 - `Infrastructure/RuntimeComponents` - catálogo, GitHub, metadados, staging,
   instalação e resolução dos componentes opcionais de runtime;
+- `Infrastructure` - filesystem, processos, logging, tarefas em segundo plano,
+  diretórios e outros serviços técnicos sem regra de mídia ou UI;
+- `Media` - tipos, playlists, títulos, faixas e políticas auxiliares de mídia;
 - `Native` - contratos P/Invoke e estruturas nativas;
 - `Player.*.cs` - estado e coordenação do player, separados por capacidade;
 - classes públicas antigas permanecem como fachadas quando uma responsabilidade
