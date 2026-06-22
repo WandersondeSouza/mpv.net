@@ -300,26 +300,6 @@ public class GuiCommand
         }
     }
 
-    sealed class SelectionDialogModel
-    {
-        [JsonPropertyName("title")]
-        public string Title { get; set; } = "";
-        [JsonPropertyName("selected_index")]
-        public int SelectedIndex { get; set; }
-        [JsonPropertyName("items")]
-        public SelectionDialogItem[] Items { get; set; } = [];
-    }
-
-    sealed class SelectionDialogItem
-    {
-        [JsonPropertyName("value")]
-        public string[] Value { get; set; } = [];
-        [JsonPropertyName("title")]
-        public string Title { get; set; } = "";
-        [JsonPropertyName("hint")]
-        public string Hint { get; set; } = "";
-    }
-
     void ShowMediaInfo(IList<string> args)
     {
         if (Player.PlaylistPos == -1)
