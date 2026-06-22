@@ -31,7 +31,7 @@ public partial class MainPlayer
         if (MainHandle == IntPtr.Zero)
         {
             Log.Error("mpv_create failed.");
-            throw new Exception("error mpv_create");
+            throw new InvalidOperationException("libmpv could not create the main player handle.");
         }
 
         if (App.IsTerminalAttached)
@@ -101,8 +101,9 @@ public partial class MainPlayer
 
         if (err < 0)
         {
-            Log.Error("mpv_initialize failed: " + GetError(err));
-            throw new Exception("mpv_initialize error" + BR2 + GetError(err) + BR);
+            string error = GetError(err);
+            Log.Error("mpv_initialize failed: " + error);
+            throw new InvalidOperationException($"libmpv initialization failed ({err}): {error}");
         }
 
         CommandV("script-message", "osc-idlescreen", "no", "silent");
@@ -116,7 +117,7 @@ public partial class MainPlayer
         if (Handle == IntPtr.Zero)
         {
             Log.Error("mpv_create_client failed.");
-            throw new Exception("mpv_create_client error");
+            throw new InvalidOperationException("libmpv could not create the mpvnet client handle.");
         }
 
         mpv_request_log_messages(Handle, "info");

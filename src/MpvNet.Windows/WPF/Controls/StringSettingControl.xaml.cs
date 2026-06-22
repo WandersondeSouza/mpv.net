@@ -125,10 +125,28 @@ public partial class StringSettingControl : UserControl, ISettingControl
 
     bool TryGetColor(string value, out Color color)
     {
-        try {
+        try
+        {
             color = GetColor(value);
             return true;
-        } catch {
+        }
+        catch (FormatException)
+        {
+            color = Colors.Transparent;
+            return false;
+        }
+        catch (InvalidCastException)
+        {
+            color = Colors.Transparent;
+            return false;
+        }
+        catch (NotSupportedException)
+        {
+            color = Colors.Transparent;
+            return false;
+        }
+        catch (OverflowException)
+        {
             color = Colors.Transparent;
             return false;
         }

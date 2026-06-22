@@ -127,10 +127,23 @@ public partial class MessageBoxEx : Window, INotifyPropertyChanged
 
     private static bool TryColorFromString(string colorString, out Color color)
     {
-        try {
+        try
+        {
             color = (Color)ColorConverter.ConvertFromString(colorString);
             return true;
-        } catch {
+        }
+        catch (FormatException)
+        {
+            color = Colors.Black;
+            return false;
+        }
+        catch (InvalidCastException)
+        {
+            color = Colors.Black;
+            return false;
+        }
+        catch (NotSupportedException)
+        {
             color = Colors.Black;
             return false;
         }

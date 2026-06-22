@@ -62,7 +62,7 @@ public partial class MainPlayer
         var client = new MpvClient { Handle = mpv_create_client(MainHandle, name) };
 
         if (client.Handle == IntPtr.Zero)
-            throw new Exception("Error CreateNewPlayer");
+            throw new InvalidOperationException($"libmpv could not create client '{name}'.");
 
         BackgroundTaskRunner.Run(client.EventLoop);
         Clients.Add(client);
