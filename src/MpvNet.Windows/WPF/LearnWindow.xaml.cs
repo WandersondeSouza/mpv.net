@@ -14,20 +14,20 @@ namespace MpvNet.Windows;
 public partial class LearnWindow : Window
 {
     public Binding? InputItem { get; set; }
-    string NewKey = "";
+    string _newKey = "";
 
-    uint MAPVK_VK_TO_VSC = 0;
+    const uint MapVirtualKeyToScanCode = 0;
 
-    int VK_MENU  = 0x12;
-    int VK_LMENU = 0xA4;
-    int VK_RMENU = 0xA5;
+    const int VirtualKeyMenu = 0x12;
+    const int VirtualKeyLeftMenu = 0xA4;
+    const int VirtualKeyRightMenu = 0xA5;
 
-    int VK_CONTROL  = 0x11;
-    int VK_LCONTROL = 0xA2;
-    int VK_RCONTROL = 0xA3;
+    const int VirtualKeyControl = 0x11;
+    const int VirtualKeyLeftControl = 0xA2;
+    const int VirtualKeyRightControl = 0xA3;
 
-    bool BlockMBTN_LEFT;
-    bool BlockMBTN_RIGHT;
+    bool _blockLeftMouseButton;
+    bool _blockRightMouseButton;
 
     public LearnWindow()
     {
@@ -57,10 +57,10 @@ public partial class LearnWindow : Window
         if (!GetKeyboardState(keys))
             return "";
 
-        if ((keys[VK_CONTROL] & 0x80) != 0 && (keys[VK_MENU] & 0x80) == 0)
-            keys[VK_LCONTROL] = keys[VK_RCONTROL] = keys[VK_CONTROL] = 0;
+        if ((keys[VirtualKeyControl] & 0x80) != 0 && (keys[VirtualKeyMenu] & 0x80) == 0)
+            keys[VirtualKeyLeftControl] = keys[VirtualKeyRightControl] = keys[VirtualKeyControl] = 0;
 
-        uint scanCode = MapVirtualKey(vk, MAPVK_VK_TO_VSC);
+        uint scanCode = MapVirtualKey(vk, MapVirtualKeyToScanCode);
 
         string ret = ToUnicode(vk, scanCode, keys);
 
@@ -68,8 +68,8 @@ public partial class LearnWindow : Window
 
         if (firstEmpty)
         {
-            keys[VK_LCONTROL] = keys[VK_RCONTROL] = keys[VK_CONTROL] = 0;
-            keys[VK_LMENU] = keys[VK_RMENU] = keys[VK_MENU] = 0;
+            keys[VirtualKeyLeftControl] = keys[VirtualKeyRightControl] = keys[VirtualKeyControl] = 0;
+            keys[VirtualKeyLeftMenu] = keys[VirtualKeyRightMenu] = keys[VirtualKeyMenu] = 0;
             ret = ToUnicode(vk, scanCode, keys);
         }
 
@@ -191,19 +191,19 @@ public partial class LearnWindow : Window
 
     void SetKey(string? key)
     {
-        NewKey = key!;
+        _newKey = key!;
         KeyTextBlock.Text = key;
     }
 
     void ProcessKeyEventArgs(ref Message m)
     {
-        int WM_KEYDOWN    = 0x100;
-        int WM_SYSKEYDOWN = 0x104;
-        int WM_APPCOMMAND = 0x319;
+        const int KeyDownMessage = 0x100;
+        const int SystemKeyDownMessage = 0x104;
+        const int AppCommandMessage = 0x319;
 
-        if (m.Msg == WM_KEYDOWN || m.Msg == WM_SYSKEYDOWN)
+        if (m.Msg == KeyDownMessage || m.Msg == SystemKeyDownMessage)
             OnKeyDown((uint)m.WParam.ToInt64());
-        else if (m.Msg == WM_APPCOMMAND)
+        else if (m.Msg == AppCommandMessage)
         {
             string? value = MpvHelp.WM_APPCOMMAND_to_mpv_key((int)(m.LParam.ToInt64() >> 16 & ~0xf000));
 
@@ -221,7 +221,7 @@ public partial class LearnWindow : Window
 
     void ConfirmButton_Click(object sender, RoutedEventArgs e)
     {
-        InputItem!.Input = NewKey;
+        InputItem!.Input = _newKey;
         Close();
     }
 
@@ -246,14 +246,14 @@ public partial class LearnWindow : Window
         switch (e.ChangedButton)
         {
             case MouseButton.Left:
-                if (BlockMBTN_LEFT)
-                    BlockMBTN_LEFT = false;
+                if (_blockLeftMouseButton)
+                    _blockLeftMouseButton = false;
                 else
                     SetKey(GetModifierText() + "MBTN_LEFT");
                 break;
             case MouseButton.Right:
-                if (BlockMBTN_RIGHT)
-                    BlockMBTN_RIGHT = false;
+                if (_blockRightMouseButton)
+                    _blockRightMouseButton = false;
                 else
                     SetKey(GetModifierText() + "MBTN_RIGHT");
                 break;
@@ -274,13 +274,13 @@ public partial class LearnWindow : Window
         if (e.ChangedButton == MouseButton.Left)
         {
             SetKey(GetModifierText() + "MBTN_LEFT_DBL");
-            BlockMBTN_LEFT = true;
+            _blockLeftMouseButton = true;
         }
 
         if (e.ChangedButton == MouseButton.Right)
         {
             SetKey(GetModifierText() + "MBTN_RIGHT_DBL");
-            BlockMBTN_RIGHT = true;
+            _blockRightMouseButton = true;
         }
     }
 

@@ -9,11 +9,11 @@ namespace MpvNet.Windows.WPF;
 
 public partial class ComboBoxSettingControl : UserControl, ISettingControl
 {
-    OptionSetting OptionSetting;
+    readonly OptionSetting _optionSetting;
 
     public ComboBoxSettingControl(OptionSetting optionSetting)
     {
-        OptionSetting = optionSetting;
+        _optionSetting = optionSetting;
         InitializeComponent();
         DataContext = this;
         TitleTextBox.Text = optionSetting.DisplayName ?? optionSetting.Name;
@@ -36,7 +36,7 @@ public partial class ComboBoxSettingControl : UserControl, ISettingControl
 
     public Theme? Theme => Theme.Current;
 
-    public Setting Setting => OptionSetting;
+    public Setting Setting => _optionSetting;
 
     public bool Contains(string searchString) => ContainsInternal(searchString.ToLower());
 
@@ -48,15 +48,15 @@ public partial class ComboBoxSettingControl : UserControl, ISettingControl
         if (HelpTextBox.Text.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
             return true;
 
-        foreach (var i in OptionSetting.Options)
+        foreach (var option in _optionSetting.Options)
         {
-            if (i.Text?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
+            if (option.Text?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
                 return true;
 
-            if (i.Help?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
+            if (option.Help?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
                 return true;
 
-            if (i.Name?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
+            if (option.Name?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
                 return true;
         }
 
@@ -65,11 +65,11 @@ public partial class ComboBoxSettingControl : UserControl, ISettingControl
 
     void ComboBoxControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        OptionSetting.Value = (ComboBoxControl.SelectedItem as OptionSettingOption)?.Name;
+        _optionSetting.Value = (ComboBoxControl.SelectedItem as OptionSettingOption)?.Name;
 
-        if (OptionSetting.Name == "language")
+        if (_optionSetting.Name == "language")
         {
-            App.Language = OptionSetting.Value ?? "";
+            App.Language = _optionSetting.Value ?? "";
             TranslationProvider.Current?.Gettext("");
             MainForm.Instance?.RebuildContextMenu();
         }

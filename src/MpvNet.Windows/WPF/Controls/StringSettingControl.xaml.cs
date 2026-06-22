@@ -12,24 +12,24 @@ namespace MpvNet.Windows.WPF;
 
 public partial class StringSettingControl : UserControl, ISettingControl
 {
-    StringSetting StringSetting;
+    readonly StringSetting _stringSetting;
     
     public StringSettingControl(StringSetting stringSetting)
     {
-        StringSetting = stringSetting;
+        _stringSetting = stringSetting;
         InitializeComponent();
         DataContext = this;
         TitleTextBox.Text = stringSetting.Name;
         HelpTextBox.Text = stringSetting.Help;
-        ValueTextBox.Text = StringSetting.Value;
+        ValueTextBox.Text = _stringSetting.Value;
 
-        if (StringSetting.Width > 0)
-            ValueTextBox.Width = StringSetting.Width;
+        if (_stringSetting.Width > 0)
+            ValueTextBox.Width = _stringSetting.Width;
 
-        if (StringSetting.Type != "folder" && StringSetting.Type != "color")
+        if (_stringSetting.Type != "folder" && _stringSetting.Type != "color")
             Button.Visibility = Visibility.Hidden;
 
-        Link.SetURL(StringSetting.URL);
+        Link.SetURL(_stringSetting.URL);
 
         if (string.IsNullOrEmpty(stringSetting.URL))
             LinkTextBlock.Visibility = Visibility.Collapsed;
@@ -54,17 +54,17 @@ public partial class StringSettingControl : UserControl, ISettingControl
         return false;
     }
 
-    public Setting Setting => StringSetting;
+    public Setting Setting => _stringSetting;
 
     public string? Text
     {
-        get => StringSetting.Value;
-        set => StringSetting.Value = value;
+        get => _stringSetting.Value;
+        set => _stringSetting.Value = value;
     }
 
     void Button_Click(object sender, RoutedEventArgs e)
     {
-        switch (StringSetting.Type)
+        switch (_stringSetting.Type)
         {
             case "folder":
                 {
@@ -112,7 +112,7 @@ public partial class StringSettingControl : UserControl, ISettingControl
 
     public void Update()
     {
-        if (StringSetting.Type == "color")
+        if (_stringSetting.Type == "color")
         {
             Color color = Colors.Transparent;
 

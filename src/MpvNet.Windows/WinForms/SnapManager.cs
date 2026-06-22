@@ -9,10 +9,10 @@ namespace MpvNet.Windows.WinForms;
 
 public class SnapManager
 {
-    int DragOffsetX { get; set; }
-    int DragOffsetY { get; set; }
+    int _dragOffsetX;
+    int _dragOffsetY;
 
-    IntPtr Handle;
+    IntPtr _handle;
 
     [Flags]
     public enum SnapLocation
@@ -34,7 +34,7 @@ public class SnapManager
     void FindSnap(ref Rectangle effectiveBounds)
     {
         Screen currentScreen = Screen.FromPoint(effectiveBounds.Location);
-        Rectangle workingArea = WinApiHelp.GetWorkingArea(Handle, currentScreen.WorkingArea);
+        Rectangle workingArea = WinApiHelp.GetWorkingArea(_handle, currentScreen.WorkingArea);
 
         if (InSnapRange(effectiveBounds.Left, workingArea.Left + AnchorDistance))
             effectiveBounds.X = workingArea.Left + AnchorDistance;
@@ -48,7 +48,7 @@ public class SnapManager
 
     public void OnMoving(ref Message m)
     {
-        if (Handle == IntPtr.Zero)
+        if (_handle == IntPtr.Zero)
             return;
 
         WinApi.RECT boundsLtrb = Marshal.PtrToStructure<WinApi.RECT>(m.LParam);
@@ -57,8 +57,8 @@ public class SnapManager
         // had not occurred. This prevents the cursor from sliding
         // off the title bar if the snap distance is too large.
         Rectangle effectiveBounds = new Rectangle(
-            Cursor.Position.X - DragOffsetX,
-            Cursor.Position.Y - DragOffsetY,
+            Cursor.Position.X - _dragOffsetX,
+            Cursor.Position.Y - _dragOffsetY,
             bounds.Width,
             bounds.Height);
         FindSnap(ref effectiveBounds);
@@ -69,11 +69,11 @@ public class SnapManager
 
     public void OnSizeAndEnterSizeMove(Form form)
     {
-        Handle = form.Handle;
+        _handle = form.Handle;
         SnapDistance = form.Font.Height;
         // Need to handle window size changed as well when
         // un-maximizing the form by dragging the title bar.
-        DragOffsetX = Cursor.Position.X - form.Left;
-        DragOffsetY = Cursor.Position.Y - form.Top;
+        _dragOffsetX = Cursor.Position.X - form.Left;
+        _dragOffsetY = Cursor.Position.Y - form.Top;
     }
 }

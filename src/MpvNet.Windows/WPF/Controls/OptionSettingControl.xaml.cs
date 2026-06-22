@@ -8,11 +8,11 @@ namespace MpvNet.Windows.WPF;
 
 public partial class OptionSettingControl : UserControl, ISettingControl
 {
-    OptionSetting OptionSetting;
+    readonly OptionSetting _optionSetting;
 
     public OptionSettingControl(OptionSetting optionSetting)
     {
-        OptionSetting = optionSetting;
+        _optionSetting = optionSetting;
         InitializeComponent();
         DataContext = this;
         TitleTextBox.Text = optionSetting.DisplayName ?? optionSetting.Name;
@@ -35,7 +35,7 @@ public partial class OptionSettingControl : UserControl, ISettingControl
 
     public Theme? Theme => Theme.Current;
 
-    public Setting Setting => OptionSetting;
+    public Setting Setting => _optionSetting;
 
     public bool Contains(string searchString) => ContainsInternal(searchString.ToLower());
 
@@ -47,15 +47,15 @@ public partial class OptionSettingControl : UserControl, ISettingControl
         if (HelpTextBox.Text.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
             return true;
 
-        foreach (var i in OptionSetting.Options)
+        foreach (var option in _optionSetting.Options)
         {
-            if (i.Text?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
+            if (option.Text?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
                 return true;
 
-            if (i.Help?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
+            if (option.Help?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
                 return true;
 
-            if (i.Name?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
+            if (option.Name?.IndexOf(search, StringComparison.InvariantCultureIgnoreCase) > -1)
                 return true;
         }
 

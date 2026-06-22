@@ -7,7 +7,7 @@ public class Taskbar
 
     public Taskbar(IntPtr handle) => Handle = handle;
  
-    ITaskbarList3 Instance = (ITaskbarList3)new TaskBarCommunication();
+    readonly ITaskbarList3 _instance = (ITaskbarList3)new TaskBarCommunication();
 
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("EA1AFB91-9E28-4B86-90E9-9E9F8A5EEFAF")]
@@ -35,12 +35,12 @@ public class Taskbar
 
     public void SetState(TaskbarStates taskbarState)
     {
-        Instance.SetProgressState(Handle, taskbarState);
+        _instance.SetProgressState(Handle, taskbarState);
     }
 
     public void SetValue(double progressValue, double progressMax)
     {
-        Instance.SetProgressValue(Handle, (ulong)progressValue, (ulong)progressMax);
+        _instance.SetProgressValue(Handle, (ulong)progressValue, (ulong)progressMax);
     }
 }
 

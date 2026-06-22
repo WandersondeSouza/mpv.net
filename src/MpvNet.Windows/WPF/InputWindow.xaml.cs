@@ -12,8 +12,8 @@ namespace MpvNet.Windows.WPF;
 
 public partial class InputWindow : Window
 {
-    ICollectionView CollectionView;
-    string StartupContent;
+    readonly ICollectionView _collectionView;
+    readonly string _startupContent;
     public List<Binding> Bindings { get; }
     public Theme? Theme => Theme.Current;
     Binding? _focusedBinding;
@@ -28,13 +28,13 @@ public partial class InputWindow : Window
         else
             Bindings = InputHelp.GetEditorBindings(App.InputConf.Content);
 
-        StartupContent = InputHelp.ConvertToString(Bindings);
+        _startupContent = InputHelp.ConvertToString(Bindings);
         SearchControl.SearchTextBox.TextChanged += SearchTextBox_TextChanged;
         DataGrid.SelectionMode = DataGridSelectionMode.Single;
         CollectionViewSource collectionViewSource = new CollectionViewSource() { Source = Bindings };
-        CollectionView = collectionViewSource.View;
-        CollectionView.Filter = new Predicate<object>(item => Filter((Binding)item));
-        DataGrid.ItemsSource = CollectionView;
+        _collectionView = collectionViewSource.View;
+        _collectionView.Filter = new Predicate<object>(item => Filter((Binding)item));
+        DataGrid.ItemsSource = _collectionView;
     }
 
     bool Filter(Binding item)
@@ -94,7 +94,7 @@ public partial class InputWindow : Window
         }
     }
 
-    void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) => CollectionView.Refresh();
+    void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) => _collectionView.Refresh();
 
     void Window_Loaded(object sender, RoutedEventArgs e) => Keyboard.Focus(SearchControl.SearchTextBox);
 
@@ -102,7 +102,7 @@ public partial class InputWindow : Window
     {
         string newContent =  InputHelp.ConvertToString(Bindings);
 
-        if (StartupContent == newContent)
+        if (_startupContent == newContent)
             return;
 
         string duplicateInputMessage = GetDuplicateInputMessage();
