@@ -255,7 +255,7 @@ e `-SkipGitHubRelease -EnableFileLogging`.
 Para definir uma versao manualmente antes de uma release, use:
 
 ```powershell
-.\src\Tools\set-release-version.ps1 -Version 7.1.4.1
+.\src\Tools\set-release-version.ps1 -Version 7.1.4.2
 ```
 
 Antes de publicar no GitHub, passe a descricao da release diretamente ao script
@@ -267,6 +267,13 @@ versao publica deve valer para ZIP, instalador e executavel; no MSIX enviado a
 Store, o `Identity Version` usa a mesma versao com revisao zero, porque a
 Microsoft Store rejeita pacotes com quarto componente diferente de zero. Exemplo:
 release `7.1.4.1` usa manifesto `7.1.4.0`.
+
+Publicacao registrada em 2026-06-23: a release `7.1.4.2` cobre as mudancas
+posteriores a `7.1.4.1`, com refatoracoes conservadoras de organizacao,
+nullability, excecoes, recursos nativos, async/task e blocos grandes, alem de
+ajustes no cache de URL remota, logs e documentacao. A versao foi alinhada pelo
+script oficial para manter `BuildVersion.props` em `7.1.4.2` e o manifesto MSIX
+em `7.1.4.0`.
 
 Para tambem gerar o instalador no workflow:
 

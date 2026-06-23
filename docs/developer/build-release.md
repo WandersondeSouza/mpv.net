@@ -4,7 +4,7 @@
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **MPV.NET Media Player**.
 
-> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale, validacao de dependencias nativas e validacao do pacote MSIX/WAP no Visual Studio 2026 Community. A versao atual preparada para publicacao e `7.1.4.1`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
+> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale, validacao de dependencias nativas e validacao do pacote MSIX/WAP no Visual Studio 2026 Community. A versao atual preparada para publicacao e `7.1.4.2`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
 
 ---
 
@@ -391,6 +391,15 @@ sem publicacao.
 
 A partir de 2026-06-02, o fluxo de release publica em `Release` e nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-setup-x64.exe` para o instalador e `MPV.NET-Media-Player-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/libmpv, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. Quando `-EnableFileLogging` e usado, os artefatos recebem `-diagnostic` antes do tipo de pacote sem alterar a versao publica.
 
+Validacao de release registrada em 2026-06-23: a versao `7.1.4.2` consolida
+as mudancas posteriores a `7.1.4.1`, incluindo refatoracoes conservadoras de
+organizacao, nullability, excecoes, descarte de recursos nativos, async/task e
+blocos grandes, alem de ajustes no cache de URL remota, logs e documentacao.
+Antes da publicacao, a versao publica foi alinhada com
+`src\Tools\set-release-version.ps1`, mantendo `BuildVersion.props` em
+`7.1.4.2` e o manifesto MSIX em `7.1.4.0`, conforme a regra de revisao zero da
+Microsoft Store.
+
 Validacao local registrada em 2026-06-12: `build-release-package.ps1` concluiu
 com `-SkipGitHubRelease`, gerando ZIP portatil e instalador x64, compilando
 `Locale` e validando dependencias nativas no publish, na pasta portatil e no
@@ -407,7 +416,7 @@ pacote gerado.
 A versão publica está centralizada em `src/BuildVersion.props`:
 
 ```xml
-<MpvNetVersion>7.1.4.1</MpvNetVersion>
+<MpvNetVersion>7.1.4.2</MpvNetVersion>
 ```
 
 O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
@@ -418,10 +427,10 @@ O manifesto MSIX ainda exige um valor literal em `Package.appxmanifest`; por
 isso a alteracao de versao deve ser feita por:
 
 ```powershell
-.\src\Tools\set-release-version.ps1 -Version 7.1.4.1
+.\src\Tools\set-release-version.ps1 -Version 7.1.4.2
 ```
 
-Esse comando grava `7.1.4.1` em `BuildVersion.props` e `7.1.4.0` no
+Esse comando grava `7.1.4.2` em `BuildVersion.props` e `7.1.4.0` no
 `Identity Version` do manifesto MSIX, atendendo a regra da Microsoft Store de
 revisao zero no pacote.
 
