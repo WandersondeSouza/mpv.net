@@ -67,6 +67,11 @@ Cache e logs:
 
 Esses diretórios são centralizados em `AppPaths` e criados no início da
 aplicação, antes da inicialização de logs, cache e atualização de componentes.
+No pacote MSIX/Microsoft Store, o Windows pode virtualizar escritas em AppData
+para a area privada do pacote. A regra do fork continua sendo usar o caminho
+`%LOCALAPPDATA%\mpv.net` visto pelo processo, sem permissao ampla de sistema de
+arquivos, e registrar em log os caminhos reais usados pelo bootstrap de
+componentes.
 
 Para scripts como `thumbfast`, a versão portátil deve usar `portable_config/scripts` e `portable_config/script-opts`. No mpv.net v7, `thumbfast` tem suporte direto; `mpv_path` para um `mpv.exe` separado deve ser tratado como fallback para versões antigas ou casos específicos documentados pelo próprio script.
 

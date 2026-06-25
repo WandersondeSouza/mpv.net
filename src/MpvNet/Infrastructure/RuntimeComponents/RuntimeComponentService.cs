@@ -11,8 +11,9 @@ internal static class RuntimeComponentService
     public static async Task EnsureComponentsAsync(CancellationToken cancellationToken)
     {
         IReadOnlyList<RuntimeComponentDefinition> definitions = RuntimeComponentCatalog.Definitions;
-        Log.Debug($"Starting runtime component bootstrap. folder='{Log.SafeValue(RuntimeComponentPaths.ComponentsFolder)}', count={definitions.Count}");
-        Directory.CreateDirectory(RuntimeComponentPaths.ComponentsFolder);
+        Log.Debug(
+            $"Starting runtime component bootstrap. localAppData='{Log.SafeValue(AppPaths.LocalAppData)}', components='{Log.SafeValue(RuntimeComponentPaths.ComponentsFolder)}', temp='{Log.SafeValue(RuntimeComponentPaths.TempFolder)}', count={definitions.Count}");
+        EnsureDirectory(RuntimeComponentPaths.ComponentsFolder, "runtime component folder");
         CleanupTempFolder();
 
         foreach (IGrouping<string, RuntimeComponentDefinition> bundle in definitions
@@ -81,7 +82,7 @@ internal static class RuntimeComponentService
             Log.Debug($"Failed to read FFmpeg bundle metadata; forcing refresh. metadataPath='{Log.SafeValue(metadataPath)}'");
         }
 
-        Directory.CreateDirectory(RuntimeComponentPaths.TempFolder);
+        EnsureDirectory(RuntimeComponentPaths.TempFolder, "runtime component temp folder");
         DownloadedRuntimeAsset archive =
             await DownloadReleaseAssetAsync(primary, cancellationToken).ConfigureAwait(false);
         string localDigest = RuntimeComponentFileSystem.GetFileDigest(archive.Path);
@@ -95,7 +96,7 @@ internal static class RuntimeComponentService
             {
                 string sourcePath = Path.Combine(extractDirectory, definition.FileName);
                 string targetPath = RuntimeComponentPaths.GetTargetPath(definition.FileName);
-                File.Copy(sourcePath, targetPath, overwrite: true);
+                CopyComponentFile(sourcePath, targetPath, definition.FileName, "runtime bundle component");
                 Log.Debug($"Runtime bundle component updated successfully. file='{definition.FileName}', path='{Log.SafeValue(targetPath)}'");
             }
 
@@ -141,7 +142,7 @@ internal static class RuntimeComponentService
             definition, cancellationToken).ConfigureAwait(false);
         try
         {
-            File.Copy(staged.Path, targetPath, overwrite: true);
+            CopyComponentFile(staged.Path, targetPath, definition.FileName, "runtime component");
             string digest = string.IsNullOrWhiteSpace(staged.Digest)
                 ? RuntimeComponentFileSystem.GetFileDigest(targetPath)
                 : staged.Digest;
@@ -163,7 +164,7 @@ internal static class RuntimeComponentService
         RuntimeComponentDefinition definition,
         CancellationToken cancellationToken)
     {
-        Directory.CreateDirectory(RuntimeComponentPaths.TempFolder);
+        EnsureDirectory(RuntimeComponentPaths.TempFolder, "runtime component temp folder");
         DownloadedRuntimeAsset downloaded =
             await DownloadReleaseAssetAsync(definition, cancellationToken).ConfigureAwait(false);
         string localDigest = RuntimeComponentFileSystem.GetFileDigest(downloaded.Path);
@@ -198,11 +199,11 @@ internal static class RuntimeComponentService
         try
         {
             RuntimeComponentFileSystem.DeleteIfExists(extractDirectory);
-            Directory.CreateDirectory(extractDirectory);
+            EnsureDirectory(extractDirectory, "runtime component extract folder");
             System.IO.Compression.ZipFile.ExtractToDirectory(archivePath, extractDirectory);
             string stagedDirectory = Path.Combine(RuntimeComponentPaths.TempFolder, "ffmpeg-bundle");
             RuntimeComponentFileSystem.DeleteIfExists(stagedDirectory);
-            Directory.CreateDirectory(stagedDirectory);
+            EnsureDirectory(stagedDirectory, "runtime component staged bundle folder");
 
             foreach (RuntimeComponentDefinition definition in definitions)
             {
@@ -210,7 +211,11 @@ internal static class RuntimeComponentService
                 string sourcePath = Directory.GetFiles(
                     extractDirectory, requiredFile, SearchOption.AllDirectories).FirstOrDefault()
                     ?? throw new InvalidOperationException($"Required extracted file not found: {requiredFile}");
-                File.Copy(sourcePath, Path.Combine(stagedDirectory, definition.FileName), overwrite: true);
+                CopyComponentFile(
+                    sourcePath,
+                    Path.Combine(stagedDirectory, definition.FileName),
+                    definition.FileName,
+                    "runtime extracted bundle component");
             }
 
             return stagedDirectory;
@@ -241,6 +246,34 @@ internal static class RuntimeComponentService
         catch (Exception ex)
         {
             Log.Error(ex, $"Failed to clean runtime component temp folder. folder='{Log.SafeValue(RuntimeComponentPaths.TempFolder)}'");
+        }
+    }
+
+    static void EnsureDirectory(string path, string description)
+    {
+        try
+        {
+            Directory.CreateDirectory(path);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, $"Failed to create {description}. path='{Log.SafeValue(path)}'");
+            throw;
+        }
+    }
+
+    static void CopyComponentFile(string sourcePath, string targetPath, string fileName, string description)
+    {
+        try
+        {
+            File.Copy(sourcePath, targetPath, overwrite: true);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(
+                ex,
+                $"Failed to copy {description}. file='{fileName}', source='{Log.SafeValue(sourcePath)}', target='{Log.SafeValue(targetPath)}'");
+            throw;
         }
     }
 }

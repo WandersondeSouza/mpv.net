@@ -46,8 +46,11 @@ internal static class GitHubReleaseClient
             await using var output = File.Create(destinationPath);
             await input.CopyToAsync(output, cancellationToken).ConfigureAwait(false);
         }
-        catch
+        catch (Exception ex)
         {
+            Log.Error(
+                ex,
+                $"Failed to download runtime component asset. url='{Log.SafeValue(url)}', destination='{Log.SafeValue(destinationPath)}'");
             RuntimeComponentFileSystem.DeleteIfExists(destinationPath);
             throw;
         }

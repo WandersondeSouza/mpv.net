@@ -149,6 +149,7 @@ dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj -c Release
 Esse alvo opt-in chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll` e `libmpv-2.dll` na pasta da configuracao compilada, baixando apenas o que estiver faltando. O fluxo novo do player passa a manter `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` em `%LOCALAPPDATA%\mpv.net\Component` quando necessario. O `yt-dlp.exe` fica sob responsabilidade do bootstrap do player em runtime. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained. Para testar a variante otimizada localmente, use `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:MpvBuildVariant=x86_64-v3`.
 
 No runtime, o player passa a usar `%LOCALAPPDATA%\mpv.net\Component` como cache de componentes baixados antes da interface abrir, com fallback para os binarios que vierem junto da instalacao. O contrato desta etapa preserva `libmpv-2.dll`, `MediaInfo.dll` e as DLLs do runtime ao lado do executavel, enquanto `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` migram para a pasta de componente quando a rede estiver disponivel. O bootstrap trata `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe` como um bundle unico: valida o digest do ZIP compartilhado uma vez, extrai os tres binarios do mesmo archive e grava a freshness desse grupo em `ffmpeg-bundle.json`. O `yt-dlp.exe` continua com validação direta do proprio binario quando e renovado pelo player.
+Em pacote MSIX/Microsoft Store, esse caminho deve ser entendido como a visao de LocalAppData disponivel para o aplicativo empacotado; o Windows pode virtualizar escritas em AppData para uma area privada do pacote. O aplicativo nao deve solicitar `broadFileSystemAccess` para esse fluxo, porque os componentes pertencem ao proprio app e continuam sob o cache `Component`.
 
 Para publicar como o script de release atual faz:
 
@@ -165,6 +166,7 @@ O pacote publicado na Microsoft Store usa o `Package/Properties/PublisherDisplay
 Link profundo da Store: `ms-windows-store://pdp/?productid=9N441SP6XHLD`
 URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
 O auto incremento de revisao do MSIX fica desativado. A Microsoft Store nao aceita pacote com quarto componente diferente de zero no `Identity Version`, entao `BuildVersion.props` mantem a versao publica completa para executavel, ZIP e instalador, enquanto `Package.appxmanifest` usa a mesma versao com revisao zero. Exemplo: release `7.1.3.15` gera manifesto Store `7.1.3.0`. Quando precisar alterar a versao, use `src\Tools\set-release-version.ps1` para atualizar `BuildVersion.props` e `Package.appxmanifest` juntos.
+O manifesto declara a aplicacao como desktop empacotada full trust, com `RuntimeBehavior="packagedClassicApp"` e `TrustLevel="mediumIL"`. Nao use `RuntimeBehavior="windowsApp"` para este projeto WinForms/WPF, pois isso aproxima o pacote do modelo UWP e pode interferir no acesso esperado a rede, AppData e componentes auxiliares.
 
 Pontos importantes:
 

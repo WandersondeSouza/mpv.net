@@ -4,13 +4,14 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
-  xmlns:uap18="http://schemas.microsoft.com/appx/manifest/uap/windows10/18"
-  IgnorableNamespaces="uap rescap uap5 uap18">
+  xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  IgnorableNamespaces="uap rescap uap5 uap10 uap3">
 
   <Identity
     Name="24183GestodeSistemas.MPV.NETMediaPlayer"
     Publisher="CN=6581967D-2DE4-48DE-A846-C6F69ECA7701"
-    Version="7.1.4.0" />
+    Version="7.1.6.0" />
 
   <Properties>
     <DisplayName>MPV.NET Media Player</DisplayName>
@@ -30,7 +31,7 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="$targetentrypoint$" uap18:RuntimeBehavior="windowsApp" uap18:TrustLevel="mediumIL">
+      EntryPoint="$targetentrypoint$" uap10:RuntimeBehavior="packagedClassicApp" uap10:TrustLevel="mediumIL">
       <uap:VisualElements
         DisplayName="MPV.NET Media Player"
         Description="Media player for Windows based on mpv.net and libmpv, focused on compatibility with mpv and user-supplied media."
@@ -157,5 +158,6 @@
   <Capabilities>
     <Capability Name="internetClient" />
     <rescap:Capability Name="runFullTrust" />
+    <uap3:Capability Name="backgroundMediaPlayback"/>
   </Capabilities>
 </Package>
