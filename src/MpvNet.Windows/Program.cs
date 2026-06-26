@@ -21,6 +21,7 @@ static class Program
         try
         {
             AppPaths.EnsureLocalDirectories();
+            RuntimeComponents.EnsureComponentsFolderOnPath();
             Log.Debug("Application starting.");
             RegistryHelp.ProductName = AppInfo.Product;
             TranslationProvider.Current = new WpfTranslator();

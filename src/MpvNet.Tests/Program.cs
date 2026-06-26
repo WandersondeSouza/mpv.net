@@ -283,6 +283,20 @@ bool centralizedAppPaths =
     AppPaths.Logs == Log.LogFolder &&
     AppPaths.Components == RuntimeComponentPaths.ComponentsFolder &&
     AppPaths.ComponentTemp == RuntimeComponentPaths.TempFolder;
+string? originalProcessPath = Environment.GetEnvironmentVariable("PATH");
+Environment.SetEnvironmentVariable("PATH", @"C:\Windows\System32");
+RuntimeComponents.EnsureComponentsFolderOnPath();
+RuntimeComponents.EnsureComponentsFolderOnPath();
+string processPathWithRuntimeComponents = Environment.GetEnvironmentVariable("PATH") ?? "";
+string normalizedComponentsFolder = Path.TrimEndingDirectorySeparator(RuntimeComponents.ComponentsFolder);
+string[] processPathEntries = processPathWithRuntimeComponents
+    .Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries)
+    .Select(path => Path.TrimEndingDirectorySeparator(path))
+    .ToArray();
+bool runtimeComponentsPathConfigured =
+    processPathEntries.FirstOrDefault() == normalizedComponentsFolder &&
+    processPathEntries.Count(path => string.Equals(path, normalizedComponentsFolder, StringComparison.OrdinalIgnoreCase)) == 1;
+Environment.SetEnvironmentVariable("PATH", originalProcessPath);
 
 DateTime fixedCleanupDate = new(2026, 6, 2, 12, 0, 0);
 string tempCleanupDir = Path.Combine(Path.GetTempPath(), "mpvnet-cleanup-tests-" + Guid.NewGuid().ToString("N"));
@@ -572,6 +586,7 @@ var tests = new (string Name, bool Result)[]
     ("Default cache folder is separate from logs", !StringComparer.OrdinalIgnoreCase.Equals(Path.GetFullPath(defaultCacheFolder), Path.GetFullPath(Log.LogFolder))),
     ("Default temp folder uses mpv.net LocalAppData root", Path.GetFullPath(defaultTempFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),
     ("Default temp folder is separate from cache", !StringComparer.OrdinalIgnoreCase.Equals(Path.GetFullPath(defaultTempFolder), Path.GetFullPath(defaultCacheFolder))),
+    ("Runtime component folder is added to process PATH once", runtimeComponentsPathConfigured),
     ("Temporary cleanup deletes old cache files", !File.Exists(oldCacheFile)),
     ("Temporary cleanup deletes old temp files", !File.Exists(oldTempFile)),
     ("Temporary cleanup keeps recent cache files", File.Exists(recentCacheFile)),
