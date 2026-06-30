@@ -237,6 +237,23 @@ var languageNormalizationCases = new (string Input, string Expected)[]
     ("Turkish", "tr"),
 };
 var interfaceFallbackAvailable = new[] { "bg", "de", "en", "es", "fr", "it", "ja", "ko", "pl", "pt-BR", "pt-PT", "ru", "tr", "zh-CN" };
+var baseInterfaceLanguageCases = new (string Culture, string MpvNetName)[]
+{
+    ("bg", "bulgarian"),
+    ("de", "german"),
+    ("en", "english"),
+    ("es", "spanish"),
+    ("fr", "french"),
+    ("it", "italian"),
+    ("ja", "japanese"),
+    ("ko", "korean"),
+    ("pl", "polish"),
+    ("pt-BR", "portuguese-brazil"),
+    ("pt-PT", "portuguese-portugal"),
+    ("ru", "russian"),
+    ("tr", "turkish"),
+    ("zh-CN", "chinese-china"),
+};
 var mediaLanguageTracks = new[]
 {
     new MediaTrack { ID = 1, Type = "a", Language = "en" },
@@ -506,6 +523,10 @@ var tests = new (string Name, bool Result)[]
     ("Config parser preserves equals in values", parsedConfig["path"] == @"C:\Media=WithEquals\video.mkv"),
     ("Config parser keeps last duplicate value", parsedConfig["duplicate"] == "new"),
     ("Language normalizer handles expected aliases", languageNormalizationCases.All(test => LanguageNormalizer.Normalize(test.Input) == test.Expected)),
+    ("Interface language catalog exposes expected base languages", LanguageCatalog.InterfaceCultureNames.Order(StringComparer.OrdinalIgnoreCase).SequenceEqual(interfaceFallbackAvailable.Order(StringComparer.OrdinalIgnoreCase))),
+    ("Culture resolver keeps every base interface language", baseInterfaceLanguageCases.All(test => LocalizationCultureResolver.ResolveSupportedCulture(test.Culture, interfaceFallbackAvailable) == test.Culture)),
+    ("Manual interface culture resolves every base language", baseInterfaceLanguageCases.All(test => LocalizationService.ResolveMpvNetLanguage(test.Culture, new("en-US")) == test.MpvNetName)),
+    ("Startup language resolves every base language", baseInterfaceLanguageCases.All(test => LocalizationService.ResolveStartupLanguage(new(test.Culture)) == test.MpvNetName)),
     ("Culture resolver keeps pt-BR separate", LocalizationCultureResolver.ResolveSupportedCulture("pt-BR", interfaceFallbackAvailable) == "pt-BR"),
     ("Culture resolver keeps pt-PT separate", LocalizationCultureResolver.ResolveSupportedCulture("pt-PT", interfaceFallbackAvailable) == "pt-PT"),
     ("Culture resolver maps pt-AO to pt-PT", LocalizationCultureResolver.ResolveSupportedCulture("pt-AO", interfaceFallbackAvailable) == "pt-PT"),
