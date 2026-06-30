@@ -77,15 +77,63 @@ Nao criar normalizadores ou fallbacks paralelos em `WpfTranslator`, `Player.cs` 
 
 A normalizacao aceita codigos e nomes como `eng`, `en_US`, `Portuguese`, `Português do Brasil`, `spa`, `fr_CA`, `zho`, `Simplified Chinese`, `jpn`, `ger` e `Italian`, retornando valores BCP 47 quando possivel.
 
+Para a interface, `LocalizationCultureResolver` aplica primeiro o mapa oficial
+de culturas suportadas pelo projeto. Variantes regionais nao ganham arquivos
+gettext proprios; elas apontam para o idioma base ja traduzido.
+
+Idiomas base oficiais:
+
+| Cultura base | Idioma |
+| --- | --- |
+| `bg` | Bulgaro |
+| `de` | Alemao |
+| `en` | Ingles nativo |
+| `es` | Espanhol |
+| `fr` | Frances |
+| `it` | Italiano |
+| `ja` | Japones |
+| `ko` | Coreano |
+| `pl` | Polones |
+| `pt-BR` | Portugues do Brasil |
+| `pt-PT` | Portugues de Portugal |
+| `ru` | Russo |
+| `tr` | Turco |
+| `zh-CN` | Chines simplificado |
+
+Mapeamento de variantes:
+
+| Cultura recebida | Cultura usada |
+| --- | --- |
+| `bg-BG` | `bg` |
+| `de-DE`, `de-AT`, `de-CH`, `de-LI`, `de-LU` | `de` |
+| `en-US`, `en-GB`, `en-AU`, `en-CA`, `en-NZ`, `en-IE`, `en-IN`, `en-ZA`, `en-SG`, `en-HK` | `en` |
+| `es-ES`, `es-MX`, `es-AR`, `es-CL`, `es-CO`, `es-PE`, `es-UY`, `es-VE`, `es-EC`, `es-BO`, `es-PY`, `es-CR`, `es-DO`, `es-GT`, `es-HN`, `es-NI`, `es-PA`, `es-PR`, `es-SV`, `es-US` | `es` |
+| `fr-FR`, `fr-CA`, `fr-BE`, `fr-CH`, `fr-LU`, `fr-MC` | `fr` |
+| `it-IT`, `it-CH` | `it` |
+| `ja-JP` | `ja` |
+| `ko-KR` | `ko` |
+| `pl-PL` | `pl` |
+| `pt-BR` | `pt-BR` |
+| `pt-PT`, `pt-AO`, `pt-MZ`, `pt-CV`, `pt-GW`, `pt-ST`, `pt-TL`, `pt-MO` | `pt-PT` |
+| `ru-RU`, `ru-BY`, `ru-KZ`, `ru-KG`, `ru-MD` | `ru` |
+| `tr-TR`, `tr-CY` | `tr` |
+| `zh-CN`, `zh-SG`, `zh-Hans` | `zh-CN` |
+
+Chines tradicional ainda nao e idioma base do projeto. Se for adicionado no
+futuro, mapear `zh-TW`, `zh-HK`, `zh-MO` e `zh-Hant` para `zh-Hant` e criar o
+catalogo gettext correspondente.
+
 A ordem geral de fallback e:
 
-1. cultura completa, como `pt-BR`, `es-MX`, `fr-CA`;
-2. variante segura, quando existir, como `es-419` para `es-MX`, `zh-Hans` para `zh-CN` e `zh-Hant` para `zh-TW`;
-3. idioma base quando for seguro, como `pt`, `es`, `fr` e `de`;
-4. idioma padrao, hoje ingles, quando o chamador permitir fallback padrao;
-5. texto nativo/fonte caso o gettext nao encontre catalogo.
+1. cultura base oficial resolvida pelo mapa acima;
+2. idioma base generico quando a familia tem apenas um idioma oficial no projeto, como `de`, `en`, `es`, `fr`, `it`, `ja`, `ko`, `pl`, `ru` e `tr`;
+3. idioma padrao, hoje ingles, quando o chamador permitir fallback padrao;
+4. texto nativo/fonte caso o gettext nao encontre catalogo.
 
-Variantes com escrita diferente exigem cuidado. O fallback central nao cruza automaticamente `zh-CN` com `zh-TW` nem `sr-Cyrl` com `sr-Latn`.
+Variantes com escrita diferente exigem cuidado. O fallback central nao cruza
+automaticamente `zh-CN` com `zh-TW` nem `sr-Cyrl` com `sr-Latn`. Portugues
+brasileiro e portugues de Portugal tambem permanecem separados: `pt-BR` nao
+cai para `pt-PT`, e `pt-PT` nao cai para `pt-BR`.
 
 ## Interface, audio e legenda
 
@@ -167,6 +215,19 @@ new("portuguese-brazil", "pt-BR", "pt_BR", true, "por-br", "pt-br", "pt_br", "br
 src/MpvNet.Windows/bin/Debug/win-x64/Locale/pt_BR/LC_MESSAGES/mpvnet.mo
 ```
 
+## Como adicionar uma nova variante regional
+
+1. Nao criar novo arquivo `.po` nem pasta `Locale` se a variante usa texto igual
+   ao idioma base ja existente.
+2. Adicionar a variante em `LocalizationCultureResolver` apontando para a
+   cultura base oficial.
+3. Adicionar um teste em `src/MpvNet.Tests/Program.cs` cobrindo a resolucao da
+   variante e o fallback final.
+4. Atualizar esta tabela de variantes.
+
+Exemplo: para mapear uma nova variante de espanhol, adicionar a cultura ao mapa
+central apontando para `es`; nao criar `lang/po/es_MX.po`.
+
 ## O que preservar
 
 - Nao renomear idiomas existentes.
@@ -194,6 +255,11 @@ dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore
 ```
 
 O comando `.\lang\validate-po-files.ps1 -ValidateOnly` e a validacao principal de paridade: ele confirma que `lang/source.pot` nao tem duplicatas, que cada `.po` traduzido corresponde ao `source.pot` e que `lang/po/en.po` nao foi criado indevidamente.
+
+Os testes de localizacao no harness cobrem resolucao de cultura, fallback para
+idioma base, fallback final para ingles, separacao entre `pt-BR` e `pt-PT`,
+variantes de espanhol e ingles, e o mapeamento de `zh-Hans`/`zh-SG` para
+`zh-CN`.
 
 Validacao manual:
 

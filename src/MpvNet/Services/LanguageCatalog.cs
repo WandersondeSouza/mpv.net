@@ -57,6 +57,8 @@ public static class LanguageCatalog
     public static IReadOnlyCollection<string> InterfaceCultureNames { get; } =
         InterfaceLanguages.Select(language => language.NormalizedCultureName).ToArray();
 
+    public static IReadOnlyCollection<string> SupportedInterfaceCultureNames => InterfaceCultureNames;
+
     public static LanguageDefinition? FindInterfaceLanguage(string? value)
     {
         string? normalized = LanguageNormalizer.Normalize(value);
@@ -80,6 +82,8 @@ public static class LanguageNormalizer
 {
     static readonly Dictionary<string, string> Aliases = new(StringComparer.OrdinalIgnoreCase)
     {
+        ["bul"] = "bg",
+        ["bulgarian"] = "bg",
         ["eng"] = "en",
         ["english"] = "en",
         ["por"] = "pt",
@@ -105,11 +109,19 @@ public static class LanguageNormalizer
         ["traditional chinese"] = "zh-TW",
         ["jpn"] = "ja",
         ["japanese"] = "ja",
+        ["kor"] = "ko",
+        ["korean"] = "ko",
+        ["pol"] = "pl",
+        ["polish"] = "pl",
         ["deu"] = "de",
         ["ger"] = "de",
         ["german"] = "de",
         ["ita"] = "it",
         ["italian"] = "it",
+        ["rus"] = "ru",
+        ["russian"] = "ru",
+        ["tur"] = "tr",
+        ["turkish"] = "tr",
     };
 
     public static string? Normalize(string? value)
@@ -214,9 +226,14 @@ public static class LanguageNormalizer
             "chi" => "zh",
             "zho" => "zh",
             "jpn" => "ja",
+            "kor" => "ko",
+            "pol" => "pl",
             "deu" => "de",
             "ger" => "de",
             "ita" => "it",
+            "rus" => "ru",
+            "tur" => "tr",
+            "bul" => "bg",
             _ => language.ToLowerInvariant(),
         };
 
@@ -230,6 +247,158 @@ public static class LanguageNormalizer
         }
 
         return mapped;
+    }
+}
+
+public static class LocalizationCultureResolver
+{
+    public const string DefaultCultureName = "en";
+
+    static readonly Dictionary<string, string> ExplicitCultureMappings = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["bg-BG"] = "bg",
+
+        ["de-DE"] = "de",
+        ["de-AT"] = "de",
+        ["de-CH"] = "de",
+        ["de-LI"] = "de",
+        ["de-LU"] = "de",
+
+        ["en-US"] = "en",
+        ["en-GB"] = "en",
+        ["en-AU"] = "en",
+        ["en-CA"] = "en",
+        ["en-NZ"] = "en",
+        ["en-IE"] = "en",
+        ["en-IN"] = "en",
+        ["en-ZA"] = "en",
+        ["en-SG"] = "en",
+        ["en-HK"] = "en",
+
+        ["es-ES"] = "es",
+        ["es-MX"] = "es",
+        ["es-AR"] = "es",
+        ["es-CL"] = "es",
+        ["es-CO"] = "es",
+        ["es-PE"] = "es",
+        ["es-UY"] = "es",
+        ["es-VE"] = "es",
+        ["es-EC"] = "es",
+        ["es-BO"] = "es",
+        ["es-PY"] = "es",
+        ["es-CR"] = "es",
+        ["es-DO"] = "es",
+        ["es-GT"] = "es",
+        ["es-HN"] = "es",
+        ["es-NI"] = "es",
+        ["es-PA"] = "es",
+        ["es-PR"] = "es",
+        ["es-SV"] = "es",
+        ["es-US"] = "es",
+
+        ["fr-FR"] = "fr",
+        ["fr-CA"] = "fr",
+        ["fr-BE"] = "fr",
+        ["fr-CH"] = "fr",
+        ["fr-LU"] = "fr",
+        ["fr-MC"] = "fr",
+
+        ["it-IT"] = "it",
+        ["it-CH"] = "it",
+
+        ["ja-JP"] = "ja",
+        ["ko-KR"] = "ko",
+        ["pl-PL"] = "pl",
+
+        ["pt-BR"] = "pt-BR",
+        ["pt-PT"] = "pt-PT",
+        ["pt-AO"] = "pt-PT",
+        ["pt-MZ"] = "pt-PT",
+        ["pt-CV"] = "pt-PT",
+        ["pt-GW"] = "pt-PT",
+        ["pt-ST"] = "pt-PT",
+        ["pt-TL"] = "pt-PT",
+        ["pt-MO"] = "pt-PT",
+
+        ["ru-RU"] = "ru",
+        ["ru-BY"] = "ru",
+        ["ru-KZ"] = "ru",
+        ["ru-KG"] = "ru",
+        ["ru-MD"] = "ru",
+
+        ["tr-TR"] = "tr",
+        ["tr-CY"] = "tr",
+
+        ["zh-CN"] = "zh-CN",
+        ["zh-SG"] = "zh-CN",
+        ["zh-Hans"] = "zh-CN",
+    };
+
+    static readonly HashSet<string> GenericBaseFallbackCultures = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "bg",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "ja",
+        "ko",
+        "pl",
+        "ru",
+        "tr",
+    };
+
+    public static string ResolveSupportedCulture(
+        string? requestedCulture,
+        IEnumerable<string>? supportedCultures = null,
+        string defaultCulture = DefaultCultureName)
+    {
+        string fallback = LanguageNormalizer.Normalize(defaultCulture) ?? DefaultCultureName;
+        HashSet<string> supported = BuildSupportedSet(supportedCultures);
+        string? resolved = ResolveKnownCulture(requestedCulture, supported);
+
+        if (resolved != null)
+            return resolved;
+
+        return supported.Contains(fallback) ? fallback : DefaultCultureName;
+    }
+
+    public static string? ResolveKnownCulture(string? requestedCulture, IEnumerable<string>? supportedCultures = null)
+    {
+        HashSet<string> supported = BuildSupportedSet(supportedCultures);
+        string? requested = LanguageNormalizer.Normalize(requestedCulture);
+
+        if (requested == null)
+            return null;
+
+        if (supported.Contains(requested))
+            return requested;
+
+        if (ExplicitCultureMappings.TryGetValue(requested, out string? mapped) && supported.Contains(mapped))
+            return mapped;
+
+        string baseLanguage = requested.Split('-')[0];
+        if (GenericBaseFallbackCultures.Contains(baseLanguage) && supported.Contains(baseLanguage))
+            return baseLanguage;
+
+        return null;
+    }
+
+    public static bool IsExplicitlyMappedVariant(string? requestedCulture)
+    {
+        string? requested = LanguageNormalizer.Normalize(requestedCulture);
+        return requested != null && ExplicitCultureMappings.ContainsKey(requested);
+    }
+
+    static HashSet<string> BuildSupportedSet(IEnumerable<string>? supportedCultures)
+    {
+        IEnumerable<string> source = supportedCultures ?? LanguageCatalog.SupportedInterfaceCultureNames;
+        return source
+            .Select(LanguageNormalizer.Normalize)
+            .Where(language => language != null)
+            .Cast<string>()
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
     }
 }
 
@@ -251,15 +420,21 @@ public static class LanguageFallbackResolver
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         List<string> candidates = [];
-        Add(requested);
+        string? resolvedSupportedCulture = LocalizationCultureResolver.ResolveKnownCulture(requested, available);
+
+        if (resolvedSupportedCulture != null)
+            Add(resolvedSupportedCulture);
+        else
+            Add(requested);
 
         if (requested != null)
         {
-            foreach (string variant in GetSafeVariants(requested))
-                Add(variant);
+            if (!LocalizationCultureResolver.IsExplicitlyMappedVariant(requested))
+                foreach (string variant in GetSafeVariants(requested))
+                    Add(variant);
 
             string baseLanguage = requested.Split('-')[0];
-            if (CanUseBaseFallback(requested))
+            if (CanUseBaseFallback(requested) && !LocalizationCultureResolver.IsExplicitlyMappedVariant(requested))
                 Add(baseLanguage);
         }
 

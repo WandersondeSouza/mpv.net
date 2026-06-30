@@ -71,7 +71,7 @@ Idiomas:
 - legenda preferida: configure `slang` em `mpv.conf`;
 - legenda desligada: use `sid=no` ou selecione sem legenda na interface.
 
-Se `language` não estiver definido, o mpv.net inicia no idioma do Windows quando houver mapeamento suportado; caso contrário, usa inglês.
+Se `language` não estiver definido, o mpv.net inicia no idioma do Windows quando houver mapeamento suportado; caso contrário, usa inglês. Variantes regionais usam o idioma base traduzido do projeto: por exemplo, `en-US` e `en-GB` usam inglês, `es-MX` usa espanhol, `pt-AO` usa português de Portugal, e `zh-Hans` usa chinês simplificado.
 
 O mpv.net normaliza codigos como `eng`, `por`, `pt_BR`, `es_MX` e nomes comuns
 de idioma, mas a selecao final de audio e legenda continua sendo feita pelo
