@@ -1,71 +1,61 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# Translators:
-# dyphire, 2023
-# nkh0472 <nkh0472@hotmail.com>, 2025
-#
-#, fuzzy
 msgid ""
-msgstr "Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-25 14:24-0300\nPO-Revision-Date: 2023-12-08 00:34+0000\nLast-Translator: nkh0472 <nkh0472@hotmail.com>, 2025\nLanguage-Team: Chinese (China) (https://app.transifex.com/stax76/teams/179964/zh_CN/)\nLanguage: zh_CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:75
 msgid "           always use software decoding"
-msgstr "           总是使用软件解码"
+msgstr "           始终使用软件解码"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:988
 msgid "          Window size is set to video resolution"
-msgstr "          窗口大小设定为视频分辨率"
+msgstr "          窗口大小设为视频分辨率"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:77
 msgid "          exactly the same as auto"
-msgstr "          和汽车完全一样"
+msgstr "          与 auto 完全相同"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:256
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:271
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:286
 msgid "         Box averaging (very fast)"
-msgstr "         方框平均值(非常快)"
+msgstr "         Box 平均（非常快）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:990
 msgid "         Window size is always remembered"
-msgstr "         窗口大小总是被记住"
+msgstr "         始终记住窗口大小"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:76
 msgid "         enable best hw decoder"
-msgstr "         启用最佳hw解码器"
+msgstr "         启用最佳硬件解码器"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:84
 msgid "         requires vo=gpu (Any platform CUDA is available)"
-msgstr "         requires vo=gpu (Any platform CUDA is available)"
+msgstr "         需要 vo=gpu（任何 CUDA 可用的平台）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1084
 msgid "        Never use precise seeks."
-msgstr "        永远不要使用精确的搜索。"
+msgstr "        从不使用精确跳转。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:255
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:270
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:285
 msgid "        Use the same filter as specified for upscaler"
-msgstr "        使用指定的升级器相同的过滤器"
+msgstr "        使用与放大滤镜相同的滤镜"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:989
 msgid "        Window size is remembered in the current session"
-msgstr "        在本会话中记住窗口大小"
+msgstr "        在当前会话中记住窗口大小"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:86
 msgid "        requires vo=gpu (Any platform CUDA is available)"
-msgstr "        requires vo=gpu (Any platform CUDA is available)"
+msgstr "        需要 vo=gpu（任何 CUDA 可用的平台）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:80
 msgid "        requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
-msgstr "        requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
+msgstr "        需要 vo=gpu 且 gpu-context=d3d11、gpu-context=angle 或 gpu-context=dxinterop"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:300
 msgid "       Disable frame mixing, show nearest frame to target PTS"
-msgstr "       禁用相框混合, 显示目标 PTS 最近的相框"
+msgstr "       禁用帧混合，显示最接近目标 PTS 的帧"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:106
 msgid "       Win32/WGL"
@@ -73,57 +63,57 @@ msgstr "       Win32/WGL"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:304
 msgid "      Cubic B-spline frame mixing"
-msgstr "      立方体 B- spline 框架混合"
+msgstr "      Cubic B-spline 帧混合"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:65
 msgid "      General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
-msgstr "      General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "      通用、可自定义、GPU 加速的视频输出驱动程序。它支持扩展的缩放方法、抖动、色彩管理、自定义着色器、HDR 等。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1083
 msgid "      Use precise seeks whenever possible."
-msgstr "      尽可能使用精确的搜索。"
+msgstr "      尽可能使用精确跳转。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:103
 msgid "      auto-select"
-msgstr "      auto-select"
+msgstr "      自动选择"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:82
 msgid "      requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
-msgstr "      requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
+msgstr "      需要 vo=gpu 且 gpu-context=d3d11 或 gpu-context=angle"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:259
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:274
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:289
 msgid "     Bicubic interpolation (fast)"
-msgstr "     双管插值( 快速)"
+msgstr "     Bicubic 插值（快）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:64
 msgid "     Choose the best mode automatically."
-msgstr "     自动选择最佳模式 。"
+msgstr "     自动选择最佳模式。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:105
 msgid "     Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
-msgstr "     Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "     通过 OpenGL ES 转换层 ANGLE 的 Direct3D11。它支持 win 后端几乎所有的功能（如果 ANGLE 构建足够新）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:257
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:272
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:287
 msgid "     Hermite-weighted averaging (fast)"
-msgstr "     Hermite体重平均(快)"
+msgstr "     Hermite 加权平均（快）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1039
 msgid "     If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
-msgstr "     如果当前文件结束, 请转到下一个文件 。 如果闲置设置为否,玩家在上一份文件后退出."
+msgstr "     如果当前文件结束，转到下一个文件。如果 idle 设为 no，播放器在最后一个文件后退出。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:263
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:278
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:293
 msgid "     Lanczos reconstruction"
-msgstr "     兰克佐斯重建"
+msgstr "     Lanczos 重构"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:303
 msgid "     Linear frame mixing"
-msgstr "     线框混合"
+msgstr "     线性帧混合"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:108
 msgid "     VK_KHR_win32_surface"
@@ -131,247 +121,247 @@ msgstr "     VK_KHR_win32_surface"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:104
 msgid "     Win32, with native Direct3D 11 rendering."
-msgstr "     Win32, with native Direct3D 11 rendering."
+msgstr "     Win32，使用原生 Direct3D 11 渲染。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:258
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:273
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:288
 msgid "    Bilinear (triangle) averaging (fast)"
-msgstr "    双线(三角)平均(快)"
+msgstr "    Bilinear（三角）平均（快）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:175
 msgid "    Dither to 8 bit output."
-msgstr "    向8位输出 。"
+msgstr "    抖动到 8 位输出。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:811
 msgid "    Don't automatically load external audio files."
-msgstr "    不要自动装入外部音频文件."
+msgstr "    不自动加载外部音频文件。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:847
 msgid "    Don't automatically load external subtitle files."
-msgstr "    不要自动加载外部字幕文件."
+msgstr "    不自动加载外部字幕文件。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:260
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:275
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:290
 msgid "    Gaussian smoothing (fast)"
-msgstr "    高斯平滑( 快速)"
+msgstr "    Gaussian 平滑（快）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:302
 msgid "    Hermite-weighted frame mixing"
-msgstr "    赫米特加权相框混合"
+msgstr "    Hermite 加权帧混合"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1038
 msgid "    If the current file ends, go to the next file, keep the last file open."
-msgstr "    如果当前文件结束, 请转到下一个文件, 保留最后一个文件 。"
+msgstr "    如果当前文件结束，转到下一个文件，保持最后一个文件打开。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:262
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:277
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:292
 msgid "    Mitchell-Netravalia cubic spline"
-msgstr "    米切尔- 内特拉瓦利亚 三分线"
+msgstr "    Mitchell-Netravalia 三次样条"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:85
 msgid "    copies video back to system RAM"
-msgstr "    复制视频返回系统内存"
+msgstr "    将视频复制回系统内存"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:79
 msgid "    enable any whitelisted hw decoder"
-msgstr "    启用任何列入白名单的hw解码器"
+msgstr "    启用任何白名单中的硬件解码器"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:78
 msgid "    enable best hw decoder with copy-back"
-msgstr "    启用使用 copy-back 的最佳hw解码器"
+msgstr "    启用最佳硬件解码器（带回传）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:173
 msgid "   Disable any dithering done by mpv."
-msgstr "   禁用 mpv 所做的任何抖动 。"
+msgstr "   禁用 mpv 的任何抖动。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:176
 msgid "   Dither to 10 bit output."
-msgstr "   dither 到 10 位输出 。"
+msgstr "   抖动到 10 位输出。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:814
 msgid "   Load all audio files in the current and audio-file-paths directories."
-msgstr "   装入当前和audio-file-paths目录中的所有音频文件。"
+msgstr "   加载当前目录和 audio-file-paths 目录中的所有音频文件。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:850
 msgid "   Load all subs in the current and sub-file-paths directories."
-msgstr "   装入当前和 sub-file-paths 目录中的所有子 。"
+msgstr "   加载当前目录和 sub-file-paths 目录中的所有字幕。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1086
 msgid "   Same as yes (for compatibility)."
-msgstr "   与\"是\"(相容性)相同."
+msgstr "   与 yes 相同（用于兼容性）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:94
 msgid "   Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
-msgstr "   Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "   使用任何可用的 API。请注意，此值使用的默认 GPU API 可能会更改，不应依赖。如果需要使用特定的 GPU API，必须明确指定"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:985
 msgid "   Window width is always remembered"
-msgstr "   总是记住窗口宽度"
+msgstr "   窗口宽度始终记住"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:81
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:87
 msgid "   copies video back to system RAM"
-msgstr "   复制视频返回系统内存"
+msgstr "   将视频复制回系统内存"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:95
 msgid "  Allow only gpu-context=d3d11"
-msgstr "  Allow only gpu-context=d3d11"
+msgstr "  仅允许 gpu-context=d3d11"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:7
 msgid "  Create a new process everytime the shell starts mpv.net"
-msgstr "  Create a new process everytime the shell starts mpv.net"
+msgstr "  每次 shell 启动 mpv.net 时创建新进程"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:9
 msgid "  Force a single process and add files to playlist"
-msgstr "  强制一个进程并添加文件到播放列表"
+msgstr "  强制单进程并将文件添加到播放列表"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:987
 msgid "  Window height is always remembered"
-msgstr "  窗口高度总是被记住"
+msgstr "  窗口高度始终记住"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:984
 msgid "  Window width is remembered in the current session"
-msgstr "  在当前会话中记住窗口宽度"
+msgstr "  窗口宽度在当前会话中记住"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:107
 msgid " (experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
-msgstr " (experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr " （实验性）Win32，使用 WGL 进行渲染，使用 Direct3D 9Ex 进行呈现。适用于 Nvidia 和 AMD。较新的 Intel 芯片搭配最新驱动程序也可能适用。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:96
 msgid " Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
-msgstr " Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr " 仅允许 OpenGL（需要 OpenGL 2.1+ 或 GLES 2.0+）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:97
 msgid " Allow only Vulkan"
-msgstr " Allow only Vulkan"
+msgstr " 仅允许 Vulkan"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:241
 msgid " Aspect-ratio preserving nearest neighbour sampling (very fast)."
-msgstr " 保护近邻采样的光谱率(非常快)。"
+msgstr " 保持纵横比的最近邻采样（非常快）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:174
 msgid " Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
-msgstr " 自动选择。 如果输出位深度无法被检测出,则假设每个组件有8位."
+msgstr " 自动选择。如果无法检测输出位深度，则假设每个分量 8 位。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1167
 msgid " Available on Windows 10 or higher"
-msgstr " Available on Windows 10 or higher"
+msgstr " 在 Windows 10 或更高版本上可用"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:242
 msgid " Bicubic interpolation (fast)."
-msgstr " bicubic内插 (快活)."
+msgstr " Bicubic 插值（快）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:240
 msgid " Bilinear sampling (very fast)."
-msgstr " 双线采样(非常快)."
+msgstr " Bilinear 采样（非常快）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:261
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:276
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:291
 msgid " Catmull-Rom cubic spline"
-msgstr " Catmull- Rom 立方条"
+msgstr " Catmull-Rom 三次样条"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:244
 msgid " Catmull-Rom cubic spline."
-msgstr " 克特穆尔-罗姆立方支线."
+msgstr " Catmull-Rom 三次样条。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:227
 msgid " Default settings, tuned to provide a balance of performance and quality."
-msgstr " 默认设置, 调制以提供性能和质量的平衡 。"
+msgstr " 默认设置，调整为性能和质量的平衡。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:228
 msgid " Disable all advanced rendering, equivalent to passing no to every option."
-msgstr " 禁用所有高级渲染, 相当于不给每个选项 。"
+msgstr " 禁用所有高级渲染，等同于对每个选项传递 no。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:246
 msgid " EWA Lanczos (\"Jinc\") reconstruction (slow)."
-msgstr " EWA Lanczos (\"Jinc\")重建 (缓慢)."
+msgstr " EWA Lanczos（\"Jinc\"）重建（慢）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:66
 msgid " Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
-msgstr " 基于libplacebo的实验视频渲染器. 这支持几乎与--vo>=gpu相同的特性集."
+msgstr " 基于 libplacebo 的实验性视频渲染器。它支持与 --vo=gpu 几乎相同的功能集。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:8
 msgid " Force a single process everytime the shell starts mpv.net"
-msgstr " Force a single process everytime the shell starts mpv.net"
+msgstr " 每次 shell 启动 mpv.net 时强制单进程"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:243
 msgid " Gaussian smoothing (fast)."
-msgstr " 高斯平滑 (快活)."
+msgstr " Gaussian 平滑（快）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:245
 msgid " Lanczos reconstruction."
-msgstr " 兰克佐斯重建."
+msgstr " Lanczos 重构。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:813
 msgid " Load all audio files containing media filename."
-msgstr " 装入包含媒体文件名的所有音频文件 。"
+msgstr " 加载所有包含媒体文件名的音频文件。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:849
 msgid " Load all subs containing media filename."
-msgstr " 装入包含媒体文件名的所有子程序 。"
+msgstr " 加载所有包含媒体文件名的字幕。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:812
 msgid " Load the media filename with audio file extension."
-msgstr " 用音频文件扩展名装入媒体文件名 。"
+msgstr " 加载带有音频文件扩展名的媒体文件名。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:848
 msgid " Load the media filename with subtitle file extension."
-msgstr " 用字幕文件扩展名装入媒体文件名 。"
+msgstr " 加载带有字幕文件扩展名的媒体文件名。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:239
 msgid " Nearest-neighbour (box) sampling (very fast)."
-msgstr " 近邻(盒)采样(极快)."
+msgstr " 最近邻（box）采样（非常快）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:238
 msgid " No filter, only use basic GPU texture sampling."
-msgstr " No filter, only use basic GPU texture sampling."
+msgstr " 无滤镜，仅使用基本 GPU 纹理采样。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:301
 msgid " Oversampling, only mix \"edge\" frames while preserving FPS"
-msgstr " 超采样,只在保留 FPS 时混合“边缘”框架"
+msgstr " 过采样，仅混合\"边缘\"帧同时保持 FPS"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1040
 msgid " Playback will never automatically advance to the next file."
-msgstr " 回放永远不会自动推进到下一个文件 。"
+msgstr " 播放永远不会自动前进到下一个文件。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:229
 msgid " Reset all everything to high quality presets (where available)."
-msgstr " 将所有东西重置到高品质的预设( 如果有的话) 。"
+msgstr " 将所有内容重置为高质量预设（如果可用）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:247
 msgid " Sharpened version of ewa_lanczos (slow)."
-msgstr " 收缩版为ewa_lanczos (慢)."
+msgstr " ewa_lanczos 的锐化版本（慢）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1085
 msgid " Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
-msgstr " 使用精确的求求,如果求求求到文件中的绝对位置,如章节求取,但对于相对求取,如箭头键的默认行为."
+msgstr " 如果跳转到文件中的绝对位置（如章节跳转），则使用精确跳转，但不用于相对跳转（如方向键的默认行为）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:248
 msgid " Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
-msgstr " Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
+msgstr " ewa_lanczos 的非常锐利版本，带抗振铃（非常慢）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:67
 msgid " Video output driver that uses the Direct3D interface."
-msgstr " Video output driver that uses the Direct3D interface."
+msgstr " 使用 Direct3D 接口的视频输出驱动程序。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:986
 msgid " Window height is remembered in the current session"
-msgstr " 在本会话中记住窗口高度"
+msgstr " 窗口高度在当前会话中记住"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:83
 msgid " copies video back to system RAM"
-msgstr " 复制视频返回系统内存"
+msgstr " 将视频复制回系统内存"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Conf.cs:38
 msgid "(Default)"
-msgstr "（默认）"
+msgstr "(默认)"
 
 msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
-msgstr "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr "（实验性）Win32，使用 WGL 进行渲染，使用 Direct3D 9Ex 进行呈现。适用于 Nvidia 和 AMD。较新的 Intel 芯片搭配最新驱动程序也可能适用。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:113
 msgid "+10%"
@@ -407,223 +397,223 @@ msgstr "8"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:392
 msgid "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
-msgstr "<-1.0..1.0>亮度助推. 在源亮度信号上添加恒定偏差。 0.0=中性,1.0=固体白色,-1.0=固体黑色. 默认为 0.0."
+msgstr "<-1.0..1.0> 亮度提升。向源亮度信号添加恒定偏置。0.0 = 中性，1.0 = 纯白，-1.0 = 纯黑。默认值为 0.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:417
 msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
-msgstr "<-1.143..5.286> 颜色温度变化。 相较于6500 K,0.0的值给出了6500 K(不变),-1.0的值给出了3000 K,而1.0的值给出了1000 K. 默认值给出了0.0."
+msgstr "<-1.143..5.286> 色温偏移。相对于 6500 K，值 0.0 为 6500 K（无变化），值 -1.0 为 3000 K，值 1.0 为 10000 K。默认值为 0.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:770
 msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
-msgstr "<0-100> 设置 JPEG 质量级别 。 更高意味着质量更高。 默认为90."
+msgstr "<0-100> 设置 JPEG 质量级别。越高表示质量越好。默认值为 90。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:914
 msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
-msgstr "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
+msgstr "<0-32> 在多显示器配置中（即跨越多个显示器的单个桌面），此选项告诉 mpv 在哪个屏幕上显示视频。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:780
 msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
-msgstr "<0-5>在PNG压缩前设置所应用的过滤器. 0是无,1是\"子\",2是\"上\",3是\"平均\",4是\"派斯\",5是\"混合\". 这影响了可以实现的压缩水平. 对于大多数图像来说,\"混合\"实现了最好的压缩比,因此它是默认的."
+msgstr "<0-5> 设置 PNG 压缩前应用的滤镜。0 为无，1 为 'sub'，2 为 'up'，3 为 'average'，4 为 'Paeth'，5 为 'mixed'。这会影响可达到的压缩级别。对于大多数图像，'mixed' 达到最佳压缩比，因此是默认值。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:775
 msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
-msgstr "<0-9>设置PNG压缩级. 更高的意味着更好的压缩. 这将影响已写截图文件的文件大小和写截图所需的时间. 太高的压缩可能会占用足够的CPU时间来中断回放. 默认值为 7."
+msgstr "<0-9> 设置 PNG 压缩级别。越高表示压缩越好。这将影响写入截图文件的文件大小和写入截图所需的时间。过高的压缩可能会占用足够的 CPU 时间来中断播放。默认值为 7。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:543
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
-msgstr "<0..1024> Gamut 绘图 3DLUT 大小。 设置为 0 的大小选择默认值。 默认为256."
+msgstr "<0..1024> 色域映射 3DLUT 大小。将维度设为 0 选择默认值。默认值为 256。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:538
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
-msgstr "<0..1024> Gamut 绘图 3DLUT 大小。 设置为 0 的大小选择默认值。 默认为32."
+msgstr "<0..1024> 色域映射 3DLUT 大小。将维度设为 0 选择默认值。默认值为 32。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:533
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
-msgstr "<0..1024> Gamut 绘图 3DLUT 大小。 设置为 0 的大小选择默认值。 默认为 48."
+msgstr "<0..1024> 色域映射 3DLUT 大小。将维度设为 0 选择默认值。默认值为 48。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:330
 msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
-msgstr "<0..16>每个样本的分解步骤数。 每一步都减少多一点带子,但计算需要时间. 请注意,每一步的强度下降得很快,所以高数字(>4)实际上无用. 默认为 1 。"
+msgstr "<0..16> 每个样本执行的去色带步数。每步减少更多色带，但需要计算时间。注意每步的强度衰减非常快，因此高数值（>4）实际上无用。默认值为 1。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:656
 msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
-msgstr "<0..4096> Tone映射LUT大小. 设置 0 选择默认大小 。 默认为256."
+msgstr "<0..4096> 色调映射 LUT 大小。设为 0 选择默认大小。默认值为 256。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:587
 msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
-msgstr "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
+msgstr "<0.0..0.5> 将拐点最小值配置为 PQ 亮度范围的百分比。为 knee_adaptation 选择的拐点提供硬限制。默认值为 0.1。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:508
 msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
-msgstr "<0.0..1.0> (Relative)相色谱保护区用于知觉绘图. 默认为0.30."
+msgstr "<0.0..1.0> 感知映射的（相对）色度保护区域。默认值为 0.30。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:309
 msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
-msgstr "<0.0..1.0> 用于所有过滤器的抗环强度。 0.0的值会禁用抗环,而1.0的值可以使full-strength抗环. 默认为 0.0."
+msgstr "<0.0..1.0> 用于所有滤镜的抗振铃强度。值 0.0 禁用抗振铃，值 1.0 启用全强度抗振铃。默认值为 0.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:597
 msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
-msgstr "<0.0..1.0> 默认膝盖指向在没有源场平均元数据的情况下使用. 通常,这被忽略,以赞成取出膝盖点作为(相对的)源场景平均亮度水平. 默认为0.4."
+msgstr "<0.0..1.0> 在缺少源场景平均元数据时使用的默认拐点。通常，这会被忽略，而选择拐点作为（相对）源场景平均亮度级别。默认值为 0.4。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:528
 msgid "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
-msgstr "<0.0..1.0> 为软胶而减饱和强度. 默认为0.35."
+msgstr "<0.0..1.0> softclip 的去饱和强度。默认值为 0.35。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:627
 msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
-msgstr "<0.0..1.0> 对于在线性光线上运行的遗留函数(mobius,γ),此直接设置相应的膝分. 默认为0.3."
+msgstr "<0.0..1.0> 对于在线性光上操作的旧版函数（mobius、gamma），这直接设置相应的拐点。默认值为 0.3。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:622
 msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast coefficient at the display peak. Essentially, a value of 0.5 implies that the reference white will be about half as bright as when clipping. Defaults to 0.5."
-msgstr "<0.0..1.0> 对于再硬函数,此选项指定显示峰值时的局部对比系数. 本质上,0.5的值意味着参考白会像剪接时一样亮相的一半. 默认为0.5."
+msgstr "<0.0..1.0> 对于 reinhard 函数，这指定显示峰值处的局部对比度系数。本质上，值 0.5 意味着参考白色约为裁剪时亮度的一半。默认值为 0.5。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:523
 msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
-msgstr "<0.0..1.0>膝盖指向用于 soft-clipping方法(概念性,软性). 默认为0.70."
+msgstr "<0.0..1.0> 用于软裁剪方法（perceptual、softclip）的拐点。默认值为 0.70。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:513
 msgid "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
-msgstr "<0.0..1.0>感知饱和度映射组件的强度. 默认为0.80."
+msgstr "<0.0..1.0> 感知饱和度映射分量的强度。默认值为 0.80。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:366
 msgid "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
-msgstr "<0.0..1.0> sigmoid曲线的中心(bias). 默认为0.75."
+msgstr "<0.0..1.0> Sigmoid 曲线的中心（偏置）。默认值为 0.75。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:632
 msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
-msgstr "<0.0..10.0> 对于线性方法(线性,线性光)来说,这控制了应用于图像的线性曝光/增益. 默认为1.0."
+msgstr "<0.0..10.0> 对于线性方法（linear、linearlight），这控制应用于图像的线性曝光/增益。默认值为 1.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:518
 msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
-msgstr "<0.0..10.0> I vs C 曲线伽玛用于色度剪接(相对的,绝对的和暗的). 默认为 1.80."
+msgstr "<0.0..10.0> 用于色度裁剪（relative、absolute 和 darken）的 I vs C 曲线 gamma。默认值为 1.80。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:461
 msgid "<0.0..100.0> Black cutoff strength."
-msgstr "<0.0..100.0> 黑色截断强度."
+msgstr "<0.0..100.0> 黑色截止强度。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:397
 msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
-msgstr "<0.0..100.0> 对比增益。 将源亮度信号乘以常数. 1.0=中性,0.0=实黑色. 默认为1.0."
+msgstr "<0.0..100.0> 对比度增益。将源亮度信号乘以常数因子。1.0 = 中性，0.0 = 纯黑。默认值为 1.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:412
 msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
-msgstr "<0.0..100.0> Gamma起重机。 在保持整体对比的同时,主观地亮出或暗出场景. 1.0=中性,0.0=实黑色. 默认为1.0."
+msgstr "<0.0..100.0> Gamma 提升。主观上使场景变亮或变暗，同时保持整体对比度。1.0 = 中性，0.0 = 纯黑。默认值为 1.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:402
 msgid "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
-msgstr "<0.0..100.0>饱和增益. 用常数将源色相信号相乘. 1.0=中性,0.0=灰度. 默认为1.0."
+msgstr "<0.0..100.0> 饱和度增益。将源色度信号乘以常数因子。1.0 = 中性，0.0 = 灰度。默认值为 1.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:455
 msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
-msgstr "<0.0..100.0> 输入图像亮度直方图的百分位数中哪一个可以视为场景的真实峰值."
+msgstr "<0.0..100.0> 将输入图像亮度直方图的哪个百分位数视为场景的真实峰值。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:345
 msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps cover up remaining quantization artifacts. Higher numbers add more noise. Defaults to 4.0, which is very mild."
-msgstr "<0.0..1000.0> 在图像中添加一些额外的噪声. 这大大地有助于掩盖剩余的量化文物. 更高的数字会增加更多的噪音. 默认为4.0,非常温和."
+msgstr "<0.0..1000.0> 向图像添加一些额外噪声。这显著有助于掩盖剩余的量化伪影。数值越大噪声越多。默认值为 4.0，非常轻微。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:439
 msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
-msgstr "<0.0..1000.0> Smoothing coefficient for the detected values."
+msgstr "<0.0..1000.0> 检测值的平滑系数。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:335
 msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
-msgstr "<0.0..1000.0> 分解过滤器的 cut-off 阈值。 数字越多,解带强度越大,但图像细节逐渐减少。 默认为 3. 0 。"
+msgstr "<0.0..1000.0> 去色带滤镜的截止阈值。数值越大去色带强度急剧增加，但逐渐减少图像细节。默认值为 3.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:340
 msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
-msgstr "<0.0..1000.0>分解滤波器初始半径. 每个迭代的半径会线性地增加. 更高的半径会发现更多的梯度,但更低的半径会更加平滑. 默认为16.0."
+msgstr "<0.0..1000.0> 去色带滤镜的初始半径。半径随每次迭代线性增加。较高的半径会找到更多梯度，但较低的半径会更积极地平滑。默认值为 16.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:592
 msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
-msgstr "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
+msgstr "<0.5..1.0> 将拐点最大值配置为 PQ 亮度范围的百分比。为 knee_adaptation 选择的拐点提供硬限制。默认值为 0.8。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:602
 msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
-msgstr "<0.5..2.0>膝盖点偏移(仅限bt2390). 注意:0.5的值是spec-defined的默认行为,这不同于1.0的libplacebo默认."
+msgstr "<0.5..2.0> 拐点偏移（仅用于 bt2390）。注意值 0.5 是规范定义的默认行为，这与 libplacebo 的默认值 1.0 不同。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:371
 msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
-msgstr "<1.0..20.0> sigmoid曲线的坡度(深度). 默认为 6.5."
+msgstr "<1.0..20.0> Sigmoid 曲线的斜率（陡度）。默认值为 6.5。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:666
 msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
-msgstr "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
+msgstr "<1.0..32.0> HDR 对比度恢复低通内核大小。增大或减小此值将显著影响视觉外观。默认值为 3.5。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1099
 msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
-msgstr "<N|inf|force|no>循环回放 N时间. 值为 1 播放它一次( 默认) , 2 二次等 inf 表示永远 。 无与 1 相同, 并禁用循环 。 如果命令行上指定了多个文件,则整个播放列表会被循环. 强制模式类似于inf,但不跳过被标记为失败的播放列表条目. 这意味着玩家可能浪费CPU的时间试图循环一个不存在的文件. 但对于在非常糟糕的网络条件下播放网络雷达可能有用."
+msgstr "<N|inf|force|no> 循环播放 N 次。值 1 播放一次（默认），2 播放两次，以此类推。inf 表示永远。no 与 1 相同并禁用循环。如果在命令行上指定了多个文件，则循环整个播放列表。force 模式类似于 inf，但不会跳过已标记为失败的播放列表条目。这意味着播放器可能会浪费 CPU 时间尝试循环不存在的文件。但在非常差的网络条件下播放网络电台时可能有用。"
 
 msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\\\n\\\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
-msgstr "<N|inf|no> 循环单个文件 N 次. inf意味着永远,不意味着正常的回放。\\\\n\\\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
+msgstr "<N|inf|no> 循环单个文件 N 次。inf 表示永远，no 表示正常播放。\\\\n\\\\n与 loop-playlist 的区别在于这不会循环播放列表，只循环文件本身。如果播放列表只包含一个文件，两个选项的区别在于此选项在循环时执行跳转，而不是重新加载文件。loop 是此选项的别名。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1062
 msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
-msgstr "<N|inf|no> 循环单个文件 N 次. inf意味着永远,不意味着正常的回放。\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
+msgstr "<N|inf|no> 循环单个文件 N 次。inf 表示永远，no 表示正常播放。\\n\\n与 loop-playlist 的区别在于这不会循环播放列表，只循环文件本身。如果播放列表只包含一个文件，两个选项的区别在于此选项在循环时执行跳转，而不是重新加载文件。loop 是此选项的别名。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:407
 msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
-msgstr "<angle> 换乘. 相当于紫外线下接器绕中轴旋转. 在弧度中指定。 默认为 0.0( 中性 ) 。"
+msgstr "<angle> 色调偏移。对应于 UV 子向量绕中性轴的旋转。以弧度为单位。默认值为 0.0（中性）。"
 
 msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\\\nSuffixes such as KiB and MiB are supported."
-msgstr "<bytesize> 控制调试器允许提前缓冲多少 。\\\\nKiB和MiB等后缀得到支持."
+msgstr "<bytesize> 控制解复用器允许提前缓冲多少数据。\\\\n支持 KiB 和 MiB 等后缀。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1195
 msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
-msgstr "<bytesize> 控制调试器允许提前缓冲多少 。\\nKiB和MiB等后缀得到支持."
+msgstr "<bytesize> 控制解复用器允许提前缓冲多少数据。\\n支持 KiB 和 MiB 等后缀。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1003
 msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
-msgstr "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
+msgstr "<float> 窗口的最小纵横比。可用于强制更宽的窗口从而获得更大的 OSC。（mpv.net 选项）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:14
 msgid "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
-msgstr "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
+msgstr "<int> 要记住的最近文件数量。默认值：15（mpv.net 选项）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:972
 msgid "<int> Initial window height in percent for audio files. Default: 70"
-msgstr "<int> Initial window height in percent for audio files. Default: 70"
+msgstr "<int> 音频文件的初始窗口高度（百分比）。默认值：70"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:967
 msgid "<int> Initial window height in percent for image files. Default: 80"
-msgstr "<int> 图像文件初始窗口高度% 。 默认: 80"
+msgstr "<int> 图像文件的初始窗口高度（百分比）。默认值：80"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:952
 msgid "<int> Initial window height in percent. Default: 60"
-msgstr "<int> Initial window height in percent. Default: 60"
+msgstr "<int> 初始窗口高度（百分比）。默认值：60"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:962
 msgid "<int> Maximum window height in percent. Default: 80"
-msgstr "<int> 最大窗口高度百分比。 默认: 80"
+msgstr "<int> 最大窗口高度（百分比）。默认值：80"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:957
 msgid "<int> Minimum window height in percent. Default: 10"
-msgstr "<int> 最小窗口高度百分比。 默认: 10"
+msgstr "<int> 最小窗口高度（百分比）。默认值：10"
 
 msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\\\n\\\\nTo list available audio devices in mpv.net, use the context menu:\\\\n\\\\nView > More > Show Audio Devices.\\\\n\\\\nTo change the audio device in mpv.net, also use the context menu:\\\\n\\\\nAudio > Audio Device"
-msgstr "<name> 使用指定的音频设备。 这由音频输出名称组成,如alsa,后为 /,后为音频输出特定设备名称. 此选项的默认值是 auto , 它用默认设备按偏好顺序尝试每个音频输出 。\\\\n\\\\nTo list available audio devices in mpv.net, use the context menu:\\\\n\\\\n视图 > 更多 > 显示音频设备 。\\\\n\\\\nTo change the audio device in mpv.net, also use the context menu:\\\\n\\\\n音频 > 音频设备"
+msgstr "<name> 使用给定的音频设备。这由音频输出名称（例如 alsa）后跟 / 再后跟音频输出特定的设备名称组成。此选项的默认值为 auto，它按优先顺序尝试每个音频输出的默认设备。\\\\n\\\\n要在 mpv.net 中列出可用的音频设备，请使用上下文菜单：\\\\n\\\\n查看 > 更多 > 显示音频设备。\\\\n\\\\n要在 mpv.net 中更改音频设备，也请使用上下文菜单：\\\\n\\\\n音频 > 音频设备"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:821
 msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
-msgstr "<name> 使用指定的音频设备。 这由音频输出名称组成,如alsa,后为 /,后为音频输出特定设备名称. 此选项的默认值为自動, 它会以默认设备的偏好顺序尝试每个音频输出 。\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\n视图 > 更多 > 显示音频设备 。\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\n音频 > 音频设备"
+msgstr "<name> 使用给定的音频设备。这由音频输出名称（例如 alsa）后跟 / 再后跟音频输出特定的设备名称组成。此选项的默认值为 auto，它按优先顺序尝试每个音频输出的默认设备。\\n\\n要在 mpv.net 中列出可用的音频设备，请使用上下文菜单：\\n\\n查看 > 更多 > 显示音频设备。\\n\\n要在 mpv.net 中更改音频设备，也请使用上下文菜单：\\n\\n音频 > 音频设备"
 
 msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\\\n\\\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\\\n\\\\nx=0 docks the window to the left side.\\\\nx=100 docks the window to the right side.\\\\n\\\\ny=0 docks the window to the top side.\\\\ny=100 docks the window to the bottom side."
-msgstr "<x:y> 初始窗口位置% 。 默认: 50: 50( 中心)\\\\n\\\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\\\n\\\\nx=0 将窗口对接到左侧。\\\\nx=100将窗口对接到右侧。\\\\n\\\\ny=0 将窗口对接到上方。\\\\ny=100对接窗口到下方。"
+msgstr "<x:y> 初始窗口位置（百分比）。默认值：50:50（居中）\\\\n\\\\n需要 Windows 11，在 Windows 10 上由于不可见边框会略有不准。\\\\n\\\\nx=0 将窗口停靠到左侧。\\\\nx=100 将窗口停靠到右侧。\\\\n\\\\ny=0 将窗口停靠到顶部。\\\\ny=100 将窗口停靠到底部。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:977
 msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
-msgstr "<x:y> 初始窗口位置% 。 默认: 50: 50( 中心)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0将窗口对接到左侧。\\nx=100将窗口对接到右侧。\\n\\ny=0 将窗口对接到上方。\\ny=100对接窗口到下方。"
+msgstr "<x:y> 初始窗口位置（百分比）。默认值：50:50（居中）\\n\\n需要 Windows 11，在 Windows 10 上由于不可见边框会略有不准。\\n\\nx=0 将窗口停靠到左侧。\\nx=100 将窗口停靠到右侧。\\n\\ny=0 将窗口停靠到顶部。\\ny=100 将窗口停靠到底部。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
 msgid "Abort"
-msgstr "ä¸­æ­¢"
+msgstr "中止"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:11
 msgid "About"
-msgstr "About"
+msgstr "关于"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:199
 msgid "About mpv.net"
-msgstr "About mpv.net"
+msgstr "关于 mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:98
 msgid "Tip: installing Codec Guide can improve codec support and playback."
@@ -631,11 +621,19 @@ msgstr "提示：安装 Codec Guide 可以改善编解码器支持和播放。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:99
 msgid "Codec Guide: "
-msgstr "Codec Guide: "
+msgstr "Codec Guide："
+
+#: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
+msgid "Make a donation to help maintain the project."
+msgstr "捐赠以帮助维护项目。"
+
+#: src/MpvNet/App.cs
+msgid "Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support."
+msgstr "您的捐赠有助于 MPV.NET 媒体播放器的持续开发，包括改进、修复和持续的项目支持。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:100
 msgid "If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below."
-msgstr "如果你想通过 Pix 捐助，请使用旁边的二维码或复制并粘贴下面的密钥。"
+msgstr "如果您想通过 Pix 捐赠，请使用旁边的二维码或复制粘贴下面的密钥。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:101
 msgid "Pix copy and paste:"
@@ -643,7 +641,7 @@ msgstr "Pix 复制粘贴："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:102
 msgid "Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer."
-msgstr "Pix 已复制到 Windows 剪贴板。请打开你的银行应用或网站以完成 Pix 转账。"
+msgstr "Pix 已复制到 Windows 剪贴板。请打开您的银行应用或网站以完成 Pix 转账。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:144
 msgid "Active Bindings In Text Editor"
@@ -674,24 +672,24 @@ msgid "Add mpv.net to Path environment variable"
 msgstr "将 mpv.net 添加到环境变量"
 
 msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
-msgstr "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr "仅允许 OpenGL（需要 OpenGL 2.1+ 或 GLES 2.0+）"
 
 msgid "Allow only Vulkan"
-msgstr "Allow only Vulkan"
+msgstr "仅允许 Vulkan"
 
 msgid "Allow only gpu-context=d3d11"
-msgstr "Allow only gpu-context=d3d11"
+msgstr "仅允许 gpu-context=d3d11"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:467
 msgid "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
-msgstr "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
+msgstr "允许峰值检测结果延迟最多一帧，这有时可以提高吞吐量，代价是在过渡时可能出现 1 帧闪烁。"
 
 msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\\\n\\\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
-msgstr "总是保存退出时的当前播放位置 。 当此文件稍后再次被播放时,玩家会在开始时寻求旧的回放位置. 如果一个文件的播放停止了退出,则不会发生这种情况。 例如,到播放列表中的下一个文件不会保存位置,并在下一次播放文件时开始播放。\\\\n\\\\n此行为默认被禁用, 但总是在 ShiftQQ 退出玩家时可用 。"
+msgstr "退出时始终保存当前播放位置。当再次播放此文件时，播放器将在开始时跳转到旧的播放位置。如果文件的播放以退出以外的任何方式停止，则不会发生这种情况。例如，转到播放列表中的下一个文件不会保存位置，下次播放该文件时将从头开始。\\\\n\\\\n此行为默认禁用，但在使用 Shift+Q 退出播放器时始终可用。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1067
 msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
-msgstr "总是保存退出时的当前播放位置 。 当此文件稍后再次被播放时,玩家会在开始时寻求旧的回放位置. 如果一个文件的播放停止了退出,则不会发生这种情况。 例如,去播放列表中的下一个文件不会保存位置,在下一次播放文件时开始播放.\\n\\n此行为默认被禁用, 但总是在 ShiftQQ 退出玩家时可用 。"
+msgstr "退出时始终保存当前播放位置。当再次播放此文件时，播放器将在开始时跳转到旧的播放位置。如果文件的播放以退出以外的任何方式停止，则不会发生这种情况。例如，转到播放列表中的下一个文件不会保存位置，下次播放该文件时将从头开始。\\n\\n此行为默认禁用，但在使用 Shift+Q 退出播放器时始终可用。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1142
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1163
@@ -702,10 +700,10 @@ msgstr "外观"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:127
 msgid "As scale, but for interpolating chroma information. If the image is not subsampled, this option is ignored entirely."
-msgstr "作为尺度,但用于插入染色体信息. 如果图像没有被子样本,则此选项会被完全忽略."
+msgstr "与 scale 相同，但用于插值色度信息。如果图像未进行子采样，则完全忽略此选项。"
 
 msgid "Aspect-ratio preserving nearest neighbour sampling (very fast)."
-msgstr "保护近邻采样的光谱率(非常快)。"
+msgstr "保持纵横比的最近邻采样（非常快）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:790
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:795
@@ -739,29 +737,29 @@ msgstr "音频轨道"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:835
 msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
-msgstr "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "使用 --audio-file-auto、--autocreate-playlist 或 --directory-filter-types 时尝试匹配的音频文件扩展名。mpv.net 使用它来创建文件关联以及自动加载文件夹功能。默认值：mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
 
 msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
-msgstr "自动选择。 如果输出位深度无法被检测出,则假设每个组件有8位."
+msgstr "自动选择。如果无法检测输出位深度，则假设每个分量 8 位。"
 
 msgid "Available on Windows 10 or higher"
-msgstr "Available on Windows 10 or higher"
+msgstr "在 Windows 10 或更高版本上可用"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:209
 msgid "Backward"
 msgstr "后退"
 
 msgid "Bicubic interpolation (fast)"
-msgstr "双管插值( 快速)"
+msgstr "Bicubic 插值（快）"
 
 msgid "Bicubic interpolation (fast)."
-msgstr "bicubic内插 (快活)."
+msgstr "Bicubic 插值（快）。"
 
 msgid "Bilinear (triangle) averaging (fast)"
-msgstr "双线(三角)平均(快)"
+msgstr "Bilinear（三角）平均（快）"
 
 msgid "Bilinear sampling (very fast)."
-msgstr "双线采样(非常快)."
+msgstr "Bilinear 采样（非常快）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:128
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:246
@@ -769,7 +767,7 @@ msgid "Bindings"
 msgstr "键位绑定"
 
 msgid "Box averaging (very fast)"
-msgstr "方框平均值(非常快)"
+msgstr "Box 平均（非常快）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1184
 msgid "Cache"
@@ -781,10 +779,10 @@ msgid "Cancel"
 msgstr "取消"
 
 msgid "Catmull-Rom cubic spline"
-msgstr "Catmull- Rom 立方条"
+msgstr "Catmull-Rom 三次样条"
 
 msgid "Catmull-Rom cubic spline."
-msgstr "克特穆尔-罗姆立方支线."
+msgstr "Catmull-Rom 三次样条。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:82
 msgid "Change Aspect Ratio"
@@ -792,14 +790,14 @@ msgstr "更改纵横比"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:498
 msgid "Changed theme settings require mpv.net being restarted."
-msgstr "更改的主题设置需要重新启动 mpv.net。"
+msgstr "更改的主题设置需要重启 mpv.net。"
 
 msgid "Changes between a light and dark theme.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option."
-msgstr "光和暗主题之间的变化 。\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option."
+msgstr "在浅色和深色主题之间切换。\\\\n更改后必须重启 mpv.net。\\\\nmpv.net 特定选项。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1164
 msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
-msgstr "光和暗主题之间的变化。\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "在浅色和深色主题之间切换。\\n更改后必须重启 mpv.net。\\nmpv.net 特定选项。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:125
 msgid "Changes will be available on next startup."
@@ -816,7 +814,7 @@ msgid "Chapters"
 msgstr "章节"
 
 msgid "Choose the best mode automatically."
-msgstr "自动选择最佳模式 。"
+msgstr "自动选择最佳模式。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:54
 msgid "Clear"
@@ -824,7 +822,7 @@ msgstr "清除"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:239
 msgid "Clear List"
-msgstr "清除列表"
+msgstr "清空列表"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:375
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:383
@@ -835,7 +833,7 @@ msgstr "清除列表"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:411
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:416
 msgid "Color Adjustment"
-msgstr "颜色调整"
+msgstr "色彩调整"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:474
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:482
@@ -880,22 +878,22 @@ msgid "Color Mapping"
 msgstr "色彩映射"
 
 msgid "Color theme used in dark mode.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: dark"
-msgstr "暗模式中使用的颜色主题 。\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: dark"
+msgstr "深色模式下使用的颜色主题。\\\\n更改后必须重启 mpv.net。\\\\nmpv.net 特定选项。默认值：dark"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1174
 msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
-msgstr "暗模式中使用的色彩主题 。\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "深色模式下使用的颜色主题。\\n更改后必须重启 mpv.net。\\nmpv.net 特定选项。默认值：dark"
 
 msgid "Color theme used in light mode.\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: light"
-msgstr "光线模式中使用的颜色主题 。\\\\nmpv.net must be restarted after a change.\\\\nmpv.net specific option. Default: light"
+msgstr "浅色模式下使用的颜色主题。\\\\n更改后必须重启 mpv.net。\\\\nmpv.net 特定选项。默认值：light"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1180
 msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
-msgstr "亮度模式中使用的颜色主题 。\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "浅色模式下使用的颜色主题。\\n更改后必须重启 mpv.net。\\nmpv.net 特定选项。默认值：light"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:214
 msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
-msgstr "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
+msgstr "用于绘制视频未覆盖的 mpv 窗口部分的颜色。有关颜色定义方式，请参见 --sub-color 选项。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:140
 msgid "Command"
@@ -928,7 +926,7 @@ msgstr "配置编辑器"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:53
 msgid "Confirm"
-msgstr "ç¡®è®¤"
+msgstr "确认"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:142
 msgid "Console"
@@ -936,31 +934,31 @@ msgstr "控制台"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:707
 msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
-msgstr "控制游戏3DLUT可视化的旋转. 以弧度通过厚度空间(绕一轴)旋转游戏。 默认为 0.0."
+msgstr "控制色域 3DLUT 可视化的旋转。围绕 I 轴在色调空间中旋转色域，以弧度为单位。默认值为 0.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:712
 msgid "Controls the rotation of the gamut 3DLUT visualization. The theta parameter vertically rotates the cross section (around the C axis), in radians. Defaults to 0.0."
-msgstr "控制游戏3DLUT可视化的旋转. Theta参数垂直地旋转横段(围绕C轴),以弧度表示. 默认为 0.0."
+msgstr "控制色域 3DLUT 可视化的旋转。theta 参数垂直旋转横截面（围绕 C 轴），以弧度为单位。默认值为 0.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:687
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:692
 msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 0.0."
-msgstr "相对于渲染的视频,控制绘制LUT可视化的位置. 默认为 0.0."
+msgstr "控制相对于渲染视频在何处绘制 LUT 可视化。默认值为 0.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:697
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:702
 msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 1.0."
-msgstr "相对于渲染的视频,控制绘制LUT可视化的位置. 默认为1.0."
+msgstr "控制相对于渲染视频在何处绘制 LUT 可视化。默认值为 1.0。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:92
 msgid "Controls which type of graphics APIs will be accepted."
-msgstr "控制将接受哪类图形 API 。"
+msgstr "控制将接受哪种类型的图形 API。"
 
 msgid "Create a new process everytime the shell starts mpv.net"
-msgstr "Create a new process everytime the shell starts mpv.net"
+msgstr "每次 shell 启动 mpv.net 时创建新进程"
 
 msgid "Cubic B-spline frame mixing"
-msgstr "立方体 B- spline 框架混合"
+msgstr "Cubic B-spline 帧混合"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:328
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:190
@@ -969,7 +967,7 @@ msgstr "自定义"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:645
 msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
-msgstr "tone-mapping 时使用的数据源。 将此设定为特定值可以压倒默认元数据偏好逻辑 。"
+msgstr "色调映射时使用的数据源。将其设置为特定值可以覆盖默认的元数据偏好逻辑。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:313
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:321
@@ -978,11 +976,11 @@ msgstr "tone-mapping 时使用的数据源。 将此设定为特定值可以压�
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:339
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:344
 msgid "Debanding"
-msgstr "开发"
+msgstr "去色带"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1185
 msgid "Decide whether to use network cache settings."
-msgstr "决定是否使用网络缓存设置 。"
+msgstr "决定是否使用网络缓存设置。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:148
 msgid "Decoders"
@@ -990,31 +988,31 @@ msgstr "解码器"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:70
 msgid "Decrease Brightness"
-msgstr "降低亮度"
+msgstr "减小亮度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:67
 msgid "Decrease Contrast"
-msgstr "降低对比度"
+msgstr "减小对比度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:100
 msgid "Decrease Font Size"
-msgstr "减小字体大小"
+msgstr "减小字体"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:73
 msgid "Decrease Gamma"
-msgstr "降低伽马"
+msgstr "减小伽马值"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:62
 msgid "Decrease Height"
-msgstr "降低高度"
+msgstr "减小高度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:76
 msgid "Decrease Saturation"
-msgstr "降低饱和度"
+msgstr "减小饱和度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:53
 msgid "Decrease Size"
-msgstr "缩减大小"
+msgstr "缩小尺寸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:422
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:441
@@ -1026,14 +1024,14 @@ msgid "Default"
 msgstr "默认"
 
 msgid "Default settings, tuned to provide a balance of performance and quality."
-msgstr "默认设置, 调制以提供性能和质量的平衡 。"
+msgstr "默认设置，调整为性能和质量的平衡。"
 
 msgid "Defines if more then one mpv.net process is allowed.\\\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
-msgstr "Defines if more then one mpv.net process is allowed.\\\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
+msgstr "定义是否允许多个 mpv.net 进程。\\\\n也可以通过按 SHIFT 键启用多进程。（mpv.net 选项）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:5
 msgid "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
-msgstr "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
+msgstr "定义是否允许多个 mpv.net 进程。也可以通过按 SHIFT 键启用多进程。（mpv.net 选项）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:88
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:95
@@ -1047,11 +1045,11 @@ msgstr "延迟 -0.1"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1127
 msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
-msgstr "延迟数以毫秒计, 然后再自动重排一个密钥( 0 到禁用) 。"
+msgstr "开始自动重复按键之前的延迟（毫秒）（0 为禁用）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1194
 msgid "Demuxer"
-msgstr "调试器"
+msgstr "解复用器"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:149
 msgid "Demuxers"
@@ -1059,31 +1057,31 @@ msgstr "解复用器"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:193
 msgid "Details"
-msgstr "细节"
+msgstr "详情"
 
 msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
-msgstr "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "通过 OpenGL ES 转换层 ANGLE 的 Direct3D11。它支持 win 后端几乎所有的功能（如果 ANGLE 构建足够新）。"
 
 msgid "Disable all advanced rendering, equivalent to passing no to every option."
-msgstr "禁用所有高级渲染, 相当于不给每个选项 。"
+msgstr "禁用所有高级渲染，等同于对每个选项传递 no。"
 
 msgid "Disable any dithering done by mpv."
-msgstr "禁用 mpv 所做的任何抖动 。"
+msgstr "禁用 mpv 的任何抖动。"
 
 msgid "Disable frame mixing, show nearest frame to target PTS"
-msgstr "禁用相框混合, 显示目标 PTS 最近的相框"
+msgstr "禁用帧混合，显示最接近目标 PTS 的帧"
 
 msgid "Dither to 10 bit output."
-msgstr "dither 到 10 位输出 。"
+msgstr "抖动到 10 位输出。"
 
 msgid "Dither to 8 bit output."
-msgstr "向8位输出 。"
+msgstr "抖动到 8 位输出。"
 
 msgid "Don't automatically load external audio files."
-msgstr "不要自动装入外部音频文件."
+msgstr "不自动加载外部音频文件。"
 
 msgid "Don't automatically load external subtitle files."
-msgstr "不要自动加载外部字幕文件."
+msgstr "不自动加载外部字幕文件。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:116
 msgid "Double"
@@ -1092,10 +1090,10 @@ msgstr "翻倍"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:369
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.Initialization.cs:71
 msgid "Drop files or URLs to play here."
-msgstr "将文件或 URL 拖放到此处播放。"
+msgstr "拖放文件或 URL 到此处播放。"
 
 msgid "EWA Lanczos (\\\"Jinc\\\") reconstruction (slow)."
-msgstr "EWA兰克佐斯(\\\"Jinc\\\")重建(缓慢)."
+msgstr "EWA Lanczos（\\\"Jinc\\\"）重建（慢）。"
 
 msgid "Edit config file"
 msgstr "编辑配置文件"
@@ -1123,45 +1121,45 @@ msgstr "版本"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1137
 msgid "Enable the IPC support and create the listening socket at the given path."
-msgstr "启用 IPC 支持并在给定路径创建监听套接字 。"
+msgstr "启用 IPC 支持并在给定路径创建监听套接字。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:181
 msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
-msgstr "启用分解算法 。 这大大地减少了能见度的带子,屏蔽等量化文物的数量,而牺牲了极微模糊一些最精细的细节. 在实践中,这几乎总是一种改进——禁用它的唯一原因就是表现."
+msgstr "启用去色带算法。这大大减少了可见的色带、块效应和其他量化伪影，代价是非常轻微地模糊一些最精细的细节。实际上，它几乎总是一种改进——禁用它的唯一原因是性能。"
 
 msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\\\n\\\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
-msgstr "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\\\n\\\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
+msgstr "启用默认轨道自动选择。启用此选项将使播放器根据 aid、alang 等选择流。如果禁用，则不选择任何轨道。此外，如果未选择任何轨道，播放器不会退出，而是等待（此等待模式类似于暂停，但未设置 pause 选项）。\\\\n\\\\n这对 lavfi-complex 很有用：您可以在此模式下开始播放，然后通过设置滤镜图在运行时设置选择轨道。请注意，如果在播放开始之前设置了 lavfi-complex，则引用的轨道始终会被选择。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1091
 msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
-msgstr "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
+msgstr "启用默认轨道自动选择。启用此选项将使播放器根据 aid、alang 等选择流。如果禁用，则不选择任何轨道。此外，如果未选择任何轨道，播放器不会退出，而是等待（此等待模式类似于暂停，但未设置 pause 选项）。\\n\\n这对 lavfi-complex 很有用：您可以在此模式下开始播放，然后通过设置滤镜图在运行时设置选择轨道。请注意，如果在播放开始之前设置了 lavfi-complex，则引用的轨道始终会被选择。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:53
 msgid "Enable this only when a developer asks for it. (mpv.net option)"
-msgstr "Enable this only when a developer asks for it. (mpv.net option)"
+msgstr "仅在开发者要求时启用此选项。（mpv.net 选项）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:422
 msgid "Enables HDR peak detection."
-msgstr "Enables HDR peak detection."
+msgstr "启用 HDR 峰值检测。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:376
 msgid "Enables color adjustment."
-msgstr "启用色彩调整 。"
+msgstr "启用色彩调整。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:314
 msgid "Enables debanding using libplacebo."
-msgstr "允许使用 libplacebo 解析 。"
+msgstr "使用 libplacebo 启用去色带。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:350
 msgid "Enables sigmoidization."
-msgstr "启用 sigmoidization."
+msgstr "启用 Sigmoid 曲线处理。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:475
 msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
-msgstr "允许使用这些色彩映射设置。 禁用此选项不禁禁用色彩映射,仅指\"对一切使用默认选项\"."
+msgstr "启用这些色彩映射设置。禁用此选项不会禁用色彩映射，只是意味着\"对所有内容使用默认选项\"。"
 
 msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \\\"use the default options for everything\\\"."
-msgstr "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \\\"use the default options for everything\\\"."
+msgstr "启用这些色彩映射设置。禁用此选项不会禁用色彩映射，只是意味着\\\"对所有内容使用默认选项\\\"。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:152
 msgid "Enlarge"
@@ -1169,7 +1167,7 @@ msgstr "放大"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:316
 msgid "Error creating file associations."
-msgstr "创建文件关联出错 。"
+msgstr "创建文件关联时出错"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:201
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:23
@@ -1182,7 +1180,7 @@ msgid "Exit Watch Later"
 msgstr "退出（稍后观看）"
 
 msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
-msgstr "基于libplacebo的实验视频渲染器. 这支持几乎与--vo>=gpu相同的特性集."
+msgstr "基于 libplacebo 的实验性视频渲染器。它支持与 --vo=gpu 几乎相同的功能集。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:442
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:470
@@ -1210,11 +1208,11 @@ msgstr "文件资源管理器图标将在进程重新启动后刷新"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:313
 msgid "File associations were successfully created."
-msgstr "文件关联已成功创建 。"
+msgstr "文件关联已成功创建"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:311
 msgid "File associations were successfully removed."
-msgstr "文件关联被成功删除 。"
+msgstr "文件关联已成功删除"
 
 msgid "File information"
 msgstr "文件信息"
@@ -1226,7 +1224,7 @@ msgstr "已添加 文件/URL 到播放列表"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml:39
 msgid "Find a binding (Ctrl+F)"
-msgstr "查找设置 (Ctrl+F)"
+msgstr "查找键位绑定 (Ctrl+F)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:599
 msgid "Find a setting (Ctrl+F)"
@@ -1238,17 +1236,17 @@ msgstr "第一个文件"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1113
 msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
-msgstr "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
+msgstr "对于单个文件，自动将整个目录加载到播放列表中。（已弃用的 mpv.net 选项，可改用 autocreate-playlist）"
 
 msgid "Force a single process and add files to playlist"
-msgstr "强制一个进程并添加文件到播放列表"
+msgstr "强制单进程并将文件添加到播放列表"
 
 msgid "Force a single process everytime the shell starts mpv.net"
-msgstr "Force a single process everytime the shell starts mpv.net"
+msgstr "每次 shell 启动 mpv.net 时强制单进程"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:671
 msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
-msgstr "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
+msgstr "强制使用完整的色调映射 LUT，即使对于有更快纯 GLSL 替代的函数（如 clip、linear、saturation）。这是一个调试选项。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:440
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Player.cs:468
@@ -1269,13 +1267,13 @@ msgstr "全屏"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:492
 msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
-msgstr "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
+msgstr "用于处理超出色域颜色的色域映射函数，包括因色调映射而超出色域的颜色。"
 
 msgid "Gaussian smoothing (fast)"
-msgstr "高斯平滑( 快速)"
+msgstr "Gaussian 平滑（快）"
 
 msgid "Gaussian smoothing (fast)."
-msgstr "高斯平滑 (快活)."
+msgstr "Gaussian 平滑（快）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:13
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:18
@@ -1288,11 +1286,11 @@ msgid "General"
 msgstr "常规"
 
 msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
-msgstr "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "通用、可自定义、GPU 加速的视频输出驱动程序。它支持扩展的缩放方法、抖动、色彩管理、自定义着色器、HDR 等。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:717
 msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
-msgstr "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
+msgstr "在色调映射期间以图形方式高亮显示硬裁剪像素（即超过声称的源亮度范围的像素）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:421
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:429
@@ -1303,7 +1301,7 @@ msgstr "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixe
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:460
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:466
 msgid "HDR Peak Detection"
-msgstr "HDR Peak Detection"
+msgstr "HDR 峰值检测"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:115
 msgid "Half"
@@ -1325,43 +1323,43 @@ msgid "Help"
 msgstr "帮助"
 
 msgid "Hermite-weighted averaging (fast)"
-msgstr "Hermite体重平均(快)"
+msgstr "Hermite 加权平均（快）"
 
 msgid "Hermite-weighted frame mixing"
-msgstr "赫米特加权相框混合"
+msgstr "Hermite 加权帧混合"
 
 msgid "How the player synchronizes audio and video.\\\\n\\\\nFor more information visit:"
-msgstr "玩家如何同步音频和视频 。\\\\n\\\\n更多信息访问:"
+msgstr "播放器如何同步音频和视频。\\\\n\\\\n更多信息请访问："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:38
 msgid "How the player synchronizes audio and video.\\n\\nFor more information visit:"
-msgstr "玩家如何同步音频和视频.\\n\\n更多信息访问:"
+msgstr "播放器如何同步音频和视频。\\n\\n更多信息请访问："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:556
 msgid "If enabled, allows the gamut mapping function to expand the gamut, in cases where the target gamut exceeds that of the source. If disabled, the source gamut will never be enlarged, even when using a gamut mapping function capable of bidirectional mapping."
-msgstr "如果启用, 则允许 Gamut 映射函数扩展 gamut, 如果目标 gamut 超过源的 。 如果禁用,即使使用能双向映射的 Gamut 映射函数,源游戏也永远不会被扩展."
+msgstr "如果启用，在目标色域超过源色域的情况下，允许色域映射函数扩展色域。如果禁用，源色域将永远不会被扩大，即使使用能够双向映射的色域映射函数。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:637
 msgid "If enabled, and supported by the given tone mapping function, will perform inverse tone mapping to expand the dynamic range of a signal. libplacebo is not liable for any HDR-induced eye damage."
-msgstr "如果启用,并得到给定的音调映射功能的支持,将进行反调映射以扩展信号的动态范围. Libplacebo不为《人类发展报告》引起的眼损伤负责。"
+msgstr "如果启用，且给定的色调映射函数支持，将执行逆色调映射以扩展信号的动态范围。libplacebo 对任何 HDR 引起的眼部损伤不承担责任。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:748
 msgid "If possible, write screenshots with a bit depth similar to the source video. This is interesting in particular for PNG, as this sometimes triggers writing 16 bit PNGs with huge file sizes. This will also include an unused alpha channel in the resulting files if 16 bit is used."
-msgstr "如果可能的话,写出与源视频相近的略为深度的截图. 这对PNG来说特别有趣,因为这有时会触发写出16位有巨大文件大小的PNG. 如果使用了 16 位, 也会在产生的文件中包含一个未使用的α 通道 。"
+msgstr "如果可能，以类似于源视频的位深度写入截图。这对 PNG 特别有意义，因为这有时会触发写入文件大小巨大的 16 位 PNG。如果使用 16 位，结果文件中还将包含一个未使用的 alpha 通道。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1053
 msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
-msgstr "如果设置为无,而\"keep-open也被设置为否,玩家在上个文件结束后退出."
+msgstr "如果设为 no 且 keep-open 也设为 no，播放器在最后一个文件结束后退出。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1045
 msgid "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
-msgstr "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
+msgstr "如果设为 no，当 keep-open 处于活动状态时不会暂停，而是在文件末尾停止，当您向后跳转时继续向前播放，直到末尾再次停止。"
 
 msgid "If the current file ends, go to the next file, keep the last file open."
-msgstr "如果当前文件结束, 请转到下一个文件, 保留最后一个文件 。"
+msgstr "如果当前文件结束，转到下一个文件，保持最后一个文件打开。"
 
 msgid "If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
-msgstr "如果当前文件结束, 请转到下一个文件 。 如果闲置设置为否,玩家在上一份文件后退出."
+msgstr "如果当前文件结束，转到下一个文件。如果 idle 设为 no，播放器在最后一个文件后退出。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:173
 msgid "Ignore"
@@ -1373,35 +1371,35 @@ msgstr "忽略左键"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:28
 msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
-msgstr "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+msgstr "使用 --cover-art-auto、--autocreate-playlist 或 --directory-filter-types 时尝试匹配的图像文件扩展名。mpv.net 使用它来创建文件关联以及自动加载文件夹功能。默认值：avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:71
 msgid "Increase Brightness"
-msgstr "增加亮度"
+msgstr "增大亮度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:68
 msgid "Increase Contrast"
-msgstr "增加对比度"
+msgstr "增大对比度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:101
 msgid "Increase Font Size"
-msgstr "增加字体大小"
+msgstr "增大字体"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:74
 msgid "Increase Gamma"
-msgstr "增加伽马"
+msgstr "增大伽马值"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:63
 msgid "Increase Height"
-msgstr "增加高度"
+msgstr "增大高度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:77
 msgid "Increase Saturation"
-msgstr "增加饱和度"
+msgstr "增大饱和度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:54
 msgid "Increase Size"
-msgstr "增加大小"
+msgstr "增大尺寸"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:498
 msgid "Info"
@@ -1458,10 +1456,10 @@ msgid "Keys"
 msgstr "键"
 
 msgid "Lanczos reconstruction"
-msgstr "兰克佐斯重建"
+msgstr "Lanczos 重构"
 
 msgid "Lanczos reconstruction."
-msgstr "兰克佐斯重建."
+msgstr "Lanczos 重构。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:32
 msgid "Last File"
@@ -1472,40 +1470,40 @@ msgid "Learn Input"
 msgstr "学习输入"
 
 msgid "Like scale, but apply these filters on downscaling instead. \\\\nIf no option is selected, it will keep the same with the upscaler."
-msgstr "类似缩放, 但将这些过滤器应用在缩放上 。\\ \\\\n如果没有选择选项, 它会保持相同的升级器 。"
+msgstr "与 scale 类似，但在缩小时应用这些滤镜。\\\\n如果未选择任何选项，将与放大滤镜保持相同。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:141
 msgid "Like scale, but apply these filters on downscaling instead. \\nIf no option is selected, it will keep the same with the upscaler."
-msgstr "像缩放,但把这些滤镜应用在缩放上。 \\n如果没有选择选项, 它会保持相同的升级器 。"
+msgstr "与 scale 类似，但在缩小时应用这些滤镜。\\n如果未选择任何选项，将与放大滤镜保持相同。"
 
 msgid "Linear frame mixing"
-msgstr "线框混合"
+msgstr "线性帧混合"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:809
 msgid "Load additional audio files matching the video filename. The parameter specifies how external audio files are matched."
-msgstr "装入符合视频文件名的额外音频文件 。 参数指定外部音频文件的匹配方式 。"
+msgstr "加载与视频文件名匹配的附加音频文件。参数指定如何匹配外部音频文件。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:845
 msgid "Load additional subtitle files matching the video filename. The parameter specifies how external subtitle files are matched. exact is enabled by default."
-msgstr "装入匹配视频文件名的附加字幕文件 。 参数指定外部字幕文件的匹配方式 。 默认启用精确度 。"
+msgstr "加载与视频文件名匹配的附加字幕文件。参数指定如何匹配外部字幕文件。默认启用 exact。"
 
 msgid "Load all audio files containing media filename."
-msgstr "装入包含媒体文件名的所有音频文件 。"
+msgstr "加载所有包含媒体文件名的音频文件。"
 
 msgid "Load all audio files in the current and audio-file-paths directories."
-msgstr "装入当前和audio-file-paths目录中的所有音频文件。"
+msgstr "加载当前目录和 audio-file-paths 目录中的所有音频文件。"
 
 msgid "Load all subs containing media filename."
-msgstr "装入包含媒体文件名的所有子程序 。"
+msgstr "加载所有包含媒体文件名的字幕。"
 
 msgid "Load all subs in the current and sub-file-paths directories."
-msgstr "装入当前和 sub-file-paths 目录中的所有子 。"
+msgstr "加载当前目录和 sub-file-paths 目录中的所有字幕。"
 
 msgid "Load the media filename with audio file extension."
-msgstr "用音频文件扩展名装入媒体文件名 。"
+msgstr "加载带有音频文件扩展名的媒体文件名。"
 
 msgid "Load the media filename with subtitle file extension."
-msgstr "用字幕文件扩展名装入媒体文件名 。"
+msgstr "加载带有字幕文件扩展名的媒体文件名。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:195
 msgid "Manual mpv"
@@ -1532,7 +1530,7 @@ msgid "Menu"
 msgstr "菜单"
 
 msgid "Mitchell-Netravalia cubic spline"
-msgstr "米切尔- 内特拉瓦利亚 三分线"
+msgstr "Mitchell-Netravalia 三次样条"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:103
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:142
@@ -1607,10 +1605,10 @@ msgid "Navigate"
 msgstr "导航"
 
 msgid "Nearest-neighbour (box) sampling (very fast)."
-msgstr "近邻(盒)采样(极快)."
+msgstr "最近邻（box）采样（非常快）。"
 
 msgid "Never use precise seeks."
-msgstr "永远不要使用精确的搜索。"
+msgstr "从不使用精确跳转。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:35
 msgid "Next Chapter"
@@ -1630,14 +1628,14 @@ msgstr "下一个轨道"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
 msgid "No"
-msgstr "没有"
+msgstr "否"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Command.cs:77
 msgid "No audio tracks"
-msgstr "没有音频轨道"
+msgstr "无音频轨道"
 
 msgid "No filter, only use basic GPU texture sampling."
-msgstr "No filter, only use basic GPU texture sampling."
+msgstr "无滤镜，仅使用基本 GPU 纹理采样。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\Command.cs:120
 msgid "No subtitle"
@@ -1650,15 +1648,15 @@ msgstr "无字幕"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1121
 msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
-msgstr "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
+msgstr "通常，mpv 在播放播放列表中的下一个文件时会尝试保留所有选项，即使它们在播放期间被用户更改。可以通过此选项更改。它接受一个选项列表，mpv 将在播放开始时将这些选项的值重置为初始值。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1132
 msgid "Number of key presses to generate per second on autorepeat."
-msgstr "自动重播时生成每秒按键数 。"
+msgstr "自动重复时每秒生成的按键次数。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:127
 msgid "OK"
-msgstr ""
+msgstr "确定"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:126
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:127
@@ -1690,7 +1688,7 @@ msgstr "打开配置文件夹"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:14
 msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr "Open DVD/Blu-ray Drive/Folder..."
+msgstr "打开 DVD/蓝光驱动器/文件夹..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:12
 msgid "Open Files..."
@@ -1702,32 +1700,32 @@ msgstr "从剪贴板打开 URL 或文件"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:224
 msgid "Override all libplacebo options by the values from the given preset."
-msgstr "用给定的预设值覆盖所有 libplacebo 选项 。"
+msgstr "使用给定预设的值覆盖所有 libplacebo 选项。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:283
 msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
-msgstr "覆盖用于缩放平面的滤波器,例如铬/α. 如果设置为无,则分别使用与下缩放器相同的设置."
+msgstr "覆盖用于缩小平面（如色度/alpha）的滤镜。如果设为 none，则分别使用与缩小滤镜相同的设置。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:268
 msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
-msgstr "覆盖用于提升平面的滤波器,如铬/α. 如果设置为无,则分别使用与提升器相同的设置."
+msgstr "覆盖用于放大平面（如色度/alpha）的滤镜。如果设为 none，则分别使用与放大滤镜相同的设置。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:322
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:358
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:384
 msgid "Overrides the value of all options in this section by their default values from the given preset."
-msgstr "从给定的预设中以默认值取代本节中所有选项的值。"
+msgstr "使用给定预设的默认值覆盖此部分中所有选项的值。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:483
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
-msgstr "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
+msgstr "使用给定预设的默认值覆盖此部分中所有选项的值。high_quality 还启用 HDR 对比度恢复。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:430
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
-msgstr "从给定的预设中以默认值取代本节中所有选项的值。 high_quality还允许框架直方图测量。"
+msgstr "使用给定预设的默认值覆盖此部分中所有选项的值。high_quality 还启用帧直方图测量。"
 
 msgid "Oversampling, only mix \\\"edge\\\" frames while preserving FPS"
-msgstr "超采样,只在保存 FPS 时混合 \\\" 网格 \\\" 框架"
+msgstr "过采样，仅混合\\\"边缘\\\"帧同时保持 FPS"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:53
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:54
@@ -1747,7 +1745,7 @@ msgstr "平移&扫描"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:219
 msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
-msgstr "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
+msgstr "将额外的原始选项传递给 libplacebo 渲染后端（由 --vo=gpu-next 使用）。可能会覆盖使用正常选项系统设置的任何其他选项的效果。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:203
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:204
@@ -1771,13 +1769,13 @@ msgstr "播放/暂停"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:25
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:26
 msgid "Playback"
-msgstr "回放"
+msgstr "播放"
 
 msgid "Playback statistics"
 msgstr "播放统计"
 
 msgid "Playback will never automatically advance to the next file."
-msgstr "回放永远不会自动推进到下一个文件 。"
+msgstr "播放永远不会自动前进到下一个文件。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:120
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:127
@@ -1807,7 +1805,7 @@ msgstr "上一个文件"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:277
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:167
 msgid "Profile"
-msgstr "简介"
+msgstr "配置文件"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1120
 msgid "Program Behavior"
@@ -1829,7 +1827,7 @@ msgstr "协议"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:223
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:22
 msgid "Recent Files"
-msgstr "近期文件"
+msgstr "最近文件"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:177
 msgid "Register audio file associations"
@@ -1841,7 +1839,7 @@ msgstr "注册图像文件关联"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:176
 msgid "Register video file associations"
-msgstr "登记视频文件协会"
+msgstr "注册视频文件关联"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:182
 msgid "Remove mpv.net from Path environment variable"
@@ -1870,7 +1868,7 @@ msgid "Reset"
 msgstr "重置"
 
 msgid "Reset all everything to high quality presets (where available)."
-msgstr "将所有东西重置到高品质的预设( 如果有的话) 。"
+msgstr "将所有内容重置为高质量预设（如果可用）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:164
 msgid "Retry"
@@ -1882,22 +1880,22 @@ msgstr "旋转视频"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1008
 msgid "Same as minimum-aspect-ratio but used for audio files."
-msgstr "与minimum-aspect-ratio相同,但用于音频文件。"
+msgstr "与 minimum-aspect-ratio 相同，但用于音频文件。"
 
 msgid "Same as yes (for compatibility)."
-msgstr "与\"是\"(相容性)相同."
+msgstr "与 yes 相同（用于兼容性）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:826
 msgid "Save and restore the audio device chosen in the context menu. Default: yes"
-msgstr "保存并恢复上下文菜单中选择的音频设备 。 默认: 是"
+msgstr "保存和恢复上下文菜单中选择的音频设备。默认值：yes"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1013
 msgid "Save the window position on exit. (mpv.net option)"
-msgstr "Save the window position on exit. (mpv.net option)"
+msgstr "退出时保存窗口位置。（mpv.net 选项）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:796
 msgid "Save volume and mute on exit and restore it on start. (mpv.net option)"
-msgstr "Save volume and mute on exit and restore it on start. (mpv.net option)"
+msgstr "退出时保存音量和静音状态，启动时恢复。（mpv.net 选项）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:112
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:126
@@ -1935,11 +1933,11 @@ msgstr "第二字幕"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:879
 msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
-msgstr "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
+msgstr "参见 sub-color。用于字幕文本背景的颜色。可以使用 sub-shadow-offset 更改其相对于文本的大小。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:873
 msgid "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
-msgstr "见sub-color。 子字体边框所用的颜色 。 当指定了sub-back-color(或更确切地说:当该选项不是完全透明时)时被忽略。"
+msgstr "参见 sub-color。用于字幕字体边框的颜色。当指定了 sub-back-color 时忽略（或更准确地说：当该选项未设为完全透明时）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:224
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:226
@@ -1963,54 +1961,54 @@ msgstr "跳至上一条字幕"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1081
 msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
-msgstr "选择何时使用不限于密钥框架的精确搜索。 这种求取需要从上一个键框到目标位置的解码视频,因此视解码性能需要一段时间. 对于一些视频格式,精确搜索被禁用. 此选项选择用于搜索的默认选择; 在密钥绑定的定义和输入命令中可以明确推翻默认 。"
+msgstr "选择何时使用不受关键帧限制的精确跳转。此类跳转需要从上一个关键帧解码视频到目标位置，因此根据解码性能可能需要一些时间。对于某些视频格式，精确跳转被禁用。此选项选择用于跳转的默认选择；可以在键绑定定义和输入命令中明确覆盖该默认值。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:171
 msgid "Set dither target depth to N. Note that the depth of the connected video display device cannot be detected. Often, LCD panels will do dithering on their own, which conflicts with this option and leads to ugly output."
-msgstr "将 Dither 目标深度设定为 N. 注意连接的视频显示设备的深度无法被检测出. 液晶面板往往会自行进行分解,这与这个选项相冲突并导致丑陋的输出."
+msgstr "将抖动目标深度设为 N。请注意，无法检测连接的视频显示设备的深度。通常，LCD 面板会自行进行抖动，这与该选项冲突并导致难看的输出。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:939
 msgid "Set the duration of the OSD messages in ms. Default: 1000"
-msgstr "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "设置 OSD 消息的持续时间（毫秒）。默认值：1000"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:732
 msgid "Set the image file type used for saving screenshots."
-msgstr "设定用于保存截图的图像文件类型 。"
+msgstr "设置用于保存截图的图像文件类型。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:791
 msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
-msgstr "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
+msgstr "设置启动音量。0 表示静音，100 表示无音量减少或放大。可以传递负值以兼容，但被视为 0。自 mpv 0.18.1 起，此选项始终控制内部混音器（即 \"softvol\"）。默认值：100"
 
 msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \\\"softvol\\\"). Default: 100"
-msgstr "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \\\"softvol\\\"). Default: 100"
+msgstr "设置启动音量。0 表示静音，100 表示无音量减少或放大。可以传递负值以兼容，但被视为 0。自 mpv 0.18.1 起，此选项始终控制内部混音器（即 \\\"softvol\\\"）。默认值：100"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:885
 msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
-msgstr "设置窗口标题 。 这用于视频窗口,如果可能,也会设置音频流标题. 属性被扩展. 警告你们! 根据所用属性的不同,这可能造成大量CPU使用."
+msgstr "设置窗口标题。用于视频窗口，如果可能，也设置音频流标题。属性会被展开。警告！根据使用的属性，这可能导致显著的 CPU 使用。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:906
 msgid "Set this to no in order to hide the window title bar."
-msgstr "为隐藏窗口标题栏而设定为无 。"
+msgstr "将此设为 no 以隐藏窗口标题栏。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:184
 msgid "Set/clear A-B loop points"
-msgstr "设置/ 清除 A- B 循环点"
+msgstr "设置/清除 A-B 循环点"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:253
 msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
-msgstr "设置用于缩放的过滤器。 最相关的选项, 大致订购从最快到最慢。"
+msgstr "设置用于缩小的滤镜。最相关的选项，大致从最快到最慢排列。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:298
 msgid "Sets the filter used for frame mixing (temporal interpolation). Roughly ordered from fastest to slowest."
-msgstr "设置用于帧混合的过滤器(时间插值)。 从最快到最快的订单"
+msgstr "设置用于帧混合（时间插值）的滤镜。大致从最快到最慢排列。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:234
 msgid "Sets the filter used for upscaling."
-msgstr "设置用于升级的过滤器。"
+msgstr "设置用于放大的滤镜。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:982
 msgid "Setting to remember the window size. (mpv.net option)"
-msgstr "Setting to remember the window size. (mpv.net option)"
+msgstr "记住窗口大小的设置。（mpv.net 选项）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:176
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:177
@@ -2023,7 +2021,7 @@ msgid "Setup"
 msgstr "设置"
 
 msgid "Sharpened version of ewa_lanczos (slow)."
-msgstr "收缩版为ewa_lanczos (慢)."
+msgstr "ewa_lanczos 的锐化版本（慢）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:169
 msgid "Show Config Editor"
@@ -2043,7 +2041,7 @@ msgstr "显示配置文件"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:928
 msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
-msgstr "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
+msgstr "播放开始时在 OSD 上显示消息。字符串会为属性展开，例如 osd-playing-msg='file: ${filename}' 将显示消息 file: 后跟一个空格和当前播放的文件名。更多信息请访问："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:604
 msgid "Show mpv manual"
@@ -2059,11 +2057,11 @@ msgstr "显示 mpv.net 选项"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:919
 msgid "Show progress in taskbar."
-msgstr "显示任务栏的进展 。"
+msgstr "在任务栏中显示进度。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:898
 msgid "Show window with decoration (titlebar, border)."
-msgstr "以装饰显示窗口( 标题栏, 边框) 。"
+msgstr "显示带装饰（标题栏、边框）的窗口。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:153
 msgid "Shrink"
@@ -2075,14 +2073,14 @@ msgstr "随机播放列表"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:1230
 msgid "Shutdown thread failed to complete within 10 seconds."
-msgstr "关闭线程未能在10秒内完成 。"
+msgstr "线程关闭未能在 10 秒内完成"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:349
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:357
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:365
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:370
 msgid "Sigmoidization"
-msgstr "西格莫化"
+msgstr "Sigmoid 曲线处理"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:367
 msgid "Size"
@@ -2090,48 +2088,48 @@ msgstr "大小"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1021
 msgid "Snap the player window to screen edges."
-msgstr "将玩家窗口同步到屏幕边缘 。"
+msgstr "将播放器窗口吸附到屏幕边缘。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:804
 msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
-msgstr "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
+msgstr "指定要使用的音频语言优先级列表。不同的容器格式使用不同的语言代码。DVD 使用 ISO 639-1 两位字母语言代码，Matroska、MPEG-TS 和 NUT 使用 ISO 639-2 三位字母语言代码，而 OGM 使用自由格式的标识符。另请参阅 aid。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:840
 msgid "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
-msgstr "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
+msgstr "指定要使用的字幕语言优先级列表。不同的容器格式使用不同的语言代码。DVD 使用 ISO 639-1 两位字母语言代码，Matroska 使用 ISO 639-2 三位字母语言代码，而 OGM 使用自由格式的标识符。另请参阅 sid。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:855
 msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
-msgstr "指定不指定特定字体的字幕所用的字体。 默认值为sans-serif."
+msgstr "指定用于未指定特定字体的字幕的字体。默认为 sans-serif。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:934
 msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
-msgstr "Specify the OSD font size. See sub-font-size for details. Default: 55"
+msgstr "指定 OSD 字体大小。详情参见 sub-font-size。默认值：55"
 
 msgid "Specify the color used for unstyled text subtitles.\\\\n\\\\nA usage description and examples can be found in the manual at:"
-msgstr "指定未设置文本字幕所用的颜色 。\\ @ info\\n\\\\n手册中有使用说明和实例:"
+msgstr "指定用于无样式文本字幕的颜色。\\\\n\\\\n使用说明和示例可在手册中找到："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:867
 msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
-msgstr "指定未设置文本字幕所用的颜色。\\n\\n手册中有使用说明和实例:"
+msgstr "指定用于无样式文本字幕的颜色。\\n\\n使用说明和示例可在手册中找到："
 
 msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\\\n\\\\nFind the full documentation here:"
-msgstr "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\\\n\\\\n在此查找完整文档 :"
+msgstr "指定用于保存截图的文件名模板。模板指定不含文件扩展名的文件名，可以包含格式说明符，在截图时将被替换。默认情况下，模板为 mpv-shot%n，例如生成 mpv-shot0012.png 这样的文件名。\\\\n\\\\n完整文档请见："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:764
 msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
-msgstr "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\n在此查找完整文档 :"
+msgstr "指定用于保存截图的文件名模板。模板指定不含文件扩展名的文件名，可以包含格式说明符，在截图时将被替换。默认情况下，模板为 mpv-shot%n，例如生成 mpv-shot0012.png 这样的文件名。\\n\\n完整文档请见："
 
 msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\\\n\\\\nFor more information visit:"
-msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\\\n\\\\n更多信息访问:"
+msgstr "指定应尽可能使用的硬件视频解码 API。是否实际进行硬件解码取决于视频编解码器。如果无法进行硬件解码，mpv 将回退到软件解码。默认禁用硬件解码以保持可靠性。但是，现代硬件应支持硬件视频解码，以减少 CPU 使用和功耗。\\\\n\\\\n更多信息请访问："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:73
 msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
-msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\n更多信息访问:"
+msgstr "指定应尽可能使用的硬件视频解码 API。是否实际进行硬件解码取决于视频编解码器。如果无法进行硬件解码，mpv 将回退到软件解码。默认禁用硬件解码以保持可靠性。但是，现代硬件应支持硬件视频解码，以减少 CPU 使用和功耗。\\n\\n更多信息请访问："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:860
 msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
-msgstr "指定子字体大小。 单位为缩放像素的大小,窗口高度为720. 实际像素大小随窗口高度而缩放:如果窗口高度大于或小于720,则文本的实际大小也增减. 默认: 55"
+msgstr "指定字幕字体大小。单位是窗口高度为 720 时的缩放像素大小。实际像素大小随窗口高度缩放：如果窗口高度大于或小于 720，文本的实际大小也会相应增大或减小。默认值：55"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:112
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:113
@@ -2145,11 +2143,11 @@ msgstr "速度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:890
 msgid "Start the player in fullscreen mode."
-msgstr "以全屏模式启动玩家 。"
+msgstr "以全屏模式启动播放器。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1029
 msgid "Start with a maximized window."
-msgstr "从最大化窗口开始。"
+msgstr "以最大化窗口启动。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:207
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:26
@@ -2158,7 +2156,7 @@ msgstr "停止"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:727
 msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
-msgstr "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
+msgstr "将截图存储在此目录中。此路径与 screenshot-template 生成的文件名组合。如果模板文件名已经是绝对路径，则忽略该目录。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:839
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:844
@@ -2181,7 +2179,7 @@ msgstr "Store screenshots in this directory. This path is joined with the filena
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:98
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:99
 msgid "Subtitle"
-msgstr "å­—å¹•"
+msgstr "字幕"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:137
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:242
@@ -2194,14 +2192,14 @@ msgstr "字幕轨道"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:235
 msgid "Subtitles"
-msgstr "å­—å¹•"
+msgstr "字幕"
 
 msgid "Support"
 msgstr "支持"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:740
 msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
-msgstr "带有相应色彩空间的标签截图 。 注意并非所有格式都得到支持。"
+msgstr "使用适当的色彩空间标记截图。请注意并非所有格式都支持。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:79
 msgid "Take Screenshot"
@@ -2213,22 +2211,22 @@ msgstr "截图（无字幕）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:113
 msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
-msgstr "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
+msgstr "放大视频时要使用的 GPU 渲染器滤镜函数。还有更多滤镜，但大多数不太有用。完整列表请传递 help 作为值，例如：mpv --scale=help"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:265
 msgid "The clipboard does not contain a valid URL or file."
-msgstr "剪贴板不包含有效的 URL 或文件 。"
+msgstr "剪贴板中未包含有效的 URL 或文件。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\InputWindow.xaml.cs:141
 msgid "The input editor cannot save duplicate shortcuts with different commands:"
-msgstr "输入编辑器无法保存带有不同命令的重复快捷键 :"
+msgstr "输入编辑器无法保存具有不同命令的重复快捷键："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1075
 msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
-msgstr "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "如果自 mpv 启动以来已更改，则保存在\"稍后观看\"文件中的选项。这些值将在下次播放文件时恢复。这是一个字符串列表选项。更多信息请访问："
 
 msgid "The options that are saved in \\\"watch later\\\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
-msgstr "The options that are saved in \\\"watch later\\\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "如果自 mpv 启动以来已更改，则保存在\\\"稍后观看\\\"文件中的选项。这些值将在下次播放文件时恢复。这是一个字符串列表选项。更多信息请访问："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:467
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:472
@@ -2282,7 +2280,7 @@ msgstr "切换 使用常规样式覆盖 SSA/ASS 样式"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:564
 msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
-msgstr "用于在相差亮度范围之间进行相差调整的通量映射函数,包括黑点适应."
+msgstr "用于在不同亮度范围之间适应的色调映射函数，包括黑点适应。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:184
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:185
@@ -2290,7 +2288,7 @@ msgstr "用于在相差亮度范围之间进行相差调整的通量映射函数
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:187
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:188
 msgid "Tools"
-msgstr "å·¥å…·"
+msgstr "工具"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WinForms\MainForm.cs:169
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:105
@@ -2312,47 +2310,47 @@ msgstr "撤销之前（或标记的）跳转"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:179
 msgid "Unregister file associations"
-msgstr "未注册文件关联"
+msgstr "注销文件关联"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:19
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
-msgstr "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
+msgstr "使用媒体信息库代替 mpv 来检索媒体信息。（mpv.net 选项）"
 
 msgid "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
-msgstr "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "使用任何可用的 API。请注意，此值使用的默认 GPU API 可能会更改，不应依赖。如果需要使用特定的 GPU API，必须明确指定"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:548
 msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
-msgstr "使用更高的质量,但速度更慢的三维插值来进行游戏映射 3DLUT. 可能大幅提高3DLUT Gamut映射精度,特别是在更小的3DLUT尺寸. 对默认大小的影响不大."
+msgstr "为色域映射 3DLUT 使用更高质量但更慢的三次插值。可以显著提高 3DLUT 色域映射精度，特别是在较小的 3DLUT 大小下。在默认大小下不应有太大影响。"
 
 msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
-msgstr "使用精确的求求,如果求求求到文件中的绝对位置,如章节求取,但对于相对求取,如箭头键的默认行为."
+msgstr "如果跳转到文件中的绝对位置（如章节跳转），则使用精确跳转，但不用于相对跳转（如方向键的默认行为）。"
 
 msgid "Use precise seeks whenever possible."
-msgstr "尽可能使用精确的搜索。"
+msgstr "尽可能使用精确跳转。"
 
 msgid "Use the same filter as specified for upscaler"
-msgstr "使用指定的升级器相同的过滤器"
+msgstr "使用与放大滤镜相同的滤镜"
 
 msgid "Used menu syntax for defining the context menu in input.conf.\\\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
-msgstr "用于定义输入.conf.\\\\的上下文菜单的菜单语法\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "用于定义 input.conf 中上下文菜单的菜单语法。\\\\nmpv.net 默认使用 '#menu:'，uosc 默认使用 '#!'。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:33
 msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
-msgstr "用于定义输入.conf中上下文菜单的菜单语法.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "用于定义 input.conf 中上下文菜单的菜单语法。\\nmpv.net 默认使用 '#menu:'，uosc 默认使用 '#!'。"
 
 msgid "User interface display language.\\\\nmpv.net must be restarted after a change."
-msgstr "用户界面显示语言 。\\\\nmpv.net must be restarted after a change."
+msgstr "用户界面显示语言。\\\\n更改后必须重启 mpv.net。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1143
 msgid "User interface display language.\\nmpv.net must be restarted after a change."
-msgstr "用户界面显示语言.\\nmpv.net must be restarted after a change."
+msgstr "用户界面显示语言。\\n更改后必须重启 mpv.net。"
 
 msgid "VK_KHR_win32_surface"
 msgstr "VK_KHR_win32_surface"
 
 msgid "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
-msgstr "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
+msgstr "ewa_lanczos 的非常锐利版本，带抗振铃（非常慢）。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:101
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:112
@@ -2479,17 +2477,17 @@ msgstr "视频轨道"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:786
 msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
-msgstr "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+msgstr "使用 --autocreate-playlist 或 --directory-filter-types 时尝试匹配的视频文件扩展名。mpv.net 使用它来创建文件关联以及自动加载文件夹功能。默认值：3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
 
 msgid "Video output driver that uses the Direct3D interface."
-msgstr "Video output driver that uses the Direct3D interface."
+msgstr "使用 Direct3D 接口的视频输出驱动程序。"
 
 msgid "Video output drivers to be used.\\\\n\\\\nFor more information visit:"
-msgstr "要使用的视频输出驱动程序 。\\\\n\\\\n更多信息访问:"
+msgstr "要使用的视频输出驱动程序。\\\\n\\\\n更多信息请访问："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:61
 msgid "Video output drivers to be used.\\n\\nFor more information visit:"
-msgstr "要使用的视频输出驱动程序 。\\n\\n更多信息访问:"
+msgstr "要使用的视频输出驱动程序。\\n\\n更多信息请访问："
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:120
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:121
@@ -2534,16 +2532,16 @@ msgstr "音量"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:211
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:213
 msgid "Volume Down"
-msgstr "降低 音量"
+msgstr "减小音量"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:210
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:212
 msgid "Volume Up"
-msgstr "增加 音量"
+msgstr "增大音量"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\LearnWindow.xaml:42
 msgid "Waiting for key/mouse input."
-msgstr "等待密钥/ mouse 输入 。"
+msgstr "等待按键/鼠标输入。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:139
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:244
@@ -2564,33 +2562,33 @@ msgid "Website mpv.net"
 msgstr "mpv.net 网址"
 
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
-msgstr "当打开本地文件时, 表现为父目录被打开并自动创建播放列表 。\\ @\\n\\\\nno: Load a single file (mpv default).\\\\n\\\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\\\n\\\\n同样: 从父目录创建播放列表, 其文件与当前已装入的文件匹配 。 *-exts中有一个是根据输入文件选择的,只有具有匹配扩展名的文件才会被添加到播放列表中. 如果输入文件本身没有匹配到任何扩展列表,播放列表就不会自动生成."
+msgstr "打开本地文件时，像打开父目录一样操作并自动创建播放列表。\\\\n\\\\nno：加载单个文件（mpv 默认）。\\\\n\\\\nFilter：从父目录创建播放列表，文件匹配 --directory-filter-types。（mpv.net 默认）\\\\n\\\\nsame：从父目录创建播放列表，文件与当前加载的文件类别匹配。根据输入文件选择 *-exts 之一，仅将匹配扩展名的文件添加到播放列表。如果输入文件本身不匹配任何扩展名列表，则不自动生成播放列表。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1104
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
-msgstr "打开本地文件时, 表现为父目录被打开, 并自动创建播放列表 。\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\n同样: 从父目录创建播放列表, 其文件与当前已装入的文件匹配 。 *-exts中有一个是根据输入文件选择的,只有具有匹配扩展名的文件才会被添加到播放列表中. 如果输入文件本身没有匹配到任何扩展列表,播放列表就不会自动生成."
+msgstr "打开本地文件时，像打开父目录一样操作并自动创建播放列表。\\n\\nno：加载单个文件（mpv 默认）。\\n\\nFilter：从父目录创建播放列表，文件匹配 --directory-filter-types。（mpv.net 默认）\\n\\nsame：从父目录创建播放列表，文件与当前加载的文件类别匹配。根据输入文件选择 *-exts 之一，仅将匹配扩展名的文件添加到播放列表。如果输入文件本身不匹配任何扩展名列表，则不自动生成播放列表。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:163
 msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
-msgstr "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
+msgstr "放大时，使用 S 形颜色变换以避免强调振铃伪影。这也意味着线性缩放。"
 
 msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\\\n\\\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
-msgstr "在使用以分解为主的滤波器时,在下缩放时会延长滤波器大小. 提高质量,但降低性能。\\\\n\\\\n这将对反常视频(但比没有它更好)进行略微的sub-optimally,因为它将扩大尺寸,仅与轴之间的比分系数更温和相匹配。"
+msgstr "使用基于卷积的滤镜时，缩小时扩展滤镜大小。提高质量，但缩小时降低性能。\\\\n\\\\n对于变形视频，这会略微次优（但仍比不使用时好），因为它将扩展大小以仅匹配轴之间缩放因子中较温和的一个。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:155
 msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
-msgstr "在使用以分解为主的滤波器时,在下缩放时会延长滤波器大小. 提高质量,但降低性能的同时降低规模.\\n\\n这将对反常视频(但比没有它更好)进行略微的sub-optimally,因为它将扩大尺寸,仅与轴之间的比分系数更温和相匹配。"
+msgstr "使用基于卷积的滤镜时，缩小时扩展滤镜大小。提高质量，但缩小时降低性能。\\n\\n对于变形视频，这会略微次优（但仍比不使用时好），因为它将扩展大小以仅匹配轴之间缩放因子中较温和的一个。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:944
 msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
-msgstr "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+msgstr "是否随窗口大小缩放 OSD。如果禁用，osd-font-size 和其他使用缩放像素的 OSD 选项将始终使用实际像素。效果是更改窗口大小不会更改 OSD 字体大小。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:365
 msgid "Width"
 msgstr "宽度"
 
 msgid "Win32, with native Direct3D 11 rendering."
-msgstr "Win32, with native Direct3D 11 rendering."
+msgstr "Win32，使用原生 Direct3D 11 渲染。"
 
 msgid "Win32/WGL"
 msgstr "Win32/WGL"
@@ -2637,29 +2635,29 @@ msgid "Window"
 msgstr "窗口"
 
 msgid "Window height is always remembered"
-msgstr "窗口高度总是被记住"
+msgstr "窗口高度始终记住"
 
 msgid "Window height is remembered in the current session"
-msgstr "在本会话中记住窗口高度"
+msgstr "窗口高度在当前会话中记住"
 
 msgid "Window size is always remembered"
-msgstr "窗口大小总是被记住"
+msgstr "窗口大小始终记住"
 
 msgid "Window size is remembered in the current session"
-msgstr "在本会话中记住窗口大小"
+msgstr "窗口大小在当前会话中记住"
 
 msgid "Window size is set to video resolution"
-msgstr "窗口大小设定为视频分辨率"
+msgstr "窗口大小设为视频分辨率"
 
 msgid "Window width is always remembered"
-msgstr "总是记住窗口宽度"
+msgstr "窗口宽度始终记住"
 
 msgid "Window width is remembered in the current session"
-msgstr "在当前会话中记住窗口宽度"
+msgstr "窗口宽度在当前会话中记住"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:756
 msgid "Write JPEG files with the same chroma subsampling as the video. If disabled, the libjpeg default is used."
-msgstr "用和视频相同的染色体子样本来写入 JPEG 文件 。 如果禁用,则使用libjpeg默认值."
+msgstr "以与视频相同的色度子采样写入 JPEG 文件。如果禁用，则使用 libjpeg 默认值。"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:137
 msgid "Yes"
@@ -2705,7 +2703,7 @@ msgid "always"
 msgstr "always"
 
 msgid "always use software decoding"
-msgstr "总是使用软件解码"
+msgstr "始终使用软件解码"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:105
 msgid "angle"
@@ -2721,7 +2719,7 @@ msgstr "any"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:41
 msgid "audio"
-msgstr "audio"
+msgstr "音频"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:816
 msgid "audio-device"
@@ -2757,7 +2755,7 @@ msgid "auto-safe"
 msgstr "auto-safe"
 
 msgid "auto-select"
-msgstr "auto-select"
+msgstr "自动选择"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1101
 msgid "autocreate-playlist"
@@ -2836,11 +2834,11 @@ msgstr "bt2446a"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1146
 msgid "bulgarian"
-msgstr "bulgarian"
+msgstr "保加利亚语"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1182
 msgid "cache"
-msgstr "cache"
+msgstr "缓存"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:244
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:261
@@ -2895,7 +2893,7 @@ msgid "contrast_smoothness"
 msgstr "contrast_smoothness"
 
 msgid "copies video back to system RAM"
-msgstr "复制视频返回系统内存"
+msgstr "将视频复制回系统内存"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:152
 msgid "correct-downscaling"
@@ -2981,7 +2979,7 @@ msgstr "debug-mode"
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:433
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:486
 msgid "default"
-msgstr "default"
+msgstr "默认"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1192
 msgid "demuxer-max-bytes"
@@ -3048,17 +3046,17 @@ msgid "dxva2-copy"
 msgstr "dxva2-copy"
 
 msgid "enable any whitelisted hw decoder"
-msgstr "启用任何列入白名单的hw解码器"
+msgstr "启用任何白名单中的硬件解码器"
 
 msgid "enable best hw decoder"
-msgstr "启用最佳hw解码器"
+msgstr "启用最佳硬件解码器"
 
 msgid "enable best hw decoder with copy-back"
-msgstr "启用使用 copy-back 的最佳hw解码器"
+msgstr "启用最佳硬件解码器（带回传）"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1148
 msgid "english"
-msgstr "english"
+msgstr "英语"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:119
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:133
@@ -3084,7 +3082,7 @@ msgid "exact"
 msgstr "exact"
 
 msgid "exactly the same as auto"
-msgstr "和汽车完全一样"
+msgstr "与 auto 完全相同"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:629
 msgid "exposure"
@@ -3108,11 +3106,11 @@ msgstr "frame_mixer"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1150
 msgid "french"
-msgstr "french"
+msgstr "法语"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:887
 msgid "fullscreen"
-msgstr "fullscreen"
+msgstr "全屏"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:813
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:849
@@ -3145,7 +3143,7 @@ msgstr "geometry"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1151
 msgid "german"
-msgstr "german"
+msgstr "德语"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:65
 msgid "gpu"
@@ -3226,7 +3224,7 @@ msgstr "image-exts"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:64
 msgid "info"
-msgstr "info"
+msgstr "信息"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1124
 msgid "input-ar-delay"
@@ -3246,11 +3244,11 @@ msgstr "inverse_tone_mapping"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1152
 msgid "italian"
-msgstr "italian"
+msgstr "意大利语"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1153
 msgid "japanese"
-msgstr "japanese"
+msgstr "日语"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:734
 msgid "jpg"
@@ -3270,7 +3268,7 @@ msgstr "keepaspect-window"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:995
 msgid "keepaspect-window will lock the window size to the video aspect. Default: yes"
-msgstr "keepaspect-window 将把窗口大小锁定到视频方面 。 默认: 是"
+msgstr "keepaspect-window 将锁定窗口大小到视频纵横比。默认值：yes"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:579
 msgid "knee_adaptation"
@@ -3294,7 +3292,7 @@ msgstr "knee_offset"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1154
 msgid "korean"
-msgstr "korean"
+msgstr "韩语"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:118
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:132
@@ -3638,7 +3636,7 @@ msgstr "png"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1155
 msgid "polish"
-msgstr "polish"
+msgstr "波兰语"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1156
 msgid "portuguese-brazil"
@@ -3689,13 +3687,13 @@ msgid "remember-window-position"
 msgstr "remember-window-position"
 
 msgid "requires vo=gpu (Any platform CUDA is available)"
-msgstr "requires vo=gpu (Any platform CUDA is available)"
+msgstr "需要 vo=gpu（任何 CUDA 可用的平台）"
 
 msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
-msgstr "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
+msgstr "需要 vo=gpu 且 gpu-context=d3d11 或 gpu-context=angle"
 
 msgid "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
-msgstr "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
+msgstr "需要 vo=gpu 且 gpu-context=d3d11、gpu-context=angle 或 gpu-context=dxinterop"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1118
 msgid "reset-on-next-file"
@@ -3703,7 +3701,7 @@ msgstr "reset-on-next-file"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1158
 msgid "russian"
-msgstr "russian"
+msgstr "俄语"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1108
 msgid "same"
@@ -3832,7 +3830,7 @@ msgstr "softclip_knee"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1149
 msgid "spanish"
-msgstr "spanish"
+msgstr "西班牙语"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:567
 msgid "spline"
@@ -3899,7 +3897,7 @@ msgstr "temperature"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:881
 msgid "title"
-msgstr "title"
+msgstr "标题"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:903
 msgid "title-bar"
@@ -3923,7 +3921,7 @@ msgstr "track-auto-selection"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:1159
 msgid "turkish"
-msgstr "turkish"
+msgstr "土耳其语"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:231
 msgid "upscaler"
@@ -3931,7 +3929,7 @@ msgstr "upscaler"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:988
 msgid "video"
-msgstr "video"
+msgstr "视频"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:782
 msgid "video-exts"
@@ -3975,7 +3973,7 @@ msgstr "vo"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:788
 msgid "volume"
-msgstr "volume"
+msgstr "音量"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:97
 msgid "vulkan"
@@ -4051,14 +4049,18 @@ msgstr "winvk"
 msgid "yes"
 msgstr "yes"
 
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml.cs
 msgid "Application Message"
 msgstr "应用程序消息"
 
+#: src\MpvNet.Windows\WPF\MsgBox\MsgBoxExtendedFunctionality.cs
 msgid "Click this icon for additional info/actions."
-msgstr "单击此图标可查看其他信息或操作。"
+msgstr "点击此图标获取更多信息/操作。"
 
+#: src\MpvNet.Windows\WPF\Controls\HyperlinkEx.cs
 msgid "Manual"
 msgstr "手册"
 
+#: src\MpvNet.Windows\GuiCommand.cs
 msgid "{0} does not exist. Would you like to create it?"
-msgstr "{0} 不存在。是否要创建它？"
+msgstr "{0} 不存在。您要创建它吗？"
