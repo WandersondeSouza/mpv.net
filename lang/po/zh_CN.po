@@ -31,7 +31,7 @@ msgstr "         方框平均值(非常快)"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:990
 msgid "         Window size is always remembered"
-msgstr "         窗口大小总是被记住"
+msgstr "         始终记住窗口大小"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:76
 msgid "         enable best hw decoder"
@@ -209,7 +209,7 @@ msgstr "   Use any available API. Note that the default GPU API used for this va
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:985
 msgid "   Window width is always remembered"
-msgstr "   总是记住窗口宽度"
+msgstr "   始终记住窗口宽度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:81
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:87
@@ -230,7 +230,7 @@ msgstr "  强制一个进程并添加文件到播放列表"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:987
 msgid "  Window height is always remembered"
-msgstr "  窗口高度总是被记住"
+msgstr "  始终记住窗口高度"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:984
 msgid "  Window width is remembered in the current session"
@@ -2645,13 +2645,13 @@ msgid "Window"
 msgstr "窗口"
 
 msgid "Window height is always remembered"
-msgstr "窗口高度总是被记住"
+msgstr "始终记住窗口高度"
 
 msgid "Window height is remembered in the current session"
 msgstr "在本会话中记住窗口高度"
 
 msgid "Window size is always remembered"
-msgstr "窗口大小总是被记住"
+msgstr "始终记住窗口大小"
 
 msgid "Window size is remembered in the current session"
 msgstr "在本会话中记住窗口大小"
@@ -2660,7 +2660,7 @@ msgid "Window size is set to video resolution"
 msgstr "窗口大小设定为视频分辨率"
 
 msgid "Window width is always remembered"
-msgstr "总是记住窗口宽度"
+msgstr "始终记住窗口宽度"
 
 msgid "Window width is remembered in the current session"
 msgstr "在当前会话中记住窗口宽度"
