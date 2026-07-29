@@ -157,7 +157,18 @@ function Get-FreshCachedFileMatchingRegex($downloadDir, $filePattern, $namePatte
 
 function Download-GitHubLatestAsset($apiUrl, $assetPattern, $downloadDir) {
     Write-Host "Reading latest release: $apiUrl"
-    $release = Invoke-WebRequest -Uri $apiUrl -UserAgent 'mpv.net-native-dependencies' -UseBasicParsing | ConvertFrom-Json
+    $requestParameters = @{
+        Uri = $apiUrl
+        UserAgent = 'mpv.net-native-dependencies'
+        UseBasicParsing = $true
+    }
+    if ($env:GH_TOKEN) {
+        $requestParameters.Headers = @{
+            Accept = 'application/vnd.github+json'
+            Authorization = "Bearer $env:GH_TOKEN"
+        }
+    }
+    $release = Invoke-WebRequest @requestParameters | ConvertFrom-Json
     $assets = @($release.assets | Where-Object { $_.name -match $assetPattern })
 
     if ($assets.Count -ne 1) {
