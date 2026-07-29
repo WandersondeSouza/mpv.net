@@ -1978,7 +1978,7 @@ msgstr "Ustaw głębokość celu dither na N. Zauważ, że głębokość podłą
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:939
 msgid "Set the duration of the OSD messages in ms. Default: 1000"
-msgstr "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "Ustaw czas wyświetlania komunikatów OSD w ms. Domyślnie: 1000"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:732
 msgid "Set the image file type used for saving screenshots."
@@ -2265,7 +2265,7 @@ msgstr "Włączenie / wyłączenie dekodowania sprzętu"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:122
 msgid "Toggle OSC Visibility"
-msgstr "Toggle OSC Visibility"
+msgstr "Przełącz widoczność OSC"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:165
 msgid "Toggle On Top"
@@ -2285,7 +2285,7 @@ msgstr "Przełącz nieskończone pętlę plików"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:103
 msgid "Toggle overriding SSA/ASS styles with normal styles"
-msgstr "Toggle overriding SSA/ASS styles with normal styles"
+msgstr "Przełącz zastępowanie stylów SSA/ASS zwykłymi stylami"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:564
 msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
@@ -2489,7 +2489,7 @@ msgid "Video file extentions to try to match when using --autocreate-playlist or
 msgstr "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
 
 msgid "Video output driver that uses the Direct3D interface."
-msgstr "Video output driver that uses the Direct3D interface."
+msgstr "Sterownik wyjścia wideo korzystający z interfejsu Direct3D."
 
 msgid "Video output drivers to be used.\\\\n\\\\nFor more information visit:"
 msgstr "Używane sterowniki wyjścia wideo.\\\\n\\\\nWięcej informacji można znaleźć na stronie:"

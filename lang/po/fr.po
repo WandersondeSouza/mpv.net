@@ -1978,7 +1978,7 @@ msgstr "Définissez la profondeur de la cible à N. Notez que la profondeur de l
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:939
 msgid "Set the duration of the OSD messages in ms. Default: 1000"
-msgstr "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "Définir la durée des messages OSD en ms. Valeur par défaut : 1000"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:732
 msgid "Set the image file type used for saving screenshots."
@@ -2489,7 +2489,7 @@ msgid "Video file extentions to try to match when using --autocreate-playlist or
 msgstr "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
 
 msgid "Video output driver that uses the Direct3D interface."
-msgstr "Video output driver that uses the Direct3D interface."
+msgstr "Pilote de sortie vidéo utilisant l'interface Direct3D."
 
 msgid "Video output drivers to be used.\\\\n\\\\nFor more information visit:"
 msgstr "Pilotes de sortie vidéo à utiliser.\\\\n\\\\nPour plus d'informations visitez:"

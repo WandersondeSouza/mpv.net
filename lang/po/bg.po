@@ -1969,7 +1969,7 @@ msgstr "Настройте дълбочината на мишената към N
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:939
 msgid "Set the duration of the OSD messages in ms. Default: 1000"
-msgstr "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "Задава продължителността на OSD съобщенията в милисекунди. По подразбиране: 1000"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:732
 msgid "Set the image file type used for saving screenshots."
@@ -2480,7 +2480,7 @@ msgid "Video file extentions to try to match when using --autocreate-playlist or
 msgstr "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
 
 msgid "Video output driver that uses the Direct3D interface."
-msgstr "Video output driver that uses the Direct3D interface."
+msgstr "Драйвер за видеоизход, който използва интерфейса Direct3D."
 
 msgid "Video output drivers to be used.\\\\n\\\\nFor more information visit:"
 msgstr "Видео изход драйвери да се използват.\\\\n\\\\nЗа повече информация:"
@@ -3468,11 +3468,11 @@ msgstr "mpv.net не бе намерен в променливата на сре
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:444
 msgid "mpv.net was successfully added to the Path environment variable."
-msgstr "mpv.net was successfully added to the Path environment variable."
+msgstr "mpv.net беше успешно добавен към променливата на средата Path."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\GuiCommand.cs:462
 msgid "mpv.net was successfully removed from the Path environment variable."
-msgstr "mpv.net was successfully removed from the Path environment variable."
+msgstr "mpv.net беше успешно премахнат от променливата на средата Path."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:7
 msgid "multi"

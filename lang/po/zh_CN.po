@@ -623,7 +623,7 @@ msgstr "About"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:199
 msgid "About mpv.net"
-msgstr "About mpv.net"
+msgstr "关于 mpv.net"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\App.cs:98
 msgid "Tip: installing Codec Guide can improve codec support and playback."
@@ -1698,7 +1698,7 @@ msgstr "打开配置文件夹"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:14
 msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr "Open DVD/Blu-ray Drive/Folder..."
+msgstr "打开 DVD/蓝光驱动器/文件夹..."
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet\InputHelp.cs:12
 msgid "Open Files..."
@@ -1979,7 +1979,7 @@ msgstr "将 Dither 目标深度设定为 N. 注意连接的视频显示设备的
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:939
 msgid "Set the duration of the OSD messages in ms. Default: 1000"
-msgstr "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "设置 OSD 消息的持续时间（毫秒）。默认值：1000"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:732
 msgid "Set the image file type used for saving screenshots."
@@ -2490,7 +2490,7 @@ msgid "Video file extentions to try to match when using --autocreate-playlist or
 msgstr "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
 
 msgid "Video output driver that uses the Direct3D interface."
-msgstr "Video output driver that uses the Direct3D interface."
+msgstr "使用 Direct3D 接口的视频输出驱动程序。"
 
 msgid "Video output drivers to be used.\\\\n\\\\nFor more information visit:"
 msgstr "要使用的视频输出驱动程序 。\\\\n\\\\n更多信息访问:"

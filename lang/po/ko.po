@@ -1978,7 +1978,7 @@ msgstr "N에 dither 표적 깊이를 놓으십시오. 연결된 영상 전시 �
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:939
 msgid "Set the duration of the OSD messages in ms. Default: 1000"
-msgstr "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "OSD 메시지 지속 시간을 ms 단위로 설정합니다. 기본값: 1000"
 
 #: C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\src\MpvNet.Windows\Resources\editor_conf.txt:732
 msgid "Set the image file type used for saving screenshots."
@@ -2489,7 +2489,7 @@ msgid "Video file extentions to try to match when using --autocreate-playlist or
 msgstr "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
 
 msgid "Video output driver that uses the Direct3D interface."
-msgstr "Video output driver that uses the Direct3D interface."
+msgstr "Direct3D 인터페이스를 사용하는 비디오 출력 드라이버입니다."
 
 msgid "Video output drivers to be used.\\\\n\\\\nFor more information visit:"
 msgstr "비디오 출력 드라이버를 사용합니다.\\\\n\\\\n더 많은 정보 방문:"
