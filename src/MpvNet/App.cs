@@ -11,8 +11,7 @@ namespace MpvNet;
 public class AppClass
 {
     const int SelectMenuVersion = 4;
-    const string BrazilianStripeDonationUrl = "https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00";
-    const string InternationalStripeDonationUrl = "https://donate.stripe.com/8x2fZi1Jh49O3dcdgPeIw01";
+    const string DonationPortalUrl = "https://www.gestaodesistemas.com.br/doar/mpvnet";
 
     public List<string> TempFiles { get; } = new ();
 
@@ -111,19 +110,31 @@ public class AppClass
     public static string CodecGuideTip => _("Tip: installing Codec Guide can improve codec support and playback.");
     public static string DonationLinkTitle => _("Make a donation to help maintain the project.");
     public static string DonationLinkDescription => _("Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support.");
-    public static string DonationTitle => _("If you'd like to donate via Pix, use the QR code beside it or copy and paste the key below.");
-    public static string DonationCopyPaste => _("Pix copy and paste:");
-    public static string DonationCopied => _("Pix has been copied to the Windows clipboard. Open your bank app or website to complete the Pix transfer.");
     public static string GitHubSponsorsUrl => "https://github.com/sponsors/stax76";
-    public string StripeDonationUrl => GetStripeDonationUrl(Language);
+    public string DonationUrl => GetDonationUrl(Language);
 
-    public static string GetStripeDonationUrl(string? language) =>
-        string.Equals(
-            LocalizationService.ResolveMpvNetLanguage(language),
-            "portuguese-brazil",
-            StringComparison.OrdinalIgnoreCase)
-                ? BrazilianStripeDonationUrl
-                : InternationalStripeDonationUrl;
+    public static string GetDonationUrl(string? language)
+    {
+        string resolved = LocalizationService.ResolveMpvNetLanguage(language);
+        string publicLanguage = resolved.ToLowerInvariant() switch
+        {
+            "portuguese-brazil" => "pt-BR",
+            "portuguese-portugal" => "pt-PT",
+            "chinese-china" => "zh-CN",
+            "bulgarian" => "bg",
+            "german" => "de",
+            "spanish" => "es",
+            "french" => "fr",
+            "italian" => "it",
+            "japanese" => "ja",
+            "korean" => "ko",
+            "polish" => "pl",
+            "russian" => "ru",
+            "turkish" => "tr",
+            _ => "en"
+        };
+        return $"{DonationPortalUrl}?language={Uri.EscapeDataString(publicLanguage)}&source=desktop-app";
+    }
 
     static string GetLastWriteTime(string path) => $" ({File.GetLastWriteTime(path).ToShortDateString()})";
 
@@ -194,8 +205,7 @@ public class AppClass
         AddMenuItem("Support", "-");
         AddMenuItem("GitHub Sponsors", $"script-message-to mpvnet shell-execute {GitHubSponsorsUrl}");
 
-        if (!string.IsNullOrWhiteSpace(StripeDonationUrl))
-            AddMenuItem("Stripe donation", $"script-message-to mpvnet shell-execute {StripeDonationUrl}");
+        AddMenuItem("Donation", $"script-message-to mpvnet shell-execute {DonationUrl}");
 
         AddMenuItem("E-mail support", "script-message-to mpvnet shell-execute mailto:wanderson_souza@hotmail.com");
 

@@ -116,61 +116,10 @@
                         TextAlignment="Center"
                         Margin="0,10,0,14"
                         Foreground="{Binding Theme.Foreground}">
-                        <Hyperlink Click="DonationStripeLink_Click">
-                            <Run Text="{Binding StripeDonationUrl, Mode=OneWay}" />
-                        </Hyperlink>
-                    </TextBlock>
-
-                    <Separator
-                        Margin="0,0,0,14"
-                        Background="{Binding Theme.Foreground}" />
-
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="420" />
-                            <ColumnDefinition Width="236" />
-                        </Grid.ColumnDefinitions>
-
-                        <StackPanel Grid.Column="0" Margin="0,0,16,0" VerticalAlignment="Center">
-                            <TextBlock
-                                Text="{Binding DonationTitle}"
-                                TextWrapping="Wrap"
-                                MaxWidth="420"
-                                Foreground="{Binding Theme.Foreground}" />
-
-                            <TextBlock
-                                Margin="0,10,0,0"
-                                Text="{Binding DonationCopyPaste}"
-                                FontWeight="Bold"
-                                Foreground="{Binding Theme.Foreground}" />
-
-                            <Button
-                                Margin="0,6,0,0"
-                                Padding="8"
-                                MaxWidth="420"
-                                BorderThickness="1"
-                                HorizontalContentAlignment="Left"
-                                VerticalContentAlignment="Center"
-                                Foreground="{Binding Theme.Foreground}"
-                                Background="{Binding Theme.Background}"
-                                Click="DonationPixKey_Click">
-                                <TextBlock
-                                    Text="{Binding DonationPixKey}"
-                                    TextWrapping="Wrap"
-                                    MaxWidth="390"
-                                    Foreground="{Binding Theme.Foreground}" />
-                            </Button>
-                        </StackPanel>
-
-                        <Image
-                            Grid.Column="1"
-                            Width="220"
-                            Height="220"
-                            Stretch="Uniform"
-                            Source="pack://application:,,,/pix-donation-qr.png"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
-                    </Grid>
+                            <Hyperlink Click="DonationLink_Click">
+                            <Run Text="{Binding DonationUrl, Mode=OneWay}" />
+                            </Hyperlink>
+                        </TextBlock>
                 </StackPanel>
             </Border>
         </StackPanel>

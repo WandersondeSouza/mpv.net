@@ -52,13 +52,13 @@ O MPV.NET Media Player também está disponível na Microsoft Store:
 
 ## Doação
 
-### Faça uma doação para ajudar a manter o projeto
+### Apoie voluntariamente o projeto
 
-[https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00](https://donate.stripe.com/bJedRa0Fd21G4hg5OneIw00)
+[https://www.gestaodesistemas.com.br/doar/mpvnet](https://www.gestaodesistemas.com.br/doar/mpvnet)
 
-Sua doação ajuda a manter o MPV.NET Media Player em desenvolvimento, com melhorias, correções e suporte contínuo ao projeto.
+As doações são processadas com segurança pela Stripe. Os valores disponíveis vão
+de US$ 1 a US$ 20. Quando compatível, o Stripe Checkout poderá apresentar o valor
+em uma moeda local conforme a localização e as condições da Stripe.
 
-Na tela "Sobre" e no menu de suporte do aplicativo, o idioma da interface define
-o link apresentado: Português do Brasil usa o link em reais; os demais idiomas
-usam o link internacional em dólares. Ambos usam Adaptive Pricing para oferecer
-a moeda local compatível ao doador.
+A doação é voluntária, única, não constitui assinatura nem libera funcionalidades.
+O MPV.NET permanece gratuito.

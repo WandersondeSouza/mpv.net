@@ -1,7 +1,6 @@
 ﻿
 using System.Windows;
 using System.Windows.Documents;
-using System.Windows.Forms;
 
 using MpvNet.Help;
 using MpvNet.Windows.WPF.ViewModels;
@@ -25,18 +24,9 @@ public partial class AboutWindow
     void RepositoryLink_Click(object sender, RoutedEventArgs e) =>
         ProcessHelp.ShellExecute("https://github.com/WandersondeSouza/mpv.net");
 
-    void DonationStripeLink_Click(object sender, RoutedEventArgs e)
+    void DonationLink_Click(object sender, RoutedEventArgs e)
     {
         if (DataContext is AboutViewModel vm)
-            ProcessHelp.ShellExecute(vm.StripeDonationUrl);
-    }
-
-    void DonationPixKey_Click(object sender, RoutedEventArgs e)
-    {
-        if (DataContext is not AboutViewModel vm)
-            return;
-
-        System.Windows.Clipboard.SetText(vm.DonationPixKey);
-        Msg.ShowInfo(vm.DonationCopied.Replace(". ", "." + Environment.NewLine));
+            ProcessHelp.ShellExecute(vm.DonationUrl);
     }
 }

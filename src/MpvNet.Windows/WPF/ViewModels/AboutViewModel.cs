@@ -16,11 +16,7 @@ public partial class AboutViewModel : ViewModelBase
     public string CodecGuideLabel { get; } = _("Codec Guide: ");
     public string DonationLinkTitle { get; } = AppClass.DonationLinkTitle;
     public string DonationLinkDescription { get; } = AppClass.DonationLinkDescription;
-    public string StripeDonationUrl { get; } = App.StripeDonationUrl;
-    public string DonationTitle { get; } = AppClass.DonationTitle;
-    public string DonationCopyPaste { get; } = AppClass.DonationCopyPaste;
-    public string DonationCopied { get; } = AppClass.DonationCopied;
-    public string DonationPixKey { get; } = "00020126490014BR.GOV.BCB.PIX0127wanderson_souza@hotmail.com5204000053039865802BR5901N6001C62070503***630410BE";
+    public string DonationUrl { get; } = App.DonationUrl;
 
     [RelayCommand]
     public void Close() => CloseAction!();
