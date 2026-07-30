@@ -1,5 +1,4 @@
 ﻿
-using System.Globalization;
 using MpvNet.Help;
 
 namespace MpvNet;
@@ -27,8 +26,6 @@ public class Command
         ["show-progress"] = args => Player.Command("show-progress"), // deprecated
         ["playlist-random"] = args => PlaylistRandom(), // deprecated
     };
-
-    static string FormatTime(double value) => ((int)value).ToString("00");
 
     void PlayPause(IList<string> args)
     {
@@ -164,18 +161,4 @@ public class Command
         Player.SetPropertyInt("playlist-pos", new Random().Next(count));
     }
 
-    // deprecated
-    void ShowProgress()
-    {
-        TimeSpan position = TimeSpan.FromSeconds(Player.GetPropertyDouble("time-pos"));
-        TimeSpan duration = TimeSpan.FromSeconds(Player.GetPropertyDouble("duration"));
-
-        string text = FormatTime(position.TotalMinutes) + ":" +
-                      FormatTime(position.Seconds) + " / " +
-                      FormatTime(duration.TotalMinutes) + ":" +
-                      FormatTime(duration.Seconds) + "    " +
-                      DateTime.Now.ToString("H:mm dddd d MMMM", CultureInfo.InvariantCulture);
-
-        Player.CommandV("show-text", text, "5000");
-    }
 }

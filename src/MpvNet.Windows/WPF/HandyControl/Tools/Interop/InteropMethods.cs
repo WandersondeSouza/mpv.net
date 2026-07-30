@@ -154,40 +154,8 @@ namespace HandyControl.Tools.Interop
             return result;
         }
 
-        //[SecurityCritical]
-        //internal static BitmapHandle CreateDIBSection(HandleRef hdc, ref InteropValues.BITMAPINFO bitmapInfo, int iUsage,
-        //    ref IntPtr ppvBits, SafeFileMappingHandle hSection, int dwOffset)
-        //{
-        //    hSection ??= new SafeFileMappingHandle(IntPtr.Zero);
-
-        //    var hBitmap = PrivateCreateDIBSection(hdc, ref bitmapInfo, iUsage, ref ppvBits, hSection, dwOffset);
-        //    return hBitmap;
-        //}
-
         [DllImport(InteropValues.ExternDll.Kernel32, EntryPoint = "CloseHandle", CharSet = CharSet.Auto, SetLastError = true)]
         internal static extern bool IntCloseHandle(HandleRef handle);
-
-        //[SecurityCritical]
-        //[SuppressUnmanagedCodeSecurity]
-        //[DllImport(InteropValues.ExternDll.Gdi32, SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto,
-        //    EntryPoint = nameof(CreateDIBSection))]
-        //private static extern BitmapHandle PrivateCreateDIBSection(HandleRef hdc, ref InteropValues.BITMAPINFO bitmapInfo, int iUsage,
-        //    ref IntPtr ppvBits, SafeFileMappingHandle hSection, int dwOffset);
-
-        //[SecurityCritical]
-        //[SuppressUnmanagedCodeSecurity]
-        //[DllImport(InteropValues.ExternDll.User32, SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto,
-        //    EntryPoint = nameof(CreateIconIndirect))]
-        //private static extern IconHandle PrivateCreateIconIndirect([In] [MarshalAs(UnmanagedType.LPStruct)]
-        //    InteropValues.ICONINFO iconInfo);
-
-        //[SecurityCritical]
-        //internal static IconHandle CreateIconIndirect([In] [MarshalAs(UnmanagedType.LPStruct)]
-        //    InteropValues.ICONINFO iconInfo)
-        //{
-        //    var hIcon = PrivateCreateIconIndirect(iconInfo);
-        //    return hIcon;
-        //}
 
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
@@ -227,12 +195,6 @@ namespace HandyControl.Tools.Interop
                 return buffer.ToString();
             }
         }
-
-        //[SecurityCritical]
-        //[SuppressUnmanagedCodeSecurity]
-        //[DllImport(InteropValues.ExternDll.Shell32, CharSet = CharSet.Auto, BestFitMapping = false, ThrowOnUnmappableChar = true)]
-        //internal static extern int ExtractIconEx(string szExeFileName, int nIconIndex, out IconHandle phiconLarge,
-        //    out IconHandle phiconSmall, int nIcons);
 
         [DllImport(InteropValues.ExternDll.Shell32, CharSet = CharSet.Auto)]
         internal static extern int Shell_NotifyIcon(int message, InteropValues.NOTIFYICONDATA pnid);

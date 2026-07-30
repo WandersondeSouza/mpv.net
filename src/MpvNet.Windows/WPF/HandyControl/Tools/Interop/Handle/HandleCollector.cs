@@ -29,7 +29,7 @@ namespace HandyControl.Tools.Interop
             HandleTypes[type - 1].Add();
         }
 
-        internal static int RegisterType(string typeName, int expense, int initialThreshold)
+        internal static int RegisterType(int expense, int initialThreshold)
         {
             lock (HandleMutex)
             {

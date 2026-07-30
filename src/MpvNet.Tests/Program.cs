@@ -190,6 +190,7 @@ foreach (Binding binding in InputHelp.GetDefaults())
 }
 string pauseBindings = InputHelp.GetBindingsForCommand(activeBindings, "cycle pause");
 var customMenuBindings = new InputConf(tempCustomInputConf).GetBindings().menuBindings;
+string[] legacyCommandAliases = ["playlist-add", "show-progress", "playlist-random"];
 var languageNormalizationCases = new (string Input, string Expected)[]
 {
     ("bul", "bg"),
@@ -626,6 +627,7 @@ var tests = new (string Name, bool Result)[]
     ("Default menu labels keep first playlist menu path", defaultMenuLabels["script-binding select/select-playlist"] == "View > Playlist"),
     ("Custom menu keeps open files", customMenuBindings.Any(binding => binding.Command == "script-message-to mpvnet open-files")),
     ("Custom menu keeps about", customMenuBindings.Any(binding => binding.Command == "script-message-to mpvnet show-about")),
+    ("Legacy mpvnet command aliases remain available", legacyCommandAliases.All(Command.Current.Commands.ContainsKey)),
     ("File log writer creates folder and daily log file", File.Exists(dailyLogFile)),
     ("File log writer writes Debug", dailyLogContent.Contains("[DEBUG] debug message 1") && dailyLogContent.Contains("[DEBUG] debug message 2")),
     ("File log writer writes Error exception", dailyLogContent.Contains("[ERROR] error message") && dailyLogContent.Contains("InvalidOperationException") && dailyLogContent.Contains("inner")),
