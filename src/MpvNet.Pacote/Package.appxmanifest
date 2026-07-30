@@ -92,6 +92,14 @@
               <uap:FileType>.mpv</uap:FileType>
               <uap:FileType>.vpy</uap:FileType>
               <uap:FileType>.y4m</uap:FileType>
+              <uap:FileType>.m3u</uap:FileType>
+              <uap:FileType>.m3u8</uap:FileType>
+              <uap:FileType>.pls</uap:FileType>
+              <uap:FileType>.xspf</uap:FileType>
+              <uap:FileType>.asx</uap:FileType>
+              <uap:FileType>.wpl</uap:FileType>
+              <uap:FileType>.cue</uap:FileType>
+              <uap:FileType>.jspf</uap:FileType>
             </uap:SupportedFileTypes>
           </uap:FileTypeAssociation>
         </uap:Extension>
@@ -128,21 +136,6 @@
               <uap:FileType>.dtshd</uap:FileType>
               <uap:FileType>.dtshr</uap:FileType>
               <uap:FileType>.dtsma</uap:FileType>
-            </uap:SupportedFileTypes>
-          </uap:FileTypeAssociation>
-        </uap:Extension>
-        <uap:Extension Category="windows.fileTypeAssociation">
-          <uap:FileTypeAssociation Name="mpvnetplaylist">
-            <uap:DisplayName>MPV.NET Media Player</uap:DisplayName>
-            <uap:SupportedFileTypes>
-              <uap:FileType>.m3u</uap:FileType>
-              <uap:FileType>.m3u8</uap:FileType>
-              <uap:FileType>.pls</uap:FileType>
-              <uap:FileType>.xspf</uap:FileType>
-              <uap:FileType>.asx</uap:FileType>
-              <uap:FileType>.wpl</uap:FileType>
-              <uap:FileType>.cue</uap:FileType>
-              <uap:FileType>.jspf</uap:FileType>
             </uap:SupportedFileTypes>
           </uap:FileTypeAssociation>
         </uap:Extension>
