@@ -239,6 +239,15 @@ central apontando para `es`; nao criar `lang/po/es_MX.po`.
 - Nao alterar o formato de `mpvnet.conf`; o usuario deve continuar podendo definir `language=<valor>`.
 - Nao misturar `language` com preferencia de audio ou legenda; para midia, preservar `alang` e `slang` do mpv.
 
+## Extracao do catalogo-fonte
+
+O script `lang/update-gettext-catalogs.ps1` gera a lista de fontes em um arquivo
+temporario, sempre com caminhos relativos ao repositorio. Nao versionar novamente
+`lang/cs-files.txt`: listas persistidas acumulam caminhos absolutos da maquina e
+fontes geradas. A extracao ignora `bin`, `obj`, `artifacts`, `AppPackages`,
+`.venv`, o projeto de testes e `Resources.Designer.cs`, mas inclui os textos
+declarados por `AddMenuItem(...)`, XAML e `editor_conf.txt`.
+
 ## Validacao recomendada
 
 Validacao automatica minima:

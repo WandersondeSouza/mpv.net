@@ -5,16 +5,29 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE_POT = ROOT / "lang" / "source.pot"
 CS_PATTERNS = [
-    r'_\(\s*(?P<msgid>@?"(?:[^"\\]|\\.)*")\s*\)',
-    r'ngettext\(\s*(?P<msgid>@?"(?:[^"\\]|\\.)*")\s*,\s*(?P<msgid_plural>@?"(?:[^"\\]|\\.)*")\s*,',
-    r'pgettext\(\s*(?P<context>@?"(?:[^"\\]|\\.)*")\s*,\s*(?P<msgid>@?"(?:[^"\\]|\\.)*")\s*\)',
-    r'npgettext\(\s*(?P<context>@?"(?:[^"\\]|\\.)*")\s*,\s*(?P<msgid>@?"(?:[^"\\]|\\.)*")\s*,\s*(?P<msgid_plural>@?"(?:[^"\\]|\\.)*")\s*,',
+    ('gettext', r'_\(\s*(?P<msgid>@?"(?:[^"\\]|\\.)*")\s*\)'),
+    ('plural', r'_n\(\s*(?P<msgid>@?"(?:[^"\\]|\\.)*")\s*,\s*(?P<msgid_plural>@?"(?:[^"\\]|\\.)*")\s*,'),
+    ('pgettext', r'_p\(\s*(?P<context>@?"(?:[^"\\]|\\.)*")\s*,\s*(?P<msgid>@?"(?:[^"\\]|\\.)*")\s*\)'),
+    ('npgettext', r'_pn\(\s*(?P<context>@?"(?:[^"\\]|\\.)*")\s*,\s*(?P<msgid>@?"(?:[^"\\]|\\.)*")\s*,\s*(?P<msgid_plural>@?"(?:[^"\\]|\\.)*")\s*,'),
+    ('gettext', r'AddMenuItem\(\s*(?P<msgid>@?"(?:[^"\\]|\\.)*")\s*,'),
 ]
 XAML_PATTERNS = [
     (re.compile(r'\{ngettext:Gettext\s+([^}]+)\}'), False),
     (re.compile(r'\{ngettext:PluralGettext\s+([^,}]+)\s*,\s*([^}]+)\}'), True),
 ]
 EDITOR_CONF_KEYS = {"name", "directory", "help", "option"}
+EXCLUDED_SOURCE_PARTS = {"bin", "obj", "artifacts", "AppPackages", "MpvNet.Tests", ".venv"}
+
+
+def is_source_path(path: Path, root: Path) -> bool:
+    return (
+        path.name != "Resources.Designer.cs"
+        and not EXCLUDED_SOURCE_PARTS.intersection(path.relative_to(root).parts)
+    )
+
+
+def source_reference(path: Path, root: Path, line_no: int) -> str:
+    return f'{path.relative_to(root).as_posix()}:{line_no}'
 
 
 def unescape_csharp_string(value: str) -> str:
@@ -33,27 +46,42 @@ def escape_po_string(value: str) -> str:
 def parse_cs_files(root: Path):
     results = {}
     for path in root.rglob('*.cs'):
-        if 'obj' in path.parts:
+        if not is_source_path(path, root):
             continue
         text = path.read_text(encoding='utf-8', errors='ignore')
-        for pattern in CS_PATTERNS:
+        for kind, pattern in CS_PATTERNS:
             for match in re.finditer(pattern, text):
-                if match.lastgroup == 'msgid_plural':
+                if kind == 'npgettext':
+                    context = unescape_csharp_string(match.group('context'))
+                    msgid = unescape_csharp_string(match.group('msgid'))
+                    msgid_plural = unescape_csharp_string(match.group('msgid_plural'))
+                    key = ('npgettext', context, msgid, msgid_plural)
+                    line_no = text[:match.start()].count("\n") + 1
+                    results.setdefault(key, {'references': set()})['references'].add(source_reference(path, root, line_no))
+                elif kind == 'pgettext':
+                    context = unescape_csharp_string(match.group('context'))
+                    msgid = unescape_csharp_string(match.group('msgid'))
+                    key = ('pgettext', context, msgid)
+                    line_no = text[:match.start()].count("\n") + 1
+                    results.setdefault(key, {'references': set()})['references'].add(source_reference(path, root, line_no))
+                elif kind == 'plural':
                     msgid = unescape_csharp_string(match.group('msgid'))
                     msgid_plural = unescape_csharp_string(match.group('msgid_plural'))
                     key = ('plural', msgid, msgid_plural)
-                    results.setdefault(key, {'references': set()})['references'].add(f'{path}:{text[:match.start()].count("\n") + 1}')
+                    line_no = text[:match.start()].count("\n") + 1
+                    results.setdefault(key, {'references': set()})['references'].add(source_reference(path, root, line_no))
                 elif match.lastgroup == 'msgid':
                     msgid = unescape_csharp_string(match.group('msgid'))
                     key = ('gettext', msgid)
-                    results.setdefault(key, {'references': set()})['references'].add(f'{path}:{text[:match.start()].count("\n") + 1}')
+                    line_no = text[:match.start()].count("\n") + 1
+                    results.setdefault(key, {'references': set()})['references'].add(source_reference(path, root, line_no))
     return results
 
 
 def parse_xaml_files(root: Path):
     results = {}
     for path in root.rglob('*.xaml'):
-        if 'obj' in path.parts:
+        if not is_source_path(path, root):
             continue
         text = path.read_text(encoding='utf-8', errors='ignore')
         for regex, is_plural in XAML_PATTERNS:
@@ -65,12 +93,22 @@ def parse_xaml_files(root: Path):
                 else:
                     msgid = match.group(1).strip()
                     key = ('gettext', msgid)
-                results.setdefault(key, {'references': set()})['references'].add(f'{path}:{text[:match.start()].count("\n") + 1}')
+                line_no = text[:match.start()].count("\n") + 1
+                results.setdefault(key, {'references': set()})['references'].add(source_reference(path, root, line_no))
     return results
 
 
 def parse_editor_conf(path: Path) -> dict[str, dict]:
     results: dict[str, dict] = {}
+    reference_path = path.relative_to(ROOT).as_posix()
+    keys_by_casefold: dict[str, tuple] = {}
+
+    def add(msgid: str, line_no: int) -> None:
+        normalized_msgid = msgid.strip()
+        folded = normalized_msgid.casefold()
+        key = keys_by_casefold.setdefault(folded, ('gettext', normalized_msgid))
+        results.setdefault(key, {'references': set()})['references'].add(f'{reference_path}:{line_no}')
+
     for line_no, line in enumerate(path.read_text(encoding='utf-8').splitlines(), start=1):
         stripped = line.strip()
         if not stripped or stripped.startswith('#'):
@@ -83,19 +121,18 @@ def parse_editor_conf(path: Path) -> dict[str, dict]:
         if not value:
             continue
         if key == 'name' or key == 'help':
-            msgid = value
-            results.setdefault(('gettext', msgid), {'references': set()})['references'].add(f'{path}:{line_no}')
+            add(value, line_no)
         elif key == 'directory':
             for part in [p.strip() for p in value.split('/') if p.strip()]:
-                results.setdefault(('gettext', part), {'references': set()})['references'].add(f'{path}:{line_no}')
+                add(part, line_no)
         elif key == 'option':
             if ' ' in value:
                 name, help_text = value.split(' ', 1)
-                results.setdefault(('gettext', name), {'references': set()})['references'].add(f'{path}:{line_no}')
+                add(name, line_no)
                 if help_text:
-                    results.setdefault(('gettext', help_text), {'references': set()})['references'].add(f'{path}:{line_no}')
+                    add(help_text, line_no)
             else:
-                results.setdefault(('gettext', value), {'references': set()})['references'].add(f'{path}:{line_no}')
+                add(value, line_no)
     return results
 
 
