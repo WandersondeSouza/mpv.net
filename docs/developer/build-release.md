@@ -55,7 +55,7 @@ Projetos principais:
 | --- | --- | --- | --- |
 | `src/MpvNet/MpvNet.csproj` | biblioteca | `net10.0` | `libmpvnet` |
 | `src/MpvNet.Windows/MpvNet.Windows.csproj` | aplicação Windows | `net10.0-windows7.0`, `win-x64` | `mpvnet.exe` x64 |
-| `src/NGettext.Wpf/NGettext.Wpf.csproj` | biblioteca | legado/packages.config | suporte WPF/NGettext |
+| `src/NGettext.Wpf/NGettext.Wpf.csproj` | biblioteca | `net10.0-windows7.0`, `PackageReference` | suporte WPF/NGettext |
 | `src/MpvNet.Extension/ExampleExtension/ExampleExtension.csproj` | exemplo | extensão .NET | exemplo carregável |
 | `src/MpvNet.Pacote/MpvNet.Pacote.wapproj` | empacotamento MSIX/WAP | `net10.0-windows10.0.26100.0` | pacote para Microsoft Store |
 
