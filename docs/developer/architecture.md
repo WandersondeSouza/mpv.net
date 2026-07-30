@@ -267,6 +267,24 @@ script-message-to mpvnet <comando>
 
 Comandos marcados como deprecated ainda podem ser usados por configurações antigas e não devem ser removidos sem migração.
 
+## Auditoria de código obsoleto
+
+A ausência de referências internas não é suficiente para remover APIs públicas do núcleo, comandos ou nomes usados por configuração. A auditoria deve classificar cada candidato antes da remoção:
+
+| Item | Classificação | Decisão |
+| --- | --- | --- |
+| aliases `playlist-add`, `show-progress`, `playlist-random`, `show-recent`, `quick-bookmark` e `show-history` | precisa ser mantido | preserva `input.conf`, scripts e configurações existentes |
+| facades públicas marcadas com `Obsolete`, como `Core`, `Global`, `Folder`, `TaskHelp`, `ExtensionLoader` e `Translator` | precisa ser mantido | preserva compatibilidade binária e de extensões |
+| membros obsoletos do código vendorizado `NGettext.Wpf` | precisa ser mantido | podem integrar bindings ou consumidores externos do componente |
+| parâmetro público `LocalizationService.ResolveMpvNetLanguage(..., systemCulture)` | precisa ser mantido | conserva a assinatura pública, embora a seleção manual não use a cultura do sistema |
+| `StockIcon` e `MsgBoxExtendedFunctionality` | exige teste antes da remoção | não possuem consumidor interno conhecido, mas são tipos públicos do frontend |
+| `update-mpv-runtime.ps1` | precisa ser mantido | continua documentado como ferramenta operacional manual |
+| `download-mediainfo-dependency.ps1`, `NGettext.Wpf.nuspec` e `NGettext.Wpf/Releasing.md` | provavelmente removível, mas requer confirmação | não participam do build atual, porém podem integrar fluxos manuais externos |
+| imagens MSIX com sufixos `scale`, `targetsize` e `altform` | precisa ser mantido | são variantes reconhecidas pelo empacotamento Windows, mesmo quando o conteúdo binário coincide |
+| `ENABLE_FILE_LOGGING` | precisa ser mantido | é controlado por `EnableFileLogging` em `Directory.Build.props` |
+
+Remoções já comprovadas devem permanecer pequenas e verificáveis. Não reintroduza listas geradas de fontes com caminhos absolutos, workflows arquivados fora de `.github/workflows` ou metadados `packages.config` em projetos SDK.
+
 ## Critério de auditoria
 
 Se uma alteração exigir procurar a causa real em mais de um módulo, a investigação deve voltar para este arquivo e não ficar espalhada em páginas pequenas separadas.
