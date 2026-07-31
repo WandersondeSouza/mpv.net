@@ -110,9 +110,9 @@ Arquivos centrais para entender o fluxo sem abrir vários documentos:
 - `src/MpvNet.Windows/Program.cs` - entry point da aplicação Windows;
 - `src/MpvNet/App.cs` - inicialização, configuração e opções do frontend;
 - `src/MpvNet.Windows/WinForms/MainForm.cs` - estado principal da janela WinForms;
-- `src/MpvNet.Windows/WinForms/MainForm.*.cs` - responsabilidades separadas da janela principal por tema;
+- `src/MpvNet.Windows/WinForms/MainForm.*.cs` - responsabilidades separadas da janela principal por tema; `MainForm.Initialization.cs` concentra a sequência de inicialização;
 - `src/MpvNet/Integration/Mpv/Player.cs` - estado principal do player;
-- `src/MpvNet/Integration/Mpv/Player.*.cs` - inicialização, eventos, ciclo de vida, carregamento de mídia e capacidades do player;
+- `src/MpvNet/Integration/Mpv/Player.*.cs` - estado (`Player.State.cs`), inicialização, eventos, ciclo de vida, carregamento de mídia e capacidades do player;
 - `src/MpvNet/Integration/Mpv/MpvClient.cs` - wrapper de cliente e loop de eventos;
 - `src/MpvNet/Native/LibMpv.cs` - P/Invoke e estruturas nativas;
 - `src/MpvNet/Configuration/InputConf.cs` - leitura e migração do `input.conf`;
@@ -219,6 +219,10 @@ Topologia atual da janela principal:
 - `src/MpvNet.Windows/WinForms/MainForm.Fullscreen.cs` - transição de fullscreen e restauração de janela;
 - `src/MpvNet.Windows/WinForms/MainForm.PlayerEvents.cs` - reação da UI a eventos do player.
 
+O construtor e a ordem de registro de eventos/observadores permanecem em
+`MainForm.Initialization.cs`; a extração é estrutural e não altera a sequência
+de inicialização da janela.
+
 ---
 
 # Sistema de configuração
@@ -255,6 +259,8 @@ Arquivos:
 
 - `src/MpvNet/Command.cs`;
 - `src/MpvNet.Windows/Commands/GuiCommand.cs`;
+- `src/MpvNet.Windows/Commands/GuiCommand.Commands.cs` - catálogo de comandos,
+  eventos da GUI e instância singleton;
 - `src/MpvNet/Utilities/InputHelp.cs`;
 - `src/MpvNet/Configuration/InputConf.cs`;
 - `src/MpvNet/Configuration/CommandLine.cs`.
@@ -410,7 +416,8 @@ Risco médio:
   sondagem HTTP bloqueante no frontend; o motor mantém a decisão final sobre
   mídia e playlists remotas.
 - `GuiCommandArgumentParser` concentra validação de argumentos obrigatórios e
-  números invariantes; `GuiCommand` mantém o registro e a execução dos comandos.
+  números invariantes; `GuiCommand.Commands.cs` mantém o registro e `GuiCommand.cs`
+  mantém a execução dos comandos.
 - `InputBindingParser` e `InputBindingSerializer` concentram a conversão entre
   texto de `input.conf` e modelos `Binding`; `InputHelp` preserva a API pública,
   o catálogo padrão e as operações de composição usadas pela UI.

@@ -16,58 +16,8 @@ using MpvNet.Help;
 
 namespace MpvNet;
 
-public class GuiCommand
+public partial class GuiCommand
 {
-    Dictionary<string, Action<IList<string>>>? _commands;
-
-    public event Action<float>? ScaleWindow;
-    public event Action<string>? MoveWindow;
-    public event Action<float>? WindowScaleNet;
-    public event Action? ShowMenu;
-
-    public static GuiCommand Current { get; } = new();
-
-    public Dictionary<string, Action<IList<string>>> Commands => _commands ??= new()
-    {
-        ["add-to-path"] = args => AddToPath(),
-        ["edit-conf-file"] = EditCongFile,
-        ["load-audio"] = LoadAudio,
-        ["load-sub"] = LoadSubtitle,
-        ["move-window"] = MoveWindowCommand,
-        ["open-clipboard"] = OpenFromClipboard,
-        ["open-files"] = OpenFiles,
-        ["open-optical-media"] = Open_DVD_Or_BD_Folder,
-        ["reg-file-assoc"] = RegisterFileAssociations,
-        ["remove-from-path"] = args => RemoveFromPath(),
-        ["scale-window"] = ScaleWindowCommand,
-        ["show-about"] = args => ShowDialog(typeof(AboutWindow)),
-        ["show-bindings"] = args => ShowBindings(),
-        ["show-commands"] = args => ShowCommands(),
-        ["show-conf-editor"] = args => ShowDialog(typeof(ConfWindow)),
-        ["show-decoders"] = args => ShowDecoders(),
-        ["show-demuxers"] = args => ShowDemuxers(),
-        ["show-info"] = args => ShowMediaInfo(new[] { "osd" }),
-        ["show-input-editor"] = args => ShowDialog(typeof(InputWindow)),
-        ["show-keys"] = args => ShowKeys(),
-        ["show-media-info"] = ShowMediaInfo,
-        ["show-menu"] = args => ShowMenu?.Invoke(),
-        ["show-profiles"] = args => Msg.ShowInfo(Player.GetProfiles()),
-        ["show-properties"] = args => Player.Command("script-binding select/show-properties"),
-        ["show-protocols"] = args => ShowProtocols(),
-        ["window-scale"] = WindowScaleCommand,
-
-
-        // deprecated
-        ["show-recent"] = args => ShowRemoved(), // deprecated
-        ["quick-bookmark"] = args => QuickBookmark(), // deprecated
-        ["show-history"] = args => ShowHistory(), // deprecated
-        ["show-playlist"] = args => Player.Command("script-binding select/select-playlist"), // deprecated
-        ["show-command-palette"] = args => Player.Command("script-binding select/select-binding"), // deprecated
-        ["show-audio-tracks"] = args => Player.Command("script-binding select/select-aid"), // deprecated
-        ["show-subtitle-tracks"] = args => Player.Command("script-binding select/select-sid"), // deprecated
-        ["show-audio-devices"] = args => Player.Command("script-binding select/select-audio-device"), // deprecated
-    };
-
     void MoveWindowCommand(IList<string> args)
     {
         if (!GuiCommandArgumentParser.TryGetRequired(args, "move-window", out string direction))

@@ -280,6 +280,47 @@ public sealed class PlayerLifecycleTests
     }
 }
 
+public sealed class PlayerStateTests
+{
+    [Fact]
+    public void NewPlayerExposesStableDefaultState()
+    {
+        MainPlayer player = new();
+
+        Assert.Equal(PlayerLifecycleState.Created, player.LifecycleState);
+        Assert.Equal(-1, player.PlaylistPos);
+        Assert.Equal(-1, player.Screen);
+        Assert.True(player.Border);
+        Assert.True(player.TitleBar);
+        Assert.True(player.TaskbarProgress);
+        Assert.Equal(0.6f, player.Autofit);
+        Assert.Equal(0.3f, player.AutofitSmaller);
+        Assert.Equal(0.8f, player.AutofitLarger);
+        Assert.Empty(player.Path);
+        Assert.Empty(player.VID);
+        Assert.Empty(player.AID);
+        Assert.Empty(player.SID);
+    }
+
+    [Fact]
+    public void ProcessPropertyUpdatesStateOwnedByPlayer()
+    {
+        MainPlayer player = new();
+
+        player.ProcessProperty("border", "no");
+        player.ProcessProperty("fullscreen", "yes");
+        player.ProcessProperty("screen", "2");
+        player.ProcessProperty("autofit", "75%");
+        player.ProcessProperty("gpu-api", "vulkan");
+
+        Assert.False(player.Border);
+        Assert.True(player.Fullscreen);
+        Assert.Equal(2, player.Screen);
+        Assert.Equal(0.75f, player.Autofit);
+        Assert.Equal("vulkan", player.GPUAPI);
+    }
+}
+
 public sealed class UnicodeTitleTests
 {
     [Theory]
