@@ -10,7 +10,21 @@ using System.Threading.Tasks;
 using MpvNet;
 using MpvNet.Help;
 using MpvNet.Native;
+using Xunit;
 
+public sealed class ExistingBehaviorTests
+{
+    public static IEnumerable<object[]> ExistingBehaviorCases() => BuildExistingBehaviorCases();
+
+    [Theory]
+    [MemberData(nameof(ExistingBehaviorCases))]
+    public void ExistingBehaviorCasePasses(string name, bool result)
+    {
+        Assert.True(result, name);
+    }
+
+    static object[][] BuildExistingBehaviorCases()
+    {
 TranslationProvider.Current = new TestTranslator();
 
 string tempMediaFile = Path.Combine(Path.GetTempPath(), "mpvnet-tests-empty-media.mkv");
@@ -704,9 +718,7 @@ var duplicateTestNames = tests
     .ToArray();
 
 if (duplicateTestNames.Length > 0)
-    throw new Exception("Duplicate test names: " + string.Join(", ", duplicateTestNames));
-
-var failed = tests.Where(test => !test.Result).ToArray();
+    throw new InvalidOperationException("Duplicate test names: " + string.Join(", ", duplicateTestNames));
 
 File.Delete(tempMediaFile);
 File.Delete(relativeMediaFile);
@@ -717,11 +729,9 @@ Directory.Delete(tempPlaylistDir, true);
 Directory.Delete(tempLogDir, true);
 Directory.Delete(tempCleanupDir, true);
 
-foreach (var test in tests)
-    Console.WriteLine($"{(test.Result ? "PASS" : "FAIL")} {test.Name}");
-
-if (failed.Length > 0)
-    throw new Exception($"{failed.Length} media input support tests failed.");
+return tests.Select(test => new object[] { test.Name, test.Result }).ToArray();
+    }
+}
 
 sealed class TestTranslator : ITranslator
 {

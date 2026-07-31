@@ -28,10 +28,13 @@ internal static class SettingsStore
     public static string SettingsFile => Player.ConfigFolder + "settings.xml";
 
     public static AppSettings Load()
+        => Load(SettingsFile);
+
+    internal static AppSettings Load(string settingsFile)
     {
         Log.Debug("Loading application settings.");
 
-        if (!File.Exists(SettingsFile))
+        if (!File.Exists(settingsFile))
         {
             Log.Debug("Application settings file was not found; using defaults.");
             return new AppSettings();
@@ -40,7 +43,7 @@ internal static class SettingsStore
         try
         {
             XmlSerializer serializer = new XmlSerializer(typeof(AppSettings));
-            using FileStream fs = new FileStream(SettingsFile, FileMode.Open);
+            using FileStream fs = new FileStream(settingsFile, FileMode.Open);
             if (serializer.Deserialize(fs) is not AppSettings settings)
                 throw new InvalidDataException("The application settings file did not contain valid settings.");
 
@@ -56,12 +59,15 @@ internal static class SettingsStore
     }
 
     public static void Save(AppSettings settings)
+        => Save(SettingsFile, settings);
+
+    internal static void Save(string settingsFile, AppSettings settings)
     {
-        string? settingsDirectory = Path.GetDirectoryName(SettingsFile);
+        string? settingsDirectory = Path.GetDirectoryName(settingsFile);
 
         if (!string.IsNullOrEmpty(settingsDirectory))
             Directory.CreateDirectory(settingsDirectory);
-        string tempFile = SettingsFile + "." + Guid.NewGuid().ToString("N") + ".tmp";
+        string tempFile = settingsFile + "." + Guid.NewGuid().ToString("N") + ".tmp";
 
         try
         {
@@ -73,7 +79,7 @@ internal static class SettingsStore
                 serializer.Serialize(writer, settings);
             }
 
-            File.Move(tempFile, SettingsFile, true);
+            File.Move(tempFile, settingsFile, true);
         }
         catch (Exception ex)
         {

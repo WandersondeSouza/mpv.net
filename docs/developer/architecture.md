@@ -467,10 +467,12 @@ pequenas, verificáveis e compatíveis com mpv/libmpv.
 - `Player.cs` e `MainForm.cs` continuam sendo pontos de estado central. A
   separação em partials reduziu o acoplamento visível, mas esses arquivos ainda
   devem ser tratados como áreas de alto risco.
-- O harness `src/MpvNet.Tests/Program.cs` cobre parser de argumentos,
-  playlists, títulos, configuração, idiomas, logs, limpeza temporária e
-  políticas auxiliares de MediaInfo. Ele deve crescer junto de qualquer mudança
-  nova nessas áreas.
+- O projeto `src/MpvNet.Tests` usa xUnit v3 em `net10.0`. A fixture legada em
+  `Program.cs` cobre parser de argumentos, playlists, títulos, configuração,
+  idiomas, logs, limpeza temporária e políticas auxiliares de MediaInfo; as
+  regras arquiteturais ficam em `ArchitectureTests.cs` com ArchUnitNET. As
+  fixtures adicionais cobrem settings, caminhos de configuração, componentes
+  de runtime, extensões, ciclo de vida e títulos Unicode.
 - A localização está centralizada em `LanguageCatalog.cs`, com validação de
   paridade dos catálogos gettext contra `lang/source.pot`.
 - O fluxo de release e dependências nativas está documentado em
@@ -518,7 +520,7 @@ pequenas, verificáveis e compatíveis com mpv/libmpv.
    comandos de UI antes de alterar comportamento.
 3. Para cada problema confirmado, criar uma mudança pequena com teste ou
    validação direta.
-4. Rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`
+4. Rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore -- -noLogo`
    quando tocar parser, paths, playlists, títulos, logs, configuração, idioma
    ou MediaInfo.
 5. Rodar `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore
@@ -533,7 +535,7 @@ Na rodada inicial de 2026-06-12, antes de alterações de comportamento, a base
 foi validada com:
 
 ```powershell
-dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
+dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore -- -noLogo
 dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore /p:EnsureBuildAssets=false
 .\lang\validate-po-files.ps1 -ValidateOnly
 git diff --check
@@ -566,7 +568,7 @@ o fork:
 Validacoes finais executadas na Etapa 8:
 
 ```powershell
-dotnet run --project .\src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
+dotnet run --project .\src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore -- -noLogo
 .\lang\validate-po-files.ps1 -ValidateOnly
 dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore /p:EnsureBuildAssets=false
 dotnet build .\src\MpvNet.sln -c Release -p:Platform=x64 --no-restore /p:EnsureBuildAssets=false
@@ -610,6 +612,6 @@ Pendencias restantes:
 4. Atualizar documentação quando comportamento mudar.
 5. Validar manualmente fullscreen, input e configuração quando tocar UI ou libmpv.
 6. Separar documentação validada de hipóteses ainda pendentes.
-7. Para mudanças em parsers, paths, playlist, título, logs, configuração ou políticas de MediaInfo, rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
+7. Para mudanças em parsers, paths, playlist, título, logs, configuração ou políticas de MediaInfo, rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore -- -noLogo`.
 8. Para mudanças em UI/libmpv, além do build e dos testes automatizados, executar checklist manual com arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento.
 

@@ -10,4 +10,13 @@
 		<ProjectReference Include="..\MpvNet\MpvNet.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="xunit.v3" />
+		<PackageReference Include="xunit.runner.visualstudio">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="TngTech.ArchUnitNET.xUnitV3" />
+	</ItemGroup>
+
 </Project>

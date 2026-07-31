@@ -83,6 +83,29 @@ O projeto suporta:
 6. Preservar compatibilidade visual.
 7. Quando tocar `MainForm.*.cs`, validar arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento do player.
 
+## Smoke test reproduzível
+
+O script abaixo verifica inicialização, permanência do processo e fechamento
+limpo. Ele não substitui a verificação visual dos controles:
+
+```powershell
+.\src\Tools\test-ui-smoke.ps1 `
+  -ExecutablePath .\src\MpvNet.Windows\bin\Debug\win-x64\mpvnet.exe `
+  -MediaPath C:\Videos\amostra.mp4
+```
+
+Depois do smoke test, validar manualmente:
+
+- arquivo local, URL/stream, playlist e pasta com mídia;
+- drag/drop e abertura por linha de comando;
+- tema claro/escuro, DPI, múltiplos monitores e fullscreen;
+- menu de contexto, atalhos, foco e cursor/OSC;
+- alternância de áudio/legenda, pause, seek e fechamento;
+- persistência de volume, posição, tamanho e pasta inicial.
+
+O script encerra o processo ao final por padrão. Use `-KeepOpen` quando for
+necessário concluir o checklist visual antes de fechar a janela.
+
 ---
 
 # Melhorias futuras sugeridas

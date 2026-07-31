@@ -77,11 +77,14 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
 
-    # The project is an executable harness, not an SDK test project.
-    - name: Restore and execute the validation harness
+    - name: Restore and execute xUnit v3 tests
       run: |
         dotnet restore $env:Test_Project_Path
-        dotnet run --project $env:Test_Project_Path --no-restore
+        dotnet run --project $env:Test_Project_Path --no-restore --configuration ${{ matrix.configuration }} -- -noLogo
+
+    - name: Validate gettext catalogs
+      shell: pwsh
+      run: .\lang\validate-po-files.ps1 -ValidateOnly
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
