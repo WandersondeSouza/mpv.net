@@ -519,7 +519,7 @@ var tests = new (string Name, bool Result)[]
     ("Streaming URL uses automatic network tolerance", MainPlayer.ShouldUseAutomaticStreamingOptions("https://example.com/live/index.m3u8")),
     ("RTSP URL uses automatic network tolerance", MainPlayer.ShouldUseAutomaticStreamingOptions("rtsp://example.com/stream")),
     ("Local file skips automatic network tolerance", !MainPlayer.ShouldUseAutomaticStreamingOptions(tempVideo)),
-    ("Automatic streaming options keep 60 second timeout", MainPlayer.AutomaticStreamingLoadOptions.Contains("network-timeout=60") && MainPlayer.AutomaticStreamingLoadOptions.Contains("cache-pause-wait=60")),
+    ("Automatic streaming options enable disk cache and keep 60 second timeout", MainPlayer.AutomaticStreamingLoadOptions.Contains("cache-on-disk=yes") && MainPlayer.AutomaticStreamingLoadOptions.Contains("network-timeout=60") && MainPlayer.AutomaticStreamingLoadOptions.Contains("cache-pause-wait=60")),
     ("Automatic streaming loadfile options use current mpv argument slot", MainPlayer.LoadfileOptionsInsertionIndex == "-1"),
     ("HTTP streaming loadfile passes options in fourth mpv argument", httpStreamingLoadfileArgs.SequenceEqual(["loadfile", "https://example.com/video.mp4", "replace", "-1", MainPlayer.AutomaticStreamingLoadOptions])),
     ("FTP streaming append loadfile keeps automatic network tolerance", ftpStreamingLoadfileArgs.SequenceEqual(["loadfile", "ftp://example.com/video.mp4", "append", "-1", MainPlayer.AutomaticStreamingLoadOptions])),

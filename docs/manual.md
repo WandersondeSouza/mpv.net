@@ -107,14 +107,19 @@ inclusive para URLs sem extensão. A detecção de mídia ou playlist remota fic
 cargo do mpv/libmpv.
 
 Ao abrir uma URL de streaming diretamente, o frontend aplica opcoes locais de
-cache e rede para tolerar quedas curtas de fluxo sem alterar o comportamento
-de arquivos locais.
+cache e rede para tolerar quedas curtas de fluxo. O mpv.net tambem habilita o
+cache em disco temporario do mpv, direcionado para `%LOCALAPPDATA%\mpv.net\Cache`;
+isso vale tambem para URLs HTTP/HTTPS que estejam dentro de playlists carregadas
+pelo frontend.
 
 Essa regra usa o protocolo da entrada (`http`, `https`, `ftp`, `rtsp`, `rtmp`
-e similares), nao perfis especificos de IPTV. `cache-pause-wait=60` permite
-aguardar ate cerca de 60 segundos para rebuffer antes de retomar, enquanto
-`network-timeout=60` da mais tempo para operacoes de rede HTTP antes de o mpv
-considerar a conexao encerrada.
+e similares), nao perfis especificos de IPTV. `cache=yes` habilita o cache de
+rede, `cache-on-disk=yes` usa arquivos temporarios para os dados do cache, e
+`cache-pause-wait=60` permite aguardar ate cerca de 60 segundos para rebuffer
+antes de retomar. `network-timeout=60` da mais tempo para operacoes de rede HTTP
+antes de o mpv considerar a conexao encerrada. O limite de memoria/metadados
+continua em `demuxer-max-bytes=128MiB`; nao existe um tamanho universalmente
+melhor para todas as velocidades e resolucoes.
 
 Se uma URL do YouTube falhar com `unrecognized file format`, teste o extrator
 diretamente. Em muitos casos o problema e autenticacao ou cookies do navegador,

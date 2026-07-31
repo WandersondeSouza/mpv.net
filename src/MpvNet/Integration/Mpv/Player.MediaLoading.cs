@@ -16,7 +16,7 @@ public partial class MainPlayer
 {
     public const string LoadfileOptionsInsertionIndex = "-1";
     public const string AutomaticStreamingLoadOptions =
-        "cache=yes,cache-pause-initial=yes,cache-pause-wait=60,demuxer-max-bytes=128MiB,network-timeout=60";
+        "cache=yes,cache-on-disk=yes,cache-pause-initial=yes,cache-pause-wait=60,demuxer-max-bytes=128MiB,network-timeout=60";
 
     public void SetBluRayTitle(int id) => LoadFiles(new[] { @"bd://" + id }, false, false);
 

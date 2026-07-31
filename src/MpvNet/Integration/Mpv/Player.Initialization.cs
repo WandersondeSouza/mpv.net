@@ -63,6 +63,8 @@ public partial class MainPlayer
         Directory.CreateDirectory(CacheFolder);
         Log.Debug($"Using mpv cache directory: '{Log.SafeValue(CacheFolder)}'");
         SetPropertyString("demuxer-cache-dir", CacheFolder);
+        SetPropertyString("cache", "yes");
+        SetPropertyString("cache-on-disk", "yes");
         SetPropertyString("icc-cache-dir", CacheFolder);
         SetPropertyString("gpu-shader-cache-dir", CacheFolder);
         SetPropertyString("config", "yes");

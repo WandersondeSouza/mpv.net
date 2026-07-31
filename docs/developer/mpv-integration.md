@@ -48,7 +48,7 @@ Fluxo principal em `Player.Initialization.cs`:
 2. registra eventos com `mpv_request_event`;
 3. prepara propriedades iniciais;
 4. define `config-dir` como `Player.ConfigFolder`;
-5. direciona caches do mpv para `%LOCALAPPDATA%\mpv.net\Cache`;
+5. direciona caches do mpv para `%LOCALAPPDATA%\mpv.net\Cache` e habilita cache de rede em disco temporário;
 6. carrega `input.conf` em memória quando existe conteúdo;
 7. processa argumentos de linha de comando antes de `mpv_initialize`;
 8. chama `mpv_initialize`;
