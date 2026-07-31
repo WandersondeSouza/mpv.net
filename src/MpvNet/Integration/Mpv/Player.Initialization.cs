@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 using MpvNet.Extensions;
 using MpvNet.Help;
 using MpvNet.Native;
@@ -10,11 +12,19 @@ public partial class MainPlayer
 {
     public void Init(IntPtr formHandle, bool processCommandLine)
     {
+        LifecycleState = PlayerLifecycleState.Initializing;
         Log.Debug($"Initializing mpv player. formHandle={formHandle}, processCommandLine={processCommandLine}");
         App.ApplyShowMenuFix();
 
         MainHandle = mpv_create();
         Handle = MainHandle;
+
+        if (MainHandle == IntPtr.Zero)
+        {
+            Log.Error("mpv_create failed.");
+            LifecycleState = PlayerLifecycleState.Destroyed;
+            throw new InvalidOperationException("libmpv could not create the main player handle.");
+        }
 
         var events = Enum.GetValues<mpv_event_id>().Cast<mpv_event_id>();
 
@@ -24,15 +34,6 @@ public partial class MainPlayer
         }
 
         mpv_request_log_messages(MainHandle, "no");
-
-        if (formHandle != IntPtr.Zero)
-            BackgroundTaskRunner.Run(MainEventLoop);
-
-        if (MainHandle == IntPtr.Zero)
-        {
-            Log.Error("mpv_create failed.");
-            throw new InvalidOperationException("libmpv could not create the main player handle.");
-        }
 
         if (App.IsTerminalAttached)
         {
@@ -106,6 +107,11 @@ public partial class MainPlayer
             throw new InvalidOperationException($"libmpv initialization failed ({err}): {error}");
         }
 
+        SetMpvInitialized();
+
+        if (formHandle != IntPtr.Zero)
+            TrackEventTask(Task.Run(() => MainEventLoop(PlayerCancellationToken), PlayerCancellationToken));
+
         CommandV("script-message", "osc-idlescreen", "no", "silent");
 
         string idle = GetPropertyString("idle");
@@ -123,7 +129,7 @@ public partial class MainPlayer
         mpv_request_log_messages(Handle, "info");
 
         if (formHandle != IntPtr.Zero)
-            BackgroundTaskRunner.Run(EventLoop);
+            TrackEventTask(Task.Run(() => EventLoop(PlayerCancellationToken), PlayerCancellationToken));
 
         // otherwise shutdown is raised before media files are loaded,
         // this means Lua scripts that use idle might not work correctly
@@ -137,6 +143,7 @@ public partial class MainPlayer
         ConfigureObservedProperties();
 
         Initialized?.Invoke();
+        LifecycleState = PlayerLifecycleState.Running;
         Log.Debug("mpv player initialized.");
     }
 }

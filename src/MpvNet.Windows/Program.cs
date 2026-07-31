@@ -22,6 +22,7 @@ static class Program
         {
             AppPaths.EnsureLocalDirectories();
             RuntimeComponents.EnsureComponentsFolderOnPath();
+            RuntimeComponents.RegisterNativeResolver();
             Log.Debug("Application starting.");
             RegistryHelp.ProductName = AppInfo.Product;
             TranslationProvider.Current = new WpfTranslator();
@@ -51,8 +52,6 @@ static class Program
 
             if (App.IsTerminalAttached)
                 WinApi.AttachConsole(-1 /*ATTACH_PARENT_PROCESS*/);
-
-            RuntimeComponents.RegisterNativeResolver();
 
             string[] args = Environment.GetCommandLineArgs().Skip(1).ToArray();
             Log.Debug($"Command line arguments received: count={args.Length}, args={Log.SafeValues(args)}");

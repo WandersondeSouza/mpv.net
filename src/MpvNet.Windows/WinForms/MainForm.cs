@@ -1084,7 +1084,7 @@ public partial class MainForm : Form
     void PropChangeAid(string value)
     {
         Player.AID = value;
-        BackgroundTaskRunner.Run(Player.UpdateTracks);
+        Player.SchedulePlayerTask(_ => Player.UpdateTracks());
     }
 
     void PropChangeSid(string value) => Player.SID = value;

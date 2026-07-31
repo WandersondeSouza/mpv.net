@@ -23,6 +23,82 @@ public partial class MainPlayer : MpvClient
     bool _isNormalizingAutocreatedPlaylist;
     readonly object _destroyLock = new();
     bool _isDestroyed;
+    readonly CancellationTokenSource _playerCancellation = new();
+    readonly SemaphoreSlim _playerTaskGate = new(1, 1);
+    readonly object _playerTasksLock = new();
+    readonly List<Task> _playerTasks = [];
+    readonly object _eventTasksLock = new();
+    readonly List<Task> _eventTasks = [];
+    bool _mpvInitialized;
+
+    public PlayerLifecycleState LifecycleState { get; private set; } = PlayerLifecycleState.Created;
+    internal CancellationToken PlayerCancellationToken => _playerCancellation.Token;
+
+    public void SchedulePlayerTask(Action<CancellationToken> operation)
+    {
+        ArgumentNullException.ThrowIfNull(operation);
+        SchedulePlayerTask(cancellationToken =>
+        {
+            operation(cancellationToken);
+            return Task.CompletedTask;
+        });
+    }
+
+    public void SchedulePlayerTask(Func<CancellationToken, Task> operation)
+    {
+        ArgumentNullException.ThrowIfNull(operation);
+        lock (_destroyLock)
+        {
+            if (_isDestroyed)
+                return;
+
+            Task task = Task.Run(() => RunPlayerTaskAsync(operation), _playerCancellation.Token);
+            lock (_playerTasksLock)
+                _playerTasks.Add(task);
+            task.ContinueWith(completedTask =>
+            {
+                lock (_playerTasksLock)
+                    _playerTasks.Remove(completedTask);
+            }, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
+        }
+    }
+
+    async Task RunPlayerTaskAsync(Func<CancellationToken, Task> operation)
+    {
+        try
+        {
+            await _playerTaskGate.WaitAsync(_playerCancellation.Token).ConfigureAwait(false);
+            try
+            {
+                _playerCancellation.Token.ThrowIfCancellationRequested();
+                await operation(_playerCancellation.Token).ConfigureAwait(false);
+            }
+            finally
+            {
+                _playerTaskGate.Release();
+            }
+        }
+        catch (OperationCanceledException) when (_playerCancellation.IsCancellationRequested)
+        {
+        }
+        catch (Exception ex)
+        {
+            Terminal.WriteError(ex);
+        }
+    }
+
+    internal void TrackEventTask(Task task)
+    {
+        lock (_eventTasksLock)
+            _eventTasks.Add(task);
+        task.ContinueWith(completedTask =>
+        {
+            lock (_eventTasksLock)
+                _eventTasks.Remove(completedTask);
+        }, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
+    }
+
+    internal void SetMpvInitialized() => _mpvInitialized = true;
 
     public string ConfPath { get => ConfigFolder + "mpv.conf"; }
     public string CacheFolder => TemporaryFileCleanup.DefaultCacheFolder + System.IO.Path.DirectorySeparatorChar;

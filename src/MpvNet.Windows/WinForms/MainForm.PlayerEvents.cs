@@ -45,10 +45,6 @@ public partial class MainForm
     void Player_FileLoaded()
     {
         NormalizeLoadedMediaTitle();
-        BackgroundTaskRunner.Run(() => {
-            Player.UpdateTracks();
-        });
-
         BeginInvoke(() => {
             SetTitleInternal();
 

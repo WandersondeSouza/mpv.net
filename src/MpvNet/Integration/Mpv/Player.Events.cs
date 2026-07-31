@@ -53,7 +53,7 @@ public partial class MainPlayer
         Path = GetPropertyString("path");
         Log.Debug($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}");
         base.OnStartFile();
-        BackgroundTaskRunner.Run(LoadFolder);
+        SchedulePlayerTask(_ => LoadFolder());
     }
 
     // executed after OnStartFile
@@ -65,7 +65,7 @@ public partial class MainPlayer
         if (App.StartSize == "video")
             WasInitialSizeSet = false;
 
-        BackgroundTaskRunner.Run(UpdateTracks);
+        SchedulePlayerTask(_ => UpdateTracks());
 
         base.OnFileLoaded();
     }

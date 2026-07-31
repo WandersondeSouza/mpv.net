@@ -400,8 +400,9 @@ public partial class MainPlayer
     }
 
     void ScheduleAutocreatedPlaylistNormalization() =>
-        BackgroundTaskRunner.Run(() => {
-            Thread.Sleep(PlaylistNormalizationDelay);
+        SchedulePlayerTask(async cancellationToken =>
+        {
+            await Task.Delay(PlaylistNormalizationDelay, cancellationToken);
             NormalizeAutocreatedPlaylist();
         });
 

@@ -41,6 +41,20 @@ public static class RuntimeComponents
         NativeLibrary.SetDllImportResolver(typeof(RuntimeComponents).Assembly, ResolveNativeLibrary);
     }
 
+    internal static string? ResolveNativeLibraryPath(string libraryName)
+    {
+        string fileName = libraryName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)
+            ? libraryName
+            : libraryName + ".dll";
+
+        if (!fileName.Equals("libmpv-2.dll", StringComparison.OrdinalIgnoreCase) &&
+            !fileName.Equals("MediaInfo.dll", StringComparison.OrdinalIgnoreCase))
+            return null;
+
+        string candidate = ResolveComponentPath(fileName);
+        return File.Exists(candidate) ? candidate : null;
+    }
+
     public static Task EnsureComponentsAsync(CancellationToken cancellationToken = default)
     {
         return RuntimeComponentService.EnsureComponentsAsync(cancellationToken);
@@ -53,13 +67,9 @@ public static class RuntimeComponents
 
     static IntPtr ResolveNativeLibrary(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
     {
-        string fileName = libraryName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)
-            ? libraryName
-            : libraryName + ".dll";
-
-        string candidate = ResolveComponentPath(fileName);
-        return File.Exists(candidate)
-            ? NativeLibrary.Load(candidate, assembly, searchPath)
+        string? candidate = ResolveNativeLibraryPath(libraryName);
+        return candidate is not null
+            ? NativeLibrary.Load(candidate)
             : IntPtr.Zero;
     }
 }

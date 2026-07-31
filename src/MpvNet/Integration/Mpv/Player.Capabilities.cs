@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 using System.Text;
 using System.Text.Json;
 
@@ -64,7 +66,7 @@ public partial class MainPlayer
         if (client.Handle == IntPtr.Zero)
             throw new InvalidOperationException($"libmpv could not create client '{name}'.");
 
-        BackgroundTaskRunner.Run(client.EventLoop);
+        TrackEventTask(Task.Run(() => client.EventLoop(PlayerCancellationToken), PlayerCancellationToken));
         Clients.Add(client);
         return client;
     }

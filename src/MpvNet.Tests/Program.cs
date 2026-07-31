@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 using MpvNet;
@@ -377,6 +378,36 @@ var normalizedQuotedPlaylistItems = PlaylistFile.Normalize(tempM3u, [
     new PlaylistFileItem(tempVideo, "\"quoted\" 'video' title.mp4")]);
 var normalizedAutocreatedPlaylistItems = PlaylistFile.NormalizeDisplayTitles([
     new PlaylistFileItem(tempVideo, "Vue.js parte 2 Aula 1 - Atividade 3 Criando Nossa Primeira Diretiva Alura Cursos Online De Tecnologia.mp4")]);
+var lifecycleProbe = new MainPlayer();
+bool lifecycleStartsCreated = lifecycleProbe.LifecycleState == PlayerLifecycleState.Created;
+lifecycleProbe.Destroy();
+bool lifecycleEndsDestroyed = lifecycleProbe.LifecycleState == PlayerLifecycleState.Destroyed;
+var taskProbe = new MainPlayer();
+int activePlayerTasks = 0;
+int maxActivePlayerTasks = 0;
+int completedPlayerTasks = 0;
+for (int i = 0; i < 2; i++)
+{
+    taskProbe.SchedulePlayerTask(_ =>
+    {
+        int active = Interlocked.Increment(ref activePlayerTasks);
+        int observedMaximum;
+        do
+        {
+            observedMaximum = Volatile.Read(ref maxActivePlayerTasks);
+            if (active <= observedMaximum)
+                break;
+        }
+        while (Interlocked.CompareExchange(ref maxActivePlayerTasks, active, observedMaximum) != observedMaximum);
+
+        Thread.Sleep(15);
+        Interlocked.Decrement(ref activePlayerTasks);
+        Interlocked.Increment(ref completedPlayerTasks);
+    });
+}
+SpinWait.SpinUntil(() => Volatile.Read(ref completedPlayerTasks) == 2, TimeSpan.FromSeconds(2));
+bool playerTasksAreSerialized = maxActivePlayerTasks == 1;
+taskProbe.Destroy();
 string tempRawTitleM3u = PlaylistFile.WriteTempM3u([
     new PlaylistFileItem(tempVideo, "\"raw\" 'playlist' item.mp4")]);
 string rawTitleM3uContent = File.ReadAllText(tempRawTitleM3u);
@@ -417,6 +448,9 @@ string[] localLoadfileArgs = MainPlayer.BuildLoadfileArgs(tempVideo, 0, false);
 var tests = new (string Name, bool Result)[]
 {
     ("IsVideoFile .mp4", FileTypes.IsVideoFile(".mp4")),
+    ("Player lifecycle starts in Created", lifecycleStartsCreated),
+    ("Player lifecycle reaches Destroyed", lifecycleEndsDestroyed),
+    ("Player tasks are serialized", playerTasksAreSerialized),
     ("IsVideoFile .mkv", FileTypes.IsVideoFile(".mkv")),
     ("IsPlaylistFile .m3u8", FileTypes.IsPlaylistFile(".m3u8")),
     ("IsPlaylistFile .cue", FileTypes.IsPlaylistFile(".cue")),

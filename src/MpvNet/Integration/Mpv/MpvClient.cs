@@ -1,5 +1,6 @@
 ﻿
 using System.Runtime.InteropServices;
+using System.Threading;
 
 using static MpvNet.Native.LibMpv;
 
@@ -38,11 +39,18 @@ public class MpvClient
         Handle = IntPtr.Zero;
     }
 
-    public void EventLoop()
+    public void EventLoop() => EventLoop(CancellationToken.None);
+
+    public void EventLoop(CancellationToken cancellationToken)
     {
-        while (true)
+        nint handle = Handle;
+
+        while (handle != IntPtr.Zero && !cancellationToken.IsCancellationRequested)
         {
-            IntPtr ptr = mpv_wait_event(Handle, -1);
+            IntPtr ptr = mpv_wait_event(handle, 0.1);
+            if (ptr == IntPtr.Zero)
+                continue;
+
             mpv_event evt = (mpv_event)Marshal.PtrToStructure(ptr, typeof(mpv_event))!;
 
             try

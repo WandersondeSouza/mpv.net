@@ -23,6 +23,9 @@ public static class LibMpv
     public static extern void mpv_destroy(nint mpvHandle);
 
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
+    public static extern void mpv_terminate_destroy(nint mpvHandle);
+
+    [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
     public static extern mpv_error mpv_command(nint mpvHandle, nint strings);
 
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]

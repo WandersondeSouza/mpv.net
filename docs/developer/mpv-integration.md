@@ -57,6 +57,18 @@ Fluxo principal em `Player.Initialization.cs`:
 11. registra observadores de propriedades;
 12. dispara o estado pronto para a UI.
 
+O estado do player é explícito (`Created`, `Initializing`, `Running`, `Shutdown` e
+`Destroyed`). Os loops nativos recebem o cancelamento da instância e usam uma
+espera limitada, permitindo que `Destroy` cancele e aguarde as tarefas antes de
+encerrar os handles. O handle principal inicializado é encerrado com
+`mpv_terminate_destroy`; handles de clientes são destruídos antes dele.
+
+As tarefas de playlist e metadata são serializadas por instância do player e
+canceladas durante o fechamento. Isso impede que uma leitura atrasada de
+MediaInfo ou uma normalização antiga continue consultando libmpv depois da
+destruição do player, mantendo essas operações serializadas durante a troca de
+mídia.
+
 ## Eventos, propriedades e comandos
 
 `MpvClient` traduz eventos nativos para eventos .NET e expõe callbacks para mudanças de propriedades, incluindo valores booleanos, inteiros, `double` e `string`.
