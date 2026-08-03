@@ -76,11 +76,11 @@ componentes.
 Para scripts como `thumbfast`, a versão portátil deve usar `portable_config/scripts` e `portable_config/script-opts`. No mpv.net v7, `thumbfast` tem suporte direto; `mpv_path` para um `mpv.exe` separado deve ser tratado como fallback para versões antigas ou casos específicos documentados pelo próprio script.
 
 Na primeira execução, o `mpv.conf` inicial criado pelo aplicativo não cria
-perfis específicos para IPTV. `Player.MediaLoading` aplica tolerância de rede
-como opções locais do comando `loadfile` quando a entrada aberta diretamente é
-uma URL de streaming, detectada pelo protocolo (`http`, `https`, `ftp`, `rtsp`,
-`rtmp` e similares). Essa aplicação automática não altera arquivos locais nem
-torna as opções globais para o próximo item carregado.
+perfis específicos para IPTV. `Player.MediaLoading` aplica, quando habilitada,
+uma política conservadora como opções locais do comando `loadfile`. A política
+classifica a URI antes de escolher o perfil, não altera arquivos locais e não
+torna as opções globais para o próximo item. Opções explícitas no `mpv.conf` ou
+na linha de comando são excluídas da lista automática.
 
 ---
 
@@ -122,6 +122,7 @@ Opções observadas:
 | Opção | Valor padrão no código | Função |
 | --- | --- | --- |
 | `auto-load-folder` | `no` | Controla carregamento automático da pasta. |
+| `automatic-network-cache` | `yes` | Ativa a política automática de cache por entrada de rede. |
 | `autofit-audio` | `70%` | Tamanho de janela para áudio. |
 | `autofit-image` | `80%` | Tamanho de janela para imagem. |
 | `dark-mode` | `always` | Modo escuro/claro. |
@@ -131,6 +132,7 @@ Opções observadas:
 | `light-theme` | `light` | Tema claro. |
 | `media-info` | `yes` | Controla recurso de media info. |
 | `menu-syntax` | `#menu:` | Sintaxe antiga/nova para menu em `input.conf`. |
+| `network-cache-profile` | `balanced` | Perfil `off`, `low-latency`, `balanced` ou `resilient`. |
 | `minimum-aspect-ratio` | `0` | Limite de proporção para vídeo. |
 | `minimum-aspect-ratio-audio` | `0` | Limite de proporção para áudio. |
 | `process-instance` | `single` | Controle de instância: single/queue/multi. |

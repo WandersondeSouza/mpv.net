@@ -141,8 +141,9 @@ Builds com logs habilitados registram detalhes adicionais do fluxo de abertura:
 - valor final de `idle` e se o frontend deve sair ao fim da reproducao;
 - eventos `start-file`, `file-loaded`, `end-file` e `shutdown` emitidos pelo mpv.
 
-URLs com query string ou fragmento sao mascaradas no log para evitar expor
-tokens de playlists privadas.
+URLs com usuário, senha, query string ou fragmento sao mascaradas no log para
+evitar expor credenciais e tokens de playlists privadas. Diagnósticos de cache
+registram o tipo de mídia e o perfil escolhido, nunca a query original.
 
 ## Retencao
 

@@ -30,15 +30,20 @@ public static class Log
         string ret = value;
 
         if (Uri.TryCreate(ret, UriKind.Absolute, out Uri? uri) &&
-            (!string.IsNullOrEmpty(uri.Query) || !string.IsNullOrEmpty(uri.Fragment)))
+            (uri.IsAbsoluteUri && (!string.IsNullOrEmpty(uri.UserInfo) ||
+                !string.IsNullOrEmpty(uri.Query) || !string.IsNullOrEmpty(uri.Fragment))))
         {
-            ret = uri.GetLeftPart(UriPartial.Path);
+            string authority = uri.Host;
+            if (!uri.IsDefaultPort)
+                authority += ":" + uri.Port;
+
+            ret = uri.Scheme + "://" + authority + uri.AbsolutePath;
 
             if (!string.IsNullOrEmpty(uri.Query))
-                ret += "?***";
+                ret += "?[redacted]";
 
             if (!string.IsNullOrEmpty(uri.Fragment))
-                ret += "#***";
+                ret += "#[redacted]";
         }
 
         if (ret.Length > MaxValueLength)

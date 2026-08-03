@@ -886,9 +886,8 @@ public partial class MainForm : Form
             case 0x4A: // WM_COPYDATA
                 {
                     var copyData = (CopyDataStruct)m.GetLParam(typeof(CopyDataStruct))!;
-                    string[] args = copyData.lpData.Split('\n');
-                    string mode = args[0];
-                    args = args.Skip(1).ToArray();
+                    if (!MediaIpcMessage.TryParse(copyData.lpData, out string mode, out string[] args))
+                        return;
 
                     switch (mode)
                     {
@@ -899,7 +898,8 @@ public partial class MainForm : Form
                             Player.LoadFiles(args, true, true);
                             break;
                         case "command":
-                            Player.Command(args[0]);
+                            if (args.Length > 0)
+                                Player.Command(args[0]);
                             break;
                     }
 

@@ -15,8 +15,7 @@ namespace MpvNet;
 public partial class MainPlayer
 {
     public const string LoadfileOptionsInsertionIndex = "-1";
-    public const string AutomaticStreamingLoadOptions =
-        "cache=yes,cache-on-disk=yes,cache-pause-initial=yes,cache-pause-wait=60,demuxer-max-bytes=128MiB,network-timeout=60";
+    public const string AutomaticStreamingLoadOptions = NetworkCachePolicy.BalancedHttpOptions;
 
     public void SetBluRayTitle(int id) => LoadFiles(new[] { @"bd://" + id }, false, false);
 
@@ -148,9 +147,16 @@ public partial class MainPlayer
 
     void LoadPlaylistItems(List<PlaylistFileItem> items, bool append)
     {
-        string playlist = PlaylistFile.WriteTempM3u(items);
-        Log.Debug($"Sending loadlist to mpv. tempPlaylist='{Log.SafeValue(playlist)}', itemCount={items.Count}, mode={(append ? "append" : "replace")}");
-        CommandV("loadlist", playlist, append ? "append" : "replace");
+        Log.Debug($"Queueing playlist items for individual loadfile commands. itemCount={items.Count}, mode={(append ? "append" : "replace")}");
+        SchedulePlayerTask(cancellationToken =>
+        {
+            for (int index = 0; index < items.Count; index++)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                PlaylistFileItem item = items[index];
+                SendLoadfile(item.Path, index, append || index > 0, item.Title);
+            }
+        });
     }
 
     bool TryLoadFallbackDirect(string? fallbackInput, string failedInput, bool append, string reason)
@@ -167,35 +173,48 @@ public partial class MainPlayer
         return true;
     }
 
-    void SendLoadfile(string file, int index, bool append)
+    void SendLoadfile(string file, int index, bool append, string? title = null)
     {
-        bool useStreamingOptions = ShouldUseAutomaticStreamingOptions(file);
+        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(file);
 
-        if (useStreamingOptions)
-            Log.Debug($"Applying automatic streaming network tolerance to loadfile. path='{Log.SafeValue(file)}', options='{AutomaticStreamingLoadOptions}'");
+        if (resolution.IsEnabled)
+            Log.Debug($"Applying network cache policy. kind={resolution.Kind}, profile={resolution.Profile}, path='{Log.SafeValue(file)}', options='{resolution.Options}'");
 
         if (index == 0 && !append)
             Log.Debug($"Sending loadfile replace to mpv: '{Log.SafeValue(file)}'");
         else
             Log.Debug($"Sending loadfile append to mpv: '{Log.SafeValue(file)}'");
 
-        CommandV(BuildLoadfileArgs(file, index, append));
+        CommandV(BuildLoadfileArgs(file, index, append, title));
     }
 
     public static bool ShouldUseAutomaticStreamingOptions(string file) =>
-        FileTypes.IsStreamingUrl(file);
+        NetworkCachePolicy.Resolve(file).IsEnabled;
 
     public static string[] BuildLoadfileArgs(string file, int index, bool append)
+        => BuildLoadfileArgs(file, index, append, null);
+
+    public static string[] BuildLoadfileArgs(string file, int index, bool append, string? title)
     {
         string mode = index == 0 && !append ? "replace" : "append";
+        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(file);
+        string options = resolution.Options;
 
-        if (ShouldUseAutomaticStreamingOptions(file))
-            return ["loadfile", file, mode, LoadfileOptionsInsertionIndex, AutomaticStreamingLoadOptions];
+        if (!string.IsNullOrWhiteSpace(title))
+            options = string.IsNullOrEmpty(options)
+                ? "force-media-title=" + EscapeLoadfileOption(title)
+                : options + ",force-media-title=" + EscapeLoadfileOption(title);
+
+        if (!string.IsNullOrEmpty(options))
+            return ["loadfile", file, mode, LoadfileOptionsInsertionIndex, options];
 
         return index == 0 && !append
             ? ["loadfile", file]
             : ["loadfile", file, mode];
     }
+
+    static string EscapeLoadfileOption(string value) =>
+        value.Replace("\\", "\\\\", StringComparison.Ordinal).Replace(",", "\\,", StringComparison.Ordinal);
 
     bool PlaylistContainsPath(string path)
     {
@@ -267,6 +286,9 @@ public partial class MainPlayer
     }
 
     public void LoadISO(string path)
+        => SchedulePlayerTask(cancellationToken => LoadISOAsync(path, cancellationToken));
+
+    async Task LoadISOAsync(string path, CancellationToken cancellationToken)
     {
         try
         {
@@ -275,14 +297,14 @@ public partial class MainPlayer
             if (mi.GetGeneral("Format") == "ISO 9660 / DVD Video")
             {
                 Command("stop");
-                Thread.Sleep(500);
+                await Task.Delay(500, cancellationToken);
                 SetPropertyString("dvd-device", path);
                 LoadFiles([@"dvd://"], false, false);
             }
             else
             {
                 Command("stop");
-                Thread.Sleep(500);
+                await Task.Delay(500, cancellationToken);
                 SetPropertyString("bluray-device", path);
                 LoadFiles([@"bd://"], false, false);
             }
@@ -295,9 +317,12 @@ public partial class MainPlayer
     }
 
     public void LoadDiskFolder(string path)
+        => SchedulePlayerTask(cancellationToken => LoadDiskFolderAsync(path, cancellationToken));
+
+    async Task LoadDiskFolderAsync(string path, CancellationToken cancellationToken)
     {
         Command("stop");
-        Thread.Sleep(500);
+        await Task.Delay(500, cancellationToken);
 
         if (Directory.Exists(path + "\\BDMV"))
         {
@@ -311,12 +336,12 @@ public partial class MainPlayer
         }
     }
 
-    public void LoadFolder()
+    async Task LoadFolderAsync(CancellationToken cancellationToken)
     {
         if (!App.AutoLoadFolder)
             return;
 
-        Thread.Sleep(1000);
+        await Task.Delay(1000, cancellationToken);
 
         lock (_loadFolderLock)
         {

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Text;
 
 using MpvNet.Windows.Native;
 using MpvNet.Help;
@@ -111,8 +112,8 @@ static class Program
                         {
                             WinApi.AllowSetForegroundWindow(proc.Id);
                             var data = new WinApi.CopyDataStruct();
-                            data.lpData = string.Join("\n", args2.ToArray());
-                            data.cbData = data.lpData.Length * 2 + 1;
+                            data.lpData = MediaIpcMessage.Serialize(args2[0], args2.Skip(1));
+                            data.cbData = Encoding.Unicode.GetByteCount(data.lpData) + 2;
                             WinApi.SendMessage(proc.MainWindowHandle, 0x004A /*WM_COPYDATA*/, IntPtr.Zero, ref data);
 
                             if (App.IsTerminalAttached)

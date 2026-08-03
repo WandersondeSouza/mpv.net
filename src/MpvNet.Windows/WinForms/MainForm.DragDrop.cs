@@ -19,8 +19,12 @@ public partial class MainForm
         bool append = ModifierKeys == Keys.Shift;
 
         if (e.Data!.GetDataPresent(DataFormats.FileDrop))
-            Player.LoadFiles(e.Data.GetData(DataFormats.FileDrop) as string[], true, append);
+            Player.LoadFiles(
+                ClipboardMediaParser.ParseFileDropList(e.Data.GetData(DataFormats.FileDrop) as string[], append)
+                    .Select(request => request.Input).ToArray(), true, append);
         else if (e.Data.GetDataPresent(DataFormats.Text))
-            Player.LoadFiles(new[] { e.Data.GetData(DataFormats.Text)!.ToString()! }, true, append);
+            Player.LoadFiles(
+                ClipboardMediaParser.ParseText(e.Data.GetData(DataFormats.Text)!.ToString(), append)
+                    .Select(request => request.Input).ToArray(), true, append);
     }
 }

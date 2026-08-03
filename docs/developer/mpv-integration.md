@@ -48,7 +48,7 @@ Fluxo principal em `Player.Initialization.cs`:
 2. registra eventos com `mpv_request_event`;
 3. prepara propriedades iniciais;
 4. define `config-dir` como `Player.ConfigFolder`;
-5. direciona caches do mpv para `%LOCALAPPDATA%\mpv.net\Cache` e habilita cache de rede em disco temporário;
+5. direciona o diretório de cache temporário do mpv para `%LOCALAPPDATA%\mpv.net\Cache`, sem forçar `cache` global;
 6. carrega `input.conf` em memória quando existe conteúdo;
 7. processa argumentos de linha de comando antes de `mpv_initialize`;
 8. chama `mpv_initialize`;
@@ -115,7 +115,9 @@ seguido de uma URL. Quando a midia principal e resolvida, o titulo deve ser
 aplicado como metadado e a URL ou caminho bruto deve ser enviado ao mpv/libmpv
 sem depender de playlist. Expansoes auxiliares de playlist devem continuar
 opcionais: se falharem, o frontend deve preservar a tentativa de reproducao da
-midia principal antes de desistir.
+midia principal antes de desistir. Playlists locais expandidas com sucesso
+enviam seus itens individualmente por `loadfile`, permitindo opções por item
+sem transformar um arquivo local em stream de rede.
 
 ---
 

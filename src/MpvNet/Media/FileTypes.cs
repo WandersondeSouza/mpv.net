@@ -7,7 +7,7 @@ public static class FileTypes
 {
     public static string[] Subtitle { get; } = ["srt", "ass", "idx", "sub", "sup", "ttxt", "txt", "ssa", "smi", "mks"];
     public static string[] Playlist { get; } = ["m3u", "m3u8", "pls", "xspf", "asx", "wpl", "cue", "jspf"];
-    public static string[] StreamingProtocols { get; } = ["http://", "https://", "rtmp://", "rtmps://", "rtsp://", "mms://", "udp://", "tcp://", "ftp://", "sftp://"];
+    public static string[] StreamingProtocols { get; } = ["http://", "https://", "rtmp://", "rtmps://", "rtsp://", "mms://", "udp://", "tcp://", "ftp://", "ftps://", "sftp://", "srt://", "srtp://", "ytdl://"];
     public static string[] DefaultAudioExts { get; } = [
         "mp3", "wav", "flac", "m4a", "aac", "ogg", "opus", "wma",
         "alac", "aiff", "aif", "ape", "wv", "mka", "ac3", "dts",
@@ -27,9 +27,11 @@ public static class FileTypes
     public static bool IsAudio(string[] exts, string ext) => exts?.Contains(ext) ?? false;
     public static bool IsImage(string[] exts, string ext) => exts?.Contains(ext) ?? false;
     public static bool IsPlaylist(string ext) => Playlist.Contains(NormalizeExt(ext));
-    public static bool IsStreamingUrl(string input) =>
-        !string.IsNullOrWhiteSpace(input) &&
-        StreamingProtocols.Any(protocol => input.StartsWith(protocol, StringComparison.OrdinalIgnoreCase));
+    public static bool IsStreamingUrl(string input) => MediaInputClassifier.Classify(input).IsNetwork;
+
+    public static bool IsNetworkScheme(string scheme) =>
+        scheme is "http" or "https" or "rtmp" or "rtmps" or "rtsp" or "mms" or
+            "udp" or "tcp" or "ftp" or "ftps" or "sftp" or "srt" or "srtp" or "ytdl";
 
     public static bool IsVideoFile(string input) => IsVideo(GetInputExtension(input));
     public static bool IsPlaylistFile(string input) => IsPlaylist(GetInputExtension(input));

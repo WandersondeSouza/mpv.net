@@ -27,6 +27,7 @@ public class AppClass
     public string MenuSyntax { get; set; } = "#menu:";
 
     public bool AutoLoadFolder { get; set; }
+    public bool AutomaticNetworkCache { get; set; } = true;
     public bool DebugMode { get; set; }
     public bool Exit { get; set; }
     public bool IsTerminalAttached { get; } = Environment.GetEnvironmentVariable("_started_from_console") == "yes";
@@ -37,6 +38,8 @@ public class AppClass
     public bool RememberWindowPosition { get; set; }
 
     public int RecentCount { get; set; } = 15;
+
+    public string NetworkCacheProfile { get; set; } = "balanced";
 
     public float AutofitAudio { get; set; } = 0.7f;
     public float AutofitImage { get; set; } = 0.8f;
@@ -152,7 +155,7 @@ public class AppClass
             "# Initial mpv/mpv.net configuration." + BR +
             "# This file is created only when no user mpv.conf exists." + BR +
             BR +
-            "# Streaming URLs are detected by protocol and receive network tolerance automatically." + BR);
+            "# Streaming URLs may receive the conservative network-cache policy configured in mpvnet.conf." + BR);
     }
 
     public void EnsureInitialSelectMenuConf()
@@ -263,6 +266,7 @@ public class AppClass
         switch (name)
         {
             case "auto-load-folder": AutoLoadFolder = value == "yes"; return true;
+            case "automatic-network-cache": AutomaticNetworkCache = value == "yes"; return true;
             case "autofit-audio": AutofitAudio = value.Trim('%').ToInt(70) / 100f; return true;
             case "autofit-image": AutofitImage = value.Trim('%').ToInt(80) / 100f; return true;
             case "dark-mode": DarkMode = value; return true;
@@ -281,6 +285,7 @@ public class AppClass
             case "process-instance": ProcessInstance = value; return true;
             case "queue": Queue = value == "yes"; return true;
             case "recent-count": RecentCount = value.ToInt(15); return true;
+            case "network-cache-profile": NetworkCacheProfile = NetworkCachePolicy.NormalizeProfile(value); return true;
             case "remember-audio-device": RememberAudioDevice = value == "yes"; return true;
             case "remember-volume": RememberVolume = value == "yes"; return true;
             case "remember-window-position": RememberWindowPosition = value == "yes"; return true;

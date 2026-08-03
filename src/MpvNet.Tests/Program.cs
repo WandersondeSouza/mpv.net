@@ -457,7 +457,11 @@ string openFileDialogFilter = FileTypes.GetOpenFileDialogFilter();
 string openFileDialogFirstFilter = openFileDialogFilter.Split('|')[1];
 string[] httpStreamingLoadfileArgs = MainPlayer.BuildLoadfileArgs("https://example.com/video.mp4", 0, false);
 string[] ftpStreamingLoadfileArgs = MainPlayer.BuildLoadfileArgs("ftp://example.com/video.mp4", 1, true);
+string[] rtspStreamingLoadfileArgs = MainPlayer.BuildLoadfileArgs("rtsp://example.com/stream", 0, false);
 string[] localLoadfileArgs = MainPlayer.BuildLoadfileArgs(tempVideo, 0, false);
+var clipboardRequests = ClipboardMediaParser.ParseText("  \"https://example.com/video.mp4?token=abc\"\r\n#EXTINF:-1,Title\r\n--no-config\r\n");
+string ipcPayload = MediaIpcMessage.Serialize("queue", ["https://example.com/a?x=1\n2", "áudio.mp3"]);
+MediaIpcMessage.TryParse(ipcPayload, out string ipcMode, out string[] ipcArguments);
 
 var tests = new (string Name, bool Result)[]
 {
@@ -519,10 +523,15 @@ var tests = new (string Name, bool Result)[]
     ("Streaming URL uses automatic network tolerance", MainPlayer.ShouldUseAutomaticStreamingOptions("https://example.com/live/index.m3u8")),
     ("RTSP URL uses automatic network tolerance", MainPlayer.ShouldUseAutomaticStreamingOptions("rtsp://example.com/stream")),
     ("Local file skips automatic network tolerance", !MainPlayer.ShouldUseAutomaticStreamingOptions(tempVideo)),
-    ("Automatic streaming options enable disk cache and keep 60 second timeout", MainPlayer.AutomaticStreamingLoadOptions.Contains("cache-on-disk=yes") && MainPlayer.AutomaticStreamingLoadOptions.Contains("network-timeout=60") && MainPlayer.AutomaticStreamingLoadOptions.Contains("cache-pause-wait=60")),
+    ("Automatic HTTP policy uses bounded rebuffering", MainPlayer.AutomaticStreamingLoadOptions.Contains("cache-pause-wait=3") && MainPlayer.AutomaticStreamingLoadOptions.Contains("demuxer-max-bytes=128MiB")),
     ("Automatic streaming loadfile options use current mpv argument slot", MainPlayer.LoadfileOptionsInsertionIndex == "-1"),
     ("HTTP streaming loadfile passes options in fourth mpv argument", httpStreamingLoadfileArgs.SequenceEqual(["loadfile", "https://example.com/video.mp4", "replace", "-1", MainPlayer.AutomaticStreamingLoadOptions])),
-    ("FTP streaming append loadfile keeps automatic network tolerance", ftpStreamingLoadfileArgs.SequenceEqual(["loadfile", "ftp://example.com/video.mp4", "append", "-1", MainPlayer.AutomaticStreamingLoadOptions])),
+    ("FTP streaming append loadfile uses disk cache without HTTP timeout", ftpStreamingLoadfileArgs.Length == 5 && ftpStreamingLoadfileArgs[4].Contains("cache-on-disk=yes") && !ftpStreamingLoadfileArgs[4].Contains("network-timeout")),
+    ("RTSP policy does not inject network-timeout", rtspStreamingLoadfileArgs.Length == 5 && !rtspStreamingLoadfileArgs[4].Contains("network-timeout")),
+    ("Classifier distinguishes HLS from progressive HTTP", MediaInputClassifier.Classify("HTTPS://example.com/live/index.m3u8?token=abc").NetworkKind == NetworkMediaKind.Hls),
+    ("Classifier rejects malformed network URL", !FileTypes.IsStreamingUrl("https://")),
+    ("Clipboard parser accepts URL and ignores directives/options", clipboardRequests.Count == 1 && clipboardRequests[0].Input == "https://example.com/video.mp4?token=abc"),
+    ("IPC serialization preserves newlines and Unicode", ipcMode == "queue" && ipcArguments.SequenceEqual(["https://example.com/a?x=1\n2", "áudio.mp3"])),
     ("Local loadfile keeps normal mpv arguments", localLoadfileArgs.SequenceEqual(["loadfile", tempVideo])),
     ("Pipe input skips optional MediaInfo", !MainPlayer.CanUseMediaInfo(@"\\.\pipe\mpvnet-test")),
     ("Streaming without duration is still loadable", CommandLine.IsLoadableFileArgument("https://example.com/live/no-duration")),
@@ -683,7 +692,7 @@ var tests = new (string Name, bool Result)[]
     ("File log writer keeps recent daily logs", File.Exists(Path.Combine(tempLogDir, "mpvnet-2026-05-30.log"))),
     ("File log writer ignores unrelated files during cleanup", File.Exists(Path.Combine(tempLogDir, "other-2026-05-01.log"))),
     ("File log writer does not throw on write failure", blockedWriteDidNotThrow),
-    ("Log safe value masks URL query and fragment", safeUrlWithSecret == "https://example.com/live/index.m3u8?***#***"),
+    ("Log safe value masks URL query and fragment", safeUrlWithSecret == "https://example.com/live/index.m3u8?[redacted]#[redacted]"),
     ("Log safe value keeps plain URL unchanged", safePlainUrl == "https://example.com/live/index.m3u8"),
     ("Runtime release JSON maps GitHub browser download URL", runtimeRelease?.Assets.Single().BrowserDownloadUrl == "https://example.com/yt-dlp.exe"),
     ("Runtime release JSON maps GitHub digest", runtimeRelease?.Assets.Single().Digest == "sha256:123"),

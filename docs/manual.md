@@ -106,20 +106,27 @@ HTTP bloqueante no frontend. Isso evita atraso antes do início do carregamento,
 inclusive para URLs sem extensão. A detecção de mídia ou playlist remota fica a
 cargo do mpv/libmpv.
 
-Ao abrir uma URL de streaming diretamente, o frontend aplica opcoes locais de
-cache e rede para tolerar quedas curtas de fluxo. O mpv.net tambem habilita o
-cache em disco temporario do mpv, direcionado para `%LOCALAPPDATA%\mpv.net\Cache`;
-isso vale tambem para URLs HTTP/HTTPS que estejam dentro de playlists carregadas
-pelo frontend.
+Ao abrir uma URL de streaming, o frontend pode aplicar opcoes locais e
+conservadoras de cache. A politica e controlada por `mpvnet.conf`:
 
-Essa regra usa o protocolo da entrada (`http`, `https`, `ftp`, `rtsp`, `rtmp`
-e similares), nao perfis especificos de IPTV. `cache=yes` habilita o cache de
-rede, `cache-on-disk=yes` usa arquivos temporarios para os dados do cache, e
-`cache-pause-wait=60` permite aguardar ate cerca de 60 segundos para rebuffer
-antes de retomar. `network-timeout=60` da mais tempo para operacoes de rede HTTP
-antes de o mpv considerar a conexao encerrada. O limite de memoria/metadados
-continua em `demuxer-max-bytes=128MiB`; nao existe um tamanho universalmente
-melhor para todas as velocidades e resolucoes.
+```text
+automatic-network-cache=yes
+network-cache-profile=balanced
+```
+
+Os perfis sao `off`, `low-latency`, `balanced` e `resilient`. Arquivos locais
+nao recebem opcoes automaticas de rede. HTTP progressivo, HLS/DASH, arquivos
+FTP/SFTP e transmissao ao vivo (RTSP/RTMP/UDP/TCP) usam limites diferentes.
+RTSP nao recebe `network-timeout`, pois essa opcao pode quebrar o transporte.
+
+Opcoes explicitamente definidas no `mpv.conf` ou na linha de comando tem
+precedencia sobre os valores automaticos. O diretorio temporario do cache
+continua em `%LOCALAPPDATA%\mpv.net\Cache`, mas `cache` e `cache-on-disk` nao
+sao mais forcados globalmente pelo frontend.
+
+Playlists locais sao expandidas pelo frontend e seus itens sao enviados
+individualmente por `loadfile`, preservando ordem, duplicatas filtradas,
+titulos e politica especifica do item.
 
 Se uma URL do YouTube falhar com `unrecognized file format`, teste o extrator
 diretamente. Em muitos casos o problema e autenticacao ou cookies do navegador,

@@ -51,9 +51,10 @@ public partial class MainPlayer
     protected override void OnStartFile()
     {
         Path = GetPropertyString("path");
-        Log.Debug($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}");
+        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(Path);
+        Log.Debug($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}, cacheKind={resolution.Kind}, cacheProfile={resolution.Profile}, cacheEnabled={resolution.IsEnabled}");
         base.OnStartFile();
-        SchedulePlayerTask(_ => LoadFolder());
+        SchedulePlayerTask(LoadFolderAsync);
     }
 
     // executed after OnStartFile

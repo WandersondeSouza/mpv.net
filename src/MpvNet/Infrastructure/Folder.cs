@@ -8,7 +8,9 @@ public static class AppPaths
 {
     public static string Startup { get; } = EnsureTrailingSeparator(AppContext.BaseDirectory);
     public static string LocalAppData { get; } = EnsureTrailingSeparator(
-        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+        Environment.GetEnvironmentVariable("MPVNET_LOCAL_APPDATA") is { Length: > 0 } overridePath
+            ? overridePath
+            : Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
 
     public static string PortableConfig { get; } = Path.Combine(Startup, "portable_config");
     public static string Locale { get; } = Path.Combine(Startup, "Locale");

@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows;
+using System.Runtime.InteropServices;
 
 using MpvNet.Extensions;
 using MpvNet.Windows.WinForms;
@@ -169,36 +170,33 @@ public partial class GuiCommand
     void OpenFromClipboard(IList<string> args)
     {
         bool append = args.Count == 1 && args[0] == "append";
-
-        if (System.Windows.Forms.Clipboard.ContainsFileDropList())
+        try
         {
-            string[] files = System.Windows.Forms.Clipboard.GetFileDropList().Cast<string>().ToArray();
-            Player.LoadFiles(files, false, append);
-
-            if (append)
-                Player.CommandV("show-text", _("Files/URLs were added to the playlist"));
-        }
-        else
-        {
-            string clipboard = System.Windows.Forms.Clipboard.GetText();
-            List<string> files = [];
-
-            foreach (string i in clipboard.Split(BR.ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
+            IReadOnlyList<MediaLoadRequest> requests;
+            if (System.Windows.Forms.Clipboard.ContainsFileDropList())
             {
-                if (FileTypes.IsStreamingUrl(i) || File.Exists(i) || FileTypes.IsSupportedMediaInput(i))
-                    files.Add(i);
+                requests = ClipboardMediaParser.ParseFileDropList(
+                    System.Windows.Forms.Clipboard.GetFileDropList().Cast<string>(), append);
+            }
+            else
+            {
+                requests = ClipboardMediaParser.ParseText(System.Windows.Forms.Clipboard.GetText(), append);
             }
 
-            if (files.Count == 0)
+            if (requests.Count == 0)
             {
                 Terminal.WriteError(_("The clipboard does not contain a valid URL or file."));
                 return;
             }
 
-            Player.LoadFiles(files.ToArray(), false, append);
-
+            Player.LoadFiles(requests.Select(request => request.Input).ToArray(), false, append);
             if (append)
                 Player.CommandV("show-text", _("Files/URLs were added to the playlist"));
+        }
+        catch (ExternalException ex)
+        {
+            Log.Error(ex, "Clipboard could not be read.");
+            Terminal.WriteError(_("The clipboard is temporarily unavailable."));
         }
     }
 
