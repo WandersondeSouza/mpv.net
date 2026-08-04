@@ -2,7 +2,7 @@
 -- The built-in osc.lua is intentionally left untouched.
 
 local overlay = mp.create_osd_overlay("ass-events")
-overlay.z = 100
+overlay.z = 1000
 
 local button = {
     width = 24,
@@ -20,7 +20,7 @@ local last_mouse_x = nil
 local last_mouse_y = nil
 local last_mouse_move = 0
 local auto_hide_timeout = 0.5
-local heart = string.char(0xE2, 0x99, 0xA5)
+local heart = "♥"
 
 local function get_dimensions()
     local dimensions = mp.get_property_native("osd-dimensions") or {}
@@ -89,21 +89,20 @@ local function update()
     end
 
     local mouse_x, mouse_y = get_mouse_position()
-    -- Older bundled libmpv builds may not expose mouse-pos/hover. A valid
-    -- mouse position is enough here; the negative position represents leave.
-    local mouse_hover = mp.get_property_bool("mouse-pos/hover", true) and
-        mouse_x >= 0 and mouse_y >= 0
+    -- Use the coordinates rather than mouse-pos/hover. Some bundled libmpv
+    -- builds keep that flag stale while the embedded OSC is visible.
+    local mouse_in_window = mouse_x >= 0 and mouse_y >= 0
     local visibility_mode = mp.get_property("user-data/osc/visibility") or "auto"
     local hovered = is_inside(mouse_x, mouse_y, width, height)
 
-    if mouse_hover and (mouse_x ~= last_mouse_x or mouse_y ~= last_mouse_y) then
+    if mouse_in_window and (mouse_x ~= last_mouse_x or mouse_y ~= last_mouse_y) then
         last_mouse_x = mouse_x
         last_mouse_y = mouse_y
         last_mouse_move = mp.get_time()
     end
 
     local should_show = visibility_mode == "always" or
-        (visibility_mode == "auto" and mouse_hover and
+        (visibility_mode == "auto" and mouse_in_window and
             (hovered or mp.get_time() - last_mouse_move <= auto_hide_timeout))
 
     if visibility_mode == "never" or not should_show then
@@ -127,7 +126,6 @@ end
 
 mp.observe_property("osd-dimensions", "native", update)
 mp.observe_property("mouse-pos", "native", update)
-mp.observe_property("mouse-pos/hover", "bool", update)
 mp.observe_property("user-data/osc/visibility", "string", update)
 local update_timer = mp.add_periodic_timer(0.1, update)
 update()
