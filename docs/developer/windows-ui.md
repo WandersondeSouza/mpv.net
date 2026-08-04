@@ -61,7 +61,9 @@ O fork adiciona o script independente `mpvnet-donation-osc.lua`, carregado ao
 lado do OSC padrão. Ele desenha apenas um pequeno botão de apoio e encaminha o
 clique para o navegador usando a URL de doação gerada pelo C# com o idioma
 efetivo da interface. O `osc.lua` original e os controles de volume e fullscreen
-não são modificados. Em janelas muito pequenas o botão é ocultado para evitar
+não são modificados. O botão acompanha o modo de visibilidade `auto`, `always`
+ou `never` do OSC e, no modo automático, usa o mesmo ciclo de movimento/hover e
+autocultação da barra. Em janelas muito pequenas o botão é ocultado para evitar
 sobreposição.
 
 ## DPI e escala

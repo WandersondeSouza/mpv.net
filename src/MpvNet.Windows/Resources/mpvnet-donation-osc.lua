@@ -7,13 +7,20 @@ overlay.z = 100
 local button = {
     width = 24,
     height = 24,
-    right = 82,
-    bottom = 16,
+    -- The standard bottombar places the volume and fullscreen buttons on
+    -- this row. Keep the heart immediately before them without covering the
+    -- track-selection indicator.
+    right = 58,
+    bottom = 0,
 }
 
 local visible = false
 local binding_active = false
-local hide_timer = nil
+local last_mouse_x = nil
+local last_mouse_y = nil
+local last_mouse_move = 0
+local auto_hide_timeout = 0.5
+local heart = string.char(0xE2, 0x99, 0xA5)
 
 local function get_dimensions()
     local dimensions = mp.get_property_native("osd-dimensions") or {}
@@ -46,8 +53,8 @@ local function draw_button(width, height, hovered)
     overlay.res_x = width
     overlay.res_y = height
     overlay.data = string.format(
-        "{\\an7\\pos(%d,%d)\\fs20\\fnSegoe UI Symbol\\1c%s\\3c%s\\bord1\\shad0}♥",
-        left + 2, top + 1, color, border)
+        "{\\an7\\pos(%d,%d)\\fs20\\fnSegoe UI Symbol\\1c%s\\3c%s\\bord1\\shad0}%s",
+        left + 2, top + 1, color, border, heart)
     overlay:update()
 end
 
@@ -82,33 +89,42 @@ local function update()
     end
 
     local mouse_x, mouse_y = get_mouse_position()
+    local mouse_hover = mp.get_property_bool("mouse-pos/hover")
+    local visibility_mode = mp.get_property("user-data/osc/visibility") or "auto"
     local hovered = is_inside(mouse_x, mouse_y, width, height)
-    local near_controls = mouse_y >= height * 0.72
 
-    if hovered or near_controls then
-        visible = true
-        draw_button(width, height, hovered)
-        add_binding()
-        if hide_timer then
-            hide_timer:kill()
-            hide_timer = nil
-        end
-    elseif visible then
-        if not hide_timer then
-            hide_timer = mp.add_timeout(1.2, function()
-                visible = false
-                hide_timer = nil
-                remove_binding()
-                clear_overlay()
-            end)
-        end
-    else
+    if mouse_hover and (mouse_x ~= last_mouse_x or mouse_y ~= last_mouse_y) then
+        last_mouse_x = mouse_x
+        last_mouse_y = mouse_y
+        last_mouse_move = mp.get_time()
+    end
+
+    local should_show = visibility_mode == "always" or
+        (visibility_mode == "auto" and mouse_hover and
+            (hovered or mp.get_time() - last_mouse_move <= auto_hide_timeout))
+
+    if visibility_mode == "never" or not should_show then
+        visible = false
         remove_binding()
         clear_overlay()
+        return
+    end
+
+    visible = true
+    draw_button(width, height, hovered)
+
+    -- Only intercept a click while the pointer is over this button. The OSC's
+    -- own forced bindings remain untouched everywhere else.
+    if hovered then
+        add_binding()
+    else
+        remove_binding()
     end
 end
 
 mp.observe_property("osd-dimensions", "native", update)
 mp.observe_property("mouse-pos", "native", update)
+mp.observe_property("mouse-pos/hover", "bool", update)
+mp.observe_property("user-data/osc/visibility", "string", update)
 mp.add_periodic_timer(0.1, update)
 update()
