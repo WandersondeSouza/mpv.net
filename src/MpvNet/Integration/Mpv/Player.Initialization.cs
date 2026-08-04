@@ -69,7 +69,7 @@ public partial class MainPlayer
         SetOptionString("load-context-menu", "no");
         SetPropertyString("screenshot-directory", "~~desktop/");
         SetOptionString("script-opts-append", "osc-idlescreen=no");
-        SetOptionString("script-opts-append", "osc-custom_button_1_content=\u2665");
+        SetOptionString("script-opts-append", "osc-custom_button_1_content={\\fnSegoe UI Symbol}\u2665");
         SetOptionString(
             "script-opts-append",
             "osc-custom_button_1_mbtn_left_command=script-message-to mpvnet shell-execute ${user-data/mpvnet-donation-url}");
