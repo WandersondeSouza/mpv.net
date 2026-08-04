@@ -69,7 +69,10 @@ public partial class MainPlayer
         SetOptionString("load-context-menu", "no");
         SetPropertyString("screenshot-directory", "~~desktop/");
         SetOptionString("script-opts-append", "osc-idlescreen=no");
-        string donationOscScript = System.IO.Path.Combine(AppContext.BaseDirectory, "mpvnet-donation-osc.lua");
+        SetOptionString("script-opts-append", "osc-custom_button_1_content=\u2665");
+        SetOptionString(
+            "script-opts-append",
+            "osc-custom_button_1_mbtn_left_command=script-message-to mpvnet shell-execute ${user-data/mpvnet-donation-url}");
 
         SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
         SetPropertyString("osd-playing-msg", "${media-title}");
@@ -111,9 +114,6 @@ public partial class MainPlayer
 
         SetMpvInitialized();
         SetPropertyString("user-data/mpvnet-donation-url", AppClass.GetDonationUrl(App.Language));
-
-        if (File.Exists(donationOscScript))
-            CommandV("load-script", donationOscScript);
 
         if (formHandle != IntPtr.Zero)
             TrackEventTask(Task.Run(() => MainEventLoop(PlayerCancellationToken), PlayerCancellationToken));

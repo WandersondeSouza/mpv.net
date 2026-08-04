@@ -32,10 +32,6 @@
 
 	<ItemGroup>
 		<Content Include="mpv-icon.ico" />
-		<Content Include="Resources\mpvnet-donation-osc.lua"
-			TargetPath="mpvnet-donation-osc.lua"
-			CopyToOutputDirectory="PreserveNewest"
-			CopyToPublishDirectory="PreserveNewest" />
 		<Resource Include="codec-guide-logo.png" />
 	</ItemGroup>
 

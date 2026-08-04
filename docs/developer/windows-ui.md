@@ -57,14 +57,12 @@ player.
 
 O OSC depende do comportamento da janela.
 
-O fork adiciona o script independente `mpvnet-donation-osc.lua`, carregado ao
-lado do OSC padrão. Ele desenha apenas um pequeno botão de apoio e encaminha o
-clique para o navegador usando a URL de doação gerada pelo C# com o idioma
-efetivo da interface. O `osc.lua` original e os controles de volume e fullscreen
-não são modificados. O botão acompanha o modo de visibilidade `auto`, `always`
-ou `never` do OSC e, no modo automático, usa o mesmo ciclo de movimento/hover e
-autocultação da barra. Em janelas muito pequenas o botão é ocultado para evitar
-sobreposição.
+O fork configura o `custom_button_1` nativo do `osc.lua` para mostrar um pequeno
+coração de apoio. O comando de clique encaminha para o navegador usando a URL
+de doação gerada pelo C# com o idioma efetivo da interface. Como o botão é
+criado pelo próprio OSC, ele usa a mesma visibilidade, hover, autocultação e
+roteamento de mouse dos controles de volume e fullscreen. Em janelas muito
+pequenas o próprio layout do OSC decide quando os controles cabem.
 
 ## DPI e escala
 
