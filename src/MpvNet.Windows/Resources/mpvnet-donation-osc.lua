@@ -11,7 +11,7 @@ local button = {
     -- this row. Keep the heart immediately before them without covering the
     -- track-selection indicator.
     right = 58,
-    bottom = 0,
+    bottom = 4,
 }
 
 local visible = false
@@ -89,7 +89,10 @@ local function update()
     end
 
     local mouse_x, mouse_y = get_mouse_position()
-    local mouse_hover = mp.get_property_bool("mouse-pos/hover")
+    -- Older bundled libmpv builds may not expose mouse-pos/hover. A valid
+    -- mouse position is enough here; the negative position represents leave.
+    local mouse_hover = mp.get_property_bool("mouse-pos/hover", true) and
+        mouse_x >= 0 and mouse_y >= 0
     local visibility_mode = mp.get_property("user-data/osc/visibility") or "auto"
     local hovered = is_inside(mouse_x, mouse_y, width, height)
 
@@ -126,5 +129,5 @@ mp.observe_property("osd-dimensions", "native", update)
 mp.observe_property("mouse-pos", "native", update)
 mp.observe_property("mouse-pos/hover", "bool", update)
 mp.observe_property("user-data/osc/visibility", "string", update)
-mp.add_periodic_timer(0.1, update)
+local update_timer = mp.add_periodic_timer(0.1, update)
 update()
