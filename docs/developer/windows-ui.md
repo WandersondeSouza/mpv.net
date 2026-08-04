@@ -48,6 +48,11 @@ Mudanças podem impactar:
 - menu de contexto;
 - comportamento do cursor.
 
+Quando a janela está em fullscreen, `Esc` é tratado pela camada Windows para
+sair desse modo e não é encaminhado ao mpv como `quit`. Com a janela no tamanho
+normal, o atalho padrão `Esc` continua sendo encaminhado ao mpv para fechar o
+player.
+
 ## OSC
 
 O OSC depende do comportamento da janela.

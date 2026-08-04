@@ -727,6 +727,11 @@ public partial class MainForm : Form
                             ignore = true;
                             ContextMenu.IsOpen = false;
                         }
+                        else if (keyCode == Keys.Escape && (IsFullscreen || Player.Fullscreen))
+                        {
+                            ignore = true;
+                            CycleFullscreen(false);
+                        }
                     }
 
                     if (MpvWindowHandle == IntPtr.Zero)
