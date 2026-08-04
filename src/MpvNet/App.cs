@@ -11,7 +11,7 @@ namespace MpvNet;
 public class AppClass
 {
     const int SelectMenuVersion = 4;
-    const string DonationPortalUrl = "https://www.gestaodesistemas.com.br/doar/mpvnet";
+    const string DonationPortalUrl = "https://www.gestaodesistemas.com.br/mpvnet";
 
     public List<string> TempFiles { get; } = new ();
 
@@ -136,7 +136,7 @@ public class AppClass
             "turkish" => "tr",
             _ => "en"
         };
-        return $"{DonationPortalUrl}?language={Uri.EscapeDataString(publicLanguage)}&source=desktop-app";
+        return $"{DonationPortalUrl}?language={Uri.EscapeDataString(publicLanguage)}";
     }
 
     static string GetLastWriteTime(string path) => $" ({File.GetLastWriteTime(path).ToShortDateString()})";
