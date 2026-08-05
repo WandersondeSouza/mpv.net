@@ -68,11 +68,6 @@ public partial class MainPlayer
         SetPropertyString("config", "yes");
         SetOptionString("load-context-menu", "no");
         SetPropertyString("screenshot-directory", "~~desktop/");
-        SetOptionString("script-opts-append", "osc-idlescreen=no");
-        SetOptionString("script-opts-append", "osc-custom_button_1_content={\\fnSegoe UI Symbol}\u2665");
-        SetOptionString(
-            "script-opts-append",
-            "osc-custom_button_1_mbtn_left_command=script-message-to mpvnet shell-execute ${user-data/mpvnet-donation-url}");
 
         SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
         SetPropertyString("osd-playing-msg", "${media-title}");
@@ -114,6 +109,16 @@ public partial class MainPlayer
 
         SetMpvInitialized();
         SetPropertyString("user-data/mpvnet-donation-url", AppClass.GetDonationUrl(App.Language));
+        SetPropertyString("user-data/mpvnet-website-url", AppClass.GetOfficialWebsiteUrl(App.Language));
+        CommandV("change-list", "script-opts", "append", "osc-idlescreen=no");
+        CommandV("change-list", "script-opts", "append", "osc-custom_button_1_content={\\fnSegoe UI Symbol}\u2665");
+        CommandV(
+            "change-list", "script-opts", "append",
+            "osc-custom_button_1_mbtn_left_command=expand-properties script-message-to mpvnet shell-execute ${user-data/mpvnet-donation-url}");
+        CommandV("change-list", "script-opts", "append", "osc-custom_button_2_content={\\fnSegoe UI Symbol}\U0001F310");
+        CommandV(
+            "change-list", "script-opts", "append",
+            "osc-custom_button_2_mbtn_left_command=expand-properties script-message-to mpvnet shell-execute ${user-data/mpvnet-website-url}");
 
         if (formHandle != IntPtr.Zero)
             TrackEventTask(Task.Run(() => MainEventLoop(PlayerCancellationToken), PlayerCancellationToken));

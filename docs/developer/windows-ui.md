@@ -64,6 +64,15 @@ criado pelo próprio OSC, ele usa a mesma visibilidade, hover, autocultação e
 roteamento de mouse dos controles de volume e fullscreen. Em janelas muito
 pequenas o próprio layout do OSC decide quando os controles cabem.
 
+O `custom_button_2` usa um globo da fonte `Segoe UI Symbol` para abrir a página
+oficial. O C# obtém o idioma efetivo de `App.Language`, monta internamente
+`https://www.gestaodesistemas.com.br/mpvnet?language=<cultura>` e publica o
+resultado em `user-data/mpvnet-website-url`. Os botões são acrescentados a
+`script-opts` depois de `mpv_initialize`, preservando as opções do usuário e
+reutilizando `script-message-to mpvnet shell-execute`. O `osc.lua` original não
+é alterado nem copiado: layout, escala, hover, clique e visibilidade continuam
+sob responsabilidade do OSC nativo.
+
 ## DPI e escala
 
 Mudanças precisam validar:

@@ -622,6 +622,10 @@ var tests = new (string Name, bool Result)[]
     ("Donation portal uses Brazilian Portuguese culture", AppClass.GetDonationUrl("portuguese-brazil") == "https://www.gestaodesistemas.com.br/mpvnet?language=pt-BR"),
     ("Donation portal uses the selected language", AppClass.GetDonationUrl("portuguese-portugal") == "https://www.gestaodesistemas.com.br/mpvnet?language=pt-PT"),
     ("Donation portal falls back to English", AppClass.GetDonationUrl("unknown") == "https://www.gestaodesistemas.com.br/mpvnet?language=en"),
+    ("Official website uses Brazilian Portuguese culture", AppClass.GetOfficialWebsiteUrl("portuguese-brazil") == "https://www.gestaodesistemas.com.br/mpvnet?language=pt-BR"),
+    ("Official website uses United States English culture", AppClass.GetOfficialWebsiteUrl("english") == "https://www.gestaodesistemas.com.br/mpvnet?language=en-US"),
+    ("Official website falls back to Brazilian Portuguese", AppClass.GetOfficialWebsiteUrl("unknown") == "https://www.gestaodesistemas.com.br/mpvnet?language=pt-BR"),
+    ("Official website keeps the fixed HTTPS base and language parameter", AppClass.GetOfficialWebsiteUrl("french") == "https://www.gestaodesistemas.com.br/mpvnet?language=fr-FR"),
     ("Donation portal maps every interface language", new (string Language, string PublicLanguage)[]
     {
         ("bulgarian", "bg"),

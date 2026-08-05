@@ -1,5 +1,6 @@
 
 using CommunityToolkit.Mvvm.Messaging;
+using System.Globalization;
 using System.Text;
 
 using MpvNet.Extensions;
@@ -12,6 +13,7 @@ public class AppClass
 {
     const int SelectMenuVersion = 4;
     const string DonationPortalUrl = "https://www.gestaodesistemas.com.br/mpvnet";
+    const string OfficialWebsiteUrl = "https://www.gestaodesistemas.com.br/mpvnet";
 
     public List<string> TempFiles { get; } = new ();
 
@@ -115,6 +117,21 @@ public class AppClass
     public static string DonationLinkDescription => _("Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support.");
     public static string GitHubSponsorsUrl => "https://github.com/sponsors/stax76";
     public string DonationUrl => GetDonationUrl(Language);
+
+    public static string GetOfficialWebsiteUrl(string? language)
+    {
+        LanguageDefinition? definition = LanguageCatalog.FindInterfaceLanguage(language);
+
+        if (definition == null)
+            return $"{OfficialWebsiteUrl}?language=pt-BR";
+
+        CultureInfo culture = CultureInfo.GetCultureInfo(definition.NormalizedCultureName);
+        string publicLanguage = culture.IsNeutralCulture
+            ? CultureInfo.CreateSpecificCulture(culture.Name).Name
+            : culture.Name;
+
+        return $"{OfficialWebsiteUrl}?language={Uri.EscapeDataString(publicLanguage)}";
+    }
 
     public static string GetDonationUrl(string? language)
     {

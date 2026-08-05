@@ -263,6 +263,7 @@ public partial class MainForm : Form
         App.Language = language;
         TranslationProvider.Current?.Gettext("");
         Player.SetPropertyString("user-data/mpvnet-donation-url", AppClass.GetDonationUrl(App.Language));
+        Player.SetPropertyString("user-data/mpvnet-website-url", AppClass.GetOfficialWebsiteUrl(App.Language));
         Player.SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
         App.EnsureInitialSelectMenuConf();
         RebuildContextMenu();
