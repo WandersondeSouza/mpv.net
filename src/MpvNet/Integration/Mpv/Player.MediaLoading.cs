@@ -38,6 +38,8 @@ public partial class MainPlayer
         LastLoad = DateTime.Now;
         Log.Debug($"Loading media inputs. count={files.Length}, loadFolder={loadFolder}, append={append}, fallback='{Log.SafeValue(fallbackInput)}', inputs={Log.SafeValues(files)}");
 
+        ArmAutoLoadFolder(loadFolder && !append);
+
         for (int i = 0; i < files.Length; i++)
         {
             string file = files[i];
@@ -341,51 +343,58 @@ public partial class MainPlayer
         if (!App.AutoLoadFolder)
             return;
 
-        await Task.Delay(1000, cancellationToken);
-
-        lock (_loadFolderLock)
+        try
         {
-            string path = GetPropertyString("path");
-            Log.Debug($"Auto-load folder check. currentPath='{Log.SafeValue(path)}'");
+            await Task.Delay(1000, cancellationToken);
 
-            if (_isNormalizingAutocreatedPlaylist || !File.Exists(path))
-                return;
-
-            int playlistCount = GetPropertyInt("playlist-count");
-
-            if (playlistCount != 1)
+            lock (_loadFolderLock)
             {
-                NormalizeAutocreatedPlaylist();
-                return;
+                string path = GetPropertyString("path");
+                Log.Debug($"Auto-load folder check. currentPath='{Log.SafeValue(path)}'");
+
+                if (_isNormalizingAutocreatedPlaylist || !File.Exists(path))
+                    return;
+
+                int playlistCount = GetPropertyInt("playlist-count");
+
+                if (playlistCount != 1)
+                {
+                    NormalizeAutocreatedPlaylist();
+                    return;
+                }
+
+                string dir = Environment.CurrentDirectory;
+
+                if (path.Contains(":/") && !path.Contains("://"))
+                    path = path.Replace("/", "\\");
+
+                if (path.Contains('\\'))
+                    dir = System.IO.Path.GetDirectoryName(path)!;
+
+                List<string> files = FileTypes.GetFolderMediaFiles(Directory.GetFiles(dir), path).ToList();
+                Log.Debug($"Auto-load folder found candidate files. directory='{Log.SafeValue(dir)}', count={files.Count}");
+
+                if (OperatingSystem.IsWindows())
+                    files.Sort(new StringLogicalComparer());
+
+                List<PlaylistFileItem> playlistItems = BuildFolderPlaylistItems(files);
+                int index = playlistItems.FindIndex(i => GetPlaylistPathKey(i.Path) == GetPlaylistPathKey(path));
+
+                if (playlistItems.Count == 0)
+                    return;
+
+                playlistItems.RemoveAll(i => GetPlaylistPathKey(i.Path) == GetPlaylistPathKey(path));
+
+                if (playlistItems.Count > 0)
+                    LoadPlaylistItems(playlistItems, true);
+
+                if (index > 0)
+                    CommandV("playlist-move", "0", (index + 1).ToString());
             }
-
-            string dir = Environment.CurrentDirectory;
-
-            if (path.Contains(":/") && !path.Contains("://"))
-                path = path.Replace("/", "\\");
-
-            if (path.Contains('\\'))
-                dir = System.IO.Path.GetDirectoryName(path)!;
-
-            List<string> files = FileTypes.GetFolderMediaFiles(Directory.GetFiles(dir), path).ToList();
-            Log.Debug($"Auto-load folder found candidate files. directory='{Log.SafeValue(dir)}', count={files.Count}");
-
-            if (OperatingSystem.IsWindows())
-                files.Sort(new StringLogicalComparer());
-
-            List<PlaylistFileItem> playlistItems = BuildFolderPlaylistItems(files);
-            int index = playlistItems.FindIndex(i => GetPlaylistPathKey(i.Path) == GetPlaylistPathKey(path));
-
-            if (playlistItems.Count == 0)
-                return;
-
-            playlistItems.RemoveAll(i => GetPlaylistPathKey(i.Path) == GetPlaylistPathKey(path));
-
-            if (playlistItems.Count > 0)
-                LoadPlaylistItems(playlistItems, true);
-
-            if (index > 0)
-                CommandV("playlist-move", "0", (index + 1).ToString());
+        }
+        finally
+        {
+            FinishAutoLoadFolder();
         }
     }
 

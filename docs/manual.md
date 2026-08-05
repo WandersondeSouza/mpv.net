@@ -94,6 +94,10 @@ audio, video e playlists compativeis da mesma pasta. Quando o arquivo aberto e
 uma imagem, o carregamento automatico da pasta adiciona apenas outras imagens
 compativeis da mesma pasta.
 
+Cada abertura de arquivo expande a pasta uma única vez. Se um item da playlist
+falhar durante a reprodução, o mpv.net registra o erro e continua no próximo
+item disponível, sem reconstruir a playlist nem fechar o player.
+
 Playlists locais nos formatos `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`,
 `.wpl`, `.cue` e `.jspf` sao expandidas pelo frontend antes do envio ao
 mpv/libmpv. O mpv.net usa o titulo informado pela playlist quando disponivel,

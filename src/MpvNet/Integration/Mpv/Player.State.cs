@@ -16,6 +16,9 @@ public partial class MainPlayer
     readonly List<Task> _playerTasks = [];
     readonly object _eventTasksLock = new();
     readonly List<Task> _eventTasks = [];
+    readonly object _autoLoadFolderStateLock = new();
+    bool _autoLoadFolderRequested;
+    bool _autoLoadFolderInProgress;
     bool _mpvInitialized;
 
     public PlayerLifecycleState LifecycleState { get; private set; } = PlayerLifecycleState.Created;
@@ -86,6 +89,36 @@ public partial class MainPlayer
     }
 
     internal void SetMpvInitialized() => _mpvInitialized = true;
+
+    internal void ArmAutoLoadFolder(bool enabled)
+    {
+        lock (_autoLoadFolderStateLock)
+            _autoLoadFolderRequested = enabled && !_autoLoadFolderInProgress;
+    }
+
+    internal bool TryConsumeAutoLoadFolderRequest()
+    {
+        lock (_autoLoadFolderStateLock)
+        {
+            if (!_autoLoadFolderRequested || _autoLoadFolderInProgress)
+                return false;
+
+            _autoLoadFolderRequested = false;
+            _autoLoadFolderInProgress = true;
+            return true;
+        }
+    }
+
+    internal void FinishAutoLoadFolder()
+    {
+        lock (_autoLoadFolderStateLock)
+            _autoLoadFolderInProgress = false;
+    }
+
+    internal static bool ShouldAdvanceAfterPlaybackError(int failedPosition, int currentPosition, int playlistCount) =>
+        failedPosition >= 0 &&
+        currentPosition == failedPosition &&
+        failedPosition + 1 < playlistCount;
 
     public string ConfPath { get => ConfigFolder + "mpv.conf"; }
     public string CacheFolder => TemporaryFileCleanup.DefaultCacheFolder + System.IO.Path.DirectorySeparatorChar;

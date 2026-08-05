@@ -1,3 +1,6 @@
+using System.Threading;
+using System.Threading.Tasks;
+
 using MpvNet.Extensions;
 using MpvNet.Help;
 using MpvNet.Native;
@@ -23,22 +26,33 @@ public partial class MainPlayer
 
     protected override void OnEndFile(mpv_event_end_file data)
     {
+        mpv_end_file_reason reason = (mpv_end_file_reason)data.reason;
         string errorText = GetError((mpv_error)data.error);
-        Log.Debug($"mpv end-file event. reason={(mpv_end_file_reason)data.reason}, error={data.error}, errorText='{errorText}', path='{Log.SafeValue(GetPropertyString("path"))}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}");
+        string failedPath = GetPropertyString("path");
+        int failedPosition = GetPropertyInt("playlist-pos");
+        int playlistCount = GetPropertyInt("playlist-count");
+        bool playbackFailed = reason == mpv_end_file_reason.MPV_END_FILE_REASON_ERROR;
+        Log.Debug($"mpv end-file event. reason={reason}, error={data.error}, errorText='{errorText}', path='{Log.SafeValue(failedPath)}', playlistPos={failedPosition}, playlistCount={playlistCount}");
 
-        if ((mpv_end_file_reason)data.reason == mpv_end_file_reason.MPV_END_FILE_REASON_ERROR &&
-            errorText == "unrecognized file format" &&
-            FileTypes.IsStreamingUrl(Path))
+        if (playbackFailed)
         {
-            string hint = IsYouTubeUrl(Path)
+            Log.Error($"Media playback failed; continuing with the next playlist item when available. error='{errorText}', path='{Log.SafeValue(failedPath)}', playlistPos={failedPosition}, playlistCount={playlistCount}");
+            SchedulePlaybackErrorRecovery(failedPosition, failedPath);
+        }
+
+        if (playbackFailed &&
+            errorText == "unrecognized file format" &&
+            FileTypes.IsStreamingUrl(failedPath))
+        {
+            string hint = IsYouTubeUrl(failedPath)
                 ? "YouTube playback usually depends on yt-dlp resolving the stream; browser cookies, an authenticated session, or in some cases a PO Token may be required."
                 : "Streaming playback usually depends on yt-dlp or another resolver being able to access the URL.";
 
-            Log.Error($"Streaming playback failed to resolve. url='{Log.SafeValue(Path)}', hint='{hint}'");
+            Log.Error($"Streaming playback failed to resolve. url='{Log.SafeValue(failedPath)}', hint='{hint}'");
         }
 
         base.OnEndFile(data);
-        FileEnded = true;
+        FileEnded = !playbackFailed;
     }
 
     protected override void OnVideoReconfig()
@@ -54,7 +68,29 @@ public partial class MainPlayer
         NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(Path);
         Log.Debug($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}, cacheKind={resolution.Kind}, cacheProfile={resolution.Profile}, cacheEnabled={resolution.IsEnabled}");
         base.OnStartFile();
-        SchedulePlayerTask(LoadFolderAsync);
+        if (App.AutoLoadFolder && TryConsumeAutoLoadFolderRequest())
+            SchedulePlayerTask(LoadFolderAsync);
+    }
+
+    void SchedulePlaybackErrorRecovery(int failedPosition, string failedPath)
+    {
+        SchedulePlayerTask(async cancellationToken =>
+        {
+            await Task.Delay(150, cancellationToken);
+
+            int currentPosition = GetPropertyInt("playlist-pos");
+            int playlistCount = GetPropertyInt("playlist-count");
+            string currentPath = GetPropertyString("path");
+
+            if (!ShouldAdvanceAfterPlaybackError(failedPosition, currentPosition, playlistCount) ||
+                string.IsNullOrWhiteSpace(currentPath) ||
+                GetPlaylistPathKey(currentPath) != GetPlaylistPathKey(failedPath))
+                return;
+
+            int nextPosition = failedPosition + 1;
+            Log.Error($"Playback remained on failed item; advancing playlist. failedPath='{Log.SafeValue(failedPath)}', failedPosition={failedPosition}, nextPosition={nextPosition}, playlistCount={playlistCount}");
+            SetPropertyInt("playlist-pos", nextPosition);
+        });
     }
 
     // executed after OnStartFile

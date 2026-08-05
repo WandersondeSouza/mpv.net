@@ -280,6 +280,39 @@ public sealed class PlayerLifecycleTests
     }
 }
 
+public sealed class PlayerPlaybackRecoveryTests
+{
+    [Fact]
+    public void AutoLoadFolderRequestIsConsumedOnlyOnce()
+    {
+        MainPlayer player = new();
+
+        player.ArmAutoLoadFolder(true);
+
+        Assert.True(player.TryConsumeAutoLoadFolderRequest());
+        Assert.False(player.TryConsumeAutoLoadFolderRequest());
+
+        player.FinishAutoLoadFolder();
+    }
+
+    [Theory]
+    [InlineData(0, 0, 3)]
+    [InlineData(1, 1, 3)]
+    public void PlaybackErrorAdvancesWhenThereIsAnotherPlaylistItem(int failedPosition, int currentPosition, int playlistCount)
+    {
+        Assert.True(MainPlayer.ShouldAdvanceAfterPlaybackError(failedPosition, currentPosition, playlistCount));
+    }
+
+    [Theory]
+    [InlineData(2, 2, 3)]
+    [InlineData(1, 0, 3)]
+    [InlineData(-1, -1, 3)]
+    public void PlaybackErrorDoesNotAdvanceWhenRecoveryIsUnsafe(int failedPosition, int currentPosition, int playlistCount)
+    {
+        Assert.False(MainPlayer.ShouldAdvanceAfterPlaybackError(failedPosition, currentPosition, playlistCount));
+    }
+}
+
 public sealed class PlayerStateTests
 {
     [Fact]
