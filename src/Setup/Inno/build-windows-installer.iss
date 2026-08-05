@@ -37,7 +37,8 @@ Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 
 [Files]
 Source: "{#MyAppSourceDir}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSourceDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "{#MyAppSourceDir}\Scripts\osc.lua"; DestDir: "{app}\Scripts"; Flags: ignoreversion
+Source: "{#MyAppSourceDir}\*"; DestDir: "{app}"; Excludes: "Scripts\osc.lua"; Flags: ignoreversion recursesubdirs createallsubdirs;
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations audio"; Flags: runhidden waituntilterminated

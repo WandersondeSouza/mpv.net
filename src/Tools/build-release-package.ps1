@@ -246,9 +246,12 @@ $BuildConfiguration = 'Release'
 $EnableFileLoggingValue = if ($EnableFileLogging) { 'true' } else { 'false' }
 $PublishDir64 = Join-Path $SourceDir "MpvNet.Windows\bin\$BuildConfiguration\win-x64\publish\"
 $ProjectFile = Test (Join-Path $SourceDir 'MpvNet.Windows\MpvNet.Windows.csproj')
+$PackageContentValidationScript = Test (Join-Path $SourceDir 'Tools\validate-package-contents.ps1')
 DeleteDir $PublishDir64
 dotnet publish $ProjectFile --self-contained true --configuration $BuildConfiguration --runtime win-x64 --output $PublishDir64 /p:IncludeNativeLibrariesForSelfExtract=false /p:EnsureBuildAssets=false /p:EnableFileLogging=$EnableFileLoggingValue
 if ($LastExitCode) { throw "dotnet publish failed with exit code $LastExitCode" }
+& $PackageContentValidationScript -Path $PublishDir64
+if ($LastExitCode) { throw $LastExitCode }
 $PublishedExeFile64 = Test ($PublishDir64 + 'mpvnet.exe')
 $BinDirX64 = Test (Join-Path $SourceDir "MpvNet.Windows\bin\$BuildConfiguration\win-x64\")
 $EnsureDependenciesScript = Test (Join-Path $SourceDir 'Tools\prepare-native-dependencies.ps1')
@@ -286,7 +289,7 @@ DeleteDir $OutputDir64
 mkdir $OutputDir64
 
 # Copy Files
-Copy-Item ($PublishDir64 + '*') $OutputDir64
+Copy-Item ($PublishDir64 + '*') $OutputDir64 -Recurse -Force
 & $EnsureDependenciesScript @EnsureDependenciesArgs
 if ($LastExitCode) { throw $LastExitCode }
 $ExtraFiles = 'libmpv-2.dll', 'libmpv-2.variant.txt', 'MediaInfo.dll'
@@ -299,6 +302,8 @@ $LocaleDir = EnsureLocale `
 CopyDir $LocaleDir (Join-Path $OutputDir64 'Locale') | Out-Null
 CopyDir $LocaleDir (Join-Path $PublishDir64 'Locale') | Out-Null
 AddPortableConfig $OutputDir64 $DocsDir
+& $PackageContentValidationScript -Path $OutputDir64
+if ($LastExitCode) { throw $LastExitCode }
 
 $NativeValidationScript = Test (Join-Path $SourceDir 'Tools\validate-native-dependencies.ps1')
 & $NativeValidationScript -Path $OutputDir64
@@ -316,6 +321,8 @@ if (-not $SkipPortableZip) {
     Test $ZipOutputFile64
     & $NativeValidationScript -ZipFile $ZipOutputFile64
     if ($LastExitCode) { throw $LastExitCode }
+    & $PackageContentValidationScript -ArchiveFile $ZipOutputFile64
+    if ($LastExitCode) { throw $LastExitCode }
 
     $ReleaseFiles += $ZipOutputFile64
 }
@@ -323,6 +330,8 @@ if (-not $SkipPortableZip) {
 if (-not $SkipInstaller) {
     # Inno Setup
     ''; ''
+    & $PackageContentValidationScript -Path $PublishDir64
+    if ($LastExitCode) { throw $LastExitCode }
     $InnoSetupScript = Test (Join-Path $SourceDir 'Setup\Inno\build-windows-installer.iss')
     & $InnoSetupCompiler "/O$OutputRootDir" $InnoSetupScript
     if ($LastExitCode) { throw $LastExitCode }

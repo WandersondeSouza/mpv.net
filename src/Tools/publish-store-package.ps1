@@ -117,6 +117,10 @@ $SourceDir = Test-PathOrThrow $SourceDir
 New-Item -ItemType Directory -Force $OutputRootDir | Out-Null
 $OutputRootDir = (Resolve-Path $OutputRootDir).Path
 
+if ($PackageCertificateKeyFile) {
+    $PackageCertificateKeyFile = Test-PathOrThrow $PackageCertificateKeyFile
+}
+
 $distributionProps = Join-Path $SourceDir 'MpvNet.Pacote\Packaging.Distribution.props'
 if (Test-Path $distributionProps) {
     Write-Host "Using distribution props from $distributionProps"
@@ -191,3 +195,26 @@ if ($LastExitCode) { throw $LastExitCode }
 Write-Host "Building Store package with $msbuild"
 & $msbuild @($buildArgs + '/t:Build')
 if ($LastExitCode) { throw $LastExitCode }
+
+$packageContentValidationScript = Test-PathOrThrow (Join-Path $SourceDir 'Tools\validate-package-contents.ps1')
+$storePackages = @(Get-ChildItem -LiteralPath $OutputRootDir -Recurse -File |
+    Where-Object { $_.Extension -in @('.msixupload', '.appxupload', '.msixbundle', '.appxbundle') })
+
+if (-not $storePackages.Count) {
+    $storePackages = @(Get-ChildItem -LiteralPath $OutputRootDir -Recurse -File |
+        Where-Object {
+            $_.Extension -in @('.msix', '.appx') -and
+            $_.FullName -notmatch '[\\/]Dependencies[\\/]'
+        })
+}
+
+if (-not $storePackages.Count) {
+    throw "No Microsoft Store package was generated under $OutputRootDir"
+}
+
+foreach ($storePackage in $storePackages) {
+    & $packageContentValidationScript `
+        -ArchiveFile $storePackage.FullName `
+        -RequiredRelativePaths 'MpvNet.Windows\mpvnet.exe', 'MpvNet.Windows\Scripts\osc.lua'
+    if ($LastExitCode) { throw $LastExitCode }
+}

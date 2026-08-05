@@ -160,9 +160,14 @@
   <Target Name="Clean" Condition="'$(HasDesktopBridgeTargets)'!='true'">
     <Message Importance="Low" Text="Nada para limpar em MpvNet.Pacote sem os targets do Desktop Bridge/MSIX." />
   </Target>
-  <Target Name="PrepareMpvNetStorePackageAssets" BeforeTargets="_WritePayloadFiles" Condition="'$(HasDesktopBridgeTargets)'=='true' and Exists('$(MpvNetPackagePublishDir)')">
+  <Target Name="PrepareMpvNetStorePackageAssets" BeforeTargets="_WritePayloadFiles" Condition="'$(HasDesktopBridgeTargets)'=='true'">
+    <Error Condition="!Exists('$(MpvNetPackagePublishDir)')" Text="Diretorio de publicacao do aplicativo nao encontrado para o pacote Store: $(MpvNetPackagePublishDir)" />
     <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\prepare-build-output.ps1&quot; -SourceDir &quot;$(MSBuildThisFileDirectory)..&quot; -TargetDir &quot;$(MSBuildThisFileDirectory)$(MpvNetPackagePublishDir)&quot; -MpvBuildVariant &quot;$(MpvBuildVariant)&quot;" />
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\validate-package-contents.ps1&quot; -Path &quot;$(MSBuildThisFileDirectory)$(MpvNetPackagePublishDir)&quot;" />
     <ItemGroup>
+      <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\Scripts\osc.lua">
+        <TargetPath>MpvNet.Windows\Scripts\osc.lua</TargetPath>
+      </_MpvNetStorePackagePayload>
       <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\libmpv-2.dll">
         <TargetPath>MpvNet.Windows\libmpv-2.dll</TargetPath>
       </_MpvNetStorePackagePayload>

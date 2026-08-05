@@ -67,6 +67,14 @@ Pacotes NuGet versionados em `src/Directory.Packages.props`:
 
 ## Scripts de `src/Tools`
 
+O conteúdo gerenciado obrigatório de toda distribuição é verificado por
+`validate-package-contents.ps1`. A geração falha quando `mpvnet.exe` ou
+`Scripts/osc.lua` não está presente. O fluxo central valida o diretório de
+publicação, a pasta portátil e o ZIP; o Inno Setup impede a compilação do
+instalador sem o OSC. O projeto WAP inclui o script explicitamente no payload e
+`publish-store-package.ps1` inspeciona o pacote final da Microsoft Store,
+inclusive contêineres e bundles aninhados.
+
 Esta e a lista canonica de scripts do fork. Os demais documentos devem apontar para esta secao em vez de repetir a lista inteira.
 
 | Script | Uso |
@@ -77,6 +85,7 @@ Esta e a lista canonica de scripts do fork. Os demais documentos devem apontar p
 | `prepare-native-dependencies.ps1` | dependencias nativas e auxiliares |
 | `prepare-build-output.ps1` | preparo automatico do output no build do app Windows |
 | `validate-native-dependencies.ps1` | validacao de DLLs nativas em pasta ou ZIP |
+| `validate-package-contents.ps1` | validação de `mpvnet.exe`, OSC e demais arquivos gerenciados obrigatórios em pastas e pacotes |
 | `set-release-version.ps1` | atualiza a versao publica em `BuildVersion.props` e grava a versao Store em `Package.appxmanifest` com revisao zero |
 | `publish-emergency-release.ps1` | release emergencial com bump de versao |
 | `update-mpv-runtime.ps1` | atualizacao do runtime mpv |

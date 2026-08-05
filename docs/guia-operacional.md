@@ -216,6 +216,11 @@ Usar quando:
 
 ## Release
 
+Os fluxos de portátil, instalador e Microsoft Store tratam
+`Scripts\osc.lua` como conteúdo obrigatório. `validate-package-contents.ps1`
+interrompe a geração antes da publicação caso o arquivo não esteja presente no
+diretório ou no pacote final.
+
 Fluxo resumido:
 
 1. compilar o projeto;
