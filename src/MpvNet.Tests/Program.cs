@@ -447,7 +447,7 @@ MediaTrackText.AddMediaInfoValue(mediaInfoTrackText, null);
 string[] expectedAudioExts = [
     "mp3", "wav", "flac", "m4a", "aac", "ogg", "opus", "wma",
     "alac", "aiff", "aif", "ape", "wv", "mka", "ac3", "dts",
-    "eac3", "amr"];
+    "eac3", "amr", "m4b", "mid", "midi", "caf", "tta", "tak"];
 
 string[] legacyAudioExts = ["au", "mp2", "mpa", "mpc", "thd", "w64", "oga", "ogm", "dtshd", "dtshr", "dtsma"];
 
@@ -470,12 +470,16 @@ var tests = new (string Name, bool Result)[]
     ("Player lifecycle reaches Destroyed", lifecycleEndsDestroyed),
     ("Player tasks are serialized", playerTasksAreSerialized),
     ("IsVideoFile .mkv", FileTypes.IsVideoFile(".mkv")),
+    ("IsVideoFile .mxf", FileTypes.IsVideoFile(".mxf")),
+    ("IsVideoFile .3gpp", FileTypes.IsVideoFile(".3gpp")),
     ("IsPlaylistFile .m3u8", FileTypes.IsPlaylistFile(".m3u8")),
     ("IsPlaylistFile .cue", FileTypes.IsPlaylistFile(".cue")),
     ("IsPlaylistFile .asx", FileTypes.IsPlaylistFile(".asx")),
     ("IsPlaylistFile .wpl", FileTypes.IsPlaylistFile(".wpl")),
     ("IsPlaylistFile .jspf", FileTypes.IsPlaylistFile(".jspf")),
     ("IsAudioFile .mp3", FileTypes.IsAudioFile(".mp3")),
+    ("IsAudioFile .m4b", FileTypes.IsAudioFile(".m4b")),
+    ("IsAudioFile .midi", FileTypes.IsAudioFile(".midi")),
     ("Default image extensions include avif", imageExts.Contains("avif")),
     ("Default image extensions include jpeg", imageExts.Contains("jpeg")),
     ("Default image extensions include jxl", imageExts.Contains("jxl")),
