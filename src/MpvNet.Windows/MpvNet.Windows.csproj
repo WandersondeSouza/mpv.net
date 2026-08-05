@@ -32,6 +32,10 @@
 
 	<ItemGroup>
 		<Content Include="mpv-icon.ico" />
+		<Content Include="Scripts\osc.lua">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
 		<Resource Include="codec-guide-logo.png" />
 	</ItemGroup>
 

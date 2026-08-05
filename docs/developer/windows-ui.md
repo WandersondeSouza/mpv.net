@@ -57,21 +57,23 @@ player.
 
 O OSC depende do comportamento da janela.
 
-O fork configura o `custom_button_1` nativo do `osc.lua` para mostrar um pequeno
-coração de apoio. O comando de clique encaminha para o navegador usando a URL
-de doação gerada pelo C# com o idioma efetivo da interface. Como o botão é
-criado pelo próprio OSC, ele usa a mesma visibilidade, hover, autocultação e
-roteamento de mouse dos controles de volume e fullscreen. Em janelas muito
-pequenas o próprio layout do OSC decide quando os controles cabem.
+O fork configura o `custom_button_1` para mostrar um coração de apoio. O comando
+de clique encaminha para o navegador usando a URL de doação gerada pelo C# com
+o idioma efetivo da interface. O `osc.lua` mantido em
+`src/MpvNet.Windows/Scripts/osc.lua`, baseado no commit `304426c39` do mpv,
+coloca esse botão na linha inferior do layout `bottombar`, imediatamente antes
+do controle de volume. Ele continua usando a visibilidade, hover, autocultação
+e roteamento de mouse do próprio OSC.
 
 O `custom_button_2` usa um globo da fonte `Segoe UI Symbol` para abrir a página
 oficial. O C# obtém o idioma efetivo de `App.Language`, monta internamente
 `https://www.gestaodesistemas.com.br/mpvnet?language=<cultura>` e publica o
 resultado em `user-data/mpvnet-website-url`. Os botões são acrescentados a
 `script-opts` depois de `mpv_initialize`, preservando as opções do usuário e
-reutilizando `script-message-to mpvnet shell-execute`. O `osc.lua` original não
-é alterado nem copiado: layout, escala, hover, clique e visibilidade continuam
-sob responsabilidade do OSC nativo.
+reutilizando `script-message-to mpvnet shell-execute`. O OSC embutido é
+desabilitado e a cópia compatível distribuída com o aplicativo é carregada em
+seguida; nela, somente o posicionamento do coração no `bottombar` difere da
+fonte oficial. O globo permanece na linha superior.
 
 ## DPI e escala
 

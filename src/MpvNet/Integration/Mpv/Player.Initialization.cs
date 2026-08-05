@@ -71,7 +71,7 @@ public partial class MainPlayer
 
         SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
         SetPropertyString("osd-playing-msg", "${media-title}");
-        SetPropertyString("osc", "yes");
+        SetPropertyString("osc", "no");
         
         UsedInputConfContent = App.InputConf.GetContent();
 
@@ -119,6 +119,7 @@ public partial class MainPlayer
         CommandV(
             "change-list", "script-opts", "append",
             "osc-custom_button_2_mbtn_left_command=expand-properties script-message-to mpvnet shell-execute ${user-data/mpvnet-website-url}");
+        CommandV("load-script", System.IO.Path.Combine(AppContext.BaseDirectory, "Scripts", "osc.lua"));
 
         if (formHandle != IntPtr.Zero)
             TrackEventTask(Task.Run(() => MainEventLoop(PlayerCancellationToken), PlayerCancellationToken));
