@@ -93,8 +93,11 @@
               <uap:FileType>.vpy</uap:FileType>
               <uap:FileType>.y4m</uap:FileType>
               <uap:FileType>.mxf</uap:FileType>
+              <uap:FileType>.m2p</uap:FileType>
               <uap:FileType>.m4p</uap:FileType>
               <uap:FileType>.3gpp</uap:FileType>
+              <uap:FileType>.mpeg2</uap:FileType>
+              <uap:FileType>.mpegts</uap:FileType>
               <uap:FileType>.m3u</uap:FileType>
               <uap:FileType>.m3u8</uap:FileType>
               <uap:FileType>.pls</uap:FileType>
@@ -145,6 +148,11 @@
               <uap:FileType>.caf</uap:FileType>
               <uap:FileType>.tta</uap:FileType>
               <uap:FileType>.tak</uap:FileType>
+              <uap:FileType>.rmi</uap:FileType>
+              <uap:FileType>.ra</uap:FileType>
+              <uap:FileType>.ram</uap:FileType>
+              <uap:FileType>.voc</uap:FileType>
+              <uap:FileType>.spx</uap:FileType>
             </uap:SupportedFileTypes>
           </uap:FileTypeAssociation>
         </uap:Extension>

@@ -13,13 +13,13 @@ public static class FileTypes
         "alac", "aiff", "aif", "ape", "wv", "mka", "ac3", "dts",
         "eac3", "amr", "au", "mp2", "mpa", "mpc", "thd", "w64",
         "oga", "ogm", "dtshd", "dtshr", "dtsma", "m4b", "mid", "midi",
-        "caf", "tta", "tak"];
+        "caf", "tta", "tak", "rmi", "ra", "ram", "voc", "spx"];
     public static string[] DefaultVideoExts { get; } = [
         "mp4", "m4v", "mkv", "webm", "avi", "mov", "qt", "wmv", "asf", "flv", "f4v",
         "mpg", "mpeg", "mpe", "m1v", "m2v", "vob", "ts", "mts", "m2ts", "3gp",
         "3g2", "ogv", "ogg", "rm", "rmvb", "divx", "xvid", "dv", "nut", "nsv",
         "264", "265", "avc", "avs", "dav", "h264", "h265", "hevc", "m2t", "mj2",
-        "mpv", "vpy", "y4m", "mxf", "m4p", "3gpp"];
+        "mpv", "vpy", "y4m", "mxf", "m2p", "m4p", "3gpp", "mpeg2", "mpegts"];
     public static string[] DefaultImageExts { get; } = [
         "avif", "bmp", "gif", "j2k", "jp2", "jpeg", "jpg", "jxl", "png",
         "svg", "tga", "tif", "tiff", "webp"];
