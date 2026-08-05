@@ -79,8 +79,14 @@ public partial class MainPlayer
 
     internal void TrackEventTask(Task task)
     {
-        lock (_eventTasksLock)
-            _eventTasks.Add(task);
+        lock (_destroyLock)
+        {
+            if (_isDestroyed)
+                return;
+
+            lock (_eventTasksLock)
+                _eventTasks.Add(task);
+        }
         task.ContinueWith(completedTask =>
         {
             lock (_eventTasksLock)

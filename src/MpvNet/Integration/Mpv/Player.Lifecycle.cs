@@ -16,36 +16,39 @@ public partial class MainPlayer
 
             _isDestroyed = true;
             LifecycleState = PlayerLifecycleState.Destroyed;
-            Log.Debug("Destroying mpv player.");
-
-            _playerCancellation.Cancel();
-            Task[] playerTasks;
-            lock (_playerTasksLock)
-                playerTasks = [.. _playerTasks];
-            lock (_eventTasksLock)
-                playerTasks = [.. playerTasks, .. _eventTasks];
-
-            try
-            {
-                Task.WhenAll(playerTasks).Wait(TimeSpan.FromSeconds(5));
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Player background tasks did not finish during shutdown.");
-            }
-
-            nint mainHandle = MainHandle;
-            nint clientHandle = Handle;
-            DestroyHandle(clientHandle);
-            DestroyMainHandle(mainHandle);
-            MainHandle = IntPtr.Zero;
-            Handle = IntPtr.Zero;
-
-            foreach (MpvClient client in Clients)
-                client.DestroyHandle();
-
-            Clients.Clear();
         }
+
+        Log.Debug("Destroying mpv player.");
+
+        BeginShutdown();
+        foreach (MpvClient client in Clients)
+            client.BeginShutdown();
+
+        _playerCancellation.Cancel();
+        Task[] playerTasks;
+        lock (_playerTasksLock)
+            playerTasks = [.. _playerTasks];
+        lock (_eventTasksLock)
+            playerTasks = [.. playerTasks, .. _eventTasks];
+
+        try
+        {
+            Task.WhenAll(playerTasks).GetAwaiter().GetResult();
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Player background tasks did not finish during shutdown.");
+        }
+
+        foreach (MpvClient client in Clients)
+            client.DestroyHandle();
+
+        Clients.Clear();
+        base.DestroyHandle();
+
+        nint mainHandle = MainHandle;
+        DestroyMainHandle(mainHandle);
+        MainHandle = IntPtr.Zero;
     }
 
     void DestroyMainHandle(nint handle)
@@ -59,20 +62,18 @@ public partial class MainPlayer
             mpv_destroy(handle);
     }
 
-    static void DestroyHandle(nint handle)
-    {
-        if (handle == IntPtr.Zero)
-            return;
-
-        mpv_destroy(handle);
-    }
-
     public void MainEventLoop(CancellationToken cancellationToken)
     {
-        nint handle = MainHandle;
-        while (handle != IntPtr.Zero && !cancellationToken.IsCancellationRequested)
+        while (!cancellationToken.IsCancellationRequested && TryEnterNativeOperation(out IDisposable? operation))
         {
-            mpv_wait_event(handle, 0.1);
+            using (operation)
+            {
+                nint handle = MainHandle;
+                if (handle == IntPtr.Zero)
+                    return;
+
+                mpv_wait_event(handle, 0.1);
+            }
         }
     }
 

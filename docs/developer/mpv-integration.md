@@ -58,16 +58,18 @@ Fluxo principal em `Player.Initialization.cs`:
 12. dispara o estado pronto para a UI.
 
 O estado do player é explícito (`Created`, `Initializing`, `Running`, `Shutdown` e
-`Destroyed`). Os loops nativos recebem o cancelamento da instância e usam uma
-espera limitada, permitindo que `Destroy` cancele e aguarde as tarefas antes de
-encerrar os handles. O handle principal inicializado é encerrado com
-`mpv_terminate_destroy`; handles de clientes são destruídos antes dele.
+`Destroyed`). Ao iniciar `Destroy`, cada cliente fecha seu gate de lifetime antes
+do cancelamento: novas chamadas de propriedade, comando, opção ou observação são
+rejeitadas, enquanto uma chamada nativa já iniciada termina sob o gate. Os
+callbacks de eventos ficam fora do lock para poderem consultar o wrapper sem
+deadlock; tarefas e loops são aguardados antes de destruir qualquer handle. O
+handle principal inicializado é encerrado com `mpv_terminate_destroy`; handles de
+clientes são destruídos antes dele.
 
 As tarefas de playlist e metadata são serializadas por instância do player e
-canceladas durante o fechamento. Isso impede que uma leitura atrasada de
-MediaInfo ou uma normalização antiga continue consultando libmpv depois da
-destruição do player, mantendo essas operações serializadas durante a troca de
-mídia.
+canceladas durante o fechamento. Uma tarefa atrasada pode terminar sem executar
+`GetProperty*`, `SetProperty*` ou `Command*` depois do início de `Destroy`,
+mantendo essas operações serializadas durante a troca de mídia e o encerramento.
 
 ## Eventos, propriedades e comandos
 

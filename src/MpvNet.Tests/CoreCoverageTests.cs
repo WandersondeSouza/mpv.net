@@ -278,6 +278,93 @@ public sealed class PlayerLifecycleTests
         Assert.Equal(IntPtr.Zero, player.MainHandle);
         Assert.Equal(IntPtr.Zero, player.Handle);
     }
+
+    [Fact]
+    public void DestroyRejectsNativeOperations()
+    {
+        MainPlayer player = new();
+
+        player.Destroy();
+
+        Assert.False(player.TryEnterNativeOperation(out IDisposable? operation));
+        Assert.Null(operation);
+        Assert.False(player.GetPropertyBool("idle"));
+        Assert.Equal(0, player.GetPropertyInt("playlist-pos"));
+        Assert.Equal(0L, player.GetPropertyLong("playlist-pos"));
+        Assert.Equal(0d, player.GetPropertyDouble("duration"));
+        Assert.Empty(player.GetPropertyString("path"));
+        Assert.Empty(player.GetPropertyOsdString("path"));
+
+        player.SetPropertyBool("pause", true);
+        player.SetPropertyInt("playlist-pos", 1);
+        player.SetPropertyLong("wid", 1);
+        player.SetPropertyDouble("volume", 50);
+        player.SetPropertyString("path", "ignored");
+        player.SetOptionString("idle", "yes");
+        player.Command("quit");
+        player.CommandV("quit");
+        Assert.Equal("property expansion error", player.Expand("${path}"));
+
+        player.ObservePropertyInt("playlist-pos", _ => { });
+        Assert.Empty(player.IntPropChangeActions);
+    }
+
+    [Fact]
+    public void DestroyWaitsForActiveNativeOperation()
+    {
+        MainPlayer player = new();
+        Assert.True(player.TryEnterNativeOperation(out IDisposable? operation));
+
+        Task destroyTask = Task.Run(player.Destroy);
+        Assert.False(destroyTask.Wait(TimeSpan.FromMilliseconds(100)));
+
+        operation!.Dispose();
+
+        Assert.True(destroyTask.Wait(TimeSpan.FromSeconds(2)));
+        Assert.Equal(PlayerLifecycleState.Destroyed, player.LifecycleState);
+    }
+
+    [Fact]
+    public void DestroyWaitsForPendingPropertyTaskAndRejectsItsLateRead()
+    {
+        MainPlayer player = new();
+        using ManualResetEventSlim taskStarted = new();
+        using ManualResetEventSlim releaseTask = new();
+        string latePropertyValue = "not-finished";
+
+        player.SchedulePlayerTask(_ =>
+        {
+            taskStarted.Set();
+            releaseTask.Wait();
+            latePropertyValue = player.GetPropertyString("path");
+        });
+
+        Assert.True(taskStarted.Wait(TimeSpan.FromSeconds(2)));
+        Task destroyTask = Task.Run(player.Destroy);
+        Assert.False(destroyTask.Wait(TimeSpan.FromMilliseconds(100)));
+
+        releaseTask.Set();
+
+        Assert.True(destroyTask.Wait(TimeSpan.FromSeconds(2)));
+        Assert.Empty(latePropertyValue);
+    }
+
+    [Fact]
+    public void EventLoopsFinishBeforeDestroy()
+    {
+        MainPlayer player = new();
+        using CancellationTokenSource cancellation = new();
+        Task clientLoop = Task.Run(() => player.EventLoop(cancellation.Token));
+        Task mainLoop = Task.Run(() => player.MainEventLoop(cancellation.Token));
+        player.TrackEventTask(clientLoop);
+        player.TrackEventTask(mainLoop);
+
+        Assert.True(Task.WhenAll(clientLoop, mainLoop).Wait(TimeSpan.FromSeconds(2)));
+        player.Destroy();
+
+        Assert.True(clientLoop.IsCompletedSuccessfully);
+        Assert.True(mainLoop.IsCompletedSuccessfully);
+    }
 }
 
 public sealed class PlayerPlaybackRecoveryTests
