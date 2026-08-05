@@ -13,7 +13,7 @@ Optional parameters:
     -SkipInstaller Skips Inno Setup package generation.
     -SkipGitHubRelease Creates local artifacts without publishing a GitHub release.
     -EnableFileLogging Builds a diagnostic package with file logging enabled. Default: disabled.
-    -MpvBuildVariant mpv/libmpv build variant. Default: x86_64-v3. Use normal only when compatibility with older x64 CPUs is required.
+    -MpvBuildVariant mpv/libmpv build variant. Default: normal. Use x86_64-v3 only for CPUs with the required instruction set.
     -MediaInfoFile Optional override path to MediaInfo.dll. Defaults to automatic MediaArea download when missing.
     -MediaInfoVersion Optional MediaInfo version pin, for example 26.05. Defaults to the latest stable x64 DLL archive listed by MediaArea.
     -MpvNetComFile Optional override path to mpvnet.com. Defaults to the upstream helper download.
@@ -48,7 +48,7 @@ param(
     [switch] $EnableFileLogging,
 
     [ValidateSet('normal', 'x86_64-v3')]
-    [string] $MpvBuildVariant = $(if ($env:MPVNET_MPV_BUILD_VARIANT) { $env:MPVNET_MPV_BUILD_VARIANT } else { 'x86_64-v3' }),
+    [string] $MpvBuildVariant = $(if ($env:MPVNET_MPV_BUILD_VARIANT) { $env:MPVNET_MPV_BUILD_VARIANT } else { 'normal' }),
 
     [string] $MediaInfoFile,
 

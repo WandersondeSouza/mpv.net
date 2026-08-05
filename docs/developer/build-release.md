@@ -22,7 +22,7 @@ Para execução:
 
 - Windows;
 - SDK .NET 10.0 para publicar self-contained `win-x64`;
-- `libmpv-2.dll` x64, usando por padrao a build 64bit-v3 do mpv/libmpv;
+- `libmpv-2.dll` x64, usando por padrao a build normal do mpv/libmpv;
 - `MediaInfo.dll` x64 baixada da MediaArea oficial durante a release;
 - `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe` baixados sob demanda para `%LOCALAPPDATA%\mpv.net\Component` pelo player;
 - arquivos de `Locale`, quando aplicável.
@@ -37,7 +37,7 @@ Para release:
 
 Observacao: Inno Setup, GitHub CLI e `GH_TOKEN` deixam de ser obrigatorios quando o script e executado, respectivamente, com `-SkipInstaller` e `-SkipGitHubRelease`.
 Os downloads de dependencias nativas e auxiliares ficam em `artifacts\native-dependencies\downloads` e sao reutilizados por ate 20 dias. Se o arquivo nao existir ou estiver mais antigo, o script baixa novamente a versao mais recente encontrada nas fontes configuradas.
-O parametro `-MpvBuildVariant x86_64-v3` e o padrao do fork e baixa a build 64bit-v3 do mpv/libmpv, que continua fornecendo `libmpv-2.dll`, mas exige CPU compativel com x86_64-v3, como Intel Haswell/AMD Excavator ou mais recente. Use `-MpvBuildVariant normal` apenas quando precisar gerar pacote para CPUs x64 mais antigas.
+O parametro `-MpvBuildVariant normal` e o padrao do fork e baixa a build x64 normal do mpv/libmpv, mantendo compatibilidade com CPUs x64 mais antigas. Use `-MpvBuildVariant x86_64-v3` apenas para gerar uma variante otimizada em CPUs compativeis com x86_64-v3, como Intel Haswell/AMD Excavator ou mais recente.
 
 ---
 
@@ -365,7 +365,7 @@ As dependencias baixadas automaticamente usam estas fontes:
 - DLLs WPF/.NET e `vcruntime140_cor3.dll`: publish self-contained oficial do SDK .NET Desktop/WPF.
 - Gettext.Tools: `https://api.nuget.org/v3-flatcontainer/gettext.tools/`, usado para obter `msgfmt.exe` e gerar `Locale` quando `msgfmt.exe` nao esta no `PATH`.
 
-O script usa o asset `x86_64-v3` de libmpv por padrao. Para preservar compatibilidade com CPUs x64 mais antigas, gere explicitamente com `-MpvBuildVariant normal` ou `MPVNET_MPV_BUILD_VARIANT=normal`. A variante escolhida nao altera o nome da DLL nem a ABI esperada pelo P/Invoke. Se o GitHub mudar os nomes dos assets, se a MediaArea mudar o link de download, se o NuGet mudar a resolucao de `Gettext.Tools`, se o download falhar, se a extracao falhar, se algum arquivo baixado estiver vazio ou se uma DLL obrigatoria nao for x64, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` pode ser pinada por `-MediaInfoVersion`/`MPVNET_MEDIAINFO_VERSION` ou sobrescrita por `-MediaInfoFile`.
+O script usa o asset normal de libmpv por padrao. Para gerar a variante otimizada, use explicitamente `-MpvBuildVariant x86_64-v3` ou `MPVNET_MPV_BUILD_VARIANT=x86_64-v3`. A variante escolhida nao altera o nome da DLL nem a ABI esperada pelo P/Invoke. Se o GitHub mudar os nomes dos assets, se a MediaArea mudar o link de download, se o NuGet mudar a resolucao de `Gettext.Tools`, se o download falhar, se a extracao falhar, se algum arquivo baixado estiver vazio ou se uma DLL obrigatoria nao for x64, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` pode ser pinada por `-MediaInfoVersion`/`MPVNET_MEDIAINFO_VERSION` ou sobrescrita por `-MediaInfoFile`.
 
 Smoke test das duas variantes de dependencias:
 

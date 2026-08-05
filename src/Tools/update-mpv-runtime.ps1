@@ -68,7 +68,7 @@ if (Test-Path (Join-Path $MpvDirX64 'mpv.exe')) {
 
 if (Test-Path (Join-Path $LibmpvDirX64 'libmpv-2.dll')) {
     $apiURL = "https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest"
-    $archiveFile = Get-Item (Download $apiURL "mpv-dev-x86_64-v3-[0-9]{8}-git-[0-9a-z]+\.7z")
+    $archiveFile = Get-Item (Download $apiURL "mpv-dev-x86_64-[0-9]{8}-git-[0-9a-z]+\.7z")
     $archiveDir = Unpack $archiveFile $env:TEMP
     Copy-Item $archiveDir\libmpv-2.dll $LibmpvDirX64 -Force
     Remove-Item $archiveFile.FullName

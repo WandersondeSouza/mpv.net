@@ -19,7 +19,7 @@
 		<AssemblyVersion>$(MpvNetVersion)</AssemblyVersion>
 		<InformationalVersion>$(MpvNetVersion)</InformationalVersion>
 		<EnsureBuildAssets>true</EnsureBuildAssets>
-		<MpvBuildVariant Condition="'$(MpvBuildVariant)' == ''">x86_64-v3</MpvBuildVariant>
+		<MpvBuildVariant Condition="'$(MpvBuildVariant)' == ''">normal</MpvBuildVariant>
 		<StartupObject>MpvNet.Windows.Program</StartupObject>
 	</PropertyGroup>
 
