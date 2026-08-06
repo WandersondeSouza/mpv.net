@@ -238,7 +238,11 @@ static class Program
     {
         Log.Debug("Starting runtime component bootstrap in background.");
         BackgroundTaskRunner.Run(
-            RuntimeComponents.EnsureComponentsAsync,
+            async cancellationToken =>
+            {
+                await RuntimeComponents.EnsureComponentsAsync(cancellationToken).ConfigureAwait(false);
+                Player.RefreshYtDlpPathAfterComponentBootstrap();
+            },
             _applicationCancellation.Token,
             ex => Log.Error(ex, "Component bootstrap failed."));
     }

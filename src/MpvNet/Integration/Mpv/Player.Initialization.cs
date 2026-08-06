@@ -25,8 +25,19 @@ public partial class MainPlayer
             return;
         }
 
-        SetOptionString("ytdl-path", resolution.ResolvedPath);
+        if (_mpvInitialized)
+            SetPropertyString("ytdl-path", resolution.ResolvedPath);
+        else
+            SetOptionString("ytdl-path", resolution.ResolvedPath);
         Log.Debug($"Configured mpv ytdl-path from resolved component. source={resolution.Source}, path='{Log.SafeValue(resolution.ResolvedPath)}'");
+    }
+
+    public void RefreshYtDlpPathAfterComponentBootstrap()
+    {
+        if (!_mpvInitialized)
+            return;
+
+        SchedulePlayerTask(_ => ConfigureYtDlpPath());
     }
 
     bool HasConfiguredMpvOption(string optionName)
