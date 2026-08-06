@@ -11,6 +11,9 @@ namespace MpvNet.Native;
 public static class LibMpv
 {
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ulong mpv_client_api_version();
+
+    [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
     public static extern nint mpv_create();
 
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]

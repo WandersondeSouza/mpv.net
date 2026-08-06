@@ -3,6 +3,8 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
+using MpvNet.Native;
+
 namespace MpvNet;
 
 /// <summary>
@@ -11,6 +13,8 @@ namespace MpvNet;
 /// </summary>
 public static class RuntimeComponents
 {
+    static int _nativeResolverRegistered;
+
     public static string ComponentsFolder => RuntimeComponentPaths.ComponentsFolder;
     public static string TempFolder => RuntimeComponentPaths.TempFolder;
 
@@ -38,7 +42,18 @@ public static class RuntimeComponents
 
     public static void RegisterNativeResolver()
     {
-        NativeLibrary.SetDllImportResolver(typeof(RuntimeComponents).Assembly, ResolveNativeLibrary);
+        if (Interlocked.CompareExchange(ref _nativeResolverRegistered, 1, 0) != 0)
+            return;
+
+        try
+        {
+            NativeLibrary.SetDllImportResolver(typeof(LibMpv).Assembly, ResolveNativeLibrary);
+        }
+        catch
+        {
+            Volatile.Write(ref _nativeResolverRegistered, 0);
+            throw;
+        }
     }
 
     internal static string? ResolveNativeLibraryPath(string libraryName)
@@ -47,8 +62,7 @@ public static class RuntimeComponents
             ? libraryName
             : libraryName + ".dll";
 
-        if (!fileName.Equals("libmpv-2.dll", StringComparison.OrdinalIgnoreCase) &&
-            !fileName.Equals("MediaInfo.dll", StringComparison.OrdinalIgnoreCase))
+        if (!fileName.Equals("MediaInfo.dll", StringComparison.OrdinalIgnoreCase))
             return null;
 
         string candidate = ResolveComponentPath(fileName);
@@ -60,13 +74,29 @@ public static class RuntimeComponents
         return RuntimeComponentService.EnsureComponentsAsync(cancellationToken);
     }
 
+    public static string DiagnoseLibMpv()
+    {
+        LibMpvDiagnosticResult diagnostic = LibMpvDiagnostics.Run();
+        LibMpvLoadDiagnostics selection = diagnostic.Selection;
+        return
+            $"CPU x86-64-v3 compatible: {selection.CpuCompatibleWithX86_64V3}; " +
+            $"selected DLL: {selection.LoadedFile}; " +
+            $"path: {selection.LoadedPath}; " +
+            $"fallback: {selection.FallbackUsed}; " +
+            $"libmpv API: 0x{diagnostic.ClientApiVersion:X}; " +
+            $"mpv_create: {diagnostic.MpvCreateSucceeded}";
+    }
+
     public static string ResolveComponentPath(string fileName)
     {
         return RuntimeComponentPathResolver.Resolve(fileName);
     }
 
-    static IntPtr ResolveNativeLibrary(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
+    internal static IntPtr ResolveNativeLibrary(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
     {
+        if (LibMpvRuntime.IsExpectedLibraryName(libraryName))
+            return LibMpvRuntime.LoadSelectedLibrary();
+
         string? candidate = ResolveNativeLibraryPath(libraryName);
         return candidate is not null
             ? NativeLibrary.Load(candidate)

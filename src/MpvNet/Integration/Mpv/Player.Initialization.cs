@@ -12,6 +12,7 @@ public partial class MainPlayer
 {
     public void Init(IntPtr formHandle, bool processCommandLine)
     {
+        RuntimeComponents.RegisterNativeResolver();
         LifecycleState = PlayerLifecycleState.Initializing;
         Log.Debug($"Initializing mpv player. formHandle={formHandle}, processCommandLine={processCommandLine}");
         App.ApplyShowMenuFix();

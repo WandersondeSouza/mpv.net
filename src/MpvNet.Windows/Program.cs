@@ -22,7 +22,6 @@ static class Program
         try
         {
             AppPaths.EnsureLocalDirectories();
-            RuntimeComponents.EnsureComponentsFolderOnPath();
             RuntimeComponents.RegisterNativeResolver();
             Log.Debug("Application starting.");
             RegistryHelp.ProductName = AppInfo.Product;
@@ -56,6 +55,12 @@ static class Program
 
             string[] args = Environment.GetCommandLineArgs().Skip(1).ToArray();
             Log.Debug($"Command line arguments received: count={args.Length}, args={Log.SafeValues(args)}");
+
+            if (args.Length == 1 && args[0] == "--diagnose-libmpv")
+            {
+                Console.WriteLine(RuntimeComponents.DiagnoseLibMpv());
+                return;
+            }
 
             if (args.Length > 1 && args[0] == "--register-file-associations")
             {
