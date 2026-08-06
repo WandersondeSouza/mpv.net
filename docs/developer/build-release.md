@@ -74,6 +74,9 @@ publicação, a pasta portátil e o ZIP; o Inno Setup impede a compilação do
 instalador sem o OSC. O projeto WAP inclui o script explicitamente no payload e
 `publish-store-package.ps1` inspeciona o pacote final da Microsoft Store,
 inclusive contêineres e bundles aninhados.
+Quando um payload incluir auxiliares opcionais, o validador também rejeita
+arquivos vazios e um bundle FFmpeg parcial; a ausência completa continua
+permitida para a política de download sob demanda.
 
 Esta e a lista canonica de scripts do fork. Os demais documentos devem apontar para esta secao em vez de repetir a lista inteira.
 
@@ -158,7 +161,7 @@ dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj -c Release
 Esse alvo chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll` e `libmpv-2-v3.dll` na pasta da configuração compilada. Ele baixa apenas o que estiver faltando e mantém as duas DLLs com revisões upstream idênticas. O fluxo novo do player passa a manter `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` em `%LOCALAPPDATA%\mpv.net\Component` quando necessario. O `yt-dlp.exe` fica sob responsabilidade do bootstrap do player em runtime. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained.
 
 No runtime, o player passa a usar `%LOCALAPPDATA%\mpv.net\Component` como cache de componentes baixados antes da interface abrir, com fallback para os binarios que vierem junto da instalacao. O contrato desta etapa preserva `libmpv-2.dll`, `libmpv-2-v3.dll`, `MediaInfo.dll` e as DLLs do runtime ao lado do executavel, enquanto `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` migram para a pasta de componente quando a rede estiver disponivel. O bootstrap trata `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe` como um bundle unico: valida o digest do ZIP compartilhado uma vez, extrai os tres binarios do mesmo archive e grava a freshness desse grupo em `ffmpeg-bundle.json`. O `yt-dlp.exe` continua com validação direta do proprio binario quando e renovado pelo player.
-Em pacote MSIX/Microsoft Store, esse caminho deve ser entendido como a visao de LocalAppData disponivel para o aplicativo empacotado; o Windows pode virtualizar escritas em AppData para uma area privada do pacote. O aplicativo nao deve solicitar `broadFileSystemAccess` para esse fluxo, porque os componentes pertencem ao proprio app e continuam sob o cache `Component`.
+Em pacote MSIX/Microsoft Store, esse caminho deve ser entendido como a visao de LocalAppData disponivel para o aplicativo empacotado; o Windows pode virtualizar escritas em AppData para uma area privada do pacote. O aplicativo nao deve solicitar `broadFileSystemAccess` para esse fluxo, porque os componentes pertencem ao proprio app e continuam sob o cache `Component`. A pasta do pacote e somente leitura: o bootstrap nunca a atualiza. Antes de cada submissão Store, confirme no Partner Center que a atualização de executáveis auxiliares baixados está coerente com a funcionalidade declarada e com as políticas vigentes; a aprovação de um build MSIX local não é prova de certificação.
 
 Para publicar como o script de release atual faz:
 

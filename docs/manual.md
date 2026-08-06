@@ -162,12 +162,13 @@ frontend tenta enviar a midia bruta ao mpv/libmpv; o titulo informado por linha
 de comando e aplicado como metadado visual, nao como requisito de playlist.
 
 Os componentes auxiliares de runtime usam o cache local em
-`%LOCALAPPDATA%\mpv.net\Component`. Nesse fluxo, `libmpv-2.dll`,
+`%LOCALAPPDATA%\mpv.net\Component\current`. Nesse fluxo, `libmpv-2.dll`,
 `libmpv-2-v3.dll` e `MediaInfo.dll` continuam ao lado do executavel ou no pacote preparado, enquanto
 `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` podem
-ser baixados e atualizados pelo player quando necessario. O bootstrap grava
-primeiro em `%LOCALAPPDATA%\mpv.net\Temp\RuntimeComponents`, limpa esse staging
-na abertura e apaga os arquivos temporarios depois que o processo termina.
+ser baixados e atualizados pelo player quando necessario. Uma cópia válida no
+cache é preferida; depois o player tenta a pasta do executável e, por último,
+o `PATH`. Downloads são feitos em `Component\staging`, validados e promovidos
+como uma geração completa, sem substituir diretamente arquivos em uso.
 
 Exemplo:
 

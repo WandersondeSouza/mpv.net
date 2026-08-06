@@ -60,9 +60,10 @@ Cache e logs:
 | Pasta | Função |
 | --- | --- |
 | `%LOCALAPPDATA%\mpv.net\Cache` | Cache temporário do mpv para demuxer, ICC e shaders; o cache de rede em disco é usado durante a reprodução e removido ao fechar a mídia. |
-| `%LOCALAPPDATA%\mpv.net\Component` | Componentes nativos baixados/atualizados em segundo plano, com fallback para os binários que vierem junto do app. |
+| `%LOCALAPPDATA%\mpv.net\Component\current` | Geração válida atual dos componentes auxiliares baixados e seus manifestos. |
+| `%LOCALAPPDATA%\mpv.net\Component\staging` | Downloads e extrações temporárias, removidos depois de promover ou falhar. |
+| `%LOCALAPPDATA%\mpv.net\Component` | Local legado: continua sendo lido como fallback até uma atualização válida migrar os arquivos para `current`. |
 | `%LOCALAPPDATA%\mpv.net\Temp` | Arquivos temporários criados pelo frontend, como playlists normalizadas. |
-| `%LOCALAPPDATA%\mpv.net\Temp\RuntimeComponents` | Downloads e extrações temporárias antes da instalação dos arquivos em `Component`. |
 | `%LOCALAPPDATA%\mpv.net\Logs` | Logs diários quando o build é gerado com logging em arquivo habilitado. |
 
 Esses diretórios são centralizados em `AppPaths` e criados no início da
@@ -72,6 +73,42 @@ para a area privada do pacote. A regra do fork continua sendo usar o caminho
 `%LOCALAPPDATA%\mpv.net` visto pelo processo, sem permissao ampla de sistema de
 arquivos, e registrar em log os caminhos reais usados pelo bootstrap de
 componentes.
+
+## Componentes auxiliares de runtime
+
+Os componentes `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `mpvnet.com` e
+`yt-dlp.exe` não dependem do diretório de trabalho. A resolução preserva a
+política histórica de preferir o cache validado e segue esta ordem:
+
+1. `%LOCALAPPDATA%\mpv.net\Component\current`;
+2. cache legado `%LOCALAPPDATA%\mpv.net\Component`;
+3. pasta de `mpvnet.exe` (`AppContext.BaseDirectory`);
+4. `PATH` do processo, apenas como último fallback.
+
+Todo candidato é convertido para caminho absoluto, precisa existir e os cinco
+executáveis precisam ser PE x64 não vazio. Um arquivo HTML, truncado, x86 ou
+corrompido não é escolhido. O `yt-dlp.exe` resolvido é passado ao mpv pelo
+`ytdl-path`; um `ytdl-path` explícito em linha de comando ou `mpv.conf` mantém
+precedência.
+
+As atualizações usam uma geração em `staging`, verificam HTTPS, host permitido,
+tamanho, SHA-256 publicado, ZIP Slip e PE x64, e só então renomeiam a geração
+completa para `current`. O conjunto FFmpeg é promovido junto, com manifesto
+`ffmpeg-bundle.json` e hashes individuais. Um mutex por usuário impede duas
+instâncias de alterarem o cache ao mesmo tempo; em falha a geração anterior é
+mantida. Os manifestos diretos ficam ao lado do binário (`yt-dlp.exe.json` e
+`mpvnet.com.json`) e registram versão/asset, hash, URL, data, tamanho e
+arquitetura.
+
+Para diagnóstico sem download nem escrita, execute:
+
+```powershell
+mpvnet.exe --diagnose-components
+```
+
+O comando informa a origem, caminho absoluto, versão e resultado da validação.
+O frontend não inicia `mpvnet.com`: o arquivo apenas é resolvido e validado,
+pois não há consumidor de runtime que justifique executá-lo.
 
 Para scripts como `thumbfast`, a versão portátil deve usar `portable_config/scripts` e `portable_config/script-opts`. No mpv.net v7, `thumbfast` tem suporte direto; `mpv_path` para um `mpv.exe` separado deve ser tratado como fallback para versões antigas ou casos específicos documentados pelo próprio script.
 
