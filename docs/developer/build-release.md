@@ -4,7 +4,7 @@
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **MPV.NET Media Player**.
 
-> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale, validacao de dependencias nativas e validacao do pacote MSIX/WAP no Visual Studio 2026 Community. A versao atual preparada para publicacao e `7.1.13.1`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
+> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale, validacao de dependencias nativas e validacao do pacote MSIX/WAP no Visual Studio 2026 Community. A versao atual preparada para publicacao e `7.1.14.1`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
 
 ---
 
@@ -449,7 +449,7 @@ pacote gerado.
 A versão publica está centralizada em `src/BuildVersion.props`:
 
 ```xml
-<MpvNetVersion>7.1.13.1</MpvNetVersion>
+<MpvNetVersion>7.1.14.1</MpvNetVersion>
 ```
 
 O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
@@ -460,10 +460,10 @@ O manifesto MSIX ainda exige um valor literal em `Package.appxmanifest`; por
 isso a alteracao de versao deve ser feita por:
 
 ```powershell
-.\src\Tools\set-release-version.ps1 -Version 7.1.13.1
+.\src\Tools\set-release-version.ps1 -Version 7.1.14.1
 ```
 
-Esse comando grava `7.1.13.1` em `BuildVersion.props` e `7.1.13.0` no
+Esse comando grava `7.1.14.1` em `BuildVersion.props` e `7.1.14.0` no
 `Identity Version` do manifesto MSIX, atendendo a regra da Microsoft Store de
 revisao zero no pacote.
 
