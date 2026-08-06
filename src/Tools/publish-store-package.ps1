@@ -215,6 +215,10 @@ if (-not $storePackages.Count) {
 foreach ($storePackage in $storePackages) {
     & $packageContentValidationScript `
         -ArchiveFile $storePackage.FullName `
-        -RequiredRelativePaths 'MpvNet.Windows\mpvnet.exe', 'MpvNet.Windows\Scripts\osc.lua'
+        -RequiredRelativePaths `
+            'MpvNet.Windows\mpvnet.exe', `
+            'MpvNet.Windows\Scripts\osc.lua', `
+            'MpvNet.Windows\libmpv-2.dll', `
+            'MpvNet.Windows\libmpv-2-v3.dll'
     if ($LastExitCode) { throw $LastExitCode }
 }
