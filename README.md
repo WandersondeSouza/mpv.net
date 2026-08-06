@@ -44,6 +44,16 @@ O MPV.NET Media Player também está disponível na Microsoft Store:
 - Link profundo: `ms-windows-store://pdp/?productid=9N441SP6XHLD`
 - URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
 
+## Compatibilidade de CPU do libmpv
+
+Todas as distribuições x64 incluem `libmpv-2.dll` (normal) e
+`libmpv-2-v3.dll` (x86-64-v3). Na inicialização, o player seleciona a v3
+automaticamente somente em CPUs compatíveis e volta para a normal se a v3 não
+existir ou não puder ser carregada. Portanto, o pacote da Microsoft Store não
+exige uma CPU x86-64-v3 para iniciar. Veja os detalhes técnicos, diagnóstico e
+testes em [Integração com mpv/libmpv](docs/developer/mpv-integration.md) e
+[Build e release](docs/developer/build-release.md).
+
 ![MPV.NET Media Player em Português do Brasil](docs/img/player/Player00.png)
 
 ![Menu de contexto do MPV.NET Media Player em Português do Brasil](docs/img/player/Player01.png)

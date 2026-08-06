@@ -31,6 +31,7 @@ A integração com libmpv é considerada uma das áreas mais críticas do projet
 Arquivos principais:
 
 - `src/MpvNet/Native/LibMpv.cs` - P/Invoke para `libmpv-2.dll`;
+- `src/MpvNet/Native/LibMpvRuntime.cs` - seleção da variante e diagnóstico de carregamento;
 - `src/MpvNet/Integration/Mpv/MpvClient.cs` - wrapper de cliente, comandos, propriedades e eventos;
 - `src/MpvNet/Integration/Mpv/Player.cs` - estado principal do player;
 - `src/MpvNet/Integration/Mpv/Player.Initialization.cs` - inicialização e configuração inicial do mpv/libmpv;
@@ -39,6 +40,28 @@ Arquivos principais:
 - `src/MpvNet/Integration/Mpv/Player.Lifecycle.cs` - loop principal, shutdown e destruição de handles;
 - `src/MpvNet/Integration/Mpv/Player.MediaLoading.cs` - carregamento de mídia, playlists, URLs, ISO/DVD/BD e pasta automática;
 - `src/MpvNet/Integration/Mpv/Player.Capabilities.cs` - perfis, decoders, protocolos, demuxers e criação de clientes adicionais.
+
+## Carregamento dual de libmpv
+
+As distribuições x64 contêm `libmpv-2.dll` (normal) e
+`libmpv-2-v3.dll` (x86-64-v3), com a mesma API. O P/Invoke continua usando o
+nome lógico único `libmpv-2`. Antes de `mpv_create`, um resolvedor registrado
+uma única vez no assembly dos imports decide o arquivo por caminho absoluto a
+partir de `AppContext.BaseDirectory`; ele não usa o diretório de trabalho nem
+altera o `PATH` global.
+
+A v3 só é tentada quando a CPU oferece SSE3, SSSE3, SSE4.1, SSE4.2, POPCNT,
+AVX, AVX2, F16C, FMA, BMI1, BMI2, LZCNT e MOVBE. Uma falha de carregamento da
+v3 é registrada e tenta-se `libmpv-2.dll` no mesmo processo. A normal é o
+fallback obrigatório e é usada diretamente em CPU incompatível. O log de
+depuração inclui `libmpv selection completed` e informa CPU, DLL preferida,
+DLL carregada, caminho e motivo do fallback.
+
+Para um smoke test técnico, execute `mpvnet.exe --diagnose-libmpv`. Ele carrega
+a variante selecionada, chama `mpv_client_api_version`, chama `mpv_create` e
+destrói o contexto sem abrir a interface. Em desenvolvimento, a variável de
+ambiente não persistida `MPVNET_FORCE_LIBMPV_VARIANT` aceita `auto`, `normal`
+e `x86_64-v3`; a última exige CPU compatível e existe somente para diagnóstico.
 
 ## Ciclo de vida
 

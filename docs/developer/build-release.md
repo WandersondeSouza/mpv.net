@@ -22,7 +22,7 @@ Para execução:
 
 - Windows;
 - SDK .NET 10.0 para publicar self-contained `win-x64`;
-- `libmpv-2.dll` x64, usando por padrao a build normal do mpv/libmpv;
+- `libmpv-2.dll` e `libmpv-2-v3.dll` x64, ambas da mesma revisao upstream do mpv/libmpv;
 - `MediaInfo.dll` x64 baixada da MediaArea oficial durante a release;
 - `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe` baixados sob demanda para `%LOCALAPPDATA%\mpv.net\Component` pelo player;
 - arquivos de `Locale`, quando aplicável.
@@ -37,7 +37,7 @@ Para release:
 
 Observacao: Inno Setup, GitHub CLI e `GH_TOKEN` deixam de ser obrigatorios quando o script e executado, respectivamente, com `-SkipInstaller` e `-SkipGitHubRelease`.
 Os downloads de dependencias nativas e auxiliares ficam em `artifacts\native-dependencies\downloads` e sao reutilizados por ate 20 dias. Se o arquivo nao existir ou estiver mais antigo, o script baixa novamente a versao mais recente encontrada nas fontes configuradas.
-O parametro `-MpvBuildVariant normal` e o padrao do fork e baixa a build x64 normal do mpv/libmpv, mantendo compatibilidade com CPUs x64 mais antigas. Use `-MpvBuildVariant x86_64-v3` apenas para gerar uma variante otimizada em CPUs compativeis com x86_64-v3, como Intel Haswell/AMD Excavator ou mais recente.
+Os fluxos de build, release, portátil, instalador e Store sempre preparam as duas variantes. O parâmetro legado `-MpvBuildVariant` continua aceito pelos scripts para compatibilidade, mas não seleciona uma distribuição exclusiva; não o use para tentar gerar um pacote somente v3.
 
 ---
 
@@ -155,9 +155,9 @@ Para compilar e baixar/validar automaticamente os binarios nativos e auxiliares 
 dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj -c Release
 ```
 
-Esse alvo opt-in chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll` e `libmpv-2.dll` na pasta da configuracao compilada, baixando apenas o que estiver faltando. O fluxo novo do player passa a manter `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` em `%LOCALAPPDATA%\mpv.net\Component` quando necessario. O `yt-dlp.exe` fica sob responsabilidade do bootstrap do player em runtime. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained. Para testar a variante otimizada localmente, use `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj /p:MpvBuildVariant=x86_64-v3`.
+Esse alvo chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll` e `libmpv-2-v3.dll` na pasta da configuração compilada. Ele baixa apenas o que estiver faltando e mantém as duas DLLs com revisões upstream idênticas. O fluxo novo do player passa a manter `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` em `%LOCALAPPDATA%\mpv.net\Component` quando necessario. O `yt-dlp.exe` fica sob responsabilidade do bootstrap do player em runtime. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained.
 
-No runtime, o player passa a usar `%LOCALAPPDATA%\mpv.net\Component` como cache de componentes baixados antes da interface abrir, com fallback para os binarios que vierem junto da instalacao. O contrato desta etapa preserva `libmpv-2.dll`, `MediaInfo.dll` e as DLLs do runtime ao lado do executavel, enquanto `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` migram para a pasta de componente quando a rede estiver disponivel. O bootstrap trata `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe` como um bundle unico: valida o digest do ZIP compartilhado uma vez, extrai os tres binarios do mesmo archive e grava a freshness desse grupo em `ffmpeg-bundle.json`. O `yt-dlp.exe` continua com validação direta do proprio binario quando e renovado pelo player.
+No runtime, o player passa a usar `%LOCALAPPDATA%\mpv.net\Component` como cache de componentes baixados antes da interface abrir, com fallback para os binarios que vierem junto da instalacao. O contrato desta etapa preserva `libmpv-2.dll`, `libmpv-2-v3.dll`, `MediaInfo.dll` e as DLLs do runtime ao lado do executavel, enquanto `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` migram para a pasta de componente quando a rede estiver disponivel. O bootstrap trata `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe` como um bundle unico: valida o digest do ZIP compartilhado uma vez, extrai os tres binarios do mesmo archive e grava a freshness desse grupo em `ffmpeg-bundle.json`. O `yt-dlp.exe` continua com validação direta do proprio binario quando e renovado pelo player.
 Em pacote MSIX/Microsoft Store, esse caminho deve ser entendido como a visao de LocalAppData disponivel para o aplicativo empacotado; o Windows pode virtualizar escritas em AppData para uma area privada do pacote. O aplicativo nao deve solicitar `broadFileSystemAccess` para esse fluxo, porque os componentes pertencem ao proprio app e continuam sob o cache `Component`.
 
 Para publicar como o script de release atual faz:
@@ -165,6 +165,20 @@ Para publicar como o script de release atual faz:
 ```powershell
 dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj --self-contained true --configuration Release --runtime win-x64 /p:IncludeNativeLibrariesForSelfExtract=false
 ```
+
+## Seleção dual de libmpv
+
+`libmpv-2.dll` é a build normal, compatível com o escopo x64 suportado pelo aplicativo. `libmpv-2-v3.dll` é uma build x86-64-v3; o ganho potencial depende do conteúdo, decodificação, filtros, drivers e demais partes do pipeline, portanto não há promessa de melhoria fixa.
+
+O carregador usa caminhos absolutos a partir de `AppContext.BaseDirectory`. Ele verifica SSE3, SSSE3, SSE4.1, SSE4.2, POPCNT, AVX, AVX2, F16C, FMA, BMI1, BMI2, LZCNT e MOVBE. Em CPU compatível, tenta a v3; se o arquivo ou o carregamento falhar, registra o motivo e carrega a normal. Em CPU incompatível, carrega a normal diretamente. A normal é obrigatória em toda distribuição oficial.
+
+O log de depuração registra `libmpv selection completed`, com compatibilidade da CPU, DLL preferida/carregada, caminho e eventual fallback. Para diagnosticar uma pasta de distribuição sem abrir a interface completa, execute:
+
+```powershell
+.\mpvnet.exe --diagnose-libmpv
+```
+
+Esse modo carrega a DLL selecionada, chama `mpv_client_api_version` e cria/destroi um contexto mpv. Em desenvolvimento, `MPVNET_FORCE_LIBMPV_VARIANT=normal`, `auto` ou `x86_64-v3` serve apenas para diagnóstico temporário; não é uma preferência persistida. O valor `x86_64-v3` falha em CPU incompatível.
 
 ## Empacotamento Microsoft Store
 
@@ -180,6 +194,7 @@ O manifesto declara a aplicacao como desktop empacotada full trust, com `Runtime
 Pontos importantes:
 
 - o `Identity Name` e o `Publisher` em `Package.appxmanifest` ainda precisam ser trocados pelos valores reais do Partner Center/certificado antes da publicação;
+- o payload x64 inclui as duas DLLs libmpv; a seleção ocorre apenas entre arquivos já instalados, sem exigir CPU v3 para iniciar;
 - os assets de Store foram gerados a partir do `mpv-icon.ico` atual para permitir a montagem do projeto no fork;
 - o projeto foi adicionado à solução `src/MpvNet.sln`, mas depende do Desktop Bridge/MSIX instalado no Visual Studio para gerar o pacote de fato.
 - o manifesto MSIX declara associacoes de video, audio e playlists para o Windows listar o app como abridor desses arquivos.
@@ -228,6 +243,7 @@ O projeto de inicialização deve ser `MpvNet.Windows`.
 Pontos a validar:
 
 - o executável localiza `libmpv-2.dll`;
+- o executável localiza `libmpv-2-v3.dll`;
 - o executável localiza `MediaInfo.dll`;
 - `Locale` está disponível quando necessário;
 - `mpv.conf`, `mpvnet.conf` e `input.conf` são resolvidos pela pasta correta;
@@ -255,12 +271,6 @@ $RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
 if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
 Set-Location $RepoDir
 powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
-```
-
-Para gerar um pacote avancado com mpv/libmpv 64bit-v3:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release -MpvBuildVariant x86_64-v3
 ```
 
 Resultado esperado:
@@ -341,9 +351,9 @@ O script:
 3. publica `MpvNet.Windows.csproj` self-contained para `win-x64`;
 4. cria nomes com base na versão do `mpvnet.exe`;
 5. copia arquivos publicados;
-6. chama `src\Tools\prepare-native-dependencies.ps1` para baixar ou validar `MediaInfo.dll` e `libmpv-2.dll`, reutilizando downloads com ate 20 dias em `artifacts\native-dependencies\downloads`;
+6. chama `src\Tools\prepare-native-dependencies.ps1` para baixar ou validar `MediaInfo.dll`, `libmpv-2.dll` e `libmpv-2-v3.dll`, reutilizando downloads com ate 20 dias em `artifacts\native-dependencies\downloads`;
 7. valida e copia as DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vindas do publish self-contained;
-8. copia `MediaInfo.dll` e `libmpv-2.dll` x64;
+8. copia `MediaInfo.dll`, `libmpv-2.dll` e `libmpv-2-v3.dll` x64;
 9. copia `Locale`;
 10. cria `portable_config` com modelos comentados de `mpv.conf` e `input.conf`;
 11. valida as DLLs nativas no publish, na pasta portatil e no ZIP com `validate-native-dependencies.ps1`;
@@ -365,7 +375,7 @@ As dependencias baixadas automaticamente usam estas fontes:
 - DLLs WPF/.NET e `vcruntime140_cor3.dll`: publish self-contained oficial do SDK .NET Desktop/WPF.
 - Gettext.Tools: `https://api.nuget.org/v3-flatcontainer/gettext.tools/`, usado para obter `msgfmt.exe` e gerar `Locale` quando `msgfmt.exe` nao esta no `PATH`.
 
-O script usa o asset normal de libmpv por padrao. Para gerar a variante otimizada, use explicitamente `-MpvBuildVariant x86_64-v3` ou `MPVNET_MPV_BUILD_VARIANT=x86_64-v3`. A variante escolhida nao altera o nome da DLL nem a ABI esperada pelo P/Invoke. Se o GitHub mudar os nomes dos assets, se a MediaArea mudar o link de download, se o NuGet mudar a resolucao de `Gettext.Tools`, se o download falhar, se a extracao falhar, se algum arquivo baixado estiver vazio ou se uma DLL obrigatoria nao for x64, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` pode ser pinada por `-MediaInfoVersion`/`MPVNET_MEDIAINFO_VERSION` ou sobrescrita por `-MediaInfoFile`.
+O script resolve um asset normal e um asset v3 da mesma revisão upstream, mantém os nomes físicos distintos e preserva a ABI `libmpv-2` do P/Invoke. Se o GitHub mudar os nomes dos assets, se a MediaArea mudar o link de download, se o NuGet mudar a resolucao de `Gettext.Tools`, se o download falhar, se a extracao falhar, se algum arquivo baixado estiver vazio, se as DLLs forem idênticas ou se uma DLL obrigatoria nao for x64, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` pode ser pinada por `-MediaInfoVersion`/`MPVNET_MEDIAINFO_VERSION` ou sobrescrita por `-MediaInfoFile`.
 
 Smoke test das duas variantes de dependencias:
 
@@ -373,7 +383,7 @@ Smoke test das duas variantes de dependencias:
 .\src\Tools\test-mpv-build-variants.ps1
 ```
 
-Depois de gerar os pacotes normal e `x86_64-v3`, execute a revisao manual em uma CPU compativel com a variante escolhida: inicializacao, reproducao de arquivo local, pause/play, seek, fullscreen, legenda, audio e fechamento.
+Depois de gerar um pacote dual, execute a revisão manual com seleção automática e com `MPVNET_FORCE_LIBMPV_VARIANT=normal`: inicialização, reprodução de arquivo local, pause/play, seek, fullscreen, legenda, áudio e fechamento. Em CPU compatível, confirme no log a tentativa da v3 e o fallback para a normal quando a v3 não estiver disponível.
 
 O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo script no GitHub Actions. Ele sempre publica os pacotes como artefato do workflow e, quando executado com `create_release=true`, tambem cria a Release no repositorio. O workflow roda `validate-native-dependencies.ps1` antes do upload dos artefatos. Pacotes de diagnostico com `enable_file_logging=true` so podem ser gerados como artefato do workflow; o workflow bloqueia a combinacao `create_release=true` e `enable_file_logging=true`.
 
@@ -472,7 +482,7 @@ Confira os `TargetFramework` dos projetos e instale o SDK/runtime correspondente
 
 ## Dependência nativa ausente
 
-Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `MediaInfo.dll`, arquitetura x64, variante de CPU e diretório de execução. `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` passam a ser obtidos pelo cache de componentes do player em `%LOCALAPPDATA%\mpv.net\Component` quando necessário. O `yt-dlp.exe` e renovado pelo bootstrap do player em runtime. O bootstrap baixa e extrai cada componente em sequência, e se algum item falhar ele fica ausente do cache para ser tentado novamente na próxima abertura do player. No fluxo de build/release, `libmpv-2.dll` e `MediaInfo.dll` devem continuar sendo preparados automaticamente por `src\Tools\prepare-native-dependencies.ps1`.
+Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `libmpv-2-v3.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução. Rode `mpvnet.exe --diagnose-libmpv` para registrar a seleção e o fallback. `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe` e `mpvnet.com` passam a ser obtidos pelo cache de componentes do player em `%LOCALAPPDATA%\mpv.net\Component` quando necessário. O `yt-dlp.exe` e renovado pelo bootstrap do player em runtime. O bootstrap baixa e extrai cada componente em sequência, e se algum item falhar ele fica ausente do cache para ser tentado novamente na próxima abertura do player. No fluxo de build/release, as duas DLLs libmpv e `MediaInfo.dll` devem continuar sendo preparados automaticamente por `src\Tools\prepare-native-dependencies.ps1`.
 
 ## Ferramenta de release ausente
 

@@ -64,6 +64,7 @@ O alvo Windows usa `win-x64` por padrão.
 Arquivos nativos esperados ao lado de `mpvnet.exe`:
 
 - `libmpv-2.dll`
+- `libmpv-2-v3.dll`
 - `MediaInfo.dll`
 - `D3DCompiler_47_cor3.dll`
 - `vcruntime140_cor3.dll`
@@ -73,7 +74,7 @@ Arquivos nativos esperados ao lado de `mpvnet.exe`:
 
 O script de dependências reutiliza downloads em `artifacts\native-dependencies\downloads`. Se o arquivo esperado não existir ou tiver mais de 20 dias, ele baixa novamente a versão mais recente encontrada nas fontes oficiais configuradas no script.
 
-Por padrão, o fork usa a build x64 normal do mpv/libmpv, mantendo compatibilidade com CPUs x64 mais antigas. A variante `x86_64-v3` mantém o nome `libmpv-2.dll`, mas exige CPU compatível, como Intel Haswell/AMD Excavator ou mais recente; use-a explicitamente com `-MpvBuildVariant x86_64-v3`.
+Todas as distribuições x64 incluem a build normal `libmpv-2.dll` e a build otimizada `libmpv-2-v3.dll`. O player escolhe automaticamente a v3 somente quando a CPU é compatível e volta para a normal se a v3 não puder ser carregada. A normal continua sendo o fallback obrigatório; não gere ou publique um pacote somente v3.
 
 Validação:
 
@@ -122,12 +123,6 @@ Set-Location $RepoDir
 powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
 
-Gerar ZIP portátil com mpv/libmpv 64bit-v3:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release -MpvBuildVariant x86_64-v3
-```
-
 Usar quando:
 
 - quiser somente `MPV.NET-Media-Player-v<versao>-portable-x64.zip`;
@@ -170,19 +165,13 @@ instalador. Com `-EnableFileLogging`, essa pasta recebe o sufixo
 .\src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Release\win-x64
 ```
 
-Preparar dependencias com mpv/libmpv 64bit-v3:
-
-```powershell
-.\src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Release\win-x64 -MpvBuildVariant x86_64-v3 -UpdateExisting
-```
-
 Usar quando:
 
-- precisar baixar ou validar `MediaInfo.dll` e `libmpv-2.dll`;
+- precisar baixar ou validar `MediaInfo.dll`, `libmpv-2.dll` e `libmpv-2-v3.dll`;
 - preparar a pasta de execução antes do empacotamento.
 - reutilizar downloads recentes em `artifacts\native-dependencies\downloads`;
 - baixar novamente arquivos ausentes ou baixados ha mais de 20 dias.
-- alternar explicitamente entre `normal` e `x86_64-v3` sem mudar o `DllImport`.
+- preparar o par dual para build, portátil, instalador ou Store.
 
 Smoke test de preparacao das duas variantes:
 
@@ -190,7 +179,7 @@ Smoke test de preparacao das duas variantes:
 .\src\Tools\test-mpv-build-variants.ps1
 ```
 
-Para validar execucao real dos pacotes normal e v3, abrir cada pacote na maquina de destino e testar: inicializacao, reproducao, pause/play, seek, fullscreen, legendas, audio e fechamento.
+Para diagnosticar a seleção sem abrir a interface completa, execute `mpvnet.exe --diagnose-libmpv`. Em desenvolvimento, defina temporariamente `MPVNET_FORCE_LIBMPV_VARIANT=normal` para testar a normal; use `auto` para retornar ao comportamento padrão. Para validar reprodução, teste inicialização, arquivo local, URL, playlist, pause/play, seek, fullscreen, legendas, áudio e fechamento.
 
 ### Validar dependências nativas
 
@@ -293,6 +282,7 @@ Estrutura esperada do pacote portátil:
 ```text
 mpvnet.exe
 libmpv-2.dll
+libmpv-2-v3.dll
 MediaInfo.dll
 D3DCompiler_47_cor3.dll
 vcruntime140_cor3.dll
