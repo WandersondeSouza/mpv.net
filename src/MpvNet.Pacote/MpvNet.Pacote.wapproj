@@ -89,7 +89,7 @@
     <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup>
-    <MpvNetPackagePublishDir>..\MpvNet.Windows\bin\$(Platform)\$(Configuration)\win-x64\win-x64\msixpublish</MpvNetPackagePublishDir>
+    <MpvNetPackagePublishDir>..\MpvNet.Windows\bin\$(Platform)\$(Configuration)\win-x64</MpvNetPackagePublishDir>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
