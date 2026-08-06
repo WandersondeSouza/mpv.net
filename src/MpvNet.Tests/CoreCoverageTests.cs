@@ -301,6 +301,55 @@ public sealed class RuntimeComponentTests
         Assert.EndsWith(direct.FileName + ".json", RuntimeComponentPaths.GetMetadataPath(direct), StringComparison.OrdinalIgnoreCase);
     }
 
+    [Fact]
+    public async Task MetadataStoreWritesWithoutLeavingTemporaryFiles()
+    {
+        using TestDirectory directory = new();
+        string path = Path.Combine(directory.Path, "component.json");
+
+        await RuntimeComponentMetadataStore.SaveAsync(path, new RuntimeComponentMetadata
+        {
+            Component = "yt-dlp.exe",
+            Digest = new string('a', 64),
+            FileDigests = new(StringComparer.OrdinalIgnoreCase) { ["yt-dlp.exe"] = new string('b', 64) }
+        }, CancellationToken.None);
+
+        RuntimeComponentMetadata? metadata = await RuntimeComponentMetadataStore.LoadAsync(path, CancellationToken.None);
+        Assert.Equal("yt-dlp.exe", metadata!.Component);
+        Assert.Empty(Directory.GetFiles(directory.Path, "*.tmp"));
+    }
+
+    [Fact]
+    public void RuntimeBundleExtractorRejectsZipSlipAndDuplicateExecutables()
+    {
+        using TestDirectory directory = new();
+        string archive = Path.Combine(directory.Path, "ffmpeg.zip");
+        RuntimeComponentDefinition[] definitions = RuntimeComponentCatalog.Definitions
+            .Where(definition => definition.Kind == RuntimeComponentDownloadKind.GitHubZip)
+            .ToArray();
+
+        using (FileStream stream = File.Create(archive))
+        using (var zip = new System.IO.Compression.ZipArchive(stream, System.IO.Compression.ZipArchiveMode.Create))
+        {
+            using (StreamWriter writer = new(zip.CreateEntry("../ffmpeg.exe").Open()))
+                writer.Write("malicious");
+        }
+
+        Assert.Throws<InvalidOperationException>(() => RuntimeComponentService.ExtractBundle(archive, directory.Path, definitions));
+
+        using (FileStream stream = File.Create(archive))
+        using (var zip = new System.IO.Compression.ZipArchive(stream, System.IO.Compression.ZipArchiveMode.Create))
+        {
+            foreach (string entryName in new[] { "one/bin/ffmpeg.exe", "two/bin/ffmpeg.exe", "bin/ffplay.exe", "bin/ffprobe.exe" })
+            {
+                using StreamWriter writer = new(zip.CreateEntry(entryName).Open());
+                writer.Write("content");
+            }
+        }
+
+        Assert.Throws<InvalidOperationException>(() => RuntimeComponentService.ExtractBundle(archive, directory.Path, definitions));
+    }
+
     static void WriteX64PortableExecutable(string path)
     {
         byte[] content = new byte[96];

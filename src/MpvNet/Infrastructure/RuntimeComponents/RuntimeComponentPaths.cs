@@ -6,12 +6,23 @@ internal static class RuntimeComponentPaths
 
     public static string TempFolder { get; } = AppPaths.ComponentTemp;
 
-    public static string GetTargetPath(string fileName) => Path.Combine(ComponentsFolder, fileName);
+    public static string CurrentFolder { get; } = Path.Combine(ComponentsFolder, "current");
+
+    public static string PreviousFolder { get; } = Path.Combine(ComponentsFolder, "previous");
+
+    public static string GetTargetPath(string fileName) => Path.Combine(CurrentFolder, fileName);
+
+    public static string GetLegacyTargetPath(string fileName) => Path.Combine(ComponentsFolder, fileName);
 
     public static string GetMetadataPath(RuntimeComponentDefinition definition) =>
         definition.Kind == RuntimeComponentDownloadKind.GitHubZip
-            ? Path.Combine(ComponentsFolder, "ffmpeg-bundle.json")
+            ? Path.Combine(CurrentFolder, "ffmpeg-bundle.json")
             : GetTargetPath(definition.FileName) + ".json";
+
+    public static string GetLegacyMetadataPath(RuntimeComponentDefinition definition) =>
+        definition.Kind == RuntimeComponentDownloadKind.GitHubZip
+            ? Path.Combine(ComponentsFolder, "ffmpeg-bundle.json")
+            : GetLegacyTargetPath(definition.FileName) + ".json";
 }
 
 internal static class RuntimeComponentPathResolver
@@ -26,7 +37,7 @@ internal static class RuntimeComponentPathResolver
         ResolveResult(
             fileName,
             AppPaths.Startup,
-            RuntimeComponentPaths.ComponentsFolder,
+            RuntimeComponentPaths.CurrentFolder,
             GetWindowsPathEntries());
 
     internal static ComponentResolutionResult ResolveResult(
@@ -51,6 +62,7 @@ internal static class RuntimeComponentPathResolver
         (string Path, ComponentSource Source)[] candidates =
         [
             (Path.Combine(componentDirectory, fileName), ComponentSource.ComponentCache),
+            (RuntimeComponentPaths.GetLegacyTargetPath(fileName), ComponentSource.ComponentCache),
             (Path.Combine(applicationDirectory, fileName), ComponentSource.ApplicationDirectory)
         ];
 

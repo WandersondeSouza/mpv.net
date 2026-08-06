@@ -44,7 +44,7 @@ internal sealed record RuntimeComponentDefinition(
 
 internal sealed record StagedRuntimeComponent(string Path, string? Digest);
 
-internal sealed record DownloadedRuntimeAsset(string Path, string Digest);
+internal sealed record DownloadedRuntimeAsset(string Path, string Digest, string SourceUrl, long FileSize, string AssetName);
 
 internal sealed class GitHubRelease
 {
@@ -65,6 +65,13 @@ internal sealed class GitHubAsset
 
 internal sealed class RuntimeComponentMetadata
 {
+    public string? Component { get; set; }
+    public string? Version { get; set; }
     public string? Digest { get; set; }
+    public string? SourceUrl { get; set; }
+    public DateTimeOffset DownloadedAtUtc { get; set; }
     public DateTimeOffset LastCheckedUtc { get; set; }
+    public long FileSize { get; set; }
+    public string? Architecture { get; set; }
+    public Dictionary<string, string>? FileDigests { get; set; }
 }

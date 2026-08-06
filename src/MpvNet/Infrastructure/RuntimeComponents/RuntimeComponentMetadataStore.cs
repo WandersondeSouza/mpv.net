@@ -18,15 +18,30 @@ internal static class RuntimeComponentMetadataStore
         return JsonSerializer.Deserialize<RuntimeComponentMetadata>(json, JsonOptions);
     }
 
-    public static async Task SaveAsync(string path, string digest, CancellationToken cancellationToken)
+    public static Task SaveAsync(string path, string digest, CancellationToken cancellationToken) =>
+        SaveAsync(path, new RuntimeComponentMetadata { Digest = digest }, cancellationToken);
+
+    public static async Task SaveAsync(
+        string path,
+        RuntimeComponentMetadata metadata,
+        CancellationToken cancellationToken)
     {
-        var metadata = new RuntimeComponentMetadata
-        {
-            Digest = digest,
-            LastCheckedUtc = DateTimeOffset.UtcNow
-        };
+        metadata.LastCheckedUtc = DateTimeOffset.UtcNow;
 
         string json = JsonSerializer.Serialize(metadata, JsonOptions);
-        await File.WriteAllTextAsync(path, json, Encoding.UTF8, cancellationToken).ConfigureAwait(false);
+        string directory = Path.GetDirectoryName(path)
+            ?? throw new InvalidOperationException($"Metadata path has no directory: {path}");
+        Directory.CreateDirectory(directory);
+        string temporaryPath = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
+
+        try
+        {
+            await File.WriteAllTextAsync(temporaryPath, json, Encoding.UTF8, cancellationToken).ConfigureAwait(false);
+            File.Move(temporaryPath, path, overwrite: true);
+        }
+        finally
+        {
+            RuntimeComponentFileSystem.DeleteIfExists(temporaryPath);
+        }
     }
 }

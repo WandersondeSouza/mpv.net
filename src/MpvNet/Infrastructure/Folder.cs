@@ -20,7 +20,7 @@ public static class AppPaths
     public static string Components { get; } = Path.Combine(LocalRoot, "Component");
     public static string Logs { get; } = Path.Combine(LocalRoot, "Logs");
     public static string Temp { get; } = Path.Combine(LocalRoot, "Temp");
-    public static string ComponentTemp { get; } = Path.Combine(Temp, "RuntimeComponents");
+    public static string ComponentTemp { get; } = Path.Combine(Components, "staging");
 
     public static void EnsureLocalDirectories()
     {
