@@ -22,6 +22,8 @@ param(
 
     [string] $MediaInfoVersion = $env:MPVNET_MEDIAINFO_VERSION,
 
+    # Retained only so existing callers keep working. Distribution outputs now
+    # always contain both builds, regardless of this compatibility parameter.
     [ValidateSet('normal', 'x86_64-v3')]
     [string] $MpvBuildVariant = $(if ($env:MPVNET_MPV_BUILD_VARIANT) { $env:MPVNET_MPV_BUILD_VARIANT } else { 'normal' }),
 
@@ -37,6 +39,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'libmpv-validation.ps1')
 
 $RequiredDotNetNativeDlls = @(
     'D3DCompiler_47_cor3.dll',
@@ -155,7 +158,7 @@ function Get-FreshCachedFileMatchingRegex($downloadDir, $filePattern, $namePatte
     return $null
 }
 
-function Download-GitHubLatestAsset($apiUrl, $assetPattern, $downloadDir) {
+function Get-GitHubLatestRelease($apiUrl) {
     Write-Host "Reading latest release: $apiUrl"
     $requestParameters = @{
         Uri = $apiUrl
@@ -168,7 +171,12 @@ function Download-GitHubLatestAsset($apiUrl, $assetPattern, $downloadDir) {
             Authorization = "Bearer $env:GH_TOKEN"
         }
     }
-    $release = Invoke-WebRequest @requestParameters | ConvertFrom-Json
+
+    return Invoke-WebRequest @requestParameters | ConvertFrom-Json
+}
+
+function Download-GitHubLatestAsset($apiUrl, $assetPattern, $downloadDir) {
+    $release = Get-GitHubLatestRelease $apiUrl
     $assets = @($release.assets | Where-Object { $_.name -match $assetPattern })
 
     if ($assets.Count -ne 1) {
@@ -191,14 +199,14 @@ function Expand-ArchiveWith7Zip($archiveFile, $outputDir) {
     return Test-RequiredPath $outputDir
 }
 
-function Copy-ExtractedFile($sourceRootDir, $fileName, $targetDir) {
+function Copy-ExtractedFile($sourceRootDir, $fileName, $targetDir, $targetFileName = $fileName) {
     $matches = @(Get-ChildItem $sourceRootDir -Filter $fileName -Recurse -File)
     if ($matches.Count -ne 1) {
         throw "Expected exactly one extracted $fileName in $sourceRootDir, found $($matches.Count)."
     }
 
-    Copy-Item (Test-RequiredFile $matches[0].FullName).FullName (Join-Path $targetDir $fileName) -Force
-    return Test-RequiredFile (Join-Path $targetDir $fileName)
+    Copy-Item (Test-RequiredFile $matches[0].FullName).FullName (Join-Path $targetDir $targetFileName) -Force
+    return Test-RequiredFile (Join-Path $targetDir $targetFileName)
 }
 
 function Resolve-MediaInfoDownloadUri($version) {
@@ -263,38 +271,132 @@ function Ensure-MediaInfo($targetDir, $downloadsDir, $extractDir) {
     Copy-MediaInfoDll $mediaInfoExtractDir $targetDir | Out-Null
 }
 
-function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
-    $targetFile = Join-Path $targetDir 'libmpv-2.dll'
-    $variantMarkerFile = Join-Path $targetDir 'libmpv-2.variant.txt'
-    $currentVariant = if (Test-Path $variantMarkerFile) { (Get-Content $variantMarkerFile -Raw).Trim() } else { 'normal' }
-    if ((-not $UpdateExisting) -and (Test-FreshFile $targetFile) -and ($currentVariant -eq $MpvBuildVariant)) {
-        Assert-PeX64 $targetFile | Out-Null
-        if (-not (Test-Path $variantMarkerFile)) {
-            Set-Content -Path $variantMarkerFile -Value $MpvBuildVariant -Encoding ascii
+function Get-LibMpvAssetIdentity([string] $assetName) {
+    $match = [regex]::Match(
+        $assetName,
+        '^mpv-dev-x86_64(?:-v3)?-(?<date>[0-9]{8})-git-(?<commit>[0-9a-z]+)\.7z$')
+    if (-not $match.Success) {
+        throw "Unsupported libmpv asset name: $assetName"
+    }
+
+    return "$($match.Groups['date'].Value)-git-$($match.Groups['commit'].Value)"
+}
+
+function Get-FreshCachedLibMpvArchivePair($downloadsDir, $contract) {
+    $normalArchives = @(Get-ChildItem $downloadsDir -Filter $contract.Normal.CachePattern -File -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -match $contract.Normal.AssetRegex -and (Test-FreshFile $_.FullName) } |
+        Sort-Object LastWriteTime -Descending)
+    $v3Archives = @(Get-ChildItem $downloadsDir -Filter $contract.X86_64V3.CachePattern -File -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -match $contract.X86_64V3.AssetRegex -and (Test-FreshFile $_.FullName) } |
+        Sort-Object LastWriteTime -Descending)
+
+    foreach ($normalArchive in $normalArchives) {
+        $identity = Get-LibMpvAssetIdentity $normalArchive.Name
+        $v3Archive = @($v3Archives | Where-Object {
+            (Get-LibMpvAssetIdentity $_.Name) -eq $identity
+        } | Select-Object -First 1)[0]
+        if ($v3Archive) {
+            Write-Host "Using matching cached libmpv archives for $identity"
+            return [pscustomobject]@{
+                Normal = Test-RequiredFile $normalArchive.FullName
+                X86_64V3 = Test-RequiredFile $v3Archive.FullName
+            }
         }
+    }
+
+    return $null
+}
+
+function Get-LatestLibMpvAssets($contract) {
+    $release = Get-GitHubLatestRelease $contract.ReleaseApiUrl
+    $normalAssets = @($release.assets | Where-Object { $_.name -match $contract.Normal.AssetRegex })
+    $v3Assets = @($release.assets | Where-Object { $_.name -match $contract.X86_64V3.AssetRegex })
+
+    if ($normalAssets.Count -ne 1 -or $v3Assets.Count -ne 1) {
+        $assetNames = @($release.assets | ForEach-Object { $_.name }) -join ', '
+        throw "Expected one normal and one x86-64-v3 libmpv asset from $($contract.ReleaseApiUrl). Found normal=$($normalAssets.Count), v3=$($v3Assets.Count). Assets: $assetNames"
+    }
+
+    $normalIdentity = Get-LibMpvAssetIdentity $normalAssets[0].name
+    $v3Identity = Get-LibMpvAssetIdentity $v3Assets[0].name
+    if ($normalIdentity -ne $v3Identity) {
+        throw "Latest libmpv release has mismatched normal and x86-64-v3 assets. normal=$($normalAssets[0].name), v3=$($v3Assets[0].name)"
+    }
+
+    return [pscustomobject]@{
+        Normal = $normalAssets[0]
+        X86_64V3 = $v3Assets[0]
+    }
+}
+
+function Save-LibMpvBuildManifest($targetDir, $contract, $archives) {
+    $normalFile = Join-Path $targetDir $contract.Normal.FileName
+    $v3File = Join-Path $targetDir $contract.X86_64V3.FileName
+    $manifest = [ordered]@{
+        schemaVersion = $contract.SchemaVersion
+        source = $contract.Source
+        normal = [ordered]@{
+            file = $contract.Normal.FileName
+            asset = $archives.Normal.Name
+            sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $normalFile).Hash.ToLowerInvariant()
+            downloadedAtUtc = $archives.Normal.LastWriteTimeUtc.ToString('O')
+        }
+        'x86_64-v3' = [ordered]@{
+            file = $contract.X86_64V3.FileName
+            asset = $archives.X86_64V3.Name
+            sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $v3File).Hash.ToLowerInvariant()
+            downloadedAtUtc = $archives.X86_64V3.LastWriteTimeUtc.ToString('O')
+        }
+    }
+
+    $manifest | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $targetDir 'libmpv-builds.json') -Encoding utf8
+}
+
+function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
+    $contract = Get-LibMpvBuildContract
+    $normalTargetFile = Join-Path $targetDir $contract.Normal.FileName
+    $v3TargetFile = Join-Path $targetDir $contract.X86_64V3.FileName
+    $manifestFile = Join-Path $targetDir 'libmpv-builds.json'
+
+    if ((-not $UpdateExisting) -and
+        (Test-FreshFile $normalTargetFile) -and
+        (Test-FreshFile $v3TargetFile) -and
+        (Test-Path -LiteralPath $manifestFile -PathType Leaf)) {
+        Assert-LibMpvBuilds $targetDir | Out-Null
+        Write-Host "Using existing matching libmpv builds: $normalTargetFile, $v3TargetFile"
         return
     }
 
-    $assetPattern = if ($MpvBuildVariant -eq 'x86_64-v3') {
-        '^mpv-dev-x86_64-v3-[0-9]{8}-git-[0-9a-z]+\.7z$'
-    } else {
-        '^mpv-dev-x86_64-[0-9]{8}-git-[0-9a-z]+\.7z$'
-    }
-    $cachePattern = if ($MpvBuildVariant -eq 'x86_64-v3') { 'mpv-dev-x86_64-v3-*.7z' } else { 'mpv-dev-x86_64-*.7z' }
-
-    Write-Host "Preparing libmpv build variant: $MpvBuildVariant"
-    $libmpvArchive = Get-FreshCachedFileMatchingRegex $downloadsDir $cachePattern $assetPattern
-    if (-not $libmpvArchive) {
-        $libmpvArchive = Download-GitHubLatestAsset `
-            'https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest' `
-            $assetPattern `
-            $downloadsDir
+    if ($MpvBuildVariant -ne 'normal') {
+        Write-Warning 'MpvBuildVariant is retained for script compatibility only; distribution outputs always include normal and x86-64-v3 libmpv builds.'
     }
 
-    $libmpvExtractDir = Expand-ArchiveWith7Zip $libmpvArchive.FullName (Join-Path $extractDir 'libmpv')
-    Copy-ExtractedFile $libmpvExtractDir 'libmpv-2.dll' $targetDir | Out-Null
-    Assert-PeX64 $targetFile | Out-Null
-    Set-Content -Path $variantMarkerFile -Value $MpvBuildVariant -Encoding ascii
+    $archives = Get-FreshCachedLibMpvArchivePair $downloadsDir $contract
+    if (-not $archives) {
+        $assets = Get-LatestLibMpvAssets $contract
+        $archives = [pscustomobject]@{
+            Normal = Invoke-FileDownload $assets.Normal.browser_download_url (Join-Path $downloadsDir $assets.Normal.name)
+            X86_64V3 = Invoke-FileDownload $assets.X86_64V3.browser_download_url (Join-Path $downloadsDir $assets.X86_64V3.name)
+        }
+    }
+
+    $normalIdentity = Get-LibMpvAssetIdentity $archives.Normal.Name
+    $v3Identity = Get-LibMpvAssetIdentity $archives.X86_64V3.Name
+    if ($normalIdentity -ne $v3Identity) {
+        throw "Cached libmpv archives do not belong to the same upstream build. normal=$($archives.Normal.Name), v3=$($archives.X86_64V3.Name)"
+    }
+
+    $normalExtractDir = Expand-ArchiveWith7Zip $archives.Normal.FullName (Join-Path $extractDir 'libmpv-normal')
+    $v3ExtractDir = Expand-ArchiveWith7Zip $archives.X86_64V3.FullName (Join-Path $extractDir 'libmpv-v3')
+    Copy-ExtractedFile $normalExtractDir 'libmpv-2.dll' $targetDir $contract.Normal.FileName | Out-Null
+    Copy-ExtractedFile $v3ExtractDir 'libmpv-2.dll' $targetDir $contract.X86_64V3.FileName | Out-Null
+    Assert-LibMpvBuilds $targetDir | Out-Null
+    Save-LibMpvBuildManifest $targetDir $contract $archives
+
+    $legacyMarkerFile = Join-Path $targetDir 'libmpv-2.variant.txt'
+    if (Test-Path -LiteralPath $legacyMarkerFile) {
+        Remove-Item -LiteralPath $legacyMarkerFile -Force
+    }
 }
 
 function Ensure-MpvNetCom($targetDir, $downloadsDir) {

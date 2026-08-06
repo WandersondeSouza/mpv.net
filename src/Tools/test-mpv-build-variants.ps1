@@ -1,108 +1,73 @@
 <#
 
-Prepares native/helper dependencies for both supported mpv/libmpv build
-variants and validates that the expected files are present and x64.
-
-This is a packaging smoke test. Interactive playback checks still need to be
-run manually from a generated package on the target CPU.
+Validates the dual libmpv build contract without network access by default.
+Pass -Online to prepare both upstream archives in one output directory and
+verify their PE metadata, exports, hashes and descriptive manifest.
 
 #>
 
+[CmdletBinding()]
 param(
-    [string] $SourceDir = (Join-Path $PSScriptRoot '..'),
+    [string] $SourceDir,
 
-    [string] $ArtifactsDir = (Join-Path $PSScriptRoot '..\..\artifacts\mpv-build-variant-tests'),
+    [string] $ArtifactsDir,
 
-    [string[]] $Variants = @('normal', 'x86_64-v3'),
+    [string] $SevenZipPath = 'C:\Program Files\7-Zip\7z.exe',
 
-    [string] $SevenZipPath = 'C:\Program Files\7-Zip\7z.exe'
+    [switch] $Online
 )
 
 $ErrorActionPreference = 'Stop'
+
+if (-not $SourceDir) {
+    $SourceDir = Join-Path $PSScriptRoot '..'
+}
+
+if (-not $ArtifactsDir) {
+    $ArtifactsDir = Join-Path $PSScriptRoot '..\..\artifacts\mpv-build-variant-tests'
+}
 
 $SourceDir = (Resolve-Path $SourceDir).Path
 New-Item -ItemType Directory -Force $ArtifactsDir | Out-Null
 $ArtifactsDir = (Resolve-Path $ArtifactsDir).Path
 
+$contractTest = Join-Path $PSScriptRoot 'test-libmpv-build-contract.ps1'
+& $contractTest
+if ($LastExitCode) { throw $LastExitCode }
+
+if (-not $Online) {
+    Write-Host 'Offline libmpv build contract validation completed. Pass -Online to download and validate both upstream builds.'
+    return
+}
+
+. (Join-Path $PSScriptRoot 'libmpv-validation.ps1')
+
+$preparedDir = Join-Path $ArtifactsDir 'dual-runtime'
+$nativeArtifactsDir = Join-Path $ArtifactsDir 'native-dependencies'
 $prepareScript = Join-Path $PSScriptRoot 'prepare-native-dependencies.ps1'
-$requiredPreparedFiles = @(
-    'libmpv-2.dll',
-    'MediaInfo.dll'
-)
 
-function Test-RequiredFile($path) {
-    if (-not (Test-Path $path)) {
-        throw "Required prepared file not found: $path"
-    }
+& $prepareScript `
+    -SourceDir $SourceDir `
+    -TargetDir $preparedDir `
+    -ArtifactsDir $nativeArtifactsDir `
+    -UpdateExisting `
+    -SevenZipPath $SevenZipPath
+if ($LastExitCode) { throw $LastExitCode }
 
-    $file = Get-Item $path
-    if ($file.Length -le 0) {
-        throw "Required prepared file is empty: $path"
-    }
-
-    return $file
+$result = Assert-LibMpvBuilds $preparedDir
+$manifestFile = Join-Path $preparedDir 'libmpv-builds.json'
+if (-not (Test-Path -LiteralPath $manifestFile -PathType Leaf)) {
+    throw "libmpv build manifest was not created: $manifestFile"
 }
 
-function Assert-PeX64($path) {
-    $file = Test-RequiredFile $path
-    $stream = [System.IO.File]::OpenRead($file.FullName)
-    try {
-        $reader = [System.IO.BinaryReader]::new($stream)
-        $stream.Position = 0x3C
-        $peOffset = $reader.ReadInt32()
-        if ($peOffset -le 0 -or $peOffset -gt ($stream.Length - 6)) {
-            throw "Invalid PE header in $($file.FullName)"
-        }
-
-        $stream.Position = $peOffset
-        $signature = $reader.ReadUInt32()
-        if ($signature -ne 0x00004550) {
-            throw "Invalid PE signature in $($file.FullName)"
-        }
-
-        $machine = $reader.ReadUInt16()
-        if ($machine -ne 0x8664) {
-            throw "Expected x64 native binary, got machine 0x$($machine.ToString('X4')): $($file.FullName)"
-        }
-    }
-    finally {
-        $stream.Dispose()
-    }
-
-    return $file
+$manifest = Get-Content -LiteralPath $manifestFile -Raw | ConvertFrom-Json
+if ($manifest.normal.file -ne 'libmpv-2.dll' -or $manifest.'x86_64-v3'.file -ne 'libmpv-2-v3.dll') {
+    throw "libmpv build manifest has unexpected distribution file names: $manifestFile"
 }
 
-foreach ($variant in $Variants) {
-    if ($variant -notin @('normal', 'x86_64-v3')) {
-        throw "Unsupported mpv build variant: $variant"
-    }
-
-    $variantDir = Join-Path $ArtifactsDir $variant
-    $nativeArtifactsDir = Join-Path $ArtifactsDir "native-$variant"
-    New-Item -ItemType Directory -Force $variantDir | Out-Null
-
-    & $prepareScript `
-        -SourceDir $SourceDir `
-        -TargetDir $variantDir `
-        -ArtifactsDir $nativeArtifactsDir `
-        -MpvBuildVariant $variant `
-        -UpdateExisting `
-        -SevenZipPath $SevenZipPath
-    if ($LastExitCode) { throw $LastExitCode }
-
-    foreach ($file in $requiredPreparedFiles) {
-        Assert-PeX64 (Join-Path $variantDir $file) | Out-Null
-    }
-
-    $markerFile = Join-Path $variantDir 'libmpv-2.variant.txt'
-    if (-not (Test-Path $markerFile)) {
-        throw "Variant marker was not created: $markerFile"
-    }
-
-    $marker = (Get-Content $markerFile -Raw).Trim()
-    if ($marker -ne $variant) {
-        throw "Expected marker '$variant', got '$marker' in $markerFile"
-    }
-
-    Write-Host "OK mpv/libmpv build variant: $variant"
+if ($manifest.normal.sha256 -ne $result.Normal.Sha256 -or $manifest.'x86_64-v3'.sha256 -ne $result.X86_64V3.Sha256) {
+    throw "libmpv build manifest hashes do not match the prepared DLLs: $manifestFile"
 }
+
+Write-Host "OK libmpv normal: $($result.Normal.File) sha256=$($result.Normal.Sha256)"
+Write-Host "OK libmpv x86-64-v3: $($result.X86_64V3.File) sha256=$($result.X86_64V3.Sha256)"
