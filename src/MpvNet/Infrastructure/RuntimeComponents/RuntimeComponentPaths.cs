@@ -18,47 +18,129 @@ internal static class RuntimeComponentPathResolver
 {
     public static string Resolve(string fileName)
     {
-        string componentPath = RuntimeComponentPaths.GetTargetPath(fileName);
-        if (File.Exists(componentPath))
+        ComponentResolutionResult result = ResolveResult(fileName);
+        return result.ResolvedPath ?? RuntimeComponentPaths.GetTargetPath(fileName);
+    }
+
+    public static ComponentResolutionResult ResolveResult(string fileName) =>
+        ResolveResult(
+            fileName,
+            AppPaths.Startup,
+            RuntimeComponentPaths.ComponentsFolder,
+            GetWindowsPathEntries());
+
+    internal static ComponentResolutionResult ResolveResult(
+        string fileName,
+        string applicationDirectory,
+        string componentDirectory,
+        IEnumerable<string> pathEntries)
+    {
+        if (string.IsNullOrWhiteSpace(fileName) || Path.GetFileName(fileName) != fileName)
         {
-            Log.Debug($"Resolved runtime component from component folder. file='{fileName}', path='{Log.SafeValue(componentPath)}'");
-            return componentPath;
+            return new ComponentResolutionResult(
+                fileName,
+                null,
+                ComponentSource.None,
+                false,
+                false,
+                null,
+                null,
+                "The component file name is invalid.");
         }
 
-        string startupPath = Path.Combine(AppPaths.Startup, fileName);
-        if (File.Exists(startupPath))
+        (string Path, ComponentSource Source)[] candidates =
+        [
+            (Path.Combine(componentDirectory, fileName), ComponentSource.ComponentCache),
+            (Path.Combine(applicationDirectory, fileName), ComponentSource.ApplicationDirectory)
+        ];
+
+        foreach ((string path, ComponentSource source) in candidates)
         {
-            Log.Debug($"Resolved runtime component from startup folder. file='{fileName}', path='{Log.SafeValue(startupPath)}'");
-            return startupPath;
+            ComponentResolutionResult? result = TryResolveCandidate(fileName, path, source);
+            if (result is not null)
+                return result;
         }
 
-        string? pathCandidate = ResolveFromWindowsPath(fileName);
-        if (!string.IsNullOrWhiteSpace(pathCandidate))
+        foreach (string directory in pathEntries)
         {
-            Log.Debug($"Resolved runtime component from PATH. file='{fileName}', path='{Log.SafeValue(pathCandidate)}'");
+            if (string.IsNullOrWhiteSpace(directory))
+                continue;
+
+            string path;
+            try
+            {
+                path = Path.Combine(directory.Trim(), fileName);
+            }
+            catch (Exception ex) when (ex is ArgumentException or NotSupportedException)
+            {
+                continue;
+            }
+
+            ComponentResolutionResult? result = TryResolveCandidate(fileName, path, ComponentSource.EnvironmentPath);
+            if (result is not null)
+                return result;
         }
 
-        Log.Debug($"Resolved runtime component fallback. file='{fileName}', componentPath='{Log.SafeValue(componentPath)}', startupPath='{Log.SafeValue(startupPath)}', pathCandidate='{Log.SafeValue(pathCandidate)}'");
-        return pathCandidate ?? componentPath;
+        return new ComponentResolutionResult(
+            fileName,
+            null,
+            ComponentSource.None,
+            false,
+            false,
+            null,
+            null,
+            "No valid component file was found in the component cache, application directory, or PATH.");
     }
 
     public static string? ResolveFromWindowsPath(string fileName)
     {
-        string? windowsPath = Environment.GetEnvironmentVariable("PATH");
-        if (string.IsNullOrWhiteSpace(windowsPath))
-            return null;
-
-        foreach (string rawDirectory in windowsPath.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries))
+        foreach (string rawDirectory in GetWindowsPathEntries())
         {
             string directory = rawDirectory.Trim();
             if (directory.Length == 0)
                 continue;
 
-            string candidate = Path.Combine(directory, fileName);
-            if (File.Exists(candidate))
-                return candidate;
+            ComponentResolutionResult? candidate = TryResolveCandidate(
+                fileName,
+                Path.Combine(directory, fileName),
+                ComponentSource.EnvironmentPath);
+            if (candidate is not null)
+                return candidate.ResolvedPath;
         }
 
         return null;
+    }
+
+    static ComponentResolutionResult? TryResolveCandidate(string fileName, string candidate, ComponentSource source)
+    {
+        if (!File.Exists(candidate))
+            return null;
+
+        ComponentValidationResult validation = RuntimeComponentValidator.Validate(fileName, candidate);
+        if (!validation.IsValid)
+        {
+            Log.Debug($"Runtime component candidate rejected. file='{fileName}', source={source}, path='{Log.SafeValue(candidate)}', reason='{Log.SafeValue(validation.DiagnosticMessage)}'");
+            return null;
+        }
+
+        string fullPath = Path.GetFullPath(candidate);
+        Log.Debug($"Resolved runtime component. file='{fileName}', source={source}, path='{Log.SafeValue(fullPath)}', version='{Log.SafeValue(validation.Version)}'");
+        return new ComponentResolutionResult(
+            fileName,
+            fullPath,
+            source,
+            true,
+            true,
+            validation.Version,
+            null,
+            null);
+    }
+
+    static IEnumerable<string> GetWindowsPathEntries()
+    {
+        string? windowsPath = Environment.GetEnvironmentVariable("PATH");
+        return string.IsNullOrWhiteSpace(windowsPath)
+            ? []
+            : windowsPath.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries);
     }
 }

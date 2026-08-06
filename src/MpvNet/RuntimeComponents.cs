@@ -92,6 +92,11 @@ public static class RuntimeComponents
         return RuntimeComponentPathResolver.Resolve(fileName);
     }
 
+    public static ComponentResolutionResult ResolveComponent(string fileName)
+    {
+        return RuntimeComponentPathResolver.ResolveResult(fileName);
+    }
+
     internal static IntPtr ResolveNativeLibrary(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
     {
         if (LibMpvRuntime.IsExpectedLibraryName(libraryName))

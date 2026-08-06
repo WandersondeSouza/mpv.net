@@ -205,7 +205,7 @@ public sealed class RuntimeComponentTests
     {
         using TestDirectory directory = new();
         string component = Path.Combine(directory.Path, "yt-dlp.exe");
-        File.WriteAllText(component, "component");
+        WriteX64PortableExecutable(component);
         string? originalPath = Environment.GetEnvironmentVariable("PATH");
 
         try
@@ -220,6 +220,76 @@ public sealed class RuntimeComponentTests
     }
 
     [Fact]
+    public void RuntimeResolverPrefersValidCacheWithoutUsingCurrentDirectory()
+    {
+        using TestDirectory directory = new();
+        string application = Path.Combine(directory.Path, "aplicação com espaços");
+        string cache = Path.Combine(directory.Path, "cache");
+        string pathDirectory = Path.Combine(directory.Path, "path");
+        Directory.CreateDirectory(application);
+        Directory.CreateDirectory(cache);
+        Directory.CreateDirectory(pathDirectory);
+        string cached = Path.Combine(cache, "yt-dlp.exe");
+        WriteX64PortableExecutable(cached);
+        WriteX64PortableExecutable(Path.Combine(application, "yt-dlp.exe"));
+        WriteX64PortableExecutable(Path.Combine(pathDirectory, "yt-dlp.exe"));
+
+        string originalCurrentDirectory = Environment.CurrentDirectory;
+        try
+        {
+            Environment.CurrentDirectory = directory.Path;
+            ComponentResolutionResult result = RuntimeComponentPathResolver.ResolveResult(
+                "yt-dlp.exe", application, cache, [pathDirectory]);
+
+            Assert.Equal(ComponentSource.ComponentCache, result.Source);
+            Assert.Equal(cached, result.ResolvedPath);
+            Assert.True(result.IsValid);
+        }
+        finally
+        {
+            Environment.CurrentDirectory = originalCurrentDirectory;
+        }
+    }
+
+    [Fact]
+    public void RuntimeResolverSkipsInvalidCacheAndUsesApplicationDirectory()
+    {
+        using TestDirectory directory = new();
+        string application = Path.Combine(directory.Path, "application");
+        string cache = Path.Combine(directory.Path, "cache");
+        Directory.CreateDirectory(application);
+        Directory.CreateDirectory(cache);
+        File.WriteAllText(Path.Combine(cache, "yt-dlp.exe"), "<html>download failed</html>");
+        string expected = Path.Combine(application, "yt-dlp.exe");
+        WriteX64PortableExecutable(expected);
+
+        ComponentResolutionResult result = RuntimeComponentPathResolver.ResolveResult(
+            "yt-dlp.exe", application, cache, []);
+
+        Assert.Equal(ComponentSource.ApplicationDirectory, result.Source);
+        Assert.Equal(expected, result.ResolvedPath);
+        Assert.True(result.IsValid);
+    }
+
+    [Fact]
+    public void RuntimeResolverRejectsUnsafeFileNamesAndInvalidExecutables()
+    {
+        using TestDirectory directory = new();
+        string html = Path.Combine(directory.Path, "ffmpeg.exe");
+        File.WriteAllText(html, "<html>not an executable</html>");
+
+        ComponentResolutionResult invalidFile = RuntimeComponentPathResolver.ResolveResult(
+            "..\\ffmpeg.exe", directory.Path, directory.Path, []);
+        ComponentResolutionResult invalidExecutable = RuntimeComponentPathResolver.ResolveResult(
+            "ffmpeg.exe", directory.Path, directory.Path, []);
+
+        Assert.False(invalidFile.IsValid);
+        Assert.False(invalidExecutable.IsValid);
+        Assert.Null(invalidExecutable.ResolvedPath);
+        Assert.False(RuntimeComponentValidator.IsX64PortableExecutable(html, out _));
+    }
+
+    [Fact]
     public void RuntimeMetadataPathUsesBundleMetadataForZipDownloads()
     {
         RuntimeComponentDefinition bundle = RuntimeComponentCatalog.Definitions
@@ -229,6 +299,18 @@ public sealed class RuntimeComponentTests
 
         Assert.EndsWith("ffmpeg-bundle.json", RuntimeComponentPaths.GetMetadataPath(bundle), StringComparison.OrdinalIgnoreCase);
         Assert.EndsWith(direct.FileName + ".json", RuntimeComponentPaths.GetMetadataPath(direct), StringComparison.OrdinalIgnoreCase);
+    }
+
+    static void WriteX64PortableExecutable(string path)
+    {
+        byte[] content = new byte[96];
+        content[0] = (byte)'M';
+        content[1] = (byte)'Z';
+        BitConverter.GetBytes(64).CopyTo(content, 60);
+        content[64] = (byte)'P';
+        content[65] = (byte)'E';
+        BitConverter.GetBytes((ushort)0x8664).CopyTo(content, 68);
+        File.WriteAllBytes(path, content);
     }
 }
 

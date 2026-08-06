@@ -8,6 +8,33 @@ internal enum RuntimeComponentDownloadKind
     GitHubZip
 }
 
+public enum ComponentSource
+{
+    None,
+    ApplicationDirectory,
+    ComponentCache,
+    EnvironmentPath
+}
+
+/// <summary>
+/// Describes the file selected for an optional executable component without
+/// relying on the process working directory.
+/// </summary>
+public sealed record ComponentResolutionResult(
+    string ComponentName,
+    string? ResolvedPath,
+    ComponentSource Source,
+    bool Exists,
+    bool IsValid,
+    string? Version,
+    string? Sha256,
+    string? DiagnosticMessage);
+
+internal sealed record ComponentValidationResult(
+    bool IsValid,
+    string? Version,
+    string? DiagnosticMessage);
+
 internal sealed record RuntimeComponentDefinition(
     string FileName,
     string ReleaseApiUrl,
