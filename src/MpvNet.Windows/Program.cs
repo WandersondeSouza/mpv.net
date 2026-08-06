@@ -62,6 +62,12 @@ static class Program
                 return;
             }
 
+            if (args.Length == 1 && args[0] == "--diagnose-components")
+            {
+                Console.WriteLine(RuntimeComponents.DiagnoseComponents());
+                return;
+            }
+
             if (args.Length > 1 && args[0] == "--register-file-associations")
             {
                 Log.Debug($"Registering file associations from command line. perceivedType='{Log.SafeValue(args[1])}', extensions={Log.SafeValues(args.Skip(2))}");

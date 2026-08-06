@@ -10,6 +10,47 @@ namespace MpvNet;
 
 public partial class MainPlayer
 {
+    void ConfigureYtDlpPath()
+    {
+        if (CommandLine.Contains("ytdl-path") || HasConfiguredMpvOption("ytdl-path"))
+        {
+            Log.Debug("Keeping explicit ytdl-path from command line or mpv.conf.");
+            return;
+        }
+
+        ComponentResolutionResult resolution = RuntimeComponents.ResolveComponent("yt-dlp.exe");
+        if (resolution is not { IsValid: true, ResolvedPath: not null })
+        {
+            Log.Debug($"No validated yt-dlp executable was resolved before mpv initialization. reason='{Log.SafeValue(resolution.DiagnosticMessage)}'");
+            return;
+        }
+
+        SetOptionString("ytdl-path", resolution.ResolvedPath);
+        Log.Debug($"Configured mpv ytdl-path from resolved component. source={resolution.Source}, path='{Log.SafeValue(resolution.ResolvedPath)}'");
+    }
+
+    bool HasConfiguredMpvOption(string optionName)
+    {
+        if (!File.Exists(ConfPath))
+            return false;
+
+        try
+        {
+            return File.ReadLines(ConfPath).Any(line =>
+            {
+                string value = line.TrimStart();
+                return !value.StartsWith('#') &&
+                    (value.StartsWith(optionName + "=", StringComparison.OrdinalIgnoreCase) ||
+                     value.Equals("no-" + optionName, StringComparison.OrdinalIgnoreCase));
+            });
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            Log.Debug($"Could not inspect mpv.conf for {optionName}. path='{Log.SafeValue(ConfPath)}', error='{Log.SafeValue(ex.Message)}'");
+            return false;
+        }
+    }
+
     public void Init(IntPtr formHandle, bool processCommandLine)
     {
         RuntimeComponents.RegisterNativeResolver();
@@ -69,6 +110,7 @@ public partial class MainPlayer
         SetPropertyString("config", "yes");
         SetOptionString("load-context-menu", "no");
         SetPropertyString("screenshot-directory", "~~desktop/");
+        ConfigureYtDlpPath();
 
         SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
         SetPropertyString("osd-playing-msg", "${media-title}");

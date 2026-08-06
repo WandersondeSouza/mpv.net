@@ -87,6 +87,20 @@ public static class RuntimeComponents
             $"mpv_create: {diagnostic.MpvCreateSucceeded}";
     }
 
+    public static string DiagnoseComponents()
+    {
+        string[] componentNames = ["ffmpeg.exe", "ffplay.exe", "ffprobe.exe", "mpvnet.com", "yt-dlp.exe"];
+        return string.Join(
+            Environment.NewLine,
+            componentNames.Select(name =>
+            {
+                ComponentResolutionResult result = ResolveComponent(name);
+                return $"{name}: source={result.Source}; path={result.ResolvedPath ?? "<unavailable>"}; " +
+                    $"valid={result.IsValid}; version={result.Version ?? "<unknown>"}; " +
+                    $"reason={result.DiagnosticMessage ?? "<none>"}";
+            }));
+    }
+
     public static string ResolveComponentPath(string fileName)
     {
         return RuntimeComponentPathResolver.Resolve(fileName);
