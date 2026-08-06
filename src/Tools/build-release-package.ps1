@@ -250,8 +250,6 @@ $PackageContentValidationScript = Test (Join-Path $SourceDir 'Tools\validate-pac
 DeleteDir $PublishDir64
 dotnet publish $ProjectFile --self-contained true --configuration $BuildConfiguration --runtime win-x64 --output $PublishDir64 /p:IncludeNativeLibrariesForSelfExtract=false /p:EnsureBuildAssets=false /p:EnableFileLogging=$EnableFileLoggingValue
 if ($LastExitCode) { throw "dotnet publish failed with exit code $LastExitCode" }
-& $PackageContentValidationScript -Path $PublishDir64
-if ($LastExitCode) { throw $LastExitCode }
 $PublishedExeFile64 = Test ($PublishDir64 + 'mpvnet.exe')
 $BinDirX64 = Test (Join-Path $SourceDir "MpvNet.Windows\bin\$BuildConfiguration\win-x64\")
 $EnsureDependenciesScript = Test (Join-Path $SourceDir 'Tools\prepare-native-dependencies.ps1')
@@ -295,6 +293,8 @@ if ($LastExitCode) { throw $LastExitCode }
 $ExtraFiles = 'libmpv-2.dll', 'libmpv-2-v3.dll', 'libmpv-builds.json', 'MediaInfo.dll', 'mpvnet.com'
 CopyExtraFiles $BinDirX64 $OutputDir64 $ExtraFiles
 CopyExtraFiles $BinDirX64 $PublishDir64 $ExtraFiles
+& $PackageContentValidationScript -Path $PublishDir64
+if ($LastExitCode) { throw $LastExitCode }
 $LocaleDir = EnsureLocale `
     $SourceDir `
     (Join-Path $SourceDir "MpvNet.Windows\bin\$BuildConfiguration\win-x64\Locale\") `
