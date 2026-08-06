@@ -72,7 +72,7 @@ Arquivos nativos esperados ao lado de `mpvnet.exe`:
 - `PenImc_cor3.dll`
 - `PresentationNative_cor3.dll`
 
-O script de dependências reutiliza downloads em `artifacts\native-dependencies\downloads`. Se o arquivo esperado não existir ou tiver mais de 20 dias, ele baixa novamente a versão mais recente encontrada nas fontes oficiais configuradas no script.
+O script de dependências usado diretamente para release reutiliza downloads em `artifacts\native-dependencies\downloads`. No build automático do Visual Studio, o cache compartilhado fica em `artifacts\build-assets\native-dependencies\downloads`, para que a compilação do aplicativo e do pacote MSIX reutilizem os mesmos arquivos. Se o arquivo esperado não existir ou tiver mais de 20 dias, ele baixa novamente a versão mais recente encontrada nas fontes oficiais configuradas no script. As extrações permanecem isoladas por processo e o cache de download é sincronizado entre builds concorrentes.
 
 Todas as distribuições x64 incluem a build normal `libmpv-2.dll` e a build otimizada `libmpv-2-v3.dll`. O player escolhe automaticamente a v3 somente quando a CPU é compatível e volta para a normal se a v3 não puder ser carregada. A normal continua sendo o fallback obrigatório; não gere ou publique um pacote somente v3.
 

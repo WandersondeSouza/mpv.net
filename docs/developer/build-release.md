@@ -36,7 +36,7 @@ Para release:
 - acesso a internet para baixar libmpv, MediaInfo, `mpvnet.com` e `Gettext.Tools` no momento da release, quando esses arquivos/ferramentas ainda nao estiverem disponiveis localmente ou para semear o cache de componentes na primeira execucao do player.
 
 Observacao: Inno Setup, GitHub CLI e `GH_TOKEN` deixam de ser obrigatorios quando o script e executado, respectivamente, com `-SkipInstaller` e `-SkipGitHubRelease`.
-Os downloads de dependencias nativas e auxiliares ficam em `artifacts\native-dependencies\downloads` e sao reutilizados por ate 20 dias. Se o arquivo nao existir ou estiver mais antigo, o script baixa novamente a versao mais recente encontrada nas fontes configuradas.
+Os downloads de dependencias nativas e auxiliares do fluxo de release ficam em `artifacts\native-dependencies\downloads` e sao reutilizados por ate 20 dias. No build automatico do aplicativo, `prepare-build-output.ps1` usa o cache compartilhado `artifacts\build-assets\native-dependencies\downloads`; assim, a compilacao do aplicativo e a montagem do MSIX nao baixam novamente os mesmos arquivos. As extracoes continuam em diretorios por processo e o cache de downloads e protegido entre processos. Se o arquivo nao existir ou estiver mais antigo, o script baixa novamente a versao mais recente encontrada nas fontes configuradas.
 Os fluxos de build, release, portátil, instalador e Store sempre preparam as duas variantes. O parâmetro legado `-MpvBuildVariant` continua aceito pelos scripts para compatibilidade, mas não seleciona uma distribuição exclusiva; não o use para tentar gerar um pacote somente v3.
 
 ---

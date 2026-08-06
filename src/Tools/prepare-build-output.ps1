@@ -115,6 +115,7 @@ $ensureNativeArgs = @{
     SourceDir = $SourceDir
     TargetDir = $TargetDir
     ArtifactsDir = (Join-Path $ArtifactsDir "native-dependencies-$PID")
+    DownloadCacheDir = (Join-Path $ArtifactsDir 'native-dependencies\downloads')
     SevenZipPath = $SevenZipPath
     MpvBuildVariant = $MpvBuildVariant
 }

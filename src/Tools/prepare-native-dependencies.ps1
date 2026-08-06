@@ -20,6 +20,10 @@ param(
 
     [string] $ArtifactsDir,
 
+    # Optional persistent cache for downloaded archives. Extraction remains under
+    # ArtifactsDir so parallel callers do not share temporary files.
+    [string] $DownloadCacheDir,
+
     [string] $MediaInfoVersion = $env:MPVNET_MEDIAINFO_VERSION,
 
     # Retained only so existing callers keep working. Distribution outputs now
@@ -156,6 +160,39 @@ function Get-FreshCachedFileMatchingRegex($downloadDir, $filePattern, $namePatte
     }
 
     return $null
+}
+
+function Get-DownloadCacheMutexName($downloadDir) {
+    $bytes = [System.Text.Encoding]::UTF8.GetBytes($downloadDir.ToUpperInvariant())
+    $algorithm = [System.Security.Cryptography.SHA256]::Create()
+    try {
+        $hash = $algorithm.ComputeHash($bytes)
+    }
+    finally {
+        $algorithm.Dispose()
+    }
+    $identifier = [System.BitConverter]::ToString($hash).Replace('-', '').Substring(0, 24)
+    return "Local\mpvnet-native-download-cache-$identifier"
+}
+
+function Enter-DownloadCacheLock($downloadDir) {
+    $mutexName = Get-DownloadCacheMutexName $downloadDir
+    $mutex = [System.Threading.Mutex]::new($false, $mutexName)
+
+    try {
+        if (-not $mutex.WaitOne([TimeSpan]::FromMinutes(10))) {
+            throw "Timed out waiting for the native download cache: $downloadDir"
+        }
+    }
+    catch [System.Threading.AbandonedMutexException] {
+        Write-Warning "Previous native download cache owner ended unexpectedly. Continuing with cache: $downloadDir"
+    }
+    catch {
+        $mutex.Dispose()
+        throw
+    }
+
+    return $mutex
 }
 
 function Get-GitHubLatestRelease($apiUrl) {
@@ -462,13 +499,25 @@ if (-not $ArtifactsDir) {
 
 New-Item -ItemType Directory -Force $ArtifactsDir | Out-Null
 $ArtifactsDir = Test-RequiredPath $ArtifactsDir
-New-Item -ItemType Directory -Force (Join-Path $ArtifactsDir 'downloads') | Out-Null
-$DownloadsDir = Test-RequiredPath (Join-Path $ArtifactsDir 'downloads')
+
+if (-not $DownloadCacheDir) {
+    $DownloadCacheDir = Join-Path $ArtifactsDir 'downloads'
+}
+
+New-Item -ItemType Directory -Force $DownloadCacheDir | Out-Null
+$DownloadsDir = Test-RequiredPath $DownloadCacheDir
 $ExtractDir = New-CleanDir (Join-Path $ArtifactsDir 'extract')
 
-Ensure-MediaInfo $TargetDir $DownloadsDir $ExtractDir
-Ensure-LibMpv $TargetDir $DownloadsDir $ExtractDir
-Ensure-MpvNetCom $TargetDir $DownloadsDir $PublishDir
-Ensure-DotNetNativeDlls $TargetDir $PublishDir
+$cacheMutex = Enter-DownloadCacheLock $DownloadsDir
+try {
+    Ensure-MediaInfo $TargetDir $DownloadsDir $ExtractDir
+    Ensure-LibMpv $TargetDir $DownloadsDir $ExtractDir
+    Ensure-MpvNetCom $TargetDir $DownloadsDir $PublishDir
+    Ensure-DotNetNativeDlls $TargetDir $PublishDir
+}
+finally {
+    $cacheMutex.ReleaseMutex()
+    $cacheMutex.Dispose()
+}
 
 Write-Host "Native and helper dependencies are ready: $TargetDir"
