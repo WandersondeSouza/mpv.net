@@ -19,7 +19,6 @@
 		<AssemblyVersion>$(MpvNetVersion)</AssemblyVersion>
 		<InformationalVersion>$(MpvNetVersion)</InformationalVersion>
 		<EnsureBuildAssets>true</EnsureBuildAssets>
-		<MpvBuildVariant Condition="'$(MpvBuildVariant)' == ''">normal</MpvBuildVariant>
 		<StartupObject>MpvNet.Windows.Program</StartupObject>
 	</PropertyGroup>
 
@@ -58,7 +57,11 @@
 	</ItemGroup>
 
 	<Target Name="EnsureBuildAssets" AfterTargets="Build" Condition="'$(EnsureBuildAssets)' == 'true' and '$(DesignTimeBuild)' != 'true'">
-		<Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\prepare-build-output.ps1&quot; -SourceDir &quot;$(MSBuildThisFileDirectory)..&quot; -TargetDir &quot;$(TargetDir).&quot; -MpvBuildVariant &quot;$(MpvBuildVariant)&quot;" />
+		<Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\prepare-build-output.ps1&quot; -SourceDir &quot;$(MSBuildThisFileDirectory)..&quot; -TargetDir &quot;$(TargetDir).&quot;" />
+	</Target>
+
+	<Target Name="EnsurePublishedBuildAssets" AfterTargets="Publish" Condition="'$(EnsureBuildAssets)' == 'true' and '$(DesignTimeBuild)' != 'true'">
+		<Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\prepare-build-output.ps1&quot; -SourceDir &quot;$(MSBuildThisFileDirectory)..&quot; -TargetDir &quot;$(PublishDir).&quot;" />
 	</Target>
 
 </Project>
