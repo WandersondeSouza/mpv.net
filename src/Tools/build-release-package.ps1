@@ -292,7 +292,7 @@ mkdir $OutputDir64
 Copy-Item ($PublishDir64 + '*') $OutputDir64 -Recurse -Force
 & $EnsureDependenciesScript @EnsureDependenciesArgs
 if ($LastExitCode) { throw $LastExitCode }
-$ExtraFiles = 'libmpv-2.dll', 'libmpv-2-v3.dll', 'libmpv-builds.json', 'MediaInfo.dll'
+$ExtraFiles = 'libmpv-2.dll', 'libmpv-2-v3.dll', 'libmpv-builds.json', 'MediaInfo.dll', 'mpvnet.com'
 CopyExtraFiles $BinDirX64 $OutputDir64 $ExtraFiles
 CopyExtraFiles $BinDirX64 $PublishDir64 $ExtraFiles
 $LocaleDir = EnsureLocale `
