@@ -198,6 +198,17 @@ public sealed class RuntimeComponentTests
             if (definition.Kind == RuntimeComponentDownloadKind.GitHubZip)
                 Assert.NotEmpty(definition.ExtractedFiles);
         });
+
+        RuntimeComponentDefinition mpvnet = RuntimeComponentCatalog.Definitions
+            .Single(definition => definition.FileName == "mpvnet.com");
+        Assert.Equal("d4b0a80779dc775fb8817afa128a4ddcfe3bd07bca98a9d0c49ba44daf5cb5e3", mpvnet.PublishedDigest);
+    }
+
+    [Fact]
+    public async Task RuntimeComponentUpdateLockCanBeReleasedAfterAsyncContinuation()
+    {
+        RuntimeComponentUpdateLock updateLock = await RuntimeComponentUpdateLock.AcquireAsync(CancellationToken.None);
+        await Task.Run(updateLock.Dispose);
     }
 
     [Fact]

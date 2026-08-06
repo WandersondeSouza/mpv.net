@@ -40,7 +40,14 @@ internal sealed record RuntimeComponentDefinition(
     string ReleaseApiUrl,
     string AssetPattern,
     RuntimeComponentDownloadKind Kind,
-    params string[] ExtractedFiles);
+    params string[] ExtractedFiles)
+{
+    /// <summary>
+    /// Trusted SHA-256 used when GitHub does not expose an asset digest for an
+    /// immutable legacy release. A published API digest still takes precedence.
+    /// </summary>
+    public string? PublishedDigest { get; init; }
+}
 
 internal sealed record StagedRuntimeComponent(string Path, string? Digest);
 

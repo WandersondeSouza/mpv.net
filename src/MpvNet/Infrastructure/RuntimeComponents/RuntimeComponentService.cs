@@ -197,15 +197,24 @@ internal static class RuntimeComponentService
             throw new InvalidOperationException($"Runtime component asset metadata is invalid for {definition.FileName}.");
         }
 
-        string digest = asset.Digest?.Split(':', 2, StringSplitOptions.TrimEntries).LastOrDefault() ?? "";
-        if (digest.Length != 64 || !digest.All(Uri.IsHexDigit))
+        string? digest = ParseSha256(asset.Digest) ?? ParseSha256(definition.PublishedDigest);
+        if (digest is null)
             throw new InvalidOperationException($"A published SHA-256 digest is required for {definition.FileName}.");
+
+        if (ParseSha256(asset.Digest) is null && definition.PublishedDigest is not null)
+            Log.Debug($"Using the pinned SHA-256 for the legacy runtime component asset. file='{definition.FileName}', asset='{Log.SafeValue(assetName)}'");
 
         string destination = Path.Combine(stagingDirectory, assetName + "." + Guid.NewGuid().ToString("N") + ".download");
         Log.Debug($"Downloading runtime component asset. file='{definition.FileName}', asset='{Log.SafeValue(assetName)}', kind={definition.Kind}");
         long fileSize = await GitHubReleaseClient.DownloadAsync(
             asset.BrowserDownloadUrl!, destination, cancellationToken).ConfigureAwait(false);
         return new DownloadedRuntimeAsset(destination, digest, asset.BrowserDownloadUrl!, fileSize, assetName);
+    }
+
+    static string? ParseSha256(string? value)
+    {
+        string digest = value?.Split(':', 2, StringSplitOptions.TrimEntries).LastOrDefault() ?? "";
+        return digest.Length == 64 && digest.All(Uri.IsHexDigit) ? digest : null;
     }
 
     internal static void ExtractBundle(

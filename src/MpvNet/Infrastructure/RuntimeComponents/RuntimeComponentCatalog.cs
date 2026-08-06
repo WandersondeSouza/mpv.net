@@ -17,5 +17,11 @@ internal static class RuntimeComponentCatalog
             "^yt-dlp\\.exe$", RuntimeComponentDownloadKind.Direct),
         new("mpvnet.com", "https://api.github.com/repos/mpvnet-player/file-host/releases/latest",
             "^mpvnet\\.com(?:\\.txt)?$", RuntimeComponentDownloadKind.Direct)
+        {
+            // The legacy release is immutable and GitHub's asset API returns
+            // null for its digest. Keep the downloaded executable pinned until
+            // the upstream release publishes an API digest.
+            PublishedDigest = "d4b0a80779dc775fb8817afa128a4ddcfe3bd07bca98a9d0c49ba44daf5cb5e3"
+        }
     ];
 }

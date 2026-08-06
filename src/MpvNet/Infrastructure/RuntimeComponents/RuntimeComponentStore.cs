@@ -8,9 +8,21 @@ namespace MpvNet;
 internal sealed class RuntimeComponentUpdateLock : IDisposable
 {
     readonly Mutex _mutex;
-    bool _acquired;
+    readonly ManualResetEventSlim _releaseSignal = new(false);
+    readonly TaskCompletionSource<bool> _acquired = new(TaskCreationOptions.RunContinuationsAsynchronously);
+    readonly Thread _ownerThread;
+    int _disposed;
 
-    RuntimeComponentUpdateLock(Mutex mutex) => _mutex = mutex;
+    RuntimeComponentUpdateLock(Mutex mutex)
+    {
+        _mutex = mutex;
+        _ownerThread = new Thread(OwnMutex)
+        {
+            IsBackground = true,
+            Name = "mpv.net runtime component lock"
+        };
+        _ownerThread.Start();
+    }
 
     public static async Task<RuntimeComponentUpdateLock> AcquireAsync(CancellationToken cancellationToken)
     {
@@ -20,28 +32,8 @@ internal sealed class RuntimeComponentUpdateLock : IDisposable
 
         try
         {
-            while (!cancellationToken.IsCancellationRequested)
-            {
-                try
-                {
-                    if (result._mutex.WaitOne(TimeSpan.FromSeconds(1)))
-                    {
-                        result._acquired = true;
-                        return result;
-                    }
-                }
-                catch (AbandonedMutexException)
-                {
-                    result._acquired = true;
-                    Log.Debug("Recovered an abandoned runtime component update lock.");
-                    return result;
-                }
-
-                await Task.Yield();
-            }
-
-            cancellationToken.ThrowIfCancellationRequested();
-            throw new OperationCanceledException(cancellationToken);
+            await result._acquired.Task.WaitAsync(cancellationToken).ConfigureAwait(false);
+            return result;
         }
         catch
         {
@@ -52,14 +44,70 @@ internal sealed class RuntimeComponentUpdateLock : IDisposable
 
     public void Dispose()
     {
+        if (Interlocked.Exchange(ref _disposed, 1) != 0)
+            return;
+
         try
         {
-            if (_acquired)
-                _mutex.ReleaseMutex();
+            _releaseSignal.Set();
+        }
+        catch (ObjectDisposedException)
+        {
+            // The owner thread already completed and disposed the signal.
+        }
+
+        if (Thread.CurrentThread != _ownerThread)
+            _ownerThread.Join();
+    }
+
+    void OwnMutex()
+    {
+        bool acquired = false;
+        try
+        {
+            while (!_releaseSignal.IsSet)
+            {
+                try
+                {
+                    if (_mutex.WaitOne(TimeSpan.FromSeconds(1)))
+                    {
+                        acquired = true;
+                        break;
+                    }
+                }
+                catch (AbandonedMutexException)
+                {
+                    acquired = true;
+                    Log.Debug("Recovered an abandoned runtime component update lock.");
+                    break;
+                }
+            }
+
+            if (!acquired)
+            {
+                _acquired.TrySetCanceled();
+                return;
+            }
+
+            _acquired.TrySetResult(true);
+            _releaseSignal.Wait();
+        }
+        catch (Exception ex)
+        {
+            _acquired.TrySetException(ex);
         }
         finally
         {
-            _mutex.Dispose();
+            try
+            {
+                if (acquired)
+                    _mutex.ReleaseMutex();
+            }
+            finally
+            {
+                _mutex.Dispose();
+                _releaseSignal.Dispose();
+            }
         }
     }
 }

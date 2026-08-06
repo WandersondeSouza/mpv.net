@@ -92,10 +92,13 @@ corrompido não é escolhido. O `yt-dlp.exe` resolvido é passado ao mpv pelo
 precedência.
 
 As atualizações usam uma geração em `staging`, verificam HTTPS, host permitido,
-tamanho, SHA-256 publicado, ZIP Slip e PE x64, e só então renomeiam a geração
-completa para `current`. O conjunto FFmpeg é promovido junto, com manifesto
-`ffmpeg-bundle.json` e hashes individuais. Um mutex por usuário impede duas
-instâncias de alterarem o cache ao mesmo tempo; em falha a geração anterior é
+tamanho, SHA-256 publicado (ou um hash fixado para a release legada do
+`mpvnet.com` que ainda não expõe digest na API), ZIP Slip e PE x64, e só então
+renomeiam a geração completa para `current`. O conjunto FFmpeg é promovido
+junto, com manifesto `ffmpeg-bundle.json` e hashes individuais. Um bloqueio
+nomeado por usuário impede duas instâncias de alterarem o cache ao mesmo tempo;
+o mutex é liberado por sua thread proprietária dedicada e continua recuperável
+quando uma instância termina de forma inesperada. Em falha a geração anterior é
 mantida. Os manifestos diretos ficam ao lado do binário (`yt-dlp.exe.json` e
 `mpvnet.com.json`) e registram versão/asset, hash, URL, data, tamanho e
 arquitetura.
