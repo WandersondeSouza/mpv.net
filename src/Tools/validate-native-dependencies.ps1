@@ -1,6 +1,7 @@
 <#
 
-Validates native DLLs in a publish/package directory, or in a portable ZIP.
+Validates native DLLs in a publish/package directory or a recursively nested
+ZIP-compatible artifact (ZIP, APPX, MSIX, bundles and Store uploads).
 
 #>
 
@@ -9,13 +10,14 @@ param(
 
     [string] $ZipFile,
 
+    [string] $ArchiveFile,
+
     [string] $SevenZipPath = 'C:\Program Files\7-Zip\7z.exe'
 )
 
 $ErrorActionPreference = 'Stop'
 
-$RequiredDlls = @(
-    'libmpv-2.dll',
+$RequiredRuntimeDlls = @(
     'MediaInfo.dll',
     'D3DCompiler_47_cor3.dll',
     'vcruntime140_cor3.dll',
@@ -24,98 +26,110 @@ $RequiredDlls = @(
     'PresentationNative_cor3.dll'
 )
 
-function Test-RequiredFile($path) {
-    if (-not (Test-Path $path)) {
-        throw "Required native dependency not found: $path"
-    }
+. (Join-Path $PSScriptRoot 'libmpv-validation.ps1')
 
-    $file = Get-Item $path
-    if ($file.Length -le 0) {
-        throw "Required native dependency is empty: $path"
-    }
-
-    return $file
+$archiveExtensions = @('.zip', '.appx', '.msix', '.appxbundle', '.msixbundle', '.appxupload', '.msixupload')
+$providedInputs = @(@($Path, $ZipFile, $ArchiveFile) | Where-Object { $_ })
+if ($providedInputs.Count -ne 1) {
+    throw 'Pass exactly one input: -Path <publish-or-package-dir>, -ZipFile <portable.zip>, or -ArchiveFile <package>.'
 }
 
-function Assert-PeX64($path) {
-    $file = Test-RequiredFile $path
-    $stream = [System.IO.File]::OpenRead($file.FullName)
-    try {
-        $reader = [System.IO.BinaryReader]::new($stream)
-        $stream.Position = 0x3C
-        $peOffset = $reader.ReadInt32()
-        if ($peOffset -le 0 -or $peOffset -gt ($stream.Length - 6)) {
-            throw "Invalid PE header in $($file.FullName)"
-        }
-
-        $stream.Position = $peOffset
-        $signature = $reader.ReadUInt32()
-        if ($signature -ne 0x00004550) {
-            throw "Invalid PE signature in $($file.FullName)"
-        }
-
-        $machine = $reader.ReadUInt16()
-        if ($machine -ne 0x8664) {
-            throw "Expected x64 native binary, got machine 0x$($machine.ToString('X4')): $($file.FullName)"
-        }
-    }
-    finally {
-        $stream.Dispose()
+function Expand-ArchiveForValidation([string] $SourceFile, [string] $Destination) {
+    if (-not (Test-Path -LiteralPath $SourceFile -PathType Leaf)) {
+        throw "Package archive not found: $SourceFile"
     }
 
-    return $file
-}
-
-function Expand-ZipForValidation($zipFile) {
-    if (-not (Test-Path $zipFile)) {
-        throw "ZIP file not found: $zipFile"
-    }
-
-    $tempDir = Join-Path $env:TEMP ("mpv.net-native-validation-" + [Guid]::NewGuid().ToString('N'))
-    New-Item -ItemType Directory -Force $tempDir | Out-Null
-
-    if (Test-Path $SevenZipPath) {
-        $process = Start-Process $SevenZipPath @('x', $zipFile, "-o$tempDir", '-y') -NoNewWindow -Wait -PassThru
+    New-Item -ItemType Directory -Path $Destination -Force | Out-Null
+    if (Test-Path -LiteralPath $SevenZipPath -PathType Leaf) {
+        $process = Start-Process -FilePath $SevenZipPath -ArgumentList @('x', $SourceFile, "-o$Destination", '-y') -NoNewWindow -Wait -PassThru
         if ($process.ExitCode) {
-            throw "7-Zip failed extracting $zipFile with exit code $($process.ExitCode)"
+            throw "7-Zip failed extracting $SourceFile with exit code $($process.ExitCode)"
         }
     }
     else {
-        Expand-Archive -Path $zipFile -DestinationPath $tempDir -Force
+        Expand-Archive -LiteralPath $SourceFile -DestinationPath $Destination -Force
     }
 
-    return $tempDir
+    return (Resolve-Path -LiteralPath $Destination).Path
 }
 
-if ($ZipFile) {
-    $Path = Expand-ZipForValidation $ZipFile
+function Get-ArchivePayloadDirectories([string] $SourceFile, [string] $Destination, [int] $Depth = 0) {
+    if ($Depth -gt 4) {
+        throw "Package archive nesting exceeds the supported validation depth: $SourceFile"
+    }
+
+    $root = Expand-ArchiveForValidation $SourceFile $Destination
+    $directories = [System.Collections.Generic.List[string]]::new()
+    $directories.Add($root)
+    $nestedArchives = @(Get-ChildItem -LiteralPath $root -Recurse -File | Where-Object {
+        $archiveExtensions -contains $_.Extension.ToLowerInvariant()
+    })
+
+    foreach ($nestedArchive in $nestedArchives) {
+        $nestedDestination = Join-Path $root ('.nested-' + [Guid]::NewGuid().ToString('N'))
+        foreach ($directory in (Get-ArchivePayloadDirectories $nestedArchive.FullName $nestedDestination ($Depth + 1))) {
+            $directories.Add($directory)
+        }
+    }
+
+    return $directories
 }
 
-if (-not $Path) {
-    throw 'Pass -Path <publish-or-package-dir> or -ZipFile <portable.zip>.'
+function Get-DualLibMpvRoots([string] $Root) {
+    $roots = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
+    foreach ($normal in @(Get-ChildItem -LiteralPath $Root -Filter 'libmpv-2.dll' -Recurse -File)) {
+        $candidateRoot = $normal.DirectoryName
+        if (Test-Path -LiteralPath (Join-Path $candidateRoot 'libmpv-2-v3.dll') -PathType Leaf) {
+            $roots.Add($candidateRoot) | Out-Null
+        }
+    }
+
+    return @($roots)
 }
 
-if (-not (Test-Path $Path)) {
-    throw "Validation path not found: $Path"
-}
-
+$temporaryRoot = $null
 try {
-    $root = (Resolve-Path $Path).Path
-    foreach ($dll in $RequiredDlls) {
-        $matches = @(Get-ChildItem $root -Filter $dll -Recurse -File)
-        if ($matches.Count -lt 1) {
-            throw "Required native dependency not found under ${root}: $dll"
+    if ($Path) {
+        if (-not (Test-Path -LiteralPath $Path -PathType Container)) {
+            throw "Validation path not found: $Path"
+        }
+        $searchRoots = @((Resolve-Path -LiteralPath $Path).Path)
+        $description = "directory '$Path'"
+    }
+    else {
+        $sourceArchive = if ($ZipFile) { $ZipFile } else { $ArchiveFile }
+        $temporaryRoot = Join-Path $env:TEMP ('mpv.net-native-validation-' + [Guid]::NewGuid().ToString('N'))
+        $searchRoots = @(Get-ArchivePayloadDirectories $sourceArchive $temporaryRoot)
+        $description = "archive '$sourceArchive'"
+    }
+
+    $payloadRoots = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
+    foreach ($searchRoot in $searchRoots) {
+        foreach ($payloadRoot in (Get-DualLibMpvRoots $searchRoot)) {
+            $payloadRoots.Add($payloadRoot) | Out-Null
+        }
+    }
+
+    if (-not $payloadRoots.Count) {
+        throw "No payload containing both libmpv-2.dll and libmpv-2-v3.dll was found in $description."
+    }
+
+    foreach ($payloadRoot in $payloadRoots) {
+        $libMpv = Assert-LibMpvBuilds -Root $payloadRoot
+        Write-Host "OK libmpv-2.dll $($libMpv.Normal.Length) bytes sha256=$($libMpv.Normal.Sha256)"
+        Write-Host "OK libmpv-2-v3.dll $($libMpv.X86_64V3.Length) bytes sha256=$($libMpv.X86_64V3.Sha256)"
+
+        foreach ($dll in $RequiredRuntimeDlls) {
+            $file = Assert-PeX64 (Join-Path $payloadRoot $dll)
+            $version = [Diagnostics.FileVersionInfo]::GetVersionInfo($file.FullName).FileVersion
+            Write-Host "OK $dll $($file.Length) bytes $version"
         }
 
-        $file = Assert-PeX64 $matches[0].FullName
-        $version = [Diagnostics.FileVersionInfo]::GetVersionInfo($file.FullName).FileVersion
-        Write-Host "OK $dll $($file.Length) bytes $version"
+        Write-Host "Native dependency validation completed: $payloadRoot"
     }
-
-    Write-Host "Native dependency validation completed: $root"
 }
 finally {
-    if ($ZipFile -and $Path -and (Test-Path $Path)) {
-        Remove-Item $Path -Recurse -Force
+    if ($temporaryRoot -and (Test-Path -LiteralPath $temporaryRoot)) {
+        Remove-Item -LiteralPath $temporaryRoot -Recurse -Force
     }
 }

@@ -11,7 +11,7 @@ inside nested Store archives are validated as well.
 param(
     [string] $Path,
     [string] $ArchiveFile,
-    [string[]] $RequiredRelativePaths = @('mpvnet.exe', 'Scripts\osc.lua')
+    [string[]] $RequiredRelativePaths = @('mpvnet.exe', 'Scripts\osc.lua', 'libmpv-2.dll', 'libmpv-2-v3.dll')
 )
 
 $ErrorActionPreference = 'Stop'
@@ -53,10 +53,13 @@ function Get-ArchiveEntryNames([System.IO.Stream] $Stream, [int] $Depth = 0) {
         [System.IO.Compression.ZipArchiveMode]::Read,
         $true)
     try {
-        $names = [System.Collections.Generic.List[string]]::new()
+        $names = [System.Collections.Generic.List[object]]::new()
         foreach ($entry in $archive.Entries) {
             $entryName = Normalize-RelativePath $entry.FullName
-            $names.Add($entryName)
+            $names.Add([pscustomobject]@{
+                Name = $entryName
+                Length = $entry.Length
+            })
 
             if ($entryName -match '(?i)\.(appx|msix|appxbundle|msixbundle|appxupload|msixupload|zip)$') {
                 $nestedStream = [System.IO.MemoryStream]::new()
@@ -99,11 +102,14 @@ function Test-RequiredArchiveContent([string] $File, [string[]] $RequiredPaths) 
     foreach ($relativePath in $RequiredPaths) {
         $normalizedRequiredPath = Normalize-RelativePath $relativePath
         $matched = @($entryNames | Where-Object {
-            $_ -eq $normalizedRequiredPath -or
-            $_.EndsWith('/' + $normalizedRequiredPath, [StringComparison]::OrdinalIgnoreCase)
+            $_.Name -eq $normalizedRequiredPath -or
+            $_.Name.EndsWith('/' + $normalizedRequiredPath, [StringComparison]::OrdinalIgnoreCase)
         })
         if (-not $matched.Count) {
             throw "Required package file '$normalizedRequiredPath' was not found in archive: $resolvedFile"
+        }
+        if (-not @($matched | Where-Object { $_.Length -gt 0 }).Count) {
+            throw "Required package file '$normalizedRequiredPath' is empty in archive: $resolvedFile"
         }
     }
 
