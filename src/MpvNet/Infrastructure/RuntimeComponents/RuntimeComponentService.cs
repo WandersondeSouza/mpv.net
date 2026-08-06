@@ -233,6 +233,7 @@ internal static class RuntimeComponentService
                 throw new InvalidOperationException($"Runtime component archive contains a duplicate file: {entry.Name}");
 
             string target = Path.Combine(stagingDirectory, entry.Name);
+            RuntimeComponentFileSystem.DeleteIfExists(target);
             using Stream input = entry.Open();
             using FileStream output = new(target, FileMode.CreateNew, FileAccess.Write, FileShare.None);
             input.CopyTo(output);
