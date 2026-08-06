@@ -399,7 +399,7 @@ function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
     }
 }
 
-function Ensure-MpvNetCom($targetDir, $downloadsDir) {
+function Ensure-MpvNetCom($targetDir, $downloadsDir, $publishDir) {
     $targetFile = Join-Path $targetDir 'mpvnet.com'
     if ($MpvNetComFile) {
         Copy-Item (Test-RequiredFile $MpvNetComFile).FullName $targetFile -Force
@@ -413,6 +413,11 @@ function Ensure-MpvNetCom($targetDir, $downloadsDir) {
             'https://github.com/mpvnet-player/file-host/releases/download/tag/mpvnet.com.txt' `
             $downloadFile | Out-Null
         Copy-Item (Test-RequiredFile $downloadFile).FullName $targetFile -Force
+    }
+
+    if ($publishDir) {
+        Copy-Item (Test-RequiredFile $targetFile).FullName (Join-Path $publishDir 'mpvnet.com') -Force
+        Test-RequiredFile (Join-Path $publishDir 'mpvnet.com') | Out-Null
     }
 }
 
@@ -463,7 +468,7 @@ $ExtractDir = New-CleanDir (Join-Path $ArtifactsDir 'extract')
 
 Ensure-MediaInfo $TargetDir $DownloadsDir $ExtractDir
 Ensure-LibMpv $TargetDir $DownloadsDir $ExtractDir
-Ensure-MpvNetCom $TargetDir $DownloadsDir
+Ensure-MpvNetCom $TargetDir $DownloadsDir $PublishDir
 Ensure-DotNetNativeDlls $TargetDir $PublishDir
 
 Write-Host "Native and helper dependencies are ready: $TargetDir"
