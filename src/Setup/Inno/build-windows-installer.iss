@@ -28,8 +28,13 @@ VersionInfoCompany={#MyAppPublisher}
 VersionInfoCopyright=Copyright (C) {#MyAppPublisher}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
+#ifdef TestInstall
+PrivilegesRequired=lowest
+PrivilegesRequiredOverridesAllowed=commandline
+#else
 PrivilegesRequired=admin
 PrivilegesRequiredOverridesAllowed=dialog
+#endif
 ChangesEnvironment=yes
 
 [Icons]
@@ -38,8 +43,11 @@ Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 [Files]
 Source: "{#MyAppSourceDir}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyAppSourceDir}\Scripts\osc.lua"; DestDir: "{app}\Scripts"; Flags: ignoreversion
-Source: "{#MyAppSourceDir}\*"; DestDir: "{app}"; Excludes: "Scripts\osc.lua"; Flags: ignoreversion recursesubdirs createallsubdirs;
+Source: "{#MyAppSourceDir}\libmpv-2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppSourceDir}\libmpv-2-v3.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppSourceDir}\*"; DestDir: "{app}"; Excludes: "Scripts\osc.lua,libmpv-2.dll,libmpv-2-v3.dll"; Flags: ignoreversion recursesubdirs createallsubdirs;
 
+#ifndef SkipFileAssociations
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations audio"; Flags: runhidden waituntilterminated
 Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations video"; Flags: runhidden waituntilterminated
@@ -47,7 +55,9 @@ Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations pla
 
 [UninstallRun]
 Filename: "{app}\{#MyAppExeName}"; Parameters: "--register-file-associations unreg"; Flags: runhidden waituntilterminated; RunOnceId: "UnregisterFileAssociations"
+#endif
 
+#ifndef TestInstall
 [Code]
 const
   MachineEnvironmentKey = 'SYSTEM\CurrentControlSet\Control\Session Manager\Environment';
@@ -187,3 +197,4 @@ begin
   if CurUninstallStep = usPostUninstall then
     RemoveInstallDirFromPath();
 end;
+#endif

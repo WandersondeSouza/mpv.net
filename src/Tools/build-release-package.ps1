@@ -330,7 +330,9 @@ if (-not $SkipPortableZip) {
 if (-not $SkipInstaller) {
     # Inno Setup
     ''; ''
-    & $PackageContentValidationScript -Path $PublishDir64
+    & $PackageContentValidationScript `
+        -Path $PublishDir64 `
+        -RequiredRelativePaths @('mpvnet.exe', 'Scripts\osc.lua', 'libmpv-2.dll', 'libmpv-2-v3.dll')
     if ($LastExitCode) { throw $LastExitCode }
     $InnoSetupScript = Test (Join-Path $SourceDir 'Setup\Inno\build-windows-installer.iss')
     & $InnoSetupCompiler "/O$OutputRootDir" $InnoSetupScript
