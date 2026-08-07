@@ -15,11 +15,20 @@ function Get-LibMpvBuildContract([string] $ContractFile) {
         throw "libmpv build contract was not found: $ContractFile"
     }
 
-    if (-not (Get-Command Import-PowerShellDataFile -ErrorAction SilentlyContinue)) {
-        Import-Module Microsoft.PowerShell.Utility -ErrorAction Stop
+    $importDataFile = Get-Command Import-PowerShellDataFile -ErrorAction SilentlyContinue
+    if (-not $importDataFile) {
+        Import-Module Microsoft.PowerShell.Utility -ErrorAction SilentlyContinue
+        $importDataFile = Get-Command Import-PowerShellDataFile -ErrorAction SilentlyContinue
     }
 
-    return Import-PowerShellDataFile -LiteralPath $ContractFile
+    if ($importDataFile) {
+        return & $importDataFile -LiteralPath $ContractFile
+    }
+
+    # Windows PowerShell runners can expose the Utility module without making
+    # Import-PowerShellDataFile callable. The contract is repository-controlled
+    # and contains only a literal hashtable, so evaluate that file directly.
+    return Invoke-Expression (Get-Content -LiteralPath $ContractFile -Raw)
 }
 
 function Test-RequiredNativeFile([string] $Path) {
