@@ -446,9 +446,15 @@ public partial class MainPlayer
             return;
 
         int playlistCount = GetPropertyInt("playlist-count");
+        bool playbackActive = !string.IsNullOrWhiteSpace(GetPropertyString("path"));
 
-        if (playlistCount <= 1)
+        if (!ShouldNormalizeAutocreatedPlaylist(playlistCount, playbackActive))
+        {
+            if (playlistCount > 1 && playbackActive)
+                Log.Debug("Skipping auto-created playlist normalization while media is playing to preserve the current playback position.");
+
             return;
+        }
 
         int playlistPos = GetPropertyInt("playlist-pos");
         List<PlaylistFileItem> items = [];

@@ -126,6 +126,9 @@ public partial class MainPlayer
         currentPosition == failedPosition &&
         failedPosition + 1 < playlistCount;
 
+    internal static bool ShouldNormalizeAutocreatedPlaylist(int playlistCount, bool playbackActive) =>
+        playlistCount > 1 && !playbackActive;
+
     public string ConfPath { get => ConfigFolder + "mpv.conf"; }
     public string CacheFolder => TemporaryFileCleanup.DefaultCacheFolder + System.IO.Path.DirectorySeparatorChar;
     public string GPUAPI { get; set; } = "auto";

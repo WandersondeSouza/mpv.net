@@ -540,6 +540,14 @@ public sealed class PlayerPlaybackRecoveryTests
     {
         Assert.False(MainPlayer.ShouldAdvanceAfterPlaybackError(failedPosition, currentPosition, playlistCount));
     }
+
+    [Fact]
+    public void AutoCreatedPlaylistNormalizationDoesNotReloadActivePlayback()
+    {
+        Assert.False(MainPlayer.ShouldNormalizeAutocreatedPlaylist(3, playbackActive: true));
+        Assert.False(MainPlayer.ShouldNormalizeAutocreatedPlaylist(1, playbackActive: false));
+        Assert.True(MainPlayer.ShouldNormalizeAutocreatedPlaylist(3, playbackActive: false));
+    }
 }
 
 public sealed class PlayerStateTests
