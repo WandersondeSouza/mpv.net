@@ -375,13 +375,13 @@ function Save-LibMpvBuildManifest($targetDir, $contract, $archives) {
         normal = [ordered]@{
             file = $contract.Normal.FileName
             asset = $archives.Normal.Name
-            sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $normalFile).Hash.ToLowerInvariant()
+            sha256 = Get-Sha256Hex $normalFile
             downloadedAtUtc = $archives.Normal.LastWriteTimeUtc.ToString('O')
         }
         'x86_64-v3' = [ordered]@{
             file = $contract.X86_64V3.FileName
             asset = $archives.X86_64V3.Name
-            sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $v3File).Hash.ToLowerInvariant()
+            sha256 = Get-Sha256Hex $v3File
             downloadedAtUtc = $archives.X86_64V3.LastWriteTimeUtc.ToString('O')
         }
     }

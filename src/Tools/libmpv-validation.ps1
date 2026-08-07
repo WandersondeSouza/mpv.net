@@ -44,6 +44,22 @@ function Test-RequiredNativeFile([string] $Path) {
     return $file
 }
 
+function Get-Sha256Hex([string] $Path) {
+    $sha256 = [System.Security.Cryptography.SHA256]::Create()
+    try {
+        $stream = [System.IO.File]::OpenRead($Path)
+        try {
+            return ([System.BitConverter]::ToString($sha256.ComputeHash($stream))).Replace('-', '').ToLowerInvariant()
+        }
+        finally {
+            $stream.Dispose()
+        }
+    }
+    finally {
+        $sha256.Dispose()
+    }
+}
+
 function Assert-PeX64([string] $Path) {
     $file = Test-RequiredNativeFile $Path
     $stream = [System.IO.File]::OpenRead($file.FullName)
@@ -187,7 +203,7 @@ function Assert-LibMpvBuilds([string] $Root, [string] $ContractFile) {
         $result[$variantName] = [pscustomobject]@{
             File = $file.FullName
             Length = $file.Length
-            Sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $file.FullName).Hash.ToLowerInvariant()
+            Sha256 = Get-Sha256Hex $file.FullName
             Exports = $exports
         }
     }
