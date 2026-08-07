@@ -47,6 +47,14 @@ As associações automáticas atuais incluem:
 - Playlists: `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`, `.wpl`, `.cue`, `.jspf`;
 - Imagem, apenas quando associada manualmente pelo menu: `.avif`, `.bmp`, `.gif`, `.j2k`, `.jp2`, `.jpeg`, `.jpg`, `.jxl`, `.png`, `.svg`, `.tga`, `.tif`, `.tiff`, `.webp`.
 
+No pacote da Microsoft Store, essas extensões são registradas como formatos que
+o MPV.NET pode abrir e aparecem em `Abrir com` e em `Aplicativos padrão`. O
+Windows não permite que um aplicativo altere silenciosamente o padrão do
+usuário durante a instalação. Para tornar o MPV.NET o padrão, abra
+`Configurações > Aplicativos > Aplicativos padrão`, procure o MPV.NET e escolha
+as extensões desejadas; também é possível usar `Abrir com > Escolher outro
+aplicativo` no Explorador de Arquivos.
+
 ## Configuração
 
 O mpv.net lê a configuração nesta ordem:
