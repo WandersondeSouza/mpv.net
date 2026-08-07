@@ -15,6 +15,10 @@ function Get-LibMpvBuildContract([string] $ContractFile) {
         throw "libmpv build contract was not found: $ContractFile"
     }
 
+    if (-not (Get-Command Import-PowerShellDataFile -ErrorAction SilentlyContinue)) {
+        Import-Module Microsoft.PowerShell.Utility -ErrorAction Stop
+    }
+
     return Import-PowerShellDataFile -LiteralPath $ContractFile
 }
 
