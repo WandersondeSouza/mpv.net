@@ -1,0 +1,16 @@
+version: 2
+
+updates:
+  # Directory.Packages.props and the NuGet project files live under src.
+  - package-ecosystem: nuget
+    directory: /src
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+
+  # Keep GitHub Actions references current without changing release behavior.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
