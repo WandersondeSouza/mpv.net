@@ -6,7 +6,7 @@ using static MpvNet.Native.LibMpv;
 
 namespace MpvNet;
 
-public class MpvClient
+public partial class MpvClient
 {
     public event Action<string[]>? ClientMessage;            // client-message      MPV_EVENT_CLIENT_MESSAGE
     public event Action<mpv_log_level, string>? LogMessage;  // log-message         MPV_EVENT_LOG_MESSAGE
@@ -89,81 +89,73 @@ public class MpvClient
 
         while (!cancellationToken.IsCancellationRequested && TryEnterNativeOperation(out IDisposable? operation))
         {
-            mpv_event evt = default;
-            using (operation)
-            {
-                handle = Handle;
-                if (handle == IntPtr.Zero)
-                    return;
-
-                IntPtr ptr = mpv_wait_event(handle, 0.1);
-                if (ptr == IntPtr.Zero)
-                    continue;
-
-                evt = (mpv_event)Marshal.PtrToStructure(ptr, typeof(mpv_event))!;
-
-            }
+            MpvEventSnapshot? snapshot = null;
 
             try
+            {
+                using (operation)
                 {
-                    switch (evt.event_id)
-                    {
-                        case mpv_event_id.MPV_EVENT_SHUTDOWN:
-                            OnShutdown();
-                            return;
-                        case mpv_event_id.MPV_EVENT_LOG_MESSAGE:
-                            {
-                                var data = (mpv_event_log_message)Marshal.PtrToStructure(evt.data, typeof(mpv_event_log_message))!;
-                                OnLogMessage(data);
-                            }
-                            break;
-                        case mpv_event_id.MPV_EVENT_CLIENT_MESSAGE:
-                            {
-                                var data = (mpv_event_client_message)Marshal.PtrToStructure(evt.data, typeof(mpv_event_client_message))!;
-                                OnClientMessage(data);
-                            }
-                            break;
-                        case mpv_event_id.MPV_EVENT_VIDEO_RECONFIG:
-                            OnVideoReconfig();
-                            break;
-                        case mpv_event_id.MPV_EVENT_END_FILE:
-                            {
-                                var data = (mpv_event_end_file)Marshal.PtrToStructure(evt.data, typeof(mpv_event_end_file))!;
-                                OnEndFile(data);
-                            }
-                            break;
-                        case mpv_event_id.MPV_EVENT_FILE_LOADED:  // triggered after MPV_EVENT_START_FILE
-                            OnFileLoaded();
-                            break;
-                        case mpv_event_id.MPV_EVENT_PROPERTY_CHANGE:
-                            {
-                                var data = (mpv_event_property)Marshal.PtrToStructure(evt.data, typeof(mpv_event_property))!;
-                                OnPropertyChange(data);
-                            }
-                            break;
-                        case mpv_event_id.MPV_EVENT_GET_PROPERTY_REPLY:
-                            OnGetPropertyReply();
-                            break;
-                        case mpv_event_id.MPV_EVENT_SET_PROPERTY_REPLY:
-                            OnSetPropertyReply();
-                            break;
-                        case mpv_event_id.MPV_EVENT_COMMAND_REPLY:
-                            OnCommandReply();
-                            break;
-                        case mpv_event_id.MPV_EVENT_START_FILE:  // triggered before MPV_EVENT_FILE_LOADED
-                            OnStartFile();
-                            break;
-                        case mpv_event_id.MPV_EVENT_AUDIO_RECONFIG:
-                            OnAudioReconfig();
-                            break;
-                        case mpv_event_id.MPV_EVENT_SEEK:
-                            OnSeek();
-                            break;
-                        case mpv_event_id.MPV_EVENT_PLAYBACK_RESTART:
-                            OnPlaybackRestart();
-                            break;
-                    }
+                    handle = Handle;
+                    if (handle == IntPtr.Zero)
+                        return;
+
+                    IntPtr ptr = mpv_wait_event(handle, 0.1);
+                    if (ptr == IntPtr.Zero)
+                        continue;
+
+                    mpv_event evt = Marshal.PtrToStructure<mpv_event>(ptr);
+                    snapshot = MpvEventSnapshot.Create(evt);
                 }
+
+                if (snapshot is null)
+                    continue;
+
+                switch (snapshot.EventId)
+                {
+                    case mpv_event_id.MPV_EVENT_SHUTDOWN:
+                        OnShutdown();
+                        return;
+                    case mpv_event_id.MPV_EVENT_LOG_MESSAGE:
+                        OnLogMessage(snapshot);
+                        break;
+                    case mpv_event_id.MPV_EVENT_CLIENT_MESSAGE:
+                        OnClientMessage(snapshot);
+                        break;
+                    case mpv_event_id.MPV_EVENT_VIDEO_RECONFIG:
+                        OnVideoReconfig();
+                        break;
+                    case mpv_event_id.MPV_EVENT_END_FILE:
+                        OnEndFile(snapshot);
+                        break;
+                    case mpv_event_id.MPV_EVENT_FILE_LOADED:  // triggered after MPV_EVENT_START_FILE
+                        OnFileLoaded();
+                        break;
+                    case mpv_event_id.MPV_EVENT_PROPERTY_CHANGE:
+                        OnPropertyChange(snapshot);
+                        break;
+                    case mpv_event_id.MPV_EVENT_GET_PROPERTY_REPLY:
+                        OnGetPropertyReply();
+                        break;
+                    case mpv_event_id.MPV_EVENT_SET_PROPERTY_REPLY:
+                        OnSetPropertyReply();
+                        break;
+                    case mpv_event_id.MPV_EVENT_COMMAND_REPLY:
+                        OnCommandReply();
+                        break;
+                    case mpv_event_id.MPV_EVENT_START_FILE:  // triggered before MPV_EVENT_FILE_LOADED
+                        OnStartFile();
+                        break;
+                    case mpv_event_id.MPV_EVENT_AUDIO_RECONFIG:
+                        OnAudioReconfig();
+                        break;
+                    case mpv_event_id.MPV_EVENT_SEEK:
+                        OnSeek();
+                        break;
+                    case mpv_event_id.MPV_EVENT_PLAYBACK_RESTART:
+                        OnPlaybackRestart();
+                        break;
+                }
+            }
             catch (Exception ex)
             {
                 Terminal.WriteError(ex);

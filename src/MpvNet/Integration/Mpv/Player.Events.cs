@@ -11,28 +11,26 @@ namespace MpvNet;
 
 public partial class MainPlayer
 {
-    protected override void OnLogMessage(mpv_event_log_message data)
+    internal override void OnLogMessage(MpvEventSnapshot data)
     {
-        if (data.log_level == mpv_log_level.MPV_LOG_LEVEL_INFO)
+        if (data.LogLevel == mpv_log_level.MPV_LOG_LEVEL_INFO)
         {
-            string prefix = ConvertFromUtf8(data.prefix);
-
-            if (prefix == "bd")
-                ProcessBluRayLogMessage(ConvertFromUtf8(data.text));
+            if (data.Prefix == "bd")
+                ProcessBluRayLogMessage(data.Text);
         }
 
         base.OnLogMessage(data);
     }
 
-    protected override void OnEndFile(mpv_event_end_file data)
+    internal override void OnEndFile(MpvEventSnapshot data)
     {
-        mpv_end_file_reason reason = (mpv_end_file_reason)data.reason;
-        string errorText = GetError((mpv_error)data.error);
+        mpv_end_file_reason reason = (mpv_end_file_reason)data.EndFileReason;
+        string errorText = GetError((mpv_error)data.EndFileError);
         string failedPath = GetPropertyString("path");
         int failedPosition = GetPropertyInt("playlist-pos");
         int playlistCount = GetPropertyInt("playlist-count");
         bool playbackFailed = reason == mpv_end_file_reason.MPV_END_FILE_REASON_ERROR;
-        Log.Debug($"mpv end-file event. reason={reason}, error={data.error}, errorText='{errorText}', path='{Log.SafeValue(failedPath)}', playlistPos={failedPosition}, playlistCount={playlistCount}");
+        Log.Debug($"mpv end-file event. reason={reason}, error={data.EndFileError}, errorText='{errorText}', path='{Log.SafeValue(failedPath)}', playlistPos={failedPosition}, playlistCount={playlistCount}");
 
         if (playbackFailed)
         {
