@@ -36,4 +36,25 @@ public sealed class LibMpvInteropTests
             Marshal.FreeHGlobal(pointer);
         }
     }
+
+    [Fact]
+    public void UnmanagedStringArrayWritesUtf8PointersAndNullSentinel()
+    {
+        using UnmanagedStringArray values = new(new[] { "comando", "áudio" });
+
+        Assert.Equal("comando", LibMpv.ConvertFromUtf8(Marshal.ReadIntPtr(values.Pointer, 0)));
+        Assert.Equal("áudio", LibMpv.ConvertFromUtf8(Marshal.ReadIntPtr(values.Pointer, IntPtr.Size)));
+        Assert.Equal(IntPtr.Zero, Marshal.ReadIntPtr(values.Pointer, IntPtr.Size * 2));
+    }
+
+    [Fact]
+    public void UnmanagedStringArrayDisposeIsIdempotent()
+    {
+        UnmanagedStringArray values = new(new[] { "comando" });
+
+        values.Dispose();
+        values.Dispose();
+
+        Assert.Equal(IntPtr.Zero, values.Pointer);
+    }
 }

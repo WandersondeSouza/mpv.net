@@ -281,32 +281,15 @@ public class MpvClient
 
         using (operation)
         {
-        nint handle = Handle;
-        if (handle == IntPtr.Zero)
-            return;
+            nint handle = Handle;
+            if (handle == IntPtr.Zero)
+                return;
 
-        int count = args.Length + 1;
-        IntPtr[] pointers = new IntPtr[count];
-        IntPtr rootPtr = Marshal.AllocHGlobal(IntPtr.Size * count);
+            using UnmanagedStringArray command = new(args);
+            mpv_error err = mpv_command(handle, command.Pointer);
 
-        for (int index = 0; index < args.Length; index++)
-        {
-            var bytes = GetUtf8Bytes(args[index]);
-            IntPtr ptr = Marshal.AllocHGlobal(bytes.Length);
-            Marshal.Copy(bytes, 0, ptr, bytes.Length);
-            pointers[index] = ptr;
-        }
-
-        Marshal.Copy(pointers, 0, rootPtr, count);
-        mpv_error err = mpv_command(handle, rootPtr);
-
-        foreach (IntPtr ptr in pointers)
-            Marshal.FreeHGlobal(ptr);
-
-        Marshal.FreeHGlobal(rootPtr);
-
-        if (err < 0)
-            HandleError(err, "error executing command: " + string.Join("\n", args));
+            if (err < 0)
+                HandleError(err, "error executing command: " + string.Join("\n", args));
         }
     }
 
@@ -323,46 +306,38 @@ public class MpvClient
 
         using (operation)
         {
-        nint handle = Handle;
-        if (handle == IntPtr.Zero)
-            return "property expansion error";
+            nint handle = Handle;
+            if (handle == IntPtr.Zero)
+                return "property expansion error";
 
-        string[] args = { "expand-text", value };
-        int count = args.Length + 1;
-        IntPtr[] pointers = new IntPtr[count];
-        IntPtr rootPtr = Marshal.AllocHGlobal(IntPtr.Size * count);
+            string[] args = { "expand-text", value };
+            using UnmanagedStringArray command = new(args);
+            nint resultNodePtr = IntPtr.Zero;
+            bool resultNodeInitialized = false;
 
-        for (int index = 0; index < args.Length; index++)
-        {
-            var bytes = GetUtf8Bytes(args[index]);
-            IntPtr ptr = Marshal.AllocHGlobal(bytes.Length);
-            Marshal.Copy(bytes, 0, ptr, bytes.Length);
-            pointers[index] = ptr;
-        }
+            try
+            {
+                resultNodePtr = Marshal.AllocHGlobal(Marshal.SizeOf<mpv_node>());
+                mpv_error err = mpv_command_ret(handle, command.Pointer, resultNodePtr);
 
-        Marshal.Copy(pointers, 0, rootPtr, count);
-        IntPtr resultNodePtr = Marshal.AllocHGlobal(16);
-        mpv_error err = mpv_command_ret(handle, rootPtr, resultNodePtr);
+                if (err < 0)
+                {
+                    HandleError(err, "error executing command: " + string.Join("\n", args));
+                    return "property expansion error";
+                }
 
-        foreach (IntPtr ptr in pointers)
-        {
-            Marshal.FreeHGlobal(ptr);
-        }
+                resultNodeInitialized = true;
+                mpv_node resultNode = Marshal.PtrToStructure<mpv_node>(resultNodePtr);
+                return ConvertFromUtf8(resultNode.str);
+            }
+            finally
+            {
+                if (resultNodeInitialized)
+                    mpv_free_node_contents(resultNodePtr);
 
-        Marshal.FreeHGlobal(rootPtr);
-
-        if (err < 0)
-        {
-            HandleError(err, "error executing command: " + string.Join("\n", args));
-            Marshal.FreeHGlobal(resultNodePtr);
-            return "property expansion error";
-        }
-
-        mpv_node resultNode = Marshal.PtrToStructure<mpv_node>(resultNodePtr);
-        string ret = ConvertFromUtf8(resultNode.str);
-        mpv_free_node_contents(resultNodePtr);
-        Marshal.FreeHGlobal(resultNodePtr);
-        return ret;
+                if (resultNodePtr != IntPtr.Zero)
+                    Marshal.FreeHGlobal(resultNodePtr);
+            }
         }
     }
 
