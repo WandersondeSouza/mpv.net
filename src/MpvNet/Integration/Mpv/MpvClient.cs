@@ -185,37 +185,39 @@ public class MpvClient
 
     protected virtual void OnPropertyChange(mpv_event_property data)
     {
+        string name = ConvertFromUtf8(data.name);
+
         if (data.format == mpv_format.MPV_FORMAT_FLAG)
         {
-            bool value = Marshal.PtrToStructure<int>(data.data) == 1;
+            bool value = Marshal.PtrToStructure<int>(data.data) != 0;
 
-            foreach (var action in GetActions(BoolPropChangeActions, data.name))
+            foreach (var action in GetActions(BoolPropChangeActions, name))
                 action.Invoke(value);
         }
         else if (data.format == mpv_format.MPV_FORMAT_STRING)
         {
             string value = ConvertFromUtf8(Marshal.PtrToStructure<IntPtr>(data.data));
 
-            foreach (var action in GetActions(StringPropChangeActions, data.name))
+            foreach (var action in GetActions(StringPropChangeActions, name))
                 action.Invoke(value);
         }
         else if (data.format == mpv_format.MPV_FORMAT_INT64)
         {
             int value = Convert.ToInt32(Marshal.PtrToStructure<long>(data.data));
 
-            foreach (var action in GetActions(IntPropChangeActions, data.name))
+            foreach (var action in GetActions(IntPropChangeActions, name))
                 action.Invoke(value);
         }
         else if (data.format == mpv_format.MPV_FORMAT_NONE)
         {
-            foreach (var action in GetActions(PropChangeActions, data.name))
+            foreach (var action in GetActions(PropChangeActions, name))
                 action.Invoke();
         }
         else if (data.format == mpv_format.MPV_FORMAT_DOUBLE)
         {
             double value = Marshal.PtrToStructure<double>(data.data);
 
-            foreach (var action in GetActions(DoublePropChangeActions, data.name))
+            foreach (var action in GetActions(DoublePropChangeActions, name))
                 action.Invoke(value);
         }
     }
@@ -376,12 +378,12 @@ public class MpvClient
             return false;
 
         mpv_error err = mpv_get_property(handle, GetUtf8Bytes(name),
-            mpv_format.MPV_FORMAT_FLAG, out IntPtr lpBuffer);
+            mpv_format.MPV_FORMAT_FLAG, out int value);
 
         if (err < 0 && handleError)
             HandleError(err, "error getting property: " + name);
 
-        return lpBuffer.ToInt32() != 0;
+        return err >= 0 && value != 0;
         }
     }
 
@@ -396,7 +398,7 @@ public class MpvClient
         if (handle == IntPtr.Zero)
             return;
 
-        long val = value ? 1 : 0;
+        int val = value ? 1 : 0;
         mpv_error err = mpv_set_property(handle, GetUtf8Bytes(name), mpv_format.MPV_FORMAT_FLAG, ref val);
 
         if (err < 0)
@@ -416,12 +418,12 @@ public class MpvClient
             return 0;
 
         mpv_error err = mpv_get_property(handle, GetUtf8Bytes(name),
-            mpv_format.MPV_FORMAT_INT64, out IntPtr lpBuffer);
+            mpv_format.MPV_FORMAT_INT64, out long value);
 
         if (err < 0 && App.DebugMode)
             HandleError(err, "error getting property: " + name);
 
-        return lpBuffer.ToInt32();
+        return err >= 0 ? Convert.ToInt32(value) : 0;
         }
     }
 
@@ -474,12 +476,12 @@ public class MpvClient
             return 0;
 
         mpv_error err = mpv_get_property(handle, GetUtf8Bytes(name),
-            mpv_format.MPV_FORMAT_INT64, out IntPtr lpBuffer);
+            mpv_format.MPV_FORMAT_INT64, out long value);
 
         if (err < 0)
             HandleError(err, "error getting property: " + name);
 
-        return lpBuffer.ToInt64();
+        return err >= 0 ? value : 0;
         }
     }
 
@@ -562,8 +564,7 @@ public class MpvClient
             if (handle == IntPtr.Zero)
                 return;
 
-            byte[] bytes = GetUtf8Bytes(value);
-            mpv_error err = mpv_set_property(handle, GetUtf8Bytes(name), mpv_format.MPV_FORMAT_STRING, ref bytes);
+            mpv_error err = mpv_set_property_string(handle, name, value);
 
             if (err < 0)
                 HandleError(err, $"error setting property: {name} = {value}");

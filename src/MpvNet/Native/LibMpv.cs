@@ -56,16 +56,28 @@ public static class LibMpv
     public static extern mpv_error mpv_get_property(nint mpvHandle, byte[] name, mpv_format format, out nint data);
 
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
+    public static extern mpv_error mpv_get_property(nint mpvHandle, byte[] name, mpv_format format, out int data);
+
+    [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
+    public static extern mpv_error mpv_get_property(nint mpvHandle, byte[] name, mpv_format format, out long data);
+
+    [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
     public static extern mpv_error mpv_get_property(nint mpvHandle, byte[] name, mpv_format format, out double data);
 
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
-    public static extern mpv_error mpv_set_property(nint mpvHandle, byte[] name, mpv_format format, ref byte[] data);
+    public static extern mpv_error mpv_set_property(nint mpvHandle, byte[] name, mpv_format format, ref int data);
 
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
     public static extern mpv_error mpv_set_property(nint mpvHandle, byte[] name, mpv_format format, ref long data);
 
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
     public static extern mpv_error mpv_set_property(nint mpvHandle, byte[] name, mpv_format format, ref double data);
+
+    [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
+    public static extern mpv_error mpv_set_property_string(
+        nint mpvHandle,
+        [MarshalAs(UnmanagedType.LPUTF8Str)] string name,
+        [MarshalAs(UnmanagedType.LPUTF8Str)] string data);
 
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
     public static extern mpv_error mpv_observe_property(nint mpvHandle, ulong reply_userdata, [MarshalAs(UnmanagedType.LPUTF8Str)] string name, mpv_format format);
@@ -194,7 +206,7 @@ public static class LibMpv
     [StructLayout(LayoutKind.Sequential)]
     public struct mpv_event_property
     {
-        public string name;
+        public nint name;
         public mpv_format format;
         public nint data;
     }
