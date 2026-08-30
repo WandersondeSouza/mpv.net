@@ -98,7 +98,6 @@ ferramentas auxiliares como `yt-dlp` encontrem `ffmpeg` e `ffprobe` da mesma
 geração promovida; antes da primeira promoção, o diretório legado continua sendo
 usado como fallback.
 
-
 As atualizações usam uma geração em `staging`, verificam HTTPS, host permitido,
 tamanho, SHA-256 publicado (ou um hash fixado para a release legada do
 `mpvnet.com` que ainda não expõe digest na API), ZIP Slip e PE x64, e só então

@@ -115,6 +115,7 @@ internal sealed class RuntimeComponentUpdateLock : IDisposable
 internal static class RuntimeComponentStore
 {
     const int PromotionAttempts = 3;
+    internal static readonly TimeSpan StagingRetention = TimeSpan.FromDays(1);
 
     public static void RecoverInterruptedPromotion()
     {
@@ -172,9 +173,42 @@ internal static class RuntimeComponentStore
         if (!Directory.Exists(RuntimeComponentPaths.TempFolder))
             return;
 
-        foreach (string directory in Directory.GetDirectories(RuntimeComponentPaths.TempFolder))
-            RuntimeComponentFileSystem.DeleteIfExists(directory);
+        CleanupStaleStaging(DateTimeOffset.UtcNow);
     }
+
+    internal static void CleanupStaleStaging(DateTimeOffset now)
+    {
+        if (!Directory.Exists(RuntimeComponentPaths.TempFolder))
+            return;
+
+        int removed = 0;
+        foreach (string directory in Directory.GetDirectories(
+                     RuntimeComponentPaths.TempFolder, "*", SearchOption.TopDirectoryOnly))
+        {
+            try
+            {
+                DirectoryInfo info = new(directory);
+                Guid stagingId;
+                if (!Guid.TryParse(info.Name, out stagingId) ||
+                    (info.Attributes & FileAttributes.ReparsePoint) != 0 ||
+                    !IsStaleStaging(new DateTimeOffset(info.LastWriteTimeUtc), now))
+                    continue;
+
+                RuntimeComponentFileSystem.DeleteIfExists(directory);
+                if (!Directory.Exists(directory))
+                    removed++;
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                Log.Debug($"Skipped runtime component staging directory. path='{Log.SafeValue(directory)}', error='{Log.SafeValue(ex.Message)}'");
+            }
+        }
+
+        Log.Debug($"Cleaned stale runtime component staging directories. removed={removed}, cutoffUtc={now - StagingRetention:O}");
+    }
+
+    internal static bool IsStaleStaging(DateTimeOffset lastWriteUtc, DateTimeOffset now) =>
+        lastWriteUtc <= now - StagingRetention;
 
     static void Promote(string stagingDirectory)
     {

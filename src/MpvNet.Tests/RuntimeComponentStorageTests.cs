@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,5 +31,14 @@ public sealed class RuntimeComponentStorageTests
         string path = RuntimeComponents.ResolveComponentPath("../outside.exe");
 
         Assert.Equal(string.Empty, path);
+    }
+
+    [Fact]
+    public void StagingRetentionUsesOneDayCutoff()
+    {
+        DateTimeOffset now = new(2026, 8, 30, 12, 0, 0, TimeSpan.Zero);
+
+        Assert.True(RuntimeComponentStore.IsStaleStaging(now - RuntimeComponentStore.StagingRetention - TimeSpan.FromMinutes(1), now));
+        Assert.False(RuntimeComponentStore.IsStaleStaging(now - RuntimeComponentStore.StagingRetention + TimeSpan.FromMinutes(1), now));
     }
 }
