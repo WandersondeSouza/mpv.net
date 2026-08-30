@@ -87,8 +87,11 @@ política histórica de preferir o cache validado e segue esta ordem:
 
 Todo candidato é convertido para caminho absoluto, precisa existir e os cinco
 executáveis precisam ser PE x64 não vazio. Um arquivo HTML, truncado, x86 ou
-corrompido não é escolhido. O `yt-dlp.exe` resolvido é passado ao mpv pelo
-`ytdl-path`; um `ytdl-path` explícito em linha de comando ou `mpv.conf` mantém
+corrompido não é escolhido. Nomes de componentes inválidos não geram fallback
+de caminho. Um manifesto JSON ilegível é tratado como cache inválido, preservado
+para diagnóstico e refeito quando a atualização seguinte for concluída. O
+`yt-dlp.exe` resolvido é passado ao mpv pelo `ytdl-path`; um `ytdl-path` explícito
+em linha de comando ou `mpv.conf` mantém
 precedência.
 
 As atualizações usam uma geração em `staging`, verificam HTTPS, host permitido,

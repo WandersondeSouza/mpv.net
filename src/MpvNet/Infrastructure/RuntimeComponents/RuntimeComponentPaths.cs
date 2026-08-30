@@ -29,6 +29,9 @@ internal static class RuntimeComponentPathResolver
 {
     public static string Resolve(string fileName)
     {
+        if (!IsSafeComponentFileName(fileName))
+            return string.Empty;
+
         ComponentResolutionResult result = ResolveResult(fileName);
         return result.ResolvedPath ?? RuntimeComponentPaths.GetTargetPath(fileName);
     }
@@ -106,6 +109,9 @@ internal static class RuntimeComponentPathResolver
 
     public static string? ResolveFromWindowsPath(string fileName)
     {
+        if (!IsSafeComponentFileName(fileName))
+            return null;
+
         foreach (string rawDirectory in GetWindowsPathEntries())
         {
             string directory = rawDirectory.Trim();
@@ -147,6 +153,10 @@ internal static class RuntimeComponentPathResolver
             null,
             null);
     }
+
+    static bool IsSafeComponentFileName(string fileName) =>
+        !string.IsNullOrWhiteSpace(fileName) &&
+        Path.GetFileName(fileName) == fileName;
 
     static IEnumerable<string> GetWindowsPathEntries()
     {

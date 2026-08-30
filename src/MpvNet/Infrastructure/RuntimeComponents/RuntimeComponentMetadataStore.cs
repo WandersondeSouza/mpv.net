@@ -14,8 +14,16 @@ internal static class RuntimeComponentMetadataStore
         if (!File.Exists(path))
             return null;
 
-        string json = await File.ReadAllTextAsync(path, cancellationToken).ConfigureAwait(false);
-        return JsonSerializer.Deserialize<RuntimeComponentMetadata>(json, JsonOptions);
+        try
+        {
+            string json = await File.ReadAllTextAsync(path, cancellationToken).ConfigureAwait(false);
+            return JsonSerializer.Deserialize<RuntimeComponentMetadata>(json, JsonOptions);
+        }
+        catch (JsonException ex)
+        {
+            Log.Error(ex, $"Runtime component metadata is invalid; forcing refresh. path='{Log.SafeValue(path)}'");
+            return null;
+        }
     }
 
     public static Task SaveAsync(string path, string digest, CancellationToken cancellationToken) =>
