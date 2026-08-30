@@ -38,7 +38,7 @@ internal static class GitHubReleaseClient
             using HttpResponseMessage response = await Http.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead, timeoutSource.Token).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            string json = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+            string json = await response.Content.ReadAsStringAsync(timeoutSource.Token).ConfigureAwait(false);
             return JsonSerializer.Deserialize<GitHubRelease>(json, JsonOptions)
                 ?? throw new InvalidOperationException("Invalid GitHub release payload.");
         }
