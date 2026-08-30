@@ -76,7 +76,7 @@ public partial class MpvClient
             if (handle == IntPtr.Zero)
                 return;
 
-            DestroyNativeHandle(handle);
+            mpv_destroy(handle);
             Handle = IntPtr.Zero;
         }
         finally
@@ -84,8 +84,6 @@ public partial class MpvClient
             _nativeLifetimeGate.ExitWriteLock();
         }
     }
-
-    protected virtual void DestroyNativeHandle(nint handle) => mpv_destroy(handle);
 
     public void EventLoop() => EventLoop(CancellationToken.None);
 

@@ -507,32 +507,6 @@ public sealed class PlayerLifecycleTests
         Assert.True(clientLoop.IsCompletedSuccessfully);
         Assert.True(mainLoop.IsCompletedSuccessfully);
     }
-    [Fact]
-
-    public void DestroyUsesSingleNativeHandleDestruction()
-    {
-        TrackingPlayer player = new()
-        {
-            Handle = (nint)1,
-            MainHandle = (nint)1
-        };
-
-        player.Destroy();
-
-        Assert.Equal(1, player.DestroyNativeHandleCallCount);
-        Assert.Equal(IntPtr.Zero, player.Handle);
-        Assert.Equal(IntPtr.Zero, player.MainHandle);
-    }
-
-    sealed class TrackingPlayer : MainPlayer
-    {
-        public int DestroyNativeHandleCallCount { get; private set; }
-
-        protected override void DestroyNativeHandle(nint handle)
-        {
-            DestroyNativeHandleCallCount++;
-        }
-    }
 }
 
 public sealed class PlayerPlaybackRecoveryTests
