@@ -185,16 +185,24 @@ public static class NetworkCachePolicy
         if (!File.Exists(Player.ConfPath))
             return false;
 
-        foreach (string rawLine in File.ReadLines(Player.ConfPath))
+        try
         {
-            string line = rawLine.Trim();
-            if (line.Length == 0 || line.StartsWith('#'))
-                continue;
+            foreach (string rawLine in File.ReadLines(Player.ConfPath))
+            {
+                string line = rawLine.Trim();
+                if (line.Length == 0 || line.StartsWith('#'))
+                    continue;
 
-            int equals = line.IndexOf('=');
-            string optionName = (equals > 0 ? line[..equals] : line).Trim().TrimStart('-');
-            if (optionName.Equals(name, StringComparison.OrdinalIgnoreCase))
-                return true;
+                int equals = line.IndexOf('=');
+                string optionName = (equals > 0 ? line[..equals] : line).Trim().TrimStart('-');
+                if (optionName.Equals(name, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            Log.Debug($"Could not inspect explicit network option. path='{Log.SafeValue(Player.ConfPath)}', option='{Log.SafeValue(name)}', error='{Log.SafeValue(ex.Message)}'");
+            return true;
         }
 
         return false;
