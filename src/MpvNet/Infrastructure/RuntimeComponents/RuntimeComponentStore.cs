@@ -173,17 +173,20 @@ internal static class RuntimeComponentStore
         if (!Directory.Exists(RuntimeComponentPaths.TempFolder))
             return;
 
-        CleanupStaleStaging(DateTimeOffset.UtcNow);
+        CleanupStaleStaging(RuntimeComponentPaths.TempFolder, DateTimeOffset.UtcNow);
     }
 
-    internal static void CleanupStaleStaging(DateTimeOffset now)
+    internal static void CleanupStaleStaging(DateTimeOffset now) =>
+        CleanupStaleStaging(RuntimeComponentPaths.TempFolder, now);
+
+    internal static int CleanupStaleStaging(string tempFolder, DateTimeOffset now)
     {
-        if (!Directory.Exists(RuntimeComponentPaths.TempFolder))
-            return;
+        if (!Directory.Exists(tempFolder))
+            return 0;
 
         int removed = 0;
         foreach (string directory in Directory.GetDirectories(
-                     RuntimeComponentPaths.TempFolder, "*", SearchOption.TopDirectoryOnly))
+                     tempFolder, "*", SearchOption.TopDirectoryOnly))
         {
             try
             {
@@ -205,6 +208,7 @@ internal static class RuntimeComponentStore
         }
 
         Log.Debug($"Cleaned stale runtime component staging directories. removed={removed}, cutoffUtc={now - StagingRetention:O}");
+        return removed;
     }
 
     internal static bool IsStaleStaging(DateTimeOffset lastWriteUtc, DateTimeOffset now) =>

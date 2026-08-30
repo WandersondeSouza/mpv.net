@@ -41,4 +41,29 @@ public sealed class RuntimeComponentStorageTests
         Assert.True(RuntimeComponentStore.IsStaleStaging(now - RuntimeComponentStore.StagingRetention - TimeSpan.FromMinutes(1), now));
         Assert.False(RuntimeComponentStore.IsStaleStaging(now - RuntimeComponentStore.StagingRetention + TimeSpan.FromMinutes(1), now));
     }
+
+    [Fact]
+    public void StagingCleanupRemovesOnlyOldGuidDirectories()
+    {
+        using TestDirectory directory = new();
+        DateTimeOffset now = new(2026, 8, 30, 12, 0, 0, TimeSpan.Zero);
+        string stale = Path.Combine(directory.Path, Guid.NewGuid().ToString("N"));
+        string recent = Path.Combine(directory.Path, Guid.NewGuid().ToString("N"));
+        string unrelated = Path.Combine(directory.Path, "keep-me");
+
+        Directory.CreateDirectory(Path.Combine(stale, "nested"));
+        Directory.CreateDirectory(recent);
+        Directory.CreateDirectory(unrelated);
+        Directory.SetLastWriteTimeUtc(
+            stale, (now - RuntimeComponentStore.StagingRetention - TimeSpan.FromMinutes(1)).UtcDateTime);
+        Directory.SetLastWriteTimeUtc(
+            recent, (now - RuntimeComponentStore.StagingRetention + TimeSpan.FromMinutes(1)).UtcDateTime);
+
+        int removed = RuntimeComponentStore.CleanupStaleStaging(directory.Path, now);
+
+        Assert.Equal(1, removed);
+        Assert.False(Directory.Exists(stale));
+        Assert.True(Directory.Exists(recent));
+        Assert.True(Directory.Exists(unrelated));
+    }
 }
