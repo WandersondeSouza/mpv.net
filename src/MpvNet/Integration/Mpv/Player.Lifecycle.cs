@@ -46,17 +46,11 @@ public partial class MainPlayer
 
         Clients.Clear();
         base.DestroyHandle();
-
-        nint mainHandle = MainHandle;
-        DestroyMainHandle(mainHandle);
         MainHandle = IntPtr.Zero;
     }
 
-    void DestroyMainHandle(nint handle)
+    protected override void DestroyNativeHandle(nint handle)
     {
-        if (handle == IntPtr.Zero)
-            return;
-
         if (_mpvInitialized)
             mpv_terminate_destroy(handle);
         else
