@@ -195,8 +195,14 @@ Usar quando:
 ### Atualizar runtime do mpv
 
 ```powershell
-.\src\Tools\update-mpv-runtime.ps1
+.\src\Tools\update-mpv-runtime.ps1 'C:\runtime\mpv' 'C:\runtime\libmpv-x64' 'C:\runtime\libmpv-arm64'
 ```
+
+Passe o valor - em qualquer uma das três posições para não atualizar aquela
+variante. O script exige que os diretórios e os arquivos atuais já existam,
+valida o digest SHA-256 publicado pelo GitHub e a arquitetura PE antes da
+instalação. A troca do diretório do mpv usa staging e backup no mesmo volume,
+com restauração em caso de falha.
 
 Usar quando:
 
