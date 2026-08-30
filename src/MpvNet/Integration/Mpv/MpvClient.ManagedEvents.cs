@@ -55,4 +55,11 @@ public partial class MpvClient
 
     internal virtual void OnEndFile(MpvEventSnapshot data) =>
         EndFile?.Invoke((mpv_end_file_reason)data.EndFileReason);
+
+    internal virtual void OnQueueOverflow()
+    {
+        System.Threading.Interlocked.Increment(ref _eventQueueOverflowCount);
+        Terminal.WriteError("libmpv event queue overflow; one or more events were dropped.");
+        EventQueueOverflow?.Invoke();
+    }
 }

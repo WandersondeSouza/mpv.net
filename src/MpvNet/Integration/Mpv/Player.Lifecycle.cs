@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -66,14 +67,23 @@ public partial class MainPlayer
     {
         while (!cancellationToken.IsCancellationRequested && TryEnterNativeOperation(out IDisposable? operation))
         {
+            bool queueOverflow = false;
             using (operation)
             {
                 nint handle = MainHandle;
                 if (handle == IntPtr.Zero)
                     return;
 
-                mpv_wait_event(handle, 0.1);
+                nint eventPointer = mpv_wait_event(handle, 0.1);
+                if (eventPointer != IntPtr.Zero)
+                {
+                    mpv_event_id eventId = (mpv_event_id)Marshal.ReadInt32(eventPointer);
+                    queueOverflow = eventId == mpv_event_id.MPV_EVENT_QUEUE_OVERFLOW;
+                }
             }
+
+            if (queueOverflow)
+                OnQueueOverflow();
         }
     }
 

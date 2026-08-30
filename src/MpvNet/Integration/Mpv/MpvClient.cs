@@ -22,6 +22,8 @@ public partial class MpvClient
     public event Action? Seek;                               // seek                MPV_EVENT_SEEK
     public event Action? PlaybackRestart;                    // playback-restart    MPV_EVENT_PLAYBACK_RESTART
 
+    public event Action? EventQueueOverflow;                 // one or more events were dropped
+
     public Dictionary<string, List<Action>> PropChangeActions { get; set; } = [];
     public Dictionary<string, List<Action<int>>> IntPropChangeActions { get; set; } = [];
     public Dictionary<string, List<Action<bool>>> BoolPropChangeActions { get; set; } = [];
@@ -29,10 +31,12 @@ public partial class MpvClient
     public Dictionary<string, List<Action<string>>> StringPropChangeActions { get; set; } = [];
 
     public nint Handle { get; set; }
+    public long EventQueueOverflowCount => Interlocked.Read(ref _eventQueueOverflowCount);
 
     readonly object _nativeLifetimeLock = new();
     readonly ReaderWriterLockSlim _nativeLifetimeGate = new(LockRecursionPolicy.NoRecursion);
     bool _acceptingNativeOperations = true;
+    long _eventQueueOverflowCount;
 
     internal void BeginShutdown()
     {
@@ -153,6 +157,9 @@ public partial class MpvClient
                         break;
                     case mpv_event_id.MPV_EVENT_PLAYBACK_RESTART:
                         OnPlaybackRestart();
+                        break;
+                    case mpv_event_id.MPV_EVENT_QUEUE_OVERFLOW:
+                        OnQueueOverflow();
                         break;
                 }
             }
