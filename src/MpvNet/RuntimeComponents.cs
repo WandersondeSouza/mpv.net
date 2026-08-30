@@ -20,24 +20,26 @@ public static class RuntimeComponents
 
     public static void EnsureComponentsFolderOnPath()
     {
-        string componentsFolder = Path.TrimEndingDirectorySeparator(ComponentsFolder);
+        string executionFolder = Directory.Exists(RuntimeComponentPaths.CurrentFolder)
+            ? Path.TrimEndingDirectorySeparator(RuntimeComponentPaths.CurrentFolder)
+            : Path.TrimEndingDirectorySeparator(ComponentsFolder);
         string? currentPath = Environment.GetEnvironmentVariable("PATH");
 
         if (!string.IsNullOrWhiteSpace(currentPath) &&
             currentPath.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries)
                 .Select(path => Path.TrimEndingDirectorySeparator(path))
-                .Any(path => string.Equals(path, componentsFolder, StringComparison.OrdinalIgnoreCase)))
+                .Any(path => string.Equals(path, executionFolder, StringComparison.OrdinalIgnoreCase)))
         {
-            Log.Debug($"Runtime component folder already present in process PATH. path='{Log.SafeValue(componentsFolder)}'");
+            Log.Debug($"Runtime component execution folder already present in process PATH. path='{Log.SafeValue(executionFolder)}'");
             return;
         }
 
         string updatedPath = string.IsNullOrWhiteSpace(currentPath)
-            ? componentsFolder
-            : componentsFolder + Path.PathSeparator + currentPath;
+            ? executionFolder
+            : executionFolder + Path.PathSeparator + currentPath;
 
         Environment.SetEnvironmentVariable("PATH", updatedPath);
-        Log.Debug($"Added runtime component folder to process PATH. path='{Log.SafeValue(componentsFolder)}'");
+        Log.Debug($"Added runtime component execution folder to process PATH. path='{Log.SafeValue(executionFolder)}'");
     }
 
     public static void RegisterNativeResolver()

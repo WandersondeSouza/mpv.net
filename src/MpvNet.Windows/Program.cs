@@ -22,6 +22,7 @@ static class Program
         try
         {
             AppPaths.EnsureLocalDirectories();
+            RuntimeComponents.EnsureComponentsFolderOnPath();
             RuntimeComponents.RegisterNativeResolver();
             Log.Debug("Application starting.");
             RegistryHelp.ProductName = AppInfo.Product;
@@ -241,6 +242,7 @@ static class Program
             async cancellationToken =>
             {
                 await RuntimeComponents.EnsureComponentsAsync(cancellationToken).ConfigureAwait(false);
+                RuntimeComponents.EnsureComponentsFolderOnPath();
                 Player.RefreshYtDlpPathAfterComponentBootstrap();
             },
             _applicationCancellation.Token,

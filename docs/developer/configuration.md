@@ -93,6 +93,11 @@ para diagnóstico e refeito quando a atualização seguinte for concluída. O
 `yt-dlp.exe` resolvido é passado ao mpv pelo `ytdl-path`; um `ytdl-path` explícito
 em linha de comando ou `mpv.conf` mantém
 precedência.
+Quando `current` existe, o processo também o coloca no início do `PATH` para que
+ferramentas auxiliares como `yt-dlp` encontrem `ffmpeg` e `ffprobe` da mesma
+geração promovida; antes da primeira promoção, o diretório legado continua sendo
+usado como fallback.
+
 
 As atualizações usam uma geração em `staging`, verificam HTTPS, host permitido,
 tamanho, SHA-256 publicado (ou um hash fixado para a release legada do
