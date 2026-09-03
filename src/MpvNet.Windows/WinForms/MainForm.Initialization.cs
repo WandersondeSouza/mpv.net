@@ -3,6 +3,7 @@ using System.Windows.Forms;
 
 using MpvNet.Windows.WPF.MsgBox;
 using MpvNet.Windows.WPF;
+using MpvNet.Windows.Services.MediaTransport;
 
 using static MpvNet.Windows.Native.WinApi;
 
@@ -22,9 +23,13 @@ public partial class MainForm
             Instance = this;
 
             Player.FileLoaded += Player_FileLoaded;
+            Player.StartFile += Player_StartFile;
+            Player.EndFile += Player_EndFile;
             Player.Pause += Player_Pause;
             Player.PlaylistPosChanged += Player_PlaylistPosChanged;
             Player.Seek += UpdateProgressBar;
+            Player.Seek += Player_Seek;
+            Player.PlaybackRestart += Player_PlaybackRestart;
             Player.Shutdown += Player_Shutdown;
             Player.VideoSizeChanged += Player_VideoSizeChanged;
             Player.ClientMessage += Player_ClientMessage;
@@ -35,6 +40,14 @@ public partial class MainForm
             GuiCommand.Current.ShowMenu += GuiCommand_ShowMenu;
 
             Player.Init(Handle, true);
+
+            _mediaTransport = new MediaTransportController(
+                new WindowsSystemMediaTransportService(),
+                HandleMediaTransportCommand);
+            _mediaTransport.Initialize(Handle);
+            _mediaTransportTimer = new System.Windows.Forms.Timer { Interval = 500 };
+            _mediaTransportTimer.Tick += MediaTransportTimer_Tick;
+            UpdateMediaTransport();
 
             Player.ObserveProperty("window-maximized", PropChangeWindowMaximized); // bool methods not working correctly
             Player.ObserveProperty("window-minimized", PropChangeWindowMinimized); // bool methods not working correctly

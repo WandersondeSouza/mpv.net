@@ -14,6 +14,10 @@ public partial class MainForm
     public void CycleFullscreen(bool enabled)
     {
         _lastCycleFullscreen = Environment.TickCount;
+
+        if (enabled)
+            _mediaTransport?.Suspend();
+
         Player.Fullscreen = enabled;
 
         if (enabled)
@@ -51,6 +55,9 @@ public partial class MainForm
                 if (!KeepSize())
                     SetFormPosAndSize();
             }
+
+            _mediaTransport?.Resume();
+            UpdateMediaTransport();
         }
     }
 }

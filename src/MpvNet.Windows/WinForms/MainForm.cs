@@ -13,6 +13,7 @@ using MpvNet.Help;
 using MpvNet.Extensions;
 using MpvNet.MVVM;
 using MpvNet.Windows.WPF.MsgBox;
+using MpvNet.Windows.Services.MediaTransport;
 
 using WpfControls = System.Windows.Controls;
 using CommunityToolkit.Mvvm.Messaging;
@@ -32,6 +33,8 @@ public partial class MainForm : Form
     AutoResetEvent MenuAutoResetEvent { get; } = new AutoResetEvent(false);
     Point _lastCursorPosition;
     Taskbar? _taskbar;
+    MediaTransportController? _mediaTransport;
+    System.Windows.Forms.Timer? _mediaTransportTimer;
     Point _mouseDownLocation;
     List<Binding>? _confBindings;
 
@@ -47,6 +50,7 @@ public partial class MainForm : Form
     bool _maxSizeSet;
     bool _isCursorVisible = true;
     bool _componentBootstrapStarted;
+    bool _mediaTransportMediaLoaded;
 
     void UpdateDarkMode()
     {
@@ -1102,9 +1106,13 @@ public partial class MainForm : Form
         _managedResourcesDisposed = true;
 
         Player.FileLoaded -= Player_FileLoaded;
+        Player.StartFile -= Player_StartFile;
+        Player.EndFile -= Player_EndFile;
         Player.Pause -= Player_Pause;
         Player.PlaylistPosChanged -= Player_PlaylistPosChanged;
         Player.Seek -= UpdateProgressBar;
+        Player.Seek -= Player_Seek;
+        Player.PlaybackRestart -= Player_PlaybackRestart;
         Player.Shutdown -= Player_Shutdown;
         Player.VideoSizeChanged -= Player_VideoSizeChanged;
         Player.ClientMessage -= Player_ClientMessage;
@@ -1124,6 +1132,15 @@ public partial class MainForm : Form
         GlobalHotkey.UnregisterGlobalHotkeys();
         _taskbar?.Dispose();
         _taskbar = null;
+        _mediaTransportTimer?.Stop();
+        if (_mediaTransportTimer != null)
+        {
+            _mediaTransportTimer.Tick -= MediaTransportTimer_Tick;
+            _mediaTransportTimer.Dispose();
+            _mediaTransportTimer = null;
+        }
+        _mediaTransport?.Dispose();
+        _mediaTransport = null;
         MenuAutoResetEvent.Set();
         MenuAutoResetEvent.Dispose();
 
@@ -1160,6 +1177,8 @@ public partial class MainForm : Form
 
     protected override void OnFormClosing(FormClosingEventArgs e)
     {
+        _mediaTransportMediaLoaded = false;
+        _mediaTransport?.Suspend();
         base.OnFormClosing(e);
 
         if (Player.IsQuitNeeded)

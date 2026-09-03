@@ -19,6 +19,8 @@ public partial class MainForm
     {
         if (pos == -1)
             SetTitle();
+
+        UpdateMediaTransport();
     }
 
     void PropChangeWindowScale(double scale)
@@ -34,7 +36,12 @@ public partial class MainForm
         });
     }
 
-    void Player_Shutdown() => BeginInvoke(Close);
+    void Player_Shutdown()
+    {
+        _mediaTransportMediaLoaded = false;
+        _mediaTransport?.Suspend();
+        RunOnUiThread(Close);
+    }
 
     void Player_VideoSizeChanged(Size value) => BeginInvoke(() =>
     {
@@ -46,6 +53,7 @@ public partial class MainForm
     {
         NormalizeLoadedMediaTitle();
         BeginInvoke(() => {
+            _mediaTransportMediaLoaded = true;
             SetTitleInternal();
 
             int interval = (int)(Player.Duration.TotalMilliseconds / 100);
@@ -58,6 +66,7 @@ public partial class MainForm
 
             ProgressTimer.Interval = interval;
             UpdateProgressBar();
+            UpdateMediaTransport();
         });
 
         string path = Player.GetPropertyString("path");
@@ -88,5 +97,7 @@ public partial class MainForm
     {
         if (_taskbar != null && Player.TaskbarProgress)
             _taskbar.SetState(Player.Paused ? TaskbarStates.Paused : TaskbarStates.Normal);
+
+        UpdateMediaTransport();
     }
 }
