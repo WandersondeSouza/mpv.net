@@ -15,6 +15,9 @@ Documento único para build, dependências nativas, scripts, modo portátil, con
 - Para mudanças de configuração, leia `docs/developer/configuration.md`.
 - Para mudanças de build e release, leia `docs/developer/build-release.md`.
 
+O baseline atual do aplicativo é Windows 10 versão 2004 (build 19041) ou
+posterior, com projetos .NET 10 usando `net10.0-windows10.0.19041.0`.
+
 ## Logs
 
 Resumo rápido:
@@ -58,6 +61,12 @@ dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj
 ```
 
 O alvo Windows usa `win-x64` por padrão.
+
+Valide a coerência dos projetos e manifestos com:
+
+```powershell
+.\src\Tools\validate-windows-baseline.ps1
+```
 
 ## Dependências nativas
 

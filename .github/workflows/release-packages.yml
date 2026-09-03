@@ -57,6 +57,10 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Validate Windows baseline
+        shell: pwsh
+        run: .\src\Tools\validate-windows-baseline.ps1
+
       - name: Install packaging tools
         shell: pwsh
         run: |

@@ -37,6 +37,10 @@ mpvnet.exe "https://example.com/live/index.m3u8"
 
 O mpv.net aceita arquivos locais, playlists e URLs de streaming compatíveis com o mpv.
 
+As builds atuais para Windows exigem Windows 10 versão 2004 (build 19041) ou
+posterior. Em Windows 10/11, os controles de mídia do sistema podem exibir a
+mídia ativa e enviar Play, Pause, Stop, Next, Previous e seek para o player.
+
 ## Apresentação do player
 
 O MPV.NET Media Player também está disponível na Microsoft Store:

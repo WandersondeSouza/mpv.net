@@ -67,6 +67,10 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Validate Windows baseline
+      shell: pwsh
+      run: .\src\Tools\validate-windows-baseline.ps1
+
     # Install the .NET Core workload
     - name: Install .NET Core
       uses: actions/setup-dotnet@v4

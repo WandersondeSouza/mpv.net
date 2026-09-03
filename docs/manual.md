@@ -8,6 +8,7 @@ Este manual cobre apenas o que importa para o uso cotidiano do fork.
 
 - [Download](#download)
 - [Instalação](#instalação)
+- [Controles de mídia do Windows](#controles-de-mídia-do-windows)
 - [Configuração](#configuração)
 - [Linha de comando](#linha-de-comando)
 - [Modo portátil](#modo-portátil)
@@ -28,8 +29,8 @@ O aplicativo também está publicado na Microsoft Store:
 
 ## Instalação
 
-- Windows 10 ou superior.
-- Runtime .NET Desktop compatível com o projeto.
+- Windows 10 versão 2004 (build 19041) ou superior.
+- Runtime .NET Desktop 10 compatível com o projeto.
 - Para streaming, o player baixa e atualiza `yt-dlp.exe` no cache de componentes em `%LOCALAPPDATA%\mpv.net\Component`. Se quiser testar manualmente, também vale deixá-lo ao lado do executável ou no `PATH`.
 
 O instalador registra os formatos de mídia comuns e playlists IPTV suportados
@@ -39,6 +40,18 @@ associadas automaticamente na instalação; use `Config > Setup > Register image
 file associations` no menu de contexto se quiser associá-las manualmente. Ao
 desinstalar, o instalador remove também as associações do mpv.net criadas
 manualmente para imagens e remove a pasta instalada do `PATH`.
+
+## Controles de mídia do Windows
+
+Durante a reprodução, o MPV.NET publica a mídia ativa nos controles de mídia do
+Windows 10/11. O painel pode mostrar título, artista/álbum quando o arquivo
+fornecer essas tags, duração e posição, além de Play, Pause, Stop, Previous,
+Next e seek.
+
+O recurso usa o HWND da janela principal e não depende do FluentFlyout. Ele é
+desativado enquanto a janela está em fullscreen, quando não há mídia carregada
+e durante o encerramento; ao sair do fullscreen, a sessão é restaurada. URLs
+com credenciais, query strings ou fragmentos não são publicados como título.
 
 As associações automáticas atuais incluem:
 

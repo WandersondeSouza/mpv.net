@@ -474,7 +474,7 @@ pequenas, verificáveis e compatíveis com mpv/libmpv.
 - `Player.cs` e `MainForm.cs` continuam sendo pontos de estado central. A
   separação em partials reduziu o acoplamento visível, mas esses arquivos ainda
   devem ser tratados como áreas de alto risco.
-- O projeto `src/MpvNet.Tests` usa xUnit v3 em `net10.0`. A fixture legada em
+- O projeto `src/MpvNet.Tests` usa xUnit v3 em `net10.0-windows10.0.19041.0`. A fixture legada em
   `Program.cs` cobre parser de argumentos, playlists, títulos, configuração,
   idiomas, logs, limpeza temporária e políticas auxiliares de MediaInfo; as
   regras arquiteturais ficam em `ArchitectureTests.cs` com ArchUnitNET. As
@@ -503,6 +503,14 @@ pequenas, verificáveis e compatíveis com mpv/libmpv.
   final de reprodução para o mpv/libmpv.
 - Não criar normalizadores paralelos de idioma. Novas regras devem passar pelo
   catálogo central e pelos testes de fallback.
+
+O transporte de mídia do Windows fica isolado em
+`src/MpvNet.Windows/Services/MediaTransport/` e é consumido pela `MainForm`
+por um contrato próprio. O adapter WinRT obtém o
+`SystemMediaTransportControls` a partir do HWND da janela, enquanto o
+controlador mantém a política de comandos, navegação, seek e suspensão em
+fullscreen/encerramento. Não há dependência direta de FluentFlyout nem
+alteração no contrato de comandos do mpv.
 - Não criar novos documentos técnicos quando um documento existente puder
   receber a informação de forma clara e durável.
 

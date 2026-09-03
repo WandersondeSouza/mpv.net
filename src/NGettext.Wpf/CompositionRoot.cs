@@ -9,7 +9,7 @@ namespace NGettext.Wpf
 {
     public static class CompositionRoot
     {
-        [SupportedOSPlatform("windows7.0")]
+        [SupportedOSPlatform("windows10.0.19041")]
         public static void Compose(string domainName, CultureInfo cultureInfo, string localeFolder)
         {
             var cultureTracker = new CultureTracker();

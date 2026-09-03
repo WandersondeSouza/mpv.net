@@ -13,7 +13,7 @@ Este documento orienta como preparar o ambiente para estudar, compilar e manter 
 Para desenvolvimento:
 
 - Windows 10 ou Windows 11;
-- SDK do .NET compatível com `net10.0` e `net10.0-windows7.0`;
+- SDK do .NET 10 e Windows 10 SDK com suporte ao baseline `net10.0-windows10.0.19041.0`;
 - Visual Studio com workload de desenvolvimento desktop .NET;
 - Git;
 - acesso ao repositório no GitHub.
@@ -53,11 +53,12 @@ Projetos principais:
 
 | Projeto | Tipo | Target | Saída |
 | --- | --- | --- | --- |
-| `src/MpvNet/MpvNet.csproj` | biblioteca | `net10.0` | `libmpvnet` |
-| `src/MpvNet.Windows/MpvNet.Windows.csproj` | aplicação Windows | `net10.0-windows7.0`, `win-x64` | `mpvnet.exe` x64 |
-| `src/NGettext.Wpf/NGettext.Wpf.csproj` | biblioteca | `net10.0-windows7.0`, `PackageReference` | suporte WPF/NGettext |
-| `src/MpvNet.Extension/ExampleExtension/ExampleExtension.csproj` | exemplo | extensão .NET | exemplo carregável |
-| `src/MpvNet.Pacote/MpvNet.Pacote.wapproj` | empacotamento MSIX/WAP | `net10.0-windows10.0.26100.0` | pacote para Microsoft Store |
+| `src/MpvNet/MpvNet.csproj` | biblioteca | `net10.0-windows10.0.19041.0` | `libmpvnet` |
+| `src/MpvNet.Windows/MpvNet.Windows.csproj` | aplicação Windows | `net10.0-windows10.0.19041.0`, `win-x64` | `mpvnet.exe` x64 |
+| `src/NGettext.Wpf/NGettext.Wpf.csproj` | biblioteca | `net10.0-windows10.0.19041.0`, `PackageReference` | suporte WPF/NGettext |
+| `src/MpvNet.Tests/MpvNet.Tests.csproj` | testes | `net10.0-windows10.0.19041.0` | executável xUnit v3 |
+| `src/MpvNet.Extension/ExampleExtension/ExampleExtension.csproj` | exemplo | `net10.0-windows10.0.19041.0` | exemplo carregável |
+| `src/MpvNet.Pacote/MpvNet.Pacote.wapproj` | empacotamento MSIX/WAP | `net10.0-windows10.0.19041.0` | pacote para Microsoft Store |
 
 Pacotes NuGet versionados em `src/Directory.Packages.props`:
 

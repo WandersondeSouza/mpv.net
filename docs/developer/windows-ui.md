@@ -34,6 +34,10 @@ A interface gráfica é uma das principais diferenças entre o mpv original e o 
 - `src/MpvNet.Windows/WinForms/MainForm.DragDrop.cs` - drag/drop;
 - `src/MpvNet.Windows/WinForms/MainForm.Fullscreen.cs` - fullscreen;
 - `src/MpvNet.Windows/WinForms/MainForm.PlayerEvents.cs` - reação da UI a eventos do player.
+- `src/MpvNet.Windows/WinForms/MainForm.MediaTransport.cs` - estado, comandos e
+  timeline dos controles de mídia do Windows;
+- `src/MpvNet.Windows/Services/MediaTransport/` - contrato, controlador,
+  metadata segura e adapter WinRT SMTC.
 
 ---
 
@@ -74,6 +78,20 @@ reutilizando `script-message-to mpvnet shell-execute`. O OSC embutido é
 desabilitado e a cópia compatível distribuída com o aplicativo é carregada em
 seguida; nela, somente o posicionamento do coração no `bottombar` difere da
 fonte oficial. O globo permanece na linha superior.
+
+## Controles de mídia do Windows
+
+O MPV.NET usa `Windows.Media.SystemMediaTransportControlsInterop.GetForWindow`
+com o HWND da `MainForm`; a integração é opcional e não faz referência ao
+FluentFlyout. O `MainPlayer` continua sendo a autoridade para reprodução: o
+SMTC apenas publica estado, metadata e timeline e encaminha Play, Pause, Stop,
+Previous, Next e seek como comandos mpv já existentes.
+
+A sessão é limpa quando não existe mídia carregada, quando a janela entra em
+fullscreen e durante o fechamento. Ao sair do fullscreen, o snapshot atual é
+publicado novamente. O adapter não usa caminho, query, fragmento ou credencial
+de URL como título, não inventa tags ausentes e atualmente deixa a capa sem
+valor quando não há uma origem local segura.
 
 ## DPI e escala
 
@@ -123,7 +141,7 @@ Depois do smoke test, validar manualmente:
 - drag/drop e abertura por linha de comando;
 - tema claro/escuro, DPI, múltiplos monitores e fullscreen;
 - menu de contexto, atalhos, foco e cursor/OSC;
-- alternância de áudio/legenda, pause, seek e fechamento;
+- alternância de áudio/legenda, pause, seek, controles de mídia do Windows e fechamento;
 - persistência de volume, posição, tamanho e pasta inicial.
 
 O script encerra o processo ao final por padrão. Use `-KeepOpen` quando for

@@ -14,7 +14,7 @@ namespace NGettext.Wpf
     /// For instance, dates and numbers bound with a culture specific StringFormat will be formatted
     /// according to the tracked culture and even reformatted on culture changed.
     /// </summary>
-    [SupportedOSPlatform("windows7.0")]
+    [SupportedOSPlatform("windows10.0.19041")]
     public class TrackCurrentCultureBehavior : Behavior<FrameworkElement>, IWeakCultureObserver
     {
         public static ICultureTracker? CultureTracker { get; set; }

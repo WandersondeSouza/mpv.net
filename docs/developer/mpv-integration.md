@@ -116,6 +116,16 @@ Comandos:
 
 Regra prática: quando o trabalho tocar eventos, propriedades, comandos ou `input.conf`, a investigação deve apontar a camada certa antes de alterar a implementação.
 
+## Controles de mídia do Windows
+
+Os controles de mídia não alteram o wrapper libmpv. A camada Windows observa os
+eventos `start-file`, `file-loaded`, `end-file`, `pause`, `seek`,
+`playback-restart` e `playlist-pos`, consulta propriedades somente para
+metadata/timeline e converte os comandos do SMTC em `CommandV` (`set pause`,
+`stop`, `playlist-next`, `playlist-prev` e `seek absolute`). O player continua
+responsável pela reprodução e a integração é desligada se o SMTC não estiver
+disponível.
+
 ## Metadados auxiliares
 
 A reprodução tem prioridade sobre metadados auxiliares. `MediaInfo.dll`,
