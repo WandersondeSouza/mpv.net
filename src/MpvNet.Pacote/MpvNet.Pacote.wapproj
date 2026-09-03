@@ -14,7 +14,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup>
-    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
     <WapProjPath Condition="'$(WapProjPath)'=='' and Exists('$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\Microsoft.DesktopBridge.props')">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
     <WapProjPath Condition="'$(WapProjPath)'=='' and Exists('$(MSBuildProgramFiles32)\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\DesktopBridge\Microsoft.DesktopBridge.props')">$(MSBuildProgramFiles32)\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\DesktopBridge\</WapProjPath>
     <WapProjPath Condition="'$(WapProjPath)'=='' and Exists('$(MSBuildProgramFiles32)\Microsoft Visual Studio\18\Professional\MSBuild\Microsoft\DesktopBridge\Microsoft.DesktopBridge.props')">$(MSBuildProgramFiles32)\Microsoft Visual Studio\18\Professional\MSBuild\Microsoft\DesktopBridge\</WapProjPath>
@@ -50,7 +50,7 @@
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
     <ProjectGuid>{C9D3A4D2-3F1F-4B8F-A5E7-8A3F92ED43C1}</ProjectGuid>
     <TargetPlatformVersion>10.0.26100.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
     <DefaultLanguage>pt-BR</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <NoWarn>$(NoWarn);NU1702</NoWarn>
