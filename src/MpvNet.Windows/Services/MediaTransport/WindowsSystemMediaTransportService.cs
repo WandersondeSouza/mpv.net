@@ -36,13 +36,14 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
                 _positionChangeRequestedHandler = (_, args) => OnPositionChangeRequested(args.RequestedPlaybackPosition);
                 _controls.ButtonPressed += _buttonPressedHandler;
                 _controls.PlaybackPositionChangeRequested += _positionChangeRequestedHandler;
+                Log.Debug($"SMTC initialized. windowHandle={windowHandle}");
             }
             catch (Exception ex)
             {
                 _controls = null;
                 _buttonPressedHandler = null;
                 _positionChangeRequestedHandler = null;
-                Log.Debug($"SMTC indisponivel: {ex.GetType().Name}");
+                Log.Debug($"SMTC indisponivel: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
             }
         }
     }
@@ -77,7 +78,7 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
             }
             catch (Exception ex)
             {
-                Log.Debug($"SMTC nao pode publicar estado: {ex.GetType().Name}");
+                Log.Debug($"SMTC nao pode publicar estado: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
                 try
                 {
                     DisableUnsafe();
@@ -103,7 +104,7 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
             }
             catch (Exception ex)
             {
-                Log.Debug($"SMTC nao pode ser suspenso: {ex.GetType().Name}");
+                Log.Debug($"SMTC nao pode ser suspenso: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
             }
         }
     }
@@ -228,7 +229,7 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
                 }
                 catch (Exception ex)
                 {
-                    Log.Debug($"SMTC nao pode ser liberado completamente: {ex.GetType().Name}");
+                    Log.Debug($"SMTC nao pode ser liberado completamente: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
                 }
             }
 

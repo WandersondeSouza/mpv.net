@@ -66,15 +66,16 @@ public class Taskbar : IDisposable
         [PreserveSig] void SetProgressState(IntPtr hwnd, TaskbarStates state);
         [PreserveSig] int RegisterTab(IntPtr hwndTab, IntPtr hwndMDI);
         [PreserveSig] int UnregisterTab(IntPtr hwndTab);
-        [PreserveSig] int SetTabActive(IntPtr hwndTab, IntPtr hwndMDI);
+        [PreserveSig] int SetTabOrder(IntPtr hwndTab, IntPtr hwndInsertBefore);
+        [PreserveSig] int SetTabActive(IntPtr hwndTab, IntPtr hwndMDI, uint dwReserved);
         [PreserveSig] int ThumbBarAddButtons(
             IntPtr hwnd,
             uint cButtons,
-            [In] ThumbButton[] pButton);
+            IntPtr pButton);
         [PreserveSig] int ThumbBarUpdateButtons(
             IntPtr hwnd,
             uint cButtons,
-            [In] ThumbButton[] pButton);
+            IntPtr pButton);
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
@@ -123,13 +124,15 @@ public class Taskbar : IDisposable
         try
         {
             _instance.HrInit();
-            ThrowIfFailed(_instance.ThumbBarAddButtons(Handle, (uint)buttons.Count, CreateNativeButtons(buttons)));
+            ThrowIfFailed(InvokeThumbnailButtonOperation(
+                buttons,
+                (count, pointer) => _instance.ThumbBarAddButtons(Handle, count, pointer)));
             _thumbnailToolbarAdded = true;
             return true;
         }
         catch (Exception ex)
         {
-            Log.Debug($"Taskbar thumbnail toolbar unavailable: {ex.GetType().Name}");
+            Log.Debug($"Taskbar thumbnail toolbar unavailable: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
             return false;
         }
     }
@@ -146,12 +149,40 @@ public class Taskbar : IDisposable
 
         try
         {
-            ThrowIfFailed(_instance.ThumbBarUpdateButtons(Handle, (uint)buttons.Count, CreateNativeButtons(buttons)));
+            ThrowIfFailed(InvokeThumbnailButtonOperation(
+                buttons,
+                (count, pointer) => _instance.ThumbBarUpdateButtons(Handle, count, pointer)));
         }
         catch (Exception ex)
         {
             _thumbnailToolbarAdded = false;
-            Log.Debug($"Taskbar thumbnail toolbar update failed: {ex.GetType().Name}");
+            Log.Debug($"Taskbar thumbnail toolbar update failed: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
+        }
+    }
+
+    int InvokeThumbnailButtonOperation(
+        IReadOnlyList<TaskbarThumbnailButton> buttons,
+        Func<uint, IntPtr, int> operation)
+    {
+        ThumbButton[] nativeButtons = CreateNativeButtons(buttons);
+        int buttonSize = Marshal.SizeOf<ThumbButton>();
+        IntPtr buffer = Marshal.AllocHGlobal(checked(buttonSize * nativeButtons.Length));
+
+        try
+        {
+            for (int i = 0; i < nativeButtons.Length; i++)
+            {
+                Marshal.StructureToPtr(
+                    nativeButtons[i],
+                    IntPtr.Add(buffer, i * buttonSize),
+                    false);
+            }
+
+            return operation((uint)nativeButtons.Length, buffer);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(buffer);
         }
     }
 
