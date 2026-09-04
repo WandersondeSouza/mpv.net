@@ -1,6 +1,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+using MpvNet.Windows.Services.MediaTransport;
+
 using static MpvNet.Windows.Native.WinApi;
 
 namespace MpvNet.Windows.WinForms;
@@ -16,7 +18,10 @@ public partial class MainForm
         _lastCycleFullscreen = Environment.TickCount;
 
         if (enabled)
+        {
             _mediaTransport?.Suspend();
+            UpdateTaskbarThumbnail(MediaTransportSnapshot.Disabled);
+        }
 
         Player.Fullscreen = enabled;
 

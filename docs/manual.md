@@ -53,6 +53,12 @@ desativado enquanto a janela está em fullscreen, quando não há mídia carrega
 e durante o encerramento; ao sair do fullscreen, a sessão é restaurada. URLs
 com credenciais, query strings ou fragmentos não são publicados como título.
 
+A miniatura da janela na barra de tarefas também oferece uma toolbar com
+Anterior, Play/Pause, Próximo, Parar e Doação. Esses botões são uma integração
+Win32 separada do SMTC: a doação abre a página oficial com o idioma atual da
+interface, enquanto os demais comandos reutilizam o fluxo de reprodução do
+player. A toolbar aparece quando o Windows cria a miniatura da janela.
+
 As associações automáticas atuais incluem:
 
 - Vídeo: `.mp4`, `.m4v`, `.mkv`, `.webm`, `.avi`, `.mov`, `.qt`, `.wmv`, `.asf`, `.flv`, `.f4v`, `.mpg`, `.mpeg`, `.mpe`, `.m1v`, `.m2v`, `.vob`, `.ts`, `.mts`, `.m2ts`, `.3gp`, `.3g2`, `.3gpp`, `.ogv`, `.ogg`, `.rm`, `.rmvb`, `.divx`, `.xvid`, `.dv`, `.nut`, `.nsv`, `.264`, `.265`, `.avc`, `.avs`, `.dav`, `.h264`, `.h265`, `.hevc`, `.m2t`, `.mj2`, `.mpv`, `.vpy`, `.y4m`, `.mxf`, `.m2p`, `.m4p`, `.mpeg2`, `.mpegts`;

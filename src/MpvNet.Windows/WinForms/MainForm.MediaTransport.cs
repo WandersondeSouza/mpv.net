@@ -76,6 +76,7 @@ public partial class MainForm
 
         MediaTransportSnapshot snapshot = BuildMediaTransportSnapshot();
         _mediaTransport.Publish(snapshot);
+        UpdateTaskbarThumbnail(snapshot);
 
         if (snapshot.IsEnabled && snapshot.PlaybackStatus == MediaTransportPlaybackStatus.Playing)
             _mediaTransportTimer?.Start();

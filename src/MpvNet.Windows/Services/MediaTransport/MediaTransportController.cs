@@ -71,6 +71,12 @@ public sealed class MediaTransportController : IDisposable
         TryPublish(normalized);
     }
 
+    public void RequestCommand(MediaTransportCommandEventArgs args)
+    {
+        ArgumentNullException.ThrowIfNull(args);
+        Service_CommandRequested(this, args);
+    }
+
     public void Suspend()
     {
         lock (_sync)

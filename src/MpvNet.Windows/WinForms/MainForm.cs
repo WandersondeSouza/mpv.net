@@ -923,10 +923,21 @@ public partial class MainForm : Form
                 break;
         }
 
-        if (m.Msg == _taskbarButtonCreatedMessage && Player.TaskbarProgress)
+        if (m.Msg == 0x0111 && TryGetTaskbarThumbnailButtonId(m.WParam, out TaskbarThumbnailButtonId buttonId))
         {
+            HandleTaskbarThumbnailButton(buttonId);
+            return;
+        }
+
+        if (m.Msg == _taskbarButtonCreatedMessage)
+        {
+            _taskbar?.Dispose();
             _taskbar = new Taskbar(Handle);
-            ProgressTimer.Start();
+            _taskbar.TryAddThumbnailButtons(BuildTaskbarThumbnailButtons(_mediaTransport?.Snapshot ?? MediaTransportSnapshot.Disabled));
+            UpdateTaskbarThumbnail(_mediaTransport?.Snapshot ?? MediaTransportSnapshot.Disabled);
+
+            if (Player.TaskbarProgress)
+                ProgressTimer.Start();
         }
 
         // beep sound when closed using taskbar due to exception
