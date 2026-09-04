@@ -1,3 +1,4 @@
+using MpvNet;
 using MpvNet.Help;
 using MpvNet.Windows.Services.MediaTransport;
 
@@ -47,11 +48,6 @@ public partial class MainForm
                 _("Next File"),
                 snapshot.CanNext),
             new TaskbarThumbnailButton(
-                TaskbarThumbnailButtonId.Stop,
-                TaskbarThumbnailIcon.Stop,
-                _("Stop"),
-                snapshot.CanStop),
-            new TaskbarThumbnailButton(
                 TaskbarThumbnailButtonId.Donation,
                 TaskbarThumbnailIcon.Donation,
                 _("Donation"),
@@ -61,6 +57,8 @@ public partial class MainForm
 
     void HandleTaskbarThumbnailButton(TaskbarThumbnailButtonId buttonId)
     {
+        Log.Debug($"Taskbar thumbnail button clicked. button={buttonId}");
+
         switch (buttonId)
         {
             case TaskbarThumbnailButtonId.Previous:
@@ -69,18 +67,15 @@ public partial class MainForm
 
             case TaskbarThumbnailButtonId.PlayPause:
                 MediaTransportSnapshot snapshot = _mediaTransport?.Snapshot ?? MediaTransportSnapshot.Disabled;
-                RequestTaskbarMediaTransportCommand(
-                    snapshot.PlaybackStatus == MediaTransportPlaybackStatus.Paused
-                        ? MediaTransportCommand.Play
-                        : MediaTransportCommand.Pause);
+                if (snapshot.IsEnabled && snapshot.IsMediaLoaded && (snapshot.CanPlay || snapshot.CanPause))
+                {
+                    Log.Debug("Taskbar Play/Pause requested. command='cycle pause'");
+                    Player.Command("cycle pause");
+                }
                 break;
 
             case TaskbarThumbnailButtonId.Next:
                 RequestTaskbarMediaTransportCommand(MediaTransportCommand.Next);
-                break;
-
-            case TaskbarThumbnailButtonId.Stop:
-                RequestTaskbarMediaTransportCommand(MediaTransportCommand.Stop);
                 break;
 
             case TaskbarThumbnailButtonId.Donation:

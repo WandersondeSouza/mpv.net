@@ -11,8 +11,7 @@ public enum TaskbarThumbnailButtonId
     Previous = 1,
     PlayPause = 2,
     Next = 3,
-    Stop = 4,
-    Donation = 5,
+    Donation = 4,
 }
 
 public enum TaskbarThumbnailIcon
@@ -21,7 +20,6 @@ public enum TaskbarThumbnailIcon
     Play,
     Pause,
     Next,
-    Stop,
     Donation,
 }
 
@@ -279,10 +277,6 @@ public class Taskbar : IDisposable
                         new PointF(16, 25),
                     });
                     graphics.FillRectangle(brush, 26, 7, 3, 18);
-                    break;
-
-                case TaskbarThumbnailIcon.Stop:
-                    graphics.FillRectangle(brush, 8, 8, 16, 16);
                     break;
 
                 case TaskbarThumbnailIcon.Donation:

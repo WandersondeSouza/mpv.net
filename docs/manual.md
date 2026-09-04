@@ -54,10 +54,11 @@ e durante o encerramento; ao sair do fullscreen, a sessão é restaurada. URLs
 com credenciais, query strings ou fragmentos não são publicados como título.
 
 A miniatura da janela na barra de tarefas também oferece uma toolbar com
-Anterior, Play/Pause, Próximo, Parar e Doação. Esses botões são uma integração
+Anterior, Play/Pause, Próximo e Doação. Esses botões são uma integração
 Win32 separada do SMTC: a doação abre a página oficial com o idioma atual da
 interface, enquanto os demais comandos reutilizam o fluxo de reprodução do
-player. A toolbar aparece quando o Windows cria a miniatura da janela.
+player; Play/Pause alterna o estado diretamente no mpv. A toolbar aparece
+quando o Windows cria a miniatura da janela.
 
 As associações automáticas atuais incluem:
 

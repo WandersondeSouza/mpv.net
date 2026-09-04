@@ -90,9 +90,10 @@ Previous, Next e seek como comandos mpv já existentes.
 A miniatura da barra de tarefas é uma superfície independente do SMTC. Ela é
 configurada por Native/Taskbar.cs usando ITaskbarList3::ThumbBarAddButtons e
 ThumbBarUpdateButtons, recebe cliques por WM_COMMAND com THBN_CLICKED e expõe
-os comandos de navegação, play/pause, parada e doação. Os botões de mídia
-acompanham o snapshot publicado pelo player; a doação usa o link canônico
-localizado de AppClass.GetDonationUrl.
+os comandos de navegação, play/pause e doação. O botão Play/Pause alterna o
+estado diretamente no mpv, sem depender de um snapshot intermediário. Os
+botões de mídia acompanham o snapshot publicado pelo player; a doação usa o
+link canônico localizado de AppClass.GetDonationUrl.
 
 A sessão é limpa quando não existe mídia carregada, quando a janela entra em
 fullscreen e durante o fechamento. Ao sair do fullscreen, o snapshot atual é
