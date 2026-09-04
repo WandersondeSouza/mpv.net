@@ -62,6 +62,9 @@ public partial class MainPlayer
     // executed before OnFileLoaded
     protected override void OnStartFile()
     {
+        // An end-file REDIRECT may be emitted while mpv advances or rebuilds
+        // the playlist. A new start-file means playback is active again.
+        FileEnded = false;
         Path = GetPropertyString("path");
         NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(Path);
         Log.Debug($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}, cacheKind={resolution.Kind}, cacheProfile={resolution.Profile}, cacheEnabled={resolution.IsEnabled}");
