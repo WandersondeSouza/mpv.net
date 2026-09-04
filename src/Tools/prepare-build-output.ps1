@@ -26,6 +26,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'native-dependencies-config.ps1')
 
 function Test-RequiredPath($path) {
     if (-not (Test-Path $path)) {
@@ -57,33 +58,56 @@ function New-CleanDir($path) {
     return Test-RequiredPath $path
 }
 
-function Invoke-FileDownload($uri, $outputFile) {
-    Write-Host "Downloading $uri"
-    Invoke-WebRequest -Uri $uri -UserAgent 'mpv.net-build-assets' -OutFile $outputFile -UseBasicParsing
-    return Test-RequiredFile $outputFile
-}
-
 function AddGettextToolsToPath($workDir) {
     if (Get-Command msgfmt -ErrorAction SilentlyContinue) {
         return
     }
 
     $packagesDir = New-CleanDir (Join-Path $workDir 'gettext-tools')
-    $index = Invoke-WebRequest `
-        -Uri 'https://api.nuget.org/v3-flatcontainer/gettext.tools/index.json' `
-        -UseBasicParsing |
-        ConvertFrom-Json
-    $version = @($index.versions)[-1]
-    if (-not $version) {
-        throw 'Could not resolve the latest Gettext.Tools package version from NuGet.'
+    $downloadsDir = Get-NativeDependenciesDownloadCacheDir $SourceDir
+    New-Item -ItemType Directory -Force $downloadsDir | Out-Null
+    $cacheMutex = Enter-NativeDependenciesDownloadCacheLock $downloadsDir
+    try {
+        $cachedPackage = Get-NativeDependenciesFreshCachedFile `
+            $downloadsDir `
+            'gettext.tools.*.nupkg' `
+            $NativeDependenciesCacheMaxAgeDays
+
+        if (-not $cachedPackage) {
+            $index = Invoke-WebRequest `
+                -Uri 'https://api.nuget.org/v3-flatcontainer/gettext.tools/index.json' `
+                -UseBasicParsing |
+                ConvertFrom-Json
+            $version = @($index.versions)[-1]
+            if (-not $version) {
+                throw 'Could not resolve the latest Gettext.Tools package version from NuGet.'
+            }
+
+            $cachedPackage = Join-Path $downloadsDir "gettext.tools.$version.nupkg"
+            Write-Host "Downloading https://api.nuget.org/v3-flatcontainer/gettext.tools/$version/gettext.tools.$version.nupkg"
+            Invoke-NativeDependenciesFileDownload `
+                "https://api.nuget.org/v3-flatcontainer/gettext.tools/$version/gettext.tools.$version.nupkg" `
+                $cachedPackage `
+                'mpv.net-build-assets' `
+                $NativeDependenciesCacheMaxAgeDays | Out-Null
+        }
+
+        $cachedPackagePath = if ($cachedPackage -is [System.IO.FileInfo]) {
+            $cachedPackage.FullName
+        }
+        else {
+            [string] $cachedPackage
+        }
+        Write-Host "Using cached download: $cachedPackagePath"
+        $packageFile = Join-Path $workDir ([System.IO.Path]::GetFileName($cachedPackagePath))
+        Copy-Item (Test-RequiredFile $cachedPackagePath).FullName $packageFile -Force
+    }
+    finally {
+        $cacheMutex.ReleaseMutex()
+        $cacheMutex.Dispose()
     }
 
-    $packageFile = Join-Path $workDir "gettext.tools.$version.nupkg"
-    Invoke-FileDownload `
-        "https://api.nuget.org/v3-flatcontainer/gettext.tools/$version/gettext.tools.$version.nupkg" `
-        $packageFile | Out-Null
-
-    $zipFile = Join-Path $workDir "gettext.tools.$version.zip"
+    $zipFile = Join-Path $workDir "$([System.IO.Path]::GetFileNameWithoutExtension($packageFile)).zip"
     Copy-Item $packageFile $zipFile -Force
     Expand-Archive -LiteralPath $zipFile -DestinationPath $packagesDir -Force
 
@@ -108,14 +132,15 @@ if (-not $ArtifactsDir) {
 }
 
 $ArtifactsDir = Test-RequiredPath (New-Item -ItemType Directory -Force $ArtifactsDir).FullName
-$LocaleWorkDir = New-CleanDir (Join-Path $ArtifactsDir 'locale')
+$LocaleWorkDir = New-CleanDir (Join-Path $ArtifactsDir ("locale-$PID-$([Guid]::NewGuid().ToString('N'))"))
 
 $ensureNativeScript = Test-RequiredFile (Join-Path $SourceDir 'Tools\prepare-native-dependencies.ps1')
 $ensureNativeArgs = @{
     SourceDir = $SourceDir
     TargetDir = $TargetDir
     ArtifactsDir = (Join-Path $ArtifactsDir "native-dependencies-$PID")
-    DownloadCacheDir = (Join-Path $ArtifactsDir 'native-dependencies\downloads')
+    DownloadCacheDir = (Get-NativeDependenciesDownloadCacheDir $SourceDir)
+    MaxCacheAgeDays = $NativeDependenciesCacheMaxAgeDays
     SevenZipPath = $SevenZipPath
     MpvBuildVariant = $MpvBuildVariant
 }

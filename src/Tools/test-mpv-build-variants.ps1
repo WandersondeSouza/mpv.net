@@ -41,6 +41,7 @@ if (-not $Online) {
 }
 
 . (Join-Path $PSScriptRoot 'libmpv-validation.ps1')
+. (Join-Path $PSScriptRoot 'native-dependencies-config.ps1')
 
 $preparedDir = Join-Path $ArtifactsDir 'dual-runtime'
 $nativeArtifactsDir = Join-Path $ArtifactsDir 'native-dependencies'
@@ -50,6 +51,8 @@ $prepareScript = Join-Path $PSScriptRoot 'prepare-native-dependencies.ps1'
     -SourceDir $SourceDir `
     -TargetDir $preparedDir `
     -ArtifactsDir $nativeArtifactsDir `
+    -DownloadCacheDir (Get-NativeDependenciesDownloadCacheDir $SourceDir) `
+    -MaxCacheAgeDays $NativeDependenciesCacheMaxAgeDays `
     -UpdateExisting `
     -SevenZipPath $SevenZipPath
 if ($LastExitCode) { throw $LastExitCode }

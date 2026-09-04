@@ -36,7 +36,11 @@ Para release:
 - acesso a internet para baixar libmpv, MediaInfo, `mpvnet.com` e `Gettext.Tools` no momento da release, quando esses arquivos/ferramentas ainda nao estiverem disponiveis localmente ou para semear o cache de componentes na primeira execucao do player.
 
 Observacao: Inno Setup, GitHub CLI e `GH_TOKEN` deixam de ser obrigatorios quando o script e executado, respectivamente, com `-SkipInstaller` e `-SkipGitHubRelease`.
-Os downloads de dependencias nativas e auxiliares do fluxo de release ficam em `artifacts\native-dependencies\downloads` e sao reutilizados por ate 20 dias. No build automatico do aplicativo, `prepare-build-output.ps1` usa o cache compartilhado `artifacts\build-assets\native-dependencies\downloads`; assim, a compilacao do aplicativo e a montagem do MSIX nao baixam novamente os mesmos arquivos. As extracoes continuam em diretorios por processo e o cache de downloads e protegido entre processos. Se o arquivo nao existir ou estiver mais antigo, o script baixa novamente a versao mais recente encontrada nas fontes configuradas.
+Os downloads de dependencias nativas e auxiliares de todos os fluxos ficam em
+`artifacts\native-dependencies\downloads`, incluindo Debug, Release, ZIP,
+instalador e Microsoft Store. Um arquivo ausente, vazio ou com mais de 2 dias e
+baixado novamente; os demais sao reutilizados. As extracoes ficam em diretorios
+isolados por execucao e o cache e protegido por mutex entre processos.
 Os fluxos de build, release, portátil, instalador e Store sempre preparam as duas variantes. O parâmetro legado `-MpvBuildVariant` continua aceito pelos scripts para compatibilidade, mas não seleciona uma distribuição exclusiva; não o use para tentar gerar um pacote somente v3.
 
 ---
@@ -87,6 +91,7 @@ Esta e a lista canonica de scripts do fork. Os demais documentos devem apontar p
 | `generate-portable-zip.ps1` | ZIP portatil |
 | `generate-installer-exe.ps1` | instalador Inno Setup |
 | `prepare-native-dependencies.ps1` | dependencias nativas e auxiliares |
+| `native-dependencies-config.ps1` | politica central de caminho e validade do cache |
 | `prepare-build-output.ps1` | preparo automatico do output no build do app Windows |
 | `validate-native-dependencies.ps1` | validacao de DLLs nativas em pasta ou ZIP |
 | `validate-package-contents.ps1` | validação de `mpvnet.exe`, OSC e demais arquivos gerenciados obrigatórios em pastas e pacotes |
@@ -95,6 +100,7 @@ Esta e a lista canonica de scripts do fork. Os demais documentos devem apontar p
 | `update-mpv-runtime.ps1` | atualizacao do runtime mpv |
 | `test-mpv-build-variants.ps1` | smoke test das variantes de build |
 | `publish-store-package.ps1` | publicacao do pacote Microsoft Store |
+| `test-native-dependency-cache.ps1` | smoke test offline do cache compartilhado |
 
 ---
 
@@ -356,7 +362,7 @@ O script:
 3. publica `MpvNet.Windows.csproj` self-contained para `win-x64`;
 4. cria nomes com base na versão do `mpvnet.exe`;
 5. copia arquivos publicados;
-6. chama `src\Tools\prepare-native-dependencies.ps1` para baixar ou validar `MediaInfo.dll`, `libmpv-2.dll` e `libmpv-2-v3.dll`, reutilizando downloads com ate 20 dias em `artifacts\native-dependencies\downloads`;
+6. chama `src\Tools\prepare-native-dependencies.ps1` para baixar ou validar `MediaInfo.dll`, `libmpv-2.dll` e `libmpv-2-v3.dll`, reutilizando downloads com ate 2 dias em `artifacts\native-dependencies\downloads`;
 7. valida e copia as DLLs Microsoft/.NET `D3DCompiler_47_cor3.dll`, `vcruntime140_cor3.dll`, `wpfgfx_cor3.dll`, `PenImc_cor3.dll` e `PresentationNative_cor3.dll` vindas do publish self-contained;
 8. copia `MediaInfo.dll`, `libmpv-2.dll` e `libmpv-2-v3.dll` x64;
 9. copia `Locale`;
@@ -386,6 +392,12 @@ Smoke test das duas variantes de dependencias:
 
 ```powershell
 .\src\Tools\test-mpv-build-variants.ps1
+```
+
+Smoke test offline do cache compartilhado:
+
+```powershell
+.\src\Tools\test-native-dependency-cache.ps1
 ```
 
 Depois de gerar um pacote dual, execute a revisão manual com seleção automática e com `MPVNET_FORCE_LIBMPV_VARIANT=normal`: inicialização, reprodução de arquivo local, pause/play, seek, fullscreen, legenda, áudio e fechamento. Em CPU compatível, confirme no log a tentativa da v3 e o fallback para a normal quando a v3 não estiver disponível.

@@ -81,7 +81,13 @@ Arquivos nativos esperados ao lado de `mpvnet.exe`:
 - `PenImc_cor3.dll`
 - `PresentationNative_cor3.dll`
 
-O script de dependências usado diretamente para release reutiliza downloads em `artifacts\native-dependencies\downloads`. No build automático do Visual Studio, o cache compartilhado fica em `artifacts\build-assets\native-dependencies\downloads`, para que a compilação do aplicativo e do pacote MSIX reutilizem os mesmos arquivos. Se o arquivo esperado não existir ou tiver mais de 20 dias, ele baixa novamente a versão mais recente encontrada nas fontes oficiais configuradas no script. As extrações permanecem isoladas por processo e o cache de download é sincronizado entre builds concorrentes.
+Todos os fluxos de build, Debug/Release, portátil, instalador e Microsoft Store
+reutilizam o mesmo cache de downloads em
+`artifacts\native-dependencies\downloads`. Se o arquivo esperado não existir,
+estiver vazio ou tiver mais de 2 dias, o preparador baixa novamente a versão mais
+recente encontrada nas fontes oficiais configuradas no script. As extrações
+permanecem isoladas por execução e o cache é sincronizado entre builds
+concorrentes.
 
 Todas as distribuições x64 incluem a build normal `libmpv-2.dll` e a build otimizada `libmpv-2-v3.dll`. O player escolhe automaticamente a v3 somente quando a CPU é compatível e volta para a normal se a v3 não puder ser carregada. A normal continua sendo o fallback obrigatório; não gere ou publique um pacote somente v3.
 
@@ -179,13 +185,19 @@ Usar quando:
 - precisar baixar ou validar `MediaInfo.dll`, `libmpv-2.dll` e `libmpv-2-v3.dll`;
 - preparar a pasta de execução antes do empacotamento.
 - reutilizar downloads recentes em `artifacts\native-dependencies\downloads`;
-- baixar novamente arquivos ausentes ou baixados ha mais de 20 dias.
+- baixar novamente arquivos ausentes, vazios ou baixados ha mais de 2 dias.
 - preparar o par dual para build, portátil, instalador ou Store.
 
 Smoke test de preparacao das duas variantes:
 
 ```powershell
 .\src\Tools\test-mpv-build-variants.ps1
+```
+
+Valide o contrato offline do cache compartilhado:
+
+```powershell
+.\src\Tools\test-native-dependency-cache.ps1
 ```
 
 Para diagnosticar a seleção sem abrir a interface completa, execute `mpvnet.exe --diagnose-libmpv`. Em desenvolvimento, defina temporariamente `MPVNET_FORCE_LIBMPV_VARIANT=normal` para testar a normal; use `auto` para retornar ao comportamento padrão. Para validar reprodução, teste inicialização, arquivo local, URL, playlist, pause/play, seek, fullscreen, legendas, áudio e fechamento.

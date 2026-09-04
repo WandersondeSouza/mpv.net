@@ -63,6 +63,7 @@ param(
 
 # Stop when the first error occurs
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'native-dependencies-config.ps1')
 
 function DeleteDir($path) {
     if (Test-Path $path) {
@@ -118,8 +119,20 @@ function CopyDir($sourceDir, $targetDir) {
 
 function InvokeFileDownload($uri, $outputFile) {
     Write-Host "Downloading $uri"
-    Invoke-WebRequest -Uri $uri -UserAgent 'mpv.net-release-script' -OutFile $outputFile -UseBasicParsing
-    return TestFile $outputFile
+    $downloadDir = Split-Path $outputFile -Parent
+    New-Item -ItemType Directory -Force $downloadDir | Out-Null
+    $cacheMutex = Enter-NativeDependenciesDownloadCacheLock $downloadDir
+    try {
+        return Invoke-NativeDependenciesFileDownload `
+            $uri `
+            $outputFile `
+            'mpv.net-release-script' `
+            $NativeDependenciesCacheMaxAgeDays
+    }
+    finally {
+        $cacheMutex.ReleaseMutex()
+        $cacheMutex.Dispose()
+    }
 }
 
 function DownloadGitHubLatestAsset($apiUrl, $assetPattern, $downloadDir) {
@@ -164,19 +177,49 @@ function AddGettextToolsToPath($workDir) {
     }
 
     $packagesDir = NewCleanDir (Join-Path $workDir 'gettext-tools')
-    $index = Invoke-WebRequest `
-        -Uri 'https://api.nuget.org/v3-flatcontainer/gettext.tools/index.json' `
-        -UseBasicParsing |
-        ConvertFrom-Json
-    $version = @($index.versions)[-1]
-    if (-not $version) {
-        throw 'Could not resolve the latest Gettext.Tools package version from NuGet.'
+    $downloadsDir = Get-NativeDependenciesDownloadCacheDir $SourceDir
+    New-Item -ItemType Directory -Force $downloadsDir | Out-Null
+    $cacheMutex = Enter-NativeDependenciesDownloadCacheLock $downloadsDir
+    try {
+        $cachedPackage = Get-NativeDependenciesFreshCachedFile `
+            $downloadsDir `
+            'gettext.tools.*.nupkg' `
+            $NativeDependenciesCacheMaxAgeDays
+
+        if (-not $cachedPackage) {
+            $index = Invoke-WebRequest `
+                -Uri 'https://api.nuget.org/v3-flatcontainer/gettext.tools/index.json' `
+                -UseBasicParsing |
+                ConvertFrom-Json
+            $version = @($index.versions)[-1]
+            if (-not $version) {
+                throw 'Could not resolve the latest Gettext.Tools package version from NuGet.'
+            }
+
+            $cachedPackage = Join-Path $downloadsDir "gettext.tools.$version.nupkg"
+            Write-Host "Downloading https://api.nuget.org/v3-flatcontainer/gettext.tools/$version/gettext.tools.$version.nupkg"
+            Invoke-NativeDependenciesFileDownload `
+                "https://api.nuget.org/v3-flatcontainer/gettext.tools/$version/gettext.tools.$version.nupkg" `
+                $cachedPackage `
+                'mpv.net-release-script' `
+                $NativeDependenciesCacheMaxAgeDays | Out-Null
+        }
+
+        $cachedPackagePath = if ($cachedPackage -is [System.IO.FileInfo]) {
+            $cachedPackage.FullName
+        }
+        else {
+            [string] $cachedPackage
+        }
+        Write-Host "Using cached download: $cachedPackagePath"
+        $packageFile = Join-Path $workDir ([System.IO.Path]::GetFileName($cachedPackagePath))
+        Copy-Item (TestFile $cachedPackagePath) $packageFile -Force
+    }
+    finally {
+        $cacheMutex.ReleaseMutex()
+        $cacheMutex.Dispose()
     }
 
-    $packageFile = Join-Path $workDir "gettext.tools.$version.nupkg"
-    InvokeFileDownload `
-        "https://api.nuget.org/v3-flatcontainer/gettext.tools/$version/gettext.tools.$version.nupkg" `
-        $packageFile | Out-Null
     ExpandReleaseArchive $packageFile $packagesDir | Out-Null
 
     $toolBinDir = Get-ChildItem $packagesDir -Filter 'msgfmt.exe' -Recurse -File |
@@ -257,8 +300,9 @@ $EnsureDependenciesArgs = @{
     SourceDir = $SourceDir
     TargetDir = $BinDirX64
     PublishDir = $PublishDir64
-    ArtifactsDir = Join-Path (Split-Path $SourceDir -Parent) 'artifacts\native-dependencies'
-    MaxCacheAgeDays = 20
+    ArtifactsDir = Join-Path (Get-NativeDependenciesRepositoryRoot $SourceDir) 'artifacts\native-dependencies'
+    DownloadCacheDir = Get-NativeDependenciesDownloadCacheDir $SourceDir
+    MaxCacheAgeDays = $NativeDependenciesCacheMaxAgeDays
     MpvBuildVariant = $MpvBuildVariant
 }
 if ($MediaInfoVersion) {

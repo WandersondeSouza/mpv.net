@@ -37,13 +37,18 @@ param(
 
     [switch] $UpdateExisting,
 
-    [int] $MaxCacheAgeDays = 20,
+    [int] $MaxCacheAgeDays,
 
     [string] $SevenZipPath = 'C:\Program Files\7-Zip\7z.exe'
 )
 
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'libmpv-validation.ps1')
+. (Join-Path $PSScriptRoot 'native-dependencies-config.ps1')
+
+if (-not $PSBoundParameters.ContainsKey('MaxCacheAgeDays')) {
+    $MaxCacheAgeDays = $NativeDependenciesCacheMaxAgeDays
+}
 
 $RequiredDotNetNativeDlls = @(
     'D3DCompiler_47_cor3.dll',
@@ -75,16 +80,7 @@ function Test-RequiredFile($path) {
 }
 
 function Test-FreshFile($path) {
-    if (-not (Test-Path $path)) {
-        return $false
-    }
-
-    $file = Test-RequiredFile $path
-    if ($MaxCacheAgeDays -le 0) {
-        return $true
-    }
-
-    return $file.LastWriteTime -gt (Get-Date).AddDays(-$MaxCacheAgeDays)
+    return Test-NativeDependencyCacheFileFresh $path $MaxCacheAgeDays
 }
 
 function Assert-PeX64($path) {
@@ -132,8 +128,7 @@ function Invoke-FileDownload($uri, $outputFile) {
     }
 
     Write-Host "Downloading $uri"
-    Invoke-WebRequest -Uri $uri -UserAgent 'mpv.net-native-dependencies' -OutFile $outputFile -UseBasicParsing
-    return Test-RequiredFile $outputFile
+    return Invoke-NativeDependenciesFileDownload $uri $outputFile 'mpv.net-native-dependencies' $MaxCacheAgeDays
 }
 
 function Get-FreshCachedFile($downloadDir, $filePattern) {
@@ -163,36 +158,11 @@ function Get-FreshCachedFileMatchingRegex($downloadDir, $filePattern, $namePatte
 }
 
 function Get-DownloadCacheMutexName($downloadDir) {
-    $bytes = [System.Text.Encoding]::UTF8.GetBytes($downloadDir.ToUpperInvariant())
-    $algorithm = [System.Security.Cryptography.SHA256]::Create()
-    try {
-        $hash = $algorithm.ComputeHash($bytes)
-    }
-    finally {
-        $algorithm.Dispose()
-    }
-    $identifier = [System.BitConverter]::ToString($hash).Replace('-', '').Substring(0, 24)
-    return "Local\mpvnet-native-download-cache-$identifier"
+    return Get-NativeDependenciesDownloadMutexName $downloadDir
 }
 
 function Enter-DownloadCacheLock($downloadDir) {
-    $mutexName = Get-DownloadCacheMutexName $downloadDir
-    $mutex = [System.Threading.Mutex]::new($false, $mutexName)
-
-    try {
-        if (-not $mutex.WaitOne([TimeSpan]::FromMinutes(10))) {
-            throw "Timed out waiting for the native download cache: $downloadDir"
-        }
-    }
-    catch [System.Threading.AbandonedMutexException] {
-        Write-Warning "Previous native download cache owner ended unexpectedly. Continuing with cache: $downloadDir"
-    }
-    catch {
-        $mutex.Dispose()
-        throw
-    }
-
-    return $mutex
+    return Enter-NativeDependenciesDownloadCacheLock $downloadDir
 }
 
 function Get-GitHubLatestRelease($apiUrl) {
@@ -494,19 +464,19 @@ New-Item -ItemType Directory -Force $TargetDir | Out-Null
 $TargetDir = Test-RequiredPath $TargetDir
 
 if (-not $ArtifactsDir) {
-    $ArtifactsDir = Join-Path (Split-Path $SourceDir -Parent) 'artifacts\native-dependencies'
+    $ArtifactsDir = Join-Path (Get-NativeDependenciesRepositoryRoot $SourceDir) 'artifacts\native-dependencies'
 }
 
 New-Item -ItemType Directory -Force $ArtifactsDir | Out-Null
 $ArtifactsDir = Test-RequiredPath $ArtifactsDir
 
 if (-not $DownloadCacheDir) {
-    $DownloadCacheDir = Join-Path $ArtifactsDir 'downloads'
+    $DownloadCacheDir = Get-NativeDependenciesDownloadCacheDir $SourceDir
 }
 
 New-Item -ItemType Directory -Force $DownloadCacheDir | Out-Null
 $DownloadsDir = Test-RequiredPath $DownloadCacheDir
-$ExtractDir = New-CleanDir (Join-Path $ArtifactsDir 'extract')
+$ExtractDir = New-CleanDir (Join-Path $ArtifactsDir ("extract-$PID-$([Guid]::NewGuid().ToString('N'))"))
 
 $cacheMutex = Enter-DownloadCacheLock $DownloadsDir
 try {
@@ -518,6 +488,10 @@ try {
 finally {
     $cacheMutex.ReleaseMutex()
     $cacheMutex.Dispose()
+
+    if (Test-Path -LiteralPath $ExtractDir) {
+        Remove-Item -LiteralPath $ExtractDir -Recurse -Force
+    }
 }
 
 Write-Host "Native and helper dependencies are ready: $TargetDir"

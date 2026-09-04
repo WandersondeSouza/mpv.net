@@ -89,7 +89,8 @@
     <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup>
-    <MpvNetPackagePublishDir>..\MpvNet.Windows\bin\$(Platform)\$(Configuration)\win-x64</MpvNetPackagePublishDir>
+    <MpvNetPackagePublishDir Condition="'$(OutDir)'!='' and $([System.IO.Path]::IsPathRooted('$(OutDir)'))">$(OutDir)</MpvNetPackagePublishDir>
+    <MpvNetPackagePublishDir Condition="'$(MpvNetPackagePublishDir)'==''">$(MSBuildThisFileDirectory)..\MpvNet.Windows\bin\$(Platform)\$(Configuration)\win-x64</MpvNetPackagePublishDir>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -161,10 +162,10 @@
   </Target>
   <Target Name="PrepareMpvNetStorePackageAssets" BeforeTargets="_WritePayloadFiles" Condition="'$(HasDesktopBridgeTargets)'=='true'">
     <Error Condition="!Exists('$(MpvNetPackagePublishDir)')" Text="Diretorio de publicacao do aplicativo nao encontrado para o pacote Store: $(MpvNetPackagePublishDir)" />
-    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\prepare-build-output.ps1&quot; -SourceDir &quot;$(MSBuildThisFileDirectory)..&quot; -TargetDir &quot;$(MSBuildThisFileDirectory)$(MpvNetPackagePublishDir)&quot;" />
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\prepare-build-output.ps1&quot; -SourceDir &quot;$(MSBuildThisFileDirectory)..&quot; -TargetDir &quot;$(MpvNetPackagePublishDir)\.&quot;" />
     <Error Condition="!Exists('$(MpvNetPackagePublishDir)\libmpv-2.dll')" Text="libmpv-2.dll nao foi preparado para o pacote Store: $(MpvNetPackagePublishDir)" />
     <Error Condition="!Exists('$(MpvNetPackagePublishDir)\libmpv-2-v3.dll')" Text="libmpv-2-v3.dll nao foi preparado para o pacote Store: $(MpvNetPackagePublishDir)" />
-    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\validate-package-contents.ps1&quot; -Path &quot;$(MSBuildThisFileDirectory)$(MpvNetPackagePublishDir)&quot;" />
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\validate-package-contents.ps1&quot; -Path &quot;$(MpvNetPackagePublishDir)\.&quot;" />
     <ItemGroup>
       <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\Scripts\osc.lua">
         <TargetPath>MpvNet.Windows\Scripts\osc.lua</TargetPath>

@@ -285,7 +285,7 @@ A ausência de referências internas não é suficiente para remover APIs públi
 | parâmetro público `LocalizationService.ResolveMpvNetLanguage(..., systemCulture)` | precisa ser mantido | conserva a assinatura pública, embora a seleção manual não use a cultura do sistema |
 | `StockIcon` e `MsgBoxExtendedFunctionality` | exige teste antes da remoção | não possuem consumidor interno conhecido, mas são tipos públicos do frontend |
 | `update-mpv-runtime.ps1` | precisa ser mantido | continua documentado como ferramenta operacional manual |
-| `download-mediainfo-dependency.ps1`, `NGettext.Wpf.nuspec` e `NGettext.Wpf/Releasing.md` | provavelmente removível, mas requer confirmação | não participam do build atual, porém podem integrar fluxos manuais externos |
+| `download-mediainfo-dependency.ps1`, `NGettext.Wpf.nuspec` e `NGettext.Wpf/Releasing.md` | manter o wrapper/avaliar os demais | o downloader legado delega ao preparador compartilhado; os demais não participam do build atual, porém podem integrar fluxos manuais externos |
 | imagens MSIX com sufixos `scale`, `targetsize` e `altform` | precisa ser mantido | são variantes reconhecidas pelo empacotamento Windows, mesmo quando o conteúdo binário coincide |
 | `ENABLE_FILE_LOGGING` | precisa ser mantido | é controlado por `EnableFileLogging` em `Directory.Build.props` |
 
