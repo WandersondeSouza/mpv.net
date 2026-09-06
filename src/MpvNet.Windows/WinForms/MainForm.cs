@@ -749,6 +749,13 @@ public partial class MainForm : Form
                 break;
             case 0x001A: // WM_SETTINGCHANGE
                 UpdateDarkMode();
+                MediaTransportSnapshot settingSnapshot = _mediaTransport?.Snapshot ?? MediaTransportSnapshot.Disabled;
+                _taskbar?.RefreshThumbnailButtons(BuildTaskbarThumbnailButtons(settingSnapshot));
+                break;
+            case 0x0031: // WM_THEMECHANGED
+                UpdateDarkMode();
+                MediaTransportSnapshot themeSnapshot = _mediaTransport?.Snapshot ?? MediaTransportSnapshot.Disabled;
+                _taskbar?.RefreshThumbnailButtons(BuildTaskbarThumbnailButtons(themeSnapshot));
                 break;
             case 0x51: // WM_INPUTLANGCHANGE
                 ActivateKeyboardLayout(m.LParam, 0x00000100u /*KLF_SETFORPROCESS*/);

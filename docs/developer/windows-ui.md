@@ -95,6 +95,12 @@ estado diretamente no mpv, sem depender de um snapshot intermediário. Os
 botões de mídia acompanham o snapshot publicado pelo player; a doação usa o
 link canônico localizado de AppClass.GetDonationUrl.
 
+Os glyphs dessa toolbar são desenhados com contraste adaptativo ao tema de
+aplicativos do Windows (`AppsUseLightTheme`): usam uma cor escura no tema claro
+e uma cor clara no tema escuro. As mensagens `WM_SETTINGCHANGE` e
+`WM_THEMECHANGED` invalidam os `Icon` em cache e reaplicam os mesmos botões e
+estados quando o tema muda com o player aberto.
+
 A sessão é limpa quando não existe mídia carregada, quando a janela entra em
 fullscreen e durante o fechamento. Ao sair do fullscreen, o snapshot atual é
 publicado novamente. O adapter não usa caminho, query, fragmento ou credencial

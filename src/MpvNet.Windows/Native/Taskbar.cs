@@ -3,6 +3,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using MpvNet.Windows.UI;
 
 using MpvNet;
 
@@ -44,6 +45,7 @@ public class Taskbar : IDisposable
 
     readonly ITaskbarList3 _instance = (ITaskbarList3)new TaskBarCommunication();
     readonly Dictionary<TaskbarThumbnailIcon, Icon> _thumbnailIcons = new();
+    bool? _thumbnailIconsLightTheme;
     bool _disposed;
     bool _thumbnailToolbarAdded;
 
@@ -158,6 +160,17 @@ public class Taskbar : IDisposable
         }
     }
 
+    public void RefreshThumbnailButtons(IReadOnlyList<TaskbarThumbnailButton> buttons)
+    {
+        ObjectDisposedException.ThrowIf(_disposed, this);
+
+        if (!_thumbnailToolbarAdded)
+            return;
+
+        DisposeThumbnailIcons();
+        UpdateThumbnailButtons(buttons);
+    }
+
     int InvokeThumbnailButtonOperation(
         IReadOnlyList<TaskbarThumbnailButton> buttons,
         Func<uint, IntPtr, int> operation)
@@ -208,6 +221,13 @@ public class Taskbar : IDisposable
 
     Icon GetThumbnailIcon(TaskbarThumbnailIcon icon)
     {
+        bool isLightTheme = Theme.IsWindowsLightTheme();
+        if (_thumbnailIconsLightTheme != isLightTheme)
+        {
+            DisposeThumbnailIcons();
+            _thumbnailIconsLightTheme = isLightTheme;
+        }
+
         if (_thumbnailIcons.TryGetValue(icon, out Icon? existing))
             return existing;
 
@@ -222,7 +242,7 @@ public class Taskbar : IDisposable
         using Bitmap bitmap = new(size, size, PixelFormat.Format32bppArgb);
 
         using (Graphics graphics = Graphics.FromImage(bitmap))
-        using (Brush brush = new SolidBrush(Color.White))
+        using (Brush brush = new SolidBrush(Theme.IsWindowsLightTheme() ? Color.FromArgb(32, 32, 32) : Color.White))
         {
             graphics.Clear(Color.Transparent);
             graphics.SmoothingMode = SmoothingMode.AntiAlias;
@@ -324,13 +344,18 @@ public class Taskbar : IDisposable
         if (Marshal.IsComObject(_instance))
             Marshal.FinalReleaseComObject(_instance);
 
+        DisposeThumbnailIcons();
+
+        _disposed = true;
+        GC.SuppressFinalize(this);
+    }
+
+    void DisposeThumbnailIcons()
+    {
         foreach (Icon icon in _thumbnailIcons.Values)
             icon.Dispose();
 
         _thumbnailIcons.Clear();
-
-        _disposed = true;
-        GC.SuppressFinalize(this);
     }
 }
 

@@ -142,14 +142,13 @@ public class Theme
         dic.Add("HighlightColor", Current.GetColor("highlight"));
     }
 
-    static bool DarkModeSystem
+    public static bool IsWindowsLightTheme()
     {
-        get
-        {
-            string key = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
-            return (int)(Registry.GetValue(key, "AppsUseLightTheme", 1) ?? 1) == 0;
-        }
+        const string key = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
+        return (int)(Registry.GetValue(key, "AppsUseLightTheme", 1) ?? 1) != 0;
     }
+
+    static bool DarkModeSystem => !IsWindowsLightTheme();
 
     public static bool DarkMode => App.DarkMode == "system" && DarkModeSystem || App.DarkMode == "always";
 }
