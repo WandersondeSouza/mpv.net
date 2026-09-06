@@ -28,7 +28,7 @@ _("Play/Pause")
 _("Next File")
 ```
 
-O problema esperado é que a chave `Donation` não esteja corretamente presente nos catálogos/arquivos de tradução usados pelo projeto, fazendo com que o fallback permaneça em inglês.
+O problema já confirmado é que `Donation` existe como `msgid` em `lang/source.pot` e nos catálogos traduzidos, mas permanece com `msgstr "Donation"`. Portanto, o fallback não é um defeito geral: a chave atual foi mantida sem tradução. Também é necessário verificar se a toolbar é reconstruída depois de uma troca de idioma, pois o tooltip é materializado ao criar os botões Win32.
 
 ## Objetivo
 
@@ -51,6 +51,7 @@ Antes de alterar qualquer arquivo:
 3. Descubra como as chaves dos tooltips dos demais botões da toolbar são traduzidas.
 4. Confirme por que `_("Donation")` atualmente retorna `Donation` em todos os idiomas.
 5. Verifique os mecanismos atuais de fallback de idioma, incluindo variantes como `pt-BR`, `pt-PT`, `en`, `es`, etc.
+6. Verifique como `WpfTranslator.LanguageChanged` é consumido e se a toolbar é atualizada após a mudança de idioma; não presuma que recriar a janela seja suficiente.
 
 Não presuma a estrutura dos arquivos de idioma; valide no código antes de modificar.
 
@@ -80,9 +81,9 @@ Não alterar desnecessariamente:
 
 O botão deve continuar abrindo exatamente o mesmo endereço de doação existente hoje.
 
-### 3. Adicionar traduções em todos os idiomas suportados pelo projeto
+### 3. Atualizar a fonte e adicionar traduções em todos os idiomas suportados pelo projeto
 
-Adicionar a nova chave seguindo os padrões existentes.
+Adicionar a nova chave seguindo os padrões existentes. Como o inglês é nativo, o `msgid` em inglês deve ser a própria fonte; não criar `lang/po/en.po`.
 
 Referências mínimas esperadas:
 
@@ -93,13 +94,15 @@ Referências mínimas esperadas:
 - Français: `Soutenir le lecteur`
 - Deutsch: `Player unterstützen`
 - Italiano: `Supporta il player`
+- Búlgaro, chinês simplificado, japonês, coreano, polonês, russo e turco: traduções coerentes para “ajude o player”, conforme os catálogos existentes.
 
 Essas traduções são apenas referências iniciais. O Codex deve:
 
 1. identificar todos os idiomas efetivamente existentes no repositório;
 2. adicionar uma tradução apropriada para cada idioma;
-3. manter terminologia, capitalização, encoding e formato coerentes com os demais textos do projeto;
-4. evitar traduções automáticas inadequadas quando já existir no projeto um termo equivalente para player/reprodutor/apoio/doação.
+3. atualizar `lang/source.pot` se a extração do catálogo exigir isso e manter todos os `.po` em paridade com ele;
+4. manter terminologia, capitalização, encoding e formato coerentes com os demais textos do projeto;
+5. evitar traduções automáticas inadequadas quando já existir no projeto um termo equivalente para player/reprodutor/apoio/doação.
 
 ### 4. Respeitar os fallbacks existentes
 
@@ -136,7 +139,7 @@ Criar ou atualizar testes quando a arquitetura atual permitir.
 
 Validar pelo menos:
 
-1. compilação da solução;
+1. compilação do projeto Windows (`src/MpvNet.Windows/MpvNet.Windows.csproj`); não assumir que `dotnet build src/MpvNet.sln` seja válido se a solução contiver projetos WAP/WAPROJ sem suporte ao comando;
 2. ausência de erros nos arquivos de localização;
 3. carregamento correto da nova chave;
 4. `pt-BR` => `Ajude o player`;
@@ -145,6 +148,7 @@ Validar pelo menos:
 7. fallback quando uma cultura específica não possui entrada própria;
 8. o clique no botão continua abrindo `App.DonationUrl`;
 9. Previous, Play/Pause e Next permanecem sem regressões.
+10. se o idioma puder mudar em runtime, a toolbar é reconstruída/atualizada e passa a usar o novo tooltip; se a arquitetura exigir reinício, registrar essa limitação com evidência.
 
 Se os tooltips Win32 não forem facilmente testáveis por teste automatizado, documentar o teste manual necessário.
 
@@ -192,15 +196,15 @@ Não alterar documentação sem necessidade.
 1. Trabalhar na branch atual, a menos que exista uma instrução explícita no repositório exigindo branch própria para a tarefa.
 2. Antes de alterar, verificar `git status` e não sobrescrever mudanças não relacionadas.
 3. Fazer a implementação em etapas pequenas e verificáveis.
-4. Executar os testes relevantes e a compilação antes do commit.
+4. Executar os testes relevantes e a compilação antes de qualquer commit.
 5. Revisar o diff final procurando alterações acidentais.
-6. Criar commit com mensagem clara, por exemplo:
+6. Se houver autorização explícita para commit, criar um commit com mensagem clara, por exemplo:
 
 ```text
 fix: localize taskbar donation tooltip
 ```
 
-7. Fazer `push` para o repositório remoto na branch de trabalho.
+7. Só fazer `push` se houver autorização explícita para publicar; caso contrário, entregar o diff e o estado de validação sem alegar publicação.
 
 ## Critérios de aceite
 
@@ -209,14 +213,14 @@ A tarefa só está concluída quando:
 - o tooltip não aparece mais permanentemente como `Donation`;
 - em inglês aparece `Help the player`;
 - em `pt-BR` aparece `Ajude o player`;
-- os demais idiomas suportados possuem tradução coerente;
+- todos os idiomas traduzidos suportados pelo projeto possuem tradução coerente, e o inglês usa o `msgid` nativo;
 - o sistema existente de localização/fallback continua sendo utilizado;
 - o botão continua abrindo `App.DonationUrl`;
 - os demais botões da toolbar continuam funcionando;
-- a solução compila;
+- o projeto Windows compila;
 - os testes relevantes passam;
 - o diff final não contém alterações não relacionadas;
-- commit e push foram concluídos.
+- commit/push só são critérios de conclusão quando tiverem sido explicitamente autorizados e executados.
 
 ## Entrega final do Codex
 
@@ -228,6 +232,6 @@ Ao concluir, informar de forma objetiva:
 4. testes executados e seus resultados;
 5. validação do fallback;
 6. confirmação de que `App.DonationUrl` e o comportamento do clique não foram alterados;
-7. hash do commit;
-8. branch que recebeu o push;
+7. hash do commit e branch, somente se commit tiver sido criado;
+8. confirmação do push, somente se autorizado e concluído;
 9. qualquer limitação de teste manual ainda existente.
