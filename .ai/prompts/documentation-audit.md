@@ -1,40 +1,32 @@
-﻿# Prompt â€” Auditoria de documentaÃ§Ã£o
+# Prompt — Auditoria de documentação
 
-Analise profundamente este repositÃ³rio.
+Analise profundamente este repositório.
 
-Objetivo:
-
-Realizar uma auditoria completa da documentaÃ§Ã£o tÃ©cnica e funcional.
+Objetivo: realizar uma auditoria completa da documentação técnica e funcional.
 
 Verifique:
 
-- links quebrados;
-- arquivos ausentes;
-- documentaÃ§Ã£o desatualizada;
-- ausÃªncia de documentaÃ§Ã£o tÃ©cnica;
-- ausÃªncia de documentaÃ§Ã£o de build;
-- ausÃªncia de documentaÃ§Ã£o arquitetural;
-- inconsistÃªncias entre README e manual;
-- Ã¡reas sem documentaÃ§Ã£o;
-- documentaÃ§Ã£o redundante;
-- divergÃªncia entre docs do repositÃ³rio e artefatos de IA em `.ai/`.
-- consistÃªncia entre `docs/developer/` e os agentes/prompts que citam esses arquivos.
-- se novas pÃ¡ginas sÃ£o realmente necessÃ¡rias ou se o conteÃºdo pertence a documentos existentes.
+- links quebrados e arquivos ausentes;
+- documentação desatualizada, redundante ou sem fonte clara;
+- cobertura de uso, configuração, build, release e arquitetura;
+- inconsistências entre README, manual, `docs/developer/` e `.ai/`;
+- consistência entre documentos técnicos e os agentes/prompts que os citam;
+- codificação UTF-8, caminhos reais e comandos ainda suportados;
+- se uma nova página é necessária ou se o conteúdo pertence a documento existente.
 
 Entregue:
 
-1. lista de problemas encontrados;
-2. severidade;
-3. arquivos afetados;
-4. sugestÃ£o de correÃ§Ã£o;
-5. roadmap de melhoria;
-6. riscos de manutenÃ§Ã£o.
+1. problemas encontrados e severidade;
+2. arquivos afetados e evidência;
+3. correção sugerida;
+4. roadmap de melhoria;
+5. riscos de manutenção;
+6. validação executada e pendências de ambiente.
 
-Antes de alterar qualquer arquivo:
+Antes de alterar qualquer arquivo, resuma o entendimento, liste os arquivos
+relevantes e identifique as áreas críticas. Atualize documentação técnica
+somente quando houver mudança consolidada, preferindo documentos existentes.
 
-- resumir entendimento atual;
-- listar arquivos relevantes;
-- identificar Ã¡reas crÃ­ticas.
-- atualizar documentaÃ§Ã£o tÃ©cnica apenas quando houver mudanÃ§a consolidada;
-- preferir documentos existentes e evitar criar arquivos redundantes.
-
+Validação mínima: `git diff --check`, conferência de links locais e busca por
+referências a caminhos, branches, TFMs e fluxos que não existem mais. Não faça
+commit, push ou publicação sem solicitação explícita.

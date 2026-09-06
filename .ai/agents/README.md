@@ -19,7 +19,8 @@ Todo agente deve seguir:
 9. informar plano de teste.
 10. considerar a topologia consolidada `MainForm.*.cs` e `Player.*.cs` antes de propor nova separação.
 11. verificar e ampliar `src/MpvNet.Tests/Program.cs` antes de mudar parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo.
-12. rodar `src/MpvNet.Tests/MpvNet.Tests.csproj` depois dessas mudanças.
+12. rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` depois dessas mudanças;
+13. não fazer commit, push ou publicação sem solicitação explícita.
 
 ## Perfis disponíveis
 

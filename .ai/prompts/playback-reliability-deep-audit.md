@@ -517,7 +517,8 @@ Após cada commit:
 ```text
 git status
 git log -1
-git push
+Não faça `git push` automaticamente. Só envie commits ao remoto se o usuário
+solicitar explicitamente e após validar o estado do branch.
 ```
 
 Confirmar que o push foi concluído.
@@ -598,7 +599,7 @@ git status
 git log --oneline
 ```
 
-e confirmar que todos os commits realizados nesta tarefa foram enviados ao repositório remoto.
+e, somente se solicitado, confirmar quais commits foram enviados ao repositório remoto.
 
 ---
 

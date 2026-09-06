@@ -1,6 +1,8 @@
 ﻿# Artefatos de IA
 
-Este diretório reúne materiais para tarefas recorrentes do fork.
+Este diretório reúne materiais para tarefas recorrentes do fork. O código e os
+documentos em `docs/` continuam sendo a fonte final de verdade; resultados
+históricos ou hipóteses de prompts não representam necessariamente o estado atual.
 
 ## Conteúdo
 
@@ -36,7 +38,14 @@ Antes de editar código ou documentação:
 9. usar o arquivo de `skills/`, `agents/` e `prompts/` que melhor corresponda ao tipo de trabalho.
 10. verificar se `src\MpvNet.Tests\Program.cs` cobre o comportamento antes de alterar parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo;
 11. ampliar `src\MpvNet.Tests\Program.cs` quando a mudança criar caso novo nessas áreas;
-12. rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` para validar a cobertura leve.
+12. rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` para validar a cobertura leve;
+13. revisar `git diff --check`, links locais e o diff final.
+
+## Limites de execução
+
+- Commit, push, publicação de release, Store ou deploy não são automáticos.
+- Só executar essas ações quando forem solicitadas explicitamente e houver evidência de validação local.
+- Ao relatar resultados, separar `validado localmente`, `pendente de ambiente` e `não verificado`.
 
 ## Observação sobre MCP
 

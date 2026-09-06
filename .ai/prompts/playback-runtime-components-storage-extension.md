@@ -435,7 +435,8 @@ dotnet build src\MpvNet.sln
 dotnet test src\MpvNet.sln
 git diff --check
 git log -1
-git push
+Não faça `git push` automaticamente. Só envie ao remoto mediante solicitação
+explícita e após validar o estado do branch.
 ```
 
 Não continuar se build/testes estiverem quebrados.

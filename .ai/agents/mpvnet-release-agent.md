@@ -37,6 +37,8 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 - Documentar pré-requisitos externos como 7-Zip, Inno Setup e GitHub CLI.
 - Atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
 - Se o empacotamento falhar por fluxo anterior, localizar o estágio exato antes de mexer no script final.
+- Tratar build, pacote, assinatura, upload e publicação como evidências diferentes; sucesso local não prova que a Store ou o GitHub foram atualizados.
+- Não executar `git commit`, `git push` ou publicação automaticamente; registrar recomendações e aguardar autorização explícita.
 
 ## Testes esperados
 

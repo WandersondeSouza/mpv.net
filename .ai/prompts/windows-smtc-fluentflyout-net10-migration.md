@@ -528,8 +528,8 @@ git status --short
 git switch main
 git pull --ff-only
 git status --short
-git switch -c feature/windows-smtc-net10-19041
-git push -u origin feature/windows-smtc-net10-19041
+Escolha um branch de trabalho conforme a política atual do repositório. Não
+crie nem publique branch automaticamente; isso exige solicitação explícita.
 ```
 
 Se houver alterações locais anteriores, não as descarte e não as inclua automaticamente. Pare, registre o conflito de escopo e preserve o trabalho existente.
@@ -579,7 +579,7 @@ Commit sugerido:
 feat(windows): add HWND-bound SMTC transport service
 ```
 
-Execute testes e faça `git push`.
+Execute os testes e registre o resultado. Faça push somente mediante solicitação explícita.
 
 ### Etapa 3 — comandos e sincronização do player
 
@@ -595,7 +595,7 @@ Commit sugerido:
 feat(player): synchronize playback and playlist with SMTC
 ```
 
-Execute testes e faça `git push`.
+Execute os testes e registre o resultado. Faça push somente mediante solicitação explícita.
 
 ### Etapa 4 — metadados e timeline
 
@@ -613,7 +613,7 @@ Commit sugerido:
 feat(media): publish SMTC metadata and timeline
 ```
 
-Execute testes e faça `git push`.
+Execute os testes e registre o resultado. Faça push somente mediante solicitação explícita.
 
 ### Etapa 5 — fullscreen e descarte
 
@@ -629,7 +629,7 @@ Commit sugerido:
 feat(windows): suspend SMTC controls in fullscreen
 ```
 
-Execute testes e faça `git push`.
+Execute os testes e registre o resultado. Faça push somente mediante solicitação explícita.
 
 ### Etapa 6 — CI, empacotamento e documentação final
 
@@ -645,7 +645,7 @@ Commit sugerido:
 docs: document Windows media controls and platform baseline
 ```
 
-Execute testes e faça `git push`.
+Execute os testes e registre o resultado. Faça push somente mediante solicitação explícita.
 
 ### Etapa 7 — auditoria final
 
@@ -663,8 +663,8 @@ Não crie commit vazio.
 
 A tarefa só está concluída se todos os itens aplicáveis abaixo forem verdadeiros:
 
-- [ ] branch `feature/windows-smtc-net10-19041` criada a partir de `main` atualizada;
-- [ ] todos os commits foram enviados ao remoto;
+- [ ] branch de trabalho escolhida explicitamente e registrada;
+- [ ] commits enviados ao remoto somente se isso tiver sido solicitado;
 - [ ] todos os `*.csproj` usam exatamente `net10.0-windows10.0.19041.0`;
 - [ ] WAP/MSIX e manifests possuem piso 19041 coerente;
 - [ ] não há suporte declarado a Windows 7/8/8.1;
@@ -729,7 +729,7 @@ Ao terminar, entregue:
 11. warnings existentes antes e novos warnings;
 12. limitações do ambiente, sem declarar como testado o que não foi;
 13. riscos ou pendências remanescentes;
-14. comparação final `main...feature/windows-smtc-net10-19041`;
-15. confirmação de que tudo foi enviado com `git push`.
+14. comparação final com a base efetivamente utilizada;
+15. confirmação do que foi enviado, apenas se houve autorização para push.
 
 Não encerre apenas dizendo “implementado”. Apresente evidências reproduzíveis.
