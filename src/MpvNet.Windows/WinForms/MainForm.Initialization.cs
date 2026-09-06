@@ -22,6 +22,8 @@ public partial class MainForm
         {
             Instance = this;
 
+            WpfTranslator.LanguageChanged += WpfTranslator_LanguageChanged;
+
             Player.FileLoaded += Player_FileLoaded;
             Player.StartFile += Player_StartFile;
             Player.EndFile += Player_EndFile;

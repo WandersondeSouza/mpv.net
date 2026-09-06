@@ -2642,3 +2642,7 @@ msgstr "Down"
 msgctxt "Volume"
 msgid "Up"
 msgstr "Up"
+
+#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
+msgid "Help the player"
+msgstr "帮助播放器"

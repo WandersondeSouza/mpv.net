@@ -1123,6 +1123,7 @@ public partial class MainForm : Form
 
         _managedResourcesDisposed = true;
 
+        WpfTranslator.LanguageChanged -= WpfTranslator_LanguageChanged;
         Player.FileLoaded -= Player_FileLoaded;
         Player.StartFile -= Player_StartFile;
         Player.EndFile -= Player_EndFile;
