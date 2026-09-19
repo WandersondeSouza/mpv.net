@@ -274,6 +274,201 @@ Validar também:
 
 Se houver opção nativa do mpv/yt-dlp que controla playlist (`ytdl`, `ytdl-raw-options`, `playlist-start`, `playlist-end`, etc.), verificar documentação atual antes de alterar comportamento.
 
+
+---
+
+# ADENDO OBRIGATÓRIO 2026 — PLAYLISTS YOUTUBE, EJS, RUNTIME JAVASCRIPT E DIAGNÓSTICO MODERNO
+
+> Este adendo faz parte obrigatória deste prompt e prevalece sobre qualquer suposição anterior conflitante neste documento.
+> Antes de implementar, o Codex DEVE consultar a documentação oficial atual do mpv e do yt-dlp e registrar as versões efetivamente usadas na validação.
+
+## A. Política real de playlists do YouTube
+
+NÃO assumir que uma URL `watch?v=...&list=...` será automaticamente expandida para a playlist completa apenas por ser entregue ao mpv.
+
+Auditar obrigatoriamente o comportamento atual do `ytdl_hook` do mpv e as opções repassadas ao yt-dlp.
+
+Na implementação atualmente documentada pelo mpv, o fluxo pode usar comportamento equivalente a `--no-playlist` por padrão, salvo quando opções apropriadas habilitarem playlist, por exemplo via `ytdl-raw-options` / `yes-playlist`.
+
+Portanto, definir e testar explicitamente uma política de intenção:
+
+```text
+URL claramente de vídeo individual
+    -> reproduzir somente o item, salvo intenção explícita de coleção
+
+URL claramente de playlist/coleção
+    -> permitir expansão nativa via mpv + yt-dlp
+
+URL watch?v=VIDEO&list=PLAYLIST
+    -> preservar a URL completa
+    -> determinar a intenção conforme a entrada e a política do player
+    -> habilitar expansão quando o objetivo for playlist
+```
+
+Não criar uma playlist paralela em C# se mpv + yt-dlp puderem realizar a expansão corretamente.
+
+Não transformar todo vídeo que contém contexto de playlist em coleção sem validar a intenção e o comportamento atual.
+
+## B. `index=` e posição do item atual
+
+O requisito funcional continua sendo:
+
+```text
+https://www.youtube.com/watch?v=VIDEO3&list=PLAYLIST123&index=3
+```
+
+deve resultar, quando a playlist for solicitada, na playlist expandida com o item correspondente selecionado.
+
+Porém, NÃO assumir que `index=3` será automaticamente refletido em `playlist-pos` pela combinação atual de mpv + yt-dlp.
+
+O Codex deve:
+
+1. validar o comportamento real da versão atual;
+2. observar a playlist nativa do mpv após expansão;
+3. confirmar se o item corrente corresponde ao vídeo indicado;
+4. somente se necessário, sincronizar a posição usando propriedades/comandos nativos do mpv;
+5. evitar reconstruir a playlist manualmente;
+6. evitar reiniciar o vídeo atual durante a sincronização;
+7. adicionar testes para posição inicial, próximo, anterior e avanço automático.
+
+## C. Cadeia moderna de reprodução online
+
+Não considerar mais `yt-dlp.exe presente e atualizado` como diagnóstico suficiente para declarar a integração YouTube saudável.
+
+Auditar a cadeia completa:
+
+```text
+MPV.NET
+  -> mpv/libmpv
+     -> ytdl_hook
+        -> yt-dlp
+           -> suporte a desafios JavaScript quando necessário
+              -> EJS / componente equivalente oficialmente suportado
+              -> runtime JavaScript compatível
+           -> ffmpeg quando necessário
+           -> cookies / headers / tokens somente quando legitimamente configurados
+```
+
+O diagnóstico deve informar separadamente, quando tecnicamente possível:
+
+- versão do mpv/libmpv;
+- versão do yt-dlp;
+- caminho efetivamente usado para yt-dlp;
+- disponibilidade do FFmpeg;
+- disponibilidade/capacidade do runtime JavaScript exigido pelo fluxo atual;
+- disponibilidade/capacidade do EJS ou mecanismo oficial equivalente;
+- falha específica de JavaScript challenge;
+- falha específica de extractor;
+- falha de autenticação/cookies;
+- falha de rede;
+- falha posterior no mpv/demuxer.
+
+Não misturar tudo em uma única mensagem “yt-dlp desatualizado”.
+
+## D. Runtime JavaScript e EJS
+
+A documentação atual do yt-dlp para YouTube deve ser lida obrigatoriamente antes da implementação.
+
+Se a versão atual exigir EJS e/ou runtime JavaScript para resolver desafios do YouTube:
+
+- avaliar integração com a infraestrutura existente de `RuntimeComponents`;
+- NÃO criar um segundo gerenciador de componentes;
+- validar integridade/versionamento de qualquer componente gerenciado;
+- não bloquear a UI durante bootstrap/update;
+- não baixar/atualizar em cada reprodução;
+- respeitar componentes explicitamente configurados pelo usuário;
+- definir política de atualização coerente com os demais runtime components;
+- registrar no diagnóstico o runtime realmente utilizado;
+- adicionar testes de resolução e fallback;
+- documentar claramente quando um componente é opcional ou obrigatório.
+
+A decisão de empacotar, baixar ou apenas detectar um runtime JavaScript deve ser baseada na documentação oficial atual, segurança, licença, tamanho do pacote e arquitetura real do MPV.NET.
+
+Não habilitar execução arbitrária de código remoto apenas para “fazer funcionar”.
+
+## E. Remote components
+
+Se a versão atual do yt-dlp oferecer mecanismos como remote components para EJS:
+
+- estudar a documentação oficial atual;
+- tratar como capacidade explícita, não como pressuposto;
+- NÃO habilitar automaticamente download/execução remota sem análise de segurança;
+- não modificar configuração do usuário silenciosamente;
+- preferir uma solução determinística e auditável compatível com a política de runtime components do projeto;
+- registrar claramente a origem e versão de qualquer componente baixado.
+
+## F. PO Token / Proof of Origin
+
+O YouTube pode exigir PO Token em determinados clientes, endpoints ou formatos.
+
+O MPV.NET NÃO deve implementar gerador próprio de PO Token nesta tarefa.
+
+Entretanto, o diagnóstico deve reconhecer, quando houver evidência, diferenças entre:
+
+```text
+yt-dlp desatualizado
+extractor quebrado
+desafio JavaScript não resolvido
+runtime JavaScript ausente
+EJS/componente equivalente ausente ou incompatível
+PO Token necessário/ausente
+cookies/autenticação necessários
+restrição regional
+conteúdo privado/removido
+erro de rede
+```
+
+Se o yt-dlp oferecer configuração/plugin/provider oficial para PO Token, preservar a possibilidade de usuários avançados utilizarem esse mecanismo sem o MPV.NET capturar, registrar ou armazenar tokens indevidamente.
+
+Nunca registrar PO Token, cookies, Authorization, tokens de sessão ou URLs assinadas completas em logs normais.
+
+## G. Browser impersonation
+
+Auditar a documentação atual do yt-dlp sobre browser impersonation.
+
+Se determinado extractor depender de impersonation/TLS fingerprint ou dependência opcional como `curl_cffi`:
+
+- não tornar isso obrigatório sem evidência;
+- não instalar dependências pesadas automaticamente sem justificativa;
+- reconhecer no diagnóstico quando a falha provavelmente está relacionada a capability opcional;
+- documentar limitações;
+- manter a arquitetura preparada para configuração avançada sem código específico por provedor.
+
+## H. Headers, cookies e downloader options retornados pelo yt-dlp
+
+Não implementar um resolvedor duplicado em C# apenas para capturar headers.
+
+Auditar se o hook atual do mpv já propaga corretamente:
+
+- HTTP headers;
+- cookies;
+- proxy;
+- opções do downloader;
+- fragmentos/chunks;
+- URL final;
+- subtitles/metadata relevantes.
+
+Preferir o fluxo nativo do mpv + yt-dlp.
+
+Somente adicionar lógica no MPV.NET quando existir lacuna comprovada.
+
+## I. Critérios adicionais de aceite deste adendo
+
+Esta iniciativa NÃO pode ser declarada concluída sem:
+
+1. comportamento real de `--no-playlist` / `--yes-playlist` ou equivalente atual documentado e testado;
+2. `watch?v=...&list=...` validado;
+3. `index=` validado contra a posição real da playlist;
+4. diagnóstico da cadeia mpv -> yt-dlp -> JS/EJS -> ffmpeg revisado;
+5. requisitos atuais de EJS/runtime JavaScript documentados;
+6. PO Token tratado como categoria de diagnóstico quando aplicável;
+7. browser impersonation avaliado como capability opcional;
+8. nenhum token/cookie/header sensível exposto;
+9. nenhuma execução remota habilitada silenciosamente;
+10. documentação técnica atualizada com essas decisões;
+11. relatório final contendo versões e capacidades efetivamente validadas.
+
+
 ---
 
 # ETAPA 4 — IPC E SEGUNDA INSTÂNCIA
