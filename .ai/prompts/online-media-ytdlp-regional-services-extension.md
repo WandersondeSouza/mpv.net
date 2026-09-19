@@ -877,6 +877,122 @@ Além das proibições do prompt principal, NÃO:
 - mostrar mensagem específica de provedor sem evidência da causa;
 - prometer suporte permanente a serviço externo.
 
+
+---
+
+# ADENDO 2026 — CAPABILITIES MODERNAS DO YT-DLP E VALIDAÇÃO MULTISSERVIÇO
+
+> Este adendo é obrigatório e complementa o adendo equivalente existente no prompt principal.
+> O objetivo é impedir que a validação multissserviço confunda “extractor existente” com “ambiente capaz de executar todas as dependências daquele extractor”.
+
+## 1. Matriz de capability além do nome do extractor
+
+Para cada serviço online validado, registrar quando aplicável:
+
+```text
+Provider
+Extractor reconhecido
+URL resolvida
+Playlist/coleção resolvida
+Live resolvida
+Autenticação necessária
+Cookies necessários
+Runtime JavaScript necessário
+EJS/componente de challenge necessário
+PO Token necessário
+Browser impersonation necessário
+FFmpeg necessário
+Limitação regional
+Resultado final no mpv
+```
+
+Não concluir suporte pleno somente porque o nome aparece em `supportedsites.md`.
+
+## 2. YouTube / YouTube Music
+
+Além do que já está neste documento:
+
+- validar a cadeia moderna de challenge JavaScript;
+- validar EJS/componente oficial equivalente quando exigido;
+- validar runtime JavaScript compatível quando exigido;
+- reconhecer cenários de PO Token;
+- não implementar gerador próprio de PO Token;
+- não habilitar remote components silenciosamente;
+- testar vídeo individual, playlist, mix, live e YouTube Music quando houver exemplos públicos reproduzíveis;
+- registrar claramente quais capacidades foram necessárias na máquina de teste.
+
+## 3. Serviços regionais
+
+Bilibili, Niconico, Naver, Dailymotion, Douyin, Douyu e demais serviços continuam sendo processados pelo pipeline genérico.
+
+Para cada um:
+
+- não assumir que os requisitos técnicos são idênticos aos do YouTube;
+- não instalar runtime JavaScript/EJS apenas porque o YouTube usa esses componentes;
+- detectar capability por evidência/documentação do extractor;
+- manter dependências opcionais opcionais;
+- não criar lógica de instalação específica por domínio;
+- registrar limitações observadas na versão atual do yt-dlp.
+
+## 4. Impersonation e dependências opcionais
+
+Quando um extractor atual exigir ou se beneficiar de browser impersonation:
+
+- registrar a necessidade;
+- verificar a documentação oficial;
+- não adicionar `curl_cffi` ou equivalente como dependência obrigatória do MPV.NET sem justificativa;
+- não esconder do usuário que a falha depende de capability opcional;
+- preservar configuração avançada quando suportada pelo mpv/yt-dlp.
+
+## 5. Autenticação e transporte de estado
+
+Quando cookies ou autenticação forem necessários:
+
+- preferir configuração suportada por mpv/yt-dlp;
+- nunca armazenar senha do serviço;
+- nunca versionar cookies;
+- nunca registrar cookies/Authorization/PO Tokens;
+- validar que headers/cookies necessários ao stream final continuam disponíveis no fluxo nativo;
+- não duplicar a resolução da mídia em C# para transportar headers se o mpv já fizer isso.
+
+## 6. Atualização e compatibilidade futura
+
+O mecanismo de Runtime Components deve tratar a compatibilidade online como uma cadeia de capabilities e não apenas como a existência de `yt-dlp.exe`.
+
+O relatório deve indicar:
+
+```text
+yt-dlp version:
+mpv/libmpv version:
+ffmpeg version:
+JavaScript runtime:
+EJS/challenge component:
+remote components policy:
+PO Token capability/configuration:
+impersonation capability:
+cookies/auth configuration:
+```
+
+Usar `não necessário`, `não configurado`, `não testado` ou `N/A` quando apropriado.
+
+Não marcar tudo como “OK” sem validação.
+
+## 7. Regressão arquitetural proibida
+
+Este adendo NÃO autoriza:
+
+- criar código específico do YouTube dentro do player além do mínimo necessário para política/intenção validada;
+- transformar EJS em dependência de todos os provedores;
+- criar cliente HTTP próprio para Bilibili/Niconico/Naver/etc.;
+- duplicar headers/cookies manualmente sem necessidade;
+- embutir navegador;
+- automatizar login;
+- contornar DRM/paywall;
+- contornar controles de acesso;
+- manter tokens de terceiros;
+- executar código remoto sem política explícita.
+
+
 ---
 
 # ENTREGA FINAL DO CODEX — CAMPOS ADICIONAIS
