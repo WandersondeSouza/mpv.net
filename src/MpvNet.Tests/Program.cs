@@ -398,8 +398,18 @@ var normalizedAutocreatedPlaylistItems = PlaylistFile.NormalizeDisplayTitles([
 var normalizedExistingPlaylistItems = PlaylistFile.NormalizeExisting([
     new PlaylistFileItem("https://example.com/video?id=1", "video.exemplo.mp4"),
     new PlaylistFileItem("https://example.com/video?id=1", "duplicado.mp4")]);
-string[] playlistInsertArgs = MainPlayer.BuildPlaylistInsertArgs(
-    "https://www.youtube.com/watch?v=VIDEO_ID&list=PLAYLIST_ID", 2, "video normalizado");
+var preparedPlaylistItems = PlaylistFile.PrepareForPlayback([
+    new PlaylistFileItem("https://example.com/video?id=1", "video.original.mp4"),
+    new PlaylistFileItem("https://example.com/audio?id=2", "audio_original.mp3"),
+    new PlaylistFileItem("https://example.com/video?id=1", "video.duplicado.mp4")]);
+var preferredPlayingPlaylistItems = PlaylistFile.PrepareForPlayback([
+    new PlaylistFileItem("https://example.com/video?id=1", "primeira.copia.mp4"),
+    new PlaylistFileItem("https://example.com/audio?id=2", "audio.mp3"),
+    new PlaylistFileItem("https://example.com/video?id=1", "copia.em.reproducao.mp4")], 2);
+string[] preparedPlaylistAddressKeys = PlaylistFile.GetAddressKeys(preparedPlaylistItems);
+bool preparedAddressIdentityIgnoresRawTitles = PlaylistFile.HasSameAddresses([
+    new PlaylistFileItem("https://example.com/video?id=1", "titulo ainda bruto.mp4"),
+    new PlaylistFileItem("https://example.com/audio?id=2", "outro titulo bruto.mp3")], preparedPlaylistAddressKeys);
 var lifecycleProbe = new MainPlayer();
 bool lifecycleStartsCreated = lifecycleProbe.LifecycleState == PlayerLifecycleState.Created;
 lifecycleProbe.Destroy();
@@ -584,7 +594,9 @@ var tests = new (string Name, bool Result)[]
     ("Playlist normalizer removes quotes from titles", normalizedQuotedPlaylistItems.Single().Title == "Quoted Video Title"),
     ("Autocreated playlist title normalization removes extension", normalizedAutocreatedPlaylistItems.Single().Title == "Vue Js Parte 2 Aula 1 Atividade 3 Criando Nossa Primeira Diretiva Alura Cursos Online De Tecnologia"),
     ("Existing playlist normalization removes duplicate URLs", normalizedExistingPlaylistItems.Count == 1 && normalizedExistingPlaylistItems[0].Title == "Video Exemplo"),
-    ("Existing playlist title insertion does not expand YouTube again", playlistInsertArgs[2] == "insert-at" && !playlistInsertArgs.Any(value => value.Contains("yes-playlist", StringComparison.Ordinal))),
+    ("Central playlist preparation normalizes titles before de-duplicating addresses", preparedPlaylistItems.Count == 2 && preparedPlaylistItems[0].Title == "Video Original" && preparedPlaylistItems[1].Title == "Audio Original"),
+    ("Central playlist preparation retains the playing duplicate occurrence", preferredPlayingPlaylistItems.Count == 2 && preferredPlayingPlaylistItems[0].Path.Contains("audio?id=2", StringComparison.Ordinal) && preferredPlayingPlaylistItems[1].Title == "Copia Em Reproducao"),
+    ("Prepared playlist identity ignores raw title changes", preparedAddressIdentityIgnoresRawTitles),
     ("Playlist writer normalizes raw item titles", rawTitleM3uContent.Contains("#EXTINF:-1,Raw Playlist Item")),
     ("Atomic text write replaces existing content", atomicWriteContent == "new"),
     ("Atomic text write creates missing folders", atomicNestedWriteContent == "created"),

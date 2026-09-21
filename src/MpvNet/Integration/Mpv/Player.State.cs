@@ -8,6 +8,9 @@ public partial class MainPlayer
 {
     static readonly TimeSpan PlaylistNormalizationDelay = TimeSpan.FromMilliseconds(200);
     bool _isNormalizingAutocreatedPlaylist;
+    readonly object _playlistNormalizationStateLock = new();
+    CancellationTokenSource? _playlistNormalizationDebounce;
+    string[] _preparedPlaylistAddressKeys = [];
     readonly object _destroyLock = new();
     bool _isDestroyed;
     readonly CancellationTokenSource _playerCancellation = new();

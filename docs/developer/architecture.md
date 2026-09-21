@@ -171,7 +171,8 @@ O baseline de 2026-09-21 confirmou os seguintes caminhos até o mpv/libmpv:
 | drag-and-drop | `MainForm.OnDragDrop` e `ClipboardMediaParser` | `Player.LoadFiles` -> `loadfile` |
 | diálogo de arquivo | `GuiCommand.OpenFiles` | `Player.LoadFiles` -> `loadfile` |
 | arquivos recentes | menu criado por `MainForm` | `Player.LoadFiles` -> `loadfile` |
-| playlist local | `PlaylistFile.Read` | um `loadfile` por item, com título local quando disponível |
+| playlist local ou pasta | `PlaylistFile.Read` / `PlaylistFile.PrepareForPlayback` | normalização, deduplicação e um `loadfile` por item preparado |
+| playlist nativa do yt-dlp/mpv | observador de `playlist` | debounce, preparação única pela mesma regra e atualização da fila nativa |
 | comandos internos e extensões | fachada pública `Player.LoadFiles` ou comandos do mpv | `SendLoadfile`/`CommandV` |
 
 URLs HTTP/HTTPS não recebem uma sondagem de rede no frontend. A classificação
@@ -185,6 +186,13 @@ de controle, preserva a URL completa e mantém `MediaInputSource` para
 diagnóstico. Linha de comando, IPC, clipboard, drag-and-drop, diálogo, recentes
 e playlists locais convergem nessa política; o sufixo legado `URL|título` é
 interpretado apenas ao reabrir um item de recentes.
+
+`PlaylistFile.PrepareForPlayback` é a fronteira comum das coleções. Ela
+normaliza cada título, calcula a identidade pelo caminho ou URL e então remove
+duplicatas preservando a ordem. O player registra a sequência de endereços já
+preparada; eventos `playlist` causados pelas próprias remoções e reinserções não
+podem iniciar outro ciclo. Mudanças sucessivas são consolidadas por debounce
+antes de consultar a fila nativa.
 
 O payload IPC aceita somente os modos `single`, `queue` e `command`. A lista de
 argumentos permanece um array JSON, sem `Split`, decode adicional ou

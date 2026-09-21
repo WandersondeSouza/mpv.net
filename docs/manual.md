@@ -133,6 +133,10 @@ mantem apenas entradas de audio/video ou URLs de streaming e ignora itens
 repetidos que apontem para o mesmo caminho ou URL. Se uma instancia do player
 ja estiver aberta, os itens da playlist sao adicionados a playlist atual.
 
+Arquivos de playlist, arquivos encontrados na mesma pasta e colecoes entregues
+pelo mpv passam pela mesma regra: primeiro os titulos sao normalizados e depois
+as entradas repetidas sao removidas pelo caminho ou URL, preservando a ordem.
+
 URLs HTTP/HTTPS novas são enviadas diretamente ao mpv/libmpv, sem uma sondagem
 HTTP bloqueante no frontend. Isso evita atraso antes do início do carregamento,
 inclusive para URLs sem extensão. A detecção de mídia ou playlist remota fica a
@@ -179,9 +183,9 @@ precedencia sobre os valores automaticos. O diretorio temporario do cache
 continua em `%LOCALAPPDATA%\mpv.net\Cache`, mas `cache` e `cache-on-disk` nao
 sao mais forcados globalmente pelo frontend.
 
-Playlists locais sao expandidas pelo frontend e seus itens sao enviados
-individualmente por `loadfile`, preservando ordem, duplicatas filtradas,
-titulos e politica especifica do item.
+Playlists locais sao expandidas pelo frontend e seus itens, ja preparados pela
+regra comum, sao enviados individualmente por `loadfile`, preservando a ordem e
+a politica de rede especifica de cada item.
 
 No YouTube, uma URL sem `list=` continua sendo tratada como vídeo individual.
 Quando a URL contém `list=`, o MPV.NET preserva todos os parâmetros e habilita
@@ -191,7 +195,9 @@ funciona com próximo, anterior e avanço automático. Em URLs
 na playlist e usa `index=` quando ele corresponde, sem reconstruir a coleção em
 C# nem reiniciar o item atual. Depois da expansão, o MPV.NET normaliza os títulos
 dos itens e remove entradas repetidas pelo caminho ou URL, mantendo a fila nativa
-e o item que já estiver em reprodução.
+e o item que já estiver em reprodução. Como essa fila só existe depois que o
+yt-dlp a entrega ao mpv, a preparação ocorre uma única vez após a expansão ficar
+estável; as alterações geradas pela própria preparação não iniciam uma nova rodada.
 
 Se uma URL do YouTube falhar com `unrecognized file format`, teste o extrator
 diretamente. Em muitos casos o problema e autenticacao ou cookies do navegador,

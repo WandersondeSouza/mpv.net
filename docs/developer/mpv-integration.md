@@ -151,8 +151,13 @@ aplicado como metadado e a URL ou caminho bruto deve ser enviado ao mpv/libmpv
 sem depender de playlist. Expansoes auxiliares de playlist devem continuar
 opcionais: se falharem, o frontend deve preservar a tentativa de reproducao da
 midia principal antes de desistir. Playlists locais expandidas com sucesso
-enviam seus itens individualmente por `loadfile`, permitindo opções por item
-sem transformar um arquivo local em stream de rede.
+enviam seus itens preparados individualmente por `loadfile`, permitindo opções
+de rede por item sem transformar um arquivo local em stream de rede.
+
+Toda coleção controlada pelo frontend converge em
+`PlaylistFile.PrepareForPlayback`: os títulos são normalizados antes da remoção
+de duplicatas pelo caminho ou URL. Isso vale para arquivos de playlist, pasta
+automática e para a fotografia estável de uma playlist nativa.
 
 ## Mídia online e yt-dlp multissserviço
 
@@ -187,8 +192,11 @@ JSON plano do yt-dlp, cria a playlist do mpv e sua implementação atual compara
 sobre a mesma fila nativa. Vídeos sem `list=` não recebem a opção de expansão.
 Após a expansão, o frontend normaliza os títulos dos itens nativos e remove
 duplicatas pelo caminho ou URL. Essa correção é feita na própria fila do mpv:
-o item atual é preservado e os demais itens são substituídos com
-`force-media-title`, sem criar uma playlist paralela em C#.
+o item atual é preservado, recebe `force-media-title`, e os itens anteriores e
+posteriores voltam por M3U temporárias com `#EXTINF`. O observador usa debounce
+e registra a sequência de endereços preparada antes de aceitar outra execução;
+assim, os eventos produzidos por `playlist-clear` e `loadlist` não realimentam
+a normalização.
 
 Essa decisão foi confrontada em 2026-09-21 com o manual e o `ytdl_hook.lua`
 atuais do mpv. A validação local usou yt-dlp `2026.08.19` e uma playlist pública

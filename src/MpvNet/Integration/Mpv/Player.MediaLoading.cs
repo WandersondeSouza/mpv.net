@@ -149,6 +149,8 @@ public partial class MainPlayer
 
     void BeginNewMediaLoad()
     {
+        ResetPreparedPlaylistState();
+
         lock (_mediaLoadStateLock)
         {
             _mediaLoadGeneration++;
@@ -169,18 +171,28 @@ public partial class MainPlayer
 
     void LoadPlaylistItems(List<PlaylistFileItem> items, bool append)
     {
-        Log.Debug($"Queueing playlist items for individual loadfile commands. itemCount={items.Count}, mode={(append ? "append" : "replace")}");
+        List<PlaylistFileItem> preparedItems = PlaylistFile.PrepareForPlayback(items);
+        if (preparedItems.Count == 0)
+            return;
+
+        Log.Debug($"Queueing prepared playlist items. sourceCount={items.Count}, preparedCount={preparedItems.Count}, mode={(append ? "append" : "replace")}");
         SchedulePlayerTask(cancellationToken =>
         {
-            for (int index = 0; index < items.Count; index++)
+            List<PlaylistFileItem> expectedItems = append
+                ? PlaylistFile.PrepareForPlayback(ReadCurrentPlaylistItems().Concat(preparedItems))
+                : preparedItems;
+
+            for (int index = 0; index < preparedItems.Count; index++)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                PlaylistFileItem item = items[index];
+                PlaylistFileItem item = preparedItems[index];
                 MediaLoadRequest? request = MediaInputNormalizer.Normalize(
                     item.Path, MediaInputSource.Playlist, append || index > 0, item.Title);
                 if (request is not null)
                     SendLoadfile(request.Input, index, request.Append, request.Title);
             }
+
+            RememberPreparedPlaylist(expectedItems);
         });
     }
 
@@ -299,20 +311,7 @@ public partial class MainPlayer
         return false;
     }
 
-    static string GetPlaylistPathKey(string path)
-    {
-        if (FileTypes.IsStreamingUrl(path))
-            return path.Trim();
-
-        try
-        {
-            return System.IO.Path.GetFullPath(path).TrimEnd(System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar).ToLowerInvariant();
-        }
-        catch
-        {
-            return path.Trim().ToLowerInvariant();
-        }
-    }
+    static string GetPlaylistPathKey(string path) => PlaylistFile.GetAddressKey(path);
 
     public static string ConvertFilePath(string path)
     {
@@ -451,7 +450,6 @@ public partial class MainPlayer
 
     static List<PlaylistFileItem> BuildFolderPlaylistItems(IEnumerable<string> files)
     {
-        HashSet<string> seen = new(StringComparer.OrdinalIgnoreCase);
         List<PlaylistFileItem> ret = [];
 
         foreach (string file in files)
@@ -471,25 +469,48 @@ public partial class MainPlayer
             }
 
             foreach (var item in items)
-            {
-                string key = GetPlaylistPathKey(item.Path);
-
-                if (!seen.Add(key))
-                    continue;
-
                 ret.Add(item);
-            }
         }
 
-        return ret;
+        return PlaylistFile.PrepareForPlayback(ret);
     }
 
-    void ScheduleAutocreatedPlaylistNormalization() =>
-        SchedulePlayerTask(async cancellationToken =>
+    void ScheduleAutocreatedPlaylistNormalization()
+    {
+        CancellationTokenSource debounce = CancellationTokenSource.CreateLinkedTokenSource(PlayerCancellationToken);
+        CancellationTokenSource? previous;
+
+        lock (_playlistNormalizationStateLock)
         {
-            await Task.Delay(PlaylistNormalizationDelay, cancellationToken);
-            NormalizeAutocreatedPlaylist();
-        });
+            previous = _playlistNormalizationDebounce;
+            previous?.Cancel();
+            _playlistNormalizationDebounce = debounce;
+        }
+
+        TrackEventTask(DebouncePlaylistNormalizationAsync(debounce));
+    }
+
+    async Task DebouncePlaylistNormalizationAsync(CancellationTokenSource debounce)
+    {
+        try
+        {
+            await Task.Delay(PlaylistNormalizationDelay, debounce.Token).ConfigureAwait(false);
+            SchedulePlayerTask(_ => NormalizeAutocreatedPlaylist());
+        }
+        catch (OperationCanceledException) when (debounce.IsCancellationRequested)
+        {
+        }
+        finally
+        {
+            lock (_playlistNormalizationStateLock)
+            {
+                if (ReferenceEquals(_playlistNormalizationDebounce, debounce))
+                    _playlistNormalizationDebounce = null;
+            }
+
+            debounce.Dispose();
+        }
+    }
 
     void NormalizeAutocreatedPlaylist()
     {
@@ -500,6 +521,81 @@ public partial class MainPlayer
         if (!ShouldNormalizeAutocreatedPlaylist(playlistCount, playbackActive: true))
             return;
 
+        int playingPosition = GetPlayingPlaylistPosition();
+        List<PlaylistFileItem> items = ReadCurrentPlaylistItems(playlistCount);
+        List<PlaylistFileItem> preparedItems = PlaylistFile.PrepareForPlayback(items, playingPosition);
+
+        if (preparedItems.Count == 0 || IsPreparedPlaylist(items))
+            return;
+
+        bool addressesChanged = !PlaylistFile.HasSameAddresses(items, PlaylistFile.GetAddressKeys(preparedItems));
+        bool titlesChanged = addressesChanged || items
+            .Select((item, index) => !string.Equals(item.Title, preparedItems[index].Title, StringComparison.Ordinal))
+            .Any(changed => changed);
+
+        if (!addressesChanged && !titlesChanged)
+        {
+            RememberPreparedPlaylist(preparedItems);
+            return;
+        }
+
+        try
+        {
+            _isNormalizingAutocreatedPlaylist = true;
+            ApplyPreparedNativePlaylist(preparedItems, items, playingPosition);
+            RememberPreparedPlaylist(preparedItems);
+            Log.Debug($"Prepared native playlist once. sourceCount={items.Count}, preparedCount={preparedItems.Count}, duplicatesRemoved={items.Count - preparedItems.Count}");
+        }
+        finally
+        {
+            _isNormalizingAutocreatedPlaylist = false;
+        }
+    }
+
+    void ApplyPreparedNativePlaylist(
+        IReadOnlyList<PlaylistFileItem> preparedItems,
+        IReadOnlyList<PlaylistFileItem> sourceItems,
+        int playingPosition)
+    {
+        string playingKey = playingPosition >= 0 && playingPosition < sourceItems.Count
+            ? GetPlaylistPathKey(sourceItems[playingPosition].Path)
+            : "";
+        int preparedPlayingPosition = playingKey.Length == 0
+            ? -1
+            : preparedItems.ToList().FindIndex(item =>
+                GetPlaylistPathKey(item.Path).Equals(playingKey, StringComparison.OrdinalIgnoreCase));
+
+        if (preparedPlayingPosition < 0)
+        {
+            string playlist = PlaylistFile.WriteTempM3u(preparedItems);
+            CommandV("loadlist", playlist, "replace");
+            return;
+        }
+
+        List<PlaylistFileItem> beforePlaying = preparedItems.Take(preparedPlayingPosition).ToList();
+        List<PlaylistFileItem> afterPlaying = preparedItems.Skip(preparedPlayingPosition + 1).ToList();
+        PlaylistFileItem playingItem = preparedItems[preparedPlayingPosition];
+
+        CommandV("playlist-clear");
+
+        if (beforePlaying.Count > 0)
+            CommandV("loadlist", PlaylistFile.WriteTempM3u(beforePlaying), "insert-at", "0");
+
+        if (afterPlaying.Count > 0)
+            CommandV("loadlist", PlaylistFile.WriteTempM3u(afterPlaying), "append");
+
+        SetPropertyString("file-local-options/force-media-title", playingItem.Title);
+    }
+
+    int GetPlayingPlaylistPosition()
+    {
+        int playingPosition = GetPropertyInt("playlist-playing-pos");
+        return playingPosition >= 0 ? playingPosition : GetPropertyInt("playlist-pos");
+    }
+
+    List<PlaylistFileItem> ReadCurrentPlaylistItems(int? knownCount = null)
+    {
+        int playlistCount = knownCount ?? GetPropertyInt("playlist-count");
         List<PlaylistFileItem> items = [];
 
         for (int index = 0; index < playlistCount; index++)
@@ -509,111 +605,32 @@ public partial class MainPlayer
             items.Add(new PlaylistFileItem(ConvertFilePath(filename), title));
         }
 
-        List<PlaylistFileItem> normalizedItems = PlaylistFile.NormalizeExisting(items);
-        bool hasDuplicate = normalizedItems.Count != items.Count;
-        bool hasTitleChanges = hasDuplicate ||
-            items.Select((item, index) => !string.Equals(item.Title, normalizedItems[index].Title, StringComparison.Ordinal))
-                .Any(changed => changed);
-
-        if ((!hasDuplicate && !hasTitleChanges) || items.Count == 0)
-            return;
-
-        try
-        {
-            _isNormalizingAutocreatedPlaylist = true;
-            RemoveDuplicatePlaylistEntries(items);
-            NormalizePlaylistEntryTitles();
-        }
-        finally
-        {
-            _isNormalizingAutocreatedPlaylist = false;
-        }
+        return items;
     }
 
-    void RemoveDuplicatePlaylistEntries(IReadOnlyList<PlaylistFileItem> items)
+    bool IsPreparedPlaylist(IEnumerable<PlaylistFileItem> items)
     {
-        Dictionary<string, int> retainedIndexes = new(StringComparer.OrdinalIgnoreCase);
-        List<int> duplicateIndexes = [];
-        int playingPosition = GetPropertyInt("playlist-playing-pos");
-
-        if (playingPosition < 0)
-            playingPosition = GetPropertyInt("playlist-pos");
-
-        for (int index = 0; index < items.Count; index++)
-        {
-            string key = GetPlaylistPathKey(items[index].Path);
-
-            if (!retainedIndexes.TryGetValue(key, out int retainedIndex))
-            {
-                retainedIndexes[key] = index;
-                continue;
-            }
-
-            if (index == playingPosition && retainedIndex != playingPosition)
-            {
-                duplicateIndexes.Add(retainedIndex);
-                retainedIndexes[key] = index;
-            }
-            else
-            {
-                duplicateIndexes.Add(index);
-            }
-        }
-
-        for (int index = duplicateIndexes.Count - 1; index >= 0; index--)
-        {
-            int playlistIndex = duplicateIndexes[index];
-            Log.Debug($"Removing duplicate playlist entry. index={playlistIndex}, path='{Log.SafeValue(items[playlistIndex].Path)}'");
-            CommandV("playlist-remove", playlistIndex.ToString());
-        }
+        lock (_playlistNormalizationStateLock)
+            return PlaylistFile.HasSameAddresses(items, _preparedPlaylistAddressKeys);
     }
 
-    void NormalizePlaylistEntryTitles()
+    void RememberPreparedPlaylist(IEnumerable<PlaylistFileItem> items)
     {
-        int playlistCount = GetPropertyInt("playlist-count");
-        int playingPosition = GetPropertyInt("playlist-playing-pos");
-
-        if (playingPosition < 0)
-            playingPosition = GetPropertyInt("playlist-pos");
-
-        for (int index = playlistCount - 1; index >= 0; index--)
-        {
-            string filename = ConvertFilePath(GetPropertyString($"playlist/{index}/filename"));
-            string title = GetPropertyString($"playlist/{index}/title");
-            string normalizedTitle = PlaylistFile.NormalizeDisplayTitles([new PlaylistFileItem(filename, title)])[0].Title;
-
-            if (string.Equals(title, normalizedTitle, StringComparison.Ordinal))
-                continue;
-
-            if (index == playingPosition)
-            {
-                SetPropertyString("file-local-options/force-media-title", normalizedTitle);
-                continue;
-            }
-
-            CommandV("playlist-remove", index.ToString());
-            CommandV(BuildPlaylistInsertArgs(filename, index, normalizedTitle));
-            Log.Debug($"Normalized playlist entry title. index={index}, title='{Log.SafeValue(normalizedTitle)}'");
-        }
+        lock (_playlistNormalizationStateLock)
+            _preparedPlaylistAddressKeys = PlaylistFile.GetAddressKeys(items);
     }
 
-    internal static string[] BuildPlaylistInsertArgs(string file, int playlistIndex, string title)
+    void ResetPreparedPlaylistState()
     {
-        MediaInputClassification classification = MediaInputClassifier.Classify(file);
-        IReadOnlySet<string> explicitOptions = classification.IsNetwork
-            ? MpvOptionConfiguration.GetExplicitOptions()
-            : MpvOptionConfiguration.EmptyOptions;
-        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(classification, explicitOptions);
-        string options = resolution.Options;
+        CancellationTokenSource? debounce;
 
-        if (!string.IsNullOrWhiteSpace(title))
-            options = string.IsNullOrEmpty(options)
-                ? "force-media-title=" + EscapeLoadfileOption(title)
-                : options + ",force-media-title=" + EscapeLoadfileOption(title);
-
-        return string.IsNullOrEmpty(options)
-            ? ["loadfile", file, "insert-at", playlistIndex.ToString()]
-            : ["loadfile", file, "insert-at", playlistIndex.ToString(), options];
+        lock (_playlistNormalizationStateLock)
+        {
+            _preparedPlaylistAddressKeys = [];
+            debounce = _playlistNormalizationDebounce;
+            debounce?.Cancel();
+            _playlistNormalizationDebounce = null;
+        }
     }
 
     [SupportedOSPlatform("windows")]

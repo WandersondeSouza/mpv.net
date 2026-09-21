@@ -19,7 +19,7 @@ public static class PlaylistFile
         using StreamWriter writer = new(path, false, new UTF8Encoding(false));
         writer.WriteLine("#EXTM3U");
 
-        foreach (var item in NormalizeDisplayTitles(items))
+        foreach (var item in PrepareForPlayback(items))
         {
             if (!string.IsNullOrWhiteSpace(item.Title))
                 writer.WriteLine("#EXTINF:-1," + item.Title.Trim());
@@ -59,8 +59,7 @@ public static class PlaylistFile
 
     public static List<PlaylistFileItem> Normalize(string playlistPath, IEnumerable<PlaylistFileItem> items)
     {
-        HashSet<string> seen = new(StringComparer.OrdinalIgnoreCase);
-        List<PlaylistFileItem> normalizedItems = [];
+        List<PlaylistFileItem> playableItems = [];
 
         foreach (var item in items)
         {
@@ -69,36 +68,71 @@ public static class PlaylistFile
             if (!IsPlayableItem(resolvedPath))
                 continue;
 
-            string key = NormalizeKey(resolvedPath);
-
-            if (!seen.Add(key))
-                continue;
-
-            normalizedItems.Add(new PlaylistFileItem(resolvedPath, GetDisplayTitle(resolvedPath, item.Title)));
+            playableItems.Add(new PlaylistFileItem(resolvedPath, item.Title));
         }
 
-        return normalizedItems;
+        return PrepareForPlayback(playableItems);
     }
 
     public static List<PlaylistFileItem> NormalizeDisplayTitles(IEnumerable<PlaylistFileItem> items) =>
         items.Select(item => item with { Title = GetDisplayTitle(item.Path, item.Title) }).ToList();
 
-    public static List<PlaylistFileItem> NormalizeExisting(IEnumerable<PlaylistFileItem> items)
+    public static List<PlaylistFileItem> PrepareForPlayback(
+        IEnumerable<PlaylistFileItem> items,
+        int preferredIndex = -1)
     {
+        List<PlaylistFileItem> sourceItems = items.ToList();
         HashSet<string> seen = new(StringComparer.OrdinalIgnoreCase);
         List<PlaylistFileItem> normalizedItems = [];
+        string preferredKey = preferredIndex >= 0 &&
+            preferredIndex < sourceItems.Count &&
+            !string.IsNullOrWhiteSpace(sourceItems[preferredIndex].Path)
+            ? GetAddressKey(sourceItems[preferredIndex].Path)
+            : "";
 
-        foreach (PlaylistFileItem item in items)
+        for (int index = 0; index < sourceItems.Count; index++)
         {
+            PlaylistFileItem item = sourceItems[index];
             string path = item.Path.Trim();
 
-            if (path.Length == 0 || !seen.Add(NormalizeKey(path)))
+            if (path.Length == 0)
                 continue;
 
-            normalizedItems.Add(new PlaylistFileItem(path, GetDisplayTitle(path, item.Title)));
+            string key = GetAddressKey(path);
+            PlaylistFileItem normalizedItem = new(path, GetDisplayTitle(path, item.Title));
+
+            // When the playing item is repeated, retain that occurrence instead
+            // of an earlier copy so native playlist cleanup does not remove it.
+            if (preferredKey.Length > 0 &&
+                key.Equals(preferredKey, StringComparison.OrdinalIgnoreCase) &&
+                index != preferredIndex)
+            {
+                continue;
+            }
+
+            if (seen.Add(key))
+                normalizedItems.Add(normalizedItem);
         }
 
         return normalizedItems;
+    }
+
+    public static List<PlaylistFileItem> NormalizeExisting(IEnumerable<PlaylistFileItem> items) =>
+        PrepareForPlayback(items);
+
+    public static string[] GetAddressKeys(IEnumerable<PlaylistFileItem> items) =>
+        items
+            .Where(item => !string.IsNullOrWhiteSpace(item.Path))
+            .Select(item => GetAddressKey(item.Path))
+            .ToArray();
+
+    public static bool HasSameAddresses(
+        IEnumerable<PlaylistFileItem> items,
+        IReadOnlyList<string> addressKeys)
+    {
+        string[] itemKeys = GetAddressKeys(items);
+        return itemKeys.Length == addressKeys.Count &&
+            itemKeys.SequenceEqual(addressKeys, StringComparer.OrdinalIgnoreCase);
     }
 
     static List<PlaylistFileItem> ReadM3u(string path)
@@ -322,11 +356,23 @@ public static class PlaylistFile
         return TitleHelp.NormalizeMediaTitle(value);
     }
 
-    static string NormalizeKey(string path)
+    public static string GetAddressKey(string path)
     {
-        if (FileTypes.IsStreamingUrl(path))
-            return path.Trim();
+        path = path.Trim();
 
-        return Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+        if (path.Length == 0)
+            return "";
+
+        if (FileTypes.IsStreamingUrl(path))
+            return path;
+
+        try
+        {
+            return Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+        }
+        catch
+        {
+            return path;
+        }
     }
 }
