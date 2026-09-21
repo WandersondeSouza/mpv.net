@@ -21,128 +21,171 @@ internal static class RuntimeComponentService
         RuntimeComponentStore.RecoverInterruptedPromotion();
         RuntimeComponentStore.CleanupStaleStaging();
 
-        // Download the non-bundle components first. The FFmpeg archive is
-        // considerably larger and is promoted only after its three binaries
-        // have been validated. Keeping this order ensures a first run still
-        // leaves yt-dlp, Deno and mpvnet.com available if the FFmpeg download
-        // is interrupted or the application is closed while it is in progress.
-        foreach (RuntimeComponentDefinition definition in definitions.Where(
-                     item => item.Kind != RuntimeComponentDownloadKind.GitHubZip))
+        string? staging = null;
+        bool generationChanged = false;
+
+        try
         {
-            cancellationToken.ThrowIfCancellationRequested();
-            try
+            // Download one component at a time. Each Ensure method awaits the
+            // download, validation and metadata write (including
+            // LastCheckedUtc) before this loop advances to the next item.
+            // All completed items share one staging generation and are
+            // promoted once, so the first run does not remove and recreate
+            // Component\current for every downloaded component.
+            foreach (RuntimeComponentDefinition definition in definitions.Where(
+                         item => item.Kind != RuntimeComponentDownloadKind.GitHubZip))
             {
-                await EnsureComponentAsync(definition, cancellationToken).ConfigureAwait(false);
+                cancellationToken.ThrowIfCancellationRequested();
+                if (await IsFreshAndValidAsync(definition, cancellationToken).ConfigureAwait(false))
+                {
+                    Log.Debug($"Runtime component cache is fresh and valid; skipping update. file='{definition.FileName}'");
+                    continue;
+                }
+
+                staging ??= RuntimeComponentStore.CreateStagingSnapshot();
+                try
+                {
+                    await EnsureComponentAsync(definition, staging, cancellationToken).ConfigureAwait(false);
+                    generationChanged = true;
+                }
+                catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+                {
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, $"Component update failed for {definition.FileName}; retaining the previous valid component generation.");
+                }
             }
-            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+
+            foreach (IGrouping<string, RuntimeComponentDefinition> bundle in definitions
+                         .Where(item => item.Kind == RuntimeComponentDownloadKind.GitHubZip)
+                         .GroupBy(item => $"{item.ReleaseApiUrl}|{item.AssetPattern}", StringComparer.OrdinalIgnoreCase))
             {
-                throw;
+                cancellationToken.ThrowIfCancellationRequested();
+                RuntimeComponentDefinition primary = bundle.First();
+                RuntimeComponentDefinition[] bundleDefinitions = bundle.ToArray();
+                if (await IsFreshAndValidAsync(primary, bundleDefinitions, cancellationToken).ConfigureAwait(false))
+                {
+                    Log.Debug("FFmpeg bundle cache is fresh and valid; skipping update.");
+                    continue;
+                }
+
+                staging ??= RuntimeComponentStore.CreateStagingSnapshot();
+                try
+                {
+                    await EnsureBundleAsync(bundleDefinitions, staging, cancellationToken).ConfigureAwait(false);
+                    generationChanged = true;
+                }
+                catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+                {
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "FFmpeg bundle update failed; retaining the previous valid component generation.");
+                }
             }
-            catch (Exception ex)
+
+            if (generationChanged && staging is not null)
             {
-                Log.Error(ex, $"Component update failed for {definition.FileName}; retaining the previous valid component generation.");
+                await RuntimeComponentStore.PromoteAsync(staging, cancellationToken).ConfigureAwait(false);
+                staging = null;
             }
         }
-
-        foreach (IGrouping<string, RuntimeComponentDefinition> bundle in definitions
-                     .Where(item => item.Kind == RuntimeComponentDownloadKind.GitHubZip)
-                     .GroupBy(item => $"{item.ReleaseApiUrl}|{item.AssetPattern}", StringComparer.OrdinalIgnoreCase))
+        finally
         {
-            cancellationToken.ThrowIfCancellationRequested();
-            try
-            {
-                await EnsureBundleAsync(bundle.ToArray(), cancellationToken).ConfigureAwait(false);
-            }
-            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "FFmpeg bundle update failed; retaining the previous valid component generation.");
-            }
+            if (staging is not null)
+                RuntimeComponentFileSystem.DeleteIfExists(staging);
         }
 
         Log.Debug("Runtime component bootstrap finished.");
     }
 
+    static async Task<bool> IsFreshAndValidAsync(
+        RuntimeComponentDefinition definition,
+        CancellationToken cancellationToken) =>
+        IsFreshAndValid(
+            await LoadMetadataAsync(definition, cancellationToken).ConfigureAwait(false),
+            [definition]);
+
+    static async Task<bool> IsFreshAndValidAsync(
+        RuntimeComponentDefinition definition,
+        IReadOnlyList<RuntimeComponentDefinition> definitions,
+        CancellationToken cancellationToken) =>
+        IsFreshAndValid(
+            await LoadMetadataAsync(definition, cancellationToken).ConfigureAwait(false),
+            definitions);
+
     static async Task EnsureBundleAsync(
         IReadOnlyList<RuntimeComponentDefinition> definitions,
+        string staging,
         CancellationToken cancellationToken)
     {
         RuntimeComponentDefinition primary = definitions[0];
-        RuntimeComponentMetadata? metadata = await LoadMetadataAsync(primary, cancellationToken).ConfigureAwait(false);
-        if (IsFreshAndValid(metadata, definitions))
-        {
-            Log.Debug("FFmpeg bundle cache is fresh and valid; skipping update.");
-            return;
-        }
-
-        string staging = RuntimeComponentStore.CreateStagingSnapshot();
+        DownloadedRuntimeAsset archive = await DownloadReleaseAssetAsync(primary, staging, cancellationToken)
+            .ConfigureAwait(false);
+        string workDirectory = Path.Combine(staging, ".ffmpeg-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(workDirectory);
         try
         {
-            DownloadedRuntimeAsset archive = await DownloadReleaseAssetAsync(primary, staging, cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                ValidateDigest(primary.FileName, RuntimeComponentFileSystem.GetFileDigest(archive.Path), archive.Digest);
-                ExtractBundle(archive.Path, staging, definitions);
-            }
-            finally
-            {
-                RuntimeComponentFileSystem.DeleteIfExists(archive.Path);
-            }
+            ValidateDigest(primary.FileName, RuntimeComponentFileSystem.GetFileDigest(archive.Path), archive.Digest);
+            ExtractBundle(archive.Path, workDirectory, definitions);
+            ValidateComponents(workDirectory, definitions);
 
-            ValidateComponents(staging, definitions);
-            await SaveMetadataAsync(staging, primary, archive, definitions, cancellationToken).ConfigureAwait(false);
-            await RuntimeComponentStore.PromoteAsync(staging, cancellationToken).ConfigureAwait(false);
+            foreach (RuntimeComponentDefinition definition in definitions)
+            {
+                File.Move(
+                    Path.Combine(workDirectory, definition.FileName),
+                    Path.Combine(staging, definition.FileName),
+                    overwrite: true);
+            }
         }
         finally
         {
-            RuntimeComponentFileSystem.DeleteIfExists(staging);
+            RuntimeComponentFileSystem.DeleteIfExists(archive.Path);
+            RuntimeComponentFileSystem.DeleteIfExists(workDirectory);
         }
+
+        await SaveMetadataAsync(staging, primary, archive, definitions, cancellationToken).ConfigureAwait(false);
+        Log.Debug($"Runtime component download completed and metadata saved. component='ffmpeg-bundle', lastCheckedUtc='{DateTimeOffset.UtcNow:O}'");
     }
 
-    static async Task EnsureComponentAsync(RuntimeComponentDefinition definition, CancellationToken cancellationToken)
+    static async Task EnsureComponentAsync(
+        RuntimeComponentDefinition definition,
+        string staging,
+        CancellationToken cancellationToken)
     {
-        RuntimeComponentMetadata? metadata = await LoadMetadataAsync(definition, cancellationToken).ConfigureAwait(false);
-        if (IsFreshAndValid(metadata, [definition]))
-        {
-            Log.Debug($"Runtime component cache is fresh and valid; skipping update. file='{definition.FileName}'");
-            return;
-        }
-
-        string staging = RuntimeComponentStore.CreateStagingSnapshot();
+        DownloadedRuntimeAsset downloaded = await DownloadReleaseAssetAsync(definition, staging, cancellationToken)
+            .ConfigureAwait(false);
+        string workDirectory = Path.Combine(staging, ".component-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(workDirectory);
         try
         {
-            DownloadedRuntimeAsset downloaded = await DownloadReleaseAssetAsync(definition, staging, cancellationToken)
-                .ConfigureAwait(false);
-            try
+            ValidateDigest(definition.FileName, RuntimeComponentFileSystem.GetFileDigest(downloaded.Path), downloaded.Digest);
+            if (definition.Kind == RuntimeComponentDownloadKind.GitHubZipSingle)
             {
-                ValidateDigest(definition.FileName, RuntimeComponentFileSystem.GetFileDigest(downloaded.Path), downloaded.Digest);
-                if (definition.Kind == RuntimeComponentDownloadKind.GitHubZipSingle)
-                {
-                    ExtractBundle(downloaded.Path, staging, [definition]);
-                }
-                else
-                {
-                    string target = Path.Combine(staging, definition.FileName);
-                    File.Move(downloaded.Path, target, overwrite: true);
-                }
+                ExtractBundle(downloaded.Path, workDirectory, [definition]);
             }
-            finally
+            else
             {
-                RuntimeComponentFileSystem.DeleteIfExists(downloaded.Path);
+                File.Move(downloaded.Path, Path.Combine(workDirectory, definition.FileName), overwrite: true);
             }
 
-            ValidateComponents(staging, [definition]);
-            await SaveMetadataAsync(staging, definition, downloaded, [definition], cancellationToken).ConfigureAwait(false);
-            await RuntimeComponentStore.PromoteAsync(staging, cancellationToken).ConfigureAwait(false);
+            ValidateComponents(workDirectory, [definition]);
+            File.Move(
+                Path.Combine(workDirectory, definition.FileName),
+                Path.Combine(staging, definition.FileName),
+                overwrite: true);
         }
         finally
         {
-            RuntimeComponentFileSystem.DeleteIfExists(staging);
+            RuntimeComponentFileSystem.DeleteIfExists(downloaded.Path);
+            RuntimeComponentFileSystem.DeleteIfExists(workDirectory);
         }
+
+        await SaveMetadataAsync(staging, definition, downloaded, [definition], cancellationToken).ConfigureAwait(false);
+        Log.Debug($"Runtime component download completed and metadata saved. file='{definition.FileName}', lastCheckedUtc='{DateTimeOffset.UtcNow:O}'");
     }
 
     static async Task<RuntimeComponentMetadata?> LoadMetadataAsync(
@@ -305,6 +348,7 @@ internal static class RuntimeComponentService
             Version = download.AssetName,
             Digest = download.Digest,
             SourceUrl = download.SourceUrl,
+            LastCheckedUtc = DateTimeOffset.UtcNow,
             FileSize = download.FileSize,
             Architecture = "x64",
             FileDigests = digests
