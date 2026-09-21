@@ -77,7 +77,6 @@ internal sealed class RuntimeComponentMetadata
     public string? Version { get; set; }
     public string? Digest { get; set; }
     public string? SourceUrl { get; set; }
-    public DateTimeOffset DownloadedAtUtc { get; set; }
     public DateTimeOffset LastCheckedUtc { get; set; }
     public long FileSize { get; set; }
     public string? Architecture { get; set; }

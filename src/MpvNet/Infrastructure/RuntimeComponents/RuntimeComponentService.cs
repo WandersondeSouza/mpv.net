@@ -305,7 +305,6 @@ internal static class RuntimeComponentService
             Version = download.AssetName,
             Digest = download.Digest,
             SourceUrl = download.SourceUrl,
-            DownloadedAtUtc = DateTimeOffset.UtcNow,
             FileSize = download.FileSize,
             Architecture = "x64",
             FileDigests = digests
