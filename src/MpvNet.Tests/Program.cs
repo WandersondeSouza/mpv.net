@@ -392,6 +392,11 @@ var normalizedQuotedPlaylistItems = PlaylistFile.Normalize(tempM3u, [
     new PlaylistFileItem(tempVideo, "\"quoted\" 'video' title.mp4")]);
 var normalizedAutocreatedPlaylistItems = PlaylistFile.NormalizeDisplayTitles([
     new PlaylistFileItem(tempVideo, "Vue.js parte 2 Aula 1 - Atividade 3 Criando Nossa Primeira Diretiva Alura Cursos Online De Tecnologia.mp4")]);
+var normalizedExistingPlaylistItems = PlaylistFile.NormalizeExisting([
+    new PlaylistFileItem("https://example.com/video?id=1", "video.exemplo.mp4"),
+    new PlaylistFileItem("https://example.com/video?id=1", "duplicado.mp4")]);
+string[] playlistInsertArgs = MainPlayer.BuildPlaylistInsertArgs(
+    "https://www.youtube.com/watch?v=VIDEO_ID&list=PLAYLIST_ID", 2, "video normalizado");
 var lifecycleProbe = new MainPlayer();
 bool lifecycleStartsCreated = lifecycleProbe.LifecycleState == PlayerLifecycleState.Created;
 lifecycleProbe.Destroy();
@@ -575,6 +580,8 @@ var tests = new (string Name, bool Result)[]
     ("Playlist normalizer resolves file URIs", Path.GetFullPath(normalizedFileUriPlaylistItems.Single().Path) == Path.GetFullPath(tempAudio)),
     ("Playlist normalizer removes quotes from titles", normalizedQuotedPlaylistItems.Single().Title == "Quoted Video Title"),
     ("Autocreated playlist title normalization removes extension", normalizedAutocreatedPlaylistItems.Single().Title == "Vue Js Parte 2 Aula 1 Atividade 3 Criando Nossa Primeira Diretiva Alura Cursos Online De Tecnologia"),
+    ("Existing playlist normalization removes duplicate URLs", normalizedExistingPlaylistItems.Count == 1 && normalizedExistingPlaylistItems[0].Title == "Video Exemplo"),
+    ("Existing playlist title insertion does not expand YouTube again", playlistInsertArgs[2] == "insert-at" && !playlistInsertArgs.Any(value => value.Contains("yes-playlist", StringComparison.Ordinal))),
     ("Playlist writer normalizes raw item titles", rawTitleM3uContent.Contains("#EXTINF:-1,Raw Playlist Item")),
     ("Atomic text write replaces existing content", atomicWriteContent == "new"),
     ("Atomic text write creates missing folders", atomicNestedWriteContent == "created"),

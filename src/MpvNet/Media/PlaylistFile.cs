@@ -83,6 +83,24 @@ public static class PlaylistFile
     public static List<PlaylistFileItem> NormalizeDisplayTitles(IEnumerable<PlaylistFileItem> items) =>
         items.Select(item => item with { Title = GetDisplayTitle(item.Path, item.Title) }).ToList();
 
+    public static List<PlaylistFileItem> NormalizeExisting(IEnumerable<PlaylistFileItem> items)
+    {
+        HashSet<string> seen = new(StringComparer.OrdinalIgnoreCase);
+        List<PlaylistFileItem> normalizedItems = [];
+
+        foreach (PlaylistFileItem item in items)
+        {
+            string path = item.Path.Trim();
+
+            if (path.Length == 0 || !seen.Add(NormalizeKey(path)))
+                continue;
+
+            normalizedItems.Add(new PlaylistFileItem(path, GetDisplayTitle(path, item.Title)));
+        }
+
+        return normalizedItems;
+    }
+
     static List<PlaylistFileItem> ReadM3u(string path)
     {
         List<PlaylistFileItem> items = [];

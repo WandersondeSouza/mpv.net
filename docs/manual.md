@@ -173,7 +173,9 @@ a expansão nativa do `ytdl_hook`/`yt-dlp`; a fila resultante pertence ao mpv e
 funciona com próximo, anterior e avanço automático. Em URLs
 `watch?v=...&list=...&index=...`, o hook atual procura primeiro o vídeo indicado
 na playlist e usa `index=` quando ele corresponde, sem reconstruir a coleção em
-C# nem reiniciar o item atual.
+C# nem reiniciar o item atual. Depois da expansão, o MPV.NET normaliza os títulos
+dos itens e remove entradas repetidas pelo caminho ou URL, mantendo a fila nativa
+e o item que já estiver em reprodução.
 
 Se uma URL do YouTube falhar com `unrecognized file format`, teste o extrator
 diretamente. Em muitos casos o problema e autenticacao ou cookies do navegador,

@@ -133,7 +133,7 @@ public partial class MainPlayer
         failedPosition + 1 < playlistCount;
 
     internal static bool ShouldNormalizeAutocreatedPlaylist(int playlistCount, bool playbackActive) =>
-        playlistCount > 1 && !playbackActive;
+        playlistCount > 1;
 
     public string ConfPath { get => ConfigFolder + "mpv.conf"; }
     public string CacheFolder => TemporaryFileCleanup.DefaultCacheFolder + System.IO.Path.DirectorySeparatorChar;

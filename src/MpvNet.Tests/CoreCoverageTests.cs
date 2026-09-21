@@ -610,9 +610,9 @@ public sealed class PlayerPlaybackRecoveryTests
     }
 
     [Fact]
-    public void AutoCreatedPlaylistNormalizationDoesNotReloadActivePlayback()
+    public void PlaylistNormalizationRunsWhilePlaybackIsActive()
     {
-        Assert.False(MainPlayer.ShouldNormalizeAutocreatedPlaylist(3, playbackActive: true));
+        Assert.True(MainPlayer.ShouldNormalizeAutocreatedPlaylist(3, playbackActive: true));
         Assert.False(MainPlayer.ShouldNormalizeAutocreatedPlaylist(1, playbackActive: false));
         Assert.True(MainPlayer.ShouldNormalizeAutocreatedPlaylist(3, playbackActive: false));
     }

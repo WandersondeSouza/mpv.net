@@ -497,49 +497,123 @@ public partial class MainPlayer
             return;
 
         int playlistCount = GetPropertyInt("playlist-count");
-        bool playbackActive = !string.IsNullOrWhiteSpace(GetPropertyString("path"));
-
-        if (!ShouldNormalizeAutocreatedPlaylist(playlistCount, playbackActive))
-        {
-            if (playlistCount > 1 && playbackActive)
-                Log.Debug("Skipping auto-created playlist normalization while media is playing to preserve the current playback position.");
-
+        if (!ShouldNormalizeAutocreatedPlaylist(playlistCount, playbackActive: true))
             return;
-        }
 
-        int playlistPos = GetPropertyInt("playlist-pos");
         List<PlaylistFileItem> items = [];
-        bool needsNormalization = false;
 
         for (int index = 0; index < playlistCount; index++)
         {
             string title = GetPropertyString($"playlist/{index}/title");
             string filename = GetPropertyString($"playlist/{index}/filename");
-            string path = ConvertFilePath(filename);
-            items.Add(new PlaylistFileItem(path, title));
+            items.Add(new PlaylistFileItem(ConvertFilePath(filename), title));
         }
 
-        List<PlaylistFileItem> normalizedItems = PlaylistFile.NormalizeDisplayTitles(items);
+        List<PlaylistFileItem> normalizedItems = PlaylistFile.NormalizeExisting(items);
+        bool hasDuplicate = normalizedItems.Count != items.Count;
+        bool hasTitleChanges = hasDuplicate ||
+            items.Select((item, index) => !string.Equals(item.Title, normalizedItems[index].Title, StringComparison.Ordinal))
+                .Any(changed => changed);
 
-        for (int index = 0; index < items.Count; index++)
-            if (!string.Equals(items[index].Title, normalizedItems[index].Title, StringComparison.Ordinal))
-                needsNormalization = true;
-
-        if (!needsNormalization || items.Count == 0)
+        if ((!hasDuplicate && !hasTitleChanges) || items.Count == 0)
             return;
 
         try
         {
             _isNormalizingAutocreatedPlaylist = true;
-            LoadPlaylistItems(normalizedItems, false);
-
-            if (playlistPos >= 0 && playlistPos < normalizedItems.Count)
-                SetPropertyInt("playlist-pos", playlistPos);
+            RemoveDuplicatePlaylistEntries(items);
+            NormalizePlaylistEntryTitles();
         }
         finally
         {
             _isNormalizingAutocreatedPlaylist = false;
         }
+    }
+
+    void RemoveDuplicatePlaylistEntries(IReadOnlyList<PlaylistFileItem> items)
+    {
+        Dictionary<string, int> retainedIndexes = new(StringComparer.OrdinalIgnoreCase);
+        List<int> duplicateIndexes = [];
+        int playingPosition = GetPropertyInt("playlist-playing-pos");
+
+        if (playingPosition < 0)
+            playingPosition = GetPropertyInt("playlist-pos");
+
+        for (int index = 0; index < items.Count; index++)
+        {
+            string key = GetPlaylistPathKey(items[index].Path);
+
+            if (!retainedIndexes.TryGetValue(key, out int retainedIndex))
+            {
+                retainedIndexes[key] = index;
+                continue;
+            }
+
+            if (index == playingPosition && retainedIndex != playingPosition)
+            {
+                duplicateIndexes.Add(retainedIndex);
+                retainedIndexes[key] = index;
+            }
+            else
+            {
+                duplicateIndexes.Add(index);
+            }
+        }
+
+        for (int index = duplicateIndexes.Count - 1; index >= 0; index--)
+        {
+            int playlistIndex = duplicateIndexes[index];
+            Log.Debug($"Removing duplicate playlist entry. index={playlistIndex}, path='{Log.SafeValue(items[playlistIndex].Path)}'");
+            CommandV("playlist-remove", playlistIndex.ToString());
+        }
+    }
+
+    void NormalizePlaylistEntryTitles()
+    {
+        int playlistCount = GetPropertyInt("playlist-count");
+        int playingPosition = GetPropertyInt("playlist-playing-pos");
+
+        if (playingPosition < 0)
+            playingPosition = GetPropertyInt("playlist-pos");
+
+        for (int index = playlistCount - 1; index >= 0; index--)
+        {
+            string filename = ConvertFilePath(GetPropertyString($"playlist/{index}/filename"));
+            string title = GetPropertyString($"playlist/{index}/title");
+            string normalizedTitle = PlaylistFile.NormalizeDisplayTitles([new PlaylistFileItem(filename, title)])[0].Title;
+
+            if (string.Equals(title, normalizedTitle, StringComparison.Ordinal))
+                continue;
+
+            if (index == playingPosition)
+            {
+                SetPropertyString("file-local-options/force-media-title", normalizedTitle);
+                continue;
+            }
+
+            CommandV("playlist-remove", index.ToString());
+            CommandV(BuildPlaylistInsertArgs(filename, index, normalizedTitle));
+            Log.Debug($"Normalized playlist entry title. index={index}, title='{Log.SafeValue(normalizedTitle)}'");
+        }
+    }
+
+    internal static string[] BuildPlaylistInsertArgs(string file, int playlistIndex, string title)
+    {
+        MediaInputClassification classification = MediaInputClassifier.Classify(file);
+        IReadOnlySet<string> explicitOptions = classification.IsNetwork
+            ? MpvOptionConfiguration.GetExplicitOptions()
+            : MpvOptionConfiguration.EmptyOptions;
+        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(classification, explicitOptions);
+        string options = resolution.Options;
+
+        if (!string.IsNullOrWhiteSpace(title))
+            options = string.IsNullOrEmpty(options)
+                ? "force-media-title=" + EscapeLoadfileOption(title)
+                : options + ",force-media-title=" + EscapeLoadfileOption(title);
+
+        return string.IsNullOrEmpty(options)
+            ? ["loadfile", file, "insert-at", playlistIndex.ToString()]
+            : ["loadfile", file, "insert-at", playlistIndex.ToString(), options];
     }
 
     [SupportedOSPlatform("windows")]

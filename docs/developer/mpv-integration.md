@@ -168,6 +168,10 @@ JSON plano do yt-dlp, cria a playlist do mpv e sua implementação atual compara
 `index=` e `v=` com as entradas retornadas para escolher o item inicial. Assim,
 `playlist-next`, `playlist-prev`, avanço automático e SMTC continuam operando
 sobre a mesma fila nativa. Vídeos sem `list=` não recebem a opção de expansão.
+Após a expansão, o frontend normaliza os títulos dos itens nativos e remove
+duplicatas pelo caminho ou URL. Essa correção é feita na própria fila do mpv:
+o item atual é preservado e os demais itens são substituídos com
+`force-media-title`, sem criar uma playlist paralela em C#.
 
 Essa decisão foi confrontada em 2026-09-21 com o manual e o `ytdl_hook.lua`
 atuais do mpv. A validação local usou yt-dlp `2026.08.19` e uma playlist pública
