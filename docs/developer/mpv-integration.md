@@ -174,6 +174,27 @@ atuais do mpv. A validação local usou yt-dlp `2026.08.19`; expansão e posiç�
 reais continuam dependentes da resposta externa do YouTube e devem ser
 revalidadas manualmente antes de uma release.
 
+## Diagnóstico da cadeia online
+
+`mpvnet.exe --diagnose-components` mantém a resolução central de
+`RuntimeComponents` e, sem abrir a UI ou baixar componentes, executa sondagens
+curtas para informar a versão efetiva de `yt-dlp` e FFmpeg, runtimes JavaScript
+compatíveis e a capability opcional de browser impersonation. O diagnóstico
+não recebe URL, cookie, header de autorização, query assinada nem PO Token.
+
+O executável oficial do yt-dlp continua sendo atualizado pelo fluxo existente
+de componentes, fora do caminho de reprodução. Para os desafios atuais do
+YouTube, Deno 2.3 ou posterior é a opção recomendada e habilitada por padrão
+pelo yt-dlp; Node.js 22 ou posterior e QuickJS 2023-12-9 ou posterior exigem
+configuração explícita do yt-dlp. O MPV.NET apenas detecta esses runtimes: não
+adiciona um segundo gerenciador, não os baixa a cada reprodução e não substitui
+um `ytdl-path` configurado pelo usuário.
+
+Remote components do EJS não são habilitados silenciosamente. PO Token continua
+sendo responsabilidade de provider/plugin ou configuração externa; o player não
+gera, captura ou registra tokens. Browser impersonation via `curl_cffi` é uma
+capability opcional detectada no yt-dlp, não uma dependência obrigatória.
+
 ---
 
 # Compatibilidade

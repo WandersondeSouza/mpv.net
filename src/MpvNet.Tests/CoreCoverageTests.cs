@@ -121,6 +121,42 @@ public sealed class ConfigurationPathTests
 
 public sealed class RuntimeComponentTests
 {
+    [Theory]
+    [InlineData("Deno", "deno 2.3.0", true)]
+    [InlineData("Deno", "deno 2.2.9", false)]
+    [InlineData("Node.js", "v22.0.0", true)]
+    [InlineData("Node.js", "v21.9.0", false)]
+    [InlineData("QuickJS", "2023-12-9", true)]
+    [InlineData("Unknown", "99.0.0", false)]
+    public void JavaScriptRuntimeCompatibilityUsesDocumentedMinimums(string name, string version, bool expected)
+    {
+        Assert.Equal(expected, OnlineMediaDiagnostics.IsCompatibleJavaScriptRuntime(name, version));
+    }
+
+    [Fact]
+    public void JavaScriptRuntimeSelectionPrefersCompatibleDefault()
+    {
+        JavaScriptRuntimeCapability[] runtimes =
+        [
+            new("Node.js", "node", "24.0", true, true, false),
+            new("Deno", "deno", "2.9", true, true, true)
+        ];
+
+        JavaScriptRuntimeCapability? selected = OnlineMediaDiagnostics.SelectPreferredRuntime(runtimes);
+
+        Assert.Equal("Deno", selected!.Name);
+    }
+
+    [Fact]
+    public void OnlineMediaDiagnosticDoesNotAcceptSensitiveInputs()
+    {
+        var parameters = typeof(OnlineMediaDiagnostics).GetMethod(nameof(OnlineMediaDiagnostics.BuildReport))!
+            .GetParameters();
+
+        Assert.Equal([typeof(ComponentResolutionResult), typeof(ComponentResolutionResult)],
+            parameters.Select(parameter => parameter.ParameterType));
+    }
+
     [Fact]
     public void FileDigestUsesLowercaseSha256()
     {

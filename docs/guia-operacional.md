@@ -202,6 +202,13 @@ Valide o contrato offline do cache compartilhado:
 
 Para diagnosticar a seleção sem abrir a interface completa, execute `mpvnet.exe --diagnose-libmpv`. Em desenvolvimento, defina temporariamente `MPVNET_FORCE_LIBMPV_VARIANT=normal` para testar a normal; use `auto` para retornar ao comportamento padrão. Para validar reprodução, teste inicialização, arquivo local, URL, playlist, pause/play, seek, fullscreen, legendas, áudio e fechamento.
 
+Para auditar a cadeia online sem abrir a interface nem iniciar atualização,
+execute `mpvnet.exe --diagnose-components`. Além da origem, integridade e
+metadata dos componentes, a saída informa as versões executáveis de yt-dlp e
+FFmpeg, runtimes JavaScript detectados, suporte de EJS possível com o runtime
+local e targets opcionais de browser impersonation. O comando não testa uma URL
+nem envia credenciais; sucesso nele não substitui o teste manual do YouTube.
+
 ### Validar dependências nativas
 
 ```powershell

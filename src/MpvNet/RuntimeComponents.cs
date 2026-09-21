@@ -92,7 +92,17 @@ public static class RuntimeComponents
     public static string DiagnoseComponents()
     {
         string[] componentNames = ["ffmpeg.exe", "ffplay.exe", "ffprobe.exe", "mpvnet.com", "yt-dlp.exe"];
-        return string.Join(
+        string libMpvReport;
+        try
+        {
+            libMpvReport = "libmpv: " + DiagnoseLibMpv();
+        }
+        catch (Exception ex)
+        {
+            libMpvReport = $"libmpv: unavailable; reason={Log.SafeValue(ex.Message)}";
+        }
+
+        string componentReport = string.Join(
             Environment.NewLine,
             componentNames.Select(name =>
             {
@@ -101,6 +111,11 @@ public static class RuntimeComponents
                     $"valid={result.IsValid}; version={result.Version ?? "<unknown>"}; " +
                     $"reason={result.DiagnosticMessage ?? "<none>"}";
             }));
+
+        return libMpvReport + Environment.NewLine + componentReport + Environment.NewLine +
+            OnlineMediaDiagnostics.BuildReport(
+                ResolveComponent("yt-dlp.exe"),
+                ResolveComponent("ffmpeg.exe"));
     }
 
     public static string ResolveComponentPath(string fileName)
