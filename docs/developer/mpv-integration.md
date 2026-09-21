@@ -154,7 +154,24 @@ midia principal antes de desistir. Playlists locais expandidas com sucesso
 enviam seus itens individualmente por `loadfile`, permitindo opções por item
 sem transformar um arquivo local em stream de rede.
 
-## YouTube e playlists remotas
+## Mídia online e yt-dlp multissserviço
+
+O frontend trata o yt-dlp como resolvedor genérico, não como cliente interno do
+YouTube. Toda URL HTTP/HTTPS válida continua elegível ao `loadfile`; páginas sem
+extensão de mídia direta recebem `NetworkMediaKind.OnlineResolver`, enquanto
+arquivos HTTP progressivos, HLS e DASH mantêm classificações específicas. Essa
+decisão não usa whitelist de host e permite que um extractor novo do yt-dlp
+funcione sem um novo `if` no MPV.NET.
+
+O MPV.NET não executa o yt-dlp antecipadamente em C#, não repete requisições de
+metadata e não implementa HTML, API privada ou autenticação de Bilibili,
+Niconico, Naver, Dailymotion ou outros provedores. O `ytdl_hook` do mpv conserva
+headers, cookies, proxy, fragmentos, legendas e metadados fornecidos pelo
+resolvedor. Quando o resultado possui múltiplas entradas, a coleção converge
+para a playlist nativa do mpv; próximo/anterior, avanço automático, títulos e
+SMTC permanecem independentes do provedor.
+
+### Política específica de playlist do YouTube
 
 O `ytdl_hook` do mpv atual chama o extrator com `--no-playlist` por padrão. O
 frontend só acrescenta a opção local
@@ -179,6 +196,28 @@ de 31 itens: o hook recebeu `--yes-playlist`, registrou a correspondência do
 vídeo solicitado, definiu `playlist-start=2` e o mpv expôs `playlist-count=31`,
 `playlist-pos=2` e o vídeo da URL como item atual. Como a resposta vem de um
 serviço externo, essa prova deve ser repetida antes de uma release.
+
+### Validação multissserviço de 2026-09-21
+
+Com yt-dlp `2026.08.19`, o comando `--list-extractors` confirmou extractors para
+YouTube, Bilibili (incluindo Bangumi, coleção, favoritos, playlist e live),
+Niconico (vídeo, playlist, série e live), Naver (vídeo e live), Dailymotion
+(vídeo, playlist e usuário), Douyin, Douyu, Twitch, Vimeo, SoundCloud, iQIYI e
+Youku. A presença do nome não é tratada como prova de funcionamento.
+
+Testes online sem download resolveram uma URL pública individual de Bilibili,
+Niconico, Naver e Dailymotion. A URL obrigatória de YouTube foi reconhecida pelo
+extractor, mas o serviço exigiu autenticação para confirmar que a origem não era
+um robô; nenhum cookie foi fornecido. O modo de playlist plano retornou três
+entradas de uma anthology do Bilibili e três entradas de uma coleção de usuário
+do Niconico. Uma live do Naver e um canal Twitch chegaram aos extractors corretos,
+mas estavam offline. SoundCloud resolveu uma entrada pública; Vimeo exigiu login,
+e Douyu reconheceu o extractor mas falhou ao obter o identificador da sala.
+Douyin não foi validado online. Esses resultados comprovam somente a execução do
+yt-dlp nessa máquina: próximo/anterior, SMTC, lives ativas e playback final no mpv
+permanecem itens manuais antes da release. A suíte offline cobre preservação de
+query, fragmento, Unicode chinês/japonês/coreano, clipboard, IPC, `loadfile`,
+domínio desconhecido e ausência de opções específicas de provedor.
 
 ## Diagnóstico da cadeia online
 
@@ -209,6 +248,9 @@ timeout, HTTP, autenticação, conteúdo indisponível, região, extractor,
 JavaScript/EJS, PO Token, impersonation, TLS, protocolo, demuxer e playlist;
 sem evidência, permanece `Unknown`. Queries de URL e valores de cookies,
 Authorization, sessão, assinatura e token são removidos antes desse resumo.
+Quando não existe reconexão pendente, a categoria também seleciona uma mensagem
+OSD curta por chave gettext. Todos os catálogos distribuídos possuem as mesmas
+chaves; detalhes e ações sugeridas continuam apenas no log técnico sanitizado.
 
 A recuperação automática é deliberadamente limitada. Somente uma falha
 classificada como transitória agenda reload do mesmo item: no máximo três
@@ -223,9 +265,10 @@ No caminho de `loadfile`, as opções explícitas da linha de comando e do
 `mpv.conf` são materializadas uma vez por item. A mesma resolução é reutilizada
 para log e construção do comando, evitando a leitura anterior do arquivo para
 cada opção de cache e a dupla classificação da mesma URL. URLs legítimas do
-YouTube recebem o tipo `OnlineResolver`, com cache inicial conservador, em vez
-de serem confundidas com HTTP progressivo; o protocolo final continua sob
-controle do ytdl hook, yt-dlp e mpv.
+páginas candidatas a resolução online recebem o tipo `OnlineResolver`, com
+cache inicial conservador, em vez de serem confundidas com HTTP progressivo;
+arquivos diretos e manifestos preservam suas classificações, e o protocolo
+final continua sob controle do ytdl hook, yt-dlp e mpv.
 
 ---
 

@@ -138,6 +138,19 @@ HTTP bloqueante no frontend. Isso evita atraso antes do início do carregamento,
 inclusive para URLs sem extensão. A detecção de mídia ou playlist remota fica a
 cargo do mpv/libmpv.
 
+Para páginas de serviços de mídia, o MPV.NET utiliza o fluxo nativo do mpv com
+o yt-dlp como resolvedor genérico. Esse caminho pode atender, conforme os
+extractors disponíveis na versão instalada, serviços como YouTube, Bilibili,
+Niconico, Naver, Dailymotion, Twitch, Vimeo e SoundCloud, além de novos serviços
+que o yt-dlp passe a reconhecer. O frontend não mantém uma lista de domínios
+permitidos nem implementa extractors próprios.
+
+A disponibilidade depende do serviço, do conteúdo, da região e da versão do
+yt-dlp. Alguns conteúdos exigem autenticação ou cookies configurados pelo
+usuário nos mecanismos do mpv/yt-dlp; conteúdo protegido por DRM pode não ser
+reproduzível. O MPV.NET não coleta senhas, não contorna DRM ou paywall e não
+promete compatibilidade permanente com serviços externos.
+
 Ao abrir uma URL de streaming, o frontend pode aplicar opcoes locais e
 conservadoras de cache. A politica e controlada por `mpvnet.conf`:
 
@@ -150,6 +163,9 @@ Os perfis sao `off`, `low-latency`, `balanced` e `resilient`. Arquivos locais
 nao recebem opcoes automaticas de rede. HTTP progressivo, HLS/DASH, arquivos
 FTP/SFTP e transmissao ao vivo (RTSP/RTMP/UDP/TCP) usam limites diferentes.
 RTSP nao recebe `network-timeout`, pois essa opcao pode quebrar o transporte.
+Páginas HTTP/HTTPS sem extensão de mídia direta usam o perfil conservador de
+resolvedor online independentemente do domínio; arquivos diretos e manifestos
+HLS/DASH preservam suas classificações próprias.
 
 Em falha transitória comprovada, streams contínuos RTSP, RTMP, SRT, UDP e TCP
 podem tentar reconexão até três vezes, com esperas de 1, 2 e 4 segundos. HLS e
@@ -205,6 +221,12 @@ Falhas auxiliares ao criar ou expandir playlists nao devem impedir a tentativa
 de reproducao da midia principal. Quando houver uma URL ou caminho valido, o
 frontend tenta enviar a midia bruta ao mpv/libmpv; o titulo informado por linha
 de comando e aplicado como metadado visual, nao como requisito de playlist.
+
+Quando uma mídia online falha e não há uma reconexão controlada em andamento,
+o player mostra uma mensagem curta no idioma da interface para categorias como
+autenticação, restrição regional, conteúdo removido, playlist, formato e URL.
+O detalhe técnico original permanece somente no log, com query strings,
+cookies, tokens, sessão e cabeçalhos de autorização sanitizados.
 
 Os componentes auxiliares de runtime usam o cache local em
 `%LOCALAPPDATA%\mpv.net\Component\current`. Nesse fluxo, `libmpv-2.dll`,
