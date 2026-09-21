@@ -13,6 +13,13 @@ public partial class MainPlayer
 {
     internal override void OnLogMessage(MpvEventSnapshot data)
     {
+        StreamingFailureDiagnostic? diagnostic = StreamingFailureDiagnostics.Classify(data.Prefix, data.Text);
+        if (diagnostic is not null &&
+            (_lastStreamingFailure is null || diagnostic.Priority >= _lastStreamingFailure.Priority))
+        {
+            _lastStreamingFailure = diagnostic;
+        }
+
         if (data.LogLevel == mpv_log_level.MPV_LOG_LEVEL_INFO)
         {
             if (data.Prefix == "bd")
@@ -38,15 +45,11 @@ public partial class MainPlayer
             SchedulePlaybackErrorRecovery(failedPosition, failedPath);
         }
 
-        if (playbackFailed &&
-            errorText == "unrecognized file format" &&
-            FileTypes.IsStreamingUrl(failedPath))
+        if (playbackFailed && FileTypes.IsStreamingUrl(failedPath))
         {
-            string hint = IsYouTubeUrl(failedPath)
-                ? "YouTube playback usually depends on yt-dlp resolving the stream; browser cookies, an authenticated session, or in some cases a PO Token may be required."
-                : "Streaming playback usually depends on yt-dlp or another resolver being able to access the URL.";
-
-            Log.Error($"Streaming playback failed to resolve. url='{Log.SafeValue(failedPath)}', hint='{hint}'");
+            StreamingFailureDiagnostic diagnostic = _lastStreamingFailure ??
+                StreamingFailureDiagnostics.FromMpvError(errorText);
+            Log.Error($"Streaming playback failure. category={diagnostic.Category}; component='{diagnostic.Component}'; original='{diagnostic.OriginalMessage}'; action='{diagnostic.SuggestedAction}'; path='{Log.SafeValue(failedPath)}'");
         }
 
         base.OnEndFile(data);
@@ -65,6 +68,7 @@ public partial class MainPlayer
         // An end-file REDIRECT may be emitted while mpv advances or rebuilds
         // the playlist. A new start-file means playback is active again.
         FileEnded = false;
+        _lastStreamingFailure = null;
         Path = GetPropertyString("path");
         NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(Path);
         Log.Debug($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}, cacheKind={resolution.Kind}, cacheProfile={resolution.Profile}, cacheEnabled={resolution.IsEnabled}");

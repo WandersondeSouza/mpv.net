@@ -195,6 +195,14 @@ sendo responsabilidade de provider/plugin ou configuração externa; o player n�
 gera, captura ou registra tokens. Browser impersonation via `curl_cffi` é uma
 capability opcional detectada no yt-dlp, não uma dependência obrigatória.
 
+Falhas de streaming são classificadas somente quando mensagens do mpv/yt-dlp
+fornecem evidência. O log final separa categoria provável, mensagem original
+sanitizada, componente e ação sugerida. A classificação distingue rede/DNS,
+timeout, HTTP, autenticação, conteúdo indisponível, região, extractor,
+JavaScript/EJS, PO Token, impersonation, TLS, protocolo, demuxer e playlist;
+sem evidência, permanece `Unknown`. Queries de URL e valores de cookies,
+Authorization, sessão, assinatura e token são removidos antes desse resumo.
+
 ---
 
 # Compatibilidade

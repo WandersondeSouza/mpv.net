@@ -20,6 +20,7 @@ public partial class MainPlayer
     bool _autoLoadFolderRequested;
     bool _autoLoadFolderInProgress;
     bool _mpvInitialized;
+    StreamingFailureDiagnostic? _lastStreamingFailure;
 
     public PlayerLifecycleState LifecycleState { get; private set; } = PlayerLifecycleState.Created;
     internal CancellationToken PlayerCancellationToken => _playerCancellation.Token;
