@@ -159,6 +159,26 @@ Fluxo resumido adicional:
 6. `MainForm` é criado;
 7. arquivos/URLs informados pela linha de comando são processados depois da janela estar pronta.
 
+## Mapa do fluxo de entrada de mídia
+
+O baseline de 2026-09-21 confirmou os seguintes caminhos até o mpv/libmpv:
+
+| Origem | Entrada no frontend | Caminho até o mpv |
+| --- | --- | --- |
+| linha de comando e associação do Windows | `CommandLine.ResolveMediaRequest` | `Player.LoadFiles` -> `SendLoadfile` -> `CommandV("loadfile", ...)` |
+| segunda instância | JSON versionado de `MediaIpcMessage` por `WM_COPYDATA` | `MainForm.WndProc` -> `Player.LoadFiles` ou comando existente |
+| clipboard | `ClipboardMediaParser` pelo comando `open-clipboard` | `Player.LoadFiles` -> `loadfile` |
+| drag-and-drop | `MainForm.OnDragDrop` e `ClipboardMediaParser` | `Player.LoadFiles` -> `loadfile` |
+| diálogo de arquivo | `GuiCommand.OpenFiles` | `Player.LoadFiles` -> `loadfile` |
+| arquivos recentes | menu criado por `MainForm` | `Player.LoadFiles` -> `loadfile` |
+| playlist local | `PlaylistFile.Read` | um `loadfile` por item, com título local quando disponível |
+| comandos internos e extensões | fachada pública `Player.LoadFiles` ou comandos do mpv | `SendLoadfile`/`CommandV` |
+
+URLs HTTP/HTTPS não recebem uma sondagem de rede no frontend. A classificação
+local serve apenas para validar a entrada e escolher opções conservadoras por
+arquivo; resolução de sites, expansão remota e seleção do stream continuam sob
+responsabilidade de `ytdl_hook`, `yt-dlp` e mpv/libmpv.
+
 ---
 
 # Integração com mpv/libmpv
