@@ -17,13 +17,19 @@ public partial class MainPlayer
     public const string LoadfileOptionsInsertionIndex = "-1";
     public const string AutomaticStreamingLoadOptions = NetworkCachePolicy.BalancedHttpOptions;
 
-    public void SetBluRayTitle(int id) => LoadFiles(new[] { @"bd://" + id }, false, false);
+    public void SetBluRayTitle(int id) => LoadFiles(new[] { @"bd://" + id }, false, false, source: MediaInputSource.InternalCommand);
 
     public DateTime LastLoad;
 
-    public void LoadFiles(string[]? files, bool loadFolder, bool append, string? fallbackInput = null)
+    public void LoadFiles(
+        string[]? files,
+        bool loadFolder,
+        bool append,
+        string? fallbackInput = null,
+        MediaInputSource source = MediaInputSource.Unknown)
     {
-        if (files == null || files.Length == 0)
+        IReadOnlyList<MediaLoadRequest> requests = MediaInputNormalizer.NormalizeMany(files, source, append);
+        if (requests.Count == 0)
         {
             Log.Debug($"LoadFiles skipped because no files were supplied. loadFolder={loadFolder}, append={append}");
             return;
@@ -36,25 +42,14 @@ public partial class MainPlayer
         }
 
         LastLoad = DateTime.Now;
-        Log.Debug($"Loading media inputs. count={files.Length}, loadFolder={loadFolder}, append={append}, fallback='{Log.SafeValue(fallbackInput)}', inputs={Log.SafeValues(files)}");
+        Log.Debug($"Loading media inputs. count={requests.Count}, source={source}, loadFolder={loadFolder}, append={append}, fallback='{Log.SafeValue(fallbackInput)}', inputs={Log.SafeValues(requests.Select(request => request.Input))}");
 
         ArmAutoLoadFolder(loadFolder && !append);
 
-        for (int i = 0; i < files.Length; i++)
+        for (int i = 0; i < requests.Count; i++)
         {
-            string file = files[i];
-
-            if (string.IsNullOrEmpty(file))
-            {
-                Log.Debug($"Skipping empty media input at index {i}.");
-                continue;
-            }
-
-            if (file.Contains('|'))
-            {
-                Log.Debug($"Removing display-title suffix from media input at index {i}: '{Log.SafeValue(file)}'");
-                file = file[..file.IndexOf("|")];
-            }
+            MediaLoadRequest request = requests[i];
+            string file = request.Input;
 
             string originalFile = file;
             file = ConvertFilePath(file);
@@ -136,7 +131,7 @@ public partial class MainPlayer
             }
             else
             {
-                SendLoadfile(file, i, append);
+                SendLoadfile(file, i, append, request.Title);
             }
         }
 
@@ -156,7 +151,10 @@ public partial class MainPlayer
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 PlaylistFileItem item = items[index];
-                SendLoadfile(item.Path, index, append || index > 0, item.Title);
+                MediaLoadRequest? request = MediaInputNormalizer.Normalize(
+                    item.Path, MediaInputSource.Playlist, append || index > 0, item.Title);
+                if (request is not null)
+                    SendLoadfile(request.Input, index, request.Append, request.Title);
             }
         });
     }
@@ -301,14 +299,14 @@ public partial class MainPlayer
                 Command("stop");
                 await Task.Delay(500, cancellationToken);
                 SetPropertyString("dvd-device", path);
-                LoadFiles([@"dvd://"], false, false);
+                LoadFiles([@"dvd://"], false, false, source: MediaInputSource.InternalCommand);
             }
             else
             {
                 Command("stop");
                 await Task.Delay(500, cancellationToken);
                 SetPropertyString("bluray-device", path);
-                LoadFiles([@"bd://"], false, false);
+                LoadFiles([@"bd://"], false, false, source: MediaInputSource.InternalCommand);
             }
         }
         catch (Exception ex)
@@ -329,12 +327,12 @@ public partial class MainPlayer
         if (Directory.Exists(path + "\\BDMV"))
         {
             SetPropertyString("bluray-device", path);
-            LoadFiles([@"bd://"], false, false);
+            LoadFiles([@"bd://"], false, false, source: MediaInputSource.InternalCommand);
         }
         else
         {
             SetPropertyString("dvd-device", path);
-            LoadFiles([@"dvd://"], false, false);
+            LoadFiles([@"dvd://"], false, false, source: MediaInputSource.InternalCommand);
         }
     }
 

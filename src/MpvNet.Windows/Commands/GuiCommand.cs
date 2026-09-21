@@ -84,7 +84,7 @@ public partial class GuiCommand
         };
 
         if (dialog.ShowDialog() == DialogResult.OK)
-            Player.LoadFiles(dialog.FileNames, true, append);
+            Player.LoadFiles(dialog.FileNames, true, append, source: MediaInputSource.FileDialog);
     }
 
     void Open_DVD_Or_BD_Folder(IList<string> args)
@@ -189,7 +189,7 @@ public partial class GuiCommand
                 return;
             }
 
-            Player.LoadFiles(requests.Select(request => request.Input).ToArray(), false, append);
+            Player.LoadFiles(requests.Select(request => request.Input).ToArray(), false, append, source: MediaInputSource.Clipboard);
             if (append)
                 Player.CommandV("show-text", _("Files/URLs were added to the playlist"));
         }

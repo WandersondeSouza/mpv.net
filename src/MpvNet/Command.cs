@@ -39,7 +39,7 @@ public class Command
             {
                 if (i.Contains("://") || File.Exists(i))
                 {
-                    Player.LoadFiles([i], true, false);
+                    Player.LoadFiles([i], true, false, source: MediaInputSource.RecentFiles);
                     break;
                 }
             }

@@ -462,6 +462,9 @@ string[] localLoadfileArgs = MainPlayer.BuildLoadfileArgs(tempVideo, 0, false);
 var clipboardRequests = ClipboardMediaParser.ParseText("  \"https://example.com/video.mp4?token=abc\"\r\n#EXTINF:-1,Title\r\n--no-config\r\n");
 string ipcPayload = MediaIpcMessage.Serialize("queue", ["https://example.com/a?x=1\n2", "áudio.mp3"]);
 MediaIpcMessage.TryParse(ipcPayload, out string ipcMode, out string[] ipcArguments);
+string completeYouTubeUrl = "https://www.youtube.com/watch?v=VIDEO_ID&list=PLAYLIST_ID&index=3&t=45&future=a%3Db#chapter";
+MediaLoadRequest? normalizedYouTubeRequest = MediaInputNormalizer.Normalize(
+    completeYouTubeUrl, MediaInputSource.CommandLine);
 
 var tests = new (string Name, bool Result)[]
 {
@@ -538,6 +541,8 @@ var tests = new (string Name, bool Result)[]
     ("Classifier rejects malformed network URL", !FileTypes.IsStreamingUrl("https://")),
     ("Clipboard parser accepts URL and ignores directives/options", clipboardRequests.Count == 1 && clipboardRequests[0].Input == "https://example.com/video.mp4?token=abc"),
     ("IPC serialization preserves newlines and Unicode", ipcMode == "queue" && ipcArguments.SequenceEqual(["https://example.com/a?x=1\n2", "áudio.mp3"])),
+    ("Media input normalizer preserves complete YouTube URL", normalizedYouTubeRequest?.Input == completeYouTubeUrl),
+    ("Media input normalizer preserves input source", normalizedYouTubeRequest?.Source == MediaInputSource.CommandLine),
     ("Local loadfile keeps normal mpv arguments", localLoadfileArgs.SequenceEqual(["loadfile", tempVideo])),
     ("Pipe input skips optional MediaInfo", !MainPlayer.CanUseMediaInfo(@"\\.\pipe\mpvnet-test")),
     ("Streaming without duration is still loadable", CommandLine.IsLoadableFileArgument("https://example.com/live/no-duration")),

@@ -179,6 +179,13 @@ local serve apenas para validar a entrada e escolher opções conservadoras por
 arquivo; resolução de sites, expansão remota e seleção do stream continuam sob
 responsabilidade de `ytdl_hook`, `yt-dlp` e mpv/libmpv.
 
+`MediaInputNormalizer` é a fronteira comum antes de `Player.LoadFiles`. Ele
+remove somente espaços e aspas externas, rejeita opções/comandos e caracteres
+de controle, preserva a URL completa e mantém `MediaInputSource` para
+diagnóstico. Linha de comando, IPC, clipboard, drag-and-drop, diálogo, recentes
+e playlists locais convergem nessa política; o sufixo legado `URL|título` é
+interpretado apenas ao reabrir um item de recentes.
+
 ---
 
 # Integração com mpv/libmpv

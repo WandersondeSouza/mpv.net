@@ -132,7 +132,8 @@ public partial class MainForm : Form
                 var menuItem = MenuHelp.Add(recentMenuItem.Items, file.Title.ShortPath(100));
 
                 if (menuItem != null)
-                    menuItem.Click += (sender, args) => Player.LoadFiles(new[] { file.Path }, true, false);
+                    menuItem.Click += (sender, args) => Player.LoadFiles(
+                        new[] { file.Path }, true, false, source: MediaInputSource.RecentFiles);
             }
 
             recentMenuItem.Items.Add(new WpfControls.Separator());
@@ -910,10 +911,10 @@ public partial class MainForm : Form
                     switch (mode)
                     {
                         case "single":
-                            Player.LoadFiles(args, true, false);
+                            Player.LoadFiles(args, true, false, source: MediaInputSource.InterProcessMessage);
                             break;
                         case "queue":
-                            Player.LoadFiles(args, true, true);
+                            Player.LoadFiles(args, true, true, source: MediaInputSource.InterProcessMessage);
                             break;
                         case "command":
                             if (args.Length > 0)

@@ -35,6 +35,71 @@ public sealed record MediaLoadRequest(
     bool Append,
     string? Title = null);
 
+public static class MediaInputNormalizer
+{
+    public static MediaLoadRequest? Normalize(
+        string? input,
+        MediaInputSource source = MediaInputSource.Unknown,
+        bool append = false,
+        string? title = null)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return null;
+
+        string value = RemoveExternalQuotes(input.Trim());
+        if (value.Length == 0 || value.StartsWith("--", StringComparison.Ordinal) ||
+            value.IndexOfAny(['\0', '\r', '\n']) >= 0)
+        {
+            return null;
+        }
+
+        if (source == MediaInputSource.RecentFiles &&
+            TrySplitLegacyRecentEntry(value, out string media, out string? recentTitle))
+        {
+            value = media;
+            title ??= recentTitle;
+        }
+
+        MediaInputClassification classification = MediaInputClassifier.Classify(value);
+        if (!classification.IsValid)
+            return null;
+
+        return new MediaLoadRequest(value, source, append, title);
+    }
+
+    public static IReadOnlyList<MediaLoadRequest> NormalizeMany(
+        IEnumerable<string>? inputs,
+        MediaInputSource source,
+        bool append = false) =>
+        inputs is null
+            ? []
+            : inputs.Select(input => Normalize(input, source, append))
+                .OfType<MediaLoadRequest>()
+                .ToArray();
+
+    static string RemoveExternalQuotes(string value) =>
+        value.Length >= 2 && value[0] == value[^1] && value[0] is '\'' or '"'
+            ? value[1..^1].Trim()
+            : value;
+
+    static bool TrySplitLegacyRecentEntry(string value, out string media, out string? title)
+    {
+        media = value;
+        title = null;
+        int separator = value.IndexOf('|');
+        if (separator <= 0)
+            return false;
+
+        string candidate = value[..separator].Trim();
+        if (!MediaInputClassifier.Classify(candidate).IsValid)
+            return false;
+
+        media = candidate;
+        title = value[(separator + 1)..].Trim();
+        return true;
+    }
+}
+
 public readonly record struct MediaInputClassification(
     bool IsValid,
     bool IsNetwork,
@@ -92,24 +157,19 @@ public static class ClipboardMediaParser
             if (value.Length == 0 || value.StartsWith('#') || value.StartsWith("--", StringComparison.Ordinal))
                 continue;
 
-            if (value.Length >= 2 && value[0] == value[^1] && value[0] is '\'' or '"')
-                value = value[1..^1].Trim();
-
             if (string.IsNullOrWhiteSpace(value) || !IsSafeMediaInput(value))
                 continue;
 
-            result.Add(new MediaLoadRequest(value, MediaInputSource.Clipboard, append));
+            MediaLoadRequest? request = MediaInputNormalizer.Normalize(value, MediaInputSource.Clipboard, append);
+            if (request is not null)
+                result.Add(request);
         }
 
         return result;
     }
 
     public static IReadOnlyList<MediaLoadRequest> ParseFileDropList(IEnumerable<string>? files, bool append = false) =>
-        files is null
-            ? []
-            : files.Where(file => !string.IsNullOrWhiteSpace(file))
-                .Select(file => new MediaLoadRequest(file, MediaInputSource.Clipboard, append))
-                .ToArray();
+        MediaInputNormalizer.NormalizeMany(files, MediaInputSource.Clipboard, append);
 
     static bool IsSafeMediaInput(string value) =>
         value == "-" ||

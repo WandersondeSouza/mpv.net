@@ -135,7 +135,7 @@ public class CommandLine
             Player.SetPropertyString("force-media-title", request.Title);
         }
 
-        Player.LoadFiles([.. files], !App.Queue, App.Queue);
+        Player.LoadFiles([.. files], !App.Queue, App.Queue, source: MediaInputSource.CommandLine);
 
         if (App.CommandLine.Contains("--shuffle"))
         {
@@ -212,7 +212,11 @@ public class CommandLine
             Log.Debug($"Command line file candidate: loadable={isLoadable}, value='{Log.SafeValue(arg)}'");
 
             if (isLoadable)
-                files.Add(arg);
+            {
+                MediaLoadRequest? request = MediaInputNormalizer.Normalize(arg, MediaInputSource.CommandLine);
+                if (request is not null)
+                    files.Add(request.Input);
+            }
             else if (!arg.StartsWith("--"))
                 positionalNonFiles.Add(arg);
         }

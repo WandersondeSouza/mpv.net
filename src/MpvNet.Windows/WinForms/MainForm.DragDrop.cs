@@ -21,10 +21,10 @@ public partial class MainForm
         if (e.Data!.GetDataPresent(DataFormats.FileDrop))
             Player.LoadFiles(
                 ClipboardMediaParser.ParseFileDropList(e.Data.GetData(DataFormats.FileDrop) as string[], append)
-                    .Select(request => request.Input).ToArray(), true, append);
+                    .Select(request => request.Input).ToArray(), true, append, source: MediaInputSource.DragAndDrop);
         else if (e.Data.GetDataPresent(DataFormats.Text))
             Player.LoadFiles(
                 ClipboardMediaParser.ParseText(e.Data.GetData(DataFormats.Text)!.ToString(), append)
-                    .Select(request => request.Input).ToArray(), true, append);
+                    .Select(request => request.Input).ToArray(), true, append, source: MediaInputSource.DragAndDrop);
     }
 }
