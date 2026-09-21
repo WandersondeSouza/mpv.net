@@ -5,7 +5,8 @@ namespace MpvNet;
 internal enum RuntimeComponentDownloadKind
 {
     Direct,
-    GitHubZip
+    GitHubZip,
+    GitHubZipSingle
 }
 
 public enum ComponentSource

@@ -91,7 +91,7 @@ public static class RuntimeComponents
 
     public static string DiagnoseComponents()
     {
-        string[] componentNames = ["ffmpeg.exe", "ffplay.exe", "ffprobe.exe", "mpvnet.com", "yt-dlp.exe"];
+        string[] componentNames = ["ffmpeg.exe", "ffplay.exe", "ffprobe.exe", "mpvnet.com", "yt-dlp.exe", "deno.exe"];
         string libMpvReport;
         try
         {

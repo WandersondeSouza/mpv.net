@@ -31,7 +31,7 @@ O aplicativo também está publicado na Microsoft Store:
 
 - Windows 10 versão 2004 (build 19041) ou superior.
 - Runtime .NET Desktop 10 compatível com o projeto.
-- Para streaming, o player baixa e atualiza `yt-dlp.exe` no cache de componentes em `%LOCALAPPDATA%\mpv.net\Component`. Se quiser testar manualmente, também vale deixá-lo ao lado do executável ou no `PATH`.
+- Para streaming, o player baixa e atualiza `yt-dlp.exe` e o runtime Deno no cache de componentes em `%LOCALAPPDATA%\mpv.net\Component`. Se quiser testar manualmente, também vale deixar os executáveis ao lado do executável principal ou no `PATH`.
 
 O instalador registra os formatos de mídia comuns e playlists IPTV suportados
 pelo fork e adiciona a pasta instalada ao `PATH` do Windows, permitindo executar
@@ -207,7 +207,8 @@ de comando e aplicado como metadado visual, nao como requisito de playlist.
 Os componentes auxiliares de runtime usam o cache local em
 `%LOCALAPPDATA%\mpv.net\Component\current`. Nesse fluxo, `libmpv-2.dll`,
 `libmpv-2-v3.dll` e `MediaInfo.dll` continuam ao lado do executavel ou no pacote preparado, enquanto
-`ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `mpvnet.com` podem
+`ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe`, `mpvnet.com` e
+`deno.exe` podem
 ser baixados e atualizados pelo player quando necessario. Uma cópia válida no
 cache é preferida; depois o player tenta a pasta do executável e, por último,
 o `PATH`. Downloads são feitos em `Component\staging`, validados e promovidos

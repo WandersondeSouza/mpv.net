@@ -94,5 +94,6 @@ internal static class RuntimeComponentValidator
         componentName.Equals("ffplay.exe", StringComparison.OrdinalIgnoreCase) ||
         componentName.Equals("ffprobe.exe", StringComparison.OrdinalIgnoreCase) ||
         componentName.Equals("yt-dlp.exe", StringComparison.OrdinalIgnoreCase) ||
-        componentName.Equals("mpvnet.com", StringComparison.OrdinalIgnoreCase);
+        componentName.Equals("mpvnet.com", StringComparison.OrdinalIgnoreCase) ||
+        componentName.Equals("deno.exe", StringComparison.OrdinalIgnoreCase);
 }

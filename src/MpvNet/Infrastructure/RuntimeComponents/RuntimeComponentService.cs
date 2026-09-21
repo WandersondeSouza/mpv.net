@@ -21,6 +21,29 @@ internal static class RuntimeComponentService
         RuntimeComponentStore.RecoverInterruptedPromotion();
         RuntimeComponentStore.CleanupStaleStaging();
 
+        // Download the non-bundle components first. The FFmpeg archive is
+        // considerably larger and is promoted only after its three binaries
+        // have been validated. Keeping this order ensures a first run still
+        // leaves yt-dlp, Deno and mpvnet.com available if the FFmpeg download
+        // is interrupted or the application is closed while it is in progress.
+        foreach (RuntimeComponentDefinition definition in definitions.Where(
+                     item => item.Kind != RuntimeComponentDownloadKind.GitHubZip))
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            try
+            {
+                await EnsureComponentAsync(definition, cancellationToken).ConfigureAwait(false);
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, $"Component update failed for {definition.FileName}; retaining the previous valid component generation.");
+            }
+        }
+
         foreach (IGrouping<string, RuntimeComponentDefinition> bundle in definitions
                      .Where(item => item.Kind == RuntimeComponentDownloadKind.GitHubZip)
                      .GroupBy(item => $"{item.ReleaseApiUrl}|{item.AssetPattern}", StringComparer.OrdinalIgnoreCase))
@@ -37,24 +60,6 @@ internal static class RuntimeComponentService
             catch (Exception ex)
             {
                 Log.Error(ex, "FFmpeg bundle update failed; retaining the previous valid component generation.");
-            }
-        }
-
-        foreach (RuntimeComponentDefinition definition in definitions.Where(
-                     item => item.Kind != RuntimeComponentDownloadKind.GitHubZip))
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            try
-            {
-                await EnsureComponentAsync(definition, cancellationToken).ConfigureAwait(false);
-            }
-            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, $"Component update failed for {definition.FileName}; retaining the previous valid component generation.");
             }
         }
 
@@ -115,8 +120,15 @@ internal static class RuntimeComponentService
             try
             {
                 ValidateDigest(definition.FileName, RuntimeComponentFileSystem.GetFileDigest(downloaded.Path), downloaded.Digest);
-                string target = Path.Combine(staging, definition.FileName);
-                File.Move(downloaded.Path, target, overwrite: true);
+                if (definition.Kind == RuntimeComponentDownloadKind.GitHubZipSingle)
+                {
+                    ExtractBundle(downloaded.Path, staging, [definition]);
+                }
+                else
+                {
+                    string target = Path.Combine(staging, definition.FileName);
+                    File.Move(downloaded.Path, target, overwrite: true);
+                }
             }
             finally
             {

@@ -76,8 +76,8 @@ componentes.
 
 ## Componentes auxiliares de runtime
 
-Os componentes `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `mpvnet.com` e
-`yt-dlp.exe` não dependem do diretório de trabalho. A resolução preserva a
+Os componentes `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `mpvnet.com`,
+`yt-dlp.exe` e `deno.exe` não dependem do diretório de trabalho. A resolução preserva a
 política histórica de preferir o cache validado e segue esta ordem:
 
 1. `%LOCALAPPDATA%\mpv.net\Component\current`;
@@ -85,7 +85,7 @@ política histórica de preferir o cache validado e segue esta ordem:
 3. pasta de `mpvnet.exe` (`AppContext.BaseDirectory`);
 4. `PATH` do processo, apenas como último fallback.
 
-Todo candidato é convertido para caminho absoluto, precisa existir e os cinco
+Todo candidato é convertido para caminho absoluto, precisa existir e os seis
 executáveis precisam ser PE x64 não vazio. Um arquivo HTML, truncado, x86 ou
 corrompido não é escolhido. Nomes de componentes inválidos não geram fallback
 de caminho. Um manifesto JSON ilegível é tratado como cache inválido, preservado
@@ -107,8 +107,21 @@ nomeado por usuário impede duas instâncias de alterarem o cache ao mesmo tempo
 o mutex é liberado por sua thread proprietária dedicada e continua recuperável
 quando uma instância termina de forma inesperada. Em falha a geração anterior é
 mantida. Os manifestos diretos ficam ao lado do binário (`yt-dlp.exe.json` e
-`mpvnet.com.json`) e registram versão/asset, hash, URL, data, tamanho e
+`mpvnet.com.json` e `deno.exe.json`) e registram versão/asset, hash, URL, data, tamanho e
 arquitetura.
+
+Na primeira execução, os componentes diretos menores (`yt-dlp.exe` e
+`mpvnet.com`) são baixados e promovidos antes do ZIP grande do FFmpeg. Assim,
+eles ficam disponíveis mesmo se o download do FFmpeg for interrompido; o
+bundle FFmpeg continua sendo promovido somente quando os três executáveis forem
+validados juntos.
+
+O `yt-dlp.exe` oficial já inclui os scripts EJS. Para resolver os desafios
+JavaScript atuais do YouTube, o bootstrap também baixa o runtime `deno.exe`
+x64 (Deno 2.3 ou posterior) e o coloca na mesma geração do cache. O Deno fica
+no `PATH` do processo e é encontrado pelo `yt-dlp` sem alterar o `ytdl-path`
+configurado pelo usuário. O MPV.NET não habilita `--remote-components` para
+baixar scripts EJS de fontes externas sem uma configuração explícita.
 
 Para diagnóstico sem download nem escrita, execute:
 

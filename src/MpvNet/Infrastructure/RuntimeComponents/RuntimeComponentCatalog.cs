@@ -22,6 +22,8 @@ internal static class RuntimeComponentCatalog
             // null for its digest. Keep the downloaded executable pinned until
             // the upstream release publishes an API digest.
             PublishedDigest = "d4b0a80779dc775fb8817afa128a4ddcfe3bd07bca98a9d0c49ba44daf5cb5e3"
-        }
+        },
+        new("deno.exe", "https://api.github.com/repos/denoland/deno/releases/latest",
+            "^deno-x86_64-pc-windows-msvc\\.zip$", RuntimeComponentDownloadKind.GitHubZipSingle, "deno.exe")
     ];
 }

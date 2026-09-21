@@ -228,7 +228,7 @@ public sealed class RuntimeComponentTests
     {
         string[] files = RuntimeComponentCatalog.Definitions.Select(definition => definition.FileName).ToArray();
 
-        Assert.Equal(["ffmpeg.exe", "ffplay.exe", "ffprobe.exe", "yt-dlp.exe", "mpvnet.com"], files);
+        Assert.Equal(["ffmpeg.exe", "ffplay.exe", "ffprobe.exe", "yt-dlp.exe", "mpvnet.com", "deno.exe"], files);
         Assert.All(RuntimeComponentCatalog.Definitions, definition =>
         {
             Assert.StartsWith("https://api.github.com/", definition.ReleaseApiUrl);
@@ -240,6 +240,12 @@ public sealed class RuntimeComponentTests
         RuntimeComponentDefinition mpvnet = RuntimeComponentCatalog.Definitions
             .Single(definition => definition.FileName == "mpvnet.com");
         Assert.Equal("d4b0a80779dc775fb8817afa128a4ddcfe3bd07bca98a9d0c49ba44daf5cb5e3", mpvnet.PublishedDigest);
+
+        RuntimeComponentDefinition deno = RuntimeComponentCatalog.Definitions
+            .Single(definition => definition.FileName == "deno.exe");
+        Assert.Equal(RuntimeComponentDownloadKind.GitHubZipSingle, deno.Kind);
+        Assert.Equal("deno.exe", deno.ExtractedFiles.Single());
+        Assert.Contains("deno-x86_64-pc-windows-msvc", deno.AssetPattern);
     }
 
     [Fact]
@@ -397,6 +403,30 @@ public sealed class RuntimeComponentTests
         }
 
         Assert.Throws<InvalidOperationException>(() => RuntimeComponentService.ExtractBundle(archive, directory.Path, definitions));
+    }
+
+    [Fact]
+    public void RuntimeBundleExtractorSupportsSingleExecutableArchive()
+    {
+        using TestDirectory directory = new();
+        string executable = Path.Combine(directory.Path, "deno.exe");
+        string archive = Path.Combine(directory.Path, "deno.zip");
+        RuntimeComponentDefinition deno = RuntimeComponentCatalog.Definitions
+            .Single(definition => definition.FileName == "deno.exe");
+        WriteX64PortableExecutable(executable);
+
+        using (FileStream stream = File.Create(archive))
+        using (var zip = new System.IO.Compression.ZipArchive(stream, System.IO.Compression.ZipArchiveMode.Create))
+        {
+            using FileStream input = File.OpenRead(executable);
+            using Stream output = zip.CreateEntry("deno.exe").Open();
+            input.CopyTo(output);
+        }
+
+        File.Delete(executable);
+        RuntimeComponentService.ExtractBundle(archive, directory.Path, [deno]);
+
+        Assert.True(RuntimeComponentValidator.Validate("deno.exe", executable).IsValid);
     }
 
     static void WriteX64PortableExecutable(string path)
