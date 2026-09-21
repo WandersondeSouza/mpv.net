@@ -459,6 +459,8 @@ string[] httpStreamingLoadfileArgs = MainPlayer.BuildLoadfileArgs("https://examp
 string[] ftpStreamingLoadfileArgs = MainPlayer.BuildLoadfileArgs("ftp://example.com/video.mp4", 1, true);
 string[] rtspStreamingLoadfileArgs = MainPlayer.BuildLoadfileArgs("rtsp://example.com/stream", 0, false);
 string[] localLoadfileArgs = MainPlayer.BuildLoadfileArgs(tempVideo, 0, false);
+string youtubePlaylistUrl = "https://www.youtube.com/watch?v=VIDEO_ID&list=PLAYLIST_ID&index=3";
+string[] youtubePlaylistLoadfileArgs = MainPlayer.BuildLoadfileArgs(youtubePlaylistUrl, 0, false);
 var clipboardRequests = ClipboardMediaParser.ParseText("  \"https://example.com/video.mp4?token=abc\"\r\n#EXTINF:-1,Title\r\n--no-config\r\n");
 string ipcPayload = MediaIpcMessage.Serialize("queue", ["https://example.com/a?x=1\n2", "áudio.mp3"]);
 MediaIpcMessage.TryParse(ipcPayload, out string ipcMode, out string[] ipcArguments);
@@ -544,6 +546,8 @@ var tests = new (string Name, bool Result)[]
     ("Media input normalizer preserves complete YouTube URL", normalizedYouTubeRequest?.Input == completeYouTubeUrl),
     ("Media input normalizer preserves input source", normalizedYouTubeRequest?.Source == MediaInputSource.CommandLine),
     ("Local loadfile keeps normal mpv arguments", localLoadfileArgs.SequenceEqual(["loadfile", tempVideo])),
+    ("YouTube playlist loadfile preserves URL", youtubePlaylistLoadfileArgs[1] == youtubePlaylistUrl),
+    ("YouTube playlist loadfile enables native expansion", youtubePlaylistLoadfileArgs.Any(value => value.Contains(YouTubeMediaPolicy.NativePlaylistLoadOption))),
     ("Pipe input skips optional MediaInfo", !MainPlayer.CanUseMediaInfo(@"\\.\pipe\mpvnet-test")),
     ("Streaming without duration is still loadable", CommandLine.IsLoadableFileArgument("https://example.com/live/no-duration")),
     ("Streaming without title is still loadable", CommandLine.IsLoadableFileArgument("rtsp://example.com/stream")),

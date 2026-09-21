@@ -183,6 +183,41 @@ public sealed record NetworkCacheResolution(NetworkMediaKind Kind, string Profil
     public bool IsEnabled => !string.IsNullOrEmpty(Options);
 }
 
+public static class MpvOptionConfiguration
+{
+    public static bool HasAnyExplicitOption(params string[] optionNames)
+    {
+        HashSet<string> names = new(optionNames, StringComparer.OrdinalIgnoreCase);
+        if (CommandLine.Arguments.Any(pair => names.Contains(pair.Name)))
+            return true;
+
+        if (!File.Exists(Player.ConfPath))
+            return false;
+
+        try
+        {
+            foreach (string rawLine in File.ReadLines(Player.ConfPath))
+            {
+                string line = rawLine.Trim();
+                if (line.Length == 0 || line.StartsWith('#'))
+                    continue;
+
+                int equals = line.IndexOf('=');
+                string optionName = (equals > 0 ? line[..equals] : line).Trim().TrimStart('-');
+                if (names.Contains(optionName))
+                    return true;
+            }
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            Log.Debug($"Could not inspect explicit mpv option. path='{Log.SafeValue(Player.ConfPath)}', options='{string.Join(',', names)}', error='{Log.SafeValue(ex.Message)}'");
+            return true;
+        }
+
+        return false;
+    }
+}
+
 public static class NetworkCachePolicy
 {
     public const string BalancedHttpOptions = "cache=yes,cache-pause-initial=yes,cache-pause-wait=3,demuxer-max-bytes=128MiB";
@@ -234,39 +269,8 @@ public static class NetworkCachePolicy
             {
                 int equals = option.IndexOf('=');
                 string name = equals > 0 ? option[..equals] : option;
-                return !NetworkOptions.Contains(name) || !HasExplicitOption(name);
+                return !NetworkOptions.Contains(name) || !MpvOptionConfiguration.HasAnyExplicitOption(name);
             }));
-
-    static bool HasExplicitOption(string name)
-    {
-        if (CommandLine.Arguments.Any(pair => pair.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
-            return true;
-
-        if (!File.Exists(Player.ConfPath))
-            return false;
-
-        try
-        {
-            foreach (string rawLine in File.ReadLines(Player.ConfPath))
-            {
-                string line = rawLine.Trim();
-                if (line.Length == 0 || line.StartsWith('#'))
-                    continue;
-
-                int equals = line.IndexOf('=');
-                string optionName = (equals > 0 ? line[..equals] : line).Trim().TrimStart('-');
-                if (optionName.Equals(name, StringComparison.OrdinalIgnoreCase))
-                    return true;
-            }
-        }
-        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
-        {
-            Log.Debug($"Could not inspect explicit network option. path='{Log.SafeValue(Player.ConfPath)}', option='{Log.SafeValue(name)}', error='{Log.SafeValue(ex.Message)}'");
-            return true;
-        }
-
-        return false;
-    }
 }
 
 public static class MediaIpcMessage

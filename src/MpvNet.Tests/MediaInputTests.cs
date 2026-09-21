@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -79,5 +80,44 @@ public sealed class MediaInputTests
         Assert.NotNull(request);
         Assert.Equal("https://example.com/video.mp4?x=1&y=2", request.Input);
         Assert.Equal("Example title", request.Title);
+    }
+
+    [Theory]
+    [InlineData("https://www.youtube.com/watch?v=VIDEO_ID", false, null)]
+    [InlineData("https://youtu.be/VIDEO_ID?si=abc&t=45", false, null)]
+    [InlineData("https://www.youtube.com/playlist?list=PLAYLIST_ID", true, null)]
+    [InlineData("https://www.youtube.com/watch?v=VIDEO_ID&list=PLAYLIST_ID", true, null)]
+    [InlineData("https://www.youtube.com/watch?v=VIDEO_ID&list=PLAYLIST_ID&index=3", true, 3)]
+    [InlineData("https://music.youtube.com/watch?v=VIDEO_ID&list=PLAYLIST_ID&index=12", true, 12)]
+    public void YouTubePolicyDetectsExplicitPlaylistIntent(string input, bool expectedPlaylist, int? expectedIndex)
+    {
+        YouTubeUrlInfo info = YouTubeMediaPolicy.Analyze(input);
+
+        Assert.True(info.IsYouTube);
+        Assert.Equal(expectedPlaylist, info.RequestsPlaylist);
+        Assert.Equal(expectedIndex, info.RequestedIndex);
+    }
+
+    [Theory]
+    [InlineData("https://youtube.com.evil.example/watch?v=VIDEO_ID&list=PLAYLIST_ID")]
+    [InlineData("https://example.com/watch?v=VIDEO_ID&list=PLAYLIST_ID")]
+    public void YouTubePolicyRejectsLookalikeHosts(string input)
+    {
+        Assert.False(YouTubeMediaPolicy.Analyze(input).IsYouTube);
+    }
+
+    [Fact]
+    public void LoadfileEnablesNativeExpansionOnlyForExplicitYouTubePlaylist()
+    {
+        const string video = "https://www.youtube.com/watch?v=VIDEO_ID&t=45";
+        const string playlist = "https://www.youtube.com/watch?v=VIDEO_ID&list=PLAYLIST_ID&index=3";
+
+        string[] videoArgs = MainPlayer.BuildLoadfileArgs(video, 0, false);
+        string[] playlistArgs = MainPlayer.BuildLoadfileArgs(playlist, 0, false);
+
+        Assert.DoesNotContain(videoArgs, value => value.Contains("yes-playlist", StringComparison.Ordinal));
+        Assert.Equal(playlist, playlistArgs[1]);
+        Assert.Contains(playlistArgs, value => value.Contains(
+            YouTubeMediaPolicy.NativePlaylistLoadOption, StringComparison.Ordinal));
     }
 }

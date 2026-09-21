@@ -154,6 +154,26 @@ midia principal antes de desistir. Playlists locais expandidas com sucesso
 enviam seus itens individualmente por `loadfile`, permitindo opções por item
 sem transformar um arquivo local em stream de rede.
 
+## YouTube e playlists remotas
+
+O `ytdl_hook` do mpv atual chama o extrator com `--no-playlist` por padrão. O
+frontend só acrescenta a opção local
+`ytdl-raw-options-append=yes-playlist=` quando `YouTubeMediaPolicy` encontra
+intenção explícita de coleção por meio de um parâmetro `list=` em host legítimo
+do YouTube. A URL original, inclusive `v=`, `index=`, parâmetros desconhecidos
+e fragmento, permanece como um único argumento de `loadfile`.
+
+Não existe playlist paralela em C#. Com `yes-playlist`, o hook nativo recebe o
+JSON plano do yt-dlp, cria a playlist do mpv e sua implementação atual compara
+`index=` e `v=` com as entradas retornadas para escolher o item inicial. Assim,
+`playlist-next`, `playlist-prev`, avanço automático e SMTC continuam operando
+sobre a mesma fila nativa. Vídeos sem `list=` não recebem a opção de expansão.
+
+Essa decisão foi confrontada em 2026-09-21 com o manual e o `ytdl_hook.lua`
+atuais do mpv. A validação local usou yt-dlp `2026.08.19`; expansão e posição
+reais continuam dependentes da resposta externa do YouTube e devem ser
+revalidadas manualmente antes de uma release.
+
 ---
 
 # Compatibilidade

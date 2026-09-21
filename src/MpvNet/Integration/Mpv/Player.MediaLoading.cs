@@ -205,6 +205,14 @@ public partial class MainPlayer
                 ? "force-media-title=" + EscapeLoadfileOption(title)
                 : options + ",force-media-title=" + EscapeLoadfileOption(title);
 
+        if (YouTubeMediaPolicy.ShouldEnableNativePlaylist(file) &&
+            !MpvOptionConfiguration.HasAnyExplicitOption("ytdl-raw-options", "ytdl-raw-options-append"))
+        {
+            options = string.IsNullOrEmpty(options)
+                ? YouTubeMediaPolicy.NativePlaylistLoadOption
+                : options + "," + YouTubeMediaPolicy.NativePlaylistLoadOption;
+        }
+
         if (!string.IsNullOrEmpty(options))
             return ["loadfile", file, mode, LoadfileOptionsInsertionIndex, options];
 

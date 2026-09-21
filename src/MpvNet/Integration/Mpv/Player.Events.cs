@@ -127,13 +127,5 @@ public partial class MainPlayer
     }
 
     internal static bool IsYouTubeUrl(string path)
-    {
-        if (!Uri.TryCreate(path, UriKind.Absolute, out Uri? uri))
-            return false;
-
-        return uri.Host.Equals("youtube.com", StringComparison.OrdinalIgnoreCase) ||
-            uri.Host.Equals("www.youtube.com", StringComparison.OrdinalIgnoreCase) ||
-            uri.Host.Equals("youtu.be", StringComparison.OrdinalIgnoreCase) ||
-            uri.Host.Equals("www.youtu.be", StringComparison.OrdinalIgnoreCase);
-    }
+        => YouTubeMediaPolicy.Analyze(path).IsYouTube;
 }
