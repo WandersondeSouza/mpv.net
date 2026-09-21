@@ -37,18 +37,24 @@ public partial class MainPlayer
         int failedPosition = GetPropertyInt("playlist-pos");
         int playlistCount = GetPropertyInt("playlist-count");
         bool playbackFailed = reason == mpv_end_file_reason.MPV_END_FILE_REASON_ERROR;
+        StreamingFailureDiagnostic? streamingDiagnostic = playbackFailed && FileTypes.IsStreamingUrl(failedPath)
+            ? _lastStreamingFailure ?? StreamingFailureDiagnostics.FromMpvError(errorText)
+            : null;
+        bool reconnectScheduled = playbackFailed &&
+            TryScheduleLiveStreamRecovery(failedPath, playlistCount, streamingDiagnostic);
         Log.Debug($"mpv end-file event. reason={reason}, error={data.EndFileError}, errorText='{errorText}', path='{Log.SafeValue(failedPath)}', playlistPos={failedPosition}, playlistCount={playlistCount}");
 
         if (playbackFailed)
         {
-            Log.Error($"Media playback failed; continuing with the next playlist item when available. error='{errorText}', path='{Log.SafeValue(failedPath)}', playlistPos={failedPosition}, playlistCount={playlistCount}");
-            SchedulePlaybackErrorRecovery(failedPosition, failedPath);
+            string recovery = reconnectScheduled ? "bounded live reconnect" : "next playlist item when available";
+            Log.Error($"Media playback failed. recovery='{recovery}', error='{errorText}', path='{Log.SafeValue(failedPath)}', playlistPos={failedPosition}, playlistCount={playlistCount}");
+            if (!reconnectScheduled)
+                SchedulePlaybackErrorRecovery(failedPosition, failedPath);
         }
 
         if (playbackFailed && FileTypes.IsStreamingUrl(failedPath))
         {
-            StreamingFailureDiagnostic diagnostic = _lastStreamingFailure ??
-                StreamingFailureDiagnostics.FromMpvError(errorText);
+            StreamingFailureDiagnostic diagnostic = streamingDiagnostic!;
             Log.Error($"Streaming playback failure. category={diagnostic.Category}; component='{diagnostic.Component}'; original='{diagnostic.OriginalMessage}'; action='{diagnostic.SuggestedAction}'; path='{Log.SafeValue(failedPath)}'");
         }
 
@@ -69,6 +75,7 @@ public partial class MainPlayer
         // the playlist. A new start-file means playback is active again.
         FileEnded = false;
         _lastStreamingFailure = null;
+        _currentMediaWasLoaded = false;
         Path = GetPropertyString("path");
         NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(Path);
         Log.Debug($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}, cacheKind={resolution.Kind}, cacheProfile={resolution.Profile}, cacheEnabled={resolution.IsEnabled}");
@@ -102,6 +109,7 @@ public partial class MainPlayer
     protected override void OnFileLoaded()
     {
         Duration = GetSafeDuration();
+        _currentMediaWasLoaded = true;
         Log.Debug($"mpv file-loaded event. path='{Log.SafeValue(GetPropertyString("path"))}', duration={Duration}, mediaTitle='{Log.SafeValue(GetPropertyString("media-title"))}'");
 
         if (App.StartSize == "video")
@@ -110,6 +118,74 @@ public partial class MainPlayer
         SchedulePlayerTask(_ => UpdateTracks());
 
         base.OnFileLoaded();
+    }
+
+    bool TryScheduleLiveStreamRecovery(
+        string failedPath,
+        int playlistCount,
+        StreamingFailureDiagnostic? diagnostic)
+    {
+        NetworkMediaKind kind = MediaInputClassifier.Classify(failedPath).NetworkKind;
+        long generation;
+        LiveStreamRecoveryDecision decision;
+
+        lock (_mediaLoadStateLock)
+        {
+            generation = _mediaLoadGeneration;
+            decision = LiveStreamRecoveryPolicy.Evaluate(
+                kind,
+                _currentMediaWasLoaded,
+                Duration,
+                playlistCount,
+                diagnostic,
+                _liveReconnectAttempts);
+            if (!decision.ShouldRetry || _scheduledLiveReconnectGeneration != 0)
+                return false;
+
+            _liveReconnectAttempts = decision.Attempt;
+            _scheduledLiveReconnectGeneration = generation;
+        }
+
+        Log.Error($"Transient live stream failure; reconnect scheduled. kind={kind}, attempt={decision.Attempt}/{LiveStreamRecoveryPolicy.MaximumAttempts}, delaySeconds={decision.Delay.TotalSeconds:0}, category={diagnostic!.Category}, path='{Log.SafeValue(failedPath)}'");
+        Task delayedReconnect = Task.Run(async () =>
+        {
+            try
+            {
+                await Task.Delay(decision.Delay, PlayerCancellationToken);
+                SchedulePlayerTask(_ =>
+                {
+                    try
+                    {
+                        lock (_mediaLoadStateLock)
+                        {
+                            if (_mediaLoadGeneration != generation)
+                                return;
+
+                            string currentPath = GetPropertyString("path");
+                            if (string.IsNullOrWhiteSpace(currentPath) ||
+                                GetPlaylistPathKey(currentPath) != GetPlaylistPathKey(failedPath))
+                            {
+                                return;
+                            }
+
+                            Log.Error($"Retrying transient live stream. kind={kind}, attempt={decision.Attempt}/{LiveStreamRecoveryPolicy.MaximumAttempts}, path='{Log.SafeValue(failedPath)}'");
+                            SendLoadfile(failedPath, 0, false);
+                        }
+                    }
+                    finally
+                    {
+                        lock (_mediaLoadStateLock)
+                            if (_scheduledLiveReconnectGeneration == generation)
+                                _scheduledLiveReconnectGeneration = 0;
+                    }
+                });
+            }
+            catch (OperationCanceledException) when (PlayerCancellationToken.IsCancellationRequested)
+            {
+            }
+        }, PlayerCancellationToken);
+        TrackEventTask(delayedReconnect);
+        return true;
     }
 
     void ProcessBluRayLogMessage(string msg)

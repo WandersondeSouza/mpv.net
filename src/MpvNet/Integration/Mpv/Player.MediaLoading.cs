@@ -35,11 +35,16 @@ public partial class MainPlayer
             return;
         }
 
+        bool replaceRequested = !append;
+
         if ((DateTime.Now - LastLoad).TotalMilliseconds < 1000)
         {
             Log.Debug("LoadFiles called within 1000 ms of previous load; forcing append mode.");
             append = true;
         }
+
+        if (replaceRequested)
+            BeginNewMediaLoad();
 
         LastLoad = DateTime.Now;
         Log.Debug($"Loading media inputs. count={requests.Count}, source={source}, loadFolder={loadFolder}, append={append}, fallback='{Log.SafeValue(fallbackInput)}', inputs={Log.SafeValues(requests.Select(request => request.Input))}");
@@ -139,6 +144,26 @@ public partial class MainPlayer
         {
             Log.Debug("mpv path property is empty after LoadFiles; setting playlist-pos to 0.");
             SetPropertyInt("playlist-pos", 0);
+        }
+    }
+
+    void BeginNewMediaLoad()
+    {
+        lock (_mediaLoadStateLock)
+        {
+            _mediaLoadGeneration++;
+            _liveReconnectAttempts = 0;
+            _scheduledLiveReconnectGeneration = 0;
+        }
+    }
+
+    public void CancelLiveStreamRecovery()
+    {
+        lock (_mediaLoadStateLock)
+        {
+            _mediaLoadGeneration++;
+            _liveReconnectAttempts = 0;
+            _scheduledLiveReconnectGeneration = 0;
         }
     }
 

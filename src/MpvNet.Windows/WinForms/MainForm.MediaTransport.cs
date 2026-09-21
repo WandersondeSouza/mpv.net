@@ -46,6 +46,7 @@ public partial class MainForm
                 Player.CommandV("set", "pause", "yes");
                 break;
             case MediaTransportCommand.Stop:
+                Player.CancelLiveStreamRecovery();
                 Player.CommandV("stop");
                 break;
             case MediaTransportCommand.Next:

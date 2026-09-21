@@ -151,6 +151,13 @@ nao recebem opcoes automaticas de rede. HTTP progressivo, HLS/DASH, arquivos
 FTP/SFTP e transmissao ao vivo (RTSP/RTMP/UDP/TCP) usam limites diferentes.
 RTSP nao recebe `network-timeout`, pois essa opcao pode quebrar o transporte.
 
+Em falha transitória comprovada, streams contínuos RTSP, RTMP, SRT, UDP e TCP
+podem tentar reconexão até três vezes, com esperas de 1, 2 e 4 segundos. HLS e
+DASH só entram nessa política depois de carregarem como live sem duração finita.
+Arquivos locais, HTTP progressivo, vídeo sob demanda, fim normal e playlists com
+próximo item não são reiniciados. Trocar a mídia, usar Stop ou fechar o player
+cancela a tentativa pendente.
+
 Opcoes explicitamente definidas no `mpv.conf` ou na linha de comando tem
 precedencia sobre os valores automaticos. O diretorio temporario do cache
 continua em `%LOCALAPPDATA%\mpv.net\Cache`, mas `cache` e `cache-on-disk` nao

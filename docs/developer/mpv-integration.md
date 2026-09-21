@@ -203,6 +203,15 @@ JavaScript/EJS, PO Token, impersonation, TLS, protocolo, demuxer e playlist;
 sem evidência, permanece `Unknown`. Queries de URL e valores de cookies,
 Authorization, sessão, assinatura e token são removidos antes desse resumo.
 
+A recuperação automática é deliberadamente limitada. Somente uma falha
+classificada como transitória agenda reload do mesmo item: no máximo três
+tentativas com backoff de 1, 2 e 4 segundos para RTSP/RTMP/SRT/UDP/TCP, ou para
+HLS/DASH que já carregou sem duração finita. A fila deve ter no máximo um item;
+se houver próximo item, permanece o avanço já existente. Uma geração de mídia e
+a fila serial de tarefas impedem retry da mídia anterior, duas reproduções
+concorrentes e trabalho posterior ao fechamento. Stop e nova carga invalidam a
+geração pendente.
+
 ---
 
 # Compatibilidade
