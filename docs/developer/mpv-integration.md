@@ -170,9 +170,11 @@ JSON plano do yt-dlp, cria a playlist do mpv e sua implementação atual compara
 sobre a mesma fila nativa. Vídeos sem `list=` não recebem a opção de expansão.
 
 Essa decisão foi confrontada em 2026-09-21 com o manual e o `ytdl_hook.lua`
-atuais do mpv. A validação local usou yt-dlp `2026.08.19`; expansão e posição
-reais continuam dependentes da resposta externa do YouTube e devem ser
-revalidadas manualmente antes de uma release.
+atuais do mpv. A validação local usou yt-dlp `2026.08.19` e uma playlist pública
+de 31 itens: o hook recebeu `--yes-playlist`, registrou a correspondência do
+vídeo solicitado, definiu `playlist-start=2` e o mpv expôs `playlist-count=31`,
+`playlist-pos=2` e o vídeo da URL como item atual. Como a resposta vem de um
+serviço externo, essa prova deve ser repetida antes de uma release.
 
 ## Diagnóstico da cadeia online
 

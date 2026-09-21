@@ -79,7 +79,7 @@ internal static partial class OnlineMediaDiagnostics
         (string Name, string Command, string Argument, Version Minimum, bool EnabledByDefault) runtime)
     {
         ExecutableProbeResult probe = Probe(runtime.Command, runtime.Argument);
-        string? version = TryParseVersion(probe.Output, out Version? parsed) ? parsed!.ToString() : null;
+        string? version = TryParseVersion(probe.Output, out Version? parsed) ? parsed?.ToString() : null;
         return new(runtime.Name, runtime.Command, version, probe.Succeeded, probe.Succeeded && parsed >= runtime.Minimum,
             runtime.EnabledByDefault);
     }
@@ -121,15 +121,19 @@ internal static partial class OnlineMediaDiagnostics
             }
             catch (OperationCanceledException)
             {
+                string failure = "probe timed out after 5 seconds";
                 try
                 {
-                    process.Kill(true);
+                    if (!process.HasExited)
+                        process.Kill(true);
+                    process.WaitForExit();
                 }
-                catch (InvalidOperationException)
+                catch (Exception ex) when (ex is InvalidOperationException or System.ComponentModel.Win32Exception)
                 {
+                    failure += $"; process termination failed: {ex.Message}";
                 }
 
-                return new(true, null, "", "probe timed out after 5 seconds");
+                return new(true, null, "", failure);
             }
 
             string output = string.Join(Environment.NewLine, new[]

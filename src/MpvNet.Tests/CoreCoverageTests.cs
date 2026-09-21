@@ -144,14 +144,16 @@ public sealed class RuntimeComponentTests
 
         JavaScriptRuntimeCapability? selected = OnlineMediaDiagnostics.SelectPreferredRuntime(runtimes);
 
-        Assert.Equal("Deno", selected!.Name);
+        Assert.NotNull(selected);
+        Assert.Equal("Deno", selected.Name);
     }
 
     [Fact]
     public void OnlineMediaDiagnosticDoesNotAcceptSensitiveInputs()
     {
-        var parameters = typeof(OnlineMediaDiagnostics).GetMethod(nameof(OnlineMediaDiagnostics.BuildReport))!
-            .GetParameters();
+        var method = typeof(OnlineMediaDiagnostics).GetMethod(nameof(OnlineMediaDiagnostics.BuildReport));
+        Assert.NotNull(method);
+        var parameters = method.GetParameters();
 
         Assert.Equal([typeof(ComponentResolutionResult), typeof(ComponentResolutionResult)],
             parameters.Select(parameter => parameter.ParameterType));

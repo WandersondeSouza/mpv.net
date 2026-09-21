@@ -22,7 +22,7 @@ public sealed class StreamingFailureDiagnosticsTests
         StreamingFailureDiagnostic? diagnostic = StreamingFailureDiagnostics.Classify("test", message);
 
         Assert.NotNull(diagnostic);
-        Assert.Equal(category, diagnostic!.Category);
+        Assert.Equal(category, diagnostic.Category);
         Assert.Equal(transient, diagnostic.IsLikelyTransient);
     }
 

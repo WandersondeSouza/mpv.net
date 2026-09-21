@@ -32,6 +32,9 @@ public partial class MainPlayer
     internal override void OnEndFile(MpvEventSnapshot data)
     {
         mpv_end_file_reason reason = (mpv_end_file_reason)data.EndFileReason;
+        if (reason == mpv_end_file_reason.MPV_END_FILE_REASON_STOP)
+            CancelLiveStreamRecovery();
+
         string errorText = GetError((mpv_error)data.EndFileError);
         string failedPath = GetPropertyString("path");
         int failedPosition = GetPropertyInt("playlist-pos");
@@ -54,7 +57,8 @@ public partial class MainPlayer
 
         if (playbackFailed && FileTypes.IsStreamingUrl(failedPath))
         {
-            StreamingFailureDiagnostic diagnostic = streamingDiagnostic!;
+            StreamingFailureDiagnostic diagnostic = streamingDiagnostic ??
+                StreamingFailureDiagnostics.FromMpvError(errorText);
             Log.Error($"Streaming playback failure. category={diagnostic.Category}; component='{diagnostic.Component}'; original='{diagnostic.OriginalMessage}'; action='{diagnostic.SuggestedAction}'; path='{Log.SafeValue(failedPath)}'");
         }
 
@@ -146,7 +150,8 @@ public partial class MainPlayer
             _scheduledLiveReconnectGeneration = generation;
         }
 
-        Log.Error($"Transient live stream failure; reconnect scheduled. kind={kind}, attempt={decision.Attempt}/{LiveStreamRecoveryPolicy.MaximumAttempts}, delaySeconds={decision.Delay.TotalSeconds:0}, category={diagnostic!.Category}, path='{Log.SafeValue(failedPath)}'");
+        StreamingFailureCategory category = diagnostic?.Category ?? StreamingFailureCategory.Unknown;
+        Log.Error($"Transient live stream failure; reconnect scheduled. kind={kind}, attempt={decision.Attempt}/{LiveStreamRecoveryPolicy.MaximumAttempts}, delaySeconds={decision.Delay.TotalSeconds:0}, category={category}, path='{Log.SafeValue(failedPath)}'");
         Task delayedReconnect = Task.Run(async () =>
         {
             try
