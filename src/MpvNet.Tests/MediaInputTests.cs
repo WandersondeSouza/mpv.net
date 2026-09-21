@@ -8,6 +8,21 @@ namespace MpvNet.Tests;
 
 public sealed class MediaInputTests
 {
+    public static TheoryData<string> MultiProviderUrls => new()
+    {
+        "https://www.bilibili.com/video/BV_TEST?p=2&from=search",
+        "https://space.bilibili.com/123/channel/collectiondetail?sid=456&ctype=0",
+        "https://www.nicovideo.jp/watch/sm_TEST?from=日本語",
+        "https://tv.naver.com/v/TEST?query=한국어",
+        "https://www.dailymotion.com/video/TEST?playlist=LIST#français",
+        "https://www.douyin.com/video/TEST?previous_page=web_code_link",
+        "https://www.douyu.com/TEST?rid=直播",
+        "https://www.twitch.tv/example?collection=TEST",
+        "https://vimeo.com/123456789?share=copy",
+        "https://soundcloud.com/example/track?in=example/sets/list",
+        "https://media.example.invalid/watch/新しい?future=a%2Bb%3D%3D#章"
+    };
+
     public static TheoryData<string> PreservedUrls => new()
     {
         "https://www.youtube.com/watch?v=VIDEO_ID",
@@ -31,6 +46,51 @@ public sealed class MediaInputTests
         Assert.NotNull(request);
         Assert.Equal(input, request.Input);
         Assert.Equal(MediaInputSource.CommandLine, request.Source);
+    }
+
+    [Theory]
+    [MemberData(nameof(MultiProviderUrls))]
+    public void GenericOnlinePipelinePreservesProviderAndFutureExtractorUrls(string input)
+    {
+        MediaLoadRequest? request = MediaInputNormalizer.Normalize(
+            input, MediaInputSource.InterProcessMessage);
+        MediaInputClassification classification = MediaInputClassifier.Classify(input);
+        string payload = MediaIpcMessage.Serialize("single", [input]);
+        bool parsed = MediaIpcMessage.TryParse(payload, out string mode, out string[] ipcArguments);
+        string[] loadfileArguments = MainPlayer.BuildLoadfileArgs(input, 0, false);
+
+        Assert.NotNull(request);
+        Assert.Equal(input, request.Input);
+        Assert.Equal(NetworkMediaKind.OnlineResolver, classification.NetworkKind);
+        Assert.True(parsed);
+        Assert.Equal("single", mode);
+        Assert.Equal([input], ipcArguments);
+        Assert.Equal(input, loadfileArguments[1]);
+        Assert.DoesNotContain(loadfileArguments, value =>
+            value.Contains("yes-playlist", StringComparison.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("https://cdn.example.com/video.mp4?token=SECRET", NetworkMediaKind.HttpProgressive)]
+    [InlineData("https://cdn.example.com/audio.flac", NetworkMediaKind.HttpProgressive)]
+    [InlineData("https://cdn.example.com/live.m3u8?token=SECRET", NetworkMediaKind.Hls)]
+    [InlineData("https://cdn.example.com/manifest.mpd", NetworkMediaKind.Dash)]
+    [InlineData("https://future.example.com/media/opaque-id", NetworkMediaKind.OnlineResolver)]
+    public void HttpClassificationKeepsDirectMediaSeparateFromResolverPages(
+        string input,
+        NetworkMediaKind expected)
+    {
+        Assert.Equal(expected, MediaInputClassifier.Classify(input).NetworkKind);
+    }
+
+    [Theory]
+    [MemberData(nameof(MultiProviderUrls))]
+    public void ClipboardPreservesRegionalOnlineUrls(string input)
+    {
+        MediaLoadRequest request = Assert.Single(ClipboardMediaParser.ParseText(input));
+
+        Assert.Equal(input, request.Input);
+        Assert.Equal(MediaInputSource.Clipboard, request.Source);
     }
 
     [Theory]

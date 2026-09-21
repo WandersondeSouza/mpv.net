@@ -109,6 +109,12 @@ public readonly record struct MediaInputClassification(
 
 public static class MediaInputClassifier
 {
+    static readonly HashSet<string> DirectHttpMediaExtensions = FileTypes.DefaultVideoExts
+        .Concat(FileTypes.DefaultAudioExts)
+        .Concat(FileTypes.DefaultImageExts)
+        .Concat(FileTypes.Playlist)
+        .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
     public static MediaInputClassification Classify(string? input)
     {
         if (string.IsNullOrWhiteSpace(input) || input == "-")
@@ -129,9 +135,9 @@ public static class MediaInputClassifier
         string path = uri.AbsolutePath;
         NetworkMediaKind kind = scheme switch
         {
-            "http" or "https" when YouTubeMediaPolicy.Analyze(value).IsYouTube => NetworkMediaKind.OnlineResolver,
             "http" or "https" when path.EndsWith(".m3u8", StringComparison.OrdinalIgnoreCase) => NetworkMediaKind.Hls,
             "http" or "https" when path.EndsWith(".mpd", StringComparison.OrdinalIgnoreCase) => NetworkMediaKind.Dash,
+            "http" or "https" when !HasDirectHttpMediaExtension(path) => NetworkMediaKind.OnlineResolver,
             "http" or "https" => NetworkMediaKind.HttpProgressive,
             "ftp" or "ftps" => NetworkMediaKind.FtpFile,
             "sftp" => NetworkMediaKind.SftpFile,
@@ -142,6 +148,12 @@ public static class MediaInputClassifier
         };
 
         return new(true, true, kind, scheme);
+    }
+
+    static bool HasDirectHttpMediaExtension(string path)
+    {
+        string extension = Path.GetExtension(path).TrimStart('.');
+        return extension.Length > 0 && DirectHttpMediaExtensions.Contains(extension);
     }
 }
 
