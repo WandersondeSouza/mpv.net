@@ -212,6 +212,14 @@ a fila serial de tarefas impedem retry da mídia anterior, duas reproduções
 concorrentes e trabalho posterior ao fechamento. Stop e nova carga invalidam a
 geração pendente.
 
+No caminho de `loadfile`, as opções explícitas da linha de comando e do
+`mpv.conf` são materializadas uma vez por item. A mesma resolução é reutilizada
+para log e construção do comando, evitando a leitura anterior do arquivo para
+cada opção de cache e a dupla classificação da mesma URL. URLs legítimas do
+YouTube recebem o tipo `OnlineResolver`, com cache inicial conservador, em vez
+de serem confundidas com HTTP progressivo; o protocolo final continua sob
+controle do ytdl hook, yt-dlp e mpv.
+
 ---
 
 # Compatibilidade

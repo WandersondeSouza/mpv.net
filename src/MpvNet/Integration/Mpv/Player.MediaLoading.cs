@@ -200,7 +200,11 @@ public partial class MainPlayer
 
     void SendLoadfile(string file, int index, bool append, string? title = null)
     {
-        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(file);
+        MediaInputClassification classification = MediaInputClassifier.Classify(file);
+        IReadOnlySet<string> explicitOptions = classification.IsNetwork
+            ? MpvOptionConfiguration.GetExplicitOptions()
+            : MpvOptionConfiguration.EmptyOptions;
+        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(classification, explicitOptions);
 
         if (resolution.IsEnabled)
             Log.Debug($"Applying network cache policy. kind={resolution.Kind}, profile={resolution.Profile}, path='{Log.SafeValue(file)}', options='{resolution.Options}'");
@@ -210,7 +214,7 @@ public partial class MainPlayer
         else
             Log.Debug($"Sending loadfile append to mpv: '{Log.SafeValue(file)}'");
 
-        CommandV(BuildLoadfileArgs(file, index, append, title));
+        CommandV(BuildLoadfileArgs(file, index, append, title, resolution, explicitOptions));
     }
 
     public static bool ShouldUseAutomaticStreamingOptions(string file) =>
@@ -221,8 +225,23 @@ public partial class MainPlayer
 
     public static string[] BuildLoadfileArgs(string file, int index, bool append, string? title)
     {
+        MediaInputClassification classification = MediaInputClassifier.Classify(file);
+        IReadOnlySet<string> explicitOptions = classification.IsNetwork
+            ? MpvOptionConfiguration.GetExplicitOptions()
+            : MpvOptionConfiguration.EmptyOptions;
+        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(classification, explicitOptions);
+        return BuildLoadfileArgs(file, index, append, title, resolution, explicitOptions);
+    }
+
+    static string[] BuildLoadfileArgs(
+        string file,
+        int index,
+        bool append,
+        string? title,
+        NetworkCacheResolution resolution,
+        IReadOnlySet<string> explicitOptions)
+    {
         string mode = index == 0 && !append ? "replace" : "append";
-        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(file);
         string options = resolution.Options;
 
         if (!string.IsNullOrWhiteSpace(title))
@@ -231,7 +250,8 @@ public partial class MainPlayer
                 : options + ",force-media-title=" + EscapeLoadfileOption(title);
 
         if (YouTubeMediaPolicy.ShouldEnableNativePlaylist(file) &&
-            !MpvOptionConfiguration.HasAnyExplicitOption("ytdl-raw-options", "ytdl-raw-options-append"))
+            !MpvOptionConfiguration.IsExplicit(explicitOptions, "ytdl-raw-options") &&
+            !MpvOptionConfiguration.IsExplicit(explicitOptions, "ytdl-raw-options-append"))
         {
             options = string.IsNullOrEmpty(options)
                 ? YouTubeMediaPolicy.NativePlaylistLoadOption

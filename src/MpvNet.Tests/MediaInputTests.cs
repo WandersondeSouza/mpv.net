@@ -107,6 +107,34 @@ public sealed class MediaInputTests
     }
 
     [Fact]
+    public void YouTubeUsesResolverCacheClassificationInsteadOfProgressiveHttp()
+    {
+        MediaInputClassification classification = MediaInputClassifier.Classify(
+            "https://www.youtube.com/watch?v=VIDEO_ID");
+
+        Assert.Equal(NetworkMediaKind.OnlineResolver, classification.NetworkKind);
+        Assert.Contains("demuxer-max-bytes=64MiB", NetworkCachePolicy.Resolve(
+            "https://www.youtube.com/watch?v=VIDEO_ID", new HashSet<string>()).Options,
+            StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void ExplicitOptionsAreParsedOnceAndOverrideAutomaticPolicy()
+    {
+        HashSet<string> explicitOptions = MpvOptionConfiguration.ParseExplicitOptions(
+            [new StringPair("cache-pause-wait", "9")],
+            ["# ignored", "no-cache", "demuxer-max-bytes=32MiB"]);
+
+        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(
+            "https://example.com/video.mp4", explicitOptions);
+
+        Assert.Contains("cache-pause-initial=yes", resolution.Options, StringComparison.Ordinal);
+        Assert.DoesNotContain("cache=yes", resolution.Options, StringComparison.Ordinal);
+        Assert.DoesNotContain("cache-pause-wait", resolution.Options, StringComparison.Ordinal);
+        Assert.DoesNotContain("demuxer-max-bytes", resolution.Options, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void LoadfileEnablesNativeExpansionOnlyForExplicitYouTubePlaylist()
     {
         const string video = "https://www.youtube.com/watch?v=VIDEO_ID&t=45";

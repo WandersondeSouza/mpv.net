@@ -26,6 +26,7 @@ public enum NetworkMediaKind
     Rtsp,
     Rtmp,
     DatagramLive,
+    OnlineResolver,
     GenericNetwork
 }
 
@@ -128,6 +129,7 @@ public static class MediaInputClassifier
         string path = uri.AbsolutePath;
         NetworkMediaKind kind = scheme switch
         {
+            "http" or "https" when YouTubeMediaPolicy.Analyze(value).IsYouTube => NetworkMediaKind.OnlineResolver,
             "http" or "https" when path.EndsWith(".m3u8", StringComparison.OrdinalIgnoreCase) => NetworkMediaKind.Hls,
             "http" or "https" when path.EndsWith(".mpd", StringComparison.OrdinalIgnoreCase) => NetworkMediaKind.Dash,
             "http" or "https" => NetworkMediaKind.HttpProgressive,
@@ -185,37 +187,55 @@ public sealed record NetworkCacheResolution(NetworkMediaKind Kind, string Profil
 
 public static class MpvOptionConfiguration
 {
-    public static bool HasAnyExplicitOption(params string[] optionNames)
+    internal static IReadOnlySet<string> EmptyOptions { get; } =
+        new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+    public static HashSet<string> GetExplicitOptions()
     {
-        HashSet<string> names = new(optionNames, StringComparer.OrdinalIgnoreCase);
-        if (CommandLine.Arguments.Any(pair => names.Contains(pair.Name)))
-            return true;
-
-        if (!File.Exists(Player.ConfPath))
-            return false;
-
-        try
+        IEnumerable<string> confLines = [];
+        if (File.Exists(Player.ConfPath))
         {
-            foreach (string rawLine in File.ReadLines(Player.ConfPath))
+            try
             {
-                string line = rawLine.Trim();
-                if (line.Length == 0 || line.StartsWith('#'))
-                    continue;
-
-                int equals = line.IndexOf('=');
-                string optionName = (equals > 0 ? line[..equals] : line).Trim().TrimStart('-');
-                if (names.Contains(optionName))
-                    return true;
+                confLines = File.ReadAllLines(Player.ConfPath);
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                Log.Debug($"Could not inspect explicit mpv options. path='{Log.SafeValue(Player.ConfPath)}', error='{Log.SafeValue(ex.Message)}'");
+                return new(StringComparer.OrdinalIgnoreCase) { "*" };
             }
         }
-        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+
+        return ParseExplicitOptions(CommandLine.Arguments, confLines);
+    }
+
+    internal static HashSet<string> ParseExplicitOptions(
+        IEnumerable<StringPair> commandLineArguments,
+        IEnumerable<string> confLines)
+    {
+        HashSet<string> result = new(StringComparer.OrdinalIgnoreCase);
+        foreach (StringPair pair in commandLineArguments)
+            result.Add(pair.Name);
+
+        foreach (string rawLine in confLines)
         {
-            Log.Debug($"Could not inspect explicit mpv option. path='{Log.SafeValue(Player.ConfPath)}', options='{string.Join(',', names)}', error='{Log.SafeValue(ex.Message)}'");
-            return true;
+            string line = rawLine.Trim();
+            if (line.Length == 0 || line.StartsWith('#'))
+                continue;
+
+            int equals = line.IndexOf('=');
+            string optionName = (equals > 0 ? line[..equals] : line).Trim().TrimStart('-');
+            if (optionName.StartsWith("no-", StringComparison.OrdinalIgnoreCase))
+                optionName = optionName[3..];
+            if (optionName.Length > 0)
+                result.Add(optionName);
         }
 
-        return false;
+        return result;
     }
+
+    internal static bool IsExplicit(IReadOnlySet<string> options, string name) =>
+        options.Contains("*") || options.Contains(name);
 }
 
 public static class NetworkCachePolicy
@@ -231,6 +251,19 @@ public static class NetworkCachePolicy
     public static NetworkCacheResolution Resolve(string input)
     {
         MediaInputClassification classification = MediaInputClassifier.Classify(input);
+        IReadOnlySet<string> explicitOptions = classification.IsNetwork
+            ? MpvOptionConfiguration.GetExplicitOptions()
+            : MpvOptionConfiguration.EmptyOptions;
+        return Resolve(classification, explicitOptions);
+    }
+
+    internal static NetworkCacheResolution Resolve(string input, IReadOnlySet<string> explicitOptions)
+        => Resolve(MediaInputClassifier.Classify(input), explicitOptions);
+
+    internal static NetworkCacheResolution Resolve(
+        MediaInputClassification classification,
+        IReadOnlySet<string> explicitOptions)
+    {
         if (!App.AutomaticNetworkCache || !classification.IsNetwork)
             return new(classification.NetworkKind, App.NetworkCacheProfile, "");
 
@@ -252,10 +285,11 @@ public static class NetworkCachePolicy
                 "cache=yes,cache-on-disk=yes,demuxer-max-bytes=128MiB",
             NetworkMediaKind.Rtsp or NetworkMediaKind.Rtmp or NetworkMediaKind.DatagramLive =>
                 "cache=yes,cache-pause-initial=no,cache-pause-wait=1,demuxer-max-bytes=32MiB",
+            NetworkMediaKind.OnlineResolver => "cache=yes,cache-pause-initial=no,demuxer-max-bytes=64MiB",
             _ => "cache=yes,cache-pause-initial=no,demuxer-max-bytes=64MiB"
         };
 
-        return new(classification.NetworkKind, profile, RemoveExplicitOptions(options));
+        return new(classification.NetworkKind, profile, RemoveExplicitOptions(options, explicitOptions));
     }
 
     public static string NormalizeProfile(string? profile) =>
@@ -263,13 +297,13 @@ public static class NetworkCachePolicy
             ? profile.Trim().ToLowerInvariant()
             : "balanced";
 
-    static string RemoveExplicitOptions(string options) =>
+    static string RemoveExplicitOptions(string options, IReadOnlySet<string> explicitOptions) =>
         string.Join(',', options.Split(',', StringSplitOptions.RemoveEmptyEntries)
             .Where(option =>
             {
                 int equals = option.IndexOf('=');
                 string name = equals > 0 ? option[..equals] : option;
-                return !NetworkOptions.Contains(name) || !MpvOptionConfiguration.HasAnyExplicitOption(name);
+                return !NetworkOptions.Contains(name) || !MpvOptionConfiguration.IsExplicit(explicitOptions, name);
             }));
 }
 
