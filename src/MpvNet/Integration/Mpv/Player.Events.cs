@@ -60,6 +60,12 @@ public partial class MainPlayer
             StreamingFailureDiagnostic diagnostic = streamingDiagnostic ??
                 StreamingFailureDiagnostics.FromMpvError(errorText);
             Log.Error($"Streaming playback failure. category={diagnostic.Category}; component='{diagnostic.Component}'; original='{diagnostic.OriginalMessage}'; action='{diagnostic.SuggestedAction}'; path='{Log.SafeValue(failedPath)}'");
+
+            if (!reconnectScheduled)
+            {
+                string message = StreamingFailureDiagnostics.GetUserMessage(diagnostic.Category);
+                CommandV("show-text", message, "5000");
+            }
         }
 
         base.OnEndFile(data);

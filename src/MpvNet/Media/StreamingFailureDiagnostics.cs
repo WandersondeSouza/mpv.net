@@ -33,6 +33,18 @@ public sealed record StreamingFailureDiagnostic(
 
 public static partial class StreamingFailureDiagnostics
 {
+    public static string GetUserMessage(StreamingFailureCategory category) => category switch
+    {
+        StreamingFailureCategory.Authentication => _("This content requires authentication with the source service."),
+        StreamingFailureCategory.RegionalRestriction => _("This content is not available in your region."),
+        StreamingFailureCategory.ContentUnavailable => _("This content is no longer available."),
+        StreamingFailureCategory.Playlist => _("The online playlist could not be loaded."),
+        StreamingFailureCategory.StreamEnded => _("The live stream has ended."),
+        StreamingFailureCategory.UnsupportedProtocol => _("This online media format is not supported."),
+        StreamingFailureCategory.InvalidUrl => _("The online media URL is invalid."),
+        _ => _("The online media could not be loaded.")
+    };
+
     public static StreamingFailureDiagnostic? Classify(string? component, string? message)
     {
         if (string.IsNullOrWhiteSpace(message))

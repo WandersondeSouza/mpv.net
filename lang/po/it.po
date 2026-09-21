@@ -744,6 +744,10 @@ msgstr "Height"
 msgid "Help"
 msgstr "Aiuto"
 
+#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
+msgid "Help the player"
+msgstr "Supporta il player"
+
 msgid "Hermite-weighted averaging (fast)"
 msgstr "Media ponderata Hermite (veloce)"
 
@@ -1462,8 +1466,36 @@ msgstr "Gli appunti non contengono un URL o un file valido."
 msgid "The input editor cannot save duplicate shortcuts with different commands:"
 msgstr "L'editor degli input non può salvare scorciatoie duplicate con comandi diversi:"
 
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:42
+msgid "The live stream has ended."
+msgstr "La trasmissione in diretta è terminata."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:44
+msgid "The online media URL is invalid."
+msgstr "L’URL del contenuto multimediale online non è valido."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:45
+msgid "The online media could not be loaded."
+msgstr "Impossibile caricare il contenuto multimediale online."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:41
+msgid "The online playlist could not be loaded."
+msgstr "Impossibile caricare la playlist online."
+
 msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
 msgstr "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
+msgid "This content is no longer available."
+msgstr "Questo contenuto non è più disponibile."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:39
+msgid "This content is not available in your region."
+msgstr "Questo contenuto non è disponibile nella tua area geografica."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:38
+msgid "This content requires authentication with the source service."
+msgstr "Questo contenuto richiede l’autenticazione al servizio di origine."
 
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:442
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:447
@@ -1473,6 +1505,10 @@ msgstr "Questa funzione è stata rimossa, ma esistono script utente:"
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:451
 msgid "This feature was removed."
 msgstr "Questa funzione è stata rimossa."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:43
+msgid "This online media format is not supported."
+msgstr "Questo formato multimediale online non è supportato."
 
 #: src\MpvNet\App.cs:102 src\MpvNet\App.cs:110
 msgid "Tip: installing Codec Guide can improve codec support and playback."
@@ -2632,7 +2668,3 @@ msgstr "Down"
 msgctxt "Volume"
 msgid "Up"
 msgstr "Up"
-
-#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
-msgid "Help the player"
-msgstr "Supporta il player"

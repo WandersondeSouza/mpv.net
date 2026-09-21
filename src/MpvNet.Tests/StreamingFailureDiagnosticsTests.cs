@@ -45,4 +45,20 @@ public sealed class StreamingFailureDiagnosticsTests
         Assert.DoesNotContain("BearerSecret", sanitized, StringComparison.Ordinal);
         Assert.DoesNotContain("session", sanitized, StringComparison.OrdinalIgnoreCase);
     }
+
+    [Theory]
+    [InlineData(StreamingFailureCategory.Authentication, "This content requires authentication with the source service.")]
+    [InlineData(StreamingFailureCategory.RegionalRestriction, "This content is not available in your region.")]
+    [InlineData(StreamingFailureCategory.ContentUnavailable, "This content is no longer available.")]
+    [InlineData(StreamingFailureCategory.Playlist, "The online playlist could not be loaded.")]
+    [InlineData(StreamingFailureCategory.StreamEnded, "The live stream has ended.")]
+    [InlineData(StreamingFailureCategory.UnsupportedProtocol, "This online media format is not supported.")]
+    [InlineData(StreamingFailureCategory.InvalidUrl, "The online media URL is invalid.")]
+    [InlineData(StreamingFailureCategory.Extractor, "The online media could not be loaded.")]
+    public void MapsDiagnosticsToStableLocalizedMessageIds(
+        StreamingFailureCategory category,
+        string expected)
+    {
+        Assert.Equal(expected, StreamingFailureDiagnostics.GetUserMessage(category));
+    }
 }

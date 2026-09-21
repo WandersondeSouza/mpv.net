@@ -10,6 +10,7 @@ public static class Global
     public static readonly MainPlayer Core = Player;
     public static readonly AppClass App = new AppClass();
 
-    public static string _(string value) => TranslationProvider.Current!.Gettext(value);
-    public static string _p(string context, string value) => TranslationProvider.Current!.GetParticularString(context, value);
+    public static string _(string value) => TranslationProvider.Current?.Gettext(value) ?? value;
+    public static string _p(string context, string value) =>
+        TranslationProvider.Current?.GetParticularString(context, value) ?? value;
 }

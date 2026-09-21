@@ -750,6 +750,10 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
+msgid "Help the player"
+msgstr ""
+
 msgid "Hermite-weighted averaging (fast)"
 msgstr ""
 
@@ -1468,7 +1472,35 @@ msgstr ""
 msgid "The input editor cannot save duplicate shortcuts with different commands:"
 msgstr ""
 
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:42
+msgid "The live stream has ended."
+msgstr ""
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:44
+msgid "The online media URL is invalid."
+msgstr ""
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:45
+msgid "The online media could not be loaded."
+msgstr ""
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:41
+msgid "The online playlist could not be loaded."
+msgstr ""
+
 msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr ""
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
+msgid "This content is no longer available."
+msgstr ""
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:39
+msgid "This content is not available in your region."
+msgstr ""
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:38
+msgid "This content requires authentication with the source service."
 msgstr ""
 
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:442
@@ -1478,6 +1510,10 @@ msgstr ""
 
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:451
 msgid "This feature was removed."
+msgstr ""
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:43
+msgid "This online media format is not supported."
 msgstr ""
 
 #: src\MpvNet\App.cs:102 src\MpvNet\App.cs:110
@@ -2637,8 +2673,4 @@ msgstr ""
 #: src\MpvNet\Utilities\InputHelp.cs:105
 msgctxt "Volume"
 msgid "Up"
-msgstr ""
-
-#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
-msgid "Help the player"
 msgstr ""

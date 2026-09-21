@@ -754,6 +754,10 @@ msgstr "高度"
 msgid "Help"
 msgstr "帮助"
 
+#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
+msgid "Help the player"
+msgstr "帮助播放器"
+
 msgid "Hermite-weighted averaging (fast)"
 msgstr "Hermite体重平均(快)"
 
@@ -1472,8 +1476,36 @@ msgstr "剪贴板不包含有效的 URL 或文件 。"
 msgid "The input editor cannot save duplicate shortcuts with different commands:"
 msgstr "输入编辑器无法保存带有不同命令的重复快捷键 :"
 
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:42
+msgid "The live stream has ended."
+msgstr "直播已结束。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:44
+msgid "The online media URL is invalid."
+msgstr "在线媒体 URL 无效。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:45
+msgid "The online media could not be loaded."
+msgstr "无法加载在线媒体。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:41
+msgid "The online playlist could not be loaded."
+msgstr "无法加载在线播放列表。"
+
 msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
 msgstr "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
+msgid "This content is no longer available."
+msgstr "此内容已不可用。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:39
+msgid "This content is not available in your region."
+msgstr "此内容在您所在的地区不可用。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:38
+msgid "This content requires authentication with the source service."
+msgstr "此内容需要在来源服务中进行身份验证。"
 
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:442
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:447
@@ -1483,6 +1515,10 @@ msgstr "该功能已被移除，但有用户脚本："
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:451
 msgid "This feature was removed."
 msgstr "该功能已被移除。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:43
+msgid "This online media format is not supported."
+msgstr "不支持此在线媒体格式。"
 
 #: src\MpvNet\App.cs:102 src\MpvNet\App.cs:110
 msgid "Tip: installing Codec Guide can improve codec support and playback."
@@ -2642,7 +2678,3 @@ msgstr "Down"
 msgctxt "Volume"
 msgid "Up"
 msgstr "Up"
-
-#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
-msgid "Help the player"
-msgstr "帮助播放器"

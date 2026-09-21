@@ -753,6 +753,10 @@ msgstr "高さ"
 msgid "Help"
 msgstr "ヘルプ"
 
+#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
+msgid "Help the player"
+msgstr "プレーヤーを応援"
+
 msgid "Hermite-weighted averaging (fast)"
 msgstr "ヘルマイト級平均化(高速)"
 
@@ -1471,8 +1475,36 @@ msgstr "クリップボードに有効な URL またはファイルが含まれ�
 msgid "The input editor cannot save duplicate shortcuts with different commands:"
 msgstr "入力エディタは、異なるコマンドで重複ショートカットを保存できません。"
 
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:42
+msgid "The live stream has ended."
+msgstr "ライブ配信は終了しました。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:44
+msgid "The online media URL is invalid."
+msgstr "オンラインメディアのURLが無効です。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:45
+msgid "The online media could not be loaded."
+msgstr "オンラインメディアを読み込めませんでした。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:41
+msgid "The online playlist could not be loaded."
+msgstr "オンラインプレイリストを読み込めませんでした。"
+
 msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
 msgstr "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
+msgid "This content is no longer available."
+msgstr "このコンテンツは利用できなくなりました。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:39
+msgid "This content is not available in your region."
+msgstr "このコンテンツはお住まいの地域では利用できません。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:38
+msgid "This content requires authentication with the source service."
+msgstr "このコンテンツには配信元サービスでの認証が必要です。"
 
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:442
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:447
@@ -1482,6 +1514,10 @@ msgstr "この機能は削除されましたが、ユーザースクリプトが
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:451
 msgid "This feature was removed."
 msgstr "この機能は削除されました。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:43
+msgid "This online media format is not supported."
+msgstr "このオンラインメディア形式はサポートされていません。"
 
 #: src\MpvNet\App.cs:102 src\MpvNet\App.cs:110
 msgid "Tip: installing Codec Guide can improve codec support and playback."
@@ -2641,7 +2677,3 @@ msgstr "Down"
 msgctxt "Volume"
 msgid "Up"
 msgstr "Up"
-
-#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
-msgid "Help the player"
-msgstr "プレーヤーを応援"
