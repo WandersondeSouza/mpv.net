@@ -186,6 +186,13 @@ diagnóstico. Linha de comando, IPC, clipboard, drag-and-drop, diálogo, recente
 e playlists locais convergem nessa política; o sufixo legado `URL|título` é
 interpretado apenas ao reabrir um item de recentes.
 
+O payload IPC aceita somente os modos `single`, `queue` e `command`. A lista de
+argumentos permanece um array JSON, sem `Split`, decode adicional ou
+concatenação por shell; por isso `&`, múltiplos `=`, `%`, Unicode, fragmentos,
+aspas recebidas do Windows e várias URLs preservam o mesmo conteúdo entre a
+primeira e a segunda instância. O formato legado separado por linha continua
+somente como fallback compatível.
+
 ---
 
 # Integração com mpv/libmpv

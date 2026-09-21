@@ -275,8 +275,13 @@ public static class NetworkCachePolicy
 
 public static class MediaIpcMessage
 {
-    public static string Serialize(string mode, IEnumerable<string> arguments) =>
-        JsonSerializer.Serialize(new Payload(1, mode, arguments.ToArray()));
+    public static string Serialize(string mode, IEnumerable<string> arguments)
+    {
+        if (!IsSupportedMode(mode))
+            throw new ArgumentException("Unsupported media IPC mode.", nameof(mode));
+
+        return JsonSerializer.Serialize(new Payload(1, mode, arguments.ToArray()));
+    }
 
     public static bool TryParse(string? value, out string mode, out string[] arguments)
     {
@@ -288,7 +293,7 @@ public static class MediaIpcMessage
         try
         {
             Payload? payload = JsonSerializer.Deserialize<Payload>(value);
-            if (payload?.Version == 1 && !string.IsNullOrWhiteSpace(payload.Mode))
+            if (payload?.Version == 1 && IsSupportedMode(payload.Mode))
             {
                 mode = payload.Mode;
                 arguments = payload.Arguments ?? [];
@@ -305,8 +310,10 @@ public static class MediaIpcMessage
 
         mode = legacy[0];
         arguments = legacy.Skip(1).ToArray();
-        return mode is "single" or "queue" or "command";
+        return IsSupportedMode(mode);
     }
+
+    static bool IsSupportedMode(string? mode) => mode is "single" or "queue" or "command";
 
     sealed record Payload(int Version, string Mode, string[]? Arguments);
 }

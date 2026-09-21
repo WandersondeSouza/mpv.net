@@ -120,4 +120,37 @@ public sealed class MediaInputTests
         Assert.Contains(playlistArgs, value => value.Contains(
             YouTubeMediaPolicy.NativePlaylistLoadOption, StringComparison.Ordinal));
     }
+
+    [Fact]
+    public void IpcRoundTripPreservesSpecialAndMultipleUrls()
+    {
+        string[] inputs =
+        [
+            "https://www.youtube.com/watch?v=VIDEO&list=PLAYLIST&index=3&t=45&future=a=b#chapter",
+            "https://example.com/áudio/节目.m3u8?token=a%2Bb%3D%3D&x=y=z",
+            "\"https://youtu.be/VIDEO?si=abc&t=30\""
+        ];
+
+        string payload = MediaIpcMessage.Serialize("queue", inputs);
+        bool parsed = MediaIpcMessage.TryParse(payload, out string mode, out string[] output);
+
+        Assert.True(parsed);
+        Assert.Equal("queue", mode);
+        Assert.Equal(inputs, output);
+    }
+
+    [Theory]
+    [InlineData("{\"Version\":1,\"Mode\":\"unknown\",\"Arguments\":[]}")]
+    [InlineData("{\"Version\":2,\"Mode\":\"single\",\"Arguments\":[]}")]
+    [InlineData("not-json")]
+    public void IpcParserRejectsUnsupportedPayload(string payload)
+    {
+        Assert.False(MediaIpcMessage.TryParse(payload, out _, out _));
+    }
+
+    [Fact]
+    public void IpcSerializerRejectsUnsupportedMode()
+    {
+        Assert.Throws<ArgumentException>(() => MediaIpcMessage.Serialize("unknown", []));
+    }
 }
