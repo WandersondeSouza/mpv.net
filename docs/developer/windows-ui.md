@@ -101,9 +101,10 @@ e uma cor clara no tema escuro. As mensagens `WM_SETTINGCHANGE` e
 `WM_THEMECHANGED` invalidam os `Icon` em cache e reaplicam os mesmos botões e
 estados quando o tema muda com o player aberto.
 
-A sessão é limpa quando não existe mídia carregada, quando a janela entra em
-fullscreen e durante o fechamento. Ao sair do fullscreen, o snapshot atual é
-publicado novamente. O adapter não usa caminho, query, fragmento ou credencial
+A sessão é limpa quando não existe mídia carregada, durante a transição entre
+`start-file` e `file-loaded`, quando a janela entra em fullscreen e durante o
+fechamento. Ao sair do fullscreen, o snapshot atual é publicado novamente. O
+adapter não usa caminho, query, fragmento ou credencial
 de URL como título, não inventa tags ausentes e atualmente deixa a capa sem
 valor quando não há uma origem local segura.
 

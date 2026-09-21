@@ -67,7 +67,8 @@ public sealed record MediaTransportSnapshot(
 
     public MediaTransportSnapshot Normalize()
     {
-        bool mediaLoaded = IsMediaLoaded && Metadata != null;
+        bool mediaLoaded = IsMediaLoaded
+            && Metadata is { MediaType: not MediaTransportMediaType.Unknown };
         bool enabled = IsEnabled && mediaLoaded;
         TimeSpan duration = IsFiniteNonNegative(Duration) ? Duration : TimeSpan.Zero;
         TimeSpan position = IsFiniteNonNegative(Position) ? Position : TimeSpan.Zero;

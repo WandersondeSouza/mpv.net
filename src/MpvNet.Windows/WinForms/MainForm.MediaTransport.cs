@@ -8,17 +8,17 @@ namespace MpvNet.Windows.WinForms;
 
 public partial class MainForm
 {
-    void Player_StartFile() => RunOnUiThread(() =>
+    void Player_StartFile()
     {
         _mediaTransportMediaLoaded = false;
-        UpdateMediaTransport();
-    });
+        RunOnUiThread(UpdateMediaTransport);
+    }
 
-    void Player_EndFile(LibMpv.mpv_end_file_reason reason) => RunOnUiThread(() =>
+    void Player_EndFile(LibMpv.mpv_end_file_reason reason)
     {
         _mediaTransportMediaLoaded = false;
-        UpdateMediaTransport();
-    });
+        RunOnUiThread(UpdateMediaTransport);
+    }
 
     void Player_Seek() => UpdateMediaTransport();
 

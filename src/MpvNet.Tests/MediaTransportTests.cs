@@ -295,6 +295,24 @@ public sealed class MediaTransportControllerTests
         Assert.Equal(TimeSpan.FromMinutes(2), fake.Published.Last().Position);
     }
 
+    [Fact]
+    public void UnknownMediaTypeIsDisabledBeforePublishing()
+    {
+        var fake = new FakeMediaTransportService();
+        using var controller = new MediaTransportController(fake, _ => { });
+        controller.Initialize(new nint(1));
+        controller.Publish(PlayingSnapshot() with
+        {
+            Metadata = new MediaTransportMetadata("Track", MediaTransportMediaType.Unknown),
+        });
+
+        Assert.NotEmpty(fake.Published);
+        MediaTransportSnapshot published = fake.Published.Last();
+        Assert.False(published.IsEnabled);
+        Assert.False(published.IsMediaLoaded);
+        Assert.Equal(MediaTransportPlaybackStatus.Closed, published.PlaybackStatus);
+    }
+
     static (MediaTransportController Controller, FakeMediaTransportService Service, List<MediaTransportCommandEventArgs> Received)
         CreateController(MediaTransportSnapshot snapshot)
     {

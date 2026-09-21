@@ -332,14 +332,17 @@ Environment.SetEnvironmentVariable("PATH", @"C:\Windows\System32");
 RuntimeComponents.EnsureComponentsFolderOnPath();
 RuntimeComponents.EnsureComponentsFolderOnPath();
 string processPathWithRuntimeComponents = Environment.GetEnvironmentVariable("PATH") ?? "";
-string normalizedComponentsFolder = Path.TrimEndingDirectorySeparator(RuntimeComponents.ComponentsFolder);
+string expectedExecutionFolder = Directory.Exists(RuntimeComponentPaths.CurrentFolder)
+    ? RuntimeComponentPaths.CurrentFolder
+    : RuntimeComponents.ComponentsFolder;
+string normalizedExecutionFolder = Path.TrimEndingDirectorySeparator(expectedExecutionFolder);
 string[] processPathEntries = processPathWithRuntimeComponents
     .Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries)
     .Select(path => Path.TrimEndingDirectorySeparator(path))
     .ToArray();
 bool runtimeComponentsPathConfigured =
-    processPathEntries.FirstOrDefault() == normalizedComponentsFolder &&
-    processPathEntries.Count(path => string.Equals(path, normalizedComponentsFolder, StringComparison.OrdinalIgnoreCase)) == 1;
+    processPathEntries.FirstOrDefault() == normalizedExecutionFolder &&
+    processPathEntries.Count(path => string.Equals(path, normalizedExecutionFolder, StringComparison.OrdinalIgnoreCase)) == 1;
 Environment.SetEnvironmentVariable("PATH", originalProcessPath);
 
 DateTime fixedCleanupDate = new(2026, 6, 2, 12, 0, 0);
