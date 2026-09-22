@@ -6,7 +6,7 @@ using static MpvNet.Native.LibMpv;
 
 namespace MpvNet;
 
-public partial class MpvClient
+public partial class MpvClient : IDisposable
 {
     public event Action<string[]>? ClientMessage;            // client-message      MPV_EVENT_CLIENT_MESSAGE
     public event Action<mpv_log_level, string>? LogMessage;  // log-message         MPV_EVENT_LOG_MESSAGE
@@ -36,6 +36,7 @@ public partial class MpvClient
     readonly object _nativeLifetimeLock = new();
     readonly ReaderWriterLockSlim _nativeLifetimeGate = new(LockRecursionPolicy.NoRecursion);
     bool _acceptingNativeOperations = true;
+    bool _nativeLifetimeGateDisposed;
     long _eventQueueOverflowCount;
 
     internal void BeginShutdown()
@@ -61,28 +62,89 @@ public partial class MpvClient
         return true;
     }
 
-    sealed class NativeOperationLease(ReaderWriterLockSlim gate) : IDisposable
+    sealed class NativeOperationLease : IDisposable
     {
-        public void Dispose() => gate.ExitReadLock();
+        Action? _release;
+
+        public NativeOperationLease(ReaderWriterLockSlim gate) => _release = gate.ExitReadLock;
+
+        public void Dispose() => Interlocked.Exchange(ref _release, null)?.Invoke();
     }
 
     internal void DestroyHandle()
     {
-        BeginShutdown();
-        _nativeLifetimeGate.EnterWriteLock();
-        try
+        lock (_nativeLifetimeLock)
         {
-            nint handle = Handle;
-            if (handle == IntPtr.Zero)
+            if (_nativeLifetimeGateDisposed)
                 return;
 
-            mpv_destroy(handle);
-            Handle = IntPtr.Zero;
+            _acceptingNativeOperations = false;
+            _nativeLifetimeGate.EnterWriteLock();
+            try
+            {
+                nint handle = Handle;
+                if (handle != IntPtr.Zero)
+                    mpv_destroy(handle);
+
+                Handle = IntPtr.Zero;
+            }
+            finally
+            {
+                _nativeLifetimeGate.ExitWriteLock();
+                _nativeLifetimeGate.Dispose();
+                _nativeLifetimeGateDisposed = true;
+                ReleaseManagedSubscriptions();
+            }
         }
-        finally
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposing)
+            return;
+
+        lock (_nativeLifetimeLock)
         {
-            _nativeLifetimeGate.ExitWriteLock();
+            if (_nativeLifetimeGateDisposed)
+                return;
         }
+
+        DestroyHandle();
+    }
+
+    void ReleaseManagedSubscriptions()
+    {
+        ClientMessage = null;
+        LogMessage = null;
+        EndFile = null;
+        Shutdown = null;
+        GetPropertyReply = null;
+        SetPropertyReply = null;
+        CommandReply = null;
+        StartFile = null;
+        FileLoaded = null;
+        VideoReconfig = null;
+        AudioReconfig = null;
+        Seek = null;
+        PlaybackRestart = null;
+        EventQueueOverflow = null;
+
+        lock (PropChangeActions)
+            PropChangeActions.Clear();
+        lock (IntPropChangeActions)
+            IntPropChangeActions.Clear();
+        lock (BoolPropChangeActions)
+            BoolPropChangeActions.Clear();
+        lock (DoublePropChangeActions)
+            DoublePropChangeActions.Clear();
+        lock (StringPropChangeActions)
+            StringPropChangeActions.Clear();
     }
 
     public void EventLoop() => EventLoop(CancellationToken.None);

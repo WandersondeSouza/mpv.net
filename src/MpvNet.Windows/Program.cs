@@ -114,29 +114,36 @@ static class Program
                     }
                 }
 
-                Process[] procs = Process.GetProcessesByName("mpvnet");
-
-                for (int i = 0; i < 20; i++)
+                Process[] processes = Process.GetProcessesByName("mpvnet");
+                try
                 {
-                    foreach (Process proc in procs)
+                    for (int i = 0; i < 20; i++)
                     {
-                        if (proc.MainWindowHandle != IntPtr.Zero)
+                        foreach (Process process in processes)
                         {
-                            WinApi.AllowSetForegroundWindow(proc.Id);
-                            var data = new WinApi.CopyDataStruct();
-                            data.lpData = MediaIpcMessage.Serialize(args2[0], args2.Skip(1));
-                            data.cbData = Encoding.Unicode.GetByteCount(data.lpData) + 2;
-                            WinApi.SendMessage(proc.MainWindowHandle, 0x004A /*WM_COPYDATA*/, IntPtr.Zero, ref data);
+                            if (process.MainWindowHandle != IntPtr.Zero)
+                            {
+                                WinApi.AllowSetForegroundWindow(process.Id);
+                                var data = new WinApi.CopyDataStruct();
+                                data.lpData = MediaIpcMessage.Serialize(args2[0], args2.Skip(1));
+                                data.cbData = Encoding.Unicode.GetByteCount(data.lpData) + 2;
+                                WinApi.SendMessage(process.MainWindowHandle, 0x004A /*WM_COPYDATA*/, IntPtr.Zero, ref data);
 
-                            if (App.IsTerminalAttached)
-                                WinApi.FreeConsole();
+                                if (App.IsTerminalAttached)
+                                    WinApi.FreeConsole();
 
-                            Log.Debug("Command line forwarded to existing instance.");
-                            return;
+                                Log.Debug("Command line forwarded to existing instance.");
+                                return;
+                            }
                         }
-                    }
 
-                    Thread.Sleep(50);
+                        Thread.Sleep(50);
+                    }
+                }
+                finally
+                {
+                    foreach (Process process in processes)
+                        process.Dispose();
                 }
 
                 return;
@@ -164,7 +171,8 @@ static class Program
             else
             {
                 WpfApplication.Init();
-                Application.Run(new WinForms.MainForm());
+                using WinForms.MainForm mainForm = new();
+                Application.Run(mainForm);
             }
 
             if (App.IsTerminalAttached)
@@ -180,7 +188,21 @@ static class Program
         finally
         {
             _applicationCancellation.Cancel();
-            _applicationCancellation.Dispose();
+            try
+            {
+                Player.Destroy();
+            }
+            finally
+            {
+                try
+                {
+                    App.Dispose();
+                }
+                finally
+                {
+                    _applicationCancellation.Dispose();
+                }
+            }
         }
     }
 

@@ -9,16 +9,11 @@ public static class BackgroundTaskRunner
     public static void Run(Action action)
     {
         ArgumentNullException.ThrowIfNull(action);
-
-        Task.Run(() => {
-            try
-            {
-                action();
-            }
-            catch (Exception ex)
-            {
-                Terminal.WriteError(ex);
-            }
+        // Deliberate fire-and-forget: RunAsync observes cancellation and every exception.
+        Task ignoredTask = RunAsync(_ =>
+        {
+            action();
+            return Task.CompletedTask;
         });
     }
 
@@ -28,27 +23,37 @@ public static class BackgroundTaskRunner
         Action<Exception>? exceptionHandler = null)
     {
         ArgumentNullException.ThrowIfNull(operation);
-        Task backgroundTask = RunAsync(operation, cancellationToken, exceptionHandler);
+        // Deliberate fire-and-forget: RunAsync observes cancellation and every exception.
+        Task ignoredTask = RunAsync(operation, cancellationToken, exceptionHandler);
     }
 
-    static async Task RunAsync(
+    public static async Task RunAsync(
         Func<CancellationToken, Task> operation,
-        CancellationToken cancellationToken,
-        Action<Exception>? exceptionHandler)
+        CancellationToken cancellationToken = default,
+        Action<Exception>? exceptionHandler = null)
     {
+        ArgumentNullException.ThrowIfNull(operation);
+
         try
         {
-            await operation(cancellationToken).ConfigureAwait(false);
+            await Task.Run(() => operation(cancellationToken), cancellationToken).ConfigureAwait(false);
         }
         catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
         {
         }
         catch (Exception ex)
         {
-            if (exceptionHandler is not null)
-                exceptionHandler(ex);
-            else
-                Terminal.WriteError(ex);
+            try
+            {
+                if (exceptionHandler is not null)
+                    exceptionHandler(ex);
+                else
+                    Terminal.WriteError(ex);
+            }
+            catch (Exception handlerException)
+            {
+                Terminal.WriteError(handlerException);
+            }
         }
     }
 }

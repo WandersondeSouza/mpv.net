@@ -87,12 +87,20 @@ rejeitadas, enquanto uma chamada nativa já iniciada termina sob o gate. Os
 callbacks de eventos ficam fora do lock para poderem consultar o wrapper sem
 deadlock; tarefas e loops são aguardados antes de destruir qualquer handle. O
 handle principal inicializado é encerrado com `mpv_terminate_destroy`; handles de
-clientes são destruídos antes dele.
+clientes são destruídos antes dele. Depois que os loops e chamadas existentes
+terminam, cada cliente descarta seu `ReaderWriterLockSlim`; o player descarta o
+`CancellationTokenSource`, `SemaphoreSlim` e sinal de shutdown. `Destroy()` e
+`Dispose()` são idempotentes e removem callbacks gerenciados para não reter a UI.
 
 As tarefas de playlist e metadata são serializadas por instância do player e
 canceladas durante o fechamento. Uma tarefa atrasada pode terminar sem executar
 `GetProperty*`, `SetProperty*` ou `Command*` depois do início de `Destroy`,
 mantendo essas operações serializadas durante a troca de mídia e o encerramento.
+
+O módulo AviSynth carregado para arquivos `.avs` possui lifetime de processo.
+O handle retornado por `LoadLibrary` é mantido explicitamente e não recebe
+`FreeLibrary` no `Destroy`, pois o mpv/AviSynth ainda pode executar código do
+módulo enquanto encerra filtros e mídia.
 
 ## Eventos, propriedades e comandos
 

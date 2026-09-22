@@ -9,7 +9,7 @@ using MpvNet.MVVM;
 
 namespace MpvNet;
 
-public class AppClass
+public class AppClass : IDisposable
 {
     const int SelectMenuVersion = 5;
     const string DonationPortalUrl = "https://www.gestaodesistemas.com.br/mpvnet";
@@ -49,55 +49,140 @@ public class AppClass
     public float MinimumAspectRatioAudio { get; set; }
 
     readonly ExtensionService _extensionService = new();
+    readonly object _lifecycleLock = new();
 
     AppSettings? _settings;
+    TextWriterTraceListener? _debugTraceListener;
+    bool _previousTraceAutoFlush;
+    bool _initialized;
+    bool _disposed;
 
     public AppClass()
     {
-        _extensionService.UnhandledException += ex =>
-        {
-            Log.Error(ex, "Extension failed with an unhandled exception.");
-            Terminal.WriteError(ex);
-        };
-
-        StrongReferenceMessenger.Default.Register<MainWindowIsLoadedMessage>(this, (r, msg) =>
-        {
-            BackgroundTaskRunner.Run(() => _extensionService.LoadFolder(Player.ConfigFolder + "extensions"));
-        });
+        _extensionService.UnhandledException += ExtensionService_UnhandledException;
+        StrongReferenceMessenger.Default.Register<MainWindowIsLoadedMessage>(this, OnMainWindowIsLoaded);
     }
 
     public AppSettings Settings => _settings ??= SettingsStore.Load();
 
     public void Init()
     {
-        Log.Debug("Initializing application configuration.");
-        TemporaryFileCleanup.CleanupDefaultFolders();
-        string resolvedConfigFolder = Player.ConfigFolder;
-        EnsureInitialMpvConf();
-        Dictionary<string, string> loadedPlayerConfiguration = Player.Conf;
-        Log.Debug(
-            $"Player configuration initialized. folder='{Log.SafeValue(resolvedConfigFolder)}', " +
-            $"propertyCount={loadedPlayerConfiguration.Count}");
-
-        foreach (var i in Conf)
-            ProcessProperty(i.Key, i.Value, true);
-
-        EnsureInitialSelectMenuConf();
-
-        if (DebugMode)
+        lock (_lifecycleLock)
         {
-            string filePath = Player.ConfigFolder + "MpvNet-debug.log";
+            ObjectDisposedException.ThrowIf(_disposed, this);
+            if (_initialized)
+                return;
 
+            _initialized = true;
+        }
+
+        try
+        {
+            Log.Debug("Initializing application configuration.");
+            TemporaryFileCleanup.CleanupDefaultFolders();
+            string resolvedConfigFolder = Player.ConfigFolder;
+            EnsureInitialMpvConf();
+            Dictionary<string, string> loadedPlayerConfiguration = Player.Conf;
+            Log.Debug(
+                $"Player configuration initialized. folder='{Log.SafeValue(resolvedConfigFolder)}', " +
+                $"propertyCount={loadedPlayerConfiguration.Count}");
+
+            foreach (var i in Conf)
+                ProcessProperty(i.Key, i.Value, true);
+
+            EnsureInitialSelectMenuConf();
+
+            if (DebugMode)
+                InitializeDebugTraceListener(Player.ConfigFolder + "MpvNet-debug.log");
+
+            Player.Shutdown += Player_Shutdown;
+            Player.Initialized += Player_Initialized;
+            Log.Debug("Application configuration initialized.");
+        }
+        catch
+        {
+            lock (_lifecycleLock)
+                _initialized = false;
+            DisposeDebugTraceListener();
+            throw;
+        }
+    }
+
+    void ExtensionService_UnhandledException(Exception exception)
+    {
+        Log.Error(exception, "Extension failed with an unhandled exception.");
+        Terminal.WriteError(exception);
+    }
+
+    void OnMainWindowIsLoaded(object recipient, MainWindowIsLoadedMessage message) =>
+        BackgroundTaskRunner.Run(() => _extensionService.LoadFolder(Player.ConfigFolder + "extensions"));
+
+    internal void InitializeDebugTraceListener(string filePath)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(filePath);
+
+        lock (_lifecycleLock)
+        {
+            ObjectDisposedException.ThrowIf(_disposed, this);
+            if (_debugTraceListener != null)
+                return;
+
+            string? directory = Path.GetDirectoryName(filePath);
+            if (!string.IsNullOrEmpty(directory))
+                Directory.CreateDirectory(directory);
             if (File.Exists(filePath))
                 File.Delete(filePath);
 
-            Trace.Listeners.Add(new TextWriterTraceListener(filePath));
+            _previousTraceAutoFlush = Trace.AutoFlush;
+            _debugTraceListener = new TextWriterTraceListener(filePath, "mpv.net debug file");
+            Trace.Listeners.Add(_debugTraceListener);
             Trace.AutoFlush = true;
         }
+    }
 
-        Player.Shutdown += Player_Shutdown;
-        Player.Initialized += Player_Initialized;
-        Log.Debug("Application configuration initialized.");
+    internal void DisposeDebugTraceListener()
+    {
+        lock (_lifecycleLock)
+        {
+            if (_debugTraceListener == null)
+                return;
+
+            _debugTraceListener.Flush();
+            Trace.Listeners.Remove(_debugTraceListener);
+            _debugTraceListener.Dispose();
+            _debugTraceListener = null;
+            Trace.AutoFlush = _previousTraceAutoFlush;
+        }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposing)
+            return;
+
+        lock (_lifecycleLock)
+        {
+            if (_disposed)
+                return;
+
+            _disposed = true;
+        }
+
+        if (_initialized)
+        {
+            Player.Shutdown -= Player_Shutdown;
+            Player.Initialized -= Player_Initialized;
+        }
+
+        StrongReferenceMessenger.Default.UnregisterAll(this);
+        _extensionService.UnhandledException -= ExtensionService_UnhandledException;
+        DisposeDebugTraceListener();
     }
 
     public static string About => "MPV.NET Media Player\n" +

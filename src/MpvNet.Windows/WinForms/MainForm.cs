@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using System.Text.RegularExpressions;
@@ -35,6 +36,8 @@ public partial class MainForm : Form
     Taskbar? _taskbar;
     MediaTransportController? _mediaTransport;
     System.Windows.Forms.Timer? _mediaTransportTimer;
+    readonly CancellationTokenSource _lifetimeCancellation = new();
+    Task? _activationDelayTask;
     Point _mouseDownLocation;
     List<Binding>? _confBindings;
 
@@ -72,27 +75,27 @@ public partial class MainForm : Form
             {
                 trackMenuItem.Items.Clear();
 
-                var audTracks = Player.MediaTracks.Where(track => track.Type == "a");
-                var subTracks = Player.MediaTracks.Where(track => track.Type == "s");
-                var vidTracks = Player.MediaTracks.Where(track => track.Type == "v");
-                var ediTracks = Player.MediaTracks.Where(track => track.Type == "e");
+                MediaTrack[] audTracks = Player.MediaTracks.Where(track => track.Type == "a").ToArray();
+                MediaTrack[] subTracks = Player.MediaTracks.Where(track => track.Type == "s").ToArray();
+                MediaTrack[] vidTracks = Player.MediaTracks.Where(track => track.Type == "v").ToArray();
+                MediaTrack[] ediTracks = Player.MediaTracks.Where(track => track.Type == "e").ToArray();
 
                 AddTrackMenuItems(trackMenuItem, vidTracks, "vid", Player.VID);
 
-                if (vidTracks.Any())
+                if (vidTracks.Length > 0)
                     trackMenuItem.Items.Add(new WpfControls.Separator());
 
                 AddTrackMenuItems(trackMenuItem, audTracks, "aid", Player.AID);
 
-                if (subTracks.Any())
+                if (subTracks.Length > 0)
                     trackMenuItem.Items.Add(new WpfControls.Separator());
 
                 AddTrackMenuItems(trackMenuItem, subTracks, "sid", Player.SID);
 
-                if (subTracks.Any())
+                if (subTracks.Length > 0)
                     AddNoSubtitlesMenuItem(trackMenuItem);
 
-                if (ediTracks.Any())
+                if (ediTracks.Length > 0)
                     trackMenuItem.Items.Add(new WpfControls.Separator());
 
                 AddEditionMenuItems(trackMenuItem, ediTracks);
@@ -230,9 +233,9 @@ public partial class MainForm : Form
 
         if (customMenuItem != null && !customMenuItem.HasItems)
         {
-            var customBindings = _confBindings!.Where(it => it.IsCustomMenu);
+            Binding[] customBindings = _confBindings!.Where(it => it.IsCustomMenu).ToArray();
 
-            if (customBindings.Any())
+            if (customBindings.Length > 0)
             {
                 foreach (Binding binding in customBindings)
                 {
@@ -959,8 +962,12 @@ public partial class MainForm : Form
 
         if (_maxSizeSet)
         {
-            BackgroundTaskRunner.Run(() => {
-                Thread.Sleep(200);
+            if (_activationDelayTask is { IsCompleted: false })
+                return;
+
+            _activationDelayTask = BackgroundTaskRunner.RunAsync(async cancellationToken =>
+            {
+                await Task.Delay(200, cancellationToken).ConfigureAwait(false);
                 BeginInvoke(() => {
                     if (!IsDisposed && !Disposing)
                     {
@@ -968,7 +975,7 @@ public partial class MainForm : Form
                         _maxSizeSet = false;
                     }
                 });
-            });
+            }, _lifetimeCancellation.Token);
         }
     }
 
@@ -1123,6 +1130,17 @@ public partial class MainForm : Form
             return;
 
         _managedResourcesDisposed = true;
+
+        _lifetimeCancellation.Cancel();
+        try
+        {
+            _activationDelayTask?.GetAwaiter().GetResult();
+        }
+        catch (OperationCanceledException) when (_lifetimeCancellation.IsCancellationRequested)
+        {
+            // Cancellation is expected when the window closes during the delayed activation fix.
+        }
+        _lifetimeCancellation.Dispose();
 
         WpfTranslator.LanguageChanged -= WpfTranslator_LanguageChanged;
         Player.FileLoaded -= Player_FileLoaded;

@@ -292,7 +292,8 @@ public partial class MainPlayer
 
         try
         {
-            foreach (JsonElement item in JsonDocument.Parse(json).RootElement.EnumerateArray())
+            using JsonDocument document = JsonDocument.Parse(json);
+            foreach (JsonElement item in document.RootElement.EnumerateArray())
             {
                 if (!item.TryGetProperty("filename", out JsonElement filenameElement))
                     continue;
@@ -475,7 +476,7 @@ public partial class MainPlayer
         return PlaylistFile.PrepareForPlayback(ret);
     }
 
-    void ScheduleAutocreatedPlaylistNormalization()
+    internal void ScheduleAutocreatedPlaylistNormalization()
     {
         CancellationTokenSource debounce = CancellationTokenSource.CreateLinkedTokenSource(PlayerCancellationToken);
         CancellationTokenSource? previous;
@@ -518,7 +519,7 @@ public partial class MainPlayer
             return;
 
         int playlistCount = GetPropertyInt("playlist-count");
-        if (!ShouldNormalizeAutocreatedPlaylist(playlistCount, playbackActive: true))
+        if (!ShouldNormalizeAutocreatedPlaylist(playlistCount))
             return;
 
         int playingPosition = GetPlayingPlaylistPosition();
@@ -636,22 +637,54 @@ public partial class MainPlayer
     [SupportedOSPlatform("windows")]
     void LoadAviSynth()
     {
-        if (!_wasAviSynthLoaded)
+        if (_aviSynthModuleHandle != IntPtr.Zero)
+            return;
+
+        string? configuredDll = Environment.GetEnvironmentVariable("AviSynthDLL");  // StaxRip sets it in portable mode
+        string library = !string.IsNullOrWhiteSpace(configuredDll) && File.Exists(configuredDll)
+            ? configuredDll
+            : "AviSynth.dll";
+        nint module = LoadLibrary(library);
+        if (module == IntPtr.Zero)
         {
-            string? dll = Environment.GetEnvironmentVariable("AviSynthDLL");  // StaxRip sets it in portable mode
-            LoadLibrary(File.Exists(dll) ? dll : "AviSynth.dll");
-            _wasAviSynthLoaded = true;
+            var exception = new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
+            Log.Error(exception, $"AviSynth could not be loaded. library='{Log.SafeValue(library)}'");
+            return;
         }
+
+        // libmpv/AviSynth may execute code from this module for the rest of the process.
+        // Keep the module reference deliberately; FreeLibrary during player shutdown is unsafe.
+        _aviSynthModuleHandle = module;
     }
 
-    [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
     static extern IntPtr LoadLibrary(string path);
 
     [SupportedOSPlatform("windows")]
     public static string GetShortcutTarget(string path)
     {
-        Type? t = Type.GetTypeFromProgID("WScript.Shell");
-        dynamic? sh = Activator.CreateInstance(t!);
-        return sh?.CreateShortcut(path).TargetPath!;
+        Type shellType = Type.GetTypeFromProgID("WScript.Shell")
+            ?? throw new PlatformNotSupportedException("WScript.Shell is unavailable.");
+        object? shell = null;
+        object? shortcut = null;
+
+        try
+        {
+            shell = Activator.CreateInstance(shellType)
+                ?? throw new InvalidOperationException("WScript.Shell could not be created.");
+            dynamic dynamicShell = shell;
+            shortcut = dynamicShell.CreateShortcut(path);
+            dynamic dynamicShortcut = shortcut;
+            return dynamicShortcut.TargetPath as string ?? "";
+        }
+        finally
+        {
+            // Both RCWs are created exclusively by this method and never escape it.
+            if (shortcut != null && Marshal.IsComObject(shortcut))
+                Marshal.FinalReleaseComObject(shortcut);
+            if (shell != null && Marshal.IsComObject(shell))
+                Marshal.FinalReleaseComObject(shell);
+        }
     }
 }

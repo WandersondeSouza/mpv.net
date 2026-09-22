@@ -9,7 +9,7 @@ public sealed class MpvClientReliabilityTests
     [Fact]
     public void QueueOverflowIsCountedAndNotified()
     {
-        MpvClient client = new();
+        using MpvClient client = new();
         int notificationCount = 0;
         client.EventQueueOverflow += () => notificationCount++;
 
