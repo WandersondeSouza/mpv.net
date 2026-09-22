@@ -57,9 +57,12 @@ internal static partial class OnlineMediaDiagnostics
         });
     }
 
-    internal static JavaScriptRuntimeCapability? SelectPreferredRuntime(IEnumerable<JavaScriptRuntimeCapability> runtimes) =>
-        runtimes.FirstOrDefault(runtime => runtime.Available && runtime.Compatible && runtime.EnabledByDefault) ??
-        runtimes.FirstOrDefault(runtime => runtime.Available && runtime.Compatible);
+    internal static JavaScriptRuntimeCapability? SelectPreferredRuntime(IEnumerable<JavaScriptRuntimeCapability> runtimes)
+    {
+        JavaScriptRuntimeCapability[] candidates = runtimes as JavaScriptRuntimeCapability[] ?? runtimes.ToArray();
+        return candidates.FirstOrDefault(runtime => runtime.Available && runtime.Compatible && runtime.EnabledByDefault) ??
+            candidates.FirstOrDefault(runtime => runtime.Available && runtime.Compatible);
+    }
 
     internal static bool IsCompatibleJavaScriptRuntime(string name, string? version)
     {

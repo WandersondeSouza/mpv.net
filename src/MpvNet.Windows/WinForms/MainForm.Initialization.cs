@@ -43,9 +43,11 @@ public partial class MainForm
 
             Player.Init(Handle, true);
 
+#pragma warning disable CA2000 // Ownership is transferred to MediaTransportController, which disposes the service.
             _mediaTransport = new MediaTransportController(
                 new WindowsSystemMediaTransportService(),
                 HandleMediaTransportCommand);
+#pragma warning restore CA2000
             _mediaTransport.Initialize(Handle);
             _mediaTransportTimer = new System.Windows.Forms.Timer { Interval = 500 };
             _mediaTransportTimer.Tick += MediaTransportTimer_Tick;
