@@ -281,9 +281,8 @@ Se você for manter ou auditar o fork, os pontos de entrada mais úteis são:
 ## Suporte
 
 - issues do fork: `https://github.com/WandersondeSouza/mpv.net/issues`
-- GitHub Sponsors: `https://github.com/sponsors/stax76`
-- doação: `https://www.gestaodesistemas.com.br/mpvnet?language=<idioma>`; a página centralizada recebe o idioma da interface e usa valores de US$ 1 a US$ 20, com moeda local no Stripe Checkout quando disponível
-- menu de suporte: GitHub Sponsors, página oficial de doação e e-mail
+- apoio/doação: `https://www.gestaodesistemas.com.br/mpvnet?language=<idioma>`; a página centralizada recebe o idioma da interface e usa valores de US$ 1 a US$ 20, com moeda local no Stripe Checkout quando disponível
+- menu de suporte: página oficial de doação e e-mail
 - e-mail: `mailto:wanderson_souza@hotmail.com`
 - manual oficial do mpv: `https://mpv.io/manual/master/`
 

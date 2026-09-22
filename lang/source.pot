@@ -750,6 +750,7 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+#: src\MpvNet\App.cs:225
 #: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
 msgid "Help the player"
 msgstr ""

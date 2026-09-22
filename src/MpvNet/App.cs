@@ -11,7 +11,7 @@ namespace MpvNet;
 
 public class AppClass
 {
-    const int SelectMenuVersion = 4;
+    const int SelectMenuVersion = 5;
     const string DonationPortalUrl = "https://www.gestaodesistemas.com.br/mpvnet";
     const string OfficialWebsiteUrl = "https://www.gestaodesistemas.com.br/mpvnet";
 
@@ -115,7 +115,6 @@ public class AppClass
     public static string CodecGuideTip => _("Tip: installing Codec Guide can improve codec support and playback.");
     public static string DonationLinkTitle => _("Make a donation to help maintain the project.");
     public static string DonationLinkDescription => _("Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support.");
-    public static string GitHubSponsorsUrl => "https://github.com/sponsors/stax76";
     public string DonationUrl => GetDonationUrl(Language);
 
     public static string GetOfficialWebsiteUrl(string? language)
@@ -223,9 +222,7 @@ public class AppClass
         AddMenuItem("Help", "script-binding stats/display-page-4-toggle");
         AddMenuItem("Online documentation", "script-binding select/open-docs");
         AddMenuItem("Support", "-");
-        AddMenuItem("GitHub Sponsors", $"script-message-to mpvnet shell-execute {GitHubSponsorsUrl}");
-
-        AddMenuItem("Donation", $"script-message-to mpvnet shell-execute {DonationUrl}");
+        AddMenuItem("Help the player", $"script-message-to mpvnet shell-execute {DonationUrl}");
 
         AddMenuItem("E-mail support", "script-message-to mpvnet shell-execute mailto:wanderson_souza@hotmail.com");
 
