@@ -20,7 +20,8 @@ public partial class MainPlayer
 
             string[] ignore = ["builtin-pseudo-gui", "encoding", "libmpv", "pseudo-gui", "default"];
             string json = GetPropertyString("profile-list");
-            return _profileNames = JsonDocument.Parse(json).RootElement.EnumerateArray()
+            using JsonDocument document = JsonDocument.Parse(json);
+            return _profileNames = document.RootElement.EnumerateArray()
                 .Select(it => it.GetProperty("name").GetString())
                 .OfType<string>()
                 .Where(it => !ignore.Contains(it))
@@ -32,8 +33,9 @@ public partial class MainPlayer
     {
         string json = GetPropertyString("profile-list");
         StringBuilder sb = new StringBuilder();
+        using JsonDocument document = JsonDocument.Parse(json);
 
-        foreach (var profile in JsonDocument.Parse(json).RootElement.EnumerateArray())
+        foreach (JsonElement profile in document.RootElement.EnumerateArray())
         {
             sb.Append(profile.GetProperty("name").GetString() + BR2);
 
@@ -48,9 +50,11 @@ public partial class MainPlayer
 
     public string GetDecoders()
     {
-        var list = JsonDocument.Parse(GetPropertyString("decoder-list")).RootElement.EnumerateArray()
+        using JsonDocument document = JsonDocument.Parse(GetPropertyString("decoder-list"));
+        string[] list = document.RootElement.EnumerateArray()
             .Select(it => $"{it.GetProperty("codec").GetString()} - {it.GetProperty("description").GetString()}")
-            .OrderBy(it => it);
+            .OrderBy(it => it)
+            .ToArray();
 
         return string.Join(BR, list);
     }

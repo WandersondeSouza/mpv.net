@@ -32,6 +32,14 @@ public partial class MainPlayer
 
     public PlayerLifecycleState LifecycleState { get; private set; } = PlayerLifecycleState.Created;
     internal CancellationToken PlayerCancellationToken => _playerCancellation.Token;
+    internal bool HasPendingPlaylistNormalization
+    {
+        get
+        {
+            lock (_playlistNormalizationStateLock)
+                return _playlistNormalizationDebounce != null;
+        }
+    }
 
     public void SchedulePlayerTask(Action<CancellationToken> operation)
     {
@@ -135,8 +143,7 @@ public partial class MainPlayer
         currentPosition == failedPosition &&
         failedPosition + 1 < playlistCount;
 
-    internal static bool ShouldNormalizeAutocreatedPlaylist(int playlistCount, bool playbackActive) =>
-        playlistCount > 1;
+    internal static bool ShouldNormalizeAutocreatedPlaylist(int playlistCount) => playlistCount > 1;
 
     public string ConfPath { get => ConfigFolder + "mpv.conf"; }
     public string CacheFolder => TemporaryFileCleanup.DefaultCacheFolder + System.IO.Path.DirectorySeparatorChar;

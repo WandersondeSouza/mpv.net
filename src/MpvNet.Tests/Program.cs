@@ -315,7 +315,8 @@ File.WriteAllText(blockedLogPath, "");
 var blockedLogWriter = new FileLogWriter(blockedLogPath, () => fixedLogDate);
 bool blockedWriteDidNotThrow = true;
 string expectedLocalAppDataRoot = Path.Combine(AppPaths.LocalAppData, "mpv.net");
-string defaultCacheFolder = new MainPlayer().CacheFolder;
+using MainPlayer defaultPlayer = new();
+string defaultCacheFolder = defaultPlayer.CacheFolder;
 string defaultTempFolder = Global.App.TempFolder;
 bool centralizedAppPaths =
     AppPaths.DefaultConfig == AppPaths.LocalRoot &&
@@ -410,11 +411,11 @@ string[] preparedPlaylistAddressKeys = PlaylistFile.GetAddressKeys(preparedPlayl
 bool preparedAddressIdentityIgnoresRawTitles = PlaylistFile.HasSameAddresses([
     new PlaylistFileItem("https://example.com/video?id=1", "titulo ainda bruto.mp4"),
     new PlaylistFileItem("https://example.com/audio?id=2", "outro titulo bruto.mp3")], preparedPlaylistAddressKeys);
-var lifecycleProbe = new MainPlayer();
+using MainPlayer lifecycleProbe = new();
 bool lifecycleStartsCreated = lifecycleProbe.LifecycleState == PlayerLifecycleState.Created;
 lifecycleProbe.Destroy();
 bool lifecycleEndsDestroyed = lifecycleProbe.LifecycleState == PlayerLifecycleState.Destroyed;
-var taskProbe = new MainPlayer();
+using MainPlayer taskProbe = new();
 int activePlayerTasks = 0;
 int maxActivePlayerTasks = 0;
 int completedPlayerTasks = 0;

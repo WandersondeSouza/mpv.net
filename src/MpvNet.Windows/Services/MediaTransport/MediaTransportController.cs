@@ -45,9 +45,9 @@ public sealed class MediaTransportController : IDisposable
             _service.Initialize(windowHandle);
             PublishCurrentSnapshot();
         }
-        catch
+        catch (Exception ex)
         {
-            // The player must remain usable when SMTC is unavailable on the host.
+            Log.Debug($"SMTC controller initialization failed: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
         }
 
         return IsAvailable;
@@ -91,9 +91,9 @@ public sealed class MediaTransportController : IDisposable
         {
             _service.Suspend();
         }
-        catch
+        catch (Exception ex)
         {
-            // Best-effort teardown; SMTC must never stop playback or close the window.
+            Log.Debug($"SMTC controller suspension failed: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
         }
     }
 
@@ -129,9 +129,9 @@ public sealed class MediaTransportController : IDisposable
         {
             _service.Publish(snapshot);
         }
-        catch
+        catch (Exception ex)
         {
-            // Publishing is an optional integration and is intentionally fail-open.
+            Log.Debug($"SMTC controller publish failed: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
         }
     }
 
@@ -184,9 +184,9 @@ public sealed class MediaTransportController : IDisposable
         {
             _service.Dispose();
         }
-        catch
+        catch (Exception ex)
         {
-            // Disposal is best-effort because the integration is optional.
+            Log.Debug($"SMTC controller disposal failed: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
         }
     }
 }

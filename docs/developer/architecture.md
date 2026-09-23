@@ -354,7 +354,34 @@ extensions
 
 O carregamento é feito por `ExtensionService` após a janela principal informar
 que está carregada. `ExtensionLoader` permanece como adaptador público obsoleto
-para compatibilidade.
+para compatibilidade. Assemblies são carregados no contexto padrão, todos os
+tipos concretos `IExtension` são instanciados e suas referências permanecem até
+o fim do processo; não existe hot reload ou unload parcial. Falhas de assembly,
+dependência ou tipo são isoladas por extensão e não encerram o player.
+
+## Ownership e lifecycle de recursos
+
+| Lifetime | Owner | Recursos e regra de encerramento |
+| --- | --- | --- |
+| processo | `AppClass` e serviços estáticos | registro no messenger, listener de trace opcional, extensões e `HttpClient` compartilhado; `Program.finally` destrói o player e descarta `AppClass`, inclusive em falha de startup |
+| player | `MainPlayer` | token de cancelamento, gate serial de tarefas, debounce de playlist, loops de evento, clientes e handles libmpv; `Destroy()` cancela, aguarda, destrói na ordem cliente-principal e só então descarta sincronização |
+| cliente mpv | `MpvClient` | `ReaderWriterLockSlim`, handle e callbacks; o write lock espera chamadas nativas existentes, bloqueia novas chamadas e o gate é descartado uma única vez |
+| janela | `MainForm` | timers, taskbar, SMTC, hotkeys, eventos e atraso de ativação; `DisposeManagedResources()` cancela trabalho pendente, remove handlers e descarta cada owner |
+| operação | método que cria | streams, readers, writers, documentos JSON/XML, processos e RCWs COM são descartados no mesmo escopo; escrita persistente usa staging atômico e não mantém arquivos abertos |
+
+Regras consolidadas:
+
+- cancelamento esperado não é registrado como erro; tarefas que pertencem ao
+  player ou à janela são rastreadas pelo respectivo owner;
+- inscrição em evento de lifetime maior exige `-=` no `Dispose`; inscrições de
+  extensões e do app têm lifetime deliberadamente igual ao processo;
+- nenhum file logger mantém stream persistente. O listener de debug é removido,
+  recebe `Flush` e é descartado antes do fim do processo;
+- handles nativos só são liberados pelo owner. O módulo AviSynth é exceção
+  deliberada: permanece carregado até o processo terminar porque libmpv pode
+  continuar executando código dele;
+- `TaskHelp` e `ExtensionLoader` permanecem apenas como fachadas públicas de
+  compatibilidade; não duplicam implementação interna.
 
 ---
 

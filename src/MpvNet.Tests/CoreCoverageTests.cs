@@ -88,7 +88,7 @@ public sealed class ConfigurationPathTests
         try
         {
             Environment.SetEnvironmentVariable("MPVNET_HOME", directory.Path);
-            MainPlayer player = new();
+            using MainPlayer player = new();
 
             Assert.Equal(AppPaths.WithTrailingSeparator(directory.Path), player.ConfigFolder);
         }
@@ -106,7 +106,7 @@ public sealed class ConfigurationPathTests
         try
         {
             Environment.SetEnvironmentVariable("MPVNET_HOME", Path.Combine(Path.GetTempPath(), "missing-mpvnet-home-" + Guid.NewGuid().ToString("N")));
-            MainPlayer player = new();
+            using MainPlayer player = new();
 
             Assert.True(
                 string.Equals(player.ConfigFolder, AppPaths.WithTrailingSeparator(AppPaths.PortableConfig), StringComparison.OrdinalIgnoreCase) ||
@@ -251,8 +251,9 @@ public sealed class RuntimeComponentTests
     [Fact]
     public async Task RuntimeComponentUpdateLockCanBeReleasedAfterAsyncContinuation()
     {
-        RuntimeComponentUpdateLock updateLock = await RuntimeComponentUpdateLock.AcquireAsync(CancellationToken.None);
-        await Task.Run(updateLock.Dispose);
+        CancellationToken cancellationToken = TestContext.Current.CancellationToken;
+        RuntimeComponentUpdateLock updateLock = await RuntimeComponentUpdateLock.AcquireAsync(cancellationToken);
+        await Task.Run(updateLock.Dispose, cancellationToken);
     }
 
     [Fact]
@@ -475,7 +476,7 @@ public sealed class PlayerLifecycleTests
     [Fact]
     public void DestroyIsIdempotentAndPreventsNewPlayerTasks()
     {
-        MainPlayer player = new();
+        using MainPlayer player = new();
         bool invoked = false;
 
         player.Destroy();
@@ -492,12 +493,13 @@ public sealed class PlayerLifecycleTests
     [Fact]
     public void DestroyRejectsNativeOperations()
     {
-        MainPlayer player = new();
+        using MainPlayer player = new();
 
         player.Destroy();
 
         Assert.False(player.TryEnterNativeOperation(out IDisposable? operation));
         Assert.Null(operation);
+        operation?.Dispose();
         Assert.False(player.GetPropertyBool("idle"));
         Assert.Equal(0, player.GetPropertyInt("playlist-pos"));
         Assert.Equal(0L, player.GetPropertyLong("playlist-pos"));
@@ -520,56 +522,58 @@ public sealed class PlayerLifecycleTests
     }
 
     [Fact]
-    public void DestroyWaitsForActiveNativeOperation()
+    public async Task DestroyWaitsForActiveNativeOperation()
     {
-        MainPlayer player = new();
+        using MainPlayer player = new();
         Assert.True(player.TryEnterNativeOperation(out IDisposable? operation));
 
-        Task destroyTask = Task.Run(player.Destroy);
-        Assert.False(destroyTask.Wait(TimeSpan.FromMilliseconds(100)));
+        Task destroyTask = Task.Run(player.Destroy, TestContext.Current.CancellationToken);
+        await Task.Delay(TimeSpan.FromMilliseconds(100), TestContext.Current.CancellationToken);
+        Assert.False(destroyTask.IsCompleted);
 
         operation!.Dispose();
 
-        Assert.True(destroyTask.Wait(TimeSpan.FromSeconds(2)));
+        await destroyTask.WaitAsync(TimeSpan.FromSeconds(2), TestContext.Current.CancellationToken);
         Assert.Equal(PlayerLifecycleState.Destroyed, player.LifecycleState);
     }
 
     [Fact]
-    public void DestroyWaitsForPendingPropertyTaskAndRejectsItsLateRead()
+    public async Task DestroyWaitsForPendingPropertyTaskAndRejectsItsLateRead()
     {
-        MainPlayer player = new();
-        using ManualResetEventSlim taskStarted = new();
-        using ManualResetEventSlim releaseTask = new();
+        using MainPlayer player = new();
+        TaskCompletionSource taskStarted = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        TaskCompletionSource releaseTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
         string latePropertyValue = "not-finished";
 
-        player.SchedulePlayerTask(_ =>
+        player.SchedulePlayerTask(async _ =>
         {
-            taskStarted.Set();
-            releaseTask.Wait();
+            taskStarted.SetResult();
+            await releaseTask.Task;
             latePropertyValue = player.GetPropertyString("path");
         });
 
-        Assert.True(taskStarted.Wait(TimeSpan.FromSeconds(2)));
-        Task destroyTask = Task.Run(player.Destroy);
-        Assert.False(destroyTask.Wait(TimeSpan.FromMilliseconds(100)));
+        await taskStarted.Task.WaitAsync(TimeSpan.FromSeconds(2), TestContext.Current.CancellationToken);
+        Task destroyTask = Task.Run(player.Destroy, TestContext.Current.CancellationToken);
+        await Task.Delay(TimeSpan.FromMilliseconds(100), TestContext.Current.CancellationToken);
+        Assert.False(destroyTask.IsCompleted);
 
-        releaseTask.Set();
+        releaseTask.SetResult();
 
-        Assert.True(destroyTask.Wait(TimeSpan.FromSeconds(2)));
+        await destroyTask.WaitAsync(TimeSpan.FromSeconds(2), TestContext.Current.CancellationToken);
         Assert.Empty(latePropertyValue);
     }
 
     [Fact]
-    public void EventLoopsFinishBeforeDestroy()
+    public async Task EventLoopsFinishBeforeDestroy()
     {
-        MainPlayer player = new();
-        using CancellationTokenSource cancellation = new();
-        Task clientLoop = Task.Run(() => player.EventLoop(cancellation.Token));
-        Task mainLoop = Task.Run(() => player.MainEventLoop(cancellation.Token));
+        using MainPlayer player = new();
+        CancellationToken cancellationToken = TestContext.Current.CancellationToken;
+        Task clientLoop = Task.Run(() => player.EventLoop(cancellationToken), cancellationToken);
+        Task mainLoop = Task.Run(() => player.MainEventLoop(cancellationToken), cancellationToken);
         player.TrackEventTask(clientLoop);
         player.TrackEventTask(mainLoop);
 
-        Assert.True(Task.WhenAll(clientLoop, mainLoop).Wait(TimeSpan.FromSeconds(2)));
+        await Task.WhenAll(clientLoop, mainLoop).WaitAsync(TimeSpan.FromSeconds(2), cancellationToken);
         player.Destroy();
 
         Assert.True(clientLoop.IsCompletedSuccessfully);
@@ -582,7 +586,7 @@ public sealed class PlayerPlaybackRecoveryTests
     [Fact]
     public void AutoLoadFolderRequestIsConsumedOnlyOnce()
     {
-        MainPlayer player = new();
+        using MainPlayer player = new();
 
         player.ArmAutoLoadFolder(true);
 
@@ -612,9 +616,8 @@ public sealed class PlayerPlaybackRecoveryTests
     [Fact]
     public void PlaylistNormalizationRunsWhilePlaybackIsActive()
     {
-        Assert.True(MainPlayer.ShouldNormalizeAutocreatedPlaylist(3, playbackActive: true));
-        Assert.False(MainPlayer.ShouldNormalizeAutocreatedPlaylist(1, playbackActive: false));
-        Assert.True(MainPlayer.ShouldNormalizeAutocreatedPlaylist(3, playbackActive: false));
+        Assert.True(MainPlayer.ShouldNormalizeAutocreatedPlaylist(3));
+        Assert.False(MainPlayer.ShouldNormalizeAutocreatedPlaylist(1));
     }
 }
 
@@ -623,7 +626,7 @@ public sealed class PlayerStateTests
     [Fact]
     public void NewPlayerExposesStableDefaultState()
     {
-        MainPlayer player = new();
+        using MainPlayer player = new();
 
         Assert.Equal(PlayerLifecycleState.Created, player.LifecycleState);
         Assert.Equal(-1, player.PlaylistPos);
@@ -643,7 +646,7 @@ public sealed class PlayerStateTests
     [Fact]
     public void ProcessPropertyUpdatesStateOwnedByPlayer()
     {
-        MainPlayer player = new();
+        using MainPlayer player = new();
 
         player.ProcessProperty("border", "no");
         player.ProcessProperty("fullscreen", "yes");

@@ -92,33 +92,55 @@ jobs:
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration /p:Platform=x64
       env:
         Configuration: ${{ matrix.configuration }}
 
+    - name: Check signing inputs
+      id: signing
+      shell: pwsh
+      env:
+        PFX_BASE64: ${{ secrets.Base64_Encoded_Pfx }}
+        PFX_PASSWORD: ${{ secrets.Pfx_Key }}
+      run: |
+        $available = -not [string]::IsNullOrWhiteSpace($env:PFX_BASE64) -and -not [string]::IsNullOrWhiteSpace($env:PFX_PASSWORD)
+        "available=$($available.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
+
     # Decode the base 64 encoded pfx and save the Signing_Certificate
     - name: Decode the pfx
+      if: steps.signing.outputs.available == 'true'
+      env:
+        PFX_BASE64: ${{ secrets.Base64_Encoded_Pfx }}
       run: |
-        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
+        $pfx_cert_byte = [System.Convert]::FromBase64String($env:PFX_BASE64)
         $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
         [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
 
     # Create the app package by building and packaging the Windows Application Packaging project
-    - name: Create the app package
-      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+    - name: Create the signed app package
+      if: steps.signing.outputs.available == 'true'
+      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:Platform=x64 /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=$env:PFX_PASSWORD
       env:
+        PFX_PASSWORD: ${{ secrets.Pfx_Key }}
         Appx_Bundle: Always
         Appx_Bundle_Platforms: x64
         Appx_Package_Build_Mode: StoreUpload
         Configuration: ${{ matrix.configuration }}
 
+    - name: Create the unsigned app package
+      if: steps.signing.outputs.available != 'true'
+      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:Platform=x64 /p:UapAppxPackageBuildMode=SideloadOnly /p:AppxBundle=Always /p:AppxPackageSigningEnabled=false
+      env:
+        Configuration: ${{ matrix.configuration }}
+
     # Remove the pfx
     - name: Remove the pfx
+      if: steps.signing.outputs.available == 'true'
       run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
       uses: actions/upload-artifact@v7
       with:
-        name: MSIX Package
+        name: MSIX Package ${{ matrix.configuration }}
         path: ${{ env.Wap_Project_Directory }}\AppPackages

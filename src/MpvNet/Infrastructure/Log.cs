@@ -105,6 +105,8 @@ internal sealed class FileLogWriter
         }
         catch
         {
+            // Fail-safe by design: reporting a logger write failure through this logger
+            // would recurse indefinitely and could terminate the player.
         }
     }
 
@@ -141,6 +143,8 @@ internal sealed class FileLogWriter
         }
         catch
         {
+            // Cleanup is best-effort and cannot safely log a failure if the log folder
+            // itself is unavailable; doing so would recurse into Write.
         }
     }
 

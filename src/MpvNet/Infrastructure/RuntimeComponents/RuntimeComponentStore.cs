@@ -47,17 +47,13 @@ internal sealed class RuntimeComponentUpdateLock : IDisposable
         if (Interlocked.Exchange(ref _disposed, 1) != 0)
             return;
 
-        try
-        {
-            _releaseSignal.Set();
-        }
-        catch (ObjectDisposedException)
-        {
-            // The owner thread already completed and disposed the signal.
-        }
+        _releaseSignal.Set();
 
         if (Thread.CurrentThread != _ownerThread)
             _ownerThread.Join();
+
+        _mutex.Dispose();
+        _releaseSignal.Dispose();
     }
 
     void OwnMutex()
@@ -98,16 +94,11 @@ internal sealed class RuntimeComponentUpdateLock : IDisposable
         }
         finally
         {
-            try
-            {
-                if (acquired)
-                    _mutex.ReleaseMutex();
-            }
-            finally
-            {
-                _mutex.Dispose();
-                _releaseSignal.Dispose();
-            }
+            if (acquired)
+                _mutex.ReleaseMutex();
+
+            // The public owner disposes the synchronization primitives after this
+            // worker has stopped using them and Join has completed.
         }
     }
 }

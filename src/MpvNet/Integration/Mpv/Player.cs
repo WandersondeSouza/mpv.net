@@ -155,7 +155,7 @@ public partial class MainPlayer : MpvClient
     }
 
     static readonly object _loadFolderLock = new();
-    bool _wasAviSynthLoaded;
+    nint _aviSynthModuleHandle;
 
     static string GetLanguage(string id)
     {
@@ -256,9 +256,9 @@ public partial class MainPlayer : MpvClient
             try
             {
                 string json = GetPropertyString("audio-device-list");
-                var enumerator = JsonDocument.Parse(json).RootElement.EnumerateArray();
+                using JsonDocument document = JsonDocument.Parse(json);
 
-                foreach (var element in enumerator)
+                foreach (JsonElement element in document.RootElement.EnumerateArray())
                 {
                     string name = element.TryGetProperty("name", out var nameElement) ? nameElement.GetString() ?? "" : "";
                     string description = element.TryGetProperty("description", out var descriptionElement) ? descriptionElement.GetString() ?? "" : "";

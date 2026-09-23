@@ -36,20 +36,79 @@ public partial class MainPlayer
         {
             Task.WhenAll(playerTasks).GetAwaiter().GetResult();
         }
+        catch (OperationCanceledException) when (_playerCancellation.IsCancellationRequested)
+        {
+            // Cancellation is the expected shutdown path for event loops and delayed work.
+        }
         catch (Exception ex)
         {
             Log.Error(ex, "Player background tasks did not finish during shutdown.");
         }
 
-        foreach (MpvClient client in Clients)
-            client.DestroyHandle();
+        try
+        {
+            foreach (MpvClient client in Clients)
+            {
+                try
+                {
+                    client.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "A secondary libmpv client could not be destroyed cleanly.");
+                }
+            }
 
-        Clients.Clear();
-        base.DestroyHandle();
+            Clients.Clear();
+            try
+            {
+                base.DestroyHandle();
+            }
+            finally
+            {
+                nint mainHandle = MainHandle;
+                try
+                {
+                    DestroyMainHandle(mainHandle);
+                }
+                finally
+                {
+                    MainHandle = IntPtr.Zero;
+                }
+            }
+        }
+        finally
+        {
+            lock (_playerTasksLock)
+                _playerTasks.Clear();
+            lock (_eventTasksLock)
+                _eventTasks.Clear();
 
-        nint mainHandle = MainHandle;
-        DestroyMainHandle(mainHandle);
-        MainHandle = IntPtr.Zero;
+            Initialized = null;
+            Pause = null;
+            PlaylistPosChanged = null;
+            VideoSizeChanged = null;
+
+            CancellationTokenSource? playlistDebounce;
+            lock (_playlistNormalizationStateLock)
+            {
+                playlistDebounce = _playlistNormalizationDebounce;
+                _playlistNormalizationDebounce = null;
+            }
+            playlistDebounce?.Dispose();
+
+            _playerTaskGate.Dispose();
+            _playerCancellation.Dispose();
+            ShutdownAutoResetEvent.Dispose();
+        }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+            Destroy();
+
+        base.Dispose(disposing);
     }
 
     void DestroyMainHandle(nint handle)

@@ -127,8 +127,10 @@ public partial class GuiCommand
     void ShowCommands()
     {
         string json = Player.GetPropertyString("command-list");
-        var enumerator = JsonDocument.Parse(json).RootElement.EnumerateArray();
-        var commands = enumerator.OrderBy(it => it.GetProperty("name").GetString());
+        using JsonDocument document = JsonDocument.Parse(json);
+        JsonElement[] commands = document.RootElement.EnumerateArray()
+            .OrderBy(it => it.GetProperty("name").GetString())
+            .ToArray();
         StringBuilder sb = new StringBuilder();
 
         foreach (var cmd in commands)

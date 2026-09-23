@@ -12,7 +12,10 @@ public class ExtensionService
 {
     public event Action<Exception>? UnhandledException;
 
-    readonly List<object?> _refs = [];
+    // Extensions are loaded into AssemblyLoadContext.Default and intentionally remain
+    // alive for the process lifetime. Hot reload/unload is not part of this service.
+    readonly List<object> _refs = [];
+    internal int LoadedExtensionCount => _refs.Count;
 
     void LoadDll(string path)
     {
@@ -22,12 +25,44 @@ public class ExtensionService
         try
         {
             Assembly asm = Assembly.LoadFile(path);
-            var type = asm.GetTypes().Where(typeof(IExtension).IsAssignableFrom).First();
-            _refs.Add(Activator.CreateInstance(type));
+            Type[] exportedTypes;
+            try
+            {
+                exportedTypes = asm.GetTypes();
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                Exception[] loaderExceptions = ex.LoaderExceptions.OfType<Exception>().ToArray();
+                throw new InvalidOperationException(
+                    $"Extension assembly '{Path.GetFileName(path)}' has unavailable dependencies.",
+                    new AggregateException(loaderExceptions));
+            }
+
+            Type[] extensionTypes = exportedTypes
+                .Where(type => typeof(IExtension).IsAssignableFrom(type) && type is { IsClass: true, IsAbstract: false })
+                .OrderBy(type => type.FullName, StringComparer.Ordinal)
+                .ToArray();
+            if (extensionTypes.Length == 0)
+                throw new InvalidDataException(
+                    $"Extension assembly '{Path.GetFileName(path)}' does not contain a concrete {nameof(IExtension)} type.");
+
+            foreach (Type type in extensionTypes)
+            {
+                object instance = Activator.CreateInstance(type)
+                    ?? throw new InvalidOperationException($"Extension type '{type.FullName}' could not be created.");
+                _refs.Add(instance);
+            }
         }
         catch (Exception ex)
         {
-            UnhandledException?.Invoke(ex);
+            try
+            {
+                UnhandledException?.Invoke(ex);
+            }
+            catch (Exception handlerException)
+            {
+                Terminal.WriteError(handlerException);
+            }
         }
     }
 

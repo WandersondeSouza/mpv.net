@@ -13,8 +13,9 @@ namespace NGettext.Wpf
 
     public class Localizer : IDisposable, ILocalizer
     {
-        string _domainName;
-        string _localeFolder;
+        readonly string _domainName;
+        readonly string _localeFolder;
+        bool _disposed;
 
         public Localizer(ICultureTracker cultureTracker, string domainName, string localeFolder)
         {
@@ -47,7 +48,19 @@ namespace NGettext.Wpf
 
         public void Dispose()
         {
-            CultureTracker.CultureChanging -= ResetCatalog;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+                CultureTracker.CultureChanging -= ResetCatalog;
+
+            _disposed = true;
         }
     }
 
