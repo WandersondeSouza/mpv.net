@@ -119,8 +119,9 @@ jobs:
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the signed app package
       if: steps.signing.outputs.available == 'true'
-      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:Platform=x64 /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:Platform=x64 /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=$env:PFX_PASSWORD
       env:
+        PFX_PASSWORD: ${{ secrets.Pfx_Key }}
         Appx_Bundle: Always
         Appx_Bundle_Platforms: x64
         Appx_Package_Build_Mode: StoreUpload
