@@ -1,10 +1,10 @@
-﻿# Build e release do MPV.NET Media Player
+# Build e release do MPV.NET Media Player
 
 ## Objetivo
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **MPV.NET Media Player**.
 
-> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale, validacao de dependencias nativas e validacao do pacote MSIX/WAP no Visual Studio 2026 Community. A versao atual preparada para publicacao e `7.1.22.0`. Ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
+> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale e dependencias nativas. A versao `7.1.24.0` foi gerada localmente; ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
 
 ---
 
@@ -544,7 +544,3 @@ Após compilar:
   publish.
 - Validar revisão manual completa de UI, fullscreen, menu, atalhos, temas e persistência.
 - Validar o workflow manual `.github/workflows/release-packages.yml`.
-
-
-
-

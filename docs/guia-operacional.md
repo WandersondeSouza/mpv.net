@@ -1,4 +1,4 @@
-﻿# Guia operacional do MPV.NET Media Player
+# Guia operacional do MPV.NET Media Player
 
 Documento único para build, dependências nativas, scripts, modo portátil, contribuição, release e direção do fork.
 
@@ -295,6 +295,8 @@ versao publica deve valer para ZIP, instalador e executavel; no MSIX enviado a
 Store, o `Identity Version` usa a mesma versao com revisao zero, porque a
 Microsoft Store rejeita pacotes com quarto componente diferente de zero. Exemplo:
 release `7.1.4.1` usa manifesto `7.1.4.0`.
+
+Publicacao registrada em 2026-09-23: a release `7.1.24.0` consolida melhorias no encerramento e descarte de recursos, cobertura automatizada dos ciclos de vida, ajustes na inicializacao e no player, atualizacao dos workflows de CI e ajuste na doacao pela interface. O build Release x64 gerou ZIP portatil e instalador; o conteudo obrigatorio e as dependencias nativas do ZIP foram validados localmente.
 
 Publicacao registrada em 2026-06-23: a release `7.1.4.2` cobre as mudancas
 posteriores a `7.1.4.1`, com refatoracoes conservadoras de organizacao,
