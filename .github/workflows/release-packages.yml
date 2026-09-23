@@ -158,14 +158,14 @@ jobs:
           }
 
       - name: Upload generated packages
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mpv.net-release-packages
           path: artifacts/release/*
 
       - name: Upload Microsoft Store package
         if: ${{ inputs.create_store_package == 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mpv.net-store-package
           path: artifacts/store/*
