@@ -10,7 +10,7 @@ Documento único para build, dependências nativas, scripts, modo portátil, con
 - Para empacotar e publicar, siga `Release`.
 - Para entender o modo portátil, leia `Portátil`.
 - Para contribuir com mudanças pequenas e compatíveis, leia `Contribuição`.
-- Para saber o que ainda está pendente, leia `Roadmap`.
+- Para distinguir evidência local de validações manuais ou externas, leia [Validações manuais e externas](#validações-manuais-e-externas).
 - Para entender a estrutura maior do fork, leia `docs/developer/architecture.md`.
 - Para mudanças de configuração, leia `docs/developer/configuration.md`.
 - Para mudanças de build e release, leia `docs/developer/build-release.md`.
@@ -364,23 +364,21 @@ Fluxo recomendado:
 4. testar o resultado;
 5. registrar o que mudou.
 
-## Roadmap
+## Validações manuais e externas
 
-Pontos ainda abertos ou reservados:
+Build e empacotamento locais não comprovam o comportamento em máquinas de uso
+final, a execução remota do workflow nem a certificação Store. Registre cada
+validação somente após executá-la e informe versão, pacote e ambiente:
 
-- concluir a revisão manual do pacote publicado em tema claro/escuro, DPI,
-  fullscreen, menu, atalhos, persistência e fechamento;
-- validar em máquina de uso final arquivo local, URL/stream, playlist, pasta
-  com mídia, drag/drop e alternância de áudio/legenda;
-- validar caminhos longos, migração de `input.conf` e integração com
-  `thumbfast`;
-- validar o pacote MSIX/WAP assinado antes do próximo envio à Microsoft Store;
-- evitar mudanças grandes sem bug ou necessidade clara;
-- manter a documentação alinhada ao que foi consolidado aqui.
+- testar UI, tema, DPI, fullscreen, menu, atalhos, persistência e encerramento;
+- testar arquivo local, URL/stream, playlist, pasta com mídia, drag/drop e
+  alternância de áudio/legenda;
+- verificar caminhos longos, migração de `input.conf` e `thumbfast` quando essas
+  áreas forem alteradas;
+- validar o pacote MSIX/WAP assinado no fluxo de submissão à Microsoft Store.
 
-Quando um item estiver corrigido, validado e publicado, registre o resultado na
-descricao da release correspondente no GitHub e mantenha esta lista apenas com
-pendencias reais.
+Consulte os resultados de publicação registrados nesta página como histórico;
+eles não afirmam que todas essas validações foram feitas.
 
 ## Tradução e manutenção
 

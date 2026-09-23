@@ -31,7 +31,7 @@ O aplicativo também está publicado na Microsoft Store:
 
 - Windows 10 versão 2004 (build 19041) ou superior.
 - Runtime .NET Desktop 10 compatível com o projeto.
-- Para streaming, o player baixa e atualiza `yt-dlp.exe` e o runtime Deno no cache de componentes em `%LOCALAPPDATA%\mpv.net\Component`. Se quiser testar manualmente, também vale deixar os executáveis ao lado do executável principal ou no `PATH`.
+- Para mídia online, o player mantém componentes auxiliares no cache `%LOCALAPPDATA%\mpv.net\Component\current`. É necessário acesso à rede para baixar ou atualizar componentes ausentes ou vencidos. Também é possível fornecer executáveis válidos na pasta do player ou no `PATH`.
 
 O instalador registra os formatos de mídia comuns e playlists IPTV suportados
 pelo fork e adiciona a pasta instalada ao `PATH` do Windows, permitindo executar
@@ -213,10 +213,12 @@ autenticada, se necessario. Se preferir exportar cookies para um arquivo, use
 um arquivo no formato Mozilla/Netscape e garanta que a primeira linha seja
 `# HTTP Cookie File` ou `# Netscape HTTP Cookie File`.
 
-Para reduzir o risco de cookies rotacionados pelo YouTube, a wiki do `yt-dlp`
-recomenda abrir uma janela privada/incognita, fazer login nela, acessar
-`https://www.youtube.com/robots.txt` na mesma aba e exportar os cookies logo em
-seguida. Evite manter essa mesma sessao privada aberta depois da exportacao.
+As instruções de cookies e autenticação do YouTube mudam com o `yt-dlp`.
+Consulte a [orientação oficial para cookies](https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies)
+antes de exportar. A orientação atual usa uma janela privada, acessa
+`https://www.youtube.com/robots.txt` na mesma aba e fecha a janela logo após a
+exportação. Usar cookies da conta pode trazer riscos à conta; só faça isso se
+for necessário.
 
 Se o video continuar falhando mesmo com cookies validos, o YouTube pode estar
 exigindo PO Token em vez de apenas autenticacao. O `yt-dlp` nao gera esse
@@ -240,8 +242,8 @@ Os componentes auxiliares de runtime usam o cache local em
 `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe`, `mpvnet.com` e
 `deno.exe` podem
 ser baixados e atualizados pelo player quando necessario. Uma cópia válida no
-cache é preferida; depois o player tenta a pasta do executável e, por último,
-o `PATH`. Downloads são feitos em `Component\staging`, validados e promovidos
+cache `current` é preferido, seguido pelo cache legado, pela pasta do executável
+e, por último, pelo `PATH`. Downloads são feitos em `Component\staging`, validados e promovidos
 como uma geração completa, sem substituir diretamente arquivos em uso.
 
 Exemplo:

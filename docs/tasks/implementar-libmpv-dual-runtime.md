@@ -1,5 +1,9 @@
 # Tarefa: implementar seleção automática entre libmpv normal e x86-64-v3 no MPV.NET
 
+> Registro da tarefa de implementação concluída. A seleção dual está descrita
+> em `docs/developer/mpv-integration.md` e `docs/developer/build-release.md`;
+> confirme o código e os pacotes atuais antes de reutilizar os critérios abaixo.
+
 Trabalhe exclusivamente no repositório:
 
 `WandersondeSouza/mpv.net`

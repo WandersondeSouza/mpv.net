@@ -432,7 +432,7 @@ Depois de CADA etapa:
 ```text
 git status
 dotnet build src\MpvNet.sln
-dotnet test src\MpvNet.sln
+dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
 git diff --check
 git log -1
 Não faça `git push` automaticamente. Só envie ao remoto mediante solicitação

@@ -31,7 +31,7 @@ Se a mudança tocar fluxos de inicialização, leia também `docs/developer/conf
 
 Regras:
 
-- preservar `MPVNET_HOME`, `portable_config` e `%APPDATA%\mpv.net`;
+- preservar `MPVNET_HOME`, `portable_config` e `%LOCALAPPDATA%\mpv.net`;
 - preservar compatibilidade com arquivos existentes;
 - não reescrever arquivo do usuário sem necessidade;
 - verificar e ampliar `src/MpvNet.Tests/Program.cs` quando a mudança alterar parser, paths, fallback, seleção de idioma ou compatibilidade de configuração;

@@ -4,7 +4,7 @@
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **MPV.NET Media Player**.
 
-> Status: estrutura real do projeto mapeada. O build local da aplicacao Windows e o fluxo local de release foram validados em Windows, incluindo ZIP portatil, instalador, Locale e dependencias nativas. A versao `7.1.24.0` foi gerada localmente; ainda falta fechar a revisao manual completa de UI/compatibilidade em maquina de uso final.
+> Evidência local registrada: build Release x64, ZIP portátil, instalador, `Locale` e dependências nativas foram gerados ou validados localmente para a release indicada no histórico operacional. Isso não confirma assinatura, certificação Store, execução do workflow remoto nem revisão manual completa em diferentes máquinas.
 
 ---
 
@@ -452,19 +452,17 @@ conteudo obrigatorio do pacote. A versao publica foi alinhada com
 `7.1.13.1` e o manifesto MSIX em `7.1.13.0`, conforme a regra de revisao zero
 da Microsoft Store.
 
-Pendente real: validar o workflow manual do GitHub Actions, o pacote MSIX/WAP em
-ambiente com Desktop Bridge/MSIX instalado e a revisao manual completa da UI no
-pacote gerado.
+O histórico local deste documento não comprova a execução atual do workflow
+manual do GitHub Actions, nem validação do pacote MSIX/WAP assinado ou revisão
+manual completa da UI. Confirme esses resultados no ambiente correspondente
+antes de registrá-los como concluídos.
 
 ---
 
 # Versão
 
-A versão publica está centralizada em `src/BuildVersion.props`:
-
-```xml
-<MpvNetVersion>7.1.14.1</MpvNetVersion>
-```
+A versão pública está centralizada em `src/BuildVersion.props` (`MpvNetVersion`).
+Consulte esse arquivo para ver a versão da branch atual.
 
 O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
 usa `MpvNetVersion` para `FileVersion`, `AssemblyVersion` e
@@ -474,12 +472,12 @@ O manifesto MSIX ainda exige um valor literal em `Package.appxmanifest`; por
 isso a alteracao de versao deve ser feita por:
 
 ```powershell
-.\src\Tools\set-release-version.ps1 -Version 7.1.14.1
+.\src\Tools\set-release-version.ps1 -Version <versao>
 ```
 
-Esse comando grava `7.1.14.1` em `BuildVersion.props` e `7.1.14.0` no
-`Identity Version` do manifesto MSIX, atendendo a regra da Microsoft Store de
-revisao zero no pacote.
+Esse comando grava a versão pública em `BuildVersion.props` e a mesma versão
+com revisão zero no `Identity Version` do manifesto MSIX, conforme a regra da
+Microsoft Store.
 
 Para apenas incrementar o ultimo numero:
 
@@ -536,7 +534,7 @@ Após compilar:
 
 ---
 
-# Pendências deste guia
+# Validações que exigem ambiente específico
 
 - Revalidar `dotnet build src\MpvNet.sln` quando houver mudanca relevante no
   build.

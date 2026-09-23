@@ -28,7 +28,7 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 
 ## Regras
 
-- Preservar a ordem de configuração: `MPVNET_HOME`, `portable_config`, `%APPDATA%\mpv.net`.
+- Preservar a ordem de configuração: `MPVNET_HOME`, `portable_config`, `%LOCALAPPDATA%\mpv.net`.
 - Não normalizar ou reescrever arquivo do usuário sem necessidade.
 - Criar backup antes de migração que altere arquivo do usuário.
 - Validar atalhos duplicados sem quebrar compatibilidade com sintaxe do mpv.

@@ -167,7 +167,9 @@ O fork possui traducoes gettext para os idiomas listados na tabela acima. Ingles
 
    Nao criar `lang/po/en.po`: ingles e nativo e deve permanecer representado pelo proprio `lang/source.pot`.
 
-2. Ajustar o cabecalho do novo `.po` para UTF-8 e plural do portugues brasileiro:
+2. Preencher os metadados do catálogo para o idioma. O exemplo abaixo é
+   específico para português brasileiro; para outro idioma, ajuste `Language`,
+   `Language-Team` e `Plural-Forms` segundo a regra daquela língua:
 
 ```po
 msgid ""

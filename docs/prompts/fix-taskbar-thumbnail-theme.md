@@ -1,5 +1,10 @@
 # Prompt para Codex — corrigir tema dos botões da Taskbar Thumbnail Toolbar
 
+> Registro da tarefa original. O comportamento foi implementado e está descrito
+> em `docs/developer/windows-ui.md`; use essa documentação e o código atual
+> como referência de estado. Os requisitos e comandos abaixo preservam o escopo
+> histórico da solicitação.
+
 TAREFA: corrigir os ícones dos controles da miniatura da barra de tarefas
 (Taskbar Thumbnail Toolbar) do projeto mpv.net para respeitar automaticamente
 o tema claro/escuro do Windows.
@@ -387,7 +392,7 @@ Executar:
 ```bash
 dotnet restore
 dotnet build
-dotnet test
+dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
 ```
 
 Corrigir qualquer regressão causada pela alteração.
@@ -447,7 +452,7 @@ Apresentar:
 - como foi tratado o cache dos Icons;
 - como foi tratada a mudança dinâmica de tema;
 - resultado de dotnet build;
-- resultado de dotnet test;
+- resultado do harness `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`;
 - commits criados;
 - branch criada;
 - confirmação do push;

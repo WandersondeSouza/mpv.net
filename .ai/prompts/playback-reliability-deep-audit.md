@@ -81,7 +81,7 @@ Executar pelo menos:
 ```text
 dotnet restore src\MpvNet.sln
 dotnet build src\MpvNet.sln
-dotnet test src\MpvNet.sln
+dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
 ```
 
 E o fluxo específico recomendado pelo projeto quando aplicável:

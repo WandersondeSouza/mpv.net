@@ -244,10 +244,10 @@ compatíveis e a capability opcional de browser impersonation. O diagnóstico
 não recebe URL, cookie, header de autorização, query assinada nem PO Token.
 
 O executável oficial do yt-dlp continua sendo atualizado pelo fluxo existente
-de componentes, fora do caminho de reprodução. O mesmo bootstrap agora baixa o
+de componentes, fora do caminho de reprodução. O mesmo bootstrap baixa o
 `deno.exe` x64 (Deno 2.3 ou posterior), runtime recomendado e habilitado por
-padrão pelo yt-dlp. Os scripts EJS já vêm dentro do executável oficial do
-yt-dlp; Node.js 22 ou posterior e QuickJS 2023-12-9 ou posterior continuam
+padrão pelo yt-dlp. O executável oficial inclui os componentes de script EJS;
+Node.js 22 ou posterior e QuickJS 2023-12-9 ou posterior continuam
 sendo alternativas que exigem configuração explícita. O MPV.NET não baixa
 esses runtimes a cada reprodução e não substitui um `ytdl-path` configurado
 pelo usuário.

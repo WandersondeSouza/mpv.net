@@ -120,7 +120,7 @@ Executar pelo menos:
 ```text
 dotnet restore src\MpvNet.sln
 dotnet build src\MpvNet.sln
-dotnet test src\MpvNet.sln
+dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
 dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
 ```
 

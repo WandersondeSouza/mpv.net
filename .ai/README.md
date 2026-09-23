@@ -16,6 +16,11 @@ históricos ou hipóteses de prompts não representam necessariamente o estado a
 Os arquivos aqui ajudam a manter consistência, mas não substituem a leitura do código atual nem a validação do comportamento real.
 Atualize documentação técnica apenas quando houver mudança consolidada; prefira documentos existentes e evite criar arquivos redundantes.
 
+Os prompts descrevem tarefas e critérios preparados em momentos específicos.
+Trate requisitos que descrevam o estado existente como contexto histórico e
+confirme-os na branch atual antes de executar; não os use como documentação de
+funcionalidades implementadas.
+
 Após a refatoração validada, a topologia principal do código usa partials por responsabilidade:
 
 - `src/MpvNet.Windows/WinForms/MainForm.*.cs` para UI Windows por tema;
@@ -32,7 +37,7 @@ Antes de editar código ou documentação:
 3. ler `docs/manual.md`;
 4. ler `docs/CONFIGURACAO.md` ou a documentação da área tocada;
 5. ler `docs/guia-operacional.md` quando a tarefa envolver build, release, scripts ou manutenção geral;
-6. ler o `Roadmap` em `docs/guia-operacional.md` e as pendências da documentação técnica da área quando a tarefa envolver planejamento ou priorização;
+6. ler `Validações manuais e externas` em `docs/guia-operacional.md` e as melhorias documentais da área quando a tarefa envolver planejamento ou priorização;
 7. ler `docs/developer/architecture.md` quando a tarefa envolver análise ampla ou refatoração;
 8. ler `docs/developer/configuration.md`, `docs/developer/mpv-integration.md`, `docs/developer/windows-ui.md`, `docs/developer/build-release.md` e `docs/developer/localization.md` conforme a área tocada;
 9. usar o arquivo de `skills/`, `agents/` e `prompts/` que melhor corresponda ao tipo de trabalho.
@@ -46,6 +51,7 @@ Antes de editar código ou documentação:
 - Commit, push, publicação de release, Store ou deploy não são automáticos.
 - Só executar essas ações quando forem solicitadas explicitamente e houver evidência de validação local.
 - Ao relatar resultados, separar `validado localmente`, `pendente de ambiente` e `não verificado`.
+- Para o harness xUnit v3, executar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`; `dotnet test src\MpvNet.sln` não é o fluxo de teste desta solução, que inclui um projeto WAP.
 
 ## Observação sobre MCP
 

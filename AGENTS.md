@@ -81,10 +81,14 @@ Riscos:
 Plano de teste:
 ```
 
-## Prioridade atual do fork
+## Fonte de verdade e estado do projeto
 
-1. documentação técnica;
-2. tradução parcial para português brasileiro;
-3. entendimento da arquitetura;
-4. preparação para uso com agentes de IA;
-5. melhorias futuras.
+- Confirme o comportamento no código e nos scripts da branch atual; este arquivo
+  define princípios de manutenção, não um retrato de funcionalidades ou
+  prioridades temporárias.
+- Use `README.md` como índice, `docs/manual.md` para uso, `docs/guia-operacional.md`
+  para operações e `docs/developer/` para detalhes técnicos.
+- Trate relatórios datados e prompts em `.ai/prompts/` como registros de tarefas
+  anteriores. Eles não comprovam o estado atual nem substituem esta leitura.
+- Registre como pendente apenas uma validação ou atividade que ainda não tenha
+  evidência concluída; indique ambiente e escopo quando aplicável.

@@ -1,5 +1,9 @@
 ﻿# Arquitetura do MPV.NET Media Player
 
+> Este documento combina o mapa atual do código com relatórios de auditoria
+> datados. As seções históricas registram o estado e a validação daquela rodada;
+> não substituem a conferência da branch atual.
+
 ## Objetivo
 
 Este documento ajuda mantenedores, desenvolvedores e agentes de IA a entender a arquitetura geral do MPV.NET Media Player.

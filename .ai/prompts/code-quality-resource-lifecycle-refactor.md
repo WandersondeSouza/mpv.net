@@ -770,9 +770,9 @@ Executar:
 
 `dotnet build src/MpvNet.sln -c Release`
 
-`dotnet test src/MpvNet.sln -c Debug`
+`dotnet run --project src/MpvNet.Tests/MpvNet.Tests.csproj --configuration Debug --no-restore`
 
-`dotnet test src/MpvNet.sln -c Release`
+`dotnet run --project src/MpvNet.Tests/MpvNet.Tests.csproj --configuration Release --no-restore`
 
 ou comandos equivalentes corretos para a solution.
 
@@ -974,7 +974,7 @@ Ao finalizar, apresentar:
 - testes adicionados;
 - resultado Debug;
 - resultado Release;
-- resultado `dotnet test`;
+- resultado do harness `dotnet run --project src/MpvNet.Tests/MpvNet.Tests.csproj --no-restore`;
 - commits criados;
 - SHA do último commit;
 - branch enviada;

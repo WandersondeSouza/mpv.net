@@ -64,7 +64,7 @@ Cache e logs:
 | `%LOCALAPPDATA%\mpv.net\Component\staging` | Downloads e extrações temporárias, removidos depois de promover ou falhar. |
 | `%LOCALAPPDATA%\mpv.net\Component` | Local legado: continua sendo lido como fallback até uma atualização válida migrar os arquivos para `current`. |
 | `%LOCALAPPDATA%\mpv.net\Temp` | Arquivos temporários criados pelo frontend, como playlists normalizadas. |
-| `%LOCALAPPDATA%\mpv.net\Logs` | Logs diários quando o build é gerado com logging em arquivo habilitado. |
+| `%LOCALAPPDATA%\mpv.net\Logs` | Erros em qualquer build; logs detalhados quando o build é gerado com logging em arquivo habilitado. |
 
 Esses diretórios são centralizados em `AppPaths` e criados no início da
 aplicação, antes da inicialização de logs, cache e atualização de componentes.
@@ -307,7 +307,7 @@ Quando `--config-dir` é usado, o caminho do `input.conf` também é ajustado pa
 1. A aplicação inicia.
 2. `Player.ConfigFolder` resolve `MPVNET_HOME`, `portable_config` ou `%LOCALAPPDATA%\mpv.net`.
 3. Arquivos antigos em `%LOCALAPPDATA%\mpv.net\Cache` e `%LOCALAPPDATA%\mpv.net\Temp`
-   com mais de 1 dia são removidos de forma não bloqueante.
+   com mais de 3 dias são removidos de forma não bloqueante.
 4. O cache do mpv é direcionado para `%LOCALAPPDATA%\mpv.net\Cache`.
 5. Os arquivos de configuração são lidos.
 6. `mpv.conf`, `mpvnet.conf` e `input.conf` recebem tratamento específico.
@@ -333,12 +333,12 @@ descartável com configuração portátil.
 ## Limpeza de estado descartável
 
 Na inicialização, o aplicativo tenta limpar arquivos e diretórios vazios com
-mais de 1 dia em `%LOCALAPPDATA%\mpv.net\Cache` e
+mais de 3 dias em `%LOCALAPPDATA%\mpv.net\Cache` e
 `%LOCALAPPDATA%\mpv.net\Temp`.
 
 Essa limpeza não altera arquivos de configuração e não deve bloquear a abertura
-do player. Falhas individuais ou gerais são capturadas e registradas apenas
-quando o build foi gerado com logging em arquivo habilitado.
+do player. Falhas individuais ou gerais são registradas como erros; logs
+detalhados de diagnóstico dependem do build com logging em arquivo habilitado.
 
 ## Migrações automáticas
 
@@ -361,10 +361,12 @@ A configuração é lida no startup. Evite leituras repetidas ou validações pe
 
 ---
 
-# Pendências
+# Melhorias documentais opcionais
 
 - Gerar documentação automática a partir de `App.ProcessProperty`, `Player.ProcessProperty` e comandos registrados.
-- Validar manualmente o ZIP portátil gerado com `portable_config`.
-- Documentar exemplos avançados de `theme.conf` e `global-input.conf`.
+- Acrescentar exemplos avançados de `theme.conf` e `global-input.conf` se houver necessidade de uso documentada.
+
+A validação do ZIP portátil com `portable_config` deve ser registrada junto ao
+artefato e à versão testada; este guia não presume que ela esteja concluída.
 
 
