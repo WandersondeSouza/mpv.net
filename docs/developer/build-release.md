@@ -1,4 +1,4 @@
-# Build e release do MPV.NET Media Player
+﻿# Build e release do MPV.NET Media Player
 
 ## Objetivo
 

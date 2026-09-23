@@ -1,4 +1,4 @@
-# Guia operacional do MPV.NET Media Player
+﻿# Guia operacional do MPV.NET Media Player
 
 Documento único para build, dependências nativas, scripts, modo portátil, contribuição, release e direção do fork.
 
