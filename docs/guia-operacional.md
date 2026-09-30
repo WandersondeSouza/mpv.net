@@ -296,6 +296,8 @@ Store, o `Identity Version` usa a mesma versao com revisao zero, porque a
 Microsoft Store rejeita pacotes com quarto componente diferente de zero. Exemplo:
 release `7.1.4.1` usa manifesto `7.1.4.0`.
 
+Publicacao registrada em 2026-09-30: a release `7.1.26.0` preserva a descricao da `7.1.24.0` e acrescenta os ajustes de Play/Pause por teclado e mouse, a identificacao do aplicativo nas integracoes do Shell/SMTC e a atualizacao dos workflows para `master`. O workflow Release packages concluiu build Release x64, gerou o ZIP portatil e o instalador, e validou o conteudo e as dependencias nativas. A publicacao `7.1.24.0` foi removida, mantendo a tag Git; a `7.1.26.0` ficou como unica release publicada. Por solicitacao, `src\BuildVersion.props` esta em `7.1.26.0` e o manifesto MSIX continua em `7.1.25.0`; este workflow nao gerou pacote Store. Antes de gerar o proximo MSIX, alinhe o manifesto para `7.1.26.0` com `src\Tools\set-release-version.ps1 -Version 7.1.26.0`.
+
 Publicacao registrada em 2026-09-23: a release `7.1.24.0` consolida melhorias no encerramento e descarte de recursos, cobertura automatizada dos ciclos de vida, ajustes na inicializacao e no player, atualizacao dos workflows de CI e ajuste na doacao pela interface. O build Release x64 gerou ZIP portatil e instalador; o conteudo obrigatorio e as dependencias nativas do ZIP foram validados localmente.
 
 Publicacao registrada em 2026-06-23: a release `7.1.4.2` cobre as mudancas
