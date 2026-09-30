@@ -38,7 +38,7 @@ PrivilegesRequiredOverridesAllowed=dialog
 ChangesEnvironment=yes
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; AppUserModelID: "WandersondeSouza.MpvNet"
 
 [Files]
 Source: "{#MyAppSourceDir}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion

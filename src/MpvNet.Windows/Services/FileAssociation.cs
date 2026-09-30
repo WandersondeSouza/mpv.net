@@ -39,6 +39,7 @@ public static class FileAssociation
 
             RegistryHelp.SetValue(@"HKCU\Software\Microsoft\Windows\CurrentVersion\App Paths\" + exeFilename, "", exePath);
             RegistryHelp.SetValue(@"HKCR\Applications\" + exeFilename, "FriendlyAppName", AppInfo.Product);
+            RegistryHelp.SetValue(@"HKCR\Applications\" + exeFilename, "AppUserModelID", Native.ApplicationIdentity.AppUserModelId);
             RegistryHelp.SetValue(@"HKCR\Applications\" + exeFilename + @"\shell\open\command", "", $"\"{exePath}\" \"%1\"");
             RegistryHelp.SetValue(@"HKCR\SystemFileAssociations\video\OpenWithList\" + exeFilename, "", "");
             RegistryHelp.SetValue(@"HKCR\SystemFileAssociations\audio\OpenWithList\" + exeFilename, "", "");
@@ -49,6 +50,7 @@ public static class FileAssociation
 
             foreach (string ext in extensions)
             {
+                RegistryHelp.SetValue(@"HKCR\" + exeFilenameNoExt + "." + ext, "AppUserModelID", Native.ApplicationIdentity.AppUserModelId);
                 RegistryHelp.SetValue(@"HKCR\Applications\" + exeFilename + @"\SupportedTypes", "." + ext, "");
                 RegistryHelp.SetValue(@"HKCR\" + "." + ext, "", exeFilenameNoExt + "." + ext);
                 RegistryHelp.SetValue(@"HKCR\" + "." + ext + @"\OpenWithProgIDs", exeFilenameNoExt + "." + ext, "");

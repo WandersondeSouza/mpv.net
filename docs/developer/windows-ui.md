@@ -87,6 +87,16 @@ FluentFlyout. O `MainPlayer` continua sendo a autoridade para reprodução: o
 SMTC apenas publica estado, metadata e timeline e encaminha Play, Pause, Stop,
 Previous, Next e seek como comandos mpv já existentes.
 
+Na execução sem pacote (Debug, portátil e instalador), `ApplicationIdentity`
+registra o `DisplayName` do produto em
+`HKCU\Software\Classes\AppUserModelId\WandersondeSouza.MpvNet` e define esse
+AppUserModelID no processo antes de criar a janela. O atalho do instalador e
+as associações registradas usam a mesma identidade. Isso fornece ao Shell uma
+identificação explícita para resolver o nome da origem do SMTC. O MSIX conserva
+a identidade do pacote; falhas no registro ou na API são diagnosticadas sem
+impedir a reprodução. A exibição final do nome depende de validação no painel
+de mídia do Windows com a build atualizada.
+
 A miniatura da barra de tarefas é uma superfície independente do SMTC. Ela é
 configurada por Native/Taskbar.cs usando ITaskbarList3::ThumbBarAddButtons e
 ThumbBarUpdateButtons, recebe cliques por WM_COMMAND com THBN_CLICKED e expõe

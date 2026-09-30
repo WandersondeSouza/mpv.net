@@ -170,6 +170,7 @@ static class Program
             }
             else
             {
+                Native.ApplicationIdentity.Initialize();
                 WpfApplication.Init();
                 using WinForms.MainForm mainForm = new();
                 Application.Run(mainForm);
