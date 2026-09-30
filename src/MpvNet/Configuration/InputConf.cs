@@ -53,7 +53,10 @@ public class InputConf
         {
             foreach (Binding confBinding in confbindings)
             {
-                if (defaultBinding.Command == confBinding.Command)
+                if (defaultBinding.Command == confBinding.Command &&
+                    (defaultBinding.Command != "script-message-to mpvnet play-pause" ||
+                     (defaultBinding.IsMenu && !defaultBindings.Any(binding => !binding.IsMenu &&
+                        binding.Input == confBinding.Input && binding.Command == confBinding.Command))))
                     defaultBinding.Input = confBinding.Input;
             }
         }
@@ -141,7 +144,9 @@ public class InputConf
                 foreach (Binding confBinding in conf)
                 {
                     if (defaultBinding.Command == confBinding.Command &&
-                        defaultBinding.Comment == confBinding.Comment)
+                        defaultBinding.Comment == confBinding.Comment &&
+                        (defaultBinding.Command != "script-message-to mpvnet play-pause" ||
+                         defaultBinding.IsMenu || defaultBinding.Input == confBinding.Input))
                     {
                         defaultBinding.Input = confBinding.Input;
                         removed.Add(confBinding);

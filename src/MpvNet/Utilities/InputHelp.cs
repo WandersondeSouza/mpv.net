@@ -120,7 +120,7 @@ public static class InputHelp
         Add(b, new (_("View"), _("Toggle OSC Visibility"), "script-binding osc/visibility", "Del"));
         Add(b, new (_("View"), _("Media Info On-Screen"), "script-message-to mpvnet show-media-info osd", "i"));
         Add(b, new (_("View"), _("Media Info Message Box"), "script-message-to mpvnet show-media-info msgbox", "Ctrl+m"));
-        Add(b, new (_("View"), _("Progress"), "show-progress", "p"));
+        Add(b, new (_("View"), _("Progress"), "show-progress"));
         Add(b, new (_("View") + " > " + _("On-Screen Menu"), _("On-Screen Menu"), "script-binding select/menu", "F1"));
         Add(b, new (_("View") + " > " + _("On-Screen Menu"), _("Playlist"), "script-binding select/select-playlist", "F8"));
         Add(b, new (_("View") + " > " + _("On-Screen Menu"), _("Bindings"), "script-binding select/select-binding", "F2"));
@@ -215,7 +215,9 @@ public static class InputHelp
         Add(b, new ("", "", "playlist-next", "MBTN_Forward", _("Next File")));
         Add(b, new ("", "", "playlist-prev", "<", _("Previous File")));
         Add(b, new ("", "", "playlist-next", ">", _("Next File")));
-        Add(b, new ("", "", "ignore", "MBTN_Left", _("Ignore left mouse button")));
+        Add(b, new ("", "", "expand-properties script-message-to mpvnet video-click ${user-data/mpvnet-click}", "MBTN_Left", _("Play/Pause")));
+        Add(b, new ("", "", "script-message-to mpvnet play-pause", "p", _("Play/Pause")));
+        Add(b, new ("", "", "script-message-to mpvnet play-pause", "P", _("Play/Pause")));
         Add(b, new ("", "", "cycle fullscreen", "f", _("Fullscreen")));
         Add(b, new ("", "", "cycle fullscreen", "MBTN_Left_DBL", _("Fullscreen")));
         Add(b, new ("", "", "no-osd seek  1 exact", "Shift+Right", _("Seek Forward")));
@@ -294,7 +296,9 @@ public static class InputHelp
             foreach (Binding confBinding in conf)
             {
                 if (defaultBinding.Command == confBinding.Command &&
-                    defaultBinding.Comment == confBinding.Comment)
+                    defaultBinding.Comment == confBinding.Comment &&
+                    (defaultBinding.Command != "script-message-to mpvnet play-pause" ||
+                     defaultBinding.IsMenu || defaultBinding.Input == confBinding.Input))
                 {
                     defaultBinding.Input = confBinding.Input;
                     removed.Add(confBinding);

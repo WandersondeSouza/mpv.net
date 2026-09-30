@@ -693,6 +693,15 @@ public partial class MainForm : Form
 
     protected override void WndProc(ref Message m)
     {
+        // Observe gestures without consuming input: mpv/OSC/scripts still select
+        // the binding. Only the video-click default requests a delayed pause.
+        if (m.Msg == 0x0201) // WM_LBUTTONDOWN
+            BeginVideoClick();
+        else if (m.Msg == 0x0203 || m.Msg == 0x0008 || m.Msg == 0x0204) // double click, focus loss, context menu
+            CancelVideoClick();
+        else if (m.Msg == 0x0202 && IsCursorPosDifferent(_videoClickPosition))
+            CancelVideoClick();
+
         switch (m.Msg)
         {
             case 0x0007: // WM_SETFOCUS
@@ -1130,6 +1139,7 @@ public partial class MainForm : Form
             return;
 
         _managedResourcesDisposed = true;
+        DisposeVideoClick();
 
         _lifetimeCancellation.Cancel();
         try
@@ -1215,6 +1225,7 @@ public partial class MainForm : Form
 
     protected override void OnFormClosing(FormClosingEventArgs e)
     {
+        DisposeVideoClick();
         _mediaTransportMediaLoaded = false;
         _mediaTransport?.Suspend();
         base.OnFormClosing(e);
@@ -1237,6 +1248,9 @@ public partial class MainForm : Form
     protected override void OnMouseMove(MouseEventArgs e)
     {
         base.OnMouseMove(e);
+
+        if (e.Button == MouseButtons.Left && IsCursorPosDifferent(_videoClickPosition))
+            CancelVideoClick();
 
         if (IsCursorPosDifferent(_mouseDownLocation) &&
             WindowState == FormWindowState.Normal &&

@@ -77,6 +77,13 @@ aplicativo` no Explorador de Arquivos.
 
 ## Configuração
 
+Na área de vídeo, o clique esquerdo alterna Play/Pause quando há mídia
+carregada; o duplo clique alterna tela cheia sem pausar ou retomar a mídia.
+O clique simples aguarda o intervalo necessário para distinguir o duplo clique
+do Windows. `p`, `P` e `Space` também alternam Play/Pause. Personalizações do
+`input.conf` prevalecem; menus completos existentes mantêm os atalhos anteriores.
+Veja [Atalhos](ATALHOS.md) para detalhes.
+
 O mpv.net lê a configuração nesta ordem:
 
 1. `MPVNET_HOME`

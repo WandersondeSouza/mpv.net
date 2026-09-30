@@ -9,6 +9,12 @@ public partial class MainForm
 {
     void Player_ClientMessage(string[] args)
     {
+        if (args.Length == 2 && args[0] == "video-click" && long.TryParse(args[1], out long generation))
+        {
+            RunOnUiThread(() => ScheduleVideoClick(generation));
+            return;
+        }
+
         if (Command.Current.Commands.ContainsKey(args[0]))
             Command.Current.Commands[args[0]].Invoke(new ArraySegment<string>(args, 1, args.Length - 1));
         else if (GuiCommand.Current.Commands.ContainsKey(args[0]))
@@ -38,6 +44,7 @@ public partial class MainForm
 
     void Player_Shutdown()
     {
+        _videoClick.Invalidate();
         _mediaTransportMediaLoaded = false;
         _mediaTransport?.Suspend();
         RunOnUiThread(Close);

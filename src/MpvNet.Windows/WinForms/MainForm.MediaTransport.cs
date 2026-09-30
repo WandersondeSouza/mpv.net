@@ -10,12 +10,14 @@ public partial class MainForm
 {
     void Player_StartFile()
     {
+        _videoClick.Invalidate();
         _mediaTransportMediaLoaded = false;
         RunOnUiThread(UpdateMediaTransport);
     }
 
     void Player_EndFile(LibMpv.mpv_end_file_reason reason)
     {
+        _videoClick.Invalidate();
         _mediaTransportMediaLoaded = false;
         RunOnUiThread(UpdateMediaTransport);
     }
