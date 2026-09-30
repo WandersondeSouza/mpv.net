@@ -341,6 +341,9 @@ Regras práticas:
 
 ## Contribuição
 
+`master` é a branch padrão do fork. Os workflows de build e CodeQL executam em
+pushes e pull requests para essa branch.
+
 Antes de mexer:
 
 - leia `README.md`;
