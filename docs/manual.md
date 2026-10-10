@@ -289,6 +289,7 @@ Se você for manter ou auditar o fork, os pontos de entrada mais úteis são:
 
 ## Suporte
 
+- repositório do MPV.NET: `https://github.com/WandersondeSouza/mpv.net` (também aberto em `Ajuda > Website mpv.net`, atalho `Ctrl+a`)
 - issues do fork: `https://github.com/WandersondeSouza/mpv.net/issues`
 - apoio/doação: `https://www.gestaodesistemas.com.br/mpvnet?language=<idioma>`; a página centralizada recebe o idioma da interface e usa valores de US$ 1 a US$ 20, com moeda local no Stripe Checkout quando disponível
 - menu de suporte: página oficial de doação e e-mail
