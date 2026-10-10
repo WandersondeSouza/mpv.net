@@ -102,6 +102,112 @@ internal static class RuntimeComponentService
         Log.Debug("Runtime component bootstrap finished.");
     }
 
+    public static string DescribeCacheStatus()
+    {
+        DateTimeOffset now = DateTimeOffset.UtcNow;
+        List<string> lines = ["Runtime component update cache:"];
+        foreach (IGrouping<string, RuntimeComponentDefinition> group in RuntimeComponentCatalog.Definitions
+                     .GroupBy(item => item.Kind == RuntimeComponentDownloadKind.GitHubZip ? "ffmpeg-bundle" : item.FileName))
+        {
+            RuntimeComponentDefinition[] definitions = group.ToArray();
+            RuntimeComponentDefinition primary = definitions[0];
+            string metadataPath = RuntimeComponentPaths.GetMetadataPath(primary);
+            if (!File.Exists(metadataPath))
+                metadataPath = RuntimeComponentPaths.GetLegacyMetadataPath(primary);
+
+            RuntimeComponentMetadata? metadata = null;
+            string? metadataError = null;
+            if (File.Exists(metadataPath))
+            {
+                try
+                {
+                    metadata = RuntimeComponentMetadataStore.LoadAsync(metadataPath, CancellationToken.None)
+                        .GetAwaiter().GetResult();
+                }
+                catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException)
+                {
+                    metadataError = ex.Message;
+                }
+            }
+
+            List<string> problems = [];
+            List<string> fileChecks = [];
+            if (metadata is null)
+                problems.Add(metadataError is null ? "successful download metadata is missing or invalid" :
+                    $"metadata could not be read: {metadataError}");
+            else
+            {
+                if (ParseSha256(metadata.Digest) is null)
+                    problems.Add("published asset SHA-256 metadata is missing or invalid");
+                if (metadata.LastCheckedUtc <= now.Subtract(RefreshInterval))
+                    problems.Add("last successful download is older than the 20-day refresh interval");
+            }
+
+            foreach (RuntimeComponentDefinition definition in definitions)
+            {
+                string path = RuntimeComponentPaths.GetTargetPath(definition.FileName);
+                if (!File.Exists(path))
+                {
+                    fileChecks.Add($"{definition.FileName}=missing");
+                    problems.Add($"{definition.FileName} is missing from the current cache");
+                    continue;
+                }
+
+                ComponentValidationResult validation = RuntimeComponentValidator.Validate(definition.FileName, path);
+                if (!validation.IsValid)
+                {
+                    fileChecks.Add($"{definition.FileName}=invalid ({validation.DiagnosticMessage})");
+                    problems.Add($"{definition.FileName} failed validation");
+                    continue;
+                }
+
+                try
+                {
+                    string actualDigest = RuntimeComponentFileSystem.GetFileDigest(path);
+                    string? recordedDigest = null;
+                    if (metadata?.FileDigests is not null)
+                        metadata.FileDigests.TryGetValue(definition.FileName, out recordedDigest);
+
+                    string expectedDigest = ParseSha256(recordedDigest) ?? "";
+                    bool digestMatches = expectedDigest.Length > 0 &&
+                        string.Equals(actualDigest, expectedDigest, StringComparison.OrdinalIgnoreCase);
+                    fileChecks.Add(
+                        $"{definition.FileName}=valid; sha256={(digestMatches ? "match" : expectedDigest.Length == 0 ? "not-recorded" : "MISMATCH")}; " +
+                        $"expected={(expectedDigest.Length > 0 ? expectedDigest : "<missing>")}; actual={actualDigest}");
+
+                    if (expectedDigest.Length == 0)
+                        problems.Add($"{definition.FileName} has no valid recorded file SHA-256");
+                    else if (!digestMatches)
+                        problems.Add($"{definition.FileName} SHA-256 does not match the recorded download");
+                }
+                catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or System.Security.Cryptography.CryptographicException)
+                {
+                    fileChecks.Add($"{definition.FileName}=hash-check-failed ({ex.Message})");
+                    problems.Add($"{definition.FileName} SHA-256 could not be checked");
+                }
+            }
+
+            string state = problems.Count == 0 ? "fresh" : "update-required";
+            string lastSuccessfulDownload = metadata is not null && metadata.LastCheckedUtc > DateTimeOffset.MinValue
+                ? metadata.LastCheckedUtc.ToString("O")
+                : "<none>";
+            string ageDays = metadata is not null && metadata.LastCheckedUtc > DateTimeOffset.MinValue
+                ? Math.Max(0, (now - metadata.LastCheckedUtc).TotalDays).ToString("0.0")
+                : "<unknown>";
+            string assetDigest = ParseSha256(metadata?.Digest) is string digest
+                ? digest
+                : "<missing-or-invalid>";
+            string version = metadata?.Version ?? "<unknown>";
+            string reason = problems.Count == 0 ? "<none>" : string.Join("; ", problems);
+            lines.Add(
+                $"{group.Key}: state={state}; lastSuccessfulDownloadUtc={lastSuccessfulDownload}; ageDays={ageDays}; " +
+                $"asset={version}; assetSha256={assetDigest}; files=[{string.Join(" | ", fileChecks)}]; reason={reason}");
+        }
+
+        lines.Add("Cache state is based on the last successful validated download; latest releases are checked during the normal startup bootstrap.");
+        return string.Join(Environment.NewLine, lines);
+    }
+
     static async Task<bool> IsFreshAndValidAsync(
         RuntimeComponentDefinition definition,
         CancellationToken cancellationToken) =>
@@ -207,7 +313,7 @@ internal static class RuntimeComponentService
         IReadOnlyList<RuntimeComponentDefinition> definitions)
     {
         if (metadata is null || metadata.LastCheckedUtc <= DateTimeOffset.UtcNow.Subtract(RefreshInterval) ||
-            metadata.FileDigests is null || metadata.FileDigests.Count == 0)
+            ParseSha256(metadata.Digest) is null || metadata.FileDigests is null || metadata.FileDigests.Count == 0)
         {
             return false;
         }
@@ -263,12 +369,22 @@ internal static class RuntimeComponentService
         Log.Debug($"Downloading runtime component asset. file='{definition.FileName}', asset='{Log.SafeValue(assetName)}', kind={definition.Kind}");
         long fileSize = await GitHubReleaseClient.DownloadAsync(
             asset.BrowserDownloadUrl!, destination, cancellationToken).ConfigureAwait(false);
+        Log.Debug($"Runtime component asset download succeeded. file='{definition.FileName}', asset='{Log.SafeValue(assetName)}', bytes={fileSize}");
         return new DownloadedRuntimeAsset(destination, digest, asset.BrowserDownloadUrl!, fileSize, assetName);
     }
 
     static string? ParseSha256(string? value)
     {
-        string digest = value?.Split(':', 2, StringSplitOptions.TrimEntries).LastOrDefault() ?? "";
+        string digest = value?.Trim() ?? "";
+        int separator = digest.IndexOf(':');
+        if (separator >= 0)
+        {
+            if (!digest[..separator].Equals("sha256", StringComparison.OrdinalIgnoreCase))
+                return null;
+
+            digest = digest[(separator + 1)..];
+        }
+
         return digest.Length == 64 && digest.All(Uri.IsHexDigit) ? digest : null;
     }
 
@@ -319,6 +435,8 @@ internal static class RuntimeComponentService
             ComponentValidationResult validation = RuntimeComponentValidator.Validate(definition.FileName, path);
             if (!validation.IsValid)
                 throw new InvalidOperationException($"Runtime component validation failed for {definition.FileName}: {validation.DiagnosticMessage}");
+
+            Log.Debug($"Runtime component validation succeeded. file='{definition.FileName}', architecture=x64, version='{validation.Version ?? "<unknown>"}'");
 
             if (!string.IsNullOrWhiteSpace(validation.Version))
                 versions.Add(validation.Version);

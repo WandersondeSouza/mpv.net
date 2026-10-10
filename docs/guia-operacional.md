@@ -204,10 +204,19 @@ Para diagnosticar a seleção sem abrir a interface completa, execute `mpvnet.ex
 
 Para auditar a cadeia online sem abrir a interface nem iniciar atualização,
 execute `mpvnet.exe --diagnose-components`. Além da origem, integridade e
-metadata dos componentes, a saída informa as versões executáveis de yt-dlp e
-FFmpeg, runtimes JavaScript detectados, suporte de EJS possível com o runtime
-local e targets opcionais de browser impersonation. O comando não testa uma URL
-nem envia credenciais; sucesso nele não substitui o teste manual do YouTube.
+metadata dos componentes, a saída mostra o estado do cache, a data do último
+download validado, a idade, o SHA-256 publicado e o SHA-256 calculado para cada
+arquivo baixado. Também inicia sondagens curtas de versão de yt-dlp, FFmpeg,
+FFplay, FFprobe e Deno; o resultado confirma se cada executável conseguiu
+iniciar. `MediaInfo.dll` é verificada como PE x64 e a seleção/carregamento de
+libmpv é informada separadamente. O diagnóstico não inicia downloads nem testa
+uma URL, e não envia credenciais; sucesso nele não substitui o teste manual do
+YouTube.
+
+No início normal do player, o cache é baixado ou atualizado quando está ausente,
+inválido ou com 20 dias ou mais desde o último download validado. A falha de uma
+atualização é registrada no log e mantém a geração anterior; o comando de
+diagnóstico mostra quando o cache precisa de atualização, mas não a executa.
 
 ### Validar dependências nativas
 

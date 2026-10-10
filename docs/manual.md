@@ -253,6 +253,16 @@ cache `current` é preferido, seguido pelo cache legado, pela pasta do executáv
 e, por último, pelo `PATH`. Downloads são feitos em `Component\staging`, validados e promovidos
 como uma geração completa, sem substituir diretamente arquivos em uso.
 
+No início do player, componentes ausentes, inválidos ou com download validado há
+20 dias ou mais são baixados novamente. O player exige SHA-256 publicado pelo
+GitHub ou fixado para o componente; depois confere a arquitetura x64 e a
+integridade dos arquivos antes de ativá-los. `libmpv` e `MediaInfo.dll` são
+dependências do pacote e passam pela validação do fluxo de build/release.
+Execute `mpvnet.exe --diagnose-components` para ver a existência e origem dos
+componentes, a idade do último download bem-sucedido, os hashes registrados e
+calculados e os testes de versão de FFmpeg, FFplay, FFprobe, yt-dlp e Deno. Esse
+comando é somente diagnóstico e não inicia downloads.
+
 Exemplo:
 
 ```powershell

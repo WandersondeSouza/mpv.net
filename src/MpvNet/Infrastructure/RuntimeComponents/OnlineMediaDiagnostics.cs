@@ -33,9 +33,15 @@ internal static partial class OnlineMediaDiagnostics
 
     public static string BuildReport(ComponentResolutionResult ytDlp, ComponentResolutionResult ffmpeg)
     {
+        ComponentResolutionResult ffplay = RuntimeComponents.ResolveComponent("ffplay.exe");
+        ComponentResolutionResult ffprobe = RuntimeComponents.ResolveComponent("ffprobe.exe");
+        ComponentResolutionResult deno = RuntimeComponents.ResolveComponent("deno.exe");
         ExecutableProbeResult ytDlpVersion = ProbeResolved(ytDlp, "--version");
         ExecutableProbeResult ffmpegVersion = ProbeResolved(ffmpeg, "-version");
-        JavaScriptRuntimeCapability[] runtimes = JavaScriptRuntimes.Select(ProbeJavaScriptRuntime).ToArray();
+        ExecutableProbeResult ffplayVersion = ProbeResolved(ffplay, "-version");
+        ExecutableProbeResult ffprobeVersion = ProbeResolved(ffprobe, "-version");
+        JavaScriptRuntimeCapability[] runtimes = JavaScriptRuntimes
+            .Select(runtime => ProbeJavaScriptRuntime(runtime, deno)).ToArray();
         JavaScriptRuntimeCapability? preferredRuntime = SelectPreferredRuntime(runtimes);
         ExecutableProbeResult impersonation = ProbeResolved(ytDlp, "--list-impersonate-targets");
         bool impersonationAvailable = impersonation.Succeeded &&
@@ -50,6 +56,8 @@ internal static partial class OnlineMediaDiagnostics
             "Online media capability chain:",
             $"yt-dlp executable: version={FirstLineOrUnavailable(ytDlpVersion)}; path={ytDlp.ResolvedPath ?? "<unavailable>"}; source={ytDlp.Source}",
             $"FFmpeg executable: version={FirstLineOrUnavailable(ffmpegVersion)}; path={ffmpeg.ResolvedPath ?? "<unavailable>"}; source={ffmpeg.Source}",
+            $"FFplay executable: version={FirstLineOrUnavailable(ffplayVersion)}; path={ffplay.ResolvedPath ?? "<unavailable>"}; source={ffplay.Source}",
+            $"FFprobe executable: version={FirstLineOrUnavailable(ffprobeVersion)}; path={ffprobe.ResolvedPath ?? "<unavailable>"}; source={ffprobe.Source}",
             $"JavaScript runtimes: {string.Join(", ", runtimes.Select(FormatRuntime))}",
             $"YouTube EJS challenge support: {ejsCapability}; remote components are not enabled by MPV.NET",
             $"Browser impersonation: {(impersonationAvailable ? "available (optional curl_cffi targets detected)" : "unavailable or not reported")}",
@@ -79,9 +87,12 @@ internal static partial class OnlineMediaDiagnostics
     }
 
     static JavaScriptRuntimeCapability ProbeJavaScriptRuntime(
-        (string Name, string Command, string Argument, Version Minimum, bool EnabledByDefault) runtime)
+        (string Name, string Command, string Argument, Version Minimum, bool EnabledByDefault) runtime,
+        ComponentResolutionResult deno)
     {
-        ExecutableProbeResult probe = Probe(runtime.Command, runtime.Argument);
+        ExecutableProbeResult probe = runtime.Name.Equals("Deno", StringComparison.OrdinalIgnoreCase) && deno.IsValid
+            ? ProbeResolved(deno, runtime.Argument)
+            : Probe(runtime.Command, runtime.Argument);
         string? version = TryParseVersion(probe.Output, out Version? parsed) ? parsed?.ToString() : null;
         return new(runtime.Name, runtime.Command, version, probe.Succeeded, probe.Succeeded && parsed >= runtime.Minimum,
             runtime.EnabledByDefault);

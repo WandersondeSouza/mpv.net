@@ -91,7 +91,7 @@ public static class RuntimeComponents
 
     public static string DiagnoseComponents()
     {
-        string[] componentNames = ["ffmpeg.exe", "ffplay.exe", "ffprobe.exe", "mpvnet.com", "yt-dlp.exe", "deno.exe"];
+        string[] componentNames = ["ffmpeg.exe", "ffplay.exe", "ffprobe.exe", "mpvnet.com", "yt-dlp.exe", "deno.exe", "MediaInfo.dll"];
         string libMpvReport;
         try
         {
@@ -113,6 +113,7 @@ public static class RuntimeComponents
             }));
 
         return libMpvReport + Environment.NewLine + componentReport + Environment.NewLine +
+            RuntimeComponentService.DescribeCacheStatus() + Environment.NewLine +
             OnlineMediaDiagnostics.BuildReport(
                 ResolveComponent("yt-dlp.exe"),
                 ResolveComponent("ffmpeg.exe"));
