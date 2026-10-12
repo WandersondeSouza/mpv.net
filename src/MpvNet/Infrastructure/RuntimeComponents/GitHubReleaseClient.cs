@@ -49,14 +49,23 @@ internal static class GitHubReleaseClient
         }
     }
 
-    public static async Task<long> DownloadAsync(string url, string destinationPath, CancellationToken cancellationToken)
+    public static Task<long> DownloadAsync(string url, string destinationPath, CancellationToken cancellationToken) =>
+        DownloadAsync(url, destinationPath, cancellationToken, Http, DownloadTimeout);
+
+    internal static async Task<long> DownloadAsync(
+        string url,
+        string destinationPath,
+        CancellationToken cancellationToken,
+        HttpClient http,
+        TimeSpan downloadTimeout)
     {
         ValidateGitHubUri(url);
+        using var timeoutSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        timeoutSource.CancelAfter(downloadTimeout);
+        long total = 0;
         try
         {
-            using var timeoutSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            timeoutSource.CancelAfter(DownloadTimeout);
-            using HttpResponseMessage response = await SendWithValidatedRedirectsAsync(url, timeoutSource.Token)
+            using HttpResponseMessage response = await SendWithValidatedRedirectsAsync(http, url, timeoutSource.Token)
                 .ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
 
@@ -69,7 +78,6 @@ internal static class GitHubReleaseClient
             await using var input = await response.Content.ReadAsStreamAsync(timeoutSource.Token).ConfigureAwait(false);
             await using var output = new FileStream(destinationPath, FileMode.CreateNew, FileAccess.Write, FileShare.None);
             byte[] buffer = new byte[81920];
-            long total = 0;
             while (true)
             {
                 int read = await input.ReadAsync(buffer, timeoutSource.Token).ConfigureAwait(false);
@@ -88,6 +96,19 @@ internal static class GitHubReleaseClient
 
             return total;
         }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+            Log.Debug($"Runtime component download canceled by the application. url='{Log.SafeValue(url)}', bytes={total}");
+            RuntimeComponentFileSystem.DeleteIfExists(destinationPath);
+            throw;
+        }
+        catch (OperationCanceledException ex) when (timeoutSource.IsCancellationRequested)
+        {
+            string message = FormattableString.Invariant($"Timed out while downloading runtime component asset after {downloadTimeout.TotalSeconds:0.###}s. url='{Log.SafeValue(url)}', destination='{Log.SafeValue(destinationPath)}', bytes={total}");
+            Log.Error(message);
+            RuntimeComponentFileSystem.DeleteIfExists(destinationPath);
+            throw new TimeoutException(message, ex);
+        }
         catch (Exception ex)
         {
             Log.Error(
@@ -98,14 +119,15 @@ internal static class GitHubReleaseClient
         }
     }
 
-    static async Task<HttpResponseMessage> SendWithValidatedRedirectsAsync(string url, CancellationToken cancellationToken)
+    static async Task<HttpResponseMessage> SendWithValidatedRedirectsAsync(
+        HttpClient http, string url, CancellationToken cancellationToken)
     {
         Uri current = new(url, UriKind.Absolute);
         for (int redirectCount = 0; ; redirectCount++)
         {
             using var request = new HttpRequestMessage(HttpMethod.Get, current);
             request.Headers.UserAgent.Add(new ProductInfoHeaderValue("mpv.net", AppInfo.Version.ToString()));
-            HttpResponseMessage response = await Http.SendAsync(
+            HttpResponseMessage response = await http.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
 
             if (!IsRedirect(response.StatusCode))

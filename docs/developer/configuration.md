@@ -123,6 +123,13 @@ executáveis forem validados juntos. O bootstrap começa em segundo plano depois
 que a janela é exibida; ao terminar, atualiza o `ytdl-path` para as próximas
 reproduções, preservando uma configuração explícita do usuário.
 
+O download de cada asset tem limite total de 10 minutos. Ao fechar o aplicativo,
+o cancelamento esperado remove o arquivo parcial e só aparece em logs de
+diagnóstico (`Debug`). Um timeout continua sendo erro e informa o limite e os
+bytes recebidos; falhas de transporte também permanecem no log de erros.
+Em todos esses casos, o cache válido anterior é preservado e componentes ainda
+ausentes ou vencidos podem ser baixados na próxima inicialização.
+
 O `yt-dlp.exe` oficial já inclui os scripts EJS. Para resolver os desafios
 JavaScript atuais do YouTube, o bootstrap também baixa o runtime `deno.exe`
 x64 (Deno 2.3 ou posterior) e o coloca na mesma geração do cache. O Deno fica

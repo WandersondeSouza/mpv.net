@@ -16,6 +16,16 @@ Resumo rápido:
 Logs detalhados em arquivo ficam desabilitados por padrão.
 Erros continuam sendo gravados em arquivo.
 
+O cancelamento de um download de componente pelo encerramento do aplicativo é
+esperado e aparece somente em `Debug`. Timeout e falhas reais de download
+continuam em `Error`; o timeout informa o limite e os bytes recebidos.
+
+Os testes xUnit isolam automaticamente `MPVNET_LOCAL_APPDATA` em
+`test-runtime` dentro da pasta do executável de testes quando não existe um
+override explícito. Assim, os testes de XML/JSON inválidos mantêm seus erros
+no log de testes, sem misturá-los ao log do player instalado. Um
+`MPVNET_LOCAL_APPDATA` fornecido pelo desenvolvedor ou CI continua sendo usado.
+
 Use esse padrão para releases publicas:
 
 ```powershell
