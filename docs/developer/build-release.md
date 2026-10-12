@@ -466,6 +466,21 @@ cmdlet `Get-FileHash` no Windows PowerShell. A release usou
 `src\BuildVersion.props` em `7.1.27.0` e manteve `Package.appxmanifest` em
 `7.1.26.0`; nenhum pacote MSIX foi solicitado ou validado neste fluxo.
 
+Validacao da versao `7.1.28.0` registrada em 2026-10-12: a suite local concluiu
+571 testes sem falhas. O workflow [Release packages](https://github.com/WandersondeSouza/mpv.net/actions/runs/38319025263)
+concluiu build Release x64 sem avisos/erros, gerou ZIP portatil e instalador e
+validou o conteudo obrigatorio e as dependencias nativas. Por solicitacao,
+`BuildVersion.props` usa `7.1.28.0` e `Package.appxmanifest` permanece em
+`7.1.27.0`; este fluxo nao gerou nem submeteu pacote Microsoft Store. Essa
+divergencia intencional permite publicar apenas os pacotes GitHub; antes do
+proximo MSIX, execute `src\Tools\set-release-version.ps1 -Version 7.1.28.0`
+para satisfazer a validacao de alinhamento do projeto WAP. A revisao manual
+completa da interface e a certificacao Store nao foram executadas neste fluxo.
+A publicacao foi concluida pelo workflow [Release packages](https://github.com/WandersondeSouza/mpv.net/actions/runs/38320944512),
+com os mesmos parametros de pacotes normais x64 e Store desativada. A release
+`7.1.28.0` foi confirmada como `latest`, com ZIP e instalador completos e a
+descricao preparada preservada; a release `7.1.27.0` foi removida mantendo a tag.
+
 O workflow de release nao comprova assinatura ou certificacao de pacote
 MSIX/WAP, nem revisao manual completa da UI. Registre essas validacoes somente
 apos executa-las no ambiente correspondente.

@@ -328,13 +328,19 @@ Store, o `Identity Version` usa a mesma versao com revisao zero, porque a
 Microsoft Store rejeita pacotes com quarto componente diferente de zero. Exemplo:
 release `7.1.4.1` usa manifesto `7.1.4.0`.
 
-Preparacao da release `7.1.28.0` em 2026-10-12: a descricao preserva o conteudo
+Publicacao da release `7.1.28.0` em 2026-10-12: a descricao preserva o conteudo
 da `7.1.27.0` e acrescenta o cache `resilient` por item de playlist, downloads
 retomaveis e reaproveitamento de componentes com release inalterada, ajustes de
 cancelamento/logs e inclusao obrigatoria do helper no pacote Store. Por
 solicitacao, apenas a versao publica em `src\BuildVersion.props` foi alterada
 para `7.1.28.0`; o manifesto MSIX permanece em `7.1.27.0`. Este fluxo gera ZIP
 portatil e instalador, sem gerar ou submeter um novo pacote Microsoft Store.
+O workflow [Release packages](https://github.com/WandersondeSouza/mpv.net/actions/runs/38320944512)
+gerou os dois assets e validou o conteudo obrigatorio e as dependencias nativas.
+A descricao publicada foi comparada integralmente com as notas preparadas;
+os dois downloads foram confirmados como assets completos com SHA-256 publicado.
+A release `7.1.27.0` foi removida apos essas verificacoes, mantendo a tag Git;
+a `7.1.28.0` ficou como unica release publicada e foi confirmada como `latest`.
 Antes de gerar o proximo MSIX, alinhe o manifesto com
 `src\Tools\set-release-version.ps1 -Version 7.1.28.0`.
 
