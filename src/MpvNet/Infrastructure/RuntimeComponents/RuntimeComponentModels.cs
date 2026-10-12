@@ -64,6 +64,9 @@ internal sealed class GitHubAsset
 
     [JsonPropertyName("digest")]
     public string? Digest { get; set; }
+
+    [JsonPropertyName("size")]
+    public long Size { get; set; }
 }
 
 internal sealed class RuntimeComponentMetadata
@@ -73,6 +76,7 @@ internal sealed class RuntimeComponentMetadata
     public string? Digest { get; set; }
     public string? SourceUrl { get; set; }
     public DateTimeOffset LastCheckedUtc { get; set; }
+    public DateTimeOffset? LastReleaseCheckUtc { get; set; }
     public long FileSize { get; set; }
     public string? Architecture { get; set; }
     public Dictionary<string, string>? FileDigests { get; set; }

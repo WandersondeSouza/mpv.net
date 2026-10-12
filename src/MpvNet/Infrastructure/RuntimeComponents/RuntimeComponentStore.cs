@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -119,6 +120,7 @@ internal static class RuntimeComponentStore
 
     public static string CreateStagingSnapshot()
     {
+        Stopwatch elapsed = Stopwatch.StartNew();
         Directory.CreateDirectory(RuntimeComponentPaths.TempFolder);
         string staging = Path.Combine(RuntimeComponentPaths.TempFolder, Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(staging);
@@ -135,17 +137,20 @@ internal static class RuntimeComponentStore
             }
         }
 
+        Log.Debug($"Runtime component staging snapshot completed. elapsedSeconds={elapsed.Elapsed.TotalSeconds:0.0}");
         return staging;
     }
 
     public static async Task PromoteAsync(string stagingDirectory, CancellationToken cancellationToken)
     {
+        Stopwatch elapsed = Stopwatch.StartNew();
         for (int attempt = 1; ; attempt++)
         {
             cancellationToken.ThrowIfCancellationRequested();
             try
             {
                 Promote(stagingDirectory);
+                Log.Debug($"Runtime component activation completed. elapsedSeconds={elapsed.Elapsed.TotalSeconds:0.0}, attempts={attempt}");
                 return;
             }
             catch (IOException) when (attempt < PromotionAttempts)

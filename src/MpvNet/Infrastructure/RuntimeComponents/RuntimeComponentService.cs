@@ -1,4 +1,5 @@
 using System.IO.Compression;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ internal static class RuntimeComponentService
             .ConfigureAwait(false);
         RuntimeComponentStore.RecoverInterruptedPromotion();
         RuntimeComponentStore.CleanupStaleStaging();
+        RuntimeComponentDownloads.CleanupStalePartials();
 
         string? staging = null;
         bool generationChanged = false;
@@ -36,16 +38,24 @@ internal static class RuntimeComponentService
                          item => item.Kind != RuntimeComponentDownloadKind.GitHubZip))
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                if (await IsFreshAndValidAsync(definition, cancellationToken).ConfigureAwait(false))
+                RuntimeComponentMetadata? metadata = await LoadMetadataAsync(definition, cancellationToken).ConfigureAwait(false);
+                if (await IsFreshAndValidAsync(metadata, [definition], cancellationToken).ConfigureAwait(false))
                 {
                     Log.Debug($"Runtime component cache is fresh and valid; skipping update. file='{definition.FileName}'");
                     continue;
                 }
 
-                staging ??= RuntimeComponentStore.CreateStagingSnapshot();
                 try
                 {
-                    await EnsureComponentAsync(definition, staging, cancellationToken).ConfigureAwait(false);
+                    GitHubAsset asset = await ResolveReleaseAssetAsync(definition, cancellationToken).ConfigureAwait(false);
+                    if (await TryReuseUnchangedAsync(asset, metadata, [definition], cancellationToken).ConfigureAwait(false))
+                    {
+                        if (staging is not null)
+                            await SaveReusedMetadataAsync(staging, definition, metadata!, cancellationToken).ConfigureAwait(false);
+                        continue;
+                    }
+                    staging ??= RuntimeComponentStore.CreateStagingSnapshot();
+                    await EnsureComponentAsync(definition, asset, staging, cancellationToken).ConfigureAwait(false);
                     generationChanged = true;
                 }
                 catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
@@ -65,16 +75,24 @@ internal static class RuntimeComponentService
                 cancellationToken.ThrowIfCancellationRequested();
                 RuntimeComponentDefinition primary = bundle.First();
                 RuntimeComponentDefinition[] bundleDefinitions = bundle.ToArray();
-                if (await IsFreshAndValidAsync(primary, bundleDefinitions, cancellationToken).ConfigureAwait(false))
+                RuntimeComponentMetadata? metadata = await LoadMetadataAsync(primary, cancellationToken).ConfigureAwait(false);
+                if (await IsFreshAndValidAsync(metadata, bundleDefinitions, cancellationToken).ConfigureAwait(false))
                 {
                     Log.Debug("FFmpeg bundle cache is fresh and valid; skipping update.");
                     continue;
                 }
 
-                staging ??= RuntimeComponentStore.CreateStagingSnapshot();
                 try
                 {
-                    await EnsureBundleAsync(bundleDefinitions, staging, cancellationToken).ConfigureAwait(false);
+                    GitHubAsset asset = await ResolveReleaseAssetAsync(primary, cancellationToken).ConfigureAwait(false);
+                    if (await TryReuseUnchangedAsync(asset, metadata, bundleDefinitions, cancellationToken).ConfigureAwait(false))
+                    {
+                        if (staging is not null)
+                            await SaveReusedMetadataAsync(staging, primary, metadata!, cancellationToken).ConfigureAwait(false);
+                        continue;
+                    }
+                    staging ??= RuntimeComponentStore.CreateStagingSnapshot();
+                    await EnsureBundleAsync(bundleDefinitions, asset, staging, cancellationToken).ConfigureAwait(false);
                     generationChanged = true;
                 }
                 catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
@@ -139,8 +157,8 @@ internal static class RuntimeComponentService
             {
                 if (ParseSha256(metadata.Digest) is null)
                     problems.Add("published asset SHA-256 metadata is missing or invalid");
-                if (metadata.LastCheckedUtc <= now.Subtract(RefreshInterval))
-                    problems.Add("last successful download is older than the 20-day refresh interval");
+                if (GetLastFreshnessCheck(metadata) <= now.Subtract(RefreshInterval))
+                    problems.Add("last successful download or unchanged-release verification is older than the 20-day refresh interval");
             }
 
             foreach (RuntimeComponentDefinition definition in definitions)
@@ -201,43 +219,34 @@ internal static class RuntimeComponentService
             string reason = problems.Count == 0 ? "<none>" : string.Join("; ", problems);
             lines.Add(
                 $"{group.Key}: state={state}; lastSuccessfulDownloadUtc={lastSuccessfulDownload}; ageDays={ageDays}; " +
+                $"lastReleaseCheckUtc={metadata?.LastReleaseCheckUtc?.ToString("O") ?? "<none>"}; " +
                 $"asset={version}; assetSha256={assetDigest}; files=[{string.Join(" | ", fileChecks)}]; reason={reason}");
         }
 
-        lines.Add("Cache state is based on the last successful validated download; latest releases are checked during the normal startup bootstrap.");
+        lines.Add("Cache state is based on the last successful validated download or unchanged-release verification; latest releases are checked during the normal startup bootstrap.");
         return string.Join(Environment.NewLine, lines);
     }
 
-    static async Task<bool> IsFreshAndValidAsync(
-        RuntimeComponentDefinition definition,
-        CancellationToken cancellationToken) =>
-        await IsFreshAndValidAsync(
-            await LoadMetadataAsync(definition, cancellationToken).ConfigureAwait(false),
-            [definition], cancellationToken).ConfigureAwait(false);
-
-    static async Task<bool> IsFreshAndValidAsync(
-        RuntimeComponentDefinition definition,
-        IReadOnlyList<RuntimeComponentDefinition> definitions,
-        CancellationToken cancellationToken) =>
-        await IsFreshAndValidAsync(
-            await LoadMetadataAsync(definition, cancellationToken).ConfigureAwait(false),
-            definitions, cancellationToken).ConfigureAwait(false);
-
     static async Task EnsureBundleAsync(
         IReadOnlyList<RuntimeComponentDefinition> definitions,
+        GitHubAsset asset,
         string staging,
         CancellationToken cancellationToken)
     {
         RuntimeComponentDefinition primary = definitions[0];
-        DownloadedRuntimeAsset archive = await DownloadReleaseAssetAsync(primary, staging, cancellationToken)
+        DownloadedRuntimeAsset archive = await DownloadReleaseAssetAsync(primary, asset, staging, cancellationToken)
             .ConfigureAwait(false);
         string workDirectory = Path.Combine(staging, ".ffmpeg-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(workDirectory);
         try
         {
+            Stopwatch phase = Stopwatch.StartNew();
             ValidateDigest(primary.FileName, RuntimeComponentFileSystem.GetFileDigest(archive.Path), archive.Digest);
+            Log.Debug($"Runtime component checksum phase completed. component='ffmpeg-bundle', elapsedSeconds={phase.Elapsed.TotalSeconds:0.0}");
+            phase.Restart();
             ExtractBundle(archive.Path, workDirectory, definitions);
             ValidateComponents(workDirectory, definitions);
+            Log.Debug($"Runtime component extraction and validation completed. component='ffmpeg-bundle', elapsedSeconds={phase.Elapsed.TotalSeconds:0.0}");
 
             foreach (RuntimeComponentDefinition definition in definitions)
             {
@@ -259,16 +268,20 @@ internal static class RuntimeComponentService
 
     static async Task EnsureComponentAsync(
         RuntimeComponentDefinition definition,
+        GitHubAsset asset,
         string staging,
         CancellationToken cancellationToken)
     {
-        DownloadedRuntimeAsset downloaded = await DownloadReleaseAssetAsync(definition, staging, cancellationToken)
+        DownloadedRuntimeAsset downloaded = await DownloadReleaseAssetAsync(definition, asset, staging, cancellationToken)
             .ConfigureAwait(false);
         string workDirectory = Path.Combine(staging, ".component-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(workDirectory);
         try
         {
+            Stopwatch phase = Stopwatch.StartNew();
             ValidateDigest(definition.FileName, RuntimeComponentFileSystem.GetFileDigest(downloaded.Path), downloaded.Digest);
+            Log.Debug($"Runtime component checksum phase completed. file='{definition.FileName}', elapsedSeconds={phase.Elapsed.TotalSeconds:0.0}");
+            phase.Restart();
             if (definition.Kind == RuntimeComponentDownloadKind.GitHubZipSingle)
             {
                 ExtractBundle(downloaded.Path, workDirectory, [definition]);
@@ -279,6 +292,7 @@ internal static class RuntimeComponentService
             }
 
             ValidateComponents(workDirectory, [definition]);
+            Log.Debug($"Runtime component extraction and validation completed. file='{definition.FileName}', elapsedSeconds={phase.Elapsed.TotalSeconds:0.0}");
             File.Move(
                 Path.Combine(workDirectory, definition.FileName),
                 Path.Combine(staging, definition.FileName),
@@ -308,12 +322,44 @@ internal static class RuntimeComponentService
             : null;
     }
 
-    static async Task<bool> IsFreshAndValidAsync(
+    internal static DateTimeOffset GetLastFreshnessCheck(RuntimeComponentMetadata metadata) =>
+        metadata.LastReleaseCheckUtc is DateTimeOffset check && check > metadata.LastCheckedUtc
+            ? check : metadata.LastCheckedUtc;
+
+    internal static async Task<bool> TryReuseUnchangedAsync(
+        GitHubAsset asset, RuntimeComponentMetadata? metadata,
+        IReadOnlyList<RuntimeComponentDefinition> definitions, CancellationToken cancellationToken,
+        string? componentFolder = null)
+    {
+        string? digest = ParseSha256(asset.Digest);
+        if (metadata is null || digest is null ||
+            !string.Equals(ParseSha256(metadata.Digest), digest, StringComparison.OrdinalIgnoreCase) ||
+            !await IsFreshAndValidAsync(metadata, definitions, cancellationToken,
+                requireFresh: false, verifyDigest: true, componentFolder).ConfigureAwait(false))
+            return false;
+
+        metadata.LastReleaseCheckUtc = DateTimeOffset.UtcNow;
+        await SaveReusedMetadataAsync(componentFolder ?? RuntimeComponentPaths.CurrentFolder,
+            definitions[0], metadata, cancellationToken).ConfigureAwait(false);
+        Log.Debug($"Runtime component release is unchanged; local SHA-256 verified without downloading. file='{definitions[0].FileName}', lastReleaseCheckUtc='{metadata.LastReleaseCheckUtc:O}'");
+        return true;
+    }
+
+    static Task SaveReusedMetadataAsync(string directory, RuntimeComponentDefinition definition,
+        RuntimeComponentMetadata metadata, CancellationToken cancellationToken) =>
+        RuntimeComponentMetadataStore.SaveWithoutRefreshingTimestampAsync(
+            Path.Combine(directory, Path.GetFileName(RuntimeComponentPaths.GetMetadataPath(definition))),
+            metadata, cancellationToken);
+
+    internal static async Task<bool> IsFreshAndValidAsync(
         RuntimeComponentMetadata? metadata,
         IReadOnlyList<RuntimeComponentDefinition> definitions,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        bool requireFresh = true,
+        bool verifyDigest = false,
+        string? componentFolder = null)
     {
-        if (metadata is null || metadata.LastCheckedUtc <= DateTimeOffset.UtcNow.Subtract(RefreshInterval) ||
+        if (metadata is null || requireFresh && GetLastFreshnessCheck(metadata) <= DateTimeOffset.UtcNow.Subtract(RefreshInterval) ||
             ParseSha256(metadata.Digest) is null || metadata.FileDigests is null || metadata.FileDigests.Count == 0)
         {
             return false;
@@ -324,7 +370,7 @@ internal static class RuntimeComponentService
         {
             foreach (RuntimeComponentDefinition definition in definitions)
             {
-                string path = RuntimeComponentPaths.GetTargetPath(definition.FileName);
+                string path = Path.Combine(componentFolder ?? RuntimeComponentPaths.CurrentFolder, definition.FileName);
                 string? expectedDigest = metadata.FileDigests.TryGetValue(definition.FileName, out string? storedDigest)
                     ? ParseSha256(storedDigest)
                     : null;
@@ -335,7 +381,7 @@ internal static class RuntimeComponentService
                 }
 
                 RuntimeComponentFileFingerprint fingerprint = RuntimeComponentFileSystem.GetFileFingerprint(path);
-                if (metadata.FileFingerprints?.TryGetValue(definition.FileName, out RuntimeComponentFileFingerprint? recordedFingerprint) == true &&
+                if (!verifyDigest && metadata.FileFingerprints?.TryGetValue(definition.FileName, out RuntimeComponentFileFingerprint? recordedFingerprint) == true &&
                     recordedFingerprint == fingerprint)
                 {
                     continue;
@@ -365,7 +411,8 @@ internal static class RuntimeComponentService
             try
             {
                 await RuntimeComponentMetadataStore.SaveWithoutRefreshingTimestampAsync(
-                    RuntimeComponentPaths.GetMetadataPath(definitions[0]), metadata, cancellationToken).ConfigureAwait(false);
+                    Path.Combine(componentFolder ?? RuntimeComponentPaths.CurrentFolder,
+                        Path.GetFileName(RuntimeComponentPaths.GetMetadataPath(definitions[0]))), metadata, cancellationToken).ConfigureAwait(false);
                 Log.Debug("Runtime component fingerprints updated after SHA-256 verification; download freshness timestamp was preserved.");
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException)
@@ -378,9 +425,8 @@ internal static class RuntimeComponentService
         return true;
     }
 
-    static async Task<DownloadedRuntimeAsset> DownloadReleaseAssetAsync(
+    static async Task<GitHubAsset> ResolveReleaseAssetAsync(
         RuntimeComponentDefinition definition,
-        string stagingDirectory,
         CancellationToken cancellationToken)
     {
         GitHubRelease release = await GitHubReleaseClient.GetReleaseAsync(
@@ -395,14 +441,26 @@ internal static class RuntimeComponentService
             throw new InvalidOperationException($"Runtime component asset metadata is invalid for {definition.FileName}.");
         }
 
-        string? digest = ParseSha256(asset.Digest);
-        if (digest is null)
+        if (ParseSha256(asset.Digest) is null)
             throw new InvalidOperationException($"A published SHA-256 digest is required for {definition.FileName}.");
+
+        return asset;
+    }
+
+    static async Task<DownloadedRuntimeAsset> DownloadReleaseAssetAsync(
+        RuntimeComponentDefinition definition, GitHubAsset asset,
+        string stagingDirectory, CancellationToken cancellationToken)
+    {
+        string assetName = asset.Name!;
+        string digest = ParseSha256(asset.Digest)!;
+        string partial = RuntimeComponentDownloads.GetPartialPath(asset.BrowserDownloadUrl!, digest);
 
         string destination = Path.Combine(stagingDirectory, assetName + "." + Guid.NewGuid().ToString("N") + ".download");
         Log.Debug($"Downloading runtime component asset. file='{definition.FileName}', asset='{Log.SafeValue(assetName)}', kind={definition.Kind}");
-        long fileSize = await GitHubReleaseClient.DownloadAsync(
-            asset.BrowserDownloadUrl!, destination, cancellationToken).ConfigureAwait(false);
+        long fileSize = await GitHubReleaseClient.DownloadResumableAsync(
+            asset.BrowserDownloadUrl!, partial, asset.Size, cancellationToken).ConfigureAwait(false);
+        cancellationToken.ThrowIfCancellationRequested();
+        File.Move(partial, destination);
         Log.Debug($"Runtime component asset download succeeded. file='{definition.FileName}', asset='{Log.SafeValue(assetName)}', bytes={fileSize}");
         return new DownloadedRuntimeAsset(destination, digest, asset.BrowserDownloadUrl!, fileSize, assetName);
     }

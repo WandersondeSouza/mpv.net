@@ -214,10 +214,32 @@ libmpv é informada separadamente. O diagnóstico não inicia downloads nem test
 uma URL, e não envia credenciais; sucesso nele não substitui o teste manual do
 YouTube.
 
-No início normal do player, o cache é baixado ou atualizado quando está ausente,
-inválido ou com 20 dias ou mais desde o último download validado. A falha de uma
-atualização é registrada no log e mantém a geração anterior; o comando de
-diagnóstico mostra quando o cache precisa de atualização, mas não a executa.
+No início normal do player, o bootstrap continua sequencial e em segundo plano.
+O cache é verificado quando está ausente, inválido ou com 20 dias ou mais desde
+o último download validado ou a última confirmação de release inalterada.
+Quando o SHA-256 publicado continua igual, o player verifica novamente o
+SHA-256 dos executáveis locais e reaproveita os arquivos válidos sem baixá-los.
+`lastSuccessfulDownloadUtc` e `ageDays` mantêm a data e a idade do download;
+`lastReleaseCheckUtc` informa separadamente a confirmação da release inalterada.
+Metadados antigos continuam compatíveis e usam a data do download até essa
+primeira confirmação. A falha de uma atualização mantém a geração anterior;
+o diagnóstico mostra o estado local, mas não consulta releases nem atualiza.
+
+Transferências interrompidas são preservadas em `Component\staging\downloads`,
+com identidade derivada da URL do asset e do SHA-256 publicado. Na próxima
+tentativa, o player pede apenas os bytes restantes. Se o servidor ignorar esse
+pedido, o arquivo é baixado desde o início; respostas com intervalo incompatível
+são rejeitadas. O arquivo completo passa pela validação SHA-256 antes da
+extração, validação PE x64 e ativação em `Component\current`.
+
+Cada transferência retomável aceita até duas horas no total, com timeout de
+60 segundos sem progresso e até três tentativas para falhas transitórias.
+Cancelar pelo fechamento do player preserva o parcial e não gera erro.
+Respostas HTTP `403`/`429` não provocam retentativas imediatas. Parciais sem
+escrita há sete dias são removidos no próximo bootstrap; pastas temporárias de
+geração continuam com a retenção de um dia. Builds com logging habilitado
+registram progresso a cada cinco segundos, bytes retomados, velocidade média
+e duração das fases de transferência, checksum, extração e ativação.
 
 ### Validar dependências nativas
 

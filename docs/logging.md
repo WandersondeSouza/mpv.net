@@ -19,6 +19,11 @@ Erros continuam sendo gravados em arquivo.
 O cancelamento de um download de componente pelo encerramento do aplicativo é
 esperado e aparece somente em `Debug`. Timeout e falhas reais de download
 continuam em `Error`; o timeout informa o limite e os bytes recebidos.
+Downloads retomáveis preservam parciais no fechamento, em timeout ou falha
+transitória. O limite é de duas horas por transferência, com detecção de
+60 segundos sem progresso. Em builds de diagnóstico, o bootstrap registra
+bytes retomados, progresso a cada cinco segundos, velocidade média, duração
+das fases e reaproveitamento de uma release com SHA-256 inalterado.
 
 Os testes xUnit isolam automaticamente `MPVNET_LOCAL_APPDATA` em
 `test-runtime` dentro da pasta do executável de testes quando não existe um
