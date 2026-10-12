@@ -563,7 +563,7 @@ var tests = new (string Name, bool Result)[]
     ("Local file skips automatic network tolerance", !MainPlayer.ShouldUseAutomaticStreamingOptions(tempVideo)),
     ("Automatic HTTP policy uses bounded rebuffering", MainPlayer.AutomaticStreamingLoadOptions.Contains("cache-pause-wait=3") && MainPlayer.AutomaticStreamingLoadOptions.Contains("demuxer-max-bytes=128MiB")),
     ("Automatic streaming loadfile options use current mpv argument slot", MainPlayer.LoadfileOptionsInsertionIndex == "-1"),
-    ("HTTP streaming loadfile passes options in fourth mpv argument", httpStreamingLoadfileArgs.SequenceEqual(["loadfile", "https://example.com/video.mp4", "replace", "-1", MainPlayer.AutomaticStreamingLoadOptions])),
+    ("HTTP streaming loadfile passes resilient options in fourth mpv argument", httpStreamingLoadfileArgs.SequenceEqual(["loadfile", "https://example.com/video.mp4", "replace", "-1", "cache=yes,cache-pause-initial=yes,cache-pause-wait=5,demuxer-max-bytes=256MiB"])),
     ("FTP streaming append loadfile uses disk cache without HTTP timeout", ftpStreamingLoadfileArgs.Length == 5 && ftpStreamingLoadfileArgs[4].Contains("cache-on-disk=yes") && !ftpStreamingLoadfileArgs[4].Contains("network-timeout")),
     ("RTSP policy does not inject network-timeout", rtspStreamingLoadfileArgs.Length == 5 && !rtspStreamingLoadfileArgs[4].Contains("network-timeout")),
     ("Classifier distinguishes HLS from progressive HTTP", MediaInputClassifier.Classify("HTTPS://example.com/live/index.m3u8?token=abc").NetworkKind == NetworkMediaKind.Hls),

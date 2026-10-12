@@ -94,6 +94,13 @@ public static class LibMpv
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
     public static extern mpv_error mpv_request_event(nint mpvHandle, mpv_event_id id, int enable);
 
+    [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern mpv_error mpv_hook_add(nint mpvHandle, ulong reply_userdata,
+        [MarshalAs(UnmanagedType.LPUTF8Str)] string name, int priority);
+
+    [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern mpv_error mpv_hook_continue(nint mpvHandle, ulong id);
+
     public enum mpv_error
     {
         MPV_ERROR_SUCCESS = 0,
@@ -176,6 +183,13 @@ public static class LibMpv
         MPV_END_FILE_REASON_QUIT = 3,
         MPV_END_FILE_REASON_ERROR = 4,
         MPV_END_FILE_REASON_REDIRECT = 5
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct mpv_event_hook
+    {
+        public nint name;
+        public ulong id;
     }
 
     [StructLayout(LayoutKind.Sequential)]

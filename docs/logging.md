@@ -155,6 +155,14 @@ URLs com usuário, senha, query string ou fragmento sao mascaradas no log para
 evitar expor credenciais e tokens de playlists privadas. Diagnósticos de cache
 registram o tipo de mídia e o perfil escolhido, nunca a query original.
 
+Com `debug-mode=yes` em uma build com logging de diagnóstico, `Network cache
+state` registra as opções efetivas no hook `on_load` e no `file-loaded`.
+`buffering-start` e `buffering-end` registram pausas por cache e a duração
+da espera e posição, com buffer e taxa de entrada estimados. `Network cache
+stream durations` informa os segundos disponíveis para áudio/vídeo quando o
+mpv expõe esses valores em `ts-per-stream`. Esses valores descrevem
+o demuxer principal e não garantem cobertura conjunta das faixas separadas.
+
 ## Retencao
 
 Na inicialização do logger, arquivos `mpvnet-YYYY-MM-DD.log` com mais de 3 dias

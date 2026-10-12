@@ -167,7 +167,7 @@ conservadoras de cache. A politica e controlada por `mpvnet.conf`:
 
 ```text
 automatic-network-cache=yes
-network-cache-profile=balanced
+network-cache-profile=resilient
 save-network-urls-in-recent=no
 ```
 
@@ -180,12 +180,14 @@ segredos que não são reconhecidos, habilite a opção apenas para URLs que voc
 confia não conter dados sigilosos. Essa política não altera a URL usada na
 reprodução atual.
 
-Os perfis sao `off`, `low-latency`, `balanced` e `resilient`. Arquivos locais
+Os perfis sao `off`, `low-latency`, `balanced` e `resilient`. O padrão, inclusive
+quando o valor configurado é inválido, é `resilient`; escolhas válidas existentes
+são preservadas. Arquivos locais
 nao recebem opcoes automaticas de rede. HTTP progressivo, HLS/DASH, arquivos
 FTP/SFTP e transmissao ao vivo (RTSP/RTMP/UDP/TCP) usam limites diferentes.
 RTSP nao recebe `network-timeout`, pois essa opcao pode quebrar o transporte.
-Páginas HTTP/HTTPS sem extensão de mídia direta usam o perfil conservador de
-resolvedor online independentemente do domínio; arquivos diretos e manifestos
+Páginas HTTP/HTTPS sem extensão de mídia direta usam a política de resolvedor
+online independentemente do domínio, respeitando o perfil selecionado; arquivos diretos e manifestos
 HLS/DASH preservam suas classificações próprias.
 
 Em falha transitória comprovada, streams contínuos RTSP, RTMP, SRT, UDP e TCP
@@ -199,6 +201,25 @@ Opcoes explicitamente definidas no `mpv.conf` ou na linha de comando tem
 precedencia sobre os valores automaticos. O diretorio temporario do cache
 continua em `%LOCALAPPDATA%\mpv.net\Cache`, mas `cache` e `cache-on-disk` nao
 sao mais forcados globalmente pelo frontend.
+
+Para HTTP progressivo, DASH e resolvedores online como YouTube, `low-latency`
+usa 64 MiB sem buffer inicial; `balanced` usa 128 MiB e espera por 3 segundos
+de mídia; `resilient` usa 256 MiB e espera por 5 segundos de mídia antes de
+iniciar ou retomar após esvaziar o cache. Essa espera é pela quantidade de
+conteúdo, não um prazo fixo de carregamento. O buffer anterior, os decoders e
+outras estruturas podem consumir memória além desse limite à frente.
+
+O mesmo perfil se aplica às páginas de Bilibili, Niconico, Naver, Dailymotion,
+Twitch, Vimeo, SoundCloud e outros serviços reconhecidos pelos extractors
+disponíveis no yt-dlp instalado. A política independe do domínio; o extractor
+continua responsável por resolver o conteúdo, inclusive quando exige autenticação.
+
+A política também é aplicada a cada item de playlists expandidas pelo mpv,
+inclusive YouTube, próximo/anterior e itens reinseridos por `loadlist`.
+Opções locais de perfis/scripts têm precedência. A qualidade selecionada pelo
+mpv/yt-dlp não é reduzida automaticamente e o cache em disco não é habilitado
+automaticamente nesses conteúdos. Um buffer maior absorve oscilações, mas não
+sustenta uma conexão continuamente abaixo do bitrate necessário.
 
 Playlists locais sao expandidas pelo frontend e seus itens, ja preparados pela
 regra comum, sao enviados individualmente por `loadfile`, preservando a ordem e

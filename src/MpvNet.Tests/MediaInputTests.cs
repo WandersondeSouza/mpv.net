@@ -173,7 +173,7 @@ public sealed class MediaInputTests
             "https://www.youtube.com/watch?v=VIDEO_ID");
 
         Assert.Equal(NetworkMediaKind.OnlineResolver, classification.NetworkKind);
-        Assert.Contains("demuxer-max-bytes=64MiB", NetworkCachePolicy.Resolve(
+        Assert.Contains("demuxer-max-bytes=256MiB", NetworkCachePolicy.Resolve(
             "https://www.youtube.com/watch?v=VIDEO_ID", new HashSet<string>()).Options,
             StringComparison.Ordinal);
     }

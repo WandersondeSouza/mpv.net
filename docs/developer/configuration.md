@@ -207,7 +207,7 @@ Opções observadas:
 | `light-theme` | `light` | Tema claro. |
 | `media-info` | `yes` | Controla recurso de media info. |
 | `menu-syntax` | `#menu:` | Sintaxe antiga/nova para menu em `input.conf`. |
-| `network-cache-profile` | `balanced` | Perfil `off`, `low-latency`, `balanced` ou `resilient`. |
+| `network-cache-profile` | `resilient` | Perfil `off`, `low-latency`, `balanced` ou `resilient`; valor inválido usa `resilient`. |
 | `minimum-aspect-ratio` | `0` | Limite de proporção para vídeo. |
 | `minimum-aspect-ratio-audio` | `0` | Limite de proporção para áudio. |
 | `process-instance` | `single` | Controle de instância: single/queue/multi. |

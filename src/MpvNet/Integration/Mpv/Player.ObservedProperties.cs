@@ -4,6 +4,7 @@ public partial class MainPlayer
 {
     void ConfigureObservedProperties()
     {
+        ObservePropertyBool("paused-for-cache", OnCacheBufferingChanged);
         ObservePropertyBool("pause", value => {
             Paused = value;
             Pause?.Invoke();

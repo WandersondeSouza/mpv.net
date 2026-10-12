@@ -42,7 +42,7 @@ public class AppClass : IDisposable
 
     public int RecentCount { get; set; } = 15;
 
-    public string NetworkCacheProfile { get; set; } = "balanced";
+    public string NetworkCacheProfile { get; set; } = "resilient";
 
     public float AutofitAudio { get; set; } = 0.7f;
     public float AutofitImage { get; set; } = 0.8f;

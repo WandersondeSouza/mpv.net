@@ -178,6 +178,9 @@ public partial class MpvClient : IDisposable
 
                 switch (snapshot.EventId)
                 {
+                    case mpv_event_id.MPV_EVENT_HOOK:
+                        ProcessHook(snapshot);
+                        break;
                     case mpv_event_id.MPV_EVENT_SHUTDOWN:
                         OnShutdown();
                         return;

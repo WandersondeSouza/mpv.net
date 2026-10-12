@@ -10,6 +10,36 @@ namespace MpvNet.Tests;
 public sealed class MpvEventSnapshotTests
 {
     [Fact]
+    public void HookPayloadAndUserDataAreCopiedBeforeNativeStorageIsReleased()
+    {
+        MpvEventSnapshot snapshot = CreateHookSnapshot(123, 456);
+        Assert.Equal("on_load", snapshot.HookName);
+        Assert.Equal(123UL, snapshot.HookId);
+        Assert.Equal(456UL, snapshot.ReplyUserData);
+    }
+
+    internal static MpvEventSnapshot CreateHookSnapshot(ulong id, ulong userData)
+    {
+        nint name = Marshal.StringToCoTaskMemUTF8("on_load");
+        nint data = Marshal.AllocHGlobal(Marshal.SizeOf<LibMpv.mpv_event_hook>());
+        try
+        {
+            Marshal.StructureToPtr(new LibMpv.mpv_event_hook { name = name, id = id }, data, false);
+            return MpvEventSnapshot.Create(new LibMpv.mpv_event
+            {
+                event_id = LibMpv.mpv_event_id.MPV_EVENT_HOOK,
+                reply_userdata = userData,
+                data = data
+            });
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(data);
+            Marshal.FreeCoTaskMem(name);
+        }
+    }
+
+    [Fact]
     public void LogPayloadIsCopiedBeforeTheNativeStorageChanges()
     {
         nint prefix = Marshal.StringToCoTaskMemUTF8("prefix");

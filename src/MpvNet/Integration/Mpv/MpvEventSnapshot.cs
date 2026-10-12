@@ -18,6 +18,9 @@ internal sealed class MpvEventSnapshot
     public string PropertyName { get; private set; } = "";
     public mpv_format PropertyFormat { get; private set; }
     public object? PropertyValue { get; private set; }
+    public string HookName { get; private set; } = "";
+    public ulong HookId { get; private set; }
+    public ulong ReplyUserData { get; private set; }
 
     public static MpvEventSnapshot Create(mpv_event nativeEvent)
     {
@@ -25,6 +28,12 @@ internal sealed class MpvEventSnapshot
 
         switch (nativeEvent.event_id)
         {
+            case mpv_event_id.MPV_EVENT_HOOK:
+                mpv_event_hook hook = Marshal.PtrToStructure<mpv_event_hook>(nativeEvent.data);
+                snapshot.HookName = ConvertFromUtf8(hook.name);
+                snapshot.HookId = hook.id;
+                snapshot.ReplyUserData = nativeEvent.reply_userdata;
+                break;
             case mpv_event_id.MPV_EVENT_LOG_MESSAGE:
                 mpv_event_log_message log = Marshal.PtrToStructure<mpv_event_log_message>(nativeEvent.data);
                 snapshot.LogLevel = log.log_level;

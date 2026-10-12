@@ -285,9 +285,59 @@ No caminho de `loadfile`, as opções explícitas da linha de comando e do
 para log e construção do comando, evitando a leitura anterior do arquivo para
 cada opção de cache e a dupla classificação da mesma URL. URLs legítimas do
 páginas candidatas a resolução online recebem o tipo `OnlineResolver`, com
-cache inicial conservador, em vez de serem confundidas com HTTP progressivo;
+cache conforme o perfil escolhido, em vez de serem confundidas com HTTP progressivo;
 arquivos diretos e manifestos preservam suas classificações, e o protocolo
 final continua sob controle do ytdl hook, yt-dlp e mpv.
+
+### Cache por item de playlist
+
+O padrão `resilient` fornece 256 MiB à frente e buffer inicial/retomada de
+5 segundos de mídia para HTTP progressivo, DASH e `OnlineResolver`, incluindo
+URLs `ytdl://`. `balanced` fornece 128 MiB/3 segundos; `low-latency` mantém
+64 MiB sem buffer inicial. Não há limitação automática de resolução/codec.
+
+A política de `OnlineResolver` independe do domínio: páginas de YouTube,
+Bilibili, Niconico, Naver, Dailymotion, Twitch, Vimeo, SoundCloud e demais
+serviços seguem o mesmo perfil. A resolução permanece com os extractors
+disponíveis no yt-dlp instalado; os testes de classificação não comprovam
+disponibilidade ou reprodução em cada serviço.
+
+Após criar o cliente `mpvnet`, o player registra o hook nativo `on_load` com
+prioridade 50, antes de iniciar o loop de eventos. Assim, cada item criado
+pelo mpv ou reinserido por `loadlist` recebe a política mesmo quando não passou
+por `SendLoadfile`. O hook classifica `path`, preservando a URL original mesmo
+quando o yt-dlp já transformou `stream-open-filename` em EDL ou URL assinada.
+Somente opções ausentes são escritas em `file-local-options`: nomes explícitos
+do `mpv.conf` ativo/linha de comando, `option-info/*/set-locally` e
+`set-from-commandline` têm precedência. A política existente de `loadfile`
+continua funcionando e seus valores locais não são sobrescritos.
+
+`MpvEventSnapshot` copia nome, ID e userdata do hook antes da próxima chamada a
+`mpv_wait_event`. O dispatcher chama `mpv_hook_continue` em `finally`, inclusive
+quando a aplicação da política falha. Registro e continuação usam o mesmo gate
+de lifetime das demais chamadas nativas; após shutdown, o cliente é destruído
+antes do contexto principal, liberando hooks pendentes sem acessar handles
+inválidos. Se o libmpv fornecido pelo usuário não suportar o registro, o player
+registra a falha e preserva o caminho de `loadfile`.
+
+Com `debug-mode=yes` em uma build com logging de diagnóstico, `Network cache
+state` informa opções efetivas por item; `buffering-start`/`buffering-end`
+informam transições, posição e duração da espera, buffer e taxa de entrada estimados.
+`Network cache stream durations` informa durações numéricas de áudio/vídeo
+quando disponíveis em `demuxer-cache-state/ts-per-stream`.
+Esses registros não incluem URLs resolvidas, cookies ou metadados do extractor.
+Propriedades de buffer são estimativas do demuxer principal, não a soma
+garantida dos buffers separados de áudio e vídeo.
+
+Validação local em 2026-10-12: 551 testes aprovados e build Windows Release
+sem avisos/erros. Com libmpv normal, sondas sem interface verificaram opções
+por item, próximo/anterior/seek HTTP, precedência de script e fechamento com
+hook pendente. No cenário HTTP com entrega oscilante, a pausa de 1,49 s da
+referência não ocorreu com `resilient`. Na amostragem dos itens 6–8 de uma
+playlist YouTube, AV1/2160p foi preservado e não houve pausa durante reprodução
+observada após a mudança; houve buffer inicial. A verificação online adicional
+foi bloqueada por confirmação de login do YouTube. Reprodução completa e
+checklist manual da interface Windows permanecem pendentes.
 
 ---
 

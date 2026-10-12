@@ -86,6 +86,7 @@ public partial class MainPlayer
         FileEnded = false;
         _lastStreamingFailure = null;
         _currentMediaWasLoaded = false;
+        _bufferingStartedAt = null;
         Path = GetPropertyString("path");
         NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(Path);
         Log.Debug($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}, cacheKind={resolution.Kind}, cacheProfile={resolution.Profile}, cacheEnabled={resolution.IsEnabled}");
@@ -120,6 +121,7 @@ public partial class MainPlayer
     {
         Duration = GetSafeDuration();
         _currentMediaWasLoaded = true;
+        LogNetworkCacheState("file-loaded");
         Log.Debug($"mpv file-loaded event. path='{Log.SafeValue(GetPropertyString("path"))}', duration={Duration}, mediaTitle='{Log.SafeValue(GetPropertyString("media-title"))}'");
 
         if (App.StartSize == "video")

@@ -15,6 +15,7 @@ namespace MpvNet;
 public partial class MainPlayer
 {
     public const string LoadfileOptionsInsertionIndex = "-1";
+    // Retained for existing consumers; current defaults are resolved per profile.
     public const string AutomaticStreamingLoadOptions = NetworkCachePolicy.BalancedHttpOptions;
 
     public void SetBluRayTitle(int id) => LoadFiles(new[] { @"bd://" + id }, false, false, source: MediaInputSource.InternalCommand);

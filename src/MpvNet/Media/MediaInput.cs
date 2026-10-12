@@ -141,6 +141,7 @@ public static class MediaInputClassifier
             "http" or "https" => NetworkMediaKind.HttpProgressive,
             "ftp" or "ftps" => NetworkMediaKind.FtpFile,
             "sftp" => NetworkMediaKind.SftpFile,
+            "ytdl" => NetworkMediaKind.OnlineResolver,
             "rtsp" => NetworkMediaKind.Rtsp,
             "rtmp" or "rtmps" => NetworkMediaKind.Rtmp,
             "udp" or "tcp" or "srt" or "srtp" => NetworkMediaKind.DatagramLive,
@@ -205,15 +206,18 @@ public static class MpvOptionConfiguration
     public static HashSet<string> GetExplicitOptions()
     {
         IEnumerable<string> confLines = [];
-        if (File.Exists(Player.ConfPath))
+        string confPath = CommandLine.Contains("config-dir")
+            ? Path.Combine(CommandLine.GetValue("config-dir"), "mpv.conf")
+            : Player.ConfPath;
+        if (File.Exists(confPath))
         {
             try
             {
-                confLines = File.ReadAllLines(Player.ConfPath);
+                confLines = File.ReadAllLines(confPath);
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
             {
-                Log.Debug($"Could not inspect explicit mpv options. path='{Log.SafeValue(Player.ConfPath)}', error='{Log.SafeValue(ex.Message)}'");
+                Log.Debug($"Could not inspect explicit mpv options. path='{Log.SafeValue(confPath)}', error='{Log.SafeValue(ex.Message)}'");
                 return new(StringComparer.OrdinalIgnoreCase) { "*" };
             }
         }
@@ -227,7 +231,7 @@ public static class MpvOptionConfiguration
     {
         HashSet<string> result = new(StringComparer.OrdinalIgnoreCase);
         foreach (StringPair pair in commandLineArguments)
-            result.Add(pair.Name);
+            result.Add(pair.Name.StartsWith("no-", StringComparison.OrdinalIgnoreCase) ? pair.Name[3..] : pair.Name);
 
         foreach (string rawLine in confLines)
         {
@@ -285,7 +289,7 @@ public static class NetworkCachePolicy
 
         string options = classification.NetworkKind switch
         {
-            NetworkMediaKind.HttpProgressive or NetworkMediaKind.Dash =>
+            NetworkMediaKind.HttpProgressive or NetworkMediaKind.Dash or NetworkMediaKind.OnlineResolver =>
                 profile == "low-latency"
                     ? "cache=yes,cache-pause-initial=no,demuxer-max-bytes=64MiB"
                     : profile == "resilient" ? "cache=yes,cache-pause-initial=yes,cache-pause-wait=5,demuxer-max-bytes=256MiB" : BalancedHttpOptions,
@@ -297,7 +301,6 @@ public static class NetworkCachePolicy
                 "cache=yes,cache-on-disk=yes,demuxer-max-bytes=128MiB",
             NetworkMediaKind.Rtsp or NetworkMediaKind.Rtmp or NetworkMediaKind.DatagramLive =>
                 "cache=yes,cache-pause-initial=no,cache-pause-wait=1,demuxer-max-bytes=32MiB",
-            NetworkMediaKind.OnlineResolver => "cache=yes,cache-pause-initial=no,demuxer-max-bytes=64MiB",
             _ => "cache=yes,cache-pause-initial=no,demuxer-max-bytes=64MiB"
         };
 
@@ -307,7 +310,14 @@ public static class NetworkCachePolicy
     public static string NormalizeProfile(string? profile) =>
         profile?.Trim().ToLowerInvariant() is "off" or "low-latency" or "balanced" or "resilient"
             ? profile.Trim().ToLowerInvariant()
-            : "balanced";
+            : "resilient";
+
+    internal static IEnumerable<StringPair> GetMissingFileOptions(
+        NetworkCacheResolution resolution, Func<string, bool> isAlreadySet) =>
+        resolution.Options.Split(',', StringSplitOptions.RemoveEmptyEntries)
+            .Select(option => option.Split('=', 2))
+            .Where(parts => parts.Length == 2 && !isAlreadySet(parts[0]))
+            .Select(parts => new StringPair(parts[0], parts[1]));
 
     static string RemoveExplicitOptions(string options, IReadOnlySet<string> explicitOptions) =>
         string.Join(',', options.Split(',', StringSplitOptions.RemoveEmptyEntries)

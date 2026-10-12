@@ -194,6 +194,8 @@ public partial class MainPlayer
 
         mpv_request_log_messages(Handle, "info");
 
+        RegisterHook("on_load", NetworkCacheHookUserData, 50);
+
         if (formHandle != IntPtr.Zero)
             TrackEventTask(Task.Run(() => EventLoop(PlayerCancellationToken), PlayerCancellationToken));
 
