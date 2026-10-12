@@ -32,6 +32,28 @@ public sealed class PlayerInputTests
         Assert.Equal(command, Assert.Single(bindings, b => b.Input == key).Command);
     }
 
+    [Fact]
+    public void DefaultWebsiteAndManualBindingsUseTheActiveRepository()
+    {
+        const string repositoryUrl = "https://github.com/WandersondeSouza/mpv.net";
+        var defaults = InputHelp.GetDefaults();
+
+        Assert.Contains(defaults, binding => binding.Command == "script-message-to mpvnet shell-execute " + repositoryUrl);
+        Assert.Contains(defaults, binding => binding.Command == "script-message-to mpvnet shell-execute " + repositoryUrl + "/blob/master/docs/manual.md");
+    }
+
+    [Theory]
+    [InlineData("https://github.com/stax76/mpv.net/blob/main/docs/Manual.md")]
+    [InlineData("https://github.com/WandersondeSouza/mpv.net/blob/main/docs/manual.md")]
+    public void LegacyMenuLinksMigrateToThePublishedManualPath(string legacyUrl)
+    {
+        string updated = InputConf.UpdateContent("Ctrl+F2 script-message-to mpvnet shell-execute " + legacyUrl);
+
+        Assert.Contains("https://github.com/WandersondeSouza/mpv.net/blob/master/docs/manual.md", updated);
+        Assert.DoesNotContain("github.com/stax76/mpv.net", updated);
+        Assert.DoesNotContain("/docs/Manual.md", updated);
+    }
+
     [Theory]
     [InlineData("MBTN_Left")]
     [InlineData("MBTN_Left_DBL")]

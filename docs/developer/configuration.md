@@ -257,7 +257,8 @@ Migração automática observada:
 
 - `script-message mpv.net` vira `script-message-to mpvnet`;
 - `/docs/Manual.md` vira `/docs/manual.md`;
-- link antigo `stax76/mpv.net` vira `mpvnet-player/mpv.net`;
+- links antigos `stax76/mpv.net` passam a apontar para `WandersondeSouza/mpv.net`;
+- links do manual com `/blob/main/docs/` passam para `/blob/master/docs/`, o branch publicado do repositório;
 - antes de alterar o arquivo, é criado backup em `input.conf.backup`.
 
 ---

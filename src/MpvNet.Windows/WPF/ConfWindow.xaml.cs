@@ -603,7 +603,7 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
 
     [RelayCommand] void ShowMpvManual() => ProcessHelp.ShellExecute("https://mpv.io/manual/master/");
     
-    [RelayCommand] void ShowMpvNetManual() => ProcessHelp.ShellExecute("https://github.com/WandersondeSouza/mpv.net/blob/main/docs/manual.md");
+    [RelayCommand] void ShowMpvNetManual() => ProcessHelp.ShellExecute("https://github.com/WandersondeSouza/mpv.net/blob/master/docs/manual.md");
 
     public string WindowTitle => _("Config Editor");
     public string SearchHintText => _("Find a setting (Ctrl+F)");

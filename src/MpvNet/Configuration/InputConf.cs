@@ -5,6 +5,8 @@ namespace MpvNet;
 
 public class InputConf
 {
+    const int CurrentMenuUpdateVersion = 2;
+
     string? _path;
 
     public InputConf(string path) { Path = path; }
@@ -113,7 +115,7 @@ public class InputConf
         {
             try
             {
-                if (App.Settings.MenuUpdateVersion != 1)
+                if (App.Settings.MenuUpdateVersion != CurrentMenuUpdateVersion)
                 {
                     string updatedContent = UpdateContent(Content);
 
@@ -123,7 +125,7 @@ public class InputConf
                         FileHelp.WriteAllTextAtomic(Path, Content = updatedContent);
                     }
 
-                    App.Settings.MenuUpdateVersion = 1;
+                    App.Settings.MenuUpdateVersion = CurrentMenuUpdateVersion;
                 }
             }
             catch (Exception ex)
@@ -164,8 +166,9 @@ public class InputConf
         }
     }
 
-    static string UpdateContent(string content) => content
+    internal static string UpdateContent(string content) => content
         .Replace("script-message mpv.net", "script-message-to mpvnet")
         .Replace("/docs/Manual.md", "/docs/manual.md")
-        .Replace("https://github.com/stax76/mpv.net", "https://github.com/WandersondeSouza/mpv.net");
+        .Replace("https://github.com/stax76/mpv.net", "https://github.com/WandersondeSouza/mpv.net")
+        .Replace("https://github.com/WandersondeSouza/mpv.net/blob/main/docs/", "https://github.com/WandersondeSouza/mpv.net/blob/master/docs/");
 }
