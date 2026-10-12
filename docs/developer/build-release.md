@@ -452,10 +452,19 @@ conteudo obrigatorio do pacote. A versao publica foi alinhada com
 `7.1.13.1` e o manifesto MSIX em `7.1.13.0`, conforme a regra de revisao zero
 da Microsoft Store.
 
-O histórico local deste documento não comprova a execução atual do workflow
-manual do GitHub Actions, nem validação do pacote MSIX/WAP assinado ou revisão
-manual completa da UI. Confirme esses resultados no ambiente correspondente
-antes de registrá-los como concluídos.
+Validacao da versao `7.1.27.0` registrada em 2026-10-12: o workflow Release
+packages concluiu build Release x64, gerou e validou o ZIP portatil e o
+instalador, incluindo dependencias nativas e conteudo obrigatorio. A suite local
+concluiu 510 testes; o build local sem preparo automatico de assets e o teste
+offline de validacao SHA-256 tambem passaram. A correcao do calculo SHA-256 em
+`native-dependencies-config.ps1` evita depender do carregamento automatico do
+cmdlet `Get-FileHash` no Windows PowerShell. A release usou
+`src\BuildVersion.props` em `7.1.27.0` e manteve `Package.appxmanifest` em
+`7.1.26.0`; nenhum pacote MSIX foi solicitado ou validado neste fluxo.
+
+O workflow de release nao comprova assinatura ou certificacao de pacote
+MSIX/WAP, nem revisao manual completa da UI. Registre essas validacoes somente
+apos executa-las no ambiente correspondente.
 
 ---
 
