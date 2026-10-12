@@ -38,6 +38,7 @@ public class AppClass : IDisposable
     public bool RememberAudioDevice { get; set; } = true;
     public bool RememberVolume { get; set; } = true;
     public bool RememberWindowPosition { get; set; }
+    public bool SaveNetworkUrlsInRecent { get; set; }
 
     public int RecentCount { get; set; } = 15;
 
@@ -89,6 +90,8 @@ public class AppClass : IDisposable
 
             foreach (var i in Conf)
                 ProcessProperty(i.Key, i.Value, true);
+
+            SanitizeRecentFiles();
 
             EnsureInitialSelectMenuConf();
 
@@ -339,6 +342,7 @@ public class AppClass : IDisposable
         Settings.Volume = Player.GetPropertyInt("volume");
         Settings.Mute = Player.GetPropertyString("mute");
 
+        SanitizeRecentFiles();
         SettingsStore.Save(Settings);
 
         foreach (string file in TempFiles)
@@ -384,6 +388,7 @@ public class AppClass : IDisposable
             case "process-instance": ProcessInstance = value; return true;
             case "queue": Queue = value == "yes"; return true;
             case "recent-count": RecentCount = value.ToInt(15); return true;
+            case "save-network-urls-in-recent": SaveNetworkUrlsInRecent = value == "yes"; return true;
             case "network-cache-profile": NetworkCacheProfile = NetworkCachePolicy.NormalizeProfile(value); return true;
             case "remember-audio-device": RememberAudioDevice = value == "yes"; return true;
             case "remember-volume": RememberVolume = value == "yes"; return true;
@@ -410,6 +415,20 @@ public class AppClass : IDisposable
         }
 
         return (input, input);
+    }
+
+    void SanitizeRecentFiles()
+    {
+        AppSettings settings = Settings;
+        bool recentFilesWasNull = settings.RecentFiles is null;
+        List<string> recentFiles = settings.RecentFiles ?? [];
+        List<string> safeRecentFiles = RecentMediaPolicy.FilterEntries(recentFiles, SaveNetworkUrlsInRecent);
+
+        if (!recentFilesWasNull && recentFiles.SequenceEqual(safeRecentFiles, StringComparer.Ordinal))
+            return;
+
+        settings.RecentFiles = safeRecentFiles;
+        SettingsStore.Save(settings);
     }
 
     InputConf? _inputConf;

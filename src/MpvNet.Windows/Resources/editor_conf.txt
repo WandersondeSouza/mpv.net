@@ -13,6 +13,14 @@ file = mpvnet
 directory = General
 help = <int> Amount of recent files to be remembered. Default: 15 (mpv.net option)
 
+name = save-network-urls-in-recent
+file = mpvnet
+directory = General
+help = Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)
+default = no
+option = no
+option = yes
+
 name = media-info
 file = mpvnet
 directory = General

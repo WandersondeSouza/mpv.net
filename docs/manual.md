@@ -168,7 +168,17 @@ conservadoras de cache. A politica e controlada por `mpvnet.conf`:
 ```text
 automatic-network-cache=yes
 network-cache-profile=balanced
+save-network-urls-in-recent=no
 ```
+
+URLs de rede não são salvas em `Recent Files` por padrão. A lista fica no
+`settings.xml`, em texto legível. Para habilitar o histórico de URLs, configure
+`save-network-urls-in-recent=yes` em `mpvnet.conf`. URLs com credenciais na
+autoridade, fragmentos ou parâmetros de consulta reconhecidos como credenciais
+ou tokens continuam fora da lista. Como nomes de parâmetros opacos podem conter
+segredos que não são reconhecidos, habilite a opção apenas para URLs que você
+confia não conter dados sigilosos. Essa política não altera a URL usada na
+reprodução atual.
 
 Os perfis sao `off`, `low-latency`, `balanced` e `resilient`. Arquivos locais
 nao recebem opcoes automaticas de rede. HTTP progressivo, HLS/DASH, arquivos

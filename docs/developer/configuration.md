@@ -198,6 +198,7 @@ Opções observadas:
 | `process-instance` | `single` | Controle de instância: single/queue/multi. |
 | `queue` | `no` | Modo fila. |
 | `recent-count` | `15` | Quantidade de recentes. |
+| `save-network-urls-in-recent` | `no` | Permite salvar URLs de rede em Recent Files; credenciais conhecidas, parâmetros sensíveis e fragmentos são sempre omitidos. A lista é armazenada em texto legível em `settings.xml`. |
 | `remember-audio-device` | `yes` | Persiste dispositivo de áudio. |
 | `remember-volume` | `yes` | Persiste volume/mute. |
 | `remember-window-position` | `no` | Persiste posição da janela. |

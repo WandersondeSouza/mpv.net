@@ -80,20 +80,23 @@ public partial class MainForm
 
         path = MainPlayer.ConvertFilePath(path);
 
-        if (path.Contains("://"))
+        if (!string.IsNullOrEmpty(path) && path != "-" && path != @"bd://" && path != @"dvd://" &&
+            RecentMediaPolicy.ShouldPersist(path, App.SaveNetworkUrlsInRecent))
         {
-            string title = Player.GetPropertyString("media-title");
+            string recentEntry = path;
 
-            if (!string.IsNullOrEmpty(title) && path != title)
-                path = path + "|" + title;
-        }
+            if (path.Contains("://"))
+            {
+                string title = Player.GetPropertyString("media-title");
 
-        if (!string.IsNullOrEmpty(path) && path != "-" && path != @"bd://" && path != @"dvd://")
-        {
-            if (App.Settings.RecentFiles.Contains(path))
-                App.Settings.RecentFiles.Remove(path);
+                if (!string.IsNullOrEmpty(title) && path != title)
+                    recentEntry = path + "|" + title;
+            }
 
-            App.Settings.RecentFiles.Insert(0, path);
+            if (App.Settings.RecentFiles.Contains(recentEntry))
+                App.Settings.RecentFiles.Remove(recentEntry);
+
+            App.Settings.RecentFiles.Insert(0, recentEntry);
 
             while (App.Settings.RecentFiles.Count > App.RecentCount)
                 App.Settings.RecentFiles.RemoveAt(App.RecentCount);

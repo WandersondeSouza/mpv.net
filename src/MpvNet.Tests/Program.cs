@@ -486,6 +486,14 @@ MediaIpcMessage.TryParse(ipcPayload, out string ipcMode, out string[] ipcArgumen
 string completeYouTubeUrl = "https://www.youtube.com/watch?v=VIDEO_ID&list=PLAYLIST_ID&index=3&t=45&future=a%3Db#chapter";
 MediaLoadRequest? normalizedYouTubeRequest = MediaInputNormalizer.Normalize(
     completeYouTubeUrl, MediaInputSource.CommandLine);
+string recentSafeNetworkUrl = "https://example.com/live/index.m3u8?quality=720p&list=SPORTS";
+string recentCredentialUrl = "https://viewer:password@example.com/live/index.m3u8";
+string recentTokenUrl = "https://example.com/live/index.m3u8?access_token=secret";
+string recentSignedUrl = "https://example.com/live/index.m3u8?X-Amz-Credential=user&X-Amz-Signature=secret";
+List<string> sanitizedRecentEntries = RecentMediaPolicy.FilterEntries(
+    [@"C:\Media\movie.mkv|My Movie", "https://example.com/live/index.m3u8", recentTokenUrl], false);
+List<string> optedInRecentEntries = RecentMediaPolicy.FilterEntries(
+    [@"C:\Media\movie.mkv|My Movie", recentSafeNetworkUrl, recentTokenUrl], true);
 
 var tests = new (string Name, bool Result)[]
 {
@@ -560,6 +568,15 @@ var tests = new (string Name, bool Result)[]
     ("RTSP policy does not inject network-timeout", rtspStreamingLoadfileArgs.Length == 5 && !rtspStreamingLoadfileArgs[4].Contains("network-timeout")),
     ("Classifier distinguishes HLS from progressive HTTP", MediaInputClassifier.Classify("HTTPS://example.com/live/index.m3u8?token=abc").NetworkKind == NetworkMediaKind.Hls),
     ("Classifier rejects malformed network URL", !FileTypes.IsStreamingUrl("https://")),
+    ("Recent history keeps local paths by default", RecentMediaPolicy.ShouldPersist(@"C:\Media\movie.mkv", false)),
+    ("Recent history omits network URLs by default", !RecentMediaPolicy.ShouldPersist(recentSafeNetworkUrl, false)),
+    ("Recent history can opt in to safe network URLs", RecentMediaPolicy.ShouldPersist(recentSafeNetworkUrl, true)),
+    ("Recent history never stores URL credentials", !RecentMediaPolicy.ShouldPersist(recentCredentialUrl, true)),
+    ("Recent history never stores token query values", !RecentMediaPolicy.ShouldPersist(recentTokenUrl, true)),
+    ("Recent history never stores signed URL parameters", !RecentMediaPolicy.ShouldPersist(recentSignedUrl, true)),
+    ("Recent history omits URL fragments", !RecentMediaPolicy.ShouldPersist("https://example.com/live/index.m3u8#access_token=secret", true)),
+    ("Recent history migration preserves local items and removes network URLs by default", sanitizedRecentEntries.SequenceEqual([@"C:\Media\movie.mkv|My Movie"])),
+    ("Recent history opt-in retains safe remote items and omits token URLs", optedInRecentEntries.SequenceEqual([@"C:\Media\movie.mkv|My Movie", recentSafeNetworkUrl])),
     ("Clipboard parser accepts URL and ignores directives/options", clipboardRequests.Count == 1 && clipboardRequests[0].Input == "https://example.com/video.mp4?token=abc"),
     ("IPC serialization preserves newlines and Unicode", ipcMode == "queue" && ipcArguments.SequenceEqual(["https://example.com/a?x=1\n2", "áudio.mp3"])),
     ("Media input normalizer preserves complete YouTube URL", normalizedYouTubeRequest?.Input == completeYouTubeUrl),
