@@ -217,6 +217,7 @@ foreach ($storePackage in $storePackages) {
         -ArchiveFile $storePackage.FullName `
         -RequiredRelativePaths `
             'MpvNet.Windows\mpvnet.exe', `
+            'MpvNet.Windows\mpvnet.com', `
             'MpvNet.Windows\Scripts\osc.lua', `
             'MpvNet.Windows\libmpv-2.dll', `
             'MpvNet.Windows\libmpv-2-v3.dll'

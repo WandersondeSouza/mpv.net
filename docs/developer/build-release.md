@@ -79,6 +79,10 @@ publicação, a pasta portátil e o ZIP; o Inno Setup impede a compilação do
 instalador sem o OSC. O projeto WAP inclui o script explicitamente no payload e
 `publish-store-package.ps1` inspeciona o pacote final da Microsoft Store,
 inclusive contêineres e bundles aninhados.
+No fluxo Microsoft Store, `mpvnet.com` também é obrigatório: o projeto WAP
+valida o helper na pasta de build e o inclui explicitamente em
+`MpvNet.Windows\mpvnet.com`, ao lado de `mpvnet.exe`. O script de publicação
+rejeita o pacote final se o helper estiver ausente ou vazio.
 Quando um payload incluir auxiliares opcionais, o validador também rejeita
 arquivos vazios e um bundle FFmpeg parcial; a ausência completa continua
 permitida para a política de download sob demanda.

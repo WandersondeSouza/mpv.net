@@ -166,7 +166,11 @@
     <Error Condition="!Exists('$(MpvNetPackagePublishDir)\libmpv-2.dll')" Text="libmpv-2.dll nao foi preparado para o pacote Store: $(MpvNetPackagePublishDir)" />
     <Error Condition="!Exists('$(MpvNetPackagePublishDir)\libmpv-2-v3.dll')" Text="libmpv-2-v3.dll nao foi preparado para o pacote Store: $(MpvNetPackagePublishDir)" />
     <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\validate-package-contents.ps1&quot; -Path &quot;$(MpvNetPackagePublishDir)\.&quot;" />
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildThisFileDirectory)..\Tools\validate-package-contents.ps1&quot; -Path &quot;$(MpvNetPackagePublishDir)\.&quot; -RequiredRelativePaths mpvnet.com" />
     <ItemGroup>
+      <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\mpvnet.com">
+        <TargetPath>MpvNet.Windows\mpvnet.com</TargetPath>
+      </_MpvNetStorePackagePayload>
       <_MpvNetStorePackagePayload Include="$(MpvNetPackagePublishDir)\Scripts\osc.lua">
         <TargetPath>MpvNet.Windows\Scripts\osc.lua</TargetPath>
       </_MpvNetStorePackagePayload>
