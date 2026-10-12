@@ -198,6 +198,7 @@ Valide o contrato offline do cache compartilhado:
 
 ```powershell
 .\src\Tools\test-native-dependency-cache.ps1
+.\src\Tools\test-native-dependency-download-validation.ps1
 ```
 
 Para diagnosticar a seleção sem abrir a interface completa, execute `mpvnet.exe --diagnose-libmpv`. Em desenvolvimento, defina temporariamente `MPVNET_FORCE_LIBMPV_VARIANT=normal` para testar a normal; use `auto` para retornar ao comportamento padrão. Para validar reprodução, teste inicialização, arquivo local, URL, playlist, pause/play, seek, fullscreen, legendas, áudio e fechamento.

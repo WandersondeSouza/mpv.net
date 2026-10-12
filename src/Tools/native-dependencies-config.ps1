@@ -93,8 +93,9 @@ function Invoke-NativeDependenciesFileDownload(
     [string] $Uri,
     [string] $OutputFile,
     [string] $UserAgent = 'mpv.net-native-dependencies',
-    [int] $MaxAgeDays = $NativeDependenciesCacheMaxAgeDays) {
-    if (Test-NativeDependencyCacheFileFresh $OutputFile $MaxAgeDays) {
+    [int] $MaxAgeDays = $NativeDependenciesCacheMaxAgeDays,
+    [switch] $Force) {
+    if (-not $Force -and (Test-NativeDependencyCacheFileFresh $OutputFile $MaxAgeDays)) {
         return Get-Item -LiteralPath $OutputFile
     }
 
@@ -114,4 +115,35 @@ function Invoke-NativeDependenciesFileDownload(
             Remove-Item -LiteralPath $temporaryFile -Force
         }
     }
+}
+
+function Get-NativeDependenciesPublishedSha256([string] $Digest) {
+    if ([string]::IsNullOrWhiteSpace($Digest)) {
+        return $null
+    }
+
+    $match = [regex]::Match($Digest.Trim(), '^(?:sha256:)?(?<sha256>[a-fA-F0-9]{64})$', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+    if (-not $match.Success) {
+        throw "Unsupported published SHA-256 digest format: $Digest"
+    }
+
+    return $match.Groups['sha256'].Value.ToLowerInvariant()
+}
+
+function Assert-NativeDependenciesFileSha256([string] $Path, [string] $PublishedDigest) {
+    $expected = Get-NativeDependenciesPublishedSha256 $PublishedDigest
+    if (-not $expected) {
+        return $false
+    }
+
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
+        throw "Cannot validate SHA-256 for a missing dependency: $Path"
+    }
+
+    $actual = (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($actual -ne $expected) {
+        throw "Published SHA-256 mismatch for dependency '$Path'. Expected $expected, got $actual."
+    }
+
+    return $true
 }

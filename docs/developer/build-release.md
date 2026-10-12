@@ -24,7 +24,7 @@ Para execução:
 - SDK .NET 10.0 para publicar self-contained `win-x64`;
 - `libmpv-2.dll` e `libmpv-2-v3.dll` x64, ambas da mesma revisao upstream do mpv/libmpv;
 - `MediaInfo.dll` x64 baixada da MediaArea oficial durante a release;
-- `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe` baixados sob demanda para `%LOCALAPPDATA%\mpv.net\Component` pelo player;
+- `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `deno.exe` baixados sob demanda para `%LOCALAPPDATA%\mpv.net\Component` pelo player;
 - arquivos de `Locale`, quando aplicável.
 
 Para release:
@@ -33,7 +33,7 @@ Para release:
 - Inno Setup 6 em `C:\Program Files (x86)\Inno Setup 6\ISCC.exe`, exceto quando `-SkipInstaller` for usado;
 - GitHub CLI (`gh`), exceto quando `-SkipGitHubRelease` for usado;
 - variável `GH_TOKEN` configurada para criação de release;
-- acesso a internet para baixar libmpv, MediaInfo, `mpvnet.com` e `Gettext.Tools` no momento da release, quando esses arquivos/ferramentas ainda nao estiverem disponiveis localmente ou para semear o cache de componentes na primeira execucao do player.
+- acesso a internet para baixar libmpv, MediaInfo, `mpvnet.com` e `Gettext.Tools` no momento da release, quando esses arquivos/ferramentas ainda nao estiverem disponiveis localmente.
 
 Observacao: Inno Setup, GitHub CLI e `GH_TOKEN` deixam de ser obrigatorios quando o script e executado, respectivamente, com `-SkipInstaller` e `-SkipGitHubRelease`.
 Os downloads de dependencias nativas e auxiliares de todos os fluxos ficam em
@@ -165,9 +165,9 @@ Para compilar e baixar/validar automaticamente os binarios nativos e auxiliares 
 dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj -c Release
 ```
 
-Esse alvo chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll` e `libmpv-2-v3.dll` na pasta da configuração compilada. Ele baixa apenas o que estiver faltando e mantém as duas DLLs com revisões upstream idênticas. O fluxo novo do player passa a manter `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `mpvnet.com` e `deno.exe` em `%LOCALAPPDATA%\mpv.net\Component` quando necessario. O `yt-dlp.exe` fica sob responsabilidade do bootstrap do player em runtime, assim como o runtime Deno usado pelo EJS do YouTube. Para forcar atualizacao dos arquivos ja presentes, chame o script direto com `-UpdateExisting`. Ele nao baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained.
+Esse alvo chama `src\Tools\prepare-native-dependencies.ps1` e garante `MediaInfo.dll`, `libmpv-2.dll`, `libmpv-2-v3.dll` e o helper legado `mpvnet.com` na pasta da configuração compilada. Os assets de release do GitHub são comparados com o SHA-256 publicado pela API quando disponível; `mpvnet.com` usa o hash fixado para sua release imutável. MediaInfo continua vindo do site oficial por HTTPS e é validado como PE x64. O script baixa somente o que estiver faltando, mantém as duas DLLs libmpv com revisões upstream idênticas e aceita `-UpdateExisting` para renovar os downloads. Ele não baixa DLLs Microsoft/.NET/WPF de sites externos; essas DLLs continuam vindo do publish self-contained.
 
-No runtime, o player passa a usar `%LOCALAPPDATA%\mpv.net\Component` como cache de componentes baixados antes da interface abrir, com fallback para os binarios que vierem junto da instalacao. O contrato desta etapa preserva `libmpv-2.dll`, `libmpv-2-v3.dll`, `MediaInfo.dll` e as DLLs do runtime ao lado do executavel, enquanto `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `mpvnet.com`, `yt-dlp.exe` e `deno.exe` migram para a pasta de componente quando a rede estiver disponivel. O bootstrap trata `ffmpeg.exe`, `ffplay.exe` e `ffprobe.exe` como um bundle unico: valida o digest do ZIP compartilhado uma vez, extrai os tres binarios do mesmo archive e grava a freshness desse grupo em `ffmpeg-bundle.json`. `yt-dlp.exe` e `deno.exe` usam manifests e validação individuais; o executável oficial do `yt-dlp` já contém os scripts EJS.
+No runtime, o player usa `%LOCALAPPDATA%\mpv.net\Component` como cache para `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `deno.exe`, com fallback para binários que venham junto da instalação. O bootstrap começa em segundo plano depois que a janela é exibida. Ao terminar, atualiza o `ytdl-path` para as próximas reproduções, sem substituir uma configuração explícita. O bundle FFmpeg só é promovido quando os três executáveis do mesmo ZIP passaram pelas validações; os manifestos registram os hashes individuais e fingerprints usados para evitar reler os binários inteiros em toda inicialização. `mpvnet.com` permanece no pacote por compatibilidade, mas o player não baixa nem inicia esse helper. O executável oficial do `yt-dlp` já contém os scripts EJS.
 Em pacote MSIX/Microsoft Store, esse caminho deve ser entendido como a visao de LocalAppData disponivel para o aplicativo empacotado; o Windows pode virtualizar escritas em AppData para uma area privada do pacote. O aplicativo nao deve solicitar `broadFileSystemAccess` para esse fluxo, porque os componentes pertencem ao proprio app e continuam sob o cache `Component`. A pasta do pacote e somente leitura: o bootstrap nunca a atualiza. Antes de cada submissão Store, confirme no Partner Center que a atualização de executáveis auxiliares baixados está coerente com a funcionalidade declarada e com as políticas vigentes; a aprovação de um build MSIX local não é prova de certificação.
 
 Para publicar como o script de release atual faz:
@@ -497,7 +497,7 @@ Confira os `TargetFramework` dos projetos e instale o SDK/runtime correspondente
 
 ## Dependência nativa ausente
 
-Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `libmpv-2-v3.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução. Rode `mpvnet.exe --diagnose-libmpv` para registrar a seleção e o fallback. `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `mpvnet.com`, `yt-dlp.exe` e `deno.exe` passam a ser obtidos pelo cache de componentes do player em `%LOCALAPPDATA%\mpv.net\Component` quando necessário. O bootstrap baixa e extrai cada componente em sequência, e se algum item falhar ele fica ausente do cache para ser tentado novamente na próxima abertura do player. No fluxo de build/release, as duas DLLs libmpv e `MediaInfo.dll` devem continuar sendo preparados automaticamente por `src\Tools\prepare-native-dependencies.ps1`.
+Se a aplicação compilar mas não abrir ou falhar ao iniciar reprodução, verifique `libmpv-2.dll`, `libmpv-2-v3.dll`, `MediaInfo.dll`, arquitetura x64 e diretório de execução. Rode `mpvnet.exe --diagnose-libmpv` para registrar a seleção e o fallback. `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `deno.exe` são obtidos pelo cache de componentes do player em `%LOCALAPPDATA%\mpv.net\Component` quando necessário. O bootstrap começa após a janela aparecer; se um download falhar, a geração anterior é mantida e a atualização será tentada na próxima abertura. `mpvnet.com` só permanece no pacote por compatibilidade. No fluxo de build/release, libmpv e `MediaInfo.dll` são preparados por `src\Tools\prepare-native-dependencies.ps1`.
 
 ## Ferramenta de release ausente
 

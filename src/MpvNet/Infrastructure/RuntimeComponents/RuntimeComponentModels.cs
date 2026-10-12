@@ -41,18 +41,13 @@ internal sealed record RuntimeComponentDefinition(
     string ReleaseApiUrl,
     string AssetPattern,
     RuntimeComponentDownloadKind Kind,
-    params string[] ExtractedFiles)
-{
-    /// <summary>
-    /// Trusted SHA-256 used when GitHub does not expose an asset digest for an
-    /// immutable legacy release. A published API digest still takes precedence.
-    /// </summary>
-    public string? PublishedDigest { get; init; }
-}
+    params string[] ExtractedFiles);
 
 internal sealed record StagedRuntimeComponent(string Path, string? Digest);
 
 internal sealed record DownloadedRuntimeAsset(string Path, string Digest, string SourceUrl, long FileSize, string AssetName);
+
+internal sealed record RuntimeComponentFileFingerprint(long Length, long LastWriteTimeUtcTicks);
 
 internal sealed class GitHubRelease
 {
@@ -81,4 +76,5 @@ internal sealed class RuntimeComponentMetadata
     public long FileSize { get; set; }
     public string? Architecture { get; set; }
     public Dictionary<string, string>? FileDigests { get; set; }
+    public Dictionary<string, RuntimeComponentFileFingerprint>? FileFingerprints { get; set; }
 }

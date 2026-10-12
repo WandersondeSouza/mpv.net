@@ -122,13 +122,18 @@ function New-CleanDir($path) {
 }
 
 function Invoke-FileDownload($uri, $outputFile) {
-    if (Test-FreshFile $outputFile) {
+    if (-not $UpdateExisting -and (Test-FreshFile $outputFile)) {
         Write-Host "Using cached download: $outputFile"
         return Test-RequiredFile $outputFile
     }
 
     Write-Host "Downloading $uri"
-    return Invoke-NativeDependenciesFileDownload $uri $outputFile 'mpv.net-native-dependencies' $MaxCacheAgeDays
+    return Invoke-NativeDependenciesFileDownload `
+        -Uri $uri `
+        -OutputFile $outputFile `
+        -UserAgent 'mpv.net-native-dependencies' `
+        -MaxAgeDays $MaxCacheAgeDays `
+        -Force:$UpdateExisting
 }
 
 function Get-FreshCachedFile($downloadDir, $filePattern) {
@@ -182,6 +187,70 @@ function Get-GitHubLatestRelease($apiUrl) {
     return Invoke-WebRequest @requestParameters | ConvertFrom-Json
 }
 
+function Invoke-VerifiedDependencyDownload($uri, $outputFile, $publishedDigest, $assetName) {
+    $expectedDigest = Get-NativeDependenciesPublishedSha256 $publishedDigest
+    if (-not $expectedDigest) {
+        Write-Warning "No published SHA-256 digest is available for '$assetName'; only HTTPS and the available file, archive and architecture checks can be applied."
+        return Invoke-FileDownload $uri $outputFile
+    }
+
+    if (-not $UpdateExisting -and (Test-FreshFile $outputFile)) {
+        try {
+            Assert-NativeDependenciesFileSha256 $outputFile $expectedDigest | Out-Null
+            Write-Host "Using cached download after published SHA-256 validation: $outputFile"
+            return Test-RequiredFile $outputFile
+        }
+        catch {
+            Write-Warning "Cached download failed published SHA-256 validation and will be replaced: $outputFile"
+        }
+    }
+
+    $downloadPath = $outputFile
+    if (Test-Path -LiteralPath $outputFile -PathType Leaf) {
+        $downloadPath = "$outputFile.$PID.$([Guid]::NewGuid().ToString('N')).verify"
+    }
+
+    try {
+        $download = Invoke-FileDownload $uri $downloadPath
+        Assert-NativeDependenciesFileSha256 $download.FullName $expectedDigest | Out-Null
+        Write-Host "Published SHA-256 validated: $assetName"
+
+        if ($downloadPath -ne $outputFile) {
+            Move-Item -LiteralPath $downloadPath -Destination $outputFile -Force
+            return Test-RequiredFile $outputFile
+        }
+
+        return $download
+    }
+    catch {
+        if ($downloadPath -ne $outputFile -and (Test-Path -LiteralPath $downloadPath -PathType Leaf)) {
+            Remove-Item -LiteralPath $downloadPath -Force -ErrorAction SilentlyContinue
+        }
+        elseif ($downloadPath -eq $outputFile -and (Test-Path -LiteralPath $outputFile -PathType Leaf)) {
+            Remove-Item -LiteralPath $outputFile -Force -ErrorAction SilentlyContinue
+        }
+
+        throw
+    }
+}
+
+function Invoke-GitHubReleaseAssetDownload($asset, $downloadDir) {
+    $assetName = [string] $asset.name
+    if ([string]::IsNullOrWhiteSpace($assetName) -or
+        [System.IO.Path]::GetFileName($assetName) -ne $assetName -or
+        [string]::IsNullOrWhiteSpace([string] $asset.browser_download_url)) {
+        throw 'GitHub release asset metadata is invalid.'
+    }
+
+    $uri = [Uri] [string] $asset.browser_download_url
+    if ($uri.Scheme -ne 'https' -or $uri.Host -notin @('github.com', 'www.github.com')) {
+        throw "GitHub release asset URL must use the official HTTPS download host: $($uri.Host)"
+    }
+
+    $outputFile = Join-Path $downloadDir $assetName
+    return Invoke-VerifiedDependencyDownload $uri.AbsoluteUri $outputFile $asset.digest $assetName
+}
+
 function Download-GitHubLatestAsset($apiUrl, $assetPattern, $downloadDir) {
     $release = Get-GitHubLatestRelease $apiUrl
     $assets = @($release.assets | Where-Object { $_.name -match $assetPattern })
@@ -191,8 +260,7 @@ function Download-GitHubLatestAsset($apiUrl, $assetPattern, $downloadDir) {
         throw "Expected exactly one asset matching '$assetPattern' from $apiUrl, found $($assets.Count). Assets: $assetNames"
     }
 
-    $outputFile = Join-Path $downloadDir $assets[0].name
-    return Invoke-FileDownload $assets[0].browser_download_url $outputFile
+    return Invoke-GitHubReleaseAssetDownload $assets[0] $downloadDir
 }
 
 function Expand-ArchiveWith7Zip($archiveFile, $outputDir) {
@@ -382,8 +450,8 @@ function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
     if (-not $archives) {
         $assets = Get-LatestLibMpvAssets $contract
         $archives = [pscustomobject]@{
-            Normal = Invoke-FileDownload $assets.Normal.browser_download_url (Join-Path $downloadsDir $assets.Normal.name)
-            X86_64V3 = Invoke-FileDownload $assets.X86_64V3.browser_download_url (Join-Path $downloadsDir $assets.X86_64V3.name)
+            Normal = Invoke-GitHubReleaseAssetDownload $assets.Normal $downloadsDir
+            X86_64V3 = Invoke-GitHubReleaseAssetDownload $assets.X86_64V3 $downloadsDir
         }
     }
 
@@ -407,6 +475,7 @@ function Ensure-LibMpv($targetDir, $downloadsDir, $extractDir) {
 }
 
 function Ensure-MpvNetCom($targetDir, $downloadsDir, $publishDir) {
+    $publishedSha256 = 'd4b0a80779dc775fb8817afa128a4ddcfe3bd07bca98a9d0c49ba44daf5cb5e3'
     $targetFile = Join-Path $targetDir 'mpvnet.com'
     if ($MpvNetComFile) {
         Copy-Item (Test-RequiredFile $MpvNetComFile).FullName $targetFile -Force
@@ -416,10 +485,12 @@ function Ensure-MpvNetCom($targetDir, $downloadsDir, $publishDir) {
 
     if ($UpdateExisting -or (-not (Test-FreshFile $targetFile))) {
         $downloadFile = Join-Path $downloadsDir 'mpvnet.com'
-        Invoke-FileDownload `
+        $verifiedDownload = Invoke-VerifiedDependencyDownload `
             'https://github.com/mpvnet-player/file-host/releases/download/tag/mpvnet.com.txt' `
-            $downloadFile | Out-Null
-        Copy-Item (Test-RequiredFile $downloadFile).FullName $targetFile -Force
+            $downloadFile `
+            $publishedSha256 `
+            'mpvnet.com'
+        Copy-Item $verifiedDownload.FullName $targetFile -Force
     }
 
     if ($publishDir) {

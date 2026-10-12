@@ -254,20 +254,22 @@ O detalhe técnico original permanece somente no log, com query strings,
 cookies, tokens, sessão e cabeçalhos de autorização sanitizados.
 
 Os componentes auxiliares de runtime usam o cache local em
-`%LOCALAPPDATA%\mpv.net\Component\current`. Nesse fluxo, `libmpv-2.dll`,
-`libmpv-2-v3.dll` e `MediaInfo.dll` continuam ao lado do executavel ou no pacote preparado, enquanto
-`ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe`, `mpvnet.com` e
-`deno.exe` podem
-ser baixados e atualizados pelo player quando necessario. Uma cópia válida no
-cache `current` é preferido, seguido pelo cache legado, pela pasta do executável
-e, por último, pelo `PATH`. Downloads são feitos em `Component\staging`, validados e promovidos
-como uma geração completa, sem substituir diretamente arquivos em uso.
+`%LOCALAPPDATA%\mpv.net\Component\current`. `libmpv-2.dll`,
+`libmpv-2-v3.dll` e `MediaInfo.dll` continuam ao lado do executável ou no pacote
+preparado. O player baixa `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`,
+`yt-dlp.exe` e `deno.exe` quando necessário. Uma cópia válida no cache `current`
+tem prioridade, seguida pelo cache legado, pela pasta do executável e, por
+último, pelo `PATH`. Os downloads são preparados em `Component\staging`,
+validados e promovidos como uma geração completa.
 
-No início do player, componentes ausentes, inválidos ou com download validado há
-20 dias ou mais são baixados novamente. O player exige SHA-256 publicado pelo
-GitHub ou fixado para o componente; depois confere a arquitetura x64 e a
-integridade dos arquivos antes de ativá-los. `libmpv` e `MediaInfo.dll` são
-dependências do pacote e passam pela validação do fluxo de build/release.
+Depois que a janela aparece, o player verifica e atualiza os componentes em
+segundo plano. Componentes ausentes ou inválidos, e componentes cujo último
+download validado ocorreu há 20 dias ou mais, são baixados novamente. O player
+exige SHA-256 publicado pelo GitHub, confere a arquitetura x64 e valida os
+arquivos antes de ativá-los.
+`mpvnet.com` permanece no payload de instalação por compatibilidade, mas não é
+baixado nem executado pelo bootstrap do player. `libmpv` e `MediaInfo.dll` são
+preparados e validados pelo fluxo de build/release.
 Execute `mpvnet.exe --diagnose-components` para ver a existência e origem dos
 componentes, a idade do último download bem-sucedido, os hashes registrados e
 calculados e os testes de versão de FFmpeg, FFplay, FFprobe, yt-dlp e Deno. Esse

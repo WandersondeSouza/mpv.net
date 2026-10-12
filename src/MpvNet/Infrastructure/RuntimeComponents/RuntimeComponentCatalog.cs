@@ -15,14 +15,6 @@ internal static class RuntimeComponentCatalog
             RuntimeComponentDownloadKind.GitHubZip, "ffprobe.exe"),
         new("yt-dlp.exe", "https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest",
             "^yt-dlp\\.exe$", RuntimeComponentDownloadKind.Direct),
-        new("mpvnet.com", "https://api.github.com/repos/mpvnet-player/file-host/releases/latest",
-            "^mpvnet\\.com(?:\\.txt)?$", RuntimeComponentDownloadKind.Direct)
-        {
-            // The legacy release is immutable and GitHub's asset API returns
-            // null for its digest. Keep the downloaded executable pinned until
-            // the upstream release publishes an API digest.
-            PublishedDigest = "d4b0a80779dc775fb8817afa128a4ddcfe3bd07bca98a9d0c49ba44daf5cb5e3"
-        },
         new("deno.exe", "https://api.github.com/repos/denoland/deno/releases/latest",
             "^deno-x86_64-pc-windows-msvc\\.zip$", RuntimeComponentDownloadKind.GitHubZipSingle, "deno.exe")
     ];

@@ -244,7 +244,10 @@ compatíveis e a capability opcional de browser impersonation. O diagnóstico
 não recebe URL, cookie, header de autorização, query assinada nem PO Token.
 
 O executável oficial do yt-dlp continua sendo atualizado pelo fluxo existente
-de componentes, fora do caminho de reprodução. O mesmo bootstrap baixa o
+de componentes, fora do caminho de reprodução. O bootstrap começa em segundo
+plano depois que a janela é exibida e, ao terminar, atualiza o `ytdl-path` para
+as próximas reproduções; uma configuração explícita do usuário continua tendo
+precedência. O mesmo bootstrap baixa o
 `deno.exe` x64 (Deno 2.3 ou posterior), runtime recomendado e habilitado por
 padrão pelo yt-dlp. O executável oficial inclui os componentes de script EJS;
 Node.js 22 ou posterior e QuickJS 2023-12-9 ou posterior continuam

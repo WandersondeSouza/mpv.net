@@ -167,6 +167,29 @@ public sealed class RuntimeComponentTests
         File.WriteAllText(path, "abc", Encoding.ASCII);
 
         Assert.Equal("ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad", RuntimeComponentFileSystem.GetFileDigest(path));
+        (string digest, RuntimeComponentFileFingerprint fingerprint) =
+            RuntimeComponentFileSystem.GetFileDigestAndFingerprint(path);
+
+        Assert.Equal("ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad", digest);
+        Assert.True(RuntimeComponentFileSystem.HasMatchingFileFingerprint(path, fingerprint));
+    }
+
+    [Fact]
+    public void FileFingerprintMatchesOnlyWhenLengthAndLastWriteTimeAreUnchanged()
+    {
+        using TestDirectory directory = new();
+        string path = Path.Combine(directory.Path, "fingerprint.bin");
+        File.WriteAllText(path, "component-v1", Encoding.ASCII);
+        RuntimeComponentFileFingerprint fingerprint = RuntimeComponentFileSystem.GetFileFingerprint(path);
+
+        Assert.True(RuntimeComponentFileSystem.HasMatchingFileFingerprint(path, fingerprint));
+
+        File.WriteAllText(path, "component-version-2", Encoding.ASCII);
+        Assert.False(RuntimeComponentFileSystem.HasMatchingFileFingerprint(path, fingerprint));
+
+        File.WriteAllText(path, "component-v1", Encoding.ASCII);
+        File.SetLastWriteTimeUtc(path, new DateTime(fingerprint.LastWriteTimeUtcTicks, DateTimeKind.Utc).AddMinutes(-2));
+        Assert.False(RuntimeComponentFileSystem.HasMatchingFileFingerprint(path, fingerprint));
     }
 
     [Fact]
@@ -213,6 +236,32 @@ public sealed class RuntimeComponentTests
     }
 
     [Fact]
+    public async Task UpdatingFingerprintsPreservesLastSuccessfulDownloadTimestamp()
+    {
+        using TestDirectory directory = new();
+        string path = Path.Combine(directory.Path, "component.json");
+        await RuntimeComponentMetadataStore.SaveAsync(path, new RuntimeComponentMetadata
+        {
+            Component = "yt-dlp.exe",
+            Digest = new string('a', 64),
+            FileDigests = new(StringComparer.OrdinalIgnoreCase) { ["yt-dlp.exe"] = new string('b', 64) }
+        }, CancellationToken.None);
+        RuntimeComponentMetadata metadata = (await RuntimeComponentMetadataStore.LoadAsync(path, CancellationToken.None))!;
+        DateTimeOffset downloadCheckedUtc = metadata.LastCheckedUtc;
+        metadata.FileFingerprints = new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["yt-dlp.exe"] = new RuntimeComponentFileFingerprint(123, 456)
+        };
+
+        await RuntimeComponentMetadataStore.SaveWithoutRefreshingTimestampAsync(path, metadata, CancellationToken.None);
+        RuntimeComponentMetadata? saved = await RuntimeComponentMetadataStore.LoadAsync(path, CancellationToken.None);
+
+        Assert.NotNull(saved);
+        Assert.Equal(downloadCheckedUtc, saved!.LastCheckedUtc);
+        Assert.Equal(new RuntimeComponentFileFingerprint(123, 456), saved.FileFingerprints!["yt-dlp.exe"]);
+    }
+
+    [Fact]
     public async Task MissingMetadataReturnsNull()
     {
         using TestDirectory directory = new();
@@ -228,7 +277,8 @@ public sealed class RuntimeComponentTests
     {
         string[] files = RuntimeComponentCatalog.Definitions.Select(definition => definition.FileName).ToArray();
 
-        Assert.Equal(["ffmpeg.exe", "ffplay.exe", "ffprobe.exe", "yt-dlp.exe", "mpvnet.com", "deno.exe"], files);
+        Assert.Equal(["ffmpeg.exe", "ffplay.exe", "ffprobe.exe", "yt-dlp.exe", "deno.exe"], files);
+        Assert.DoesNotContain("mpvnet.com", files);
         Assert.All(RuntimeComponentCatalog.Definitions, definition =>
         {
             Assert.StartsWith("https://api.github.com/", definition.ReleaseApiUrl);
@@ -236,10 +286,6 @@ public sealed class RuntimeComponentTests
             if (definition.Kind == RuntimeComponentDownloadKind.GitHubZip)
                 Assert.NotEmpty(definition.ExtractedFiles);
         });
-
-        RuntimeComponentDefinition mpvnet = RuntimeComponentCatalog.Definitions
-            .Single(definition => definition.FileName == "mpvnet.com");
-        Assert.Equal("d4b0a80779dc775fb8817afa128a4ddcfe3bd07bca98a9d0c49ba44daf5cb5e3", mpvnet.PublishedDigest);
 
         RuntimeComponentDefinition deno = RuntimeComponentCatalog.Definitions
             .Single(definition => definition.FileName == "deno.exe");
@@ -367,11 +413,16 @@ public sealed class RuntimeComponentTests
         {
             Component = "yt-dlp.exe",
             Digest = new string('a', 64),
-            FileDigests = new(StringComparer.OrdinalIgnoreCase) { ["yt-dlp.exe"] = new string('b', 64) }
+            FileDigests = new(StringComparer.OrdinalIgnoreCase) { ["yt-dlp.exe"] = new string('b', 64) },
+            FileFingerprints = new(StringComparer.OrdinalIgnoreCase)
+            {
+                ["yt-dlp.exe"] = new RuntimeComponentFileFingerprint(123, 456)
+            }
         }, CancellationToken.None);
 
         RuntimeComponentMetadata? metadata = await RuntimeComponentMetadataStore.LoadAsync(path, CancellationToken.None);
         Assert.Equal("yt-dlp.exe", metadata!.Component);
+        Assert.Equal(new RuntimeComponentFileFingerprint(123, 456), metadata.FileFingerprints!["yt-dlp.exe"]);
         Assert.Empty(Directory.GetFiles(directory.Path, "*.tmp"));
     }
 

@@ -211,17 +211,17 @@ internal static class RuntimeComponentService
     static async Task<bool> IsFreshAndValidAsync(
         RuntimeComponentDefinition definition,
         CancellationToken cancellationToken) =>
-        IsFreshAndValid(
+        await IsFreshAndValidAsync(
             await LoadMetadataAsync(definition, cancellationToken).ConfigureAwait(false),
-            [definition]);
+            [definition], cancellationToken).ConfigureAwait(false);
 
     static async Task<bool> IsFreshAndValidAsync(
         RuntimeComponentDefinition definition,
         IReadOnlyList<RuntimeComponentDefinition> definitions,
         CancellationToken cancellationToken) =>
-        IsFreshAndValid(
+        await IsFreshAndValidAsync(
             await LoadMetadataAsync(definition, cancellationToken).ConfigureAwait(false),
-            definitions);
+            definitions, cancellationToken).ConfigureAwait(false);
 
     static async Task EnsureBundleAsync(
         IReadOnlyList<RuntimeComponentDefinition> definitions,
@@ -308,9 +308,10 @@ internal static class RuntimeComponentService
             : null;
     }
 
-    static bool IsFreshAndValid(
+    static async Task<bool> IsFreshAndValidAsync(
         RuntimeComponentMetadata? metadata,
-        IReadOnlyList<RuntimeComponentDefinition> definitions)
+        IReadOnlyList<RuntimeComponentDefinition> definitions,
+        CancellationToken cancellationToken)
     {
         if (metadata is null || metadata.LastCheckedUtc <= DateTimeOffset.UtcNow.Subtract(RefreshInterval) ||
             ParseSha256(metadata.Digest) is null || metadata.FileDigests is null || metadata.FileDigests.Count == 0)
@@ -318,24 +319,60 @@ internal static class RuntimeComponentService
             return false;
         }
 
+        bool fingerprintsChanged = false;
         try
         {
             foreach (RuntimeComponentDefinition definition in definitions)
             {
                 string path = RuntimeComponentPaths.GetTargetPath(definition.FileName);
-                if (!metadata.FileDigests.TryGetValue(definition.FileName, out string? expectedDigest) ||
-                    !RuntimeComponentValidator.Validate(definition.FileName, path).IsValid ||
-                    !string.Equals(RuntimeComponentFileSystem.GetFileDigest(path), expectedDigest, StringComparison.OrdinalIgnoreCase))
+                string? expectedDigest = metadata.FileDigests.TryGetValue(definition.FileName, out string? storedDigest)
+                    ? ParseSha256(storedDigest)
+                    : null;
+                if (expectedDigest is null || !RuntimeComponentValidator.Validate(definition.FileName, path).IsValid)
                 {
                     Log.Debug($"Cached runtime component is invalid or changed. file='{definition.FileName}', path='{Log.SafeValue(path)}'");
                     return false;
                 }
+
+                RuntimeComponentFileFingerprint fingerprint = RuntimeComponentFileSystem.GetFileFingerprint(path);
+                if (metadata.FileFingerprints?.TryGetValue(definition.FileName, out RuntimeComponentFileFingerprint? recordedFingerprint) == true &&
+                    recordedFingerprint == fingerprint)
+                {
+                    continue;
+                }
+
+                (string actualDigest, RuntimeComponentFileFingerprint verifiedFingerprint) =
+                    RuntimeComponentFileSystem.GetFileDigestAndFingerprint(path);
+                if (!string.Equals(actualDigest, expectedDigest, StringComparison.OrdinalIgnoreCase))
+                {
+                    Log.Debug($"Cached runtime component is invalid or changed. file='{definition.FileName}', path='{Log.SafeValue(path)}'");
+                    return false;
+                }
+
+                metadata.FileFingerprints ??= new Dictionary<string, RuntimeComponentFileFingerprint>(StringComparer.OrdinalIgnoreCase);
+                metadata.FileFingerprints[definition.FileName] = verifiedFingerprint;
+                fingerprintsChanged = true;
             }
         }
-        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException)
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or System.Security.Cryptography.CryptographicException)
         {
             Log.Debug($"Cached runtime component validation failed; forcing refresh. error='{Log.SafeValue(ex.Message)}'");
             return false;
+        }
+
+        if (fingerprintsChanged)
+        {
+            try
+            {
+                await RuntimeComponentMetadataStore.SaveWithoutRefreshingTimestampAsync(
+                    RuntimeComponentPaths.GetMetadataPath(definitions[0]), metadata, cancellationToken).ConfigureAwait(false);
+                Log.Debug("Runtime component fingerprints updated after SHA-256 verification; download freshness timestamp was preserved.");
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException)
+            {
+                // A failed fingerprint write only makes the next startup rehash this verified file.
+                Log.Debug($"Could not persist runtime component fingerprints. error='{Log.SafeValue(ex.Message)}'");
+            }
         }
 
         return true;
@@ -358,12 +395,9 @@ internal static class RuntimeComponentService
             throw new InvalidOperationException($"Runtime component asset metadata is invalid for {definition.FileName}.");
         }
 
-        string? digest = ParseSha256(asset.Digest) ?? ParseSha256(definition.PublishedDigest);
+        string? digest = ParseSha256(asset.Digest);
         if (digest is null)
             throw new InvalidOperationException($"A published SHA-256 digest is required for {definition.FileName}.");
-
-        if (ParseSha256(asset.Digest) is null && definition.PublishedDigest is not null)
-            Log.Debug($"Using the pinned SHA-256 for the legacy runtime component asset. file='{definition.FileName}', asset='{Log.SafeValue(assetName)}'");
 
         string destination = Path.Combine(stagingDirectory, assetName + "." + Guid.NewGuid().ToString("N") + ".download");
         Log.Debug($"Downloading runtime component asset. file='{definition.FileName}', asset='{Log.SafeValue(assetName)}', kind={definition.Kind}");
@@ -454,10 +488,14 @@ internal static class RuntimeComponentService
         CancellationToken cancellationToken)
     {
         var digests = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        var fingerprints = new Dictionary<string, RuntimeComponentFileFingerprint>(StringComparer.OrdinalIgnoreCase);
         foreach (RuntimeComponentDefinition item in definitions)
         {
             string path = Path.Combine(stagingDirectory, item.FileName);
-            digests[item.FileName] = RuntimeComponentFileSystem.GetFileDigest(path);
+            (string digest, RuntimeComponentFileFingerprint fingerprint) =
+                RuntimeComponentFileSystem.GetFileDigestAndFingerprint(path);
+            digests[item.FileName] = digest;
+            fingerprints[item.FileName] = fingerprint;
         }
 
         var metadata = new RuntimeComponentMetadata
@@ -469,7 +507,8 @@ internal static class RuntimeComponentService
             LastCheckedUtc = DateTimeOffset.UtcNow,
             FileSize = download.FileSize,
             Architecture = "x64",
-            FileDigests = digests
+            FileDigests = digests,
+            FileFingerprints = fingerprints
         };
         string metadataFileName = Path.GetFileName(RuntimeComponentPaths.GetMetadataPath(definition));
         await RuntimeComponentMetadataStore.SaveAsync(

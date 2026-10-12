@@ -76,19 +76,19 @@ componentes.
 
 ## Componentes auxiliares de runtime
 
-Os componentes `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `mpvnet.com`,
-`yt-dlp.exe` e `deno.exe` não dependem do diretório de trabalho. A resolução preserva a
-política histórica de preferir o cache validado e segue esta ordem:
+Os componentes auxiliares de runtime `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`,
+`yt-dlp.exe` e `deno.exe` não dependem do diretório de trabalho. A resolução
+preserva a política histórica de preferir o cache validado e segue esta ordem:
 
 1. `%LOCALAPPDATA%\mpv.net\Component\current`;
 2. cache legado `%LOCALAPPDATA%\mpv.net\Component`;
 3. pasta de `mpvnet.exe` (`AppContext.BaseDirectory`);
 4. `PATH` do processo, apenas como último fallback.
 
-Todo candidato é convertido para caminho absoluto, precisa existir e os seis
-executáveis precisam ser PE x64 não vazio. Um arquivo HTML, truncado, x86 ou
-corrompido não é escolhido. Nomes de componentes inválidos não geram fallback
-de caminho. Um manifesto JSON ilegível é tratado como cache inválido, preservado
+Todo candidato é convertido para caminho absoluto, precisa existir e os cinco
+executáveis baixados precisam ser arquivos PE x64 não vazios. Um arquivo HTML,
+truncado, x86 ou corrompido não é escolhido. Nomes de componentes inválidos não
+geram fallback de caminho. Um manifesto JSON ilegível é tratado como cache inválido, preservado
 para diagnóstico e refeito quando a atualização seguinte for concluída. O
 `yt-dlp.exe` resolvido é passado ao mpv pelo `ytdl-path`; um `ytdl-path` explícito
 em linha de comando ou `mpv.conf` mantém
@@ -99,22 +99,29 @@ geração promovida; antes da primeira promoção, o diretório legado continua 
 usado como fallback.
 
 As atualizações usam uma geração em `staging`, verificam HTTPS, host permitido,
-tamanho, SHA-256 publicado (ou um hash fixado para a release legada do
-`mpvnet.com` que ainda não expõe digest na API), ZIP Slip e PE x64, e só então
-renomeiam a geração completa para `current`. O conjunto FFmpeg é promovido
-junto, com manifesto `ffmpeg-bundle.json` e hashes individuais. Um bloqueio
-nomeado por usuário impede duas instâncias de alterarem o cache ao mesmo tempo;
-o mutex é liberado por sua thread proprietária dedicada e continua recuperável
+tamanho, SHA-256 publicado pelo GitHub, ZIP Slip e PE x64, e só então renomeiam
+a geração completa para `current`. O conjunto FFmpeg é promovido junto, com
+manifesto `ffmpeg-bundle.json`, hashes individuais e fingerprints de tamanho e
+data de alteração. Em inicializações seguintes, um fingerprint inalterado evita
+ler novamente o arquivo inteiro; se tamanho ou data mudarem, o SHA-256 completo
+é recalculado e precisa corresponder ao manifesto. Downloads antigos sem
+fingerprint também passam por hash completo antes da atualização do manifesto.
+Esse atalho reduz I/O e não substitui o diagnóstico criptográfico completo:
+`--diagnose-components` recalcula os hashes registrados e calculados de todos
+os arquivos do cache.
+Um bloqueio nomeado por usuário impede duas instâncias de alterarem o cache ao
+mesmo tempo; o mutex é liberado por sua thread proprietária dedicada e continua recuperável
 quando uma instância termina de forma inesperada. Em falha a geração anterior é
 mantida. Os manifestos diretos ficam ao lado do binário (`yt-dlp.exe.json` e
-`mpvnet.com.json` e `deno.exe.json`) e registram versão/asset, hash, URL, data, tamanho e
-arquitetura.
+`deno.exe.json`) e registram versão/asset, hash, URL, data, tamanho, arquitetura
+e fingerprint.
 
-Na primeira execução, os componentes diretos menores (`yt-dlp.exe` e
-`mpvnet.com`) são baixados e promovidos antes do ZIP grande do FFmpeg. Assim,
-eles ficam disponíveis mesmo se o download do FFmpeg for interrompido; o
-bundle FFmpeg continua sendo promovido somente quando os três executáveis forem
-validados juntos.
+Na primeira execução, `yt-dlp.exe` e `deno.exe` são baixados antes do ZIP grande
+do FFmpeg. Eles ficam disponíveis mesmo se o download do FFmpeg for
+interrompido; o bundle FFmpeg continua sendo promovido somente quando os três
+executáveis forem validados juntos. O bootstrap começa em segundo plano depois
+que a janela é exibida; ao terminar, atualiza o `ytdl-path` para as próximas
+reproduções, preservando uma configuração explícita do usuário.
 
 O `yt-dlp.exe` oficial já inclui os scripts EJS. Para resolver os desafios
 JavaScript atuais do YouTube, o bootstrap também baixa o runtime `deno.exe`
@@ -130,8 +137,9 @@ mpvnet.exe --diagnose-components
 ```
 
 O comando informa a origem, caminho absoluto, versão e resultado da validação.
-O frontend não inicia `mpvnet.com`: o arquivo apenas é resolvido e validado,
-pois não há consumidor de runtime que justifique executá-lo.
+`mpvnet.com` continua podendo ser resolvido e verificado quando vem junto do
+pacote, mas não é baixado pelo bootstrap nem iniciado pelo frontend, pois não há
+consumidor de runtime que justifique sua execução.
 
 Para scripts como `thumbfast`, a versão portátil deve usar `portable_config/scripts` e `portable_config/script-opts`. No mpv.net v7, `thumbfast` tem suporte direto; `mpv_path` para um `mpv.exe` separado deve ser tratado como fallback para versões antigas ou casos específicos documentados pelo próprio script.
 

@@ -35,7 +35,20 @@ internal static class RuntimeComponentMetadataStore
         CancellationToken cancellationToken)
     {
         metadata.LastCheckedUtc = DateTimeOffset.UtcNow;
+        await SaveCoreAsync(path, metadata, cancellationToken).ConfigureAwait(false);
+    }
 
+    public static Task SaveWithoutRefreshingTimestampAsync(
+        string path,
+        RuntimeComponentMetadata metadata,
+        CancellationToken cancellationToken) =>
+        SaveCoreAsync(path, metadata, cancellationToken);
+
+    static async Task SaveCoreAsync(
+        string path,
+        RuntimeComponentMetadata metadata,
+        CancellationToken cancellationToken)
+    {
         string json = JsonSerializer.Serialize(metadata, JsonOptions);
         string directory = Path.GetDirectoryName(path)
             ?? throw new InvalidOperationException($"Metadata path has no directory: {path}");
