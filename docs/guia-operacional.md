@@ -421,6 +421,17 @@ Fluxo recomendado:
 
 ## Validações manuais e externas
 
+Preparacao registrada em 2026-10-13: a versao `7.1.29.0` inclui a correcao dos
+caminhos dos componentes auxiliares ja integrada em `master` (`be27bae0`).
+Somente `master` existe localmente e no remoto do fork; nao houve branches
+adicionais para integrar ou excluir. A suite local concluiu 571 testes sem
+falhas, e o build Release x64 com preparo de assets terminou sem avisos ou
+erros. Executavel e manifesto MSIX usam `7.1.29.0`, alinhados por
+`src\Tools\set-release-version.ps1 -Version 7.1.29.0`. Como a versao Store
+`7.1.28.0` ja foi aprovada, a correcao precisa de um pacote com numero maior
+para atualizar os usuarios existentes. Geracao de pacote, publicacao GitHub e
+submissao Store devem ser registradas separadamente quando concluidas.
+
 Build e empacotamento locais não comprovam o comportamento em máquinas de uso
 final, a execução remota do workflow nem a certificação Store. Registre cada
 validação somente após executá-la e informe versão, pacote e ambiente:
