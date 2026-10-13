@@ -1,705 +1,81 @@
 ﻿# Arquitetura do MPV.NET Media Player
 
-> Este documento combina o mapa atual do código com relatórios de auditoria
-> datados. As seções históricas registram o estado e a validação daquela rodada;
-> não substituem a conferência da branch atual.
+## Propósito
 
-## Objetivo
+Esta página resume a estrutura do repositório, as responsabilidades dos principais projetos e o fluxo entre a interface do Windows e o mpv/libmpv. Detalhes de configuração, integração nativa, interface e release ficam nas páginas técnicas específicas.
 
-Este documento ajuda mantenedores, desenvolvedores e agentes de IA a entender a arquitetura geral do MPV.NET Media Player.
+## Visão geral
 
-O foco é mapear responsabilidades reais do código atual, áreas críticas e fluxos que devem ser preservados.
+O MPV.NET Media Player é um aplicativo Windows baseado no mpv.net. O mpv/libmpv executa a reprodução; o código do fork integra esse motor à interface Windows, aos comandos, à configuração e aos recursos do sistema.
 
-Este arquivo substitui os antigos mapas separados de projeto, classes, startup e auditoria inicial. A regra aqui é manter a visão arquitetural em um único lugar e só separar um novo documento se houver necessidade real e contínua.
+A separação principal é entre:
 
----
+- **MpvNet**: núcleo da aplicação e coordenação do player;
+- **MpvNet.Windows**: janela, comandos de interface e integrações Windows;
+- **mpv/libmpv**: opções e comandos do motor, leitura de mídia e reprodução.
 
-# Visão geral
+A compatibilidade com opções, comandos e arquivos de configuração do mpv orienta as decisões de arquitetura.
 
-O MPV.NET Media Player é um frontend Windows para o mpv/libmpv, baseado no mpv.net.
+## Projetos principais
 
-O projeto usa o motor do mpv para reprodução multimídia e implementa uma camada Windows com WinForms, WPF, comandos próprios, configuração compatível com mpv e integração com recursos do sistema.
+A solução principal está em `src/MpvNet.sln`. O repositório também contém um exemplo separado de extensão .NET.
 
-Prioridades arquiteturais:
+| Projeto | Responsabilidade |
+| --- | --- |
+| `src/MpvNet` | Núcleo, estado do player, configuração, linha de comando, comandos e fluxo de mídia. |
+| `src/MpvNet.Windows` | Aplicativo Windows, janela WinForms, janelas auxiliares WPF e integrações nativas do Windows. |
+| `src/NGettext.Wpf` | Localização usada pelas janelas WPF. |
+| `src/MpvNet.Tests` | Testes automatizados do núcleo e dos contratos arquiteturais. |
+| `src/MpvNet.Pacote` | Empacotamento MSIX/WAP para distribuição pela Microsoft Store. |
+| `src/MpvNet.Extension/ExampleExtension` | Exemplo de extensão .NET carregável pelo player. |
 
-1. preservar compatibilidade com mpv/libmpv;
-2. manter configuração baseada em arquivos simples;
-3. preservar scripts, atalhos e comandos existentes;
-4. isolar alterações de UI quando possível;
-5. evitar refatorações amplas sem validação manual.
+## Inicialização
 
----
+No fluxo gráfico:
 
-# Solução e camadas
+1. `Program.Main` prepara os diretórios locais, registra a resolução das dependências nativas e inicializa a aplicação e o tema.
+2. O programa aplica a política de instância e seleciona o modo de execução.
+3. No modo gráfico, `MainForm` cria a janela principal e inicializa `Player` com o HWND da janela.
+4. `Player` inicializa libmpv, cria o cliente `mpvnet`, registra eventos e propriedades e inicia os loops de eventos.
+5. A janela processa os argumentos e carrega a mídia solicitada.
 
-```text
-src/MpvNet.sln
-  MpvNet/
-  MpvNet.Windows/
-  NGettext.Wpf/
-  MpvNet.Extension/
-```
+O modo de saída sem janela, iniciado com `--o=`, inicializa o player diretamente, sem criar `MainForm`.
 
-## `MpvNet`
+## Entrada de mídia
 
-Núcleo da aplicação:
+As solicitações recebidas pela linha de comando e pela interface convergem no fluxo de carregamento de `Player`. `MediaInputNormalizer` normaliza as entradas; playlists passam por `PlaylistFile.PrepareForPlayback`; em seguida, o player envia os comandos de carregamento ao mpv/libmpv.
 
-- integração com libmpv;
-- comandos internos;
-- linha de comando;
-- resolução de configuração;
-- `input.conf`;
-- carregamento de extensões;
-- estado do player.
+O frontend coordena a solicitação e apresenta o estado de reprodução. A interpretação e a reprodução da mídia permanecem sob responsabilidade do mpv/libmpv.
 
-Organização arquitetural adotada para novas extrações:
+## Componentes e pontos de entrada
 
-- `Infrastructure/RuntimeComponents` - catálogo, GitHub, metadados, staging,
-  instalação e resolução dos componentes opcionais de runtime;
-- `Infrastructure` - filesystem, processos, logging, tarefas em segundo plano,
-  diretórios e outros serviços técnicos sem regra de mídia ou UI;
-- `Media` - tipos, playlists, títulos, faixas e políticas auxiliares de mídia;
-- `Native` - contratos P/Invoke e estruturas nativas;
-- `Player.*.cs` - estado e coordenação do player, separados por capacidade;
-- classes públicas antigas permanecem como fachadas quando uma responsabilidade
-  é movida, preservando compatibilidade com extensões e consumidores existentes.
+| Componente | Responsabilidade e arquivos principais |
+| --- | --- |
+| Inicialização | `src/MpvNet.Windows/Program.cs` prepara o processo; `src/MpvNet/App.cs` carrega configuração e opções da aplicação. |
+| Player | `src/MpvNet/Integration/Mpv/Player.cs` e `Player.*.cs` coordenam estado, inicialização, eventos, ciclo de vida e carregamento de mídia. |
+| Cliente e API nativa | `src/MpvNet/Integration/Mpv/MpvClient.cs` encapsula o cliente libmpv; `src/MpvNet/Native/LibMpv.cs` declara a API nativa e suas estruturas. |
+| Interface Windows | `src/MpvNet.Windows/WinForms/MainForm.cs` mantém o estado da janela; `src/MpvNet.Windows/WinForms/MainForm.*.cs` separa áreas como comandos, menu, drag-and-drop, cursor e tela cheia. |
+| Configuração e comandos | `src/MpvNet/Configuration/` contém os contratos do núcleo; `src/MpvNet.Windows/Commands/GuiCommand.cs` atende aos comandos da interface e `src/MpvNet/Command.cs` aos comandos do player. |
+| Scripts e extensões | Scripts Lua/JavaScript seguem o layout do mpv; `ExtensionService`, em `src/MpvNet/Services/ExtensionLoader.cs`, carrega extensões .NET da pasta `extensions`. |
 
-Os diretórios `Services`, `Configuration`, `Media`, `Models` e `Utilities`
-devem ser criados apenas quando houver uma extração concreta. Sufixos como
-`Service`, `Store`, `Provider`, `Resolver`, `Parser` e `Client` descrevem uma
-responsabilidade real; não são aplicados mecanicamente a modelos.
+## Configuração e compatibilidade
 
-Contratos de nomenclatura consolidados:
+A pasta ativa segue esta ordem: `MPVNET_HOME`, quando aponta para uma pasta existente; `portable_config`, quando existe ao lado do executável; e, por fim, o diretório padrão fornecido por `AppPaths`. A configuração do mpv e as opções próprias do frontend continuam separadas, e os formatos existentes de configuração permanecem contratos de compatibilidade.
 
-- `AppPaths` é o provedor único dos diretórios-base da aplicação: configuração
-  padrão e portátil, localização, raiz local, cache, componentes, logs e
-  temporários. O startup cria os diretórios locais de trabalho antes do
-  primeiro uso. `Folder` permanece como fachada obsoleta para compatibilidade;
-- `TranslationProvider` mantém o tradutor ativo; `Translator` permanece como
-  fachada obsoleta;
-- `ExtensionService` carrega extensões gerenciadas; `ExtensionLoader` permanece
-  como adaptador obsoleto;
-- `SettingsStore` representa a persistência interna de `settings.xml`;
-- `NamedValue` é o modelo descritivo para pares nome/valor. `StringPair`
-  permanece suportado nos contratos públicos existentes para evitar quebra de
-  extensões e chamadas que usam `List<StringPair>`.
+Comandos antigos e adaptadores públicos podem permanecer no código para preservar configurações, scripts e extensões existentes. Os arquivos, a ordem completa de resolução e os detalhes do modo portátil estão em [Configuração](configuration.md).
 
-## `MpvNet.Windows`
+## Ciclo de vida e limites entre componentes
 
-Frontend Windows:
+`Player` coordena os handles libmpv, os loops de eventos e as tarefas associadas à reprodução. `MpvClient` encapsula as chamadas ao cliente nativo. No encerramento, o player interrompe e aguarda o trabalho pendente antes de liberar os handles.
 
-- entry point;
-- janela principal WinForms;
-- janelas auxiliares WPF;
-- comandos de UI;
-- tema;
-- hotkeys globais;
-- associação de arquivos;
-- integração com APIs nativas do Windows.
+`MainForm` é responsável pelo ciclo de vida da janela e pelos recursos de UI e integração com o Windows. A integração com libmpv e o ciclo de vida nativo estão detalhados em [Integração com mpv/libmpv](mpv-integration.md); tela cheia, DPI, menu e eventos de janela estão em [Interface Windows](windows-ui.md).
 
-## `NGettext.Wpf`
+## Documentação relacionada
 
-Suporte de localização usado pelo frontend WPF.
-
-## `MpvNet.Extension`
-
-Exemplo de extensão .NET carregável.
-
----
-
-# Mapa rápido de classes e pontos de entrada
-
-Arquivos centrais para entender o fluxo sem abrir vários documentos:
-
-- `src/MpvNet.Windows/Program.cs` - entry point da aplicação Windows;
-- `src/MpvNet/App.cs` - inicialização, configuração e opções do frontend;
-- `src/MpvNet.Windows/WinForms/MainForm.cs` - estado principal da janela WinForms;
-- `src/MpvNet.Windows/WinForms/MainForm.*.cs` - responsabilidades separadas da janela principal por tema; `MainForm.Initialization.cs` concentra a sequência de inicialização;
-- `src/MpvNet/Integration/Mpv/Player.cs` - estado principal do player;
-- `src/MpvNet/Integration/Mpv/Player.*.cs` - estado (`Player.State.cs`), inicialização, eventos, ciclo de vida, carregamento de mídia e capacidades do player;
-- `src/MpvNet/Integration/Mpv/MpvClient.cs` - wrapper de cliente e loop de eventos;
-- `src/MpvNet/Native/LibMpv.cs` - P/Invoke e estruturas nativas;
-- `src/MpvNet/Configuration/InputConf.cs` - leitura e migração do `input.conf`;
-- `src/MpvNet/Configuration/InputBindingParser.cs` e
-  `InputBindingSerializer.cs` - parsing e serialização dos bindings;
-- `src/MpvNet/Configuration/Settings.cs` - persistência de estado do frontend;
-- `src/MpvNet/Configuration/CommandLine.cs` - argumentos de linha de comando;
-- `src/MpvNet.Windows/UI/Theme.cs` e `src/MpvNet.Windows/UI/GlobalHotkey.cs` - tema e hotkeys globais;
-- `src/MpvNet.Windows/Commands/GuiCommand.cs` e `src/MpvNet/Command.cs` - comandos da UI e comandos internos.
-
----
-
-# Fluxo de inicialização
-
-Arquivo principal: `src/MpvNet.Windows/Program.cs`
-
-Fluxo:
-
-1. configura produto, tradução e handlers globais de exceção;
-2. anexa console quando aplicável;
-3. trata `--register-file-associations`;
-4. chama `App.Init()`;
-5. chama `Theme.Init()`;
-6. cria `Mutex` baseado em `App.ConfPath`;
-7. aplica regra de instância única, fila ou múltiplas instâncias;
-8. processa comandos informativos de terminal;
-9. inicia modo sem janela quando `--o=` está presente;
-10. abre `WinForms.MainForm` no fluxo normal.
-
-Arquivos relacionados:
-
-- `src/MpvNet/App.cs`;
-- `src/MpvNet/Configuration/CommandLine.cs`;
-- `src/MpvNet.Windows/WinForms/MainForm.cs`;
-- `src/MpvNet.Windows/UI/Theme.cs`.
-
-Fluxo resumido adicional:
-
-1. `Program.Main` inicializa WinForms, tradução e handlers globais;
-2. `App.Init()` resolve configuração e opções do frontend;
-3. `Theme.Init()` carrega o tema;
-4. a instância única é aplicada com base em `App.ConfPath`;
-5. `Player.Init()` prepara libmpv e o estado inicial;
-6. `MainForm` é criado;
-7. arquivos/URLs informados pela linha de comando são processados depois da janela estar pronta.
-
-## Mapa do fluxo de entrada de mídia
-
-O baseline de 2026-09-21 confirmou os seguintes caminhos até o mpv/libmpv:
-
-| Origem | Entrada no frontend | Caminho até o mpv |
-| --- | --- | --- |
-| linha de comando e associação do Windows | `CommandLine.ResolveMediaRequest` | `Player.LoadFiles` -> `SendLoadfile` -> `CommandV("loadfile", ...)` |
-| segunda instância | JSON versionado de `MediaIpcMessage` por `WM_COPYDATA` | `MainForm.WndProc` -> `Player.LoadFiles` ou comando existente |
-| clipboard | `ClipboardMediaParser` pelo comando `open-clipboard` | `Player.LoadFiles` -> `loadfile` |
-| drag-and-drop | `MainForm.OnDragDrop` e `ClipboardMediaParser` | `Player.LoadFiles` -> `loadfile` |
-| diálogo de arquivo | `GuiCommand.OpenFiles` | `Player.LoadFiles` -> `loadfile` |
-| arquivos recentes | menu criado por `MainForm` | `Player.LoadFiles` -> `loadfile` |
-| playlist local ou pasta | `PlaylistFile.Read` / `PlaylistFile.PrepareForPlayback` | normalização, deduplicação e um `loadfile` por item preparado |
-| playlist nativa do yt-dlp/mpv | observador de `playlist` | debounce, preparação única pela mesma regra e atualização da fila nativa |
-| comandos internos e extensões | fachada pública `Player.LoadFiles` ou comandos do mpv | `SendLoadfile`/`CommandV` |
-
-URLs HTTP/HTTPS não recebem uma sondagem de rede no frontend. A classificação
-local serve apenas para validar a entrada e escolher opções conservadoras por
-arquivo; resolução de sites, expansão remota e seleção do stream continuam sob
-responsabilidade de `ytdl_hook`, `yt-dlp` e mpv/libmpv.
-
-`MediaInputNormalizer` é a fronteira comum antes de `Player.LoadFiles`. Ele
-remove somente espaços e aspas externas, rejeita opções/comandos e caracteres
-de controle, preserva a URL completa e mantém `MediaInputSource` para
-diagnóstico. Linha de comando, IPC, clipboard, drag-and-drop, diálogo, recentes
-e playlists locais convergem nessa política; o sufixo legado `URL|título` é
-interpretado apenas ao reabrir um item de recentes.
-
-`PlaylistFile.PrepareForPlayback` é a fronteira comum das coleções. Ela
-normaliza cada título, calcula a identidade pelo caminho ou URL e então remove
-duplicatas preservando a ordem. O player registra a sequência de endereços já
-preparada; eventos `playlist` causados pelas próprias remoções e reinserções não
-podem iniciar outro ciclo. Mudanças sucessivas são consolidadas por debounce
-antes de consultar a fila nativa.
-
-O payload IPC aceita somente os modos `single`, `queue` e `command`. A lista de
-argumentos permanece um array JSON, sem `Split`, decode adicional ou
-concatenação por shell; por isso `&`, múltiplos `=`, `%`, Unicode, fragmentos,
-aspas recebidas do Windows e várias URLs preservam o mesmo conteúdo entre a
-primeira e a segunda instância. O formato legado separado por linha continua
-somente como fallback compatível.
-
----
-
-# Integração com mpv/libmpv
-
-Arquivos principais:
-
-- `src/MpvNet/Integration/Mpv/Player.cs`;
-- `src/MpvNet/Integration/Mpv/MpvClient.cs`;
-- `src/MpvNet/Native/LibMpv.cs`.
-
-Responsabilidades:
-
-- criar contexto `mpv_create`;
-- registrar eventos;
-- configurar propriedades iniciais;
-- definir `config-dir`;
-- carregar `input.conf` em memória;
-- processar argumentos antes de `mpv_initialize`;
-- chamar `mpv_initialize`;
-- criar cliente `mpvnet`;
-- iniciar loops de evento;
-- observar propriedades como `pause`, `video-rotate` e `playlist-pos`;
-- destruir handles no encerramento.
-
-Essa camada é a área de maior risco do projeto.
-
-Topologia atual do player:
-
-- `src/MpvNet/Integration/Mpv/Player.Initialization.cs` - sequência de inicialização do mpv/libmpv e criação do cliente `mpvnet`;
-- `src/MpvNet/Integration/Mpv/Player.ObservedProperties.cs` - propriedades observadas como `pause`, `video-rotate`, `playlist-pos` e `playlist`;
-- `src/MpvNet/Integration/Mpv/Player.Events.cs` - callbacks de eventos de arquivo, log, reconfiguração de vídeo e títulos Blu-ray;
-- `src/MpvNet/Integration/Mpv/Player.Lifecycle.cs` - `MainEventLoop`, shutdown e destruição dos handles;
-- `src/MpvNet/Integration/Mpv/Player.MediaLoading.cs` - carregamento de mídia, playlists, URLs, ISO/DVD/BD, pasta automática e normalização de playlist;
-- `src/MpvNet/Integration/Mpv/Player.Capabilities.cs` - perfis, decoders, protocolos, demuxers e criação de clientes adicionais.
-
----
-
-# Interface gráfica
-
-Arquivos principais:
-
-- `src/MpvNet.Windows/WinForms/MainForm.cs`;
-- `src/MpvNet.Windows/WPF/ConfWindow.xaml`;
-- `src/MpvNet.Windows/WPF/InputWindow.xaml`;
-- `src/MpvNet.Windows/WPF/Views/AboutWindow.xaml`;
-- `src/MpvNet.Windows/WPF/Resources.xaml`;
-- `src/MpvNet.Windows/UI/Theme.cs`;
-- `src/MpvNet.Windows/UI/GlobalHotkey.cs`.
-
-A janela principal é WinForms. Janelas auxiliares e editores usam WPF. Essa combinação exige cuidado com ownership de janela, DPI, fullscreen e integração com o handle nativo usado pelo libmpv.
-
-Topologia atual da janela principal:
-
-- `src/MpvNet.Windows/WinForms/MainForm.ContextMenu.cs` - helpers de menu, faixas, capítulos e busca de itens;
-- `src/MpvNet.Windows/WinForms/MainForm.Commands.cs` - handlers de comandos de UI acionados por `GuiCommand`;
-- `src/MpvNet.Windows/WinForms/MainForm.Cursor.cs` - cursor e detecção de OSC;
-- `src/MpvNet.Windows/WinForms/MainForm.DragDrop.cs` - entrada por drag/drop;
-- `src/MpvNet.Windows/WinForms/MainForm.Fullscreen.cs` - transição de fullscreen e restauração de janela;
-- `src/MpvNet.Windows/WinForms/MainForm.PlayerEvents.cs` - reação da UI a eventos do player.
-
-O construtor e a ordem de registro de eventos/observadores permanecem em
-`MainForm.Initialization.cs`; a extração é estrutural e não altera a sequência
-de inicialização da janela.
-
----
-
-# Sistema de configuração
-
-Arquivos:
-
-- `src/MpvNet/Integration/Mpv/Player.cs`;
-- `src/MpvNet/App.cs`;
-- `src/MpvNet/Configuration/Settings.cs`;
-- `src/MpvNet/Configuration/InputConf.cs`;
-- `src/MpvNet.Windows/UI/Theme.cs`;
-- `src/MpvNet.Windows/UI/GlobalHotkey.cs`.
-
-Pasta de configuração:
-
-1. `MPVNET_HOME`;
-2. `portable_config`;
-3. `%LOCALAPPDATA%\mpv.net`.
-
-Arquivos:
-
-- `mpv.conf`;
-- `mpvnet.conf`;
-- `input.conf`;
-- `settings.xml`;
-- `theme.conf`;
-- `global-input.conf`.
-
----
-
-# Sistema de comandos
-
-Arquivos:
-
-- `src/MpvNet/Command.cs`;
-- `src/MpvNet.Windows/Commands/GuiCommand.cs`;
-- `src/MpvNet.Windows/Commands/GuiCommand.Commands.cs` - catálogo de comandos,
-  eventos da GUI e instância singleton;
-- `src/MpvNet/Utilities/InputHelp.cs`;
-- `src/MpvNet/Configuration/InputConf.cs`;
-- `src/MpvNet/Configuration/CommandLine.cs`.
-
-O projeto aceita comandos mpv diretamente e adiciona comandos próprios, normalmente chamados por:
-
-```text
-script-message-to mpvnet <comando>
-```
-
-Comandos marcados como deprecated ainda podem ser usados por configurações antigas e não devem ser removidos sem migração.
-
-## Auditoria de código obsoleto
-
-A ausência de referências internas não é suficiente para remover APIs públicas do núcleo, comandos ou nomes usados por configuração. A auditoria deve classificar cada candidato antes da remoção:
-
-| Item | Classificação | Decisão |
-| --- | --- | --- |
-| aliases `playlist-add`, `show-progress`, `playlist-random`, `show-recent`, `quick-bookmark` e `show-history` | precisa ser mantido | preserva `input.conf`, scripts e configurações existentes |
-| facades públicas marcadas com `Obsolete`, como `Core`, `Global`, `Folder`, `TaskHelp`, `ExtensionLoader` e `Translator` | precisa ser mantido | preserva compatibilidade binária e de extensões |
-| membros obsoletos do código vendorizado `NGettext.Wpf` | precisa ser mantido | podem integrar bindings ou consumidores externos do componente |
-| parâmetro público `LocalizationService.ResolveMpvNetLanguage(..., systemCulture)` | precisa ser mantido | conserva a assinatura pública, embora a seleção manual não use a cultura do sistema |
-| `StockIcon` e `MsgBoxExtendedFunctionality` | exige teste antes da remoção | não possuem consumidor interno conhecido, mas são tipos públicos do frontend |
-| `update-mpv-runtime.ps1` | precisa ser mantido | continua documentado como ferramenta operacional manual |
-| `download-mediainfo-dependency.ps1`, `NGettext.Wpf.nuspec` e `NGettext.Wpf/Releasing.md` | manter o wrapper/avaliar os demais | o downloader legado delega ao preparador compartilhado; os demais não participam do build atual, porém podem integrar fluxos manuais externos |
-| imagens MSIX com sufixos `scale`, `targetsize` e `altform` | precisa ser mantido | são variantes reconhecidas pelo empacotamento Windows, mesmo quando o conteúdo binário coincide |
-| `ENABLE_FILE_LOGGING` | precisa ser mantido | é controlado por `EnableFileLogging` em `Directory.Build.props` |
-
-Remoções já comprovadas devem permanecer pequenas e verificáveis. Não reintroduza listas geradas de fontes com caminhos absolutos, workflows arquivados fora de `.github/workflows` ou metadados `packages.config` em projetos SDK.
-
-## Critério de auditoria
-
-Se uma alteração exigir procurar a causa real em mais de um módulo, a investigação deve voltar para este arquivo e não ficar espalhada em páginas pequenas separadas.
-
----
-
-# Scripts e extensões
-
-Scripts Lua/JavaScript são responsabilidade do mpv e seguem a estrutura de configuração compatível:
-
-- `scripts`;
-- `script-opts`.
-
-Extensões .NET são carregadas de:
-
-```text
-extensions
-```
-
-O carregamento é feito por `ExtensionService` após a janela principal informar
-que está carregada. `ExtensionLoader` permanece como adaptador público obsoleto
-para compatibilidade. Assemblies são carregados no contexto padrão, todos os
-tipos concretos `IExtension` são instanciados e suas referências permanecem até
-o fim do processo; não existe hot reload ou unload parcial. Falhas de assembly,
-dependência ou tipo são isoladas por extensão e não encerram o player.
-
-## Ownership e lifecycle de recursos
-
-| Lifetime | Owner | Recursos e regra de encerramento |
-| --- | --- | --- |
-| processo | `AppClass` e serviços estáticos | registro no messenger, listener de trace opcional, extensões e `HttpClient` compartilhado; `Program.finally` destrói o player e descarta `AppClass`, inclusive em falha de startup |
-| player | `MainPlayer` | token de cancelamento, gate serial de tarefas, debounce de playlist, loops de evento, clientes e handles libmpv; `Destroy()` cancela, aguarda, destrói na ordem cliente-principal e só então descarta sincronização |
-| cliente mpv | `MpvClient` | `ReaderWriterLockSlim`, handle e callbacks; o write lock espera chamadas nativas existentes, bloqueia novas chamadas e o gate é descartado uma única vez |
-| janela | `MainForm` | timers, taskbar, SMTC, hotkeys, eventos e atraso de ativação; `DisposeManagedResources()` cancela trabalho pendente, remove handlers e descarta cada owner |
-| operação | método que cria | streams, readers, writers, documentos JSON/XML, processos e RCWs COM são descartados no mesmo escopo; escrita persistente usa staging atômico e não mantém arquivos abertos |
-
-Regras consolidadas:
-
-- cancelamento esperado não é registrado como erro; tarefas que pertencem ao
-  player ou à janela são rastreadas pelo respectivo owner;
-- inscrição em evento de lifetime maior exige `-=` no `Dispose`; inscrições de
-  extensões e do app têm lifetime deliberadamente igual ao processo;
-- nenhum file logger mantém stream persistente. O listener de debug é removido,
-  recebe `Flush` e é descartado antes do fim do processo;
-- handles nativos só são liberados pelo owner. O módulo AviSynth é exceção
-  deliberada: permanece carregado até o processo terminar porque libmpv pode
-  continuar executando código dele;
-- `TaskHelp` e `ExtensionLoader` permanecem apenas como fachadas públicas de
-  compatibilidade; não duplicam implementação interna.
-
----
-
-# Build e empacotamento
-
-Arquivos:
-
-- `src/MpvNet.Windows/MpvNet.Windows.csproj`;
-- `src/Directory.Packages.props`;
-- `src/Tools/build-release-package.ps1`;
-- `src/Setup/Inno/build-windows-installer.iss`.
-
-O executável é `mpvnet.exe`. O projeto da aplicação define `win-x64` como runtime padrão, e o script de release atual publica `win-x64`, copia DLLs nativas x64, cria ZIP portátil e gera instalador x64.
-
----
-
-# Áreas consideradas sensíveis
-
-## Integração com libmpv
-
-Risco alto:
-
-- reprodução;
-- eventos;
-- propriedades;
-- threading;
-- scripts;
-- compatibilidade com mpv.
-
-## Configuração
-
-Risco alto:
-
-- pasta de configuração;
-- migrações automáticas;
-- `input.conf`;
-- `mpv.conf`;
-- `mpvnet.conf`;
-- modo portátil.
-
-## UI/fullscreen
-
-Risco médio/alto:
-
-- DPI;
-- fullscreen;
-- múltiplos monitores;
-- menu de contexto;
-- foco;
-- atalhos;
-- tema claro/escuro.
-
-## Release
-
-Risco médio:
-
-- caminhos fixos de ferramentas;
-- dependências nativas;
-- publicação Debug;
-- ZIP portátil sem `portable_config`.
-
----
-
-# Auditoria de modernização gradual - 2026-06-20
-
-## Diagnóstico
-
-- `RuntimeComponents` concentrava catálogo, acesso HTTP/GitHub, checksum,
-  extração, persistência de metadados, instalação e resolução de caminhos.
-- `MainPlayer` e `MainForm` continuam sendo agregadores de estado sensíveis;
-  suas extrações devem ser precedidas por testes de caracterização.
-- `ConfWindow`, `GuiCommand` e `InputHelp` misturam apresentação, parsing e
-  coordenação, mas dependem de XAML e comandos textuais que impedem remoções
-  baseadas somente em busca de referências C#.
-- `MpvClient` expõe o contrato de baixo nível necessário ao libmpv. Sua API não
-  deve ser escondida por uma camada genérica.
-- `NGettext.Wpf`, `HandyControl`, arquivos gerados e artefatos de build ficam
-  fora desta modernização.
-
-## Classificação de risco
-
-| Área | Risco | Estratégia |
-| --- | --- | --- |
-| Componentes de runtime | médio | fachada pública e serviços internos |
-| Parsing e persistência de configuração | alto | caracterização antes da extração |
-| Carregamento e eventos do player | alto | preservar ordem e contratos libmpv |
-| Estado e eventos da janela | alto | manter UI nos partials e extrair apenas lógica não visual |
-| Modelos e utilitários puros | baixo | mover quando houver benefício objetivo |
-
-## Regras para as próximas fases
-
-1. Uma fase deve compilar e passar nos testes antes da próxima.
-2. APIs públicas existentes recebem fachada ou adaptador.
-3. Código só é removido após considerar XAML, reflection, extensões e comandos.
-4. Não será introduzido contêiner de injeção de dependências.
-5. Documentação técnica será atualizada apenas para mudanças consolidadas.
-
-## Extrações prioritárias consolidadas
-
-- `MainPlayer` encaminha URLs HTTP/HTTPS diretamente ao mpv/libmpv, sem
-  sondagem HTTP bloqueante no frontend; o motor mantém a decisão final sobre
-  mídia e playlists remotas.
-- `GuiCommandArgumentParser` concentra validação de argumentos obrigatórios e
-  números invariantes; `GuiCommand.Commands.cs` mantém o registro e `GuiCommand.cs`
-  mantém a execução dos comandos.
-- `InputBindingParser` e `InputBindingSerializer` concentram a conversão entre
-  texto de `input.conf` e modelos `Binding`; `InputHelp` preserva a API pública,
-  o catálogo padrão e as operações de composição usadas pela UI.
-- `BackgroundTaskRunner` descreve explicitamente o trabalho em segundo plano
-  com captura de exceções; `TaskHelp` permanece como fachada obsoleta para
-  compatibilidade com consumidores existentes.
-- `EditorConfigurationService` e `EditorConfigurationParser` concentram o
-  parsing das definições do editor; `ConfWindow` mantém apenas estado e
-  interação visual. `Conf` permanece como fachada obsoleta.
-
-## Limpeza de redundância
-
-- aliases e comandos depreciados continuam disponíveis quando fazem parte de
-  configuração, extensão ou automação existente;
-- usos internos do alias `Core` foram migrados para `Player`;
-- inicializações intencionais por efeito colateral usam descarte explícito em
-  vez de variáveis temporárias sem significado;
-- o bootstrap de componentes resolve URL e digest do asset com uma única
-  consulta de metadata por download;
-- condições duplicadas e classes exclusivamente estáticas foram simplificadas.
-
----
-
-<a id="relatorio-tecnico-inicial-2026-06-12"></a>
-
-# Relatório técnico inicial - 2026-06-12
-
-## Escopo analisado
-
-Este diagnóstico consolida a leitura inicial do fork antes de novas mudanças
-de estabilização. Foram considerados:
-
-- regras de manutenção em `AGENTS.md`;
-- documentação principal em `README.md`, `docs/manual.md` e
-  `docs/guia-operacional.md`;
-- documentação técnica em `docs/developer/`;
-- superfície de código em `src/MpvNet`, `src/MpvNet.Windows`,
-  `src/NGettext.Wpf`, `src/MpvNet.Tests` e `src/Tools`;
-- artefatos de agentes e prompts em `.ai/`;
-- fluxo de localização em `lang/source.pot` e `lang/po/*.po`.
-
-O objetivo desta etapa não é refatorar o player. O objetivo é registrar o
-estado técnico, separar riscos reais de melhorias possíveis e orientar mudanças
-pequenas, verificáveis e compatíveis com mpv/libmpv.
-
-## Diagnóstico resumido
-
-- A arquitetura atual já tem camadas reconhecíveis: núcleo `MpvNet`, frontend
-  `MpvNet.Windows`, suporte WPF/gettext em `NGettext.Wpf`, exemplo de extensão
-  e projeto de pacote MSIX/WAP.
-- O projeto já usa recursos modernos no build, como `LangVersion` 12.0,
-  nullable reference types habilitado, pacotes NuGet centralizados e `win-x64`
-  como runtime padrão.
-- `Player.cs` e `MainForm.cs` continuam sendo pontos de estado central. A
-  separação em partials reduziu o acoplamento visível, mas esses arquivos ainda
-  devem ser tratados como áreas de alto risco.
-- O projeto `src/MpvNet.Tests` usa xUnit v3 em `net10.0-windows10.0.19041.0`. A fixture legada em
-  `Program.cs` cobre parser de argumentos, playlists, títulos, configuração,
-  idiomas, logs, limpeza temporária e políticas auxiliares de MediaInfo; as
-  regras arquiteturais ficam em `ArchitectureTests.cs` com ArchUnitNET. As
-  fixtures adicionais cobrem settings, caminhos de configuração, componentes
-  de runtime, extensões, ciclo de vida e títulos Unicode.
-- A localização está centralizada em `LanguageCatalog.cs`, com validação de
-  paridade dos catálogos gettext contra `lang/source.pot`.
-- O fluxo de release e dependências nativas está documentado em
-  `docs/developer/build-release.md` e `docs/guia-operacional.md`, com scripts
-  canônicos em `src/Tools/`.
-- A documentação de agentes em `.ai/` é parte da superfície de manutenção e
-  precisa permanecer alinhada ao mapa técnico real do repositório.
-
-## Decisões de arquitetura
-
-- Preservar `mpvnet.exe`, `%LOCALAPPDATA%\mpv.net`, `MPVNET_HOME`,
-  `portable_config`, `mpv.conf`, `mpvnet.conf` e `input.conf` como contratos de
-  compatibilidade.
-- Manter `src/MpvNet/Integration/Mpv/Player.cs` como estado principal do player e mover apenas
-  responsabilidades bem delimitadas para partials ou classes auxiliares já
-  justificadas por testes.
-- Manter `src/MpvNet.Windows/WinForms/MainForm.cs` como estado principal da
-  janela e isolar mudanças por tema nos partials `MainForm.*.cs`.
-- Não substituir a lógica do mpv/libmpv por validações próprias do frontend. O
-  frontend deve rejeitar apenas entradas claramente inválidas e deixar a decisão
-  final de reprodução para o mpv/libmpv.
-- Não criar normalizadores paralelos de idioma. Novas regras devem passar pelo
-  catálogo central e pelos testes de fallback.
-
-O transporte de mídia do Windows fica isolado em
-`src/MpvNet.Windows/Services/MediaTransport/` e é consumido pela `MainForm`
-por um contrato próprio. O adapter WinRT obtém o
-`SystemMediaTransportControls` a partir do HWND da janela, enquanto o
-controlador mantém a política de comandos, navegação, seek e suspensão em
-fullscreen/encerramento. Não há dependência direta de FluentFlyout nem
-alteração no contrato de comandos do mpv.
-- Não criar novos documentos técnicos quando um documento existente puder
-  receber a informação de forma clara e durável.
-
-## Riscos técnicos atuais
-
-- Alterações em eventos, callbacks e shutdown de `MpvClient`/`Player` podem
-  afetar reprodução, scripts e encerramento do processo.
-- Alterações em `MainForm` podem impactar fullscreen, DPI, menu de contexto,
-  foco, atalhos, cursor/OSC e múltiplos monitores.
-- Migrações automáticas em arquivos do usuário precisam ser conservadoras e
-  manter backup quando alterarem configuração existente.
-- Scripts de release dependem de fontes externas e ferramentas locais; qualquer
-  mudança deve validar falha cedo para evitar pacote parcial.
-- Atualizações de texto visível podem exigir sincronização gettext, compilação
-  de `Locale` e validação de paridade.
-
-## Plano de execução recomendado
-
-1. Corrigir primeiro documentação e artefatos `.ai` que apontem para caminhos
-   obsoletos ou fluxos inexistentes.
-2. Auditar recursos e ciclo de vida em `MainForm`, `Player`, `MpvClient` e
-   comandos de UI antes de alterar comportamento.
-3. Para cada problema confirmado, criar uma mudança pequena com teste ou
-   validação direta.
-4. Rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore -- -noLogo`
-   quando tocar parser, paths, playlists, títulos, logs, configuração, idioma
-   ou MediaInfo.
-5. Rodar `dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore
-   /p:EnsureBuildAssets=false` como prova rápida para mudanças de código ou UI.
-6. Para localização, rodar `.\lang\validate-po-files.ps1 -ValidateOnly`.
-7. Para release, validar scripts, dependências nativas e conteúdo dos pacotes
-   antes de publicar ou registrar a descricao da release no GitHub.
-
-## Validação de base registrada
-
-Na rodada inicial de 2026-06-12, antes de alterações de comportamento, a base
-foi validada com:
-
-```powershell
-dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore -- -noLogo
-dotnet build src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore /p:EnsureBuildAssets=false
-.\lang\validate-po-files.ps1 -ValidateOnly
-git diff --check
-```
-
-Resultado: testes, build rápido, validação gettext e checagem de whitespace
-passaram. Revisões manuais completas de UI, pacote portátil, instalador e
-workflow de release continuam pendentes conforme `docs/guia-operacional.md` e
-`docs/developer/build-release.md`.
-
-## Relatorio final da rodada segura - 2026-06-12
-
-As etapas executadas nesta rodada mantiveram o escopo conservador definido para
-o fork:
-
-- documentacao e artefatos `.ai` foram alinhados ao fluxo atual de manutencao;
-- este relatorio tecnico foi consolidado no documento de arquitetura existente;
-- ciclo de vida, recursos e pontos de encerramento foram revisados sem
-  refatoracao ampla;
-- gravacoes de configuracao e arquivos gerados pelo aplicativo foram
-  fortalecidas com escrita mais segura onde havia risco de arquivo parcial;
-- integracao com mpv/libmpv foi mantida compativel, com ajustes pequenos e
-  cobertos por testes;
-- a cobertura de testes foi ampliada nos pontos tocados;
-- gettext foi revalidado e a string visivel de criacao de arquivo de
-  configuracao passou a usar catalogo de localizacao;
-- o manifesto MSIX/WAP foi realinhado com a versao central
-  `src/BuildVersion.props` (`7.1.3.15`).
-
-Validacoes finais executadas na Etapa 8:
-
-```powershell
-dotnet run --project .\src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore -- -noLogo
-.\lang\validate-po-files.ps1 -ValidateOnly
-dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore /p:EnsureBuildAssets=false
-dotnet build .\src\MpvNet.sln -c Release -p:Platform=x64 --no-restore /p:EnsureBuildAssets=false
-powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
-git diff --check
-```
-
-Resultado da Etapa 8:
-
-- testes automatizados passaram;
-- validacao gettext passou com 850 entradas em todos os catalogos ativos;
-- build rapido do projeto Windows passou sem avisos ou erros;
-- build `Release|x64` da solucao passou sem avisos ou erros;
-- o projeto MSIX/WAP foi ignorado no build de solucao desta maquina porque os
-  targets Desktop Bridge/MSIX nao estavam instalados no local esperado;
-- o pacote local sem publicacao no GitHub gerou:
-  `artifacts\release\MPV.NET-Media-Player-v7.1.3.15-portable-x64\`,
-  `artifacts\release\MPV.NET-Media-Player-v7.1.3.15-portable-x64.zip` e
-  `artifacts\release\MPV.NET-Media-Player-v7.1.3.15-setup-x64.exe`;
-- o script de release compilou `Locale`, validou dependencias nativas no
-  publish, na pasta portatil e no ZIP, e concluiu o instalador Inno Setup;
-- nenhuma release foi publicada no GitHub porque o comando foi executado com
-  `-SkipGitHubRelease`.
-
-Pendencias restantes:
-
-- validar manualmente UI, fullscreen, menu, atalhos, temas, persistencia,
-  arquivo local, URL/stream, playlist, pasta com midia, drag/drop,
-  alternancia de faixas/legendas, cursor/OSC, comandos de janela e fechamento;
-- validar o workflow manual `.github/workflows/release-packages.yml`;
-- validar o pacote MSIX/WAP em ambiente com Desktop Bridge/MSIX instalado e
-  credenciais de assinatura configuradas quando houver publicacao Store.
-
----
-
-# Recomendações para agentes
-
-1. Antes de alterar código, localizar a camada correta.
-2. Preferir mudanças pequenas.
-3. Preservar comandos, opções e arquivos existentes.
-4. Atualizar documentação quando comportamento mudar.
-5. Validar manualmente fullscreen, input e configuração quando tocar UI ou libmpv.
-6. Separar documentação validada de hipóteses ainda pendentes.
-7. Para mudanças em parsers, paths, playlist, título, logs, configuração ou políticas de MediaInfo, rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore -- -noLogo`.
-8. Para mudanças em UI/libmpv, além do build e dos testes automatizados, executar checklist manual com arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento.
-
+- [Manual do usuário](../manual.md)
+- [Guia operacional](../guia-operacional.md)
+- [Configuração](configuration.md)
+- [Integração com mpv/libmpv](mpv-integration.md)
+- [Interface Windows](windows-ui.md)
+- [Build e release](build-release.md)
+- [Localização](localization.md)

@@ -19,17 +19,12 @@ Fork de manutenção do **MPV.NET Media Player** para Windows, baseado no mpv.ne
 - [Guia operacional, build e release](docs/guia-operacional.md)
 - [Microsoft Store](https://apps.microsoft.com/detail/9N441SP6XHLD)
 - [Arquitetura técnica](docs/developer/architecture.md)
-- [Relatório técnico inicial](docs/developer/architecture.md#relatorio-tecnico-inicial-2026-06-12)
 - [Configuração técnica](docs/developer/configuration.md)
 - [Integração com mpv/libmpv](docs/developer/mpv-integration.md)
 - [Interface Windows](docs/developer/windows-ui.md)
 - [Build e release](docs/developer/build-release.md)
 - [Localização](docs/developer/localization.md)
 - [Artefatos de IA](.ai/README.md)
-
-Relatórios com data em `docs/developer/architecture.md` e prompts em
-`.ai/prompts/` registram análises ou tarefas anteriores. Consulte o código e
-os scripts da branch atual antes de usar essas descrições como estado vigente.
 
 ## Uso rápido
 
