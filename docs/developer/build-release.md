@@ -4,8 +4,6 @@
 
 Este documento orienta como preparar o ambiente para estudar, compilar e manter o fork **MPV.NET Media Player**.
 
-> Evidência local registrada: build Release x64, ZIP portátil, instalador, `Locale` e dependências nativas foram gerados ou validados localmente para a release indicada no histórico operacional. Isso não confirma assinatura, certificação Store, execução do workflow remoto nem revisão manual completa em diferentes máquinas.
-
 ---
 
 # Requisitos principais
@@ -142,8 +140,6 @@ Para usar o Visual Studio nesse fluxo:
 5. Compile `Release|x64` no projeto de pacote.
 
 Se os targets do Desktop Bridge/MSIX estiverem instalados, o build do projeto de pacote passa pela validacao antes de gerar o pacote. Se o ambiente nao tiver esses componentes, o projeto apenas avisa e ignora a compilacao do pacote.
-No ambiente atual de manutencao, os arquivos `Microsoft.DesktopBridge.props` e `Microsoft.DesktopBridge.targets` estao presentes em `C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\DesktopBridge\`, e a validacao `ValidateStorePackage` concluiu com sucesso apos o alinhamento da versao do manifesto.
-
 ---
 
 # Build via terminal
@@ -196,20 +192,20 @@ Esse modo carrega a DLL selecionada, chama `mpv_client_api_version` e cria/destr
 
 ## Empacotamento Microsoft Store
 
-O fork agora inclui um projeto WAP/MSIX separado em `src/MpvNet.Pacote/MpvNet.Pacote.wapproj`.
+O projeto de distribuição da Store é definido em `src/MpvNet.Pacote/MpvNet.Pacote.wapproj`.
 Ele referencia `src/MpvNet.Windows/MpvNet.Windows.csproj`, usa `src/BuildVersion.props` como fonte da versao e inclui um conjunto basico de assets `Images\` para a Store.
 A identidade reservada atual do pacote e `24183GestodeSistemas.MPV.NETMediaPlayer`, com `Publisher` `CN=6581967D-2DE4-48DE-A846-C6F69ECA7701`.
 O pacote publicado na Microsoft Store usa o `Package/Properties/PublisherDisplayName` `Gestão de Sistemas`, o `Package Family Name` `24183GestodeSistemas.MPV.NETMediaPlayer_ex0zyz39hzsk6` e o `ID da Store` `9N441SP6XHLD`.
 Link profundo da Store: `ms-windows-store://pdp/?productid=9N441SP6XHLD`
 URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
-O auto incremento de revisao do MSIX fica desativado. A Microsoft Store nao aceita pacote com quarto componente diferente de zero no `Identity Version`, entao `BuildVersion.props` mantem a versao publica completa para executavel, ZIP e instalador, enquanto `Package.appxmanifest` usa a mesma versao com revisao zero. Exemplo: release `7.1.3.15` gera manifesto Store `7.1.3.0`. Quando precisar alterar a versao, use `src\Tools\set-release-version.ps1` para atualizar `BuildVersion.props` e `Package.appxmanifest` juntos.
+O auto incremento de revisão do MSIX fica desativado. A Microsoft Store exige revisão zero no `Identity Version`. `BuildVersion.props` mantém a versão pública completa do executável, ZIP e instalador; `Package.appxmanifest` usa a mesma versão com revisão zero. Use `src\Tools\set-release-version.ps1` para atualizar os dois arquivos juntos.
 O manifesto declara a aplicacao como desktop empacotada full trust, com `RuntimeBehavior="packagedClassicApp"` e `TrustLevel="mediumIL"`. Nao use `RuntimeBehavior="windowsApp"` para este projeto WinForms/WPF, pois isso aproxima o pacote do modelo UWP e pode interferir no acesso esperado a rede, AppData e componentes auxiliares.
 
 Pontos importantes:
 
 - o `Identity Name` e o `Publisher` em `Package.appxmanifest` ainda precisam ser trocados pelos valores reais do Partner Center/certificado antes da publicação;
 - o payload x64 inclui as duas DLLs libmpv; a seleção ocorre apenas entre arquivos já instalados, sem exigir CPU v3 para iniciar;
-- os assets de Store foram gerados a partir do `mpv-icon.ico` atual para permitir a montagem do projeto no fork;
+- o projeto inclui os assets necessários para montar o pacote da Store;
 - o projeto foi adicionado à solução `src/MpvNet.sln`, mas depende do Desktop Bridge/MSIX instalado no Visual Studio para gerar o pacote de fato.
 - o manifesto MSIX declara associacoes de video, audio e playlists para o Windows listar o app como abridor desses arquivos.
 - o manifesto registra formatos para `Abrir com` e `Aplicativos padrão`, mas a instalação da Store não pode substituir silenciosamente o padrão escolhido pelo usuário; a seleção deve ser feita pelo usuário nas Configurações do Windows ou no Explorador de Arquivos.
@@ -231,7 +227,7 @@ O script resolve automaticamente um `.pfx` local em caminhos comuns e mostra o c
 
 ## Validacao WACK
 
-O relatorio do Windows App Certification Kit de 2026-06-10 para o pacote `7.1.3.12` retornou aprovado com avisos. Os ajustes consolidados foram:
+Ao validar o MSIX com o Windows App Certification Kit, confira:
 
 - `MpvNet.Windows.csproj` declara explicitamente `app.manifest`, garantindo que o executavel empacotado preserve `PerMonitorV2`;
 - `BadgeLogo.png` e `BadgeLogo.scale-200.png` usam fundo transparente e glifo branco, conforme a regra de badge da Store;
@@ -410,7 +406,7 @@ O workflow manual `.github/workflows/release-packages.yml` executa esse mesmo sc
 
 Este fork nao publica um pacote NuGet/container no GitHub Packages por enquanto; os pacotes de distribuicao do aplicativo sao assets de GitHub Releases e artefatos do workflow.
 
-Para uma release emergencial, com incremento automatico do ultimo numero da versao, commit, push e disparo do workflow:
+Para criar e publicar uma release emergencial a partir do branch atual:
 
 ```powershell
 src\Tools\publish-emergency-release.ps1
@@ -422,105 +418,37 @@ Para incluir o instalador no workflow emergencial:
 src\Tools\publish-emergency-release.ps1 -CreateInstaller
 ```
 
-Esse script exige arvore Git limpa antes de alterar a versao. Ele usa
-`src\Tools\set-release-version.ps1 -IncrementRevision`, portanto atualiza
-`src\BuildVersion.props` e `src\MpvNet.Pacote\Package.appxmanifest` no mesmo
-commit. Ele nao substitui a revisao manual de descricao da release, UI e compatibilidade;
-e uma rota curta para publicar uma nova versao do branch atual quando
-necessario. Como a release emergencial publica assets no GitHub, ela nao aceita
-`-EnableFileLogging`; pacotes de diagnostico devem ser gerados separadamente
-sem publicacao.
+Esse script exige árvore Git limpa e atualiza os arquivos de versão antes do
+commit. Ele não substitui a revisão das notas da release, da interface e da
+compatibilidade. Como publica assets no GitHub, não aceita
+`-EnableFileLogging`; gere pacotes de diagnóstico separadamente, sem publicação.
 
-A partir de 2026-06-02, o fluxo de release publica em `Release` e nomeia os artefatos como `MPV.NET-Media-Player-v<versao>-setup-x64.exe` para o instalador e `MPV.NET-Media-Player-v<versao>-portable-x64.zip` para o ZIP portatil, baixa MediaInfo/libmpv, gera `Locale` para todos os catalogos ativos, inclui `portable_config` e valida as DLLs nativas obrigatorias no publish, na pasta portatil e dentro do ZIP. Quando `-EnableFileLogging` e usado, os artefatos recebem `-diagnostic` antes do tipo de pacote sem alterar a versao publica.
-
-Validacao de release registrada em 2026-06-23: a versao `7.1.4.2` consolida
-as mudancas posteriores a `7.1.4.1`, incluindo refatoracoes conservadoras de
-organizacao, nullability, excecoes, descarte de recursos nativos, async/task e
-blocos grandes, alem de ajustes no cache de URL remota, logs e documentacao.
-Antes da publicacao, a versao publica foi alinhada com
-`src\Tools\set-release-version.ps1`, mantendo `BuildVersion.props` em
-`7.1.4.2` e o manifesto MSIX em `7.1.4.0`, conforme a regra de revisao zero da
-Microsoft Store.
-
-Validacao local registrada em 2026-06-12: `build-release-package.ps1` concluiu
-com `-SkipGitHubRelease`, gerando ZIP portatil e instalador x64, compilando
-`Locale` e validando dependencias nativas no publish, na pasta portatil e no
-ZIP.
-
-Validacao da versao `7.1.13.1` registrada em 2026-08-05: a release consolida
-ajustes recentes de cache de rede com precedencia para configuracoes explicitas,
-carregamento de playlists e URLs, retorno de `Esc` do fullscreen, melhorias do
-OSC com botoes localizados do site oficial e do apoio ao player, alem da
-validacao de conteudo obrigatorio do pacote. A versao publica foi alinhada com
-`src\Tools\set-release-version.ps1`, mantendo `BuildVersion.props` em
-`7.1.13.1` e o manifesto MSIX em `7.1.13.0`, conforme a regra de revisao zero
-da Microsoft Store.
-
-Validacao da versao `7.1.27.0` registrada em 2026-10-12: o workflow Release
-packages concluiu build Release x64, gerou e validou o ZIP portatil e o
-instalador, incluindo dependencias nativas e conteudo obrigatorio. A suite local
-concluiu 510 testes; o build local sem preparo automatico de assets e o teste
-offline de validacao SHA-256 tambem passaram. A correcao do calculo SHA-256 em
-`native-dependencies-config.ps1` evita depender do carregamento automatico do
-cmdlet `Get-FileHash` no Windows PowerShell. A release usou
-`src\BuildVersion.props` em `7.1.27.0` e manteve `Package.appxmanifest` em
-`7.1.26.0`; nenhum pacote MSIX foi solicitado ou validado neste fluxo.
-
-Validacao da versao `7.1.28.0` registrada em 2026-10-12: a suite local concluiu
-571 testes sem falhas. O workflow [Release packages](https://github.com/WandersondeSouza/mpv.net/actions/runs/38319025263)
-concluiu build Release x64 sem avisos/erros, gerou ZIP portatil e instalador e
-validou o conteudo obrigatorio e as dependencias nativas. Por solicitacao,
-`BuildVersion.props` usa `7.1.28.0` e `Package.appxmanifest` permanece em
-`7.1.27.0`; este fluxo nao gerou nem submeteu pacote Microsoft Store. Essa
-divergencia intencional permite publicar apenas os pacotes GitHub; antes do
-proximo MSIX, execute `src\Tools\set-release-version.ps1 -Version 7.1.28.0`
-para satisfazer a validacao de alinhamento do projeto WAP. A revisao manual
-completa da interface e a certificacao Store nao foram executadas neste fluxo.
-A publicacao foi concluida pelo workflow [Release packages](https://github.com/WandersondeSouza/mpv.net/actions/runs/38320944512),
-com os mesmos parametros de pacotes normais x64 e Store desativada. A release
-`7.1.28.0` foi confirmada como `latest`, com ZIP e instalador completos e a
-descricao preparada preservada; a release `7.1.27.0` foi removida mantendo a tag.
-
-O workflow de release nao comprova assinatura ou certificacao de pacote
-MSIX/WAP, nem revisao manual completa da UI. Registre essas validacoes somente
-apos executa-las no ambiente correspondente.
+O fluxo compila em `Release`, gera o ZIP portátil e o instalador x64, prepara
+MediaInfo e libmpv, compila `Locale`, inclui `portable_config` e valida as
+dependências nativas no publish e nos pacotes. Pacotes gerados com
+`-EnableFileLogging` recebem o sufixo `-diagnostic` e devem ser distribuídos
+como artefatos de suporte, fora das releases públicas.
 
 ---
 
 # Versão
 
-Para a correcao `7.1.29.0`, a versao publica e o manifesto MSIX estao alinhados
-em `7.1.29.0`. A Store `7.1.28.0` ja foi aprovada; manter esse mesmo numero no
-pacote corrigido nao atualizaria as instalacoes existentes. O envio do novo
-pacote ao Partner Center continua sendo uma etapa separada da release GitHub.
-O workflow [Release packages](https://github.com/WandersondeSouza/mpv.net/actions/runs/38394573658)
-concluiu a publicacao GitHub com ZIP portatil e instalador x64 validados;
-`ValidateStorePackage` confirmou o alinhamento da versao local, mas o fluxo
-nao gerou pacote MSIX nem comprovou sua assinatura de distribuicao.
+A versão pública está centralizada em `src/BuildVersion.props`
+(`MpvNetVersion`). Consulte esse arquivo para identificar a versão configurada
+na branch.
 
-A versão pública está centralizada em `src/BuildVersion.props` (`MpvNetVersion`).
-Consulte esse arquivo para ver a versão da branch atual.
-
-O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` importa essa propriedade e
-usa `MpvNetVersion` para `FileVersion`, `AssemblyVersion` e
-`InformationalVersion`. O script de release usa a versão do arquivo publicado
-para montar os nomes dos artefatos e a tag da release.
-O manifesto MSIX ainda exige um valor literal em `Package.appxmanifest`; por
-isso a alteracao de versao deve ser feita por:
+O projeto `src/MpvNet.Windows/MpvNet.Windows.csproj` usa `MpvNetVersion` para
+`FileVersion`, `AssemblyVersion` e `InformationalVersion`. O script de release
+usa essa versão para nomear os artefatos e a tag.
+O manifesto MSIX exige um valor literal em `Package.appxmanifest`. Atualize os
+dois arquivos juntos com:
 
 ```powershell
 .\src\Tools\set-release-version.ps1 -Version <versao>
 ```
 
-Esse comando grava a versão pública em `BuildVersion.props` e a mesma versão
-com revisão zero no `Identity Version` do manifesto MSIX, conforme a regra da
-Microsoft Store.
-
-Para apenas incrementar o ultimo numero:
-
-```powershell
-.\src\Tools\set-release-version.ps1 -IncrementRevision
-```
+O script grava a versão pública em `BuildVersion.props` e aplica revisão zero
+ao `Identity Version` do manifesto MSIX, conforme a regra da Store.
 
 Nao edite `BuildVersion.props` e `Package.appxmanifest` separadamente.
 
