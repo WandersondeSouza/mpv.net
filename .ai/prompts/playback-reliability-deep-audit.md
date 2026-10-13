@@ -20,9 +20,9 @@ Para CADA etapa:
 6. executar os testes relevantes;
 7. corrigir qualquer regressão;
 8. revisar o diff;
-9. fazer um commit pequeno e descritivo;
-10. fazer push;
-11. somente então iniciar a próxima etapa.
+9. encerrar a etapa e relatar evidências;
+10. fazer commit ou push somente se o usuário tiver autorizado explicitamente;
+11. avançar para outra etapa conforme o escopo autorizado.
 
 Se uma etapa revelar um problema maior, subdivida-a antes de continuar.
 
@@ -162,7 +162,8 @@ Evitar adicionar complexidade desnecessária.
 
 Criar testes para as funções auxiliares que puderem ser isoladas.
 
-Depois: build, testes, revisão de diff, commit e push.
+Depois: build, testes e revisão de diff. Commit ou push só entram no fluxo se
+tiverem sido autorizados explicitamente.
 
 Commit sugerido:
 
@@ -512,16 +513,16 @@ Não utilizar mensagens vagas como `ajustes`, `correções`, `melhorias`, `updat
 
 Sempre dizer claramente o que foi alterado.
 
-Após cada commit:
+Após cada etapa concluída:
 
 ```text
 git status
 git log -1
-Não faça `git push` automaticamente. Só envie commits ao remoto se o usuário
-solicitar explicitamente e após validar o estado do branch.
+Só faça commit ou push se o usuário tiver solicitado explicitamente e depois de
+validar o estado do branch.
 ```
 
-Confirmar que o push foi concluído.
+Quando um push estiver autorizado, confirmar que ele foi concluído.
 
 ---
 

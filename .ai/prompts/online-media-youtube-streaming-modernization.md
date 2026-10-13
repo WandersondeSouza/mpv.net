@@ -39,9 +39,9 @@ Para CADA etapa:
 9. executar testes de regressão relacionados;
 10. revisar logs e comportamento manual quando necessário;
 11. revisar o diff;
-12. fazer um commit pequeno e descritivo;
-13. fazer push;
-14. somente então iniciar a próxima etapa.
+12. relatar evidências e encerrar a etapa;
+13. fazer commit ou push somente se o usuário tiver autorizado explicitamente;
+14. avançar para outra etapa conforme o escopo autorizado.
 
 Se uma etapa crescer demais, subdivida antes de continuar.
 
@@ -106,9 +106,9 @@ Critérios de aceite:
 
 Antes de modificar código:
 
-- confirmar branch atual;
-- confirmar working tree limpo;
-- registrar commit inicial;
+- registrar branch, HEAD e `git status`;
+- identificar e preservar alterações preexistentes; não exigir working tree limpo;
+- não limpar, guardar ou commitar alterações preexistentes sem solicitação;
 - restaurar dependências;
 - compilar a solução;
 - executar a suíte de testes existente;
@@ -897,9 +897,9 @@ A tarefa somente pode ser considerada concluída quando:
 
 ---
 
-# ESTRATÉGIA DE COMMITS
+# SUGESTÕES DE COMMIT, SE SOLICITADOS
 
-Os commits devem refletir etapas pequenas.
+Se o usuário solicitar commits, eles devem refletir etapas pequenas.
 
 Sugestões, adaptando aos arquivos efetivamente alterados:
 
@@ -982,9 +982,9 @@ Riscos ou limitações restantes
 
 Itens explicitamente não alterados
 
-Commits criados
+Commits criados, se solicitados
 
-Confirmação de push
+Confirmação de push, se solicitado
 ```
 
 Não declarar uma funcionalidade como funcionando se não houver evidência por teste automatizado, teste manual ou comportamento documentado do mpv/yt-dlp.

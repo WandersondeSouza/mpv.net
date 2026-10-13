@@ -11,6 +11,11 @@ Guia curto para manter o fork sem quebrar compatibilidade com mpv/libmpv.
 5. a documentação específica da área alterada em `docs/developer/`
 6. pendências registradas em `docs/guia-operacional.md` ou na documentação técnica da área quando houver priorização
 
+Para componentes auxiliares, leia também `docs/developer/configuration.md` e
+`docs/developer/build-release.md`. Para cache de rede, leia
+`docs/developer/mpv-integration.md`. Confirme o estado no código antes de usar
+qualquer descrição de prompt como baseline.
+
 ## Regras
 
 - preserve compatibilidade com arquivos e comandos existentes;
@@ -19,6 +24,12 @@ Guia curto para manter o fork sem quebrar compatibilidade com mpv/libmpv.
 - prefira documentos existentes e evite criar arquivos redundantes;
 - trate integração com mpv/libmpv como área de alto risco;
 - valide UI, configuração, build e release conforme a área tocada.
+- diferencie dependências preparadas no build (`libmpv`, `MediaInfo.dll` e o
+  helper empacotado `mpvnet.com`) dos componentes auxiliares baixados em runtime;
+- considere a resolução de `AppPaths`: `MPVNET_LOCAL_APPDATA` tem precedência,
+  e o MSIX usa a área `LocalCache\Local` privada do pacote;
+- trate o fluxo de release GitHub e a validação/submissão WAP/Store como
+  evidências separadas.
 
 ## Topologia consolidada
 

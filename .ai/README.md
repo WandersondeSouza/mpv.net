@@ -9,6 +9,7 @@ históricos ou hipóteses de prompts não representam necessariamente o estado a
 - `skills/`: regras e contexto reutilizáveis;
 - `agents/`: perfis por tipo de tarefa;
 - `prompts/`: prompts prontos para investigação, documentação, release e mudanças técnicas;
+- [`prompts/README.md`](prompts/README.md): índice dos prompts reutilizáveis e dos planos históricos;
 - `mcp/`: notas sobre MCPs úteis.
 
 ## Regra
@@ -20,6 +21,20 @@ Os prompts descrevem tarefas e critérios preparados em momentos específicos.
 Trate requisitos que descrevam o estado existente como contexto histórico e
 confirme-os na branch atual antes de executar; não os use como documentação de
 funcionalidades implementadas.
+
+Se um prompt antigo exigir branch, commit, push ou publicação, essa instrução
+não concede autorização: prevalecem `AGENTS.md`, este README e o pedido atual do
+usuário. Não faça essas ações sem solicitação explícita.
+
+## Referências para áreas com ajustes recentes
+
+- Cache e componentes auxiliares: `docs/developer/configuration.md`,
+  `docs/developer/mpv-integration.md` e `docs/logging.md`.
+- Build e distribuição: `docs/developer/build-release.md` e
+  `docs/guia-operacional.md`. O fluxo GitHub e o pacote WAP/Microsoft Store são
+  validações distintas.
+- Resolução de dados no MSIX: confirme `AppPaths` no código e a documentação da
+  configuração; não presuma que o pacote usa o `%LOCALAPPDATA%` comum.
 
 Após a refatoração validada, a topologia principal do código usa partials por responsabilidade:
 

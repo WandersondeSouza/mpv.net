@@ -22,9 +22,15 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 - `src/Directory.Build.props`;
 - `src/Directory.Packages.props`;
 - `src/MpvNet.Windows/MpvNet.Windows.csproj`;
+- `src/MpvNet.Pacote/MpvNet.Pacote.wapproj`;
+- `src/MpvNet.Pacote/Package.appxmanifest`;
 - `src/Tools/build-release-package.ps1`;
 - `src/Tools/prepare-native-dependencies.ps1`;
 - `src/Tools/validate-native-dependencies.ps1`;
+- `src/Tools/validate-package-contents.ps1`;
+- `src/Tools/publish-store-package.ps1`;
+- `src/Tools/set-release-version.ps1`;
+- `.github/workflows/release-packages.yml`;
 - `src/Tools/update-mpv-runtime.ps1`;
 - `src/Setup/Inno/build-windows-installer.iss`;
 
@@ -33,6 +39,9 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 - Não assumir que build local equivale a pacote final.
 - Validar x64 sempre que a mudança afetar release; validar ARM64 somente se esse alvo for explicitamente reintroduzido.
 - Verificar se o ZIP portátil contém estrutura esperada.
+- Tratar a release GitHub (ZIP/instalador) e o pacote WAP/MSIX da Store como fluxos separados; um não comprova o outro.
+- Validar `Scripts/osc.lua` nos pacotes aplicáveis e `mpvnet.com` no payload Store; esse helper é empacotado por compatibilidade, não baixado nem iniciado pelo player.
+- Manter `BuildVersion.props` e `Package.appxmanifest` alinhados pelo script oficial; a versão MSIX usa revisão zero.
 - Não commitar artefatos binários gerados sem pedido explícito.
 - Documentar pré-requisitos externos como 7-Zip, Inno Setup e GitHub CLI.
 - Atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
@@ -42,11 +51,10 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 
 ## Testes esperados
 
-- Build da solução.
-- Publish do projeto Windows.
-- Geração do ZIP portátil.
-- Conferência de DLLs nativas.
+- Build/publish x64 do projeto Windows e validação do ZIP e das dependências nativas.
 - Conferência do instalador quando aplicável.
+- Para Store, validar o WAP/MSIX e inspecionar o payload final; assinatura, submissão e certificação são evidências separadas.
+- Executar testes automatizados relevantes com `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`; não usar `dotnet test src\MpvNet.sln` como substituto neste repositório.
 
 
 

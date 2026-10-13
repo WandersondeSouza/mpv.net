@@ -9,7 +9,8 @@ Leia:
 5. `docs/ATALHOS.md`;
 6. `docs/guia-operacional.md`;
 7. `docs/developer/configuration.md`;
-8. `docs/developer/configuration.md`.
+8. `.ai/agents/mpvnet-config-agent.md`;
+9. `docs/developer/architecture.md` quando a mudança envolver fluxo amplo.
 
 Objetivo:
 
@@ -27,11 +28,14 @@ Antes de alterar código, confirme no código:
 - impacto no modo portátil;
 - necessidade de migração ou backup.
 
-Se a mudança tocar fluxos de inicialização, leia também `docs/developer/configuration.md` e `docs/developer/architecture.md`.
+Se a mudança tocar cache de mídia de rede, leia também
+`docs/developer/mpv-integration.md`. Se tocar componentes ou pacote Store, leia
+`docs/developer/build-release.md`.
 
 Regras:
 
-- preservar `MPVNET_HOME`, `portable_config` e `%LOCALAPPDATA%\mpv.net`;
+- preservar a precedência `MPVNET_HOME` válido, `portable_config` existente e `AppPaths.DefaultConfig`;
+- ao avaliar caminhos, considerar `MPVNET_LOCAL_APPDATA` e a raiz `LocalCache\Local` resolvida por `AppPaths` no MSIX;
 - preservar compatibilidade com arquivos existentes;
 - não reescrever arquivo do usuário sem necessidade;
 - verificar e ampliar `src/MpvNet.Tests/Program.cs` quando a mudança alterar parser, paths, fallback, seleção de idioma ou compatibilidade de configuração;

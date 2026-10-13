@@ -1,19 +1,47 @@
 # EXTENSÃO OBRIGATÓRIA — COMPONENTES DE RUNTIME, ATUALIZAÇÃO, CACHE, TEMP E CAMINHOS
 
-Esta extensão complementa obrigatoriamente `.ai/prompts/playback-reliability-deep-audit.md`.
+Esta extensão complementa `.ai/prompts/playback-reliability-deep-audit.md` quando
+o ciclo de componentes estiver incluído no escopo. Trabalhe em etapas pequenas,
+valide cada etapa e não faça commit, push ou publicação sem solicitação explícita.
 
-Ao executar a auditoria principal, tratar este arquivo como parte integrante do mesmo trabalho. Não executar tudo de uma vez: manter a mesma regra de etapas pequenas, testes, commit e push antes de avançar.
+Antes de começar, leia `.ai/agents/mpvnet-runtime-components-agent.md` e
+confirme a baseline em `docs/developer/configuration.md`,
+`docs/developer/build-release.md`, `docs/guia-operacional.md` e no código.
+Classifique cada etapa como implementada e coberta, implementada sem validação
+completa, lacuna confirmada ou não aplicável. Não reimplemente comportamento já
+consolidado.
+
+## Baseline documentado a reconfirmar
+
+- O catálogo baixado em runtime inclui `yt-dlp`, Deno e o bundle FFmpeg; os três
+  executáveis FFmpeg são tratados como conjunto.
+- `libmpv`, `MediaInfo.dll` e `mpvnet.com` são preparados/empacotados pelo fluxo
+  de build. O player não baixa nem inicia `mpvnet.com`.
+- O armazenamento usa `AppPaths`; `MPVNET_LOCAL_APPDATA` tem precedência e, no
+  MSIX, a raiz fica em `Packages\<PackageFamilyName>\LocalCache\Local`.
+- A atualização automática já tem intervalo centralizado de 20 dias,
+  manifestos, SHA-256 publicado, staging/promoção e retenção da geração válida.
+  O download de runtime também já prevê retomada de parciais.
+- Cache de mídia é outro fluxo: `NetworkCachePolicy` usa perfis por item, com
+  `resilient` como padrão atual; opções explícitas em `mpv.conf` e na linha de
+  comando mantêm precedência.
+
+Esses pontos são orientação para localizar a implementação atual, não garantia
+de que toda validação manual ou Store esteja concluída.
 
 ## OBJETIVO
 
 Auditar e melhorar o ciclo completo dos componentes externos usados pelo MPV.NET Media Player, com foco em:
 
-- libmpv normal;
-- libmpv x86-64-v3;
 - yt-dlp;
 - ffmpeg;
-- ffprobe;
+- ffplay e ffprobe;
+- Deno;
 - qualquer outro binário auxiliar atualmente baixado pelo projeto.
+
+Investigue `libmpv` normal/v3, `MediaInfo.dll` e `mpvnet.com` como dependências
+de build/pacote ou atualização manual quando forem relevantes, sem classificá-los
+como downloads do bootstrap runtime sem evidência no código.
 
 Mesmo que algum componente não seja estritamente necessário para a reprodução normal, NÃO removê-lo de imediato. Primeiro descobrir por que ele é distribuído, quais funcionalidades dependem dele e se a remoção produziria regressões. Se um componente estiver sendo baixado sem necessidade comprovada, documentar a conclusão e somente propor/remover em etapa separada, com testes.
 
@@ -154,11 +182,15 @@ Downloads parciais devem ficar em temp/staging e somente após validação serem
 
 ---
 
-# ETAPA F — ATUALIZAÇÃO PERIÓDICA A CADA X DIAS
+# ETAPA F — INTERVALO E FRESCOR DA ATUALIZAÇÃO
 
-Auditar a política atual de atualização dos componentes.
+Auditar a política atual de atualização dos componentes. O código atual
+centraliza `RefreshInterval` em `RuntimeComponentService` e usa 20 dias; confirme
+o valor na branch antes de citá-lo ou alterá-lo.
 
-Criar uma política configurável ou centralizada de intervalo de verificação. Não espalhar números mágicos pelo código.
+Não introduzir outra configuração nem mudar o intervalo apenas por preferência.
+Só altere a política quando houver requisito confirmado, cobertura de teste e
+documentação correspondente.
 
 A lógica esperada é:
 
@@ -409,9 +441,10 @@ Não registrar URLs que contenham tokens/query strings sensíveis completas.
 
 ---
 
-# POLÍTICA DE COMMITS DESTA EXTENSÃO
+# COMMITS OPCIONAIS DESTA EXTENSÃO
 
-Executar cada etapa pequena separadamente.
+Executar cada etapa pequena separadamente. Os exemplos abaixo são apenas
+sugestões para quando um commit tiver sido explicitamente solicitado.
 
 Exemplos de commits:
 
@@ -435,15 +468,15 @@ dotnet build src\MpvNet.sln
 dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
 git diff --check
 git log -1
-Não faça `git push` automaticamente. Só envie ao remoto mediante solicitação
-explícita e após validar o estado do branch.
+Só faça commit ou push mediante solicitação explícita e após validar o estado do
+branch.
 ```
 
 Não continuar se build/testes estiverem quebrados.
 
 ---
 
-# RESULTADO FINAL OBRIGATÓRIO
+# RESULTADO FINAL
 
 No relatório final da auditoria principal, incluir uma seção específica `Runtime Components / Storage` contendo:
 
@@ -461,6 +494,6 @@ No relatório final da auditoria principal, incluir uma seção específica `Run
 - riscos corrigidos;
 - riscos ainda existentes;
 - testes adicionados;
-- commits correspondentes.
+- commits correspondentes, somente se tiverem sido explicitamente solicitados.
 
 Mais importante que reorganizar diretórios é garantir que **cada modo de distribuição encontre sempre componentes válidos, atualizáveis e seguros sem depender de caminhos frágeis e sem quebrar a reprodução**.

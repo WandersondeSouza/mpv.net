@@ -23,12 +23,14 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 - `src/MpvNet/App.cs`;
 - `src/MpvNet/Configuration/InputConf.cs`;
 - `src/MpvNet/Configuration/Settings.cs`;
+- `src/MpvNet/Infrastructure/Folder.cs`;
 - `src/MpvNet.Windows/UI/Theme.cs`;
 - `src/MpvNet.Windows/UI/GlobalHotkey.cs`.
 
 ## Regras
 
-- Preservar a ordem de configuração: `MPVNET_HOME`, `portable_config`, `%LOCALAPPDATA%\mpv.net`.
+- Preservar a precedência de configuração: `MPVNET_HOME` válido, `portable_config` existente e, por fim, `AppPaths.DefaultConfig` sob `AppPaths.LocalAppData`.
+- Não presumir o caminho físico padrão do MSIX: `AppPaths` usa `Packages\<PackageFamilyName>\LocalCache\Local`; `MPVNET_LOCAL_APPDATA` substitui a raiz de dados nos dois modos.
 - Não normalizar ou reescrever arquivo do usuário sem necessidade.
 - Criar backup antes de migração que altere arquivo do usuário.
 - Validar atalhos duplicados sem quebrar compatibilidade com sintaxe do mpv.

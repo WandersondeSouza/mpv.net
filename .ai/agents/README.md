@@ -30,12 +30,14 @@ Todo agente deve seguir:
 | Arquitetura e análise | `mpvnet-architecture-agent.md` | Mapa arquitetural, análise de módulos, refatoração segura e mudanças amplas. |
 | Configuração e atalhos | `mpvnet-config-agent.md` | `mpv.conf`, `mpvnet.conf`, `input.conf`, modo portátil e migrações. |
 | Integração mpv/libmpv | `mpvnet-libmpv-agent.md` | Player, eventos, propriedades, comandos e wrappers nativos. |
+| Componentes auxiliares | `mpvnet-runtime-components-agent.md` | Downloads, validação, armazenamento e atualização dos componentes auxiliares e políticas de cache relacionadas. |
 | UI Windows | `mpvnet-ui-agent.md` | WinForms, WPF, fullscreen, tema, DPI, menus e foco. |
-| Build e release | `mpvnet-release-agent.md` | Scripts de release, ZIP portátil, Inno Setup e dependências. |
+| Build e release | `mpvnet-release-agent.md` | Scripts de release, ZIP portátil, Inno Setup, dependências e pacote WAP/Store. |
 
 ## Como escolher
 
 - Use o mantenedor geral para triagem, documentação e alinhamento inicial.
 - Use o agente de arquitetura quando a tarefa envolver mapa do código, classes críticas ou refatoração em etapas.
+- Use o agente de componentes auxiliares para o ciclo de runtime; use o agente de release para dependências preparadas no build e distribuição.
 - Use um agente especializado quando a tarefa tocar uma área crítica.
 - Para mudanças grandes, peça primeiro relatório de impacto e divida em etapas.

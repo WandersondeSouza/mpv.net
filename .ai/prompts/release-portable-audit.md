@@ -8,8 +8,9 @@ Leia:
 4. `docs/guia-operacional.md`;
 5. `docs/developer/build-release.md`;
 6. `docs/developer/architecture.md`;
-7. descricao da release no GitHub, quando houver publicacao;
-8. documentação da área de build ou release que esteja ligada à mudança.
+7. `.ai/agents/mpvnet-release-agent.md`;
+8. descrição da release no GitHub, quando houver publicação;
+9. documentação da área de build ou release que esteja ligada à mudança.
 
 Objetivo:
 
@@ -28,8 +29,16 @@ Verifique:
 - scripts `src/Tools/*.ps1`;
 - empacotamento ZIP;
 - instalador Inno Setup;
+- pacote WAP/MSIX e validação de payload Store, quando aplicável;
 - estrutura `portable_config`;
 - requisitos externos como 7-Zip, Inno Setup e GitHub CLI.
+
+Avalie separadamente os fluxos GitHub e Microsoft Store. O pacote Store usa
+revisão zero no `Identity Version` e deve ser validado com o projeto WAP e
+`publish-store-package.ps1`; a release GitHub não comprova assinatura,
+submissão ou certificação Store. Confira o conteúdo obrigatório em
+`docs/developer/build-release.md`, incluindo `Scripts/osc.lua` e o helper
+`mpvnet.com` no payload Store.
 
 Antes de alterar:
 
@@ -45,6 +54,7 @@ Plano de teste:
 Regras:
 
 - não commitar binários gerados sem pedido explícito;
+- não criar branch, commit, push ou publicar sem solicitação explícita;
 - separar build local de pacote final;
 - validar x64 sempre; validar ARM64 somente se esse alvo for explicitamente reintroduzido;
 - atualizar documentação técnica apenas quando o processo consolidado mudar;
