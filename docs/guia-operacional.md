@@ -1,68 +1,29 @@
 ﻿# Guia operacional do MPV.NET Media Player
 
-Documento único para build, dependências nativas, scripts, modo portátil, contribuição, release e direção do fork.
+Este guia reúne os comandos mais usados para compilar, preparar dependências e gerar pacotes.
+Os detalhes de ambiente, arquitetura e empacotamento da Store estão em
+[Build e release](developer/build-release.md).
 
-## Como usar este guia
+## Referências
 
-- Para build local, siga a seção `Build`.
-- Para preparar ou validar binários nativos, siga `Dependências nativas`.
-- Para executar scripts, use os comandos com caminho completo mostrados em `Scripts`.
-- Para empacotar e publicar, siga `Release`.
-- Para entender o modo portátil, leia `Portátil`.
-- Para contribuir com mudanças pequenas e compatíveis, leia `Contribuição`.
-- Para distinguir evidência local de validações manuais ou externas, leia [Validações manuais e externas](#validações-manuais-e-externas).
-- Para entender a estrutura maior do fork, leia `docs/developer/architecture.md`.
-- Para mudanças de configuração, leia `docs/developer/configuration.md`.
-- Para mudanças de build e release, leia `docs/developer/build-release.md`.
-
-O baseline atual do aplicativo é Windows 10 versão 2004 (build 19041) ou
-posterior, com projetos .NET 10 usando `net10.0-windows10.0.19041.0`.
-
-## Logs
-
-Resumo rápido:
-
-- `Error` sempre vai para arquivo.
-- `Debug` só vai para arquivo em build de diagnóstico.
-- Logs diários são retidos por 3 dias.
-- Limpeza de `Cache` e `Temp` também usa 3 dias.
-
-Detalhes em `docs/logging.md`.
+- [Manual do usuário](manual.md)
+- [Logs](logging.md)
+- [Build e release](developer/build-release.md)
+- [Arquitetura](developer/architecture.md)
+- [Configuração](developer/configuration.md)
+- [Integração com mpv/libmpv](developer/mpv-integration.md)
 
 ## Build
 
-Gerar apenas o ZIP portátil:
+Execute os comandos a partir da raiz do repositório. Consulte
+[Build e release](developer/build-release.md) para os requisitos do ambiente.
 
 ```powershell
-$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
-if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
-Set-Location $RepoDir
-powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
-```
-
-Gerar apenas o instalador executavel:
-
-```powershell
-$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
-if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
-Set-Location $RepoDir
-powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
-```
-
-O comando cria `C:\Users\<usuario>\source\repos\mpv.net` se o repositório ainda
-não existir. Se você já usa outro diretório, abra o terminal na raiz do
-repositório e execute apenas a última linha do bloco. A pasta `artifacts\release`
-é criada automaticamente quando ainda não existe.
-
-Se você quiser apenas compilar a solução principal, use:
-
-```powershell
+dotnet restore .\src\MpvNet.sln
 dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj
 ```
 
-O alvo Windows usa `win-x64` por padrão.
-
-Valide a coerência dos projetos e manifestos com:
+Para conferir os projetos e manifestos do Windows:
 
 ```powershell
 .\src\Tools\validate-windows-baseline.ps1
@@ -70,398 +31,96 @@ Valide a coerência dos projetos e manifestos com:
 
 ## Dependências nativas
 
-Arquivos nativos esperados ao lado de `mpvnet.exe`:
+As distribuições x64 incluem `libmpv-2.dll` e `libmpv-2-v3.dll`. O player seleciona a
+variante compatível e mantém a versão normal como fallback obrigatório. Não gere
+pacotes que contenham apenas a variante v3.
 
-- `libmpv-2.dll`
-- `libmpv-2-v3.dll`
-- `MediaInfo.dll`
-- `D3DCompiler_47_cor3.dll`
-- `vcruntime140_cor3.dll`
-- `wpfgfx_cor3.dll`
-- `PenImc_cor3.dll`
-- `PresentationNative_cor3.dll`
-
-Todos os fluxos de build, Debug/Release, portátil, instalador e Microsoft Store
-reutilizam o mesmo cache de downloads em
-`artifacts\native-dependencies\downloads`. Se o arquivo esperado não existir,
-estiver vazio ou tiver mais de 2 dias, o preparador baixa novamente a versão mais
-recente encontrada nas fontes oficiais configuradas no script. As extrações
-permanecem isoladas por execução e o cache é sincronizado entre builds
-concorrentes.
-
-Todas as distribuições x64 incluem a build normal `libmpv-2.dll` e a build otimizada `libmpv-2-v3.dll`. O player escolhe automaticamente a v3 somente quando a CPU é compatível e volta para a normal se a v3 não puder ser carregada. A normal continua sendo o fallback obrigatório; não gere ou publique um pacote somente v3.
-
-Validação:
-
-```powershell
-.\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Release\win-x64\publish
-.\src\Tools\validate-native-dependencies.ps1 -ZipFile .\artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64.zip
-```
-
-## Scripts
-
-Use sempre os comandos a partir da raiz do repositório. O repositório atual expõe
-os scripts em `src\Tools\`, então este guia referencia esses caminhos
-diretamente.
-
-### Gerar pacote de release
-
-```powershell
-$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
-if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
-Set-Location $RepoDir
-powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
-```
-
-Usar quando:
-
-- gerar ZIP portátil;
-- gerar instalador;
-- preparar a release localmente.
-
-Por padrão, pacotes de release são gerados com logs detalhados em arquivo desabilitados.
-Erros continuam sendo gravados em arquivo. Para gerar um pacote de diagnóstico
-com logs diarios completos em `%LOCALAPPDATA%\mpv.net\Logs`, adicione
-`-EnableFileLogging`.
-Pacotes de diagnostico mantem a mesma versao publica do pacote normal e usam
-o sufixo `-diagnostic` no nome do artefato.
-Eles sao artefatos de suporte. Nao publique pacotes `-diagnostic` como assets
-da Release do GitHub; gere com `-SkipGitHubRelease` ou pelo workflow manual com
-`create_release=false`.
-
-### Gerar apenas o ZIP portátil
-
-```powershell
-$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
-if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
-Set-Location $RepoDir
-powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
-```
-
-Usar quando:
-
-- quiser somente `MPV.NET-Media-Player-v<versao>-portable-x64.zip`;
-- não quiser gerar instalador;
-- não quiser publicar no GitHub.
-
-Para ZIP de diagnóstico, adicione `-EnableFileLogging`. O arquivo gerado usa
-o nome `MPV.NET-Media-Player-v<versao>-diagnostic-portable-x64.zip`.
-
-O script também cria a pasta extraída
-`artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\` ou
-`artifacts\release\MPV.NET-Media-Player-v<versao>-diagnostic-portable-x64\`.
-
-### Gerar apenas o instalador executável
-
-```powershell
-$RepoDir = Join-Path $env:USERPROFILE 'source\repos\mpv.net'
-if (-not (Test-Path $RepoDir)) { git clone https://github.com/WandersondeSouza/mpv.net.git $RepoDir }
-Set-Location $RepoDir
-powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
-```
-
-Usar quando:
-
-- quiser somente `MPV.NET-Media-Player-v<versao>-setup-x64.exe`;
-- não quiser gerar ZIP portátil;
-- não quiser publicar no GitHub.
-
-Para instalador de diagnóstico, adicione `-EnableFileLogging`. O arquivo gerado
-usa o nome `MPV.NET-Media-Player-v<versao>-diagnostic-setup-x64.exe`.
-
-O script também prepara a pasta portátil base
-`artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\`, usada pelo
-instalador. Com `-EnableFileLogging`, essa pasta recebe o sufixo
-`-diagnostic-portable-x64`.
-
-### Preparar dependências nativas
+O build prepara as dependências necessárias automaticamente. Para prepará-las manualmente:
 
 ```powershell
 .\src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Release\win-x64
 ```
 
-Usar quando:
-
-- precisar baixar ou validar `MediaInfo.dll`, `libmpv-2.dll` e `libmpv-2-v3.dll`;
-- preparar a pasta de execução antes do empacotamento.
-- reutilizar downloads recentes em `artifacts\native-dependencies\downloads`;
-- baixar novamente arquivos ausentes, vazios ou baixados ha mais de 2 dias.
-- preparar o par dual para build, portátil, instalador ou Store.
-
-Smoke test de preparacao das duas variantes:
-
-```powershell
-.\src\Tools\test-mpv-build-variants.ps1
-```
-
-Valide o contrato offline do cache compartilhado:
-
-```powershell
-.\src\Tools\test-native-dependency-cache.ps1
-.\src\Tools\test-native-dependency-download-validation.ps1
-```
-
-Para diagnosticar a seleção sem abrir a interface completa, execute `mpvnet.exe --diagnose-libmpv`. Em desenvolvimento, defina temporariamente `MPVNET_FORCE_LIBMPV_VARIANT=normal` para testar a normal; use `auto` para retornar ao comportamento padrão. Para validar reprodução, teste inicialização, arquivo local, URL, playlist, pause/play, seek, fullscreen, legendas, áudio e fechamento.
-
-Para auditar a cadeia online sem abrir a interface nem iniciar atualização,
-execute `mpvnet.exe --diagnose-components`. Além da origem, integridade e
-metadata dos componentes, a saída mostra o estado do cache, a data do último
-download validado, a idade, o SHA-256 publicado e o SHA-256 calculado para cada
-arquivo baixado. Também inicia sondagens curtas de versão de yt-dlp, FFmpeg,
-FFplay, FFprobe e Deno; o resultado confirma se cada executável conseguiu
-iniciar. `MediaInfo.dll` é verificada como PE x64 e a seleção/carregamento de
-libmpv é informada separadamente. O diagnóstico não inicia downloads nem testa
-uma URL, e não envia credenciais; sucesso nele não substitui o teste manual do
-YouTube.
-
-No início normal do player, o bootstrap continua sequencial e em segundo plano.
-O cache é verificado quando está ausente, inválido ou com 20 dias ou mais desde
-o último download validado ou a última confirmação de release inalterada.
-Quando o SHA-256 publicado continua igual, o player verifica novamente o
-SHA-256 dos executáveis locais e reaproveita os arquivos válidos sem baixá-los.
-`lastSuccessfulDownloadUtc` e `ageDays` mantêm a data e a idade do download;
-`lastReleaseCheckUtc` informa separadamente a confirmação da release inalterada.
-Metadados antigos continuam compatíveis e usam a data do download até essa
-primeira confirmação. A falha de uma atualização mantém a geração anterior;
-o diagnóstico mostra o estado local, mas não consulta releases nem atualiza.
-
-Transferências interrompidas são preservadas em `Component\staging\downloads`,
-com identidade derivada da URL do asset e do SHA-256 publicado. Na próxima
-tentativa, o player pede apenas os bytes restantes. Se o servidor ignorar esse
-pedido, o arquivo é baixado desde o início; respostas com intervalo incompatível
-são rejeitadas. O arquivo completo passa pela validação SHA-256 antes da
-extração, validação PE x64 e ativação em `Component\current`.
-
-Cada transferência retomável aceita até duas horas no total, com timeout de
-60 segundos sem progresso e até três tentativas para falhas transitórias.
-Cancelar pelo fechamento do player preserva o parcial e não gera erro.
-Respostas HTTP `403`/`429` não provocam retentativas imediatas. Parciais sem
-escrita há sete dias são removidos no próximo bootstrap; pastas temporárias de
-geração continuam com a retenção de um dia. Builds com logging habilitado
-registram progresso a cada cinco segundos, bytes retomados, velocidade média
-e duração das fases de transferência, checksum, extração e ativação.
-
-### Validar dependências nativas
+Valide uma pasta publicada antes de distribuir o pacote:
 
 ```powershell
 .\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Release\win-x64\publish
+.\src\Tools\validate-package-contents.ps1 -Path .\src\MpvNet.Windows\bin\Release\win-x64\publish
 ```
 
-Usar quando:
+Os validadores também aceitam arquivos de pacote. Consulte os parâmetros de
+`validate-native-dependencies.ps1` e `validate-package-contents.ps1` para validar
+um ZIP ou pacote da Store.
 
-- confirmar que a pasta publicada está completa;
-- validar o ZIP portátil antes de publicar.
+## Gerar pacotes locais
 
-### Atualizar runtime do mpv
+Para gerar o ZIP portátil e o instalador sem publicar no GitHub:
 
 ```powershell
-.\src\Tools\update-mpv-runtime.ps1 'C:\runtime\mpv' 'C:\runtime\libmpv-x64' 'C:\runtime\libmpv-arm64'
+powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
 ```
 
-Passe o valor - em qualquer uma das três posições para não atualizar aquela
-variante. O script exige que os diretórios e os arquivos atuais já existam,
-valida o digest SHA-256 publicado pelo GitHub e a arquitetura PE antes da
-instalação. A troca do diretório do mpv usa staging e backup no mesmo volume,
-com restauração em caso de falha.
-
-Usar quando:
-
-- precisar atualizar o runtime do mpv do fork;
-- revisar dependências do player sem alterar o resto do pacote.
-
-## Release
-
-Os fluxos de portátil, instalador e Microsoft Store tratam
-`Scripts\osc.lua` como conteúdo obrigatório. `validate-package-contents.ps1`
-interrompe a geração antes da publicação caso o arquivo não esteja presente no
-diretório ou no pacote final.
-
-Fluxo resumido:
-
-1. compilar o projeto;
-2. preparar dependências nativas;
-3. gerar pacote portátil;
-4. gerar instalador;
-5. validar o conteúdo final;
-6. publicar a release quando solicitado.
-
-Pacotes de diagnostico com logs detalhados sao para suporte e investigacao.
-Eles podem ser baixados como artefatos do workflow, mas nao devem entrar nos
-assets publicos da Release do GitHub.
-
-### Release de emergência pelo GitHub
-
-Use este script apenas quando a arvore Git estiver limpa e voce quiser gerar uma nova versao a partir do branch atual:
+Para gerar somente o ZIP portátil:
 
 ```powershell
-.\src\Tools\publish-emergency-release.ps1
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
 
-O script:
-
-1. valida `git diff --check`;
-2. exige arvore Git limpa;
-3. incrementa o ultimo numero com `src\Tools\set-release-version.ps1`;
-4. compila `src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore`;
-5. commita a alteracao de versao em `src\BuildVersion.props` e
-   `src\MpvNet.Pacote\Package.appxmanifest`;
-6. faz `git push origin <branch-atual>`;
-7. dispara `.github/workflows/release-packages.yml` com `create_release=true`.
-
-Como esse fluxo publica assets no GitHub, ele bloqueia `-EnableFileLogging`.
-Para diagnostico, gere o pacote separadamente com `build-release-package.ps1`
-e `-SkipGitHubRelease -EnableFileLogging`.
-
-Para definir uma versao manualmente antes de uma release, use:
+Para gerar somente o instalador:
 
 ```powershell
-.\src\Tools\set-release-version.ps1 -Version 7.1.4.2
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
 ```
 
-Antes de publicar no GitHub, passe a descricao da release diretamente ao script
-com `-ReleaseNotes` ou `-ReleaseNotesFile`; nao use um link para arquivo de
-changelog como corpo da publicacao.
+Esses scripts validam o conteúdo gerado. Para criar um pacote de diagnóstico com
+logs detalhados, adicione `-EnableFileLogging`. Pacotes de diagnóstico são para
+suporte e não devem ser publicados como assets de uma release.
 
-O pacote Microsoft Store nao deve incrementar revisao automaticamente. A mesma
-versao publica deve valer para ZIP, instalador e executavel; no MSIX enviado a
-Store, o `Identity Version` usa a mesma versao com revisao zero, porque a
-Microsoft Store rejeita pacotes com quarto componente diferente de zero. Exemplo:
-release `7.1.4.1` usa manifesto `7.1.4.0`.
+## Publicar uma release
 
-Publicacao da release `7.1.28.0` em 2026-10-12: a descricao preserva o conteudo
-da `7.1.27.0` e acrescenta o cache `resilient` por item de playlist, downloads
-retomaveis e reaproveitamento de componentes com release inalterada, ajustes de
-cancelamento/logs e inclusao obrigatoria do helper no pacote Store. Por
-solicitacao, apenas a versao publica em `src\BuildVersion.props` foi alterada
-para `7.1.28.0`; o manifesto MSIX permanece em `7.1.27.0`. Este fluxo gera ZIP
-portatil e instalador, sem gerar ou submeter um novo pacote Microsoft Store.
-O workflow [Release packages](https://github.com/WandersondeSouza/mpv.net/actions/runs/38320944512)
-gerou os dois assets e validou o conteudo obrigatorio e as dependencias nativas.
-A descricao publicada foi comparada integralmente com as notas preparadas;
-os dois downloads foram confirmados como assets completos com SHA-256 publicado.
-A release `7.1.27.0` foi removida apos essas verificacoes, mantendo a tag Git;
-a `7.1.28.0` ficou como unica release publicada e foi confirmada como `latest`.
-Antes de gerar o proximo MSIX, alinhe o manifesto com
-`src\Tools\set-release-version.ps1 -Version 7.1.28.0`.
-
-Publicacao registrada em 2026-09-30: a release `7.1.26.0` preserva a descricao da `7.1.24.0` e acrescenta os ajustes de Play/Pause por teclado e mouse, a identificacao do aplicativo nas integracoes do Shell/SMTC e a atualizacao dos workflows para `master`. O workflow Release packages concluiu build Release x64, gerou o ZIP portatil e o instalador, e validou o conteudo e as dependencias nativas. A publicacao `7.1.24.0` foi removida, mantendo a tag Git; a `7.1.26.0` ficou como unica release publicada. Por solicitacao, `src\BuildVersion.props` esta em `7.1.26.0` e o manifesto MSIX continua em `7.1.25.0`; este workflow nao gerou pacote Store. Antes de gerar o proximo MSIX, alinhe o manifesto para `7.1.26.0` com `src\Tools\set-release-version.ps1 -Version 7.1.26.0`.
-
-Publicacao registrada em 2026-10-12: a release `7.1.27.0` preserva a descricao da `7.1.26.0` e acrescenta a opcao de privacidade para URLs em Recentes, verificacao SHA-256 dos downloads de dependencias, diagnosticos do cache de componentes e ajustes de migracao do `input.conf` e dos atalhos de ajuda. O workflow [Release packages](https://github.com/WandersondeSouza/mpv.net/actions/runs/38295153082) concluiu build Release x64, gerou o ZIP portatil e o instalador, e validou o conteudo e as dependencias nativas. A `7.1.27.0` ficou como unica release publicada; a release `7.1.26.0` foi removida, mantendo a tag Git. Por solicitacao, `src\BuildVersion.props` esta em `7.1.27.0` e o manifesto MSIX permanece em `7.1.26.0`; o workflow nao gerou pacote Store. Antes de gerar o proximo MSIX, alinhe o manifesto para `7.1.27.0` com `src\Tools\set-release-version.ps1 -Version 7.1.27.0`.
-
-Publicacao registrada em 2026-09-23: a release `7.1.24.0` consolida melhorias no encerramento e descarte de recursos, cobertura automatizada dos ciclos de vida, ajustes na inicializacao e no player, atualizacao dos workflows de CI e ajuste no acesso à página de apoio pela interface. O build Release x64 gerou ZIP portatil e instalador; o conteudo obrigatorio e as dependencias nativas do ZIP foram validados localmente.
-
-Publicacao registrada em 2026-06-23: a release `7.1.4.2` cobre as mudancas
-posteriores a `7.1.4.1`, com refatoracoes conservadoras de organizacao,
-nullability, excecoes, recursos nativos, async/task e blocos grandes, alem de
-ajustes no cache de URL remota, logs e documentacao. A versao foi alinhada pelo
-script oficial para manter `BuildVersion.props` em `7.1.4.2` e o manifesto MSIX
-em `7.1.4.0`.
-
-Para tambem gerar o instalador no workflow:
+Defina a versão pública pelo script oficial; não altere os arquivos de versão
+separadamente:
 
 ```powershell
-.\src\Tools\publish-emergency-release.ps1 -CreateInstaller
+$VersaoPublica = Read-Host 'Informe a versão pública'
+.\src\Tools\set-release-version.ps1 -Version $VersaoPublica
 ```
 
-## Portátil
+Gere e valide os pacotes localmente antes de iniciar a publicação. Use o workflow
+`release-packages.yml` e revise a branch, as notas e os assets configurados. Para
+regras de versionamento e publicação da Microsoft Store, siga
+[Build e release](developer/build-release.md).
 
-Estrutura esperada do pacote portátil:
+O script `publish-emergency-release.ps1` faz mais que gerar pacotes locais: ele
+atualiza a versão, cria um commit, envia a branch ao GitHub e inicia o workflow
+de release. Execute-o somente quando a publicação estiver planejada e a árvore
+Git estiver limpa.
 
-```text
-mpvnet.exe
-libmpv-2.dll
-libmpv-2-v3.dll
-MediaInfo.dll
-D3DCompiler_47_cor3.dll
-vcruntime140_cor3.dll
-wpfgfx_cor3.dll
-PenImc_cor3.dll
-PresentationNative_cor3.dll
-portable_config/
-  mpv.conf
-  input.conf
-  scripts/
-  script-opts/
-```
+## Modo portátil
 
-Regras práticas:
+O diretório `portable_config` guarda as configurações usadas pelo pacote
+portátil. Você pode incluir nele `mpv.conf`, `input.conf`, scripts e opções de
+scripts, seguindo o layout do mpv.
 
-- `portable_config` faz o player usar a pasta local;
-- `mpv.conf` e `input.conf` podem partir dos modelos do fork;
-- `scripts/` e `script-opts/` seguem o layout normal do mpv;
-- o pacote portátil do fork já inclui os binários nativos esperados.
+## Contribuir
 
-## Contribuição
+- Preserve a compatibilidade com mpv/libmpv e com os arquivos de configuração existentes.
+- Prefira mudanças pequenas e atualize a documentação quando o comportamento mudar.
+- Consulte a documentação técnica da área antes de alterar build, configuração,
+  interface ou integração com libmpv.
 
-`master` é a branch padrão do fork. Os workflows de build e CodeQL executam em
-pushes e pull requests para essa branch.
+## Validação
 
-Antes de mexer:
+Build e validação de pacote não comprovam o comportamento em todas as máquinas
+nem a aprovação da Microsoft Store. Registre apenas as verificações realmente
+executadas e identifique o pacote e o ambiente usados.
 
-- leia `README.md`;
-- leia `docs/manual.md`;
-- leia este guia;
-- leia a documentação da área tocada.
+Para mudanças de interface ou integração com libmpv, confira reprodução de
+arquivo local e stream, playlist, pasta com mídia, arrastar e soltar, menu de
+contexto, tela cheia, áudio, legendas, atalhos e encerramento. Valide assinatura,
+instalação e certificação do pacote da Store quando esse fluxo for alterado.
 
-Regras:
+## Manutenção deste guia
 
-- preserve compatibilidade com mpv;
-- faça mudanças pequenas;
-- atualize a documentação quando o comportamento mudar;
-- valide impacto em configuração, atalhos e UI;
-- evite refatorações amplas sem necessidade clara.
-
-Fluxo recomendado:
-
-1. entender o comportamento atual;
-2. localizar os arquivos envolvidos;
-3. propor uma mudança pequena e verificável;
-4. testar o resultado;
-5. registrar o que mudou.
-
-## Validações manuais e externas
-
-Publicacao registrada em 2026-10-13: a versao `7.1.29.0` inclui a correcao dos
-caminhos dos componentes auxiliares ja integrada em `master` (`be27bae0`).
-Somente `master` existe localmente e no remoto do fork; nao houve branches
-adicionais para integrar ou excluir. A suite local concluiu 571 testes sem
-falhas, e o build Release x64 com preparo de assets terminou sem avisos ou
-erros. Executavel e manifesto MSIX usam `7.1.29.0`, alinhados por
-`src\Tools\set-release-version.ps1 -Version 7.1.29.0`. Como a versao Store
-`7.1.28.0` ja foi aprovada, a correcao precisa de um pacote com numero maior
-para atualizar os usuarios existentes. O publish self-contained local passou
-nas validacoes de conteudo e dependencias nativas; os diagnosticos de componentes
-e libmpv funcionaram a partir de outro diretorio de trabalho, com inicializacao
-nativa bem-sucedida e criacao das pastas no override `MPVNET_LOCAL_APPDATA`.
-O workflow [Release packages](https://github.com/WandersondeSouza/mpv.net/actions/runs/38394573658)
-concluiu build, geracao e validacao dos pacotes. A [release `7.1.29.0`](https://github.com/WandersondeSouza/mpv.net/releases/tag/v7.1.29.0)
-foi confirmada como `latest`, com ZIP portatil e instalador x64 completos. A
-descricao da `7.1.28.0` foi preservada, acrescentando a correcao dos caminhos e
-atualizando os nomes dos arquivos. O workflow nao gerou nem submeteu pacote
-Store; assinatura, instalacao real pela Store e revisao manual completa de
-reproducao/interface continuam sem evidencia neste fluxo.
-
-Build e empacotamento locais não comprovam o comportamento em máquinas de uso
-final, a execução remota do workflow nem a certificação Store. Registre cada
-validação somente após executá-la e informe versão, pacote e ambiente:
-
-- testar UI, tema, DPI, fullscreen, menu, atalhos, persistência e encerramento;
-- testar arquivo local, URL/stream, playlist, pasta com mídia, drag/drop e
-  alternância de áudio/legenda;
-- verificar caminhos longos, migração de `input.conf` e `thumbfast` quando essas
-  áreas forem alteradas;
-- validar o pacote MSIX/WAP assinado no fluxo de submissão à Microsoft Store.
-
-Consulte os resultados de publicação registrados nesta página como histórico;
-eles não afirmam que todas essas validações foram feitas.
-
-## Tradução e manutenção
-
-- Este guia substitui a documentação espalhada sobre scripts e fluxo operacional.
-- Sempre que um script mudar, ajuste esta página primeiro.
-- Se um comando aqui deixar de funcionar, atualize o caminho completo e a descrição do uso.
-- Para mudanças amplas de arquitetura ou módulos, comece pela documentação técnica em `docs/developer/`.
-
-
-
-
+Atualize este documento quando os comandos ou scripts operacionais mudarem.
+Mantenha aqui o fluxo resumido e deixe detalhes técnicos em `docs/developer/`.
