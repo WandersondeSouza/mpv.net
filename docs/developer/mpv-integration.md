@@ -167,7 +167,7 @@ Toda coleção controlada pelo frontend converge em
 de duplicatas pelo caminho ou URL. Isso vale para arquivos de playlist, pasta
 automática e para a fotografia estável de uma playlist nativa.
 
-## Mídia online e yt-dlp multissserviço
+## Mídia online e serviços do yt-dlp
 
 O frontend trata o yt-dlp como resolvedor genérico, não como cliente interno do
 YouTube. Toda URL HTTP/HTTPS válida continua elegível ao `loadfile`; páginas sem
@@ -206,34 +206,34 @@ e registra a sequência de endereços preparada antes de aceitar outra execuçã
 assim, os eventos produzidos por `playlist-clear` e `loadlist` não realimentam
 a normalização.
 
-Essa decisão foi confrontada em 2026-09-21 com o manual e o `ytdl_hook.lua`
-atuais do mpv. A validação local usou yt-dlp `2026.08.19` e uma playlist pública
-de 31 itens: o hook recebeu `--yes-playlist`, registrou a correspondência do
-vídeo solicitado, definiu `playlist-start=2` e o mpv expôs `playlist-count=31`,
-`playlist-pos=2` e o vídeo da URL como item atual. Como a resposta vem de um
-serviço externo, essa prova deve ser repetida antes de uma release.
+Essa regra foi conferida no manual e no `ytdl_hook.lua` do mpv. Em teste local
+com yt-dlp e uma playlist pública de 31 itens, o hook recebeu
+`--yes-playlist`, registrou a correspondência do vídeo solicitado e definiu
+`playlist-start=2`. O mpv expôs `playlist-count=31`, `playlist-pos=2` e o vídeo
+solicitado como item atual. Como o resultado depende de um serviço externo,
+repita a validação antes de uma release.
 
-### Validação multissserviço de 2026-09-21
+### Validação de serviços externos
 
-Com yt-dlp `2026.08.19`, o comando `--list-extractors` confirmou extractors para
-YouTube, Bilibili (incluindo Bangumi, coleção, favoritos, playlist e live),
-Niconico (vídeo, playlist, série e live), Naver (vídeo e live), Dailymotion
-(vídeo, playlist e usuário), Douyin, Douyu, Twitch, Vimeo, SoundCloud, iQIYI e
-Youku. A presença do nome não é tratada como prova de funcionamento.
+Na validação local, `--list-extractors` confirmou a presença dos extractors,
+mas essa listagem não comprova acesso ao conteúdo. Testes online sem download
+apresentaram estes resultados:
 
-Testes online sem download resolveram uma URL pública individual de Bilibili,
-Niconico, Naver e Dailymotion. A URL obrigatória de YouTube foi reconhecida pelo
-extractor, mas o serviço exigiu autenticação para confirmar que a origem não era
-um robô; nenhum cookie foi fornecido. O modo de playlist plano retornou três
-entradas de uma anthology do Bilibili e três entradas de uma coleção de usuário
-do Niconico. Uma live do Naver e um canal Twitch chegaram aos extractors corretos,
-mas estavam offline. SoundCloud resolveu uma entrada pública; Vimeo exigiu login,
-e Douyu reconheceu o extractor mas falhou ao obter o identificador da sala.
-Douyin não foi validado online. Esses resultados comprovam somente a execução do
-yt-dlp nessa máquina: próximo/anterior, SMTC, lives ativas e playback final no mpv
-permanecem itens manuais antes da release. A suíte offline cobre preservação de
-query, fragmento, Unicode chinês/japonês/coreano, clipboard, IPC, `loadfile`,
-domínio desconhecido e ausência de opções específicas de provedor.
+- **URLs públicas resolvidas:** Bilibili, Niconico, Naver, Dailymotion e
+  SoundCloud.
+- **Playlists:** três entradas retornadas para uma coletânea do Bilibili e três
+  para uma coleção de usuário do Niconico.
+- **Sem confirmação:** YouTube solicitou autenticação, sem cookies; Vimeo exigiu
+  login. A live do Naver e o canal Twitch estavam offline. O extractor do Douyu
+  falhou ao obter o identificador da sala.
+- **Não validado online:** Douyin.
+
+As consultas confirmaram somente os casos de resolução listados, nessa máquina
+e versão do yt-dlp. Não comprovaram reprodução no mpv, navegação da playlist,
+integração com SMTC ou reprodução de lives ativas; valide esses casos antes de
+uma release. A suíte offline cobre parâmetros e fragmentos de URL, Unicode em
+chinês, japonês e coreano, entrada pela área de transferência, IPC, `loadfile`,
+domínios não reconhecidos e ausência de opções específicas por provedor.
 
 ## Diagnóstico da cadeia online
 
@@ -372,29 +372,4 @@ Pode depender da integração entre janela e libmpv.
 ## Input
 
 Atalhos e comandos podem depender da integração com mpv.
-
----
-
-# Recomendações para manutenção
-
-1. Fazer mudanças pequenas.
-2. Testar reprodução.
-3. Validar scripts.
-4. Validar fullscreen.
-5. Validar comandos.
-6. Validar propriedades.
-7. Preservar a ordem de inicialização de `Player.Initialization.cs`.
-8. Rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` quando tocar paths, playlist, parser de comandos, títulos ou MediaInfo.
-
----
-
-# Melhorias futuras sugeridas
-
-- documentação dos wrappers;
-- detalhamento do fluxo de eventos;
-- fluxo de propriedades;
-- logs estruturados;
-- diagnóstico avançado;
-- ferramentas de debug.
-
 
