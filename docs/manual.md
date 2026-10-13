@@ -275,7 +275,9 @@ O detalhe técnico original permanece somente no log, com query strings,
 cookies, tokens, sessão e cabeçalhos de autorização sanitizados.
 
 Os componentes auxiliares de runtime usam o cache local em
-`%LOCALAPPDATA%\mpv.net\Component\current`. `libmpv-2.dll`,
+`%LOCALAPPDATA%\mpv.net\Component\current`. Em instalações pela Microsoft
+Store, o cache fica em `LocalCache\Local\mpv.net\Component\current` dentro da
+pasta privada do pacote. `libmpv-2.dll`,
 `libmpv-2-v3.dll` e `MediaInfo.dll` continuam ao lado do executável ou no pacote
 preparado. O player baixa `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`,
 `yt-dlp.exe` e `deno.exe` quando necessário. Uma cópia válida no cache `current`

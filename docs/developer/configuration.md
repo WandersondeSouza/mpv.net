@@ -60,19 +60,20 @@ Cache e logs:
 | Pasta | Função |
 | --- | --- |
 | `%LOCALAPPDATA%\mpv.net\Cache` | Cache temporário do mpv para demuxer, ICC e shaders; o cache de rede em disco é usado durante a reprodução e removido ao fechar a mídia. |
-| `%LOCALAPPDATA%\mpv.net\Component\current` | Geração válida atual dos componentes auxiliares baixados e seus manifestos. |
-| `%LOCALAPPDATA%\mpv.net\Component\staging` | Downloads e extrações temporárias, removidos depois de promover ou falhar. |
-| `%LOCALAPPDATA%\mpv.net\Component` | Local legado: continua sendo lido como fallback até uma atualização válida migrar os arquivos para `current`. |
+| `%LOCALAPPDATA%\mpv.net\Component\current` | Geração válida atual dos componentes auxiliares baixados e seus manifestos. No pacote Store, fica sob `Packages\<PackageFamilyName>\LocalCache\Local`. |
+| `%LOCALAPPDATA%\mpv.net\Component\staging` | Downloads e extrações temporárias, removidos depois de promover ou falhar. No pacote Store, fica sob `Packages\<PackageFamilyName>\LocalCache\Local`. |
+| `%LOCALAPPDATA%\mpv.net\Component` | Local legado: continua sendo lido como fallback até uma atualização válida migrar os arquivos para `current`. No pacote Store, fica sob `Packages\<PackageFamilyName>\LocalCache\Local`. |
 | `%LOCALAPPDATA%\mpv.net\Temp` | Arquivos temporários criados pelo frontend, como playlists normalizadas. |
 | `%LOCALAPPDATA%\mpv.net\Logs` | Erros em qualquer build; logs detalhados quando o build é gerado com logging em arquivo habilitado. |
 
 Esses diretórios são centralizados em `AppPaths` e criados no início da
 aplicação, antes da inicialização de logs, cache e atualização de componentes.
-No pacote MSIX/Microsoft Store, o Windows pode virtualizar escritas em AppData
-para a area privada do pacote. A regra do fork continua sendo usar o caminho
-`%LOCALAPPDATA%\mpv.net` visto pelo processo, sem permissao ampla de sistema de
-arquivos, e registrar em log os caminhos reais usados pelo bootstrap de
-componentes.
+No pacote MSIX/Microsoft Store, `AppPaths` detecta a identidade do pacote e usa
+diretamente `%LOCALAPPDATA%\Packages\<PackageFamilyName>\LocalCache\Local` como
+raiz privada de dados. Em instalações comuns, continua usando
+`%LOCALAPPDATA%`. `MPVNET_LOCAL_APPDATA` mantém precedência nos dois casos. Esse
+uso explícito evita depender da virtualização de AppData e faz os caminhos
+registrados pelo bootstrap apontarem para a pasta física usada pelo pacote.
 
 ## Componentes auxiliares de runtime
 

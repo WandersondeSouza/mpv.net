@@ -1,4 +1,7 @@
 ﻿
+using System.Runtime.InteropServices;
+using System.Text;
+
 namespace MpvNet;
 
 /// <summary>
@@ -7,10 +10,7 @@ namespace MpvNet;
 public static class AppPaths
 {
     public static string Startup { get; } = EnsureTrailingSeparator(AppContext.BaseDirectory);
-    public static string LocalAppData { get; } = EnsureTrailingSeparator(
-        Environment.GetEnvironmentVariable("MPVNET_LOCAL_APPDATA") is { Length: > 0 } overridePath
-            ? overridePath
-            : Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+    public static string LocalAppData { get; } = EnsureTrailingSeparator(ResolveLocalAppData());
 
     public static string PortableConfig { get; } = Path.Combine(Startup, "portable_config");
     public static string Locale { get; } = Path.Combine(Startup, "Locale");
@@ -31,6 +31,35 @@ public static class AppPaths
         Directory.CreateDirectory(Temp);
         Directory.CreateDirectory(ComponentTemp);
     }
+
+    static string ResolveLocalAppData()
+    {
+        if (Environment.GetEnvironmentVariable("MPVNET_LOCAL_APPDATA") is { Length: > 0 } overridePath)
+            return overridePath;
+
+        string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        string? packageFamilyName = GetCurrentPackageFamilyName();
+        return packageFamilyName is null
+            ? localAppData
+            : Path.Combine(localAppData, "Packages", packageFamilyName, "LocalCache", "Local");
+    }
+
+    static string? GetCurrentPackageFamilyName()
+    {
+        uint length = 0;
+        int result = GetCurrentPackageFamilyNameNative(ref length, null);
+        if (result == 15700 /* APPMODEL_ERROR_NO_PACKAGE */)
+            return null;
+        if (result != 122 /* ERROR_INSUFFICIENT_BUFFER */ || length == 0)
+            return null;
+
+        StringBuilder packageFamilyName = new((int)length);
+        result = GetCurrentPackageFamilyNameNative(ref length, packageFamilyName);
+        return result == 0 && packageFamilyName.Length > 0 ? packageFamilyName.ToString() : null;
+    }
+
+    [DllImport("kernel32.dll", EntryPoint = "GetCurrentPackageFamilyName", CharSet = CharSet.Unicode)]
+    static extern int GetCurrentPackageFamilyNameNative(ref uint packageFamilyNameLength, [Out] StringBuilder? packageFamilyName);
 
     static string EnsureTrailingSeparator(string path) =>
         Path.TrimEndingDirectorySeparator(path) + Path.DirectorySeparatorChar;
