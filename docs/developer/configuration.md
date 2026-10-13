@@ -2,13 +2,13 @@
 
 ## Objetivo
 
-Documentar como o MPV.NET Media Player localiza, carrega, migra e utiliza arquivos de configuração.
+Descrever como o MPV.NET localiza e carrega as configurações e como trata seus arquivos.
 
 ---
 
-# Visão geral
+## Visão geral
 
-O mpv.net mantém compatibilidade com o modelo do mpv: arquivos de texto simples, pasta de configuração previsível e suporte a scripts.
+O mpv.net preserva o modelo de configuração do mpv: arquivos de texto, uma pasta previsível e suporte a scripts.
 
 O núcleo da resolução de configuração está em:
 
@@ -21,21 +21,21 @@ O núcleo da resolução de configuração está em:
 
 ---
 
-# Ordem real da pasta de configuração
+## Ordem de resolução da pasta de configuração
 
 Implementação: `Player.ConfigFolder`.
 
 Ordem:
 
 1. variável de ambiente `MPVNET_HOME`, quando aponta para um diretório existente;
-2. pasta `portable_config` ao lado do executável;
-3. `%LOCALAPPDATA%\mpv.net`, criada automaticamente no startup.
+2. pasta `portable_config`, se existir ao lado do executável;
+3. diretório padrão de `AppPaths`, criado automaticamente na inicialização. Em instalações comuns, é `%LOCALAPPDATA%\mpv.net`.
 
-Essa ordem é crítica para compatibilidade com instalações existentes e modo portátil.
+A ordem define qual pasta prevalece e deve ser preservada para manter a compatibilidade com instalações existentes e com o modo portátil.
 
 ---
 
-# Arquivos principais
+## Arquivos principais
 
 | Arquivo | Origem no código | Função |
 | --- | --- | --- |
@@ -59,21 +59,20 @@ Cache e logs:
 
 | Pasta | Função |
 | --- | --- |
-| `%LOCALAPPDATA%\mpv.net\Cache` | Cache temporário do mpv para demuxer, ICC e shaders; o cache de rede em disco é usado durante a reprodução e removido ao fechar a mídia. |
-| `%LOCALAPPDATA%\mpv.net\Component\current` | Geração válida atual dos componentes auxiliares baixados e seus manifestos. No pacote Store, fica sob `Packages\<PackageFamilyName>\LocalCache\Local`. |
-| `%LOCALAPPDATA%\mpv.net\Component\staging` | Downloads e extrações temporárias, removidos depois de promover ou falhar. No pacote Store, fica sob `Packages\<PackageFamilyName>\LocalCache\Local`. |
-| `%LOCALAPPDATA%\mpv.net\Component` | Local legado: continua sendo lido como fallback até uma atualização válida migrar os arquivos para `current`. No pacote Store, fica sob `Packages\<PackageFamilyName>\LocalCache\Local`. |
-| `%LOCALAPPDATA%\mpv.net\Temp` | Arquivos temporários criados pelo frontend, como playlists normalizadas. |
-| `%LOCALAPPDATA%\mpv.net\Logs` | Erros em qualquer build; logs detalhados quando o build é gerado com logging em arquivo habilitado. |
+| `AppPaths.Cache` | Cache temporário do mpv para demuxer, ICC e shaders; o cache de rede em disco é usado durante a reprodução e removido ao fechar a mídia. |
+| `AppPaths.Components\current` | Geração válida atual dos componentes auxiliares baixados e seus manifestos. |
+| `AppPaths.Components\staging` | Downloads e extrações temporárias, removidos depois de promover ou falhar. |
+| `AppPaths.Components` | Local legado: continua sendo lido como fallback até uma atualização válida migrar os arquivos para `current`. |
+| `AppPaths.Temp` | Arquivos temporários criados pelo frontend, como playlists normalizadas. |
+| `AppPaths.Logs` | Erros em qualquer build; logs detalhados quando o build é gerado com logging em arquivo habilitado. |
 
 Esses diretórios são centralizados em `AppPaths` e criados no início da
-aplicação, antes da inicialização de logs, cache e atualização de componentes.
-No pacote MSIX/Microsoft Store, `AppPaths` detecta a identidade do pacote e usa
-diretamente `%LOCALAPPDATA%\Packages\<PackageFamilyName>\LocalCache\Local` como
-raiz privada de dados. Em instalações comuns, continua usando
-`%LOCALAPPDATA%`. `MPVNET_LOCAL_APPDATA` mantém precedência nos dois casos. Esse
-uso explícito evita depender da virtualização de AppData e faz os caminhos
-registrados pelo bootstrap apontarem para a pasta física usada pelo pacote.
+aplicação. Em instalações comuns, `AppPaths.LocalAppData` é `%LOCALAPPDATA%`;
+no pacote MSIX/Microsoft Store, é
+`%LOCALAPPDATA%\Packages\<PackageFamilyName>\LocalCache\Local`. `AppPaths.LocalRoot`
+acrescenta `mpv.net` a essa raiz. A variável `MPVNET_LOCAL_APPDATA` pode definir
+outra raiz nos dois casos. Essa resolução mantém os caminhos do bootstrap na
+pasta física do pacote, sem depender da virtualização do AppData.
 
 ## Componentes auxiliares de runtime
 
@@ -86,49 +85,50 @@ preserva a política histórica de preferir o cache validado e segue esta ordem:
 3. pasta de `mpvnet.exe` (`AppContext.BaseDirectory`);
 4. `PATH` do processo, apenas como último fallback.
 
-Todo candidato é convertido para caminho absoluto, precisa existir e os cinco
-executáveis baixados precisam ser arquivos PE x64 não vazios. Um arquivo HTML,
-truncado, x86 ou corrompido não é escolhido. Nomes de componentes inválidos não
-geram fallback de caminho. Um manifesto JSON ilegível é tratado como cache inválido, preservado
-para diagnóstico e refeito quando a atualização seguinte for concluída. O
-`yt-dlp.exe` resolvido é passado ao mpv pelo `ytdl-path`; um `ytdl-path` explícito
-em linha de comando ou `mpv.conf` mantém
-precedência.
-Quando `current` existe, o processo também o coloca no início do `PATH` para que
-ferramentas auxiliares como `yt-dlp` encontrem `ffmpeg` e `ffprobe` da mesma
-geração promovida; antes da primeira promoção, o diretório legado continua sendo
-usado como fallback.
+Cada candidato precisa existir e é convertido para um caminho absoluto. Os cinco
+executáveis baixados também precisam ser arquivos PE x64 não vazios. Arquivos
+HTML, truncados, x86 ou corrompidos são rejeitados. Nomes de componentes
+inválidos não geram caminhos alternativos. Manifestos JSON ilegíveis são
+preservados para diagnóstico e tratados como cache inválido até uma atualização
+concluída.
 
-As atualizações usam uma geração em `staging`, verificam HTTPS, host permitido,
-tamanho, SHA-256 publicado pelo GitHub, ZIP Slip e PE x64, e só então renomeiam
-a geração completa para `current`. O conjunto FFmpeg é promovido junto, com
-manifesto `ffmpeg-bundle.json`, hashes individuais e fingerprints de tamanho e
-data de alteração. Em inicializações seguintes, um fingerprint inalterado evita
-ler novamente o arquivo inteiro; se tamanho ou data mudarem, o SHA-256 completo
-é recalculado e precisa corresponder ao manifesto. Downloads antigos sem
-fingerprint também passam por hash completo antes da atualização do manifesto.
-Esse atalho reduz I/O e não substitui o diagnóstico criptográfico completo:
-`--diagnose-components` recalcula os hashes registrados e calculados de todos
-os arquivos do cache.
-Um bloqueio nomeado por usuário impede duas instâncias de alterarem o cache ao
-mesmo tempo; o mutex é liberado por sua thread proprietária dedicada e continua recuperável
-quando uma instância termina de forma inesperada. Em falha a geração anterior é
-mantida. Os manifestos diretos ficam ao lado do binário (`yt-dlp.exe.json` e
-`deno.exe.json`) e registram versão/asset, hash, URL, data, tamanho, arquitetura
-e fingerprint.
+O `yt-dlp.exe` resolvido é informado ao mpv por `ytdl-path`. Um valor definido na
+linha de comando ou em `mpv.conf` tem precedência. Quando `current` existe, o
+processo o coloca no início do `PATH` para que ferramentas como `yt-dlp`
+encontrem `ffmpeg` e `ffprobe` da mesma geração. Antes da primeira promoção, o
+diretório legado continua sendo usado como fallback.
 
-Na primeira execução, `yt-dlp.exe` e `deno.exe` são baixados antes do ZIP grande
-do FFmpeg. Eles ficam disponíveis mesmo se o download do FFmpeg for
-interrompido; o bundle FFmpeg continua sendo promovido somente quando os três
-executáveis forem validados juntos. O bootstrap começa em segundo plano depois
-que a janela é exibida; ao terminar, atualiza o `ytdl-path` para as próximas
-reproduções, preservando uma configuração explícita do usuário.
+As atualizações são preparadas em `staging`. Antes de promover os arquivos para
+`current`, o aplicativo valida HTTPS, host permitido, tamanho, SHA-256 publicado
+pelo GitHub, ZIP Slip e arquitetura PE x64. O conjunto FFmpeg é promovido junto
+com o manifesto `ffmpeg-bundle.json`, hashes individuais e fingerprints de
+tamanho e data de alteração.
 
-O download de cada asset tem limite total de 10 minutos. Ao fechar o aplicativo,
-o cancelamento esperado remove o arquivo parcial e só aparece em logs de
-diagnóstico (`Debug`). Um timeout continua sendo erro e informa o limite e os
-bytes recebidos; falhas de transporte também permanecem no log de erros.
-Em todos esses casos, o cache válido anterior é preservado e componentes ainda
+Nas inicializações seguintes, um fingerprint inalterado evita reler o arquivo
+inteiro. Se o tamanho ou a data mudar, o aplicativo recalcula o SHA-256 completo
+e compara o resultado com o manifesto. Downloads antigos sem fingerprint também
+passam por hash completo antes da atualização do manifesto. Esse atalho reduz a
+leitura de disco; `--diagnose-components` continua recalculando todos os hashes
+para o diagnóstico completo.
+
+Um mutex nomeado por usuário impede duas instâncias de alterarem o cache ao
+mesmo tempo. Uma thread dedicada o libera, e o bloqueio pode ser recuperado se
+uma instância terminar inesperadamente. Em caso de falha, a geração anterior é
+mantida. Os manifestos `yt-dlp.exe.json` e `deno.exe.json` ficam ao lado dos
+binários e registram versão/asset, hash, URL, data, tamanho, arquitetura e
+fingerprint.
+
+Na primeira execução, `yt-dlp.exe` e `deno.exe` são baixados antes do ZIP do
+FFmpeg e ficam disponíveis mesmo se esse download for interrompido. O bundle
+FFmpeg só é promovido depois que os três executáveis forem validados. O bootstrap
+começa em segundo plano após a exibição da janela e, quando termina, atualiza o
+`ytdl-path` para as próximas reproduções sem substituir uma configuração
+explícita do usuário.
+
+Cada download tem limite de 10 minutos. Ao fechar o aplicativo, o cancelamento
+remove o arquivo parcial e só aparece nos logs de diagnóstico (`Debug`). Timeout
+e falhas de transporte são registrados como erros; o timeout também informa o
+limite e os bytes recebidos. O cache válido anterior é preservado, e componentes
 ausentes ou vencidos podem ser baixados na próxima inicialização.
 
 O `yt-dlp.exe` oficial já inclui os scripts EJS. Para resolver os desafios
@@ -149,7 +149,11 @@ O comando informa a origem, caminho absoluto, versão e resultado da validação
 pacote, mas não é baixado pelo bootstrap nem iniciado pelo frontend, pois não há
 consumidor de runtime que justifique sua execução.
 
-Para scripts como `thumbfast`, a versão portátil deve usar `portable_config/scripts` e `portable_config/script-opts`. No mpv.net v7, `thumbfast` tem suporte direto; `mpv_path` para um `mpv.exe` separado deve ser tratado como fallback para versões antigas ou casos específicos documentados pelo próprio script.
+Para scripts como `thumbfast`, use `portable_config/scripts` e
+`portable_config/script-opts` no pacote portátil. O mpv.net v7 oferece suporte
+direto ao `thumbfast`; configure `mpv_path` para um `mpv.exe` separado apenas
+como fallback para versões antigas ou casos específicos documentados pelo
+próprio script.
 
 Na primeira execução, o `mpv.conf` inicial criado pelo aplicativo não cria
 perfis específicos para IPTV. `Player.MediaLoading` aplica, quando habilitada,
@@ -160,7 +164,7 @@ na linha de comando são excluídas da lista automática.
 
 ---
 
-# `mpv.conf`
+## `mpv.conf`
 
 Arquivo de opções do mpv.
 
@@ -189,11 +193,11 @@ Cuidados:
 
 ---
 
-# `mpvnet.conf`
+## `mpvnet.conf`
 
 Arquivo de opções específicas do mpv.net, processado por `App.ProcessProperty`.
 
-Opções observadas:
+Opções reconhecidas pelo mpv.net:
 
 | Opção | Valor padrão no código | Função |
 | --- | --- | --- |
@@ -203,11 +207,11 @@ Opções observadas:
 | `autofit-image` | `80%` | Tamanho de janela para imagem. |
 | `dark-mode` | `always` | Modo escuro/claro. |
 | `dark-theme` | `dark` | Tema escuro. |
-| `debug-mode` | `no` | Ativa log `MpvNet-debug.log`. |
-| `language` | `english` | Idioma da interface. Se ausente, o app usa o idioma do Windows quando suportado e cai para ingles. |
+| `debug-mode` | `no` | Ativa o arquivo de log `MpvNet-debug.log`. |
+| `language` | `english` | Idioma da interface. Se ausente, o app usa o idioma do Windows quando houver tradução e, caso contrário, usa inglês. |
 | `light-theme` | `light` | Tema claro. |
-| `media-info` | `yes` | Controla recurso de media info. |
-| `menu-syntax` | `#menu:` | Sintaxe antiga/nova para menu em `input.conf`. |
+| `media-info` | `yes` | Ativa ou desativa as informações de mídia. |
+| `menu-syntax` | `#menu:` | Define a sintaxe de menu reconhecida em `input.conf`. |
 | `network-cache-profile` | `resilient` | Perfil `off`, `low-latency`, `balanced` ou `resilient`; valor inválido usa `resilient`. |
 | `minimum-aspect-ratio` | `0` | Limite de proporção para vídeo. |
 | `minimum-aspect-ratio-audio` | `0` | Limite de proporção para áudio. |
@@ -220,27 +224,27 @@ Opções observadas:
 | `remember-window-position` | `no` | Persiste posição da janela. |
 | `start-size` | `height-session` | Tamanho inicial da janela. |
 
-Opções desconhecidas são registradas como erro quando `App.Init()` processa o arquivo.
+`App.Init()` registra como erro cada opção desconhecida encontrada no arquivo.
 
-`language` controla apenas a interface. Preferencias de audio e legenda continuam
-no `mpv.conf`, usando as opcoes nativas do mpv:
+`language` controla apenas o idioma da interface. As preferências de áudio e
+legenda continuam no `mpv.conf`, com as opções nativas do mpv:
 
 | Opção | Arquivo | Função |
 | --- | --- | --- |
-| `alang` | `mpv.conf` | Lista de prioridade de idiomas de audio. |
-| `slang` | `mpv.conf` | Lista de prioridade de idiomas de legenda. |
-| `aid` | `mpv.conf` ou runtime | Seleciona faixa de audio manualmente. |
-| `sid` | `mpv.conf` ou runtime | Seleciona legenda manualmente; `no` mantem legenda desligada. |
-| `sub-auto` | `mpv.conf` | Controla carregamento automatico de legendas externas. |
-| `track-auto-selection` | `mpv.conf` | Controla a selecao automatica de faixas pelo mpv. |
+| `alang` | `mpv.conf` | Lista de prioridade dos idiomas de áudio. |
+| `slang` | `mpv.conf` | Lista de prioridade dos idiomas de legenda. |
+| `aid` | `mpv.conf` ou execução | Seleciona manualmente uma faixa de áudio. |
+| `sid` | `mpv.conf` ou execução | Seleciona manualmente uma legenda; `no` mantém as legendas desligadas. |
+| `sub-auto` | `mpv.conf` | Controla o carregamento automático de legendas externas. |
+| `track-auto-selection` | `mpv.conf` | Controla a seleção automática de faixas pelo mpv. |
 
-O mpv.net normaliza e compara codigos de idioma em um ponto central, mas nao
-reescreve `mpv.conf` nem sobrescreve configuracoes avancadas do usuario para
-audio/legenda.
+O mpv.net normaliza e compara códigos de idioma, mas não reescreve o
+`mpv.conf` nem substitui as configurações de áudio e legenda definidas pelo
+usuário.
 
 ---
 
-# `input.conf`
+## `input.conf`
 
 Responsável por atalhos, comandos e menu.
 
@@ -252,26 +256,24 @@ Arquivos envolvidos:
 - `src/MpvNet/Command.cs`;
 - `src/MpvNet.Windows/Commands/GuiCommand.cs`.
 
-Comportamento importante:
+Como o arquivo é processado:
 
-- se o arquivo usa a sintaxe de menu (`App.MenuSyntax`), o conteúdo é usado como base de menu;
-- caso contrário, os atalhos padrão de `InputHelp.GetDefaults()` são combinados com os atalhos do usuário;
-- atalhos do usuário podem substituir atalhos padrão;
-- o conteúdo final pode ser passado ao mpv via `input-conf=memory://...`.
-- os rótulos padrão do menu são resolvidos no momento da renderização, usando o idioma ativo da interface;
-- rótulos personalizados continuam sendo respeitados como estão no `input.conf`.
+- Se o arquivo usa a sintaxe de menu (`App.MenuSyntax`), seu conteúdo serve de base para o menu.
+- Caso contrário, o mpv.net combina os atalhos padrão de `InputHelp.GetDefaults()` com os atalhos do usuário. Os atalhos do usuário podem substituir os padrões.
+- O conteúdo final pode ser enviado ao mpv por `input-conf=memory://...`.
+- Os rótulos padrão do menu usam o idioma ativo da interface. Rótulos definidos pelo usuário permanecem como estão no `input.conf`.
 
-Migração automática observada:
+Migrações automáticas:
 
-- `script-message mpv.net` vira `script-message-to mpvnet`;
-- `/docs/Manual.md` vira `/docs/manual.md`;
-- links antigos `stax76/mpv.net` passam a apontar para `WandersondeSouza/mpv.net`;
-- links do manual com `/blob/main/docs/` passam para `/blob/master/docs/`, o branch publicado do repositório;
-- antes de alterar o arquivo, é criado backup em `input.conf.backup`.
+- `script-message mpv.net` é substituído por `script-message-to mpvnet`.
+- `/docs/Manual.md` é substituído por `/docs/manual.md`.
+- Links de `stax76/mpv.net` são atualizados para `WandersondeSouza/mpv.net`.
+- Links do manual com `/blob/main/docs/` são atualizados para `/blob/master/docs/`, branch publicado do repositório.
+- Quando uma migração altera o arquivo, o mpv.net cria o backup `input.conf.backup`.
 
 ---
 
-# `settings.xml`
+## `settings.xml`
 
 Arquivo persistido por `SettingsManager`.
 
@@ -283,26 +285,28 @@ Usado para preferências internas como:
 - arquivos recentes;
 - flags de migração já aplicadas.
 
-Esse arquivo não substitui `mpv.conf` ou `mpvnet.conf`; ele armazena estado interno do frontend.
-Se ainda não existir `settings.xml`, o volume inicial usado pelo frontend começa em `100`.
+Esse arquivo guarda o estado interno do frontend e não substitui `mpv.conf` nem
+`mpvnet.conf`. Se ainda não existir, o volume inicial será `100`.
 
 ---
 
-# Temas e hotkeys globais
+## Temas e atalhos globais
 
-`theme.conf` é lido por `Theme.Init()` quando existe na pasta de configuração.
+`Theme.Init()` lê `theme.conf` quando o arquivo existe na pasta ativa de
+configuração.
 
-`global-input.conf` é lido por `GlobalHotkey` para registrar hotkeys globais no Windows.
+`GlobalHotkey` lê `global-input.conf` para registrar atalhos globais no Windows.
 
-Mudanças nesses fluxos devem ser validadas com tema claro/escuro, permissões de registro de hotkey e conflito com outros programas.
+Ao alterar esses recursos, valide os temas claro e escuro, o registro de atalhos
+globais e possíveis conflitos com outros programas.
 
 ---
 
-# Linha de comando e configuração
+## Opções iniciais da linha de comando
 
-`CommandLine` processa argumentos `--nome=valor`.
+`CommandLine` processa argumentos no formato `--nome=valor`.
 
-Algumas opções são aplicadas antes de `mpv_initialize`, por exemplo:
+Algumas opções são aplicadas antes de `mpv_initialize`, incluindo:
 
 - `config-dir`;
 - `demuxer-cache-dir`;
@@ -316,75 +320,57 @@ Algumas opções são aplicadas antes de `mpv_initialize`, por exemplo:
 - `idle`;
 - `log-file`.
 
-Quando `--config-dir` é usado, o caminho do `input.conf` também é ajustado para essa pasta.
+Quando o usuário define `--config-dir`, o mpv.net também procura o `input.conf`
+nessa pasta.
 
 ---
 
-# Fluxo resumido de configuração
+## Fluxo de configuração
 
-1. A aplicação inicia.
-2. `Player.ConfigFolder` resolve `MPVNET_HOME`, `portable_config` ou `%LOCALAPPDATA%\mpv.net`.
-3. Arquivos antigos em `%LOCALAPPDATA%\mpv.net\Cache` e `%LOCALAPPDATA%\mpv.net\Temp`
-   com mais de 3 dias são removidos de forma não bloqueante.
-4. O cache do mpv é direcionado para `%LOCALAPPDATA%\mpv.net\Cache`.
-5. Os arquivos de configuração são lidos.
-6. `mpv.conf`, `mpvnet.conf` e `input.conf` recebem tratamento específico.
-7. `settings.xml`, `theme.conf` e `global-input.conf` completam o estado do frontend.
-8. A UI e o libmpv usam esse estado inicial.
-9. Alterações podem ser persistidas em `settings.xml` ou nos arquivos do usuário quando a migração for necessária.
+1. `Player.ConfigFolder` escolhe `MPVNET_HOME`, `portable_config` ou `AppPaths.DefaultConfig`, nessa ordem.
+2. A limpeza tenta remover arquivos e diretórios vazios cuja última alteração
+   ocorreu há mais de três dias em `AppPaths.Cache` e `AppPaths.Temp`.
+3. O cache do mpv é direcionado para `AppPaths.Cache`.
+4. O aplicativo lê os arquivos de configuração. `mpv.conf`, `mpvnet.conf` e `input.conf` recebem tratamento específico.
+5. `settings.xml`, `theme.conf` e `global-input.conf` completam as preferências do frontend.
+6. A interface e o libmpv usam esse estado inicial. O aplicativo salva as alterações em `settings.xml` e, quando necessário, atualiza arquivos durante migrações.
 
 ---
 
-# Áreas críticas
+## Áreas críticas
 
-## Compatibilidade
+### Compatibilidade
 
-Não alterar nomes de arquivos, ordem de resolução ou sintaxe sem migração.
+Não altere nomes de arquivos, ordem de resolução ou sintaxe sem uma migração compatível.
 
-## Modo portátil
+### Modo portátil
 
-`portable_config` só é usado quando a pasta existe ao lado do executável.
-Arquivos de configuração ficam em `portable_config`, mas cache temporário e logs
-de diagnóstico continuam em `%LOCALAPPDATA%\mpv.net`, para não misturar estado
-descartável com configuração portátil.
+O mpv.net usa `portable_config` quando essa pasta existe ao lado do executável.
+Os arquivos de configuração ficam nela; o cache temporário e os logs continuam
+na raiz de dados local definida por `AppPaths`.
 
-## Limpeza de estado descartável
+Registre a validação do ZIP portátil junto ao artefato e à versão testada. Veja
+[Build e release](build-release.md).
 
-Na inicialização, o aplicativo tenta limpar arquivos e diretórios vazios com
-mais de 3 dias em `%LOCALAPPDATA%\mpv.net\Cache` e
-`%LOCALAPPDATA%\mpv.net\Temp`.
+### Limpeza de estado descartável
 
-Essa limpeza não altera arquivos de configuração e não deve bloquear a abertura
-do player. Falhas individuais ou gerais são registradas como erros; logs
-detalhados de diagnóstico dependem do build com logging em arquivo habilitado.
+Na inicialização, o aplicativo tenta remover arquivos e diretórios vazios cuja
+última alteração ocorreu há mais de três dias em `AppPaths.Cache` e
+`AppPaths.Temp`.
 
-## Migrações automáticas
+Essa limpeza não altera arquivos de configuração nem deve bloquear a abertura do
+player. Falhas são registradas como erros. Logs detalhados dependem de um build
+com registro em arquivo habilitado.
 
-Migrações em `App.ApplyShowMenuFix`, `App.ApplyInputDefaultBindingsFix` e `InputConf.UpdateContent` alteram arquivos do usuário. Qualquer ajuste deve ser conservador.
+### Migrações automáticas
 
-## Performance
+`App.ApplyShowMenuFix`, `App.ApplyInputDefaultBindingsFix` e
+`InputConf.UpdateContent` podem alterar arquivos do usuário. Preserve o conteúdo
+existente e mantenha essas alterações restritas ao necessário.
 
-A configuração é lida no startup. Evite leituras repetidas ou validações pesadas.
+### Desempenho
 
----
-
-# Recomendações para manutenção
-
-1. Validar `MPVNET_HOME`, `portable_config` e `%LOCALAPPDATA%\mpv.net`.
-2. Testar `mpv.conf`, `mpvnet.conf` e `input.conf` separadamente.
-3. Preservar compatibilidade com arquivos antigos.
-4. Criar backup antes de qualquer migração que altere arquivo do usuário.
-5. Documentar novas opções no manual e neste arquivo.
-6. Validar o editor visual quando alterar opções expostas na UI.
-
----
-
-# Melhorias documentais opcionais
-
-- Gerar documentação automática a partir de `App.ProcessProperty`, `Player.ProcessProperty` e comandos registrados.
-- Acrescentar exemplos avançados de `theme.conf` e `global-input.conf` se houver necessidade de uso documentada.
-
-A validação do ZIP portátil com `portable_config` deve ser registrada junto ao
-artefato e à versão testada; este guia não presume que ela esteja concluída.
+O aplicativo lê a configuração na inicialização. Evite leituras repetidas e
+processamento pesado nesse fluxo.
 
 
