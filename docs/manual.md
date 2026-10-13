@@ -13,8 +13,8 @@ Este manual cobre apenas o que importa para o uso cotidiano do fork.
 - [Linha de comando](#linha-de-comando)
 - [Modo portátil](#modo-portátil)
 - [Documentação técnica](#documentação-técnica)
-- [Suporte](#suporte)
 - [Diferenças em relação ao mpv](#diferenças-em-relação-ao-mpv)
+- [Suporte](#suporte)
 
 ## Download
 
@@ -332,19 +332,22 @@ Se você for manter ou auditar o fork, os pontos de entrada mais úteis são:
 - [Build e release](developer/build-release.md)
 - [Localização](developer/localization.md)
 
-## Suporte
-
-- repositório do MPV.NET: `https://github.com/WandersondeSouza/mpv.net` (também aberto em `Ajuda > Website mpv.net`, atalho `Ctrl+a`)
-- issues do fork: `https://github.com/WandersondeSouza/mpv.net/issues`
-- apoiar o MPV.NET: `https://www.gestaodesistemas.com.br/mpvnet?language=<idioma>`;
-  a página recebe o idioma atual da interface
-- menu de suporte: link para apoiar o player e e-mail
-- e-mail: `mailto:wanderson_souza@hotmail.com`
-- manual oficial do mpv: `https://mpv.io/manual/master/`
-
 ## Diferenças em relação ao mpv
 
 O mpv.net preserva a maior parte do comportamento do mpv e adiciona interface gráfica, menu de contexto, atalhos globais, editor de configuração e integração com o Windows.
+
+## Suporte
+
+Sua contribuição voluntária ajuda a manter e melhorar o MPV.NET. Ela é opcional
+e única, não libera funcionalidades nem cria licença ou assinatura. O player
+continua gratuito.
+
+- **Apoie o player:** [Acessar a página oficial de apoio](https://www.gestaodesistemas.com.br/mpvnet)
+- **Repositório:** [WandersondeSouza/mpv.net](https://github.com/WandersondeSouza/mpv.net)
+  (também aberto em `Ajuda > Website mpv.net`, atalho `Ctrl+a`)
+- **Problemas e sugestões:** [Issues do MPV.NET](https://github.com/WandersondeSouza/mpv.net/issues)
+- **E-mail:** [wanderson_souza@hotmail.com](mailto:wanderson_souza@hotmail.com)
+- **Manual oficial do mpv:** [mpv.io/manual/master](https://mpv.io/manual/master/)
 
 
 
