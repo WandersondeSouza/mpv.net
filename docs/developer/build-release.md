@@ -493,6 +493,10 @@ Para a correcao `7.1.29.0`, a versao publica e o manifesto MSIX estao alinhados
 em `7.1.29.0`. A Store `7.1.28.0` ja foi aprovada; manter esse mesmo numero no
 pacote corrigido nao atualizaria as instalacoes existentes. O envio do novo
 pacote ao Partner Center continua sendo uma etapa separada da release GitHub.
+O workflow [Release packages](https://github.com/WandersondeSouza/mpv.net/actions/runs/38394573658)
+concluiu a publicacao GitHub com ZIP portatil e instalador x64 validados;
+`ValidateStorePackage` confirmou o alinhamento da versao local, mas o fluxo
+nao gerou pacote MSIX nem comprovou sua assinatura de distribuicao.
 
 A versão pública está centralizada em `src/BuildVersion.props` (`MpvNetVersion`).
 Consulte esse arquivo para ver a versão da branch atual.

@@ -421,7 +421,7 @@ Fluxo recomendado:
 
 ## Validações manuais e externas
 
-Preparacao registrada em 2026-10-13: a versao `7.1.29.0` inclui a correcao dos
+Publicacao registrada em 2026-10-13: a versao `7.1.29.0` inclui a correcao dos
 caminhos dos componentes auxiliares ja integrada em `master` (`be27bae0`).
 Somente `master` existe localmente e no remoto do fork; nao houve branches
 adicionais para integrar ou excluir. A suite local concluiu 571 testes sem
@@ -429,8 +429,17 @@ falhas, e o build Release x64 com preparo de assets terminou sem avisos ou
 erros. Executavel e manifesto MSIX usam `7.1.29.0`, alinhados por
 `src\Tools\set-release-version.ps1 -Version 7.1.29.0`. Como a versao Store
 `7.1.28.0` ja foi aprovada, a correcao precisa de um pacote com numero maior
-para atualizar os usuarios existentes. Geracao de pacote, publicacao GitHub e
-submissao Store devem ser registradas separadamente quando concluidas.
+para atualizar os usuarios existentes. O publish self-contained local passou
+nas validacoes de conteudo e dependencias nativas; os diagnosticos de componentes
+e libmpv funcionaram a partir de outro diretorio de trabalho, com inicializacao
+nativa bem-sucedida e criacao das pastas no override `MPVNET_LOCAL_APPDATA`.
+O workflow [Release packages](https://github.com/WandersondeSouza/mpv.net/actions/runs/38394573658)
+concluiu build, geracao e validacao dos pacotes. A [release `7.1.29.0`](https://github.com/WandersondeSouza/mpv.net/releases/tag/v7.1.29.0)
+foi confirmada como `latest`, com ZIP portatil e instalador x64 completos. A
+descricao da `7.1.28.0` foi preservada, acrescentando a correcao dos caminhos e
+atualizando os nomes dos arquivos. O workflow nao gerou nem submeteu pacote
+Store; assinatura, instalacao real pela Store e revisao manual completa de
+reproducao/interface continuam sem evidencia neste fluxo.
 
 Build e empacotamento locais não comprovam o comportamento em máquinas de uso
 final, a execução remota do workflow nem a certificação Store. Registre cada
