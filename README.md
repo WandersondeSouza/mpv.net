@@ -1,4 +1,4 @@
-﻿# MPV.NET Media Player
+# MPV.NET Media Player
 
 Fork de manutenção do **MPV.NET Media Player** para Windows, baseado no mpv.net e focado em compatibilidade com mpv/libmpv, documentação objetiva e mudanças pequenas e verificadas.
 
@@ -68,18 +68,10 @@ testes em [Integração com mpv/libmpv](docs/developer/mpv-integration.md) e
 
 ![Reprodução de vídeo no MPV.NET Media Player](docs/img/player/Player02.png)
 
-## Doação
+## Apoie o MPV.NET Media Player
 
-### Apoie voluntariamente o projeto
+Sua contribuição voluntária ajuda a manter e melhorar o MPV.NET. A contribuição
+é opcional e única, não libera funcionalidades nem cria licença ou assinatura.
+O MPV.NET continua gratuito.
 
-[https://www.gestaodesistemas.com.br/mpvnet](https://www.gestaodesistemas.com.br/mpvnet)
-
-O aplicativo abre a página passando o idioma atual da interface pelo parâmetro
-`language`.
-
-As doações são processadas com segurança pela Stripe. Os valores disponíveis vão
-de US$ 1 a US$ 20. Quando compatível, o Stripe Checkout poderá apresentar o valor
-em uma moeda local conforme a localização e as condições da Stripe.
-
-A doação é voluntária, única, não constitui assinatura nem libera funcionalidades.
-O MPV.NET permanece gratuito.
+Acesse a [página oficial de apoio](https://www.gestaodesistemas.com.br/mpvnet).

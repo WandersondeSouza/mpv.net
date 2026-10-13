@@ -62,8 +62,8 @@ player.
 O OSC depende do comportamento da janela.
 
 O fork configura o `custom_button_1` para mostrar um coração de apoio. O comando
-de clique encaminha para o navegador usando a URL de doação gerada pelo C# com
-o idioma efetivo da interface. O `osc.lua` mantido em
+de clique encaminha para o navegador usando a URL da página de apoio, gerada
+pelo C# com o idioma efetivo da interface. O `osc.lua` mantido em
 `src/MpvNet.Windows/Scripts/osc.lua`, baseado no commit `304426c39` do mpv,
 coloca esse botão na linha inferior do layout `bottombar`, imediatamente antes
 do controle de volume. Ele continua usando a visibilidade, hover, autocultação
@@ -100,10 +100,10 @@ de mídia do Windows com a build atualizada.
 A miniatura da barra de tarefas é uma superfície independente do SMTC. Ela é
 configurada por Native/Taskbar.cs usando ITaskbarList3::ThumbBarAddButtons e
 ThumbBarUpdateButtons, recebe cliques por WM_COMMAND com THBN_CLICKED e expõe
-os comandos de navegação, play/pause e doação. O botão Play/Pause alterna o
-estado diretamente no mpv, sem depender de um snapshot intermediário. Os
-botões de mídia acompanham o snapshot publicado pelo player; a doação usa o
-link canônico localizado de AppClass.GetDonationUrl.
+os comandos de navegação, play/pause e apoio ao player. O botão Play/Pause
+alterna o estado diretamente no mpv, sem depender de um snapshot intermediário.
+Os botões de mídia acompanham o snapshot publicado pelo player; o botão de
+apoio usa o link localizado pelo aplicativo.
 
 Os glyphs dessa toolbar são desenhados com contraste adaptativo ao tema de
 aplicativos do Windows (`AppsUseLightTheme`): usam uma cor escura no tema claro

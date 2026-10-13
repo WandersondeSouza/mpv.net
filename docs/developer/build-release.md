@@ -450,8 +450,8 @@ ZIP.
 Validacao da versao `7.1.13.1` registrada em 2026-08-05: a release consolida
 ajustes recentes de cache de rede com precedencia para configuracoes explicitas,
 carregamento de playlists e URLs, retorno de `Esc` do fullscreen, melhorias do
-OSC com botoes localizados do site oficial e doacao, alem da validacao de
-conteudo obrigatorio do pacote. A versao publica foi alinhada com
+OSC com botoes localizados do site oficial e do apoio ao player, alem da
+validacao de conteudo obrigatorio do pacote. A versao publica foi alinhada com
 `src\Tools\set-release-version.ps1`, mantendo `BuildVersion.props` em
 `7.1.13.1` e o manifesto MSIX em `7.1.13.0`, conforme a regra de revisao zero
 da Microsoft Store.

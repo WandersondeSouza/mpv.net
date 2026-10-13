@@ -54,11 +54,11 @@ e durante o encerramento; ao sair do fullscreen, a sessão é restaurada. URLs
 com credenciais, query strings ou fragmentos não são publicados como título.
 
 A miniatura da janela na barra de tarefas também oferece uma toolbar com
-Anterior, Play/Pause, Próximo e Doação. Esses botões são uma integração
-Win32 separada do SMTC: a doação abre a página oficial com o idioma atual da
-interface, enquanto os demais comandos reutilizam o fluxo de reprodução do
-player; Play/Pause alterna o estado diretamente no mpv. A toolbar aparece
-quando o Windows cria a miniatura da janela.
+Anterior, Play/Pause, Próximo e um botão de apoio. Essa toolbar é uma integração
+Win32 separada do SMTC: o botão de apoio abre a página oficial para apoiar o
+MPV.NET no idioma atual da interface, enquanto os demais comandos reutilizam o
+fluxo de reprodução do player. Play/Pause alterna o estado diretamente no mpv.
+A toolbar aparece quando o Windows cria a miniatura da janela.
 
 As associações automáticas atuais incluem:
 
@@ -336,8 +336,9 @@ Se você for manter ou auditar o fork, os pontos de entrada mais úteis são:
 
 - repositório do MPV.NET: `https://github.com/WandersondeSouza/mpv.net` (também aberto em `Ajuda > Website mpv.net`, atalho `Ctrl+a`)
 - issues do fork: `https://github.com/WandersondeSouza/mpv.net/issues`
-- apoio/doação: `https://www.gestaodesistemas.com.br/mpvnet?language=<idioma>`; a página centralizada recebe o idioma da interface e usa valores de US$ 1 a US$ 20, com moeda local no Stripe Checkout quando disponível
-- menu de suporte: página oficial de doação e e-mail
+- apoiar o MPV.NET: `https://www.gestaodesistemas.com.br/mpvnet?language=<idioma>`;
+  a página recebe o idioma atual da interface
+- menu de suporte: link para apoiar o player e e-mail
 - e-mail: `mailto:wanderson_souza@hotmail.com`
 - manual oficial do mpv: `https://mpv.io/manual/master/`
 
