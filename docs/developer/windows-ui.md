@@ -139,16 +139,6 @@ O projeto suporta:
 
 ---
 
-# Recomendações de manutenção
-
-1. Evitar alterações amplas de UI sem testes.
-2. Validar fullscreen.
-3. Validar menu de contexto.
-4. Validar temas.
-5. Validar comportamento do mouse.
-6. Preservar compatibilidade visual.
-7. Quando tocar `MainForm.*.cs`, validar arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento do player.
-
 ## Smoke test reproduzível
 
 O script abaixo verifica inicialização, permanência do processo e fechamento
@@ -171,16 +161,5 @@ Depois do smoke test, validar manualmente:
 
 O script encerra o processo ao final por padrão. Use `-KeepOpen` quando for
 necessário concluir o checklist visual antes de fechar a janela.
-
----
-
-# Melhorias futuras sugeridas
-
-- documentação visual;
-- guia de temas;
-- guia de acessibilidade;
-- testes automatizados de UI;
-- modo compacto;
-- perfis visuais.
 
 
