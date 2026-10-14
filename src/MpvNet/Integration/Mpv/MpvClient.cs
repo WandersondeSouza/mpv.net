@@ -592,6 +592,35 @@ public partial class MpvClient : IDisposable
         }
     }
 
+    internal bool TryGetPropertyString(string name, out string value)
+    {
+        value = "";
+        if (!TryEnterNativeOperation(out IDisposable? operation))
+            return false;
+
+        using (operation)
+        {
+            nint handle = Handle;
+            if (handle == IntPtr.Zero)
+                return false;
+
+            mpv_error err = mpv_get_property(handle, GetUtf8Bytes(name),
+                mpv_format.MPV_FORMAT_STRING, out IntPtr lpBuffer);
+            if (err < 0)
+                return false;
+
+            try
+            {
+                value = ConvertFromUtf8(lpBuffer);
+                return true;
+            }
+            finally
+            {
+                mpv_free(lpBuffer);
+            }
+        }
+    }
+
     public void SetPropertyString(string name, string value)
     {
         if (!TryEnterNativeOperation(out IDisposable? operation))

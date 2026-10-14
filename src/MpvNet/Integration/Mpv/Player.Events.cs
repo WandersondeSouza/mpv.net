@@ -11,6 +11,8 @@ namespace MpvNet;
 
 public partial class MainPlayer
 {
+    bool _ytDlpDiagnosticOutputLogged;
+
     internal override void OnLogMessage(MpvEventSnapshot data)
     {
         StreamingFailureDiagnostic? diagnostic = StreamingFailureDiagnostics.Classify(data.Prefix, data.Text);
@@ -18,6 +20,15 @@ public partial class MainPlayer
             (_lastStreamingFailure is null || diagnostic.Priority >= _lastStreamingFailure.Priority))
         {
             _lastStreamingFailure = diagnostic;
+        }
+
+        if (App.DebugMode && data.LogLevel is
+            mpv_log_level.MPV_LOG_LEVEL_FATAL or
+            mpv_log_level.MPV_LOG_LEVEL_ERROR or
+            mpv_log_level.MPV_LOG_LEVEL_WARN)
+        {
+            string message = StreamingFailureDiagnostics.SanitizeMessage(data.Text.Trim());
+            Log.Debug($"mpv log event. level={data.LogLevel}, prefix='{Log.SafeValue(data.Prefix)}', message='{message}'");
         }
 
         if (data.LogLevel == mpv_log_level.MPV_LOG_LEVEL_INFO)
@@ -40,6 +51,7 @@ public partial class MainPlayer
         int failedPosition = GetPropertyInt("playlist-pos");
         int playlistCount = GetPropertyInt("playlist-count");
         bool playbackFailed = reason == mpv_end_file_reason.MPV_END_FILE_REASON_ERROR;
+        LogYtDlpDiagnosticOutput();
         StreamingFailureDiagnostic? streamingDiagnostic = playbackFailed && FileTypes.IsStreamingUrl(failedPath)
             ? _lastStreamingFailure ?? StreamingFailureDiagnostics.FromMpvError(errorText)
             : null;
@@ -86,6 +98,7 @@ public partial class MainPlayer
         FileEnded = false;
         _lastStreamingFailure = null;
         _currentMediaWasLoaded = false;
+        _ytDlpDiagnosticOutputLogged = false;
         _bufferingStartedAt = null;
         Path = GetPropertyString("path");
         NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(Path);
@@ -121,6 +134,7 @@ public partial class MainPlayer
     {
         Duration = GetSafeDuration();
         _currentMediaWasLoaded = true;
+        LogYtDlpDiagnosticOutput();
         LogNetworkCacheState("file-loaded");
         Log.Debug($"mpv file-loaded event. path='{Log.SafeValue(GetPropertyString("path"))}', duration={Duration}, mediaTitle='{Log.SafeValue(GetPropertyString("media-title"))}'");
 
@@ -130,6 +144,34 @@ public partial class MainPlayer
         SchedulePlayerTask(_ => UpdateTracks());
 
         base.OnFileLoaded();
+    }
+
+    void LogYtDlpDiagnosticOutput()
+    {
+        if (!App.DebugMode || _ytDlpDiagnosticOutputLogged ||
+            !TryGetPropertyString("user-data/mpv/ytdl/path", out string executablePath) ||
+            !TryGetPropertyString("user-data/mpv/ytdl/json-subprocess-result/stderr", out string standardError))
+        {
+            return;
+        }
+
+        _ytDlpDiagnosticOutputLogged = true;
+        string executableName = string.IsNullOrWhiteSpace(executablePath)
+            ? "unresolved"
+            : System.IO.Path.GetFileName(executablePath);
+        Log.Debug($"yt-dlp subprocess output. executable='{Log.SafeValue(executableName)}', stderrLength={standardError.Length}");
+
+        string[] lines = standardError.Split(
+            ['\r', '\n'],
+            StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (lines.Length == 0)
+        {
+            Log.Debug("yt-dlp verbose output was empty.");
+            return;
+        }
+
+        foreach (string line in lines)
+            Log.Debug("yt-dlp: " + StreamingFailureDiagnostics.SanitizeMessage(line));
     }
 
     bool TryScheduleLiveStreamRecovery(

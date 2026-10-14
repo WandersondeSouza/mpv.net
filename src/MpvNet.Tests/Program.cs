@@ -299,6 +299,16 @@ string dailyLogFile = Path.Combine(tempLogDir, "mpvnet-2026-06-02.log");
 string dailyLogContent = File.ReadAllText(dailyLogFile);
 string safeUrlWithSecret = Log.SafeValue("https://example.com/live/index.m3u8?token=secret#fragment");
 string safePlainUrl = Log.SafeValue("https://example.com/live/index.m3u8");
+using AppClass debugModeTestApp = new();
+#if ENABLE_FILE_LOGGING
+const bool expectedDebugModeDefault = true;
+#else
+const bool expectedDebugModeDefault = false;
+#endif
+bool debugModeDefaultMatchesBuild = debugModeTestApp.DebugMode == expectedDebugModeDefault;
+bool debugModeConfigOverride =
+    debugModeTestApp.ProcessProperty("debug-mode", "no") && !debugModeTestApp.DebugMode &&
+    debugModeTestApp.ProcessProperty("debug-mode", "yes") && debugModeTestApp.DebugMode;
 var runtimeRelease = JsonSerializer.Deserialize<RuntimeReleaseProbe>("""
 {
   "assets": [
@@ -771,6 +781,8 @@ var tests = new (string Name, bool Result)[]
     ("File log writer does not throw on write failure", blockedWriteDidNotThrow),
     ("Log safe value masks URL query and fragment", safeUrlWithSecret == "https://example.com/live/index.m3u8?[redacted]#[redacted]"),
     ("Log safe value keeps plain URL unchanged", safePlainUrl == "https://example.com/live/index.m3u8"),
+    ("Diagnostic build debug-mode default follows file logging", debugModeDefaultMatchesBuild),
+    ("mpvnet.conf can override debug-mode", debugModeConfigOverride),
     ("Runtime release JSON maps GitHub browser download URL", runtimeRelease?.Assets.Single().BrowserDownloadUrl == "https://example.com/yt-dlp.exe"),
     ("Runtime release JSON maps GitHub digest", runtimeRelease?.Assets.Single().Digest == "sha256:123"),
     ("Default log folder uses mpv.net LocalAppData root", Path.GetFullPath(Log.LogFolder).StartsWith(expectedLocalAppDataRoot, StringComparison.OrdinalIgnoreCase)),

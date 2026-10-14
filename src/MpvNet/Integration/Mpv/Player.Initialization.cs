@@ -196,6 +196,12 @@ public partial class MainPlayer
 
         mpv_request_log_messages(Handle, "info");
 
+        if (App.DebugMode)
+        {
+            CommandV("change-list", "ytdl-raw-options", "append", "verbose=");
+            Log.Debug("Enabled yt-dlp verbose output for diagnostic logging.");
+        }
+
         RegisterHook("on_load", NetworkCacheHookUserData, 50);
 
         if (formHandle != IntPtr.Zero)

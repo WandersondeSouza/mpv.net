@@ -12,7 +12,7 @@ Optional parameters:
     -SkipPortableZip Skips portable ZIP generation.
     -SkipInstaller Skips Inno Setup package generation.
     -SkipGitHubRelease Creates local artifacts without publishing a GitHub release.
-    -EnableFileLogging Builds a diagnostic package with file logging enabled. Default: disabled.
+    -EnableFileLogging Builds a diagnostic package with file logging, runtime debug mode, and yt-dlp verbose logging enabled. Default: disabled.
     -MpvBuildVariant mpv/libmpv build variant. Default: normal. Use x86_64-v3 only for CPUs with the required instruction set.
     -MediaInfoFile Optional override path to MediaInfo.dll. Defaults to automatic MediaArea download when missing.
     -MediaInfoVersion Optional MediaInfo version pin, for example 26.05. Defaults to the latest stable x64 DLL archive listed by MediaArea.

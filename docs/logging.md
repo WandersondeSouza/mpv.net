@@ -47,6 +47,13 @@ Para gerar uma versao de diagnóstico com logs detalhados em arquivo:
 dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj -c Release -r win-x64 /p:EnableFileLogging=true
 ```
 
+Essa compilação também inicia com `debug-mode=yes`, salvo quando
+`mpvnet.conf` define explicitamente `debug-mode=no`. Isso ativa os detalhes de
+cache de rede, mudanças de pausa, mensagens `WARN`/`ERROR`/`FATAL` do libmpv e
+o arquivo de `Trace` `MpvNet-debug.log` na pasta de configuração. Esse arquivo
+de `Trace` é recriado na inicialização; os logs diários `mpvnet-YYYY-MM-DD.log`
+continuam separados.
+
 Nos scripts do fork, use `-EnableFileLogging`:
 
 ```powershell
@@ -167,6 +174,15 @@ da espera e posição, com buffer e taxa de entrada estimados. `Network cache
 stream durations` informa os segundos disponíveis para áudio/vídeo quando o
 mpv expõe esses valores em `ts-per-stream`. Esses valores descrevem
 o demuxer principal e não garantem cobertura conjunta das faixas separadas.
+
+Em builds de diagnóstico, o app acrescenta `verbose=` a
+`ytdl-raw-options`. Assim, o `yt-dlp` selecionado pelo hook do mpv grava a saída
+de `stderr` no log diário depois da extração, inclusive quando ela falha.
+Mensagens passam por remoção de URLs assinadas e valores de segredo. O JSON de
+`stdout` não é registrado porque contém URLs temporárias dos fluxos. Para
+reproduzir esse modo manualmente, o yt-dlp documenta `--verbose` como a opção
+de informações de depuração e o mpv encaminha `ytdl-raw-options` ao processo
+filho.
 
 ## Retencao
 

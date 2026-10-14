@@ -30,7 +30,11 @@ public class AppClass : IDisposable
 
     public bool AutoLoadFolder { get; set; }
     public bool AutomaticNetworkCache { get; set; } = true;
+#if ENABLE_FILE_LOGGING
+    public bool DebugMode { get; set; } = true;
+#else
     public bool DebugMode { get; set; }
+#endif
     public bool Exit { get; set; }
     public bool IsTerminalAttached { get; } = Environment.GetEnvironmentVariable("_started_from_console") == "yes";
     public bool MediaInfo { get; set; } = true;
@@ -100,7 +104,7 @@ public class AppClass : IDisposable
 
             Player.Shutdown += Player_Shutdown;
             Player.Initialized += Player_Initialized;
-            Log.Debug("Application configuration initialized.");
+            Log.Debug($"Application configuration initialized. debugMode={DebugMode}.");
         }
         catch
         {

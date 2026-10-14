@@ -40,6 +40,15 @@ public sealed class MpvClientReliabilityTests
         }
     }
 
+    [Fact]
+    public void TryGetPropertyStringReturnsUnavailableWithoutAPlayerHandle()
+    {
+        using MpvClient client = new();
+
+        Assert.False(client.TryGetPropertyString("user-data/mpv/ytdl/path", out string value));
+        Assert.Equal("", value);
+    }
+
     sealed class RecordingHookClient : MpvClient
     {
         public bool Fail;

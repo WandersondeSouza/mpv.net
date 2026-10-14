@@ -46,6 +46,17 @@ public sealed class StreamingFailureDiagnosticsTests
         Assert.DoesNotContain("session", sanitized, StringComparison.OrdinalIgnoreCase);
     }
 
+    [Fact]
+    public void YtDlpVerboseOutputRedactsSignedUrlAndPoToken()
+    {
+        const string output = "[debug] Command-line config: ['--verbose', 'https://youtube.com/watch?v=video&token=private']\n[debug] po_token=private-token";
+
+        string sanitized = StreamingFailureDiagnostics.SanitizeMessage(output);
+
+        Assert.Contains("https://youtube.com/watch?[redacted]", sanitized, StringComparison.Ordinal);
+        Assert.DoesNotContain("private", sanitized, StringComparison.OrdinalIgnoreCase);
+    }
+
     [Theory]
     [InlineData(StreamingFailureCategory.Authentication, "This content requires authentication with the source service.")]
     [InlineData(StreamingFailureCategory.RegionalRestriction, "This content is not available in your region.")]
