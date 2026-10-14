@@ -118,10 +118,26 @@ de mídia do Windows com a build atualizada.
 A miniatura da barra de tarefas é uma superfície independente do SMTC. Ela é
 configurada por Native/Taskbar.cs usando ITaskbarList3::ThumbBarAddButtons e
 ThumbBarUpdateButtons, recebe cliques por WM_COMMAND com THBN_CLICKED e expõe
-os comandos de navegação, play/pause e apoio ao player. O botão Play/Pause
+seis botões nesta ordem: arquivo anterior, capítulo anterior, play/pause,
+próximo capítulo, próximo arquivo e apoio ao player. Todos são registrados
+na criação da toolbar; as atualizações mantêm IDs, ordem e visibilidade.
+Os ícones de capítulos usam uma seta, distinguindo-os das setas duplas de arquivos.
+O botão Play/Pause
 alterna o estado diretamente no mpv, sem depender de um snapshot intermediário.
 Os botões de mídia acompanham o snapshot publicado pelo player; o botão de
 apoio usa o link localizado pelo aplicativo.
+
+`Native/TaskbarThumbnailControls.cs` define a composição e a disponibilidade
+dos controles sem ampliar o contrato SMTC. Os dois botões de capítulos ficam
+habilitados quando há mídia carregada e `chapter-list/count > 0`, inclusive
+no primeiro/último capítulo, seguindo a regra do OSC. Os cliques executam
+`osd-msg add chapter -1` e `osd-msg add chapter 1`, deixando os limites a cargo
+do mpv. A observação de `chapter-list` atualiza a toolbar por evento, também
+durante pausa; carga/fim de arquivo continuam limpando o estado nas transições.
+Antes de executar o comando, o handler relê a contagem e verifica mídia
+carregada, fullscreen, encerramento e a geração de mídia usada ao compor a
+toolbar. Isso rejeita comandos de uma toolbar anterior durante a troca de arquivo.
+Tooltips reutilizam as traduções existentes de `Previous Chapter`/`Next Chapter`.
 
 Os glyphs dessa toolbar são desenhados com contraste adaptativo ao tema de
 aplicativos do Windows (`AppsUseLightTheme`): usam uma cor escura no tema claro

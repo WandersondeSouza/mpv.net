@@ -14,6 +14,8 @@ public enum TaskbarThumbnailButtonId
     PlayPause = 2,
     Next = 3,
     Donation = 4,
+    PreviousChapter = 5,
+    NextChapter = 6,
 }
 
 public enum TaskbarThumbnailIcon
@@ -23,6 +25,8 @@ public enum TaskbarThumbnailIcon
     Pause,
     Next,
     Donation,
+    PreviousChapter,
+    NextChapter,
 }
 
 public readonly record struct TaskbarThumbnailButton(
@@ -277,6 +281,26 @@ public class Taskbar : IDisposable
                         new PointF(17, 16),
                         new PointF(27, 25),
                     });
+                    break;
+
+                case TaskbarThumbnailIcon.PreviousChapter:
+                    graphics.FillRectangle(brush, 7, 7, 3, 18);
+                    graphics.FillPolygon(brush, new[]
+                    {
+                        new PointF(24, 7),
+                        new PointF(10, 16),
+                        new PointF(24, 25),
+                    });
+                    break;
+
+                case TaskbarThumbnailIcon.NextChapter:
+                    graphics.FillPolygon(brush, new[]
+                    {
+                        new PointF(8, 7),
+                        new PointF(22, 16),
+                        new PointF(8, 25),
+                    });
+                    graphics.FillRectangle(brush, 22, 7, 3, 18);
                     break;
 
                 case TaskbarThumbnailIcon.Play:

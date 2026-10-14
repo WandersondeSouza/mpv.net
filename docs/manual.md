@@ -61,8 +61,15 @@ incorporada/em cache fornecida pelo Windows. Não há download de capas; mídia
 remota e arquivos offline não são acessados para esse fim. Quando uma imagem
 não está disponível ou falha, os controles mostram o ícone padrão do MPV.NET.
 
-A miniatura da janela na barra de tarefas também oferece uma toolbar com
-Anterior, Play/Pause, Próximo e um botão de apoio. Essa toolbar é uma integração
+A miniatura da janela na barra de tarefas também oferece uma toolbar nesta
+ordem: Arquivo anterior, Capítulo anterior, Play/Pause, Próximo capítulo,
+Próximo arquivo e apoio ao player. Play/Pause fica no centro dos cinco controles
+de reprodução. Os botões de capítulos permanecem visíveis e ficam habilitados
+quando a mídia carregada tem pelo menos um capítulo, como no controle do player;
+os de arquivos seguem a disponibilidade de anterior/próximo na playlist.
+Ao trocar de mídia, o estado é atualizado mesmo quando a reprodução está pausada.
+Em tela cheia, os cinco controles de reprodução ficam desabilitados.
+Essa toolbar é uma integração
 Win32 separada do SMTC: o botão de apoio abre a página oficial para apoiar o
 MPV.NET no idioma atual da interface, enquanto os demais comandos reutilizam o
 fluxo de reprodução do player. Play/Pause alterna o estado diretamente no mpv.

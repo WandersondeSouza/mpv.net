@@ -1,12 +1,15 @@
 using MpvNet;
 using MpvNet.Help;
+using MpvNet.Windows.Native;
 using MpvNet.Windows.Services.MediaTransport;
+using System.Threading;
 
 namespace MpvNet.Windows.WinForms;
 
 public partial class MainForm
 {
     const int TaskbarThumbnailClicked = 0x1800;
+    long _taskbarMediaGeneration = -1;
 
     static bool TryGetTaskbarThumbnailButtonId(IntPtr wParam, out TaskbarThumbnailButtonId buttonId)
     {
@@ -28,34 +31,17 @@ public partial class MainForm
 
     TaskbarThumbnailButton[] BuildTaskbarThumbnailButtons(MediaTransportSnapshot snapshot)
     {
-        if (IsFullscreen)
+        long generation = Interlocked.Read(ref _mediaTransportGeneration);
+        if (_managedResourcesDisposed || _closingInput || !_mediaTransportMediaLoaded)
             snapshot = MediaTransportSnapshot.Disabled;
 
-        bool isPlaying = snapshot.PlaybackStatus == MediaTransportPlaybackStatus.Playing;
+        int chapterCount = snapshot.IsEnabled && snapshot.IsMediaLoaded
+            ? Player.GetPropertyInt("chapter-list/count") : 0;
+        if (generation != Interlocked.Read(ref _mediaTransportGeneration) || !_mediaTransportMediaLoaded)
+            snapshot = MediaTransportSnapshot.Disabled;
 
-        return new[]
-        {
-            new TaskbarThumbnailButton(
-                TaskbarThumbnailButtonId.Previous,
-                TaskbarThumbnailIcon.Previous,
-                _("Previous File"),
-                snapshot.CanPrevious),
-            new TaskbarThumbnailButton(
-                TaskbarThumbnailButtonId.PlayPause,
-                isPlaying ? TaskbarThumbnailIcon.Pause : TaskbarThumbnailIcon.Play,
-                _("Play/Pause"),
-                snapshot.CanPlay || snapshot.CanPause),
-            new TaskbarThumbnailButton(
-                TaskbarThumbnailButtonId.Next,
-                TaskbarThumbnailIcon.Next,
-                _("Next File"),
-                snapshot.CanNext),
-            new TaskbarThumbnailButton(
-                TaskbarThumbnailButtonId.Donation,
-                TaskbarThumbnailIcon.Donation,
-                _("Help the player"),
-                true),
-        };
+        _taskbarMediaGeneration = generation;
+        return TaskbarThumbnailControls.Build(snapshot, IsFullscreen, chapterCount, text => _(text));
     }
 
     void WpfTranslator_LanguageChanged(object? sender, System.Globalization.CultureInfo culture)
@@ -87,6 +73,11 @@ public partial class MainForm
                 RequestTaskbarMediaTransportCommand(MediaTransportCommand.Next);
                 break;
 
+            case TaskbarThumbnailButtonId.PreviousChapter:
+            case TaskbarThumbnailButtonId.NextChapter:
+                RequestTaskbarChapterCommand(buttonId);
+                break;
+
             case TaskbarThumbnailButtonId.Donation:
                 ProcessHelp.ShellExecute(App.DonationUrl);
                 break;
@@ -95,4 +86,18 @@ public partial class MainForm
 
     void RequestTaskbarMediaTransportCommand(MediaTransportCommand command) =>
         _mediaTransport?.RequestCommand(new MediaTransportCommandEventArgs(command));
+
+    void RequestTaskbarChapterCommand(TaskbarThumbnailButtonId buttonId)
+    {
+        if (_managedResourcesDisposed || _closingInput || !_mediaTransportMediaLoaded || IsFullscreen)
+            return;
+
+        long displayedGeneration = _taskbarMediaGeneration;
+        int chapterCount = Player.GetPropertyInt("chapter-list/count");
+        string? command = TaskbarThumbnailControls.GetChapterCommand(
+            buttonId, _mediaTransportMediaLoaded, IsFullscreen, _managedResourcesDisposed || _closingInput,
+            chapterCount, displayedGeneration, Interlocked.Read(ref _mediaTransportGeneration));
+        if (command != null)
+            Player.Command(command);
+    }
 }

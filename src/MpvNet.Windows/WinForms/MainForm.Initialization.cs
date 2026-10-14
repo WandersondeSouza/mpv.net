@@ -59,6 +59,8 @@ public partial class MainForm
             foreach (string property in new[] { "metadata", "media-title", "duration", "seekable", "partially-seekable", "playlist-count", "eof-reached", "video-codec", "audio-codec", "track-list", "current-tracks/video/albumart", "current-tracks/video/external-filename" })
                 Player.ObserveProperty(property, UpdateMediaTransport);
 
+            Player.ObserveProperty("chapter-list", UpdateMediaTransport);
+
             Player.ObserveProperty("window-maximized", PropChangeWindowMaximized); // bool methods not working correctly
             Player.ObserveProperty("window-minimized", PropChangeWindowMinimized); // bool methods not working correctly
             Player.ObserveProperty("cursor-autohide", PropChangeCursorAutohide);
