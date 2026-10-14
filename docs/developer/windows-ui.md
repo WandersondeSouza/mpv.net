@@ -137,7 +137,10 @@ durante pausa; carga/fim de arquivo continuam limpando o estado nas transições
 Antes de executar o comando, o handler relê a contagem e verifica mídia
 carregada, fullscreen, encerramento e a geração de mídia usada ao compor a
 toolbar. Isso rejeita comandos de uma toolbar anterior durante a troca de arquivo.
-Tooltips reutilizam as traduções existentes de `Previous Chapter`/`Next Chapter`.
+Os cinco controles de mídia não usam `THBF_DISMISSONCLICK`, para manter a
+miniatura aberta após o clique e permitir comandos consecutivos. O botão de apoio
+usa essa flag porque abre a página externa no navegador. Tooltips reutilizam as
+traduções existentes de `Previous Chapter`/`Next Chapter`.
 
 Os glyphs dessa toolbar são desenhados com contraste adaptativo ao tema de
 aplicativos do Windows (`AppsUseLightTheme`): usam uma cor escura no tema claro

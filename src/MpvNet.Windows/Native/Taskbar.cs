@@ -226,7 +226,7 @@ public class Taskbar : IDisposable
                 hIcon = GetThumbnailIcon(button.Icon).Handle,
                 szTip = button.Tooltip,
                 dwFlags = (button.IsEnabled ? ThumbButtonFlagEnabled : ThumbButtonFlagDisabled) |
-                    ThumbButtonFlagDismissOnClick,
+                    (button.Id == TaskbarThumbnailButtonId.Donation ? ThumbButtonFlagDismissOnClick : 0),
             };
         }
 

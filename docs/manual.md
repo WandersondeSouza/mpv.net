@@ -73,7 +73,9 @@ Essa toolbar é uma integração
 Win32 separada do SMTC: o botão de apoio abre a página oficial para apoiar o
 MPV.NET no idioma atual da interface, enquanto os demais comandos reutilizam o
 fluxo de reprodução do player. Play/Pause alterna o estado diretamente no mpv.
-A toolbar aparece quando o Windows cria a miniatura da janela.
+Os comandos de mídia mantêm a miniatura aberta após o clique, permitindo usar
+outro controle em seguida; o botão de apoio fecha a miniatura ao abrir o
+navegador. A toolbar aparece quando o Windows cria a miniatura da janela.
 
 As associações automáticas atuais incluem:
 
