@@ -27,6 +27,7 @@ ações. Siga `.ai/README.md` e o pedido explícito do usuário.
 - [Refatoração de qualidade e ciclo de vida](code-quality-resource-lifecycle-refactor.md)
 - [Interações de mouse e teclado](player-input-click-pause-fullscreen.md) e [evolução de atalhos/gestos/OSC](player-input-future-shortcuts-gestures-osc.md)
 - [Migração SMTC/FluentFlyout/.NET 10](windows-smtc-fluentflyout-net10-migration.md)
+- [Melhorias de integração SMTC com o Windows](windows-smtc-integration-improvements.md), complemento incremental ao plano de migração
 - [Tooltip de doação na taskbar](taskbar-donation-tooltip-localization.md)
 
 Os planos por área descrevem escopos específicos e podem estar parcial ou
