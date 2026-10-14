@@ -109,7 +109,9 @@ public partial class MainPlayer
         SetPropertyBool("input-media-keys", true);
 
         SetPropertyString("autocreate-playlist", "filter");
-        SetPropertyString("media-controls", "yes");
+        // The desktop frontend owns SMTC for its HWND. Two publishers produce
+        // competing Windows sessions. Explicit mpv.conf/CLI values still win.
+        SetPropertyString("media-controls", formHandle == IntPtr.Zero ? "yes" : "no");
         SetPropertyString("idle", "yes");
         SetPropertyString("config-dir", ConfigFolder);
         Log.Debug($"Using mpv config directory: '{Log.SafeValue(ConfigFolder)}'");

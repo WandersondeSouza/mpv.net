@@ -31,6 +31,7 @@
 
 	<ItemGroup>
 		<Content Include="mpv-icon.ico" />
+		<EmbeddedResource Include="mpv-icon.ico" LogicalName="MpvNet.Windows.DefaultIcon.ico" />
 		<Content Include="Scripts\osc.lua">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using MpvNet.Windows.UI;
+using MpvNet.Windows.Native;
 
 using MpvNet;
 
@@ -48,6 +49,7 @@ public class Taskbar : IDisposable
     bool? _thumbnailIconsLightTheme;
     bool _disposed;
     bool _thumbnailToolbarAdded;
+    readonly TaskbarThumbnailButtonCache _thumbnailButtonCache = new();
 
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("EA1AFB91-9E28-4B86-90E9-9E9F8A5EEFAF")]
@@ -128,6 +130,7 @@ public class Taskbar : IDisposable
                 buttons,
                 (count, pointer) => _instance.ThumbBarAddButtons(Handle, count, pointer)));
             _thumbnailToolbarAdded = true;
+            _thumbnailButtonCache.Remember(buttons, Theme.IsWindowsLightTheme());
             return true;
         }
         catch (Exception ex)
@@ -147,15 +150,21 @@ public class Taskbar : IDisposable
         if (buttons.Count is < 1 or > 7)
             throw new ArgumentOutOfRangeException(nameof(buttons), "The taskbar thumbnail toolbar supports one to seven buttons.");
 
+        bool lightTheme = Theme.IsWindowsLightTheme();
+        if (_thumbnailButtonCache.IsCurrent(buttons, lightTheme))
+            return;
+
         try
         {
             ThrowIfFailed(InvokeThumbnailButtonOperation(
                 buttons,
                 (count, pointer) => _instance.ThumbBarUpdateButtons(Handle, count, pointer)));
+            _thumbnailButtonCache.Remember(buttons, lightTheme);
         }
         catch (Exception ex)
         {
             _thumbnailToolbarAdded = false;
+            _thumbnailButtonCache.Invalidate();
             Log.Debug($"Taskbar thumbnail toolbar update failed: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
         }
     }
@@ -167,7 +176,8 @@ public class Taskbar : IDisposable
         if (!_thumbnailToolbarAdded)
             return;
 
-        DisposeThumbnailIcons();
+        // UpdateThumbnailButtons compares both configuration and Windows theme;
+        // GetThumbnailIcon replaces icons only if their theme actually changed.
         UpdateThumbnailButtons(buttons);
     }
 

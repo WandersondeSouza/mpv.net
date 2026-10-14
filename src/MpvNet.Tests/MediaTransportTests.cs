@@ -8,6 +8,29 @@ using Xunit;
 public sealed class MediaTransportMetadataTests
 {
     [Fact]
+    public void MissingAlbumArtistAndUnsafeTagsStayEmpty()
+    {
+        MediaTransportMetadata metadata = MediaTransportMetadataBuilder.Build(new(
+            Path: @"C:\private\song.flac", MediaTitle: @"C:\private\song.flac", FileName: null,
+            HasVideo: false, HasAudio: true, Artist: "https://user:password@host/?token=private",
+            Album: @"C:\private\album", AlbumArtist: " "));
+        Assert.Equal("song", metadata.Title);
+        Assert.Null(metadata.Artist);
+        Assert.Null(metadata.Album);
+        Assert.Null(metadata.AlbumArtist);
+    }
+
+    [Theory]
+    [InlineData("https://user:password@example.com/song?token=private")]
+    [InlineData(@"\\server\share\cover.jpg")]
+    [InlineData("file:///C:/cover.jpg")]
+    [InlineData("relative/cover.jpg")]
+    public void ThumbnailSourcesCannotTriggerNetworkAccess(string path)
+    {
+        Assert.Null(MediaTransportMetadataBuilder.GetLocalMediaPath(path));
+    }
+
+    [Fact]
     public void PrefersSafeMediaTitle()
     {
         MediaTransportMetadata metadata = MediaTransportMetadataBuilder.Build(new(
@@ -60,12 +83,14 @@ public sealed class MediaTransportMetadataTests
             HasAudio: true,
             Artist: "Artist",
             Album: "Album",
+            AlbumArtist: "Album Artist",
             TrackNumber: 7,
             Subtitle: "ignored"));
 
         Assert.Equal(MediaTransportMediaType.Music, metadata.MediaType);
         Assert.Equal("Artist", metadata.Artist);
         Assert.Equal("Album", metadata.Album);
+        Assert.Equal("Album Artist", metadata.AlbumArtist);
         Assert.Equal((uint)7, metadata.TrackNumber);
         Assert.Null(metadata.Subtitle);
     }
@@ -90,6 +115,19 @@ public sealed class MediaTransportMetadataTests
 
 public sealed class MediaTransportControllerTests
 {
+    [Theory]
+    [InlineData(true, false, 120, true)]
+    [InlineData(false, false, 120, false)]
+    [InlineData(true, true, 120, false)]
+    [InlineData(true, false, 0, false)]
+    [InlineData(true, false, -1, false)]
+    [InlineData(true, false, double.NaN, false)]
+    [InlineData(true, false, double.PositiveInfinity, false)]
+    public void OnlyFiniteFullySeekableMediaSupportsSeeking(bool seekable, bool partial, double duration, bool expected)
+    {
+        Assert.Equal(expected, MediaTransportSnapshot.SupportsSeeking(seekable, partial, duration));
+    }
+
     [Fact]
     public void DoesNotAcceptCommandsBeforeMediaIsLoaded()
     {
@@ -226,6 +264,93 @@ public sealed class MediaTransportControllerTests
     }
 
     [Fact]
+    public void RejectsSeekAndJumpsWhenMpvSaysNotSeekable()
+    {
+        var (controller, fake, received) = CreateController(PlayingSnapshot() with { CanSeek = false });
+        using (controller)
+        {
+            fake.Raise(MediaTransportCommand.Seek, TimeSpan.FromSeconds(10));
+            fake.Raise(MediaTransportCommand.FastForward);
+            fake.Raise(MediaTransportCommand.Rewind);
+            Assert.Empty(received);
+        }
+    }
+
+    [Fact]
+    public void InvalidDurationsDisableSeek()
+    {
+        foreach (TimeSpan duration in new[] { TimeSpan.Zero, TimeSpan.FromSeconds(-1), TimeSpan.MaxValue })
+        {
+            var (controller, fake, received) = CreateController(PlayingSnapshot() with { Duration = duration });
+            using (controller)
+            {
+                Assert.False(controller.Snapshot.CanSeek);
+                fake.Raise(MediaTransportCommand.Seek, TimeSpan.FromSeconds(10));
+                fake.Raise(MediaTransportCommand.FastForward);
+                Assert.Empty(received);
+            }
+        }
+    }
+
+    [Fact]
+    public void InvalidSecondsNeverOverflowOrEnableSeeking()
+    {
+        foreach (double value in new[] { double.NaN, double.PositiveInfinity, double.NegativeInfinity, double.MaxValue, -1, 0 })
+            Assert.Equal(TimeSpan.Zero, MediaTransportSnapshot.FromSeconds(value));
+        Assert.Equal(TimeSpan.FromSeconds(1.5), MediaTransportSnapshot.FromSeconds(1.5));
+    }
+
+    [Fact]
+    public void RejectsMissingAndSentinelSeekPositions()
+    {
+        var (controller, fake, received) = CreateController(PlayingSnapshot());
+        using (controller)
+        {
+            fake.Raise(MediaTransportCommand.Seek);
+            fake.Raise(MediaTransportCommand.Seek, TimeSpan.MaxValue);
+            fake.Raise(MediaTransportCommand.Seek, TimeSpan.MinValue);
+            Assert.Empty(received);
+        }
+    }
+
+    [Fact]
+    public void JumpsUseFiveSecondsAndRespectBothEnds()
+    {
+        var (controller, fake, received) = CreateController(PlayingSnapshot());
+        using (controller)
+        {
+            fake.Raise(MediaTransportCommand.FastForward);
+            fake.Raise(MediaTransportCommand.Rewind);
+            Assert.Equal(2, received.Count);
+            Assert.Equal(TimeSpan.FromSeconds(15), MediaTransportController.GetSeekPosition(controller.Snapshot, received[0]));
+            Assert.Equal(TimeSpan.FromSeconds(5), MediaTransportController.GetSeekPosition(controller.Snapshot, received[1]));
+            Assert.Equal(TimeSpan.FromMinutes(2), MediaTransportController.GetSeekPosition(
+                controller.Snapshot with { Position = TimeSpan.FromSeconds(119) }, received[0]));
+            Assert.Equal(TimeSpan.Zero, MediaTransportController.GetSeekPosition(
+                controller.Snapshot with { Position = TimeSpan.FromSeconds(1) }, received[1]));
+            // The position when the command executes is authoritative, not the timer's snapshot.
+            Assert.Equal(TimeSpan.FromSeconds(45), MediaTransportController.GetSeekPosition(
+                controller.Snapshot with { Position = TimeSpan.FromSeconds(40) }, received[0]));
+        }
+    }
+
+    [Fact]
+    public void EqualSnapshotsDoNotRepublishButTimelineAndMediaChangesDo()
+    {
+        var (controller, fake, _) = CreateController(PlayingSnapshot());
+        using (controller)
+        {
+            int count = fake.Published.Count;
+            controller.Publish(PlayingSnapshot());
+            Assert.Equal(count, fake.Published.Count);
+            controller.Publish(PlayingSnapshot() with { Position = TimeSpan.FromSeconds(20) });
+            Assert.Equal(count + 1, fake.Published.Count);
+            controller.Publish(PlayingSnapshot() with { Metadata = new("Other", MediaTransportMediaType.Video) });
+            Assert.Equal(count + 2, fake.Published.Count);
+        }
+    }
+
+    [Fact]
     public void RejectsCommandsWhoseButtonsAreDisabled()
     {
         var (controller, fake, received) = CreateController(PlayingSnapshot() with { CanPause = false, CanStop = false });
@@ -335,7 +460,8 @@ public sealed class MediaTransportControllerTests
         CanNext: true,
         Metadata: new MediaTransportMetadata("Track", MediaTransportMediaType.Music),
         Duration: TimeSpan.FromMinutes(2),
-        Position: TimeSpan.FromSeconds(10));
+        Position: TimeSpan.FromSeconds(10),
+        CanSeek: true);
 }
 
 sealed class FakeMediaTransportService : IMediaTransportService

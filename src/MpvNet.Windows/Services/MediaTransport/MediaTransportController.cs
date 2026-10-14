@@ -6,6 +6,7 @@ public sealed class MediaTransportController : IDisposable
     readonly Action<MediaTransportCommandEventArgs> _commandHandler;
     readonly object _sync = new();
     MediaTransportSnapshot _snapshot = MediaTransportSnapshot.Disabled;
+    MediaTransportSnapshot? _published;
     bool _initialized;
     bool _suspended;
     bool _disposed;
@@ -85,6 +86,7 @@ public sealed class MediaTransportController : IDisposable
                 return;
 
             _suspended = true;
+            _published = null;
         }
 
         try
@@ -125,13 +127,20 @@ public sealed class MediaTransportController : IDisposable
 
     void TryPublish(MediaTransportSnapshot snapshot)
     {
-        try
+        lock (_sync)
         {
-            _service.Publish(snapshot);
-        }
-        catch (Exception ex)
-        {
-            Log.Debug($"SMTC controller publish failed: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
+            if (_disposed || _suspended || snapshot == _published)
+                return;
+
+            try
+            {
+                _service.Publish(snapshot);
+                _published = snapshot;
+            }
+            catch (Exception ex)
+            {
+                Log.Debug($"SMTC controller publish failed: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
+            }
         }
     }
 
@@ -154,19 +163,40 @@ public sealed class MediaTransportController : IDisposable
                     accepted = new MediaTransportCommandEventArgs(args.Command);
                     break;
 
-                case MediaTransportCommand.Seek when args.Position is TimeSpan requested &&
-                    _snapshot.Duration > TimeSpan.Zero:
-                    TimeSpan position = requested < TimeSpan.Zero ? TimeSpan.Zero : requested;
-                    if (position > _snapshot.Duration)
-                        position = _snapshot.Duration;
-
-                    accepted = new MediaTransportCommandEventArgs(MediaTransportCommand.Seek, position);
+                case MediaTransportCommand.Seek when GetSeekPosition(_snapshot, args) is TimeSpan position:
+                    accepted = new MediaTransportCommandEventArgs(args.Command, position);
+                    break;
+                case MediaTransportCommand.FastForward when _snapshot.CanSeek:
+                case MediaTransportCommand.Rewind when _snapshot.CanSeek:
+                    accepted = new MediaTransportCommandEventArgs(args.Command);
                     break;
             }
         }
 
         if (accepted != null)
             _commandHandler(accepted);
+    }
+
+    // Matches the default Left/Right shortcuts. Re-evaluate against the real player
+    // position on the UI thread instead of seeking relative to a five-second snapshot.
+    public static TimeSpan? GetSeekPosition(MediaTransportSnapshot snapshot, MediaTransportCommandEventArgs args)
+    {
+        snapshot = snapshot.Normalize();
+        if (!snapshot.CanSeek)
+            return null;
+
+        TimeSpan? requested = args.Command switch
+        {
+            MediaTransportCommand.Seek when args.Position != TimeSpan.MaxValue && args.Position != TimeSpan.MinValue => args.Position,
+            MediaTransportCommand.FastForward => snapshot.Duration - snapshot.Position < TimeSpan.FromSeconds(5)
+                ? snapshot.Duration : snapshot.Position + TimeSpan.FromSeconds(5),
+            MediaTransportCommand.Rewind => snapshot.Position < TimeSpan.FromSeconds(5)
+                ? TimeSpan.Zero : snapshot.Position - TimeSpan.FromSeconds(5),
+            _ => null,
+        };
+        return requested is TimeSpan value
+            ? value < TimeSpan.Zero ? TimeSpan.Zero : value > snapshot.Duration ? snapshot.Duration : value
+            : null;
     }
 
     public void Dispose()

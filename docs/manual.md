@@ -45,13 +45,21 @@ manualmente para imagens e remove a pasta instalada do `PATH`.
 
 Durante a reprodução, o MPV.NET publica a mídia ativa nos controles de mídia do
 Windows 10/11. O painel pode mostrar título, artista/álbum quando o arquivo
-fornecer essas tags, duração e posição, além de Play, Pause, Stop, Previous,
-Next e seek.
+fornecer essas tags, artista do álbum, capa disponível, duração e posição,
+além de Play, Pause, Stop, Previous, Next e seek. A busca só fica disponível
+quando o mpv informa mídia pesquisável com duração finita e positiva. Fast
+Forward/Rewind, quando oferecidos pelo Windows, saltam 5 segundos dentro dos
+limites da mídia, sem mudar a velocidade de reprodução.
 
 O recurso usa o HWND da janela principal e não depende do FluentFlyout. Ele é
-desativado enquanto a janela está em fullscreen, quando não há mídia carregada
-e durante o encerramento; ao sair do fullscreen, a sessão é restaurada. URLs
+mantém a sessão e os comandos ativos também em fullscreen. A sessão é limpa
+quando não há mídia carregada e durante o encerramento. URLs
 com credenciais, query strings ou fragmentos não são publicados como título.
+
+A capa é opcional: usa imagem local de capa já selecionada pelo mpv ou miniatura
+incorporada/em cache fornecida pelo Windows. Não há download de capas; mídia
+remota e arquivos offline não são acessados para esse fim. Quando uma imagem
+não está disponível ou falha, os controles mostram o ícone padrão do MPV.NET.
 
 A miniatura da janela na barra de tarefas também oferece uma toolbar com
 Anterior, Play/Pause, Próximo e um botão de apoio. Essa toolbar é uma integração

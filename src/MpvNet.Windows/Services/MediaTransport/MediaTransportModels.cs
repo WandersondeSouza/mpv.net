@@ -10,6 +10,8 @@ public enum MediaTransportCommand
     Next,
     Previous,
     Seek,
+    FastForward,
+    Rewind,
 }
 
 public enum MediaTransportPlaybackStatus
@@ -34,7 +36,9 @@ public sealed record MediaTransportMetadata(
     string? Album = null,
     uint? TrackNumber = null,
     string? Subtitle = null,
-    string? ThumbnailPath = null)
+    string? ThumbnailPath = null,
+    string? AlbumArtist = null,
+    string? LocalMediaPath = null)
 {
     public string DisplayTitle => string.IsNullOrWhiteSpace(Title) ? "Untitled" : Title.Trim();
 }
@@ -50,7 +54,8 @@ public sealed record MediaTransportSnapshot(
     bool CanNext,
     MediaTransportMetadata? Metadata,
     TimeSpan Duration,
-    TimeSpan Position)
+    TimeSpan Position,
+    bool CanSeek = false)
 {
     public static MediaTransportSnapshot Disabled => new(
         IsEnabled: false,
@@ -85,6 +90,7 @@ public sealed record MediaTransportSnapshot(
             CanStop = enabled && CanStop,
             CanPrevious = enabled && CanPrevious,
             CanNext = enabled && CanNext,
+            CanSeek = enabled && CanSeek && duration > TimeSpan.Zero,
             PlaybackStatus = enabled ? PlaybackStatus : MediaTransportPlaybackStatus.Closed,
             Duration = duration,
             Position = position,
@@ -93,6 +99,13 @@ public sealed record MediaTransportSnapshot(
 
     static bool IsFiniteNonNegative(TimeSpan value) =>
         value >= TimeSpan.Zero && value != TimeSpan.MaxValue;
+
+    public static TimeSpan FromSeconds(double seconds) =>
+        double.IsFinite(seconds) && seconds > 0 && seconds < TimeSpan.MaxValue.TotalSeconds
+            ? TimeSpan.FromSeconds(seconds) : TimeSpan.Zero;
+
+    public static bool SupportsSeeking(bool seekable, bool partiallySeekable, double durationSeconds) =>
+        seekable && !partiallySeekable && FromSeconds(durationSeconds) > TimeSpan.Zero;
 }
 
 public sealed class MediaTransportCommandEventArgs(MediaTransportCommand command, TimeSpan? position = null) : EventArgs

@@ -1,5 +1,8 @@
 using Windows.Foundation;
 using Windows.Media;
+using Windows.Storage.Streams;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MpvNet.Windows.Services.MediaTransport;
 
@@ -10,6 +13,17 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
     TypedEventHandler<SystemMediaTransportControls, SystemMediaTransportControlsButtonPressedEventArgs>? _buttonPressedHandler;
     TypedEventHandler<SystemMediaTransportControls, PlaybackPositionChangeRequestedEventArgs>? _positionChangeRequestedHandler;
     bool _disposed;
+    bool _positionChangeSubscribed;
+    MediaTransportSnapshot? _published;
+    CancellationTokenSource? _thumbnailCancellation;
+    IRandomAccessStream? _thumbnailStream;
+    readonly Func<MediaTransportMetadata, CancellationToken, Task<IRandomAccessStream?>> _thumbnailLoader;
+
+    public WindowsSystemMediaTransportService(
+        Func<MediaTransportMetadata, CancellationToken, Task<IRandomAccessStream?>>? thumbnailLoader = null)
+    {
+        _thumbnailLoader = thumbnailLoader ?? MediaTransportThumbnailLoader.LoadAsync;
+    }
 
     public bool IsAvailable
     {
@@ -35,7 +49,6 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
                 _buttonPressedHandler = (_, args) => OnButtonPressed(args.Button);
                 _positionChangeRequestedHandler = (_, args) => OnPositionChangeRequested(args.RequestedPlaybackPosition);
                 _controls.ButtonPressed += _buttonPressedHandler;
-                _controls.PlaybackPositionChangeRequested += _positionChangeRequestedHandler;
                 Log.Debug($"SMTC initialized. windowHandle={windowHandle}");
             }
             catch (Exception ex)
@@ -66,15 +79,25 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
                     return;
                 }
 
-                PublishMetadataUnsafe(normalized.Metadata);
-                _controls.IsEnabled = true;
-                _controls.IsPlayEnabled = normalized.CanPlay;
-                _controls.IsPauseEnabled = normalized.CanPause;
-                _controls.IsStopEnabled = normalized.CanStop;
-                _controls.IsPreviousEnabled = normalized.CanPrevious;
-                _controls.IsNextEnabled = normalized.CanNext;
-                _controls.PlaybackStatus = ToWindowsPlaybackStatus(normalized.PlaybackStatus);
+                if (_published?.Metadata != normalized.Metadata)
+                {
+                    Log.Debug($"SMTC metadata changed. type={normalized.Metadata.MediaType}, localCover={normalized.Metadata.ThumbnailPath != null}");
+                    ClearThumbnailUnsafe();
+                    PublishMetadataUnsafe(normalized.Metadata);
+                    StartThumbnailUnsafe(normalized.Metadata);
+                }
+                if (_published?.IsEnabled != true) _controls.IsEnabled = true;
+                if (_published?.CanPlay != normalized.CanPlay) _controls.IsPlayEnabled = normalized.CanPlay;
+                if (_published?.CanPause != normalized.CanPause) _controls.IsPauseEnabled = normalized.CanPause;
+                if (_published?.CanStop != normalized.CanStop) _controls.IsStopEnabled = normalized.CanStop;
+                if (_published?.CanPrevious != normalized.CanPrevious) _controls.IsPreviousEnabled = normalized.CanPrevious;
+                if (_published?.CanNext != normalized.CanNext) _controls.IsNextEnabled = normalized.CanNext;
+                if (_published?.CanSeek != normalized.CanSeek)
+                    SetSeekEnabledUnsafe(normalized.CanSeek);
+                if (_published?.PlaybackStatus != normalized.PlaybackStatus)
+                    _controls.PlaybackStatus = ToWindowsPlaybackStatus(normalized.PlaybackStatus);
                 UpdateTimelineUnsafe(normalized);
+                _published = normalized;
             }
             catch (Exception ex)
             {
@@ -134,6 +157,7 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
             properties.Title = metadata.DisplayTitle;
             properties.Artist = metadata.Artist ?? "";
             properties.AlbumTitle = metadata.Album ?? "";
+            properties.AlbumArtist = metadata.AlbumArtist ?? "";
             properties.TrackNumber = metadata.TrackNumber ?? 0;
         }
 
@@ -145,7 +169,7 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
         TimeSpan duration = snapshot.Duration;
         TimeSpan position = snapshot.Position;
 
-        if (duration <= TimeSpan.Zero || duration == TimeSpan.MaxValue)
+        if (!snapshot.CanSeek)
         {
             _controls!.UpdateTimelineProperties(new SystemMediaTransportControlsTimelineProperties());
             return;
@@ -168,17 +192,103 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
 
     void DisableUnsafe()
     {
+        ClearThumbnailUnsafe();
+        if (_published == MediaTransportSnapshot.Disabled)
+            return;
+
         _controls!.IsPlayEnabled = false;
         _controls.IsPauseEnabled = false;
         _controls.IsStopEnabled = false;
         _controls.IsPreviousEnabled = false;
         _controls.IsNextEnabled = false;
+        SetSeekEnabledUnsafe(false);
         _controls.PlaybackStatus = MediaPlaybackStatus.Closed;
         _controls.IsEnabled = false;
         _controls.DisplayUpdater.ClearAll();
         _controls.DisplayUpdater.Thumbnail = null;
         _controls.DisplayUpdater.Update();
         _controls.UpdateTimelineProperties(new SystemMediaTransportControlsTimelineProperties());
+        _published = MediaTransportSnapshot.Disabled;
+    }
+
+    void SetSeekEnabledUnsafe(bool enabled)
+    {
+        _controls!.IsFastForwardEnabled = enabled;
+        _controls.IsRewindEnabled = enabled;
+        if (enabled == _positionChangeSubscribed || _positionChangeRequestedHandler == null)
+            return;
+
+        if (enabled)
+            _controls.PlaybackPositionChangeRequested += _positionChangeRequestedHandler;
+        else
+            _controls.PlaybackPositionChangeRequested -= _positionChangeRequestedHandler;
+        _positionChangeSubscribed = enabled;
+    }
+
+    void ClearThumbnailUnsafe()
+    {
+        _thumbnailCancellation?.Cancel();
+        _thumbnailCancellation?.Dispose();
+        _thumbnailCancellation = null;
+        IRandomAccessStream? stream = _thumbnailStream;
+        _thumbnailStream = null;
+        try
+        {
+            if (_controls != null)
+                _controls.DisplayUpdater.Thumbnail = null;
+        }
+        finally
+        {
+            stream?.Dispose();
+        }
+    }
+
+    void StartThumbnailUnsafe(MediaTransportMetadata metadata)
+    {
+        _thumbnailCancellation = new CancellationTokenSource();
+        CancellationToken token = _thumbnailCancellation.Token;
+        // All file access and image inspection run off the player/UI thread.
+        Task.Run(async () =>
+        {
+            IRandomAccessStream? stream = null;
+            try
+            {
+                token.ThrowIfCancellationRequested();
+                try
+                {
+                    stream = await _thumbnailLoader(metadata, token).ConfigureAwait(false);
+                }
+                catch (OperationCanceledException) when (token.IsCancellationRequested) { throw; }
+                catch (Exception ex)
+                {
+                    Log.Debug($"SMTC cover unavailable: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
+                }
+                bool defaultIcon = stream == null;
+                stream ??= await MediaTransportThumbnailLoader.LoadDefaultIconAsync(token).ConfigureAwait(false);
+                lock (_sync)
+                {
+                    if (stream == null || token.IsCancellationRequested || _disposed || _controls == null ||
+                        _published?.Metadata != metadata)
+                        return;
+
+                    _controls.DisplayUpdater.Thumbnail = RandomAccessStreamReference.CreateFromStream(stream);
+                    _controls.DisplayUpdater.Update();
+                    Log.Debug($"SMTC thumbnail published. applicationIcon={defaultIcon}");
+                    _thumbnailStream = stream;
+                    stream = null; // Owned until media changes or the service closes.
+                }
+            }
+            catch (OperationCanceledException) when (token.IsCancellationRequested) { }
+            catch (Exception ex)
+            {
+                // A missing/bad cover must never disable transport controls.
+                Log.Debug($"SMTC thumbnail unavailable: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
+            }
+            finally
+            {
+                stream?.Dispose();
+            }
+        });
     }
 
     void OnButtonPressed(SystemMediaTransportControlsButton button)
@@ -190,15 +300,25 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
             SystemMediaTransportControlsButton.Stop => MediaTransportCommand.Stop,
             SystemMediaTransportControlsButton.Next => MediaTransportCommand.Next,
             SystemMediaTransportControlsButton.Previous => MediaTransportCommand.Previous,
+            SystemMediaTransportControlsButton.FastForward => MediaTransportCommand.FastForward,
+            SystemMediaTransportControlsButton.Rewind => MediaTransportCommand.Rewind,
             _ => null,
         };
 
         if (command is MediaTransportCommand value)
-            CommandRequested?.Invoke(this, new MediaTransportCommandEventArgs(value));
+            RaiseCommand(new MediaTransportCommandEventArgs(value));
     }
 
     void OnPositionChangeRequested(TimeSpan position) =>
-        CommandRequested?.Invoke(this, new MediaTransportCommandEventArgs(MediaTransportCommand.Seek, position));
+        RaiseCommand(new MediaTransportCommandEventArgs(MediaTransportCommand.Seek, position));
+
+    void RaiseCommand(MediaTransportCommandEventArgs args)
+    {
+        EventHandler<MediaTransportCommandEventArgs>? handler;
+        lock (_sync)
+            handler = _disposed ? null : CommandRequested;
+        handler?.Invoke(this, args);
+    }
 
     static MediaPlaybackStatus ToWindowsPlaybackStatus(MediaTransportPlaybackStatus status) => status switch
     {
@@ -223,8 +343,11 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
                 {
                     if (_buttonPressedHandler != null)
                         _controls.ButtonPressed -= _buttonPressedHandler;
-                    if (_positionChangeRequestedHandler != null)
+                    if (_positionChangeSubscribed && _positionChangeRequestedHandler != null)
+                    {
                         _controls.PlaybackPositionChangeRequested -= _positionChangeRequestedHandler;
+                        _positionChangeSubscribed = false;
+                    }
                     DisableUnsafe();
                 }
                 catch (Exception ex)

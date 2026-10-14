@@ -26,8 +26,11 @@ public partial class MainForm
         _taskbar?.UpdateThumbnailButtons(BuildTaskbarThumbnailButtons(snapshot));
     }
 
-    static TaskbarThumbnailButton[] BuildTaskbarThumbnailButtons(MediaTransportSnapshot snapshot)
+    TaskbarThumbnailButton[] BuildTaskbarThumbnailButtons(MediaTransportSnapshot snapshot)
     {
+        if (IsFullscreen)
+            snapshot = MediaTransportSnapshot.Disabled;
+
         bool isPlaying = snapshot.PlaybackStatus == MediaTransportPlaybackStatus.Playing;
 
         return new[]

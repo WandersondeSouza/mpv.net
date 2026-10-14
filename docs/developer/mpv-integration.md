@@ -130,7 +130,12 @@ Os controles de mídia não alteram o wrapper libmpv. A camada Windows observa o
 eventos `start-file`, `file-loaded`, `end-file`, `pause`, `seek`,
 `playback-restart` e `playlist-pos`, consulta propriedades somente para
 metadata/timeline e converte os comandos do SMTC em `CommandV` (`set pause`,
-`stop`, `playlist-next`, `playlist-prev` e `seek absolute`). O player continua
+`stop`, `playlist-next`, `playlist-prev` e `seek absolute+exact`). A capacidade de
+busca combina `seekable` com duração finita e positiva. Fast Forward/Rewind
+calculam saltos de 5 segundos a partir da posição real, limitados à duração,
+e reutilizam seek sem alterar a velocidade. A sessão permanece ativa em
+fullscreen; o timer de timeline usa 5 segundos durante reprodução, com
+atualizações imediatas por eventos. O player continua
 responsável pela reprodução e a integração é desligada se o SMTC não estiver
 disponível.
 

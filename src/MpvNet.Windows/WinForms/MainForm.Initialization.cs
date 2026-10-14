@@ -48,10 +48,16 @@ public partial class MainForm
                 new WindowsSystemMediaTransportService(),
                 HandleMediaTransportCommand);
 #pragma warning restore CA2000
-            _mediaTransport.Initialize(Handle);
-            _mediaTransportTimer = new System.Windows.Forms.Timer { Interval = 500 };
+            if (!Player.GetPropertyBool("media-controls", false))
+                _mediaTransport.Initialize(Handle);
+            else
+                Log.Debug("SMTC frontend skipped: native mpv media-controls explicitly enabled.");
+            _mediaTransportTimer = new System.Windows.Forms.Timer { Interval = 5000 };
             _mediaTransportTimer.Tick += MediaTransportTimer_Tick;
             UpdateMediaTransport();
+
+            foreach (string property in new[] { "metadata", "media-title", "duration", "seekable", "partially-seekable", "playlist-count", "eof-reached", "video-codec", "audio-codec", "track-list", "current-tracks/video/albumart", "current-tracks/video/external-filename" })
+                Player.ObserveProperty(property, UpdateMediaTransport);
 
             Player.ObserveProperty("window-maximized", PropChangeWindowMaximized); // bool methods not working correctly
             Player.ObserveProperty("window-minimized", PropChangeWindowMinimized); // bool methods not working correctly

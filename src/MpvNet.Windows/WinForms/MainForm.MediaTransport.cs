@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Threading;
 
 using MpvNet;
 using MpvNet.Native;
@@ -8,9 +9,12 @@ namespace MpvNet.Windows.WinForms;
 
 public partial class MainForm
 {
+    long _mediaTransportGeneration;
+
     void Player_StartFile()
     {
         _videoClick.Invalidate();
+        Interlocked.Increment(ref _mediaTransportGeneration);
         _mediaTransportMediaLoaded = false;
         RunOnUiThread(UpdateMediaTransport);
     }
@@ -18,6 +22,7 @@ public partial class MainForm
     void Player_EndFile(LibMpv.mpv_end_file_reason reason)
     {
         _videoClick.Invalidate();
+        Interlocked.Increment(ref _mediaTransportGeneration);
         _mediaTransportMediaLoaded = false;
         RunOnUiThread(UpdateMediaTransport);
     }
@@ -32,12 +37,19 @@ public partial class MainForm
     {
         if (InvokeRequired)
         {
-            RunOnUiThread(() => HandleMediaTransportCommand(args));
+            long generation = Interlocked.Read(ref _mediaTransportGeneration);
+            RunOnUiThread(() =>
+            {
+                if (generation == Interlocked.Read(ref _mediaTransportGeneration))
+                    HandleMediaTransportCommand(args);
+            });
             return;
         }
 
-        if (_managedResourcesDisposed || !_mediaTransportMediaLoaded)
+        if (_managedResourcesDisposed || _closingInput || !_mediaTransportMediaLoaded)
             return;
+
+        Log.Debug($"Media transport command: {args.Command}");
 
         switch (args.Command)
         {
@@ -57,18 +69,25 @@ public partial class MainForm
             case MediaTransportCommand.Previous:
                 Player.CommandV("playlist-prev", "force");
                 break;
-            case MediaTransportCommand.Seek when args.Position is TimeSpan position:
+            case MediaTransportCommand.Seek:
+            case MediaTransportCommand.FastForward:
+            case MediaTransportCommand.Rewind:
+                if (MediaTransportController.GetSeekPosition(BuildMediaTransportSnapshot(), args) is not TimeSpan position)
+                    break;
+
+                // Use the current mpv position for relative jumps, clamped to the valid range.
+                // PlaybackRestart publishes the actual seek result.
                 Player.CommandV(
                     "seek",
                     position.TotalSeconds.ToString(CultureInfo.InvariantCulture),
-                    "absolute");
+                    "absolute+exact");
                 break;
         }
     }
 
     void UpdateMediaTransport()
     {
-        if (_mediaTransport == null || _managedResourcesDisposed)
+        if (_mediaTransport == null || _managedResourcesDisposed || _closingInput)
             return;
 
         if (InvokeRequired)
@@ -81,7 +100,7 @@ public partial class MainForm
         _mediaTransport.Publish(snapshot);
         UpdateTaskbarThumbnail(snapshot);
 
-        if (snapshot.IsEnabled && snapshot.PlaybackStatus == MediaTransportPlaybackStatus.Playing)
+        if (_mediaTransport.IsAvailable && snapshot.IsEnabled && snapshot.PlaybackStatus == MediaTransportPlaybackStatus.Playing)
             _mediaTransportTimer?.Start();
         else
             _mediaTransportTimer?.Stop();
@@ -92,7 +111,7 @@ public partial class MainForm
         string path = Player.GetPropertyString("path");
         bool mediaLoaded = _mediaTransportMediaLoaded && !string.IsNullOrWhiteSpace(path);
 
-        if (!mediaLoaded || IsFullscreen)
+        if (!mediaLoaded)
             return MediaTransportSnapshot.Disabled;
 
         int playlistCount = Math.Max(0, Player.GetPropertyInt("playlist-count"));
@@ -109,7 +128,8 @@ public partial class MainForm
                 ? MediaTransportPlaybackStatus.Paused
                 : MediaTransportPlaybackStatus.Playing;
 
-        bool hasVideo = FileTypes.IsVideoFile(path) || !string.IsNullOrWhiteSpace(Player.GetPropertyString("video-codec"));
+        bool albumArt = Player.GetPropertyBool("current-tracks/video/albumart", false);
+        bool hasVideo = !albumArt && (FileTypes.IsVideoFile(path) || !string.IsNullOrWhiteSpace(Player.GetPropertyString("video-codec")));
         bool hasAudio = FileTypes.IsAudioFile(path) || !string.IsNullOrWhiteSpace(Player.GetPropertyString("audio-codec"));
         string? trackText = Player.GetPropertyString("metadata/by-key/track");
         uint? trackNumber = uint.TryParse(trackText, NumberStyles.Integer, CultureInfo.InvariantCulture, out uint track)
@@ -126,8 +146,12 @@ public partial class MainForm
             Artist: Player.GetPropertyString("metadata/by-key/artist"),
             Album: Player.GetPropertyString("metadata/by-key/album"),
             TrackNumber: trackNumber,
-            Subtitle: AppInfo.Product));
+            Subtitle: AppInfo.Product,
+            AlbumArtist: Player.GetPropertyString("metadata/by-key/album_artist") is { Length: > 0 } albumArtist
+                ? albumArtist : Player.GetPropertyString("metadata/by-key/albumartist"),
+            ThumbnailPath: albumArt ? Player.GetPropertyString("current-tracks/video/external-filename") : null));
 
+        double durationSeconds = Player.GetPropertyDouble("duration", false);
         return new MediaTransportSnapshot(
             IsEnabled: true,
             IsMediaLoaded: true,
@@ -138,15 +162,12 @@ public partial class MainForm
             CanPrevious: canPrevious,
             CanNext: canNext,
             Metadata: metadata,
-            Duration: NormalizeDuration(Player.Duration),
-            Position: NormalizePosition(Player.GetPropertyDouble("time-pos", false)));
+            Duration: MediaTransportSnapshot.FromSeconds(durationSeconds),
+            Position: MediaTransportSnapshot.FromSeconds(Player.GetPropertyDouble("time-pos", false)),
+            CanSeek: MediaTransportSnapshot.SupportsSeeking(
+                Player.GetPropertyBool("seekable", false),
+                Player.GetPropertyBool("partially-seekable", false), durationSeconds));
     }
-
-    static TimeSpan NormalizeDuration(TimeSpan value) =>
-        value < TimeSpan.Zero || value == TimeSpan.MaxValue ? TimeSpan.Zero : value;
-
-    static TimeSpan NormalizePosition(double seconds) =>
-        double.IsFinite(seconds) && seconds > 0 ? TimeSpan.FromSeconds(seconds) : TimeSpan.Zero;
 
     void RunOnUiThread(Action action)
     {

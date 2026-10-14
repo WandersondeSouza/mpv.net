@@ -1226,6 +1226,7 @@ public partial class MainForm : Form
     protected override void OnFormClosing(FormClosingEventArgs e)
     {
         DisposeVideoClick();
+        _mediaTransportTimer?.Stop();
         _mediaTransportMediaLoaded = false;
         _mediaTransport?.Suspend();
         base.OnFormClosing(e);
