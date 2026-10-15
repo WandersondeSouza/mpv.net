@@ -19,6 +19,10 @@ ações. Siga `.ai/README.md` e o pedido explícito do usuário.
 - [Tradução e documentação pt-BR](ptbr-translation-docs.md)
 - [Auditoria de build, release, ZIP e Store](release-portable-audit.md)
 
+## Correções pontuais
+
+- [Vídeo congela enquanto o áudio continua em mídia online](youtube-video-freeze-audio-continues.md)
+
 ## Planos por área
 
 - [Auditoria incremental de confiabilidade de reprodução](playback-reliability-deep-audit.md)
