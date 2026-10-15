@@ -6,14 +6,16 @@ store a literal value.
 BuildVersion.props remains the canonical source for the Windows executable,
 portable ZIP and Inno Setup installer. The MSIX manifest also needs a literal
 Identity Version, but Microsoft Store packages require the revision component
-to be zero, so this script writes major.minor.build.0 to Package.appxmanifest.
+to be zero. StoreVersion optionally keeps the Store on a separate version.
 
 #>
 
 param(
     [string] $Version,
 
-    [switch] $IncrementRevision
+    [switch] $IncrementRevision,
+
+    [string] $StoreVersion
 )
 
 $ErrorActionPreference = 'Stop'
@@ -71,7 +73,12 @@ function Get-StorePackageVersion([version] $ReleaseVersion) {
         0)
 }
 
-$storePackageVersionText = (Get-StorePackageVersion $nextVersion).ToString()
+$storePackageVersion = if ($StoreVersion) { [version] $StoreVersion } else { Get-StorePackageVersion $nextVersion }
+Assert-FourPartVersion $storePackageVersion
+if ($storePackageVersion.Revision -ne 0) {
+    throw 'StoreVersion must have revision zero.'
+}
+$storePackageVersionText = $storePackageVersion.ToString()
 
 $versionText = [System.IO.File]::ReadAllText($versionFile)
 $updatedVersionText = [regex]::Replace(
@@ -83,7 +90,15 @@ if ($updatedVersionText -eq $versionText -and $versionText -notmatch "<MpvNetVer
     throw "MpvNetVersion node not found in $versionFile."
 }
 
-[System.IO.File]::WriteAllText($versionFile, $updatedVersionText, [System.Text.UTF8Encoding]::new($true))
+if ($updatedVersionText -match '<MpvNetStoreVersion>[^<]+</MpvNetStoreVersion>') {
+    $updatedVersionText = [regex]::Replace($updatedVersionText,
+        '<MpvNetStoreVersion>[^<]+</MpvNetStoreVersion>',
+        "<MpvNetStoreVersion>$storePackageVersionText</MpvNetStoreVersion>", 1)
+}
+else {
+    $updatedVersionText = $updatedVersionText.Replace('</MpvNetVersion>',
+        "</MpvNetVersion>$([Environment]::NewLine)    <MpvNetStoreVersion>$storePackageVersionText</MpvNetStoreVersion>")
+}
 
 $manifestText = [System.IO.File]::ReadAllText($manifestFile)
 if ($manifestText -notmatch '(?s)<Identity\b[^>]*\bVersion="[^"]+"') {
@@ -95,6 +110,7 @@ $updatedManifestText = [regex]::Replace(
     '(?s)(<Identity\b[^>]*\bVersion=")[^"]+(")',
     "`${1}$storePackageVersionText`${2}",
     1)
+[System.IO.File]::WriteAllText($versionFile, $updatedVersionText, [System.Text.UTF8Encoding]::new($true))
 [System.IO.File]::WriteAllText($manifestFile, $updatedManifestText, [System.Text.UTF8Encoding]::new($true))
 
 Write-Host "Release version set to $nextVersionText"

@@ -198,7 +198,7 @@ A identidade reservada atual do pacote e `24183GestodeSistemas.MPV.NETMediaPlaye
 O pacote publicado na Microsoft Store usa o `Package/Properties/PublisherDisplayName` `Gestão de Sistemas`, o `Package Family Name` `24183GestodeSistemas.MPV.NETMediaPlayer_ex0zyz39hzsk6` e o `ID da Store` `9N441SP6XHLD`.
 Link profundo da Store: `ms-windows-store://pdp/?productid=9N441SP6XHLD`
 URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
-O auto incremento de revisão do MSIX fica desativado. A Microsoft Store exige revisão zero no `Identity Version`. `BuildVersion.props` mantém a versão pública completa do executável, ZIP e instalador; `Package.appxmanifest` usa a mesma versão com revisão zero. Use `src\Tools\set-release-version.ps1` para atualizar os dois arquivos juntos.
+O auto incremento de revisão do MSIX fica desativado. A Microsoft Store exige revisão zero no `Identity Version`. `BuildVersion.props` mantém a versão pública completa do executável, ZIP e instalador em `MpvNetVersion` e a versão da Store em `MpvNetStoreVersion`; esta deve corresponder a `Package.appxmanifest`. Use `src\Tools\set-release-version.ps1` para atualizar os dois arquivos juntos. Sem `-StoreVersion`, o script usa a versão pública com revisão zero, preservando o comportamento anterior. Para publicar a 7.1.31.0 no GitHub mantendo o manifesto da Store em 7.1.30.0, use `-Version 7.1.31.0 -StoreVersion 7.1.30.0`. Essa release GitHub não altera a publicação no Partner Center.
 O manifesto declara a aplicacao como desktop empacotada full trust, com `RuntimeBehavior="packagedClassicApp"` e `TrustLevel="mediumIL"`. Nao use `RuntimeBehavior="windowsApp"` para este projeto WinForms/WPF, pois isso aproxima o pacote do modelo UWP e pode interferir no acesso esperado a rede, AppData e componentes auxiliares.
 
 Pontos importantes:
@@ -448,7 +448,9 @@ dois arquivos juntos com:
 ```
 
 O script grava a versão pública em `BuildVersion.props` e aplica revisão zero
-ao `Identity Version` do manifesto MSIX, conforme a regra da Store.
+ao `Identity Version` do manifesto MSIX, conforme a regra da Store. Use
+`-StoreVersion <versao-com-revisao-zero>` para definir uma versão independente
+da Store; o script registra esse valor em `MpvNetStoreVersion` e no manifesto.
 
 Nao edite `BuildVersion.props` e `Package.appxmanifest` separadamente.
 
