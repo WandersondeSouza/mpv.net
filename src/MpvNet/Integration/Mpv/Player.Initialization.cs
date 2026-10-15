@@ -196,6 +196,19 @@ public partial class MainPlayer
 
         mpv_request_log_messages(Handle, "info");
 
+        if (App.DebugMode && Log.DiagnosticFileLoggingEnabled)
+        {
+            if (!CommandLine.Contains("msg-level") && !HasConfiguredMpvOption("msg-level") &&
+                TryGetPropertyString("options/msg-level", out string configuredLevels) &&
+                string.IsNullOrWhiteSpace(configuredLevels))
+                SetPropertyString("msg-level", StreamingFailureDiagnostics.DiagnosticMpvLevels);
+
+            // terminal-default honors per-module verbosity without enabling
+            // per-packet/frame trace messages across the entire player.
+            mpv_request_log_messages(Handle, "terminal-default");
+            Log.Debug("Enabled transport/demuxer diagnostics; explicit msg-level settings take precedence.");
+        }
+
         if (App.DebugMode)
         {
             CommandV("change-list", "ytdl-raw-options", "append", "verbose=");

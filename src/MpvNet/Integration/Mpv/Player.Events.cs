@@ -15,20 +15,21 @@ public partial class MainPlayer
 
     internal override void OnLogMessage(MpvEventSnapshot data)
     {
-        StreamingFailureDiagnostic? diagnostic = StreamingFailureDiagnostics.Classify(data.Prefix, data.Text);
+        // Extra verbose/debug/trace transport messages are diagnostic only;
+        // byte ranges and headers must not become playback failure evidence.
+        StreamingFailureDiagnostic? diagnostic = data.LogLevel <= mpv_log_level.MPV_LOG_LEVEL_INFO
+            ? StreamingFailureDiagnostics.Classify(data.Prefix, data.Text) : null;
         if (diagnostic is not null &&
             (_lastStreamingFailure is null || diagnostic.Priority >= _lastStreamingFailure.Priority))
         {
             _lastStreamingFailure = diagnostic;
         }
 
-        if (App.DebugMode && data.LogLevel is
-            mpv_log_level.MPV_LOG_LEVEL_FATAL or
-            mpv_log_level.MPV_LOG_LEVEL_ERROR or
-            mpv_log_level.MPV_LOG_LEVEL_WARN)
+        if (App.DebugMode && StreamingFailureDiagnostics.ShouldLogMpvMessage(
+            data.LogLevel, data.Prefix, Log.DiagnosticFileLoggingEnabled))
         {
-            string message = StreamingFailureDiagnostics.SanitizeMessage(data.Text.Trim());
-            Log.Debug($"mpv log event. level={data.LogLevel}, prefix='{Log.SafeValue(data.Prefix)}', message='{message}'");
+            foreach (string message in StreamingFailureDiagnostics.FormatDiagnosticLines(data.Text))
+                Log.Debug($"mpv log event. level={data.LogLevel}, prefix='{Log.SafeValue(data.Prefix)}', message='{message}'");
         }
 
         if (data.LogLevel == mpv_log_level.MPV_LOG_LEVEL_INFO)
@@ -156,14 +157,14 @@ public partial class MainPlayer
         }
 
         _ytDlpDiagnosticOutputLogged = true;
+        executablePath = StreamingFailureDiagnostics.DecodeDiagnosticString(executablePath);
+        standardError = StreamingFailureDiagnostics.DecodeDiagnosticString(standardError);
         string executableName = string.IsNullOrWhiteSpace(executablePath)
             ? "unresolved"
             : System.IO.Path.GetFileName(executablePath);
         Log.Debug($"yt-dlp subprocess output. executable='{Log.SafeValue(executableName)}', stderrLength={standardError.Length}");
 
-        string[] lines = standardError.Split(
-            ['\r', '\n'],
-            StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        string[] lines = StreamingFailureDiagnostics.FormatDiagnosticLines(standardError).ToArray();
         if (lines.Length == 0)
         {
             Log.Debug("yt-dlp verbose output was empty.");
@@ -171,7 +172,7 @@ public partial class MainPlayer
         }
 
         foreach (string line in lines)
-            Log.Debug("yt-dlp: " + StreamingFailureDiagnostics.SanitizeMessage(line));
+            Log.Debug("yt-dlp: " + line);
     }
 
     bool TryScheduleLiveStreamRecovery(

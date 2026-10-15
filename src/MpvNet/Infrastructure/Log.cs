@@ -16,6 +16,18 @@ public static class Log
     static readonly FileLogWriter Writer = new FileLogWriter();
     public static bool IsEnabled => true;
 
+    internal static bool DiagnosticFileLoggingEnabled
+    {
+        get
+        {
+#if ENABLE_FILE_LOGGING
+            return true;
+#else
+            return false;
+#endif
+        }
+    }
+
     public static string LogFolder => FileLogWriter.DefaultLogFolder;
 
     public static void Debug(string message) => Write(LogLevel.Debug, message, null);

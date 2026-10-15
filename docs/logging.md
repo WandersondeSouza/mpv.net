@@ -54,6 +54,17 @@ o arquivo de `Trace` `MpvNet-debug.log` na pasta de configuração. Esse arquivo
 de `Trace` é recriado na inicialização; os logs diários `mpvnet-YYYY-MM-DD.log`
 continuam separados.
 
+Nessas builds, `debug-mode=yes` também habilita `curl=trace`, `demux=debug`,
+`lavf=debug` e `ffmpeg/demuxer=debug`. Uma configuração explícita de `msg-level`
+no `mpv.conf` ou na linha de comando tem precedência. Os eventos selecionados
+vão para o log diário sanitizado, incluindo status HTTP, ranges e tentativas de
+transferência; o trace por quadro/pacote dos demais módulos não é habilitado.
+Cabeçalhos sem interesse para transporte, credenciais e queries são ocultados.
+A saída do yt-dlp é decodificada quando recebida como string JSON e gravada
+por linha; mensagens longas são divididas após a sanitização, preservando o
+restante do diagnóstico. Dumps de argumentos de configuração são ocultados
+por poderem conter senhas, cookies ou tokens.
+
 Nos scripts do fork, use `-EnableFileLogging`:
 
 ```powershell

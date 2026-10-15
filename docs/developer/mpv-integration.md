@@ -331,6 +331,15 @@ informam transições, posição e duração da espera, buffer e taxa de entrada
 `Network cache stream durations` informa durações numéricas de áudio/vídeo
 quando disponíveis em `demuxer-cache-state/ts-per-stream`.
 Esses registros não incluem URLs resolvidas, cookies ou metadados do extractor.
+Na build com logging em arquivo, o cliente usa `terminal-default` para receber
+os níveis por módulo: `curl=trace`, `demux=debug`, `lavf=debug` e
+`ffmpeg/demuxer=debug`, salvo `msg-level` explícito. A seleção evita trace global
+por pacote/quadro. Mensagens passam por sanitização antes da divisão em blocos
+de até 500 caracteres; cabeçalhos curl preservam somente campos de transporte.
+As propriedades de stderr/path do yt-dlp são decodificadas quando contêm uma
+string JSON, antes da separação em linhas. Dumps de configuração/argumentos
+são ocultados; as demais linhas preservam os detalhes após o limite de 500
+caracteres que antes cortava toda a string escapada.
 Propriedades de buffer são estimativas do demuxer principal, não a soma
 garantida dos buffers separados de áudio e vídeo.
 
@@ -343,6 +352,16 @@ playlist YouTube, AV1/2160p foi preservado e não houve pausa durante reproduç�
 observada após a mudança; houve buffer inicial. A verificação online adicional
 foi bloqueada por confirmação de login do YouTube. Reprodução completa e
 checklist manual da interface Windows permanecem pendentes.
+
+Validação do diagnóstico em 2026-10-15: 640 testes aprovados, inclusive com
+logging em arquivo habilitado. Uma sonda nativa confirmou os níveis por módulo
+e a serialização JSON de strings em `user-data`. O executável de diagnóstico
+reproduziu áudio HTTP local até EOF, registrou status HTTP/trace de transporte
+e ocultou cookies/cabeçalhos de teste. Uma fixture Lua verificou a saída do
+yt-dlp com múltiplas linhas e mais de 1.200 caracteres; `msg-level` explícito
+no `mpv.conf` de `--config-dir` foi preservado. Isso valida a captura, não a
+correção da falha VP9/transferência observada no YouTube, cuja reprodução com
+o novo diagnóstico permanece pendente.
 
 ---
 

@@ -1,4 +1,7 @@
+using System.Text.Json;
 using System.Text.RegularExpressions;
+
+using static MpvNet.Native.LibMpv;
 
 namespace MpvNet;
 
@@ -33,6 +36,62 @@ public sealed record StreamingFailureDiagnostic(
 
 public static partial class StreamingFailureDiagnostics
 {
+    internal const string DiagnosticMpvLevels = "curl=trace,demux=debug,lavf=debug,ffmpeg/demuxer=debug";
+
+    internal static bool ShouldLogMpvMessage(mpv_log_level level, string prefix, bool detailed) =>
+        level is mpv_log_level.MPV_LOG_LEVEL_FATAL or mpv_log_level.MPV_LOG_LEVEL_ERROR or mpv_log_level.MPV_LOG_LEVEL_WARN ||
+        detailed && (prefix == "curl" ||
+            level <= mpv_log_level.MPV_LOG_LEVEL_DEBUG &&
+            prefix is "demux" or "lavf" or "ffmpeg/demuxer");
+
+    // user-data properties can serialize a string as JSON, including escaped
+    // newlines. Decode only a complete JSON string; leave plain text untouched.
+    internal static string DecodeDiagnosticString(string value)
+    {
+        if (!value.TrimStart().StartsWith('"'))
+            return value;
+
+        try
+        {
+            return JsonSerializer.Deserialize<string>(value) ?? "";
+        }
+        catch (JsonException)
+        {
+            return value;
+        }
+    }
+
+    internal static IEnumerable<string> FormatDiagnosticLines(string value)
+    {
+        foreach (string line in value.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        {
+            // Verbose command-line dumps can contain cookies, passwords or
+            // provider arguments. The remaining extractor output is sufficient.
+            string sanitized = line.Contains(" config:", StringComparison.OrdinalIgnoreCase) ||
+                line.Contains("Extractor args:", StringComparison.OrdinalIgnoreCase)
+                ? "[debug] Configuration arguments: [redacted]"
+                : SanitizeDiagnosticLine(line);
+
+            // Redact before splitting so credentials spanning a chunk boundary
+            // cannot leak. Preserve the whole sanitized message, not only its start.
+            for (int offset = 0; offset < sanitized.Length; offset += 500)
+                yield return sanitized.Substring(offset, Math.Min(500, sanitized.Length - offset));
+        }
+    }
+
+    static string SanitizeDiagnosticLine(string line)
+    {
+        string sanitized = SensitiveHeaderPattern().Replace(line, "$1: [redacted]");
+        sanitized = CurlHeaderPattern().Replace(sanitized, match =>
+            match.Groups[2].Value.ToLowerInvariant() is "range" or "content-range" or "content-length" or
+                "content-type" or "accept-ranges" or "transfer-encoding"
+                ? match.Value : match.Groups[1].Value + "[header redacted]");
+        sanitized = CurlHttp2HeaderPattern().Replace(sanitized, "[header redacted]");
+        sanitized = UrlPattern().Replace(sanitized, match => SanitizeUrl(match.Value));
+        sanitized = RelativeQueryPattern().Replace(sanitized, "$1?[redacted]");
+        return SecretPattern().Replace(sanitized, "$1=[redacted]");
+    }
+
     public static string GetUserMessage(StreamingFailureCategory category) => category switch
     {
         StreamingFailureCategory.Authentication => _("This content requires authentication with the source service."),
@@ -163,6 +222,18 @@ public static partial class StreamingFailureDiagnostics
 
     [GeneratedRegex(@"(?i)\b(cookie|authorization|po[_ -]?token|session(?:id)?|signature|sig|token)\s*[:=]\s*[^\s,;]+", RegexOptions.CultureInvariant)]
     private static partial Regex SecretPattern();
+
+    [GeneratedRegex(@"\b(proxy-authorization|authorization|set-cookie|cookie|x-api-key)\s*[:=]\s*[^\r\n]*", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    private static partial Regex SensitiveHeaderPattern();
+
+    [GeneratedRegex(@"^([<>]\s*)([\w-]+):[^\r\n]*", RegexOptions.CultureInvariant)]
+    private static partial Regex CurlHeaderPattern();
+
+    [GeneratedRegex(@"\[:?[\w-]+:\s*[^\]]*\]", RegexOptions.CultureInvariant)]
+    private static partial Regex CurlHttp2HeaderPattern();
+
+    [GeneratedRegex("(/[^\\s'\"<>?]*)\\?[^\\s'\"<>]+", RegexOptions.CultureInvariant)]
+    private static partial Regex RelativeQueryPattern();
 
     [GeneratedRegex(@"\b(?:http (?:error|status)\s*)?[45]\d\d\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
     private static partial Regex HttpStatusPattern();
