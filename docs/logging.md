@@ -17,6 +17,9 @@ streaming também geram `Streaming runtime failure` em `Error`, mesmo com
 por categoria e item da playlist; os detalhes repetidos ficam no diagnóstico.
 O registro não reinicia a mídia nem troca a playlist. Erros de decodificação
 não são classificados como falhas transitórias de rede.
+O diagnóstico reconhece as variantes curl `Failure when sending/receiving`
+e `Failed sending/receiving data ... the peer`. A quebra de linha final da
+mensagem do mpv é removida para manter mensagem, ação e caminho juntos no resumo.
 
 ## Estado padrão
 

@@ -135,6 +135,8 @@ public sealed class StreamingFailureDiagnosticsTests
 
     [Theory]
     [InlineData("curl", "transfer failed: Failure when receiving data from the peer", "NetworkTransport", true)]
+    [InlineData("curl", "transfer failed: Failed sending data to the peer", "NetworkTransport", true)]
+    [InlineData("curl", "transfer failed: Failed receiving data from the peer", "NetworkTransport", true)]
     [InlineData("curl", "ngtcp2_conn_writev_stream returned error: ERR_DRAINING", "NetworkTransport", true)]
     [InlineData("ffmpeg/video", "vp9: Failed to read frame header.", "Decoder", false)]
     [InlineData("ffmpeg/video", "vp9: Invalid frame marker", "Decoder", false)]
@@ -158,8 +160,10 @@ public sealed class StreamingFailureDiagnosticsTests
         Assert.Null(StreamingFailureDiagnostics.Classify(prefix, text));
     }
 
-    [Fact]
-    public void RuntimeErrorsArePersistedOncePerCategoryAndResetForNextMediaWithoutDebugMode()
+    [Theory]
+    [InlineData("transfer failed: Failure when receiving data from the peer")]
+    [InlineData("transfer failed: Failed sending data to the peer")]
+    public void RuntimeErrorsArePersistedOncePerCategoryAndResetForNextMediaWithoutDebugMode(string transferError)
     {
         string marker = "runtime-error-" + Guid.NewGuid().ToString("N");
         bool debug = Global.App.DebugMode;
@@ -169,8 +173,8 @@ public sealed class StreamingFailureDiagnosticsTests
         {
             Global.App.DebugMode = false;
             player.Path = url;
-            MpvNet.MpvEventSnapshot decoder = CreateLogSnapshot("ffmpeg/video", "vp9: Failed to read frame header. " + marker);
-            MpvNet.MpvEventSnapshot network = CreateLogSnapshot("curl", "transfer failed: Failure when receiving data from the peer " + marker);
+            MpvNet.MpvEventSnapshot decoder = CreateLogSnapshot("ffmpeg/video", "vp9: Failed to read frame header. " + marker + "\r\n");
+            MpvNet.MpvEventSnapshot network = CreateLogSnapshot("curl", transferError + " " + marker + "\n");
             for (int count = 0; count < 5; count++)
             {
                 player.OnLogMessage(decoder);
@@ -183,6 +187,7 @@ public sealed class StreamingFailureDiagnosticsTests
             Assert.Contains(summaries, line => line.Contains("category=Decoder", StringComparison.Ordinal));
             Assert.Contains(summaries, line => line.Contains("category=NetworkTransport", StringComparison.Ordinal));
             Assert.All(summaries, line => Assert.DoesNotContain("private-runtime-signature", line, StringComparison.Ordinal));
+            Assert.All(summaries, line => Assert.Contains("'; action='", line, StringComparison.Ordinal));
 
             player.StartNextMedia();
             player.Path = url;

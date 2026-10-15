@@ -113,7 +113,9 @@ public static partial class StreamingFailureDiagnostics
             return null;
 
         string text = message.ToLowerInvariant();
-        string safeMessage = SanitizeMessage(message);
+        // mpv log payloads normally end with a newline. Keep summaries and
+        // their action/path on the same log line.
+        string safeMessage = SanitizeMessage(message.Trim());
 
         if (ContainsAny(text, "po token", "po_token", "proof of origin"))
             return Result(StreamingFailureCategory.ProofOfOriginToken, "yt-dlp", safeMessage,
@@ -156,7 +158,8 @@ public static partial class StreamingFailureDiagnostics
                 "Retry after checking connectivity and the configured network timeout.", true, 60);
 
         if (component == "curl" && ContainsAny(text,
-            "failure when receiving data from the peer", "failure when sending data to the peer", "err_draining"))
+            "failure when receiving data from the peer", "failure when sending data to the peer",
+            "failed receiving data from the peer", "failed sending data to the peer", "err_draining"))
             return Result(StreamingFailureCategory.NetworkTransport, "network/curl", safeMessage,
                 "Inspect the negotiated HTTP version and preceding transfer errors; compare curl-http-version=2 for HTTP/3 failures.", true, 58);
 

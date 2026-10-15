@@ -383,6 +383,12 @@ Para comparar uma falha HTTP/3, o mpv oferece `--curl-http-version=2`, que
 limita a negociação e permite HTTP/1.1 conforme o servidor. É uma opção de
 diagnóstico, sem mudança automática do padrão de transporte ou do formato
 selecionado pelo yt-dlp. Consulte o [manual de rede do mpv](https://mpv.io/manual/master/#network-backend-libcurl).
+Se a falha se repetir na instalação, a mesma mitigação pode ser mantida no
+`mpv.conf` ativo com `curl-http-version=2`, após fazer backup do arquivo. Isso
+limita o transporte dessa configuração a HTTP/2 ou inferior; remova a linha ou
+use `curl-http-version=auto` para restaurar a negociação automática. O padrão
+global do frontend permanece inalterado. Essa opção não garante correção de
+bitstream VP9, nem impede respostas HTTP 429 ou exigências de autenticação.
 O caso VP9 original e o checklist manual completo da interface Windows
 continuam sem comprovação de correção.
 
