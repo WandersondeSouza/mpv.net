@@ -64,10 +64,11 @@ Cache e logs:
 | `AppPaths.Components\staging` | Downloads e extrações temporárias, removidos depois de promover ou falhar. |
 | `AppPaths.Components` | Local legado: continua sendo lido como fallback até uma atualização válida migrar os arquivos para `current`. |
 | `AppPaths.Temp` | Arquivos temporários criados pelo frontend, como playlists normalizadas. |
-| `AppPaths.Logs` | Erros em qualquer build; logs detalhados quando o build é gerado com logging em arquivo habilitado. |
+| `AppPaths.Logs` | Erros e logs detalhados somente quando o build é gerado com `EnableFileLogging=true`. |
 
 Esses diretórios são centralizados em `AppPaths` e criados no início da
-aplicação. Em instalações comuns, `AppPaths.LocalAppData` é `%LOCALAPPDATA%`;
+aplicação; a pasta `Logs` só é criada em builds com logging habilitado.
+Em instalações comuns, `AppPaths.LocalAppData` é `%LOCALAPPDATA%`;
 no pacote MSIX/Microsoft Store, é
 `%LOCALAPPDATA%\Packages\<PackageFamilyName>\LocalCache\Local`. `AppPaths.LocalRoot`
 acrescenta `mpv.net` a essa raiz. A variável `MPVNET_LOCAL_APPDATA` pode definir
@@ -207,7 +208,7 @@ Opções reconhecidas pelo mpv.net:
 | `autofit-image` | `80%` | Tamanho de janela para imagem. |
 | `dark-mode` | `always` | Modo escuro/claro. |
 | `dark-theme` | `dark` | Tema escuro. |
-| `debug-mode` | `no` | Ativa o arquivo de log `MpvNet-debug.log`. |
+| `debug-mode` | `no` | Ativa o diagnóstico em runtime; `MpvNet-debug.log` e verbose automático do yt-dlp exigem também `EnableFileLogging=true` na compilação. |
 | `language` | `english` | Idioma da interface. Se ausente, o app usa o idioma do Windows quando houver tradução e, caso contrário, usa inglês. |
 | `light-theme` | `light` | Tema claro. |
 | `media-info` | `yes` | Ativa ou desativa as informações de mídia. |

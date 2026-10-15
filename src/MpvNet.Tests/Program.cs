@@ -782,6 +782,7 @@ var tests = new (string Name, bool Result)[]
     ("Log safe value masks URL query and fragment", safeUrlWithSecret == "https://example.com/live/index.m3u8?[redacted]#[redacted]"),
     ("Log safe value keeps plain URL unchanged", safePlainUrl == "https://example.com/live/index.m3u8"),
     ("Diagnostic build debug-mode default follows file logging", debugModeDefaultMatchesBuild),
+    ("File logging availability follows build switch", Log.IsEnabled == expectedDebugModeDefault),
     ("mpvnet.conf can override debug-mode", debugModeConfigOverride),
     ("Runtime release JSON maps GitHub browser download URL", runtimeRelease?.Assets.Single().BrowserDownloadUrl == "https://example.com/yt-dlp.exe"),
     ("Runtime release JSON maps GitHub digest", runtimeRelease?.Assets.Single().Digest == "sha256:123"),

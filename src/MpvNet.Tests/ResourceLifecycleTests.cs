@@ -28,6 +28,12 @@ public sealed class ResourceLifecycleTests
         app.Dispose();
         app.Dispose();
 
+        if (!Log.DiagnosticFileLoggingEnabled)
+        {
+            Assert.False(File.Exists(logPath));
+            return;
+        }
+
         using (FileStream stream = new(logPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
             Assert.True(stream.Length > 0);
 

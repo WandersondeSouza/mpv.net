@@ -372,7 +372,7 @@ decodificação, mas a fonte entregou H.264, inclusive com `ytdl-format=616+251`
 portanto, não reproduziu o caso VP9 do log.
 
 O diagnóstico agora distingue `NetworkTransport` de `Decoder` e persiste um
-resumo por categoria/item mesmo sem `debug-mode`, quando recebe `ERROR` ou
+resumo por categoria/item nas builds com `EnableFileLogging=true`, mesmo sem `debug-mode`, quando recebe `ERROR` ou
 `FATAL`. O resumo não envia comandos de reprodução; a recuperação continua
 restrita ao fluxo de erro final e às regras de live já existentes. Status HTTP
 exige evidência textual de HTTP, evitando interpretar tamanho de pacote ou

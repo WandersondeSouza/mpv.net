@@ -89,12 +89,12 @@ public sealed class GitHubReleaseClientTests
         Assert.Contains("after 0.25s", exception.Message);
         Assert.Contains("bytes=3", exception.Message);
         string logged = ReadLog()[logOffset..];
-        Assert.Contains("[ERROR] Timed out while downloading runtime component asset", logged);
+        AssertErrorLogging("[ERROR] Timed out while downloading runtime component asset", logged);
         Assert.DoesNotContain("secret", logged);
     }
 
     [Fact]
-    public async Task TransportFailureStillLogsAnErrorAndRemovesPartialFile()
+    public async Task TransportFailureRemovesPartialFileAndRespectsLoggingBuild()
     {
         using TestDirectory directory = new();
         string destination = Path.Combine(directory.Path, "tool.download");
@@ -105,11 +105,11 @@ public sealed class GitHubReleaseClientTests
             AssetUrl, destination, CancellationToken.None, http, TimeSpan.FromSeconds(10)));
 
         Assert.False(File.Exists(destination));
-        Assert.Contains("[ERROR] Failed to download runtime component asset", ReadLog()[logOffset..]);
+        AssertErrorLogging("[ERROR] Failed to download runtime component asset", ReadLog()[logOffset..]);
     }
 
     [Fact]
-    public async Task UnexpectedCancellationStillLogsAnError()
+    public async Task UnexpectedCancellationRespectsLoggingBuild()
     {
         using TestDirectory directory = new();
         string destination = Path.Combine(directory.Path, "tool.download");
@@ -120,7 +120,7 @@ public sealed class GitHubReleaseClientTests
             AssetUrl, destination, CancellationToken.None, http, TimeSpan.FromSeconds(10)));
 
         Assert.False(File.Exists(destination));
-        Assert.Contains("[ERROR] Failed to download runtime component asset", ReadLog()[logOffset..]);
+        AssertErrorLogging("[ERROR] Failed to download runtime component asset", ReadLog()[logOffset..]);
     }
 
     [Fact]
@@ -370,6 +370,15 @@ public sealed class GitHubReleaseClientTests
     {
         string path = Path.Combine(Log.LogFolder, $"mpvnet-{DateTime.Now:yyyy-MM-dd}.log");
         return File.Exists(path) ? File.ReadAllText(path) : "";
+    }
+
+    static void AssertErrorLogging(string expected, string actual)
+    {
+#if ENABLE_FILE_LOGGING
+        Assert.Contains(expected, actual);
+#else
+        Assert.Empty(actual);
+#endif
     }
 
     sealed class ResponseHandler(Func<HttpResponseMessage> response) : HttpMessageHandler

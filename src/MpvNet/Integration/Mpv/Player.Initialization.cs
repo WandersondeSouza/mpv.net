@@ -209,7 +209,7 @@ public partial class MainPlayer
             Log.Debug("Enabled transport/demuxer diagnostics; explicit msg-level settings take precedence.");
         }
 
-        if (App.DebugMode)
+        if (App.DebugMode && Log.DiagnosticFileLoggingEnabled)
         {
             CommandV("change-list", "ytdl-raw-options", "append", "verbose=");
             Log.Debug("Enabled yt-dlp verbose output for diagnostic logging.");

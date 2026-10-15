@@ -1,19 +1,19 @@
 ﻿# Logs de diagnóstico
 
 O MPV.NET Media Player possui um logger interno simples para diagnóstico de suporte.
-Ele grava erros em arquivo em qualquer build e habilita logs detalhados apenas
-quando o build e gerado com logging habilitado.
+Ele grava em arquivo somente quando a versão é compilada com
+`EnableFileLogging=true`. A build padrão não cria arquivos de log do frontend.
 
 Resumo rápido:
 
-- `Error` sempre vai para arquivo.
-- `Debug` só vai para arquivo em build de diagnóstico.
-- Logs diarios sao retidos por 3 dias.
+- `Error` e `Debug` só vão para arquivo em build de diagnóstico.
+- `debug-mode=yes` sozinho não habilita arquivos de log em uma build padrão.
+- Logs diarios de diagnóstico sao retidos por 3 dias.
 - Limpeza de `Cache` e `Temp` tambem usa 3 dias.
 
 Falhas reconhecidas de transporte curl e de decodificação de vídeo durante
-streaming também geram `Streaming runtime failure` em `Error`, mesmo com
-`debug-mode=no` e sem um evento final de erro. O resumo é limitado a uma entrada
+streaming também geram `Streaming runtime failure` em `Error` na build de
+diagnóstico, mesmo com `debug-mode=no` e sem um evento final de erro. O resumo é limitado a uma entrada
 por categoria e item da playlist; os detalhes repetidos ficam no diagnóstico.
 O registro não reinicia a mídia nem troca a playlist. Erros de decodificação
 não são classificados como falhas transitórias de rede.
@@ -23,12 +23,15 @@ mensagem do mpv é removida para manter mensagem, ação e caminho juntos no res
 
 ## Estado padrão
 
-Logs detalhados em arquivo ficam desabilitados por padrão.
-Erros continuam sendo gravados em arquivo.
+Todos os logs em arquivo do frontend ficam desabilitados por padrão, inclusive
+erros e o arquivo de Trace `MpvNet-debug.log`. O logger não cria a pasta `Logs`
+nem executa a retenção nessa build. Arquivos antigos são preservados.
+O parâmetro nativo `--log-file` do mpv, quando solicitado explicitamente pelo
+usuário, continua funcionando de forma independente.
 
 O cancelamento de um download de componente pelo encerramento do aplicativo é
 esperado e aparece somente em `Debug`. Timeout e falhas reais de download
-continuam em `Error`; o timeout informa o limite e os bytes recebidos.
+continuam em `Error` nas builds de diagnóstico; o timeout informa o limite e os bytes recebidos.
 Downloads retomáveis preservam parciais no fechamento, em timeout ou falha
 transitória. O limite é de duas horas por transferência, com detecção de
 60 segundos sem progresso. Em builds de diagnóstico, o bootstrap registra
@@ -158,8 +161,7 @@ Essa pasta compartilha a mesma raiz usada pelo cache temporário do mpv:
 
 Na inicialização, falhas ao limpar arquivos antigos em
 `%LOCALAPPDATA%\mpv.net\Cache` ou `%LOCALAPPDATA%\mpv.net\Temp` tambem entram
-nesse log. Em builds de diagnóstico, essas falhas aparecem junto com os logs
-`Debug`; nos demais builds, apenas erros sao persistidos.
+nesse log somente em builds de diagnóstico, junto com os logs `Debug`.
 Essas falhas nao bloqueiam a abertura do player.
 
 O arquivo diario usa este padrão:
@@ -200,18 +202,20 @@ stream durations` informa os segundos disponíveis para áudio/vídeo quando o
 mpv expõe esses valores em `ts-per-stream`. Esses valores descrevem
 o demuxer principal e não garantem cobertura conjunta das faixas separadas.
 
-Em builds de diagnóstico, o app acrescenta `verbose=` a
+Somente com `EnableFileLogging=true` e `debug-mode=yes`, o app acrescenta `verbose=` a
 `ytdl-raw-options`. Assim, o `yt-dlp` selecionado pelo hook do mpv grava a saída
 de `stderr` no log diário depois da extração, inclusive quando ela falha.
 Mensagens passam por remoção de URLs assinadas e valores de segredo. O JSON de
-`stdout` não é registrado porque contém URLs temporárias dos fluxos. Para
+`stdout` não é registrado porque contém URLs temporárias dos fluxos. Em uma
+build padrão, o app não acrescenta `verbose=` e não coleta a saída de diagnóstico
+do yt-dlp, mesmo com `debug-mode=yes`; opções explícitas do usuário são preservadas. Para
 reproduzir esse modo manualmente, o yt-dlp documenta `--verbose` como a opção
 de informações de depuração e o mpv encaminha `ytdl-raw-options` ao processo
 filho.
 
 ## Retencao
 
-Na inicialização do logger, arquivos `mpvnet-YYYY-MM-DD.log` com mais de 3 dias
+Na inicialização do logger de uma build de diagnóstico, arquivos `mpvnet-YYYY-MM-DD.log` com mais de 3 dias
 sao apagados automaticamente.
 
 A limpeza atua apenas dentro da pasta de logs e apenas em arquivos que seguem o

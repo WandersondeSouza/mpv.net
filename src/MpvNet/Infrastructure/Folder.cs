@@ -27,7 +27,8 @@ public static class AppPaths
         Directory.CreateDirectory(LocalRoot);
         Directory.CreateDirectory(Cache);
         Directory.CreateDirectory(Components);
-        Directory.CreateDirectory(Logs);
+        if (Log.IsEnabled)
+            Directory.CreateDirectory(Logs);
         Directory.CreateDirectory(Temp);
         Directory.CreateDirectory(ComponentTemp);
     }

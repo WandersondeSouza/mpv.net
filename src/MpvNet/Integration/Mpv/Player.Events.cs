@@ -26,16 +26,16 @@ public partial class MainPlayer
         }
 
         // These errors can leave playback running without an end-file ERROR.
-        // Keep one summary per category/item in normal builds, without flooding
+        // Keep one summary per category/item in diagnostic builds, without flooding
         // the log or restarting the media in response to decoder messages.
-        if (data.LogLevel is mpv_log_level.MPV_LOG_LEVEL_ERROR or mpv_log_level.MPV_LOG_LEVEL_FATAL &&
+        if (Log.IsEnabled && data.LogLevel is mpv_log_level.MPV_LOG_LEVEL_ERROR or mpv_log_level.MPV_LOG_LEVEL_FATAL &&
             diagnostic is { Category: StreamingFailureCategory.NetworkTransport or StreamingFailureCategory.Decoder } &&
             FileTypes.IsStreamingUrl(Path) && _reportedRuntimeFailures.Add(diagnostic.Category))
         {
             Log.Error($"Streaming runtime failure. category={diagnostic.Category}; component='{diagnostic.Component}'; original='{diagnostic.OriginalMessage}'; action='{diagnostic.SuggestedAction}'; path='{Log.SafeValue(Path)}'");
         }
 
-        if (App.DebugMode && StreamingFailureDiagnostics.ShouldLogMpvMessage(
+        if (App.DebugMode && Log.DiagnosticFileLoggingEnabled && StreamingFailureDiagnostics.ShouldLogMpvMessage(
             data.LogLevel, data.Prefix, Log.DiagnosticFileLoggingEnabled))
         {
             foreach (string message in StreamingFailureDiagnostics.FormatDiagnosticLines(data.Text))
@@ -160,7 +160,7 @@ public partial class MainPlayer
 
     void LogYtDlpDiagnosticOutput()
     {
-        if (!App.DebugMode || _ytDlpDiagnosticOutputLogged ||
+        if (!Log.DiagnosticFileLoggingEnabled || !App.DebugMode || _ytDlpDiagnosticOutputLogged ||
             !TryGetPropertyString("user-data/mpv/ytdl/path", out string executablePath) ||
             !TryGetPropertyString("user-data/mpv/ytdl/json-subprocess-result/stderr", out string standardError))
         {

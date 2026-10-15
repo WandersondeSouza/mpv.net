@@ -234,8 +234,8 @@ Ao validar o MSIX com o Windows App Certification Kit, confira:
 - o teste opcional de executaveis bloqueados pode listar chamadas intencionais do app e referencias do runtime .NET/WPF. Remova somente chamadas proprias desnecessarias; nao tente limpar assemblies do runtime nem quebrar comandos compativeis com mpv como `shell-execute`, abertura de URLs/manuais e pasta de configuracao.
 
 Observacao: o script de release publica em `Release`. Ele chama o publish com `/p:EnsureBuildAssets=false`, porque prepara e valida os binarios nativos em uma etapa propria depois do publish.
-Logs detalhados em arquivo ficam desligados por padrao com `/p:EnableFileLogging=false`.
-Erros continuam sendo gravados em qualquer build. Para pacote de diagnostico,
+Todos os logs em arquivo do frontend ficam desligados por padrão com `/p:EnableFileLogging=false`,
+inclusive erros, `MpvNet-debug.log` e diagnóstico automático do yt-dlp. Para pacote de diagnóstico,
 use `/p:EnableFileLogging=true` ou `-EnableFileLogging` nos scripts de release.
 Pacotes de diagnostico usam a mesma versao publica do pacote normal e recebem
 apenas o sufixo `-diagnostic` no nome do artefato.

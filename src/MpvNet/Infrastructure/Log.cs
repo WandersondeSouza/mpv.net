@@ -13,8 +13,10 @@ public static class Log
 {
     const int MaxValueLength = 500;
 
+#if ENABLE_FILE_LOGGING
     static readonly FileLogWriter Writer = new FileLogWriter();
-    public static bool IsEnabled => true;
+#endif
+    public static bool IsEnabled => DiagnosticFileLoggingEnabled;
 
     internal static bool DiagnosticFileLoggingEnabled
     {
@@ -78,12 +80,6 @@ public static class Log
 
     static void Write(LogLevel level, string? message, Exception? exception)
     {
-        if (level == LogLevel.Error)
-        {
-            Writer.Write(level, message, exception);
-            return;
-        }
-
 #if ENABLE_FILE_LOGGING
         Writer.Write(level, message, exception);
 #endif

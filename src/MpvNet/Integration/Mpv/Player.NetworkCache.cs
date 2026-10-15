@@ -46,7 +46,8 @@ public partial class MainPlayer
 
     void LogNetworkCacheState(string stage, string? profile = null)
     {
-        if (!App.DebugMode || !MediaInputClassifier.Classify(GetPropertyString("path")).IsNetwork)
+        if (!Log.DiagnosticFileLoggingEnabled || !App.DebugMode ||
+            !MediaInputClassifier.Classify(GetPropertyString("path")).IsNetwork)
             return;
 
         // Only fixed option names and numeric/bool values are logged. Never

@@ -127,6 +127,8 @@ public class AppClass : IDisposable
     internal void InitializeDebugTraceListener(string filePath)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(filePath);
+        if (!Log.DiagnosticFileLoggingEnabled)
+            return;
 
         lock (_lifecycleLock)
         {

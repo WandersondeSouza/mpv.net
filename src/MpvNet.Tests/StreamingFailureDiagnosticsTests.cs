@@ -163,7 +163,7 @@ public sealed class StreamingFailureDiagnosticsTests
     [Theory]
     [InlineData("transfer failed: Failure when receiving data from the peer")]
     [InlineData("transfer failed: Failed sending data to the peer")]
-    public void RuntimeErrorsArePersistedOncePerCategoryAndResetForNextMediaWithoutDebugMode(string transferError)
+    public void RuntimeErrorLoggingFollowsBuildSwitchAndResetsForNextMedia(string transferError)
     {
         string marker = "runtime-error-" + Guid.NewGuid().ToString("N");
         bool debug = Global.App.DebugMode;
@@ -182,17 +182,26 @@ public sealed class StreamingFailureDiagnosticsTests
             }
             Assert.Equal(url, player.Path);
             string log = System.IO.Path.Combine(Log.LogFolder, "mpvnet-" + DateTime.Now.ToString("yyyy-MM-dd") + ".log");
-            string[] summaries = File.ReadAllLines(log).Where(line => line.Contains(marker, StringComparison.Ordinal)).ToArray();
-            Assert.Equal(2, summaries.Length);
-            Assert.Contains(summaries, line => line.Contains("category=Decoder", StringComparison.Ordinal));
-            Assert.Contains(summaries, line => line.Contains("category=NetworkTransport", StringComparison.Ordinal));
-            Assert.All(summaries, line => Assert.DoesNotContain("private-runtime-signature", line, StringComparison.Ordinal));
-            Assert.All(summaries, line => Assert.Contains("'; action='", line, StringComparison.Ordinal));
+            string[] summaries = ReadSummaries();
+            if (Log.IsEnabled)
+            {
+                Assert.Equal(2, summaries.Length);
+                Assert.Contains(summaries, line => line.Contains("category=Decoder", StringComparison.Ordinal));
+                Assert.Contains(summaries, line => line.Contains("category=NetworkTransport", StringComparison.Ordinal));
+                Assert.All(summaries, line => Assert.DoesNotContain("private-runtime-signature", line, StringComparison.Ordinal));
+                Assert.All(summaries, line => Assert.Contains("'; action='", line, StringComparison.Ordinal));
+            }
+            else
+                Assert.Empty(summaries);
 
             player.StartNextMedia();
             player.Path = url;
             player.OnLogMessage(decoder);
-            Assert.Equal(3, File.ReadAllLines(log).Count(line => line.Contains(marker, StringComparison.Ordinal)));
+            Assert.Equal(Log.IsEnabled ? 3 : 0, ReadSummaries().Length);
+
+            string[] ReadSummaries() => File.Exists(log)
+                ? File.ReadAllLines(log).Where(line => line.Contains(marker, StringComparison.Ordinal)).ToArray()
+                : [];
         }
         finally
         {
