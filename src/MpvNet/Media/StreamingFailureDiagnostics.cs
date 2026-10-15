@@ -23,7 +23,9 @@ public enum StreamingFailureCategory
     StreamEnded,
     UnsupportedProtocol,
     Demuxer,
-    Playlist
+    Playlist,
+    NetworkTransport,
+    Decoder
 }
 
 public sealed record StreamingFailureDiagnostic(
@@ -88,6 +90,7 @@ public static partial class StreamingFailureDiagnostics
                 ? match.Value : match.Groups[1].Value + "[header redacted]");
         sanitized = CurlHttp2HeaderPattern().Replace(sanitized, "[header redacted]");
         sanitized = UrlPattern().Replace(sanitized, match => SanitizeUrl(match.Value));
+        sanitized = SignedRequestPathPattern().Replace(sanitized, "/[redacted]");
         sanitized = RelativeQueryPattern().Replace(sanitized, "$1?[redacted]");
         return SecretPattern().Replace(sanitized, "$1=[redacted]");
     }
@@ -152,9 +155,16 @@ public static partial class StreamingFailureDiagnostics
             return Result(StreamingFailureCategory.Timeout, "network", safeMessage,
                 "Retry after checking connectivity and the configured network timeout.", true, 60);
 
-        if (HttpStatusPattern().IsMatch(text))
+        if (component == "curl" && ContainsAny(text,
+            "failure when receiving data from the peer", "failure when sending data to the peer", "err_draining"))
+            return Result(StreamingFailureCategory.NetworkTransport, "network/curl", safeMessage,
+                "Inspect the negotiated HTTP version and preceding transfer errors; compare curl-http-version=2 for HTTP/3 failures.", true, 58);
+
+        Match httpStatus = HttpStatusPattern().Match(text);
+        if (httpStatus.Success)
             return Result(StreamingFailureCategory.Http, "HTTP source", safeMessage,
-                "Check the reported HTTP status and whether the source URL is still valid.", IsTransientHttp(text), 55);
+                "Check the reported HTTP status and whether the source URL is still valid.",
+                httpStatus.Groups[1].Value is "408" or "429" || httpStatus.Groups[1].Value.StartsWith('5'), 55);
 
         if (ContainsAny(text, "connection reset", "connection was reset", "broken pipe", "connection closed", "end of file"))
             return Result(StreamingFailureCategory.StreamEnded, "network stream", safeMessage,
@@ -167,6 +177,12 @@ public static partial class StreamingFailureDiagnostics
         if (ContainsAny(text, "failed to open playlist", "playlist error", "invalid playlist"))
             return Result(StreamingFailureCategory.Playlist, "mpv/demuxer", safeMessage,
                 "Validate the playlist response and its referenced media entries.", false, 40);
+
+        if (component is "ffmpeg/video" or "vd" && ContainsAny(text,
+            "failed to read frame header", "invalid frame marker", "invalid data found when processing input",
+            "error while decoding frame", "too large in superframe", "bitstream ended", "out of range"))
+            return Result(StreamingFailureCategory.Decoder, "video decoder", safeMessage,
+                "Compare the same media interval and source format; inspect transport errors before attributing the failure to the decoder.", false, 35);
 
         if (ContainsAny(text, "demuxer", "unrecognized file format", "failed to recognize file format"))
             return Result(StreamingFailureCategory.Demuxer, "mpv/demuxer", safeMessage,
@@ -190,6 +206,7 @@ public static partial class StreamingFailureDiagnostics
             return "<none>";
 
         string sanitized = UrlPattern().Replace(message, match => SanitizeUrl(match.Value));
+        sanitized = SignedRequestPathPattern().Replace(sanitized, "/[redacted]");
         sanitized = SecretPattern().Replace(sanitized, "$1=[redacted]");
         return Log.SafeValue(sanitized);
     }
@@ -212,11 +229,6 @@ public static partial class StreamingFailureDiagnostics
     static bool ContainsAny(string value, params string[] candidates) =>
         candidates.Any(candidate => value.Contains(candidate, StringComparison.Ordinal));
 
-    static bool IsTransientHttp(string message) =>
-        message.Contains(" 408", StringComparison.Ordinal) ||
-        message.Contains(" 429", StringComparison.Ordinal) ||
-        Http5xxPattern().IsMatch(message);
-
     [GeneratedRegex("https?://[^\\s'\"<>]+", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
     private static partial Regex UrlPattern();
 
@@ -235,9 +247,9 @@ public static partial class StreamingFailureDiagnostics
     [GeneratedRegex("(/[^\\s'\"<>?]*)\\?[^\\s'\"<>]+", RegexOptions.CultureInvariant)]
     private static partial Regex RelativeQueryPattern();
 
-    [GeneratedRegex(@"\b(?:http (?:error|status)\s*)?[45]\d\d\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
-    private static partial Regex HttpStatusPattern();
+    [GeneratedRegex("(?<![\\w:/])(?=[^\\s'\"<>]*?/(?:signature|sig|lsig|token|access_token|auth|authorization|ip)/)/[^\\s'\"<>]+", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    private static partial Regex SignedRequestPathPattern();
 
-    [GeneratedRegex(@"\b5\d\d\b", RegexOptions.CultureInvariant)]
-    private static partial Regex Http5xxPattern();
+    [GeneratedRegex(@"\bhttp(?:/\d(?:\.\d)?)?(?:\s+(?:error|status))?\s*[:=]?\s+([45]\d\d)\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    private static partial Regex HttpStatusPattern();
 }

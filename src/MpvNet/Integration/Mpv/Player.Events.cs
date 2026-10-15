@@ -25,6 +25,16 @@ public partial class MainPlayer
             _lastStreamingFailure = diagnostic;
         }
 
+        // These errors can leave playback running without an end-file ERROR.
+        // Keep one summary per category/item in normal builds, without flooding
+        // the log or restarting the media in response to decoder messages.
+        if (data.LogLevel is mpv_log_level.MPV_LOG_LEVEL_ERROR or mpv_log_level.MPV_LOG_LEVEL_FATAL &&
+            diagnostic is { Category: StreamingFailureCategory.NetworkTransport or StreamingFailureCategory.Decoder } &&
+            FileTypes.IsStreamingUrl(Path) && _reportedRuntimeFailures.Add(diagnostic.Category))
+        {
+            Log.Error($"Streaming runtime failure. category={diagnostic.Category}; component='{diagnostic.Component}'; original='{diagnostic.OriginalMessage}'; action='{diagnostic.SuggestedAction}'; path='{Log.SafeValue(Path)}'");
+        }
+
         if (App.DebugMode && StreamingFailureDiagnostics.ShouldLogMpvMessage(
             data.LogLevel, data.Prefix, Log.DiagnosticFileLoggingEnabled))
         {
@@ -98,6 +108,7 @@ public partial class MainPlayer
         // the playlist. A new start-file means playback is active again.
         FileEnded = false;
         _lastStreamingFailure = null;
+        _reportedRuntimeFailures.Clear();
         _currentMediaWasLoaded = false;
         _ytDlpDiagnosticOutputLogged = false;
         _bufferingStartedAt = null;

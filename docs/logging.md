@@ -11,6 +11,13 @@ Resumo rápido:
 - Logs diarios sao retidos por 3 dias.
 - Limpeza de `Cache` e `Temp` tambem usa 3 dias.
 
+Falhas reconhecidas de transporte curl e de decodificação de vídeo durante
+streaming também geram `Streaming runtime failure` em `Error`, mesmo com
+`debug-mode=no` e sem um evento final de erro. O resumo é limitado a uma entrada
+por categoria e item da playlist; os detalhes repetidos ficam no diagnóstico.
+O registro não reinicia a mídia nem troca a playlist. Erros de decodificação
+não são classificados como falhas transitórias de rede.
+
 ## Estado padrão
 
 Logs detalhados em arquivo ficam desabilitados por padrão.
@@ -60,6 +67,10 @@ no `mpv.conf` ou na linha de comando tem precedência. Os eventos selecionados
 vão para o log diário sanitizado, incluindo status HTTP, ranges e tentativas de
 transferência; o trace por quadro/pacote dos demais módulos não é habilitado.
 Cabeçalhos sem interesse para transporte, credenciais e queries são ocultados.
+URLs que trazem assinatura, token ou endereço do cliente em segmentos do
+caminho (como `/signature/`, `/lsig/` e `/ip/`) têm o caminho ocultado antes
+do limite de tamanho. Isso também vale para o alvo relativo de uma requisição
+HTTP no trace do curl.
 A saída do yt-dlp é decodificada quando recebida como string JSON e gravada
 por linha; mensagens longas são divididas após a sanitização, preservando o
 restante do diagnóstico. Dumps de argumentos de configuração são ocultados

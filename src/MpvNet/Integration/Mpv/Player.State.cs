@@ -24,6 +24,7 @@ public partial class MainPlayer
     bool _autoLoadFolderInProgress;
     bool _mpvInitialized;
     StreamingFailureDiagnostic? _lastStreamingFailure;
+    readonly HashSet<StreamingFailureCategory> _reportedRuntimeFailures = [];
     readonly object _mediaLoadStateLock = new();
     long _mediaLoadGeneration;
     long _scheduledLiveReconnectGeneration;

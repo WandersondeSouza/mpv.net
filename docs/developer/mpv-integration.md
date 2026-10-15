@@ -359,9 +359,38 @@ e a serialização JSON de strings em `user-data`. O executável de diagnóstico
 reproduziu áudio HTTP local até EOF, registrou status HTTP/trace de transporte
 e ocultou cookies/cabeçalhos de teste. Uma fixture Lua verificou a saída do
 yt-dlp com múltiplas linhas e mais de 1.200 caracteres; `msg-level` explícito
-no `mpv.conf` de `--config-dir` foi preservado. Isso valida a captura, não a
-correção da falha VP9/transferência observada no YouTube, cuja reprodução com
-o novo diagnóstico permanece pendente.
+no `mpv.conf` de `--config-dir` foi preservado. Isso valida a captura. A análise
+da falha VP9/transferência com esse diagnóstico está descrita a seguir.
+
+A análise do log de 2026-10-15 identificou uma transferência HTTP/3 encerrada
+com `ERR_DRAINING`/`Failure when receiving data from the peer` às 10:39:57 e
+erros de bitstream VP9 a partir de 10:48:05. O encerramento às 10:52:09 foi
+`QUIT`, sem erro final. A distância entre esses eventos não comprova que a
+falha de rede causou os erros de vídeo. A sonda sem interface com o mesmo
+libmpv v3 e a mesma página reproduziu o intervalo 515–545 s sem erro de
+decodificação, mas a fonte entregou H.264, inclusive com `ytdl-format=616+251`;
+portanto, não reproduziu o caso VP9 do log.
+
+O diagnóstico agora distingue `NetworkTransport` de `Decoder` e persiste um
+resumo por categoria/item mesmo sem `debug-mode`, quando recebe `ERROR` ou
+`FATAL`. O resumo não envia comandos de reprodução; a recuperação continua
+restrita ao fluxo de erro final e às regras de live já existentes. Status HTTP
+exige evidência textual de HTTP, evitando interpretar tamanho de pacote ou
+valores do codec como status. Caminhos assinados absolutos/relativos são
+ocultados antes da divisão das mensagens em blocos.
+
+Para comparar uma falha HTTP/3, o mpv oferece `--curl-http-version=2`, que
+limita a negociação e permite HTTP/1.1 conforme o servidor. É uma opção de
+diagnóstico, sem mudança automática do padrão de transporte ou do formato
+selecionado pelo yt-dlp. Consulte o [manual de rede do mpv](https://mpv.io/manual/master/#network-backend-libcurl).
+O caso VP9 original e o checklist manual completo da interface Windows
+continuam sem comprovação de correção.
+
+Validação das correções do log em 2026-10-15: 656 testes aprovados com logging
+padrão e 656 com logging em arquivo habilitado. Build Windows Release com
+dependências nativas e catálogos preparados: zero avisos/erros. O executável
+Release de diagnóstico reproduziu áudio HTTP local até EOF e ocultou caminhos
+assinados absolutos e relativos, cookies e cabeçalhos da fixture Lua/HTTP.
 
 ---
 

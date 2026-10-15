@@ -43,13 +43,15 @@ public static class Log
 
         if (Uri.TryCreate(ret, UriKind.Absolute, out Uri? uri) &&
             (uri.IsAbsoluteUri && (!string.IsNullOrEmpty(uri.UserInfo) ||
-                !string.IsNullOrEmpty(uri.Query) || !string.IsNullOrEmpty(uri.Fragment))))
+                !string.IsNullOrEmpty(uri.Query) || !string.IsNullOrEmpty(uri.Fragment) ||
+                HasSensitiveUrlPath(uri))))
         {
             string authority = uri.Host;
             if (!uri.IsDefaultPort)
                 authority += ":" + uri.Port;
 
-            ret = uri.Scheme + "://" + authority + uri.AbsolutePath;
+            ret = uri.Scheme + "://" + authority +
+                (HasSensitiveUrlPath(uri) ? "/[redacted]" : uri.AbsolutePath);
 
             if (!string.IsNullOrEmpty(uri.Query))
                 ret += "?[redacted]";
@@ -63,6 +65,13 @@ public static class Log
 
         return ret;
     }
+
+    // Some CDNs put the signature, client address and access tokens in path
+    // segments instead of a query. Redact before the diagnostic length limit.
+    static bool HasSensitiveUrlPath(Uri uri) =>
+        uri.Scheme is "http" or "https" && uri.AbsolutePath.Split('/').Any(segment =>
+            segment.ToLowerInvariant() is "signature" or "sig" or "lsig" or "token" or
+                "access_token" or "auth" or "authorization" or "ip");
 
     public static string SafeValues(IEnumerable<string> values) =>
         "[" + string.Join(", ", values.Select(i => "'" + SafeValue(i) + "'")) + "]";

@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using MpvNet;
 using Xunit;
@@ -45,6 +47,8 @@ public sealed class StreamingFailureDiagnosticsTests
     [InlineData("* [HTTP/2] [1] [x-custom-secret: private-value]")]
     [InlineData("> GET /videoplayback?sig=private-value HTTP/1.1")]
     [InlineData("Opening https://user:private-value@cdn.example/video?sig=private-value#secret")]
+    [InlineData("Opening https://manifest.example/api/manifest/hls_playlist/ip/private-value/signature/private-value/playlist/index.m3u8")]
+    [InlineData("> GET /videoplayback/id/video/ip/private-value/lsig/private-value/file/seg.ts HTTP/1.1")]
     public void DetailedDiagnosticsRedactArgumentsHeadersAndRequestTargets(string value)
     {
         string sanitized = string.Join("\n", StreamingFailureDiagnostics.FormatDiagnosticLines(value));
@@ -73,6 +77,19 @@ public sealed class StreamingFailureDiagnosticsTests
     public void DetailedTransportDiagnosticsPreserveStatusAndByteRanges(string value) =>
         Assert.Equal(value, Assert.Single(StreamingFailureDiagnostics.FormatDiagnosticLines(value)));
 
+    [Fact]
+    public void SignedPathIsRedactedBeforeLongDiagnosticIsSplit()
+    {
+        string url = "https://cdn.example/videoplayback/id/" + new string('x', 600) +
+            "/ip/private-address/lsig/private-signature/file/seg.ts";
+        string sanitized = string.Join("\n", StreamingFailureDiagnostics.FormatDiagnosticLines("Opening " + url));
+        Assert.DoesNotContain("private-", sanitized, StringComparison.Ordinal);
+        Assert.DoesNotContain(new string('x', 50), sanitized, StringComparison.Ordinal);
+        Assert.Equal("https://cdn.example/[redacted]", Log.SafeValue(url));
+        Assert.Equal("Opening https://cdn.example/[redacted]", StreamingFailureDiagnostics.SanitizeMessage("Opening " + url));
+        Assert.DoesNotContain("private-", StreamingFailureDiagnostics.SanitizeMessage("> GET /videoplayback/ip/private-address/lsig/private-signature HTTP/1.1"), StringComparison.Ordinal);
+    }
+
     [Theory]
     [InlineData(mpv_log_level.MPV_LOG_LEVEL_ERROR, "ffmpeg/video", false, true)]
     [InlineData(mpv_log_level.MPV_LOG_LEVEL_WARN, "curl", false, true)]
@@ -93,6 +110,9 @@ public sealed class StreamingFailureDiagnosticsTests
     [InlineData("A PO Token is required for this client", StreamingFailureCategory.ProofOfOriginToken, false)]
     [InlineData("Could not resolve host: example.com", StreamingFailureCategory.NetworkDns, true)]
     [InlineData("HTTP Error 503: Service Unavailable", StreamingFailureCategory.Http, true)]
+    [InlineData("< HTTP/2 429", StreamingFailureCategory.Http, true)]
+    [InlineData("HTTP status: 408", StreamingFailureCategory.Http, true)]
+    [InlineData("HTTP/2 404 Not Found; size 503", StreamingFailureCategory.Http, false)]
     [InlineData("TLS handshake failed: certificate verify failed", StreamingFailureCategory.TlsCertificate, false)]
     [InlineData("demuxer: unrecognized file format", StreamingFailureCategory.Demuxer, false)]
     public void ClassifiesStreamingFailureOnlyFromEvidence(
@@ -111,6 +131,97 @@ public sealed class StreamingFailureDiagnosticsTests
     public void UnknownMessageDoesNotInventACause()
     {
         Assert.Null(StreamingFailureDiagnostics.Classify("test", "something unusual happened"));
+    }
+
+    [Theory]
+    [InlineData("curl", "transfer failed: Failure when receiving data from the peer", "NetworkTransport", true)]
+    [InlineData("curl", "ngtcp2_conn_writev_stream returned error: ERR_DRAINING", "NetworkTransport", true)]
+    [InlineData("ffmpeg/video", "vp9: Failed to read frame header.", "Decoder", false)]
+    [InlineData("ffmpeg/video", "vp9: Invalid frame marker", "Decoder", false)]
+    [InlineData("ffmpeg/video", "vp9: Failed to read unit 0 (type 0): Invalid data found when processing input.", "Decoder", false)]
+    [InlineData("vd", "Error while decoding frame!", "Decoder", false)]
+    public void RecordedTransportAndDecoderFailuresAreClassifiedSeparately(
+        string component, string message, string category, bool transient)
+    {
+        StreamingFailureDiagnostic? diagnostic = StreamingFailureDiagnostics.Classify(component, message);
+        Assert.NotNull(diagnostic);
+        Assert.Equal(category, diagnostic.Category.ToString());
+        Assert.Equal(transient, diagnostic.IsLikelyTransient);
+    }
+
+    [Theory]
+    [InlineData("ffmpeg/demuxer", "vp9: Invalid frame marker")]
+    [InlineData("ytdl_hook", "Selected vp9 format")]
+    [InlineData("curl", "proto=https ok=1 code=200 size=400")]
+    public void InformationalOrUnrelatedMessagesDoNotImplyTransportOrDecoderFailure(string prefix, string text)
+    {
+        Assert.Null(StreamingFailureDiagnostics.Classify(prefix, text));
+    }
+
+    [Fact]
+    public void RuntimeErrorsArePersistedOncePerCategoryAndResetForNextMediaWithoutDebugMode()
+    {
+        string marker = "runtime-error-" + Guid.NewGuid().ToString("N");
+        bool debug = Global.App.DebugMode;
+        using RuntimeFailurePlayer player = new();
+        string url = "https://cdn.example/video/lsig/private-runtime-signature";
+        try
+        {
+            Global.App.DebugMode = false;
+            player.Path = url;
+            MpvNet.MpvEventSnapshot decoder = CreateLogSnapshot("ffmpeg/video", "vp9: Failed to read frame header. " + marker);
+            MpvNet.MpvEventSnapshot network = CreateLogSnapshot("curl", "transfer failed: Failure when receiving data from the peer " + marker);
+            for (int count = 0; count < 5; count++)
+            {
+                player.OnLogMessage(decoder);
+                player.OnLogMessage(network);
+            }
+            Assert.Equal(url, player.Path);
+            string log = System.IO.Path.Combine(Log.LogFolder, "mpvnet-" + DateTime.Now.ToString("yyyy-MM-dd") + ".log");
+            string[] summaries = File.ReadAllLines(log).Where(line => line.Contains(marker, StringComparison.Ordinal)).ToArray();
+            Assert.Equal(2, summaries.Length);
+            Assert.Contains(summaries, line => line.Contains("category=Decoder", StringComparison.Ordinal));
+            Assert.Contains(summaries, line => line.Contains("category=NetworkTransport", StringComparison.Ordinal));
+            Assert.All(summaries, line => Assert.DoesNotContain("private-runtime-signature", line, StringComparison.Ordinal));
+
+            player.StartNextMedia();
+            player.Path = url;
+            player.OnLogMessage(decoder);
+            Assert.Equal(3, File.ReadAllLines(log).Count(line => line.Contains(marker, StringComparison.Ordinal)));
+        }
+        finally
+        {
+            Global.App.DebugMode = debug;
+        }
+    }
+
+    sealed class RuntimeFailurePlayer : MainPlayer
+    {
+        public void StartNextMedia() => OnStartFile();
+    }
+
+    static MpvNet.MpvEventSnapshot CreateLogSnapshot(string component, string message)
+    {
+        nint prefix = Marshal.StringToCoTaskMemUTF8(component);
+        nint text = Marshal.StringToCoTaskMemUTF8(message);
+        nint payload = Marshal.AllocHGlobal(Marshal.SizeOf<mpv_event_log_message>());
+        try
+        {
+            Marshal.StructureToPtr(new mpv_event_log_message
+            {
+                prefix = prefix, text = text, log_level = mpv_log_level.MPV_LOG_LEVEL_ERROR
+            }, payload, false);
+            return MpvNet.MpvEventSnapshot.Create(new mpv_event
+            {
+                event_id = mpv_event_id.MPV_EVENT_LOG_MESSAGE, data = payload
+            });
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(payload);
+            Marshal.FreeCoTaskMem(prefix);
+            Marshal.FreeCoTaskMem(text);
+        }
     }
 
     [Fact]
