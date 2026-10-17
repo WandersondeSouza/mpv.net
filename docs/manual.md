@@ -162,6 +162,14 @@ posição correspondente ao arquivo de playlist. Títulos passam pela normaliza�
 comum, e caminhos/URLs repetidos são removidos sem eliminar arquivos homônimos
 em pastas diferentes.
 
+Todos os itens dessas coleções já entram na playlist com título normalizado,
+inclusive os que ainda não foram reproduzidos. A regra remove a extensão
+reconhecida, troca pontos, `_`, `-` e outros separadores configurados por
+espaços, reduz espaços repetidos e coloca a primeira letra de cada palavra em
+maiúscula. Por exemplo, `1.2 - Gerando_o projeto.mp4` aparece como
+`1 2 Gerando O Projeto`. Isso também vale para arquivos locais abertos pelo
+diálogo, clipboard, drag/drop e linha de comando. Os arquivos não são renomeados.
+
 DVD/Blu-ray reconhecidos pela estrutura `VIDEO_TS/VIDEO_TS.IFO` ou
 `BDMV/index.bdmv` usam a reprodução especial de disco. É possível selecionar
 a raiz ou a própria pasta `VIDEO_TS`/`BDMV`; nesse último caso, o dispositivo
@@ -272,9 +280,9 @@ mpv/yt-dlp não é reduzida automaticamente e o cache em disco não é habilitad
 automaticamente nesses conteúdos. Um buffer maior absorve oscilações, mas não
 sustenta uma conexão continuamente abaixo do bitrate necessário.
 
-Playlists locais sao expandidas pelo frontend e seus itens, ja preparados pela
-regra comum, sao enviados individualmente por `loadfile`, preservando a ordem e
-a politica de rede especifica de cada item.
+Playlists locais são expandidas pelo frontend e seus itens, já preparados pela
+regra comum, são enviados juntos com os títulos preenchidos. A ordem e a
+política de rede específica de cada item são preservadas.
 
 No YouTube, uma URL sem `list=` continua sendo tratada como vídeo individual.
 Quando a URL contém `list=`, o MPV.NET preserva todos os parâmetros e habilita
@@ -285,8 +293,9 @@ na playlist e usa `index=` quando ele corresponde, sem reconstruir a coleção e
 C# nem reiniciar o item atual. Depois da expansão, o MPV.NET normaliza os títulos
 dos itens e remove entradas repetidas pelo caminho ou URL, mantendo a fila nativa
 e o item que já estiver em reprodução. Como essa fila só existe depois que o
-yt-dlp a entrega ao mpv, a preparação ocorre uma única vez após a expansão ficar
-estável; as alterações geradas pela própria preparação não iniciam uma nova rodada.
+yt-dlp a entrega ao mpv, a preparação aguarda a expansão ficar estável. O mesmo
+estado de caminhos e títulos não é preparado novamente; uma alteração posterior
+de título pode exigir nova preparação, preservando o item em reprodução.
 
 Se uma URL do YouTube falhar com `unrecognized file format`, teste o extrator
 diretamente. Em muitos casos o problema e autenticacao ou cookies do navegador,

@@ -71,6 +71,28 @@ pela janela temporal de append de `LoadFiles`. Resultado vazio ou raiz ilegível
 não muda o estado de carregamento nem a fila corrente. O autoload de abertura
 individual continua restrito à mesma pasta e condicionado a `AutoLoadFolder`.
 
+`SendPreparedPlaylistItems` monta M3U em memória com `#EXTINF` e usa `loadlist`
+em substituição ou append: todos os títulos são publicados na playlist nativa
+antes da reprodução de seus itens. `loadfile` com `force-media-title` não
+preenche antecipadamente o campo `playlist/N/title` de entradas pendentes.
+Arquivos locais comuns abertos por `LoadFiles` também usam esse transporte;
+ISO, legendas e entradas especiais preservam seus caminhos próprios.
+
+O hook `on_load` de prioridade 5 aplica o título da entrada como opção local,
+quando não há título forçado explícito, antes de ler tags da mídia. Ele também
+preserva a expansão de URLs YouTube com `list=` antes do `ytdl_hook` de prioridade
+10. O hook de cache continua na prioridade 50 e respeita opções explícitas por
+item. Templates, URLs e caminhos originais não são reescritos.
+
+O estado de fila preparada considera caminhos **e títulos**. Para coleções
+criadas pelo mpv/scripts, a normalização posterior mantém a entrada em reprodução
+e reinsere as demais com títulos preenchidos. Como os títulos da playlist são
+somente leitura, o título original da entrada já em reprodução de uma coleção
+externa pode permanecer no seletor até sua próxima carga; o texto do tocador
+recebe `force-media-title`. A fotografia nativa resultante é registrada para
+evitar reconstruções repetidas. Coleções preparadas pelo frontend já possuem
+todos os títulos normalizados desde a inserção, incluindo o item inicial.
+
 Validação local em 2026-10-17: 680 testes aprovados; build Windows Debug x64
 sem avisos/erros; 13 catálogos gettext validados e compilados. Uma sonda sem
 interface, com libmpv normal real e WAVs locais, verificou substituição da fila
@@ -81,6 +103,18 @@ reparse points foram cobertos por testes com sistema de arquivos controlado.
 Isso não comprova reprodução de DVD/Blu-ray físico ou ISO real, remoção de uma
 unidade durante a busca nem o checklist visual da interface Windows
 (menu/tradução, temas, DPI, fullscreen, atalhos, drag/drop, faixas e cursor/OSC).
+
+Correção posterior dos títulos pendentes em 2026-10-17: 696 testes aprovados,
+incluindo 13 testes com libmpv normal real. A regressão verifica o campo `title`
+dos 200 itens antes de reproduzir o próximo, com autoload ligado/desligado;
+entradas por diálogo, clipboard, drag/drop, CLI e IPC; append sem alterar o ID,
+caminho ou posição da mídia ativa; título de playlist sobre tag incorporada;
+mudança de títulos em uma fila com os mesmos caminhos, sem loop de reconstrução;
+e opções de cache/YouTube por item, inclusive overrides explícitos. Os testes
+de URL usam redirecionamento nativo para WAV local, sem acessar serviços externos.
+O build Windows Debug x64 terminou sem avisos/erros. A verificação visual do
+seletor F8 na aplicação completa permanece manual; os testes consultam a mesma
+playlist nativa usada por esse seletor.
 
 ## Carregamento dual de libmpv
 
@@ -205,8 +239,10 @@ aplicado como metadado e a URL ou caminho bruto deve ser enviado ao mpv/libmpv
 sem depender de playlist. Expansoes auxiliares de playlist devem continuar
 opcionais: se falharem, o frontend deve preservar a tentativa de reproducao da
 midia principal antes de desistir. Playlists locais expandidas com sucesso
-enviam seus itens preparados individualmente por `loadfile`, permitindo opções
-de rede por item sem transformar um arquivo local em stream de rede.
+enviam seus itens preparados em M3U com títulos preenchidos por `loadlist`.
+O transporte `memory://` evita depender de escrita temporária para abrir uma
+coleção; os caminhos locais são absolutos. As opções de rede são aplicadas por
+item no hook nativo, sem transformar um arquivo local em stream de rede.
 
 Toda coleção controlada pelo frontend converge em
 `PlaylistFile.PrepareForPlayback`: os títulos são normalizados antes da remoção
@@ -237,7 +273,7 @@ frontend só acrescenta a opção local
 `ytdl-raw-options-append=yes-playlist=` quando `YouTubeMediaPolicy` encontra
 intenção explícita de coleção por meio de um parâmetro `list=` em host legítimo
 do YouTube. A URL original, inclusive `v=`, `index=`, parâmetros desconhecidos
-e fragmento, permanece como um único argumento de `loadfile`.
+e fragmento, permanece intacta no `loadfile` direto ou na entrada da M3U preparada.
 
 Não existe playlist paralela em C#. Com `yes-playlist`, o hook nativo recebe o
 JSON plano do yt-dlp, cria a playlist do mpv e sua implementação atual compara
@@ -248,7 +284,7 @@ Após a expansão, o frontend normaliza os títulos dos itens nativos e remove
 duplicatas pelo caminho ou URL. Essa correção é feita na própria fila do mpv:
 o item atual é preservado, recebe `force-media-title`, e os itens anteriores e
 posteriores voltam por M3U temporárias com `#EXTINF`. O observador usa debounce
-e registra a sequência de endereços preparada antes de aceitar outra execução;
+e registra a fotografia de endereços e títulos antes de aceitar outra execução;
 assim, os eventos produzidos por `playlist-clear` e `loadlist` não realimentam
 a normalização.
 

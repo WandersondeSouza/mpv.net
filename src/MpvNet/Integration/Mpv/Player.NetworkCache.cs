@@ -9,6 +9,12 @@ public partial class MainPlayer
 
     internal override void OnHook(MpvEventSnapshot snapshot)
     {
+        if (snapshot.HookName == "on_load" && snapshot.ReplyUserData == PlaylistTitleHookUserData)
+        {
+            ApplyPlaylistEntryOptions();
+            return;
+        }
+
         if (snapshot.HookName != "on_load" || snapshot.ReplyUserData != NetworkCacheHookUserData)
             return;
 

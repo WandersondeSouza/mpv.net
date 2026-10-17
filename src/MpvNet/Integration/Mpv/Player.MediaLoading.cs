@@ -14,6 +14,7 @@ namespace MpvNet;
 
 public partial class MainPlayer
 {
+    internal const ulong PlaylistTitleHookUserData = 2;
     public const string LoadfileOptionsInsertionIndex = "-1";
     // Retained for existing consumers; current defaults are resolved per profile.
     public const string AutomaticStreamingLoadOptions = NetworkCachePolicy.BalancedHttpOptions;
@@ -51,6 +52,16 @@ public partial class MainPlayer
         Log.Debug($"Loading media inputs. count={requests.Count}, source={source}, loadFolder={loadFolder}, append={append}, fallback='{Log.SafeValue(fallbackInput)}', inputs={Log.SafeValues(requests.Select(request => request.Input))}");
 
         ArmAutoLoadFolder(loadFolder && !append);
+
+        // A multiselection of ordinary media files can enter mpv as one titled
+        // collection. Keep special inputs (ISO, subtitles, scripts, URLs) below.
+        if (requests.All(request => CanLoadAsTitledFile(request.Input)))
+        {
+            List<PlaylistFileItem> items = PlaylistFile.PrepareForPlayback(requests.Select(request =>
+                new PlaylistFileItem(ConvertFilePath(request.Input), request.Title ?? "")));
+            SendPreparedPlaylistItems(items, append, PlayerCancellationToken);
+            return;
+        }
 
         for (int i = 0; i < requests.Count; i++)
         {
@@ -137,7 +148,11 @@ public partial class MainPlayer
             }
             else
             {
-                SendLoadfile(file, i, append, request.Title);
+                if (CanLoadAsTitledFile(file))
+                    SendPreparedPlaylistItems(PlaylistFile.PrepareForPlayback([new(file, request.Title ?? "")]),
+                        append || i > 0, PlayerCancellationToken);
+                else
+                    SendLoadfile(file, i, append, request.Title);
             }
         }
 
@@ -146,6 +161,14 @@ public partial class MainPlayer
             Log.Debug("mpv path property is empty after LoadFiles; setting playlist-pos to 0.");
             SetPropertyInt("playlist-pos", 0);
         }
+    }
+
+    static bool CanLoadAsTitledFile(string file)
+    {
+        string extension = file.Ext();
+        return File.Exists(file) && extension is not ("avs" or "iso" or "lnk") &&
+            !FileTypes.IsPlaylist(extension) && !FileTypes.Subtitle.Contains(extension) &&
+            (FileTypes.IsAudio(extension) || FileTypes.IsVideo(extension));
     }
 
     void BeginNewMediaLoad()
@@ -182,21 +205,59 @@ public partial class MainPlayer
 
     void SendPreparedPlaylistItems(List<PlaylistFileItem> preparedItems, bool append, CancellationToken cancellationToken)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        if (Handle == IntPtr.Zero)
+            return;
+
+        // Keep the validation formerly performed by each loadfile request,
+        // particularly rejection of newlines/NUL before serializing an M3U.
+        preparedItems = PlaylistFile.PrepareForPlayback(preparedItems.Select(item =>
+            MediaInputNormalizer.Normalize(item.Path, MediaInputSource.Playlist, append, item.Title))
+            .OfType<MediaLoadRequest>().Select(request => new PlaylistFileItem(request.Input, request.Title ?? "")));
+        if (preparedItems.Count == 0)
+            return;
+
         List<PlaylistFileItem> expectedItems = append
             ? PlaylistFile.PrepareForPlayback(ReadCurrentPlaylistItems().Concat(preparedItems))
             : preparedItems;
 
-        for (int index = 0; index < preparedItems.Count; index++)
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            PlaylistFileItem item = preparedItems[index];
-            MediaLoadRequest? request = MediaInputNormalizer.Normalize(
-                item.Path, MediaInputSource.Playlist, append || index > 0, item.Title);
-            if (request is not null)
-                SendLoadfile(request.Input, index, request.Append, request.Title);
-        }
+        // EXTINF publishes every native playlist title while inserting the
+        // collection, including entries that have never been played. loadfile's
+        // force-media-title only becomes visible when that entry is loaded.
+        string playlist = "memory://" + PlaylistFile.CreateM3uContent(preparedItems);
+        cancellationToken.ThrowIfCancellationRequested();
+        CommandV("loadlist", playlist, append ? "append" : "replace");
 
         RememberPreparedPlaylist(expectedItems);
+    }
+
+    void ApplyPlaylistEntryOptions()
+    {
+        string path = GetPropertyString("path");
+        // loadlist carries titles in EXTINF; keep that same display title when
+        // file metadata arrives. Never replace the path/URL used for playback.
+        int position = GetPropertyInt("playlist-pos");
+        string title = position >= 0 ? GetPropertyString($"playlist/{position}/title") : "";
+        if (!string.IsNullOrWhiteSpace(title) &&
+            GetPlaylistPathKey(GetPropertyString($"playlist/{position}/filename")) == GetPlaylistPathKey(path) &&
+            string.IsNullOrEmpty(GetPropertyString("file-local-options/force-media-title")))
+        {
+            SetPropertyString("file-local-options/force-media-title", TitleHelp.NormalizeMediaTitle(title));
+        }
+
+        // Prepared collections now use loadlist. Preserve loadfile's YouTube
+        // playlist option for these entries too, before ytdl resolves the URL.
+        if (YouTubeMediaPolicy.ShouldEnableNativePlaylist(path))
+        {
+            IReadOnlySet<string> explicitOptions = MpvOptionConfiguration.GetExplicitOptions();
+            if (!MpvOptionConfiguration.IsExplicit(explicitOptions, "ytdl-raw-options") &&
+                !MpvOptionConfiguration.IsExplicit(explicitOptions, "ytdl-raw-options-append") &&
+                GetPropertyString("option-info/ytdl-raw-options/set-locally") != "yes" &&
+                GetPropertyString("option-info/ytdl-raw-options/set-from-commandline") != "yes")
+            {
+                CommandV("change-list", "file-local-options/ytdl-raw-options", "append", "yes-playlist=");
+            }
+        }
     }
 
     bool TryLoadFallbackDirect(string? fallbackInput, string failedInput, bool append, string reason)
@@ -569,7 +630,11 @@ public partial class MainPlayer
         {
             _isNormalizingAutocreatedPlaylist = true;
             ApplyPreparedNativePlaylist(preparedItems, items, playingPosition);
-            RememberPreparedPlaylist(preparedItems);
+            // mpv exposes playlist titles as read-only. For a foreign playlist
+            // already playing, force-media-title fixes the player text while
+            // retaining that entry/ID. Cache the resulting native snapshot so
+            // its original current-entry title cannot trigger a rebuild loop.
+            RememberPreparedPlaylist(ReadCurrentPlaylistItems());
             Log.Debug($"Prepared native playlist once. sourceCount={items.Count}, preparedCount={preparedItems.Count}, duplicatesRemoved={items.Count - preparedItems.Count}");
         }
         finally
@@ -637,13 +702,13 @@ public partial class MainPlayer
     bool IsPreparedPlaylist(IEnumerable<PlaylistFileItem> items)
     {
         lock (_playlistNormalizationStateLock)
-            return PlaylistFile.HasSameAddresses(items, _preparedPlaylistAddressKeys);
+            return PlaylistFile.HasSameItems(items, _preparedPlaylistSnapshot);
     }
 
     void RememberPreparedPlaylist(IEnumerable<PlaylistFileItem> items)
     {
         lock (_playlistNormalizationStateLock)
-            _preparedPlaylistAddressKeys = PlaylistFile.GetAddressKeys(items);
+            _preparedPlaylistSnapshot = items.ToArray();
     }
 
     void ResetPreparedPlaylistState()
@@ -652,7 +717,7 @@ public partial class MainPlayer
 
         lock (_playlistNormalizationStateLock)
         {
-            _preparedPlaylistAddressKeys = [];
+            _preparedPlaylistSnapshot = [];
             debounce = _playlistNormalizationDebounce;
             debounce?.Cancel();
             _playlistNormalizationDebounce = null;

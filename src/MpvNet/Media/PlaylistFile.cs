@@ -16,19 +16,26 @@ public static class PlaylistFile
         Directory.CreateDirectory(App.TempFolder);
         string path = Path.Combine(App.TempFolder, Guid.NewGuid() + ".m3u8");
 
-        using StreamWriter writer = new(path, false, new UTF8Encoding(false));
-        writer.WriteLine("#EXTM3U");
+        File.WriteAllText(path, CreateM3uContent(items), new UTF8Encoding(false));
+
+        App.TempFiles.Add(path);
+        return path;
+    }
+
+    internal static string CreateM3uContent(IEnumerable<PlaylistFileItem> items)
+    {
+        StringBuilder content = new();
+        content.AppendLine("#EXTM3U");
 
         foreach (var item in PrepareForPlayback(items))
         {
             if (!string.IsNullOrWhiteSpace(item.Title))
-                writer.WriteLine("#EXTINF:-1," + item.Title.Trim());
+                content.AppendLine("#EXTINF:-1," + item.Title.Trim());
 
-            writer.WriteLine(item.Path);
+            content.AppendLine(item.Path);
         }
 
-        App.TempFiles.Add(path);
-        return path;
+        return content.ToString();
     }
 
     public static List<PlaylistFileItem> Read(string path) => Read(path, null);
@@ -138,6 +145,13 @@ public static class PlaylistFile
         string[] itemKeys = GetAddressKeys(items);
         return itemKeys.Length == addressKeys.Count &&
             itemKeys.SequenceEqual(addressKeys, StringComparer.OrdinalIgnoreCase);
+    }
+
+    internal static bool HasSameItems(IEnumerable<PlaylistFileItem> items, IReadOnlyList<PlaylistFileItem> snapshot)
+    {
+        List<PlaylistFileItem> current = items.ToList();
+        return HasSameAddresses(current, GetAddressKeys(snapshot)) &&
+            current.Select(item => item.Title).SequenceEqual(snapshot.Select(item => item.Title), StringComparer.Ordinal);
     }
 
     static List<PlaylistFileItem> ReadM3u(string path)

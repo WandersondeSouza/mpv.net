@@ -215,6 +215,8 @@ public partial class MainPlayer
             Log.Debug("Enabled yt-dlp verbose output for diagnostic logging.");
         }
 
+        // Prepare titles and YouTube playlist options before ytdl_hook (priority 10).
+        RegisterHook("on_load", PlaylistTitleHookUserData, 5);
         RegisterHook("on_load", NetworkCacheHookUserData, 50);
 
         if (formHandle != IntPtr.Zero)

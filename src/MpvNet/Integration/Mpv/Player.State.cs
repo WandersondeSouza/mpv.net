@@ -10,7 +10,7 @@ public partial class MainPlayer
     bool _isNormalizingAutocreatedPlaylist;
     readonly object _playlistNormalizationStateLock = new();
     CancellationTokenSource? _playlistNormalizationDebounce;
-    string[] _preparedPlaylistAddressKeys = [];
+    PlaylistFileItem[] _preparedPlaylistSnapshot = [];
     readonly object _destroyLock = new();
     bool _isDestroyed;
     readonly CancellationTokenSource _playerCancellation = new();
