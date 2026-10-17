@@ -108,6 +108,43 @@ public sealed class NativePlaylistTitleTests : IDisposable
     }
 
     [Theory]
+    [InlineData(200)]
+    [InlineData(2000)]
+    public async Task PreparedCollectionsKeepTheNativePlaylistOriginSmallForSelectors(int count)
+    {
+        using TestDirectory directory = new();
+        string first = WriteWave(directory.Path, "fixture.mp4");
+        string playlist = Path.Combine(directory.Path, "large.m3u");
+        string[] expected = Enumerable.Range(1, count).Select(index => $"{index} 2 Gerando O Projeto").ToArray();
+        StringBuilder content = new("#EXTM3U\n");
+        for (int index = 1; index <= count; index++)
+        {
+            content.AppendLine($"#EXTINF:-1,{index}.2 - GERANDO_o projeto.mp4");
+            // Only the first, paused WAV is opened. The remaining URLs are
+            // synthetic queue entries and never access the network.
+            content.AppendLine(index == 1 ? first : $"https://example.invalid/video-{index}.mp4");
+        }
+        File.WriteAllText(playlist, content.ToString());
+        using MainPlayer player = CreateNativePlayer();
+        TaskCompletionSource loaded = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        player.FileLoaded += () => loaded.TrySetResult();
+        player.LoadFiles([playlist], false, false);
+        await loaded.Task.WaitAsync(TimeSpan.FromSeconds(10), TestContext.Current.CancellationToken);
+        Assert.Equal(count, player.GetPropertyInt("playlist-count"));
+
+        string origin = player.GetPropertyString("playlist/0/playlist-path");
+        // A memory:// M3U makes this field contain the entire collection in
+        // EVERY entry. Reading the full native playlist (as F8 does) then copies
+        // an amount of text proportional to the square of the entry count.
+        Assert.InRange(origin.Length, 1, 1024);
+        Assert.True(File.Exists(origin));
+        Assert.Contains(origin, Global.App.TempFiles);
+        Assert.Equal(origin, player.GetPropertyString($"playlist/{count - 1}/playlist-path"));
+        AssertTitles(player, expected);
+        Assert.Equal(first, player.GetPropertyString("path"));
+    }
+
+    [Theory]
     [InlineData(false, false)]
     [InlineData(true, false)]
     [InlineData(false, true)]

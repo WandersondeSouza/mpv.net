@@ -71,12 +71,18 @@ pela janela temporal de append de `LoadFiles`. Resultado vazio ou raiz ilegível
 não muda o estado de carregamento nem a fila corrente. O autoload de abertura
 individual continua restrito à mesma pasta e condicionado a `AutoLoadFolder`.
 
-`SendPreparedPlaylistItems` monta M3U em memória com `#EXTINF` e usa `loadlist`
+`SendPreparedPlaylistItems` grava M3U temporária UTF-8 com `#EXTINF` e usa `loadlist`
 em substituição ou append: todos os títulos são publicados na playlist nativa
 antes da reprodução de seus itens. `loadfile` com `force-media-title` não
 preenche antecipadamente o campo `playlist/N/title` de entradas pendentes.
 Arquivos locais comuns abertos por `LoadFiles` também usam esse transporte;
 ISO, legendas e entradas especiais preservam seus caminhos próprios.
+O arquivo usa `PlaylistFile.WriteTempM3u` e entra na limpeza de temporários
+do aplicativo no encerramento. A gravação termina antes de `loadlist`; uma
+falha nessa etapa não substitui a fila nativa. Não usar `memory://` para esse transporte:
+o mpv publica a origem em `playlist/N/playlist-path` de cada entrada. Uma origem
+com o texto completo da M3U faz a consulta nativa da fila pelo seletor F8 copiar
+um volume de texto que cresce aproximadamente com o quadrado do número de itens.
 
 O hook `on_load` de prioridade 5 aplica o título da entrada como opção local,
 quando não há título forçado explícito, antes de ler tags da mídia. Ele também
@@ -84,7 +90,9 @@ preserva a expansão de URLs YouTube com `list=` antes do `ytdl_hook` de priorid
 10. O hook de cache continua na prioridade 50 e respeita opções explícitas por
 item. Templates, URLs e caminhos originais não são reescritos.
 
-O estado de fila preparada considera caminhos **e títulos**. Para coleções
+O estado de fila preparada considera caminhos **e títulos**. Em eventos da
+playlist, a fotografia atual é comparada com esse estado antes de executar
+`PrepareForPlayback`; uma fila inalterada não é renormalizada. Para coleções
 criadas pelo mpv/scripts, a normalização posterior mantém a entrada em reprodução
 e reinsere as demais com títulos preenchidos. Como os títulos da playlist são
 somente leitura, o título original da entrada já em reprodução de uma coleção
@@ -115,6 +123,17 @@ de URL usam redirecionamento nativo para WAV local, sem acessar serviços extern
 O build Windows Debug x64 terminou sem avisos/erros. A verificação visual do
 seletor F8 na aplicação completa permanece manual; os testes consultam a mesma
 playlist nativa usada por esse seletor.
+
+Correção de desempenho do seletor em 2026-10-17: 698 testes aprovados e build
+Windows Release x64 sem avisos/erros. Dois casos novos com 200 e 2.000 entradas
+reproduziram a origem excessiva antes da correção e verificaram origem curta,
+títulos antecipados e registro do temporário para limpeza após a mudança.
+Uma sonda isolada com o frontend corrigido, libmpv normal e uma M3U de 14.892
+itens, precedidos de um WAV local pausado para não acessar os streams, mediu
+aproximadamente 66 ms na primeira abertura do F8 e 50–51 ms nas quatro seguintes;
+com `memory://`, a abertura não havia concluído em 15 segundos. Não houve eventos
+de alteração da playlist nessas aberturas. Esses tempos são evidência local;
+não substituem o checklist visual da aplicação completa ou reprodução de streams.
 
 ## Carregamento dual de libmpv
 
@@ -240,9 +259,9 @@ sem depender de playlist. Expansoes auxiliares de playlist devem continuar
 opcionais: se falharem, o frontend deve preservar a tentativa de reproducao da
 midia principal antes de desistir. Playlists locais expandidas com sucesso
 enviam seus itens preparados em M3U com títulos preenchidos por `loadlist`.
-O transporte `memory://` evita depender de escrita temporária para abrir uma
-coleção; os caminhos locais são absolutos. As opções de rede são aplicadas por
-item no hook nativo, sem transformar um arquivo local em stream de rede.
+O transporte usa um arquivo temporário com origem curta; os caminhos locais
+são absolutos. As opções de rede são aplicadas por item no hook nativo, sem
+transformar um arquivo local em stream de rede.
 
 Toda coleção controlada pelo frontend converge em
 `PlaylistFile.PrepareForPlayback`: os títulos são normalizados antes da remoção

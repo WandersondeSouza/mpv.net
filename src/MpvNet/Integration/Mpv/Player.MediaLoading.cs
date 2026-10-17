@@ -224,7 +224,9 @@ public partial class MainPlayer
         // EXTINF publishes every native playlist title while inserting the
         // collection, including entries that have never been played. loadfile's
         // force-media-title only becomes visible when that entry is loaded.
-        string playlist = "memory://" + PlaylistFile.CreateM3uContent(preparedItems);
+        // Use a short file path: mpv includes the origin in EVERY playlist entry.
+        // memory:// would repeat the entire M3U when selectors read the queue.
+        string playlist = PlaylistFile.WriteTempM3u(preparedItems);
         cancellationToken.ThrowIfCancellationRequested();
         CommandV("loadlist", playlist, append ? "append" : "replace");
 
@@ -608,11 +610,13 @@ public partial class MainPlayer
         if (!ShouldNormalizeAutocreatedPlaylist(playlistCount))
             return;
 
-        int playingPosition = GetPlayingPlaylistPosition();
         List<PlaylistFileItem> items = ReadCurrentPlaylistItems(playlistCount);
-        List<PlaylistFileItem> preparedItems = PlaylistFile.PrepareForPlayback(items, playingPosition);
+        if (IsPreparedPlaylist(items))
+            return;
 
-        if (preparedItems.Count == 0 || IsPreparedPlaylist(items))
+        int playingPosition = GetPlayingPlaylistPosition();
+        List<PlaylistFileItem> preparedItems = PlaylistFile.PrepareForPlayback(items, playingPosition);
+        if (preparedItems.Count == 0)
             return;
 
         bool addressesChanged = !PlaylistFile.HasSameAddresses(items, PlaylistFile.GetAddressKeys(preparedItems));
