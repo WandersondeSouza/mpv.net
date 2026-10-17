@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Analise e implemente no MPV.NET Media Player uma opção clara para selecionar uma unidade ou pasta e localizar recursivamente os arquivos de mídia reproduzíveis, incluindo todas as subpastas, montando uma única playlist ordenada para reprodução contínua. Preserve também a abertura especial de unidades, pastas e imagens de DVD/Blu-ray já suportadas pelo projeto.
+Analise e implemente no MPV.NET Media Player a ampliação da opção de menu já existente para selecionar uma unidade ou pasta e localizar recursivamente as mídias reproduzíveis em todas as subpastas. Mantenha uma única entrada de menu: em unidades e pastas comuns, carregue juntos os arquivos de áudio e vídeo reconhecidos e forme uma playlist ordenada para reprodução contínua; em unidades ou estruturas de DVD/Blu-ray reconhecidas, preserve a reprodução especial do disco. Não crie entradas separadas para somente áudio ou somente vídeo, nem um submenu de filtros nesta tarefa.
 
 A tarefa deve ser feita no repositório atual, seguindo AGENTS.md, .ai/README.md, .ai/skills/mpvnet-maintainer.md e as instruções dos agentes especializados. O código e a documentação atuais são a fonte de verdade.
 
@@ -27,7 +27,7 @@ Use este resumo como ponto de partida. Reabra os arquivos atuais e leia também 
 
 ## Requisitos funcionais
 
-1. Atualize o texto do item de menu para explicar claramente que o usuário pode selecionar uma unidade ou pasta e que o conteúdo das subpastas será incluído. A interface deve continuar deixando claro que DVD/Blu-ray também pode ser aberto.
+1. Atualize o texto da entrada de menu existente usando a mensagem-fonte e as traduções especificadas na seção “Texto e localização do menu”. Mantenha uma única entrada para esta operação: ela carrega áudio e vídeo juntos quando a seleção é uma pasta/unidade comum, e continua aceitando DVD/Blu-ray pelo fluxo óptico. Não crie item exclusivo de áudio, item exclusivo de vídeo ou submenu para escolher tipos.
 2. Preserve o identificador de comando open-optical-media e os bindings existentes sempre que possível. Se uma alteração do identificador for tecnicamente necessária, mantenha alias retrocompatível e cubra-o com teste. Não altere input.conf, mpv.conf, opções do usuário nem os valores existentes de configuração para habilitar a varredura recursiva.
 3. Classifique o caminho escolhido antes de iniciar a varredura:
    - Unidade óptica física com mídia acessível e estrutura de DVD/Blu-ray reconhecida deve continuar usando dvd-device/dvd:// ou bluray-device/bd://, conforme o disco.
@@ -35,7 +35,7 @@ Use este resumo como ponto de partida. Reabra os arquivos atuais e leia também 
    - Pasta comum, unidade removível comum ou unidade de dados deve ser percorrida como uma coleção de arquivos. Não envie uma pasta comum para dvd-device/dvd://.
    - Nunca acrescente à playlist comum os segmentos internos de uma estrutura reconhecida de DVD/Blu-ray, como VOB/M2TS, como se fossem arquivos de filmes independentes. Não invente uma playlist de vários discos se a integração atual com mpv não oferecer um fluxo seguro para isso. Defina e documente o comportamento de estruturas ópticas encontradas dentro de uma pasta de coleção.
    - Preserve o caminho de abertura de ISO existente e teste qualquer interação necessária.
-4. Para uma unidade/pasta comum, percorra todos os níveis descendentes e colete apenas as classes de mídia que o projeto reconhece. Reuse FileTypes, as extensões dinâmicas e padrão, e as regras atuais de playlists. Não inclua legendas, scripts, arquivos desconhecidos ou diretórios como itens da playlist.
+4. Para uma unidade/pasta comum, percorra todos os níveis descendentes e carregue juntos os arquivos de áudio e vídeo reconhecidos pelo projeto, além de expandir playlists conforme as regras existentes. Reuse FileTypes, as extensões dinâmicas e padrão, e não inclua legendas, scripts, arquivos desconhecidos ou diretórios como itens da playlist. Não separe áudio e vídeo em comandos, modos ou filtros distintos nesta tarefa.
 5. Defina explicitamente o comportamento de imagens. Não misture imagens indiscriminadamente em uma playlist de vídeos/músicas se isso contrariar a política atual de pastas. Preserve o fluxo de imagens já existente e faça a regra da nova abertura coerente com os métodos FileTypes.GetMediaFiles e FileTypes.GetFolderMediaFiles. Registre a decisão na documentação e no resumo final.
 6. Expanda playlists encontradas na árvore usando PlaylistFile.Read e mantenha a semântica já estabelecida para entradas válidas e títulos de playlists. Combine os arquivos encontrados diretamente com as entradas expandidas e aplique PlaylistFile.PrepareForPlayback ao conjunto final.
 7. Preserve ordem previsível. Use a ordenação natural já adotada pelo projeto em Windows, StringLogicalComparer, aplicada de forma consistente aos caminhos relativos à raiz. A reprodução começa pelo primeiro item da ordem final e avança pelo restante. Não dependa da ordem retornada pelo sistema de arquivos.
@@ -50,10 +50,33 @@ Use este resumo como ponto de partida. Reabra os arquivos atuais e leia também 
 
 ## Localização
 
-- Atualize o msgid em InputHelp.cs e os catálogos conforme docs/developer/localization.md.
-- Siga lang/update-gettext-catalogs.ps1 e o fluxo atual de lang/source.pot/lang/po; preserve os 14 idiomas base atualmente suportados, incluindo inglês nativo, sem criar lang/po/en.po.
-- Traduza de forma clara que a seleção recursiva inclui subpastas sem sugerir que arquivos desconhecidos serão tocados. Preserve placeholders, regras de fallback e paridade dos catálogos.
-- Execute lang/validate-po-files.ps1 -ValidateOnly e os passos de compilação de catálogo documentados, conforme o ambiente permitir. Não deixe traduções vazias, duplicadas ou fora de sincronia com source.pot.
+- Use como msgid em InputHelp.cs exatamente o texto em inglês da tabela abaixo. Inclua essa nova mensagem em lang/source.pot e traduza-a em todos os catálogos de idioma atualmente existentes em lang/po: bg.po, zh_CN.po, es.po, fr.po, de.po, it.po, ja.po, ko.po, pl.po, pt_BR.po, pt_PT.po, ru.po e tr.po. Inglês continua sendo nativo, representado pelo msgid em source.pot; não crie lang/po/en.po.
+- Use as traduções propostas na tabela como base e revise-as no contexto do menu. Atualize cada arquivo .po existente; não deixe nenhum idioma traduzido sem a nova entrada, vazia ou com tradução copiada em inglês.
+- Siga lang/update-gettext-catalogs.ps1 e o fluxo atual de lang/source.pot/lang/po. Preserve placeholders, regras de fallback, os identificadores de idioma e a paridade dos catálogos.
+- Execute lang/validate-po-files.ps1 -ValidateOnly e os passos de compilação de catálogo documentados, conforme o ambiente permitir. Não deixe traduções duplicadas ou fora de sincronia com source.pot.
+
+## Texto e localização do menu
+
+O menu mantém uma única opção para abrir mídia de unidades/pastas. O rótulo comunica que a varredura inclui subpastas; a abertura de DVD/Blu-ray permanece disponível por detecção interna do tipo selecionado. Use exatamente este msgid-fonte e as traduções abaixo ao atualizar source.pot e cada arquivo .po:
+
+| Idioma | msgid/tradução |
+| --- | --- |
+| Inglês (nativo) | Open media from a drive or folder (including subfolders)... |
+| Búlgaro (bg.po) | Отваряне на медия от устройство или папка (включително подпапките)... |
+| Chinês simplificado (zh_CN.po) | 打开驱动器或文件夹中的媒体（包括子文件夹）... |
+| Espanhol (es.po) | Abrir medios desde una unidad o carpeta (incluidas las subcarpetas)... |
+| Francês (fr.po) | Ouvrir des médias depuis un lecteur ou un dossier (y compris les sous-dossiers)... |
+| Alemão (de.po) | Medien von einem Laufwerk oder Ordner öffnen (einschließlich Unterordnern)... |
+| Italiano (it.po) | Apri i contenuti multimediali da un'unità o cartella (incluse le sottocartelle)... |
+| Japonês (ja.po) | ドライブまたはフォルダーからメディアを開く（サブフォルダーを含む）... |
+| Coreano (ko.po) | 드라이브 또는 폴더에서 미디어 열기(하위 폴더 포함)... |
+| Polonês (pl.po) | Otwórz multimedia z dysku lub folderu (wraz z podfolderami)... |
+| Português do Brasil (pt_BR.po) | Abrir arquivos de mídia em uma unidade ou pasta (incluindo subpastas)... |
+| Português de Portugal (pt_PT.po) | Abrir ficheiros multimédia numa unidade ou pasta (incluindo subpastas)... |
+| Russo (ru.po) | Открыть медиафайлы с диска или из папки (включая вложенные папки)... |
+| Turco (tr.po) | Bir sürücüden veya klasörden medya aç (alt klasörler dâhil)... |
+
+O label pode ser ajustado somente se a análise de espaço do menu mostrar um problema concreto; nesse caso, atualize o msgid e todas as traduções no mesmo trabalho, mantendo o mesmo sentido em todos os idiomas. Não altere as regras de idiomas/fallback do projeto. A implementação deve comprovar que os arquivos de catálogo foram atualizados e compilados conforme a documentação, quando o ambiente permitir.
 
 ## Testes exigidos
 
