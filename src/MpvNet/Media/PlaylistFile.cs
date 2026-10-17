@@ -31,7 +31,9 @@ public static class PlaylistFile
         return path;
     }
 
-    public static List<PlaylistFileItem> Read(string path)
+    public static List<PlaylistFileItem> Read(string path) => Read(path, null);
+
+    internal static List<PlaylistFileItem> Read(string path, Action<Exception>? onFailure)
     {
         if (!File.Exists(path) || !FileTypes.IsPlaylistFile(path))
             return [];
@@ -52,7 +54,10 @@ public static class PlaylistFile
         }
         catch (Exception ex)
         {
-            Terminal.WriteError(ex);
+            if (onFailure != null)
+                onFailure(ex);
+            else
+                Terminal.WriteError(ex);
             return [];
         }
     }

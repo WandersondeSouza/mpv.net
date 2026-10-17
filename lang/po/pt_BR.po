@@ -1074,8 +1074,8 @@ msgid "Open Config Folder"
 msgstr "Abrir pasta de configuração"
 
 #: src\MpvNet\Utilities\InputHelp.cs:12
-msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr "Abrir unidade/pasta de DVD/Blu-ray..."
+msgid "Open media from a drive or folder (including subfolders)..."
+msgstr "Abrir arquivos de mídia em uma unidade ou pasta (incluindo subpastas)..."
 
 #: src\MpvNet\Utilities\InputHelp.cs:10
 msgid "Open Files..."
@@ -2671,3 +2671,11 @@ msgstr "Down"
 msgctxt "Volume"
 msgid "Up"
 msgstr "Up"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "No playable media was found in this drive or folder."
+msgstr "Nenhum arquivo de mídia reproduzível foi encontrado nesta unidade ou pasta."
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "The selected drive or folder could not be read."
+msgstr "Não foi possível ler a unidade ou pasta selecionada."

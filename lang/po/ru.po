@@ -1080,8 +1080,8 @@ msgid "Open Config Folder"
 msgstr "Открыть папку конфигурации"
 
 #: src\MpvNet\Utilities\InputHelp.cs:12
-msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr "Открыть привод/папку DVD/Blu-ray..."
+msgid "Open media from a drive or folder (including subfolders)..."
+msgstr "Открыть медиафайлы с диска или из папки (включая вложенные папки)..."
 
 #: src\MpvNet\Utilities\InputHelp.cs:10
 msgid "Open Files..."
@@ -2677,3 +2677,11 @@ msgstr "Down"
 msgctxt "Volume"
 msgid "Up"
 msgstr "Up"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "No playable media was found in this drive or folder."
+msgstr "На этом диске или в этой папке не найдено воспроизводимых медиафайлов."
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "The selected drive or folder could not be read."
+msgstr "Не удалось прочитать выбранный диск или папку."

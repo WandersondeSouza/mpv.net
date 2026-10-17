@@ -1081,8 +1081,8 @@ msgid "Open Config Folder"
 msgstr "打开配置文件夹"
 
 #: src\MpvNet\Utilities\InputHelp.cs:12
-msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr "打开 DVD/蓝光驱动器/文件夹..."
+msgid "Open media from a drive or folder (including subfolders)..."
+msgstr "打开驱动器或文件夹中的媒体（包括子文件夹）..."
 
 #: src\MpvNet\Utilities\InputHelp.cs:10
 msgid "Open Files..."
@@ -2678,3 +2678,11 @@ msgstr "Down"
 msgctxt "Volume"
 msgid "Up"
 msgstr "Up"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "No playable media was found in this drive or folder."
+msgstr "在此驱动器或文件夹中未找到可播放的媒体。"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "The selected drive or folder could not be read."
+msgstr "无法读取所选驱动器或文件夹。"

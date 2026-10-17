@@ -177,24 +177,26 @@ public partial class MainPlayer
             return;
 
         Log.Debug($"Queueing prepared playlist items. sourceCount={items.Count}, preparedCount={preparedItems.Count}, mode={(append ? "append" : "replace")}");
-        SchedulePlayerTask(cancellationToken =>
+        SchedulePlayerTask(cancellationToken => SendPreparedPlaylistItems(preparedItems, append, cancellationToken));
+    }
+
+    void SendPreparedPlaylistItems(List<PlaylistFileItem> preparedItems, bool append, CancellationToken cancellationToken)
+    {
+        List<PlaylistFileItem> expectedItems = append
+            ? PlaylistFile.PrepareForPlayback(ReadCurrentPlaylistItems().Concat(preparedItems))
+            : preparedItems;
+
+        for (int index = 0; index < preparedItems.Count; index++)
         {
-            List<PlaylistFileItem> expectedItems = append
-                ? PlaylistFile.PrepareForPlayback(ReadCurrentPlaylistItems().Concat(preparedItems))
-                : preparedItems;
+            cancellationToken.ThrowIfCancellationRequested();
+            PlaylistFileItem item = preparedItems[index];
+            MediaLoadRequest? request = MediaInputNormalizer.Normalize(
+                item.Path, MediaInputSource.Playlist, append || index > 0, item.Title);
+            if (request is not null)
+                SendLoadfile(request.Input, index, request.Append, request.Title);
+        }
 
-            for (int index = 0; index < preparedItems.Count; index++)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                PlaylistFileItem item = preparedItems[index];
-                MediaLoadRequest? request = MediaInputNormalizer.Normalize(
-                    item.Path, MediaInputSource.Playlist, append || index > 0, item.Title);
-                if (request is not null)
-                    SendLoadfile(request.Input, index, request.Append, request.Title);
-            }
-
-            RememberPreparedPlaylist(expectedItems);
-        });
+        RememberPreparedPlaylist(expectedItems);
     }
 
     bool TryLoadFallbackDirect(string? fallbackInput, string failedInput, bool append, string reason)
@@ -375,19 +377,41 @@ public partial class MainPlayer
 
     async Task LoadDiskFolderAsync(string path, CancellationToken cancellationToken)
     {
+        FolderMediaSelection selection = FolderMediaDiscovery.Discover(path, cancellationToken);
+        cancellationToken.ThrowIfCancellationRequested();
+        Log.Debug($"Folder discovery completed. kind={selection.Kind}, items={selection.Items.Count}, failures={selection.Failures}, skippedEntries={selection.SkippedEntries}");
+
+        if (selection.Kind == FolderMediaKind.Collection)
+        {
+            if (!ApplyFolderMediaSelection(selection, cancellationToken))
+                CommandV("show-text", selection.RootAccessible
+                    ? _("No playable media was found in this drive or folder.")
+                    : _("The selected drive or folder could not be read."), "5000");
+            return;
+        }
+
+        BeginNewMediaLoad();
+        ArmAutoLoadFolder(false);
         Command("stop");
         await Task.Delay(500, cancellationToken);
+        bool bluRay = selection.Kind == FolderMediaKind.BluRay;
+        SetPropertyString(bluRay ? "bluray-device" : "dvd-device", selection.Root);
+        // Explicit opening always replaces, including within LoadFiles' append grace period.
+        LastLoad = DateTime.Now;
+        SendLoadfile(bluRay ? "bd://" : "dvd://", 0, false);
+    }
 
-        if (Directory.Exists(path + "\\BDMV"))
-        {
-            SetPropertyString("bluray-device", path);
-            LoadFiles([@"bd://"], false, false, source: MediaInputSource.InternalCommand);
-        }
-        else
-        {
-            SetPropertyString("dvd-device", path);
-            LoadFiles([@"dvd://"], false, false, source: MediaInputSource.InternalCommand);
-        }
+    internal bool ApplyFolderMediaSelection(FolderMediaSelection selection, CancellationToken cancellationToken)
+    {
+        if (!selection.RootAccessible || selection.Items.Count == 0)
+            return false;
+
+        cancellationToken.ThrowIfCancellationRequested();
+        BeginNewMediaLoad();
+        ArmAutoLoadFolder(false);
+        LastLoad = DateTime.Now;
+        SendPreparedPlaylistItems(selection.Items, false, cancellationToken);
+        return true;
     }
 
     async Task LoadFolderAsync(CancellationToken cancellationToken)

@@ -41,6 +41,47 @@ Arquivos principais:
 - `src/MpvNet/Integration/Mpv/Player.MediaLoading.cs` - carregamento de mídia, playlists, URLs, ISO/DVD/BD e pasta automática;
 - `src/MpvNet/Integration/Mpv/Player.Capabilities.cs` - perfis, decoders, protocolos, demuxers e criação de clientes adicionais.
 
+## Abertura explícita de unidade/pasta
+
+`open-optical-media` mantém o binding e o diálogo existentes.
+`LoadDiskFolderAsync` usa `Media/FolderMediaDiscovery.cs` para distinguir
+estruturas DVD/Blu-ray de coleções comuns antes de parar ou substituir a mídia.
+O identificador histórico também atende unidades de dados e pastas recursivas.
+A descoberta é uma tarefa cancelável do player, fora da UI; erros de sistema
+de arquivos têm contagem e amostra limitada no log, sem uma linha por arquivo.
+
+A classificação reconhece `VIDEO_TS/VIDEO_TS.IFO` e `BDMV/index.bdmv`, incluindo
+a seleção da pasta interna, normalizada para o dispositivo na raiz pai. O
+fluxo usa `dvd-device`/`dvd://` ou `bluray-device`/`bd://`, conforme o
+[contrato de disco do mpv](https://mpv.io/manual/master/#disc-devices).
+ISO mantém a detecção por MediaInfo existente. Discos aninhados em coleções e
+diretórios reservados `VIDEO_TS`/`BDMV` são ignorados, sem tentar montar uma
+fila de vários discos. Reparse points também são excluídos.
+
+Os arquivos usam `FileTypes`, `PlaylistFile.Read` e `PrepareForPlayback`.
+`StringLogicalComparer` ordena caminhos relativos, com desempate ordinal;
+as URLs de playlists conservam sua ordem na posição da playlist fonte.
+Títulos vindos de playlists têm preferência sobre a descoberta direta do mesmo
+caminho, mas a identidade e normalização continuam centrais em `PlaylistFile`.
+
+Uma coleção válida é enviada de uma vez ao mesmo núcleo
+`SendPreparedPlaylistItems` usado pelas playlists locais. A operação usa
+substituição explícita e desarma o autoload (`loadFolder=false`), sem passar
+pela janela temporal de append de `LoadFiles`. Resultado vazio ou raiz ilegível
+não muda o estado de carregamento nem a fila corrente. O autoload de abertura
+individual continua restrito à mesma pasta e condicionado a `AutoLoadFolder`.
+
+Validação local em 2026-10-17: 680 testes aprovados; build Windows Debug x64
+sem avisos/erros; 13 catálogos gettext validados e compilados. Uma sonda sem
+interface, com libmpv normal real e WAVs locais, verificou substituição da fila
+dentro da janela de append, ordem natural, título de playlist, deduplicação,
+preservação da fila para pasta vazia/inválida, próximo/anterior, avanço no EOF
+e encerramento, com `AutoLoadFolder` ligado e desligado. Erros parciais e
+reparse points foram cobertos por testes com sistema de arquivos controlado.
+Isso não comprova reprodução de DVD/Blu-ray físico ou ISO real, remoção de uma
+unidade durante a busca nem o checklist visual da interface Windows
+(menu/tradução, temas, DPI, fullscreen, atalhos, drag/drop, faixas e cursor/OSC).
+
 ## Carregamento dual de libmpv
 
 As distribuições x64 contêm `libmpv-2.dll` (normal) e

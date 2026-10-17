@@ -1080,8 +1080,8 @@ msgid "Open Config Folder"
 msgstr "構成フォルダを開く"
 
 #: src\MpvNet\Utilities\InputHelp.cs:12
-msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr "DVD/Blu-ray ドライブ/フォルダを開く..."
+msgid "Open media from a drive or folder (including subfolders)..."
+msgstr "ドライブまたはフォルダーからメディアを開く（サブフォルダーを含む）..."
 
 #: src\MpvNet\Utilities\InputHelp.cs:10
 msgid "Open Files..."
@@ -2677,3 +2677,11 @@ msgstr "Down"
 msgctxt "Volume"
 msgid "Up"
 msgstr "Up"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "No playable media was found in this drive or folder."
+msgstr "このドライブまたはフォルダーに再生可能なメディアが見つかりませんでした。"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "The selected drive or folder could not be read."
+msgstr "選択したドライブまたはフォルダーを読み取れませんでした。"

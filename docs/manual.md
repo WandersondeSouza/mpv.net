@@ -146,6 +146,40 @@ audio, video e playlists compativeis da mesma pasta. Quando o arquivo aberto e
 uma imagem, o carregamento automatico da pasta adiciona apenas outras imagens
 compativeis da mesma pasta.
 
+Para abrir uma coleção inteira, use **Arquivo > Abrir arquivos de mídia em uma
+unidade ou pasta (incluindo subpastas)...**. Essa opção procura áudio, vídeo e
+playlists em todos os níveis, em segundo plano, independentemente de
+`auto-load-folder`. Imagens, legendas, scripts, ISOs e arquivos desconhecidos
+não entram nessa coleção; abrir uma imagem individual continua adicionando
+somente imagens da mesma pasta conforme a configuração existente.
+
+A coleção é ordenada naturalmente pelos caminhos relativos à pasta escolhida
+(por exemplo, episódio 2 antes de episódio 10), começa no primeiro item e
+substitui a fila atual somente quando encontra mídias utilizáveis. Playlists
+locais são expandidas; seus títulos têm preferência sobre o nome do mesmo
+arquivo encontrado diretamente. URLs conservam a ordem de sua playlist na
+posição correspondente ao arquivo de playlist. Títulos passam pela normalização
+comum, e caminhos/URLs repetidos são removidos sem eliminar arquivos homônimos
+em pastas diferentes.
+
+DVD/Blu-ray reconhecidos pela estrutura `VIDEO_TS/VIDEO_TS.IFO` ou
+`BDMV/index.bdmv` usam a reprodução especial de disco. É possível selecionar
+a raiz ou a própria pasta `VIDEO_TS`/`BDMV`; nesse último caso, o dispositivo
+recebe a pasta pai. Isso vale também para unidades ópticas acessíveis; unidades
+de dados e removíveis comuns usam a busca de arquivos. Estruturas ópticas
+encontradas dentro de uma coleção são ignoradas por inteiro; abra cada disco
+separadamente. Pastas chamadas `VIDEO_TS` e `BDMV` são reservadas e não são
+percorridas mesmo quando incompletas, evitando adicionar segmentos VOB/M2TS.
+ISOs continuam com o fluxo separado de abertura de arquivo.
+
+Links simbólicos, junctions e outros reparse points não são percorridos nem
+incluídos por referência de playlist. Erros em subpastas são registrados e a
+busca continua nos locais acessíveis. Uma pasta vazia, sem mídias ou ilegível
+mostra uma mensagem no idioma da interface e preserva a reprodução atual.
+Entradas locais de playlists mantêm a resolução relativa existente, inclusive
+quando apontam para mídias fora da pasta escolhida, respeitando as exclusões
+de links e estruturas ópticas.
+
 Cada abertura de arquivo expande a pasta uma única vez. Se um item da playlist
 falhar durante a reprodução, o mpv.net registra o erro e continua no próximo
 item disponível, sem reconstruir a playlist nem fechar o player.

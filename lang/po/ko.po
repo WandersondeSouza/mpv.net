@@ -1080,8 +1080,8 @@ msgid "Open Config Folder"
 msgstr "설정 폴더 열기"
 
 #: src\MpvNet\Utilities\InputHelp.cs:12
-msgid "Open DVD/Blu-ray Drive/Folder..."
-msgstr "DVD/Blu-ray 드라이브/폴더 열기..."
+msgid "Open media from a drive or folder (including subfolders)..."
+msgstr "드라이브 또는 폴더에서 미디어 열기(하위 폴더 포함)..."
 
 #: src\MpvNet\Utilities\InputHelp.cs:10
 msgid "Open Files..."
@@ -2677,3 +2677,11 @@ msgstr "Down"
 msgctxt "Volume"
 msgid "Up"
 msgstr "Up"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "No playable media was found in this drive or folder."
+msgstr "이 드라이브 또는 폴더에서 재생 가능한 미디어를 찾을 수 없습니다."
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "The selected drive or folder could not be read."
+msgstr "선택한 드라이브 또는 폴더를 읽을 수 없습니다."

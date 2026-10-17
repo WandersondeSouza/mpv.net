@@ -505,8 +505,19 @@ List<string> sanitizedRecentEntries = RecentMediaPolicy.FilterEntries(
 List<string> optedInRecentEntries = RecentMediaPolicy.FilterEntries(
     [@"C:\Media\movie.mkv|My Movie", recentSafeNetworkUrl, recentTokenUrl], true);
 
+using MpvNet.Tests.TestDirectory recursiveDirectory = new();
+string recursiveSubfolder = Path.Combine(recursiveDirectory.Path, "one", "two");
+Directory.CreateDirectory(recursiveSubfolder);
+string recursiveVideo = Path.Combine(recursiveSubfolder, "episode 2.mp4");
+File.WriteAllText(recursiveVideo, "");
+FolderMediaSelection recursiveSelection = FolderMediaDiscovery.Discover(recursiveDirectory.Path, CancellationToken.None);
+
 var tests = new (string Name, bool Result)[]
 {
+    ("Explicit folder opening discovers nested video", recursiveSelection.Items.Single().Path == recursiveVideo),
+    ("Ordinary folders do not use dvd protocol", recursiveSelection.Kind == FolderMediaKind.Collection),
+    ("Recursive folder title uses the common normalizer", recursiveSelection.Items.Single().Title == "Episode 2"),
+    ("Recursive menu preserves the optical command", InputHelp.ConvertToString(InputHelp.GetDefaults()).Contains("script-message-to mpvnet open-optical-media")),
     ("IsVideoFile .mp4", FileTypes.IsVideoFile(".mp4")),
     ("Player lifecycle starts in Created", lifecycleStartsCreated),
     ("Player lifecycle reaches Destroyed", lifecycleEndsDestroyed),
