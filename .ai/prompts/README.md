@@ -24,6 +24,7 @@ ações. Siga `.ai/README.md` e o pedido explícito do usuário.
 - [Vídeo congela enquanto o áudio continua em mídia online](youtube-video-freeze-audio-continues.md)
 
 ## Planos por área
+- [Abertura recursiva de unidade/pasta e playlist de mídia](open-drive-folder-recursive-playlist.md)
 
 - [Auditoria incremental de confiabilidade de reprodução](playback-reliability-deep-audit.md)
 - [Extensão de componentes de runtime e armazenamento](playback-runtime-components-storage-extension.md), complementar ao plano de reprodução
