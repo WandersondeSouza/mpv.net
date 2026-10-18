@@ -26,7 +26,7 @@ public class CommandLine
         }
     }
 
-    internal static List<StringPair> ParseArguments(IEnumerable<string> args)
+    internal static List<StringPair> ParseArguments(IEnumerable<string> args, bool log = true)
     {
         List<StringPair> arguments = [];
         string[] inputs = args.ToArray();
@@ -44,11 +44,13 @@ public class CommandLine
                 }
 
                 arguments.Add(pair!);
-                Log.Debug($"Parsed command line option: {pair!.Name}='{Log.SafeValue(pair.Value)}'");
+                if (log)
+                    Log.Debug($"Parsed command line option: {pair!.Name}='{Log.SafeValue(pair.Value)}'");
             }
             else
             {
-                Log.Debug($"Ignored non-option command line argument while parsing properties: '{Log.SafeValue(input)}'");
+                if (log)
+                    Log.Debug($"Ignored non-option command line argument while parsing properties: '{Log.SafeValue(input)}'");
             }
         }
 
@@ -316,6 +318,8 @@ public class CommandLine
 
     static void ApplyPropertyArgument(StringPair pair, string phase)
     {
+        if (pair.Name == "config-dir")
+            pair = new StringPair(pair.Name, Player.ConfigFolder);
         Log.Debug($"Applying {phase} command line property: {pair.Name}='{Log.SafeValue(pair.Value)}'");
         Player.ProcessProperty(pair.Name, pair.Value);
 

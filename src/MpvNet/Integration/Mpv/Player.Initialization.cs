@@ -177,18 +177,6 @@ public partial class MainPlayer
         if (processCommandLine)
             CommandLine.ProcessCommandLineArgsPreInit();
 
-        if (CommandLine.Contains("config-dir"))
-        {
-            string configDir = CommandLine.GetValue("config-dir");
-            string fullPath = System.IO.Path.GetFullPath(configDir);
-            App.InputConf.Path = fullPath.Separator() + "input.conf";
-            string content = App.InputConf.GetContent();
-            Log.Debug($"Command line config-dir changed input.conf path. configDir='{Log.SafeValue(configDir)}', resolved='{Log.SafeValue(App.InputConf.Path)}', length={content.Length}");
-
-            if (!string.IsNullOrEmpty(content))
-                SetPropertyString("input-conf", @"memory://" + content);
-        }
-
         Environment.SetEnvironmentVariable("MPVNET_VERSION", AppInfo.Version.ToString());  // deprecated
 
         mpv_error err = mpv_initialize(MainHandle);
@@ -212,7 +200,7 @@ public partial class MainPlayer
         CommandV(
             "change-list", "script-opts", "append",
             "osc-custom_button_2_mbtn_left_command=expand-properties script-message-to mpvnet shell-execute ${user-data/mpvnet-website-url}");
-        CommandV("load-script", System.IO.Path.Combine(AppContext.BaseDirectory, "Scripts", "osc.lua"));
+        CommandV("load-script", System.IO.Path.Combine(AppPaths.Startup, "Scripts", "osc.lua"));
 
         if (formHandle != IntPtr.Zero)
             TrackEventTask(Task.Run(() => MainEventLoop(PlayerCancellationToken), PlayerCancellationToken));

@@ -29,7 +29,7 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 
 ## Regras
 
-- Preservar a precedência de configuração: `MPVNET_HOME` válido, `portable_config` existente e, por fim, `AppPaths.DefaultConfig` sob `AppPaths.LocalAppData`.
+- Preservar a seleção central em `AppPaths`: `--config-dir` explícito, `MPVNET_HOME` válido, `portable_config` existente em processo sem pacote e, por fim, `AppPaths.DefaultConfig` sob `AppPaths.LocalAppData`. Frontend e mpv devem usar a mesma raiz antes de carregar configuração.
 - Não presumir o caminho físico padrão do MSIX: `AppPaths` usa `Packages\<PackageFamilyName>\LocalCache\Local`; `MPVNET_LOCAL_APPDATA` substitui a raiz de dados nos dois modos.
 - Não normalizar ou reescrever arquivo do usuário sem necessidade.
 - Criar backup antes de migração que altere arquivo do usuário.

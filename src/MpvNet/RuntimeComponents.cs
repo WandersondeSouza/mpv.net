@@ -20,26 +20,13 @@ public static class RuntimeComponents
 
     public static void EnsureComponentsFolderOnPath()
     {
-        string executionFolder = Directory.Exists(RuntimeComponentPaths.CurrentFolder)
-            ? Path.TrimEndingDirectorySeparator(RuntimeComponentPaths.CurrentFolder)
-            : Path.TrimEndingDirectorySeparator(ComponentsFolder);
         string? currentPath = Environment.GetEnvironmentVariable("PATH");
-
-        if (!string.IsNullOrWhiteSpace(currentPath) &&
-            currentPath.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries)
-                .Select(path => Path.TrimEndingDirectorySeparator(path))
-                .Any(path => string.Equals(path, executionFolder, StringComparison.OrdinalIgnoreCase)))
-        {
-            Log.Debug($"Runtime component execution folder already present in process PATH. path='{Log.SafeValue(executionFolder)}'");
+        string updatedPath = WindowsPathEnvironment.PrependEntries(currentPath,
+            RuntimeComponentPaths.CurrentFolder, ComponentsFolder, AppPaths.Startup);
+        if (updatedPath == currentPath)
             return;
-        }
-
-        string updatedPath = string.IsNullOrWhiteSpace(currentPath)
-            ? executionFolder
-            : executionFolder + Path.PathSeparator + currentPath;
-
         Environment.SetEnvironmentVariable("PATH", updatedPath);
-        Log.Debug($"Added runtime component execution folder to process PATH. path='{Log.SafeValue(executionFolder)}'");
+        Log.Debug("Prepared current, legacy and application component directories at the front of the process PATH.");
     }
 
     public static void RegisterNativeResolver()
@@ -112,7 +99,7 @@ public static class RuntimeComponents
                     $"reason={result.DiagnosticMessage ?? "<none>"}";
             }));
 
-        return libMpvReport + Environment.NewLine + componentReport + Environment.NewLine +
+        return AppPaths.DiagnosePaths() + Environment.NewLine + libMpvReport + Environment.NewLine + componentReport + Environment.NewLine +
             RuntimeComponentService.DescribeCacheStatus() + Environment.NewLine +
             OnlineMediaDiagnostics.BuildReport(
                 ResolveComponent("yt-dlp.exe"),

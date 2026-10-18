@@ -34,7 +34,7 @@ Se a mudança tocar cache de mídia de rede, leia também
 
 Regras:
 
-- preservar a precedência `MPVNET_HOME` válido, `portable_config` existente e `AppPaths.DefaultConfig`;
+- preservar a precedência central `--config-dir` explícito, `MPVNET_HOME` válido, `portable_config` existente sem identidade MSIX e `AppPaths.DefaultConfig`, usando a mesma raiz no frontend e no mpv;
 - ao avaliar caminhos, considerar `MPVNET_LOCAL_APPDATA` e a raiz `LocalCache\Local` resolvida por `AppPaths` no MSIX;
 - preservar compatibilidade com arquivos existentes;
 - não reescrever arquivo do usuário sem necessidade;

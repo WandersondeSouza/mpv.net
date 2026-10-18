@@ -102,6 +102,20 @@ O diretório `portable_config` guarda as configurações usadas pelo pacote
 portátil. Você pode incluir nele `mpv.conf`, `input.conf`, scripts e opções de
 scripts, seguindo o layout do mpv.
 
+## Diagnóstico de caminhos
+
+```powershell
+mpvnet.exe --diagnose-paths
+mpvnet.exe --diagnose-paths --config-dir="C:\Meu perfil MPV"
+mpvnet.exe --diagnose-components
+```
+
+O primeiro diagnóstico não cria diretórios nem inicia downloads. Confira a
+origem da configuração e as raízes de cache, componentes, temporários, logs,
+DLLs e recursos. A matriz de portátil/instalado/Store está em
+[Configuração técnica](developer/configuration.md). Em Store, arquivos graváveis
+pertencem à raiz privada de dados, não ao diretório instalado em WindowsApps.
+
 ## Contribuir
 
 - Preserve a compatibilidade com mpv/libmpv e com os arquivos de configuração existentes.

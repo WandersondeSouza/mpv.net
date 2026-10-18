@@ -65,20 +65,8 @@ public partial class MainPlayer : MpvClient
         get {
             if (_configFolder == null)
             {
-                string? mpvnet_home = Environment.GetEnvironmentVariable("MPVNET_HOME");
-
-                if (Directory.Exists(mpvnet_home))
-                    return _configFolder = mpvnet_home.Separator();
-
-                _configFolder = AppPaths.PortableConfig;
-
-                if (!Directory.Exists(_configFolder))
-                    _configFolder = AppPaths.DefaultConfig;
-
-                if (!Directory.Exists(_configFolder))
-                    Directory.CreateDirectory(_configFolder);
-
-                _configFolder = AppPaths.WithTrailingSeparator(_configFolder);
+                _configFolder = AppPaths.ResolveConfigurationDirectory(CommandLine.Arguments).Path;
+                Directory.CreateDirectory(_configFolder);
             }
 
             return _configFolder;

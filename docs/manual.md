@@ -103,9 +103,21 @@ Veja [Atalhos](ATALHOS.md) para detalhes.
 
 O mpv.net lê a configuração nesta ordem:
 
-1. `MPVNET_HOME`
-2. `portable_config`
-3. `%LOCALAPPDATA%\mpv.net`
+1. `--config-dir=...`, se informado
+2. `MPVNET_HOME`, se apontar para uma pasta existente
+3. `portable_config` ao lado do executável, em instalações sem pacote MSIX
+4. `%LOCALAPPDATA%\mpv.net`, ou a raiz privada de dados da Microsoft Store
+
+Configuração, settings, tema e atalhos do frontend usam a mesma pasta escolhida
+para o mpv. Cache, componentes e temporários continuam na raiz de dados local,
+inclusive no modo portátil; `MPVNET_LOCAL_APPDATA` permite selecionar outra raiz.
+Para conferir todos esses locais sem criar diretórios, execute
+`mpvnet.exe --diagnose-paths`. Caminhos relativos na CLI usam a pasta de
+lançamento; nas variáveis próprias do aplicativo, usam a pasta do executável.
+
+No pacote Store, ações para gerenciar PATH ou associações abrem as configurações
+de aplicativos do Windows. O pacote declara os aliases e formatos suportados;
+o player não grava seu diretório versionado de WindowsApps no PATH persistente.
 
 Arquivos principais:
 

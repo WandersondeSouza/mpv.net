@@ -4,6 +4,11 @@ public static class FileAssociationRegistrar
 {
     public static int RegisterElevated(string perceivedType, string[] extensions)
     {
+        if (AppPaths.IsPackaged)
+        {
+            MpvNet.Help.ProcessHelp.ShellExecute("ms-settings:defaultapps");
+            return 0;
+        }
         using Process proc = new Process();
         proc.StartInfo.FileName = Environment.ProcessPath;
         proc.StartInfo.Arguments = "--register-file-associations " +

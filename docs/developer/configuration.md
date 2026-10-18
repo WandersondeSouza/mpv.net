@@ -27,11 +27,19 @@ Implementação: `Player.ConfigFolder`.
 
 Ordem:
 
-1. variável de ambiente `MPVNET_HOME`, quando aponta para um diretório existente;
-2. pasta `portable_config`, se existir ao lado do executável;
-3. diretório padrão de `AppPaths`, criado automaticamente na inicialização. Em instalações comuns, é `%LOCALAPPDATA%\mpv.net`.
+1. `--config-dir`, quando informado (a última ocorrência prevalece);
+2. variável de ambiente `MPVNET_HOME`, quando aponta para um diretório existente;
+3. pasta `portable_config`, se existir ao lado do executável e o processo não tiver identidade MSIX;
+4. diretório padrão de `AppPaths`, criado automaticamente na inicialização. Em instalações comuns, é `%LOCALAPPDATA%\mpv.net`.
 
-A ordem define qual pasta prevalece e deve ser preservada para manter a compatibilidade com instalações existentes e com o modo portátil.
+A seleção ocorre uma vez por player, antes da leitura do frontend e da criação
+do libmpv. `mpv.conf`, `mpvnet.conf`, atalhos, tema e settings usam a mesma raiz;
+uma pasta explícita ausente é criada na inicialização normal. Um caminho relativo
+de `--config-dir` usa o diretório de lançamento capturado no início, preservando
+a semântica da CLI. Variáveis de ambiente próprias do app aceitam aspas e
+expansão de `%VAR%`; valores relativos usam a pasta do executável. Todos os
+caminhos selecionados são absolutos. `MPVNET_HOME` inválido ou inexistente
+continua permitindo fallback, sem migração ou cópia automática de configurações.
 
 ---
 
@@ -74,6 +82,26 @@ no pacote MSIX/Microsoft Store, é
 acrescenta `mpv.net` a essa raiz. A variável `MPVNET_LOCAL_APPDATA` pode definir
 outra raiz nos dois casos. Essa resolução mantém os caminhos do bootstrap na
 pasta física do pacote, sem depender da virtualização do AppData.
+Uma raiz que já contenha `Packages\<PackageFamilyName>\LocalCache\Local` não
+recebe esse sufixo novamente. O pacote instalado nunca usa `portable_config`
+automaticamente: seu payload é somente leitura. O modo portátil mantém somente
+a configuração em `portable_config`; caches, componentes, logs e temporários
+continuam no perfil local, salvo override explícito de `MPVNET_LOCAL_APPDATA`.
+
+| Objeto | Portátil | Instalado sem pacote | MSIX/Store |
+| --- | --- | --- | --- |
+| Configuração padrão | `portable_config` existente | `%LOCALAPPDATA%\mpv.net` | `Packages\<família>\LocalCache\Local\mpv.net` |
+| Cache, componentes, temporários e logs | Raiz de dados local | Raiz de dados local | Raiz privada do pacote |
+| libmpv normal/v3, MediaInfo, Locale e scripts do app | Ao lado do executável | Pasta instalada | Payload do pacote, somente leitura |
+
+`mpvnet.exe --diagnose-paths` informa os caminhos de configuração, settings,
+cache, componentes, DLLs e recursos sem criar diretórios nem baixar arquivos.
+Aceita também `--config-dir=...`. Não afirma que uma pasta é gravável: a escrita
+é validada somente durante a operação normal. `--diagnose-components` acrescenta
+a origem efetiva dos binários e suas validações.
+O relatório de caminhos descreve os padrões do aplicativo antes de inicializar o
+mpv; overrides nativos como `--input-conf` e `--demuxer-cache-dir` são aplicados
+pelo mpv e continuam prevalecendo sobre esses padrões.
 
 ## Componentes auxiliares de runtime
 
@@ -85,6 +113,14 @@ preserva a política histórica de preferir o cache validado e segue esta ordem:
 2. cache legado `%LOCALAPPDATA%\mpv.net\Component`;
 3. pasta de `mpvnet.exe` (`AppContext.BaseDirectory`);
 4. `PATH` do processo, apenas como último fallback.
+
+MediaInfo é uma dependência preparada no build: sua DLL válida junto do
+executável tem prioridade sobre cópias antigas no cache. Os fallbacks legados
+continuam disponíveis quando a DLL empacotada está ausente ou inválida. O libmpv
+normal/v3 continua sendo escolhido pelo carregador nativo na pasta do aplicativo.
+Entradas do PATH são comparadas como diretórios completos, normalizando aspas,
+variáveis, separadores finais e caixa; entradas relativas ou inválidas são
+ignoradas na resolução dos componentes. O diretório atual não é um fallback.
 
 Cada candidato precisa existir e é convertido para um caminho absoluto. Os cinco
 executáveis baixados também precisam ser arquivos PE x64 não vazios. Arquivos
@@ -102,10 +138,11 @@ literal em um único argumento, preservando vírgulas e Unicode. Valores explíc
 vazio. Uma alteração ou remoção em runtime encerra a atualização automática
 dessa chave. `ytdl-path` não é uma opção nativa suportada; configurações que
 seguiram essa orientação antiga devem usar uma das formas acima. O player não
-reescreve arquivos de configuração existentes. Quando `current` existe, o
-processo o coloca no início do `PATH` para que ferramentas como `yt-dlp`
-encontrem `ffmpeg` e `ffprobe` da mesma geração. Antes da primeira promoção, o
-diretório legado continua sendo usado como fallback.
+reescreve arquivos de configuração existentes. O processo prepara `current`,
+cache legado e pasta do aplicativo no início de seu `PATH`, nessa ordem, sem
+duplicar entradas e sem alterar o PATH persistente do Windows. Assim os
+subprocessos também encontram FFmpeg/FFprobe/Deno nos fallbacks previstos pelo
+resolvedor, mesmo quando `current` existe mas ainda está incompleto.
 
 As atualizações são preparadas em `staging`. Antes de promover os arquivos para
 `current`, o aplicativo valida HTTPS, host permitido, tamanho, SHA-256 publicado
@@ -337,14 +374,15 @@ Algumas opções são aplicadas antes de `mpv_initialize`, incluindo:
 - `idle`;
 - `log-file`.
 
-Quando o usuário define `--config-dir`, o mpv.net também procura o `input.conf`
-nessa pasta.
+Quando o usuário define `--config-dir`, o frontend inteiro e o mpv usam essa
+pasta desde a inicialização. Um `--input-conf` explícito continua prevalecendo
+na configuração nativa; o frontend não o substitui por uma nova leitura tardia.
 
 ---
 
 ## Fluxo de configuração
 
-1. `Player.ConfigFolder` escolhe `MPVNET_HOME`, `portable_config` ou `AppPaths.DefaultConfig`, nessa ordem.
+1. `Player.ConfigFolder` usa a seleção central de `AppPaths`: CLI explícita, `MPVNET_HOME`, `portable_config` sem MSIX e pasta local padrão.
 2. A limpeza tenta remover arquivos e diretórios vazios cuja última alteração
    ocorreu há mais de três dias em `AppPaths.Cache` e `AppPaths.Temp`.
 3. O cache do mpv é direcionado para `AppPaths.Cache`.

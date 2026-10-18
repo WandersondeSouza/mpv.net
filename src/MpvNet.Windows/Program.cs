@@ -21,6 +21,14 @@ static class Program
     {
         try
         {
+            string[] args = Environment.GetCommandLineArgs().Skip(1).ToArray();
+            if (args.Contains("--diagnose-paths"))
+            {
+                if (App.IsTerminalAttached)
+                    WinApi.AttachConsole(-1 /*ATTACH_PARENT_PROCESS*/);
+                Console.WriteLine(AppPaths.DiagnosePaths(args));
+                return;
+            }
             AppPaths.EnsureLocalDirectories();
             RuntimeComponents.EnsureComponentsFolderOnPath();
             RuntimeComponents.RegisterNativeResolver();
@@ -54,7 +62,6 @@ static class Program
             if (App.IsTerminalAttached)
                 WinApi.AttachConsole(-1 /*ATTACH_PARENT_PROCESS*/);
 
-            string[] args = Environment.GetCommandLineArgs().Skip(1).ToArray();
             Log.Debug($"Command line arguments received: count={args.Length}, args={Log.SafeValues(args)}");
 
             if (args.Length == 1 && args[0] == "--diagnose-libmpv")

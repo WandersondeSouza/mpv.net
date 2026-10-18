@@ -4,9 +4,14 @@ Este documento resume onde o fork procura as configurações e quais arquivos o 
 
 ## Ordem de busca
 
-1. `MPVNET_HOME`
-2. `portable_config`
-3. `%LOCALAPPDATA%\mpv.net`
+1. `--config-dir=...`, se informado
+2. `MPVNET_HOME`, se apontar para uma pasta existente
+3. `portable_config`, em distribuições sem identidade MSIX
+4. `%LOCALAPPDATA%\mpv.net`, ou a raiz privada de dados da Microsoft Store
+
+A pasta escolhida vale para o mpv e para o frontend, incluindo settings e tema.
+Use `mpvnet.exe --diagnose-paths` para conferir os caminhos efetivos. O comando
+não cria pastas. Veja os detalhes de cada modo em [Configuração técnica](developer/configuration.md).
 
 ## Arquivos principais
 

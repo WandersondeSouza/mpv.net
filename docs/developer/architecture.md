@@ -60,7 +60,11 @@ O frontend coordena a solicitação e apresenta o estado de reprodução. A inte
 
 ## Configuração e compatibilidade
 
-A pasta ativa segue esta ordem: `MPVNET_HOME`, quando aponta para uma pasta existente; `portable_config`, quando existe ao lado do executável; e, por fim, o diretório padrão fornecido por `AppPaths`. A configuração do mpv e as opções próprias do frontend continuam separadas, e os formatos existentes de configuração permanecem contratos de compatibilidade.
+A pasta ativa é resolvida por `AppPaths` antes da leitura do frontend e do mpv:
+`--config-dir` explícito, `MPVNET_HOME` existente, `portable_config` em processos
+sem pacote e diretório padrão local. MSIX usa a raiz privada do pacote para
+dados graváveis. Os formatos de configuração do mpv e do frontend continuam
+separados dentro da mesma pasta; veja a matriz completa em [Configuração](configuration.md).
 
 Comandos antigos e adaptadores públicos podem permanecer no código para preservar configurações, scripts e extensões existentes. Os arquivos, a ordem completa de resolução e os detalhes do modo portátil estão em [Configuração](configuration.md).
 

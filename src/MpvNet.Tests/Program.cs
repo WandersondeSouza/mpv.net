@@ -343,9 +343,7 @@ Environment.SetEnvironmentVariable("PATH", @"C:\Windows\System32");
 RuntimeComponents.EnsureComponentsFolderOnPath();
 RuntimeComponents.EnsureComponentsFolderOnPath();
 string processPathWithRuntimeComponents = Environment.GetEnvironmentVariable("PATH") ?? "";
-string expectedExecutionFolder = Directory.Exists(RuntimeComponentPaths.CurrentFolder)
-    ? RuntimeComponentPaths.CurrentFolder
-    : RuntimeComponents.ComponentsFolder;
+string expectedExecutionFolder = RuntimeComponentPaths.CurrentFolder;
 string normalizedExecutionFolder = Path.TrimEndingDirectorySeparator(expectedExecutionFolder);
 string[] processPathEntries = processPathWithRuntimeComponents
     .Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries)

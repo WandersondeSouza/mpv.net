@@ -3,6 +3,7 @@ using Microsoft.Win32;
 
 using MpvNet;
 using MpvNet.Windows.Help;
+using MpvNet.Help;
 
 namespace MpvNet.Windows;
 
@@ -20,6 +21,11 @@ public static class FileAssociation
 
     public static void Register(string perceivedType, string[] extensions)
     {
+        if (AppPaths.IsPackaged)
+        {
+            ProcessHelp.ShellExecute("ms-settings:defaultapps");
+            return;
+        }
         string exePath = Environment.ProcessPath!;
         string exeFilename = Path.GetFileName(exePath);
         string exeFilenameNoExt = Path.GetFileNameWithoutExtension(exePath);

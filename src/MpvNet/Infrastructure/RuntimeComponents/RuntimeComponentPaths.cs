@@ -41,15 +41,17 @@ internal static class RuntimeComponentPathResolver
             fileName,
             AppPaths.Startup,
             RuntimeComponentPaths.CurrentFolder,
-            GetWindowsPathEntries());
+            GetWindowsPathEntries(),
+            RuntimeComponentPaths.ComponentsFolder);
 
     internal static ComponentResolutionResult ResolveResult(
         string fileName,
         string applicationDirectory,
         string componentDirectory,
-        IEnumerable<string> pathEntries)
+        IEnumerable<string> pathEntries,
+        string? legacyDirectory = null)
     {
-        if (string.IsNullOrWhiteSpace(fileName) || Path.GetFileName(fileName) != fileName)
+        if (!IsSafeComponentFileName(fileName))
         {
             return new ComponentResolutionResult(
                 fileName,
@@ -62,12 +64,15 @@ internal static class RuntimeComponentPathResolver
                 "The component file name is invalid.");
         }
 
-        (string Path, ComponentSource Source)[] candidates =
-        [
-            (Path.Combine(componentDirectory, fileName), ComponentSource.ComponentCache),
-            (RuntimeComponentPaths.GetLegacyTargetPath(fileName), ComponentSource.ComponentCache),
-            (Path.Combine(applicationDirectory, fileName), ComponentSource.ApplicationDirectory)
-        ];
+        var candidates = new List<(string Path, ComponentSource Source)>();
+        bool bundledLibrary = fileName.Equals("MediaInfo.dll", StringComparison.OrdinalIgnoreCase);
+        if (bundledLibrary)
+            candidates.Add((Path.Combine(applicationDirectory, fileName), ComponentSource.ApplicationDirectory));
+        candidates.Add((Path.Combine(componentDirectory, fileName), ComponentSource.ComponentCache));
+        if (legacyDirectory is not null)
+            candidates.Add((Path.Combine(legacyDirectory, fileName), ComponentSource.ComponentCache));
+        if (!bundledLibrary)
+            candidates.Add((Path.Combine(applicationDirectory, fileName), ComponentSource.ApplicationDirectory));
 
         foreach ((string path, ComponentSource source) in candidates)
         {
@@ -76,20 +81,12 @@ internal static class RuntimeComponentPathResolver
                 return result;
         }
 
-        foreach (string directory in pathEntries)
+        foreach (string rawDirectory in pathEntries)
         {
-            if (string.IsNullOrWhiteSpace(directory))
+            string? directory = WindowsPathEnvironment.NormalizeEntry(rawDirectory);
+            if (directory is null)
                 continue;
-
-            string path;
-            try
-            {
-                path = Path.Combine(directory.Trim(), fileName);
-            }
-            catch (Exception ex) when (ex is ArgumentException or NotSupportedException)
-            {
-                continue;
-            }
+            string path = Path.Combine(directory, fileName);
 
             ComponentResolutionResult? result = TryResolveCandidate(fileName, path, ComponentSource.EnvironmentPath);
             if (result is not null)
@@ -114,8 +111,8 @@ internal static class RuntimeComponentPathResolver
 
         foreach (string rawDirectory in GetWindowsPathEntries())
         {
-            string directory = rawDirectory.Trim();
-            if (directory.Length == 0)
+            string? directory = WindowsPathEnvironment.NormalizeEntry(rawDirectory);
+            if (directory is null)
                 continue;
 
             ComponentResolutionResult? candidate = TryResolveCandidate(
@@ -131,7 +128,7 @@ internal static class RuntimeComponentPathResolver
 
     static ComponentResolutionResult? TryResolveCandidate(string fileName, string candidate, ComponentSource source)
     {
-        if (!File.Exists(candidate))
+        if (!Path.IsPathFullyQualified(candidate) || !File.Exists(candidate))
             return null;
 
         ComponentValidationResult validation = RuntimeComponentValidator.Validate(fileName, candidate);
@@ -156,7 +153,8 @@ internal static class RuntimeComponentPathResolver
 
     static bool IsSafeComponentFileName(string fileName) =>
         !string.IsNullOrWhiteSpace(fileName) &&
-        Path.GetFileName(fileName) == fileName;
+        fileName is not "." and not ".." &&
+        fileName.IndexOfAny(Path.GetInvalidFileNameChars()) < 0;
 
     static IEnumerable<string> GetWindowsPathEntries()
     {

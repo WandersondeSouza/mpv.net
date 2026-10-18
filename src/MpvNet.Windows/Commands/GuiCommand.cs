@@ -354,16 +354,18 @@ public partial class GuiCommand
 
     void AddToPath()
     {
+        if (UsePackagedAppSettings())
+            return;
         string path = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.User) ?? "";
 
-        if (path.Contains(AppPaths.Startup.TrimEnd(Path.DirectorySeparatorChar), StringComparison.CurrentCultureIgnoreCase))
+        if (WindowsPathEnvironment.ContainsEntry(path, AppPaths.Startup))
         {
             Msg.ShowWarning(_("mpv.net is already in the Path environment variable."));
             return;
         }
 
         Environment.SetEnvironmentVariable("Path",
-            AppPaths.Startup.TrimEnd(Path.DirectorySeparatorChar) + ";" + path,
+            WindowsPathEnvironment.PrependEntries(path, AppPaths.Startup),
             EnvironmentVariableTarget.User);
 
         Msg.ShowInfo(_("mpv.net was successfully added to the Path environment variable."));
@@ -371,20 +373,29 @@ public partial class GuiCommand
 
     void RemoveFromPath()
     {
+        if (UsePackagedAppSettings())
+            return;
         string path = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.User) ?? "";
 
-        if (!path.Contains(AppPaths.Startup.TrimEnd(Path.DirectorySeparatorChar)))
+        if (!WindowsPathEnvironment.ContainsEntry(path, AppPaths.Startup))
         {
             Msg.ShowWarning(_("mpv.net was not found in the Path environment variable."));
             return;
         }
 
-        path = path.Replace(AppPaths.Startup.TrimEnd(Path.DirectorySeparatorChar), "");
-        path = path.Replace(";;", ";").Trim(';');
+        path = WindowsPathEnvironment.RemoveEntry(path, AppPaths.Startup);
 
         Environment.SetEnvironmentVariable("Path", path, EnvironmentVariableTarget.User);
 
         Msg.ShowInfo(_("mpv.net was successfully removed from the Path environment variable."));
+    }
+
+    static bool UsePackagedAppSettings()
+    {
+        if (!AppPaths.IsPackaged)
+            return false;
+        ProcessHelp.ShellExecute("ms-settings:appsfeatures");
+        return true;
     }
 
     // deprecated

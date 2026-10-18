@@ -472,7 +472,10 @@ O script falha se 7-Zip, Inno Setup ou `gh` não estiverem nos locais esperados.
 
 ## Caminho fixo do Inno Setup
 
-`src/Setup/Inno/build-windows-installer.iss` usa `OutputDir=E:\Desktop`. Ajustar esse caminho exige cuidado para não quebrar o fluxo original.
+`src/Setup/Inno/build-windows-installer.iss` usa `artifacts\release` relativo ao
+repositório como saída padrão. O fluxo oficial continua passando `/O` com
+`OutputRootDir`, que tem precedência. A compilação direta não depende de uma
+unidade ou pasta pessoal do desenvolvedor.
 
 ---
 
