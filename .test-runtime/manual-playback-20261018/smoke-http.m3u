@@ -1,0 +1,5 @@
+#EXTM3U
+#EXTINF:12,MPV.NET loopback HTTP video
+http://127.0.0.1:53784/smoke.mkv
+#EXTINF:12,MPV.NET local follow-up audio
+smoke-audio.wav

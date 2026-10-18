@@ -1,0 +1,5 @@
+#EXTM3U
+#EXTINF:12,MPV.NET smoke multitrack video
+smoke.mkv
+#EXTINF:12,MPV.NET smoke follow-up audio
+smoke-audio.wav

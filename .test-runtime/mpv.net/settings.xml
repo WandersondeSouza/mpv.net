@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <InputDefaultBindingsFixApplied>true</InputDefaultBindingsFixApplied>
+    <ShowMenuFixApplied>true</ShowMenuFixApplied>
+    <MenuUpdateVersion>0</MenuUpdateVersion>
+    <Volume>100</Volume>
+    <RecentFiles>
+        <string>C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\.test-runtime\manual-playback-20261018\smoke-audio.wav</string>
+        <string>C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\.test-runtime\manual-playback-20261018\smoke.mkv</string>
+        <string>C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\artifacts\validation\path-resolution-20261018\published-smoke\local.wav</string>
+        <string>C:\Users\Wanderson\OneDrive\Documentos\MeusProjetos\WandersondeSouza\mpv.net\artifacts\validation\path-resolution-20261018\local.wav</string>
+    </RecentFiles>
+    <WindowLocation>
+        <X>0</X>
+        <Y>0</Y>
+    </WindowLocation>
+    <WindowPosition>
+        <X>959</X>
+        <Y>515</Y>
+    </WindowPosition>
+    <WindowSize>
+        <Width>1108</Width>
+        <Height>623</Height>
+    </WindowSize>
+    <AudioDevice />
+    <ConfigEditorSearch>Video:</ConfigEditorSearch>
+    <Mute>no</Mute>
+    <StartupFolder />
+</AppSettings>
