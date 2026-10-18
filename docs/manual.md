@@ -297,9 +297,15 @@ yt-dlp a entrega ao mpv, a preparação aguarda a expansão ficar estável. O me
 estado de caminhos e títulos não é preparado novamente; uma alteração posterior
 de título pode exigir nova preparação, preservando o item em reprodução.
 
+Para escolher outro executável do extrator, use
+`script-opts-append=ytdl_hook-ytdl_path=C:\Ferramentas\yt-dlp.exe` em `mpv.conf`
+ou `ytdl_path=C:\Ferramentas\yt-dlp.exe` em `script-opts/ytdl_hook.conf`.
+Esses valores explícitos têm prioridade sobre o caminho automático do player.
+`ytdl-path` não é uma opção nativa do mpv; substitua instruções antigas por
+uma das formas acima.
+
 Se uma URL do YouTube falhar com `unrecognized file format`, teste o extrator
-diretamente. Em muitos casos o problema e autenticacao ou cookies do navegador,
-nao o frontend:
+diretamente e confira a mensagem original:
 
 ```powershell
 .\yt-dlp.exe --no-playlist --dump-single-json "https://www.youtube.com/watch?v=DuVaLWf2114"
@@ -318,6 +324,15 @@ antes de exportar. A orientação atual usa uma janela privada, acessa
 exportação. Usar cookies da conta pode trazer riscos à conta; só faça isso se
 for necessário.
 
+`Sign in to confirm you're not a bot` indica uma verificação exigida pelo
+YouTube. Confira o acesso pelo navegador na mesma rede e as orientações oficiais
+do extrator antes de configurar cookies. O player informa essa verificação
+separadamente de conteúdo privado ou restrito por idade e não tenta reconectar
+automaticamente para esse erro. Atualizar FFmpeg não remove essa exigência.
+Enumerar uma playlist em modo `--flat-playlist` confirma apenas os metadados
+da coleção; a obtenção dos formatos e a reprodução de cada vídeo são verificações
+distintas. Os testes usam a URL completa, preservando `v`, `list` e `index`.
+
 Se o video continuar falhando mesmo com cookies validos, o YouTube pode estar
 exigindo PO Token em vez de apenas autenticacao. O `yt-dlp` nao gera esse
 token sozinho, entao esse caso ainda pode exigir ajuste externo no lado do
@@ -330,7 +345,7 @@ de comando e aplicado como metadado visual, nao como requisito de playlist.
 
 Quando uma mídia online falha e não há uma reconexão controlada em andamento,
 o player mostra uma mensagem curta no idioma da interface para categorias como
-autenticação, restrição regional, conteúdo removido, playlist, formato e URL.
+autenticação, verificação antibot, restrição regional, conteúdo removido, playlist, formato e URL.
 O detalhe técnico original permanece somente no log, com query strings,
 cookies, tokens, sessão e cabeçalhos de autorização sanitizados.
 

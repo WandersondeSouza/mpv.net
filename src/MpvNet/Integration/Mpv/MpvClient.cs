@@ -621,6 +621,41 @@ public partial class MpvClient : IDisposable
         }
     }
 
+    internal bool TryGetPropertyStringMap(string name, out Dictionary<string, string> values)
+    {
+        values = [];
+        if (!TryEnterNativeOperation(out IDisposable? operation))
+            return false;
+
+        using (operation)
+        {
+            nint handle = Handle;
+            if (handle == IntPtr.Zero || mpv_get_property(handle, GetUtf8Bytes(name),
+                mpv_format.MPV_FORMAT_NODE, out mpv_node node) < 0)
+                return false;
+
+            try
+            {
+                if (node.format != mpv_format.MPV_FORMAT_NODE_MAP || node.list == IntPtr.Zero)
+                    return false;
+
+                mpv_node_list list = Marshal.PtrToStructure<mpv_node_list>(node.list);
+                for (int i = 0; i < list.num; i++)
+                {
+                    mpv_node value = Marshal.PtrToStructure<mpv_node>(list.values + i * Marshal.SizeOf<mpv_node>());
+                    if (value.format != mpv_format.MPV_FORMAT_STRING)
+                        return false;
+                    values[ConvertFromUtf8(Marshal.ReadIntPtr(list.keys, i * IntPtr.Size))] = ConvertFromUtf8(value.str);
+                }
+                return true;
+            }
+            finally
+            {
+                mpv_free_node_contents(ref node);
+            }
+        }
+    }
+
     public void SetPropertyString(string name, string value)
     {
         if (!TryEnterNativeOperation(out IDisposable? operation))

@@ -230,6 +230,130 @@ public sealed class NativePlaylistTitleTests : IDisposable
         Assert.Equal(snapshot, player.GetPropertyString("playlist"));
     }
 
+    [Fact]
+    public void YtDlpPathPreservesScriptOptionsAndLiteralPathCharacters()
+    {
+        using MainPlayer player = CreateNativePlayer();
+        player.CommandV("change-list", "script-opts", "append", "osc-layout=box");
+        player.CommandV("change-list", "script-opts", "append", "test-value=prefix,ytdl_hook-ytdl_path=not-a-setting");
+        string path = "C:\\Vídeos, 日本語 = tools\\yt-dlp.exe";
+        player.ConfigureYtDlpPath(ResolvedYtDlp(path));
+        Assert.True(player.TryGetPropertyStringMap("options/script-opts", out var options));
+        Assert.Equal("box", options["osc-layout"]);
+        Assert.Equal("prefix,ytdl_hook-ytdl_path=not-a-setting", options["test-value"]);
+        Assert.Equal(path, options[MainPlayer.YtDlpScriptOption]);
+        Assert.False(player.TryGetPropertyStringMap("idle", out _));
+        player.Dispose();
+        Assert.False(player.TryGetPropertyStringMap("options/script-opts", out _));
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("C:\\custom\\yt-dlp.exe")]
+    public void YtDlpPathKeepsAnExplicitScriptOptionIncludingAnEmptyValue(string path)
+    {
+        using MainPlayer player = CreateNativePlayer(options: [("script-opts", MainPlayer.YtDlpScriptOption + "=" + path)]);
+        player.ConfigureYtDlpPath(ResolvedYtDlp("C:\\automatic\\yt-dlp.exe"));
+        Assert.True(player.TryGetPropertyStringMap("options/script-opts", out var options));
+        Assert.Equal(path, options[MainPlayer.YtDlpScriptOption]);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void YtDlpPathRespectsMpvConfigAndProfiles(bool profile)
+    {
+        using TestDirectory directory = new();
+        File.WriteAllText(Path.Combine(directory.Path, "mpv.conf"),
+            (profile ? "profile=online\n[online]\n" : "") +
+            "script-opts=osc-layout=box,ytdl_hook-ytdl_path=C:\\custom\\yt-dlp.exe\n");
+        using MainPlayer player = CreateNativePlayer(options: [("config", "yes"), ("config-dir", directory.Path)]);
+        player.ConfigureYtDlpPath(ResolvedYtDlp("C:\\automatic\\yt-dlp.exe"));
+        Assert.True(player.TryGetPropertyStringMap("options/script-opts", out var options));
+        Assert.Equal("C:\\custom\\yt-dlp.exe", options[MainPlayer.YtDlpScriptOption]);
+        Assert.Equal("box", options["osc-layout"]);
+    }
+
+    [Theory]
+    [InlineData("# ytdl_path=ignored\nall_formats=no\n", false)]
+    [InlineData("  # comment\n  ytdl_path = C:\\custom\\yt-dlp.exe\n", true)]
+    [InlineData("ytdl_path=\n", true)]
+    public void YtDlpPathRespectsTheScriptConfigInTheEffectiveConfigDirectory(string content, bool explicitPath)
+    {
+        using TestDirectory directory = new();
+        string folder = Path.Combine(directory.Path, "script-opts");
+        Directory.CreateDirectory(folder);
+        File.WriteAllText(Path.Combine(folder, "ytdl_hook.conf"), content);
+        using MainPlayer player = CreateNativePlayer(options: [("config-dir", directory.Path)]);
+        player.ConfigureYtDlpPath(ResolvedYtDlp("C:\\automatic\\yt-dlp.exe"));
+        Assert.True(player.TryGetPropertyStringMap("options/script-opts", out var options));
+        Assert.Equal(!explicitPath, options.ContainsKey(MainPlayer.YtDlpScriptOption));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void YtDlpPathKeepsRuntimeChangesOrRemovalDuringBootstrap(bool remove)
+    {
+        using MainPlayer player = CreateNativePlayer();
+        player.ConfigureYtDlpPath(ResolvedYtDlp("C:\\first\\yt-dlp.exe"));
+        if (remove)
+            player.CommandV("change-list", "script-opts", "clr", "");
+        else
+            player.CommandV("change-list", "script-opts", "append", MainPlayer.YtDlpScriptOption + "=custom.exe");
+        player.ConfigureYtDlpPath(ResolvedYtDlp("C:\\new-generation\\yt-dlp.exe"));
+        Assert.True(player.TryGetPropertyStringMap("options/script-opts", out var options));
+        if (remove)
+            Assert.False(options.ContainsKey(MainPlayer.YtDlpScriptOption));
+        else
+            Assert.Equal("custom.exe", options[MainPlayer.YtDlpScriptOption]);
+    }
+
+    [Fact]
+    public async Task YtDlpBootstrapUpdatesOnlyTheAutomaticPathWithoutReloadingThePlaylist()
+    {
+        using TestDirectory directory = new();
+        string media = WriteWave(directory.Path, "local.wav");
+        using MainPlayer player = CreateNativePlayer();
+        TaskCompletionSource loaded = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        player.FileLoaded += () => loaded.TrySetResult();
+        player.LoadFiles([media, media], false, false);
+        await loaded.Task.WaitAsync(TimeSpan.FromSeconds(10), TestContext.Current.CancellationToken);
+        string playlist = player.GetPropertyString("playlist");
+        player.ConfigureYtDlpPath(ResolvedYtDlp("C:\\invalid\\yt-dlp.exe") with { IsValid = false });
+        Assert.True(player.TryGetPropertyStringMap("options/script-opts", out var before));
+        Assert.False(before.ContainsKey(MainPlayer.YtDlpScriptOption));
+        player.ConfigureYtDlpPath(ResolvedYtDlp("C:\\first\\yt-dlp.exe"));
+        player.ConfigureYtDlpPath(ResolvedYtDlp("C:\\updated, geração\\yt-dlp.exe"));
+        Assert.True(player.TryGetPropertyStringMap("options/script-opts", out var after));
+        Assert.Equal("C:\\updated, geração\\yt-dlp.exe", after[MainPlayer.YtDlpScriptOption]);
+        Assert.Equal(playlist, player.GetPropertyString("playlist"));
+        Assert.Equal(0, player.GetPropertyInt("playlist-pos"));
+    }
+
+    static ComponentResolutionResult ResolvedYtDlp(string path) => new(
+        "yt-dlp.exe", path, ComponentSource.ComponentCache, true, true, null, null, null);
+
+    [Fact]
+    public async Task BuiltInYtDlpHookUsesTheAutomaticPathAndItsBootstrapReplacement()
+    {
+        using TestDirectory directory = new();
+        string first = Path.Combine(directory.Path, "extrator, versão.exe");
+        string second = Path.Combine(directory.Path, "outro extrator.exe");
+        // where.exe exits on yt-dlp arguments. It proves which subprocess the
+        // real hook starts without downloading media or contacting a service.
+        File.Copy(Path.Combine(Environment.SystemDirectory, "where.exe"), first);
+        File.Copy(first, second);
+        using MainPlayer player = CreateNativePlayer(options: [("ytdl", "yes")]);
+        foreach (string path in new[] { first, second })
+        {
+            player.ConfigureYtDlpPath(ResolvedYtDlp(path));
+            player.LoadFiles(["ytdl://https://example.invalid/probe"], false, false);
+            await WaitUntil(() => player.TryGetPropertyString("user-data/mpv/ytdl/path", out string actual) &&
+                StreamingFailureDiagnostics.DecodeDiagnosticString(actual) == path);
+        }
+    }
+
     static void AssertTitles(MainPlayer player, string[] expected)
     {
         using JsonDocument playlist = JsonDocument.Parse(player.GetPropertyString("playlist"));
@@ -238,7 +362,7 @@ public sealed class NativePlaylistTitleTests : IDisposable
         Assert.Equal(expected, actual);
     }
 
-    static MainPlayer CreateNativePlayer(MainPlayer? player = null)
+    static MainPlayer CreateNativePlayer(MainPlayer? player = null, (string, string)[]? options = null)
     {
         EnsureNativeLibrary();
         player ??= new();
@@ -247,7 +371,7 @@ public sealed class NativePlaylistTitleTests : IDisposable
             player.MainHandle = LibMpv.mpv_create();
             Assert.NotEqual(IntPtr.Zero, player.MainHandle);
             foreach (var (key, value) in new[] { ("config", "no"), ("vo", "null"), ("ao", "null"),
-                ("idle", "yes"), ("pause", "yes"), ("keep-open", "yes"), ("load-scripts", "no"), ("ytdl", "no") })
+                ("idle", "yes"), ("pause", "yes"), ("keep-open", "yes"), ("load-scripts", "no"), ("ytdl", "no") }.Concat(options ?? []))
             {
                 Assert.True(LibMpv.mpv_set_option_string(player.MainHandle,
                     Encoding.UTF8.GetBytes(key + "\0"), Encoding.UTF8.GetBytes(value + "\0")) >= 0, key);

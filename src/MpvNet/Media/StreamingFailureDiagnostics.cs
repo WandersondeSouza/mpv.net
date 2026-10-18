@@ -25,7 +25,8 @@ public enum StreamingFailureCategory
     Demuxer,
     Playlist,
     NetworkTransport,
-    Decoder
+    Decoder,
+    BotVerification
 }
 
 public sealed record StreamingFailureDiagnostic(
@@ -97,6 +98,7 @@ public static partial class StreamingFailureDiagnostics
 
     public static string GetUserMessage(StreamingFailureCategory category) => category switch
     {
+        StreamingFailureCategory.BotVerification => _("The source service requires verification that you are not a bot."),
         StreamingFailureCategory.Authentication => _("This content requires authentication with the source service."),
         StreamingFailureCategory.RegionalRestriction => _("This content is not available in your region."),
         StreamingFailureCategory.ContentUnavailable => _("This content is no longer available."),
@@ -113,9 +115,16 @@ public static partial class StreamingFailureDiagnostics
             return null;
 
         string text = message.ToLowerInvariant();
+        // Windows subprocess stderr can contain a CP1252 smart apostrophe,
+        // surfaced as U+0092 or U+FFFD after UTF-8 conversion by libmpv.
+        string normalizedText = text.Replace('\u2019', '\'').Replace('\u0092', '\'').Replace('\uFFFD', '\'');
         // mpv log payloads normally end with a newline. Keep summaries and
         // their action/path on the same log line.
         string safeMessage = SanitizeMessage(message.Trim());
+
+        if (ContainsAny(normalizedText, "confirm you're not a bot", "confirm you are not a bot"))
+            return Result(StreamingFailureCategory.BotVerification, "yt-dlp/source service", safeMessage,
+                "The service requested bot verification. Check access in a browser on the same network and the extractor's official guidance; use authorized cookie configuration only if needed. Updating FFmpeg does not resolve this challenge.", false, 105);
 
         if (ContainsAny(text, "po token", "po_token", "proof of origin"))
             return Result(StreamingFailureCategory.ProofOfOriginToken, "yt-dlp", safeMessage,

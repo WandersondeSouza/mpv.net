@@ -2685,3 +2685,7 @@ msgstr "Auf diesem Laufwerk oder in diesem Ordner wurden keine abspielbaren Medi
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "The selected drive or folder could not be read."
 msgstr "Das ausgewählte Laufwerk oder der Ordner konnte nicht gelesen werden."
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "Der Quelldienst verlangt eine Bestätigung, dass Sie kein Bot sind."

@@ -10,26 +10,64 @@ namespace MpvNet;
 
 public partial class MainPlayer
 {
-    void ConfigureYtDlpPath()
+    internal const string YtDlpScriptOption = "ytdl_hook-ytdl_path";
+    string? _automaticYtDlpPath;
+    bool _keepUserYtDlpPath;
+
+    void ConfigureYtDlpPath() => ConfigureYtDlpPath(RuntimeComponents.ResolveComponent("yt-dlp.exe"));
+
+    internal void ConfigureYtDlpPath(ComponentResolutionResult resolution)
     {
-        if (CommandLine.Contains("ytdl-path") || HasConfiguredMpvOption("ytdl-path"))
+        if (!_mpvInitialized || _keepUserYtDlpPath ||
+            !TryGetPropertyStringMap("options/script-opts", out Dictionary<string, string> options))
+            return;
+
+        bool hasPath = options.TryGetValue(YtDlpScriptOption, out string? currentPath);
+        if ((_automaticYtDlpPath is null && hasPath) ||
+            (_automaticYtDlpPath is not null && (!hasPath || currentPath != _automaticYtDlpPath)) ||
+            HasYtDlpScriptConfiguration())
         {
-            Log.Debug("Keeping explicit ytdl-path from command line or mpv.conf.");
+            _keepUserYtDlpPath = true;
+            Log.Debug("Keeping explicit ytdl_hook-ytdl_path from mpv configuration or runtime changes.");
             return;
         }
 
-        ComponentResolutionResult resolution = RuntimeComponents.ResolveComponent("yt-dlp.exe");
         if (resolution is not { IsValid: true, ResolvedPath: not null })
         {
-            Log.Debug($"No validated yt-dlp executable was resolved before mpv initialization. reason='{Log.SafeValue(resolution.DiagnosticMessage)}'");
+            Log.Debug($"No validated yt-dlp executable was resolved. reason='{Log.SafeValue(resolution.DiagnosticMessage)}'");
             return;
         }
 
-        if (_mpvInitialized)
-            SetPropertyString("ytdl-path", resolution.ResolvedPath);
-        else
-            SetOptionString("ytdl-path", resolution.ResolvedPath);
-        Log.Debug($"Configured mpv ytdl-path from resolved component. source={resolution.Source}, path='{Log.SafeValue(resolution.ResolvedPath)}'");
+        if (currentPath == resolution.ResolvedPath)
+            return;
+
+        // change-list append accepts a single literal key=value argument;
+        // it does not parse commas inside the value as additional options.
+        string value = resolution.ResolvedPath;
+        CommandV("change-list", "script-opts", "append", $"{YtDlpScriptOption}={value}");
+        if (TryGetPropertyStringMap("options/script-opts", out options) &&
+            options.TryGetValue(YtDlpScriptOption, out string? configuredPath) && configuredPath == value)
+        {
+            _automaticYtDlpPath = value;
+            Log.Debug($"Configured mpv ytdl_hook-ytdl_path from resolved component. source={resolution.Source}, path='{Log.SafeValue(value)}'");
+        }
+    }
+
+    bool HasYtDlpScriptConfiguration()
+    {
+        string folder = TryGetPropertyString("options/config-dir", out string configuredFolder) &&
+            !string.IsNullOrWhiteSpace(configuredFolder) ? configuredFolder : ConfigFolder;
+        string path = System.IO.Path.Combine(folder, "script-opts", "ytdl_hook.conf");
+        try
+        {
+            return File.Exists(path) && ConfigFileParser.ParseKeyValueLines(
+                File.ReadLines(path).Select(line => line.TrimStart())).ContainsKey("ytdl_path");
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            Log.Debug($"Could not inspect ytdl_hook.conf; keeping script configuration. error='{Log.SafeValue(ex.Message)}'");
+            return true;
+        }
     }
 
     public void RefreshYtDlpPathAfterComponentBootstrap()
@@ -123,7 +161,6 @@ public partial class MainPlayer
         SetPropertyString("config", "yes");
         SetOptionString("load-context-menu", "no");
         SetPropertyString("screenshot-directory", "~~desktop/");
-        ConfigureYtDlpPath();
 
         SetPropertyString("osd-msg1", "${?playlist-playing-pos==-1:" + _("Drop files or URLs to play here.") + "}");
         SetPropertyString("osd-playing-msg", "${media-title}");
@@ -193,6 +230,9 @@ public partial class MainPlayer
             Log.Error("mpv_create_client failed.");
             throw new InvalidOperationException("libmpv could not create the mpvnet client handle.");
         }
+
+        // Read effective CLI/profile/mpv.conf options after mpv_initialize.
+        ConfigureYtDlpPath();
 
         mpv_request_log_messages(Handle, "info");
 

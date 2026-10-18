@@ -65,6 +65,12 @@ public static class LibMpv
     public static extern mpv_error mpv_get_property(nint mpvHandle, byte[] name, mpv_format format, out double data);
 
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern mpv_error mpv_get_property(nint mpvHandle, byte[] name, mpv_format format, out mpv_node data);
+
+    [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern void mpv_free_node_contents(ref mpv_node node);
+
+    [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
     public static extern mpv_error mpv_set_property(nint mpvHandle, byte[] name, mpv_format format, ref int data);
 
     [DllImport("libmpv-2.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -242,6 +248,14 @@ public static class LibMpv
         [FieldOffset(0)] public nint list;
         [FieldOffset(0)] public nint ba;
         [FieldOffset(8)] public mpv_format format;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct mpv_node_list
+    {
+        public int num;
+        public nint values;
+        public nint keys;
     }
 
     public static string[] ConvertFromUtf8Strings(nint utf8StringArray, int stringCount)

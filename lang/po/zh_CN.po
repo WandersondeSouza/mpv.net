@@ -2686,3 +2686,7 @@ msgstr "在此驱动器或文件夹中未找到可播放的媒体。"
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "The selected drive or folder could not be read."
 msgstr "无法读取所选驱动器或文件夹。"
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "来源服务要求验证您不是机器人。"

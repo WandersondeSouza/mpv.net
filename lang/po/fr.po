@@ -2685,3 +2685,7 @@ msgstr "Aucun média lisible trouvé dans ce lecteur ou dossier."
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "The selected drive or folder could not be read."
 msgstr "Impossible de lire le lecteur ou le dossier sélectionné."
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "Le service source exige de vérifier que vous n’êtes pas un robot."

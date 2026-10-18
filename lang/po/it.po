@@ -2676,3 +2676,7 @@ msgstr "Nessun contenuto multimediale riproducibile trovato in questa unità o c
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "The selected drive or folder could not be read."
 msgstr "Impossibile leggere l'unità o la cartella selezionata."
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "Il servizio di origine richiede di verificare che tu non sia un bot."

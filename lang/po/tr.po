@@ -2687,3 +2687,7 @@ msgstr "Bu sürücüde veya klasörde oynatılabilir medya bulunamadı."
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "The selected drive or folder could not be read."
 msgstr "Seçilen sürücü veya klasör okunamadı."
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "Kaynak hizmet, bot olmadığınızın doğrulanmasını gerektiriyor."

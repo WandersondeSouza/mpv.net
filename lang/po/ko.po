@@ -2685,3 +2685,7 @@ msgstr "이 드라이브 또는 폴더에서 재생 가능한 미디어를 찾�
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "The selected drive or folder could not be read."
 msgstr "선택한 드라이브 또는 폴더를 읽을 수 없습니다."
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "원본 서비스에서 봇이 아님을 확인해야 합니다."

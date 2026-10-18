@@ -106,6 +106,12 @@ public sealed class StreamingFailureDiagnosticsTests
 
     [Theory]
     [InlineData("ERROR: Sign in to confirm your age; cookies are required", StreamingFailureCategory.Authentication, false)]
+    [InlineData("ERROR: Private video. Login required", StreamingFailureCategory.Authentication, false)]
+    [InlineData("ERROR: Sign in to confirm you're not a bot. Use --cookies", StreamingFailureCategory.BotVerification, false)]
+    [InlineData("ERROR: Sign in to confirm you’re not a bot. HTTP Error 403", StreamingFailureCategory.BotVerification, false)]
+    [InlineData("Sign in to confirm you are not a bot", StreamingFailureCategory.BotVerification, false)]
+    [InlineData("Sign in to confirm you\uFFFDre not a bot", StreamingFailureCategory.BotVerification, false)]
+    [InlineData("Sign in to confirm you\u0092re not a bot", StreamingFailureCategory.BotVerification, false)]
     [InlineData("ERROR: JavaScript challenge solving failed", StreamingFailureCategory.JavaScriptChallenge, false)]
     [InlineData("A PO Token is required for this client", StreamingFailureCategory.ProofOfOriginToken, false)]
     [InlineData("Could not resolve host: example.com", StreamingFailureCategory.NetworkDns, true)]
@@ -131,6 +137,20 @@ public sealed class StreamingFailureDiagnosticsTests
     public void UnknownMessageDoesNotInventACause()
     {
         Assert.Null(StreamingFailureDiagnostics.Classify("test", "something unusual happened"));
+    }
+
+    [Fact]
+    public void BotVerificationWinsOverGenericCookieAndHttpErrorsWithoutLeakingSecrets()
+    {
+        StreamingFailureDiagnostic diagnostic = StreamingFailureDiagnostics.Classify("ytdl_hook",
+            "HTTP Error 403: Sign in to confirm you’re not a bot. cookies are required; https://youtube.com/watch?v=private-value")!;
+        Assert.Equal(StreamingFailureCategory.BotVerification, diagnostic.Category);
+        Assert.False(diagnostic.IsLikelyTransient);
+        Assert.DoesNotContain("private-value", diagnostic.OriginalMessage);
+        Assert.Contains("same network", diagnostic.SuggestedAction);
+        Assert.Contains("FFmpeg", diagnostic.SuggestedAction);
+        Assert.False(LiveStreamRecoveryPolicy.Evaluate(NetworkMediaKind.Rtsp, true,
+            TimeSpan.Zero, 1, diagnostic, 0).ShouldRetry);
     }
 
     [Theory]
@@ -265,6 +285,7 @@ public sealed class StreamingFailureDiagnosticsTests
 
     [Theory]
     [InlineData(StreamingFailureCategory.Authentication, "This content requires authentication with the source service.")]
+    [InlineData(StreamingFailureCategory.BotVerification, "The source service requires verification that you are not a bot.")]
     [InlineData(StreamingFailureCategory.RegionalRestriction, "This content is not available in your region.")]
     [InlineData(StreamingFailureCategory.ContentUnavailable, "This content is no longer available.")]
     [InlineData(StreamingFailureCategory.Playlist, "The online playlist could not be loaded.")]

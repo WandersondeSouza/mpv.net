@@ -2685,3 +2685,7 @@ msgstr "На этом диске или в этой папке не найден
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "The selected drive or folder could not be read."
 msgstr "Не удалось прочитать выбранный диск или папку."
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "Сервис-источник требует подтверждения, что вы не бот."

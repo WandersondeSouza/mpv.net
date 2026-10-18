@@ -346,15 +346,23 @@ não recebe URL, cookie, header de autorização, query assinada nem PO Token.
 
 O executável oficial do yt-dlp continua sendo atualizado pelo fluxo existente
 de componentes, fora do caminho de reprodução. O bootstrap começa em segundo
-plano depois que a janela é exibida e, ao terminar, atualiza o `ytdl-path` para
+plano depois que a janela é exibida e, ao terminar, atualiza a chave
+`ytdl_hook-ytdl_path` de `script-opts` para
 as próximas reproduções; uma configuração explícita do usuário continua tendo
 precedência. O mesmo bootstrap baixa o
 `deno.exe` x64 (Deno 2.3 ou posterior), runtime recomendado e habilitado por
 padrão pelo yt-dlp. O executável oficial inclui os componentes de script EJS;
 Node.js 22 ou posterior e QuickJS 2023-12-9 ou posterior continuam
 sendo alternativas que exigem configuração explícita. O MPV.NET não baixa
-esses runtimes a cada reprodução e não substitui um `ytdl-path` configurado
+esses runtimes a cada reprodução e não substitui um caminho do hook configurado
 pelo usuário.
+
+A configuração do caminho ocorre depois de `mpv_initialize`, quando o mapa
+efetivo de `script-opts` já inclui CLI, `mpv.conf` e perfis iniciais. O frontend
+preserva as outras chaves, o arquivo `script-opts/ytdl_hook.conf` e mudanças em
+runtime. A atualização após bootstrap acompanha somente o caminho automático;
+não recarrega mídia nem reconstrói a playlist. A opção nativa `ytdl-path` não
+existe nesse contrato; o nome correto do script é `ytdl_path`.
 
 Remote components do EJS não são habilitados silenciosamente. PO Token continua
 sendo responsabilidade de provider/plugin ou configuração externa; o player não
@@ -364,13 +372,19 @@ capability opcional detectada no yt-dlp, não uma dependência obrigatória.
 Falhas de streaming são classificadas somente quando mensagens do mpv/yt-dlp
 fornecem evidência. O log final separa categoria provável, mensagem original
 sanitizada, componente e ação sugerida. A classificação distingue rede/DNS,
-timeout, HTTP, autenticação, conteúdo indisponível, região, extractor,
+timeout, HTTP, autenticação, verificação antibot, conteúdo indisponível, região, extractor,
 JavaScript/EJS, PO Token, impersonation, TLS, protocolo, demuxer e playlist;
 sem evidência, permanece `Unknown`. Queries de URL e valores de cookies,
 Authorization, sessão, assinatura e token são removidos antes desse resumo.
 Quando não existe reconexão pendente, a categoria também seleciona uma mensagem
 OSD curta por chave gettext. Todos os catálogos distribuídos possuem as mesmas
 chaves; detalhes e ações sugeridas continuam apenas no log técnico sanitizado.
+`Sign in to confirm you're not a bot` (inclusive com apóstrofo tipográfico ou
+substituído durante a conversão de stderr CP1252/UTF-8 no Windows) tem
+prioridade sobre erros genéricos de HTTP/cookies e não agenda reconexão. Conteúdo
+privado e confirmação de idade continuam classificados como autenticação.
+Esse desafio depende do serviço, da rede/IP e da sessão; dependências válidas
+ou enumeração plana de playlist não comprovam acesso aos formatos do vídeo.
 
 A recuperação automática é deliberadamente limitada. Somente uma falha
 classificada como transitória agenda reload do mesmo item: no máximo três

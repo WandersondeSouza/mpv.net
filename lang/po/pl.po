@@ -2685,3 +2685,7 @@ msgstr "Nie znaleziono multimediów do odtworzenia na tym dysku lub w tym folder
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "The selected drive or folder could not be read."
 msgstr "Nie można odczytać wybranego dysku lub folderu."
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "Usługa źródłowa wymaga potwierdzenia, że nie jesteś botem."

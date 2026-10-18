@@ -2685,3 +2685,7 @@ msgstr "このドライブまたはフォルダーに再生可能なメディア
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "The selected drive or folder could not be read."
 msgstr "選択したドライブまたはフォルダーを読み取れませんでした。"
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "配信元サービスで、ボットではないことの確認が必要です。"

@@ -93,8 +93,16 @@ inválidos não geram caminhos alternativos. Manifestos JSON ilegíveis são
 preservados para diagnóstico e tratados como cache inválido até uma atualização
 concluída.
 
-O `yt-dlp.exe` resolvido é informado ao mpv por `ytdl-path`. Um valor definido na
-linha de comando ou em `mpv.conf` tem precedência. Quando `current` existe, o
+O `yt-dlp.exe` resolvido é informado ao hook por
+`script-opts=ytdl_hook-ytdl_path=<caminho>`, após `mpv_initialize` e antes de
+carregar mídia. A lista efetiva é lida como mapa nativo, sem reinterpretar a
+sintaxe do mpv; `change-list append` recebe somente essa chave e seu valor
+literal em um único argumento, preservando vírgulas e Unicode. Valores explícitos em CLI, `mpv.conf`, perfis ou
+`script-opts/ytdl_hook.conf` (`ytdl_path=...`) têm precedência, inclusive um valor
+vazio. Uma alteração ou remoção em runtime encerra a atualização automática
+dessa chave. `ytdl-path` não é uma opção nativa suportada; configurações que
+seguiram essa orientação antiga devem usar uma das formas acima. O player não
+reescreve arquivos de configuração existentes. Quando `current` existe, o
 processo o coloca no início do `PATH` para que ferramentas como `yt-dlp`
 encontrem `ffmpeg` e `ffprobe` da mesma geração. Antes da primeira promoção, o
 diretório legado continua sendo usado como fallback.
@@ -123,7 +131,7 @@ Na primeira execução, `yt-dlp.exe` e `deno.exe` são baixados antes do ZIP do
 FFmpeg e ficam disponíveis mesmo se esse download for interrompido. O bundle
 FFmpeg só é promovido depois que os três executáveis forem validados. O bootstrap
 começa em segundo plano após a exibição da janela e, quando termina, atualiza o
-`ytdl-path` para as próximas reproduções sem substituir uma configuração
+`ytdl_hook-ytdl_path` para as próximas reproduções sem substituir uma configuração
 explícita do usuário.
 
 Cada download tem limite de 10 minutos. Ao fechar o aplicativo, o cancelamento
@@ -135,9 +143,17 @@ ausentes ou vencidos podem ser baixados na próxima inicialização.
 O `yt-dlp.exe` oficial já inclui os scripts EJS. Para resolver os desafios
 JavaScript atuais do YouTube, o bootstrap também baixa o runtime `deno.exe`
 x64 (Deno 2.3 ou posterior) e o coloca na mesma geração do cache. O Deno fica
-no `PATH` do processo e é encontrado pelo `yt-dlp` sem alterar o `ytdl-path`
+no `PATH` do processo e é encontrado pelo `yt-dlp` sem alterar o `ytdl_hook-ytdl_path`
 configurado pelo usuário. O MPV.NET não habilita `--remote-components` para
 baixar scripts EJS de fontes externas sem uma configuração explícita.
+
+O bundle `ffmpeg-master-latest-win64-gpl.zip` vem de BtbN/FFmpeg-Builds e contém
+executáveis estáticos x64. FFmpeg e FFprobe atendem operações de mesclagem e
+pós-processamento do yt-dlp. O FFplay é mantido como componente do bundle e
+sondado no diagnóstico; o frontend não o usa para reproduzir. A reprodução do
+mpv usa as bibliotecas integradas ao libmpv, e o hook consegue entregar faixas
+separadas sem executar `ffmpeg.exe` para mesclá-las. Esse download não substitui
+as bibliotecas FFmpeg do libmpv.
 
 Para diagnóstico sem download nem escrita, execute:
 
