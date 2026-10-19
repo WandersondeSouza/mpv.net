@@ -2,14 +2,6 @@
 
 Fork de manutenção do **MPV.NET Media Player** para Windows, baseado no mpv.net e focado em compatibilidade com mpv/libmpv, documentação objetiva e mudanças pequenas e verificadas.
 
-## Prioridades
-
-- manter o comportamento existente;
-- preservar compatibilidade com arquivos de configuração e comandos do mpv;
-- documentar uso, configuração, build e release do fork;
-- corrigir bugs pequenos sem refatorações amplas;
-- manter a manutenção do repositório simples e rastreável.
-
 ## Documentação principal
 
 - [Manual](docs/manual.md)
