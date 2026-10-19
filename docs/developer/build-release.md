@@ -202,7 +202,9 @@ O manifesto declara a aplicacao como desktop empacotada full trust, com `Runtime
 
 Pontos importantes:
 
-- o `Identity Name` e o `Publisher` em `Package.appxmanifest` ainda precisam ser trocados pelos valores reais do Partner Center/certificado antes da publicação;
+- mantenha o `Identity Name` e o `Publisher` de `Package.appxmanifest` alinhados
+  aos valores reservados no Partner Center e ao certificado de distribuição; os
+  valores atuais do projeto estão registrados acima;
 - o payload x64 inclui as duas DLLs libmpv; a seleção ocorre apenas entre arquivos já instalados, sem exigir CPU v3 para iniciar;
 - o projeto inclui os assets necessários para montar o pacote da Store;
 - o projeto foi adicionado à solução `src/MpvNet.sln`, mas depende do Desktop Bridge/MSIX instalado no Visual Studio para gerar o pacote de fato.

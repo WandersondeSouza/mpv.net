@@ -11,11 +11,12 @@
   <Identity
     Name="24183GestodeSistemas.MPV.NETMediaPlayer"
     Publisher="CN=6581967D-2DE4-48DE-A846-C6F69ECA7701"
-    Version="7.1.32.0" />
+    Version="7.1.31.0" />
 
   <Properties>
     <DisplayName>MPV.NET Media Player</DisplayName>
     <PublisherDisplayName>Gestão de Sistemas</PublisherDisplayName>
+    <Description>Media player for Windows based on mpv.net and libmpv, focused on compatibility with mpv and user-supplied media.</Description>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
