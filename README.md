@@ -36,7 +36,6 @@ mídia ativa e enviar Play, Pause, Stop, Next, Previous e seek para o player.
 
 O MPV.NET Media Player também está disponível na Microsoft Store:
 
-- Link profundo: `ms-windows-store://pdp/?productid=9N441SP6XHLD`
 - URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
 
 ## Compatibilidade de CPU do libmpv
