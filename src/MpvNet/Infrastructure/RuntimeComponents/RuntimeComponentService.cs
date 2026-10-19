@@ -359,11 +359,20 @@ internal static class RuntimeComponentService
         bool verifyDigest = false,
         string? componentFolder = null)
     {
-        if (metadata is null || requireFresh && GetLastFreshnessCheck(metadata) <= DateTimeOffset.UtcNow.Subtract(RefreshInterval) ||
-            ParseSha256(metadata.Digest) is null || metadata.FileDigests is null || metadata.FileDigests.Count == 0)
+        if (metadata is null)
         {
             return false;
         }
+
+        if (!IsMetadataFromConfiguredReleaseRepository(metadata, definitions))
+        {
+            Log.Debug($"Cached runtime component source changed; forcing refresh. file='{definitions[0].FileName}'");
+            return false;
+        }
+
+        if ((requireFresh && GetLastFreshnessCheck(metadata) <= DateTimeOffset.UtcNow.Subtract(RefreshInterval)) ||
+            ParseSha256(metadata.Digest) is null || metadata.FileDigests is null || metadata.FileDigests.Count == 0)
+            return false;
 
         bool fingerprintsChanged = false;
         try
@@ -423,6 +432,35 @@ internal static class RuntimeComponentService
         }
 
         return true;
+    }
+
+    static bool IsMetadataFromConfiguredReleaseRepository(
+        RuntimeComponentMetadata metadata,
+        IReadOnlyList<RuntimeComponentDefinition> definitions)
+    {
+        if (definitions.Count == 0 ||
+            !Uri.TryCreate(definitions[0].ReleaseApiUrl, UriKind.Absolute, out Uri? releaseApi) ||
+            !string.Equals(releaseApi.Host, "api.github.com", StringComparison.OrdinalIgnoreCase))
+        {
+            // Keep synthetic/local definitions usable by the component-storage validation paths.
+            return true;
+        }
+
+        string[] segments = releaseApi.AbsolutePath.Split('/', StringSplitOptions.RemoveEmptyEntries);
+        if (segments.Length < 4 ||
+            !string.Equals(segments[0], "repos", StringComparison.OrdinalIgnoreCase) ||
+            !string.Equals(segments[3], "releases", StringComparison.OrdinalIgnoreCase))
+            return false;
+
+        if (!Uri.TryCreate(metadata.SourceUrl, UriKind.Absolute, out Uri? source) ||
+            !string.Equals(source.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase) ||
+            !string.Equals(source.Host, "github.com", StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        string expectedPrefix = $"/{segments[1]}/{segments[2]}/releases/download/";
+        return source.AbsolutePath.StartsWith(expectedPrefix, StringComparison.OrdinalIgnoreCase);
     }
 
     static async Task<GitHubAsset> ResolveReleaseAssetAsync(

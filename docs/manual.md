@@ -372,8 +372,9 @@ tem prioridade, seguida pelo cache legado, pela pasta do executável e, por
 validados e promovidos como uma geração completa.
 
 Depois que a janela aparece, o player verifica e atualiza os componentes em
-segundo plano. Componentes ausentes ou inválidos, e componentes cujo último
-download validado ocorreu há 20 dias ou mais, são baixados novamente. O player
+segundo plano. Componentes ausentes ou inválidos, componentes cujo último
+download validado ocorreu há 20 dias ou mais e componentes cuja origem mudou
+são baixados novamente. O player
 exige SHA-256 publicado pelo GitHub, confere a arquitetura x64 e valida os
 arquivos antes de ativá-los.
 `mpvnet.com` permanece no payload de instalação por compatibilidade, mas não é

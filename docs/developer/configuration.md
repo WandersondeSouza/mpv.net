@@ -177,20 +177,25 @@ e falhas de transporte são registrados como erros; o timeout também informa o
 limite e os bytes recebidos. O cache válido anterior é preservado, e componentes
 ausentes ou vencidos podem ser baixados na próxima inicialização.
 
-O `yt-dlp.exe` oficial já inclui os scripts EJS. Para resolver os desafios
-JavaScript atuais do YouTube, o bootstrap também baixa o runtime `deno.exe`
+O `yt-dlp.exe` vem do canal nightly oficial
+[`yt-dlp/yt-dlp-nightly-builds`](https://github.com/yt-dlp/yt-dlp-nightly-builds):
+o projeto recomenda esse canal para uso regular, e o executável Windows x64
+inclui os scripts EJS. Para resolver os desafios JavaScript atuais do YouTube,
+o bootstrap também baixa o runtime `deno.exe`
 x64 (Deno 2.3 ou posterior) e o coloca na mesma geração do cache. O Deno fica
 no `PATH` do processo e é encontrado pelo `yt-dlp` sem alterar o `ytdl_hook-ytdl_path`
 configurado pelo usuário. O MPV.NET não habilita `--remote-components` para
 baixar scripts EJS de fontes externas sem uma configuração explícita.
 
-O bundle `ffmpeg-master-latest-win64-gpl.zip` vem de BtbN/FFmpeg-Builds e contém
-executáveis estáticos x64. FFmpeg e FFprobe atendem operações de mesclagem e
+O bundle `ffmpeg-master-latest-win64-gpl.zip` vem do repositório oficial
+[`yt-dlp/FFmpeg-Builds`](https://github.com/yt-dlp/FFmpeg-Builds), que publica
+builds estáticos do FFmpeg para uso com yt-dlp. O sufixo `win64-gpl` seleciona
+o pacote Windows x64 GPL. FFmpeg e FFprobe atendem operações de mesclagem e
 pós-processamento do yt-dlp. O FFplay é mantido como componente do bundle e
 sondado no diagnóstico; o frontend não o usa para reproduzir. A reprodução do
 mpv usa as bibliotecas integradas ao libmpv, e o hook consegue entregar faixas
 separadas sem executar `ffmpeg.exe` para mesclá-las. Esse download não substitui
-as bibliotecas FFmpeg do libmpv.
+as bibliotecas FFmpeg do libmpv nem precisa usar a mesma revisão delas.
 
 Para diagnóstico sem download nem escrita, execute:
 

@@ -344,7 +344,8 @@ curtas para informar a versão efetiva de `yt-dlp` e FFmpeg, runtimes JavaScript
 compatíveis e a capability opcional de browser impersonation. O diagnóstico
 não recebe URL, cookie, header de autorização, query assinada nem PO Token.
 
-O executável oficial do yt-dlp continua sendo atualizado pelo fluxo existente
+O executável Windows x64 oficial do yt-dlp é obtido do canal nightly, recomendado
+pelo projeto para uso regular, e continua sendo atualizado pelo fluxo existente
 de componentes, fora do caminho de reprodução. O bootstrap começa em segundo
 plano depois que a janela é exibida e, ao terminar, atualiza a chave
 `ytdl_hook-ytdl_path` de `script-opts` para
