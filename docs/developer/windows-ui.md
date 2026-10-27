@@ -69,9 +69,9 @@ comandos existentes.
 
 `TitleBarFullscreenButton.cs` contém uma janela auxiliar WinForms pertencente à
 principal, sem ativação, moldura ou entrada na taskbar. Ela ocupa somente a
-parte da barra entre o ícone do sistema e minimizar. Desenha o título em uma
-área limitada, com reticências, reservando o espaço do novo botão. O texto
-Win32 da janela principal e seu HWND permanecem intactos. A área de vídeo,
+área do novo botão de tela cheia, preservando o desenho nativo do título e do
+ícone do sistema sem sobrepor texto. O texto Win32 da janela principal e seu
+HWND permanecem intactos. A área de vídeo,
 `WM_NCCALCSIZE` e os três botões nativos não são substituídos. Isso mantém o
 roteamento do Windows para os botões, incluindo o recurso de layouts do Windows 11.
 Fora do novo botão, `HTTRANSPARENT` entrega os gestos ao proprietário na mesma

@@ -45,11 +45,7 @@ public sealed class TitleBarFullscreenButtonTests
             Assert.True(caption.Left >= info.TitleBar.Left + GetSystemMetricsForDpi(49, WinApi.GetDpiForWindow(handle)));
             Assert.True(caption.Right <= native.Left);
             Assert.True(caption.Bottom <= owner.PointToScreen(Point.Empty).Y);
-            // The title passes through to the unmodified native caption (drag,
-            // double click, system menu). The native hit test remains unchanged.
-            Point titlePoint = caption.PointToScreen(new Point(20, caption.Height / 2));
-            Assert.Equal(-1, HitTest(caption.Handle, titlePoint));
-            Assert.Equal(2, HitTest(handle, titlePoint));
+            Assert.Equal(buttons.Right - buttons.Left, caption.Width);
             Assert.Equal(originalHit, HitTest(handle, maximize));
         }
 

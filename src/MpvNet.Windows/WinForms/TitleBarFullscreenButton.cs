@@ -18,9 +18,6 @@ public sealed class TitleBarFullscreenButton : Form
     readonly Button _button;
     readonly ToolTip _tooltip = new() { ShowAlways = true };
     readonly Action _execute;
-    Font? _captionFont;
-    int _dpi;
-    bool _active;
 
     public TitleBarFullscreenButton(Form owner, Action execute)
     {
@@ -62,17 +59,6 @@ public sealed class TitleBarFullscreenButton : Form
             return;
         }
 
-        int dpi = GetDpiForWindow(_owner.Handle);
-        if (_dpi != dpi)
-        {
-            _dpi = dpi;
-            Font? previous = _captionFont;
-            _captionFont = new Font(SystemFonts.CaptionFont!.FontFamily,
-                SystemFonts.CaptionFont.SizeInPoints * dpi / 72f, FontStyle.Regular, GraphicsUnit.Pixel);
-            previous?.Dispose();
-        }
-
-        _active = GetForegroundWindow() == _owner.Handle;
         BackColor = SystemInformation.HighContrast ? SystemColors.ActiveCaption :
             darkMode ? Color.FromArgb(32, 32, 32) : Color.White;
         ForeColor = SystemInformation.HighContrast ? SystemColors.ActiveCaptionText :
@@ -89,8 +75,10 @@ public sealed class TitleBarFullscreenButton : Form
             _tooltip.SetToolTip(_button, accessibleName);
         }
 
-        Bounds = bounds;
-        _button.Bounds = new Rectangle(bounds.Width - buttonWidth, 0, buttonWidth, bounds.Height);
+        // Cover only the added button. The native caption remains responsible
+        // for drawing the title, avoiding duplicate text over the same area.
+        Bounds = new Rectangle(bounds.Right - buttonWidth, bounds.Top, buttonWidth, bounds.Height);
+        _button.Bounds = ClientRectangle;
         if (!Visible)
             Show(_owner);
         Invalidate();
@@ -122,15 +110,6 @@ public sealed class TitleBarFullscreenButton : Form
         int iconSpace = GetSystemMetricsForDpi(49 /* SM_CXSMICON */, dpi) + (4 * dpi + 95) / 96;
         bounds = Rectangle.FromLTRB(info.TitleBar.Left + iconSpace, top, right, bottom);
         return buttonWidth > 0 && bounds.Width > buttonWidth && bounds.Height > 0;
-    }
-
-    protected override void OnPaint(PaintEventArgs e)
-    {
-        base.OnPaint(e);
-        Rectangle title = new(0, 0, Math.Max(0, _button.Left - 4), ClientSize.Height);
-        TextRenderer.DrawText(e.Graphics, _owner.Text, _captionFont ?? SystemFonts.CaptionFont,
-            title, _active ? ForeColor : SystemColors.GrayText,
-            TextFormatFlags.SingleLine | TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis | TextFormatFlags.NoPrefix);
     }
 
     protected override void WndProc(ref Message m)
@@ -172,8 +151,6 @@ public sealed class TitleBarFullscreenButton : Form
             _owner.HandleDestroyed -= Owner_HandleDestroyed;
             _button.Click -= Button_Click;
             _tooltip.Dispose();
-            _captionFont?.Dispose();
-            _captionFont = null;
         }
         base.Dispose(disposing);
     }
@@ -223,9 +200,6 @@ public sealed class TitleBarFullscreenButton : Form
 
     [DllImport("user32.dll", EntryPoint = "SendMessageW")]
     static extern IntPtr GetTitleBarInfo(IntPtr hwnd, int message, IntPtr wparam, ref TitleBarInfo info);
-
-    [DllImport("user32.dll")]
-    static extern IntPtr GetForegroundWindow();
 
     [DllImport("user32.dll")]
     static extern int GetSystemMetricsForDpi(int index, int dpi);
