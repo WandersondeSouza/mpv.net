@@ -40,6 +40,9 @@ public sealed class TitleBarFullscreenButtonTests
             Assert.Equal(title, owner.Text);
             Assert.Equal(originalClient, owner.ClientSize);
 
+            TitleBarInfo info = new() { Size = Marshal.SizeOf<TitleBarInfo>(), States = new uint[6], Rectangles = new WinApi.RECT[6] };
+            GetTitleBarInfo(handle, 0x033F, 0, ref info);
+            Assert.True(caption.Left >= info.TitleBar.Left + GetSystemMetricsForDpi(49, WinApi.GetDpiForWindow(handle)));
             Assert.True(caption.Right <= native.Left);
             Assert.True(caption.Bottom <= owner.PointToScreen(Point.Empty).Y);
             // The title passes through to the unmodified native caption (drag,
@@ -127,4 +130,19 @@ public sealed class TitleBarFullscreenButtonTests
 
     [DllImport("user32.dll")]
     static extern nint SetThreadDpiAwarenessContext(nint context);
+
+    [StructLayout(LayoutKind.Sequential)]
+    struct TitleBarInfo
+    {
+        public int Size;
+        public WinApi.RECT TitleBar;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)] public uint[] States;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)] public WinApi.RECT[] Rectangles;
+    }
+
+    [DllImport("user32.dll", EntryPoint = "SendMessageW")]
+    static extern nint GetTitleBarInfo(nint hwnd, int message, nint wparam, ref TitleBarInfo info);
+
+    [DllImport("user32.dll")]
+    static extern int GetSystemMetricsForDpi(int index, int dpi);
 }

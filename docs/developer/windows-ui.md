@@ -79,7 +79,8 @@ thread, preservando arraste, duplo clique e menu de sistema da barra.
 
 O posicionamento consulta `DWMWA_CAPTION_BUTTON_BOUNDS` do DWM e
 `WM_GETTITLEBARINFOEX`, em coordenadas de tela com sinal. A superfície termina
-antes dos botões nativos e acima da origem do vídeo. Posição, tamanho,
+antes dos botões nativos e acima da origem do vídeo; seu início reserva a
+largura do ícone pequeno do sistema e uma margem ajustada ao DPI. Posição, tamanho,
 ativação, título, DPI, tema, visibilidade e display atualizam sua geometria.
 Sem geometria válida, sem borda/barra, minimizada ou em fullscreen, ela é
 ocultada; não existe um botão flutuante sobre o vídeo. O idioma atualiza

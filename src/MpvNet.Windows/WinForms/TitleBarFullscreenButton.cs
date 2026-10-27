@@ -117,7 +117,10 @@ public sealed class TitleBarFullscreenButton : Form
         int top = Math.Max(nativeButtons.Top, info.TitleBar.Top);
         int bottom = Math.Min(nativeButtons.Bottom, _owner.PointToScreen(Point.Empty).Y);
         buttonWidth = info.Rectangles[2].Width;
-        bounds = Rectangle.FromLTRB(info.TitleBar.Left, top, right, bottom);
+        // Leave the native small icon and its spacing visible at the current DPI.
+        int dpi = GetDpiForWindow(_owner.Handle);
+        int iconSpace = GetSystemMetricsForDpi(49 /* SM_CXSMICON */, dpi) + (4 * dpi + 95) / 96;
+        bounds = Rectangle.FromLTRB(info.TitleBar.Left + iconSpace, top, right, bottom);
         return buttonWidth > 0 && bounds.Width > buttonWidth && bounds.Height > 0;
     }
 
@@ -223,4 +226,7 @@ public sealed class TitleBarFullscreenButton : Form
 
     [DllImport("user32.dll")]
     static extern IntPtr GetForegroundWindow();
+
+    [DllImport("user32.dll")]
+    static extern int GetSystemMetricsForDpi(int index, int dpi);
 }
