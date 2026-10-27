@@ -101,12 +101,12 @@ def parse_xaml_files(root: Path):
 def parse_editor_conf(path: Path) -> dict[str, dict]:
     results: dict[str, dict] = {}
     reference_path = path.relative_to(ROOT).as_posix()
-    keys_by_casefold: dict[str, tuple] = {}
 
     def add(msgid: str, line_no: int) -> None:
         normalized_msgid = msgid.strip()
-        folded = normalized_msgid.casefold()
-        key = keys_by_casefold.setdefault(folded, ('gettext', normalized_msgid))
+        # Gettext keys are case-sensitive: a category 'Cache' is distinct from
+        # the mpv configuration identifier 'cache'. Both must be extracted.
+        key = ('gettext', normalized_msgid)
         results.setdefault(key, {'references': set()})['references'].add(f'{reference_path}:{line_no}')
 
     for line_no, line in enumerate(path.read_text(encoding='utf-8').splitlines(), start=1):

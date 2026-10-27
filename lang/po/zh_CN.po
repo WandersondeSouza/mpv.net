@@ -2690,3 +2690,44 @@ msgstr "无法读取所选驱动器或文件夹。"
 #: src/MpvNet/Media/StreamingFailureDiagnostics.cs
 msgid "The source service requires verification that you are not a bot."
 msgstr "来源服务要求验证您不是机器人。"
+
+msgid "The clipboard is temporarily unavailable."
+msgstr "The clipboard is temporarily unavailable."
+
+msgid "Untitled Track"
+msgstr "Untitled Track"
+
+msgid "Repository: "
+msgstr "Repository: "
+
+msgid "chinese-taiwan"
+msgstr "繁體中文（台灣）"
+
+msgid "chinese-hongkong"
+msgstr "繁體中文（香港）"
+
+msgid "hindi"
+msgstr "हिन्दी"
+
+msgid "arabic"
+msgstr "العربية"
+
+msgid "ukrainian"
+msgstr "Українська"
+
+msgid "indonesian"
+msgstr "Bahasa Indonesia"
+
+
+msgid "Cache"
+msgstr "Cache"
+
+msgid "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
+msgstr "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
+
+msgid "save-network-urls-in-recent"
+msgstr "save-network-urls-in-recent"
+
+
+msgid "video"
+msgstr "video"

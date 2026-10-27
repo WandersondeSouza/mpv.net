@@ -37,6 +37,13 @@ public partial class OptionSettingControl : UserControl, ISettingControl
 
     public Setting Setting => _optionSetting;
 
+    public void RefreshTranslation()
+    {
+        TitleTextBox.Text = _optionSetting.DisplayName ?? _optionSetting.Name;
+        HelpTextBox.Text = _optionSetting.Help;
+        ItemsControl.Items.Refresh();
+    }
+
     public bool Contains(string searchString) => ContainsInternal(searchString.ToLower());
 
     public bool ContainsInternal(string search)

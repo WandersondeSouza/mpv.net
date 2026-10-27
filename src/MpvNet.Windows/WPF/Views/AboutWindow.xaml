@@ -6,6 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ngettext="clr-namespace:NGettext.Wpf;assembly=NGettext.Wpf"
     mc:Ignorable="d"
+    FlowDirection="{DynamicResource InterfaceFlowDirection}"
+    Language="{DynamicResource InterfaceXmlLanguage}"
+    FontFamily="Global User Interface"
     
     Title="{Binding WindowTitle}"
     FontSize="16"

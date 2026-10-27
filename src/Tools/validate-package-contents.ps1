@@ -17,6 +17,12 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+# The same contract applies to portable, installer and nested Store payloads.
+$poDirectory = Join-Path $PSScriptRoot '..\..\lang\po'
+$RequiredRelativePaths += @(Get-ChildItem -LiteralPath $poDirectory -Filter '*.po' -File | ForEach-Object {
+    "Locale\$($_.BaseName)\LC_MESSAGES\mpvnet.mo"
+})
+
 if (($Path -and $ArchiveFile) -or (-not $Path -and -not $ArchiveFile)) {
     throw 'Specify exactly one input: -Path or -ArchiveFile.'
 }

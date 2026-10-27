@@ -53,7 +53,7 @@ public partial class MessageBoxEx : Window, INotifyPropertyChanged
 
     public static MsgBoxExCheckBoxData? CheckBoxData { get; set; } = null;
 
-    public static FontFamily MsgFontFamily { get; set; } = new FontFamily("Segoe UI");
+    public static FontFamily MsgFontFamily { get; set; } = new FontFamily("Global User Interface");
 
     public static double MsgFontSize { get; set; } = 12;
 

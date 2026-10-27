@@ -1,5 +1,8 @@
 # Prompt para Codex — Expansão de idiomas
-Este documento é um plano de implementação futuro, não uma implementação concluída.
+Plano executado em 2026-10-27: seis catálogos, resolução/fallback, RTL, editor,
+testes e conteúdo dos pacotes implementados. Consulte o inventário, as evidências
+locais e as limitações em [Localização](../../docs/developer/localization.md).
+Instalação/certificação e publicação na Store não fazem parte desta entrega.
 
 ## Objetivo
 Adicionar suporte integral a zh-TW (chinês tradicional Taiwan), zh-HK (chinês tradicional Hong Kong), hi-IN (hindi Índia), ar-SA (árabe Arábia Saudita), uk-UA (ucraniano) e id-ID (indonésio). Inventariar primeiro: se algum já existir, melhorar sem duplicar. Manter todas as traduções anteriores, incluindo zh-CN.

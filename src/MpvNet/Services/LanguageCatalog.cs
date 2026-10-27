@@ -10,12 +10,23 @@ public sealed record LanguageDefinition(
     bool HasGettextCatalog,
     params string[] Aliases)
 {
+    public string? NativeDisplayName => CultureName switch
+    {
+        "zh-TW" => "繁體中文（台灣）",
+        "zh-HK" => "繁體中文（香港）",
+        "hi-IN" => "हिन्दी",
+        "ar-SA" => "العربية",
+        "uk-UA" => "Українська",
+        "id-ID" => "Bahasa Indonesia",
+        _ => null,
+    };
+
     public string NormalizedCultureName { get; } = LanguageNormalizer.Normalize(CultureName) ?? CultureName;
 
     public bool Matches(string? value)
     {
-        string? normalized = LanguageNormalizer.Normalize(value);
-        if (normalized == null)
+        string normalized = LanguageNormalizer.Normalize(value) ?? LanguageNormalizer.NormalizeNameAlias(value);
+        if (normalized.Length == 0)
             return false;
 
         return GetAliases().Any(alias => StringComparer.OrdinalIgnoreCase.Equals(alias, normalized));
@@ -40,6 +51,12 @@ public static class LanguageCatalog
     [
         new("bulgarian", "bg", "bg", true, "bul", "bulgarian"),
         new("chinese-china", "zh-CN", "zh_CN", true, "chi", "zho", "zh", "zh-cn", "zh_cn", "chinese", "simplified chinese"),
+        new("chinese-taiwan", "zh-TW", "zh_TW", true, "traditional chinese", "繁體中文（台灣）"),
+        new("chinese-hongkong", "zh-HK", "zh_HK", true, "繁體中文（香港）"),
+        new("hindi", "hi-IN", "hi_IN", true, "hin", "hi", "हिन्दी"),
+        new("arabic", "ar-SA", "ar_SA", true, "ara", "ar", "العربية"),
+        new("ukrainian", "uk-UA", "uk_UA", true, "ukr", "uk", "Українська"),
+        new("indonesian", "id-ID", "id_ID", true, "ind", "id", "Bahasa Indonesia"),
         DefaultLanguage,
         new("spanish", "es", "es", true, "spa", "spanish", "español"),
         new("french", "fr", "fr", true, "fra", "fre", "french"),
@@ -107,6 +124,14 @@ public static class LanguageNormalizer
         ["chinese"] = "zh",
         ["simplified chinese"] = "zh-CN",
         ["traditional chinese"] = "zh-TW",
+        ["hin"] = "hi",
+        ["hindi"] = "hi",
+        ["ara"] = "ar",
+        ["arabic"] = "ar",
+        ["ukr"] = "uk",
+        ["ukrainian"] = "uk",
+        ["ind"] = "id",
+        ["indonesian"] = "id",
         ["jpn"] = "ja",
         ["japanese"] = "ja",
         ["kor"] = "ko",
@@ -332,6 +357,15 @@ public static class LocalizationCultureResolver
         ["zh-CN"] = "zh-CN",
         ["zh-SG"] = "zh-CN",
         ["zh-Hans"] = "zh-CN",
+        ["zh"] = "zh-CN",
+        ["zh-TW"] = "zh-TW",
+        ["zh-HK"] = "zh-HK",
+        ["zh-MO"] = "zh-HK",
+        ["zh-Hant"] = "zh-TW",
+        ["hi"] = "hi-IN",
+        ["ar"] = "ar-SA",
+        ["uk"] = "uk-UA",
+        ["id"] = "id-ID",
     };
 
     static readonly HashSet<string> GenericBaseFallbackCultures = new(StringComparer.OrdinalIgnoreCase)
@@ -378,6 +412,24 @@ public static class LocalizationCultureResolver
         if (ExplicitCultureMappings.TryGetValue(requested, out string? mapped) && supported.Contains(mapped))
             return mapped;
 
+        // Script takes precedence over territory (e.g. zh-Hant-CN).
+        string[] parts = requested.Split('-');
+        if (parts[0] == "zh" && parts.Length > 1)
+        {
+            string? chinese = parts.Contains("Hant")
+                ? (parts.Contains("HK") || parts.Contains("MO") ? "zh-HK" : "zh-TW")
+                : parts.Contains("Hans") ? "zh-CN" : null;
+            if (chinese != null && supported.Contains(chinese))
+                return chinese;
+        }
+
+        // Text fallback only. Never substitute the user's regional formatting.
+        string family = parts[0];
+        if (family is "hi" or "ar" or "uk" or "id" &&
+            !parts.Skip(1).Any(part => part.Length == 4) &&
+            ExplicitCultureMappings.TryGetValue(family, out string? regional) && supported.Contains(regional))
+            return regional;
+
         string baseLanguage = requested.Split('-')[0];
         if (GenericBaseFallbackCultures.Contains(baseLanguage) && supported.Contains(baseLanguage))
             return baseLanguage;
@@ -407,7 +459,14 @@ public static class LanguageFallbackResolver
     public static IReadOnlyList<string> GetFallbacks(
         string? requestedLanguage,
         IEnumerable<string>? availableLanguages = null,
-        string defaultLanguage = "en")
+        string defaultLanguage = "en") =>
+        GetFallbacks(requestedLanguage, availableLanguages, defaultLanguage, forInterface: true);
+
+    internal static IReadOnlyList<string> GetFallbacks(
+        string? requestedLanguage,
+        IEnumerable<string>? availableLanguages,
+        string defaultLanguage,
+        bool forInterface)
     {
         string? requested = LanguageNormalizer.Normalize(requestedLanguage);
         string? normalizedDefault = string.IsNullOrWhiteSpace(defaultLanguage)
@@ -420,7 +479,12 @@ public static class LanguageFallbackResolver
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         List<string> candidates = [];
-        string? resolvedSupportedCulture = LocalizationCultureResolver.ResolveKnownCulture(requested, available);
+        // UI-only expansions must not change mpv media-language priorities.
+        bool expandedFamily = requested?.Split('-')[0] is "ar" or "hi" or "uk" or "id" ||
+            (requested?.StartsWith("zh", StringComparison.Ordinal) == true && requested is not ("zh-CN" or "zh-SG" or "zh-Hans"));
+        string? resolvedSupportedCulture = !forInterface && expandedFamily
+            ? requested
+            : LocalizationCultureResolver.ResolveKnownCulture(requested, available);
 
         if (resolvedSupportedCulture != null)
             Add(resolvedSupportedCulture);
@@ -429,12 +493,13 @@ public static class LanguageFallbackResolver
 
         if (requested != null)
         {
-            if (!LocalizationCultureResolver.IsExplicitlyMappedVariant(requested))
+            bool mapped = LocalizationCultureResolver.IsExplicitlyMappedVariant(requested) && (forInterface || !expandedFamily);
+            if (!mapped)
                 foreach (string variant in GetSafeVariants(requested))
                     Add(variant);
 
             string baseLanguage = requested.Split('-')[0];
-            if (CanUseBaseFallback(requested) && !LocalizationCultureResolver.IsExplicitlyMappedVariant(requested))
+            if (CanUseBaseFallback(requested) && !mapped)
                 Add(baseLanguage);
         }
 
@@ -555,7 +620,7 @@ public static class MediaLanguageService
 
         void AddFallbacks(string? value)
         {
-            foreach (string language in LanguageFallbackResolver.GetFallbacks(value, defaultLanguage: ""))
+            foreach (string language in LanguageFallbackResolver.GetFallbacks(value, null, defaultLanguage: "", forInterface: false))
                 priority.Add(language);
         }
     }

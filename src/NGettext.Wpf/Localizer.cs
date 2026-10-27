@@ -40,7 +40,10 @@ namespace NGettext.Wpf
         }
 
         public ICatalog GetCatalog(CultureInfo cultureInfo) =>
-            new Catalog(_domainName, _localeFolder, cultureInfo);
+            new Catalog(_domainName, _localeFolder, cultureInfo)
+            {
+                FormatProvider = CultureInfo.CurrentCulture
+            };
 
         public ICatalog Catalog { get; private set; } = null!;
 

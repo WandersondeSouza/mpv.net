@@ -20,4 +20,11 @@
 		<PackageReference Include="TngTech.ArchUnitNET.xUnitV3" />
 	</ItemGroup>
 
+  <Target Name="CopyTestLocaleCatalogs" AfterTargets="Build">
+    <ItemGroup>
+      <TestLocale Include="$(MSBuildProjectDirectory)\..\MpvNet.Windows\bin\$(Configuration)\win-x64\Locale\**\*.mo" />
+    </ItemGroup>
+    <Copy SourceFiles="@(TestLocale)" DestinationFiles="@(TestLocale->'$(TargetDir)Locale\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
 </Project>

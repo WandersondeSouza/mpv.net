@@ -244,7 +244,7 @@ public partial class MainForm : Form
                     if (menuItem != null)
                     {
                         menuItem.Click += (sender, args) => Player.Command(binding.Command);
-                        menuItem.InputGestureText = binding.Input;
+                        menuItem.InputGestureText = InterfaceLayout.TechnicalText(binding.Input);
                     }
                 }
             }
@@ -549,6 +549,9 @@ public partial class MainForm : Form
         _contextMenuIsReady = false;
         ContextMenu.Items.Clear();
         ContextMenu.UseLayoutRounding = true;
+        ContextMenu.SetResourceReference(System.Windows.FrameworkElement.FlowDirectionProperty, "InterfaceFlowDirection");
+        ContextMenu.SetResourceReference(System.Windows.FrameworkElement.LanguageProperty, "InterfaceXmlLanguage");
+        ContextMenu.FontFamily = new System.Windows.Media.FontFamily("Global User Interface");
 
         var (menuBindings, confBindings) = App.InputConf.GetBindings();
         _confBindings = confBindings;
@@ -582,7 +585,7 @@ public partial class MainForm : Form
                     }
                 };
 
-                menuItem.InputGestureText = InputHelp.GetBindingsForCommand(activeBindings, tempBinding.Command);
+                menuItem.InputGestureText = InterfaceLayout.TechnicalText(InputHelp.GetBindingsForCommand(activeBindings, tempBinding.Command));
             }
         }
 

@@ -997,6 +997,9 @@
     </Style>
 
     <Style x:Key="ContextMenuBaseStyle" TargetType="ContextMenu">
+        <Setter Property="FlowDirection" Value="{DynamicResource InterfaceFlowDirection}" />
+        <Setter Property="Language" Value="{DynamicResource InterfaceXmlLanguage}" />
+        <Setter Property="FontFamily" Value="Global User Interface" />
         <Setter Property="Background" Value="{DynamicResource RegionBrush}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">

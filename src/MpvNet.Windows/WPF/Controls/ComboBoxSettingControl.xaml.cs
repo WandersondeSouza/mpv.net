@@ -10,6 +10,7 @@ namespace MpvNet.Windows.WPF;
 public partial class ComboBoxSettingControl : UserControl, ISettingControl
 {
     readonly OptionSetting _optionSetting;
+    bool _initialized;
 
     public ComboBoxSettingControl(OptionSetting optionSetting)
     {
@@ -32,6 +33,14 @@ public partial class ComboBoxSettingControl : UserControl, ISettingControl
             LinkTextBlock.Visibility = Visibility.Collapsed;
 
         Link.SetURL(optionSetting.URL);
+        _initialized = true;
+    }
+
+    public void RefreshTranslation()
+    {
+        TitleTextBox.Text = _optionSetting.DisplayName ?? _optionSetting.Name;
+        HelpTextBox.Text = _optionSetting.Help;
+        ComboBoxControl.Items.Refresh();
     }
 
     public Theme? Theme => Theme.Current;
@@ -67,11 +76,12 @@ public partial class ComboBoxSettingControl : UserControl, ISettingControl
     {
         _optionSetting.Value = (ComboBoxControl.SelectedItem as OptionSettingOption)?.Name;
 
-        if (_optionSetting.Name == "language")
+        if (_initialized && _optionSetting.Name == "language")
         {
             App.Language = _optionSetting.Value ?? "";
             TranslationProvider.Current?.Gettext("");
             MainForm.Instance?.RebuildContextMenu();
+            (Window.GetWindow(this) as ConfWindow)?.RefreshLanguage();
         }
     }
 }

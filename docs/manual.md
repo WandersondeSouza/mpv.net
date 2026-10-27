@@ -143,6 +143,16 @@ Idiomas:
 
 Se `language` não estiver definido, o mpv.net inicia no idioma do Windows quando houver mapeamento suportado; caso contrário, usa inglês. Variantes regionais usam o idioma base traduzido do projeto: por exemplo, `en-US` e `en-GB` usam inglês, `es-MX` usa espanhol, `pt-AO` usa português de Portugal, e `zh-Hans` usa chinês simplificado.
 
+A interface também oferece 繁體中文（台灣）, 繁體中文（香港）, हिन्दी,
+العربية, Українська e Bahasa Indonesia. Os valores de `language` são,
+respectivamente, `chinese-taiwan`, `chinese-hongkong`, `hindi`, `arabic`,
+`ukrainian` e `indonesian`; códigos como `zh-TW`, `zh-HK`, `hi-IN`, `ar-SA`,
+`uk-UA` e `id-ID` também são aceitos. `zh-Hant` usa Taiwan, `zh-MO` usa Hong
+Kong e `zh-SG` usa chinês simplificado. Árabe espelha os diálogos e menus, com
+caminhos e comandos em direção normal; a formatação regional do Windows é
+preservada. É possível pré-visualizar a troca no editor sem perder as opções
+editadas; reinicie para aplicar todas as configurações.
+
 O mpv.net normaliza codigos como `eng`, `por`, `pt_BR`, `es_MX` e nomes comuns
 de idioma, mas a selecao final de audio e legenda continua sendo feita pelo
 mpv/libmpv.

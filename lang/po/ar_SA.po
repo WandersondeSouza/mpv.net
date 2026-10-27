@@ -1,0 +1,2722 @@
+msgid ""
+msgstr "Project-Id-Version: mpv.net\nReport-Msgid-Bugs-To: \nPO-Revision-Date: 2026-10-27 12:00+0000\nLast-Translator: MPV.NET contributors\nLanguage-Team: Arabic (Saudi Arabia)\nLanguage: ar_SA\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+
+#: src\MpvNet.Windows\Configuration\Conf.cs:38
+msgid "(Default)"
+msgstr "(الافتراضي)"
+
+msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr "‏(تجريبي) Win32، باستخدام WGL للتصيير وDirect3D 9Ex للعرض. يعمل مع Nvidia وAMD؛ وقد يعمل مع شرائح Intel الأحدث وبرامج التشغيل الحديثة."
+
+#: src\MpvNet\Utilities\InputHelp.cs:111
+msgid "+10%"
+msgstr "+10%"
+
+#: src\MpvNet\Utilities\InputHelp.cs:110
+msgid "-10%"
+msgstr "-10%"
+
+msgid "10"
+msgstr "10"
+
+#: src\MpvNet\Utilities\InputHelp.cs:154
+msgid "100 %"
+msgstr "100 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:155
+msgid "200 %"
+msgstr "200 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:156
+msgid "300 %"
+msgstr "300 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:153
+msgid "50 %"
+msgstr "50 %"
+
+msgid "8"
+msgstr "8"
+
+msgid "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
+msgstr "<-1.0..1.0> تعزيز السطوع بإضافة انحياز ثابت إلى إشارة سطوع المصدر. 0.0 = محايد، 1.0 = أبيض خالص، -1.0 = أسود خالص. الافتراضي 0.0."
+
+msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
+msgstr "<-1.143..5.286> إزاحة حرارة اللون نسبةً إلى 6500 K: القيمة 0.0 تعطي 6500 K دون تغيير، و-1.0 تعطي 3000 K، و1.0 تعطي 10000 K. الافتراضي 0.0."
+
+msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
+msgstr "<0-100> جودة JPEG؛ القيمة الأعلى تعني جودة أفضل. الافتراضي 90."
+
+msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
+msgstr "<0-32> يحدد الشاشة التي يعرض عليها mpv الفيديو عند امتداد سطح المكتب عبر عدة شاشات."
+
+msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
+msgstr "<0-5> مرشح ما قبل ضغط PNG: ‏0 = none، ‏1 = sub، ‏2 = up، ‏3 = average، ‏4 = Paeth، ‏5 = mixed. يؤثر في نسبة الضغط؛ يحقق mixed أفضل نتيجة لمعظم الصور وهو الافتراضي."
+
+msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
+msgstr "<0-9> مستوى ضغط PNG. زيادته تحسن الضغط وتؤثر في حجم لقطة الشاشة ووقت حفظها. قد يشغل الضغط العالي المعالج بما يقطع التشغيل. الافتراضي 7."
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
+msgstr "<0..1024> حجم 3DLUT لتعيين النطاق اللوني. القيمة 0 تختار الافتراضي 256."
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
+msgstr "<0..1024> حجم 3DLUT لتعيين النطاق اللوني. القيمة 0 تختار الافتراضي 32."
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
+msgstr "<0..1024> حجم 3DLUT لتعيين النطاق اللوني. القيمة 0 تختار الافتراضي 48."
+
+msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
+msgstr "<0..16> عدد خطوات إزالة التحزم لكل عينة. كل خطوة تقلله وتستهلك وقت حساب؛ تتناقص فائدتها سريعًا، لذا فإن >4 غير مفيد عمليًا. الافتراضي 1."
+
+msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
+msgstr "<0..4096> حجم LUT لتعيين الدرجات اللونية. 0 يختار الافتراضي 256."
+
+msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
+msgstr "<0.0..0.5> الحد الأدنى لنقطة الانعطاف كنسبة من نطاق سطوع PQ؛ يفرض حدًا على اختيار knee_adaptation. الافتراضي 0.1."
+
+msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
+msgstr "<0.0..1.0> منطقة حماية اللونية النسبية للتعيين الإدراكي. الافتراضي 0.30."
+
+msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
+msgstr "<0.0..1.0> قوة منع الرنين لكل المرشحات. 0.0 يعطله و1.0 يفعله بالكامل. الافتراضي 0.0."
+
+msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
+msgstr "<0.0..1.0> نقطة الانعطاف الافتراضية عند غياب بيانات متوسط المشهد؛ عادةً يُفضّل متوسط سطوع المصدر النسبي. الافتراضي 0.4."
+
+msgid "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
+msgstr "<0.0..1.0> قوة خفض التشبع لـ softclip. الافتراضي 0.35."
+
+msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
+msgstr "<0.0..1.0> يضبط مباشرةً نقطة انعطاف الدوال القديمة العاملة على الضوء الخطي (mobius, gamma). الافتراضي 0.3."
+
+msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast coefficient at the display peak. Essentially, a value of 0.5 implies that the reference white will be about half as bright as when clipping. Defaults to 0.5."
+msgstr "<0.0..1.0> معامل التباين المحلي لـ reinhard عند ذروة العرض. 0.5 يجعل الأبيض المرجعي بنحو نصف سطوعه عند القص. الافتراضي 0.5."
+
+msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
+msgstr "<0.0..1.0> نقطة انعطاف طرق القص الناعم (perceptual, softclip). الافتراضي 0.70."
+
+msgid "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
+msgstr "<0.0..1.0> قوة مكوّن تعيين التشبع الإدراكي. الافتراضي 0.80."
+
+msgid "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
+msgstr "<0.0..1.0> مركز منحنى sigmoid (الانحياز). الافتراضي 0.75."
+
+msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
+msgstr "<0.0..10.0> التعريض/الكسب الخطي للصورة في طرق linear وlinearlight. الافتراضي 1.0."
+
+msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
+msgstr "<0.0..10.0> غاما منحنى I مقابل C للقص اللوني (relative, absolute, darken). الافتراضي 1.80."
+
+msgid "<0.0..100.0> Black cutoff strength."
+msgstr "<0.0..100.0> قوة قطع الأسود."
+
+msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> كسب التباين؛ يضرب سطوع المصدر بمعامل ثابت. 1.0 = محايد، 0.0 = أسود خالص. الافتراضي 1.0."
+
+msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> رفع غاما؛ يفتح المشهد أو يغمقه مع حفظ التباين العام. 1.0 = محايد، 0.0 = أسود خالص. الافتراضي 1.0."
+
+msgid "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
+msgstr "<0.0..100.0> كسب التشبع؛ يضرب لونية المصدر بمعامل ثابت. 1.0 = محايد، 0.0 = رمادي. الافتراضي 1.0."
+
+msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
+msgstr "<0.0..100.0> المئين من مدرج سطوع الصورة الذي يُعد ذروة المشهد الحقيقية."
+
+msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps cover up remaining quantization artifacts. Higher numbers add more noise. Defaults to 4.0, which is very mild."
+msgstr "<0.0..1000.0> يضيف ضجيجًا لإخفاء آثار التكميم المتبقية. القيم الأعلى تزيده. الافتراضي 4.0، وهو خفيف جدًا."
+
+msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
+msgstr "<0.0..1000.0> معامل تنعيم القيم المكتشفة."
+
+msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
+msgstr "<0.0..1000.0> عتبة قطع مرشح إزالة التحزم. زيادتها تقوي الإزالة كثيرًا لكنها تقلل تفاصيل الصورة تدريجيًا. الافتراضي 3.0."
+
+msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
+msgstr "<0.0..1000.0> نصف القطر الأولي لمرشح إزالة التحزم، ويزداد خطيًا مع كل تكرار. الأكبر يجد تدرجات أكثر، والأصغر ينعّم بقوة أكبر. الافتراضي 16.0."
+
+msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
+msgstr "<0.5..1.0> الحد الأقصى لنقطة الانعطاف كنسبة من نطاق سطوع PQ؛ يحد اختيار knee_adaptation. الافتراضي 0.8."
+
+msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
+msgstr "<0.5..2.0> إزاحة نقطة الانعطاف (لـ bt2390 فقط). افتراضي المواصفة 0.5، ويختلف عن افتراضي libplacebo البالغ 1.0."
+
+msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
+msgstr "<1.0..20.0> ميل منحنى sigmoid (حدته). الافتراضي 6.5."
+
+msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
+msgstr "<1.0..32.0> حجم نواة التمرير المنخفض لاستعادة تباين HDR. تغييره يؤثر كثيرًا في المظهر. الافتراضي 3.5."
+
+msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
+msgstr "<N|inf|force|no> تكرار N مرات: 1 مرة واحدة (الافتراضي)، 2 مرتان، inf بلا نهاية، no يعادل 1 ويعطل التكرار. عند تحديد عدة ملفات بسطر الأوامر تتكرر القائمة كلها. force مثل inf لكنه لا يتخطى العناصر الفاشلة؛ قد يهدر وقت المعالج على ملف غير موجود، لكنه قد يفيد راديو الإنترنت في الشبكات السيئة جدًا."
+
+msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
+msgstr "<N|inf|no> تكرار ملف واحد N مرات. inf بلا نهاية وno تشغيل عادي.\\n\\nبخلاف loop-playlist، يكرر الملف فقط. إذا كانت القائمة بملف واحد، ينتقل داخل الملف بدل إعادة تحميله. loop اسم بديل لهذا الخيار."
+
+msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
+msgstr "<angle> إزاحة درجة اللون بتدوير المتجه الفرعي UV حول المحور المحايد بالراديان. الافتراضي 0.0 (محايد)."
+
+msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
+msgstr "<bytesize> مقدار التخزين المسبق المسموح لفاصل التدفقات.\\nيدعم لواحق مثل KiB وMiB."
+
+msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
+msgstr "<float> الحد الأدنى لنسبة أبعاد النافذة؛ يفيد لفرض نافذة أعرض وOSC أكبر. (خيار mpv.net)"
+
+msgid "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
+msgstr "<int> عدد الملفات الحديثة المحفوظة. الافتراضي: 15 (خيار mpv.net)"
+
+msgid "<int> Initial window height in percent for audio files. Default: 70"
+msgstr "<int> ارتفاع النافذة الأولي لملفات الصوت بالنسبة المئوية. الافتراضي: 70"
+
+msgid "<int> Initial window height in percent for image files. Default: 80"
+msgstr "<int> ارتفاع النافذة الأولي لملفات الصور بالنسبة المئوية. الافتراضي: 80"
+
+msgid "<int> Initial window height in percent. Default: 60"
+msgstr "<int> ارتفاع النافذة الأولي بالنسبة المئوية. الافتراضي: 60"
+
+msgid "<int> Maximum window height in percent. Default: 80"
+msgstr "<int> أقصى ارتفاع للنافذة بالنسبة المئوية. الافتراضي: 80"
+
+msgid "<int> Minimum window height in percent. Default: 10"
+msgstr "<int> أدنى ارتفاع للنافذة بالنسبة المئوية. الافتراضي: 10"
+
+msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
+msgstr "<name> جهاز الصوت: اسم المخرج مثل alsa ثم / ثم اسم الجهاز الخاص به. auto الافتراضي يجرب المخارج بترتيب الأولوية بأجهزتها الافتراضية.\\n\\nلعرض الأجهزة استخدم القائمة السياقية:\\n\\nعرض > المزيد > أجهزة الصوت.\\n\\nلتغيير الجهاز استخدم القائمة السياقية أيضًا:\\n\\nالصوت > جهاز الصوت"
+
+msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
+msgstr "<x:y> موضع النافذة الأولي بالنسبة المئوية. الافتراضي: 50:50 (الوسط).\\n\\nيتطلب Windows 11؛ في Windows 10 يوجد اختلاف طفيف بسبب الحدود غير المرئية.\\n\\nx=0 يسارًا.\\nx=100 يمينًا.\\n\\ny=0 أعلى.\\ny=100 أسفل."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
+msgid "Abort"
+msgstr "إيقاف العملية"
+
+#: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:10
+msgid "About"
+msgstr "حول"
+
+#: src\MpvNet\Utilities\InputHelp.cs:197
+msgid "About mpv.net"
+msgstr "حول mpv.net"
+
+#: src\MpvNet\Utilities\InputHelp.cs:142
+msgid "Active Bindings In Text Editor"
+msgstr "الاختصارات النشطة في محرر النصوص"
+
+#: src\MpvNet\Utilities\InputHelp.cs:143
+msgid "Active Bindings On-Screen"
+msgstr "الاختصارات النشطة على الشاشة"
+
+#: src\MpvNet\Utilities\InputHelp.cs:14
+msgid "Add external audio files..."
+msgstr "إضافة ملفات صوت خارجية..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:15
+msgid "Add external subtitle files..."
+msgstr "إضافة ملفات ترجمة خارجية..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:17
+msgid "Add files to playlist..."
+msgstr "إضافة ملفات إلى قائمة التشغيل..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:18
+msgid "Add files/URLs to playlist from clipboard"
+msgstr "إضافة ملفات/روابط من الحافظة إلى قائمة التشغيل"
+
+#: src\MpvNet\Utilities\InputHelp.cs:179
+msgid "Add mpv.net to Path environment variable"
+msgstr "إضافة mpv.net إلى متغير البيئة Path"
+
+msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr "السماح بـ OpenGL فقط (يتطلب OpenGL 2.1+ أو GLES 2.0+)"
+
+msgid "Allow only Vulkan"
+msgstr "السماح بـ Vulkan فقط"
+
+msgid "Allow only gpu-context=d3d11"
+msgstr "السماح بـ gpu-context=d3d11 فقط"
+
+msgid "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
+msgstr "يسمح بتأخير نتيجة اكتشاف الذروة حتى إطار واحد؛ قد يحسن الإنتاجية لكنه قد يسبب وميض لمدة 1 إطار عند الانتقالات."
+
+msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
+msgstr "يحفظ موضع التشغيل عند الخروج ويستأنف منه لاحقًا. لا يحفظ عند الإيقاف بطريقة أخرى؛ فالانتقال للملف التالي يجعل الملف السابق يبدأ من أوله في المرة المقبلة.\\n\\nمعطل افتراضيًا، لكنه متاح دائمًا عند الخروج باستخدام Shift+Q."
+
+msgid "Appearance"
+msgstr "المظهر"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml.cs:344
+msgid "Application Message"
+msgstr "رسالة التطبيق"
+
+msgid "As scale, but for interpolating chroma information. If the image is not subsampled, this option is ignored entirely."
+msgstr "مثل scale لكن لاستيفاء معلومات اللون. يُتجاهل تمامًا إذا لم تكن الصورة مخفضة عينات اللون."
+
+msgid "Aspect-ratio preserving nearest neighbour sampling (very fast)."
+msgstr "أخذ عينات بأقرب جار مع حفظ نسبة الأبعاد (سريع جدًا)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:83 src\MpvNet\Utilities\InputHelp.cs:84
+#: src\MpvNet\Utilities\InputHelp.cs:85 src\MpvNet\Utilities\InputHelp.cs:86
+#: src\MpvNet\Utilities\InputHelp.cs:87
+msgid "Audio"
+msgstr "الصوت"
+
+#: src\MpvNet\Utilities\InputHelp.cs:83
+#: src\MpvNet.Windows\WinForms\MainForm.cs:315
+msgid "Audio Device"
+msgstr "جهاز الصوت"
+
+#: src\MpvNet\App.cs:195 src\MpvNet\Utilities\InputHelp.cs:136
+#: src\MpvNet\Utilities\InputHelp.cs:241
+msgid "Audio Devices"
+msgstr "أجهزة الصوت"
+
+#: src\MpvNet\App.cs:190 src\MpvNet\Utilities\InputHelp.cs:130
+#: src\MpvNet\Utilities\InputHelp.cs:235
+msgid "Audio Tracks"
+msgstr "المسارات الصوتية"
+
+msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "امتدادات الصوت للمطابقة مع --audio-file-auto و--autocreate-playlist و--directory-filter-types. يستخدمها mpv.net لارتباطات الملفات وauto-load-folder. الافتراضي: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+
+msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
+msgstr "اختيار تلقائي. إذا تعذر اكتشاف عمق الخرج، يُفترض 8 بت لكل مكوّن."
+
+msgid "Available on Windows 10 or higher"
+msgstr "متاح في Windows 10 أو أحدث"
+
+#: src\MpvNet\Utilities\InputHelp.cs:207
+msgid "Backward"
+msgstr "للخلف"
+
+msgid "Bicubic interpolation (fast)"
+msgstr "استيفاء تكعيبي ثنائي (سريع)"
+
+msgid "Bicubic interpolation (fast)."
+msgstr "استيفاء تكعيبي ثنائي (سريع)."
+
+msgid "Bilinear (triangle) averaging (fast)"
+msgstr "متوسط خطي ثنائي (مثلثي، سريع)"
+
+msgid "Bilinear sampling (very fast)."
+msgstr "أخذ عينات خطي ثنائي (سريع جدًا)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:244
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:403
+msgid "Bindings"
+msgstr "الاختصارات"
+
+msgid "Box averaging (very fast)"
+msgstr "متوسط صندوقي (سريع جدًا)"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:55
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:182
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Catmull-Rom cubic spline"
+msgstr "شريحة تكعيبية Catmull-Rom"
+
+msgid "Catmull-Rom cubic spline."
+msgstr "شريحة تكعيبية Catmull-Rom."
+
+#: src\MpvNet\Utilities\InputHelp.cs:80
+msgid "Change Aspect Ratio"
+msgstr "تغيير نسبة الأبعاد"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:508
+msgid "Changed theme settings require mpv.net being restarted."
+msgstr "تتطلب تغييرات السمة إعادة تشغيل mpv.net."
+
+msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "يبدّل بين السمة الفاتحة والداكنة.\\nأعد تشغيل mpv.net بعد التغيير.\\nخيار خاص بـ mpv.net."
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:126
+msgid "Changes will be available on next startup."
+msgstr "تسري التغييرات عند التشغيل التالي."
+
+#: src\MpvNet\Utilities\InputHelp.cs:49
+#: src\MpvNet.Windows\WinForms\MainForm.cs:213
+msgid "Chapter"
+msgstr "الفصل"
+
+#: src\MpvNet\App.cs:193 src\MpvNet\Utilities\InputHelp.cs:128
+#: src\MpvNet\Utilities\InputHelp.cs:238
+msgid "Chapters"
+msgstr "الفصول"
+
+msgid "Choose the best mode automatically."
+msgstr "اختيار أفضل وضع تلقائيًا."
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:54
+msgid "Clear"
+msgstr "مسح"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:250
+msgid "Clear List"
+msgstr "مسح القائمة"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MsgBoxExtendedFunctionality.cs:22
+msgid "Click this icon for additional info/actions."
+msgstr "انقر هذا الرمز لمعلومات/إجراءات إضافية."
+
+#: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:16
+msgid "Codec Guide: "
+msgstr "دليل Codec Guide: "
+
+msgid "Color Adjustment"
+msgstr "ضبط الألوان"
+
+msgid "Color Mapping"
+msgstr "تعيين الألوان"
+
+msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "سمة الألوان للوضع الداكن.\\nأعد تشغيل mpv.net بعد التغيير.\\nخيار خاص بـ mpv.net. الافتراضي: dark"
+
+msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "سمة الألوان للوضع الفاتح.\\nأعد تشغيل mpv.net بعد التغيير.\\nخيار خاص بـ mpv.net. الافتراضي: light"
+
+msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
+msgstr "لون أجزاء نافذة mpv غير المغطاة بالفيديو. راجع --sub-color لتعريف الألوان."
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:140
+msgid "Command"
+msgstr "الأمر"
+
+#: src\MpvNet\Utilities\InputHelp.cs:141
+msgid "Commands"
+msgstr "الأوامر"
+
+#: src\MpvNet\Utilities\InputHelp.cs:167 src\MpvNet\Utilities\InputHelp.cs:168
+#: src\MpvNet\Utilities\InputHelp.cs:169 src\MpvNet\Utilities\InputHelp.cs:170
+#: src\MpvNet\Utilities\InputHelp.cs:171 src\MpvNet\Utilities\InputHelp.cs:172
+#: src\MpvNet\Utilities\InputHelp.cs:173 src\MpvNet\Utilities\InputHelp.cs:174
+#: src\MpvNet\Utilities\InputHelp.cs:175 src\MpvNet\Utilities\InputHelp.cs:176
+#: src\MpvNet\Utilities\InputHelp.cs:177 src\MpvNet\Utilities\InputHelp.cs:178
+#: src\MpvNet\Utilities\InputHelp.cs:179 src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Config"
+msgstr "الإعدادات"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:608
+msgid "Config Editor"
+msgstr "محرر الإعدادات"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:53
+msgid "Confirm"
+msgstr "تأكيد"
+
+#: src\MpvNet\Utilities\InputHelp.cs:140
+msgid "Console"
+msgstr "وحدة التحكم"
+
+msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
+msgstr "يدير تصور 3DLUT للنطاق اللوني في فضاء درجة اللون حول محور I بالراديان. الافتراضي 0.0."
+
+msgid "Controls the rotation of the gamut 3DLUT visualization. The theta parameter vertically rotates the cross section (around the C axis), in radians. Defaults to 0.0."
+msgstr "معامل theta يدير المقطع عموديًا حول محور C لتصور 3DLUT بالراديان. الافتراضي 0.0."
+
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 0.0."
+msgstr "موضع رسم تصور LUT نسبةً إلى الفيديو المصيّر. الافتراضي 0.0."
+
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 1.0."
+msgstr "موضع رسم تصور LUT نسبةً إلى الفيديو المصيّر. الافتراضي 1.0."
+
+msgid "Controls which type of graphics APIs will be accepted."
+msgstr "يحدد أنواع واجهات الرسومات المسموح بها."
+
+msgid "Create a new process everytime the shell starts mpv.net"
+msgstr "إنشاء عملية جديدة كلما شغّل النظام mpv.net"
+
+msgid "Cubic B-spline frame mixing"
+msgstr "مزج إطارات بشريحة B تكعيبية"
+
+#: src\MpvNet\Utilities\InputHelp.cs:188
+#: src\MpvNet.Windows\WinForms\MainForm.cs:339
+msgid "Custom"
+msgstr "مخصص"
+
+msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
+msgstr "مصدر بيانات تعيين الدرجات اللونية. اختيار قيمة محددة يتجاوز أولوية البيانات الوصفية الافتراضية."
+
+msgid "Debanding"
+msgstr "إزالة التحزم"
+
+msgid "Decide whether to use network cache settings."
+msgstr "يحدد استخدام إعدادات التخزين المؤقت للشبكة."
+
+#: src\MpvNet\Utilities\InputHelp.cs:146
+msgid "Decoders"
+msgstr "مفككات الترميز"
+
+#: src\MpvNet\Utilities\InputHelp.cs:68
+msgid "Decrease Brightness"
+msgstr "خفض السطوع"
+
+#: src\MpvNet\Utilities\InputHelp.cs:65
+msgid "Decrease Contrast"
+msgstr "خفض التباين"
+
+#: src\MpvNet\Utilities\InputHelp.cs:98
+msgid "Decrease Font Size"
+msgstr "تصغير الخط"
+
+#: src\MpvNet\Utilities\InputHelp.cs:71
+msgid "Decrease Gamma"
+msgstr "خفض غاما"
+
+#: src\MpvNet\Utilities\InputHelp.cs:60
+msgid "Decrease Height"
+msgstr "خفض الارتفاع"
+
+#: src\MpvNet\Utilities\InputHelp.cs:74
+msgid "Decrease Saturation"
+msgstr "خفض التشبع"
+
+#: src\MpvNet\Utilities\InputHelp.cs:51
+msgid "Decrease Size"
+msgstr "تصغير الحجم"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:421
+#: src\MpvNet\Integration\Mpv\Player.cs:440
+#: src\MpvNet\Integration\Mpv\Player.cs:468
+#: src\MpvNet\Integration\Mpv\Player.cs:548
+#: src\MpvNet\Integration\Mpv\Player.cs:634
+#: src\MpvNet\Integration\Mpv\Player.cs:718
+msgid "Default"
+msgstr "الافتراضي"
+
+msgid "Default settings, tuned to provide a balance of performance and quality."
+msgstr "إعدادات افتراضية توازن بين الأداء والجودة."
+
+msgid "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
+msgstr "يحدد السماح بأكثر من عملية mpv.net.\\nيمكن أيضًا تفعيل التعدد بالضغط على SHIFT. (خيار mpv.net)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:86 src\MpvNet\Utilities\InputHelp.cs:93
+msgid "Delay +0.1"
+msgstr "التأخير +0.1"
+
+#: src\MpvNet\Utilities\InputHelp.cs:87 src\MpvNet\Utilities\InputHelp.cs:92
+msgid "Delay -0.1"
+msgstr "التأخير -0.1"
+
+msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
+msgstr "التأخير بالمللي ثانية قبل تكرار المفتاح تلقائيًا (0 للتعطيل)."
+
+msgid "Demuxer"
+msgstr "فاصل التدفقات"
+
+#: src\MpvNet\Utilities\InputHelp.cs:147
+msgid "Demuxers"
+msgstr "فواصل التدفقات"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:193
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "‏Direct3D11 عبر طبقة ترجمة OpenGL ES المسماة ANGLE. يدعم تقريبًا كل ميزات win إذا كان إصدار ANGLE حديثًا بما يكفي."
+
+msgid "Disable all advanced rendering, equivalent to passing no to every option."
+msgstr "تعطيل كل التصيير المتقدم، بما يعادل ضبط كل خيار على no."
+
+msgid "Disable any dithering done by mpv."
+msgstr "تعطيل كل تنقيط الألوان في mpv."
+
+msgid "Disable frame mixing, show nearest frame to target PTS"
+msgstr "تعطيل مزج الإطارات وعرض الأقرب إلى PTS المستهدف"
+
+msgid "Dither to 10 bit output."
+msgstr "تنقيط الألوان لخرج 10 بت."
+
+msgid "Dither to 8 bit output."
+msgstr "تنقيط الألوان لخرج 8 بت."
+
+msgid "Don't automatically load external audio files."
+msgstr "عدم تحميل ملفات الصوت الخارجية تلقائيًا."
+
+msgid "Don't automatically load external subtitle files."
+msgstr "عدم تحميل ملفات الترجمة الخارجية تلقائيًا."
+
+#: src\MpvNet\App.cs:208
+msgid "Donation"
+msgstr "تبرع"
+
+#: src\MpvNet\Utilities\InputHelp.cs:114
+msgid "Double"
+msgstr "مضاعف"
+
+#: src\MpvNet\Integration\Mpv\Player.Initialization.cs:71
+#: src\MpvNet.Windows\WinForms\MainForm.cs:380
+msgid "Drop files or URLs to play here."
+msgstr "أفلت ملفات أو روابط هنا لتشغيلها."
+
+#: src\MpvNet\App.cs:210
+msgid "E-mail support"
+msgstr "الدعم بالبريد الإلكتروني"
+
+msgid "EWA Lanczos (\"Jinc\") reconstruction (slow)."
+msgstr "إعادة بناء EWA Lanczos ‏(\"Jinc\") (بطيء)."
+
+#: src\MpvNet\App.cs:201
+msgid "Edit config file"
+msgstr "تحرير ملف الإعدادات"
+
+#: src\MpvNet\Utilities\InputHelp.cs:171
+msgid "Edit input.conf"
+msgstr "تحرير input.conf"
+
+#: src\MpvNet\App.cs:202
+msgid "Edit key bindings"
+msgstr "تحرير الاختصارات"
+
+#: src\MpvNet\Utilities\InputHelp.cs:170
+msgid "Edit mpv.conf"
+msgstr "تحرير mpv.conf"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:488
+#: src\MpvNet\Integration\Mpv\Player.cs:734
+msgid "Edition"
+msgstr "الإصدار"
+
+#: src\MpvNet\App.cs:194 src\MpvNet\Utilities\InputHelp.cs:134
+#: src\MpvNet\Utilities\InputHelp.cs:239
+msgid "Editions"
+msgstr "الإصدارات"
+
+msgid "Enable the IPC support and create the listening socket at the given path."
+msgstr "تفعيل IPC وإنشاء مقبس استماع في المسار المحدد."
+
+msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
+msgstr "تفعيل إزالة التحزم لتقليل الأشرطة والتكتل وآثار التكميم كثيرًا، مقابل طمس طفيف جدًا لأدق التفاصيل. تحسن الصورة عمليًا دائمًا؛ وسبب تعطيلها عادةً الأداء."
+
+msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
+msgstr "تفعيل اختيار المسارات التلقائي حسب aid وalang وغيرهما. عند تعطيله لا تُختار مسارات، وينتظر المشغل بدل الخروج (كالإيقاف المؤقت لكن دون ضبط pause).\\n\\nيفيد مع lavfi-complex: ابدأ التشغيل ثم اختر المسارات بتعيين مخطط المرشحات. إذا ضُبط lavfi-complex قبل التشغيل، تُختار المسارات المشار إليها دائمًا."
+
+msgid "Enable this only when a developer asks for it. (mpv.net option)"
+msgstr "فعّله فقط بطلب من مطوّر. (خيار mpv.net)"
+
+msgid "Enables HDR peak detection."
+msgstr "تفعيل اكتشاف ذروة HDR."
+
+msgid "Enables color adjustment."
+msgstr "تفعيل ضبط الألوان."
+
+msgid "Enables debanding using libplacebo."
+msgstr "تفعيل إزالة التحزم باستخدام libplacebo."
+
+msgid "Enables sigmoidization."
+msgstr "تفعيل التحويل السيني."
+
+msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
+msgstr "تفعيل إعدادات تعيين الألوان هذه. تعطيلها لا يوقف التعيين بل يستخدم القيم الافتراضية لكل الخيارات."
+
+#: src\MpvNet\Utilities\InputHelp.cs:150
+msgid "Enlarge"
+msgstr "تكبير"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:295
+msgid "Error creating file associations."
+msgstr "خطأ أثناء إنشاء ارتباطات الملفات."
+
+#: src\MpvNet\Utilities\InputHelp.cs:21 src\MpvNet\Utilities\InputHelp.cs:199
+#: src\MpvNet\Utilities\InputHelp.cs:231
+msgid "Exit"
+msgstr "خروج"
+
+#: src\MpvNet\Utilities\InputHelp.cs:186
+msgid "Exit Watch Later"
+msgstr "خروج مع حفظ الموضع"
+
+msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
+msgstr "مصيّر فيديو تجريبي مبني على libplacebo، يدعم تقريبًا ميزات --vo=gpu نفسها."
+
+#: src\MpvNet\Integration\Mpv\Player.cs:441
+#: src\MpvNet\Integration\Mpv\Player.cs:469
+msgid "External"
+msgstr "خارجي"
+
+#: src\MpvNet\Utilities\InputHelp.cs:10 src\MpvNet\Utilities\InputHelp.cs:11
+#: src\MpvNet\Utilities\InputHelp.cs:12 src\MpvNet\Utilities\InputHelp.cs:13
+#: src\MpvNet\Utilities\InputHelp.cs:14 src\MpvNet\Utilities\InputHelp.cs:15
+#: src\MpvNet\Utilities\InputHelp.cs:16 src\MpvNet\Utilities\InputHelp.cs:17
+#: src\MpvNet\Utilities\InputHelp.cs:18 src\MpvNet\Utilities\InputHelp.cs:19
+#: src\MpvNet\Utilities\InputHelp.cs:20 src\MpvNet\Utilities\InputHelp.cs:21
+msgid "File"
+msgstr "ملف"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:287
+msgid "File Explorer icons will refresh after process restart."
+msgstr "ستتحدث رموز مستكشف الملفات بعد إعادة تشغيل العملية."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:292
+msgid "File associations were successfully created."
+msgstr "أُنشئت ارتباطات الملفات بنجاح."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:290
+msgid "File associations were successfully removed."
+msgstr "أُزيلت ارتباطات الملفات بنجاح."
+
+#: src\MpvNet\App.cs:200
+msgid "File information"
+msgstr "معلومات الملف"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:229
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:251
+msgid "Files/URLs were added to the playlist"
+msgstr "أُضيفت الملفات/الروابط إلى قائمة التشغيل"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:39
+msgid "Find a binding (Ctrl+F)"
+msgstr "البحث عن اختصار (Ctrl+F)"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:609
+msgid "Find a setting (Ctrl+F)"
+msgstr "البحث عن إعداد (Ctrl+F)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:29
+msgid "First File"
+msgstr "الملف الأول"
+
+msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
+msgstr "عند فتح ملف واحد، تحميل المجلد كله إلى القائمة تلقائيًا. (خيار mpv.net مهمل؛ استخدم autocreate-playlist بدلًا منه)"
+
+msgid "Force a single process and add files to playlist"
+msgstr "فرض عملية واحدة وإضافة الملفات إلى القائمة"
+
+msgid "Force a single process everytime the shell starts mpv.net"
+msgstr "فرض عملية واحدة كلما شغّل النظام mpv.net"
+
+msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
+msgstr "فرض LUT كاملة لتعيين الدرجات حتى للدوال ذات بدائل GLSL أسرع مثل clip وlinear وsaturation. خيار تصحيح أخطاء."
+
+#: src\MpvNet\Integration\Mpv\Player.cs:439
+#: src\MpvNet\Integration\Mpv\Player.cs:467
+#: src\MpvNet\Integration\Mpv\Player.cs:633
+#: src\MpvNet\Integration\Mpv\Player.cs:717
+msgid "Forced"
+msgstr "إجباري"
+
+#: src\MpvNet\Utilities\InputHelp.cs:206
+msgid "Forward"
+msgstr "للأمام"
+
+#: src\MpvNet\Utilities\InputHelp.cs:149 src\MpvNet\Utilities\InputHelp.cs:219
+#: src\MpvNet\Utilities\InputHelp.cs:220
+msgid "Fullscreen"
+msgstr "ملء الشاشة"
+
+msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
+msgstr "دالة تعيين الألوان الخارجة عن النطاق اللوني، بما فيها الناتجة عن تعيين الدرجات."
+
+msgid "Gaussian smoothing (fast)"
+msgstr "تنعيم غاوسي (سريع)"
+
+msgid "Gaussian smoothing (fast)."
+msgstr "تنعيم غاوسي (سريع)."
+
+msgid "General"
+msgstr "عام"
+
+msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "مشغّل خرج فيديو عام قابل للتخصيص بتسريع GPU. يدعم التحجيم المتقدم وتنقيط الألوان وإدارة الألوان والمظللات المخصصة وHDR وغيرها."
+
+#: src\MpvNet\App.cs:206
+msgid "GitHub Sponsors"
+msgstr "GitHub Sponsors"
+
+msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
+msgstr "إبراز البكسلات المقصوصة بشدة أثناء تعيين الدرجات، أي المتجاوزة لنطاق سطوع المصدر المعلن."
+
+msgid "HDR Peak Detection"
+msgstr "اكتشاف ذروة HDR"
+
+#: src\MpvNet\Utilities\InputHelp.cs:113
+msgid "Half"
+msgstr "نصف"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:338
+msgid "Height"
+msgstr "الارتفاع"
+
+#: src\MpvNet\App.cs:203 src\MpvNet\Utilities\InputHelp.cs:190
+#: src\MpvNet\Utilities\InputHelp.cs:191 src\MpvNet\Utilities\InputHelp.cs:192
+#: src\MpvNet\Utilities\InputHelp.cs:193 src\MpvNet\Utilities\InputHelp.cs:194
+#: src\MpvNet\Utilities\InputHelp.cs:195 src\MpvNet\Utilities\InputHelp.cs:196
+#: src\MpvNet\Utilities\InputHelp.cs:197
+msgid "Help"
+msgstr "مساعدة"
+
+#: src\MpvNet\App.cs:225
+#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
+msgid "Help the player"
+msgstr "ساعد المشغل"
+
+msgid "Hermite-weighted averaging (fast)"
+msgstr "متوسط مرجح بـ Hermite (سريع)"
+
+msgid "Hermite-weighted frame mixing"
+msgstr "مزج إطارات مرجح بـ Hermite"
+
+msgid "How the player synchronizes audio and video.\\n\\nFor more information visit:"
+msgstr "كيفية مزامنة المشغل للصوت والفيديو.\\n\\nلمزيد من المعلومات:"
+
+msgid "If enabled, allows the gamut mapping function to expand the gamut, in cases where the target gamut exceeds that of the source. If disabled, the source gamut will never be enlarged, even when using a gamut mapping function capable of bidirectional mapping."
+msgstr "يسمح بتوسيع النطاق اللوني إذا كان الهدف أكبر من المصدر. عند التعطيل لا يتوسع المصدر حتى مع دالة تدعم التعيين ثنائي الاتجاه."
+
+msgid "If enabled, and supported by the given tone mapping function, will perform inverse tone mapping to expand the dynamic range of a signal. libplacebo is not liable for any HDR-induced eye damage."
+msgstr "عند التفعيل ودعم الدالة، ينفذ تعيينًا عكسيًا لتوسيع المدى الديناميكي للإشارة. لا يتحمل libplacebo مسؤولية ضرر العين الناتج عن HDR."
+
+msgid "If possible, write screenshots with a bit depth similar to the source video. This is interesting in particular for PNG, as this sometimes triggers writing 16 bit PNGs with huge file sizes. This will also include an unused alpha channel in the resulting files if 16 bit is used."
+msgstr "حفظ اللقطات بعمق بت قريب من الفيديو إن أمكن. قد ينتج PNG بعمق 16 بت وحجم كبير، ويتضمن قناة ألفا غير مستخدمة."
+
+msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
+msgstr "إذا كان هذا الخيار وkeep-open كلاهما no، يخرج المشغل بعد انتهاء آخر ملف."
+
+msgid "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
+msgstr "عند no ومع keep-open، يتوقف عند نهاية الملف بدل الإيقاف المؤقت؛ وبعد الرجوع يستأنف حتى النهاية ثم يتوقف مجددًا."
+
+msgid "If the current file ends, go to the next file, keep the last file open."
+msgstr "الانتقال للتالي عند انتهاء الحالي وإبقاء آخر ملف مفتوحًا."
+
+msgid "If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
+msgstr "الانتقال للتالي بعد انتهاء الحالي؛ وعند idle=no يخرج بعد آخر ملف."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:173
+msgid "Ignore"
+msgstr "تجاهل"
+
+#: src\MpvNet\Utilities\InputHelp.cs:218
+msgid "Ignore left mouse button"
+msgstr "تجاهل زر الفأرة الأيسر"
+
+msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+msgstr "امتدادات الصور للمطابقة مع --cover-art-auto و--autocreate-playlist و--directory-filter-types؛ يستخدمها mpv.net للارتباطات وauto-load-folder. الافتراضي: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+
+#: src\MpvNet\Utilities\InputHelp.cs:69
+msgid "Increase Brightness"
+msgstr "زيادة السطوع"
+
+#: src\MpvNet\Utilities\InputHelp.cs:66
+msgid "Increase Contrast"
+msgstr "زيادة التباين"
+
+#: src\MpvNet\Utilities\InputHelp.cs:99
+msgid "Increase Font Size"
+msgstr "تكبير الخط"
+
+#: src\MpvNet\Utilities\InputHelp.cs:72
+msgid "Increase Gamma"
+msgstr "زيادة غاما"
+
+#: src\MpvNet\Utilities\InputHelp.cs:61
+msgid "Increase Height"
+msgstr "زيادة الارتفاع"
+
+#: src\MpvNet\Utilities\InputHelp.cs:75
+msgid "Increase Saturation"
+msgstr "زيادة التشبع"
+
+#: src\MpvNet\Utilities\InputHelp.cs:52
+msgid "Increase Size"
+msgstr "تكبير الحجم"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:508
+msgid "Info"
+msgstr "معلومات"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:102
+msgid "Input"
+msgstr "الإدخال"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:11
+msgid "Input Editor"
+msgstr "محرر الإدخال"
+
+#: src\MpvNet\Utilities\InputHelp.cs:43
+msgid "Jump 30 sec backward"
+msgstr "رجوع 30 ثانية"
+
+#: src\MpvNet\Utilities\InputHelp.cs:42
+msgid "Jump 30 sec forward"
+msgstr "تقدم 30 ثانية"
+
+#: src\MpvNet\Utilities\InputHelp.cs:46
+msgid "Jump 5 min backward"
+msgstr "رجوع 5 دقائق"
+
+#: src\MpvNet\Utilities\InputHelp.cs:45
+msgid "Jump 5 min forward"
+msgstr "تقدم 5 دقائق"
+
+#: src\MpvNet\Utilities\InputHelp.cs:40
+msgid "Jump 5 sec backward"
+msgstr "رجوع 5 ثوانٍ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:39
+msgid "Jump 5 sec forward"
+msgstr "تقدم 5 ثوانٍ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:36
+msgid "Jump To Next Frame"
+msgstr "الانتقال للإطار التالي"
+
+#: src\MpvNet\Utilities\InputHelp.cs:37
+msgid "Jump To Previous Frame"
+msgstr "الانتقال للإطار السابق"
+
+#: src\MpvNet\App.cs:196
+msgid "Key bindings"
+msgstr "اختصارات المفاتيح"
+
+#: src\MpvNet\Utilities\InputHelp.cs:144
+msgid "Keys"
+msgstr "المفاتيح"
+
+msgid "Lanczos reconstruction"
+msgstr "إعادة بناء Lanczos"
+
+msgid "Lanczos reconstruction."
+msgstr "إعادة بناء Lanczos."
+
+#: src\MpvNet\Utilities\InputHelp.cs:30
+msgid "Last File"
+msgstr "الملف الأخير"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:10
+msgid "Learn Input"
+msgstr "تعلّم الإدخال"
+
+msgid "Like scale, but apply these filters on downscaling instead. \\nIf no option is selected, it will keep the same with the upscaler."
+msgstr "مثل scale، لكن لتصغير الصورة. \\nإذا لم يُختر شيء يُستخدم مرشح التكبير نفسه."
+
+msgid "Linear frame mixing"
+msgstr "مزج إطارات خطي"
+
+msgid "Load additional audio files matching the video filename. The parameter specifies how external audio files are matched."
+msgstr "تحميل صوت إضافي يطابق اسم الفيديو. يحدد المعامل طريقة مطابقة الملفات الخارجية."
+
+msgid "Load additional subtitle files matching the video filename. The parameter specifies how external subtitle files are matched. exact is enabled by default."
+msgstr "تحميل ترجمة إضافية تطابق اسم الفيديو. يحدد المعامل طريقة المطابقة؛ exact مفعّل افتراضيًا."
+
+msgid "Load all audio files containing media filename."
+msgstr "تحميل كل ملفات الصوت التي تتضمن اسم الوسائط."
+
+msgid "Load all audio files in the current and audio-file-paths directories."
+msgstr "تحميل كل الصوت من المجلد الحالي ومجلدات audio-file-paths."
+
+msgid "Load all subs containing media filename."
+msgstr "تحميل كل الترجمات التي تتضمن اسم الوسائط."
+
+msgid "Load all subs in the current and sub-file-paths directories."
+msgstr "تحميل كل الترجمات من المجلد الحالي ومجلدات sub-file-paths."
+
+msgid "Load the media filename with audio file extension."
+msgstr "تحميل اسم ملف الوسائط بامتداد صوت."
+
+msgid "Load the media filename with subtitle file extension."
+msgstr "تحميل اسم ملف الوسائط بامتداد ترجمة."
+
+#: src\MpvNet\App.cs:111
+msgid "Make a donation to help maintain the project."
+msgstr "تبرع للمساعدة في صيانة المشروع."
+
+#: src\MpvNet.Windows\WPF\Controls\HyperlinkEx.cs:22
+msgid "Manual"
+msgstr "الدليل"
+
+#: src\MpvNet\Utilities\InputHelp.cs:193
+msgid "Manual mpv"
+msgstr "دليل mpv"
+
+#: src\MpvNet\Utilities\InputHelp.cs:194
+msgid "Manual mpv.net"
+msgstr "دليل mpv.net"
+
+#: src\MpvNet\Utilities\InputHelp.cs:226
+msgid "Mark position for revert-seek"
+msgstr "تحديد موضع للرجوع بـ revert-seek"
+
+#: src\MpvNet\Utilities\InputHelp.cs:122
+msgid "Media Info Message Box"
+msgstr "معلومات الوسائط في مربع حوار"
+
+#: src\MpvNet\Utilities\InputHelp.cs:121
+msgid "Media Info On-Screen"
+msgstr "معلومات الوسائط على الشاشة"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:610
+msgid "Menu"
+msgstr "القائمة"
+
+msgid "Mitchell-Netravalia cubic spline"
+msgstr "شريحة تكعيبية Mitchell-Netravalia"
+
+#: src\MpvNet\Utilities\InputHelp.cs:101 src\MpvNet\Utilities\InputHelp.cs:140
+#: src\MpvNet\Utilities\InputHelp.cs:141 src\MpvNet\Utilities\InputHelp.cs:142
+#: src\MpvNet\Utilities\InputHelp.cs:143 src\MpvNet\Utilities\InputHelp.cs:144
+#: src\MpvNet\Utilities\InputHelp.cs:145 src\MpvNet\Utilities\InputHelp.cs:146
+#: src\MpvNet\Utilities\InputHelp.cs:147
+msgid "More"
+msgstr "المزيد"
+
+#: src\MpvNet\Utilities\InputHelp.cs:157 src\MpvNet\Utilities\InputHelp.cs:158
+#: src\MpvNet\Utilities\InputHelp.cs:159 src\MpvNet\Utilities\InputHelp.cs:160
+#: src\MpvNet\Utilities\InputHelp.cs:161
+msgid "Move"
+msgstr "تحريك"
+
+#: src\MpvNet\Utilities\InputHelp.cs:58 src\MpvNet\Utilities\InputHelp.cs:96
+msgid "Move Down"
+msgstr "تحريك لأسفل"
+
+#: src\MpvNet\Utilities\InputHelp.cs:54
+msgid "Move Left"
+msgstr "تحريك لليسار"
+
+#: src\MpvNet\Utilities\InputHelp.cs:55
+msgid "Move Right"
+msgstr "تحريك لليمين"
+
+#: src\MpvNet\Utilities\InputHelp.cs:57 src\MpvNet\Utilities\InputHelp.cs:95
+msgid "Move Up"
+msgstr "تحريك لأعلى"
+
+#: src\MpvNet\Utilities\InputHelp.cs:108
+msgid "Mute"
+msgstr "كتم الصوت"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:96
+msgid "Name"
+msgstr "الاسم"
+
+#: src\MpvNet\Utilities\InputHelp.cs:26 src\MpvNet\Utilities\InputHelp.cs:27
+#: src\MpvNet\Utilities\InputHelp.cs:28 src\MpvNet\Utilities\InputHelp.cs:29
+#: src\MpvNet\Utilities\InputHelp.cs:30 src\MpvNet\Utilities\InputHelp.cs:32
+#: src\MpvNet\Utilities\InputHelp.cs:33 src\MpvNet\Utilities\InputHelp.cs:34
+#: src\MpvNet\Utilities\InputHelp.cs:35 src\MpvNet\Utilities\InputHelp.cs:36
+#: src\MpvNet\Utilities\InputHelp.cs:37 src\MpvNet\Utilities\InputHelp.cs:38
+#: src\MpvNet\Utilities\InputHelp.cs:39 src\MpvNet\Utilities\InputHelp.cs:40
+#: src\MpvNet\Utilities\InputHelp.cs:41 src\MpvNet\Utilities\InputHelp.cs:42
+#: src\MpvNet\Utilities\InputHelp.cs:43 src\MpvNet\Utilities\InputHelp.cs:44
+#: src\MpvNet\Utilities\InputHelp.cs:45 src\MpvNet\Utilities\InputHelp.cs:46
+#: src\MpvNet\Utilities\InputHelp.cs:47 src\MpvNet\Utilities\InputHelp.cs:48
+#: src\MpvNet\Utilities\InputHelp.cs:49
+msgid "Navigate"
+msgstr "التنقل"
+
+msgid "Nearest-neighbour (box) sampling (very fast)."
+msgstr "أخذ عينات بأقرب جار (صندوقي، سريع جدًا)."
+
+msgid "Never use precise seeks."
+msgstr "عدم استخدام الانتقال الدقيق أبدًا."
+
+#: src\MpvNet\Utilities\InputHelp.cs:33
+msgid "Next Chapter"
+msgstr "الفصل التالي"
+
+#: src\MpvNet\Utilities\InputHelp.cs:27 src\MpvNet\Utilities\InputHelp.cs:213
+#: src\MpvNet\Utilities\InputHelp.cs:215 src\MpvNet\Utilities\InputHelp.cs:217
+msgid "Next File"
+msgstr "الملف التالي"
+
+#: src\MpvNet\Utilities\InputHelp.cs:84 src\MpvNet\Utilities\InputHelp.cs:89
+msgid "Next Track"
+msgstr "المسار التالي"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
+msgid "No"
+msgstr "لا"
+
+#: src\MpvNet\Command.cs:74
+msgid "No audio tracks"
+msgstr "لا توجد مسارات صوتية"
+
+msgid "No filter, only use basic GPU texture sampling."
+msgstr "دون مرشح؛ استخدام عينات نسيج GPU الأساسية فقط."
+
+#: src\MpvNet\Command.cs:117
+msgid "No subtitle"
+msgstr "بلا ترجمة"
+
+#: src\MpvNet\Command.cs:102
+#: src\MpvNet.Windows\WinForms\MainForm.ContextMenu.cs:63
+msgid "No subtitles"
+msgstr "بلا ترجمة"
+
+msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
+msgstr "يحتفظ mpv عادةً بكل الخيارات عند الملف التالي، حتى المعدلة أثناء التشغيل. يقبل هذا الخيار قائمة خيارات لإعادتها إلى قيمها الأولية عند بدء التشغيل."
+
+msgid "Number of key presses to generate per second on autorepeat."
+msgstr "عدد ضغطات المفاتيح في الثانية عند التكرار التلقائي."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:127
+msgid "OK"
+msgstr "موافق"
+
+#: src\MpvNet\Utilities\InputHelp.cs:124 src\MpvNet\Utilities\InputHelp.cs:125
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:127
+#: src\MpvNet\Utilities\InputHelp.cs:128 src\MpvNet\Utilities\InputHelp.cs:129
+#: src\MpvNet\Utilities\InputHelp.cs:130 src\MpvNet\Utilities\InputHelp.cs:131
+#: src\MpvNet\Utilities\InputHelp.cs:132 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:134 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:136 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:138 src\MpvNet\Utilities\InputHelp.cs:246
+#: src\MpvNet\Utilities\InputHelp.cs:247 src\MpvNet\Utilities\InputHelp.cs:248
+msgid "On-Screen Menu"
+msgstr "القائمة على الشاشة"
+
+#: src\MpvNet\App.cs:204
+msgid "Online documentation"
+msgstr "التوثيق عبر الإنترنت"
+
+#: src\MpvNet\Utilities\InputHelp.cs:173
+msgid "Open Config Folder"
+msgstr "فتح مجلد الإعدادات"
+
+#: src\MpvNet\Utilities\InputHelp.cs:12
+msgid "Open media from a drive or folder (including subfolders)..."
+msgstr "فتح وسائط من محرك أو مجلد (بما فيه المجلدات الفرعية)..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:10
+msgid "Open Files..."
+msgstr "فتح ملفات..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:11
+msgid "Open URL or file from clipboard"
+msgstr "فتح رابط أو ملف من الحافظة"
+
+msgid "Override all libplacebo options by the values from the given preset."
+msgstr "تجاوز كل خيارات libplacebo بقيم الإعداد المسبق المحدد."
+
+msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
+msgstr "تجاوز مرشح تصغير المستويات مثل اللون/ألفا. عند none يُستخدم إعداد downscaler."
+
+msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
+msgstr "تجاوز مرشح تكبير المستويات مثل اللون/ألفا. عند none يُستخدم إعداد upscaler."
+
+msgid "Overrides the value of all options in this section by their default values from the given preset."
+msgstr "تجاوز خيارات هذا القسم كلها بقيم الإعداد المسبق الافتراضية."
+
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
+msgstr "تجاوز خيارات القسم بقيم الإعداد المسبق؛ وhigh_quality يفعّل استعادة تباين HDR أيضًا."
+
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
+msgstr "تجاوز خيارات القسم بقيم الإعداد المسبق؛ وhigh_quality يفعّل قياس مدرج الإطارات أيضًا."
+
+msgid "Oversampling, only mix \"edge\" frames while preserving FPS"
+msgstr "أخذ عينات زائد؛ مزج إطارات الحواف فقط مع حفظ FPS"
+
+#: src\MpvNet\Utilities\InputHelp.cs:51 src\MpvNet\Utilities\InputHelp.cs:52
+#: src\MpvNet\Utilities\InputHelp.cs:53 src\MpvNet\Utilities\InputHelp.cs:54
+#: src\MpvNet\Utilities\InputHelp.cs:55 src\MpvNet\Utilities\InputHelp.cs:56
+#: src\MpvNet\Utilities\InputHelp.cs:57 src\MpvNet\Utilities\InputHelp.cs:58
+#: src\MpvNet\Utilities\InputHelp.cs:59 src\MpvNet\Utilities\InputHelp.cs:60
+#: src\MpvNet\Utilities\InputHelp.cs:61 src\MpvNet\Utilities\InputHelp.cs:62
+#: src\MpvNet\Utilities\InputHelp.cs:63
+msgid "Pan & Scan"
+msgstr "تحريك ومسح"
+
+msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
+msgstr "تمرير خيار خام إضافي إلى خلفية libplacebo (المستخدمة مع --vo=gpu-next). قد يتجاوز تأثير الخيارات الأخرى المضبوطة بالنظام العادي."
+
+#: src\MpvNet\Utilities\InputHelp.cs:23 src\MpvNet\Utilities\InputHelp.cs:201
+#: src\MpvNet\Utilities\InputHelp.cs:202 src\MpvNet\Utilities\InputHelp.cs:203
+#: src\MpvNet\Utilities\InputHelp.cs:204
+msgid "Play/Pause"
+msgstr "تشغيل/إيقاف مؤقت"
+
+#: src\MpvNet\Utilities\InputHelp.cs:23 src\MpvNet\Utilities\InputHelp.cs:24
+msgid "Playback"
+msgstr "التشغيل"
+
+#: src\MpvNet\App.cs:199
+msgid "Playback statistics"
+msgstr "إحصاءات التشغيل"
+
+msgid "Playback will never automatically advance to the next file."
+msgstr "عدم الانتقال للملف التالي تلقائيًا أبدًا."
+
+#: src\MpvNet\App.cs:192 src\MpvNet\Utilities\InputHelp.cs:118
+#: src\MpvNet\Utilities\InputHelp.cs:125 src\MpvNet\Utilities\InputHelp.cs:232
+msgid "Playlist"
+msgstr "قائمة التشغيل"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:612
+msgid "Preview mpv.conf"
+msgstr "معاينة mpv.conf"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:613
+msgid "Preview mpvnet.conf"
+msgstr "معاينة mpvnet.conf"
+
+#: src\MpvNet\Utilities\InputHelp.cs:34
+msgid "Previous Chapter"
+msgstr "الفصل السابق"
+
+#: src\MpvNet\Utilities\InputHelp.cs:26 src\MpvNet\Utilities\InputHelp.cs:212
+#: src\MpvNet\Utilities\InputHelp.cs:214 src\MpvNet\Utilities\InputHelp.cs:216
+msgid "Previous File"
+msgstr "الملف السابق"
+
+#: src\MpvNet\Utilities\InputHelp.cs:165
+#: src\MpvNet.Windows\WinForms\MainForm.cs:288
+msgid "Profile"
+msgstr "ملف الإعداد"
+
+msgid "Program Behavior"
+msgstr "سلوك البرنامج"
+
+#: src\MpvNet\Utilities\InputHelp.cs:123
+msgid "Progress"
+msgstr "التقدم"
+
+#: src\MpvNet\Utilities\InputHelp.cs:127 src\MpvNet\Utilities\InputHelp.cs:245
+msgid "Properties"
+msgstr "الخصائص"
+
+#: src\MpvNet\Utilities\InputHelp.cs:145
+msgid "Protocols"
+msgstr "البروتوكولات"
+
+#: src\MpvNet\Utilities\InputHelp.cs:20
+#: src\MpvNet.Windows\WinForms\MainForm.cs:234
+msgid "Recent Files"
+msgstr "الملفات الحديثة"
+
+#: src\MpvNet\Utilities\InputHelp.cs:175
+msgid "Register audio file associations"
+msgstr "تسجيل ارتباطات ملفات الصوت"
+
+#: src\MpvNet\Utilities\InputHelp.cs:176
+msgid "Register image file associations"
+msgstr "تسجيل ارتباطات ملفات الصور"
+
+#: src\MpvNet\Utilities\InputHelp.cs:174
+msgid "Register video file associations"
+msgstr "تسجيل ارتباطات ملفات الفيديو"
+
+#: src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Remove mpv.net from Path environment variable"
+msgstr "إزالة mpv.net من متغير البيئة Path"
+
+msgid "Render Options"
+msgstr "خيارات التصيير"
+
+#: src\MpvNet\Utilities\InputHelp.cs:63 src\MpvNet\Utilities\InputHelp.cs:116
+msgid "Reset"
+msgstr "إعادة ضبط"
+
+msgid "Reset all everything to high quality presets (where available)."
+msgstr "إعادة ضبط الكل إلى إعدادات الجودة العالية حيث تتوفر."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:164
+msgid "Retry"
+msgstr "إعادة المحاولة"
+
+#: src\MpvNet\Utilities\InputHelp.cs:81
+msgid "Rotate Video"
+msgstr "تدوير الفيديو"
+
+msgid "Same as minimum-aspect-ratio but used for audio files."
+msgstr "مثل minimum-aspect-ratio لكن لملفات الصوت."
+
+msgid "Same as yes (for compatibility)."
+msgstr "مثل yes (للتوافق)."
+
+msgid "Save and restore the audio device chosen in the context menu. Default: yes"
+msgstr "حفظ واستعادة جهاز الصوت المختار من القائمة السياقية. الافتراضي: yes"
+
+msgid "Save the window position on exit. (mpv.net option)"
+msgstr "حفظ موضع النافذة عند الخروج. (خيار mpv.net)"
+
+msgid "Save volume and mute on exit and restore it on start. (mpv.net option)"
+msgstr "حفظ مستوى الصوت والكتم عند الخروج واستعادتهما عند البدء. (خيار mpv.net)"
+
+msgid "Scaling"
+msgstr "التحجيم"
+
+msgid "Screenshot"
+msgstr "لقطة شاشة"
+
+#: src\MpvNet\App.cs:188 src\MpvNet\Utilities\InputHelp.cs:132
+msgid "Secondary Subtitle"
+msgstr "ترجمة ثانوية"
+
+#: src\MpvNet\Utilities\InputHelp.cs:234
+msgid "Secondary Subtitles"
+msgstr "الترجمات الثانوية"
+
+msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
+msgstr "راجع sub-color. لون خلفية الترجمة؛ يمكن تغيير حجمها نسبةً للنص عبر sub-shadow-offset."
+
+msgid "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
+msgstr "راجع sub-color. لون حد خط الترجمة؛ يُتجاهل إذا كان sub-back-color غير شفاف بالكامل."
+
+#: src\MpvNet\Utilities\InputHelp.cs:222 src\MpvNet\Utilities\InputHelp.cs:224
+#: src\MpvNet\Utilities\InputHelp.cs:230
+msgid "Seek Backward"
+msgstr "انتقال للخلف"
+
+#: src\MpvNet\Utilities\InputHelp.cs:221 src\MpvNet\Utilities\InputHelp.cs:223
+#: src\MpvNet\Utilities\InputHelp.cs:229
+msgid "Seek Forward"
+msgstr "انتقال للأمام"
+
+#: src\MpvNet\Utilities\InputHelp.cs:228
+msgid "Seek to next subtitle"
+msgstr "الانتقال للترجمة التالية"
+
+#: src\MpvNet\Utilities\InputHelp.cs:227
+msgid "Seek to previous subtitle"
+msgstr "الانتقال للترجمة السابقة"
+
+msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
+msgstr "يحدد متى يُستخدم الانتقال الدقيق غير المقيد بالإطارات المفتاحية. يتطلب فك الفيديو من الإطار المفتاحي السابق حتى الهدف، وقد يستغرق وقتًا حسب الأداء. يُعطّل لبعض الصيغ. هذه السياسة الافتراضية ويمكن تجاوزها في الاختصارات وأوامر الإدخال."
+
+msgid "Set dither target depth to N. Note that the depth of the connected video display device cannot be detected. Often, LCD panels will do dithering on their own, which conflicts with this option and leads to ugly output."
+msgstr "ضبط عمق التنقيط المستهدف على N. لا يمكن كشف عمق الشاشة المتصلة. قد تنقّط شاشات LCD داخليًا فتتعارض مع الخيار وتسيء للصورة."
+
+msgid "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "مدة رسائل OSD بالمللي ثانية. الافتراضي: 1000"
+
+msgid "Set the image file type used for saving screenshots."
+msgstr "نوع ملف الصورة لحفظ اللقطات."
+
+msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
+msgstr "مستوى الصوت عند البدء. 0 صمت و100 بلا خفض أو تضخيم. تُقبل القيم السالبة للتوافق وتُعامل كـ 0. منذ mpv 0.18.1 يتحكم دائمًا بالمازج الداخلي (softvol). الافتراضي: 100"
+
+msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
+msgstr "تعيين عنوان نافذة الفيديو وعنوان تدفق الصوت إن أمكن. تُوسّع الخصائص؛ انتبه فقد تسبب الخصائص المستخدمة استهلاكًا كبيرًا للمعالج."
+
+msgid "Set this to no in order to hide the window title bar."
+msgstr "اضبطه على no لإخفاء شريط عنوان النافذة."
+
+#: src\MpvNet\Utilities\InputHelp.cs:182
+msgid "Set/clear A-B loop points"
+msgstr "تعيين/مسح نقطتي تكرار A-B"
+
+msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
+msgstr "مرشح التصغير؛ الخيارات الرئيسية مرتبة تقريبًا من الأسرع للأبطأ."
+
+msgid "Sets the filter used for frame mixing (temporal interpolation). Roughly ordered from fastest to slowest."
+msgstr "مرشح مزج الإطارات (الاستيفاء الزمني)، مرتب تقريبًا من الأسرع للأبطأ."
+
+msgid "Sets the filter used for upscaling."
+msgstr "تعيين مرشح التكبير."
+
+msgid "Setting to remember the window size. (mpv.net option)"
+msgstr "إعداد تذكر حجم النافذة. (خيار mpv.net)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:174 src\MpvNet\Utilities\InputHelp.cs:175
+#: src\MpvNet\Utilities\InputHelp.cs:176 src\MpvNet\Utilities\InputHelp.cs:177
+#: src\MpvNet\Utilities\InputHelp.cs:178 src\MpvNet\Utilities\InputHelp.cs:179
+#: src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Setup"
+msgstr "الإعداد"
+
+msgid "Sharpened version of ewa_lanczos (slow)."
+msgstr "نسخة أكثر حدة من ewa_lanczos (بطيئة)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:167
+msgid "Show Config Editor"
+msgstr "عرض محرر الإعدادات"
+
+#: src\MpvNet\Utilities\InputHelp.cs:168
+msgid "Show Input Editor"
+msgstr "عرض محرر الإدخال"
+
+#: src\MpvNet\Utilities\InputHelp.cs:200
+msgid "Show Menu"
+msgstr "عرض القائمة"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:310
+msgid "Show Profiles"
+msgstr "عرض ملفات الإعداد"
+
+msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
+msgstr "عرض رسالة OSD عند بدء التشغيل. تُوسّع الخصائص، فمثلًا osd-playing-msg='file: ${filename}' يعرض file: ثم مسافة واسم الملف الحالي. لمزيد من المعلومات:"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:614
+msgid "Show mpv manual"
+msgstr "عرض دليل mpv"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:615
+msgid "Show mpv.net manual"
+msgstr "عرض دليل mpv.net"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:611
+msgid "Show mpv.net options"
+msgstr "عرض خيارات mpv.net"
+
+msgid "Show progress in taskbar."
+msgstr "عرض التقدم في شريط المهام."
+
+msgid "Show window with decoration (titlebar, border)."
+msgstr "عرض زخارف النافذة (شريط العنوان والحدود)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:151
+msgid "Shrink"
+msgstr "تصغير"
+
+#: src\MpvNet\Utilities\InputHelp.cs:184
+msgid "Shuffle Playlist"
+msgstr "خلط قائمة التشغيل"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:1277
+msgid "Shutdown thread failed to complete within 10 seconds."
+msgstr "لم يكتمل مؤشر ترابط الإغلاق خلال 10 ثوانٍ."
+
+msgid "Sigmoidization"
+msgstr "التحويل السيني"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:339
+msgid "Size"
+msgstr "الحجم"
+
+msgid "Snap the player window to screen edges."
+msgstr "محاذاة نافذة المشغل إلى حواف الشاشة."
+
+msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
+msgstr "قائمة أولوية لغات الصوت. تختلف الرموز: DVD يستخدم ISO 639-1 بحرفين، وMatroska وMPEG-TS وNUT تستخدم ISO 639-2 بثلاثة أحرف، وOGM معرّفًا حرًا. راجع aid أيضًا."
+
+msgid "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
+msgstr "قائمة أولوية لغات الترجمة. DVD يستخدم ISO 639-1 بحرفين، وMatroska يستخدم ISO 639-2 بثلاثة أحرف، وOGM معرّفًا حرًا. راجع sid أيضًا."
+
+msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
+msgstr "الخط للترجمات التي لا تحدد خطًا. الافتراضي sans-serif."
+
+msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
+msgstr "حجم خط OSD. راجع sub-font-size للتفاصيل. الافتراضي: 55"
+
+msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
+msgstr "لون الترجمات النصية غير المنسقة.\\n\\nالوصف والأمثلة في الدليل:"
+
+msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
+msgstr "قالب اسم اللقطة دون الامتداد، ويمكن أن يتضمن محددات تنسيق تُستبدل عند الالتقاط. الافتراضي mpv-shot%n مثل mpv-shot0012.png.\\n\\nالتوثيق الكامل:"
+
+msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
+msgstr "واجهة فك الفيديو العتادي المفضلة إن أمكن. يعتمد الدعم على الترميز؛ عند التعذر يُستخدم الفك البرمجي. معطل افتراضيًا للموثوقية، لكن العتاد الحديث قد يقلل استهلاك المعالج والطاقة.\\n\\nلمزيد من المعلومات:"
+
+msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
+msgstr "حجم خط الترجمة بالبكسلات المحجمة عند ارتفاع نافذة 720. يزيد الحجم الفعلي أو ينقص مع ارتفاع النافذة. الافتراضي: 55"
+
+#: src\MpvNet\Utilities\InputHelp.cs:110 src\MpvNet\Utilities\InputHelp.cs:111
+#: src\MpvNet\Utilities\InputHelp.cs:112 src\MpvNet\Utilities\InputHelp.cs:113
+#: src\MpvNet\Utilities\InputHelp.cs:114 src\MpvNet\Utilities\InputHelp.cs:115
+#: src\MpvNet\Utilities\InputHelp.cs:116
+msgid "Speed"
+msgstr "السرعة"
+
+msgid "Start the player in fullscreen mode."
+msgstr "بدء المشغل بملء الشاشة."
+
+msgid "Start with a maximized window."
+msgstr "البدء بنافذة مكبرة."
+
+#: src\MpvNet\Utilities\InputHelp.cs:24 src\MpvNet\Utilities\InputHelp.cs:205
+msgid "Stop"
+msgstr "إيقاف"
+
+msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
+msgstr "حفظ اللقطات في هذا المجلد؛ يُدمج المسار مع اسم screenshot-template. إذا كان الاسم مسارًا مطلقًا يُتجاهل المجلد."
+
+#: src\MpvNet\Utilities\InputHelp.cs:89 src\MpvNet\Utilities\InputHelp.cs:90
+#: src\MpvNet\Utilities\InputHelp.cs:91 src\MpvNet\Utilities\InputHelp.cs:92
+#: src\MpvNet\Utilities\InputHelp.cs:93 src\MpvNet\Utilities\InputHelp.cs:94
+#: src\MpvNet\Utilities\InputHelp.cs:95 src\MpvNet\Utilities\InputHelp.cs:96
+#: src\MpvNet\Utilities\InputHelp.cs:97 src\MpvNet\Utilities\InputHelp.cs:98
+#: src\MpvNet\Utilities\InputHelp.cs:99 src\MpvNet\Utilities\InputHelp.cs:100
+#: src\MpvNet\Utilities\InputHelp.cs:101
+msgid "Subtitle"
+msgstr "الترجمة"
+
+#: src\MpvNet\App.cs:189 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:240
+msgid "Subtitle Lines"
+msgstr "أسطر الترجمة"
+
+#: src\MpvNet\App.cs:187 src\MpvNet\Utilities\InputHelp.cs:131
+msgid "Subtitle Tracks"
+msgstr "مسارات الترجمة"
+
+#: src\MpvNet\Utilities\InputHelp.cs:233
+msgid "Subtitles"
+msgstr "الترجمات"
+
+#: src\MpvNet\App.cs:205
+msgid "Support"
+msgstr "الدعم"
+
+msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
+msgstr "وسم اللقطات بفضاء اللون المناسب؛ بعض الصيغ غير مدعومة."
+
+#: src\MpvNet\Utilities\InputHelp.cs:77
+msgid "Take Screenshot"
+msgstr "التقاط صورة للشاشة"
+
+#: src\MpvNet\Utilities\InputHelp.cs:78
+msgid "Take Screenshot without subtitles"
+msgstr "التقاط صورة دون ترجمة"
+
+msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
+msgstr "دالة مرشح GPU لتكبير الفيديو. توجد مرشحات أخرى أقل فائدة؛ للقائمة الكاملة استخدم help مثل mpv --scale=help."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:244
+msgid "The clipboard does not contain a valid URL or file."
+msgstr "لا تحتوي الحافظة على رابط أو ملف صالح."
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:142
+msgid "The input editor cannot save duplicate shortcuts with different commands:"
+msgstr "لا يستطيع محرر الإدخال حفظ اختصارات مكررة بأوامر مختلفة:"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:42
+msgid "The live stream has ended."
+msgstr "انتهى البث المباشر."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:44
+msgid "The online media URL is invalid."
+msgstr "رابط الوسائط عبر الإنترنت غير صالح."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:45
+msgid "The online media could not be loaded."
+msgstr "تعذر تحميل الوسائط عبر الإنترنت."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:41
+msgid "The online playlist could not be loaded."
+msgstr "تعذر تحميل قائمة التشغيل عبر الإنترنت."
+
+msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "الخيارات المحفوظة في ملفات \"watch later\" إذا تغيرت منذ بدء mpv؛ تُستعاد عند التشغيل التالي. خيار قائمة نصوص. لمزيد من المعلومات:"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
+msgid "This content is no longer available."
+msgstr "لم يعد هذا المحتوى متاحًا."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:39
+msgid "This content is not available in your region."
+msgstr "هذا المحتوى غير متاح في منطقتك."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:38
+msgid "This content requires authentication with the source service."
+msgstr "يتطلب هذا المحتوى المصادقة لدى الخدمة المصدر."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:442
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:447
+msgid "This feature was removed, but there are user scripts:"
+msgstr "أُزيلت هذه الميزة، لكن توجد نصوص برمجية للمستخدم:"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:451
+msgid "This feature was removed."
+msgstr "أُزيلت هذه الميزة."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:43
+msgid "This online media format is not supported."
+msgstr "صيغة الوسائط هذه غير مدعومة."
+
+#: src\MpvNet\App.cs:102 src\MpvNet\App.cs:110
+msgid "Tip: installing Codec Guide can improve codec support and playback."
+msgstr "تلميح: قد يحسن تثبيت Codec Guide دعم الترميزات والتشغيل."
+
+#: src\MpvNet\Utilities\InputHelp.cs:48
+#: src\MpvNet.Windows\WinForms\MainForm.cs:255
+msgid "Title"
+msgstr "العنوان"
+
+#: src\MpvNet\Utilities\InputHelp.cs:162
+msgid "Toggle Border"
+msgstr "تبديل الحدود"
+
+#: src\MpvNet\Utilities\InputHelp.cs:79
+msgid "Toggle Deinterlace"
+msgstr "تبديل إزالة التشابك"
+
+#: src\MpvNet\Utilities\InputHelp.cs:185
+msgid "Toggle Hardware Decoding"
+msgstr "تبديل فك الترميز العتادي"
+
+#: src\MpvNet\Utilities\InputHelp.cs:120
+msgid "Toggle OSC Visibility"
+msgstr "تبديل ظهور OSC"
+
+#: src\MpvNet\Utilities\InputHelp.cs:163
+msgid "Toggle On Top"
+msgstr "تبديل البقاء في المقدمة"
+
+#: src\MpvNet\Utilities\InputHelp.cs:119
+msgid "Toggle Statistics"
+msgstr "تبديل الإحصاءات"
+
+#: src\MpvNet\Utilities\InputHelp.cs:90
+msgid "Toggle Visibility"
+msgstr "تبديل الظهور"
+
+#: src\MpvNet\Utilities\InputHelp.cs:183
+msgid "Toggle infinite file looping"
+msgstr "تبديل التكرار اللانهائي للملف"
+
+#: src\MpvNet\Utilities\InputHelp.cs:101
+msgid "Toggle overriding SSA/ASS styles with normal styles"
+msgstr "تبديل تجاوز أنماط SSA/ASS بالأنماط العادية"
+
+msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
+msgstr "دالة تعيين للتكيف بين نطاقات السطوع المختلفة، بما فيه نقطة الأسود."
+
+#: src\MpvNet\Utilities\InputHelp.cs:182 src\MpvNet\Utilities\InputHelp.cs:183
+#: src\MpvNet\Utilities\InputHelp.cs:184 src\MpvNet\Utilities\InputHelp.cs:185
+#: src\MpvNet\Utilities\InputHelp.cs:186
+msgid "Tools"
+msgstr "أدوات"
+
+#: src\MpvNet\Utilities\InputHelp.cs:103
+#: src\MpvNet.Windows\WinForms\MainForm.cs:180
+msgid "Track"
+msgstr "المسار"
+
+#: src\MpvNet\Utilities\InputHelp.cs:129 src\MpvNet\Utilities\InputHelp.cs:237
+msgid "Tracks"
+msgstr "المسارات"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:340
+msgid "Type"
+msgstr "النوع"
+
+#: src\MpvNet\Utilities\InputHelp.cs:225
+msgid "Undo previous (or marked) seek"
+msgstr "التراجع عن الانتقال السابق (أو المحدد)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:177
+msgid "Unregister file associations"
+msgstr "إلغاء تسجيل ارتباطات الملفات"
+
+msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
+msgstr "استخدام مكتبة معلومات الوسائط بدل mpv لجلب المعلومات. (خيار mpv.net)"
+
+msgid "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "استخدام أي واجهة متاحة. قد يتغير GPU API الافتراضي لهذه القيمة فلا تعتمد عليه؛ حدد الواجهة صراحةً إذا لزمت واحدة بعينها."
+
+msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
+msgstr "استخدام استيفاء ثلاثي التكعيب أعلى جودة وأبطأ لـ 3DLUT. قد يحسن الدقة كثيرًا للأحجام الصغيرة؛ أثره محدود بالحجم الافتراضي."
+
+msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
+msgstr "انتقال دقيق للمواضع المطلقة مثل الفصول، وليس للنسبي مثل مفاتيح الأسهم."
+
+msgid "Use precise seeks whenever possible."
+msgstr "استخدام الانتقال الدقيق كلما أمكن."
+
+msgid "Use the same filter as specified for upscaler"
+msgstr "استخدام مرشح upscaler نفسه"
+
+msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "صيغة تعريف القائمة السياقية في input.conf.\\nيستخدم mpv.net افتراضيًا '#menu:' ويستخدم uosc ‏'#!'."
+
+msgid "User interface display language.\\nmpv.net must be restarted after a change."
+msgstr "لغة واجهة المستخدم.\\nأعد تشغيل mpv.net بعد التغيير."
+
+msgid "VK_KHR_win32_surface"
+msgstr "VK_KHR_win32_surface"
+
+msgid "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
+msgstr "نسخة شديدة الحدة من ewa_lanczos مع منع الرنين (بطيئة جدًا)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:65 src\MpvNet\Utilities\InputHelp.cs:66
+#: src\MpvNet\Utilities\InputHelp.cs:67 src\MpvNet\Utilities\InputHelp.cs:68
+#: src\MpvNet\Utilities\InputHelp.cs:69 src\MpvNet\Utilities\InputHelp.cs:70
+#: src\MpvNet\Utilities\InputHelp.cs:71 src\MpvNet\Utilities\InputHelp.cs:72
+#: src\MpvNet\Utilities\InputHelp.cs:73 src\MpvNet\Utilities\InputHelp.cs:74
+#: src\MpvNet\Utilities\InputHelp.cs:75 src\MpvNet\Utilities\InputHelp.cs:76
+#: src\MpvNet\Utilities\InputHelp.cs:77 src\MpvNet\Utilities\InputHelp.cs:78
+#: src\MpvNet\Utilities\InputHelp.cs:79 src\MpvNet\Utilities\InputHelp.cs:80
+#: src\MpvNet\Utilities\InputHelp.cs:81
+msgid "Video"
+msgstr "الفيديو"
+
+#: src\MpvNet\App.cs:191 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:236
+msgid "Video Tracks"
+msgstr "مسارات الفيديو"
+
+msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+msgstr "امتدادات الفيديو للمطابقة مع --autocreate-playlist و--directory-filter-types؛ يستخدمها mpv.net للارتباطات وauto-load-folder. الافتراضي: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+
+msgid "Video output driver that uses the Direct3D interface."
+msgstr "مشغّل خرج فيديو يستخدم Direct3D."
+
+msgid "Video output drivers to be used.\\n\\nFor more information visit:"
+msgstr "مشغّلات خرج الفيديو المستخدمة.\\n\\nلمزيد من المعلومات:"
+
+#: src\MpvNet\Utilities\InputHelp.cs:118 src\MpvNet\Utilities\InputHelp.cs:119
+#: src\MpvNet\Utilities\InputHelp.cs:120 src\MpvNet\Utilities\InputHelp.cs:121
+#: src\MpvNet\Utilities\InputHelp.cs:122 src\MpvNet\Utilities\InputHelp.cs:123
+#: src\MpvNet\Utilities\InputHelp.cs:124 src\MpvNet\Utilities\InputHelp.cs:125
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:127
+#: src\MpvNet\Utilities\InputHelp.cs:128 src\MpvNet\Utilities\InputHelp.cs:129
+#: src\MpvNet\Utilities\InputHelp.cs:130 src\MpvNet\Utilities\InputHelp.cs:131
+#: src\MpvNet\Utilities\InputHelp.cs:132 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:134 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:136 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:138 src\MpvNet\Utilities\InputHelp.cs:139
+#: src\MpvNet\Utilities\InputHelp.cs:140 src\MpvNet\Utilities\InputHelp.cs:141
+#: src\MpvNet\Utilities\InputHelp.cs:142 src\MpvNet\Utilities\InputHelp.cs:143
+#: src\MpvNet\Utilities\InputHelp.cs:144 src\MpvNet\Utilities\InputHelp.cs:145
+#: src\MpvNet\Utilities\InputHelp.cs:146 src\MpvNet\Utilities\InputHelp.cs:147
+msgid "View"
+msgstr "عرض"
+
+#: src\MpvNet\Utilities\InputHelp.cs:105 src\MpvNet\Utilities\InputHelp.cs:106
+#: src\MpvNet\Utilities\InputHelp.cs:107 src\MpvNet\Utilities\InputHelp.cs:108
+msgid "Volume"
+msgstr "مستوى الصوت"
+
+#: src\MpvNet\Utilities\InputHelp.cs:209 src\MpvNet\Utilities\InputHelp.cs:211
+msgid "Volume Down"
+msgstr "خفض الصوت"
+
+#: src\MpvNet\Utilities\InputHelp.cs:208 src\MpvNet\Utilities\InputHelp.cs:210
+msgid "Volume Up"
+msgstr "رفع الصوت"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:42
+msgid "Waiting for key/mouse input."
+msgstr "بانتظار إدخال من لوحة المفاتيح/الفأرة."
+
+#: src\MpvNet\App.cs:197 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:242
+msgid "Watch History"
+msgstr "سجل المشاهدة"
+
+#: src\MpvNet\App.cs:198 src\MpvNet\Utilities\InputHelp.cs:138
+#: src\MpvNet\Utilities\InputHelp.cs:243
+msgid "Watch Later"
+msgstr "المشاهدة لاحقًا"
+
+#: src\MpvNet\Utilities\InputHelp.cs:190
+msgid "Website mpv"
+msgstr "موقع mpv"
+
+#: src\MpvNet\Utilities\InputHelp.cs:191
+msgid "Website mpv.net"
+msgstr "موقع mpv.net"
+
+msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
+msgstr "عند فتح ملف محلي، التعامل كفتح المجلد الأب وإنشاء قائمة تلقائيًا.\\n\\nno: ملف واحد فقط (افتراضي mpv).\\n\\nFilter: ملفات المجلد الأب المطابقة لـ --directory-filter-types (افتراضي mpv.net).\\n\\nsame: ملفات الفئة نفسها من المجلد الأب. تُختار قائمة *-exts حسب ملف الإدخال وتضاف الامتدادات المطابقة فقط. إن لم يطابق الإدخال أي قائمة فلا تُنشأ قائمة تشغيل."
+
+msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
+msgstr "عند التكبير، استخدام تحويل لوني سيني لتجنب إبراز آثار الرنين؛ يفعّل linear-scaling أيضًا."
+
+msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
+msgstr "تمديد حجم مرشح الالتفاف عند التصغير؛ يحسن الجودة ويقلل الأداء.\\n\\nأقل مثالية قليلًا للفيديو ذي البكسلات غير المربعة (لكنه أفضل من تعطيله)، إذ يطابق فقط عامل التحجيم الأخف بين المحورين."
+
+msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+msgstr "هل يُحجّم OSD مع النافذة. عند التعطيل تصبح osd-font-size وخيارات البكسلات المحجمة بالبكسلات الفعلية، فلا يغير حجم النافذة حجم الخط."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:337
+msgid "Width"
+msgstr "العرض"
+
+msgid "Win32, with native Direct3D 11 rendering."
+msgstr "‏Win32 بتصيير Direct3D 11 الأصلي."
+
+msgid "Win32/WGL"
+msgstr "Win32/WGL"
+
+#: src\MpvNet\Utilities\InputHelp.cs:149 src\MpvNet\Utilities\InputHelp.cs:150
+#: src\MpvNet\Utilities\InputHelp.cs:151 src\MpvNet\Utilities\InputHelp.cs:152
+#: src\MpvNet\Utilities\InputHelp.cs:153 src\MpvNet\Utilities\InputHelp.cs:154
+#: src\MpvNet\Utilities\InputHelp.cs:155 src\MpvNet\Utilities\InputHelp.cs:156
+#: src\MpvNet\Utilities\InputHelp.cs:157 src\MpvNet\Utilities\InputHelp.cs:158
+#: src\MpvNet\Utilities\InputHelp.cs:159 src\MpvNet\Utilities\InputHelp.cs:160
+#: src\MpvNet\Utilities\InputHelp.cs:161 src\MpvNet\Utilities\InputHelp.cs:162
+#: src\MpvNet\Utilities\InputHelp.cs:163
+msgid "Window"
+msgstr "النافذة"
+
+msgid "Window height is always remembered"
+msgstr "تذكر ارتفاع النافذة دائمًا"
+
+msgid "Window height is remembered in the current session"
+msgstr "تذكر ارتفاع النافذة في الجلسة الحالية"
+
+msgid "Window size is always remembered"
+msgstr "تذكر حجم النافذة دائمًا"
+
+msgid "Window size is remembered in the current session"
+msgstr "تذكر حجم النافذة في الجلسة الحالية"
+
+msgid "Window size is set to video resolution"
+msgstr "حجم النافذة حسب دقة الفيديو"
+
+msgid "Window width is always remembered"
+msgstr "تذكر عرض النافذة دائمًا"
+
+msgid "Window width is remembered in the current session"
+msgstr "تذكر عرض النافذة في الجلسة الحالية"
+
+msgid "Write JPEG files with the same chroma subsampling as the video. If disabled, the libjpeg default is used."
+msgstr "كتابة JPEG بعينات اللون الفرعية نفسها للفيديو؛ عند التعطيل يُستخدم افتراضي libjpeg."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:137
+msgid "Yes"
+msgstr "نعم"
+
+#: src\MpvNet\App.cs:112
+msgid "Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support."
+msgstr "يساعد تبرعك على استمرار تطوير MPV.NET Media Player وتحسينه وإصلاحه ودعم المشروع."
+
+#: src\MpvNet\Utilities\InputHelp.cs:150 src\MpvNet\Utilities\InputHelp.cs:151
+#: src\MpvNet\Utilities\InputHelp.cs:152 src\MpvNet\Utilities\InputHelp.cs:153
+#: src\MpvNet\Utilities\InputHelp.cs:154 src\MpvNet\Utilities\InputHelp.cs:155
+#: src\MpvNet\Utilities\InputHelp.cs:156
+msgid "Zoom"
+msgstr "التكبير"
+
+msgid "absolute"
+msgstr "absolute"
+
+msgid "alang"
+msgstr "alang"
+
+msgid "all"
+msgstr "all"
+
+msgid "allow-delayed-peak-detect"
+msgstr "allow-delayed-peak-detect"
+
+msgid "allow_delayed_peak"
+msgstr "allow_delayed_peak"
+
+msgid "always"
+msgstr "always"
+
+msgid "always use software decoding"
+msgstr "استخدام الفك البرمجي دائمًا"
+
+msgid "angle"
+msgstr "angle"
+
+msgid "antiringing_strength"
+msgstr "antiringing_strength"
+
+msgid "any"
+msgstr "any"
+
+msgid "audio"
+msgstr "audio"
+
+msgid "audio-device"
+msgstr "audio-device"
+
+msgid "audio-exts"
+msgstr "audio-exts"
+
+msgid "audio-file-auto"
+msgstr "audio-file-auto"
+
+msgid "auto"
+msgstr "auto"
+
+msgid "auto-copy"
+msgstr "auto-copy"
+
+msgid "auto-load-folder"
+msgstr "auto-load-folder"
+
+msgid "auto-safe"
+msgstr "auto-safe"
+
+msgid "auto-select"
+msgstr "auto-select"
+
+msgid "autocreate-playlist"
+msgstr "autocreate-playlist"
+
+msgid "autofit"
+msgstr "autofit"
+
+msgid "autofit-audio"
+msgstr "autofit-audio"
+
+msgid "autofit-image"
+msgstr "autofit-image"
+
+msgid "autofit-larger"
+msgstr "autofit-larger"
+
+msgid "autofit-smaller"
+msgstr "autofit-smaller"
+
+#: src\MpvNet\Utilities\InputHelp.cs:196
+msgid "awesome-mpv"
+msgstr "awesome-mpv"
+
+msgid "background"
+msgstr "background"
+
+msgid "bicubic"
+msgstr "bicubic"
+
+msgid "bilinear"
+msgstr "bilinear"
+
+msgid "black_cutoff"
+msgstr "black_cutoff"
+
+msgid "border"
+msgstr "border"
+
+msgid "box"
+msgstr "box"
+
+msgid "brightness"
+msgstr "brightness"
+
+msgid "bt2390"
+msgstr "bt2390"
+
+msgid "bt2446a"
+msgstr "bt2446a"
+
+msgid "bulgarian"
+msgstr "البلغارية"
+
+msgid "cache"
+msgstr "cache"
+
+msgid "catmull_rom"
+msgstr "catmull_rom"
+
+msgid "chinese-china"
+msgstr "الصينية المبسطة"
+
+msgid "cie_y"
+msgstr "cie_y"
+
+msgid "clip"
+msgstr "clip"
+
+msgid "color_adjustment"
+msgstr "color_adjustment"
+
+msgid "color_adjustment_preset"
+msgstr "color_adjustment_preset"
+
+msgid "color_map"
+msgstr "color_map"
+
+msgid "color_map_preset"
+msgstr "color_map_preset"
+
+msgid "colorimetric_gamma"
+msgstr "colorimetric_gamma"
+
+msgid "contrast"
+msgstr "contrast"
+
+msgid "contrast_recovery"
+msgstr "contrast_recovery"
+
+msgid "contrast_smoothness"
+msgstr "contrast_smoothness"
+
+msgid "copies video back to system RAM"
+msgstr "ينسخ الفيديو إلى ذاكرة النظام RAM"
+
+msgid "correct-downscaling"
+msgstr "correct-downscaling"
+
+msgid "cscale"
+msgstr "cscale"
+
+msgid "cubic"
+msgstr "cubic"
+
+msgid "cuda"
+msgstr "cuda"
+
+msgid "cuda-copy"
+msgstr "cuda-copy"
+
+msgid "d3d11"
+msgstr "d3d11"
+
+msgid "d3d11va"
+msgstr "d3d11va"
+
+msgid "d3d11va-copy"
+msgstr "d3d11va-copy"
+
+msgid "d3d11va-zero-copy"
+msgstr "d3d11va-zero-copy"
+
+msgid "dark-mode"
+msgstr "dark-mode"
+
+msgid "dark-theme"
+msgstr "dark-theme"
+
+msgid "darken"
+msgstr "darken"
+
+msgid "deband"
+msgstr "deband"
+
+msgid "deband_grain"
+msgstr "deband_grain"
+
+msgid "deband_iterations"
+msgstr "deband_iterations"
+
+msgid "deband_preset"
+msgstr "deband_preset"
+
+msgid "deband_radius"
+msgstr "deband_radius"
+
+msgid "deband_threshold"
+msgstr "deband_threshold"
+
+msgid "debug-mode"
+msgstr "debug-mode"
+
+msgid "default"
+msgstr "default"
+
+msgid "demuxer-max-bytes"
+msgstr "demuxer-max-bytes"
+
+msgid "desaturate"
+msgstr "desaturate"
+
+msgid "desync"
+msgstr "desync"
+
+msgid "direct3d"
+msgstr "direct3d"
+
+msgid "display-adrop"
+msgstr "display-adrop"
+
+msgid "display-desync"
+msgstr "display-desync"
+
+msgid "display-resample"
+msgstr "display-resample"
+
+msgid "display-resample-desync"
+msgstr "display-resample-desync"
+
+msgid "display-resample-vdrop"
+msgstr "display-resample-vdrop"
+
+msgid "display-vdrop"
+msgstr "display-vdrop"
+
+msgid "dither-depth"
+msgstr "dither-depth"
+
+msgid "downscaler"
+msgstr "downscaler"
+
+msgid "dscale"
+msgstr "dscale"
+
+msgid "dxinterop"
+msgstr "dxinterop"
+
+msgid "dxva2"
+msgstr "dxva2"
+
+msgid "dxva2-copy"
+msgstr "dxva2-copy"
+
+msgid "enable any whitelisted hw decoder"
+msgstr "تفعيل أي مفكك عتادي بالقائمة المسموحة"
+
+msgid "enable best hw decoder"
+msgstr "تفعيل أفضل مفكك عتادي"
+
+msgid "enable best hw decoder with copy-back"
+msgstr "تفعيل أفضل مفكك عتادي مع النسخ العكسي"
+
+msgid "english"
+msgstr "الإنجليزية"
+
+msgid "ewa_lanczos"
+msgstr "ewa_lanczos"
+
+msgid "ewa_lanczos4sharpest"
+msgstr "ewa_lanczos4sharpest"
+
+msgid "ewa_lanczossharp"
+msgstr "ewa_lanczossharp"
+
+msgid "exact"
+msgstr "exact"
+
+msgid "exactly the same as auto"
+msgstr "مطابق تمامًا لـ auto"
+
+msgid "exposure"
+msgstr "exposure"
+
+msgid "fast"
+msgstr "fast"
+
+msgid "filter"
+msgstr "filter"
+
+msgid "force_tone_mapping_lut"
+msgstr "force_tone_mapping_lut"
+
+msgid "frame_mixer"
+msgstr "frame_mixer"
+
+msgid "french"
+msgstr "الفرنسية"
+
+msgid "fullscreen"
+msgstr "fullscreen"
+
+msgid "fuzzy"
+msgstr "fuzzy"
+
+msgid "gamma"
+msgstr "gamma"
+
+msgid "gamut_expansion"
+msgstr "gamut_expansion"
+
+msgid "gamut_mapping"
+msgstr "gamut_mapping"
+
+msgid "gaussian"
+msgstr "gaussian"
+
+msgid "geometry"
+msgstr "geometry"
+
+msgid "german"
+msgstr "الألمانية"
+
+msgid "gpu"
+msgstr "gpu"
+
+msgid "gpu-api"
+msgstr "gpu-api"
+
+msgid "gpu-context"
+msgstr "gpu-context"
+
+msgid "gpu-next"
+msgstr "gpu-next"
+
+msgid "hable"
+msgstr "hable"
+
+msgid "hdr-compute-peak"
+msgstr "hdr-compute-peak"
+
+msgid "hdr10"
+msgstr "hdr10"
+
+msgid "hdr10plus"
+msgstr "hdr10plus"
+
+msgid "height-always"
+msgstr "height-always"
+
+msgid "height-session"
+msgstr "height-session"
+
+msgid "hermite"
+msgstr "hermite"
+
+msgid "high_quality"
+msgstr "high_quality"
+
+msgid "highlight"
+msgstr "highlight"
+
+msgid "hr-seek"
+msgstr "hr-seek"
+
+msgid "hue"
+msgstr "hue"
+
+msgid "hwdec"
+msgstr "hwdec"
+
+msgid "idle"
+msgstr "idle"
+
+msgid "image-exts"
+msgstr "image-exts"
+
+msgid "info"
+msgstr "info"
+
+msgid "input-ar-delay"
+msgstr "input-ar-delay"
+
+msgid "input-ar-rate"
+msgstr "input-ar-rate"
+
+msgid "input-ipc-server"
+msgstr "input-ipc-server"
+
+msgid "inverse_tone_mapping"
+msgstr "inverse_tone_mapping"
+
+msgid "italian"
+msgstr "الإيطالية"
+
+msgid "japanese"
+msgstr "اليابانية"
+
+msgid "jpg"
+msgstr "jpg"
+
+msgid "keep-open"
+msgstr "keep-open"
+
+msgid "keep-open-pause"
+msgstr "keep-open-pause"
+
+msgid "keepaspect-window"
+msgstr "keepaspect-window"
+
+msgid "keepaspect-window will lock the window size to the video aspect. Default: yes"
+msgstr "يثبت keepaspect-window أبعاد النافذة على نسبة الفيديو. الافتراضي: yes"
+
+msgid "knee_adaptation"
+msgstr "knee_adaptation"
+
+msgid "knee_default"
+msgstr "knee_default"
+
+msgid "knee_maximum"
+msgstr "knee_maximum"
+
+msgid "knee_minimum"
+msgstr "knee_minimum"
+
+msgid "knee_offset"
+msgstr "knee_offset"
+
+msgid "korean"
+msgstr "الكورية"
+
+msgid "lanczos"
+msgstr "lanczos"
+
+msgid "language"
+msgstr "language"
+
+msgid "libplacebo"
+msgstr "libplacebo"
+
+msgid "libplacebo-opts"
+msgstr "libplacebo-opts"
+
+msgid "light-theme"
+msgstr "light-theme"
+
+msgid "linear"
+msgstr "linear"
+
+msgid "linear_knee"
+msgstr "linear_knee"
+
+msgid "linearlight"
+msgstr "linearlight"
+
+msgid "loop-file"
+msgstr "loop-file"
+
+msgid "loop-playlist"
+msgstr "loop-playlist"
+
+msgid "lut3d_size_C"
+msgstr "lut3d_size_C"
+
+msgid "lut3d_size_I"
+msgstr "lut3d_size_I"
+
+msgid "lut3d_size_h"
+msgstr "lut3d_size_h"
+
+msgid "lut3d_tricubic"
+msgstr "lut3d_tricubic"
+
+msgid "media-info"
+msgstr "media-info"
+
+msgid "menu-syntax"
+msgstr "menu-syntax"
+
+msgid "minimum-aspect-ratio"
+msgstr "minimum-aspect-ratio"
+
+msgid "minimum-aspect-ratio-audio"
+msgstr "minimum-aspect-ratio-audio"
+
+msgid "mitchell"
+msgstr "mitchell"
+
+msgid "mobius"
+msgstr "mobius"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:411
+msgid "mpv.net is already in the Path environment variable."
+msgstr "‏mpv.net موجود بالفعل في متغير البيئة Path."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:428
+msgid "mpv.net was not found in the Path environment variable."
+msgstr "لم يُعثر على mpv.net في متغير البيئة Path."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:419
+msgid "mpv.net was successfully added to the Path environment variable."
+msgstr "أُضيف mpv.net إلى متغير البيئة Path بنجاح."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:437
+msgid "mpv.net was successfully removed from the Path environment variable."
+msgstr "أُزيل mpv.net من متغير البيئة Path بنجاح."
+
+msgid "multi"
+msgstr "multi"
+
+msgid "nearest"
+msgstr "nearest"
+
+msgid "neutral"
+msgstr "neutral"
+
+msgid "never"
+msgstr "never"
+
+msgid "no"
+msgstr "no"
+
+msgid "none"
+msgstr "none"
+
+msgid "nvdec"
+msgstr "nvdec"
+
+msgid "nvdec-copy"
+msgstr "nvdec-copy"
+
+msgid "once"
+msgstr "once"
+
+msgid "opengl"
+msgstr "opengl"
+
+msgid "osd-duration"
+msgstr "osd-duration"
+
+msgid "osd-font-size"
+msgstr "osd-font-size"
+
+msgid "osd-playing-msg"
+msgstr "osd-playing-msg"
+
+msgid "osd-scale-by-window"
+msgstr "osd-scale-by-window"
+
+msgid "oversample"
+msgstr "oversample"
+
+msgid "peak_detect"
+msgstr "peak_detect"
+
+msgid "peak_detection_preset"
+msgstr "peak_detection_preset"
+
+msgid "peak_percentile"
+msgstr "peak_percentile"
+
+msgid "peak_smoothing_period"
+msgstr "peak_smoothing_period"
+
+msgid "perceptual"
+msgstr "perceptual"
+
+msgid "perceptual_deadzone"
+msgstr "perceptual_deadzone"
+
+msgid "perceptual_strength"
+msgstr "perceptual_strength"
+
+msgid "plane_downscaler"
+msgstr "plane_downscaler"
+
+msgid "plane_upscaler"
+msgstr "plane_upscaler"
+
+msgid "png"
+msgstr "png"
+
+msgid "polish"
+msgstr "البولندية"
+
+msgid "portuguese-brazil"
+msgstr "البرتغالية (البرازيل)"
+
+msgid "portuguese-portugal"
+msgstr "البرتغالية (البرتغال)"
+
+msgid "preset"
+msgstr "preset"
+
+msgid "process-instance"
+msgstr "process-instance"
+
+msgid "queue"
+msgstr "queue"
+
+msgid "recent-count"
+msgstr "recent-count"
+
+msgid "reinhard"
+msgstr "reinhard"
+
+msgid "reinhard_contrast"
+msgstr "reinhard_contrast"
+
+msgid "relative"
+msgstr "relative"
+
+msgid "remember-audio-device"
+msgstr "remember-audio-device"
+
+msgid "remember-volume"
+msgstr "remember-volume"
+
+msgid "remember-window-position"
+msgstr "remember-window-position"
+
+msgid "requires vo=gpu (Any platform CUDA is available)"
+msgstr "يتطلب vo=gpu (أي منصة تدعم CUDA)"
+
+msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
+msgstr "يتطلب vo=gpu مع gpu-context=d3d11 أو gpu-context=angle"
+
+msgid "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
+msgstr "يتطلب vo=gpu مع gpu-context=d3d11 أو gpu-context=angle أو gpu-context=dxinterop"
+
+msgid "reset-on-next-file"
+msgstr "reset-on-next-file"
+
+msgid "russian"
+msgstr "الروسية"
+
+msgid "same"
+msgstr "same"
+
+msgid "saturation"
+msgstr "saturation"
+
+msgid "save-position-on-quit"
+msgstr "save-position-on-quit"
+
+msgid "scale"
+msgstr "scale"
+
+msgid "scene_threshold_high"
+msgstr "scene_threshold_high"
+
+msgid "scene_threshold_low"
+msgstr "scene_threshold_low"
+
+msgid "screen"
+msgstr "screen"
+
+msgid "screenshot-directory"
+msgstr "screenshot-directory"
+
+msgid "screenshot-format"
+msgstr "screenshot-format"
+
+msgid "screenshot-high-bit-depth"
+msgstr "screenshot-high-bit-depth"
+
+msgid "screenshot-jpeg-quality"
+msgstr "screenshot-jpeg-quality"
+
+msgid "screenshot-jpeg-source-chroma"
+msgstr "screenshot-jpeg-source-chroma"
+
+msgid "screenshot-png-compression"
+msgstr "screenshot-png-compression"
+
+msgid "screenshot-png-filter"
+msgstr "screenshot-png-filter"
+
+msgid "screenshot-tag-colorspace"
+msgstr "screenshot-tag-colorspace"
+
+msgid "screenshot-template"
+msgstr "screenshot-template"
+
+msgid "session"
+msgstr "session"
+
+msgid "show_clipping"
+msgstr "show_clipping"
+
+msgid "sigmoid"
+msgstr "sigmoid"
+
+msgid "sigmoid-upscaling"
+msgstr "sigmoid-upscaling"
+
+msgid "sigmoid_center"
+msgstr "sigmoid_center"
+
+msgid "sigmoid_preset"
+msgstr "sigmoid_preset"
+
+msgid "sigmoid_slope"
+msgstr "sigmoid_slope"
+
+msgid "single"
+msgstr "single"
+
+msgid "slang"
+msgstr "slang"
+
+msgid "slope_offset"
+msgstr "slope_offset"
+
+msgid "slope_tuning"
+msgstr "slope_tuning"
+
+msgid "snap-window"
+msgstr "snap-window"
+
+msgid "softclip"
+msgstr "softclip"
+
+msgid "softclip_desat"
+msgstr "softclip_desat"
+
+msgid "softclip_knee"
+msgstr "softclip_knee"
+
+msgid "spanish"
+msgstr "الإسبانية"
+
+msgid "spline"
+msgstr "spline"
+
+msgid "spline36"
+msgstr "spline36"
+
+msgid "spline_contrast"
+msgstr "spline_contrast"
+
+msgid "st2094-10"
+msgstr "st2094-10"
+
+msgid "st2094-40"
+msgstr "st2094-40"
+
+msgid "start-size"
+msgstr "start-size"
+
+msgid "sub-auto"
+msgstr "sub-auto"
+
+msgid "sub-back-color"
+msgstr "sub-back-color"
+
+msgid "sub-border-color"
+msgstr "sub-border-color"
+
+msgid "sub-color"
+msgstr "sub-color"
+
+msgid "sub-font"
+msgstr "sub-font"
+
+msgid "sub-font-size"
+msgstr "sub-font-size"
+
+msgid "system"
+msgstr "system"
+
+msgid "taskbar-progress"
+msgstr "taskbar-progress"
+
+msgid "temperature"
+msgstr "temperature"
+
+msgid "title"
+msgstr "title"
+
+msgid "title-bar"
+msgstr "title-bar"
+
+msgid "tone_lut_size"
+msgstr "tone_lut_size"
+
+msgid "tone_map_metadata"
+msgstr "tone_map_metadata"
+
+msgid "tone_mapping"
+msgstr "tone_mapping"
+
+msgid "track-auto-selection"
+msgstr "track-auto-selection"
+
+msgid "turkish"
+msgstr "التركية"
+
+msgid "upscaler"
+msgstr "upscaler"
+
+msgid "video-exts"
+msgstr "video-exts"
+
+msgid "video-sync"
+msgstr "video-sync"
+
+msgid "visualize_hue"
+msgstr "visualize_hue"
+
+msgid "visualize_lut"
+msgstr "visualize_lut"
+
+msgid "visualize_lut_x0"
+msgstr "visualize_lut_x0"
+
+msgid "visualize_lut_x1"
+msgstr "visualize_lut_x1"
+
+msgid "visualize_lut_y0"
+msgstr "visualize_lut_y0"
+
+msgid "visualize_lut_y1"
+msgstr "visualize_lut_y1"
+
+msgid "visualize_theta"
+msgstr "visualize_theta"
+
+msgid "vo"
+msgstr "vo"
+
+msgid "volume"
+msgstr "volume"
+
+msgid "vulkan"
+msgstr "vulkan"
+
+msgid "watch-later-options"
+msgstr "watch-later-options"
+
+msgid "width-always"
+msgstr "width-always"
+
+msgid "width-session"
+msgstr "width-session"
+
+msgid "win"
+msgstr "win"
+
+msgid "window-maximized"
+msgstr "window-maximized"
+
+msgid "winvk"
+msgstr "winvk"
+
+msgid "yes"
+msgstr "yes"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:157
+#, csharp-format
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "⁦{0}⁩ غير موجود. هل تريد إنشاءه؟"
+
+#: src\MpvNet\Utilities\InputHelp.cs:161
+msgctxt "Move"
+msgid "Center"
+msgstr "توسيط"
+
+#: src\MpvNet\Utilities\InputHelp.cs:160
+msgctxt "Move"
+msgid "Down"
+msgstr "أسفل"
+
+#: src\MpvNet\Utilities\InputHelp.cs:157
+msgctxt "Move"
+msgid "Left"
+msgstr "يسار"
+
+#: src\MpvNet\Utilities\InputHelp.cs:158
+msgctxt "Move"
+msgid "Right"
+msgstr "يمين"
+
+#: src\MpvNet\Utilities\InputHelp.cs:159
+msgctxt "Move"
+msgid "Up"
+msgstr "أعلى"
+
+#: src\MpvNet\Utilities\InputHelp.cs:106
+msgctxt "Volume"
+msgid "Down"
+msgstr "خفض"
+
+#: src\MpvNet\Utilities\InputHelp.cs:105
+msgctxt "Volume"
+msgid "Up"
+msgstr "رفع"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "No playable media was found in this drive or folder."
+msgstr "لا توجد وسائط قابلة للتشغيل في هذا المحرك أو المجلد."
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "The selected drive or folder could not be read."
+msgstr "تعذرت قراءة المحرك أو المجلد المحدد."
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "تطلب الخدمة المصدر التحقق من أنك لست روبوتًا."
+
+msgid "The clipboard is temporarily unavailable."
+msgstr "الحافظة غير متاحة مؤقتًا."
+
+msgid "Untitled Track"
+msgstr "مسار بلا عنوان"
+
+msgid "Repository: "
+msgstr "مستودع الشفرة: "
+
+msgid "chinese-taiwan"
+msgstr "繁體中文（台灣）"
+
+msgid "chinese-hongkong"
+msgstr "繁體中文（香港）"
+
+msgid "hindi"
+msgstr "हिन्दी"
+
+msgid "arabic"
+msgstr "العربية"
+
+msgid "ukrainian"
+msgstr "Українська"
+
+msgid "indonesian"
+msgstr "Bahasa Indonesia"
+
+msgid "Cache"
+msgstr "التخزين المؤقت"
+
+msgid "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
+msgstr "حفظ روابط الشبكة في الملفات الحديثة كنص عادي داخل settings.xml. تُستبعد دائمًا الروابط ذات بيانات الاعتماد المضمنة أو معاملات الاستعلام الحساسة أو الأجزاء؛ فعّل الخيار فقط إذا خلت المعاملات المتبقية من الأسرار. (خيار mpv.net)"
+
+msgid "save-network-urls-in-recent"
+msgstr "save-network-urls-in-recent"
+
+msgid "video"
+msgstr "video"

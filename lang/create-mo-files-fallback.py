@@ -151,7 +151,9 @@ def build_mo(entries):
     for key in keys:
         id_bytes = escape_mo_string(key) + b'\0'
         str_bytes = escape_mo_string(catalog[key]) + b'\0'
-        offsets.append((len(id_bytes), len(ids), len(str_bytes), len(strs)))
+        # GNU MO lengths exclude the terminating NUL, including the empty
+        # metadata key. Otherwise UTF-8 headers and lookups cannot be read.
+        offsets.append((len(id_bytes) - 1, len(ids), len(str_bytes) - 1, len(strs)))
         ids += id_bytes
         strs += str_bytes
     key_start = 7 * 4 + len(keys) * 8 * 2

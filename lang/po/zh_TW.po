@@ -1,0 +1,2722 @@
+msgid ""
+msgstr "Project-Id-Version: mpv.net\nReport-Msgid-Bugs-To: \nPO-Revision-Date: 2026-10-27 12:00+0000\nLast-Translator: MPV.NET contributors\nLanguage-Team: Traditional Chinese (Taiwan)\nLanguage: zh_TW\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
+
+#: src\MpvNet.Windows\Configuration\Conf.cs:38
+msgid "(Default)"
+msgstr "（預設）"
+
+msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr "（實驗性）Win32，使用 WGL 繪製並透過 Direct3D 9Ex 呈現。支援 Nvidia 和 AMD；較新的 Intel 晶片搭配最新驅動程式也可能可用。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:111
+msgid "+10%"
+msgstr "+10%"
+
+#: src\MpvNet\Utilities\InputHelp.cs:110
+msgid "-10%"
+msgstr "-10%"
+
+msgid "10"
+msgstr "10"
+
+#: src\MpvNet\Utilities\InputHelp.cs:154
+msgid "100 %"
+msgstr "100 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:155
+msgid "200 %"
+msgstr "200 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:156
+msgid "300 %"
+msgstr "300 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:153
+msgid "50 %"
+msgstr "50 %"
+
+msgid "8"
+msgstr "8"
+
+msgid "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
+msgstr "<-1.0..1.0> 亮度偏移。在來源亮度訊號加上固定值。0.0 = 中性，1.0 = 全白，-1.0 = 全黑。預設 0.0。"
+
+msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
+msgstr "<-1.143..5.286> 色溫偏移。以 6500 K 為基準：0.0 為 6500 K（不變），-1.0 為 3000 K，1.0 為 10000 K。預設 0.0。"
+
+msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
+msgstr "<0-100> JPEG 品質。數值越高品質越好。預設 90。"
+
+msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
+msgstr "<0-32> 在桌面延伸至多個螢幕的設定中，指定 mpv 顯示影片的螢幕。"
+
+msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
+msgstr "<0-5> PNG 壓縮前的濾鏡：0 = none，1 = sub，2 = up，3 = average，4 = Paeth，5 = mixed。這會影響壓縮率；多數影像以 mixed 最佳，因此為預設。"
+
+msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
+msgstr "<0-9> PNG 壓縮等級。越高壓縮越好，但會影響截圖檔案大小與寫入時間。過高可能佔用 CPU 而中斷播放。預設 7。"
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
+msgstr "<0..1024> 色域映射 3DLUT 尺寸。設為 0 使用預設值 256。"
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
+msgstr "<0..1024> 色域映射 3DLUT 尺寸。設為 0 使用預設值 32。"
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
+msgstr "<0..1024> 色域映射 3DLUT 尺寸。設為 0 使用預設值 48。"
+
+msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
+msgstr "<0..16> 每個取樣的去色帶步驟數。每步都會減少色帶，但需運算時間。效果逐步快速遞減，數值 >4 幾乎無益。預設 1。"
+
+msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
+msgstr "<0..4096> 色調映射 LUT 尺寸。0 使用預設值 256。"
+
+msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
+msgstr "<0.0..0.5> 轉折點下限，為 PQ 亮度範圍的比例；限制 knee_adaptation 選定的轉折點。預設 0.1。"
+
+msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
+msgstr "<0.0..1.0> 感知映射的相對色度保護區。預設 0.30。"
+
+msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
+msgstr "<0.0..1.0> 所有濾鏡的抗振鈴強度。0.0 停用，1.0 為完整強度。預設 0.0。"
+
+msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
+msgstr "<0.0..1.0> 缺少來源場景平均值中繼資料時的預設轉折點。通常優先使用來源場景相對平均亮度。預設 0.4。"
+
+msgid "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
+msgstr "<0.0..1.0> softclip 的去飽和強度。預設 0.35。"
+
+msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
+msgstr "<0.0..1.0> 直接設定在線性光運作的舊函式（mobius、gamma）的轉折點。預設 0.3。"
+
+msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast coefficient at the display peak. Essentially, a value of 0.5 implies that the reference white will be about half as bright as when clipping. Defaults to 0.5."
+msgstr "<0.0..1.0> reinhard 在顯示峰值的局部對比係數。0.5 表示參考白亮度約為裁切時的一半。預設 0.5。"
+
+msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
+msgstr "<0.0..1.0> 軟裁切方法（perceptual、softclip）的轉折點。預設 0.70。"
+
+msgid "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
+msgstr "<0.0..1.0> 感知飽和度映射強度。預設 0.80。"
+
+msgid "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
+msgstr "<0.0..1.0> sigmoid 曲線的中心（偏移）。預設 0.75。"
+
+msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
+msgstr "<0.0..10.0> 線性方法（linear、linearlight）套用到影像的曝光／增益。預設 1.0。"
+
+msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
+msgstr "<0.0..10.0> 色度裁切（relative、absolute、darken）的 I 對 C 曲線 gamma。預設 1.80。"
+
+msgid "<0.0..100.0> Black cutoff strength."
+msgstr "<0.0..100.0> 黑位截斷強度。"
+
+msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> 對比增益。將來源亮度訊號乘上常數。1.0 = 中性，0.0 = 全黑。預設 1.0。"
+
+msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> Gamma 調整。在保留整體對比下讓場景看起來更亮或更暗。1.0 = 中性，0.0 = 全黑。預設 1.0。"
+
+msgid "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
+msgstr "<0.0..100.0> 飽和度增益。將來源色度訊號乘上常數。1.0 = 中性，0.0 = 灰階。預設 1.0。"
+
+msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
+msgstr "<0.0..100.0> 將輸入影像亮度直方圖的哪個百分位視為場景真實峰值。"
+
+msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps cover up remaining quantization artifacts. Higher numbers add more noise. Defaults to 4.0, which is very mild."
+msgstr "<0.0..1000.0> 加入雜訊以掩蓋殘餘量化瑕疵。數值越大雜訊越多。預設 4.0，效果很輕微。"
+
+msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
+msgstr "<0.0..1000.0> 偵測值的平滑係數。"
+
+msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
+msgstr "<0.0..1000.0> 去色帶濾鏡的截止閾值。提高會大幅增強效果，但逐漸減少影像細節。預設 3.0。"
+
+msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
+msgstr "<0.0..1000.0> 去色帶濾鏡初始半徑，每次迭代線性增加。較大半徑可找到更多漸層，較小半徑的平滑較強。預設 16.0。"
+
+msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
+msgstr "<0.5..1.0> 轉折點上限，為 PQ 亮度範圍的比例；限制 knee_adaptation 選定的轉折點。預設 0.8。"
+
+msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
+msgstr "<0.5..2.0> 轉折點偏移（僅 bt2390）。規格定義的預設為 0.5，與 libplacebo 的預設 1.0 不同。"
+
+msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
+msgstr "<1.0..20.0> sigmoid 曲線斜率（陡峭程度）。預設 6.5。"
+
+msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
+msgstr "<1.0..32.0> HDR 對比恢復的低通核心尺寸。增減均會明顯影響畫面。預設 3.5。"
+
+msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
+msgstr "<N|inf|force|no> 重複播放 N 次：1 為一次（預設），2 為兩次，inf 為無限，no 等同 1，停用循環。命令列有多個檔案時循環整份播放清單。force 類似 inf，但不跳過失敗項目，可能浪費 CPU 反覆嘗試不存在的檔案；在網路很差時播放網路電台可能有用。"
+
+msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
+msgstr "<N|inf|no> 重複單一檔案 N 次。inf 為無限，no 為正常播放。\\n\\n與 loop-playlist 不同，僅循環檔案。播放清單只有一個檔案時，本選項會跳轉而非重新載入檔案。loop 是本選項的別名。"
+
+msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
+msgstr "<angle> 色相偏移；將 UV 子向量繞中性軸旋轉，以弧度指定。預設 0.0（中性）。"
+
+msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
+msgstr "<bytesize> 解多工器允許的前向緩衝量。\\n支援 KiB、MiB 等後綴。"
+
+msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
+msgstr "<float> 視窗最小長寬比；可強制較寬視窗及較大的 OSC。（mpv.net 選項）"
+
+msgid "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
+msgstr "<int> 記住的最近檔案數量。預設：15（mpv.net 選項）"
+
+msgid "<int> Initial window height in percent for audio files. Default: 70"
+msgstr "<int> 音訊檔案的初始視窗高度百分比。預設：70"
+
+msgid "<int> Initial window height in percent for image files. Default: 80"
+msgstr "<int> 影像檔案的初始視窗高度百分比。預設：80"
+
+msgid "<int> Initial window height in percent. Default: 60"
+msgstr "<int> 初始視窗高度百分比。預設：60"
+
+msgid "<int> Maximum window height in percent. Default: 80"
+msgstr "<int> 最大視窗高度百分比。預設：80"
+
+msgid "<int> Minimum window height in percent. Default: 10"
+msgstr "<int> 最小視窗高度百分比。預設：10"
+
+msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
+msgstr "<name> 指定音訊裝置，格式為輸出名稱（例如 alsa）加上 / 與該輸出的裝置名稱。預設 auto 會依優先順序嘗試各輸出的預設裝置。\\n\\n列出裝置：使用快顯功能表。\\n\\n檢視 > 更多 > 音訊裝置。\\n\\n變更裝置：同樣使用快顯功能表。\\n\\n音訊 > 音訊裝置"
+
+msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
+msgstr "<x:y> 初始視窗位置百分比。預設：50:50（置中）。\\n\\n需要 Windows 11；Windows 10 因隱形邊框會略有誤差。\\n\\nx=0 靠左。\\nx=100 靠右。\\n\\ny=0 靠上。\\ny=100 靠下。"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
+msgid "Abort"
+msgstr "中止"
+
+#: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:10
+msgid "About"
+msgstr "關於"
+
+#: src\MpvNet\Utilities\InputHelp.cs:197
+msgid "About mpv.net"
+msgstr "關於 mpv.net"
+
+#: src\MpvNet\Utilities\InputHelp.cs:142
+msgid "Active Bindings In Text Editor"
+msgstr "在文字編輯器檢視有效按鍵綁定"
+
+#: src\MpvNet\Utilities\InputHelp.cs:143
+msgid "Active Bindings On-Screen"
+msgstr "在畫面檢視有效按鍵綁定"
+
+#: src\MpvNet\Utilities\InputHelp.cs:14
+msgid "Add external audio files..."
+msgstr "加入外部音訊檔案..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:15
+msgid "Add external subtitle files..."
+msgstr "加入外部字幕檔案..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:17
+msgid "Add files to playlist..."
+msgstr "將檔案加入播放清單..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:18
+msgid "Add files/URLs to playlist from clipboard"
+msgstr "將剪貼簿的檔案／URL 加入播放清單"
+
+#: src\MpvNet\Utilities\InputHelp.cs:179
+msgid "Add mpv.net to Path environment variable"
+msgstr "將 mpv.net 加入 Path 環境變數"
+
+msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr "僅允許 OpenGL（需 OpenGL 2.1+ 或 GLES 2.0+）"
+
+msgid "Allow only Vulkan"
+msgstr "僅允許 Vulkan"
+
+msgid "Allow only gpu-context=d3d11"
+msgstr "僅允許 gpu-context=d3d11"
+
+msgid "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
+msgstr "允許峰值偵測結果延遲最多一個影格，有時能提高處理量，但轉場時可能出現1 個影格的閃爍。"
+
+msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
+msgstr "退出時一律儲存播放位置，下次播放此檔案時跳至該位置。以其他方式停止不會儲存；例如切換到下一個檔案後，下次仍從頭播放。\\n\\n預設停用，但按 Shift+Q 退出時隨時可用。"
+
+msgid "Appearance"
+msgstr "外觀"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml.cs:344
+msgid "Application Message"
+msgstr "應用程式訊息"
+
+msgid "As scale, but for interpolating chroma information. If the image is not subsampled, this option is ignored entirely."
+msgstr "與 scale 相同，但用於色度插值。影像未進行次取樣時完全忽略此選項。"
+
+msgid "Aspect-ratio preserving nearest neighbour sampling (very fast)."
+msgstr "保持長寬比的最近鄰取樣（極快）。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:83 src\MpvNet\Utilities\InputHelp.cs:84
+#: src\MpvNet\Utilities\InputHelp.cs:85 src\MpvNet\Utilities\InputHelp.cs:86
+#: src\MpvNet\Utilities\InputHelp.cs:87
+msgid "Audio"
+msgstr "音訊"
+
+#: src\MpvNet\Utilities\InputHelp.cs:83
+#: src\MpvNet.Windows\WinForms\MainForm.cs:315
+msgid "Audio Device"
+msgstr "音訊裝置"
+
+#: src\MpvNet\App.cs:195 src\MpvNet\Utilities\InputHelp.cs:136
+#: src\MpvNet\Utilities\InputHelp.cs:241
+msgid "Audio Devices"
+msgstr "音訊裝置"
+
+#: src\MpvNet\App.cs:190 src\MpvNet\Utilities\InputHelp.cs:130
+#: src\MpvNet\Utilities\InputHelp.cs:235
+msgid "Audio Tracks"
+msgstr "音軌"
+
+msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "--audio-file-auto、--autocreate-playlist 或 --directory-filter-types 比對的音訊副檔名。mpv.net 也用於檔案關聯與 auto-load-folder。預設：mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+
+msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
+msgstr "自動選擇。無法偵測輸出位元深度時，假定每個色彩分量為 8 位元。"
+
+msgid "Available on Windows 10 or higher"
+msgstr "適用於 Windows 10 或更新版本"
+
+#: src\MpvNet\Utilities\InputHelp.cs:207
+msgid "Backward"
+msgstr "後退"
+
+msgid "Bicubic interpolation (fast)"
+msgstr "雙三次插值（快）"
+
+msgid "Bicubic interpolation (fast)."
+msgstr "雙三次插值（快）。"
+
+msgid "Bilinear (triangle) averaging (fast)"
+msgstr "雙線性（三角）平均（快）"
+
+msgid "Bilinear sampling (very fast)."
+msgstr "雙線性取樣（極快）。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:244
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:403
+msgid "Bindings"
+msgstr "按鍵綁定"
+
+msgid "Box averaging (very fast)"
+msgstr "方框平均（極快）"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:55
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:182
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Catmull-Rom cubic spline"
+msgstr "Catmull-Rom 三次樣條"
+
+msgid "Catmull-Rom cubic spline."
+msgstr "Catmull-Rom 三次樣條。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:80
+msgid "Change Aspect Ratio"
+msgstr "變更長寬比"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:508
+msgid "Changed theme settings require mpv.net being restarted."
+msgstr "變更佈景主題後需重新啟動 mpv.net。"
+
+msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "切換淺色／深色佈景主題。\\n變更後需重新啟動 mpv.net。\\nmpv.net 專用選項。"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:126
+msgid "Changes will be available on next startup."
+msgstr "變更將於下次啟動時生效。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:49
+#: src\MpvNet.Windows\WinForms\MainForm.cs:213
+msgid "Chapter"
+msgstr "章節"
+
+#: src\MpvNet\App.cs:193 src\MpvNet\Utilities\InputHelp.cs:128
+#: src\MpvNet\Utilities\InputHelp.cs:238
+msgid "Chapters"
+msgstr "章節"
+
+msgid "Choose the best mode automatically."
+msgstr "自動選擇最佳模式。"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:54
+msgid "Clear"
+msgstr "清除"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:250
+msgid "Clear List"
+msgstr "清除清單"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MsgBoxExtendedFunctionality.cs:22
+msgid "Click this icon for additional info/actions."
+msgstr "按此圖示檢視更多資訊／操作。"
+
+#: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:16
+msgid "Codec Guide: "
+msgstr "Codec Guide： "
+
+msgid "Color Adjustment"
+msgstr "色彩調整"
+
+msgid "Color Mapping"
+msgstr "色彩映射"
+
+msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "深色模式使用的佈景主題。\\n變更後需重新啟動 mpv.net。\\nmpv.net 專用選項。預設：dark"
+
+msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "淺色模式使用的佈景主題。\\n變更後需重新啟動 mpv.net。\\nmpv.net 專用選項。預設：light"
+
+msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
+msgstr "未被影片覆蓋的 mpv 視窗區域色彩。色彩定義請參閱 --sub-color。"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:140
+msgid "Command"
+msgstr "命令"
+
+#: src\MpvNet\Utilities\InputHelp.cs:141
+msgid "Commands"
+msgstr "命令"
+
+#: src\MpvNet\Utilities\InputHelp.cs:167 src\MpvNet\Utilities\InputHelp.cs:168
+#: src\MpvNet\Utilities\InputHelp.cs:169 src\MpvNet\Utilities\InputHelp.cs:170
+#: src\MpvNet\Utilities\InputHelp.cs:171 src\MpvNet\Utilities\InputHelp.cs:172
+#: src\MpvNet\Utilities\InputHelp.cs:173 src\MpvNet\Utilities\InputHelp.cs:174
+#: src\MpvNet\Utilities\InputHelp.cs:175 src\MpvNet\Utilities\InputHelp.cs:176
+#: src\MpvNet\Utilities\InputHelp.cs:177 src\MpvNet\Utilities\InputHelp.cs:178
+#: src\MpvNet\Utilities\InputHelp.cs:179 src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Config"
+msgstr "設定"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:608
+msgid "Config Editor"
+msgstr "設定編輯器"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:53
+msgid "Confirm"
+msgstr "確認"
+
+#: src\MpvNet\Utilities\InputHelp.cs:140
+msgid "Console"
+msgstr "主控台"
+
+msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
+msgstr "色域 3DLUT 視覺化的旋轉；在色相空間繞 I 軸旋轉，以弧度表示。預設 0.0。"
+
+msgid "Controls the rotation of the gamut 3DLUT visualization. The theta parameter vertically rotates the cross section (around the C axis), in radians. Defaults to 0.0."
+msgstr "色域 3DLUT 視覺化的 theta 參數，垂直旋轉截面（繞 C 軸），以弧度表示。預設 0.0。"
+
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 0.0."
+msgstr "LUT 視覺化相對於影片的繪製位置。預設 0.0。"
+
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 1.0."
+msgstr "LUT 視覺化相對於影片的繪製位置。預設 1.0。"
+
+msgid "Controls which type of graphics APIs will be accepted."
+msgstr "控制允許使用的圖形 API 類型。"
+
+msgid "Create a new process everytime the shell starts mpv.net"
+msgstr "每次由系統殼層啟動 mpv.net 時建立新處理程序"
+
+msgid "Cubic B-spline frame mixing"
+msgstr "三次 B 樣條影格混合"
+
+#: src\MpvNet\Utilities\InputHelp.cs:188
+#: src\MpvNet.Windows\WinForms\MainForm.cs:339
+msgid "Custom"
+msgstr "自訂"
+
+msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
+msgstr "色調映射的資料來源。指定值可覆寫預設的中繼資料優先邏輯。"
+
+msgid "Debanding"
+msgstr "去色帶"
+
+msgid "Decide whether to use network cache settings."
+msgstr "決定是否使用網路快取設定。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:146
+msgid "Decoders"
+msgstr "解碼器"
+
+#: src\MpvNet\Utilities\InputHelp.cs:68
+msgid "Decrease Brightness"
+msgstr "降低亮度"
+
+#: src\MpvNet\Utilities\InputHelp.cs:65
+msgid "Decrease Contrast"
+msgstr "降低對比"
+
+#: src\MpvNet\Utilities\InputHelp.cs:98
+msgid "Decrease Font Size"
+msgstr "縮小字型"
+
+#: src\MpvNet\Utilities\InputHelp.cs:71
+msgid "Decrease Gamma"
+msgstr "降低 Gamma"
+
+#: src\MpvNet\Utilities\InputHelp.cs:60
+msgid "Decrease Height"
+msgstr "降低高度"
+
+#: src\MpvNet\Utilities\InputHelp.cs:74
+msgid "Decrease Saturation"
+msgstr "降低飽和度"
+
+#: src\MpvNet\Utilities\InputHelp.cs:51
+msgid "Decrease Size"
+msgstr "縮小尺寸"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:421
+#: src\MpvNet\Integration\Mpv\Player.cs:440
+#: src\MpvNet\Integration\Mpv\Player.cs:468
+#: src\MpvNet\Integration\Mpv\Player.cs:548
+#: src\MpvNet\Integration\Mpv\Player.cs:634
+#: src\MpvNet\Integration\Mpv\Player.cs:718
+msgid "Default"
+msgstr "預設"
+
+msgid "Default settings, tuned to provide a balance of performance and quality."
+msgstr "預設設定，在效能與品質之間取得平衡。"
+
+msgid "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
+msgstr "是否允許多個 mpv.net 處理程序。\\n也可按住 SHIFT 啟用多重處理程序。（mpv.net 選項）"
+
+#: src\MpvNet\Utilities\InputHelp.cs:86 src\MpvNet\Utilities\InputHelp.cs:93
+msgid "Delay +0.1"
+msgstr "延遲 +0.1"
+
+#: src\MpvNet\Utilities\InputHelp.cs:87 src\MpvNet\Utilities\InputHelp.cs:92
+msgid "Delay -0.1"
+msgstr "延遲 -0.1"
+
+msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
+msgstr "開始自動重複按鍵前的延遲毫秒數，0 為停用。"
+
+msgid "Demuxer"
+msgstr "解多工器"
+
+#: src\MpvNet\Utilities\InputHelp.cs:147
+msgid "Demuxers"
+msgstr "解多工器"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:193
+msgid "Details"
+msgstr "詳細資料"
+
+msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "透過 OpenGL ES 轉譯層 ANGLE 使用 Direct3D11。ANGLE 版本夠新時，幾乎支援 win 後端的所有功能。"
+
+msgid "Disable all advanced rendering, equivalent to passing no to every option."
+msgstr "停用所有進階繪製，等同將每個選項設為 no。"
+
+msgid "Disable any dithering done by mpv."
+msgstr "停用 mpv 的所有抖色處理。"
+
+msgid "Disable frame mixing, show nearest frame to target PTS"
+msgstr "停用影格混合，顯示最接近目標 PTS 的影格"
+
+msgid "Dither to 10 bit output."
+msgstr "抖色至 10 位元輸出。"
+
+msgid "Dither to 8 bit output."
+msgstr "抖色至 8 位元輸出。"
+
+msgid "Don't automatically load external audio files."
+msgstr "不自動載入外部音訊檔案。"
+
+msgid "Don't automatically load external subtitle files."
+msgstr "不自動載入外部字幕檔案。"
+
+#: src\MpvNet\App.cs:208
+msgid "Donation"
+msgstr "捐助"
+
+#: src\MpvNet\Utilities\InputHelp.cs:114
+msgid "Double"
+msgstr "兩倍"
+
+#: src\MpvNet\Integration\Mpv\Player.Initialization.cs:71
+#: src\MpvNet.Windows\WinForms\MainForm.cs:380
+msgid "Drop files or URLs to play here."
+msgstr "將檔案或 URL 拖放到此處播放。"
+
+#: src\MpvNet\App.cs:210
+msgid "E-mail support"
+msgstr "電子郵件支援"
+
+msgid "EWA Lanczos (\"Jinc\") reconstruction (slow)."
+msgstr "EWA Lanczos（「Jinc」）重建（慢）。"
+
+#: src\MpvNet\App.cs:201
+msgid "Edit config file"
+msgstr "編輯設定檔"
+
+#: src\MpvNet\Utilities\InputHelp.cs:171
+msgid "Edit input.conf"
+msgstr "編輯 input.conf"
+
+#: src\MpvNet\App.cs:202
+msgid "Edit key bindings"
+msgstr "編輯按鍵綁定"
+
+#: src\MpvNet\Utilities\InputHelp.cs:170
+msgid "Edit mpv.conf"
+msgstr "編輯 mpv.conf"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:488
+#: src\MpvNet\Integration\Mpv\Player.cs:734
+msgid "Edition"
+msgstr "版本"
+
+#: src\MpvNet\App.cs:194 src\MpvNet\Utilities\InputHelp.cs:134
+#: src\MpvNet\Utilities\InputHelp.cs:239
+msgid "Editions"
+msgstr "版本"
+
+msgid "Enable the IPC support and create the listening socket at the given path."
+msgstr "啟用 IPC 支援並在指定路徑建立監聽通訊端。"
+
+msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
+msgstr "啟用去色帶演算法。可大幅減少色帶、方塊與其他量化瑕疵，代價是極細微的細節模糊。幾乎總能改善畫質，通常僅因效能而停用。"
+
+msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
+msgstr "啟用預設自動選軌，依 aid、alang 等選擇串流。停用時不選任何軌道；沒有軌道也不退出，而是等待（類似暫停，但未設定 pause）。\\n\\n適用於 lavfi-complex：可先開始播放，再於執行期間設定濾鏡圖來選軌。播放前已設定 lavfi-complex 時，其參照軌道一律選取。"
+
+msgid "Enable this only when a developer asks for it. (mpv.net option)"
+msgstr "僅在開發人員要求時啟用。（mpv.net 選項）"
+
+msgid "Enables HDR peak detection."
+msgstr "啟用 HDR 峰值偵測。"
+
+msgid "Enables color adjustment."
+msgstr "啟用色彩調整。"
+
+msgid "Enables debanding using libplacebo."
+msgstr "使用 libplacebo 去色帶。"
+
+msgid "Enables sigmoidization."
+msgstr "啟用 S 型曲線轉換。"
+
+msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
+msgstr "啟用這些色彩映射設定。停用不會關閉色彩映射，而是全部使用預設選項。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:150
+msgid "Enlarge"
+msgstr "放大"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:295
+msgid "Error creating file associations."
+msgstr "建立檔案關聯時發生錯誤。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:21 src\MpvNet\Utilities\InputHelp.cs:199
+#: src\MpvNet\Utilities\InputHelp.cs:231
+msgid "Exit"
+msgstr "結束"
+
+#: src\MpvNet\Utilities\InputHelp.cs:186
+msgid "Exit Watch Later"
+msgstr "儲存位置並結束"
+
+msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
+msgstr "基於 libplacebo 的實驗性影片繪製器，支援幾乎與 --vo=gpu 相同的功能。"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:441
+#: src\MpvNet\Integration\Mpv\Player.cs:469
+msgid "External"
+msgstr "外部"
+
+#: src\MpvNet\Utilities\InputHelp.cs:10 src\MpvNet\Utilities\InputHelp.cs:11
+#: src\MpvNet\Utilities\InputHelp.cs:12 src\MpvNet\Utilities\InputHelp.cs:13
+#: src\MpvNet\Utilities\InputHelp.cs:14 src\MpvNet\Utilities\InputHelp.cs:15
+#: src\MpvNet\Utilities\InputHelp.cs:16 src\MpvNet\Utilities\InputHelp.cs:17
+#: src\MpvNet\Utilities\InputHelp.cs:18 src\MpvNet\Utilities\InputHelp.cs:19
+#: src\MpvNet\Utilities\InputHelp.cs:20 src\MpvNet\Utilities\InputHelp.cs:21
+msgid "File"
+msgstr "檔案"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:287
+msgid "File Explorer icons will refresh after process restart."
+msgstr "重新啟動處理程序後，檔案總管圖示會重新整理。"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:292
+msgid "File associations were successfully created."
+msgstr "已成功建立檔案關聯。"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:290
+msgid "File associations were successfully removed."
+msgstr "已成功移除檔案關聯。"
+
+#: src\MpvNet\App.cs:200
+msgid "File information"
+msgstr "檔案資訊"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:229
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:251
+msgid "Files/URLs were added to the playlist"
+msgstr "已將檔案／URL 加入播放清單"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:39
+msgid "Find a binding (Ctrl+F)"
+msgstr "尋找按鍵綁定（Ctrl+F）"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:609
+msgid "Find a setting (Ctrl+F)"
+msgstr "尋找設定（Ctrl+F）"
+
+#: src\MpvNet\Utilities\InputHelp.cs:29
+msgid "First File"
+msgstr "第一個檔案"
+
+msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
+msgstr "開啟單一檔案時自動將整個資料夾加入播放清單。（已淘汰的 mpv.net 選項，可改用 autocreate-playlist）"
+
+msgid "Force a single process and add files to playlist"
+msgstr "強制單一處理程序並將檔案加入播放清單"
+
+msgid "Force a single process everytime the shell starts mpv.net"
+msgstr "每次由系統殼層啟動 mpv.net 時強制使用單一處理程序"
+
+msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
+msgstr "即使函式有更快的純 GLSL 替代（如 clip、linear、saturation），仍強制使用完整色調映射 LUT。此為偵錯選項。"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:439
+#: src\MpvNet\Integration\Mpv\Player.cs:467
+#: src\MpvNet\Integration\Mpv\Player.cs:633
+#: src\MpvNet\Integration\Mpv\Player.cs:717
+msgid "Forced"
+msgstr "強制"
+
+#: src\MpvNet\Utilities\InputHelp.cs:206
+msgid "Forward"
+msgstr "前進"
+
+#: src\MpvNet\Utilities\InputHelp.cs:149 src\MpvNet\Utilities\InputHelp.cs:219
+#: src\MpvNet\Utilities\InputHelp.cs:220
+msgid "Fullscreen"
+msgstr "全螢幕"
+
+msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
+msgstr "處理色域外色彩的色域映射函式，包含色調映射造成的色域外色彩。"
+
+msgid "Gaussian smoothing (fast)"
+msgstr "高斯平滑（快）"
+
+msgid "Gaussian smoothing (fast)."
+msgstr "高斯平滑（快）。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "通用、可自訂的 GPU 加速影片輸出驅動程式，支援進階縮放、抖色、色彩管理、自訂著色器、HDR 等。"
+
+#: src\MpvNet\App.cs:206
+msgid "GitHub Sponsors"
+msgstr "GitHub Sponsors"
+
+msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
+msgstr "在色調映射時標示被硬裁切的像素，即超過來源宣告亮度範圍的像素。"
+
+msgid "HDR Peak Detection"
+msgstr "HDR 峰值偵測"
+
+#: src\MpvNet\Utilities\InputHelp.cs:113
+msgid "Half"
+msgstr "一半"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:338
+msgid "Height"
+msgstr "高度"
+
+#: src\MpvNet\App.cs:203 src\MpvNet\Utilities\InputHelp.cs:190
+#: src\MpvNet\Utilities\InputHelp.cs:191 src\MpvNet\Utilities\InputHelp.cs:192
+#: src\MpvNet\Utilities\InputHelp.cs:193 src\MpvNet\Utilities\InputHelp.cs:194
+#: src\MpvNet\Utilities\InputHelp.cs:195 src\MpvNet\Utilities\InputHelp.cs:196
+#: src\MpvNet\Utilities\InputHelp.cs:197
+msgid "Help"
+msgstr "說明"
+
+#: src\MpvNet\App.cs:225
+#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
+msgid "Help the player"
+msgstr "支持播放器"
+
+msgid "Hermite-weighted averaging (fast)"
+msgstr "Hermite 加權平均（快）"
+
+msgid "Hermite-weighted frame mixing"
+msgstr "Hermite 加權影格混合"
+
+msgid "How the player synchronizes audio and video.\\n\\nFor more information visit:"
+msgstr "播放器同步音訊與影片的方式。\\n\\n更多資訊："
+
+msgid "If enabled, allows the gamut mapping function to expand the gamut, in cases where the target gamut exceeds that of the source. If disabled, the source gamut will never be enlarged, even when using a gamut mapping function capable of bidirectional mapping."
+msgstr "目標色域大於來源時，允許色域映射函式擴展色域。停用則永不擴展來源色域，即使函式支援雙向映射。"
+
+msgid "If enabled, and supported by the given tone mapping function, will perform inverse tone mapping to expand the dynamic range of a signal. libplacebo is not liable for any HDR-induced eye damage."
+msgstr "啟用且函式支援時，執行反向色調映射以擴展訊號動態範圍。libplacebo 不對 HDR 造成的眼睛損傷負責。"
+
+msgid "If possible, write screenshots with a bit depth similar to the source video. This is interesting in particular for PNG, as this sometimes triggers writing 16 bit PNGs with huge file sizes. This will also include an unused alpha channel in the resulting files if 16 bit is used."
+msgstr "盡可能使用接近來源影片的位元深度儲存截圖。PNG 可能因此使用 16 位元，產生很大的檔案，並包含未使用的 Alpha 通道。"
+
+msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
+msgstr "本選項與 keep-open 均為 no 時，播放最後一個檔案後退出。"
+
+msgid "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
+msgstr "設為 no 時，keep-open 啟用也不暫停，而是在檔尾停止。往回跳轉後會繼續播放至檔尾再停止。"
+
+msgid "If the current file ends, go to the next file, keep the last file open."
+msgstr "播完目前檔案後前往下一個，最後一個保持開啟。"
+
+msgid "If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
+msgstr "播完目前檔案後前往下一個。idle 為 no 時，最後一個播完即退出。"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:173
+msgid "Ignore"
+msgstr "忽略"
+
+#: src\MpvNet\Utilities\InputHelp.cs:218
+msgid "Ignore left mouse button"
+msgstr "忽略滑鼠左鍵"
+
+msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+msgstr "--cover-art-auto、--autocreate-playlist 或 --directory-filter-types 比對的影像副檔名。mpv.net 也用於檔案關聯與 auto-load-folder。預設：avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+
+#: src\MpvNet\Utilities\InputHelp.cs:69
+msgid "Increase Brightness"
+msgstr "提高亮度"
+
+#: src\MpvNet\Utilities\InputHelp.cs:66
+msgid "Increase Contrast"
+msgstr "提高對比"
+
+#: src\MpvNet\Utilities\InputHelp.cs:99
+msgid "Increase Font Size"
+msgstr "放大字型"
+
+#: src\MpvNet\Utilities\InputHelp.cs:72
+msgid "Increase Gamma"
+msgstr "提高 Gamma"
+
+#: src\MpvNet\Utilities\InputHelp.cs:61
+msgid "Increase Height"
+msgstr "增加高度"
+
+#: src\MpvNet\Utilities\InputHelp.cs:75
+msgid "Increase Saturation"
+msgstr "提高飽和度"
+
+#: src\MpvNet\Utilities\InputHelp.cs:52
+msgid "Increase Size"
+msgstr "放大尺寸"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:508
+msgid "Info"
+msgstr "資訊"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:102
+msgid "Input"
+msgstr "輸入"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:11
+msgid "Input Editor"
+msgstr "輸入編輯器"
+
+#: src\MpvNet\Utilities\InputHelp.cs:43
+msgid "Jump 30 sec backward"
+msgstr "後退 30 秒"
+
+#: src\MpvNet\Utilities\InputHelp.cs:42
+msgid "Jump 30 sec forward"
+msgstr "前進 30 秒"
+
+#: src\MpvNet\Utilities\InputHelp.cs:46
+msgid "Jump 5 min backward"
+msgstr "後退 5 分鐘"
+
+#: src\MpvNet\Utilities\InputHelp.cs:45
+msgid "Jump 5 min forward"
+msgstr "前進 5 分鐘"
+
+#: src\MpvNet\Utilities\InputHelp.cs:40
+msgid "Jump 5 sec backward"
+msgstr "後退 5 秒"
+
+#: src\MpvNet\Utilities\InputHelp.cs:39
+msgid "Jump 5 sec forward"
+msgstr "前進 5 秒"
+
+#: src\MpvNet\Utilities\InputHelp.cs:36
+msgid "Jump To Next Frame"
+msgstr "下一個影格"
+
+#: src\MpvNet\Utilities\InputHelp.cs:37
+msgid "Jump To Previous Frame"
+msgstr "上一個影格"
+
+#: src\MpvNet\App.cs:196
+msgid "Key bindings"
+msgstr "按鍵綁定"
+
+#: src\MpvNet\Utilities\InputHelp.cs:144
+msgid "Keys"
+msgstr "按鍵"
+
+msgid "Lanczos reconstruction"
+msgstr "Lanczos 重建"
+
+msgid "Lanczos reconstruction."
+msgstr "Lanczos 重建。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:30
+msgid "Last File"
+msgstr "最後一個檔案"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:10
+msgid "Learn Input"
+msgstr "學習輸入"
+
+msgid "Like scale, but apply these filters on downscaling instead. \\nIf no option is selected, it will keep the same with the upscaler."
+msgstr "與 scale 相同，但用於縮小影像。 \\n未選擇時，與放大濾鏡相同。"
+
+msgid "Linear frame mixing"
+msgstr "線性影格混合"
+
+msgid "Load additional audio files matching the video filename. The parameter specifies how external audio files are matched."
+msgstr "載入符合影片檔名的額外音訊檔案。參數決定外部音訊檔案的比對方式。"
+
+msgid "Load additional subtitle files matching the video filename. The parameter specifies how external subtitle files are matched. exact is enabled by default."
+msgstr "載入符合影片檔名的額外字幕。參數決定外部字幕的比對方式。預設啟用 exact。"
+
+msgid "Load all audio files containing media filename."
+msgstr "載入檔名包含媒體檔名的所有音訊檔案。"
+
+msgid "Load all audio files in the current and audio-file-paths directories."
+msgstr "載入目前資料夾及 audio-file-paths 中的所有音訊檔案。"
+
+msgid "Load all subs containing media filename."
+msgstr "載入檔名包含媒體檔名的所有字幕。"
+
+msgid "Load all subs in the current and sub-file-paths directories."
+msgstr "載入目前資料夾及 sub-file-paths 中的所有字幕。"
+
+msgid "Load the media filename with audio file extension."
+msgstr "載入與媒體同名、使用音訊副檔名的檔案。"
+
+msgid "Load the media filename with subtitle file extension."
+msgstr "載入與媒體同名、使用字幕副檔名的檔案。"
+
+#: src\MpvNet\App.cs:111
+msgid "Make a donation to help maintain the project."
+msgstr "捐助以協助維護本專案。"
+
+#: src\MpvNet.Windows\WPF\Controls\HyperlinkEx.cs:22
+msgid "Manual"
+msgstr "手冊"
+
+#: src\MpvNet\Utilities\InputHelp.cs:193
+msgid "Manual mpv"
+msgstr "mpv 手冊"
+
+#: src\MpvNet\Utilities\InputHelp.cs:194
+msgid "Manual mpv.net"
+msgstr "mpv.net 手冊"
+
+#: src\MpvNet\Utilities\InputHelp.cs:226
+msgid "Mark position for revert-seek"
+msgstr "標記位置以供 revert-seek 返回"
+
+#: src\MpvNet\Utilities\InputHelp.cs:122
+msgid "Media Info Message Box"
+msgstr "在對話方塊顯示媒體資訊"
+
+#: src\MpvNet\Utilities\InputHelp.cs:121
+msgid "Media Info On-Screen"
+msgstr "在畫面顯示媒體資訊"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:610
+msgid "Menu"
+msgstr "功能表"
+
+msgid "Mitchell-Netravalia cubic spline"
+msgstr "Mitchell-Netravalia 三次樣條"
+
+#: src\MpvNet\Utilities\InputHelp.cs:101 src\MpvNet\Utilities\InputHelp.cs:140
+#: src\MpvNet\Utilities\InputHelp.cs:141 src\MpvNet\Utilities\InputHelp.cs:142
+#: src\MpvNet\Utilities\InputHelp.cs:143 src\MpvNet\Utilities\InputHelp.cs:144
+#: src\MpvNet\Utilities\InputHelp.cs:145 src\MpvNet\Utilities\InputHelp.cs:146
+#: src\MpvNet\Utilities\InputHelp.cs:147
+msgid "More"
+msgstr "更多"
+
+#: src\MpvNet\Utilities\InputHelp.cs:157 src\MpvNet\Utilities\InputHelp.cs:158
+#: src\MpvNet\Utilities\InputHelp.cs:159 src\MpvNet\Utilities\InputHelp.cs:160
+#: src\MpvNet\Utilities\InputHelp.cs:161
+msgid "Move"
+msgstr "移動"
+
+#: src\MpvNet\Utilities\InputHelp.cs:58 src\MpvNet\Utilities\InputHelp.cs:96
+msgid "Move Down"
+msgstr "下移"
+
+#: src\MpvNet\Utilities\InputHelp.cs:54
+msgid "Move Left"
+msgstr "左移"
+
+#: src\MpvNet\Utilities\InputHelp.cs:55
+msgid "Move Right"
+msgstr "右移"
+
+#: src\MpvNet\Utilities\InputHelp.cs:57 src\MpvNet\Utilities\InputHelp.cs:95
+msgid "Move Up"
+msgstr "上移"
+
+#: src\MpvNet\Utilities\InputHelp.cs:108
+msgid "Mute"
+msgstr "靜音"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:96
+msgid "Name"
+msgstr "名稱"
+
+#: src\MpvNet\Utilities\InputHelp.cs:26 src\MpvNet\Utilities\InputHelp.cs:27
+#: src\MpvNet\Utilities\InputHelp.cs:28 src\MpvNet\Utilities\InputHelp.cs:29
+#: src\MpvNet\Utilities\InputHelp.cs:30 src\MpvNet\Utilities\InputHelp.cs:32
+#: src\MpvNet\Utilities\InputHelp.cs:33 src\MpvNet\Utilities\InputHelp.cs:34
+#: src\MpvNet\Utilities\InputHelp.cs:35 src\MpvNet\Utilities\InputHelp.cs:36
+#: src\MpvNet\Utilities\InputHelp.cs:37 src\MpvNet\Utilities\InputHelp.cs:38
+#: src\MpvNet\Utilities\InputHelp.cs:39 src\MpvNet\Utilities\InputHelp.cs:40
+#: src\MpvNet\Utilities\InputHelp.cs:41 src\MpvNet\Utilities\InputHelp.cs:42
+#: src\MpvNet\Utilities\InputHelp.cs:43 src\MpvNet\Utilities\InputHelp.cs:44
+#: src\MpvNet\Utilities\InputHelp.cs:45 src\MpvNet\Utilities\InputHelp.cs:46
+#: src\MpvNet\Utilities\InputHelp.cs:47 src\MpvNet\Utilities\InputHelp.cs:48
+#: src\MpvNet\Utilities\InputHelp.cs:49
+msgid "Navigate"
+msgstr "導覽"
+
+msgid "Nearest-neighbour (box) sampling (very fast)."
+msgstr "最近鄰（方框）取樣（極快）。"
+
+msgid "Never use precise seeks."
+msgstr "永不使用精確跳轉。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:33
+msgid "Next Chapter"
+msgstr "下一章"
+
+#: src\MpvNet\Utilities\InputHelp.cs:27 src\MpvNet\Utilities\InputHelp.cs:213
+#: src\MpvNet\Utilities\InputHelp.cs:215 src\MpvNet\Utilities\InputHelp.cs:217
+msgid "Next File"
+msgstr "下一個檔案"
+
+#: src\MpvNet\Utilities\InputHelp.cs:84 src\MpvNet\Utilities\InputHelp.cs:89
+msgid "Next Track"
+msgstr "下一軌"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
+msgid "No"
+msgstr "否"
+
+#: src\MpvNet\Command.cs:74
+msgid "No audio tracks"
+msgstr "無音軌"
+
+msgid "No filter, only use basic GPU texture sampling."
+msgstr "不使用濾鏡，僅使用基本 GPU 紋理取樣。"
+
+#: src\MpvNet\Command.cs:117
+msgid "No subtitle"
+msgstr "無字幕"
+
+#: src\MpvNet\Command.cs:102
+#: src\MpvNet.Windows\WinForms\MainForm.ContextMenu.cs:63
+msgid "No subtitles"
+msgstr "無字幕"
+
+msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
+msgstr "mpv 通常會在播放下一個檔案時保留所有選項，包含播放中由使用者變更的選項。本選項接受選項清單，在開始播放時將其中選項重設為初始值。"
+
+msgid "Number of key presses to generate per second on autorepeat."
+msgstr "自動重複時每秒產生的按鍵次數。"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:127
+msgid "OK"
+msgstr "確定"
+
+#: src\MpvNet\Utilities\InputHelp.cs:124 src\MpvNet\Utilities\InputHelp.cs:125
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:127
+#: src\MpvNet\Utilities\InputHelp.cs:128 src\MpvNet\Utilities\InputHelp.cs:129
+#: src\MpvNet\Utilities\InputHelp.cs:130 src\MpvNet\Utilities\InputHelp.cs:131
+#: src\MpvNet\Utilities\InputHelp.cs:132 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:134 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:136 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:138 src\MpvNet\Utilities\InputHelp.cs:246
+#: src\MpvNet\Utilities\InputHelp.cs:247 src\MpvNet\Utilities\InputHelp.cs:248
+msgid "On-Screen Menu"
+msgstr "螢幕功能表"
+
+#: src\MpvNet\App.cs:204
+msgid "Online documentation"
+msgstr "線上文件"
+
+#: src\MpvNet\Utilities\InputHelp.cs:173
+msgid "Open Config Folder"
+msgstr "開啟設定資料夾"
+
+#: src\MpvNet\Utilities\InputHelp.cs:12
+msgid "Open media from a drive or folder (including subfolders)..."
+msgstr "開啟磁碟機或資料夾的媒體（含子資料夾）..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:10
+msgid "Open Files..."
+msgstr "開啟檔案..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:11
+msgid "Open URL or file from clipboard"
+msgstr "開啟剪貼簿的 URL 或檔案"
+
+msgid "Override all libplacebo options by the values from the given preset."
+msgstr "使用指定預設組合的值覆寫所有 libplacebo 選項。"
+
+msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
+msgstr "覆寫縮小色度／Alpha 等平面的濾鏡。設為 none 時使用 downscaler 的設定。"
+
+msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
+msgstr "覆寫放大色度／Alpha 等平面的濾鏡。設為 none 時使用 upscaler 的設定。"
+
+msgid "Overrides the value of all options in this section by their default values from the given preset."
+msgstr "使用指定預設組合的預設值覆寫本節所有選項。"
+
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
+msgstr "使用指定預設組合的預設值覆寫本節所有選項。high_quality 也啟用 HDR 對比恢復。"
+
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
+msgstr "使用指定預設組合的預設值覆寫本節所有選項。high_quality 也啟用影格直方圖測量。"
+
+msgid "Oversampling, only mix \"edge\" frames while preserving FPS"
+msgstr "超取樣，僅混合邊界影格並保留 FPS"
+
+#: src\MpvNet\Utilities\InputHelp.cs:51 src\MpvNet\Utilities\InputHelp.cs:52
+#: src\MpvNet\Utilities\InputHelp.cs:53 src\MpvNet\Utilities\InputHelp.cs:54
+#: src\MpvNet\Utilities\InputHelp.cs:55 src\MpvNet\Utilities\InputHelp.cs:56
+#: src\MpvNet\Utilities\InputHelp.cs:57 src\MpvNet\Utilities\InputHelp.cs:58
+#: src\MpvNet\Utilities\InputHelp.cs:59 src\MpvNet\Utilities\InputHelp.cs:60
+#: src\MpvNet\Utilities\InputHelp.cs:61 src\MpvNet\Utilities\InputHelp.cs:62
+#: src\MpvNet\Utilities\InputHelp.cs:63
+msgid "Pan & Scan"
+msgstr "平移與掃描"
+
+msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
+msgstr "將額外原始選項傳給 libplacebo 繪製後端（--vo=gpu-next 使用）。可能覆寫一般選項系統的其他設定效果。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:23 src\MpvNet\Utilities\InputHelp.cs:201
+#: src\MpvNet\Utilities\InputHelp.cs:202 src\MpvNet\Utilities\InputHelp.cs:203
+#: src\MpvNet\Utilities\InputHelp.cs:204
+msgid "Play/Pause"
+msgstr "播放／暫停"
+
+#: src\MpvNet\Utilities\InputHelp.cs:23 src\MpvNet\Utilities\InputHelp.cs:24
+msgid "Playback"
+msgstr "播放"
+
+#: src\MpvNet\App.cs:199
+msgid "Playback statistics"
+msgstr "播放統計"
+
+msgid "Playback will never automatically advance to the next file."
+msgstr "永不自動前往下一個檔案。"
+
+#: src\MpvNet\App.cs:192 src\MpvNet\Utilities\InputHelp.cs:118
+#: src\MpvNet\Utilities\InputHelp.cs:125 src\MpvNet\Utilities\InputHelp.cs:232
+msgid "Playlist"
+msgstr "播放清單"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:612
+msgid "Preview mpv.conf"
+msgstr "預覽 mpv.conf"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:613
+msgid "Preview mpvnet.conf"
+msgstr "預覽 mpvnet.conf"
+
+#: src\MpvNet\Utilities\InputHelp.cs:34
+msgid "Previous Chapter"
+msgstr "上一章"
+
+#: src\MpvNet\Utilities\InputHelp.cs:26 src\MpvNet\Utilities\InputHelp.cs:212
+#: src\MpvNet\Utilities\InputHelp.cs:214 src\MpvNet\Utilities\InputHelp.cs:216
+msgid "Previous File"
+msgstr "上一個檔案"
+
+#: src\MpvNet\Utilities\InputHelp.cs:165
+#: src\MpvNet.Windows\WinForms\MainForm.cs:288
+msgid "Profile"
+msgstr "設定組合"
+
+msgid "Program Behavior"
+msgstr "程式行為"
+
+#: src\MpvNet\Utilities\InputHelp.cs:123
+msgid "Progress"
+msgstr "進度"
+
+#: src\MpvNet\Utilities\InputHelp.cs:127 src\MpvNet\Utilities\InputHelp.cs:245
+msgid "Properties"
+msgstr "內容"
+
+#: src\MpvNet\Utilities\InputHelp.cs:145
+msgid "Protocols"
+msgstr "通訊協定"
+
+#: src\MpvNet\Utilities\InputHelp.cs:20
+#: src\MpvNet.Windows\WinForms\MainForm.cs:234
+msgid "Recent Files"
+msgstr "最近的檔案"
+
+#: src\MpvNet\Utilities\InputHelp.cs:175
+msgid "Register audio file associations"
+msgstr "註冊音訊檔案關聯"
+
+#: src\MpvNet\Utilities\InputHelp.cs:176
+msgid "Register image file associations"
+msgstr "註冊影像檔案關聯"
+
+#: src\MpvNet\Utilities\InputHelp.cs:174
+msgid "Register video file associations"
+msgstr "註冊影片檔案關聯"
+
+#: src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Remove mpv.net from Path environment variable"
+msgstr "從 Path 環境變數移除 mpv.net"
+
+msgid "Render Options"
+msgstr "繪製選項"
+
+#: src\MpvNet\Utilities\InputHelp.cs:63 src\MpvNet\Utilities\InputHelp.cs:116
+msgid "Reset"
+msgstr "重設"
+
+msgid "Reset all everything to high quality presets (where available)."
+msgstr "將全部重設為高品質預設（若可用）。"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:164
+msgid "Retry"
+msgstr "重試"
+
+#: src\MpvNet\Utilities\InputHelp.cs:81
+msgid "Rotate Video"
+msgstr "旋轉影片"
+
+msgid "Same as minimum-aspect-ratio but used for audio files."
+msgstr "與 minimum-aspect-ratio 相同，但用於音訊檔案。"
+
+msgid "Same as yes (for compatibility)."
+msgstr "與 yes 相同（供相容使用）。"
+
+msgid "Save and restore the audio device chosen in the context menu. Default: yes"
+msgstr "儲存並還原快顯功能表選擇的音訊裝置。預設：yes"
+
+msgid "Save the window position on exit. (mpv.net option)"
+msgstr "退出時儲存視窗位置。（mpv.net 選項）"
+
+msgid "Save volume and mute on exit and restore it on start. (mpv.net option)"
+msgstr "退出時儲存音量與靜音狀態，啟動時還原。（mpv.net 選項）"
+
+msgid "Scaling"
+msgstr "縮放"
+
+msgid "Screenshot"
+msgstr "截圖"
+
+#: src\MpvNet\App.cs:188 src\MpvNet\Utilities\InputHelp.cs:132
+msgid "Secondary Subtitle"
+msgstr "次要字幕"
+
+#: src\MpvNet\Utilities\InputHelp.cs:234
+msgid "Secondary Subtitles"
+msgstr "次要字幕"
+
+msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
+msgstr "參閱 sub-color。字幕文字背景色，可用 sub-shadow-offset 調整相對文字的大小。"
+
+msgid "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
+msgstr "參閱 sub-color。字幕字型邊框色。指定非全透明 sub-back-color 時忽略。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:222 src\MpvNet\Utilities\InputHelp.cs:224
+#: src\MpvNet\Utilities\InputHelp.cs:230
+msgid "Seek Backward"
+msgstr "向後跳轉"
+
+#: src\MpvNet\Utilities\InputHelp.cs:221 src\MpvNet\Utilities\InputHelp.cs:223
+#: src\MpvNet\Utilities\InputHelp.cs:229
+msgid "Seek Forward"
+msgstr "向前跳轉"
+
+#: src\MpvNet\Utilities\InputHelp.cs:228
+msgid "Seek to next subtitle"
+msgstr "跳至下一句字幕"
+
+#: src\MpvNet\Utilities\InputHelp.cs:227
+msgid "Seek to previous subtitle"
+msgstr "跳至上一句字幕"
+
+msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
+msgstr "選擇何時使用不限於關鍵影格的精確跳轉。需從前一關鍵影格解碼到目標位置，耗時依解碼效能而定；某些格式不支援。此為預設策略，可於按鍵綁定或輸入命令中明確覆寫。"
+
+msgid "Set dither target depth to N. Note that the depth of the connected video display device cannot be detected. Often, LCD panels will do dithering on their own, which conflicts with this option and leads to ugly output."
+msgstr "將抖色目標深度設為 N。無法偵測顯示器深度；LCD 面板常自行抖色，可能與此選項衝突而降低畫質。"
+
+msgid "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "OSD 訊息持續時間（毫秒）。預設：1000"
+
+msgid "Set the image file type used for saving screenshots."
+msgstr "儲存截圖的影像檔案格式。"
+
+msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
+msgstr "啟動音量。0 為靜音，100 不衰減也不放大。為相容可接受負值，但視為 0。自 mpv 0.18.1 起固定控制內部混音器（softvol）。預設：100"
+
+msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
+msgstr "設定影片視窗標題，並盡可能設定音訊串流標題。支援屬性展開；注意某些屬性可能大幅增加 CPU 使用量。"
+
+msgid "Set this to no in order to hide the window title bar."
+msgstr "設為 no 以隱藏視窗標題列。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:182
+msgid "Set/clear A-B loop points"
+msgstr "設定／清除 A-B 循環點"
+
+msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
+msgstr "縮小濾鏡；主要選項大致由快至慢排列。"
+
+msgid "Sets the filter used for frame mixing (temporal interpolation). Roughly ordered from fastest to slowest."
+msgstr "影格混合（時間插值）濾鏡，大致由快至慢排列。"
+
+msgid "Sets the filter used for upscaling."
+msgstr "設定放大使用的濾鏡。"
+
+msgid "Setting to remember the window size. (mpv.net option)"
+msgstr "記住視窗大小的設定。（mpv.net 選項）"
+
+#: src\MpvNet\Utilities\InputHelp.cs:174 src\MpvNet\Utilities\InputHelp.cs:175
+#: src\MpvNet\Utilities\InputHelp.cs:176 src\MpvNet\Utilities\InputHelp.cs:177
+#: src\MpvNet\Utilities\InputHelp.cs:178 src\MpvNet\Utilities\InputHelp.cs:179
+#: src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Setup"
+msgstr "安裝設定"
+
+msgid "Sharpened version of ewa_lanczos (slow)."
+msgstr "ewa_lanczos 的銳化版本（慢）。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:167
+msgid "Show Config Editor"
+msgstr "顯示設定編輯器"
+
+#: src\MpvNet\Utilities\InputHelp.cs:168
+msgid "Show Input Editor"
+msgstr "顯示輸入編輯器"
+
+#: src\MpvNet\Utilities\InputHelp.cs:200
+msgid "Show Menu"
+msgstr "顯示功能表"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:310
+msgid "Show Profiles"
+msgstr "顯示設定組合"
+
+msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
+msgstr "開始播放時顯示 OSD 訊息。字串支援屬性展開，例如 osd-playing-msg='file: ${filename}' 會顯示 file:、一個空格與目前檔名。更多資訊："
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:614
+msgid "Show mpv manual"
+msgstr "顯示 mpv 手冊"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:615
+msgid "Show mpv.net manual"
+msgstr "顯示 mpv.net 手冊"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:611
+msgid "Show mpv.net options"
+msgstr "顯示 mpv.net 選項"
+
+msgid "Show progress in taskbar."
+msgstr "在工作列顯示進度。"
+
+msgid "Show window with decoration (titlebar, border)."
+msgstr "顯示視窗裝飾（標題列、邊框）。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:151
+msgid "Shrink"
+msgstr "縮小"
+
+#: src\MpvNet\Utilities\InputHelp.cs:184
+msgid "Shuffle Playlist"
+msgstr "隨機排列播放清單"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:1277
+msgid "Shutdown thread failed to complete within 10 seconds."
+msgstr "關閉執行緒未能在 10 秒內完成。"
+
+msgid "Sigmoidization"
+msgstr "S 型曲線轉換"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:339
+msgid "Size"
+msgstr "大小"
+
+msgid "Snap the player window to screen edges."
+msgstr "將播放器視窗貼齊螢幕邊緣。"
+
+msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
+msgstr "音訊語言優先清單。容器使用不同代碼：DVD 為 ISO 639-1 兩字母；Matroska、MPEG-TS、NUT 為 ISO 639-2 三字母；OGM 為自由格式。另見 aid。"
+
+msgid "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
+msgstr "字幕語言優先清單。DVD 使用 ISO 639-1 兩字母代碼，Matroska 使用 ISO 639-2 三字母，OGM 使用自由格式識別碼。另見 sid。"
+
+msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
+msgstr "未指定字型的字幕所使用字型。預設 sans-serif。"
+
+msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
+msgstr "OSD 字型大小。細節見 sub-font-size。預設：55"
+
+msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
+msgstr "無樣式文字字幕的色彩。\\n\\n用法與範例請參閱手冊："
+
+msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
+msgstr "截圖檔名範本，不含副檔名，可含截圖時替換的格式指定符。預設 mpv-shot%n，例如 mpv-shot0012.png。\\n\\n完整文件："
+
+msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
+msgstr "優先嘗試的硬體影片解碼 API。是否可用取決於編解碼器；不可用則回退軟體解碼。為可靠性預設停用，但現代硬體通常支援，可減少 CPU 使用與耗電。\\n\\n更多資訊："
+
+msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
+msgstr "字幕字型大小，以視窗高度 720 時的縮放像素為單位。實際像素隨視窗高度增減。預設：55"
+
+#: src\MpvNet\Utilities\InputHelp.cs:110 src\MpvNet\Utilities\InputHelp.cs:111
+#: src\MpvNet\Utilities\InputHelp.cs:112 src\MpvNet\Utilities\InputHelp.cs:113
+#: src\MpvNet\Utilities\InputHelp.cs:114 src\MpvNet\Utilities\InputHelp.cs:115
+#: src\MpvNet\Utilities\InputHelp.cs:116
+msgid "Speed"
+msgstr "速度"
+
+msgid "Start the player in fullscreen mode."
+msgstr "以全螢幕模式啟動播放器。"
+
+msgid "Start with a maximized window."
+msgstr "啟動時最大化視窗。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:24 src\MpvNet\Utilities\InputHelp.cs:205
+msgid "Stop"
+msgstr "停止"
+
+msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
+msgstr "截圖儲存資料夾，與 screenshot-template 產生的檔名合併。若範本已是絕對路徑，忽略此資料夾。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:89 src\MpvNet\Utilities\InputHelp.cs:90
+#: src\MpvNet\Utilities\InputHelp.cs:91 src\MpvNet\Utilities\InputHelp.cs:92
+#: src\MpvNet\Utilities\InputHelp.cs:93 src\MpvNet\Utilities\InputHelp.cs:94
+#: src\MpvNet\Utilities\InputHelp.cs:95 src\MpvNet\Utilities\InputHelp.cs:96
+#: src\MpvNet\Utilities\InputHelp.cs:97 src\MpvNet\Utilities\InputHelp.cs:98
+#: src\MpvNet\Utilities\InputHelp.cs:99 src\MpvNet\Utilities\InputHelp.cs:100
+#: src\MpvNet\Utilities\InputHelp.cs:101
+msgid "Subtitle"
+msgstr "字幕"
+
+#: src\MpvNet\App.cs:189 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:240
+msgid "Subtitle Lines"
+msgstr "字幕行"
+
+#: src\MpvNet\App.cs:187 src\MpvNet\Utilities\InputHelp.cs:131
+msgid "Subtitle Tracks"
+msgstr "字幕軌"
+
+#: src\MpvNet\Utilities\InputHelp.cs:233
+msgid "Subtitles"
+msgstr "字幕"
+
+#: src\MpvNet\App.cs:205
+msgid "Support"
+msgstr "支援"
+
+msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
+msgstr "在截圖標註對應色彩空間；並非所有格式都支援。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:77
+msgid "Take Screenshot"
+msgstr "擷取畫面"
+
+#: src\MpvNet\Utilities\InputHelp.cs:78
+msgid "Take Screenshot without subtitles"
+msgstr "擷取畫面（不含字幕）"
+
+msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
+msgstr "GPU 繪製器放大影片的濾鏡函式。還有其他較少用的濾鏡；完整清單請傳入 help，例如 mpv --scale=help。"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:244
+msgid "The clipboard does not contain a valid URL or file."
+msgstr "剪貼簿不含有效的 URL 或檔案。"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:142
+msgid "The input editor cannot save duplicate shortcuts with different commands:"
+msgstr "輸入編輯器無法儲存對應不同命令的重複快捷鍵："
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:42
+msgid "The live stream has ended."
+msgstr "直播已結束。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:44
+msgid "The online media URL is invalid."
+msgstr "線上媒體 URL 無效。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:45
+msgid "The online media could not be loaded."
+msgstr "無法載入線上媒體。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:41
+msgid "The online playlist could not be loaded."
+msgstr "無法載入線上播放清單。"
+
+msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "自 mpv 啟動後有變更時，儲存在「稍後觀看」檔案中的選項；下次播放時還原。此為字串清單選項。更多資訊："
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
+msgid "This content is no longer available."
+msgstr "此內容已無法使用。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:39
+msgid "This content is not available in your region."
+msgstr "此內容無法在您的地區使用。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:38
+msgid "This content requires authentication with the source service."
+msgstr "此內容需要向來源服務驗證身分。"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:442
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:447
+msgid "This feature was removed, but there are user scripts:"
+msgstr "此功能已移除，但有使用者指令碼可用："
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:451
+msgid "This feature was removed."
+msgstr "此功能已移除。"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:43
+msgid "This online media format is not supported."
+msgstr "不支援此線上媒體格式。"
+
+#: src\MpvNet\App.cs:102 src\MpvNet\App.cs:110
+msgid "Tip: installing Codec Guide can improve codec support and playback."
+msgstr "提示：安裝 Codec Guide 可改善編解碼器支援與播放。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:48
+#: src\MpvNet.Windows\WinForms\MainForm.cs:255
+msgid "Title"
+msgstr "標題"
+
+#: src\MpvNet\Utilities\InputHelp.cs:162
+msgid "Toggle Border"
+msgstr "切換邊框"
+
+#: src\MpvNet\Utilities\InputHelp.cs:79
+msgid "Toggle Deinterlace"
+msgstr "切換去交錯"
+
+#: src\MpvNet\Utilities\InputHelp.cs:185
+msgid "Toggle Hardware Decoding"
+msgstr "切換硬體解碼"
+
+#: src\MpvNet\Utilities\InputHelp.cs:120
+msgid "Toggle OSC Visibility"
+msgstr "切換 OSC 顯示"
+
+#: src\MpvNet\Utilities\InputHelp.cs:163
+msgid "Toggle On Top"
+msgstr "切換最上層顯示"
+
+#: src\MpvNet\Utilities\InputHelp.cs:119
+msgid "Toggle Statistics"
+msgstr "切換統計資訊"
+
+#: src\MpvNet\Utilities\InputHelp.cs:90
+msgid "Toggle Visibility"
+msgstr "切換顯示"
+
+#: src\MpvNet\Utilities\InputHelp.cs:183
+msgid "Toggle infinite file looping"
+msgstr "切換無限重複檔案"
+
+#: src\MpvNet\Utilities\InputHelp.cs:101
+msgid "Toggle overriding SSA/ASS styles with normal styles"
+msgstr "切換以一般樣式覆寫 SSA/ASS 樣式"
+
+msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
+msgstr "適應不同亮度範圍的色調映射函式，包含黑點適應。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:182 src\MpvNet\Utilities\InputHelp.cs:183
+#: src\MpvNet\Utilities\InputHelp.cs:184 src\MpvNet\Utilities\InputHelp.cs:185
+#: src\MpvNet\Utilities\InputHelp.cs:186
+msgid "Tools"
+msgstr "工具"
+
+#: src\MpvNet\Utilities\InputHelp.cs:103
+#: src\MpvNet.Windows\WinForms\MainForm.cs:180
+msgid "Track"
+msgstr "軌道"
+
+#: src\MpvNet\Utilities\InputHelp.cs:129 src\MpvNet\Utilities\InputHelp.cs:237
+msgid "Tracks"
+msgstr "軌道"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:340
+msgid "Type"
+msgstr "類型"
+
+#: src\MpvNet\Utilities\InputHelp.cs:225
+msgid "Undo previous (or marked) seek"
+msgstr "復原前次（或標記的）跳轉"
+
+#: src\MpvNet\Utilities\InputHelp.cs:177
+msgid "Unregister file associations"
+msgstr "取消註冊檔案關聯"
+
+msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
+msgstr "使用媒體資訊函式庫而非 mpv 取得媒體資訊。（mpv.net 選項）"
+
+msgid "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "使用任何可用 API。預設 GPU API 可能變更，請勿依賴；若需要特定 API，必須明確指定。"
+
+msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
+msgstr "色域映射 3DLUT 使用品質較高但較慢的三次立體插值。小尺寸 LUT 的準確度可明顯提升；預設尺寸下影響不大。"
+
+msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
+msgstr "僅對檔案絕對位置（如章節）精確跳轉；方向鍵等相對跳轉不使用。"
+
+msgid "Use precise seeks whenever possible."
+msgstr "盡可能使用精確跳轉。"
+
+msgid "Use the same filter as specified for upscaler"
+msgstr "使用與 upscaler 相同的濾鏡"
+
+msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "input.conf 中定義快顯功能表的語法。\\nmpv.net 預設使用 '#menu:'，uosc 預設使用 '#!'。"
+
+msgid "User interface display language.\\nmpv.net must be restarted after a change."
+msgstr "介面顯示語言。\\n變更後需重新啟動 mpv.net。"
+
+msgid "VK_KHR_win32_surface"
+msgstr "VK_KHR_win32_surface"
+
+msgid "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
+msgstr "ewa_lanczos 的極銳利抗振鈴版本（極慢）。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:65 src\MpvNet\Utilities\InputHelp.cs:66
+#: src\MpvNet\Utilities\InputHelp.cs:67 src\MpvNet\Utilities\InputHelp.cs:68
+#: src\MpvNet\Utilities\InputHelp.cs:69 src\MpvNet\Utilities\InputHelp.cs:70
+#: src\MpvNet\Utilities\InputHelp.cs:71 src\MpvNet\Utilities\InputHelp.cs:72
+#: src\MpvNet\Utilities\InputHelp.cs:73 src\MpvNet\Utilities\InputHelp.cs:74
+#: src\MpvNet\Utilities\InputHelp.cs:75 src\MpvNet\Utilities\InputHelp.cs:76
+#: src\MpvNet\Utilities\InputHelp.cs:77 src\MpvNet\Utilities\InputHelp.cs:78
+#: src\MpvNet\Utilities\InputHelp.cs:79 src\MpvNet\Utilities\InputHelp.cs:80
+#: src\MpvNet\Utilities\InputHelp.cs:81
+msgid "Video"
+msgstr "影片"
+
+#: src\MpvNet\App.cs:191 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:236
+msgid "Video Tracks"
+msgstr "影片軌"
+
+msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+msgstr "--autocreate-playlist 或 --directory-filter-types 比對的影片副檔名。mpv.net 也用於檔案關聯與 auto-load-folder。預設：3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+
+msgid "Video output driver that uses the Direct3D interface."
+msgstr "使用 Direct3D 介面的影片輸出驅動程式。"
+
+msgid "Video output drivers to be used.\\n\\nFor more information visit:"
+msgstr "使用的影片輸出驅動程式。\\n\\n更多資訊："
+
+#: src\MpvNet\Utilities\InputHelp.cs:118 src\MpvNet\Utilities\InputHelp.cs:119
+#: src\MpvNet\Utilities\InputHelp.cs:120 src\MpvNet\Utilities\InputHelp.cs:121
+#: src\MpvNet\Utilities\InputHelp.cs:122 src\MpvNet\Utilities\InputHelp.cs:123
+#: src\MpvNet\Utilities\InputHelp.cs:124 src\MpvNet\Utilities\InputHelp.cs:125
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:127
+#: src\MpvNet\Utilities\InputHelp.cs:128 src\MpvNet\Utilities\InputHelp.cs:129
+#: src\MpvNet\Utilities\InputHelp.cs:130 src\MpvNet\Utilities\InputHelp.cs:131
+#: src\MpvNet\Utilities\InputHelp.cs:132 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:134 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:136 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:138 src\MpvNet\Utilities\InputHelp.cs:139
+#: src\MpvNet\Utilities\InputHelp.cs:140 src\MpvNet\Utilities\InputHelp.cs:141
+#: src\MpvNet\Utilities\InputHelp.cs:142 src\MpvNet\Utilities\InputHelp.cs:143
+#: src\MpvNet\Utilities\InputHelp.cs:144 src\MpvNet\Utilities\InputHelp.cs:145
+#: src\MpvNet\Utilities\InputHelp.cs:146 src\MpvNet\Utilities\InputHelp.cs:147
+msgid "View"
+msgstr "檢視"
+
+#: src\MpvNet\Utilities\InputHelp.cs:105 src\MpvNet\Utilities\InputHelp.cs:106
+#: src\MpvNet\Utilities\InputHelp.cs:107 src\MpvNet\Utilities\InputHelp.cs:108
+msgid "Volume"
+msgstr "音量"
+
+#: src\MpvNet\Utilities\InputHelp.cs:209 src\MpvNet\Utilities\InputHelp.cs:211
+msgid "Volume Down"
+msgstr "降低音量"
+
+#: src\MpvNet\Utilities\InputHelp.cs:208 src\MpvNet\Utilities\InputHelp.cs:210
+msgid "Volume Up"
+msgstr "提高音量"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:42
+msgid "Waiting for key/mouse input."
+msgstr "等待按鍵／滑鼠輸入。"
+
+#: src\MpvNet\App.cs:197 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:242
+msgid "Watch History"
+msgstr "觀看記錄"
+
+#: src\MpvNet\App.cs:198 src\MpvNet\Utilities\InputHelp.cs:138
+#: src\MpvNet\Utilities\InputHelp.cs:243
+msgid "Watch Later"
+msgstr "稍後觀看"
+
+#: src\MpvNet\Utilities\InputHelp.cs:190
+msgid "Website mpv"
+msgstr "mpv 網站"
+
+#: src\MpvNet\Utilities\InputHelp.cs:191
+msgid "Website mpv.net"
+msgstr "mpv.net 網站"
+
+msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
+msgstr "開啟本機檔案時，視同開啟父資料夾並自動建立播放清單。\\n\\nno：僅載入單一檔案（mpv 預設）。\\n\\nFilter：由父資料夾加入符合 --directory-filter-types 的檔案（mpv.net 預設）。\\n\\nsame：由父資料夾加入與目前檔案同類別的檔案。依輸入檔案選擇 *-exts 清單，僅加入符合副檔名者；輸入檔案不符合任何清單時不建立播放清單。"
+
+msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
+msgstr "放大時使用 S 型色彩轉換，避免凸顯振鈴瑕疵；也會啟用 linear-scaling。"
+
+msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
+msgstr "使用卷積濾鏡縮小影像時擴大濾鏡尺寸，提高品質但降低效能。\\n\\n變形寬螢幕影片的效果稍非最佳（仍優於停用），因為只依兩軸中較小的縮放倍率擴大。"
+
+msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+msgstr "是否隨視窗大小縮放 OSD。停用時，osd-font-size 等使用縮放像素的 OSD 選項均視為實際像素，視窗改變不影響 OSD 字型大小。"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:337
+msgid "Width"
+msgstr "寬度"
+
+msgid "Win32, with native Direct3D 11 rendering."
+msgstr "Win32，使用原生 Direct3D 11 繪製。"
+
+msgid "Win32/WGL"
+msgstr "Win32/WGL"
+
+#: src\MpvNet\Utilities\InputHelp.cs:149 src\MpvNet\Utilities\InputHelp.cs:150
+#: src\MpvNet\Utilities\InputHelp.cs:151 src\MpvNet\Utilities\InputHelp.cs:152
+#: src\MpvNet\Utilities\InputHelp.cs:153 src\MpvNet\Utilities\InputHelp.cs:154
+#: src\MpvNet\Utilities\InputHelp.cs:155 src\MpvNet\Utilities\InputHelp.cs:156
+#: src\MpvNet\Utilities\InputHelp.cs:157 src\MpvNet\Utilities\InputHelp.cs:158
+#: src\MpvNet\Utilities\InputHelp.cs:159 src\MpvNet\Utilities\InputHelp.cs:160
+#: src\MpvNet\Utilities\InputHelp.cs:161 src\MpvNet\Utilities\InputHelp.cs:162
+#: src\MpvNet\Utilities\InputHelp.cs:163
+msgid "Window"
+msgstr "視窗"
+
+msgid "Window height is always remembered"
+msgstr "一律記住視窗高度"
+
+msgid "Window height is remembered in the current session"
+msgstr "在本次工作階段記住視窗高度"
+
+msgid "Window size is always remembered"
+msgstr "一律記住視窗大小"
+
+msgid "Window size is remembered in the current session"
+msgstr "在本次工作階段記住視窗大小"
+
+msgid "Window size is set to video resolution"
+msgstr "視窗大小設為影片解析度"
+
+msgid "Window width is always remembered"
+msgstr "一律記住視窗寬度"
+
+msgid "Window width is remembered in the current session"
+msgstr "在本次工作階段記住視窗寬度"
+
+msgid "Write JPEG files with the same chroma subsampling as the video. If disabled, the libjpeg default is used."
+msgstr "JPEG 使用與影片相同的色度次取樣。停用則使用 libjpeg 預設值。"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:137
+msgid "Yes"
+msgstr "是"
+
+#: src\MpvNet\App.cs:112
+msgid "Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support."
+msgstr "您的捐助有助 MPV.NET Media Player 持續開發、改善功能、修正問題並維護專案。"
+
+#: src\MpvNet\Utilities\InputHelp.cs:150 src\MpvNet\Utilities\InputHelp.cs:151
+#: src\MpvNet\Utilities\InputHelp.cs:152 src\MpvNet\Utilities\InputHelp.cs:153
+#: src\MpvNet\Utilities\InputHelp.cs:154 src\MpvNet\Utilities\InputHelp.cs:155
+#: src\MpvNet\Utilities\InputHelp.cs:156
+msgid "Zoom"
+msgstr "縮放"
+
+msgid "absolute"
+msgstr "absolute"
+
+msgid "alang"
+msgstr "alang"
+
+msgid "all"
+msgstr "all"
+
+msgid "allow-delayed-peak-detect"
+msgstr "allow-delayed-peak-detect"
+
+msgid "allow_delayed_peak"
+msgstr "allow_delayed_peak"
+
+msgid "always"
+msgstr "always"
+
+msgid "always use software decoding"
+msgstr "一律使用軟體解碼"
+
+msgid "angle"
+msgstr "angle"
+
+msgid "antiringing_strength"
+msgstr "antiringing_strength"
+
+msgid "any"
+msgstr "any"
+
+msgid "audio"
+msgstr "audio"
+
+msgid "audio-device"
+msgstr "audio-device"
+
+msgid "audio-exts"
+msgstr "audio-exts"
+
+msgid "audio-file-auto"
+msgstr "audio-file-auto"
+
+msgid "auto"
+msgstr "auto"
+
+msgid "auto-copy"
+msgstr "auto-copy"
+
+msgid "auto-load-folder"
+msgstr "auto-load-folder"
+
+msgid "auto-safe"
+msgstr "auto-safe"
+
+msgid "auto-select"
+msgstr "auto-select"
+
+msgid "autocreate-playlist"
+msgstr "autocreate-playlist"
+
+msgid "autofit"
+msgstr "autofit"
+
+msgid "autofit-audio"
+msgstr "autofit-audio"
+
+msgid "autofit-image"
+msgstr "autofit-image"
+
+msgid "autofit-larger"
+msgstr "autofit-larger"
+
+msgid "autofit-smaller"
+msgstr "autofit-smaller"
+
+#: src\MpvNet\Utilities\InputHelp.cs:196
+msgid "awesome-mpv"
+msgstr "awesome-mpv"
+
+msgid "background"
+msgstr "background"
+
+msgid "bicubic"
+msgstr "bicubic"
+
+msgid "bilinear"
+msgstr "bilinear"
+
+msgid "black_cutoff"
+msgstr "black_cutoff"
+
+msgid "border"
+msgstr "border"
+
+msgid "box"
+msgstr "box"
+
+msgid "brightness"
+msgstr "brightness"
+
+msgid "bt2390"
+msgstr "bt2390"
+
+msgid "bt2446a"
+msgstr "bt2446a"
+
+msgid "bulgarian"
+msgstr "保加利亞語"
+
+msgid "cache"
+msgstr "cache"
+
+msgid "catmull_rom"
+msgstr "catmull_rom"
+
+msgid "chinese-china"
+msgstr "簡體中文"
+
+msgid "cie_y"
+msgstr "cie_y"
+
+msgid "clip"
+msgstr "clip"
+
+msgid "color_adjustment"
+msgstr "color_adjustment"
+
+msgid "color_adjustment_preset"
+msgstr "color_adjustment_preset"
+
+msgid "color_map"
+msgstr "color_map"
+
+msgid "color_map_preset"
+msgstr "color_map_preset"
+
+msgid "colorimetric_gamma"
+msgstr "colorimetric_gamma"
+
+msgid "contrast"
+msgstr "contrast"
+
+msgid "contrast_recovery"
+msgstr "contrast_recovery"
+
+msgid "contrast_smoothness"
+msgstr "contrast_smoothness"
+
+msgid "copies video back to system RAM"
+msgstr "將影片複製回系統 RAM"
+
+msgid "correct-downscaling"
+msgstr "correct-downscaling"
+
+msgid "cscale"
+msgstr "cscale"
+
+msgid "cubic"
+msgstr "cubic"
+
+msgid "cuda"
+msgstr "cuda"
+
+msgid "cuda-copy"
+msgstr "cuda-copy"
+
+msgid "d3d11"
+msgstr "d3d11"
+
+msgid "d3d11va"
+msgstr "d3d11va"
+
+msgid "d3d11va-copy"
+msgstr "d3d11va-copy"
+
+msgid "d3d11va-zero-copy"
+msgstr "d3d11va-zero-copy"
+
+msgid "dark-mode"
+msgstr "dark-mode"
+
+msgid "dark-theme"
+msgstr "dark-theme"
+
+msgid "darken"
+msgstr "darken"
+
+msgid "deband"
+msgstr "deband"
+
+msgid "deband_grain"
+msgstr "deband_grain"
+
+msgid "deband_iterations"
+msgstr "deband_iterations"
+
+msgid "deband_preset"
+msgstr "deband_preset"
+
+msgid "deband_radius"
+msgstr "deband_radius"
+
+msgid "deband_threshold"
+msgstr "deband_threshold"
+
+msgid "debug-mode"
+msgstr "debug-mode"
+
+msgid "default"
+msgstr "default"
+
+msgid "demuxer-max-bytes"
+msgstr "demuxer-max-bytes"
+
+msgid "desaturate"
+msgstr "desaturate"
+
+msgid "desync"
+msgstr "desync"
+
+msgid "direct3d"
+msgstr "direct3d"
+
+msgid "display-adrop"
+msgstr "display-adrop"
+
+msgid "display-desync"
+msgstr "display-desync"
+
+msgid "display-resample"
+msgstr "display-resample"
+
+msgid "display-resample-desync"
+msgstr "display-resample-desync"
+
+msgid "display-resample-vdrop"
+msgstr "display-resample-vdrop"
+
+msgid "display-vdrop"
+msgstr "display-vdrop"
+
+msgid "dither-depth"
+msgstr "dither-depth"
+
+msgid "downscaler"
+msgstr "downscaler"
+
+msgid "dscale"
+msgstr "dscale"
+
+msgid "dxinterop"
+msgstr "dxinterop"
+
+msgid "dxva2"
+msgstr "dxva2"
+
+msgid "dxva2-copy"
+msgstr "dxva2-copy"
+
+msgid "enable any whitelisted hw decoder"
+msgstr "啟用白名單內的任何硬體解碼器"
+
+msgid "enable best hw decoder"
+msgstr "啟用最佳硬體解碼器"
+
+msgid "enable best hw decoder with copy-back"
+msgstr "啟用最佳硬體解碼器並回拷"
+
+msgid "english"
+msgstr "英語"
+
+msgid "ewa_lanczos"
+msgstr "ewa_lanczos"
+
+msgid "ewa_lanczos4sharpest"
+msgstr "ewa_lanczos4sharpest"
+
+msgid "ewa_lanczossharp"
+msgstr "ewa_lanczossharp"
+
+msgid "exact"
+msgstr "exact"
+
+msgid "exactly the same as auto"
+msgstr "與 auto 完全相同"
+
+msgid "exposure"
+msgstr "exposure"
+
+msgid "fast"
+msgstr "fast"
+
+msgid "filter"
+msgstr "filter"
+
+msgid "force_tone_mapping_lut"
+msgstr "force_tone_mapping_lut"
+
+msgid "frame_mixer"
+msgstr "frame_mixer"
+
+msgid "french"
+msgstr "法語"
+
+msgid "fullscreen"
+msgstr "fullscreen"
+
+msgid "fuzzy"
+msgstr "fuzzy"
+
+msgid "gamma"
+msgstr "gamma"
+
+msgid "gamut_expansion"
+msgstr "gamut_expansion"
+
+msgid "gamut_mapping"
+msgstr "gamut_mapping"
+
+msgid "gaussian"
+msgstr "gaussian"
+
+msgid "geometry"
+msgstr "geometry"
+
+msgid "german"
+msgstr "德語"
+
+msgid "gpu"
+msgstr "gpu"
+
+msgid "gpu-api"
+msgstr "gpu-api"
+
+msgid "gpu-context"
+msgstr "gpu-context"
+
+msgid "gpu-next"
+msgstr "gpu-next"
+
+msgid "hable"
+msgstr "hable"
+
+msgid "hdr-compute-peak"
+msgstr "hdr-compute-peak"
+
+msgid "hdr10"
+msgstr "hdr10"
+
+msgid "hdr10plus"
+msgstr "hdr10plus"
+
+msgid "height-always"
+msgstr "height-always"
+
+msgid "height-session"
+msgstr "height-session"
+
+msgid "hermite"
+msgstr "hermite"
+
+msgid "high_quality"
+msgstr "high_quality"
+
+msgid "highlight"
+msgstr "highlight"
+
+msgid "hr-seek"
+msgstr "hr-seek"
+
+msgid "hue"
+msgstr "hue"
+
+msgid "hwdec"
+msgstr "hwdec"
+
+msgid "idle"
+msgstr "idle"
+
+msgid "image-exts"
+msgstr "image-exts"
+
+msgid "info"
+msgstr "info"
+
+msgid "input-ar-delay"
+msgstr "input-ar-delay"
+
+msgid "input-ar-rate"
+msgstr "input-ar-rate"
+
+msgid "input-ipc-server"
+msgstr "input-ipc-server"
+
+msgid "inverse_tone_mapping"
+msgstr "inverse_tone_mapping"
+
+msgid "italian"
+msgstr "義大利語"
+
+msgid "japanese"
+msgstr "日語"
+
+msgid "jpg"
+msgstr "jpg"
+
+msgid "keep-open"
+msgstr "keep-open"
+
+msgid "keep-open-pause"
+msgstr "keep-open-pause"
+
+msgid "keepaspect-window"
+msgstr "keepaspect-window"
+
+msgid "keepaspect-window will lock the window size to the video aspect. Default: yes"
+msgstr "keepaspect-window 將視窗比例鎖定為影片長寬比。預設：yes"
+
+msgid "knee_adaptation"
+msgstr "knee_adaptation"
+
+msgid "knee_default"
+msgstr "knee_default"
+
+msgid "knee_maximum"
+msgstr "knee_maximum"
+
+msgid "knee_minimum"
+msgstr "knee_minimum"
+
+msgid "knee_offset"
+msgstr "knee_offset"
+
+msgid "korean"
+msgstr "韓語"
+
+msgid "lanczos"
+msgstr "lanczos"
+
+msgid "language"
+msgstr "language"
+
+msgid "libplacebo"
+msgstr "libplacebo"
+
+msgid "libplacebo-opts"
+msgstr "libplacebo-opts"
+
+msgid "light-theme"
+msgstr "light-theme"
+
+msgid "linear"
+msgstr "linear"
+
+msgid "linear_knee"
+msgstr "linear_knee"
+
+msgid "linearlight"
+msgstr "linearlight"
+
+msgid "loop-file"
+msgstr "loop-file"
+
+msgid "loop-playlist"
+msgstr "loop-playlist"
+
+msgid "lut3d_size_C"
+msgstr "lut3d_size_C"
+
+msgid "lut3d_size_I"
+msgstr "lut3d_size_I"
+
+msgid "lut3d_size_h"
+msgstr "lut3d_size_h"
+
+msgid "lut3d_tricubic"
+msgstr "lut3d_tricubic"
+
+msgid "media-info"
+msgstr "media-info"
+
+msgid "menu-syntax"
+msgstr "menu-syntax"
+
+msgid "minimum-aspect-ratio"
+msgstr "minimum-aspect-ratio"
+
+msgid "minimum-aspect-ratio-audio"
+msgstr "minimum-aspect-ratio-audio"
+
+msgid "mitchell"
+msgstr "mitchell"
+
+msgid "mobius"
+msgstr "mobius"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:411
+msgid "mpv.net is already in the Path environment variable."
+msgstr "mpv.net 已在 Path 環境變數中。"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:428
+msgid "mpv.net was not found in the Path environment variable."
+msgstr "在 Path 環境變數中找不到 mpv.net。"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:419
+msgid "mpv.net was successfully added to the Path environment variable."
+msgstr "已成功將 mpv.net 加入 Path 環境變數。"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:437
+msgid "mpv.net was successfully removed from the Path environment variable."
+msgstr "已成功從 Path 環境變數移除 mpv.net。"
+
+msgid "multi"
+msgstr "multi"
+
+msgid "nearest"
+msgstr "nearest"
+
+msgid "neutral"
+msgstr "neutral"
+
+msgid "never"
+msgstr "never"
+
+msgid "no"
+msgstr "no"
+
+msgid "none"
+msgstr "none"
+
+msgid "nvdec"
+msgstr "nvdec"
+
+msgid "nvdec-copy"
+msgstr "nvdec-copy"
+
+msgid "once"
+msgstr "once"
+
+msgid "opengl"
+msgstr "opengl"
+
+msgid "osd-duration"
+msgstr "osd-duration"
+
+msgid "osd-font-size"
+msgstr "osd-font-size"
+
+msgid "osd-playing-msg"
+msgstr "osd-playing-msg"
+
+msgid "osd-scale-by-window"
+msgstr "osd-scale-by-window"
+
+msgid "oversample"
+msgstr "oversample"
+
+msgid "peak_detect"
+msgstr "peak_detect"
+
+msgid "peak_detection_preset"
+msgstr "peak_detection_preset"
+
+msgid "peak_percentile"
+msgstr "peak_percentile"
+
+msgid "peak_smoothing_period"
+msgstr "peak_smoothing_period"
+
+msgid "perceptual"
+msgstr "perceptual"
+
+msgid "perceptual_deadzone"
+msgstr "perceptual_deadzone"
+
+msgid "perceptual_strength"
+msgstr "perceptual_strength"
+
+msgid "plane_downscaler"
+msgstr "plane_downscaler"
+
+msgid "plane_upscaler"
+msgstr "plane_upscaler"
+
+msgid "png"
+msgstr "png"
+
+msgid "polish"
+msgstr "波蘭語"
+
+msgid "portuguese-brazil"
+msgstr "葡萄牙語（巴西）"
+
+msgid "portuguese-portugal"
+msgstr "葡萄牙語（葡萄牙）"
+
+msgid "preset"
+msgstr "preset"
+
+msgid "process-instance"
+msgstr "process-instance"
+
+msgid "queue"
+msgstr "queue"
+
+msgid "recent-count"
+msgstr "recent-count"
+
+msgid "reinhard"
+msgstr "reinhard"
+
+msgid "reinhard_contrast"
+msgstr "reinhard_contrast"
+
+msgid "relative"
+msgstr "relative"
+
+msgid "remember-audio-device"
+msgstr "remember-audio-device"
+
+msgid "remember-volume"
+msgstr "remember-volume"
+
+msgid "remember-window-position"
+msgstr "remember-window-position"
+
+msgid "requires vo=gpu (Any platform CUDA is available)"
+msgstr "需要 vo=gpu（任何支援 CUDA 的平台）"
+
+msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
+msgstr "需要 vo=gpu，搭配 gpu-context=d3d11 或 gpu-context=angle"
+
+msgid "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
+msgstr "需要 vo=gpu，搭配 gpu-context=d3d11、gpu-context=angle 或 gpu-context=dxinterop"
+
+msgid "reset-on-next-file"
+msgstr "reset-on-next-file"
+
+msgid "russian"
+msgstr "俄語"
+
+msgid "same"
+msgstr "same"
+
+msgid "saturation"
+msgstr "saturation"
+
+msgid "save-position-on-quit"
+msgstr "save-position-on-quit"
+
+msgid "scale"
+msgstr "scale"
+
+msgid "scene_threshold_high"
+msgstr "scene_threshold_high"
+
+msgid "scene_threshold_low"
+msgstr "scene_threshold_low"
+
+msgid "screen"
+msgstr "screen"
+
+msgid "screenshot-directory"
+msgstr "screenshot-directory"
+
+msgid "screenshot-format"
+msgstr "screenshot-format"
+
+msgid "screenshot-high-bit-depth"
+msgstr "screenshot-high-bit-depth"
+
+msgid "screenshot-jpeg-quality"
+msgstr "screenshot-jpeg-quality"
+
+msgid "screenshot-jpeg-source-chroma"
+msgstr "screenshot-jpeg-source-chroma"
+
+msgid "screenshot-png-compression"
+msgstr "screenshot-png-compression"
+
+msgid "screenshot-png-filter"
+msgstr "screenshot-png-filter"
+
+msgid "screenshot-tag-colorspace"
+msgstr "screenshot-tag-colorspace"
+
+msgid "screenshot-template"
+msgstr "screenshot-template"
+
+msgid "session"
+msgstr "session"
+
+msgid "show_clipping"
+msgstr "show_clipping"
+
+msgid "sigmoid"
+msgstr "sigmoid"
+
+msgid "sigmoid-upscaling"
+msgstr "sigmoid-upscaling"
+
+msgid "sigmoid_center"
+msgstr "sigmoid_center"
+
+msgid "sigmoid_preset"
+msgstr "sigmoid_preset"
+
+msgid "sigmoid_slope"
+msgstr "sigmoid_slope"
+
+msgid "single"
+msgstr "single"
+
+msgid "slang"
+msgstr "slang"
+
+msgid "slope_offset"
+msgstr "slope_offset"
+
+msgid "slope_tuning"
+msgstr "slope_tuning"
+
+msgid "snap-window"
+msgstr "snap-window"
+
+msgid "softclip"
+msgstr "softclip"
+
+msgid "softclip_desat"
+msgstr "softclip_desat"
+
+msgid "softclip_knee"
+msgstr "softclip_knee"
+
+msgid "spanish"
+msgstr "西班牙語"
+
+msgid "spline"
+msgstr "spline"
+
+msgid "spline36"
+msgstr "spline36"
+
+msgid "spline_contrast"
+msgstr "spline_contrast"
+
+msgid "st2094-10"
+msgstr "st2094-10"
+
+msgid "st2094-40"
+msgstr "st2094-40"
+
+msgid "start-size"
+msgstr "start-size"
+
+msgid "sub-auto"
+msgstr "sub-auto"
+
+msgid "sub-back-color"
+msgstr "sub-back-color"
+
+msgid "sub-border-color"
+msgstr "sub-border-color"
+
+msgid "sub-color"
+msgstr "sub-color"
+
+msgid "sub-font"
+msgstr "sub-font"
+
+msgid "sub-font-size"
+msgstr "sub-font-size"
+
+msgid "system"
+msgstr "system"
+
+msgid "taskbar-progress"
+msgstr "taskbar-progress"
+
+msgid "temperature"
+msgstr "temperature"
+
+msgid "title"
+msgstr "title"
+
+msgid "title-bar"
+msgstr "title-bar"
+
+msgid "tone_lut_size"
+msgstr "tone_lut_size"
+
+msgid "tone_map_metadata"
+msgstr "tone_map_metadata"
+
+msgid "tone_mapping"
+msgstr "tone_mapping"
+
+msgid "track-auto-selection"
+msgstr "track-auto-selection"
+
+msgid "turkish"
+msgstr "土耳其語"
+
+msgid "upscaler"
+msgstr "upscaler"
+
+msgid "video-exts"
+msgstr "video-exts"
+
+msgid "video-sync"
+msgstr "video-sync"
+
+msgid "visualize_hue"
+msgstr "visualize_hue"
+
+msgid "visualize_lut"
+msgstr "visualize_lut"
+
+msgid "visualize_lut_x0"
+msgstr "visualize_lut_x0"
+
+msgid "visualize_lut_x1"
+msgstr "visualize_lut_x1"
+
+msgid "visualize_lut_y0"
+msgstr "visualize_lut_y0"
+
+msgid "visualize_lut_y1"
+msgstr "visualize_lut_y1"
+
+msgid "visualize_theta"
+msgstr "visualize_theta"
+
+msgid "vo"
+msgstr "vo"
+
+msgid "volume"
+msgstr "volume"
+
+msgid "vulkan"
+msgstr "vulkan"
+
+msgid "watch-later-options"
+msgstr "watch-later-options"
+
+msgid "width-always"
+msgstr "width-always"
+
+msgid "width-session"
+msgstr "width-session"
+
+msgid "win"
+msgstr "win"
+
+msgid "window-maximized"
+msgstr "window-maximized"
+
+msgid "winvk"
+msgstr "winvk"
+
+msgid "yes"
+msgstr "yes"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:157
+#, csharp-format
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "{0} 不存在。是否建立？"
+
+#: src\MpvNet\Utilities\InputHelp.cs:161
+msgctxt "Move"
+msgid "Center"
+msgstr "置中"
+
+#: src\MpvNet\Utilities\InputHelp.cs:160
+msgctxt "Move"
+msgid "Down"
+msgstr "下"
+
+#: src\MpvNet\Utilities\InputHelp.cs:157
+msgctxt "Move"
+msgid "Left"
+msgstr "左"
+
+#: src\MpvNet\Utilities\InputHelp.cs:158
+msgctxt "Move"
+msgid "Right"
+msgstr "右"
+
+#: src\MpvNet\Utilities\InputHelp.cs:159
+msgctxt "Move"
+msgid "Up"
+msgstr "上"
+
+#: src\MpvNet\Utilities\InputHelp.cs:106
+msgctxt "Volume"
+msgid "Down"
+msgstr "降低"
+
+#: src\MpvNet\Utilities\InputHelp.cs:105
+msgctxt "Volume"
+msgid "Up"
+msgstr "提高"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "No playable media was found in this drive or folder."
+msgstr "此磁碟機或資料夾中找不到可播放媒體。"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "The selected drive or folder could not be read."
+msgstr "無法讀取選取的磁碟機或資料夾。"
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "來源服務要求驗證您並非機器人。"
+
+msgid "The clipboard is temporarily unavailable."
+msgstr "剪貼簿暫時無法使用。"
+
+msgid "Untitled Track"
+msgstr "未命名軌道"
+
+msgid "Repository: "
+msgstr "原始碼儲存庫： "
+
+msgid "chinese-taiwan"
+msgstr "繁體中文（台灣）"
+
+msgid "chinese-hongkong"
+msgstr "繁體中文（香港）"
+
+msgid "hindi"
+msgstr "हिन्दी"
+
+msgid "arabic"
+msgstr "العربية"
+
+msgid "ukrainian"
+msgstr "Українська"
+
+msgid "indonesian"
+msgstr "Bahasa Indonesia"
+
+msgid "Cache"
+msgstr "快取"
+
+msgid "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
+msgstr "將網路 URL 儲存到最近的檔案。URL 以純文字存於 settings.xml。含內嵌認證、敏感查詢參數或片段的 URL 一律排除；僅在其餘 URL 參數不含機密時啟用。（mpv.net 選項）"
+
+msgid "save-network-urls-in-recent"
+msgstr "save-network-urls-in-recent"
+
+msgid "video"
+msgstr "video"

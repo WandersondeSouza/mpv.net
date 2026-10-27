@@ -1,0 +1,2722 @@
+msgid ""
+msgstr "Project-Id-Version: mpv.net\nReport-Msgid-Bugs-To: \nPO-Revision-Date: 2026-10-27 12:00+0000\nLast-Translator: MPV.NET contributors\nLanguage-Team: Ukrainian (Ukraine)\nLanguage: uk_UA\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: src\MpvNet.Windows\Configuration\Conf.cs:38
+msgid "(Default)"
+msgstr "(Типово)"
+
+msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr "(Експериментально) Win32: WGL для рендерингу, Direct3D 9Ex для виведення. Працює з Nvidia й AMD; новіші чипи Intel з актуальними драйверами теж можуть працювати."
+
+#: src\MpvNet\Utilities\InputHelp.cs:111
+msgid "+10%"
+msgstr "+10%"
+
+#: src\MpvNet\Utilities\InputHelp.cs:110
+msgid "-10%"
+msgstr "-10%"
+
+msgid "10"
+msgstr "10"
+
+#: src\MpvNet\Utilities\InputHelp.cs:154
+msgid "100 %"
+msgstr "100 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:155
+msgid "200 %"
+msgstr "200 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:156
+msgid "300 %"
+msgstr "300 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:153
+msgid "50 %"
+msgstr "50 %"
+
+msgid "8"
+msgstr "8"
+
+msgid "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
+msgstr "<-1.0..1.0> Зсув яскравості: додає сталу до сигналу яскравості джерела. 0.0 = нейтрально, 1.0 = білий, -1.0 = чорний. Типово 0.0."
+
+msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
+msgstr "<-1.143..5.286> Зсув колірної температури відносно 6500 K: 0.0 дає 6500 K без змін, -1.0 — 3000 K, 1.0 — 10000 K. Типово 0.0."
+
+msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
+msgstr "<0-100> Якість JPEG. Вище значення — краща якість. Типово 90."
+
+msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
+msgstr "<0-32> Визначає екран для відео mpv, коли робочий стіл охоплює кілька моніторів."
+
+msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
+msgstr "<0-5> Фільтр перед стисненням PNG: 0 = none, 1 = sub, 2 = up, 3 = average, 4 = Paeth, 5 = mixed. Впливає на стиснення; mixed зазвичай найкращий, тому є типовим."
+
+msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
+msgstr "<0-9> Рівень стиснення PNG. Вище значення покращує стиснення, впливаючи на розмір знімка й час запису. Надмірне навантаження CPU може перервати відтворення. Типово 7."
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
+msgstr "<0..1024> Розмір 3DLUT для відображення колірного охоплення. 0 вибирає типовий розмір 256."
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
+msgstr "<0..1024> Розмір 3DLUT для відображення колірного охоплення. 0 вибирає типовий розмір 32."
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
+msgstr "<0..1024> Розмір 3DLUT для відображення колірного охоплення. 0 вибирає типовий розмір 48."
+
+msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
+msgstr "<0..16> Кількість кроків усунення смуг на вибірку. Кожен крок зменшує смуги, але потребує обчислень. Ефект швидко спадає, тож >4 майже марно. Типово 1."
+
+msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
+msgstr "<0..4096> Розмір LUT тонального відображення. 0 вибирає типове значення 256."
+
+msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
+msgstr "<0.0..0.5> Мінімальна точка перегину як частка діапазону яскравості PQ; обмежує вибір knee_adaptation. Типово 0.1."
+
+msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
+msgstr "<0.0..1.0> Відносна зона захисту кольоровості для перцептивного відображення. Типово 0.30."
+
+msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
+msgstr "<0.0..1.0> Сила придушення ореолів для всіх фільтрів. 0.0 вимикає, 1.0 — повна сила. Типово 0.0."
+
+msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
+msgstr "<0.0..1.0> Типова точка перегину без метаданих середнього значення сцени; зазвичай перевагу має відносна середня яскравість джерела. Типово 0.4."
+
+msgid "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
+msgstr "<0.0..1.0> Сила зменшення насиченості softclip. Типово 0.35."
+
+msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
+msgstr "<0.0..1.0> Безпосередньо задає точку перегину старих функцій лінійного світла (mobius, gamma). Типово 0.3."
+
+msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast coefficient at the display peak. Essentially, a value of 0.5 implies that the reference white will be about half as bright as when clipping. Defaults to 0.5."
+msgstr "<0.0..1.0> Коефіцієнт локального контрасту reinhard на піку дисплея. 0.5 дає еталонний білий приблизно вдвічі тьмяніший за відсікання. Типово 0.5."
+
+msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
+msgstr "<0.0..1.0> Точка перегину м’якого відсікання (perceptual, softclip). Типово 0.70."
+
+msgid "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
+msgstr "<0.0..1.0> Сила перцептивного відображення насиченості. Типово 0.80."
+
+msgid "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
+msgstr "<0.0..1.0> Центр (зсув) кривої sigmoid. Типово 0.75."
+
+msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
+msgstr "<0.0..10.0> Лінійна експозиція/підсилення зображення для linear і linearlight. Типово 1.0."
+
+msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
+msgstr "<0.0..10.0> Гама кривої I відносно C для колориметричного відсікання (relative, absolute, darken). Типово 1.80."
+
+msgid "<0.0..100.0> Black cutoff strength."
+msgstr "<0.0..100.0> Сила відсікання чорного."
+
+msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> Підсилення контрасту: множить яскравість джерела на сталу. 1.0 = нейтрально, 0.0 = чорний. Типово 1.0."
+
+msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> Корекція гами: освітлює чи затемнює сцену зі збереженням загального контрасту. 1.0 = нейтрально, 0.0 = чорний. Типово 1.0."
+
+msgid "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
+msgstr "<0.0..100.0> Підсилення насиченості: множить кольоровість джерела на сталу. 1.0 = нейтрально, 0.0 = відтінки сірого. Типово 1.0."
+
+msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
+msgstr "<0.0..100.0> Процентиль гістограми яскравості вхідного зображення, що вважається справжнім піком сцени."
+
+msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps cover up remaining quantization artifacts. Higher numbers add more noise. Defaults to 4.0, which is very mild."
+msgstr "<0.0..1000.0> Додає шум, приховуючи залишкові артефакти квантування. Більше значення — більше шуму. Типово 4.0, дуже слабко."
+
+msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
+msgstr "<0.0..1000.0> Коефіцієнт згладжування виявлених значень."
+
+msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
+msgstr "<0.0..1000.0> Поріг фільтра усунення смуг. Збільшення значно посилює ефект, але поступово зменшує деталізацію. Типово 3.0."
+
+msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
+msgstr "<0.0..1000.0> Початковий радіус фільтра усунення смуг, що лінійно зростає з кожною ітерацією. Більший знаходить більше градієнтів, менший сильніше згладжує. Типово 16.0."
+
+msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
+msgstr "<0.5..1.0> Максимальна точка перегину як частка діапазону яскравості PQ; обмежує вибір knee_adaptation. Типово 0.8."
+
+msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
+msgstr "<0.5..2.0> Зсув точки перегину (лише bt2390). Типове за специфікацією 0.5 відрізняється від типового libplacebo 1.0."
+
+msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
+msgstr "<1.0..20.0> Нахил (крутизна) кривої sigmoid. Типово 6.5."
+
+msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
+msgstr "<1.0..32.0> Розмір низькочастотного ядра відновлення контрасту HDR. Зміни суттєво впливають на вигляд. Типово 3.5."
+
+msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
+msgstr "<N|inf|force|no> Повторювати N разів: 1 — один раз (типово), 2 — двічі, inf — нескінченно, no дорівнює 1 і вимикає повтор. Для кількох файлів командного рядка повторюється весь список. force подібний до inf, але не пропускає збої; може марнувати CPU на відсутній файл, проте корисний для інтернет-радіо за поганої мережі."
+
+msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
+msgstr "<N|inf|no> Повторювати один файл N разів. inf — нескінченно, no — звичайно.\\n\\nНа відміну від loop-playlist, повторює лише файл. Якщо список має один файл, виконує пошук позиції замість перезавантаження. loop — псевдонім цього параметра."
+
+msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
+msgstr "<angle> Зсув тону: обертання підвектора UV навколо нейтральної осі в радіанах. Типово 0.0 (нейтрально)."
+
+msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
+msgstr "<bytesize> Дозволений обсяг випереджувального буфера демультиплексора.\\nПідтримує суфікси KiB та MiB."
+
+msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
+msgstr "<float> Мінімальне співвідношення сторін вікна для ширшого вікна й більшого OSC. (Параметр mpv.net)"
+
+msgid "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
+msgstr "<int> Кількість збережених нещодавніх файлів. Типово: 15 (параметр mpv.net)"
+
+msgid "<int> Initial window height in percent for audio files. Default: 70"
+msgstr "<int> Початкова висота вікна аудіофайлів у відсотках. Типово: 70"
+
+msgid "<int> Initial window height in percent for image files. Default: 80"
+msgstr "<int> Початкова висота вікна зображень у відсотках. Типово: 80"
+
+msgid "<int> Initial window height in percent. Default: 60"
+msgstr "<int> Початкова висота вікна у відсотках. Типово: 60"
+
+msgid "<int> Maximum window height in percent. Default: 80"
+msgstr "<int> Максимальна висота вікна у відсотках. Типово: 80"
+
+msgid "<int> Minimum window height in percent. Default: 10"
+msgstr "<int> Мінімальна висота вікна у відсотках. Типово: 10"
+
+msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
+msgstr "<name> Аудіопристрій: назва виходу, наприклад alsa, потім / та назва його пристрою. Типове auto перевіряє виходи за пріоритетом із типовими пристроями.\\n\\nПерелік пристроїв у контекстному меню:\\n\\nПерегляд > Ще > Аудіопристрої.\\n\\nЗміна пристрою теж у контекстному меню:\\n\\nАудіо > Аудіопристрій"
+
+msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
+msgstr "<x:y> Початкова позиція вікна у відсотках. Типово: 50:50 (центр).\\n\\nПотрібна Windows 11; у Windows 10 є невелика похибка через невидимі рамки.\\n\\nx=0 ліворуч.\\nx=100 праворуч.\\n\\ny=0 угорі.\\ny=100 унизу."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
+msgid "Abort"
+msgstr "Перервати"
+
+#: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:10
+msgid "About"
+msgstr "Про програму"
+
+#: src\MpvNet\Utilities\InputHelp.cs:197
+msgid "About mpv.net"
+msgstr "Про mpv.net"
+
+#: src\MpvNet\Utilities\InputHelp.cs:142
+msgid "Active Bindings In Text Editor"
+msgstr "Активні прив’язки в текстовому редакторі"
+
+#: src\MpvNet\Utilities\InputHelp.cs:143
+msgid "Active Bindings On-Screen"
+msgstr "Активні прив’язки на екрані"
+
+#: src\MpvNet\Utilities\InputHelp.cs:14
+msgid "Add external audio files..."
+msgstr "Додати зовнішні аудіофайли..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:15
+msgid "Add external subtitle files..."
+msgstr "Додати зовнішні субтитри..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:17
+msgid "Add files to playlist..."
+msgstr "Додати файли до списку відтворення..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:18
+msgid "Add files/URLs to playlist from clipboard"
+msgstr "Додати файли/URL із буфера до списку відтворення"
+
+#: src\MpvNet\Utilities\InputHelp.cs:179
+msgid "Add mpv.net to Path environment variable"
+msgstr "Додати mpv.net до змінної середовища Path"
+
+msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr "Лише OpenGL (потрібен OpenGL 2.1+ або GLES 2.0+)"
+
+msgid "Allow only Vulkan"
+msgstr "Лише Vulkan"
+
+msgid "Allow only gpu-context=d3d11"
+msgstr "Лише gpu-context=d3d11"
+
+msgid "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
+msgstr "Дозволяє затримку результату виявлення піку до одного кадру; це може підвищити пропускну здатність, але спричинити мерехтіння на 1 кадр на переходах."
+
+msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
+msgstr "Зберігає позицію під час виходу й відновлює її наступного разу. Інше припинення відтворення позицію не зберігає: після переходу до наступного файлу попередній знову почнеться спочатку.\\n\\nТипово вимкнено, але завжди доступно при виході через Shift+Q."
+
+msgid "Appearance"
+msgstr "Вигляд"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml.cs:344
+msgid "Application Message"
+msgstr "Повідомлення програми"
+
+msgid "As scale, but for interpolating chroma information. If the image is not subsampled, this option is ignored entirely."
+msgstr "Як scale, але для інтерполяції кольоровості. Якщо зображення без субдискретизації, параметр ігнорується."
+
+msgid "Aspect-ratio preserving nearest neighbour sampling (very fast)."
+msgstr "Вибірка найближчого сусіда зі збереженням пропорцій (дуже швидко)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:83 src\MpvNet\Utilities\InputHelp.cs:84
+#: src\MpvNet\Utilities\InputHelp.cs:85 src\MpvNet\Utilities\InputHelp.cs:86
+#: src\MpvNet\Utilities\InputHelp.cs:87
+msgid "Audio"
+msgstr "Аудіо"
+
+#: src\MpvNet\Utilities\InputHelp.cs:83
+#: src\MpvNet.Windows\WinForms\MainForm.cs:315
+msgid "Audio Device"
+msgstr "Аудіопристрій"
+
+#: src\MpvNet\App.cs:195 src\MpvNet\Utilities\InputHelp.cs:136
+#: src\MpvNet\Utilities\InputHelp.cs:241
+msgid "Audio Devices"
+msgstr "Аудіопристрої"
+
+#: src\MpvNet\App.cs:190 src\MpvNet\Utilities\InputHelp.cs:130
+#: src\MpvNet\Utilities\InputHelp.cs:235
+msgid "Audio Tracks"
+msgstr "Аудіодоріжки"
+
+msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "Розширення аудіофайлів для --audio-file-auto, --autocreate-playlist або --directory-filter-types. mpv.net також використовує їх для асоціацій файлів та auto-load-folder. Типово: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+
+msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
+msgstr "Автоматичний вибір. Якщо глибину виходу не визначено, вважається 8 біт на компонент."
+
+msgid "Available on Windows 10 or higher"
+msgstr "Доступно у Windows 10 і новіших"
+
+#: src\MpvNet\Utilities\InputHelp.cs:207
+msgid "Backward"
+msgstr "Назад"
+
+msgid "Bicubic interpolation (fast)"
+msgstr "Бікубічна інтерполяція (швидко)"
+
+msgid "Bicubic interpolation (fast)."
+msgstr "Бікубічна інтерполяція (швидко)."
+
+msgid "Bilinear (triangle) averaging (fast)"
+msgstr "Білінійне (трикутне) усереднення (швидко)"
+
+msgid "Bilinear sampling (very fast)."
+msgstr "Білінійна вибірка (дуже швидко)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:244
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:403
+msgid "Bindings"
+msgstr "Прив’язки"
+
+msgid "Box averaging (very fast)"
+msgstr "Прямокутне усереднення (дуже швидко)"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:55
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:182
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Catmull-Rom cubic spline"
+msgstr "Кубічний сплайн Catmull-Rom"
+
+msgid "Catmull-Rom cubic spline."
+msgstr "Кубічний сплайн Catmull-Rom."
+
+#: src\MpvNet\Utilities\InputHelp.cs:80
+msgid "Change Aspect Ratio"
+msgstr "Змінити пропорції"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:508
+msgid "Changed theme settings require mpv.net being restarted."
+msgstr "Після зміни теми потрібно перезапустити mpv.net."
+
+msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "Перемикає світлу й темну тему.\\nПісля зміни перезапустіть mpv.net.\\nПараметр mpv.net."
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:126
+msgid "Changes will be available on next startup."
+msgstr "Зміни набудуть чинності після наступного запуску."
+
+#: src\MpvNet\Utilities\InputHelp.cs:49
+#: src\MpvNet.Windows\WinForms\MainForm.cs:213
+msgid "Chapter"
+msgstr "Розділ"
+
+#: src\MpvNet\App.cs:193 src\MpvNet\Utilities\InputHelp.cs:128
+#: src\MpvNet\Utilities\InputHelp.cs:238
+msgid "Chapters"
+msgstr "Розділи"
+
+msgid "Choose the best mode automatically."
+msgstr "Автоматично вибрати найкращий режим."
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:54
+msgid "Clear"
+msgstr "Очистити"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:250
+msgid "Clear List"
+msgstr "Очистити список"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MsgBoxExtendedFunctionality.cs:22
+msgid "Click this icon for additional info/actions."
+msgstr "Натисніть значок для додаткових відомостей/дій."
+
+#: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:16
+msgid "Codec Guide: "
+msgstr "Codec Guide: "
+
+msgid "Color Adjustment"
+msgstr "Корекція кольорів"
+
+msgid "Color Mapping"
+msgstr "Відображення кольорів"
+
+msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "Колірна тема темного режиму.\\nПісля зміни перезапустіть mpv.net.\\nПараметр mpv.net. Типово: dark"
+
+msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "Колірна тема світлого режиму.\\nПісля зміни перезапустіть mpv.net.\\nПараметр mpv.net. Типово: light"
+
+msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
+msgstr "Колір частин вікна mpv, не зайнятих відео. Опис кольорів див. у --sub-color."
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:140
+msgid "Command"
+msgstr "Команда"
+
+#: src\MpvNet\Utilities\InputHelp.cs:141
+msgid "Commands"
+msgstr "Команди"
+
+#: src\MpvNet\Utilities\InputHelp.cs:167 src\MpvNet\Utilities\InputHelp.cs:168
+#: src\MpvNet\Utilities\InputHelp.cs:169 src\MpvNet\Utilities\InputHelp.cs:170
+#: src\MpvNet\Utilities\InputHelp.cs:171 src\MpvNet\Utilities\InputHelp.cs:172
+#: src\MpvNet\Utilities\InputHelp.cs:173 src\MpvNet\Utilities\InputHelp.cs:174
+#: src\MpvNet\Utilities\InputHelp.cs:175 src\MpvNet\Utilities\InputHelp.cs:176
+#: src\MpvNet\Utilities\InputHelp.cs:177 src\MpvNet\Utilities\InputHelp.cs:178
+#: src\MpvNet\Utilities\InputHelp.cs:179 src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Config"
+msgstr "Налаштування"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:608
+msgid "Config Editor"
+msgstr "Редактор налаштувань"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:53
+msgid "Confirm"
+msgstr "Підтвердити"
+
+#: src\MpvNet\Utilities\InputHelp.cs:140
+msgid "Console"
+msgstr "Консоль"
+
+msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
+msgstr "Обертання візуалізації 3DLUT колірного охоплення у просторі тону навколо осі I, у радіанах. Типово 0.0."
+
+msgid "Controls the rotation of the gamut 3DLUT visualization. The theta parameter vertically rotates the cross section (around the C axis), in radians. Defaults to 0.0."
+msgstr "Параметр theta вертикально обертає переріз візуалізації 3DLUT навколо осі C, у радіанах. Типово 0.0."
+
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 0.0."
+msgstr "Позиція візуалізації LUT відносно відео. Типово 0.0."
+
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 1.0."
+msgstr "Позиція візуалізації LUT відносно відео. Типово 1.0."
+
+msgid "Controls which type of graphics APIs will be accepted."
+msgstr "Визначає дозволені графічні API."
+
+msgid "Create a new process everytime the shell starts mpv.net"
+msgstr "Створювати новий процес при кожному запуску mpv.net з оболонки"
+
+msgid "Cubic B-spline frame mixing"
+msgstr "Змішування кадрів кубічним B-сплайном"
+
+#: src\MpvNet\Utilities\InputHelp.cs:188
+#: src\MpvNet.Windows\WinForms\MainForm.cs:339
+msgid "Custom"
+msgstr "Власне"
+
+msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
+msgstr "Джерело даних тонального відображення. Конкретне значення перевизначає типові пріоритети метаданих."
+
+msgid "Debanding"
+msgstr "Усунення смуг"
+
+msgid "Decide whether to use network cache settings."
+msgstr "Визначає використання мережевого кешу."
+
+#: src\MpvNet\Utilities\InputHelp.cs:146
+msgid "Decoders"
+msgstr "Декодери"
+
+#: src\MpvNet\Utilities\InputHelp.cs:68
+msgid "Decrease Brightness"
+msgstr "Зменшити яскравість"
+
+#: src\MpvNet\Utilities\InputHelp.cs:65
+msgid "Decrease Contrast"
+msgstr "Зменшити контраст"
+
+#: src\MpvNet\Utilities\InputHelp.cs:98
+msgid "Decrease Font Size"
+msgstr "Зменшити шрифт"
+
+#: src\MpvNet\Utilities\InputHelp.cs:71
+msgid "Decrease Gamma"
+msgstr "Зменшити гаму"
+
+#: src\MpvNet\Utilities\InputHelp.cs:60
+msgid "Decrease Height"
+msgstr "Зменшити висоту"
+
+#: src\MpvNet\Utilities\InputHelp.cs:74
+msgid "Decrease Saturation"
+msgstr "Зменшити насиченість"
+
+#: src\MpvNet\Utilities\InputHelp.cs:51
+msgid "Decrease Size"
+msgstr "Зменшити розмір"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:421
+#: src\MpvNet\Integration\Mpv\Player.cs:440
+#: src\MpvNet\Integration\Mpv\Player.cs:468
+#: src\MpvNet\Integration\Mpv\Player.cs:548
+#: src\MpvNet\Integration\Mpv\Player.cs:634
+#: src\MpvNet\Integration\Mpv\Player.cs:718
+msgid "Default"
+msgstr "Типово"
+
+msgid "Default settings, tuned to provide a balance of performance and quality."
+msgstr "Типові налаштування для балансу швидкодії та якості."
+
+msgid "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
+msgstr "Дозволяє кілька процесів mpv.net.\\nТакож можна ввімкнути, утримуючи SHIFT. (Параметр mpv.net)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:86 src\MpvNet\Utilities\InputHelp.cs:93
+msgid "Delay +0.1"
+msgstr "Затримка +0.1"
+
+#: src\MpvNet\Utilities\InputHelp.cs:87 src\MpvNet\Utilities\InputHelp.cs:92
+msgid "Delay -0.1"
+msgstr "Затримка -0.1"
+
+msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
+msgstr "Затримка перед автоповтором клавіші в мілісекундах (0 вимикає)."
+
+msgid "Demuxer"
+msgstr "Демультиплексор"
+
+#: src\MpvNet\Utilities\InputHelp.cs:147
+msgid "Demuxers"
+msgstr "Демультиплексори"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:193
+msgid "Details"
+msgstr "Подробиці"
+
+msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "Direct3D11 через шар трансляції OpenGL ES ANGLE. Досить нова версія ANGLE підтримує майже всі можливості бекенду win."
+
+msgid "Disable all advanced rendering, equivalent to passing no to every option."
+msgstr "Вимкнути весь розширений рендеринг, наче кожен параметр має no."
+
+msgid "Disable any dithering done by mpv."
+msgstr "Вимкнути весь дизеринг mpv."
+
+msgid "Disable frame mixing, show nearest frame to target PTS"
+msgstr "Вимкнути змішування, показувати кадр найближчий до цільового PTS"
+
+msgid "Dither to 10 bit output."
+msgstr "Дизеринг до 10-бітного виходу."
+
+msgid "Dither to 8 bit output."
+msgstr "Дизеринг до 8-бітного виходу."
+
+msgid "Don't automatically load external audio files."
+msgstr "Не завантажувати зовнішні аудіофайли автоматично."
+
+msgid "Don't automatically load external subtitle files."
+msgstr "Не завантажувати зовнішні субтитри автоматично."
+
+#: src\MpvNet\App.cs:208
+msgid "Donation"
+msgstr "Пожертва"
+
+#: src\MpvNet\Utilities\InputHelp.cs:114
+msgid "Double"
+msgstr "Удвічі"
+
+#: src\MpvNet\Integration\Mpv\Player.Initialization.cs:71
+#: src\MpvNet.Windows\WinForms\MainForm.cs:380
+msgid "Drop files or URLs to play here."
+msgstr "Перетягніть сюди файли або URL для відтворення."
+
+#: src\MpvNet\App.cs:210
+msgid "E-mail support"
+msgstr "Підтримка електронною поштою"
+
+msgid "EWA Lanczos (\"Jinc\") reconstruction (slow)."
+msgstr "Реконструкція EWA Lanczos (\"Jinc\") (повільно)."
+
+#: src\MpvNet\App.cs:201
+msgid "Edit config file"
+msgstr "Редагувати файл налаштувань"
+
+#: src\MpvNet\Utilities\InputHelp.cs:171
+msgid "Edit input.conf"
+msgstr "Редагувати input.conf"
+
+#: src\MpvNet\App.cs:202
+msgid "Edit key bindings"
+msgstr "Редагувати прив’язки клавіш"
+
+#: src\MpvNet\Utilities\InputHelp.cs:170
+msgid "Edit mpv.conf"
+msgstr "Редагувати mpv.conf"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:488
+#: src\MpvNet\Integration\Mpv\Player.cs:734
+msgid "Edition"
+msgstr "Редакція"
+
+#: src\MpvNet\App.cs:194 src\MpvNet\Utilities\InputHelp.cs:134
+#: src\MpvNet\Utilities\InputHelp.cs:239
+msgid "Editions"
+msgstr "Редакції"
+
+msgid "Enable the IPC support and create the listening socket at the given path."
+msgstr "Увімкнути IPC і створити сокет прослуховування за вказаним шляхом."
+
+msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
+msgstr "Увімкнути усунення смуг: значно зменшує смуги, блоки й артефакти квантування, трохи розмиваючи найдрібніші деталі. Майже завжди покращує якість; вимикають переважно заради швидкодії."
+
+msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
+msgstr "Увімкнути типовий автовибір потоків за aid, alang тощо. Якщо вимкнено, доріжки не вибираються, а програвач очікує замість виходу (подібно до паузи, але без параметра pause).\\n\\nКорисно для lavfi-complex: почніть відтворення й виберіть доріжки графом фільтрів пізніше. Якщо lavfi-complex задано до початку, згадані доріжки вибираються завжди."
+
+msgid "Enable this only when a developer asks for it. (mpv.net option)"
+msgstr "Вмикайте лише на прохання розробника. (Параметр mpv.net)"
+
+msgid "Enables HDR peak detection."
+msgstr "Увімкнути виявлення піку HDR."
+
+msgid "Enables color adjustment."
+msgstr "Увімкнути корекцію кольорів."
+
+msgid "Enables debanding using libplacebo."
+msgstr "Увімкнути усунення смуг через libplacebo."
+
+msgid "Enables sigmoidization."
+msgstr "Увімкнути сигмоїдальне перетворення."
+
+msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
+msgstr "Увімкнути ці налаштування відображення кольорів. Вимкнення не скасовує відображення, а застосовує типові параметри."
+
+#: src\MpvNet\Utilities\InputHelp.cs:150
+msgid "Enlarge"
+msgstr "Збільшити"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:295
+msgid "Error creating file associations."
+msgstr "Помилка створення асоціацій файлів."
+
+#: src\MpvNet\Utilities\InputHelp.cs:21 src\MpvNet\Utilities\InputHelp.cs:199
+#: src\MpvNet\Utilities\InputHelp.cs:231
+msgid "Exit"
+msgstr "Вийти"
+
+#: src\MpvNet\Utilities\InputHelp.cs:186
+msgid "Exit Watch Later"
+msgstr "Вийти зі збереженням позиції"
+
+msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
+msgstr "Експериментальний рендерер відео на libplacebo, що підтримує майже ті самі можливості, що й --vo=gpu."
+
+#: src\MpvNet\Integration\Mpv\Player.cs:441
+#: src\MpvNet\Integration\Mpv\Player.cs:469
+msgid "External"
+msgstr "Зовнішнє"
+
+#: src\MpvNet\Utilities\InputHelp.cs:10 src\MpvNet\Utilities\InputHelp.cs:11
+#: src\MpvNet\Utilities\InputHelp.cs:12 src\MpvNet\Utilities\InputHelp.cs:13
+#: src\MpvNet\Utilities\InputHelp.cs:14 src\MpvNet\Utilities\InputHelp.cs:15
+#: src\MpvNet\Utilities\InputHelp.cs:16 src\MpvNet\Utilities\InputHelp.cs:17
+#: src\MpvNet\Utilities\InputHelp.cs:18 src\MpvNet\Utilities\InputHelp.cs:19
+#: src\MpvNet\Utilities\InputHelp.cs:20 src\MpvNet\Utilities\InputHelp.cs:21
+msgid "File"
+msgstr "Файл"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:287
+msgid "File Explorer icons will refresh after process restart."
+msgstr "Значки Провідника оновляться після перезапуску процесу."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:292
+msgid "File associations were successfully created."
+msgstr "Асоціації файлів успішно створено."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:290
+msgid "File associations were successfully removed."
+msgstr "Асоціації файлів успішно видалено."
+
+#: src\MpvNet\App.cs:200
+msgid "File information"
+msgstr "Відомості про файл"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:229
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:251
+msgid "Files/URLs were added to the playlist"
+msgstr "Файли/URL додано до списку відтворення"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:39
+msgid "Find a binding (Ctrl+F)"
+msgstr "Знайти прив’язку (Ctrl+F)"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:609
+msgid "Find a setting (Ctrl+F)"
+msgstr "Знайти налаштування (Ctrl+F)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:29
+msgid "First File"
+msgstr "Перший файл"
+
+msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
+msgstr "Для окремого файлу автоматично додавати весь каталог до списку. (Застарілий параметр mpv.net; використовуйте autocreate-playlist)"
+
+msgid "Force a single process and add files to playlist"
+msgstr "Один процес із додаванням файлів до списку"
+
+msgid "Force a single process everytime the shell starts mpv.net"
+msgstr "Примусово один процес при кожному запуску mpv.net з оболонки"
+
+msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
+msgstr "Примусово повна LUT тонального відображення навіть для функцій зі швидшими GLSL-замінниками (clip, linear, saturation). Параметр налагодження."
+
+#: src\MpvNet\Integration\Mpv\Player.cs:439
+#: src\MpvNet\Integration\Mpv\Player.cs:467
+#: src\MpvNet\Integration\Mpv\Player.cs:633
+#: src\MpvNet\Integration\Mpv\Player.cs:717
+msgid "Forced"
+msgstr "Примусово"
+
+#: src\MpvNet\Utilities\InputHelp.cs:206
+msgid "Forward"
+msgstr "Уперед"
+
+#: src\MpvNet\Utilities\InputHelp.cs:149 src\MpvNet\Utilities\InputHelp.cs:219
+#: src\MpvNet\Utilities\InputHelp.cs:220
+msgid "Fullscreen"
+msgstr "На весь екран"
+
+msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
+msgstr "Функція відображення кольорів поза охопленням, зокрема внаслідок тонального відображення."
+
+msgid "Gaussian smoothing (fast)"
+msgstr "Гаусове згладжування (швидко)"
+
+msgid "Gaussian smoothing (fast)."
+msgstr "Гаусове згладжування (швидко)."
+
+msgid "General"
+msgstr "Загальне"
+
+msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "Універсальний настроюваний драйвер виведення відео з GPU-прискоренням. Підтримує розширене масштабування, дизеринг, керування кольором, власні шейдери, HDR тощо."
+
+#: src\MpvNet\App.cs:206
+msgid "GitHub Sponsors"
+msgstr "GitHub Sponsors"
+
+msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
+msgstr "Виділяти жорстко відсічені пікселі під час тонального відображення, тобто за межами заявленої яскравості джерела."
+
+msgid "HDR Peak Detection"
+msgstr "Виявлення піку HDR"
+
+#: src\MpvNet\Utilities\InputHelp.cs:113
+msgid "Half"
+msgstr "Половина"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:338
+msgid "Height"
+msgstr "Висота"
+
+#: src\MpvNet\App.cs:203 src\MpvNet\Utilities\InputHelp.cs:190
+#: src\MpvNet\Utilities\InputHelp.cs:191 src\MpvNet\Utilities\InputHelp.cs:192
+#: src\MpvNet\Utilities\InputHelp.cs:193 src\MpvNet\Utilities\InputHelp.cs:194
+#: src\MpvNet\Utilities\InputHelp.cs:195 src\MpvNet\Utilities\InputHelp.cs:196
+#: src\MpvNet\Utilities\InputHelp.cs:197
+msgid "Help"
+msgstr "Довідка"
+
+#: src\MpvNet\App.cs:225
+#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
+msgid "Help the player"
+msgstr "Підтримати програвач"
+
+msgid "Hermite-weighted averaging (fast)"
+msgstr "Усереднення з вагами Hermite (швидко)"
+
+msgid "Hermite-weighted frame mixing"
+msgstr "Змішування кадрів з вагами Hermite"
+
+msgid "How the player synchronizes audio and video.\\n\\nFor more information visit:"
+msgstr "Спосіб синхронізації аудіо й відео.\\n\\nДокладніше:"
+
+msgid "If enabled, allows the gamut mapping function to expand the gamut, in cases where the target gamut exceeds that of the source. If disabled, the source gamut will never be enlarged, even when using a gamut mapping function capable of bidirectional mapping."
+msgstr "Дозволяє розширення охоплення, якщо цільове більше за вихідне. Якщо вимкнено, джерело не розширюється навіть за двобічного відображення."
+
+msgid "If enabled, and supported by the given tone mapping function, will perform inverse tone mapping to expand the dynamic range of a signal. libplacebo is not liable for any HDR-induced eye damage."
+msgstr "Якщо ввімкнено й підтримано функцією, зворотне тональне відображення розширює динамічний діапазон. libplacebo не відповідає за пошкодження зору через HDR."
+
+msgid "If possible, write screenshots with a bit depth similar to the source video. This is interesting in particular for PNG, as this sometimes triggers writing 16 bit PNGs with huge file sizes. This will also include an unused alpha channel in the resulting files if 16 bit is used."
+msgstr "За можливості зберігати знімки з глибиною, близькою до відео. Для PNG це може створювати великі 16-бітні файли з невикористаним альфа-каналом."
+
+msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
+msgstr "Якщо цей параметр і keep-open мають no, програвач виходить після останнього файлу."
+
+msgid "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
+msgstr "За no з увімкненим keep-open зупиняється в кінці замість паузи; після переходу назад знову відтворює до кінця й зупиняється."
+
+msgid "If the current file ends, go to the next file, keep the last file open."
+msgstr "Після завершення перейти до наступного; останній залишити відкритим."
+
+msgid "If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
+msgstr "Перейти до наступного файлу. За idle=no вийти після останнього."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:173
+msgid "Ignore"
+msgstr "Ігнорувати"
+
+#: src\MpvNet\Utilities\InputHelp.cs:218
+msgid "Ignore left mouse button"
+msgstr "Ігнорувати ліву кнопку миші"
+
+msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+msgstr "Розширення зображень для --cover-art-auto, --autocreate-playlist або --directory-filter-types; також для асоціацій mpv.net та auto-load-folder. Типово: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+
+#: src\MpvNet\Utilities\InputHelp.cs:69
+msgid "Increase Brightness"
+msgstr "Збільшити яскравість"
+
+#: src\MpvNet\Utilities\InputHelp.cs:66
+msgid "Increase Contrast"
+msgstr "Збільшити контраст"
+
+#: src\MpvNet\Utilities\InputHelp.cs:99
+msgid "Increase Font Size"
+msgstr "Збільшити шрифт"
+
+#: src\MpvNet\Utilities\InputHelp.cs:72
+msgid "Increase Gamma"
+msgstr "Збільшити гаму"
+
+#: src\MpvNet\Utilities\InputHelp.cs:61
+msgid "Increase Height"
+msgstr "Збільшити висоту"
+
+#: src\MpvNet\Utilities\InputHelp.cs:75
+msgid "Increase Saturation"
+msgstr "Збільшити насиченість"
+
+#: src\MpvNet\Utilities\InputHelp.cs:52
+msgid "Increase Size"
+msgstr "Збільшити розмір"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:508
+msgid "Info"
+msgstr "Відомості"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:102
+msgid "Input"
+msgstr "Введення"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:11
+msgid "Input Editor"
+msgstr "Редактор введення"
+
+#: src\MpvNet\Utilities\InputHelp.cs:43
+msgid "Jump 30 sec backward"
+msgstr "Назад на 30 с"
+
+#: src\MpvNet\Utilities\InputHelp.cs:42
+msgid "Jump 30 sec forward"
+msgstr "Уперед на 30 с"
+
+#: src\MpvNet\Utilities\InputHelp.cs:46
+msgid "Jump 5 min backward"
+msgstr "Назад на 5 хв"
+
+#: src\MpvNet\Utilities\InputHelp.cs:45
+msgid "Jump 5 min forward"
+msgstr "Уперед на 5 хв"
+
+#: src\MpvNet\Utilities\InputHelp.cs:40
+msgid "Jump 5 sec backward"
+msgstr "Назад на 5 с"
+
+#: src\MpvNet\Utilities\InputHelp.cs:39
+msgid "Jump 5 sec forward"
+msgstr "Уперед на 5 с"
+
+#: src\MpvNet\Utilities\InputHelp.cs:36
+msgid "Jump To Next Frame"
+msgstr "До наступного кадру"
+
+#: src\MpvNet\Utilities\InputHelp.cs:37
+msgid "Jump To Previous Frame"
+msgstr "До попереднього кадру"
+
+#: src\MpvNet\App.cs:196
+msgid "Key bindings"
+msgstr "Прив’язки клавіш"
+
+#: src\MpvNet\Utilities\InputHelp.cs:144
+msgid "Keys"
+msgstr "Клавіші"
+
+msgid "Lanczos reconstruction"
+msgstr "Реконструкція Lanczos"
+
+msgid "Lanczos reconstruction."
+msgstr "Реконструкція Lanczos."
+
+#: src\MpvNet\Utilities\InputHelp.cs:30
+msgid "Last File"
+msgstr "Останній файл"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:10
+msgid "Learn Input"
+msgstr "Навчання введення"
+
+msgid "Like scale, but apply these filters on downscaling instead. \\nIf no option is selected, it will keep the same with the upscaler."
+msgstr "Як scale, але для зменшення. \\nБез вибору використовується той самий фільтр, що й для збільшення."
+
+msgid "Linear frame mixing"
+msgstr "Лінійне змішування кадрів"
+
+msgid "Load additional audio files matching the video filename. The parameter specifies how external audio files are matched."
+msgstr "Завантажувати додаткове аудіо за назвою відеофайлу. Параметр задає спосіб зіставлення зовнішніх файлів."
+
+msgid "Load additional subtitle files matching the video filename. The parameter specifies how external subtitle files are matched. exact is enabled by default."
+msgstr "Завантажувати додаткові субтитри за назвою відеофайлу. Параметр задає зіставлення; типово exact."
+
+msgid "Load all audio files containing media filename."
+msgstr "Завантажити все аудіо, назва якого містить назву медіафайлу."
+
+msgid "Load all audio files in the current and audio-file-paths directories."
+msgstr "Завантажити все аудіо з поточного каталогу та audio-file-paths."
+
+msgid "Load all subs containing media filename."
+msgstr "Завантажити всі субтитри, назва яких містить назву медіафайлу."
+
+msgid "Load all subs in the current and sub-file-paths directories."
+msgstr "Завантажити всі субтитри з поточного каталогу та sub-file-paths."
+
+msgid "Load the media filename with audio file extension."
+msgstr "Завантажити файл із назвою медіафайлу та аудіорозширенням."
+
+msgid "Load the media filename with subtitle file extension."
+msgstr "Завантажити файл із назвою медіафайлу та розширенням субтитрів."
+
+#: src\MpvNet\App.cs:111
+msgid "Make a donation to help maintain the project."
+msgstr "Зробіть пожертву на підтримку проєкту."
+
+#: src\MpvNet.Windows\WPF\Controls\HyperlinkEx.cs:22
+msgid "Manual"
+msgstr "Посібник"
+
+#: src\MpvNet\Utilities\InputHelp.cs:193
+msgid "Manual mpv"
+msgstr "Посібник mpv"
+
+#: src\MpvNet\Utilities\InputHelp.cs:194
+msgid "Manual mpv.net"
+msgstr "Посібник mpv.net"
+
+#: src\MpvNet\Utilities\InputHelp.cs:226
+msgid "Mark position for revert-seek"
+msgstr "Позначити позицію для revert-seek"
+
+#: src\MpvNet\Utilities\InputHelp.cs:122
+msgid "Media Info Message Box"
+msgstr "Відомості про медіа в діалозі"
+
+#: src\MpvNet\Utilities\InputHelp.cs:121
+msgid "Media Info On-Screen"
+msgstr "Відомості про медіа на екрані"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:610
+msgid "Menu"
+msgstr "Меню"
+
+msgid "Mitchell-Netravalia cubic spline"
+msgstr "Кубічний сплайн Mitchell-Netravalia"
+
+#: src\MpvNet\Utilities\InputHelp.cs:101 src\MpvNet\Utilities\InputHelp.cs:140
+#: src\MpvNet\Utilities\InputHelp.cs:141 src\MpvNet\Utilities\InputHelp.cs:142
+#: src\MpvNet\Utilities\InputHelp.cs:143 src\MpvNet\Utilities\InputHelp.cs:144
+#: src\MpvNet\Utilities\InputHelp.cs:145 src\MpvNet\Utilities\InputHelp.cs:146
+#: src\MpvNet\Utilities\InputHelp.cs:147
+msgid "More"
+msgstr "Ще"
+
+#: src\MpvNet\Utilities\InputHelp.cs:157 src\MpvNet\Utilities\InputHelp.cs:158
+#: src\MpvNet\Utilities\InputHelp.cs:159 src\MpvNet\Utilities\InputHelp.cs:160
+#: src\MpvNet\Utilities\InputHelp.cs:161
+msgid "Move"
+msgstr "Перемістити"
+
+#: src\MpvNet\Utilities\InputHelp.cs:58 src\MpvNet\Utilities\InputHelp.cs:96
+msgid "Move Down"
+msgstr "Перемістити вниз"
+
+#: src\MpvNet\Utilities\InputHelp.cs:54
+msgid "Move Left"
+msgstr "Перемістити ліворуч"
+
+#: src\MpvNet\Utilities\InputHelp.cs:55
+msgid "Move Right"
+msgstr "Перемістити праворуч"
+
+#: src\MpvNet\Utilities\InputHelp.cs:57 src\MpvNet\Utilities\InputHelp.cs:95
+msgid "Move Up"
+msgstr "Перемістити вгору"
+
+#: src\MpvNet\Utilities\InputHelp.cs:108
+msgid "Mute"
+msgstr "Вимкнути звук"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:96
+msgid "Name"
+msgstr "Назва"
+
+#: src\MpvNet\Utilities\InputHelp.cs:26 src\MpvNet\Utilities\InputHelp.cs:27
+#: src\MpvNet\Utilities\InputHelp.cs:28 src\MpvNet\Utilities\InputHelp.cs:29
+#: src\MpvNet\Utilities\InputHelp.cs:30 src\MpvNet\Utilities\InputHelp.cs:32
+#: src\MpvNet\Utilities\InputHelp.cs:33 src\MpvNet\Utilities\InputHelp.cs:34
+#: src\MpvNet\Utilities\InputHelp.cs:35 src\MpvNet\Utilities\InputHelp.cs:36
+#: src\MpvNet\Utilities\InputHelp.cs:37 src\MpvNet\Utilities\InputHelp.cs:38
+#: src\MpvNet\Utilities\InputHelp.cs:39 src\MpvNet\Utilities\InputHelp.cs:40
+#: src\MpvNet\Utilities\InputHelp.cs:41 src\MpvNet\Utilities\InputHelp.cs:42
+#: src\MpvNet\Utilities\InputHelp.cs:43 src\MpvNet\Utilities\InputHelp.cs:44
+#: src\MpvNet\Utilities\InputHelp.cs:45 src\MpvNet\Utilities\InputHelp.cs:46
+#: src\MpvNet\Utilities\InputHelp.cs:47 src\MpvNet\Utilities\InputHelp.cs:48
+#: src\MpvNet\Utilities\InputHelp.cs:49
+msgid "Navigate"
+msgstr "Навігація"
+
+msgid "Nearest-neighbour (box) sampling (very fast)."
+msgstr "Вибірка найближчого сусіда (прямокутна, дуже швидко)."
+
+msgid "Never use precise seeks."
+msgstr "Ніколи не використовувати точний пошук позиції."
+
+#: src\MpvNet\Utilities\InputHelp.cs:33
+msgid "Next Chapter"
+msgstr "Наступний розділ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:27 src\MpvNet\Utilities\InputHelp.cs:213
+#: src\MpvNet\Utilities\InputHelp.cs:215 src\MpvNet\Utilities\InputHelp.cs:217
+msgid "Next File"
+msgstr "Наступний файл"
+
+#: src\MpvNet\Utilities\InputHelp.cs:84 src\MpvNet\Utilities\InputHelp.cs:89
+msgid "Next Track"
+msgstr "Наступна доріжка"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
+msgid "No"
+msgstr "Ні"
+
+#: src\MpvNet\Command.cs:74
+msgid "No audio tracks"
+msgstr "Немає аудіодоріжок"
+
+msgid "No filter, only use basic GPU texture sampling."
+msgstr "Без фільтра, лише базова вибірка текстур GPU."
+
+#: src\MpvNet\Command.cs:117
+msgid "No subtitle"
+msgstr "Без субтитрів"
+
+#: src\MpvNet\Command.cs:102
+#: src\MpvNet.Windows\WinForms\MainForm.ContextMenu.cs:63
+msgid "No subtitles"
+msgstr "Без субтитрів"
+
+msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
+msgstr "Зазвичай mpv зберігає всі параметри для наступного файлу, навіть змінені користувачем. Цей параметр приймає перелік і скидає його значення до початкових на початку відтворення."
+
+msgid "Number of key presses to generate per second on autorepeat."
+msgstr "Кількість натискань за секунду при автоповторі."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:127
+msgid "OK"
+msgstr "Гаразд"
+
+#: src\MpvNet\Utilities\InputHelp.cs:124 src\MpvNet\Utilities\InputHelp.cs:125
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:127
+#: src\MpvNet\Utilities\InputHelp.cs:128 src\MpvNet\Utilities\InputHelp.cs:129
+#: src\MpvNet\Utilities\InputHelp.cs:130 src\MpvNet\Utilities\InputHelp.cs:131
+#: src\MpvNet\Utilities\InputHelp.cs:132 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:134 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:136 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:138 src\MpvNet\Utilities\InputHelp.cs:246
+#: src\MpvNet\Utilities\InputHelp.cs:247 src\MpvNet\Utilities\InputHelp.cs:248
+msgid "On-Screen Menu"
+msgstr "Екранне меню"
+
+#: src\MpvNet\App.cs:204
+msgid "Online documentation"
+msgstr "Онлайн-документація"
+
+#: src\MpvNet\Utilities\InputHelp.cs:173
+msgid "Open Config Folder"
+msgstr "Відкрити теку налаштувань"
+
+#: src\MpvNet\Utilities\InputHelp.cs:12
+msgid "Open media from a drive or folder (including subfolders)..."
+msgstr "Відкрити медіа з диска або теки (із підтеками)..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:10
+msgid "Open Files..."
+msgstr "Відкрити файли..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:11
+msgid "Open URL or file from clipboard"
+msgstr "Відкрити URL або файл із буфера"
+
+msgid "Override all libplacebo options by the values from the given preset."
+msgstr "Перевизначити всі параметри libplacebo значеннями заданого набору."
+
+msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
+msgstr "Перевизначити фільтр зменшення площин, як кольоровість/альфа. За none використовувати downscaler."
+
+msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
+msgstr "Перевизначити фільтр збільшення площин, як кольоровість/альфа. За none використовувати upscaler."
+
+msgid "Overrides the value of all options in this section by their default values from the given preset."
+msgstr "Замінити всі параметри розділу типовими значеннями заданого набору."
+
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
+msgstr "Замінити параметри розділу значеннями набору. high_quality також вмикає відновлення контрасту HDR."
+
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
+msgstr "Замінити параметри розділу значеннями набору. high_quality також вмикає вимірювання гістограми кадру."
+
+msgid "Oversampling, only mix \"edge\" frames while preserving FPS"
+msgstr "Наддискретизація: змішувати лише крайові кадри, зберігаючи FPS"
+
+#: src\MpvNet\Utilities\InputHelp.cs:51 src\MpvNet\Utilities\InputHelp.cs:52
+#: src\MpvNet\Utilities\InputHelp.cs:53 src\MpvNet\Utilities\InputHelp.cs:54
+#: src\MpvNet\Utilities\InputHelp.cs:55 src\MpvNet\Utilities\InputHelp.cs:56
+#: src\MpvNet\Utilities\InputHelp.cs:57 src\MpvNet\Utilities\InputHelp.cs:58
+#: src\MpvNet\Utilities\InputHelp.cs:59 src\MpvNet\Utilities\InputHelp.cs:60
+#: src\MpvNet\Utilities\InputHelp.cs:61 src\MpvNet\Utilities\InputHelp.cs:62
+#: src\MpvNet\Utilities\InputHelp.cs:63
+msgid "Pan & Scan"
+msgstr "Панорамування й обрізання"
+
+msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
+msgstr "Передає сирий параметр бекенду libplacebo (для --vo=gpu-next). Може перевизначити ефекти інших звичайних параметрів."
+
+#: src\MpvNet\Utilities\InputHelp.cs:23 src\MpvNet\Utilities\InputHelp.cs:201
+#: src\MpvNet\Utilities\InputHelp.cs:202 src\MpvNet\Utilities\InputHelp.cs:203
+#: src\MpvNet\Utilities\InputHelp.cs:204
+msgid "Play/Pause"
+msgstr "Відтворення/пауза"
+
+#: src\MpvNet\Utilities\InputHelp.cs:23 src\MpvNet\Utilities\InputHelp.cs:24
+msgid "Playback"
+msgstr "Відтворення"
+
+#: src\MpvNet\App.cs:199
+msgid "Playback statistics"
+msgstr "Статистика відтворення"
+
+msgid "Playback will never automatically advance to the next file."
+msgstr "Ніколи не переходити до наступного файлу автоматично."
+
+#: src\MpvNet\App.cs:192 src\MpvNet\Utilities\InputHelp.cs:118
+#: src\MpvNet\Utilities\InputHelp.cs:125 src\MpvNet\Utilities\InputHelp.cs:232
+msgid "Playlist"
+msgstr "Список відтворення"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:612
+msgid "Preview mpv.conf"
+msgstr "Переглянути mpv.conf"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:613
+msgid "Preview mpvnet.conf"
+msgstr "Переглянути mpvnet.conf"
+
+#: src\MpvNet\Utilities\InputHelp.cs:34
+msgid "Previous Chapter"
+msgstr "Попередній розділ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:26 src\MpvNet\Utilities\InputHelp.cs:212
+#: src\MpvNet\Utilities\InputHelp.cs:214 src\MpvNet\Utilities\InputHelp.cs:216
+msgid "Previous File"
+msgstr "Попередній файл"
+
+#: src\MpvNet\Utilities\InputHelp.cs:165
+#: src\MpvNet.Windows\WinForms\MainForm.cs:288
+msgid "Profile"
+msgstr "Профіль"
+
+msgid "Program Behavior"
+msgstr "Поведінка програми"
+
+#: src\MpvNet\Utilities\InputHelp.cs:123
+msgid "Progress"
+msgstr "Перебіг"
+
+#: src\MpvNet\Utilities\InputHelp.cs:127 src\MpvNet\Utilities\InputHelp.cs:245
+msgid "Properties"
+msgstr "Властивості"
+
+#: src\MpvNet\Utilities\InputHelp.cs:145
+msgid "Protocols"
+msgstr "Протоколи"
+
+#: src\MpvNet\Utilities\InputHelp.cs:20
+#: src\MpvNet.Windows\WinForms\MainForm.cs:234
+msgid "Recent Files"
+msgstr "Нещодавні файли"
+
+#: src\MpvNet\Utilities\InputHelp.cs:175
+msgid "Register audio file associations"
+msgstr "Зареєструвати асоціації аудіофайлів"
+
+#: src\MpvNet\Utilities\InputHelp.cs:176
+msgid "Register image file associations"
+msgstr "Зареєструвати асоціації зображень"
+
+#: src\MpvNet\Utilities\InputHelp.cs:174
+msgid "Register video file associations"
+msgstr "Зареєструвати асоціації відеофайлів"
+
+#: src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Remove mpv.net from Path environment variable"
+msgstr "Видалити mpv.net зі змінної середовища Path"
+
+msgid "Render Options"
+msgstr "Параметри рендерингу"
+
+#: src\MpvNet\Utilities\InputHelp.cs:63 src\MpvNet\Utilities\InputHelp.cs:116
+msgid "Reset"
+msgstr "Скинути"
+
+msgid "Reset all everything to high quality presets (where available)."
+msgstr "Скинути все до наборів високої якості, де доступно."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:164
+msgid "Retry"
+msgstr "Повторити"
+
+#: src\MpvNet\Utilities\InputHelp.cs:81
+msgid "Rotate Video"
+msgstr "Обернути відео"
+
+msgid "Same as minimum-aspect-ratio but used for audio files."
+msgstr "Як minimum-aspect-ratio, але для аудіофайлів."
+
+msgid "Same as yes (for compatibility)."
+msgstr "Те саме, що yes (для сумісності)."
+
+msgid "Save and restore the audio device chosen in the context menu. Default: yes"
+msgstr "Зберігати й відновлювати аудіопристрій із контекстного меню. Типово: yes"
+
+msgid "Save the window position on exit. (mpv.net option)"
+msgstr "Зберігати позицію вікна при виході. (Параметр mpv.net)"
+
+msgid "Save volume and mute on exit and restore it on start. (mpv.net option)"
+msgstr "Зберігати гучність і вимкнення звуку при виході та відновлювати при запуску. (Параметр mpv.net)"
+
+msgid "Scaling"
+msgstr "Масштабування"
+
+msgid "Screenshot"
+msgstr "Знімок екрана"
+
+#: src\MpvNet\App.cs:188 src\MpvNet\Utilities\InputHelp.cs:132
+msgid "Secondary Subtitle"
+msgstr "Другі субтитри"
+
+#: src\MpvNet\Utilities\InputHelp.cs:234
+msgid "Secondary Subtitles"
+msgstr "Другі субтитри"
+
+msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
+msgstr "Див. sub-color. Колір тла субтитрів; sub-shadow-offset змінює розмір відносно тексту."
+
+msgid "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
+msgstr "Див. sub-color. Колір обводки субтитрів; ігнорується, якщо sub-back-color не повністю прозорий."
+
+#: src\MpvNet\Utilities\InputHelp.cs:222 src\MpvNet\Utilities\InputHelp.cs:224
+#: src\MpvNet\Utilities\InputHelp.cs:230
+msgid "Seek Backward"
+msgstr "Пошук назад"
+
+#: src\MpvNet\Utilities\InputHelp.cs:221 src\MpvNet\Utilities\InputHelp.cs:223
+#: src\MpvNet\Utilities\InputHelp.cs:229
+msgid "Seek Forward"
+msgstr "Пошук уперед"
+
+#: src\MpvNet\Utilities\InputHelp.cs:228
+msgid "Seek to next subtitle"
+msgstr "До наступного субтитру"
+
+#: src\MpvNet\Utilities\InputHelp.cs:227
+msgid "Seek to previous subtitle"
+msgstr "До попереднього субтитру"
+
+msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
+msgstr "Визначає, коли шукати точну позицію, не обмежену ключовими кадрами. Потребує декодування від попереднього ключового кадру до цілі; час залежить від швидкодії. Для деяких форматів вимкнено. Типову політику можна перевизначити в прив’язках і командах введення."
+
+msgid "Set dither target depth to N. Note that the depth of the connected video display device cannot be detected. Often, LCD panels will do dithering on their own, which conflicts with this option and leads to ugly output."
+msgstr "Задати глибину дизерингу N. Глибина дисплея не визначається. LCD часто мають власний дизеринг, що може конфліктувати й погіршувати зображення."
+
+msgid "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "Тривалість повідомлень OSD у мс. Типово: 1000"
+
+msgid "Set the image file type used for saving screenshots."
+msgstr "Формат зображення для знімків екрана."
+
+msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
+msgstr "Початкова гучність: 0 — тиша, 100 — без ослаблення чи підсилення. Від’ємні значення приймаються для сумісності як 0. Від mpv 0.18.1 завжди керує внутрішнім мікшером (softvol). Типово: 100"
+
+msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
+msgstr "Задати заголовок відеовікна й, за можливості, аудіопотоку. Властивості розгортаються; деякі можуть значно навантажувати CPU."
+
+msgid "Set this to no in order to hide the window title bar."
+msgstr "Задайте no, щоб приховати заголовок вікна."
+
+#: src\MpvNet\Utilities\InputHelp.cs:182
+msgid "Set/clear A-B loop points"
+msgstr "Задати/скинути точки повтору A-B"
+
+msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
+msgstr "Фільтр зменшення; основні варіанти приблизно від швидких до повільних."
+
+msgid "Sets the filter used for frame mixing (temporal interpolation). Roughly ordered from fastest to slowest."
+msgstr "Фільтр змішування кадрів (часова інтерполяція), приблизно від швидких до повільних."
+
+msgid "Sets the filter used for upscaling."
+msgstr "Задати фільтр збільшення."
+
+msgid "Setting to remember the window size. (mpv.net option)"
+msgstr "Запам’ятовування розміру вікна. (Параметр mpv.net)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:174 src\MpvNet\Utilities\InputHelp.cs:175
+#: src\MpvNet\Utilities\InputHelp.cs:176 src\MpvNet\Utilities\InputHelp.cs:177
+#: src\MpvNet\Utilities\InputHelp.cs:178 src\MpvNet\Utilities\InputHelp.cs:179
+#: src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Setup"
+msgstr "Встановлення"
+
+msgid "Sharpened version of ewa_lanczos (slow)."
+msgstr "Підвищена різкість ewa_lanczos (повільно)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:167
+msgid "Show Config Editor"
+msgstr "Показати редактор налаштувань"
+
+#: src\MpvNet\Utilities\InputHelp.cs:168
+msgid "Show Input Editor"
+msgstr "Показати редактор введення"
+
+#: src\MpvNet\Utilities\InputHelp.cs:200
+msgid "Show Menu"
+msgstr "Показати меню"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:310
+msgid "Show Profiles"
+msgstr "Показати профілі"
+
+msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
+msgstr "Показувати OSD на початку відтворення. Властивості розгортаються: osd-playing-msg='file: ${filename}' показує file:, пробіл і назву поточного файлу. Докладніше:"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:614
+msgid "Show mpv manual"
+msgstr "Показати посібник mpv"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:615
+msgid "Show mpv.net manual"
+msgstr "Показати посібник mpv.net"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:611
+msgid "Show mpv.net options"
+msgstr "Показати параметри mpv.net"
+
+msgid "Show progress in taskbar."
+msgstr "Показувати перебіг на панелі завдань."
+
+msgid "Show window with decoration (titlebar, border)."
+msgstr "Показувати оформлення вікна (заголовок, рамку)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:151
+msgid "Shrink"
+msgstr "Зменшити"
+
+#: src\MpvNet\Utilities\InputHelp.cs:184
+msgid "Shuffle Playlist"
+msgstr "Перемішати список"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:1277
+msgid "Shutdown thread failed to complete within 10 seconds."
+msgstr "Потік завершення не закінчився за 10 секунд."
+
+msgid "Sigmoidization"
+msgstr "Сигмоїдальне перетворення"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:339
+msgid "Size"
+msgstr "Розмір"
+
+msgid "Snap the player window to screen edges."
+msgstr "Прив’язувати вікно до країв екрана."
+
+msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
+msgstr "Пріоритети мов аудіо. Контейнери мають різні коди: DVD — дволітерні ISO 639-1, Matroska, MPEG-TS і NUT — трилітерні ISO 639-2, OGM — довільний ідентифікатор. Див. також aid."
+
+msgid "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
+msgstr "Пріоритети мов субтитрів: DVD використовує дволітерні ISO 639-1, Matroska — трилітерні ISO 639-2, OGM — довільні ідентифікатори. Див. також sid."
+
+msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
+msgstr "Шрифт субтитрів без заданого шрифту. Типово sans-serif."
+
+msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
+msgstr "Розмір шрифту OSD. Див. sub-font-size. Типово: 55"
+
+msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
+msgstr "Колір текстових субтитрів без стилів.\\n\\nОпис і приклади в посібнику:"
+
+msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
+msgstr "Шаблон назви знімка без розширення; може містити специфікатори, що підставляються під час знімка. Типово mpv-shot%n, наприклад mpv-shot0012.png.\\n\\nПовний опис:"
+
+msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
+msgstr "API апаратного декодування відео за можливості. Підтримка залежить від кодека; інакше використовується програмне декодування. Типово вимкнено заради надійності, але сучасне обладнання може зменшити навантаження CPU й енергоспоживання.\\n\\nДокладніше:"
+
+msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
+msgstr "Розмір субтитрів у масштабованих пікселях при висоті вікна 720. Реальний розмір змінюється разом із висотою вікна. Типово: 55"
+
+#: src\MpvNet\Utilities\InputHelp.cs:110 src\MpvNet\Utilities\InputHelp.cs:111
+#: src\MpvNet\Utilities\InputHelp.cs:112 src\MpvNet\Utilities\InputHelp.cs:113
+#: src\MpvNet\Utilities\InputHelp.cs:114 src\MpvNet\Utilities\InputHelp.cs:115
+#: src\MpvNet\Utilities\InputHelp.cs:116
+msgid "Speed"
+msgstr "Швидкість"
+
+msgid "Start the player in fullscreen mode."
+msgstr "Запускати на весь екран."
+
+msgid "Start with a maximized window."
+msgstr "Запускати розгорнуте вікно."
+
+#: src\MpvNet\Utilities\InputHelp.cs:24 src\MpvNet\Utilities\InputHelp.cs:205
+msgid "Stop"
+msgstr "Зупинити"
+
+msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
+msgstr "Каталог знімків; поєднується з назвою від screenshot-template. Якщо назва вже абсолютна, каталог ігнорується."
+
+#: src\MpvNet\Utilities\InputHelp.cs:89 src\MpvNet\Utilities\InputHelp.cs:90
+#: src\MpvNet\Utilities\InputHelp.cs:91 src\MpvNet\Utilities\InputHelp.cs:92
+#: src\MpvNet\Utilities\InputHelp.cs:93 src\MpvNet\Utilities\InputHelp.cs:94
+#: src\MpvNet\Utilities\InputHelp.cs:95 src\MpvNet\Utilities\InputHelp.cs:96
+#: src\MpvNet\Utilities\InputHelp.cs:97 src\MpvNet\Utilities\InputHelp.cs:98
+#: src\MpvNet\Utilities\InputHelp.cs:99 src\MpvNet\Utilities\InputHelp.cs:100
+#: src\MpvNet\Utilities\InputHelp.cs:101
+msgid "Subtitle"
+msgstr "Субтитри"
+
+#: src\MpvNet\App.cs:189 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:240
+msgid "Subtitle Lines"
+msgstr "Рядки субтитрів"
+
+#: src\MpvNet\App.cs:187 src\MpvNet\Utilities\InputHelp.cs:131
+msgid "Subtitle Tracks"
+msgstr "Доріжки субтитрів"
+
+#: src\MpvNet\Utilities\InputHelp.cs:233
+msgid "Subtitles"
+msgstr "Субтитри"
+
+#: src\MpvNet\App.cs:205
+msgid "Support"
+msgstr "Підтримка"
+
+msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
+msgstr "Позначати знімки відповідним колірним простором; не всі формати підтримуються."
+
+#: src\MpvNet\Utilities\InputHelp.cs:77
+msgid "Take Screenshot"
+msgstr "Зробити знімок екрана"
+
+#: src\MpvNet\Utilities\InputHelp.cs:78
+msgid "Take Screenshot without subtitles"
+msgstr "Знімок без субтитрів"
+
+msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
+msgstr "Фільтр GPU для збільшення відео. Є й інші, менш корисні; повний перелік через help, наприклад mpv --scale=help."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:244
+msgid "The clipboard does not contain a valid URL or file."
+msgstr "Буфер не містить дійсного URL або файлу."
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:142
+msgid "The input editor cannot save duplicate shortcuts with different commands:"
+msgstr "Редактор не може зберегти однакові скорочення з різними командами:"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:42
+msgid "The live stream has ended."
+msgstr "Пряму трансляцію завершено."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:44
+msgid "The online media URL is invalid."
+msgstr "Недійсний URL онлайн-медіа."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:45
+msgid "The online media could not be loaded."
+msgstr "Не вдалося завантажити онлайн-медіа."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:41
+msgid "The online playlist could not be loaded."
+msgstr "Не вдалося завантажити онлайн-список відтворення."
+
+msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "Параметри, змінені після запуску mpv, що зберігаються у файлах \"watch later\" і відновлюються наступного разу. Це список рядків. Докладніше:"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
+msgid "This content is no longer available."
+msgstr "Цей вміст більше недоступний."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:39
+msgid "This content is not available in your region."
+msgstr "Цей вміст недоступний у вашому регіоні."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:38
+msgid "This content requires authentication with the source service."
+msgstr "Цей вміст потребує автентифікації в сервісі джерела."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:442
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:447
+msgid "This feature was removed, but there are user scripts:"
+msgstr "Цю функцію видалено, але є користувацькі скрипти:"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:451
+msgid "This feature was removed."
+msgstr "Цю функцію видалено."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:43
+msgid "This online media format is not supported."
+msgstr "Цей формат онлайн-медіа не підтримується."
+
+#: src\MpvNet\App.cs:102 src\MpvNet\App.cs:110
+msgid "Tip: installing Codec Guide can improve codec support and playback."
+msgstr "Порада: встановлення Codec Guide може покращити підтримку кодеків і відтворення."
+
+#: src\MpvNet\Utilities\InputHelp.cs:48
+#: src\MpvNet.Windows\WinForms\MainForm.cs:255
+msgid "Title"
+msgstr "Заголовок"
+
+#: src\MpvNet\Utilities\InputHelp.cs:162
+msgid "Toggle Border"
+msgstr "Перемкнути рамку"
+
+#: src\MpvNet\Utilities\InputHelp.cs:79
+msgid "Toggle Deinterlace"
+msgstr "Перемкнути деінтерлейсинг"
+
+#: src\MpvNet\Utilities\InputHelp.cs:185
+msgid "Toggle Hardware Decoding"
+msgstr "Перемкнути апаратне декодування"
+
+#: src\MpvNet\Utilities\InputHelp.cs:120
+msgid "Toggle OSC Visibility"
+msgstr "Перемкнути видимість OSC"
+
+#: src\MpvNet\Utilities\InputHelp.cs:163
+msgid "Toggle On Top"
+msgstr "Перемкнути поверх інших"
+
+#: src\MpvNet\Utilities\InputHelp.cs:119
+msgid "Toggle Statistics"
+msgstr "Перемкнути статистику"
+
+#: src\MpvNet\Utilities\InputHelp.cs:90
+msgid "Toggle Visibility"
+msgstr "Перемкнути видимість"
+
+#: src\MpvNet\Utilities\InputHelp.cs:183
+msgid "Toggle infinite file looping"
+msgstr "Перемкнути нескінченний повтор файлу"
+
+#: src\MpvNet\Utilities\InputHelp.cs:101
+msgid "Toggle overriding SSA/ASS styles with normal styles"
+msgstr "Перемкнути заміну стилів SSA/ASS звичайними"
+
+msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
+msgstr "Тональна функція адаптації різних діапазонів яскравості, включно з точкою чорного."
+
+#: src\MpvNet\Utilities\InputHelp.cs:182 src\MpvNet\Utilities\InputHelp.cs:183
+#: src\MpvNet\Utilities\InputHelp.cs:184 src\MpvNet\Utilities\InputHelp.cs:185
+#: src\MpvNet\Utilities\InputHelp.cs:186
+msgid "Tools"
+msgstr "Інструменти"
+
+#: src\MpvNet\Utilities\InputHelp.cs:103
+#: src\MpvNet.Windows\WinForms\MainForm.cs:180
+msgid "Track"
+msgstr "Доріжка"
+
+#: src\MpvNet\Utilities\InputHelp.cs:129 src\MpvNet\Utilities\InputHelp.cs:237
+msgid "Tracks"
+msgstr "Доріжки"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:340
+msgid "Type"
+msgstr "Тип"
+
+#: src\MpvNet\Utilities\InputHelp.cs:225
+msgid "Undo previous (or marked) seek"
+msgstr "Скасувати попередній (або позначений) перехід"
+
+#: src\MpvNet\Utilities\InputHelp.cs:177
+msgid "Unregister file associations"
+msgstr "Скасувати асоціації файлів"
+
+msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
+msgstr "Використовувати бібліотеку MediaInfo замість mpv для відомостей про медіа. (Параметр mpv.net)"
+
+msgid "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "Будь-який доступний API. Типовий GPU API може змінитися; якщо потрібен конкретний, задайте його явно."
+
+msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
+msgstr "Якісніша, але повільніша трикубічна інтерполяція 3DLUT. Може значно покращити точність малих LUT; на типовому розмірі ефект невеликий."
+
+msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
+msgstr "Точний пошук лише абсолютної позиції, як розділ, а не відносних переходів клавішами-стрілками."
+
+msgid "Use precise seeks whenever possible."
+msgstr "За можливості шукати точну позицію."
+
+msgid "Use the same filter as specified for upscaler"
+msgstr "Той самий фільтр, що й upscaler"
+
+msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "Синтаксис контекстного меню в input.conf.\\nТипово mpv.net використовує '#menu:', а uosc — '#!'."
+
+msgid "User interface display language.\\nmpv.net must be restarted after a change."
+msgstr "Мова інтерфейсу.\\nПісля зміни перезапустіть mpv.net."
+
+msgid "VK_KHR_win32_surface"
+msgstr "VK_KHR_win32_surface"
+
+msgid "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
+msgstr "Дуже різкий ewa_lanczos із придушенням ореолів (дуже повільно)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:65 src\MpvNet\Utilities\InputHelp.cs:66
+#: src\MpvNet\Utilities\InputHelp.cs:67 src\MpvNet\Utilities\InputHelp.cs:68
+#: src\MpvNet\Utilities\InputHelp.cs:69 src\MpvNet\Utilities\InputHelp.cs:70
+#: src\MpvNet\Utilities\InputHelp.cs:71 src\MpvNet\Utilities\InputHelp.cs:72
+#: src\MpvNet\Utilities\InputHelp.cs:73 src\MpvNet\Utilities\InputHelp.cs:74
+#: src\MpvNet\Utilities\InputHelp.cs:75 src\MpvNet\Utilities\InputHelp.cs:76
+#: src\MpvNet\Utilities\InputHelp.cs:77 src\MpvNet\Utilities\InputHelp.cs:78
+#: src\MpvNet\Utilities\InputHelp.cs:79 src\MpvNet\Utilities\InputHelp.cs:80
+#: src\MpvNet\Utilities\InputHelp.cs:81
+msgid "Video"
+msgstr "Відео"
+
+#: src\MpvNet\App.cs:191 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:236
+msgid "Video Tracks"
+msgstr "Відеодоріжки"
+
+msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+msgstr "Розширення відео для --autocreate-playlist або --directory-filter-types; також для асоціацій mpv.net та auto-load-folder. Типово: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+
+msgid "Video output driver that uses the Direct3D interface."
+msgstr "Драйвер виведення відео через Direct3D."
+
+msgid "Video output drivers to be used.\\n\\nFor more information visit:"
+msgstr "Драйвери виведення відео.\\n\\nДокладніше:"
+
+#: src\MpvNet\Utilities\InputHelp.cs:118 src\MpvNet\Utilities\InputHelp.cs:119
+#: src\MpvNet\Utilities\InputHelp.cs:120 src\MpvNet\Utilities\InputHelp.cs:121
+#: src\MpvNet\Utilities\InputHelp.cs:122 src\MpvNet\Utilities\InputHelp.cs:123
+#: src\MpvNet\Utilities\InputHelp.cs:124 src\MpvNet\Utilities\InputHelp.cs:125
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:127
+#: src\MpvNet\Utilities\InputHelp.cs:128 src\MpvNet\Utilities\InputHelp.cs:129
+#: src\MpvNet\Utilities\InputHelp.cs:130 src\MpvNet\Utilities\InputHelp.cs:131
+#: src\MpvNet\Utilities\InputHelp.cs:132 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:134 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:136 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:138 src\MpvNet\Utilities\InputHelp.cs:139
+#: src\MpvNet\Utilities\InputHelp.cs:140 src\MpvNet\Utilities\InputHelp.cs:141
+#: src\MpvNet\Utilities\InputHelp.cs:142 src\MpvNet\Utilities\InputHelp.cs:143
+#: src\MpvNet\Utilities\InputHelp.cs:144 src\MpvNet\Utilities\InputHelp.cs:145
+#: src\MpvNet\Utilities\InputHelp.cs:146 src\MpvNet\Utilities\InputHelp.cs:147
+msgid "View"
+msgstr "Перегляд"
+
+#: src\MpvNet\Utilities\InputHelp.cs:105 src\MpvNet\Utilities\InputHelp.cs:106
+#: src\MpvNet\Utilities\InputHelp.cs:107 src\MpvNet\Utilities\InputHelp.cs:108
+msgid "Volume"
+msgstr "Гучність"
+
+#: src\MpvNet\Utilities\InputHelp.cs:209 src\MpvNet\Utilities\InputHelp.cs:211
+msgid "Volume Down"
+msgstr "Тихіше"
+
+#: src\MpvNet\Utilities\InputHelp.cs:208 src\MpvNet\Utilities\InputHelp.cs:210
+msgid "Volume Up"
+msgstr "Гучніше"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:42
+msgid "Waiting for key/mouse input."
+msgstr "Очікування клавіші/миші."
+
+#: src\MpvNet\App.cs:197 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:242
+msgid "Watch History"
+msgstr "Історія переглядів"
+
+#: src\MpvNet\App.cs:198 src\MpvNet\Utilities\InputHelp.cs:138
+#: src\MpvNet\Utilities\InputHelp.cs:243
+msgid "Watch Later"
+msgstr "Переглянути пізніше"
+
+#: src\MpvNet\Utilities\InputHelp.cs:190
+msgid "Website mpv"
+msgstr "Сайт mpv"
+
+#: src\MpvNet\Utilities\InputHelp.cs:191
+msgid "Website mpv.net"
+msgstr "Сайт mpv.net"
+
+msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
+msgstr "При відкритті локального файлу вважати відкритим батьківський каталог і створювати список.\\n\\nno: лише один файл (типово для mpv).\\n\\nFilter: файли каталогу за --directory-filter-types (типово для mpv.net).\\n\\nsame: файли тієї самої категорії. За вхідним файлом обирається список *-exts, додаються лише відповідні розширення. Якщо файл не відповідає жодному списку, список відтворення не створюється."
+
+msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
+msgstr "При збільшенні використовувати сигмоїдальне перетворення, щоб не підкреслювати ореоли. Також вмикає linear-scaling."
+
+msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
+msgstr "Розширювати згортковий фільтр при зменшенні: вища якість, менша швидкодія.\\n\\nДля анаморфного відео трохи неоптимально (але краще, ніж без цього), бо враховує лише слабший коефіцієнт масштабування осей."
+
+msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+msgstr "Чи масштабувати OSD разом із вікном. Якщо вимкнено, osd-font-size та інші масштабовані параметри задаються реальними пікселями; зміна вікна не змінює шрифт OSD."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:337
+msgid "Width"
+msgstr "Ширина"
+
+msgid "Win32, with native Direct3D 11 rendering."
+msgstr "Win32 із власним рендерингом Direct3D 11."
+
+msgid "Win32/WGL"
+msgstr "Win32/WGL"
+
+#: src\MpvNet\Utilities\InputHelp.cs:149 src\MpvNet\Utilities\InputHelp.cs:150
+#: src\MpvNet\Utilities\InputHelp.cs:151 src\MpvNet\Utilities\InputHelp.cs:152
+#: src\MpvNet\Utilities\InputHelp.cs:153 src\MpvNet\Utilities\InputHelp.cs:154
+#: src\MpvNet\Utilities\InputHelp.cs:155 src\MpvNet\Utilities\InputHelp.cs:156
+#: src\MpvNet\Utilities\InputHelp.cs:157 src\MpvNet\Utilities\InputHelp.cs:158
+#: src\MpvNet\Utilities\InputHelp.cs:159 src\MpvNet\Utilities\InputHelp.cs:160
+#: src\MpvNet\Utilities\InputHelp.cs:161 src\MpvNet\Utilities\InputHelp.cs:162
+#: src\MpvNet\Utilities\InputHelp.cs:163
+msgid "Window"
+msgstr "Вікно"
+
+msgid "Window height is always remembered"
+msgstr "Завжди пам’ятати висоту вікна"
+
+msgid "Window height is remembered in the current session"
+msgstr "Пам’ятати висоту в поточному сеансі"
+
+msgid "Window size is always remembered"
+msgstr "Завжди пам’ятати розмір вікна"
+
+msgid "Window size is remembered in the current session"
+msgstr "Пам’ятати розмір у поточному сеансі"
+
+msgid "Window size is set to video resolution"
+msgstr "Розмір вікна за роздільністю відео"
+
+msgid "Window width is always remembered"
+msgstr "Завжди пам’ятати ширину вікна"
+
+msgid "Window width is remembered in the current session"
+msgstr "Пам’ятати ширину в поточному сеансі"
+
+msgid "Write JPEG files with the same chroma subsampling as the video. If disabled, the libjpeg default is used."
+msgstr "Записувати JPEG із субдискретизацією кольору як у відео. Якщо вимкнено — типове libjpeg."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:137
+msgid "Yes"
+msgstr "Так"
+
+#: src\MpvNet\App.cs:112
+msgid "Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support."
+msgstr "Ваша пожертва підтримує розвиток MPV.NET Media Player, поліпшення, виправлення й супровід проєкту."
+
+#: src\MpvNet\Utilities\InputHelp.cs:150 src\MpvNet\Utilities\InputHelp.cs:151
+#: src\MpvNet\Utilities\InputHelp.cs:152 src\MpvNet\Utilities\InputHelp.cs:153
+#: src\MpvNet\Utilities\InputHelp.cs:154 src\MpvNet\Utilities\InputHelp.cs:155
+#: src\MpvNet\Utilities\InputHelp.cs:156
+msgid "Zoom"
+msgstr "Масштаб"
+
+msgid "absolute"
+msgstr "absolute"
+
+msgid "alang"
+msgstr "alang"
+
+msgid "all"
+msgstr "all"
+
+msgid "allow-delayed-peak-detect"
+msgstr "allow-delayed-peak-detect"
+
+msgid "allow_delayed_peak"
+msgstr "allow_delayed_peak"
+
+msgid "always"
+msgstr "always"
+
+msgid "always use software decoding"
+msgstr "Завжди програмне декодування"
+
+msgid "angle"
+msgstr "angle"
+
+msgid "antiringing_strength"
+msgstr "antiringing_strength"
+
+msgid "any"
+msgstr "any"
+
+msgid "audio"
+msgstr "audio"
+
+msgid "audio-device"
+msgstr "audio-device"
+
+msgid "audio-exts"
+msgstr "audio-exts"
+
+msgid "audio-file-auto"
+msgstr "audio-file-auto"
+
+msgid "auto"
+msgstr "auto"
+
+msgid "auto-copy"
+msgstr "auto-copy"
+
+msgid "auto-load-folder"
+msgstr "auto-load-folder"
+
+msgid "auto-safe"
+msgstr "auto-safe"
+
+msgid "auto-select"
+msgstr "auto-select"
+
+msgid "autocreate-playlist"
+msgstr "autocreate-playlist"
+
+msgid "autofit"
+msgstr "autofit"
+
+msgid "autofit-audio"
+msgstr "autofit-audio"
+
+msgid "autofit-image"
+msgstr "autofit-image"
+
+msgid "autofit-larger"
+msgstr "autofit-larger"
+
+msgid "autofit-smaller"
+msgstr "autofit-smaller"
+
+#: src\MpvNet\Utilities\InputHelp.cs:196
+msgid "awesome-mpv"
+msgstr "awesome-mpv"
+
+msgid "background"
+msgstr "background"
+
+msgid "bicubic"
+msgstr "bicubic"
+
+msgid "bilinear"
+msgstr "bilinear"
+
+msgid "black_cutoff"
+msgstr "black_cutoff"
+
+msgid "border"
+msgstr "border"
+
+msgid "box"
+msgstr "box"
+
+msgid "brightness"
+msgstr "brightness"
+
+msgid "bt2390"
+msgstr "bt2390"
+
+msgid "bt2446a"
+msgstr "bt2446a"
+
+msgid "bulgarian"
+msgstr "Болгарська"
+
+msgid "cache"
+msgstr "cache"
+
+msgid "catmull_rom"
+msgstr "catmull_rom"
+
+msgid "chinese-china"
+msgstr "Китайська спрощена"
+
+msgid "cie_y"
+msgstr "cie_y"
+
+msgid "clip"
+msgstr "clip"
+
+msgid "color_adjustment"
+msgstr "color_adjustment"
+
+msgid "color_adjustment_preset"
+msgstr "color_adjustment_preset"
+
+msgid "color_map"
+msgstr "color_map"
+
+msgid "color_map_preset"
+msgstr "color_map_preset"
+
+msgid "colorimetric_gamma"
+msgstr "colorimetric_gamma"
+
+msgid "contrast"
+msgstr "contrast"
+
+msgid "contrast_recovery"
+msgstr "contrast_recovery"
+
+msgid "contrast_smoothness"
+msgstr "contrast_smoothness"
+
+msgid "copies video back to system RAM"
+msgstr "Копіює відео назад до системної RAM"
+
+msgid "correct-downscaling"
+msgstr "correct-downscaling"
+
+msgid "cscale"
+msgstr "cscale"
+
+msgid "cubic"
+msgstr "cubic"
+
+msgid "cuda"
+msgstr "cuda"
+
+msgid "cuda-copy"
+msgstr "cuda-copy"
+
+msgid "d3d11"
+msgstr "d3d11"
+
+msgid "d3d11va"
+msgstr "d3d11va"
+
+msgid "d3d11va-copy"
+msgstr "d3d11va-copy"
+
+msgid "d3d11va-zero-copy"
+msgstr "d3d11va-zero-copy"
+
+msgid "dark-mode"
+msgstr "dark-mode"
+
+msgid "dark-theme"
+msgstr "dark-theme"
+
+msgid "darken"
+msgstr "darken"
+
+msgid "deband"
+msgstr "deband"
+
+msgid "deband_grain"
+msgstr "deband_grain"
+
+msgid "deband_iterations"
+msgstr "deband_iterations"
+
+msgid "deband_preset"
+msgstr "deband_preset"
+
+msgid "deband_radius"
+msgstr "deband_radius"
+
+msgid "deband_threshold"
+msgstr "deband_threshold"
+
+msgid "debug-mode"
+msgstr "debug-mode"
+
+msgid "default"
+msgstr "default"
+
+msgid "demuxer-max-bytes"
+msgstr "demuxer-max-bytes"
+
+msgid "desaturate"
+msgstr "desaturate"
+
+msgid "desync"
+msgstr "desync"
+
+msgid "direct3d"
+msgstr "direct3d"
+
+msgid "display-adrop"
+msgstr "display-adrop"
+
+msgid "display-desync"
+msgstr "display-desync"
+
+msgid "display-resample"
+msgstr "display-resample"
+
+msgid "display-resample-desync"
+msgstr "display-resample-desync"
+
+msgid "display-resample-vdrop"
+msgstr "display-resample-vdrop"
+
+msgid "display-vdrop"
+msgstr "display-vdrop"
+
+msgid "dither-depth"
+msgstr "dither-depth"
+
+msgid "downscaler"
+msgstr "downscaler"
+
+msgid "dscale"
+msgstr "dscale"
+
+msgid "dxinterop"
+msgstr "dxinterop"
+
+msgid "dxva2"
+msgstr "dxva2"
+
+msgid "dxva2-copy"
+msgstr "dxva2-copy"
+
+msgid "enable any whitelisted hw decoder"
+msgstr "Увімкнути апаратний декодер із дозволеного списку"
+
+msgid "enable best hw decoder"
+msgstr "Увімкнути найкращий апаратний декодер"
+
+msgid "enable best hw decoder with copy-back"
+msgstr "Найкращий апаратний декодер зі зворотним копіюванням"
+
+msgid "english"
+msgstr "Англійська"
+
+msgid "ewa_lanczos"
+msgstr "ewa_lanczos"
+
+msgid "ewa_lanczos4sharpest"
+msgstr "ewa_lanczos4sharpest"
+
+msgid "ewa_lanczossharp"
+msgstr "ewa_lanczossharp"
+
+msgid "exact"
+msgstr "exact"
+
+msgid "exactly the same as auto"
+msgstr "Цілком як auto"
+
+msgid "exposure"
+msgstr "exposure"
+
+msgid "fast"
+msgstr "fast"
+
+msgid "filter"
+msgstr "filter"
+
+msgid "force_tone_mapping_lut"
+msgstr "force_tone_mapping_lut"
+
+msgid "frame_mixer"
+msgstr "frame_mixer"
+
+msgid "french"
+msgstr "Французька"
+
+msgid "fullscreen"
+msgstr "fullscreen"
+
+msgid "fuzzy"
+msgstr "fuzzy"
+
+msgid "gamma"
+msgstr "gamma"
+
+msgid "gamut_expansion"
+msgstr "gamut_expansion"
+
+msgid "gamut_mapping"
+msgstr "gamut_mapping"
+
+msgid "gaussian"
+msgstr "gaussian"
+
+msgid "geometry"
+msgstr "geometry"
+
+msgid "german"
+msgstr "Німецька"
+
+msgid "gpu"
+msgstr "gpu"
+
+msgid "gpu-api"
+msgstr "gpu-api"
+
+msgid "gpu-context"
+msgstr "gpu-context"
+
+msgid "gpu-next"
+msgstr "gpu-next"
+
+msgid "hable"
+msgstr "hable"
+
+msgid "hdr-compute-peak"
+msgstr "hdr-compute-peak"
+
+msgid "hdr10"
+msgstr "hdr10"
+
+msgid "hdr10plus"
+msgstr "hdr10plus"
+
+msgid "height-always"
+msgstr "height-always"
+
+msgid "height-session"
+msgstr "height-session"
+
+msgid "hermite"
+msgstr "hermite"
+
+msgid "high_quality"
+msgstr "high_quality"
+
+msgid "highlight"
+msgstr "highlight"
+
+msgid "hr-seek"
+msgstr "hr-seek"
+
+msgid "hue"
+msgstr "hue"
+
+msgid "hwdec"
+msgstr "hwdec"
+
+msgid "idle"
+msgstr "idle"
+
+msgid "image-exts"
+msgstr "image-exts"
+
+msgid "info"
+msgstr "info"
+
+msgid "input-ar-delay"
+msgstr "input-ar-delay"
+
+msgid "input-ar-rate"
+msgstr "input-ar-rate"
+
+msgid "input-ipc-server"
+msgstr "input-ipc-server"
+
+msgid "inverse_tone_mapping"
+msgstr "inverse_tone_mapping"
+
+msgid "italian"
+msgstr "Італійська"
+
+msgid "japanese"
+msgstr "Японська"
+
+msgid "jpg"
+msgstr "jpg"
+
+msgid "keep-open"
+msgstr "keep-open"
+
+msgid "keep-open-pause"
+msgstr "keep-open-pause"
+
+msgid "keepaspect-window"
+msgstr "keepaspect-window"
+
+msgid "keepaspect-window will lock the window size to the video aspect. Default: yes"
+msgstr "keepaspect-window фіксує пропорції вікна за відео. Типово: yes"
+
+msgid "knee_adaptation"
+msgstr "knee_adaptation"
+
+msgid "knee_default"
+msgstr "knee_default"
+
+msgid "knee_maximum"
+msgstr "knee_maximum"
+
+msgid "knee_minimum"
+msgstr "knee_minimum"
+
+msgid "knee_offset"
+msgstr "knee_offset"
+
+msgid "korean"
+msgstr "Корейська"
+
+msgid "lanczos"
+msgstr "lanczos"
+
+msgid "language"
+msgstr "language"
+
+msgid "libplacebo"
+msgstr "libplacebo"
+
+msgid "libplacebo-opts"
+msgstr "libplacebo-opts"
+
+msgid "light-theme"
+msgstr "light-theme"
+
+msgid "linear"
+msgstr "linear"
+
+msgid "linear_knee"
+msgstr "linear_knee"
+
+msgid "linearlight"
+msgstr "linearlight"
+
+msgid "loop-file"
+msgstr "loop-file"
+
+msgid "loop-playlist"
+msgstr "loop-playlist"
+
+msgid "lut3d_size_C"
+msgstr "lut3d_size_C"
+
+msgid "lut3d_size_I"
+msgstr "lut3d_size_I"
+
+msgid "lut3d_size_h"
+msgstr "lut3d_size_h"
+
+msgid "lut3d_tricubic"
+msgstr "lut3d_tricubic"
+
+msgid "media-info"
+msgstr "media-info"
+
+msgid "menu-syntax"
+msgstr "menu-syntax"
+
+msgid "minimum-aspect-ratio"
+msgstr "minimum-aspect-ratio"
+
+msgid "minimum-aspect-ratio-audio"
+msgstr "minimum-aspect-ratio-audio"
+
+msgid "mitchell"
+msgstr "mitchell"
+
+msgid "mobius"
+msgstr "mobius"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:411
+msgid "mpv.net is already in the Path environment variable."
+msgstr "mpv.net уже є у змінній середовища Path."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:428
+msgid "mpv.net was not found in the Path environment variable."
+msgstr "mpv.net не знайдено у змінній середовища Path."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:419
+msgid "mpv.net was successfully added to the Path environment variable."
+msgstr "mpv.net успішно додано до змінної середовища Path."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:437
+msgid "mpv.net was successfully removed from the Path environment variable."
+msgstr "mpv.net успішно видалено зі змінної середовища Path."
+
+msgid "multi"
+msgstr "multi"
+
+msgid "nearest"
+msgstr "nearest"
+
+msgid "neutral"
+msgstr "neutral"
+
+msgid "never"
+msgstr "never"
+
+msgid "no"
+msgstr "no"
+
+msgid "none"
+msgstr "none"
+
+msgid "nvdec"
+msgstr "nvdec"
+
+msgid "nvdec-copy"
+msgstr "nvdec-copy"
+
+msgid "once"
+msgstr "once"
+
+msgid "opengl"
+msgstr "opengl"
+
+msgid "osd-duration"
+msgstr "osd-duration"
+
+msgid "osd-font-size"
+msgstr "osd-font-size"
+
+msgid "osd-playing-msg"
+msgstr "osd-playing-msg"
+
+msgid "osd-scale-by-window"
+msgstr "osd-scale-by-window"
+
+msgid "oversample"
+msgstr "oversample"
+
+msgid "peak_detect"
+msgstr "peak_detect"
+
+msgid "peak_detection_preset"
+msgstr "peak_detection_preset"
+
+msgid "peak_percentile"
+msgstr "peak_percentile"
+
+msgid "peak_smoothing_period"
+msgstr "peak_smoothing_period"
+
+msgid "perceptual"
+msgstr "perceptual"
+
+msgid "perceptual_deadzone"
+msgstr "perceptual_deadzone"
+
+msgid "perceptual_strength"
+msgstr "perceptual_strength"
+
+msgid "plane_downscaler"
+msgstr "plane_downscaler"
+
+msgid "plane_upscaler"
+msgstr "plane_upscaler"
+
+msgid "png"
+msgstr "png"
+
+msgid "polish"
+msgstr "Польська"
+
+msgid "portuguese-brazil"
+msgstr "Португальська (Бразилія)"
+
+msgid "portuguese-portugal"
+msgstr "Португальська (Португалія)"
+
+msgid "preset"
+msgstr "preset"
+
+msgid "process-instance"
+msgstr "process-instance"
+
+msgid "queue"
+msgstr "queue"
+
+msgid "recent-count"
+msgstr "recent-count"
+
+msgid "reinhard"
+msgstr "reinhard"
+
+msgid "reinhard_contrast"
+msgstr "reinhard_contrast"
+
+msgid "relative"
+msgstr "relative"
+
+msgid "remember-audio-device"
+msgstr "remember-audio-device"
+
+msgid "remember-volume"
+msgstr "remember-volume"
+
+msgid "remember-window-position"
+msgstr "remember-window-position"
+
+msgid "requires vo=gpu (Any platform CUDA is available)"
+msgstr "Потрібен vo=gpu (будь-яка платформа з CUDA)"
+
+msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
+msgstr "Потрібен vo=gpu з gpu-context=d3d11 або gpu-context=angle"
+
+msgid "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
+msgstr "Потрібен vo=gpu з gpu-context=d3d11, gpu-context=angle або gpu-context=dxinterop"
+
+msgid "reset-on-next-file"
+msgstr "reset-on-next-file"
+
+msgid "russian"
+msgstr "Російська"
+
+msgid "same"
+msgstr "same"
+
+msgid "saturation"
+msgstr "saturation"
+
+msgid "save-position-on-quit"
+msgstr "save-position-on-quit"
+
+msgid "scale"
+msgstr "scale"
+
+msgid "scene_threshold_high"
+msgstr "scene_threshold_high"
+
+msgid "scene_threshold_low"
+msgstr "scene_threshold_low"
+
+msgid "screen"
+msgstr "screen"
+
+msgid "screenshot-directory"
+msgstr "screenshot-directory"
+
+msgid "screenshot-format"
+msgstr "screenshot-format"
+
+msgid "screenshot-high-bit-depth"
+msgstr "screenshot-high-bit-depth"
+
+msgid "screenshot-jpeg-quality"
+msgstr "screenshot-jpeg-quality"
+
+msgid "screenshot-jpeg-source-chroma"
+msgstr "screenshot-jpeg-source-chroma"
+
+msgid "screenshot-png-compression"
+msgstr "screenshot-png-compression"
+
+msgid "screenshot-png-filter"
+msgstr "screenshot-png-filter"
+
+msgid "screenshot-tag-colorspace"
+msgstr "screenshot-tag-colorspace"
+
+msgid "screenshot-template"
+msgstr "screenshot-template"
+
+msgid "session"
+msgstr "session"
+
+msgid "show_clipping"
+msgstr "show_clipping"
+
+msgid "sigmoid"
+msgstr "sigmoid"
+
+msgid "sigmoid-upscaling"
+msgstr "sigmoid-upscaling"
+
+msgid "sigmoid_center"
+msgstr "sigmoid_center"
+
+msgid "sigmoid_preset"
+msgstr "sigmoid_preset"
+
+msgid "sigmoid_slope"
+msgstr "sigmoid_slope"
+
+msgid "single"
+msgstr "single"
+
+msgid "slang"
+msgstr "slang"
+
+msgid "slope_offset"
+msgstr "slope_offset"
+
+msgid "slope_tuning"
+msgstr "slope_tuning"
+
+msgid "snap-window"
+msgstr "snap-window"
+
+msgid "softclip"
+msgstr "softclip"
+
+msgid "softclip_desat"
+msgstr "softclip_desat"
+
+msgid "softclip_knee"
+msgstr "softclip_knee"
+
+msgid "spanish"
+msgstr "Іспанська"
+
+msgid "spline"
+msgstr "spline"
+
+msgid "spline36"
+msgstr "spline36"
+
+msgid "spline_contrast"
+msgstr "spline_contrast"
+
+msgid "st2094-10"
+msgstr "st2094-10"
+
+msgid "st2094-40"
+msgstr "st2094-40"
+
+msgid "start-size"
+msgstr "start-size"
+
+msgid "sub-auto"
+msgstr "sub-auto"
+
+msgid "sub-back-color"
+msgstr "sub-back-color"
+
+msgid "sub-border-color"
+msgstr "sub-border-color"
+
+msgid "sub-color"
+msgstr "sub-color"
+
+msgid "sub-font"
+msgstr "sub-font"
+
+msgid "sub-font-size"
+msgstr "sub-font-size"
+
+msgid "system"
+msgstr "system"
+
+msgid "taskbar-progress"
+msgstr "taskbar-progress"
+
+msgid "temperature"
+msgstr "temperature"
+
+msgid "title"
+msgstr "title"
+
+msgid "title-bar"
+msgstr "title-bar"
+
+msgid "tone_lut_size"
+msgstr "tone_lut_size"
+
+msgid "tone_map_metadata"
+msgstr "tone_map_metadata"
+
+msgid "tone_mapping"
+msgstr "tone_mapping"
+
+msgid "track-auto-selection"
+msgstr "track-auto-selection"
+
+msgid "turkish"
+msgstr "Турецька"
+
+msgid "upscaler"
+msgstr "upscaler"
+
+msgid "video-exts"
+msgstr "video-exts"
+
+msgid "video-sync"
+msgstr "video-sync"
+
+msgid "visualize_hue"
+msgstr "visualize_hue"
+
+msgid "visualize_lut"
+msgstr "visualize_lut"
+
+msgid "visualize_lut_x0"
+msgstr "visualize_lut_x0"
+
+msgid "visualize_lut_x1"
+msgstr "visualize_lut_x1"
+
+msgid "visualize_lut_y0"
+msgstr "visualize_lut_y0"
+
+msgid "visualize_lut_y1"
+msgstr "visualize_lut_y1"
+
+msgid "visualize_theta"
+msgstr "visualize_theta"
+
+msgid "vo"
+msgstr "vo"
+
+msgid "volume"
+msgstr "volume"
+
+msgid "vulkan"
+msgstr "vulkan"
+
+msgid "watch-later-options"
+msgstr "watch-later-options"
+
+msgid "width-always"
+msgstr "width-always"
+
+msgid "width-session"
+msgstr "width-session"
+
+msgid "win"
+msgstr "win"
+
+msgid "window-maximized"
+msgstr "window-maximized"
+
+msgid "winvk"
+msgstr "winvk"
+
+msgid "yes"
+msgstr "yes"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:157
+#, csharp-format
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "{0} не існує. Створити?"
+
+#: src\MpvNet\Utilities\InputHelp.cs:161
+msgctxt "Move"
+msgid "Center"
+msgstr "По центру"
+
+#: src\MpvNet\Utilities\InputHelp.cs:160
+msgctxt "Move"
+msgid "Down"
+msgstr "Униз"
+
+#: src\MpvNet\Utilities\InputHelp.cs:157
+msgctxt "Move"
+msgid "Left"
+msgstr "Ліворуч"
+
+#: src\MpvNet\Utilities\InputHelp.cs:158
+msgctxt "Move"
+msgid "Right"
+msgstr "Праворуч"
+
+#: src\MpvNet\Utilities\InputHelp.cs:159
+msgctxt "Move"
+msgid "Up"
+msgstr "Угору"
+
+#: src\MpvNet\Utilities\InputHelp.cs:106
+msgctxt "Volume"
+msgid "Down"
+msgstr "Тихіше"
+
+#: src\MpvNet\Utilities\InputHelp.cs:105
+msgctxt "Volume"
+msgid "Up"
+msgstr "Гучніше"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "No playable media was found in this drive or folder."
+msgstr "На цьому диску або в теці немає медіа для відтворення."
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "The selected drive or folder could not be read."
+msgstr "Не вдалося прочитати вибраний диск або теку."
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "Сервіс джерела вимагає підтвердити, що ви не бот."
+
+msgid "The clipboard is temporarily unavailable."
+msgstr "Буфер обміну тимчасово недоступний."
+
+msgid "Untitled Track"
+msgstr "Доріжка без назви"
+
+msgid "Repository: "
+msgstr "Репозиторій: "
+
+msgid "chinese-taiwan"
+msgstr "繁體中文（台灣）"
+
+msgid "chinese-hongkong"
+msgstr "繁體中文（香港）"
+
+msgid "hindi"
+msgstr "हिन्दी"
+
+msgid "arabic"
+msgstr "العربية"
+
+msgid "ukrainian"
+msgstr "Українська"
+
+msgid "indonesian"
+msgstr "Bahasa Indonesia"
+
+msgid "Cache"
+msgstr "Кеш"
+
+msgid "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
+msgstr "Зберігати мережеві URL у нещодавніх файлах як відкритий текст у settings.xml. URL із вбудованими обліковими даними, чутливими параметрами запиту чи фрагментами завжди виключаються. Вмикайте лише за відсутності секретів у решті параметрів. (Параметр mpv.net)"
+
+msgid "save-network-urls-in-recent"
+msgstr "save-network-urls-in-recent"
+
+msgid "video"
+msgstr "video"

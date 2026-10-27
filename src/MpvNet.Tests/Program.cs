@@ -251,8 +251,12 @@ var languageNormalizationCases = new (string Input, string Expected)[]
     ("Russian", "ru"),
     ("tur", "tr"),
     ("Turkish", "tr"),
+    ("hin", "hi"),
+    ("ara", "ar"),
+    ("ukr", "uk"),
+    ("ind", "id"),
 };
-var interfaceFallbackAvailable = new[] { "bg", "de", "en", "es", "fr", "it", "ja", "ko", "pl", "pt-BR", "pt-PT", "ru", "tr", "zh-CN" };
+var interfaceFallbackAvailable = new[] { "bg", "de", "en", "es", "fr", "it", "ja", "ko", "pl", "pt-BR", "pt-PT", "ru", "tr", "zh-CN", "zh-TW", "zh-HK", "hi-IN", "ar-SA", "uk-UA", "id-ID" };
 var baseInterfaceLanguageCases = new (string Culture, string MpvNetName)[]
 {
     ("bg", "bulgarian"),
@@ -269,6 +273,12 @@ var baseInterfaceLanguageCases = new (string Culture, string MpvNetName)[]
     ("ru", "russian"),
     ("tr", "turkish"),
     ("zh-CN", "chinese-china"),
+    ("zh-TW", "chinese-taiwan"),
+    ("zh-HK", "chinese-hongkong"),
+    ("hi-IN", "hindi"),
+    ("ar-SA", "arabic"),
+    ("uk-UA", "ukrainian"),
+    ("id-ID", "indonesian"),
 };
 var mediaLanguageTracks = new[]
 {
@@ -690,7 +700,9 @@ var tests = new (string Name, bool Result)[]
     ("Interface fallback zh-CN keeps zh-CN", LanguageFallbackResolver.GetFallbacks("zh-CN", interfaceFallbackAvailable).SequenceEqual(["zh-CN", "en"])),
     ("Interface fallback zh-Hans maps to zh-CN", LanguageFallbackResolver.GetFallbacks("zh-Hans", interfaceFallbackAvailable).SequenceEqual(["zh-CN", "en"])),
     ("Interface fallback zh-SG maps to zh-CN", LanguageFallbackResolver.GetFallbacks("zh-SG", interfaceFallbackAvailable).SequenceEqual(["zh-CN", "en"])),
-    ("Interface fallback zh-TW falls back to default until zh-Hant exists", LanguageFallbackResolver.GetFallbacks("zh-TW", interfaceFallbackAvailable).SequenceEqual(["en"])),
+    ("Interface fallback zh-TW keeps Traditional Chinese Taiwan", LanguageFallbackResolver.GetFallbacks("zh-TW", interfaceFallbackAvailable).SequenceEqual(["zh-TW", "en"])),
+    ("Interface fallback zh-Hant maps to Taiwan", LanguageFallbackResolver.GetFallbacks("zh-Hant", interfaceFallbackAvailable).SequenceEqual(["zh-TW", "en"])),
+    ("Interface fallback zh-MO maps to Hong Kong", LanguageFallbackResolver.GetFallbacks("zh-MO", interfaceFallbackAvailable).SequenceEqual(["zh-HK", "en"])),
     ("Interface fallback de-DE falls back to de", LanguageFallbackResolver.GetFallbacks("de-DE", interfaceFallbackAvailable).SequenceEqual(["de", "en"])),
     ("Interface unknown language falls back to default", LanguageFallbackResolver.GetFallbacks("xx-ZZ", interfaceFallbackAvailable).SequenceEqual(["en"])),
     ("Manual interface language keeps the selected value", LocalizationService.ResolveMpvNetLanguage("portuguese-brazil", new("en-US")) == "portuguese-brazil"),

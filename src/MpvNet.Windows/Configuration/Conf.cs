@@ -32,7 +32,9 @@ public static class EditorConfigurationService
                     else
                         opt.Name = it.Value;
 
-                    opt.Text = EditorConfLocalization.TranslateOptionValue(opt.Name);
+                    opt.Text = section.GetValue("name") == "language"
+                        ? LanguageCatalog.FindInterfaceLanguage(opt.Name)?.NativeDisplayName ?? EditorConfLocalization.TranslateOptionValue(opt.Name)
+                        : EditorConfLocalization.TranslateOptionValue(opt.Name);
 
                     if (opt.Name == optionSetting.Default)
                         opt.Text += " " + _("(Default)");
@@ -50,7 +52,10 @@ public static class EditorConfigurationService
                 stringSetting.Default = section.HasName("default") ? section.GetValue("default") : "";
             }
 
-            baseSetting.Name = EditorConfLocalization.TranslateText(section.GetValue("name") ?? "");            baseSetting.DisplayName = EditorConfLocalization.TranslateText(baseSetting.Name ?? "");            baseSetting.File = section.GetValue("file");
+            // Configuration keys are identifiers; only their display text is localized.
+            baseSetting.Name = section.GetValue("name");
+            baseSetting.DisplayName = EditorConfLocalization.TranslateText(baseSetting.Name ?? "");
+            baseSetting.File = section.GetValue("file");
             baseSetting.Directory = EditorConfLocalization.TranslateDirectory(section.GetValue("directory") ?? "");
 
             if (section.HasName("help")) baseSetting.Help = EditorConfLocalization.TranslateText(section.GetValue("help") ?? "");

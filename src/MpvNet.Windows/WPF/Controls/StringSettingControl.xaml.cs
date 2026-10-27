@@ -56,6 +56,12 @@ public partial class StringSettingControl : UserControl, ISettingControl
 
     public Setting Setting => _stringSetting;
 
+    public void RefreshTranslation()
+    {
+        TitleTextBox.Text = _stringSetting.DisplayName ?? _stringSetting.Name;
+        HelpTextBox.Text = _stringSetting.Help;
+    }
+
     public string? Text
     {
         get => _stringSetting.Value;

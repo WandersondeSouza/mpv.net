@@ -380,6 +380,17 @@ O script:
     continuam opt-in pelo menu `Config > Setup > Register image file associations`;
 16. cria release no GitHub usando `gh release create`, exceto com `-SkipGitHubRelease`; quando publicar, use `-ReleaseNotes` ou `-ReleaseNotesFile` para colocar a descricao diretamente no corpo da release.
 
+O build recompila os catálogos da fonte atual. O contrato de conteúdo exige os
+19 `.mo` correspondentes a `lang/po`, incluindo Taiwan, Hong Kong, hindi,
+árabe, ucraniano e indonésio. Essa verificação vale para diretório de publish,
+portátil, instalador e arquivos Store aninhados. O payload WAP e o manifesto
+declaram os novos idiomas; inglês continua nativo e não tem arquivo `.mo`.
+Para verificar a rejeição de catálogos ausentes ou vazios sem criar uma release:
+
+```powershell
+& .\src\Tools\test-localization-package.ps1
+```
+
 As dependencias baixadas automaticamente usam estas fontes:
 
 - libmpv: `https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest`, asset normal `mpv-dev-x86_64-[data]-git-[hash].7z` ou asset v3 `mpv-dev-x86_64-v3-[data]-git-[hash].7z`;

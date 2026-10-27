@@ -7,6 +7,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     mc:Ignorable="d"
+    FlowDirection="{DynamicResource InterfaceFlowDirection}"
+    Language="{DynamicResource InterfaceXmlLanguage}"
+    FontFamily="Global User Interface"
     
     Title="{ngettext:Gettext Input Editor}"
     Height="500"
@@ -106,6 +109,7 @@
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            <Setter Property="FlowDirection" Value="LeftToRight" />
                             <Setter Property="BorderThickness" Value="0"/>
                             <Setter Property="Padding" Value="2" />
                             <EventSetter Event="PreviewKeyDown" Handler="DataGridCell_PreviewKeyDown"/>
@@ -141,7 +145,18 @@
                     x:Name="CommandColumn"
                     Binding="{Binding Command}"
                     MaxWidth="322"
-                    />
+                    >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FlowDirection" Value="LeftToRight" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="FlowDirection" Value="LeftToRight" />
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

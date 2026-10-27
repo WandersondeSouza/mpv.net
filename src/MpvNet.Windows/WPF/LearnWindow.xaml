@@ -6,6 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ngettext="clr-namespace:NGettext.Wpf;assembly=NGettext.Wpf"
     mc:Ignorable="d"
+    FlowDirection="{DynamicResource InterfaceFlowDirection}"
+    Language="{DynamicResource InterfaceXmlLanguage}"
+    FontFamily="Global User Interface"
     
     Title="{ngettext:Gettext Learn Input}"
     Height="200"
@@ -43,6 +46,7 @@
 
         <TextBlock
             x:Name="KeyTextBlock"
+            FlowDirection="LeftToRight"
             FontSize="30"
             Grid.Row="1"
             Grid.ColumnSpan="3"

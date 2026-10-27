@@ -1,0 +1,2722 @@
+msgid ""
+msgstr "Project-Id-Version: mpv.net\nReport-Msgid-Bugs-To: \nPO-Revision-Date: 2026-10-27 12:00+0000\nLast-Translator: MPV.NET contributors\nLanguage-Team: Indonesian (Indonesia)\nLanguage: id_ID\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\n"
+
+#: src\MpvNet.Windows\Configuration\Conf.cs:38
+msgid "(Default)"
+msgstr "(Bawaan)"
+
+msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr "(Eksperimental) Win32 memakai WGL untuk perenderan dan Direct3D 9Ex untuk penyajian. Mendukung Nvidia dan AMD; cip Intel baru dengan driver terbaru mungkin juga berfungsi."
+
+#: src\MpvNet\Utilities\InputHelp.cs:111
+msgid "+10%"
+msgstr "+10%"
+
+#: src\MpvNet\Utilities\InputHelp.cs:110
+msgid "-10%"
+msgstr "-10%"
+
+msgid "10"
+msgstr "10"
+
+#: src\MpvNet\Utilities\InputHelp.cs:154
+msgid "100 %"
+msgstr "100 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:155
+msgid "200 %"
+msgstr "200 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:156
+msgid "300 %"
+msgstr "300 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:153
+msgid "50 %"
+msgstr "50 %"
+
+msgid "8"
+msgstr "8"
+
+msgid "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
+msgstr "<-1.0..1.0> Menambahkan bias tetap pada sinyal luminans sumber. 0.0 = netral, 1.0 = putih penuh, -1.0 = hitam penuh. Bawaan 0.0."
+
+msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
+msgstr "<-1.143..5.286> Pergeseran suhu warna relatif terhadap 6500 K: 0.0 = 6500 K (tetap), -1.0 = 3000 K, 1.0 = 10000 K. Bawaan 0.0."
+
+msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
+msgstr "<0-100> Kualitas JPEG. Nilai lebih tinggi menghasilkan kualitas lebih baik. Bawaan 90."
+
+msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
+msgstr "<0-32> Menentukan layar untuk video mpv pada desktop yang membentang di beberapa monitor."
+
+msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
+msgstr "<0-5> Filter sebelum kompresi PNG: 0 = none, 1 = sub, 2 = up, 3 = average, 4 = Paeth, 5 = mixed. Memengaruhi rasio kompresi; mixed biasanya terbaik dan menjadi bawaan."
+
+msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
+msgstr "<0-9> Tingkat kompresi PNG. Nilai tinggi memperkuat kompresi serta memengaruhi ukuran dan waktu penulisan tangkapan layar. Terlalu tinggi dapat membebani CPU hingga mengganggu pemutaran. Bawaan 7."
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
+msgstr "<0..1024> Ukuran 3DLUT pemetaan gamut. Nilai 0 memilih bawaan 256."
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
+msgstr "<0..1024> Ukuran 3DLUT pemetaan gamut. Nilai 0 memilih bawaan 32."
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
+msgstr "<0..1024> Ukuran 3DLUT pemetaan gamut. Nilai 0 memilih bawaan 48."
+
+msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
+msgstr "<0..16> Jumlah langkah penghilangan pita per sampel. Tiap langkah mengurangi pita tetapi memerlukan komputasi. Manfaatnya cepat menurun sehingga >4 hampir tidak berguna. Bawaan 1."
+
+msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
+msgstr "<0..4096> Ukuran LUT pemetaan nada. 0 memilih bawaan 256."
+
+msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
+msgstr "<0.0..0.5> Batas minimum titik tekuk sebagai proporsi rentang luminans PQ, membatasi pilihan knee_adaptation. Bawaan 0.1."
+
+msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
+msgstr "<0.0..1.0> Zona perlindungan kromatisitas relatif untuk pemetaan perseptual. Bawaan 0.30."
+
+msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
+msgstr "<0.0..1.0> Kekuatan antiringing semua filter. 0.0 menonaktifkan, 1.0 kekuatan penuh. Bawaan 0.0."
+
+msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
+msgstr "<0.0..1.0> Titik tekuk bawaan tanpa metadata rata-rata adegan sumber. Biasanya luminans rata-rata relatif sumber diutamakan. Bawaan 0.4."
+
+msgid "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
+msgstr "<0.0..1.0> Kekuatan desaturasi softclip. Bawaan 0.35."
+
+msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
+msgstr "<0.0..1.0> Mengatur langsung titik tekuk fungsi lama pada cahaya linear (mobius, gamma). Bawaan 0.3."
+
+msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast coefficient at the display peak. Essentially, a value of 0.5 implies that the reference white will be about half as bright as when clipping. Defaults to 0.5."
+msgstr "<0.0..1.0> Koefisien kontras lokal reinhard pada puncak layar. 0.5 membuat putih acuan sekitar separuh kecerahan saat kliping. Bawaan 0.5."
+
+msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
+msgstr "<0.0..1.0> Titik tekuk metode kliping lunak (perceptual, softclip). Bawaan 0.70."
+
+msgid "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
+msgstr "<0.0..1.0> Kekuatan komponen pemetaan saturasi perseptual. Bawaan 0.80."
+
+msgid "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
+msgstr "<0.0..1.0> Pusat (bias) kurva sigmoid. Bawaan 0.75."
+
+msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
+msgstr "<0.0..10.0> Eksposur/penguatan linear gambar untuk metode linear dan linearlight. Bawaan 1.0."
+
+msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
+msgstr "<0.0..10.0> Gamma kurva I terhadap C untuk kliping kolorimetrik (relative, absolute, darken). Bawaan 1.80."
+
+msgid "<0.0..100.0> Black cutoff strength."
+msgstr "<0.0..100.0> Kekuatan pemotongan hitam."
+
+msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> Penguatan kontras, mengalikan luminans sumber dengan faktor tetap. 1.0 = netral, 0.0 = hitam penuh. Bawaan 1.0."
+
+msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> Penyesuaian gamma, menerangkan atau menggelapkan adegan dengan mempertahankan kontras keseluruhan. 1.0 = netral, 0.0 = hitam penuh. Bawaan 1.0."
+
+msgid "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
+msgstr "<0.0..100.0> Penguatan saturasi, mengalikan kromatisitas sumber dengan faktor tetap. 1.0 = netral, 0.0 = skala abu-abu. Bawaan 1.0."
+
+msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
+msgstr "<0.0..100.0> Persentil histogram kecerahan gambar masukan yang dianggap sebagai puncak adegan sebenarnya."
+
+msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps cover up remaining quantization artifacts. Higher numbers add more noise. Defaults to 4.0, which is very mild."
+msgstr "<0.0..1000.0> Menambahkan derau untuk menutupi artefak kuantisasi tersisa. Nilai tinggi menambah derau. Bawaan 4.0, sangat ringan."
+
+msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
+msgstr "<0.0..1000.0> Koefisien penghalusan nilai terdeteksi."
+
+msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
+msgstr "<0.0..1000.0> Ambang batas filter penghilangan pita. Nilai tinggi sangat memperkuat efek, tetapi berangsur mengurangi detail. Bawaan 3.0."
+
+msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
+msgstr "<0.0..1000.0> Radius awal filter penghilangan pita, bertambah linear tiap iterasi. Radius besar menemukan lebih banyak gradien, radius kecil menghaluskan lebih agresif. Bawaan 16.0."
+
+msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
+msgstr "<0.5..1.0> Batas maksimum titik tekuk sebagai proporsi rentang luminans PQ, membatasi pilihan knee_adaptation. Bawaan 0.8."
+
+msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
+msgstr "<0.5..2.0> Ofset titik tekuk (khusus bt2390). Bawaan spesifikasi 0.5 berbeda dari bawaan libplacebo 1.0."
+
+msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
+msgstr "<1.0..20.0> Kemiringan (kecuraman) kurva sigmoid. Bawaan 6.5."
+
+msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
+msgstr "<1.0..32.0> Ukuran kernel lolos rendah pemulihan kontras HDR. Perubahan sangat memengaruhi tampilan. Bawaan 3.5."
+
+msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
+msgstr "<N|inf|force|no> Ulangi N kali: 1 sekali (bawaan), 2 dua kali, inf selamanya, no sama dengan 1 dan mematikan pengulangan. Beberapa berkas pada baris perintah mengulang seluruh daftar putar. force seperti inf tetapi tidak melewati entri gagal; dapat membuang waktu CPU pada berkas yang hilang, namun berguna untuk radio web pada jaringan sangat buruk."
+
+msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
+msgstr "<N|inf|no> Ulangi satu berkas N kali. inf selamanya, no pemutaran normal.\\n\\nBerbeda dari loop-playlist, hanya berkas yang diulang. Jika daftar hanya berisi satu berkas, opsi ini melakukan pencarian posisi alih-alih memuat ulang. loop adalah alias opsi ini."
+
+msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
+msgstr "<angle> Pergeseran rona: memutar subvektor UV terhadap sumbu netral, dalam radian. Bawaan 0.0 (netral)."
+
+msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
+msgstr "<bytesize> Jumlah penyangga ke depan yang diizinkan bagi demuxer.\\nMendukung akhiran KiB dan MiB."
+
+msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
+msgstr "<float> Rasio aspek minimum jendela, berguna untuk jendela lebih lebar dan OSC lebih besar. (Opsi mpv.net)"
+
+msgid "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
+msgstr "<int> Jumlah berkas terbaru yang diingat. Bawaan: 15 (opsi mpv.net)"
+
+msgid "<int> Initial window height in percent for audio files. Default: 70"
+msgstr "<int> Tinggi awal jendela berkas audio dalam persen. Bawaan: 70"
+
+msgid "<int> Initial window height in percent for image files. Default: 80"
+msgstr "<int> Tinggi awal jendela berkas gambar dalam persen. Bawaan: 80"
+
+msgid "<int> Initial window height in percent. Default: 60"
+msgstr "<int> Tinggi awal jendela dalam persen. Bawaan: 60"
+
+msgid "<int> Maximum window height in percent. Default: 80"
+msgstr "<int> Tinggi maksimum jendela dalam persen. Bawaan: 80"
+
+msgid "<int> Minimum window height in percent. Default: 10"
+msgstr "<int> Tinggi minimum jendela dalam persen. Bawaan: 10"
+
+msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
+msgstr "<name> Perangkat audio: nama keluaran, misalnya alsa, lalu / dan nama perangkat keluaran tersebut. Bawaan auto mencoba semua keluaran menurut prioritas dengan perangkat bawaan.\\n\\nDaftar perangkat melalui menu konteks:\\n\\nTampilan > Lainnya > Perangkat Audio.\\n\\nUbah perangkat juga melalui menu konteks:\\n\\nAudio > Perangkat Audio"
+
+msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
+msgstr "<x:y> Posisi awal jendela dalam persen. Bawaan: 50:50 (tengah).\\n\\nMemerlukan Windows 11; Windows 10 sedikit meleset karena bingkai tak terlihat.\\n\\nx=0 merapat ke kiri.\\nx=100 ke kanan.\\n\\ny=0 ke atas.\\ny=100 ke bawah."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
+msgid "Abort"
+msgstr "Batalkan proses"
+
+#: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:10
+msgid "About"
+msgstr "Tentang"
+
+#: src\MpvNet\Utilities\InputHelp.cs:197
+msgid "About mpv.net"
+msgstr "Tentang mpv.net"
+
+#: src\MpvNet\Utilities\InputHelp.cs:142
+msgid "Active Bindings In Text Editor"
+msgstr "Pintasan Aktif di Editor Teks"
+
+#: src\MpvNet\Utilities\InputHelp.cs:143
+msgid "Active Bindings On-Screen"
+msgstr "Pintasan Aktif di Layar"
+
+#: src\MpvNet\Utilities\InputHelp.cs:14
+msgid "Add external audio files..."
+msgstr "Tambahkan berkas audio eksternal..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:15
+msgid "Add external subtitle files..."
+msgstr "Tambahkan berkas subtitel eksternal..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:17
+msgid "Add files to playlist..."
+msgstr "Tambahkan berkas ke daftar putar..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:18
+msgid "Add files/URLs to playlist from clipboard"
+msgstr "Tambahkan berkas/URL dari papan klip ke daftar putar"
+
+#: src\MpvNet\Utilities\InputHelp.cs:179
+msgid "Add mpv.net to Path environment variable"
+msgstr "Tambahkan mpv.net ke variabel lingkungan Path"
+
+msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr "Hanya izinkan OpenGL (memerlukan OpenGL 2.1+ atau GLES 2.0+)"
+
+msgid "Allow only Vulkan"
+msgstr "Hanya izinkan Vulkan"
+
+msgid "Allow only gpu-context=d3d11"
+msgstr "Hanya izinkan gpu-context=d3d11"
+
+msgid "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
+msgstr "Mengizinkan penundaan hasil deteksi puncak hingga satu bingkai. Dapat meningkatkan throughput tetapi menimbulkan kedipan 1 bingkai saat transisi."
+
+msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
+msgstr "Selalu simpan posisi saat keluar, lalu lanjutkan dari posisi itu saat berkas diputar lagi. Berhenti dengan cara lain tidak menyimpannya; berpindah ke berkas berikutnya membuat berkas sebelumnya mulai dari awal nanti.\\n\\nBawaan nonaktif, tetapi selalu tersedia saat keluar dengan Shift+Q."
+
+msgid "Appearance"
+msgstr "Tampilan"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml.cs:344
+msgid "Application Message"
+msgstr "Pesan Aplikasi"
+
+msgid "As scale, but for interpolating chroma information. If the image is not subsampled, this option is ignored entirely."
+msgstr "Seperti scale, tetapi untuk interpolasi kroma. Diabaikan sepenuhnya jika gambar tidak disubsampel."
+
+msgid "Aspect-ratio preserving nearest neighbour sampling (very fast)."
+msgstr "Pengambilan sampel tetangga terdekat dengan rasio aspek tetap (sangat cepat)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:83 src\MpvNet\Utilities\InputHelp.cs:84
+#: src\MpvNet\Utilities\InputHelp.cs:85 src\MpvNet\Utilities\InputHelp.cs:86
+#: src\MpvNet\Utilities\InputHelp.cs:87
+msgid "Audio"
+msgstr "Audio"
+
+#: src\MpvNet\Utilities\InputHelp.cs:83
+#: src\MpvNet.Windows\WinForms\MainForm.cs:315
+msgid "Audio Device"
+msgstr "Perangkat Audio"
+
+#: src\MpvNet\App.cs:195 src\MpvNet\Utilities\InputHelp.cs:136
+#: src\MpvNet\Utilities\InputHelp.cs:241
+msgid "Audio Devices"
+msgstr "Perangkat Audio"
+
+#: src\MpvNet\App.cs:190 src\MpvNet\Utilities\InputHelp.cs:130
+#: src\MpvNet\Utilities\InputHelp.cs:235
+msgid "Audio Tracks"
+msgstr "Trek Audio"
+
+msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "Ekstensi audio untuk pencocokan --audio-file-auto, --autocreate-playlist atau --directory-filter-types. mpv.net memakainya untuk asosiasi berkas dan auto-load-folder. Bawaan: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+
+msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
+msgstr "Pilih otomatis. Jika kedalaman bit keluaran tidak terdeteksi, diasumsikan 8 bit per komponen."
+
+msgid "Available on Windows 10 or higher"
+msgstr "Tersedia pada Windows 10 atau lebih baru"
+
+#: src\MpvNet\Utilities\InputHelp.cs:207
+msgid "Backward"
+msgstr "Mundur"
+
+msgid "Bicubic interpolation (fast)"
+msgstr "Interpolasi bikubik (cepat)"
+
+msgid "Bicubic interpolation (fast)."
+msgstr "Interpolasi bikubik (cepat)."
+
+msgid "Bilinear (triangle) averaging (fast)"
+msgstr "Perataan bilinear (segitiga, cepat)"
+
+msgid "Bilinear sampling (very fast)."
+msgstr "Pengambilan sampel bilinear (sangat cepat)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:244
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:403
+msgid "Bindings"
+msgstr "Pintasan"
+
+msgid "Box averaging (very fast)"
+msgstr "Perataan kotak (sangat cepat)"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:55
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:182
+msgid "Cancel"
+msgstr "Batal"
+
+msgid "Catmull-Rom cubic spline"
+msgstr "Spline kubik Catmull-Rom"
+
+msgid "Catmull-Rom cubic spline."
+msgstr "Spline kubik Catmull-Rom."
+
+#: src\MpvNet\Utilities\InputHelp.cs:80
+msgid "Change Aspect Ratio"
+msgstr "Ubah Rasio Aspek"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:508
+msgid "Changed theme settings require mpv.net being restarted."
+msgstr "Perubahan tema memerlukan mulai ulang mpv.net."
+
+msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "Beralih antara tema terang dan gelap.\\nMulai ulang mpv.net setelah mengubahnya.\\nOpsi khusus mpv.net."
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:126
+msgid "Changes will be available on next startup."
+msgstr "Perubahan berlaku saat aplikasi dimulai lagi."
+
+#: src\MpvNet\Utilities\InputHelp.cs:49
+#: src\MpvNet.Windows\WinForms\MainForm.cs:213
+msgid "Chapter"
+msgstr "Bab"
+
+#: src\MpvNet\App.cs:193 src\MpvNet\Utilities\InputHelp.cs:128
+#: src\MpvNet\Utilities\InputHelp.cs:238
+msgid "Chapters"
+msgstr "Bab"
+
+msgid "Choose the best mode automatically."
+msgstr "Pilih mode terbaik secara otomatis."
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:54
+msgid "Clear"
+msgstr "Bersihkan"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:250
+msgid "Clear List"
+msgstr "Bersihkan Daftar"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MsgBoxExtendedFunctionality.cs:22
+msgid "Click this icon for additional info/actions."
+msgstr "Klik ikon ini untuk info/tindakan tambahan."
+
+#: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:16
+msgid "Codec Guide: "
+msgstr "Codec Guide: "
+
+msgid "Color Adjustment"
+msgstr "Penyesuaian Warna"
+
+msgid "Color Mapping"
+msgstr "Pemetaan Warna"
+
+msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "Tema warna untuk mode gelap.\\nMulai ulang mpv.net setelah perubahan.\\nOpsi khusus mpv.net. Bawaan: dark"
+
+msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "Tema warna untuk mode terang.\\nMulai ulang mpv.net setelah perubahan.\\nOpsi khusus mpv.net. Bawaan: light"
+
+msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
+msgstr "Warna area jendela mpv yang tidak tertutup video. Lihat --sub-color untuk definisi warna."
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:140
+msgid "Command"
+msgstr "Perintah"
+
+#: src\MpvNet\Utilities\InputHelp.cs:141
+msgid "Commands"
+msgstr "Perintah"
+
+#: src\MpvNet\Utilities\InputHelp.cs:167 src\MpvNet\Utilities\InputHelp.cs:168
+#: src\MpvNet\Utilities\InputHelp.cs:169 src\MpvNet\Utilities\InputHelp.cs:170
+#: src\MpvNet\Utilities\InputHelp.cs:171 src\MpvNet\Utilities\InputHelp.cs:172
+#: src\MpvNet\Utilities\InputHelp.cs:173 src\MpvNet\Utilities\InputHelp.cs:174
+#: src\MpvNet\Utilities\InputHelp.cs:175 src\MpvNet\Utilities\InputHelp.cs:176
+#: src\MpvNet\Utilities\InputHelp.cs:177 src\MpvNet\Utilities\InputHelp.cs:178
+#: src\MpvNet\Utilities\InputHelp.cs:179 src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Config"
+msgstr "Konfigurasi"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:608
+msgid "Config Editor"
+msgstr "Editor Konfigurasi"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:53
+msgid "Confirm"
+msgstr "Konfirmasi"
+
+#: src\MpvNet\Utilities\InputHelp.cs:140
+msgid "Console"
+msgstr "Konsol"
+
+msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
+msgstr "Memutar visualisasi 3DLUT gamut pada ruang rona di sumbu I, dalam radian. Bawaan 0.0."
+
+msgid "Controls the rotation of the gamut 3DLUT visualization. The theta parameter vertically rotates the cross section (around the C axis), in radians. Defaults to 0.0."
+msgstr "Parameter theta memutar penampang visualisasi 3DLUT secara vertikal pada sumbu C, dalam radian. Bawaan 0.0."
+
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 0.0."
+msgstr "Posisi visualisasi LUT relatif terhadap video yang dirender. Bawaan 0.0."
+
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 1.0."
+msgstr "Posisi visualisasi LUT relatif terhadap video yang dirender. Bawaan 1.0."
+
+msgid "Controls which type of graphics APIs will be accepted."
+msgstr "Menentukan jenis API grafis yang diizinkan."
+
+msgid "Create a new process everytime the shell starts mpv.net"
+msgstr "Buat proses baru setiap kali shell menjalankan mpv.net"
+
+msgid "Cubic B-spline frame mixing"
+msgstr "Pencampuran bingkai B-spline kubik"
+
+#: src\MpvNet\Utilities\InputHelp.cs:188
+#: src\MpvNet.Windows\WinForms\MainForm.cs:339
+msgid "Custom"
+msgstr "Kustom"
+
+msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
+msgstr "Sumber data pemetaan nada. Nilai tertentu mengganti logika prioritas metadata bawaan."
+
+msgid "Debanding"
+msgstr "Penghilangan Pita"
+
+msgid "Decide whether to use network cache settings."
+msgstr "Tentukan apakah pengaturan cache jaringan digunakan."
+
+#: src\MpvNet\Utilities\InputHelp.cs:146
+msgid "Decoders"
+msgstr "Dekoder"
+
+#: src\MpvNet\Utilities\InputHelp.cs:68
+msgid "Decrease Brightness"
+msgstr "Kurangi Kecerahan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:65
+msgid "Decrease Contrast"
+msgstr "Kurangi Kontras"
+
+#: src\MpvNet\Utilities\InputHelp.cs:98
+msgid "Decrease Font Size"
+msgstr "Perkecil Fon"
+
+#: src\MpvNet\Utilities\InputHelp.cs:71
+msgid "Decrease Gamma"
+msgstr "Kurangi Gamma"
+
+#: src\MpvNet\Utilities\InputHelp.cs:60
+msgid "Decrease Height"
+msgstr "Kurangi Tinggi"
+
+#: src\MpvNet\Utilities\InputHelp.cs:74
+msgid "Decrease Saturation"
+msgstr "Kurangi Saturasi"
+
+#: src\MpvNet\Utilities\InputHelp.cs:51
+msgid "Decrease Size"
+msgstr "Perkecil Ukuran"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:421
+#: src\MpvNet\Integration\Mpv\Player.cs:440
+#: src\MpvNet\Integration\Mpv\Player.cs:468
+#: src\MpvNet\Integration\Mpv\Player.cs:548
+#: src\MpvNet\Integration\Mpv\Player.cs:634
+#: src\MpvNet\Integration\Mpv\Player.cs:718
+msgid "Default"
+msgstr "Bawaan"
+
+msgid "Default settings, tuned to provide a balance of performance and quality."
+msgstr "Pengaturan bawaan yang menyeimbangkan kinerja dan kualitas."
+
+msgid "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
+msgstr "Izinkan beberapa proses mpv.net.\\nDapat juga diaktifkan dengan menekan SHIFT. (Opsi mpv.net)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:86 src\MpvNet\Utilities\InputHelp.cs:93
+msgid "Delay +0.1"
+msgstr "Tunda +0.1"
+
+#: src\MpvNet\Utilities\InputHelp.cs:87 src\MpvNet\Utilities\InputHelp.cs:92
+msgid "Delay -0.1"
+msgstr "Tunda -0.1"
+
+msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
+msgstr "Jeda sebelum pengulangan tombol otomatis dalam milidetik (0 untuk menonaktifkan)."
+
+msgid "Demuxer"
+msgstr "Demuxer"
+
+#: src\MpvNet\Utilities\InputHelp.cs:147
+msgid "Demuxers"
+msgstr "Demuxer"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:193
+msgid "Details"
+msgstr "Detail"
+
+msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "Direct3D11 melalui lapisan penerjemahan OpenGL ES ANGLE. Mendukung hampir semua fitur backend win jika versi ANGLE cukup baru."
+
+msgid "Disable all advanced rendering, equivalent to passing no to every option."
+msgstr "Nonaktifkan seluruh perenderan lanjutan, setara dengan mengatur semua opsi ke no."
+
+msgid "Disable any dithering done by mpv."
+msgstr "Nonaktifkan semua dithering mpv."
+
+msgid "Disable frame mixing, show nearest frame to target PTS"
+msgstr "Nonaktifkan pencampuran; tampilkan bingkai terdekat dengan PTS target"
+
+msgid "Dither to 10 bit output."
+msgstr "Dithering ke keluaran 10 bit."
+
+msgid "Dither to 8 bit output."
+msgstr "Dithering ke keluaran 8 bit."
+
+msgid "Don't automatically load external audio files."
+msgstr "Jangan muat berkas audio eksternal otomatis."
+
+msgid "Don't automatically load external subtitle files."
+msgstr "Jangan muat berkas subtitel eksternal otomatis."
+
+#: src\MpvNet\App.cs:208
+msgid "Donation"
+msgstr "Donasi"
+
+#: src\MpvNet\Utilities\InputHelp.cs:114
+msgid "Double"
+msgstr "Ganda"
+
+#: src\MpvNet\Integration\Mpv\Player.Initialization.cs:71
+#: src\MpvNet.Windows\WinForms\MainForm.cs:380
+msgid "Drop files or URLs to play here."
+msgstr "Letakkan berkas atau URL di sini untuk diputar."
+
+#: src\MpvNet\App.cs:210
+msgid "E-mail support"
+msgstr "Dukungan melalui email"
+
+msgid "EWA Lanczos (\"Jinc\") reconstruction (slow)."
+msgstr "Rekonstruksi EWA Lanczos (\"Jinc\") (lambat)."
+
+#: src\MpvNet\App.cs:201
+msgid "Edit config file"
+msgstr "Sunting berkas konfigurasi"
+
+#: src\MpvNet\Utilities\InputHelp.cs:171
+msgid "Edit input.conf"
+msgstr "Sunting input.conf"
+
+#: src\MpvNet\App.cs:202
+msgid "Edit key bindings"
+msgstr "Sunting pintasan tombol"
+
+#: src\MpvNet\Utilities\InputHelp.cs:170
+msgid "Edit mpv.conf"
+msgstr "Sunting mpv.conf"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:488
+#: src\MpvNet\Integration\Mpv\Player.cs:734
+msgid "Edition"
+msgstr "Edisi"
+
+#: src\MpvNet\App.cs:194 src\MpvNet\Utilities\InputHelp.cs:134
+#: src\MpvNet\Utilities\InputHelp.cs:239
+msgid "Editions"
+msgstr "Edisi"
+
+msgid "Enable the IPC support and create the listening socket at the given path."
+msgstr "Aktifkan IPC dan buat soket pendengar pada jalur yang diberikan."
+
+msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
+msgstr "Aktifkan penghilangan pita. Sangat mengurangi pita, blok, dan artefak kuantisasi dengan sedikit mengaburkan detail terhalus. Hampir selalu memperbaiki kualitas; biasanya hanya dinonaktifkan demi kinerja."
+
+msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
+msgstr "Aktifkan pemilihan trek otomatis menurut aid, alang, dan lainnya. Jika nonaktif, tidak ada trek dipilih dan pemutar menunggu alih-alih keluar (seperti jeda, tetapi pause tidak diatur).\\n\\nBerguna untuk lavfi-complex: mulai pemutaran lalu pilih trek melalui grafik filter. Jika lavfi-complex diatur sebelum mulai, trek yang dirujuk selalu dipilih."
+
+msgid "Enable this only when a developer asks for it. (mpv.net option)"
+msgstr "Aktifkan hanya jika diminta pengembang. (Opsi mpv.net)"
+
+msgid "Enables HDR peak detection."
+msgstr "Aktifkan deteksi puncak HDR."
+
+msgid "Enables color adjustment."
+msgstr "Aktifkan penyesuaian warna."
+
+msgid "Enables debanding using libplacebo."
+msgstr "Aktifkan penghilangan pita dengan libplacebo."
+
+msgid "Enables sigmoidization."
+msgstr "Aktifkan transformasi sigmoid."
+
+msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
+msgstr "Aktifkan pengaturan pemetaan warna ini. Menonaktifkannya hanya memakai semua opsi bawaan, bukan mematikan pemetaan warna."
+
+#: src\MpvNet\Utilities\InputHelp.cs:150
+msgid "Enlarge"
+msgstr "Perbesar"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:295
+msgid "Error creating file associations."
+msgstr "Gagal membuat asosiasi berkas."
+
+#: src\MpvNet\Utilities\InputHelp.cs:21 src\MpvNet\Utilities\InputHelp.cs:199
+#: src\MpvNet\Utilities\InputHelp.cs:231
+msgid "Exit"
+msgstr "Keluar"
+
+#: src\MpvNet\Utilities\InputHelp.cs:186
+msgid "Exit Watch Later"
+msgstr "Keluar dan Simpan Posisi"
+
+msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
+msgstr "Perender video eksperimental berbasis libplacebo, mendukung hampir semua fitur --vo=gpu."
+
+#: src\MpvNet\Integration\Mpv\Player.cs:441
+#: src\MpvNet\Integration\Mpv\Player.cs:469
+msgid "External"
+msgstr "Eksternal"
+
+#: src\MpvNet\Utilities\InputHelp.cs:10 src\MpvNet\Utilities\InputHelp.cs:11
+#: src\MpvNet\Utilities\InputHelp.cs:12 src\MpvNet\Utilities\InputHelp.cs:13
+#: src\MpvNet\Utilities\InputHelp.cs:14 src\MpvNet\Utilities\InputHelp.cs:15
+#: src\MpvNet\Utilities\InputHelp.cs:16 src\MpvNet\Utilities\InputHelp.cs:17
+#: src\MpvNet\Utilities\InputHelp.cs:18 src\MpvNet\Utilities\InputHelp.cs:19
+#: src\MpvNet\Utilities\InputHelp.cs:20 src\MpvNet\Utilities\InputHelp.cs:21
+msgid "File"
+msgstr "Berkas"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:287
+msgid "File Explorer icons will refresh after process restart."
+msgstr "Ikon File Explorer diperbarui setelah proses dimulai ulang."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:292
+msgid "File associations were successfully created."
+msgstr "Asosiasi berkas berhasil dibuat."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:290
+msgid "File associations were successfully removed."
+msgstr "Asosiasi berkas berhasil dihapus."
+
+#: src\MpvNet\App.cs:200
+msgid "File information"
+msgstr "Informasi berkas"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:229
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:251
+msgid "Files/URLs were added to the playlist"
+msgstr "Berkas/URL telah ditambahkan ke daftar putar"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:39
+msgid "Find a binding (Ctrl+F)"
+msgstr "Cari pintasan (Ctrl+F)"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:609
+msgid "Find a setting (Ctrl+F)"
+msgstr "Cari pengaturan (Ctrl+F)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:29
+msgid "First File"
+msgstr "Berkas Pertama"
+
+msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
+msgstr "Otomatis muat seluruh direktori ke daftar putar saat membuka satu berkas. (Opsi mpv.net usang; gunakan autocreate-playlist)"
+
+msgid "Force a single process and add files to playlist"
+msgstr "Paksa satu proses dan tambahkan berkas ke daftar putar"
+
+msgid "Force a single process everytime the shell starts mpv.net"
+msgstr "Paksa satu proses setiap kali shell menjalankan mpv.net"
+
+msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
+msgstr "Paksa LUT pemetaan nada penuh meski fungsi memiliki pengganti GLSL murni yang lebih cepat (clip, linear, saturation). Opsi debug."
+
+#: src\MpvNet\Integration\Mpv\Player.cs:439
+#: src\MpvNet\Integration\Mpv\Player.cs:467
+#: src\MpvNet\Integration\Mpv\Player.cs:633
+#: src\MpvNet\Integration\Mpv\Player.cs:717
+msgid "Forced"
+msgstr "Paksa"
+
+#: src\MpvNet\Utilities\InputHelp.cs:206
+msgid "Forward"
+msgstr "Maju"
+
+#: src\MpvNet\Utilities\InputHelp.cs:149 src\MpvNet\Utilities\InputHelp.cs:219
+#: src\MpvNet\Utilities\InputHelp.cs:220
+msgid "Fullscreen"
+msgstr "Layar Penuh"
+
+msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
+msgstr "Fungsi pemetaan gamut untuk warna di luar gamut, termasuk akibat pemetaan nada."
+
+msgid "Gaussian smoothing (fast)"
+msgstr "Penghalusan Gaussian (cepat)"
+
+msgid "Gaussian smoothing (fast)."
+msgstr "Penghalusan Gaussian (cepat)."
+
+msgid "General"
+msgstr "Umum"
+
+msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "Driver keluaran video umum yang dapat disesuaikan dengan akselerasi GPU. Mendukung penskalaan lanjutan, dithering, manajemen warna, shader kustom, HDR, dan lainnya."
+
+#: src\MpvNet\App.cs:206
+msgid "GitHub Sponsors"
+msgstr "GitHub Sponsors"
+
+msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
+msgstr "Sorot piksel yang terpotong keras saat pemetaan nada, yaitu melebihi rentang luminans sumber yang dinyatakan."
+
+msgid "HDR Peak Detection"
+msgstr "Deteksi Puncak HDR"
+
+#: src\MpvNet\Utilities\InputHelp.cs:113
+msgid "Half"
+msgstr "Separuh"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:338
+msgid "Height"
+msgstr "Tinggi"
+
+#: src\MpvNet\App.cs:203 src\MpvNet\Utilities\InputHelp.cs:190
+#: src\MpvNet\Utilities\InputHelp.cs:191 src\MpvNet\Utilities\InputHelp.cs:192
+#: src\MpvNet\Utilities\InputHelp.cs:193 src\MpvNet\Utilities\InputHelp.cs:194
+#: src\MpvNet\Utilities\InputHelp.cs:195 src\MpvNet\Utilities\InputHelp.cs:196
+#: src\MpvNet\Utilities\InputHelp.cs:197
+msgid "Help"
+msgstr "Bantuan"
+
+#: src\MpvNet\App.cs:225
+#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
+msgid "Help the player"
+msgstr "Dukung pemutar"
+
+msgid "Hermite-weighted averaging (fast)"
+msgstr "Perataan berbobot Hermite (cepat)"
+
+msgid "Hermite-weighted frame mixing"
+msgstr "Pencampuran bingkai berbobot Hermite"
+
+msgid "How the player synchronizes audio and video.\\n\\nFor more information visit:"
+msgstr "Cara pemutar menyinkronkan audio dan video.\\n\\nInformasi selengkapnya:"
+
+msgid "If enabled, allows the gamut mapping function to expand the gamut, in cases where the target gamut exceeds that of the source. If disabled, the source gamut will never be enlarged, even when using a gamut mapping function capable of bidirectional mapping."
+msgstr "Izinkan perluasan gamut jika gamut target melebihi sumber. Jika nonaktif, gamut sumber tidak pernah diperluas meski fungsi mendukung pemetaan dua arah."
+
+msgid "If enabled, and supported by the given tone mapping function, will perform inverse tone mapping to expand the dynamic range of a signal. libplacebo is not liable for any HDR-induced eye damage."
+msgstr "Jika aktif dan didukung fungsi, lakukan pemetaan nada terbalik untuk memperluas rentang dinamis sinyal. libplacebo tidak bertanggung jawab atas kerusakan mata akibat HDR."
+
+msgid "If possible, write screenshots with a bit depth similar to the source video. This is interesting in particular for PNG, as this sometimes triggers writing 16 bit PNGs with huge file sizes. This will also include an unused alpha channel in the resulting files if 16 bit is used."
+msgstr "Jika mungkin, simpan tangkapan dengan kedalaman bit seperti video sumber. Khusus PNG, dapat menghasilkan berkas 16 bit yang besar dengan kanal alfa tidak terpakai."
+
+msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
+msgstr "Jika opsi ini dan keep-open bernilai no, pemutar keluar setelah berkas terakhir selesai."
+
+msgid "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
+msgstr "Jika no dan keep-open aktif, berhenti di akhir berkas alih-alih menjeda. Mencari mundur melanjutkan pemutaran hingga akhir lalu berhenti lagi."
+
+msgid "If the current file ends, go to the next file, keep the last file open."
+msgstr "Setelah berkas selesai, lanjutkan ke berikutnya; biarkan berkas terakhir terbuka."
+
+msgid "If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
+msgstr "Lanjutkan ke berkas berikutnya. Jika idle=no, keluar setelah berkas terakhir."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:173
+msgid "Ignore"
+msgstr "Abaikan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:218
+msgid "Ignore left mouse button"
+msgstr "Abaikan tombol kiri tetikus"
+
+msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+msgstr "Ekstensi gambar untuk --cover-art-auto, --autocreate-playlist atau --directory-filter-types; juga untuk asosiasi mpv.net dan auto-load-folder. Bawaan: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+
+#: src\MpvNet\Utilities\InputHelp.cs:69
+msgid "Increase Brightness"
+msgstr "Tambah Kecerahan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:66
+msgid "Increase Contrast"
+msgstr "Tambah Kontras"
+
+#: src\MpvNet\Utilities\InputHelp.cs:99
+msgid "Increase Font Size"
+msgstr "Perbesar Fon"
+
+#: src\MpvNet\Utilities\InputHelp.cs:72
+msgid "Increase Gamma"
+msgstr "Tambah Gamma"
+
+#: src\MpvNet\Utilities\InputHelp.cs:61
+msgid "Increase Height"
+msgstr "Tambah Tinggi"
+
+#: src\MpvNet\Utilities\InputHelp.cs:75
+msgid "Increase Saturation"
+msgstr "Tambah Saturasi"
+
+#: src\MpvNet\Utilities\InputHelp.cs:52
+msgid "Increase Size"
+msgstr "Perbesar Ukuran"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:508
+msgid "Info"
+msgstr "Info"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:102
+msgid "Input"
+msgstr "Masukan"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:11
+msgid "Input Editor"
+msgstr "Editor Masukan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:43
+msgid "Jump 30 sec backward"
+msgstr "Mundur 30 detik"
+
+#: src\MpvNet\Utilities\InputHelp.cs:42
+msgid "Jump 30 sec forward"
+msgstr "Maju 30 detik"
+
+#: src\MpvNet\Utilities\InputHelp.cs:46
+msgid "Jump 5 min backward"
+msgstr "Mundur 5 menit"
+
+#: src\MpvNet\Utilities\InputHelp.cs:45
+msgid "Jump 5 min forward"
+msgstr "Maju 5 menit"
+
+#: src\MpvNet\Utilities\InputHelp.cs:40
+msgid "Jump 5 sec backward"
+msgstr "Mundur 5 detik"
+
+#: src\MpvNet\Utilities\InputHelp.cs:39
+msgid "Jump 5 sec forward"
+msgstr "Maju 5 detik"
+
+#: src\MpvNet\Utilities\InputHelp.cs:36
+msgid "Jump To Next Frame"
+msgstr "Ke Bingkai Berikutnya"
+
+#: src\MpvNet\Utilities\InputHelp.cs:37
+msgid "Jump To Previous Frame"
+msgstr "Ke Bingkai Sebelumnya"
+
+#: src\MpvNet\App.cs:196
+msgid "Key bindings"
+msgstr "Pintasan tombol"
+
+#: src\MpvNet\Utilities\InputHelp.cs:144
+msgid "Keys"
+msgstr "Tombol"
+
+msgid "Lanczos reconstruction"
+msgstr "Rekonstruksi Lanczos"
+
+msgid "Lanczos reconstruction."
+msgstr "Rekonstruksi Lanczos."
+
+#: src\MpvNet\Utilities\InputHelp.cs:30
+msgid "Last File"
+msgstr "Berkas Terakhir"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:10
+msgid "Learn Input"
+msgstr "Pelajari Masukan"
+
+msgid "Like scale, but apply these filters on downscaling instead. \\nIf no option is selected, it will keep the same with the upscaler."
+msgstr "Seperti scale, tetapi untuk memperkecil gambar. \\nTanpa pilihan, gunakan filter yang sama dengan pembesaran."
+
+msgid "Linear frame mixing"
+msgstr "Pencampuran bingkai linear"
+
+msgid "Load additional audio files matching the video filename. The parameter specifies how external audio files are matched."
+msgstr "Muat audio tambahan yang cocok dengan nama video. Parameter menentukan pencocokan audio eksternal."
+
+msgid "Load additional subtitle files matching the video filename. The parameter specifies how external subtitle files are matched. exact is enabled by default."
+msgstr "Muat subtitel tambahan yang cocok dengan nama video. Parameter menentukan pencocokan; exact aktif secara bawaan."
+
+msgid "Load all audio files containing media filename."
+msgstr "Muat semua audio yang namanya memuat nama berkas media."
+
+msgid "Load all audio files in the current and audio-file-paths directories."
+msgstr "Muat semua audio dari direktori saat ini dan audio-file-paths."
+
+msgid "Load all subs containing media filename."
+msgstr "Muat semua subtitel yang namanya memuat nama berkas media."
+
+msgid "Load all subs in the current and sub-file-paths directories."
+msgstr "Muat semua subtitel dari direktori saat ini dan sub-file-paths."
+
+msgid "Load the media filename with audio file extension."
+msgstr "Muat nama berkas media dengan ekstensi audio."
+
+msgid "Load the media filename with subtitle file extension."
+msgstr "Muat nama berkas media dengan ekstensi subtitel."
+
+#: src\MpvNet\App.cs:111
+msgid "Make a donation to help maintain the project."
+msgstr "Berdonasi untuk membantu pemeliharaan proyek."
+
+#: src\MpvNet.Windows\WPF\Controls\HyperlinkEx.cs:22
+msgid "Manual"
+msgstr "Panduan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:193
+msgid "Manual mpv"
+msgstr "Panduan mpv"
+
+#: src\MpvNet\Utilities\InputHelp.cs:194
+msgid "Manual mpv.net"
+msgstr "Panduan mpv.net"
+
+#: src\MpvNet\Utilities\InputHelp.cs:226
+msgid "Mark position for revert-seek"
+msgstr "Tandai posisi untuk revert-seek"
+
+#: src\MpvNet\Utilities\InputHelp.cs:122
+msgid "Media Info Message Box"
+msgstr "Info Media di Kotak Dialog"
+
+#: src\MpvNet\Utilities\InputHelp.cs:121
+msgid "Media Info On-Screen"
+msgstr "Info Media di Layar"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:610
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Mitchell-Netravalia cubic spline"
+msgstr "Spline kubik Mitchell-Netravalia"
+
+#: src\MpvNet\Utilities\InputHelp.cs:101 src\MpvNet\Utilities\InputHelp.cs:140
+#: src\MpvNet\Utilities\InputHelp.cs:141 src\MpvNet\Utilities\InputHelp.cs:142
+#: src\MpvNet\Utilities\InputHelp.cs:143 src\MpvNet\Utilities\InputHelp.cs:144
+#: src\MpvNet\Utilities\InputHelp.cs:145 src\MpvNet\Utilities\InputHelp.cs:146
+#: src\MpvNet\Utilities\InputHelp.cs:147
+msgid "More"
+msgstr "Lainnya"
+
+#: src\MpvNet\Utilities\InputHelp.cs:157 src\MpvNet\Utilities\InputHelp.cs:158
+#: src\MpvNet\Utilities\InputHelp.cs:159 src\MpvNet\Utilities\InputHelp.cs:160
+#: src\MpvNet\Utilities\InputHelp.cs:161
+msgid "Move"
+msgstr "Pindahkan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:58 src\MpvNet\Utilities\InputHelp.cs:96
+msgid "Move Down"
+msgstr "Geser ke Bawah"
+
+#: src\MpvNet\Utilities\InputHelp.cs:54
+msgid "Move Left"
+msgstr "Geser ke Kiri"
+
+#: src\MpvNet\Utilities\InputHelp.cs:55
+msgid "Move Right"
+msgstr "Geser ke Kanan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:57 src\MpvNet\Utilities\InputHelp.cs:95
+msgid "Move Up"
+msgstr "Geser ke Atas"
+
+#: src\MpvNet\Utilities\InputHelp.cs:108
+msgid "Mute"
+msgstr "Bisukan"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:96
+msgid "Name"
+msgstr "Nama"
+
+#: src\MpvNet\Utilities\InputHelp.cs:26 src\MpvNet\Utilities\InputHelp.cs:27
+#: src\MpvNet\Utilities\InputHelp.cs:28 src\MpvNet\Utilities\InputHelp.cs:29
+#: src\MpvNet\Utilities\InputHelp.cs:30 src\MpvNet\Utilities\InputHelp.cs:32
+#: src\MpvNet\Utilities\InputHelp.cs:33 src\MpvNet\Utilities\InputHelp.cs:34
+#: src\MpvNet\Utilities\InputHelp.cs:35 src\MpvNet\Utilities\InputHelp.cs:36
+#: src\MpvNet\Utilities\InputHelp.cs:37 src\MpvNet\Utilities\InputHelp.cs:38
+#: src\MpvNet\Utilities\InputHelp.cs:39 src\MpvNet\Utilities\InputHelp.cs:40
+#: src\MpvNet\Utilities\InputHelp.cs:41 src\MpvNet\Utilities\InputHelp.cs:42
+#: src\MpvNet\Utilities\InputHelp.cs:43 src\MpvNet\Utilities\InputHelp.cs:44
+#: src\MpvNet\Utilities\InputHelp.cs:45 src\MpvNet\Utilities\InputHelp.cs:46
+#: src\MpvNet\Utilities\InputHelp.cs:47 src\MpvNet\Utilities\InputHelp.cs:48
+#: src\MpvNet\Utilities\InputHelp.cs:49
+msgid "Navigate"
+msgstr "Navigasi"
+
+msgid "Nearest-neighbour (box) sampling (very fast)."
+msgstr "Pengambilan sampel tetangga terdekat (kotak, sangat cepat)."
+
+msgid "Never use precise seeks."
+msgstr "Jangan pernah gunakan pencarian posisi presisi."
+
+#: src\MpvNet\Utilities\InputHelp.cs:33
+msgid "Next Chapter"
+msgstr "Bab Berikutnya"
+
+#: src\MpvNet\Utilities\InputHelp.cs:27 src\MpvNet\Utilities\InputHelp.cs:213
+#: src\MpvNet\Utilities\InputHelp.cs:215 src\MpvNet\Utilities\InputHelp.cs:217
+msgid "Next File"
+msgstr "Berkas Berikutnya"
+
+#: src\MpvNet\Utilities\InputHelp.cs:84 src\MpvNet\Utilities\InputHelp.cs:89
+msgid "Next Track"
+msgstr "Trek Berikutnya"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
+msgid "No"
+msgstr "Tidak"
+
+#: src\MpvNet\Command.cs:74
+msgid "No audio tracks"
+msgstr "Tidak ada trek audio"
+
+msgid "No filter, only use basic GPU texture sampling."
+msgstr "Tanpa filter, hanya pengambilan sampel tekstur GPU dasar."
+
+#: src\MpvNet\Command.cs:117
+msgid "No subtitle"
+msgstr "Tanpa subtitel"
+
+#: src\MpvNet\Command.cs:102
+#: src\MpvNet.Windows\WinForms\MainForm.ContextMenu.cs:63
+msgid "No subtitles"
+msgstr "Tanpa subtitel"
+
+msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
+msgstr "Biasanya mpv mempertahankan semua opsi pada berkas berikutnya, termasuk perubahan pengguna. Opsi ini menerima daftar opsi yang dikembalikan ke nilai awal saat pemutaran dimulai."
+
+msgid "Number of key presses to generate per second on autorepeat."
+msgstr "Jumlah penekanan tombol per detik saat pengulangan otomatis."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:127
+msgid "OK"
+msgstr "Oke"
+
+#: src\MpvNet\Utilities\InputHelp.cs:124 src\MpvNet\Utilities\InputHelp.cs:125
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:127
+#: src\MpvNet\Utilities\InputHelp.cs:128 src\MpvNet\Utilities\InputHelp.cs:129
+#: src\MpvNet\Utilities\InputHelp.cs:130 src\MpvNet\Utilities\InputHelp.cs:131
+#: src\MpvNet\Utilities\InputHelp.cs:132 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:134 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:136 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:138 src\MpvNet\Utilities\InputHelp.cs:246
+#: src\MpvNet\Utilities\InputHelp.cs:247 src\MpvNet\Utilities\InputHelp.cs:248
+msgid "On-Screen Menu"
+msgstr "Menu di Layar"
+
+#: src\MpvNet\App.cs:204
+msgid "Online documentation"
+msgstr "Dokumentasi daring"
+
+#: src\MpvNet\Utilities\InputHelp.cs:173
+msgid "Open Config Folder"
+msgstr "Buka Folder Konfigurasi"
+
+#: src\MpvNet\Utilities\InputHelp.cs:12
+msgid "Open media from a drive or folder (including subfolders)..."
+msgstr "Buka media dari drive atau folder (termasuk subfolder)..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:10
+msgid "Open Files..."
+msgstr "Buka Berkas..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:11
+msgid "Open URL or file from clipboard"
+msgstr "Buka URL atau berkas dari papan klip"
+
+msgid "Override all libplacebo options by the values from the given preset."
+msgstr "Timpa semua opsi libplacebo dengan nilai preset yang diberikan."
+
+msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
+msgstr "Timpa filter pengecilan bidang, misalnya kroma/alfa. Jika none, gunakan pengaturan downscaler."
+
+msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
+msgstr "Timpa filter pembesaran bidang, misalnya kroma/alfa. Jika none, gunakan pengaturan upscaler."
+
+msgid "Overrides the value of all options in this section by their default values from the given preset."
+msgstr "Timpa semua opsi bagian ini dengan nilai bawaan preset yang diberikan."
+
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
+msgstr "Timpa opsi bagian ini dengan nilai bawaan preset. high_quality juga mengaktifkan pemulihan kontras HDR."
+
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
+msgstr "Timpa opsi bagian ini dengan nilai bawaan preset. high_quality juga mengaktifkan pengukuran histogram bingkai."
+
+msgid "Oversampling, only mix \"edge\" frames while preserving FPS"
+msgstr "Oversampling, campur hanya bingkai tepi sambil mempertahankan FPS"
+
+#: src\MpvNet\Utilities\InputHelp.cs:51 src\MpvNet\Utilities\InputHelp.cs:52
+#: src\MpvNet\Utilities\InputHelp.cs:53 src\MpvNet\Utilities\InputHelp.cs:54
+#: src\MpvNet\Utilities\InputHelp.cs:55 src\MpvNet\Utilities\InputHelp.cs:56
+#: src\MpvNet\Utilities\InputHelp.cs:57 src\MpvNet\Utilities\InputHelp.cs:58
+#: src\MpvNet\Utilities\InputHelp.cs:59 src\MpvNet\Utilities\InputHelp.cs:60
+#: src\MpvNet\Utilities\InputHelp.cs:61 src\MpvNet\Utilities\InputHelp.cs:62
+#: src\MpvNet\Utilities\InputHelp.cs:63
+msgid "Pan & Scan"
+msgstr "Geser dan Pindai"
+
+msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
+msgstr "Teruskan opsi mentah tambahan ke backend libplacebo (--vo=gpu-next). Dapat menimpa efek opsi lain dari sistem opsi biasa."
+
+#: src\MpvNet\Utilities\InputHelp.cs:23 src\MpvNet\Utilities\InputHelp.cs:201
+#: src\MpvNet\Utilities\InputHelp.cs:202 src\MpvNet\Utilities\InputHelp.cs:203
+#: src\MpvNet\Utilities\InputHelp.cs:204
+msgid "Play/Pause"
+msgstr "Putar/Jeda"
+
+#: src\MpvNet\Utilities\InputHelp.cs:23 src\MpvNet\Utilities\InputHelp.cs:24
+msgid "Playback"
+msgstr "Pemutaran"
+
+#: src\MpvNet\App.cs:199
+msgid "Playback statistics"
+msgstr "Statistik pemutaran"
+
+msgid "Playback will never automatically advance to the next file."
+msgstr "Jangan pernah otomatis lanjut ke berkas berikutnya."
+
+#: src\MpvNet\App.cs:192 src\MpvNet\Utilities\InputHelp.cs:118
+#: src\MpvNet\Utilities\InputHelp.cs:125 src\MpvNet\Utilities\InputHelp.cs:232
+msgid "Playlist"
+msgstr "Daftar Putar"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:612
+msgid "Preview mpv.conf"
+msgstr "Pratinjau mpv.conf"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:613
+msgid "Preview mpvnet.conf"
+msgstr "Pratinjau mpvnet.conf"
+
+#: src\MpvNet\Utilities\InputHelp.cs:34
+msgid "Previous Chapter"
+msgstr "Bab Sebelumnya"
+
+#: src\MpvNet\Utilities\InputHelp.cs:26 src\MpvNet\Utilities\InputHelp.cs:212
+#: src\MpvNet\Utilities\InputHelp.cs:214 src\MpvNet\Utilities\InputHelp.cs:216
+msgid "Previous File"
+msgstr "Berkas Sebelumnya"
+
+#: src\MpvNet\Utilities\InputHelp.cs:165
+#: src\MpvNet.Windows\WinForms\MainForm.cs:288
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Program Behavior"
+msgstr "Perilaku Program"
+
+#: src\MpvNet\Utilities\InputHelp.cs:123
+msgid "Progress"
+msgstr "Kemajuan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:127 src\MpvNet\Utilities\InputHelp.cs:245
+msgid "Properties"
+msgstr "Properti"
+
+#: src\MpvNet\Utilities\InputHelp.cs:145
+msgid "Protocols"
+msgstr "Protokol"
+
+#: src\MpvNet\Utilities\InputHelp.cs:20
+#: src\MpvNet.Windows\WinForms\MainForm.cs:234
+msgid "Recent Files"
+msgstr "Berkas Terbaru"
+
+#: src\MpvNet\Utilities\InputHelp.cs:175
+msgid "Register audio file associations"
+msgstr "Daftarkan asosiasi berkas audio"
+
+#: src\MpvNet\Utilities\InputHelp.cs:176
+msgid "Register image file associations"
+msgstr "Daftarkan asosiasi berkas gambar"
+
+#: src\MpvNet\Utilities\InputHelp.cs:174
+msgid "Register video file associations"
+msgstr "Daftarkan asosiasi berkas video"
+
+#: src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Remove mpv.net from Path environment variable"
+msgstr "Hapus mpv.net dari variabel lingkungan Path"
+
+msgid "Render Options"
+msgstr "Opsi Perenderan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:63 src\MpvNet\Utilities\InputHelp.cs:116
+msgid "Reset"
+msgstr "Atur Ulang"
+
+msgid "Reset all everything to high quality presets (where available)."
+msgstr "Atur ulang semuanya ke preset kualitas tinggi jika tersedia."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:164
+msgid "Retry"
+msgstr "Coba Lagi"
+
+#: src\MpvNet\Utilities\InputHelp.cs:81
+msgid "Rotate Video"
+msgstr "Putar Orientasi Video"
+
+msgid "Same as minimum-aspect-ratio but used for audio files."
+msgstr "Sama dengan minimum-aspect-ratio, tetapi untuk berkas audio."
+
+msgid "Same as yes (for compatibility)."
+msgstr "Sama dengan yes (untuk kompatibilitas)."
+
+msgid "Save and restore the audio device chosen in the context menu. Default: yes"
+msgstr "Simpan dan pulihkan perangkat audio pilihan menu konteks. Bawaan: yes"
+
+msgid "Save the window position on exit. (mpv.net option)"
+msgstr "Simpan posisi jendela saat keluar. (Opsi mpv.net)"
+
+msgid "Save volume and mute on exit and restore it on start. (mpv.net option)"
+msgstr "Simpan volume dan status bisu saat keluar, pulihkan saat mulai. (Opsi mpv.net)"
+
+msgid "Scaling"
+msgstr "Penskalaan"
+
+msgid "Screenshot"
+msgstr "Tangkapan Layar"
+
+#: src\MpvNet\App.cs:188 src\MpvNet\Utilities\InputHelp.cs:132
+msgid "Secondary Subtitle"
+msgstr "Subtitel Sekunder"
+
+#: src\MpvNet\Utilities\InputHelp.cs:234
+msgid "Secondary Subtitles"
+msgstr "Subtitel Sekunder"
+
+msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
+msgstr "Lihat sub-color. Warna latar teks subtitel; sub-shadow-offset mengubah ukurannya relatif terhadap teks."
+
+msgid "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
+msgstr "Lihat sub-color. Warna tepi fon subtitel; diabaikan jika sub-back-color tidak sepenuhnya transparan."
+
+#: src\MpvNet\Utilities\InputHelp.cs:222 src\MpvNet\Utilities\InputHelp.cs:224
+#: src\MpvNet\Utilities\InputHelp.cs:230
+msgid "Seek Backward"
+msgstr "Cari Mundur"
+
+#: src\MpvNet\Utilities\InputHelp.cs:221 src\MpvNet\Utilities\InputHelp.cs:223
+#: src\MpvNet\Utilities\InputHelp.cs:229
+msgid "Seek Forward"
+msgstr "Cari Maju"
+
+#: src\MpvNet\Utilities\InputHelp.cs:228
+msgid "Seek to next subtitle"
+msgstr "Ke subtitel berikutnya"
+
+#: src\MpvNet\Utilities\InputHelp.cs:227
+msgid "Seek to previous subtitle"
+msgstr "Ke subtitel sebelumnya"
+
+msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
+msgstr "Pilih kapan memakai pencarian presisi yang tidak terbatas pada bingkai kunci. Harus mendekode dari bingkai kunci sebelumnya hingga target; waktunya bergantung pada kinerja. Nonaktif untuk beberapa format. Kebijakan bawaan ini dapat ditimpa pada pintasan dan perintah masukan."
+
+msgid "Set dither target depth to N. Note that the depth of the connected video display device cannot be detected. Often, LCD panels will do dithering on their own, which conflicts with this option and leads to ugly output."
+msgstr "Atur kedalaman target dithering ke N. Kedalaman layar tidak dapat dideteksi. Panel LCD sering melakukan dithering sendiri sehingga dapat bertentangan dan memperburuk gambar."
+
+msgid "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "Durasi pesan OSD dalam milidetik. Bawaan: 1000"
+
+msgid "Set the image file type used for saving screenshots."
+msgstr "Jenis berkas gambar untuk menyimpan tangkapan layar."
+
+msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
+msgstr "Volume awal: 0 senyap, 100 tanpa pengurangan atau penguatan. Nilai negatif diterima untuk kompatibilitas tetapi dianggap 0. Sejak mpv 0.18.1 selalu mengatur mixer internal (softvol). Bawaan: 100"
+
+msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
+msgstr "Atur judul jendela video dan, jika mungkin, judul aliran audio. Properti diperluas; properti tertentu dapat meningkatkan penggunaan CPU secara signifikan."
+
+msgid "Set this to no in order to hide the window title bar."
+msgstr "Atur ke no untuk menyembunyikan bilah judul jendela."
+
+#: src\MpvNet\Utilities\InputHelp.cs:182
+msgid "Set/clear A-B loop points"
+msgstr "Atur/hapus titik pengulangan A-B"
+
+msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
+msgstr "Filter pengecilan; opsi utama diurutkan kira-kira dari tercepat ke terlambat."
+
+msgid "Sets the filter used for frame mixing (temporal interpolation). Roughly ordered from fastest to slowest."
+msgstr "Filter pencampuran bingkai (interpolasi temporal), kira-kira dari tercepat ke terlambat."
+
+msgid "Sets the filter used for upscaling."
+msgstr "Atur filter pembesaran."
+
+msgid "Setting to remember the window size. (mpv.net option)"
+msgstr "Pengaturan untuk mengingat ukuran jendela. (Opsi mpv.net)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:174 src\MpvNet\Utilities\InputHelp.cs:175
+#: src\MpvNet\Utilities\InputHelp.cs:176 src\MpvNet\Utilities\InputHelp.cs:177
+#: src\MpvNet\Utilities\InputHelp.cs:178 src\MpvNet\Utilities\InputHelp.cs:179
+#: src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Setup"
+msgstr "Penyiapan"
+
+msgid "Sharpened version of ewa_lanczos (slow)."
+msgstr "Versi ewa_lanczos yang dipertajam (lambat)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:167
+msgid "Show Config Editor"
+msgstr "Tampilkan Editor Konfigurasi"
+
+#: src\MpvNet\Utilities\InputHelp.cs:168
+msgid "Show Input Editor"
+msgstr "Tampilkan Editor Masukan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:200
+msgid "Show Menu"
+msgstr "Tampilkan Menu"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:310
+msgid "Show Profiles"
+msgstr "Tampilkan Profil"
+
+msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
+msgstr "Tampilkan pesan OSD saat mulai. Properti diperluas; misalnya osd-playing-msg='file: ${filename}' menampilkan file: diikuti spasi dan nama berkas saat ini. Informasi selengkapnya:"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:614
+msgid "Show mpv manual"
+msgstr "Tampilkan panduan mpv"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:615
+msgid "Show mpv.net manual"
+msgstr "Tampilkan panduan mpv.net"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:611
+msgid "Show mpv.net options"
+msgstr "Tampilkan opsi mpv.net"
+
+msgid "Show progress in taskbar."
+msgstr "Tampilkan kemajuan pada bilah tugas."
+
+msgid "Show window with decoration (titlebar, border)."
+msgstr "Tampilkan dekorasi jendela (bilah judul, bingkai)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:151
+msgid "Shrink"
+msgstr "Perkecil"
+
+#: src\MpvNet\Utilities\InputHelp.cs:184
+msgid "Shuffle Playlist"
+msgstr "Acak Daftar Putar"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:1277
+msgid "Shutdown thread failed to complete within 10 seconds."
+msgstr "Utas penutupan tidak selesai dalam 10 detik."
+
+msgid "Sigmoidization"
+msgstr "Transformasi Sigmoid"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:339
+msgid "Size"
+msgstr "Ukuran"
+
+msgid "Snap the player window to screen edges."
+msgstr "Rapatkan jendela pemutar ke tepi layar."
+
+msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
+msgstr "Daftar prioritas bahasa audio. Kode bergantung kontainer: DVD memakai ISO 639-1 dua huruf; Matroska, MPEG-TS, dan NUT memakai ISO 639-2 tiga huruf; OGM memakai pengenal bebas. Lihat juga aid."
+
+msgid "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
+msgstr "Daftar prioritas bahasa subtitel: DVD memakai ISO 639-1 dua huruf, Matroska ISO 639-2 tiga huruf, OGM pengenal bebas. Lihat juga sid."
+
+msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
+msgstr "Fon subtitel yang tidak menentukan fon sendiri. Bawaan sans-serif."
+
+msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
+msgstr "Ukuran fon OSD. Lihat sub-font-size untuk detail. Bawaan: 55"
+
+msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
+msgstr "Warna subtitel teks tanpa gaya.\\n\\nPetunjuk dan contoh dalam panduan:"
+
+msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
+msgstr "Templat nama tangkapan tanpa ekstensi; dapat berisi penentu format yang diganti saat pengambilan. Bawaan mpv-shot%n, misalnya mpv-shot0012.png.\\n\\nDokumentasi lengkap:"
+
+msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
+msgstr "API dekode video perangkat keras jika memungkinkan. Dukungan bergantung kodek; jika tidak tersedia, kembali ke dekode perangkat lunak. Bawaan nonaktif demi keandalan, tetapi perangkat modern dapat mengurangi penggunaan CPU dan daya.\\n\\nInformasi selengkapnya:"
+
+msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
+msgstr "Ukuran fon subtitel dalam piksel terskala pada tinggi jendela 720. Ukuran sebenarnya bertambah atau berkurang mengikuti tinggi jendela. Bawaan: 55"
+
+#: src\MpvNet\Utilities\InputHelp.cs:110 src\MpvNet\Utilities\InputHelp.cs:111
+#: src\MpvNet\Utilities\InputHelp.cs:112 src\MpvNet\Utilities\InputHelp.cs:113
+#: src\MpvNet\Utilities\InputHelp.cs:114 src\MpvNet\Utilities\InputHelp.cs:115
+#: src\MpvNet\Utilities\InputHelp.cs:116
+msgid "Speed"
+msgstr "Kecepatan"
+
+msgid "Start the player in fullscreen mode."
+msgstr "Mulai pemutar dalam layar penuh."
+
+msgid "Start with a maximized window."
+msgstr "Mulai dengan jendela dimaksimalkan."
+
+#: src\MpvNet\Utilities\InputHelp.cs:24 src\MpvNet\Utilities\InputHelp.cs:205
+msgid "Stop"
+msgstr "Hentikan"
+
+msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
+msgstr "Simpan tangkapan di direktori ini; digabung dengan nama dari screenshot-template. Jika nama templat sudah absolut, direktori diabaikan."
+
+#: src\MpvNet\Utilities\InputHelp.cs:89 src\MpvNet\Utilities\InputHelp.cs:90
+#: src\MpvNet\Utilities\InputHelp.cs:91 src\MpvNet\Utilities\InputHelp.cs:92
+#: src\MpvNet\Utilities\InputHelp.cs:93 src\MpvNet\Utilities\InputHelp.cs:94
+#: src\MpvNet\Utilities\InputHelp.cs:95 src\MpvNet\Utilities\InputHelp.cs:96
+#: src\MpvNet\Utilities\InputHelp.cs:97 src\MpvNet\Utilities\InputHelp.cs:98
+#: src\MpvNet\Utilities\InputHelp.cs:99 src\MpvNet\Utilities\InputHelp.cs:100
+#: src\MpvNet\Utilities\InputHelp.cs:101
+msgid "Subtitle"
+msgstr "Subtitel"
+
+#: src\MpvNet\App.cs:189 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:240
+msgid "Subtitle Lines"
+msgstr "Baris Subtitel"
+
+#: src\MpvNet\App.cs:187 src\MpvNet\Utilities\InputHelp.cs:131
+msgid "Subtitle Tracks"
+msgstr "Trek Subtitel"
+
+#: src\MpvNet\Utilities\InputHelp.cs:233
+msgid "Subtitles"
+msgstr "Subtitel"
+
+#: src\MpvNet\App.cs:205
+msgid "Support"
+msgstr "Dukungan"
+
+msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
+msgstr "Tandai tangkapan dengan ruang warna yang sesuai; tidak semua format mendukungnya."
+
+#: src\MpvNet\Utilities\InputHelp.cs:77
+msgid "Take Screenshot"
+msgstr "Ambil Tangkapan Layar"
+
+#: src\MpvNet\Utilities\InputHelp.cs:78
+msgid "Take Screenshot without subtitles"
+msgstr "Ambil Tangkapan tanpa subtitel"
+
+msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
+msgstr "Fungsi filter GPU untuk memperbesar video. Ada filter lain yang kurang berguna; daftar lengkap dengan nilai help, misalnya mpv --scale=help."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:244
+msgid "The clipboard does not contain a valid URL or file."
+msgstr "Papan klip tidak berisi URL atau berkas yang valid."
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:142
+msgid "The input editor cannot save duplicate shortcuts with different commands:"
+msgstr "Editor masukan tidak dapat menyimpan pintasan duplikat dengan perintah berbeda:"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:42
+msgid "The live stream has ended."
+msgstr "Siaran langsung telah berakhir."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:44
+msgid "The online media URL is invalid."
+msgstr "URL media daring tidak valid."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:45
+msgid "The online media could not be loaded."
+msgstr "Media daring tidak dapat dimuat."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:41
+msgid "The online playlist could not be loaded."
+msgstr "Daftar putar daring tidak dapat dimuat."
+
+msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "Opsi yang disimpan dalam berkas \"watch later\" jika berubah sejak mpv dimulai, lalu dipulihkan saat diputar lagi. Opsi daftar string. Informasi selengkapnya:"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
+msgid "This content is no longer available."
+msgstr "Konten ini tidak lagi tersedia."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:39
+msgid "This content is not available in your region."
+msgstr "Konten ini tidak tersedia di wilayah Anda."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:38
+msgid "This content requires authentication with the source service."
+msgstr "Konten ini memerlukan autentikasi pada layanan sumber."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:442
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:447
+msgid "This feature was removed, but there are user scripts:"
+msgstr "Fitur ini dihapus, tetapi tersedia skrip pengguna:"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:451
+msgid "This feature was removed."
+msgstr "Fitur ini telah dihapus."
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:43
+msgid "This online media format is not supported."
+msgstr "Format media daring ini tidak didukung."
+
+#: src\MpvNet\App.cs:102 src\MpvNet\App.cs:110
+msgid "Tip: installing Codec Guide can improve codec support and playback."
+msgstr "Tips: memasang Codec Guide dapat meningkatkan dukungan kodek dan pemutaran."
+
+#: src\MpvNet\Utilities\InputHelp.cs:48
+#: src\MpvNet.Windows\WinForms\MainForm.cs:255
+msgid "Title"
+msgstr "Judul"
+
+#: src\MpvNet\Utilities\InputHelp.cs:162
+msgid "Toggle Border"
+msgstr "Alihkan Bingkai"
+
+#: src\MpvNet\Utilities\InputHelp.cs:79
+msgid "Toggle Deinterlace"
+msgstr "Alihkan Deinterlace"
+
+#: src\MpvNet\Utilities\InputHelp.cs:185
+msgid "Toggle Hardware Decoding"
+msgstr "Alihkan Dekode Perangkat Keras"
+
+#: src\MpvNet\Utilities\InputHelp.cs:120
+msgid "Toggle OSC Visibility"
+msgstr "Alihkan Visibilitas OSC"
+
+#: src\MpvNet\Utilities\InputHelp.cs:163
+msgid "Toggle On Top"
+msgstr "Alihkan Selalu di Atas"
+
+#: src\MpvNet\Utilities\InputHelp.cs:119
+msgid "Toggle Statistics"
+msgstr "Alihkan Statistik"
+
+#: src\MpvNet\Utilities\InputHelp.cs:90
+msgid "Toggle Visibility"
+msgstr "Alihkan Visibilitas"
+
+#: src\MpvNet\Utilities\InputHelp.cs:183
+msgid "Toggle infinite file looping"
+msgstr "Alihkan pengulangan berkas tanpa akhir"
+
+#: src\MpvNet\Utilities\InputHelp.cs:101
+msgid "Toggle overriding SSA/ASS styles with normal styles"
+msgstr "Alihkan penimpaan gaya SSA/ASS dengan gaya biasa"
+
+msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
+msgstr "Fungsi pemetaan nada untuk menyesuaikan rentang luminans berbeda, termasuk titik hitam."
+
+#: src\MpvNet\Utilities\InputHelp.cs:182 src\MpvNet\Utilities\InputHelp.cs:183
+#: src\MpvNet\Utilities\InputHelp.cs:184 src\MpvNet\Utilities\InputHelp.cs:185
+#: src\MpvNet\Utilities\InputHelp.cs:186
+msgid "Tools"
+msgstr "Alat"
+
+#: src\MpvNet\Utilities\InputHelp.cs:103
+#: src\MpvNet.Windows\WinForms\MainForm.cs:180
+msgid "Track"
+msgstr "Trek"
+
+#: src\MpvNet\Utilities\InputHelp.cs:129 src\MpvNet\Utilities\InputHelp.cs:237
+msgid "Tracks"
+msgstr "Trek"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:340
+msgid "Type"
+msgstr "Jenis"
+
+#: src\MpvNet\Utilities\InputHelp.cs:225
+msgid "Undo previous (or marked) seek"
+msgstr "Urungkan pencarian posisi sebelumnya (atau yang ditandai)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:177
+msgid "Unregister file associations"
+msgstr "Hapus pendaftaran asosiasi berkas"
+
+msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
+msgstr "Gunakan pustaka MediaInfo alih-alih mpv untuk mengambil informasi media. (Opsi mpv.net)"
+
+msgid "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "Gunakan API yang tersedia. GPU API bawaan untuk nilai ini dapat berubah; tentukan secara eksplisit jika memerlukan API tertentu."
+
+msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
+msgstr "Gunakan interpolasi trikubik berkualitas lebih tinggi tetapi lebih lambat untuk 3DLUT. Sangat membantu akurasi LUT kecil; pengaruh pada ukuran bawaan kecil."
+
+msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
+msgstr "Gunakan pencarian presisi untuk posisi absolut seperti bab, bukan perpindahan relatif seperti tombol panah."
+
+msgid "Use precise seeks whenever possible."
+msgstr "Gunakan pencarian posisi presisi bila memungkinkan."
+
+msgid "Use the same filter as specified for upscaler"
+msgstr "Gunakan filter yang sama dengan upscaler"
+
+msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "Sintaks menu konteks dalam input.conf.\\nBawaan mpv.net adalah '#menu:', uosc adalah '#!'."
+
+msgid "User interface display language.\\nmpv.net must be restarted after a change."
+msgstr "Bahasa antarmuka.\\nMulai ulang mpv.net setelah mengubahnya."
+
+msgid "VK_KHR_win32_surface"
+msgstr "VK_KHR_win32_surface"
+
+msgid "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
+msgstr "Versi ewa_lanczos sangat tajam dengan antiringing (sangat lambat)."
+
+#: src\MpvNet\Utilities\InputHelp.cs:65 src\MpvNet\Utilities\InputHelp.cs:66
+#: src\MpvNet\Utilities\InputHelp.cs:67 src\MpvNet\Utilities\InputHelp.cs:68
+#: src\MpvNet\Utilities\InputHelp.cs:69 src\MpvNet\Utilities\InputHelp.cs:70
+#: src\MpvNet\Utilities\InputHelp.cs:71 src\MpvNet\Utilities\InputHelp.cs:72
+#: src\MpvNet\Utilities\InputHelp.cs:73 src\MpvNet\Utilities\InputHelp.cs:74
+#: src\MpvNet\Utilities\InputHelp.cs:75 src\MpvNet\Utilities\InputHelp.cs:76
+#: src\MpvNet\Utilities\InputHelp.cs:77 src\MpvNet\Utilities\InputHelp.cs:78
+#: src\MpvNet\Utilities\InputHelp.cs:79 src\MpvNet\Utilities\InputHelp.cs:80
+#: src\MpvNet\Utilities\InputHelp.cs:81
+msgid "Video"
+msgstr "Video"
+
+#: src\MpvNet\App.cs:191 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:236
+msgid "Video Tracks"
+msgstr "Trek Video"
+
+msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+msgstr "Ekstensi video untuk --autocreate-playlist atau --directory-filter-types; juga untuk asosiasi mpv.net dan auto-load-folder. Bawaan: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+
+msgid "Video output driver that uses the Direct3D interface."
+msgstr "Driver keluaran video yang memakai Direct3D."
+
+msgid "Video output drivers to be used.\\n\\nFor more information visit:"
+msgstr "Driver keluaran video yang digunakan.\\n\\nInformasi selengkapnya:"
+
+#: src\MpvNet\Utilities\InputHelp.cs:118 src\MpvNet\Utilities\InputHelp.cs:119
+#: src\MpvNet\Utilities\InputHelp.cs:120 src\MpvNet\Utilities\InputHelp.cs:121
+#: src\MpvNet\Utilities\InputHelp.cs:122 src\MpvNet\Utilities\InputHelp.cs:123
+#: src\MpvNet\Utilities\InputHelp.cs:124 src\MpvNet\Utilities\InputHelp.cs:125
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:127
+#: src\MpvNet\Utilities\InputHelp.cs:128 src\MpvNet\Utilities\InputHelp.cs:129
+#: src\MpvNet\Utilities\InputHelp.cs:130 src\MpvNet\Utilities\InputHelp.cs:131
+#: src\MpvNet\Utilities\InputHelp.cs:132 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:134 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:136 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:138 src\MpvNet\Utilities\InputHelp.cs:139
+#: src\MpvNet\Utilities\InputHelp.cs:140 src\MpvNet\Utilities\InputHelp.cs:141
+#: src\MpvNet\Utilities\InputHelp.cs:142 src\MpvNet\Utilities\InputHelp.cs:143
+#: src\MpvNet\Utilities\InputHelp.cs:144 src\MpvNet\Utilities\InputHelp.cs:145
+#: src\MpvNet\Utilities\InputHelp.cs:146 src\MpvNet\Utilities\InputHelp.cs:147
+msgid "View"
+msgstr "Tampilan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:105 src\MpvNet\Utilities\InputHelp.cs:106
+#: src\MpvNet\Utilities\InputHelp.cs:107 src\MpvNet\Utilities\InputHelp.cs:108
+msgid "Volume"
+msgstr "Volume"
+
+#: src\MpvNet\Utilities\InputHelp.cs:209 src\MpvNet\Utilities\InputHelp.cs:211
+msgid "Volume Down"
+msgstr "Kecilkan Volume"
+
+#: src\MpvNet\Utilities\InputHelp.cs:208 src\MpvNet\Utilities\InputHelp.cs:210
+msgid "Volume Up"
+msgstr "Besarkan Volume"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:42
+msgid "Waiting for key/mouse input."
+msgstr "Menunggu masukan tombol/tetikus."
+
+#: src\MpvNet\App.cs:197 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:242
+msgid "Watch History"
+msgstr "Riwayat Tontonan"
+
+#: src\MpvNet\App.cs:198 src\MpvNet\Utilities\InputHelp.cs:138
+#: src\MpvNet\Utilities\InputHelp.cs:243
+msgid "Watch Later"
+msgstr "Tonton Nanti"
+
+#: src\MpvNet\Utilities\InputHelp.cs:190
+msgid "Website mpv"
+msgstr "Situs mpv"
+
+#: src\MpvNet\Utilities\InputHelp.cs:191
+msgid "Website mpv.net"
+msgstr "Situs mpv.net"
+
+msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
+msgstr "Saat membuka berkas lokal, anggap direktori induk dibuka dan buat daftar putar otomatis.\\n\\nno: satu berkas saja (bawaan mpv).\\n\\nFilter: berkas direktori induk yang cocok dengan --directory-filter-types (bawaan mpv.net).\\n\\nsame: berkas dengan kategori sama. Daftar *-exts dipilih berdasarkan masukan, hanya ekstensi cocok ditambahkan. Jika masukan tidak cocok dengan daftar mana pun, daftar putar tidak dibuat."
+
+msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
+msgstr "Saat memperbesar, gunakan transformasi warna sigmoid agar artefak dering tidak menonjol. Juga mengaktifkan linear-scaling."
+
+msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
+msgstr "Perbesar ukuran filter konvolusi saat memperkecil gambar; kualitas naik tetapi kinerja turun.\\n\\nSedikit kurang optimal untuk video anamorfik (tetap lebih baik daripada nonaktif), karena hanya mengikuti faktor skala yang lebih ringan dari kedua sumbu."
+
+msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+msgstr "Skalakan OSD mengikuti jendela. Jika nonaktif, osd-font-size dan opsi OSD berpiksel terskala memakai piksel sebenarnya; perubahan ukuran jendela tidak mengubah fon OSD."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:337
+msgid "Width"
+msgstr "Lebar"
+
+msgid "Win32, with native Direct3D 11 rendering."
+msgstr "Win32 dengan perenderan Direct3D 11 asli."
+
+msgid "Win32/WGL"
+msgstr "Win32/WGL"
+
+#: src\MpvNet\Utilities\InputHelp.cs:149 src\MpvNet\Utilities\InputHelp.cs:150
+#: src\MpvNet\Utilities\InputHelp.cs:151 src\MpvNet\Utilities\InputHelp.cs:152
+#: src\MpvNet\Utilities\InputHelp.cs:153 src\MpvNet\Utilities\InputHelp.cs:154
+#: src\MpvNet\Utilities\InputHelp.cs:155 src\MpvNet\Utilities\InputHelp.cs:156
+#: src\MpvNet\Utilities\InputHelp.cs:157 src\MpvNet\Utilities\InputHelp.cs:158
+#: src\MpvNet\Utilities\InputHelp.cs:159 src\MpvNet\Utilities\InputHelp.cs:160
+#: src\MpvNet\Utilities\InputHelp.cs:161 src\MpvNet\Utilities\InputHelp.cs:162
+#: src\MpvNet\Utilities\InputHelp.cs:163
+msgid "Window"
+msgstr "Jendela"
+
+msgid "Window height is always remembered"
+msgstr "Selalu ingat tinggi jendela"
+
+msgid "Window height is remembered in the current session"
+msgstr "Ingat tinggi jendela dalam sesi ini"
+
+msgid "Window size is always remembered"
+msgstr "Selalu ingat ukuran jendela"
+
+msgid "Window size is remembered in the current session"
+msgstr "Ingat ukuran jendela dalam sesi ini"
+
+msgid "Window size is set to video resolution"
+msgstr "Ukuran jendela sesuai resolusi video"
+
+msgid "Window width is always remembered"
+msgstr "Selalu ingat lebar jendela"
+
+msgid "Window width is remembered in the current session"
+msgstr "Ingat lebar jendela dalam sesi ini"
+
+msgid "Write JPEG files with the same chroma subsampling as the video. If disabled, the libjpeg default is used."
+msgstr "Tulis JPEG dengan subsampling kroma yang sama dengan video. Jika nonaktif, gunakan bawaan libjpeg."
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:137
+msgid "Yes"
+msgstr "Ya"
+
+#: src\MpvNet\App.cs:112
+msgid "Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support."
+msgstr "Donasi Anda membantu pengembangan MPV.NET Media Player, peningkatan, perbaikan, dan dukungan proyek berkelanjutan."
+
+#: src\MpvNet\Utilities\InputHelp.cs:150 src\MpvNet\Utilities\InputHelp.cs:151
+#: src\MpvNet\Utilities\InputHelp.cs:152 src\MpvNet\Utilities\InputHelp.cs:153
+#: src\MpvNet\Utilities\InputHelp.cs:154 src\MpvNet\Utilities\InputHelp.cs:155
+#: src\MpvNet\Utilities\InputHelp.cs:156
+msgid "Zoom"
+msgstr "Zum"
+
+msgid "absolute"
+msgstr "absolute"
+
+msgid "alang"
+msgstr "alang"
+
+msgid "all"
+msgstr "all"
+
+msgid "allow-delayed-peak-detect"
+msgstr "allow-delayed-peak-detect"
+
+msgid "allow_delayed_peak"
+msgstr "allow_delayed_peak"
+
+msgid "always"
+msgstr "always"
+
+msgid "always use software decoding"
+msgstr "selalu gunakan dekode perangkat lunak"
+
+msgid "angle"
+msgstr "angle"
+
+msgid "antiringing_strength"
+msgstr "antiringing_strength"
+
+msgid "any"
+msgstr "any"
+
+msgid "audio"
+msgstr "audio"
+
+msgid "audio-device"
+msgstr "audio-device"
+
+msgid "audio-exts"
+msgstr "audio-exts"
+
+msgid "audio-file-auto"
+msgstr "audio-file-auto"
+
+msgid "auto"
+msgstr "auto"
+
+msgid "auto-copy"
+msgstr "auto-copy"
+
+msgid "auto-load-folder"
+msgstr "auto-load-folder"
+
+msgid "auto-safe"
+msgstr "auto-safe"
+
+msgid "auto-select"
+msgstr "auto-select"
+
+msgid "autocreate-playlist"
+msgstr "autocreate-playlist"
+
+msgid "autofit"
+msgstr "autofit"
+
+msgid "autofit-audio"
+msgstr "autofit-audio"
+
+msgid "autofit-image"
+msgstr "autofit-image"
+
+msgid "autofit-larger"
+msgstr "autofit-larger"
+
+msgid "autofit-smaller"
+msgstr "autofit-smaller"
+
+#: src\MpvNet\Utilities\InputHelp.cs:196
+msgid "awesome-mpv"
+msgstr "awesome-mpv"
+
+msgid "background"
+msgstr "background"
+
+msgid "bicubic"
+msgstr "bicubic"
+
+msgid "bilinear"
+msgstr "bilinear"
+
+msgid "black_cutoff"
+msgstr "black_cutoff"
+
+msgid "border"
+msgstr "border"
+
+msgid "box"
+msgstr "box"
+
+msgid "brightness"
+msgstr "brightness"
+
+msgid "bt2390"
+msgstr "bt2390"
+
+msgid "bt2446a"
+msgstr "bt2446a"
+
+msgid "bulgarian"
+msgstr "Bulgaria"
+
+msgid "cache"
+msgstr "cache"
+
+msgid "catmull_rom"
+msgstr "catmull_rom"
+
+msgid "chinese-china"
+msgstr "Tionghoa Sederhana"
+
+msgid "cie_y"
+msgstr "cie_y"
+
+msgid "clip"
+msgstr "clip"
+
+msgid "color_adjustment"
+msgstr "color_adjustment"
+
+msgid "color_adjustment_preset"
+msgstr "color_adjustment_preset"
+
+msgid "color_map"
+msgstr "color_map"
+
+msgid "color_map_preset"
+msgstr "color_map_preset"
+
+msgid "colorimetric_gamma"
+msgstr "colorimetric_gamma"
+
+msgid "contrast"
+msgstr "contrast"
+
+msgid "contrast_recovery"
+msgstr "contrast_recovery"
+
+msgid "contrast_smoothness"
+msgstr "contrast_smoothness"
+
+msgid "copies video back to system RAM"
+msgstr "menyalin video kembali ke RAM sistem"
+
+msgid "correct-downscaling"
+msgstr "correct-downscaling"
+
+msgid "cscale"
+msgstr "cscale"
+
+msgid "cubic"
+msgstr "cubic"
+
+msgid "cuda"
+msgstr "cuda"
+
+msgid "cuda-copy"
+msgstr "cuda-copy"
+
+msgid "d3d11"
+msgstr "d3d11"
+
+msgid "d3d11va"
+msgstr "d3d11va"
+
+msgid "d3d11va-copy"
+msgstr "d3d11va-copy"
+
+msgid "d3d11va-zero-copy"
+msgstr "d3d11va-zero-copy"
+
+msgid "dark-mode"
+msgstr "dark-mode"
+
+msgid "dark-theme"
+msgstr "dark-theme"
+
+msgid "darken"
+msgstr "darken"
+
+msgid "deband"
+msgstr "deband"
+
+msgid "deband_grain"
+msgstr "deband_grain"
+
+msgid "deband_iterations"
+msgstr "deband_iterations"
+
+msgid "deband_preset"
+msgstr "deband_preset"
+
+msgid "deband_radius"
+msgstr "deband_radius"
+
+msgid "deband_threshold"
+msgstr "deband_threshold"
+
+msgid "debug-mode"
+msgstr "debug-mode"
+
+msgid "default"
+msgstr "default"
+
+msgid "demuxer-max-bytes"
+msgstr "demuxer-max-bytes"
+
+msgid "desaturate"
+msgstr "desaturate"
+
+msgid "desync"
+msgstr "desync"
+
+msgid "direct3d"
+msgstr "direct3d"
+
+msgid "display-adrop"
+msgstr "display-adrop"
+
+msgid "display-desync"
+msgstr "display-desync"
+
+msgid "display-resample"
+msgstr "display-resample"
+
+msgid "display-resample-desync"
+msgstr "display-resample-desync"
+
+msgid "display-resample-vdrop"
+msgstr "display-resample-vdrop"
+
+msgid "display-vdrop"
+msgstr "display-vdrop"
+
+msgid "dither-depth"
+msgstr "dither-depth"
+
+msgid "downscaler"
+msgstr "downscaler"
+
+msgid "dscale"
+msgstr "dscale"
+
+msgid "dxinterop"
+msgstr "dxinterop"
+
+msgid "dxva2"
+msgstr "dxva2"
+
+msgid "dxva2-copy"
+msgstr "dxva2-copy"
+
+msgid "enable any whitelisted hw decoder"
+msgstr "aktifkan dekoder perangkat keras dalam daftar yang diizinkan"
+
+msgid "enable best hw decoder"
+msgstr "aktifkan dekoder perangkat keras terbaik"
+
+msgid "enable best hw decoder with copy-back"
+msgstr "aktifkan dekoder perangkat keras terbaik dengan salin balik"
+
+msgid "english"
+msgstr "Inggris"
+
+msgid "ewa_lanczos"
+msgstr "ewa_lanczos"
+
+msgid "ewa_lanczos4sharpest"
+msgstr "ewa_lanczos4sharpest"
+
+msgid "ewa_lanczossharp"
+msgstr "ewa_lanczossharp"
+
+msgid "exact"
+msgstr "exact"
+
+msgid "exactly the same as auto"
+msgstr "sama persis dengan auto"
+
+msgid "exposure"
+msgstr "exposure"
+
+msgid "fast"
+msgstr "fast"
+
+msgid "filter"
+msgstr "filter"
+
+msgid "force_tone_mapping_lut"
+msgstr "force_tone_mapping_lut"
+
+msgid "frame_mixer"
+msgstr "frame_mixer"
+
+msgid "french"
+msgstr "Prancis"
+
+msgid "fullscreen"
+msgstr "fullscreen"
+
+msgid "fuzzy"
+msgstr "fuzzy"
+
+msgid "gamma"
+msgstr "gamma"
+
+msgid "gamut_expansion"
+msgstr "gamut_expansion"
+
+msgid "gamut_mapping"
+msgstr "gamut_mapping"
+
+msgid "gaussian"
+msgstr "gaussian"
+
+msgid "geometry"
+msgstr "geometry"
+
+msgid "german"
+msgstr "Jerman"
+
+msgid "gpu"
+msgstr "gpu"
+
+msgid "gpu-api"
+msgstr "gpu-api"
+
+msgid "gpu-context"
+msgstr "gpu-context"
+
+msgid "gpu-next"
+msgstr "gpu-next"
+
+msgid "hable"
+msgstr "hable"
+
+msgid "hdr-compute-peak"
+msgstr "hdr-compute-peak"
+
+msgid "hdr10"
+msgstr "hdr10"
+
+msgid "hdr10plus"
+msgstr "hdr10plus"
+
+msgid "height-always"
+msgstr "height-always"
+
+msgid "height-session"
+msgstr "height-session"
+
+msgid "hermite"
+msgstr "hermite"
+
+msgid "high_quality"
+msgstr "high_quality"
+
+msgid "highlight"
+msgstr "highlight"
+
+msgid "hr-seek"
+msgstr "hr-seek"
+
+msgid "hue"
+msgstr "hue"
+
+msgid "hwdec"
+msgstr "hwdec"
+
+msgid "idle"
+msgstr "idle"
+
+msgid "image-exts"
+msgstr "image-exts"
+
+msgid "info"
+msgstr "info"
+
+msgid "input-ar-delay"
+msgstr "input-ar-delay"
+
+msgid "input-ar-rate"
+msgstr "input-ar-rate"
+
+msgid "input-ipc-server"
+msgstr "input-ipc-server"
+
+msgid "inverse_tone_mapping"
+msgstr "inverse_tone_mapping"
+
+msgid "italian"
+msgstr "Italia"
+
+msgid "japanese"
+msgstr "Jepang"
+
+msgid "jpg"
+msgstr "jpg"
+
+msgid "keep-open"
+msgstr "keep-open"
+
+msgid "keep-open-pause"
+msgstr "keep-open-pause"
+
+msgid "keepaspect-window"
+msgstr "keepaspect-window"
+
+msgid "keepaspect-window will lock the window size to the video aspect. Default: yes"
+msgstr "keepaspect-window mengunci ukuran jendela ke rasio video. Bawaan: yes"
+
+msgid "knee_adaptation"
+msgstr "knee_adaptation"
+
+msgid "knee_default"
+msgstr "knee_default"
+
+msgid "knee_maximum"
+msgstr "knee_maximum"
+
+msgid "knee_minimum"
+msgstr "knee_minimum"
+
+msgid "knee_offset"
+msgstr "knee_offset"
+
+msgid "korean"
+msgstr "Korea"
+
+msgid "lanczos"
+msgstr "lanczos"
+
+msgid "language"
+msgstr "language"
+
+msgid "libplacebo"
+msgstr "libplacebo"
+
+msgid "libplacebo-opts"
+msgstr "libplacebo-opts"
+
+msgid "light-theme"
+msgstr "light-theme"
+
+msgid "linear"
+msgstr "linear"
+
+msgid "linear_knee"
+msgstr "linear_knee"
+
+msgid "linearlight"
+msgstr "linearlight"
+
+msgid "loop-file"
+msgstr "loop-file"
+
+msgid "loop-playlist"
+msgstr "loop-playlist"
+
+msgid "lut3d_size_C"
+msgstr "lut3d_size_C"
+
+msgid "lut3d_size_I"
+msgstr "lut3d_size_I"
+
+msgid "lut3d_size_h"
+msgstr "lut3d_size_h"
+
+msgid "lut3d_tricubic"
+msgstr "lut3d_tricubic"
+
+msgid "media-info"
+msgstr "media-info"
+
+msgid "menu-syntax"
+msgstr "menu-syntax"
+
+msgid "minimum-aspect-ratio"
+msgstr "minimum-aspect-ratio"
+
+msgid "minimum-aspect-ratio-audio"
+msgstr "minimum-aspect-ratio-audio"
+
+msgid "mitchell"
+msgstr "mitchell"
+
+msgid "mobius"
+msgstr "mobius"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:411
+msgid "mpv.net is already in the Path environment variable."
+msgstr "mpv.net sudah ada dalam variabel lingkungan Path."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:428
+msgid "mpv.net was not found in the Path environment variable."
+msgstr "mpv.net tidak ditemukan dalam variabel lingkungan Path."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:419
+msgid "mpv.net was successfully added to the Path environment variable."
+msgstr "mpv.net berhasil ditambahkan ke variabel lingkungan Path."
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:437
+msgid "mpv.net was successfully removed from the Path environment variable."
+msgstr "mpv.net berhasil dihapus dari variabel lingkungan Path."
+
+msgid "multi"
+msgstr "multi"
+
+msgid "nearest"
+msgstr "nearest"
+
+msgid "neutral"
+msgstr "neutral"
+
+msgid "never"
+msgstr "never"
+
+msgid "no"
+msgstr "no"
+
+msgid "none"
+msgstr "none"
+
+msgid "nvdec"
+msgstr "nvdec"
+
+msgid "nvdec-copy"
+msgstr "nvdec-copy"
+
+msgid "once"
+msgstr "once"
+
+msgid "opengl"
+msgstr "opengl"
+
+msgid "osd-duration"
+msgstr "osd-duration"
+
+msgid "osd-font-size"
+msgstr "osd-font-size"
+
+msgid "osd-playing-msg"
+msgstr "osd-playing-msg"
+
+msgid "osd-scale-by-window"
+msgstr "osd-scale-by-window"
+
+msgid "oversample"
+msgstr "oversample"
+
+msgid "peak_detect"
+msgstr "peak_detect"
+
+msgid "peak_detection_preset"
+msgstr "peak_detection_preset"
+
+msgid "peak_percentile"
+msgstr "peak_percentile"
+
+msgid "peak_smoothing_period"
+msgstr "peak_smoothing_period"
+
+msgid "perceptual"
+msgstr "perceptual"
+
+msgid "perceptual_deadzone"
+msgstr "perceptual_deadzone"
+
+msgid "perceptual_strength"
+msgstr "perceptual_strength"
+
+msgid "plane_downscaler"
+msgstr "plane_downscaler"
+
+msgid "plane_upscaler"
+msgstr "plane_upscaler"
+
+msgid "png"
+msgstr "png"
+
+msgid "polish"
+msgstr "Polandia"
+
+msgid "portuguese-brazil"
+msgstr "Portugis (Brasil)"
+
+msgid "portuguese-portugal"
+msgstr "Portugis (Portugal)"
+
+msgid "preset"
+msgstr "preset"
+
+msgid "process-instance"
+msgstr "process-instance"
+
+msgid "queue"
+msgstr "queue"
+
+msgid "recent-count"
+msgstr "recent-count"
+
+msgid "reinhard"
+msgstr "reinhard"
+
+msgid "reinhard_contrast"
+msgstr "reinhard_contrast"
+
+msgid "relative"
+msgstr "relative"
+
+msgid "remember-audio-device"
+msgstr "remember-audio-device"
+
+msgid "remember-volume"
+msgstr "remember-volume"
+
+msgid "remember-window-position"
+msgstr "remember-window-position"
+
+msgid "requires vo=gpu (Any platform CUDA is available)"
+msgstr "memerlukan vo=gpu (platform apa pun dengan CUDA)"
+
+msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
+msgstr "memerlukan vo=gpu dengan gpu-context=d3d11 atau gpu-context=angle"
+
+msgid "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
+msgstr "memerlukan vo=gpu dengan gpu-context=d3d11, gpu-context=angle atau gpu-context=dxinterop"
+
+msgid "reset-on-next-file"
+msgstr "reset-on-next-file"
+
+msgid "russian"
+msgstr "Rusia"
+
+msgid "same"
+msgstr "same"
+
+msgid "saturation"
+msgstr "saturation"
+
+msgid "save-position-on-quit"
+msgstr "save-position-on-quit"
+
+msgid "scale"
+msgstr "scale"
+
+msgid "scene_threshold_high"
+msgstr "scene_threshold_high"
+
+msgid "scene_threshold_low"
+msgstr "scene_threshold_low"
+
+msgid "screen"
+msgstr "screen"
+
+msgid "screenshot-directory"
+msgstr "screenshot-directory"
+
+msgid "screenshot-format"
+msgstr "screenshot-format"
+
+msgid "screenshot-high-bit-depth"
+msgstr "screenshot-high-bit-depth"
+
+msgid "screenshot-jpeg-quality"
+msgstr "screenshot-jpeg-quality"
+
+msgid "screenshot-jpeg-source-chroma"
+msgstr "screenshot-jpeg-source-chroma"
+
+msgid "screenshot-png-compression"
+msgstr "screenshot-png-compression"
+
+msgid "screenshot-png-filter"
+msgstr "screenshot-png-filter"
+
+msgid "screenshot-tag-colorspace"
+msgstr "screenshot-tag-colorspace"
+
+msgid "screenshot-template"
+msgstr "screenshot-template"
+
+msgid "session"
+msgstr "session"
+
+msgid "show_clipping"
+msgstr "show_clipping"
+
+msgid "sigmoid"
+msgstr "sigmoid"
+
+msgid "sigmoid-upscaling"
+msgstr "sigmoid-upscaling"
+
+msgid "sigmoid_center"
+msgstr "sigmoid_center"
+
+msgid "sigmoid_preset"
+msgstr "sigmoid_preset"
+
+msgid "sigmoid_slope"
+msgstr "sigmoid_slope"
+
+msgid "single"
+msgstr "single"
+
+msgid "slang"
+msgstr "slang"
+
+msgid "slope_offset"
+msgstr "slope_offset"
+
+msgid "slope_tuning"
+msgstr "slope_tuning"
+
+msgid "snap-window"
+msgstr "snap-window"
+
+msgid "softclip"
+msgstr "softclip"
+
+msgid "softclip_desat"
+msgstr "softclip_desat"
+
+msgid "softclip_knee"
+msgstr "softclip_knee"
+
+msgid "spanish"
+msgstr "Spanyol"
+
+msgid "spline"
+msgstr "spline"
+
+msgid "spline36"
+msgstr "spline36"
+
+msgid "spline_contrast"
+msgstr "spline_contrast"
+
+msgid "st2094-10"
+msgstr "st2094-10"
+
+msgid "st2094-40"
+msgstr "st2094-40"
+
+msgid "start-size"
+msgstr "start-size"
+
+msgid "sub-auto"
+msgstr "sub-auto"
+
+msgid "sub-back-color"
+msgstr "sub-back-color"
+
+msgid "sub-border-color"
+msgstr "sub-border-color"
+
+msgid "sub-color"
+msgstr "sub-color"
+
+msgid "sub-font"
+msgstr "sub-font"
+
+msgid "sub-font-size"
+msgstr "sub-font-size"
+
+msgid "system"
+msgstr "system"
+
+msgid "taskbar-progress"
+msgstr "taskbar-progress"
+
+msgid "temperature"
+msgstr "temperature"
+
+msgid "title"
+msgstr "title"
+
+msgid "title-bar"
+msgstr "title-bar"
+
+msgid "tone_lut_size"
+msgstr "tone_lut_size"
+
+msgid "tone_map_metadata"
+msgstr "tone_map_metadata"
+
+msgid "tone_mapping"
+msgstr "tone_mapping"
+
+msgid "track-auto-selection"
+msgstr "track-auto-selection"
+
+msgid "turkish"
+msgstr "Turki"
+
+msgid "upscaler"
+msgstr "upscaler"
+
+msgid "video-exts"
+msgstr "video-exts"
+
+msgid "video-sync"
+msgstr "video-sync"
+
+msgid "visualize_hue"
+msgstr "visualize_hue"
+
+msgid "visualize_lut"
+msgstr "visualize_lut"
+
+msgid "visualize_lut_x0"
+msgstr "visualize_lut_x0"
+
+msgid "visualize_lut_x1"
+msgstr "visualize_lut_x1"
+
+msgid "visualize_lut_y0"
+msgstr "visualize_lut_y0"
+
+msgid "visualize_lut_y1"
+msgstr "visualize_lut_y1"
+
+msgid "visualize_theta"
+msgstr "visualize_theta"
+
+msgid "vo"
+msgstr "vo"
+
+msgid "volume"
+msgstr "volume"
+
+msgid "vulkan"
+msgstr "vulkan"
+
+msgid "watch-later-options"
+msgstr "watch-later-options"
+
+msgid "width-always"
+msgstr "width-always"
+
+msgid "width-session"
+msgstr "width-session"
+
+msgid "win"
+msgstr "win"
+
+msgid "window-maximized"
+msgstr "window-maximized"
+
+msgid "winvk"
+msgstr "winvk"
+
+msgid "yes"
+msgstr "yes"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:157
+#, csharp-format
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "{0} tidak ada. Buat sekarang?"
+
+#: src\MpvNet\Utilities\InputHelp.cs:161
+msgctxt "Move"
+msgid "Center"
+msgstr "Tengah"
+
+#: src\MpvNet\Utilities\InputHelp.cs:160
+msgctxt "Move"
+msgid "Down"
+msgstr "Bawah"
+
+#: src\MpvNet\Utilities\InputHelp.cs:157
+msgctxt "Move"
+msgid "Left"
+msgstr "Kiri"
+
+#: src\MpvNet\Utilities\InputHelp.cs:158
+msgctxt "Move"
+msgid "Right"
+msgstr "Kanan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:159
+msgctxt "Move"
+msgid "Up"
+msgstr "Atas"
+
+#: src\MpvNet\Utilities\InputHelp.cs:106
+msgctxt "Volume"
+msgid "Down"
+msgstr "Turunkan"
+
+#: src\MpvNet\Utilities\InputHelp.cs:105
+msgctxt "Volume"
+msgid "Up"
+msgstr "Naikkan"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "No playable media was found in this drive or folder."
+msgstr "Tidak ada media yang dapat diputar di drive atau folder ini."
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "The selected drive or folder could not be read."
+msgstr "Drive atau folder yang dipilih tidak dapat dibaca."
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "Layanan sumber meminta verifikasi bahwa Anda bukan bot."
+
+msgid "The clipboard is temporarily unavailable."
+msgstr "Papan klip sementara tidak tersedia."
+
+msgid "Untitled Track"
+msgstr "Trek Tanpa Judul"
+
+msgid "Repository: "
+msgstr "Repositori: "
+
+msgid "chinese-taiwan"
+msgstr "繁體中文（台灣）"
+
+msgid "chinese-hongkong"
+msgstr "繁體中文（香港）"
+
+msgid "hindi"
+msgstr "हिन्दी"
+
+msgid "arabic"
+msgstr "العربية"
+
+msgid "ukrainian"
+msgstr "Українська"
+
+msgid "indonesian"
+msgstr "Bahasa Indonesia"
+
+msgid "Cache"
+msgstr "Tembolok"
+
+msgid "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
+msgstr "Simpan URL jaringan dalam Berkas Terbaru sebagai teks biasa di settings.xml. URL dengan kredensial tertanam, parameter kueri sensitif, atau fragmen selalu dikecualikan. Aktifkan hanya jika parameter URL lainnya tidak berisi rahasia. (Opsi mpv.net)"
+
+msgid "save-network-urls-in-recent"
+msgstr "save-network-urls-in-recent"
+
+msgid "video"
+msgstr "video"

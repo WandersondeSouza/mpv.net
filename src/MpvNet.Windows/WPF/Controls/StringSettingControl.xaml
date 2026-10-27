@@ -14,6 +14,7 @@
         <StackPanel>
             <TextBox
                 x:Name="TitleTextBox"
+                FlowDirection="LeftToRight"
                 FontSize="24"
                 Margin="0,10"
                 BorderThickness="0"
@@ -29,6 +30,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBox
                     x:Name="ValueTextBox"
+                    FlowDirection="LeftToRight"
                     Text="{Binding Path=Text, ElementName=StringSettingControl1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Width="150"
                     FontSize="13"
@@ -62,6 +64,7 @@
 
             <TextBlock
                 x:Name="LinkTextBlock"
+                FlowDirection="LeftToRight"
                 Margin="2,0"
                 >
                 <local:HyperlinkEx

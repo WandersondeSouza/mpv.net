@@ -42,6 +42,9 @@ if (-not $hasGettextTools) {
     }
 }
 
+& $Python "$PSScriptRoot/verify-language-expansion.py"
+if ($LastExitCode) { throw 'Expanded language catalog validation failed.' }
+
 foreach ($it in $PoFiles)
 {
     $folder = "$ExeFolder/Locale/$($it.BaseName)/LC_MESSAGES"
@@ -58,27 +61,18 @@ foreach ($it in $PoFiles)
         Write-Host "Compiling $($it.Name) using gettext tools"
         & $MsgAttrib --no-obsolete --output-file="$filteredPo" "$($it.FullName)"
         if ($LastExitCode) {
-            Write-Warning "Skipping invalid .po file: $($it.FullName) (msgattrib exit code $LastExitCode)"
-            $global:LastExitCode = 0
-            continue
+            throw "Invalid .po file: $($it.FullName) (msgattrib exit code $LastExitCode)"
         }
 
         $dedupedPo = "$folder/$($it.BaseName).deduped.po"
         & $MsgUniq --output-file="$dedupedPo" "$filteredPo"
         if ($LastExitCode) {
-            Write-Warning "Skipping invalid .po file: $($it.FullName) (msguniq exit code $LastExitCode)"
-            $global:LastExitCode = 0
-            Remove-Item -Force "$filteredPo" -ErrorAction SilentlyContinue
-            continue
+            throw "Invalid .po file: $($it.FullName) (msguniq exit code $LastExitCode)"
         }
 
-        & $MsgFmt --output-file="$moPath" "$dedupedPo"
+        & $MsgFmt --check --output-file="$moPath" "$dedupedPo"
         if ($LastExitCode) {
-            Write-Warning "Skipping invalid .po file: $($it.FullName) (msgfmt exit code $LastExitCode)"
-            $global:LastExitCode = 0
-            Remove-Item -Force "$filteredPo" -ErrorAction SilentlyContinue
-            Remove-Item -Force "$dedupedPo" -ErrorAction SilentlyContinue
-            continue
+            throw "Invalid .po file: $($it.FullName) (msgfmt exit code $LastExitCode)"
         }
 
         Remove-Item -Force "$filteredPo" -ErrorAction SilentlyContinue
@@ -89,9 +83,10 @@ foreach ($it in $PoFiles)
         Write-Host "Compiling $($it.Name) using Python fallback"
         & $Python "$PSScriptRoot/create-mo-files-fallback.py" --po-file "$($it.FullName)" --mo-file "$moPath"
         if ($LastExitCode) {
-            Write-Warning "Skipping invalid .po file: $($it.FullName) (Python fallback exit code $LastExitCode)"
-            $global:LastExitCode = 0
-            continue
+            throw "Invalid .po file: $($it.FullName) (Python fallback exit code $LastExitCode)"
         }
     }
 }
+
+& $Python "$PSScriptRoot/verify-language-expansion.py" --mo-directory $OutputDir
+if ($LastExitCode) { throw 'Compiled expanded language catalog validation failed.' }

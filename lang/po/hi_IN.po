@@ -1,0 +1,2722 @@
+msgid ""
+msgstr "Project-Id-Version: mpv.net\nReport-Msgid-Bugs-To: \nPO-Revision-Date: 2026-10-27 12:00+0000\nLast-Translator: MPV.NET contributors\nLanguage-Team: Hindi (India)\nLanguage: hi_IN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src\MpvNet.Windows\Configuration\Conf.cs:38
+msgid "(Default)"
+msgstr "(डिफ़ॉल्ट)"
+
+msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr "(प्रायोगिक) Win32: रेंडरिंग के लिए WGL और प्रस्तुति के लिए Direct3D 9Ex। Nvidia और AMD पर चलता है; नवीनतम ड्राइवर वाले नए Intel चिप भी काम कर सकते हैं।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:111
+msgid "+10%"
+msgstr "+10%"
+
+#: src\MpvNet\Utilities\InputHelp.cs:110
+msgid "-10%"
+msgstr "-10%"
+
+msgid "10"
+msgstr "10"
+
+#: src\MpvNet\Utilities\InputHelp.cs:154
+msgid "100 %"
+msgstr "100 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:155
+msgid "200 %"
+msgstr "200 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:156
+msgid "300 %"
+msgstr "300 %"
+
+#: src\MpvNet\Utilities\InputHelp.cs:153
+msgid "50 %"
+msgstr "50 %"
+
+msgid "8"
+msgstr "8"
+
+msgid "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
+msgstr "<-1.0..1.0> चमक में स्थिर मान जोड़ता है। 0.0 = तटस्थ, 1.0 = पूरा सफ़ेद, -1.0 = पूरा काला। डिफ़ॉल्ट 0.0।"
+
+msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
+msgstr "<-1.143..5.286> रंग तापमान बदलाव। 6500 K के सापेक्ष: 0.0 = 6500 K (बदलाव नहीं), -1.0 = 3000 K, 1.0 = 10000 K। डिफ़ॉल्ट 0.0।"
+
+msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
+msgstr "<0-100> JPEG गुणवत्ता। अधिक मान से बेहतर गुणवत्ता मिलती है। डिफ़ॉल्ट 90।"
+
+msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
+msgstr "<0-32> कई मॉनिटर पर फैले डेस्कटॉप में mpv वीडियो किस स्क्रीन पर दिखाए, यह तय करता है।"
+
+msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
+msgstr "<0-5> PNG संपीड़न से पहले फ़िल्टर: 0 = none, 1 = sub, 2 = up, 3 = average, 4 = Paeth, 5 = mixed। यह संपीड़न अनुपात बदलता है; अधिकांश चित्रों के लिए mixed सर्वोत्तम और डिफ़ॉल्ट है।"
+
+msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
+msgstr "<0-9> PNG संपीड़न स्तर। अधिक मान से बेहतर संपीड़न, छोटा स्क्रीनशॉट और अधिक लेखन समय मिलता है। बहुत ऊँचा मान CPU व्यस्त करके प्लेबैक बाधित कर सकता है। डिफ़ॉल्ट 7।"
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
+msgstr "<0..1024> सरगम मैपिंग 3DLUT का आकार। 0 पर डिफ़ॉल्ट 256 चुना जाता है।"
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
+msgstr "<0..1024> सरगम मैपिंग 3DLUT का आकार। 0 पर डिफ़ॉल्ट 32 चुना जाता है।"
+
+msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
+msgstr "<0..1024> सरगम मैपिंग 3DLUT का आकार। 0 पर डिफ़ॉल्ट 48 चुना जाता है।"
+
+msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
+msgstr "<0..16> प्रति नमूना रंग पट्टियाँ हटाने के चरण। हर चरण पट्टियाँ घटाता है, पर गणना समय लेता है। प्रभाव तेज़ी से घटता है, इसलिए >4 लगभग बेकार है। डिफ़ॉल्ट 1।"
+
+msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
+msgstr "<0..4096> टोन मैपिंग LUT आकार। 0 डिफ़ॉल्ट 256 चुनता है।"
+
+msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
+msgstr "<0.0..0.5> PQ चमक सीमा के अनुपात में knee बिंदु की न्यूनतम सीमा। knee_adaptation के चुनाव पर कठोर सीमा लगाता है। डिफ़ॉल्ट 0.1।"
+
+msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
+msgstr "<0.0..1.0> बोधात्मक मैपिंग का सापेक्ष वर्णिकता सुरक्षा क्षेत्र। डिफ़ॉल्ट 0.30।"
+
+msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
+msgstr "<0.0..1.0> सभी फ़िल्टर की ऐंटी-रिंगिंग शक्ति। 0.0 बंद, 1.0 पूरी शक्ति। डिफ़ॉल्ट 0.0।"
+
+msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
+msgstr "<0.0..1.0> स्रोत दृश्य के औसत मेटाडेटा के अभाव में डिफ़ॉल्ट knee बिंदु। सामान्यतः स्रोत दृश्य की सापेक्ष औसत चमक को प्राथमिकता मिलती है। डिफ़ॉल्ट 0.4।"
+
+msgid "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
+msgstr "<0.0..1.0> softclip की विसंतृप्ति शक्ति। डिफ़ॉल्ट 0.35।"
+
+msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
+msgstr "<0.0..1.0> रैखिक प्रकाश पर काम करने वाले पुराने फ़ंक्शन (mobius, gamma) का knee बिंदु सीधे तय करता है। डिफ़ॉल्ट 0.3।"
+
+msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast coefficient at the display peak. Essentially, a value of 0.5 implies that the reference white will be about half as bright as when clipping. Defaults to 0.5."
+msgstr "<0.0..1.0> reinhard में डिस्प्ले शिखर का स्थानीय कंट्रास्ट गुणांक। 0.5 पर संदर्भ सफ़ेद क्लिपिंग की तुलना में लगभग आधा चमकीला होगा। डिफ़ॉल्ट 0.5।"
+
+msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
+msgstr "<0.0..1.0> सॉफ़्ट क्लिपिंग विधियों (perceptual, softclip) का knee बिंदु। डिफ़ॉल्ट 0.70।"
+
+msgid "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
+msgstr "<0.0..1.0> बोधात्मक संतृप्ति मैपिंग शक्ति। डिफ़ॉल्ट 0.80।"
+
+msgid "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
+msgstr "<0.0..1.0> sigmoid वक्र का केंद्र (बायस)। डिफ़ॉल्ट 0.75।"
+
+msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
+msgstr "<0.0..10.0> रैखिक विधियों (linear, linearlight) में चित्र पर लागू एक्सपोज़र/गेन। डिफ़ॉल्ट 1.0।"
+
+msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
+msgstr "<0.0..10.0> वर्णमितीय क्लिपिंग (relative, absolute, darken) के I बनाम C वक्र का गामा। डिफ़ॉल्ट 1.80।"
+
+msgid "<0.0..100.0> Black cutoff strength."
+msgstr "<0.0..100.0> काला कटऑफ़ शक्ति।"
+
+msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> कंट्रास्ट गेन: स्रोत चमक को स्थिर गुणक से गुणा करता है। 1.0 = तटस्थ, 0.0 = पूरा काला। डिफ़ॉल्ट 1.0।"
+
+msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> गामा समायोजन: समग्र कंट्रास्ट रखते हुए दृश्य को हल्का या गहरा करता है। 1.0 = तटस्थ, 0.0 = पूरा काला। डिफ़ॉल्ट 1.0।"
+
+msgid "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
+msgstr "<0.0..100.0> संतृप्ति गेन: स्रोत वर्णिकता को स्थिर गुणक से गुणा करता है। 1.0 = तटस्थ, 0.0 = ग्रेस्केल। डिफ़ॉल्ट 1.0।"
+
+msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
+msgstr "<0.0..100.0> इनपुट चित्र के चमक हिस्टोग्राम का कौन-सा प्रतिशतक दृश्य का वास्तविक शिखर माना जाए।"
+
+msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps cover up remaining quantization artifacts. Higher numbers add more noise. Defaults to 4.0, which is very mild."
+msgstr "<0.0..1000.0> शेष क्वांटाइज़ेशन दोष छिपाने के लिए नॉइज़ जोड़ता है। अधिक मान अधिक नॉइज़ देता है। डिफ़ॉल्ट 4.0, जो बहुत हल्का है।"
+
+msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
+msgstr "<0.0..1000.0> पहचाने गए मानों का स्मूदिंग गुणांक।"
+
+msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
+msgstr "<0.0..1000.0> रंग पट्टियाँ हटाने वाले फ़िल्टर की कटऑफ़ सीमा। अधिक मान प्रभाव बढ़ाता है, लेकिन चित्र का विवरण घटाता है। डिफ़ॉल्ट 3.0।"
+
+msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
+msgstr "<0.0..1000.0> रंग पट्टियाँ हटाने के फ़िल्टर की शुरुआती त्रिज्या; हर पुनरावृत्ति में रैखिक रूप से बढ़ती है। बड़ी त्रिज्या अधिक ग्रेडिएंट खोजती है; छोटी अधिक स्मूदिंग करती है। डिफ़ॉल्ट 16.0।"
+
+msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
+msgstr "<0.5..1.0> PQ चमक सीमा के अनुपात में knee बिंदु की अधिकतम सीमा। knee_adaptation के चुनाव पर कठोर सीमा लगाता है। डिफ़ॉल्ट 0.8।"
+
+msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
+msgstr "<0.5..2.0> knee बिंदु ऑफ़सेट (केवल bt2390)। विनिर्देश का डिफ़ॉल्ट 0.5 है, जबकि libplacebo का 1.0 है।"
+
+msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
+msgstr "<1.0..20.0> sigmoid वक्र की ढाल (तीव्रता)। डिफ़ॉल्ट 6.5।"
+
+msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
+msgstr "<1.0..32.0> HDR कंट्रास्ट पुनर्प्राप्ति के लो-पास कर्नेल का आकार। इसे बदलने से दृश्य पर काफ़ी प्रभाव पड़ता है। डिफ़ॉल्ट 3.5।"
+
+msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
+msgstr "<N|inf|force|no> N बार दोहराएँ: 1 एक बार (डिफ़ॉल्ट), 2 दो बार, inf अनंत, no भी 1 जैसा और लूप बंद। कमांड लाइन पर कई फ़ाइलें हों तो पूरी प्लेलिस्ट दोहरती है। force, inf जैसा है पर विफल प्रविष्टियाँ नहीं छोड़ता; अनुपस्थित फ़ाइल पर CPU समय बर्बाद हो सकता है, पर बहुत खराब नेटवर्क पर वेब रेडियो में उपयोगी है।"
+
+msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
+msgstr "<N|inf|no> एक फ़ाइल N बार दोहराएँ। inf अनंत, no सामान्य प्लेबैक।\\n\\nloop-playlist से अलग, यह केवल फ़ाइल दोहराता है। सूची में एक ही फ़ाइल हो तो इसे फिर लोड करने के बजाय सीक करता है। loop इसी विकल्प का उपनाम है।"
+
+msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
+msgstr "<angle> ह्यू बदलाव: UV उपसदिश को तटस्थ अक्ष के चारों ओर घुमाता है। इकाई रेडियन। डिफ़ॉल्ट 0.0 (तटस्थ)।"
+
+msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
+msgstr "<bytesize> डीमल्टीप्लेक्सर को आगे बफ़र करने की अधिकतम मात्रा।\\nKiB और MiB जैसे प्रत्यय समर्थित हैं।"
+
+msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
+msgstr "<float> विंडो का न्यूनतम आस्पेक्ट अनुपात। चौड़ी विंडो और बड़ा OSC पाने में उपयोगी। (mpv.net विकल्प)"
+
+msgid "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
+msgstr "<int> याद रखी जाने वाली हाल की फ़ाइलों की संख्या। डिफ़ॉल्ट: 15 (mpv.net विकल्प)"
+
+msgid "<int> Initial window height in percent for audio files. Default: 70"
+msgstr "<int> ऑडियो फ़ाइलों की शुरुआती विंडो ऊँचाई, प्रतिशत में। डिफ़ॉल्ट: 70"
+
+msgid "<int> Initial window height in percent for image files. Default: 80"
+msgstr "<int> चित्र फ़ाइलों की शुरुआती विंडो ऊँचाई, प्रतिशत में। डिफ़ॉल्ट: 80"
+
+msgid "<int> Initial window height in percent. Default: 60"
+msgstr "<int> शुरुआती विंडो ऊँचाई, प्रतिशत में। डिफ़ॉल्ट: 60"
+
+msgid "<int> Maximum window height in percent. Default: 80"
+msgstr "<int> अधिकतम विंडो ऊँचाई, प्रतिशत में। डिफ़ॉल्ट: 80"
+
+msgid "<int> Minimum window height in percent. Default: 10"
+msgstr "<int> न्यूनतम विंडो ऊँचाई, प्रतिशत में। डिफ़ॉल्ट: 10"
+
+msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
+msgstr "<name> ऑडियो डिवाइस: आउटपुट नाम (जैसे alsa), फिर / और उस आउटपुट का डिवाइस नाम। डिफ़ॉल्ट auto प्राथमिकता क्रम में हर आउटपुट का डिफ़ॉल्ट डिवाइस आज़माता है।\\n\\nडिवाइस सूची के लिए संदर्भ मेनू:\\n\\nदृश्य > अधिक > ऑडियो डिवाइस।\\n\\nडिवाइस बदलने के लिए भी संदर्भ मेनू:\\n\\nऑडियो > ऑडियो डिवाइस"
+
+msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
+msgstr "<x:y> शुरुआती विंडो स्थान, प्रतिशत में। डिफ़ॉल्ट: 50:50 (केंद्र)।\\n\\nWindows 11 आवश्यक; Windows 10 में अदृश्य बॉर्डर के कारण थोड़ा अंतर होता है।\\n\\nx=0 बायाँ किनारा।\\nx=100 दायाँ किनारा।\\n\\ny=0 ऊपर।\\ny=100 नीचे।"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
+msgid "Abort"
+msgstr "रोकें"
+
+#: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:10
+msgid "About"
+msgstr "परिचय"
+
+#: src\MpvNet\Utilities\InputHelp.cs:197
+msgid "About mpv.net"
+msgstr "mpv.net का परिचय"
+
+#: src\MpvNet\Utilities\InputHelp.cs:142
+msgid "Active Bindings In Text Editor"
+msgstr "सक्रिय कुंजी बाइंडिंग टेक्स्ट एडिटर में"
+
+#: src\MpvNet\Utilities\InputHelp.cs:143
+msgid "Active Bindings On-Screen"
+msgstr "सक्रिय कुंजी बाइंडिंग स्क्रीन पर"
+
+#: src\MpvNet\Utilities\InputHelp.cs:14
+msgid "Add external audio files..."
+msgstr "बाहरी ऑडियो फ़ाइलें जोड़ें..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:15
+msgid "Add external subtitle files..."
+msgstr "बाहरी उपशीर्षक फ़ाइलें जोड़ें..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:17
+msgid "Add files to playlist..."
+msgstr "प्लेलिस्ट में फ़ाइलें जोड़ें..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:18
+msgid "Add files/URLs to playlist from clipboard"
+msgstr "क्लिपबोर्ड से फ़ाइलें/URL प्लेलिस्ट में जोड़ें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:179
+msgid "Add mpv.net to Path environment variable"
+msgstr "mpv.net को Path वातावरण चर में जोड़ें"
+
+msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr "केवल OpenGL की अनुमति (OpenGL 2.1+ या GLES 2.0+ आवश्यक)"
+
+msgid "Allow only Vulkan"
+msgstr "केवल Vulkan की अनुमति"
+
+msgid "Allow only gpu-context=d3d11"
+msgstr "केवल gpu-context=d3d11 की अनुमति"
+
+msgid "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
+msgstr "शिखर पहचान का परिणाम एक फ़्रेम तक देर से आने देता है। इससे थ्रूपुट बढ़ सकता है, लेकिन दृश्य बदलते समय 1 फ़्रेम की झिलमिलाहट संभव है।"
+
+msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
+msgstr "बाहर निकलते समय वर्तमान स्थिति सहेजें; अगली बार फ़ाइल वहीं से चलेगी। किसी अन्य तरह रोकने पर स्थिति नहीं सहेजी जाती। उदाहरणतः सूची की अगली फ़ाइल पर जाने के बाद अगली बार पुरानी फ़ाइल शुरू से चलेगी।\\n\\nडिफ़ॉल्ट रूप से बंद, लेकिन Shift+Q से बाहर निकलने पर हमेशा उपलब्ध।"
+
+msgid "Appearance"
+msgstr "रूप-रंग"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml.cs:344
+msgid "Application Message"
+msgstr "अनुप्रयोग संदेश"
+
+msgid "As scale, but for interpolating chroma information. If the image is not subsampled, this option is ignored entirely."
+msgstr "scale जैसा, लेकिन क्रोमा इंटरपोलेशन के लिए। चित्र सबसैंपल नहीं है तो यह विकल्प अनदेखा होता है।"
+
+msgid "Aspect-ratio preserving nearest neighbour sampling (very fast)."
+msgstr "आस्पेक्ट अनुपात बनाए रखने वाला निकटतम पड़ोसी सैंपलिंग (बहुत तेज़)।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:83 src\MpvNet\Utilities\InputHelp.cs:84
+#: src\MpvNet\Utilities\InputHelp.cs:85 src\MpvNet\Utilities\InputHelp.cs:86
+#: src\MpvNet\Utilities\InputHelp.cs:87
+msgid "Audio"
+msgstr "ऑडियो"
+
+#: src\MpvNet\Utilities\InputHelp.cs:83
+#: src\MpvNet.Windows\WinForms\MainForm.cs:315
+msgid "Audio Device"
+msgstr "ऑडियो डिवाइस"
+
+#: src\MpvNet\App.cs:195 src\MpvNet\Utilities\InputHelp.cs:136
+#: src\MpvNet\Utilities\InputHelp.cs:241
+msgid "Audio Devices"
+msgstr "ऑडियो डिवाइस"
+
+#: src\MpvNet\App.cs:190 src\MpvNet\Utilities\InputHelp.cs:130
+#: src\MpvNet\Utilities\InputHelp.cs:235
+msgid "Audio Tracks"
+msgstr "ऑडियो ट्रैक"
+
+msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "--audio-file-auto, --autocreate-playlist या --directory-filter-types में मिलान किए जाने वाले ऑडियो एक्सटेंशन। mpv.net इन्हें फ़ाइल संबद्धता और auto-load-folder में भी उपयोग करता है। डिफ़ॉल्ट: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+
+msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
+msgstr "स्वचालित चयन। आउटपुट बिट गहराई न मिले तो प्रति रंग घटक 8 बिट माने जाते हैं।"
+
+msgid "Available on Windows 10 or higher"
+msgstr "Windows 10 या नए संस्करण पर उपलब्ध"
+
+#: src\MpvNet\Utilities\InputHelp.cs:207
+msgid "Backward"
+msgstr "पीछे"
+
+msgid "Bicubic interpolation (fast)"
+msgstr "बायक्यूबिक इंटरपोलेशन (तेज़)"
+
+msgid "Bicubic interpolation (fast)."
+msgstr "बायक्यूबिक इंटरपोलेशन (तेज़)।"
+
+msgid "Bilinear (triangle) averaging (fast)"
+msgstr "बायलीनियर (त्रिकोण) औसत (तेज़)"
+
+msgid "Bilinear sampling (very fast)."
+msgstr "बायलीनियर सैंपलिंग (बहुत तेज़)।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:244
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:403
+msgid "Bindings"
+msgstr "बाइंडिंग"
+
+msgid "Box averaging (very fast)"
+msgstr "बॉक्स औसत (बहुत तेज़)"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:55
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:182
+msgid "Cancel"
+msgstr "रद्द करें"
+
+msgid "Catmull-Rom cubic spline"
+msgstr "Catmull-Rom क्यूबिक स्प्लाइन"
+
+msgid "Catmull-Rom cubic spline."
+msgstr "Catmull-Rom क्यूबिक स्प्लाइन।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:80
+msgid "Change Aspect Ratio"
+msgstr "आस्पेक्ट अनुपात बदलें"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:508
+msgid "Changed theme settings require mpv.net being restarted."
+msgstr "थीम बदलने के बाद mpv.net को पुनः शुरू करना होगा।"
+
+msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "हल्की और गहरी थीम बदलता है।\\nबदलाव के बाद mpv.net पुनः शुरू करें।\\nmpv.net का विशेष विकल्प।"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:126
+msgid "Changes will be available on next startup."
+msgstr "बदलाव अगली बार शुरू करने पर लागू होंगे।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:49
+#: src\MpvNet.Windows\WinForms\MainForm.cs:213
+msgid "Chapter"
+msgstr "अध्याय"
+
+#: src\MpvNet\App.cs:193 src\MpvNet\Utilities\InputHelp.cs:128
+#: src\MpvNet\Utilities\InputHelp.cs:238
+msgid "Chapters"
+msgstr "अध्याय"
+
+msgid "Choose the best mode automatically."
+msgstr "सर्वोत्तम मोड स्वतः चुनें।"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:54
+msgid "Clear"
+msgstr "साफ़ करें"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:250
+msgid "Clear List"
+msgstr "सूची साफ़ करें"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MsgBoxExtendedFunctionality.cs:22
+msgid "Click this icon for additional info/actions."
+msgstr "अधिक जानकारी/कार्रवाइयों के लिए इस आइकन पर क्लिक करें।"
+
+#: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:16
+msgid "Codec Guide: "
+msgstr "Codec Guide: "
+
+msgid "Color Adjustment"
+msgstr "रंग समायोजन"
+
+msgid "Color Mapping"
+msgstr "रंग मैपिंग"
+
+msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "गहरे मोड की रंग थीम।\\nबदलाव के बाद mpv.net पुनः शुरू करें।\\nmpv.net का विशेष विकल्प। डिफ़ॉल्ट: dark"
+
+msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "हल्के मोड की रंग थीम।\\nबदलाव के बाद mpv.net पुनः शुरू करें।\\nmpv.net का विशेष विकल्प। डिफ़ॉल्ट: light"
+
+msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
+msgstr "mpv विंडो के वीडियो से खाली भागों का रंग। रंग परिभाषा के लिए --sub-color देखें।"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:140
+msgid "Command"
+msgstr "कमांड"
+
+#: src\MpvNet\Utilities\InputHelp.cs:141
+msgid "Commands"
+msgstr "कमांड"
+
+#: src\MpvNet\Utilities\InputHelp.cs:167 src\MpvNet\Utilities\InputHelp.cs:168
+#: src\MpvNet\Utilities\InputHelp.cs:169 src\MpvNet\Utilities\InputHelp.cs:170
+#: src\MpvNet\Utilities\InputHelp.cs:171 src\MpvNet\Utilities\InputHelp.cs:172
+#: src\MpvNet\Utilities\InputHelp.cs:173 src\MpvNet\Utilities\InputHelp.cs:174
+#: src\MpvNet\Utilities\InputHelp.cs:175 src\MpvNet\Utilities\InputHelp.cs:176
+#: src\MpvNet\Utilities\InputHelp.cs:177 src\MpvNet\Utilities\InputHelp.cs:178
+#: src\MpvNet\Utilities\InputHelp.cs:179 src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Config"
+msgstr "कॉन्फ़िगरेशन"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:608
+msgid "Config Editor"
+msgstr "कॉन्फ़िगरेशन एडिटर"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:53
+msgid "Confirm"
+msgstr "पुष्टि करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:140
+msgid "Console"
+msgstr "कंसोल"
+
+msgid "Controls the rotation of the gamut 3DLUT visualization. Rotates the gamut through hue space (around the I axis), in radians. Defaults to 0.0."
+msgstr "सरगम 3DLUT दृश्य को ह्यू स्पेस में I अक्ष के चारों ओर रेडियन में घुमाता है। डिफ़ॉल्ट 0.0।"
+
+msgid "Controls the rotation of the gamut 3DLUT visualization. The theta parameter vertically rotates the cross section (around the C axis), in radians. Defaults to 0.0."
+msgstr "सरगम 3DLUT दृश्य का theta पैरामीटर अनुप्रस्थ काट को C अक्ष के चारों ओर लंबवत घुमाता है, रेडियन में। डिफ़ॉल्ट 0.0।"
+
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 0.0."
+msgstr "रेंडर किए गए वीडियो के सापेक्ष LUT दृश्य की स्थिति। डिफ़ॉल्ट 0.0।"
+
+msgid "Controls where to draw the LUt visualization, relative to the rendered video. Defaults to 1.0."
+msgstr "रेंडर किए गए वीडियो के सापेक्ष LUT दृश्य की स्थिति। डिफ़ॉल्ट 1.0।"
+
+msgid "Controls which type of graphics APIs will be accepted."
+msgstr "अनुमत ग्राफ़िक्स API के प्रकार तय करता है।"
+
+msgid "Create a new process everytime the shell starts mpv.net"
+msgstr "शेल से mpv.net शुरू करने पर हर बार नई प्रक्रिया बनाएँ"
+
+msgid "Cubic B-spline frame mixing"
+msgstr "क्यूबिक B-स्प्लाइन फ़्रेम मिश्रण"
+
+#: src\MpvNet\Utilities\InputHelp.cs:188
+#: src\MpvNet.Windows\WinForms\MainForm.cs:339
+msgid "Custom"
+msgstr "कस्टम"
+
+msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
+msgstr "टोन मैपिंग का डेटा स्रोत। विशेष मान देने पर डिफ़ॉल्ट मेटाडेटा प्राथमिकता तर्क बदलता है।"
+
+msgid "Debanding"
+msgstr "रंग पट्टियाँ हटाना"
+
+msgid "Decide whether to use network cache settings."
+msgstr "नेटवर्क कैश सेटिंग उपयोग करनी है या नहीं।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:146
+msgid "Decoders"
+msgstr "डिकोडर"
+
+#: src\MpvNet\Utilities\InputHelp.cs:68
+msgid "Decrease Brightness"
+msgstr "चमक घटाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:65
+msgid "Decrease Contrast"
+msgstr "कंट्रास्ट घटाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:98
+msgid "Decrease Font Size"
+msgstr "फ़ॉन्ट आकार घटाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:71
+msgid "Decrease Gamma"
+msgstr "गामा घटाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:60
+msgid "Decrease Height"
+msgstr "ऊँचाई घटाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:74
+msgid "Decrease Saturation"
+msgstr "संतृप्ति घटाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:51
+msgid "Decrease Size"
+msgstr "आकार घटाएँ"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:421
+#: src\MpvNet\Integration\Mpv\Player.cs:440
+#: src\MpvNet\Integration\Mpv\Player.cs:468
+#: src\MpvNet\Integration\Mpv\Player.cs:548
+#: src\MpvNet\Integration\Mpv\Player.cs:634
+#: src\MpvNet\Integration\Mpv\Player.cs:718
+msgid "Default"
+msgstr "डिफ़ॉल्ट"
+
+msgid "Default settings, tuned to provide a balance of performance and quality."
+msgstr "प्रदर्शन और गुणवत्ता में संतुलन रखने वाली डिफ़ॉल्ट सेटिंग।"
+
+msgid "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
+msgstr "एक से अधिक mpv.net प्रक्रियाओं की अनुमति।\\nSHIFT दबाकर भी कई प्रक्रियाएँ सक्षम कर सकते हैं। (mpv.net विकल्प)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:86 src\MpvNet\Utilities\InputHelp.cs:93
+msgid "Delay +0.1"
+msgstr "विलंब +0.1"
+
+#: src\MpvNet\Utilities\InputHelp.cs:87 src\MpvNet\Utilities\InputHelp.cs:92
+msgid "Delay -0.1"
+msgstr "विलंब -0.1"
+
+msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable)."
+msgstr "कुंजी स्वतः दोहराने से पहले विलंब, मिलीसेकंड में (0 से बंद)।"
+
+msgid "Demuxer"
+msgstr "डीमल्टीप्लेक्सर"
+
+#: src\MpvNet\Utilities\InputHelp.cs:147
+msgid "Demuxers"
+msgstr "डीमल्टीप्लेक्सर"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:193
+msgid "Details"
+msgstr "विवरण"
+
+msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "OpenGL ES अनुवाद परत ANGLE के माध्यम से Direct3D11। ANGLE नया हो तो win बैकएंड की लगभग सभी सुविधाएँ समर्थित हैं।"
+
+msgid "Disable all advanced rendering, equivalent to passing no to every option."
+msgstr "सभी उन्नत रेंडरिंग बंद करें, मानो हर विकल्प को no दिया गया हो।"
+
+msgid "Disable any dithering done by mpv."
+msgstr "mpv की सारी डिथरिंग बंद करें।"
+
+msgid "Disable frame mixing, show nearest frame to target PTS"
+msgstr "फ़्रेम मिश्रण बंद करें; लक्ष्य PTS के निकटतम फ़्रेम दिखाएँ"
+
+msgid "Dither to 10 bit output."
+msgstr "10 बिट आउटपुट के लिए डिथरिंग।"
+
+msgid "Dither to 8 bit output."
+msgstr "8 बिट आउटपुट के लिए डिथरिंग।"
+
+msgid "Don't automatically load external audio files."
+msgstr "बाहरी ऑडियो फ़ाइलें स्वतः लोड न करें।"
+
+msgid "Don't automatically load external subtitle files."
+msgstr "बाहरी उपशीर्षक फ़ाइलें स्वतः लोड न करें।"
+
+#: src\MpvNet\App.cs:208
+msgid "Donation"
+msgstr "दान"
+
+#: src\MpvNet\Utilities\InputHelp.cs:114
+msgid "Double"
+msgstr "दुगुना"
+
+#: src\MpvNet\Integration\Mpv\Player.Initialization.cs:71
+#: src\MpvNet.Windows\WinForms\MainForm.cs:380
+msgid "Drop files or URLs to play here."
+msgstr "चलाने के लिए फ़ाइलें या URL यहाँ छोड़ें।"
+
+#: src\MpvNet\App.cs:210
+msgid "E-mail support"
+msgstr "ईमेल सहायता"
+
+msgid "EWA Lanczos (\"Jinc\") reconstruction (slow)."
+msgstr "EWA Lanczos (\"Jinc\") पुनर्निर्माण (धीमा)।"
+
+#: src\MpvNet\App.cs:201
+msgid "Edit config file"
+msgstr "कॉन्फ़िगरेशन फ़ाइल संपादित करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:171
+msgid "Edit input.conf"
+msgstr "input.conf संपादित करें"
+
+#: src\MpvNet\App.cs:202
+msgid "Edit key bindings"
+msgstr "कुंजी बाइंडिंग संपादित करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:170
+msgid "Edit mpv.conf"
+msgstr "mpv.conf संपादित करें"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:488
+#: src\MpvNet\Integration\Mpv\Player.cs:734
+msgid "Edition"
+msgstr "संस्करण"
+
+#: src\MpvNet\App.cs:194 src\MpvNet\Utilities\InputHelp.cs:134
+#: src\MpvNet\Utilities\InputHelp.cs:239
+msgid "Editions"
+msgstr "संस्करण"
+
+msgid "Enable the IPC support and create the listening socket at the given path."
+msgstr "IPC सक्षम करें और दिए गए पथ पर सुनने वाला सॉकेट बनाएँ।"
+
+msgid "Enable the debanding algorithm. This greatly reduces the amount of visible banding, blocking and other quantization artifacts, at the expense of very slightly blurring some of the finest details. In practice, it's virtually always an improvement - the only reason to disable it would be for performance."
+msgstr "रंग पट्टियाँ हटाने का एल्गोरिदम सक्षम करें। पट्टियाँ, ब्लॉक और क्वांटाइज़ेशन दोष काफ़ी घटते हैं; बहुत बारीक विवरण थोड़ा धुँधला होता है। लगभग हमेशा सुधार मिलता है; बंद करने का कारण आम तौर पर प्रदर्शन है।"
+
+msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
+msgstr "डिफ़ॉल्ट स्वतः ट्रैक चयन सक्षम करें; aid, alang आदि के अनुसार स्ट्रीम चुनता है। बंद होने पर कोई ट्रैक नहीं चुना जाता और प्लेयर बाहर निकलने के बजाय प्रतीक्षा करता है (पॉज़ जैसा, पर pause सेट नहीं होता)।\\n\\nlavfi-complex के लिए उपयोगी: पहले प्लेबैक शुरू करें, फिर फ़िल्टर ग्राफ़ से ट्रैक चुनें। प्लेबैक से पहले lavfi-complex सेट हो तो संदर्भित ट्रैक हमेशा चुने जाते हैं।"
+
+msgid "Enable this only when a developer asks for it. (mpv.net option)"
+msgstr "केवल डेवलपर के कहने पर सक्षम करें। (mpv.net विकल्प)"
+
+msgid "Enables HDR peak detection."
+msgstr "HDR शिखर पहचान सक्षम करता है।"
+
+msgid "Enables color adjustment."
+msgstr "रंग समायोजन सक्षम करता है।"
+
+msgid "Enables debanding using libplacebo."
+msgstr "libplacebo से रंग पट्टियाँ हटाता है।"
+
+msgid "Enables sigmoidization."
+msgstr "सिग्मॉइड रूपांतरण सक्षम करता है।"
+
+msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
+msgstr "इन रंग मैपिंग सेटिंग को सक्षम करता है। बंद करने से रंग मैपिंग बंद नहीं होती; सभी विकल्पों के डिफ़ॉल्ट उपयोग होते हैं।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:150
+msgid "Enlarge"
+msgstr "बड़ा करें"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:295
+msgid "Error creating file associations."
+msgstr "फ़ाइल संबद्धता बनाते समय त्रुटि।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:21 src\MpvNet\Utilities\InputHelp.cs:199
+#: src\MpvNet\Utilities\InputHelp.cs:231
+msgid "Exit"
+msgstr "बाहर निकलें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:186
+msgid "Exit Watch Later"
+msgstr "स्थिति सहेजकर बाहर निकलें"
+
+msgid "Experimental video renderer based on libplacebo. This supports almost the same set of features as --vo=gpu."
+msgstr "libplacebo पर आधारित प्रायोगिक वीडियो रेंडरर। --vo=gpu की लगभग सभी सुविधाएँ समर्थित हैं।"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:441
+#: src\MpvNet\Integration\Mpv\Player.cs:469
+msgid "External"
+msgstr "बाहरी"
+
+#: src\MpvNet\Utilities\InputHelp.cs:10 src\MpvNet\Utilities\InputHelp.cs:11
+#: src\MpvNet\Utilities\InputHelp.cs:12 src\MpvNet\Utilities\InputHelp.cs:13
+#: src\MpvNet\Utilities\InputHelp.cs:14 src\MpvNet\Utilities\InputHelp.cs:15
+#: src\MpvNet\Utilities\InputHelp.cs:16 src\MpvNet\Utilities\InputHelp.cs:17
+#: src\MpvNet\Utilities\InputHelp.cs:18 src\MpvNet\Utilities\InputHelp.cs:19
+#: src\MpvNet\Utilities\InputHelp.cs:20 src\MpvNet\Utilities\InputHelp.cs:21
+msgid "File"
+msgstr "फ़ाइल"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:287
+msgid "File Explorer icons will refresh after process restart."
+msgstr "प्रक्रिया फिर शुरू होने पर फ़ाइल एक्सप्लोरर आइकन ताज़ा होंगे।"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:292
+msgid "File associations were successfully created."
+msgstr "फ़ाइल संबद्धताएँ बन गईं।"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:290
+msgid "File associations were successfully removed."
+msgstr "फ़ाइल संबद्धताएँ हटा दी गईं।"
+
+#: src\MpvNet\App.cs:200
+msgid "File information"
+msgstr "फ़ाइल जानकारी"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:229
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:251
+msgid "Files/URLs were added to the playlist"
+msgstr "फ़ाइलें/URL प्लेलिस्ट में जुड़ गए"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:39
+msgid "Find a binding (Ctrl+F)"
+msgstr "बाइंडिंग खोजें (Ctrl+F)"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:609
+msgid "Find a setting (Ctrl+F)"
+msgstr "सेटिंग खोजें (Ctrl+F)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:29
+msgid "First File"
+msgstr "पहली फ़ाइल"
+
+msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
+msgstr "एक फ़ाइल खोलने पर पूरी डायरेक्टरी प्लेलिस्ट में लोड करें। (पुराना mpv.net विकल्प; इसके बजाय autocreate-playlist उपयोग करें)"
+
+msgid "Force a single process and add files to playlist"
+msgstr "एक ही प्रक्रिया रखें और फ़ाइलें प्लेलिस्ट में जोड़ें"
+
+msgid "Force a single process everytime the shell starts mpv.net"
+msgstr "शेल से mpv.net शुरू करने पर हमेशा एक ही प्रक्रिया रखें"
+
+msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
+msgstr "clip, linear, saturation जैसे फ़ंक्शन के तेज़ शुद्ध GLSL विकल्प हों तब भी पूरी टोन मैपिंग LUT बाध्य करें। यह डिबग विकल्प है।"
+
+#: src\MpvNet\Integration\Mpv\Player.cs:439
+#: src\MpvNet\Integration\Mpv\Player.cs:467
+#: src\MpvNet\Integration\Mpv\Player.cs:633
+#: src\MpvNet\Integration\Mpv\Player.cs:717
+msgid "Forced"
+msgstr "बाध्य"
+
+#: src\MpvNet\Utilities\InputHelp.cs:206
+msgid "Forward"
+msgstr "आगे"
+
+#: src\MpvNet\Utilities\InputHelp.cs:149 src\MpvNet\Utilities\InputHelp.cs:219
+#: src\MpvNet\Utilities\InputHelp.cs:220
+msgid "Fullscreen"
+msgstr "पूर्ण स्क्रीन"
+
+msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
+msgstr "सरगम से बाहर के रंगों की मैपिंग फ़ंक्शन, टोन मैपिंग से बाहर गए रंगों सहित।"
+
+msgid "Gaussian smoothing (fast)"
+msgstr "गॉसियन स्मूदिंग (तेज़)"
+
+msgid "Gaussian smoothing (fast)."
+msgstr "गॉसियन स्मूदिंग (तेज़)।"
+
+msgid "General"
+msgstr "सामान्य"
+
+msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "सामान्य, अनुकूलन योग्य GPU-त्वरित वीडियो आउटपुट ड्राइवर। उन्नत स्केलिंग, डिथरिंग, रंग प्रबंधन, कस्टम शेडर, HDR आदि समर्थित।"
+
+#: src\MpvNet\App.cs:206
+msgid "GitHub Sponsors"
+msgstr "GitHub Sponsors"
+
+msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
+msgstr "टोन मैपिंग के दौरान हार्ड-क्लिप किए पिक्सेल दिखाएँ, यानी स्रोत की घोषित चमक सीमा से बाहर वाले।"
+
+msgid "HDR Peak Detection"
+msgstr "HDR शिखर पहचान"
+
+#: src\MpvNet\Utilities\InputHelp.cs:113
+msgid "Half"
+msgstr "आधा"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:338
+msgid "Height"
+msgstr "ऊँचाई"
+
+#: src\MpvNet\App.cs:203 src\MpvNet\Utilities\InputHelp.cs:190
+#: src\MpvNet\Utilities\InputHelp.cs:191 src\MpvNet\Utilities\InputHelp.cs:192
+#: src\MpvNet\Utilities\InputHelp.cs:193 src\MpvNet\Utilities\InputHelp.cs:194
+#: src\MpvNet\Utilities\InputHelp.cs:195 src\MpvNet\Utilities\InputHelp.cs:196
+#: src\MpvNet\Utilities\InputHelp.cs:197
+msgid "Help"
+msgstr "सहायता"
+
+#: src\MpvNet\App.cs:225
+#: src\\MpvNet.Windows\\WinForms\\MainForm.Taskbar.cs:53
+msgid "Help the player"
+msgstr "प्लेयर की मदद करें"
+
+msgid "Hermite-weighted averaging (fast)"
+msgstr "Hermite-भारित औसत (तेज़)"
+
+msgid "Hermite-weighted frame mixing"
+msgstr "Hermite-भारित फ़्रेम मिश्रण"
+
+msgid "How the player synchronizes audio and video.\\n\\nFor more information visit:"
+msgstr "प्लेयर ऑडियो और वीडियो का तालमेल कैसे रखता है।\\n\\nअधिक जानकारी:"
+
+msgid "If enabled, allows the gamut mapping function to expand the gamut, in cases where the target gamut exceeds that of the source. If disabled, the source gamut will never be enlarged, even when using a gamut mapping function capable of bidirectional mapping."
+msgstr "लक्ष्य सरगम स्रोत से बड़ा हो तो मैपिंग फ़ंक्शन को सरगम बढ़ाने दें। बंद होने पर द्विदिश मैपिंग समर्थित होने पर भी स्रोत सरगम नहीं बढ़ेगा।"
+
+msgid "If enabled, and supported by the given tone mapping function, will perform inverse tone mapping to expand the dynamic range of a signal. libplacebo is not liable for any HDR-induced eye damage."
+msgstr "सक्षम और फ़ंक्शन द्वारा समर्थित होने पर उलटी टोन मैपिंग से सिग्नल की डायनेमिक रेंज बढ़ती है। HDR से आँखों को होने वाले नुकसान के लिए libplacebo ज़िम्मेदार नहीं है।"
+
+msgid "If possible, write screenshots with a bit depth similar to the source video. This is interesting in particular for PNG, as this sometimes triggers writing 16 bit PNGs with huge file sizes. This will also include an unused alpha channel in the resulting files if 16 bit is used."
+msgstr "संभव हो तो स्रोत वीडियो जैसी बिट गहराई में स्क्रीनशॉट लिखें। विशेषतः PNG में इससे बड़ी 16 बिट फ़ाइलें बन सकती हैं, जिनमें अप्रयुक्त अल्फ़ा चैनल भी होगा।"
+
+msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
+msgstr "यह और keep-open दोनों no हों तो अंतिम फ़ाइल समाप्त होने पर प्लेयर बाहर निकलता है।"
+
+msgid "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
+msgstr "no पर keep-open सक्रिय होने पर भी पॉज़ के बजाय फ़ाइल के अंत में रुकता है। पीछे सीक करने पर फिर अंत तक चलता है और रुकता है।"
+
+msgid "If the current file ends, go to the next file, keep the last file open."
+msgstr "वर्तमान फ़ाइल समाप्त होने पर अगली चलाएँ; अंतिम फ़ाइल खुली रखें।"
+
+msgid "If the current file ends, go to the next file. If idle is set to no, the player exits after the last file."
+msgstr "वर्तमान फ़ाइल के बाद अगली चलाएँ। idle=no होने पर अंतिम फ़ाइल के बाद बाहर निकलें।"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:173
+msgid "Ignore"
+msgstr "अनदेखा करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:218
+msgid "Ignore left mouse button"
+msgstr "बायाँ माउस बटन अनदेखा करें"
+
+msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+msgstr "--cover-art-auto, --autocreate-playlist या --directory-filter-types में चित्र एक्सटेंशन। mpv.net फ़ाइल संबद्धता और auto-load-folder में भी उपयोग करता है। डिफ़ॉल्ट: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+
+#: src\MpvNet\Utilities\InputHelp.cs:69
+msgid "Increase Brightness"
+msgstr "चमक बढ़ाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:66
+msgid "Increase Contrast"
+msgstr "कंट्रास्ट बढ़ाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:99
+msgid "Increase Font Size"
+msgstr "फ़ॉन्ट आकार बढ़ाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:72
+msgid "Increase Gamma"
+msgstr "गामा बढ़ाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:61
+msgid "Increase Height"
+msgstr "ऊँचाई बढ़ाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:75
+msgid "Increase Saturation"
+msgstr "संतृप्ति बढ़ाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:52
+msgid "Increase Size"
+msgstr "आकार बढ़ाएँ"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:508
+msgid "Info"
+msgstr "जानकारी"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:102
+msgid "Input"
+msgstr "इनपुट"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:11
+msgid "Input Editor"
+msgstr "इनपुट एडिटर"
+
+#: src\MpvNet\Utilities\InputHelp.cs:43
+msgid "Jump 30 sec backward"
+msgstr "30 सेकंड पीछे जाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:42
+msgid "Jump 30 sec forward"
+msgstr "30 सेकंड आगे जाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:46
+msgid "Jump 5 min backward"
+msgstr "5 मिनट पीछे जाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:45
+msgid "Jump 5 min forward"
+msgstr "5 मिनट आगे जाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:40
+msgid "Jump 5 sec backward"
+msgstr "5 सेकंड पीछे जाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:39
+msgid "Jump 5 sec forward"
+msgstr "5 सेकंड आगे जाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:36
+msgid "Jump To Next Frame"
+msgstr "अगले फ़्रेम पर जाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:37
+msgid "Jump To Previous Frame"
+msgstr "पिछले फ़्रेम पर जाएँ"
+
+#: src\MpvNet\App.cs:196
+msgid "Key bindings"
+msgstr "कुंजी बाइंडिंग"
+
+#: src\MpvNet\Utilities\InputHelp.cs:144
+msgid "Keys"
+msgstr "कुंजियाँ"
+
+msgid "Lanczos reconstruction"
+msgstr "Lanczos पुनर्निर्माण"
+
+msgid "Lanczos reconstruction."
+msgstr "Lanczos पुनर्निर्माण।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:30
+msgid "Last File"
+msgstr "अंतिम फ़ाइल"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:10
+msgid "Learn Input"
+msgstr "इनपुट सीखें"
+
+msgid "Like scale, but apply these filters on downscaling instead. \\nIf no option is selected, it will keep the same with the upscaler."
+msgstr "scale जैसा, पर फ़िल्टर आकार घटाने पर लागू होता है। \\nकोई विकल्प न हो तो आकार बढ़ाने वाला फ़िल्टर ही उपयोग होता है।"
+
+msgid "Linear frame mixing"
+msgstr "रैखिक फ़्रेम मिश्रण"
+
+msgid "Load additional audio files matching the video filename. The parameter specifies how external audio files are matched."
+msgstr "वीडियो फ़ाइल नाम से मेल खाते अतिरिक्त ऑडियो लोड करें। पैरामीटर बाहरी ऑडियो के मिलान का तरीका तय करता है।"
+
+msgid "Load additional subtitle files matching the video filename. The parameter specifies how external subtitle files are matched. exact is enabled by default."
+msgstr "वीडियो फ़ाइल नाम से मेल खाते उपशीर्षक लोड करें। पैरामीटर मिलान का तरीका तय करता है। exact डिफ़ॉल्ट रूप से सक्षम है।"
+
+msgid "Load all audio files containing media filename."
+msgstr "मीडिया फ़ाइल नाम वाले सभी ऑडियो लोड करें।"
+
+msgid "Load all audio files in the current and audio-file-paths directories."
+msgstr "वर्तमान और audio-file-paths डायरेक्टरी की सभी ऑडियो फ़ाइलें लोड करें।"
+
+msgid "Load all subs containing media filename."
+msgstr "मीडिया फ़ाइल नाम वाले सभी उपशीर्षक लोड करें।"
+
+msgid "Load all subs in the current and sub-file-paths directories."
+msgstr "वर्तमान और sub-file-paths डायरेक्टरी के सभी उपशीर्षक लोड करें।"
+
+msgid "Load the media filename with audio file extension."
+msgstr "मीडिया नाम वाली ऑडियो एक्सटेंशन की फ़ाइल लोड करें।"
+
+msgid "Load the media filename with subtitle file extension."
+msgstr "मीडिया नाम वाली उपशीर्षक एक्सटेंशन की फ़ाइल लोड करें।"
+
+#: src\MpvNet\App.cs:111
+msgid "Make a donation to help maintain the project."
+msgstr "परियोजना बनाए रखने में मदद के लिए दान करें।"
+
+#: src\MpvNet.Windows\WPF\Controls\HyperlinkEx.cs:22
+msgid "Manual"
+msgstr "मैनुअल"
+
+#: src\MpvNet\Utilities\InputHelp.cs:193
+msgid "Manual mpv"
+msgstr "mpv मैनुअल"
+
+#: src\MpvNet\Utilities\InputHelp.cs:194
+msgid "Manual mpv.net"
+msgstr "mpv.net मैनुअल"
+
+#: src\MpvNet\Utilities\InputHelp.cs:226
+msgid "Mark position for revert-seek"
+msgstr "revert-seek के लिए स्थिति चिह्नित करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:122
+msgid "Media Info Message Box"
+msgstr "मीडिया जानकारी संवाद में"
+
+#: src\MpvNet\Utilities\InputHelp.cs:121
+msgid "Media Info On-Screen"
+msgstr "मीडिया जानकारी स्क्रीन पर"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:610
+msgid "Menu"
+msgstr "मेनू"
+
+msgid "Mitchell-Netravalia cubic spline"
+msgstr "Mitchell-Netravalia क्यूबिक स्प्लाइन"
+
+#: src\MpvNet\Utilities\InputHelp.cs:101 src\MpvNet\Utilities\InputHelp.cs:140
+#: src\MpvNet\Utilities\InputHelp.cs:141 src\MpvNet\Utilities\InputHelp.cs:142
+#: src\MpvNet\Utilities\InputHelp.cs:143 src\MpvNet\Utilities\InputHelp.cs:144
+#: src\MpvNet\Utilities\InputHelp.cs:145 src\MpvNet\Utilities\InputHelp.cs:146
+#: src\MpvNet\Utilities\InputHelp.cs:147
+msgid "More"
+msgstr "अधिक"
+
+#: src\MpvNet\Utilities\InputHelp.cs:157 src\MpvNet\Utilities\InputHelp.cs:158
+#: src\MpvNet\Utilities\InputHelp.cs:159 src\MpvNet\Utilities\InputHelp.cs:160
+#: src\MpvNet\Utilities\InputHelp.cs:161
+msgid "Move"
+msgstr "खिसकाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:58 src\MpvNet\Utilities\InputHelp.cs:96
+msgid "Move Down"
+msgstr "नीचे खिसकाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:54
+msgid "Move Left"
+msgstr "बाएँ खिसकाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:55
+msgid "Move Right"
+msgstr "दाएँ खिसकाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:57 src\MpvNet\Utilities\InputHelp.cs:95
+msgid "Move Up"
+msgstr "ऊपर खिसकाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:108
+msgid "Mute"
+msgstr "म्यूट"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml:96
+msgid "Name"
+msgstr "नाम"
+
+#: src\MpvNet\Utilities\InputHelp.cs:26 src\MpvNet\Utilities\InputHelp.cs:27
+#: src\MpvNet\Utilities\InputHelp.cs:28 src\MpvNet\Utilities\InputHelp.cs:29
+#: src\MpvNet\Utilities\InputHelp.cs:30 src\MpvNet\Utilities\InputHelp.cs:32
+#: src\MpvNet\Utilities\InputHelp.cs:33 src\MpvNet\Utilities\InputHelp.cs:34
+#: src\MpvNet\Utilities\InputHelp.cs:35 src\MpvNet\Utilities\InputHelp.cs:36
+#: src\MpvNet\Utilities\InputHelp.cs:37 src\MpvNet\Utilities\InputHelp.cs:38
+#: src\MpvNet\Utilities\InputHelp.cs:39 src\MpvNet\Utilities\InputHelp.cs:40
+#: src\MpvNet\Utilities\InputHelp.cs:41 src\MpvNet\Utilities\InputHelp.cs:42
+#: src\MpvNet\Utilities\InputHelp.cs:43 src\MpvNet\Utilities\InputHelp.cs:44
+#: src\MpvNet\Utilities\InputHelp.cs:45 src\MpvNet\Utilities\InputHelp.cs:46
+#: src\MpvNet\Utilities\InputHelp.cs:47 src\MpvNet\Utilities\InputHelp.cs:48
+#: src\MpvNet\Utilities\InputHelp.cs:49
+msgid "Navigate"
+msgstr "नेविगेशन"
+
+msgid "Nearest-neighbour (box) sampling (very fast)."
+msgstr "निकटतम पड़ोसी (बॉक्स) सैंपलिंग (बहुत तेज़)।"
+
+msgid "Never use precise seeks."
+msgstr "सटीक सीक कभी न करें।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:33
+msgid "Next Chapter"
+msgstr "अगला अध्याय"
+
+#: src\MpvNet\Utilities\InputHelp.cs:27 src\MpvNet\Utilities\InputHelp.cs:213
+#: src\MpvNet\Utilities\InputHelp.cs:215 src\MpvNet\Utilities\InputHelp.cs:217
+msgid "Next File"
+msgstr "अगली फ़ाइल"
+
+#: src\MpvNet\Utilities\InputHelp.cs:84 src\MpvNet\Utilities\InputHelp.cs:89
+msgid "Next Track"
+msgstr "अगला ट्रैक"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:146
+msgid "No"
+msgstr "नहीं"
+
+#: src\MpvNet\Command.cs:74
+msgid "No audio tracks"
+msgstr "कोई ऑडियो ट्रैक नहीं"
+
+msgid "No filter, only use basic GPU texture sampling."
+msgstr "कोई फ़िल्टर नहीं, केवल मूल GPU टेक्सचर सैंपलिंग।"
+
+#: src\MpvNet\Command.cs:117
+msgid "No subtitle"
+msgstr "कोई उपशीर्षक नहीं"
+
+#: src\MpvNet\Command.cs:102
+#: src\MpvNet.Windows\WinForms\MainForm.ContextMenu.cs:63
+msgid "No subtitles"
+msgstr "कोई उपशीर्षक नहीं"
+
+msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
+msgstr "सामान्यतः mpv अगली फ़ाइल पर सभी विकल्प रखता है, उपयोगकर्ता द्वारा बदले हुए भी। यहाँ विकल्पों की सूची देने पर प्लेबैक शुरू होते समय उनके मान शुरुआती मानों पर लौटते हैं।"
+
+msgid "Number of key presses to generate per second on autorepeat."
+msgstr "स्वतः दोहराव में प्रति सेकंड कुंजी दबाने की संख्या।"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:127
+msgid "OK"
+msgstr "ठीक"
+
+#: src\MpvNet\Utilities\InputHelp.cs:124 src\MpvNet\Utilities\InputHelp.cs:125
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:127
+#: src\MpvNet\Utilities\InputHelp.cs:128 src\MpvNet\Utilities\InputHelp.cs:129
+#: src\MpvNet\Utilities\InputHelp.cs:130 src\MpvNet\Utilities\InputHelp.cs:131
+#: src\MpvNet\Utilities\InputHelp.cs:132 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:134 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:136 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:138 src\MpvNet\Utilities\InputHelp.cs:246
+#: src\MpvNet\Utilities\InputHelp.cs:247 src\MpvNet\Utilities\InputHelp.cs:248
+msgid "On-Screen Menu"
+msgstr "ऑन-स्क्रीन मेनू"
+
+#: src\MpvNet\App.cs:204
+msgid "Online documentation"
+msgstr "ऑनलाइन दस्तावेज़"
+
+#: src\MpvNet\Utilities\InputHelp.cs:173
+msgid "Open Config Folder"
+msgstr "कॉन्फ़िगरेशन फ़ोल्डर खोलें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:12
+msgid "Open media from a drive or folder (including subfolders)..."
+msgstr "ड्राइव या फ़ोल्डर से मीडिया खोलें (उपफ़ोल्डर सहित)..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:10
+msgid "Open Files..."
+msgstr "फ़ाइलें खोलें..."
+
+#: src\MpvNet\Utilities\InputHelp.cs:11
+msgid "Open URL or file from clipboard"
+msgstr "क्लिपबोर्ड से URL या फ़ाइल खोलें"
+
+msgid "Override all libplacebo options by the values from the given preset."
+msgstr "दिए गए प्रीसेट से सभी libplacebo विकल्प बदलें।"
+
+msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
+msgstr "क्रोमा/अल्फ़ा जैसे प्लेन के डाउनस्केल फ़िल्टर को बदलें। none पर downscaler की सेटिंग लें।"
+
+msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
+msgstr "क्रोमा/अल्फ़ा जैसे प्लेन के अपस्केल फ़िल्टर को बदलें। none पर upscaler की सेटिंग लें।"
+
+msgid "Overrides the value of all options in this section by their default values from the given preset."
+msgstr "इस खंड के सभी विकल्प दिए गए प्रीसेट के डिफ़ॉल्ट मानों से बदलें।"
+
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
+msgstr "इस खंड के सभी विकल्प प्रीसेट के डिफ़ॉल्ट से बदलें। high_quality से HDR कंट्रास्ट पुनर्प्राप्ति भी सक्षम होती है।"
+
+msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
+msgstr "इस खंड के सभी विकल्प प्रीसेट के डिफ़ॉल्ट से बदलें। high_quality से फ़्रेम हिस्टोग्राम मापन भी सक्षम होता है।"
+
+msgid "Oversampling, only mix \"edge\" frames while preserving FPS"
+msgstr "ओवरसैंपलिंग: FPS बनाए रखते हुए केवल सीमांत फ़्रेम मिलाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:51 src\MpvNet\Utilities\InputHelp.cs:52
+#: src\MpvNet\Utilities\InputHelp.cs:53 src\MpvNet\Utilities\InputHelp.cs:54
+#: src\MpvNet\Utilities\InputHelp.cs:55 src\MpvNet\Utilities\InputHelp.cs:56
+#: src\MpvNet\Utilities\InputHelp.cs:57 src\MpvNet\Utilities\InputHelp.cs:58
+#: src\MpvNet\Utilities\InputHelp.cs:59 src\MpvNet\Utilities\InputHelp.cs:60
+#: src\MpvNet\Utilities\InputHelp.cs:61 src\MpvNet\Utilities\InputHelp.cs:62
+#: src\MpvNet\Utilities\InputHelp.cs:63
+msgid "Pan & Scan"
+msgstr "पैन और स्कैन"
+
+msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
+msgstr "libplacebo रेंडरिंग बैकएंड (--vo=gpu-next) को अतिरिक्त रॉ विकल्प देता है। सामान्य विकल्प प्रणाली के दूसरे प्रभाव बदल सकता है।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:23 src\MpvNet\Utilities\InputHelp.cs:201
+#: src\MpvNet\Utilities\InputHelp.cs:202 src\MpvNet\Utilities\InputHelp.cs:203
+#: src\MpvNet\Utilities\InputHelp.cs:204
+msgid "Play/Pause"
+msgstr "चलाएँ/पॉज़"
+
+#: src\MpvNet\Utilities\InputHelp.cs:23 src\MpvNet\Utilities\InputHelp.cs:24
+msgid "Playback"
+msgstr "प्लेबैक"
+
+#: src\MpvNet\App.cs:199
+msgid "Playback statistics"
+msgstr "प्लेबैक आँकड़े"
+
+msgid "Playback will never automatically advance to the next file."
+msgstr "अगली फ़ाइल पर स्वतः कभी न जाएँ।"
+
+#: src\MpvNet\App.cs:192 src\MpvNet\Utilities\InputHelp.cs:118
+#: src\MpvNet\Utilities\InputHelp.cs:125 src\MpvNet\Utilities\InputHelp.cs:232
+msgid "Playlist"
+msgstr "प्लेलिस्ट"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:612
+msgid "Preview mpv.conf"
+msgstr "mpv.conf का पूर्वावलोकन"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:613
+msgid "Preview mpvnet.conf"
+msgstr "mpvnet.conf का पूर्वावलोकन"
+
+#: src\MpvNet\Utilities\InputHelp.cs:34
+msgid "Previous Chapter"
+msgstr "पिछला अध्याय"
+
+#: src\MpvNet\Utilities\InputHelp.cs:26 src\MpvNet\Utilities\InputHelp.cs:212
+#: src\MpvNet\Utilities\InputHelp.cs:214 src\MpvNet\Utilities\InputHelp.cs:216
+msgid "Previous File"
+msgstr "पिछली फ़ाइल"
+
+#: src\MpvNet\Utilities\InputHelp.cs:165
+#: src\MpvNet.Windows\WinForms\MainForm.cs:288
+msgid "Profile"
+msgstr "प्रोफ़ाइल"
+
+msgid "Program Behavior"
+msgstr "प्रोग्राम व्यवहार"
+
+#: src\MpvNet\Utilities\InputHelp.cs:123
+msgid "Progress"
+msgstr "प्रगति"
+
+#: src\MpvNet\Utilities\InputHelp.cs:127 src\MpvNet\Utilities\InputHelp.cs:245
+msgid "Properties"
+msgstr "गुण"
+
+#: src\MpvNet\Utilities\InputHelp.cs:145
+msgid "Protocols"
+msgstr "प्रोटोकॉल"
+
+#: src\MpvNet\Utilities\InputHelp.cs:20
+#: src\MpvNet.Windows\WinForms\MainForm.cs:234
+msgid "Recent Files"
+msgstr "हाल की फ़ाइलें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:175
+msgid "Register audio file associations"
+msgstr "ऑडियो फ़ाइल संबद्धताएँ पंजीकृत करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:176
+msgid "Register image file associations"
+msgstr "चित्र फ़ाइल संबद्धताएँ पंजीकृत करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:174
+msgid "Register video file associations"
+msgstr "वीडियो फ़ाइल संबद्धताएँ पंजीकृत करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Remove mpv.net from Path environment variable"
+msgstr "mpv.net को Path वातावरण चर से हटाएँ"
+
+msgid "Render Options"
+msgstr "रेंडर विकल्प"
+
+#: src\MpvNet\Utilities\InputHelp.cs:63 src\MpvNet\Utilities\InputHelp.cs:116
+msgid "Reset"
+msgstr "रीसेट"
+
+msgid "Reset all everything to high quality presets (where available)."
+msgstr "उपलब्ध होने पर सब कुछ उच्च गुणवत्ता प्रीसेट पर रीसेट करें।"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:164
+msgid "Retry"
+msgstr "फिर प्रयास करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:81
+msgid "Rotate Video"
+msgstr "वीडियो घुमाएँ"
+
+msgid "Same as minimum-aspect-ratio but used for audio files."
+msgstr "minimum-aspect-ratio जैसा, लेकिन ऑडियो फ़ाइलों के लिए।"
+
+msgid "Same as yes (for compatibility)."
+msgstr "yes जैसा (संगतता के लिए)।"
+
+msgid "Save and restore the audio device chosen in the context menu. Default: yes"
+msgstr "संदर्भ मेनू में चुना ऑडियो डिवाइस सहेजें और बहाल करें। डिफ़ॉल्ट: yes"
+
+msgid "Save the window position on exit. (mpv.net option)"
+msgstr "बाहर निकलते समय विंडो स्थान सहेजें। (mpv.net विकल्प)"
+
+msgid "Save volume and mute on exit and restore it on start. (mpv.net option)"
+msgstr "बाहर निकलते समय वॉल्यूम और म्यूट सहेजें; शुरू होने पर बहाल करें। (mpv.net विकल्प)"
+
+msgid "Scaling"
+msgstr "स्केलिंग"
+
+msgid "Screenshot"
+msgstr "स्क्रीनशॉट"
+
+#: src\MpvNet\App.cs:188 src\MpvNet\Utilities\InputHelp.cs:132
+msgid "Secondary Subtitle"
+msgstr "द्वितीय उपशीर्षक"
+
+#: src\MpvNet\Utilities\InputHelp.cs:234
+msgid "Secondary Subtitles"
+msgstr "द्वितीय उपशीर्षक"
+
+msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
+msgstr "sub-color देखें। उपशीर्षक पाठ का पृष्ठभूमि रंग; sub-shadow-offset से पाठ के सापेक्ष आकार बदलें।"
+
+msgid "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
+msgstr "sub-color देखें। उपशीर्षक फ़ॉन्ट बॉर्डर का रंग। sub-back-color पूरी तरह पारदर्शी न हो तो अनदेखा होता है।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:222 src\MpvNet\Utilities\InputHelp.cs:224
+#: src\MpvNet\Utilities\InputHelp.cs:230
+msgid "Seek Backward"
+msgstr "पीछे सीक करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:221 src\MpvNet\Utilities\InputHelp.cs:223
+#: src\MpvNet\Utilities\InputHelp.cs:229
+msgid "Seek Forward"
+msgstr "आगे सीक करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:228
+msgid "Seek to next subtitle"
+msgstr "अगले उपशीर्षक पर जाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:227
+msgid "Seek to previous subtitle"
+msgstr "पिछले उपशीर्षक पर जाएँ"
+
+msgid "Select when to use precise seeks that are not limited to keyframes. Such seeks require decoding video from the previous keyframe up to the target position and so can take some time depending on decoding performance. For some video formats, precise seeks are disabled. This option selects the default choice to use for seeks; it is possible to explicitly override that default in the definition of key bindings and in input commands."
+msgstr "कब कीफ़्रेम तक सीमित न रहने वाला सटीक सीक हो, यह चुनें। पिछले कीफ़्रेम से लक्ष्य तक डिकोड करना पड़ता है, इसलिए समय डिकोडिंग प्रदर्शन पर निर्भर है। कुछ प्रारूपों में यह बंद है। यह डिफ़ॉल्ट नीति है; कुंजी बाइंडिंग और इनपुट कमांड में इसे बदल सकते हैं।"
+
+msgid "Set dither target depth to N. Note that the depth of the connected video display device cannot be detected. Often, LCD panels will do dithering on their own, which conflicts with this option and leads to ugly output."
+msgstr "डिथरिंग लक्ष्य गहराई N करें। जुड़े डिस्प्ले की गहराई पहचानी नहीं जा सकती। LCD अक्सर स्वयं डिथरिंग करते हैं, जिससे टकराव और खराब चित्र हो सकता है।"
+
+msgid "Set the duration of the OSD messages in ms. Default: 1000"
+msgstr "OSD संदेश की अवधि, मिलीसेकंड में। डिफ़ॉल्ट: 1000"
+
+msgid "Set the image file type used for saving screenshots."
+msgstr "स्क्रीनशॉट सहेजने का चित्र फ़ाइल प्रकार।"
+
+msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
+msgstr "शुरुआती वॉल्यूम: 0 मौन, 100 बिना कमी या बढ़ोतरी। संगतता हेतु ऋणात्मक मान स्वीकार हैं पर 0 माने जाते हैं। mpv 0.18.1 से यह हमेशा आंतरिक मिक्सर (softvol) नियंत्रित करता है। डिफ़ॉल्ट: 100"
+
+msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
+msgstr "वीडियो विंडो का शीर्षक और संभव हो तो ऑडियो स्ट्रीम का शीर्षक तय करें। प्रॉपर्टी विस्तार समर्थित है। चेतावनी: चुनी प्रॉपर्टियों से CPU उपयोग बहुत बढ़ सकता है।"
+
+msgid "Set this to no in order to hide the window title bar."
+msgstr "विंडो शीर्षक पट्टी छिपाने के लिए no करें।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:182
+msgid "Set/clear A-B loop points"
+msgstr "A-B लूप बिंदु सेट/साफ़ करें"
+
+msgid "Sets the filter used for downscaling. The most relevant options, roughly ordered from fastest to slowest."
+msgstr "डाउनस्केल फ़िल्टर; मुख्य विकल्प लगभग तेज़ से धीमे क्रम में।"
+
+msgid "Sets the filter used for frame mixing (temporal interpolation). Roughly ordered from fastest to slowest."
+msgstr "फ़्रेम मिश्रण (समय इंटरपोलेशन) फ़िल्टर, लगभग तेज़ से धीमे क्रम में।"
+
+msgid "Sets the filter used for upscaling."
+msgstr "अपस्केल फ़िल्टर तय करें।"
+
+msgid "Setting to remember the window size. (mpv.net option)"
+msgstr "विंडो आकार याद रखने की सेटिंग। (mpv.net विकल्प)"
+
+#: src\MpvNet\Utilities\InputHelp.cs:174 src\MpvNet\Utilities\InputHelp.cs:175
+#: src\MpvNet\Utilities\InputHelp.cs:176 src\MpvNet\Utilities\InputHelp.cs:177
+#: src\MpvNet\Utilities\InputHelp.cs:178 src\MpvNet\Utilities\InputHelp.cs:179
+#: src\MpvNet\Utilities\InputHelp.cs:180
+msgid "Setup"
+msgstr "सेटअप"
+
+msgid "Sharpened version of ewa_lanczos (slow)."
+msgstr "ewa_lanczos का अधिक तीखा संस्करण (धीमा)।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:167
+msgid "Show Config Editor"
+msgstr "कॉन्फ़िगरेशन एडिटर दिखाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:168
+msgid "Show Input Editor"
+msgstr "इनपुट एडिटर दिखाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:200
+msgid "Show Menu"
+msgstr "मेनू दिखाएँ"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:310
+msgid "Show Profiles"
+msgstr "प्रोफ़ाइल दिखाएँ"
+
+msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
+msgstr "प्लेबैक शुरू होने पर OSD संदेश दिखाएँ। प्रॉपर्टियाँ विस्तृत होती हैं; जैसे osd-playing-msg='file: ${filename}' से file: के बाद स्पेस और वर्तमान फ़ाइल नाम दिखता है। अधिक जानकारी:"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:614
+msgid "Show mpv manual"
+msgstr "mpv मैनुअल दिखाएँ"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:615
+msgid "Show mpv.net manual"
+msgstr "mpv.net मैनुअल दिखाएँ"
+
+#: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:611
+msgid "Show mpv.net options"
+msgstr "mpv.net विकल्प दिखाएँ"
+
+msgid "Show progress in taskbar."
+msgstr "टास्कबार में प्रगति दिखाएँ।"
+
+msgid "Show window with decoration (titlebar, border)."
+msgstr "विंडो सजावट दिखाएँ (शीर्षक पट्टी, बॉर्डर)।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:151
+msgid "Shrink"
+msgstr "छोटा करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:184
+msgid "Shuffle Playlist"
+msgstr "प्लेलिस्ट शफ़ल करें"
+
+#: src\MpvNet.Windows\WinForms\MainForm.cs:1277
+msgid "Shutdown thread failed to complete within 10 seconds."
+msgstr "शटडाउन थ्रेड 10 सेकंड में पूरा नहीं हुआ।"
+
+msgid "Sigmoidization"
+msgstr "सिग्मॉइड रूपांतरण"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:339
+msgid "Size"
+msgstr "आकार"
+
+msgid "Snap the player window to screen edges."
+msgstr "प्लेयर विंडो को स्क्रीन किनारों से सटाएँ।"
+
+msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
+msgstr "पसंदीदा ऑडियो भाषाओं की प्राथमिकता सूची। कंटेनर के अनुसार कोड अलग हैं: DVD में ISO 639-1 के दो अक्षर, Matroska, MPEG-TS और NUT में ISO 639-2 के तीन अक्षर; OGM में मुक्त रूप पहचानकर्ता। aid भी देखें।"
+
+msgid "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
+msgstr "पसंदीदा उपशीर्षक भाषाओं की सूची। DVD में ISO 639-1 के दो अक्षर, Matroska में ISO 639-2 के तीन अक्षर और OGM में मुक्त रूप पहचानकर्ता होता है। sid भी देखें।"
+
+msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
+msgstr "जिन उपशीर्षकों का फ़ॉन्ट तय नहीं है, उनका फ़ॉन्ट। डिफ़ॉल्ट sans-serif।"
+
+msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
+msgstr "OSD फ़ॉन्ट आकार। विवरण के लिए sub-font-size देखें। डिफ़ॉल्ट: 55"
+
+msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
+msgstr "बिना शैली वाले पाठ उपशीर्षकों का रंग।\\n\\nउपयोग और उदाहरण मैनुअल में:"
+
+msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
+msgstr "स्क्रीनशॉट फ़ाइल नाम का टेम्पलेट, एक्सटेंशन के बिना। इसमें कैप्चर के समय बदले जाने वाले फ़ॉर्मैट संकेत हो सकते हैं। डिफ़ॉल्ट mpv-shot%n, जैसे mpv-shot0012.png।\\n\\nपूरा दस्तावेज़:"
+
+msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
+msgstr "संभव होने पर उपयोग किया जाने वाला हार्डवेयर वीडियो डिकोडिंग API। वास्तविक समर्थन कोडेक पर निर्भर है; न हो तो सॉफ़्टवेयर डिकोडिंग होती है। विश्वसनीयता हेतु डिफ़ॉल्ट बंद, पर आधुनिक हार्डवेयर CPU उपयोग और बिजली खपत घटा सकता है।\\n\\nअधिक जानकारी:"
+
+msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
+msgstr "उपशीर्षक फ़ॉन्ट आकार, 720 ऊँचाई वाली विंडो पर स्केल किए पिक्सेल में। वास्तविक आकार विंडो की ऊँचाई के साथ बढ़ता या घटता है। डिफ़ॉल्ट: 55"
+
+#: src\MpvNet\Utilities\InputHelp.cs:110 src\MpvNet\Utilities\InputHelp.cs:111
+#: src\MpvNet\Utilities\InputHelp.cs:112 src\MpvNet\Utilities\InputHelp.cs:113
+#: src\MpvNet\Utilities\InputHelp.cs:114 src\MpvNet\Utilities\InputHelp.cs:115
+#: src\MpvNet\Utilities\InputHelp.cs:116
+msgid "Speed"
+msgstr "गति"
+
+msgid "Start the player in fullscreen mode."
+msgstr "प्लेयर पूर्ण स्क्रीन में शुरू करें।"
+
+msgid "Start with a maximized window."
+msgstr "अधिकतम की गई विंडो से शुरू करें।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:24 src\MpvNet\Utilities\InputHelp.cs:205
+msgid "Stop"
+msgstr "रोकें"
+
+msgid "Store screenshots in this directory. This path is joined with the filename generated by screenshot-template. If the template filename is already absolute, the directory is ignored."
+msgstr "स्क्रीनशॉट इस डायरेक्टरी में रखें। पथ screenshot-template के नाम से जुड़ता है। टेम्पलेट नाम पूर्ण पथ हो तो डायरेक्टरी अनदेखी होती है।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:89 src\MpvNet\Utilities\InputHelp.cs:90
+#: src\MpvNet\Utilities\InputHelp.cs:91 src\MpvNet\Utilities\InputHelp.cs:92
+#: src\MpvNet\Utilities\InputHelp.cs:93 src\MpvNet\Utilities\InputHelp.cs:94
+#: src\MpvNet\Utilities\InputHelp.cs:95 src\MpvNet\Utilities\InputHelp.cs:96
+#: src\MpvNet\Utilities\InputHelp.cs:97 src\MpvNet\Utilities\InputHelp.cs:98
+#: src\MpvNet\Utilities\InputHelp.cs:99 src\MpvNet\Utilities\InputHelp.cs:100
+#: src\MpvNet\Utilities\InputHelp.cs:101
+msgid "Subtitle"
+msgstr "उपशीर्षक"
+
+#: src\MpvNet\App.cs:189 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:240
+msgid "Subtitle Lines"
+msgstr "उपशीर्षक पंक्तियाँ"
+
+#: src\MpvNet\App.cs:187 src\MpvNet\Utilities\InputHelp.cs:131
+msgid "Subtitle Tracks"
+msgstr "उपशीर्षक ट्रैक"
+
+#: src\MpvNet\Utilities\InputHelp.cs:233
+msgid "Subtitles"
+msgstr "उपशीर्षक"
+
+#: src\MpvNet\App.cs:205
+msgid "Support"
+msgstr "सहायता"
+
+msgid "Tag screenshots with the appropriate colorspace. Note that not all formats are supported."
+msgstr "स्क्रीनशॉट में उचित रंग स्थान टैग करें। सभी प्रारूप समर्थित नहीं हैं।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:77
+msgid "Take Screenshot"
+msgstr "स्क्रीनशॉट लें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:78
+msgid "Take Screenshot without subtitles"
+msgstr "बिना उपशीर्षक स्क्रीनशॉट लें"
+
+msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
+msgstr "GPU रेंडरर का वीडियो अपस्केल फ़िल्टर। कुछ और कम उपयोगी फ़िल्टर भी हैं। पूरी सूची के लिए help मान दें, जैसे mpv --scale=help।"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:244
+msgid "The clipboard does not contain a valid URL or file."
+msgstr "क्लिपबोर्ड में मान्य URL या फ़ाइल नहीं है।"
+
+#: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:142
+msgid "The input editor cannot save duplicate shortcuts with different commands:"
+msgstr "इनपुट एडिटर एक ही शॉर्टकट के अलग कमांड सहेज नहीं सकता:"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:42
+msgid "The live stream has ended."
+msgstr "लाइव स्ट्रीम समाप्त हो गई।"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:44
+msgid "The online media URL is invalid."
+msgstr "ऑनलाइन मीडिया URL अमान्य है।"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:45
+msgid "The online media could not be loaded."
+msgstr "ऑनलाइन मीडिया लोड नहीं हो सका।"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:41
+msgid "The online playlist could not be loaded."
+msgstr "ऑनलाइन प्लेलिस्ट लोड नहीं हो सकी।"
+
+msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "mpv शुरू होने के बाद बदले विकल्प जो \"watch later\" फ़ाइलों में सहेजे जाते हैं और अगली बार बहाल होते हैं। यह स्ट्रिंग सूची विकल्प है। अधिक जानकारी:"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
+msgid "This content is no longer available."
+msgstr "यह सामग्री अब उपलब्ध नहीं है।"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:39
+msgid "This content is not available in your region."
+msgstr "यह सामग्री आपके क्षेत्र में उपलब्ध नहीं है।"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:38
+msgid "This content requires authentication with the source service."
+msgstr "इस सामग्री के लिए स्रोत सेवा में प्रमाणीकरण चाहिए।"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:442
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:447
+msgid "This feature was removed, but there are user scripts:"
+msgstr "यह सुविधा हट गई है, लेकिन उपयोगकर्ता स्क्रिप्ट उपलब्ध हैं:"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:451
+msgid "This feature was removed."
+msgstr "यह सुविधा हटा दी गई है।"
+
+#: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:43
+msgid "This online media format is not supported."
+msgstr "यह ऑनलाइन मीडिया प्रारूप समर्थित नहीं है।"
+
+#: src\MpvNet\App.cs:102 src\MpvNet\App.cs:110
+msgid "Tip: installing Codec Guide can improve codec support and playback."
+msgstr "सुझाव: Codec Guide स्थापित करने से कोडेक समर्थन और प्लेबैक बेहतर हो सकता है।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:48
+#: src\MpvNet.Windows\WinForms\MainForm.cs:255
+msgid "Title"
+msgstr "शीर्षक"
+
+#: src\MpvNet\Utilities\InputHelp.cs:162
+msgid "Toggle Border"
+msgstr "बॉर्डर बदलें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:79
+msgid "Toggle Deinterlace"
+msgstr "डीइंटरलेस बदलें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:185
+msgid "Toggle Hardware Decoding"
+msgstr "हार्डवेयर डिकोडिंग बदलें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:120
+msgid "Toggle OSC Visibility"
+msgstr "OSC दृश्यता बदलें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:163
+msgid "Toggle On Top"
+msgstr "हमेशा ऊपर रखना बदलें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:119
+msgid "Toggle Statistics"
+msgstr "आँकड़े दिखाना बदलें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:90
+msgid "Toggle Visibility"
+msgstr "दृश्यता बदलें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:183
+msgid "Toggle infinite file looping"
+msgstr "अनंत फ़ाइल लूप बदलें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:101
+msgid "Toggle overriding SSA/ASS styles with normal styles"
+msgstr "सामान्य शैली से SSA/ASS शैली बदलना चालू/बंद करें"
+
+msgid "Tone mapping function to use for adapting between difference luminance ranges, including black point adaptation."
+msgstr "अलग चमक सीमाओं में समायोजन का टोन मैपिंग फ़ंक्शन, ब्लैक पॉइंट अनुकूलन सहित।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:182 src\MpvNet\Utilities\InputHelp.cs:183
+#: src\MpvNet\Utilities\InputHelp.cs:184 src\MpvNet\Utilities\InputHelp.cs:185
+#: src\MpvNet\Utilities\InputHelp.cs:186
+msgid "Tools"
+msgstr "उपकरण"
+
+#: src\MpvNet\Utilities\InputHelp.cs:103
+#: src\MpvNet.Windows\WinForms\MainForm.cs:180
+msgid "Track"
+msgstr "ट्रैक"
+
+#: src\MpvNet\Utilities\InputHelp.cs:129 src\MpvNet\Utilities\InputHelp.cs:237
+msgid "Tracks"
+msgstr "ट्रैक"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:340
+msgid "Type"
+msgstr "प्रकार"
+
+#: src\MpvNet\Utilities\InputHelp.cs:225
+msgid "Undo previous (or marked) seek"
+msgstr "पिछला (या चिह्नित) सीक पूर्ववत करें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:177
+msgid "Unregister file associations"
+msgstr "फ़ाइल संबद्धताएँ हटाएँ"
+
+msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
+msgstr "मीडिया जानकारी के लिए mpv के बजाय मीडिया इन्फ़ो लाइब्रेरी लें। (mpv.net विकल्प)"
+
+msgid "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "कोई भी उपलब्ध API लें। इस मान का डिफ़ॉल्ट GPU API बदल सकता है, इसलिए उस पर निर्भर न रहें। विशेष API चाहिए तो स्पष्ट रूप से तय करें।"
+
+msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
+msgstr "सरगम 3DLUT में बेहतर पर धीमा ट्रायक्यूबिक इंटरपोलेशन लें। छोटे 3DLUT की सटीकता काफ़ी बढ़ सकती है; डिफ़ॉल्ट आकार पर अधिक असर नहीं होगा।"
+
+msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
+msgstr "केवल फ़ाइल की पूर्ण स्थिति, जैसे अध्याय, के लिए सटीक सीक करें; तीर कुंजियों जैसे सापेक्ष सीक के लिए नहीं।"
+
+msgid "Use precise seeks whenever possible."
+msgstr "जहाँ संभव हो सटीक सीक करें।"
+
+msgid "Use the same filter as specified for upscaler"
+msgstr "upscaler वाला फ़िल्टर ही उपयोग करें"
+
+msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "input.conf में संदर्भ मेनू की परिभाषा का सिंटैक्स।\\nmpv.net का डिफ़ॉल्ट '#menu:', uosc का '#!' है।"
+
+msgid "User interface display language.\\nmpv.net must be restarted after a change."
+msgstr "इंटरफ़ेस की भाषा।\\nबदलाव के बाद mpv.net पुनः शुरू करें।"
+
+msgid "VK_KHR_win32_surface"
+msgstr "VK_KHR_win32_surface"
+
+msgid "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
+msgstr "ewa_lanczos का बहुत तीखा, ऐंटी-रिंगिंग संस्करण (बहुत धीमा)।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:65 src\MpvNet\Utilities\InputHelp.cs:66
+#: src\MpvNet\Utilities\InputHelp.cs:67 src\MpvNet\Utilities\InputHelp.cs:68
+#: src\MpvNet\Utilities\InputHelp.cs:69 src\MpvNet\Utilities\InputHelp.cs:70
+#: src\MpvNet\Utilities\InputHelp.cs:71 src\MpvNet\Utilities\InputHelp.cs:72
+#: src\MpvNet\Utilities\InputHelp.cs:73 src\MpvNet\Utilities\InputHelp.cs:74
+#: src\MpvNet\Utilities\InputHelp.cs:75 src\MpvNet\Utilities\InputHelp.cs:76
+#: src\MpvNet\Utilities\InputHelp.cs:77 src\MpvNet\Utilities\InputHelp.cs:78
+#: src\MpvNet\Utilities\InputHelp.cs:79 src\MpvNet\Utilities\InputHelp.cs:80
+#: src\MpvNet\Utilities\InputHelp.cs:81
+msgid "Video"
+msgstr "वीडियो"
+
+#: src\MpvNet\App.cs:191 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:236
+msgid "Video Tracks"
+msgstr "वीडियो ट्रैक"
+
+msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+msgstr "--autocreate-playlist या --directory-filter-types में वीडियो एक्सटेंशन। mpv.net इन्हें फ़ाइल संबद्धता और auto-load-folder में भी उपयोग करता है। डिफ़ॉल्ट: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+
+msgid "Video output driver that uses the Direct3D interface."
+msgstr "Direct3D इंटरफ़ेस का वीडियो आउटपुट ड्राइवर।"
+
+msgid "Video output drivers to be used.\\n\\nFor more information visit:"
+msgstr "उपयोग किए जाने वाले वीडियो आउटपुट ड्राइवर।\\n\\nअधिक जानकारी:"
+
+#: src\MpvNet\Utilities\InputHelp.cs:118 src\MpvNet\Utilities\InputHelp.cs:119
+#: src\MpvNet\Utilities\InputHelp.cs:120 src\MpvNet\Utilities\InputHelp.cs:121
+#: src\MpvNet\Utilities\InputHelp.cs:122 src\MpvNet\Utilities\InputHelp.cs:123
+#: src\MpvNet\Utilities\InputHelp.cs:124 src\MpvNet\Utilities\InputHelp.cs:125
+#: src\MpvNet\Utilities\InputHelp.cs:126 src\MpvNet\Utilities\InputHelp.cs:127
+#: src\MpvNet\Utilities\InputHelp.cs:128 src\MpvNet\Utilities\InputHelp.cs:129
+#: src\MpvNet\Utilities\InputHelp.cs:130 src\MpvNet\Utilities\InputHelp.cs:131
+#: src\MpvNet\Utilities\InputHelp.cs:132 src\MpvNet\Utilities\InputHelp.cs:133
+#: src\MpvNet\Utilities\InputHelp.cs:134 src\MpvNet\Utilities\InputHelp.cs:135
+#: src\MpvNet\Utilities\InputHelp.cs:136 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:138 src\MpvNet\Utilities\InputHelp.cs:139
+#: src\MpvNet\Utilities\InputHelp.cs:140 src\MpvNet\Utilities\InputHelp.cs:141
+#: src\MpvNet\Utilities\InputHelp.cs:142 src\MpvNet\Utilities\InputHelp.cs:143
+#: src\MpvNet\Utilities\InputHelp.cs:144 src\MpvNet\Utilities\InputHelp.cs:145
+#: src\MpvNet\Utilities\InputHelp.cs:146 src\MpvNet\Utilities\InputHelp.cs:147
+msgid "View"
+msgstr "दृश्य"
+
+#: src\MpvNet\Utilities\InputHelp.cs:105 src\MpvNet\Utilities\InputHelp.cs:106
+#: src\MpvNet\Utilities\InputHelp.cs:107 src\MpvNet\Utilities\InputHelp.cs:108
+msgid "Volume"
+msgstr "वॉल्यूम"
+
+#: src\MpvNet\Utilities\InputHelp.cs:209 src\MpvNet\Utilities\InputHelp.cs:211
+msgid "Volume Down"
+msgstr "वॉल्यूम घटाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:208 src\MpvNet\Utilities\InputHelp.cs:210
+msgid "Volume Up"
+msgstr "वॉल्यूम बढ़ाएँ"
+
+#: src\MpvNet.Windows\WPF\LearnWindow.xaml:42
+msgid "Waiting for key/mouse input."
+msgstr "कुंजी/माउस इनपुट की प्रतीक्षा।"
+
+#: src\MpvNet\App.cs:197 src\MpvNet\Utilities\InputHelp.cs:137
+#: src\MpvNet\Utilities\InputHelp.cs:242
+msgid "Watch History"
+msgstr "देखने का इतिहास"
+
+#: src\MpvNet\App.cs:198 src\MpvNet\Utilities\InputHelp.cs:138
+#: src\MpvNet\Utilities\InputHelp.cs:243
+msgid "Watch Later"
+msgstr "बाद में देखें"
+
+#: src\MpvNet\Utilities\InputHelp.cs:190
+msgid "Website mpv"
+msgstr "mpv वेबसाइट"
+
+#: src\MpvNet\Utilities\InputHelp.cs:191
+msgid "Website mpv.net"
+msgstr "mpv.net वेबसाइट"
+
+msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
+msgstr "स्थानीय फ़ाइल खोलने पर मानो मूल डायरेक्टरी खुली हो और प्लेलिस्ट स्वतः बनाएँ।\\n\\nno: केवल एक फ़ाइल (mpv डिफ़ॉल्ट)।\\n\\nFilter: मूल डायरेक्टरी से --directory-filter-types से मिलती फ़ाइलें (mpv.net डिफ़ॉल्ट)।\\n\\nsame: वर्तमान फ़ाइल की श्रेणी वाली फ़ाइलें जोड़ें। इनपुट के आधार पर *-exts सूची चुनी जाती है और केवल मिलते एक्सटेंशन जुड़ते हैं। इनपुट किसी सूची से न मिले तो प्लेलिस्ट नहीं बनती।"
+
+msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
+msgstr "अपस्केल करते समय सिग्मॉइड रंग रूपांतरण से रिंगिंग दोष उभरने से रोकें। इससे linear-scaling भी लागू होता है।"
+
+msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
+msgstr "कन्वॉल्यूशन फ़िल्टर से आकार घटाते समय फ़िल्टर आकार बढ़ाएँ। गुणवत्ता बढ़ती है पर गति घटती है।\\n\\nएनामॉर्फ़िक वीडियो में थोड़ा कम अनुकूल है (फिर भी बंद से बेहतर), क्योंकि दोनों अक्षों के हल्के स्केल गुणक के अनुसार ही आकार बढ़ता है।"
+
+msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+msgstr "OSD विंडो के साथ स्केल हो या नहीं। बंद हो तो osd-font-size और स्केल पिक्सेल वाले अन्य OSD विकल्प वास्तविक पिक्सेल में होंगे; विंडो आकार बदलने से OSD फ़ॉन्ट नहीं बदलेगा।"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:337
+msgid "Width"
+msgstr "चौड़ाई"
+
+msgid "Win32, with native Direct3D 11 rendering."
+msgstr "Win32, मूल Direct3D 11 रेंडरिंग।"
+
+msgid "Win32/WGL"
+msgstr "Win32/WGL"
+
+#: src\MpvNet\Utilities\InputHelp.cs:149 src\MpvNet\Utilities\InputHelp.cs:150
+#: src\MpvNet\Utilities\InputHelp.cs:151 src\MpvNet\Utilities\InputHelp.cs:152
+#: src\MpvNet\Utilities\InputHelp.cs:153 src\MpvNet\Utilities\InputHelp.cs:154
+#: src\MpvNet\Utilities\InputHelp.cs:155 src\MpvNet\Utilities\InputHelp.cs:156
+#: src\MpvNet\Utilities\InputHelp.cs:157 src\MpvNet\Utilities\InputHelp.cs:158
+#: src\MpvNet\Utilities\InputHelp.cs:159 src\MpvNet\Utilities\InputHelp.cs:160
+#: src\MpvNet\Utilities\InputHelp.cs:161 src\MpvNet\Utilities\InputHelp.cs:162
+#: src\MpvNet\Utilities\InputHelp.cs:163
+msgid "Window"
+msgstr "विंडो"
+
+msgid "Window height is always remembered"
+msgstr "विंडो ऊँचाई हमेशा याद रखें"
+
+msgid "Window height is remembered in the current session"
+msgstr "इस सत्र में विंडो ऊँचाई याद रखें"
+
+msgid "Window size is always remembered"
+msgstr "विंडो आकार हमेशा याद रखें"
+
+msgid "Window size is remembered in the current session"
+msgstr "इस सत्र में विंडो आकार याद रखें"
+
+msgid "Window size is set to video resolution"
+msgstr "विंडो आकार वीडियो रिज़ॉल्यूशन के अनुसार"
+
+msgid "Window width is always remembered"
+msgstr "विंडो चौड़ाई हमेशा याद रखें"
+
+msgid "Window width is remembered in the current session"
+msgstr "इस सत्र में विंडो चौड़ाई याद रखें"
+
+msgid "Write JPEG files with the same chroma subsampling as the video. If disabled, the libjpeg default is used."
+msgstr "JPEG में वीडियो जैसी क्रोमा सबसैंपलिंग लें। बंद हो तो libjpeg डिफ़ॉल्ट उपयोग करें।"
+
+#: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:137
+msgid "Yes"
+msgstr "हाँ"
+
+#: src\MpvNet\App.cs:112
+msgid "Your donation helps keep MPV.NET Media Player in development, with improvements, fixes, and ongoing project support."
+msgstr "आपका दान MPV.NET Media Player के विकास, सुधार, त्रुटि समाधान और निरंतर परियोजना सहायता में मदद करता है।"
+
+#: src\MpvNet\Utilities\InputHelp.cs:150 src\MpvNet\Utilities\InputHelp.cs:151
+#: src\MpvNet\Utilities\InputHelp.cs:152 src\MpvNet\Utilities\InputHelp.cs:153
+#: src\MpvNet\Utilities\InputHelp.cs:154 src\MpvNet\Utilities\InputHelp.cs:155
+#: src\MpvNet\Utilities\InputHelp.cs:156
+msgid "Zoom"
+msgstr "ज़ूम"
+
+msgid "absolute"
+msgstr "absolute"
+
+msgid "alang"
+msgstr "alang"
+
+msgid "all"
+msgstr "all"
+
+msgid "allow-delayed-peak-detect"
+msgstr "allow-delayed-peak-detect"
+
+msgid "allow_delayed_peak"
+msgstr "allow_delayed_peak"
+
+msgid "always"
+msgstr "always"
+
+msgid "always use software decoding"
+msgstr "हमेशा सॉफ़्टवेयर डिकोडिंग"
+
+msgid "angle"
+msgstr "angle"
+
+msgid "antiringing_strength"
+msgstr "antiringing_strength"
+
+msgid "any"
+msgstr "any"
+
+msgid "audio"
+msgstr "audio"
+
+msgid "audio-device"
+msgstr "audio-device"
+
+msgid "audio-exts"
+msgstr "audio-exts"
+
+msgid "audio-file-auto"
+msgstr "audio-file-auto"
+
+msgid "auto"
+msgstr "auto"
+
+msgid "auto-copy"
+msgstr "auto-copy"
+
+msgid "auto-load-folder"
+msgstr "auto-load-folder"
+
+msgid "auto-safe"
+msgstr "auto-safe"
+
+msgid "auto-select"
+msgstr "auto-select"
+
+msgid "autocreate-playlist"
+msgstr "autocreate-playlist"
+
+msgid "autofit"
+msgstr "autofit"
+
+msgid "autofit-audio"
+msgstr "autofit-audio"
+
+msgid "autofit-image"
+msgstr "autofit-image"
+
+msgid "autofit-larger"
+msgstr "autofit-larger"
+
+msgid "autofit-smaller"
+msgstr "autofit-smaller"
+
+#: src\MpvNet\Utilities\InputHelp.cs:196
+msgid "awesome-mpv"
+msgstr "awesome-mpv"
+
+msgid "background"
+msgstr "background"
+
+msgid "bicubic"
+msgstr "bicubic"
+
+msgid "bilinear"
+msgstr "bilinear"
+
+msgid "black_cutoff"
+msgstr "black_cutoff"
+
+msgid "border"
+msgstr "border"
+
+msgid "box"
+msgstr "box"
+
+msgid "brightness"
+msgstr "brightness"
+
+msgid "bt2390"
+msgstr "bt2390"
+
+msgid "bt2446a"
+msgstr "bt2446a"
+
+msgid "bulgarian"
+msgstr "बुल्गारियाई"
+
+msgid "cache"
+msgstr "cache"
+
+msgid "catmull_rom"
+msgstr "catmull_rom"
+
+msgid "chinese-china"
+msgstr "सरलीकृत चीनी"
+
+msgid "cie_y"
+msgstr "cie_y"
+
+msgid "clip"
+msgstr "clip"
+
+msgid "color_adjustment"
+msgstr "color_adjustment"
+
+msgid "color_adjustment_preset"
+msgstr "color_adjustment_preset"
+
+msgid "color_map"
+msgstr "color_map"
+
+msgid "color_map_preset"
+msgstr "color_map_preset"
+
+msgid "colorimetric_gamma"
+msgstr "colorimetric_gamma"
+
+msgid "contrast"
+msgstr "contrast"
+
+msgid "contrast_recovery"
+msgstr "contrast_recovery"
+
+msgid "contrast_smoothness"
+msgstr "contrast_smoothness"
+
+msgid "copies video back to system RAM"
+msgstr "वीडियो वापस सिस्टम RAM में कॉपी करता है"
+
+msgid "correct-downscaling"
+msgstr "correct-downscaling"
+
+msgid "cscale"
+msgstr "cscale"
+
+msgid "cubic"
+msgstr "cubic"
+
+msgid "cuda"
+msgstr "cuda"
+
+msgid "cuda-copy"
+msgstr "cuda-copy"
+
+msgid "d3d11"
+msgstr "d3d11"
+
+msgid "d3d11va"
+msgstr "d3d11va"
+
+msgid "d3d11va-copy"
+msgstr "d3d11va-copy"
+
+msgid "d3d11va-zero-copy"
+msgstr "d3d11va-zero-copy"
+
+msgid "dark-mode"
+msgstr "dark-mode"
+
+msgid "dark-theme"
+msgstr "dark-theme"
+
+msgid "darken"
+msgstr "darken"
+
+msgid "deband"
+msgstr "deband"
+
+msgid "deband_grain"
+msgstr "deband_grain"
+
+msgid "deband_iterations"
+msgstr "deband_iterations"
+
+msgid "deband_preset"
+msgstr "deband_preset"
+
+msgid "deband_radius"
+msgstr "deband_radius"
+
+msgid "deband_threshold"
+msgstr "deband_threshold"
+
+msgid "debug-mode"
+msgstr "debug-mode"
+
+msgid "default"
+msgstr "default"
+
+msgid "demuxer-max-bytes"
+msgstr "demuxer-max-bytes"
+
+msgid "desaturate"
+msgstr "desaturate"
+
+msgid "desync"
+msgstr "desync"
+
+msgid "direct3d"
+msgstr "direct3d"
+
+msgid "display-adrop"
+msgstr "display-adrop"
+
+msgid "display-desync"
+msgstr "display-desync"
+
+msgid "display-resample"
+msgstr "display-resample"
+
+msgid "display-resample-desync"
+msgstr "display-resample-desync"
+
+msgid "display-resample-vdrop"
+msgstr "display-resample-vdrop"
+
+msgid "display-vdrop"
+msgstr "display-vdrop"
+
+msgid "dither-depth"
+msgstr "dither-depth"
+
+msgid "downscaler"
+msgstr "downscaler"
+
+msgid "dscale"
+msgstr "dscale"
+
+msgid "dxinterop"
+msgstr "dxinterop"
+
+msgid "dxva2"
+msgstr "dxva2"
+
+msgid "dxva2-copy"
+msgstr "dxva2-copy"
+
+msgid "enable any whitelisted hw decoder"
+msgstr "अनुमत सूची का कोई हार्डवेयर डिकोडर सक्षम करें"
+
+msgid "enable best hw decoder"
+msgstr "सर्वश्रेष्ठ हार्डवेयर डिकोडर सक्षम करें"
+
+msgid "enable best hw decoder with copy-back"
+msgstr "वापस कॉपी करने वाला सर्वश्रेष्ठ हार्डवेयर डिकोडर सक्षम करें"
+
+msgid "english"
+msgstr "अंग्रेज़ी"
+
+msgid "ewa_lanczos"
+msgstr "ewa_lanczos"
+
+msgid "ewa_lanczos4sharpest"
+msgstr "ewa_lanczos4sharpest"
+
+msgid "ewa_lanczossharp"
+msgstr "ewa_lanczossharp"
+
+msgid "exact"
+msgstr "exact"
+
+msgid "exactly the same as auto"
+msgstr "auto के बिल्कुल समान"
+
+msgid "exposure"
+msgstr "exposure"
+
+msgid "fast"
+msgstr "fast"
+
+msgid "filter"
+msgstr "filter"
+
+msgid "force_tone_mapping_lut"
+msgstr "force_tone_mapping_lut"
+
+msgid "frame_mixer"
+msgstr "frame_mixer"
+
+msgid "french"
+msgstr "फ़्रांसीसी"
+
+msgid "fullscreen"
+msgstr "fullscreen"
+
+msgid "fuzzy"
+msgstr "fuzzy"
+
+msgid "gamma"
+msgstr "gamma"
+
+msgid "gamut_expansion"
+msgstr "gamut_expansion"
+
+msgid "gamut_mapping"
+msgstr "gamut_mapping"
+
+msgid "gaussian"
+msgstr "gaussian"
+
+msgid "geometry"
+msgstr "geometry"
+
+msgid "german"
+msgstr "जर्मन"
+
+msgid "gpu"
+msgstr "gpu"
+
+msgid "gpu-api"
+msgstr "gpu-api"
+
+msgid "gpu-context"
+msgstr "gpu-context"
+
+msgid "gpu-next"
+msgstr "gpu-next"
+
+msgid "hable"
+msgstr "hable"
+
+msgid "hdr-compute-peak"
+msgstr "hdr-compute-peak"
+
+msgid "hdr10"
+msgstr "hdr10"
+
+msgid "hdr10plus"
+msgstr "hdr10plus"
+
+msgid "height-always"
+msgstr "height-always"
+
+msgid "height-session"
+msgstr "height-session"
+
+msgid "hermite"
+msgstr "hermite"
+
+msgid "high_quality"
+msgstr "high_quality"
+
+msgid "highlight"
+msgstr "highlight"
+
+msgid "hr-seek"
+msgstr "hr-seek"
+
+msgid "hue"
+msgstr "hue"
+
+msgid "hwdec"
+msgstr "hwdec"
+
+msgid "idle"
+msgstr "idle"
+
+msgid "image-exts"
+msgstr "image-exts"
+
+msgid "info"
+msgstr "info"
+
+msgid "input-ar-delay"
+msgstr "input-ar-delay"
+
+msgid "input-ar-rate"
+msgstr "input-ar-rate"
+
+msgid "input-ipc-server"
+msgstr "input-ipc-server"
+
+msgid "inverse_tone_mapping"
+msgstr "inverse_tone_mapping"
+
+msgid "italian"
+msgstr "इतालवी"
+
+msgid "japanese"
+msgstr "जापानी"
+
+msgid "jpg"
+msgstr "jpg"
+
+msgid "keep-open"
+msgstr "keep-open"
+
+msgid "keep-open-pause"
+msgstr "keep-open-pause"
+
+msgid "keepaspect-window"
+msgstr "keepaspect-window"
+
+msgid "keepaspect-window will lock the window size to the video aspect. Default: yes"
+msgstr "keepaspect-window विंडो आकार को वीडियो के अनुपात में लॉक करता है। डिफ़ॉल्ट: yes"
+
+msgid "knee_adaptation"
+msgstr "knee_adaptation"
+
+msgid "knee_default"
+msgstr "knee_default"
+
+msgid "knee_maximum"
+msgstr "knee_maximum"
+
+msgid "knee_minimum"
+msgstr "knee_minimum"
+
+msgid "knee_offset"
+msgstr "knee_offset"
+
+msgid "korean"
+msgstr "कोरियाई"
+
+msgid "lanczos"
+msgstr "lanczos"
+
+msgid "language"
+msgstr "language"
+
+msgid "libplacebo"
+msgstr "libplacebo"
+
+msgid "libplacebo-opts"
+msgstr "libplacebo-opts"
+
+msgid "light-theme"
+msgstr "light-theme"
+
+msgid "linear"
+msgstr "linear"
+
+msgid "linear_knee"
+msgstr "linear_knee"
+
+msgid "linearlight"
+msgstr "linearlight"
+
+msgid "loop-file"
+msgstr "loop-file"
+
+msgid "loop-playlist"
+msgstr "loop-playlist"
+
+msgid "lut3d_size_C"
+msgstr "lut3d_size_C"
+
+msgid "lut3d_size_I"
+msgstr "lut3d_size_I"
+
+msgid "lut3d_size_h"
+msgstr "lut3d_size_h"
+
+msgid "lut3d_tricubic"
+msgstr "lut3d_tricubic"
+
+msgid "media-info"
+msgstr "media-info"
+
+msgid "menu-syntax"
+msgstr "menu-syntax"
+
+msgid "minimum-aspect-ratio"
+msgstr "minimum-aspect-ratio"
+
+msgid "minimum-aspect-ratio-audio"
+msgstr "minimum-aspect-ratio-audio"
+
+msgid "mitchell"
+msgstr "mitchell"
+
+msgid "mobius"
+msgstr "mobius"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:411
+msgid "mpv.net is already in the Path environment variable."
+msgstr "mpv.net पहले से Path वातावरण चर में है।"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:428
+msgid "mpv.net was not found in the Path environment variable."
+msgstr "Path वातावरण चर में mpv.net नहीं मिला।"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:419
+msgid "mpv.net was successfully added to the Path environment variable."
+msgstr "mpv.net को Path वातावरण चर में जोड़ दिया गया।"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:437
+msgid "mpv.net was successfully removed from the Path environment variable."
+msgstr "mpv.net को Path वातावरण चर से हटा दिया गया।"
+
+msgid "multi"
+msgstr "multi"
+
+msgid "nearest"
+msgstr "nearest"
+
+msgid "neutral"
+msgstr "neutral"
+
+msgid "never"
+msgstr "never"
+
+msgid "no"
+msgstr "no"
+
+msgid "none"
+msgstr "none"
+
+msgid "nvdec"
+msgstr "nvdec"
+
+msgid "nvdec-copy"
+msgstr "nvdec-copy"
+
+msgid "once"
+msgstr "once"
+
+msgid "opengl"
+msgstr "opengl"
+
+msgid "osd-duration"
+msgstr "osd-duration"
+
+msgid "osd-font-size"
+msgstr "osd-font-size"
+
+msgid "osd-playing-msg"
+msgstr "osd-playing-msg"
+
+msgid "osd-scale-by-window"
+msgstr "osd-scale-by-window"
+
+msgid "oversample"
+msgstr "oversample"
+
+msgid "peak_detect"
+msgstr "peak_detect"
+
+msgid "peak_detection_preset"
+msgstr "peak_detection_preset"
+
+msgid "peak_percentile"
+msgstr "peak_percentile"
+
+msgid "peak_smoothing_period"
+msgstr "peak_smoothing_period"
+
+msgid "perceptual"
+msgstr "perceptual"
+
+msgid "perceptual_deadzone"
+msgstr "perceptual_deadzone"
+
+msgid "perceptual_strength"
+msgstr "perceptual_strength"
+
+msgid "plane_downscaler"
+msgstr "plane_downscaler"
+
+msgid "plane_upscaler"
+msgstr "plane_upscaler"
+
+msgid "png"
+msgstr "png"
+
+msgid "polish"
+msgstr "पोलिश"
+
+msgid "portuguese-brazil"
+msgstr "पुर्तगाली (ब्राज़ील)"
+
+msgid "portuguese-portugal"
+msgstr "पुर्तगाली (पुर्तगाल)"
+
+msgid "preset"
+msgstr "preset"
+
+msgid "process-instance"
+msgstr "process-instance"
+
+msgid "queue"
+msgstr "queue"
+
+msgid "recent-count"
+msgstr "recent-count"
+
+msgid "reinhard"
+msgstr "reinhard"
+
+msgid "reinhard_contrast"
+msgstr "reinhard_contrast"
+
+msgid "relative"
+msgstr "relative"
+
+msgid "remember-audio-device"
+msgstr "remember-audio-device"
+
+msgid "remember-volume"
+msgstr "remember-volume"
+
+msgid "remember-window-position"
+msgstr "remember-window-position"
+
+msgid "requires vo=gpu (Any platform CUDA is available)"
+msgstr "vo=gpu आवश्यक (CUDA वाला कोई भी प्लेटफ़ॉर्म)"
+
+msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
+msgstr "vo=gpu के साथ gpu-context=d3d11 या gpu-context=angle आवश्यक"
+
+msgid "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
+msgstr "vo=gpu के साथ gpu-context=d3d11, gpu-context=angle या gpu-context=dxinterop आवश्यक"
+
+msgid "reset-on-next-file"
+msgstr "reset-on-next-file"
+
+msgid "russian"
+msgstr "रूसी"
+
+msgid "same"
+msgstr "same"
+
+msgid "saturation"
+msgstr "saturation"
+
+msgid "save-position-on-quit"
+msgstr "save-position-on-quit"
+
+msgid "scale"
+msgstr "scale"
+
+msgid "scene_threshold_high"
+msgstr "scene_threshold_high"
+
+msgid "scene_threshold_low"
+msgstr "scene_threshold_low"
+
+msgid "screen"
+msgstr "screen"
+
+msgid "screenshot-directory"
+msgstr "screenshot-directory"
+
+msgid "screenshot-format"
+msgstr "screenshot-format"
+
+msgid "screenshot-high-bit-depth"
+msgstr "screenshot-high-bit-depth"
+
+msgid "screenshot-jpeg-quality"
+msgstr "screenshot-jpeg-quality"
+
+msgid "screenshot-jpeg-source-chroma"
+msgstr "screenshot-jpeg-source-chroma"
+
+msgid "screenshot-png-compression"
+msgstr "screenshot-png-compression"
+
+msgid "screenshot-png-filter"
+msgstr "screenshot-png-filter"
+
+msgid "screenshot-tag-colorspace"
+msgstr "screenshot-tag-colorspace"
+
+msgid "screenshot-template"
+msgstr "screenshot-template"
+
+msgid "session"
+msgstr "session"
+
+msgid "show_clipping"
+msgstr "show_clipping"
+
+msgid "sigmoid"
+msgstr "sigmoid"
+
+msgid "sigmoid-upscaling"
+msgstr "sigmoid-upscaling"
+
+msgid "sigmoid_center"
+msgstr "sigmoid_center"
+
+msgid "sigmoid_preset"
+msgstr "sigmoid_preset"
+
+msgid "sigmoid_slope"
+msgstr "sigmoid_slope"
+
+msgid "single"
+msgstr "single"
+
+msgid "slang"
+msgstr "slang"
+
+msgid "slope_offset"
+msgstr "slope_offset"
+
+msgid "slope_tuning"
+msgstr "slope_tuning"
+
+msgid "snap-window"
+msgstr "snap-window"
+
+msgid "softclip"
+msgstr "softclip"
+
+msgid "softclip_desat"
+msgstr "softclip_desat"
+
+msgid "softclip_knee"
+msgstr "softclip_knee"
+
+msgid "spanish"
+msgstr "स्पैनिश"
+
+msgid "spline"
+msgstr "spline"
+
+msgid "spline36"
+msgstr "spline36"
+
+msgid "spline_contrast"
+msgstr "spline_contrast"
+
+msgid "st2094-10"
+msgstr "st2094-10"
+
+msgid "st2094-40"
+msgstr "st2094-40"
+
+msgid "start-size"
+msgstr "start-size"
+
+msgid "sub-auto"
+msgstr "sub-auto"
+
+msgid "sub-back-color"
+msgstr "sub-back-color"
+
+msgid "sub-border-color"
+msgstr "sub-border-color"
+
+msgid "sub-color"
+msgstr "sub-color"
+
+msgid "sub-font"
+msgstr "sub-font"
+
+msgid "sub-font-size"
+msgstr "sub-font-size"
+
+msgid "system"
+msgstr "system"
+
+msgid "taskbar-progress"
+msgstr "taskbar-progress"
+
+msgid "temperature"
+msgstr "temperature"
+
+msgid "title"
+msgstr "title"
+
+msgid "title-bar"
+msgstr "title-bar"
+
+msgid "tone_lut_size"
+msgstr "tone_lut_size"
+
+msgid "tone_map_metadata"
+msgstr "tone_map_metadata"
+
+msgid "tone_mapping"
+msgstr "tone_mapping"
+
+msgid "track-auto-selection"
+msgstr "track-auto-selection"
+
+msgid "turkish"
+msgstr "तुर्की"
+
+msgid "upscaler"
+msgstr "upscaler"
+
+msgid "video-exts"
+msgstr "video-exts"
+
+msgid "video-sync"
+msgstr "video-sync"
+
+msgid "visualize_hue"
+msgstr "visualize_hue"
+
+msgid "visualize_lut"
+msgstr "visualize_lut"
+
+msgid "visualize_lut_x0"
+msgstr "visualize_lut_x0"
+
+msgid "visualize_lut_x1"
+msgstr "visualize_lut_x1"
+
+msgid "visualize_lut_y0"
+msgstr "visualize_lut_y0"
+
+msgid "visualize_lut_y1"
+msgstr "visualize_lut_y1"
+
+msgid "visualize_theta"
+msgstr "visualize_theta"
+
+msgid "vo"
+msgstr "vo"
+
+msgid "volume"
+msgstr "volume"
+
+msgid "vulkan"
+msgstr "vulkan"
+
+msgid "watch-later-options"
+msgstr "watch-later-options"
+
+msgid "width-always"
+msgstr "width-always"
+
+msgid "width-session"
+msgstr "width-session"
+
+msgid "win"
+msgstr "win"
+
+msgid "window-maximized"
+msgstr "window-maximized"
+
+msgid "winvk"
+msgstr "winvk"
+
+msgid "yes"
+msgstr "yes"
+
+#: src\MpvNet.Windows\Commands\GuiCommand.cs:157
+#, csharp-format
+msgid "{0} does not exist. Would you like to create it?"
+msgstr "{0} मौजूद नहीं है। क्या इसे बनाएँ?"
+
+#: src\MpvNet\Utilities\InputHelp.cs:161
+msgctxt "Move"
+msgid "Center"
+msgstr "केंद्र"
+
+#: src\MpvNet\Utilities\InputHelp.cs:160
+msgctxt "Move"
+msgid "Down"
+msgstr "नीचे"
+
+#: src\MpvNet\Utilities\InputHelp.cs:157
+msgctxt "Move"
+msgid "Left"
+msgstr "बाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:158
+msgctxt "Move"
+msgid "Right"
+msgstr "दाएँ"
+
+#: src\MpvNet\Utilities\InputHelp.cs:159
+msgctxt "Move"
+msgid "Up"
+msgstr "ऊपर"
+
+#: src\MpvNet\Utilities\InputHelp.cs:106
+msgctxt "Volume"
+msgid "Down"
+msgstr "कम"
+
+#: src\MpvNet\Utilities\InputHelp.cs:105
+msgctxt "Volume"
+msgid "Up"
+msgstr "अधिक"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "No playable media was found in this drive or folder."
+msgstr "इस ड्राइव या फ़ोल्डर में चलने योग्य मीडिया नहीं मिला।"
+
+#: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
+msgid "The selected drive or folder could not be read."
+msgstr "चुनी गई ड्राइव या फ़ोल्डर पढ़ा नहीं जा सका।"
+
+#: src/MpvNet/Media/StreamingFailureDiagnostics.cs
+msgid "The source service requires verification that you are not a bot."
+msgstr "स्रोत सेवा को पुष्टि चाहिए कि आप बॉट नहीं हैं।"
+
+msgid "The clipboard is temporarily unavailable."
+msgstr "क्लिपबोर्ड अभी उपलब्ध नहीं है।"
+
+msgid "Untitled Track"
+msgstr "अनाम ट्रैक"
+
+msgid "Repository: "
+msgstr "रिपॉज़िटरी: "
+
+msgid "chinese-taiwan"
+msgstr "繁體中文（台灣）"
+
+msgid "chinese-hongkong"
+msgstr "繁體中文（香港）"
+
+msgid "hindi"
+msgstr "हिन्दी"
+
+msgid "arabic"
+msgstr "العربية"
+
+msgid "ukrainian"
+msgstr "Українська"
+
+msgid "indonesian"
+msgstr "Bahasa Indonesia"
+
+msgid "Cache"
+msgstr "कैश"
+
+msgid "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
+msgstr "नेटवर्क URL हाल की फ़ाइलों में सहेजें। URL settings.xml में सादे पाठ में रहते हैं। एम्बेडेड क्रेडेंशियल, संवेदनशील क्वेरी पैरामीटर या फ़्रैगमेंट वाले URL हमेशा बाहर रहते हैं। केवल तभी सक्षम करें जब शेष URL पैरामीटर में गोपनीय जानकारी न हो। (mpv.net विकल्प)"
+
+msgid "save-network-urls-in-recent"
+msgstr "save-network-urls-in-recent"
+
+msgid "video"
+msgstr "video"

@@ -235,10 +235,7 @@ function AddGettextToolsToPath($workDir) {
 }
 
 function EnsureLocale($sourceDir, $localeDir, $workDir) {
-    if ((Test-Path $localeDir) -and @(Get-ChildItem $localeDir -Filter 'mpvnet.mo' -Recurse -File).Count) {
-        return Test $localeDir
-    }
-
+    # Always compile current sources; one cached MO does not prove completeness.
     $createMoScript = Test (Join-Path $sourceDir '..\lang\compile-mo-files.ps1')
     AddGettextToolsToPath $workDir
     & $createMoScript (Join-Path $sourceDir 'MpvNet.Windows\bin\Release\win-x64') | ForEach-Object { Write-Host $_ }
@@ -337,14 +334,14 @@ if ($LastExitCode) { throw $LastExitCode }
 $ExtraFiles = 'libmpv-2.dll', 'libmpv-2-v3.dll', 'libmpv-builds.json', 'MediaInfo.dll', 'mpvnet.com'
 CopyExtraFiles $BinDirX64 $OutputDir64 $ExtraFiles
 CopyExtraFiles $BinDirX64 $PublishDir64 $ExtraFiles
-& $PackageContentValidationScript -Path $PublishDir64
-if ($LastExitCode) { throw $LastExitCode }
 $LocaleDir = EnsureLocale `
     $SourceDir `
     (Join-Path $SourceDir "MpvNet.Windows\bin\$BuildConfiguration\win-x64\Locale\") `
     (Join-Path $env:TEMP 'mpv.net-release-locale')
 CopyDir $LocaleDir (Join-Path $OutputDir64 'Locale') | Out-Null
 CopyDir $LocaleDir (Join-Path $PublishDir64 'Locale') | Out-Null
+& $PackageContentValidationScript -Path $PublishDir64
+if ($LastExitCode) { throw $LastExitCode }
 AddPortableConfig $OutputDir64 $DocsDir
 & $PackageContentValidationScript -Path $OutputDir64
 if ($LastExitCode) { throw $LastExitCode }

@@ -39,12 +39,18 @@ Locale/pt_BR/LC_MESSAGES/mpvnet.mo
 
 ## Idiomas disponiveis
 
-Os idiomas abaixo possuem mapeamento em `WpfTranslator.cs` e valor publico aceito por `language`. Idiomas traduzidos tambem possuem arquivo `.po` e pasta `Locale`; o ingles usa a base nativa em `source.pot`.
+Os 20 idiomas abaixo possuem mapeamento em `LanguageCatalog.cs` e valor publico aceito por `language`. Os 19 idiomas traduzidos possuem arquivo `.po` e pasta `Locale`; o ingles usa a base nativa em `source.pot`.
 
 | Idioma | Valor de `language` | Arquivo PO | Pasta Locale | CultureInfo |
 | --- | --- | --- | --- | --- |
 | Bulgaro | `bulgarian` | `lang/po/bg.po` | `Locale/bg/LC_MESSAGES/` | `bg` |
 | Chines simplificado | `chinese-china` | `lang/po/zh_CN.po` | `Locale/zh_CN/LC_MESSAGES/` | `zh-CN` |
+| 繁體中文（台灣） | `chinese-taiwan` | `lang/po/zh_TW.po` | `Locale/zh_TW/LC_MESSAGES/` | `zh-TW` |
+| 繁體中文（香港） | `chinese-hongkong` | `lang/po/zh_HK.po` | `Locale/zh_HK/LC_MESSAGES/` | `zh-HK` |
+| हिन्दी | `hindi` | `lang/po/hi_IN.po` | `Locale/hi_IN/LC_MESSAGES/` | `hi-IN` |
+| العربية | `arabic` | `lang/po/ar_SA.po` | `Locale/ar_SA/LC_MESSAGES/` | `ar-SA` |
+| Українська | `ukrainian` | `lang/po/uk_UA.po` | `Locale/uk_UA/LC_MESSAGES/` | `uk-UA` |
+| Bahasa Indonesia | `indonesian` | `lang/po/id_ID.po` | `Locale/id_ID/LC_MESSAGES/` | `id-ID` |
 | Ingles | `english` | nativo | nativo | `en` |
 | Espanhol | `spanish` | `lang/po/es.po` | `Locale/es/LC_MESSAGES/` | `es` |
 | Frances | `french` | `lang/po/fr.po` | `Locale/fr/LC_MESSAGES/` | `fr` |
@@ -99,6 +105,12 @@ Idiomas base oficiais:
 | `ru` | Russo |
 | `tr` | Turco |
 | `zh-CN` | Chines simplificado |
+| `zh-TW` | Chines tradicional de Taiwan |
+| `zh-HK` | Chines tradicional de Hong Kong |
+| `hi-IN` | Hindi |
+| `ar-SA` | Arabe |
+| `uk-UA` | Ucraniano |
+| `id-ID` | Indonesio |
 
 Mapeamento de variantes:
 
@@ -117,11 +129,19 @@ Mapeamento de variantes:
 | `pt-PT`, `pt-AO`, `pt-MZ`, `pt-CV`, `pt-GW`, `pt-ST`, `pt-TL`, `pt-MO` | `pt-PT` |
 | `ru-RU`, `ru-BY`, `ru-KZ`, `ru-KG`, `ru-MD` | `ru` |
 | `tr-TR`, `tr-CY` | `tr` |
-| `zh-CN`, `zh-SG`, `zh-Hans` | `zh-CN` |
+| `zh`, `zh-CN`, `zh-SG`, `zh-Hans`, `zh-Hans-TW` | `zh-CN` |
+| `zh-TW`, `zh-Hant`, `zh-Hant-CN` | `zh-TW` |
+| `zh-HK`, `zh-MO`, `zh-Hant-HK`, `zh-Hant-MO` | `zh-HK` |
+| `hi`, `hi-IN`, `hin` | `hi-IN` |
+| `ar`, `ar-SA`, `ar-EG`, `ar-AE`, `ara` | `ar-SA` (somente texto) |
+| `uk`, `uk-UA`, `ukr` | `uk-UA` |
+| `id`, `id-ID`, `ind` | `id-ID` |
 
-Chines tradicional ainda nao e idioma base do projeto. Se for adicionado no
-futuro, mapear `zh-TW`, `zh-HK`, `zh-MO` e `zh-Hant` para `zh-Hant` e criar o
-catalogo gettext correspondente.
+A escrita chinesa explícita tem precedência sobre a região. Não inferir chinês
+simplificado de uma variante tradicional quando o catálogo solicitado estiver
+ausente. Outros idiomas/variantes sem suporte usam o inglês nativo. Nomes
+nativos dos seis novos idiomas também são aceitos pelo resolvedor e exibidos no
+seletor independentemente do idioma ativo.
 
 A ordem geral de fallback e:
 
@@ -136,6 +156,57 @@ brasileiro e portugues de Portugal tambem permanecem separados: `pt-BR` nao
 cai para `pt-PT`, e `pt-PT` nao cai para `pt-BR`.
 
 ## Interface, audio e legenda
+
+### Escrita, direção e região
+
+Os seis catálogos adicionais usam o inglês como referência, com revisão de
+termos técnicos e variantes: por exemplo, `播放清單`/`播放列表`,
+`軟體`/`軟件` e `義大利語`/`意大利語`. Os parâmetros e nomes de filtros do
+mpv permanecem literais; não se traduzem valores gravados no arquivo de
+configuração nem títulos fornecidos pelo usuário.
+
+`CurrentUICulture` seleciona o texto e os plurais. `CurrentCulture`, o
+`FormatProvider` do NGettext e o `Language` de formatação do WPF preservam a
+região do usuário: texto árabe `ar-SA` não transforma números/calendário de
+`ar-EG` ou `ar-AE` em formatação saudita.
+
+`InterfaceLayout` aplica recursos dinâmicos RTL/LTR a janelas, menus e diálogos.
+Campos de caminhos, comandos, URLs e atalhos continuam LTR; isoladores bidi são
+usados somente em cópias de exibição. A família composta `Global User Interface`
+usa o fallback tipográfico do Windows para CJK, devanágari, árabe e cirílico.
+O frontend não espelha vídeo nem muda o renderizador de legendas do mpv.
+
+O seletor atualiza os textos do editor aberto, a árvore, menus, título acessível
+e taskbar, sem substituir os valores editados. A gravação conserva um alias
+preexistente, como `language=zh-Hant`, quando a seleção não mudou. Ao reabrir,
+uma categoria salva no idioma anterior volta à categoria geral traduzida se
+não existir no idioma atual. Reiniciar continua sendo recomendado para aplicar
+todas as opções; a seleção de áudio/legenda permanece a cargo do mpv.
+
+### Inventário da expansão
+
+Cada novo `.po` contém **775 entradas ativas**, além do cabeçalho; nenhuma
+entrada ausente, extra, duplicada, vazia ou fuzzy. As 762 entradas anteriores
+foram mantidas. O inventário acrescentou nomes dos seis idiomas e textos antes
+ausentes do template: clipboard indisponível, faixa sem título, repositório,
+categoria `Cache`, descrição de histórico de URLs e os identificadores técnicos
+`save-network-urls-in-recent` e `video`. Os catálogos anteriores receberam as
+mesmas chaves; suas traduções existentes foram preservadas.
+
+| Catálogo | Entradas | Formas plurais |
+| --- | ---: | ---: |
+| `zh_TW.po` | 775 | 1 |
+| `zh_HK.po` | 775 | 1 |
+| `hi_IN.po` | 775 | 2 |
+| `ar_SA.po` | 775 | 6 |
+| `uk_UA.po` | 775 | 3 |
+| `id_ID.po` | 775 | 1 |
+
+O template atual não tem mensagens com `msgid_plural`; fixtures verificam
+contextos e todas as formas desses idiomas para manter a compilação preparada
+para novos plurais. O player não exibe uma mensagem própria de loading que
+precise de um novo catálogo; OSD inicial, falhas, atalhos e comandos compartilham
+o catálogo de interface.
 
 Idioma da interface e idioma de midia sao configuracoes diferentes:
 
@@ -205,6 +276,10 @@ new("portuguese-brazil", "pt-BR", "pt_BR", true, "por-br", "pt-br", "pt_br", "br
 
 6. Quando necessario, ajustar o fallback central para regioes especificas, sem mudar o comportamento dos outros idiomas.
 
+   Atualizar também `Package.appxmanifest` (culturas declaradas) e o payload
+   explícito de `MpvNet.Pacote.wapproj`. `validate-package-contents.ps1` exige um
+   `.mo` não vazio para cada `.po`, inclusive em ZIP/MSIX aninhados.
+
 7. Gerar os arquivos `.mo`:
 
 ```powershell
@@ -256,7 +331,10 @@ Validacao automatica minima:
 
 ```powershell
 .\lang\validate-po-files.ps1 -ValidateOnly
+python .\lang\test-language-expansion.py
 .\lang\compile-mo-files.ps1 .\src\MpvNet.Windows\bin\Debug\win-x64
+python .\lang\verify-language-expansion.py --mo-directory .\src\MpvNet.Windows\bin\Debug\win-x64
+& .\src\Tools\test-localization-package.ps1
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_BR\LC_MESSAGES\mpvnet.mo
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\pt_PT\LC_MESSAGES\mpvnet.mo
 Test-Path .\src\MpvNet.Windows\bin\Debug\win-x64\Locale\es\LC_MESSAGES\mpvnet.mo
@@ -267,10 +345,20 @@ dotnet build .\src\MpvNet.Windows\MpvNet.Windows.csproj --no-restore
 
 O comando `.\lang\validate-po-files.ps1 -ValidateOnly` e a validacao principal de paridade: ele confirma que `lang/source.pot` nao tem duplicatas, que cada `.po` traduzido corresponde ao `source.pot` e que `lang/po/en.po` nao foi criado indevidamente.
 
-Os testes de localizacao no harness cobrem resolucao de cultura, fallback para
-idioma base, fallback final para ingles, separacao entre `pt-BR` e `pt-PT`,
-variantes de espanhol e ingles, e o mapeamento de `zh-Hans`/`zh-SG` para
-`zh-CN`.
+Os testes cobrem os 20 idiomas base, aliases, culturas do Windows, `alang`,
+persistência, fallback, separação das variantes chinesas/portuguesas, carregamento
+real no NGettext, erro/OSD, contextos e placeholders. A expansão também possui
+testes STA de editor aberto, retorno de idioma, RTL/LTR, valores não salvos,
+formatação `ar-EG` e glifos CJK/devanágari/árabes/cirílicos.
+
+`verify-language-expansion.py` verifica todas as chaves dos seis novos catálogos,
+flags fuzzy, codificação, tokens, números, escapes, cabeçalhos e consultas reais
+nos binários GNU MO. Também testa a compilação Python offline; os comprimentos
+das strings MO excluem o terminador NUL. `compile-mo-files.ps1` usa `msgfmt
+--check` quando disponível e aborta em erros, sem ignorar catálogos inválidos.
+O fluxo de release recompila as fontes atuais em vez de reutilizar um `Locale`
+incompleto. `update-source-pot-fallback.py` mantém a distinção de maiúsculas e
+minúsculas exigida pelo gettext, por exemplo `Cache` e `cache`.
 
 Validacao manual:
 
@@ -303,4 +391,14 @@ A auditoria automatizada principal e:
 ```
 
 Ela compara todos os `lang/po/*.po` com `lang/source.pot`, rejeita `lang/po/en.po`, detecta chaves ausentes, extras, duplicadas e textos vazios. Placeholders devem permanecer iguais aos `msgid`; quando houver duvida, nao inventar traducao automaticamente. Marcar para revisao humana ou manter fallback seguro.
+
+## Resultado da expansao de seis idiomas — 2026-10-27
+
+- `lang/source.pot` e os 19 catalogos `.po` ficaram com 775 entradas unicas e sem chaves ausentes, extras, duplicadas ou vazias. Os seis novos catalogos tambem passaram pela verificacao de tokens, metadados, plurais e consultas reais aos arquivos MO. As 762 entradas anteriores dos 13 catalogos existentes foram comparadas com a branch de origem; nenhuma traducao anterior foi alterada.
+- `python lang/test-language-expansion.py`: 3 testes aprovados. `dotnet run --project src/MpvNet.Tests/MpvNet.Tests.csproj --no-restore`: 787 testes aprovados, nenhum erro ou falha. Build normal, publicacao Release, ZIP portatil e instalador foram gerados; os validadores de conteudo e dependencias nativas passaram.
+- O teste de execucao cobriu os seis idiomas com arquivo local, fluxo HTTP em loopback, pausa, busca, tela cheia, troca de faixas de audio/legenda, playlist e encerramento limpo. A verificacao visual conferiu RTL em arabe e as telas em hindi e chines tradicional taiwanes, em tema claro e escuro.
+- O MSIX sem assinatura contem os 19 catalogos e declara os 20 idiomas. O manifesto e a versao Store foram validados em conjunto; cada novo catalogo extraido do ZIP e do MSIX corresponde as 775 entradas do PO.
+- Artefatos e registros locais desta validacao ficam em `artifacts/language-expansion/`; essa pasta nao faz parte do commit.
+
+Esta validacao nao incluiu instalacao/atualizacao real de um MSIX assinado nem certificacao ou publicacao na Store. A revisao visual nao percorreu toda a matriz de DPI, monitores, foco e drag-and-drop, e as traducoes ainda precisam de uma revisao independente por falantes nativos.
 

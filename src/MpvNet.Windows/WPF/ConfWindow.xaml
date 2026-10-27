@@ -9,6 +9,9 @@
     xmlns:wpf="clr-namespace:MpvNet.Windows.WPF"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     mc:Ignorable="d"
+    FlowDirection="{DynamicResource InterfaceFlowDirection}"
+    Language="{DynamicResource InterfaceXmlLanguage}"
+    FontFamily="Global User Interface"
     
     Title="{Binding WindowTitle}"
     Height="550"
@@ -108,7 +111,7 @@
             Name="MenuTextBlock"
             Text="{Binding MenuText}"
             Cursor="Hand"
-            Foreground="LightGray"
+            Foreground="{Binding Theme.Foreground}"
             TextDecorations="Underline"
             HorizontalAlignment="Center"
             Margin="20,5,10,10"

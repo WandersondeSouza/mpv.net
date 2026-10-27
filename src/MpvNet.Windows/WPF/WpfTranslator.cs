@@ -2,7 +2,6 @@
 using NGettext.Wpf;
 
 using System.Globalization;
-using System.Threading;
 
 namespace MpvNet.Windows.WPF;
 
@@ -15,7 +14,9 @@ public class WpfTranslator : ITranslator
     public string Gettext(string msgId)
     {
         InitNGettextWpf();
-        return Translation._(msgId);
+        // ITranslator has an explicit context API. A literal '|' in an mpv
+        // option such as <N|inf|no> must not be parsed as context syntax.
+        return Translation.Localizer!.Catalog.GetString(msgId);
     }
 
     public string GetParticularString(string context, string text)
@@ -46,10 +47,9 @@ public class WpfTranslator : ITranslator
 
     static void ApplyThreadCulture(CultureInfo culture)
     {
-        CultureInfo.CurrentCulture = culture;
+        // Gettext selects text; regional numbers/calendar remain the user's.
         CultureInfo.CurrentUICulture = culture;
-        Thread.CurrentThread.CurrentCulture = culture;
-        Thread.CurrentThread.CurrentUICulture = culture;
+        InterfaceLayout.ApplyCulture(culture);
     }
 
     public static string GetEffectiveLanguage(string name)

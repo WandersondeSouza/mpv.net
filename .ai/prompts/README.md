@@ -24,6 +24,7 @@ ações. Siga `.ai/README.md` e o pedido explícito do usuário.
 - [Vídeo congela enquanto o áudio continua em mídia online](youtube-video-freeze-audio-continues.md)
 
 ## Planos por área
+- [Expansão de seis idiomas, fallback e RTL](expansao-idiomas-zh-tw-zh-hk-hi-ar-uk-id.md), implementada com evidências e limites em [Localização](../../docs/developer/localization.md)
 - [Abertura recursiva de unidade/pasta e playlist de mídia](open-drive-folder-recursive-playlist.md)
 
 - [Auditoria incremental de confiabilidade de reprodução](playback-reliability-deep-audit.md)

@@ -44,9 +44,13 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
         _initialContent = GetCompareString();
 
         if (string.IsNullOrEmpty(App.Settings.ConfigEditorSearch))
-            SearchText = "General:";
+            SearchText = _("General") + ":";
         else
             SearchText = App.Settings.ConfigEditorSearch;
+
+        // A saved category from another language is not a free-text search.
+        if (SearchText.EndsWith(':') && !FilterStrings.Contains(SearchText[..^1]))
+            SearchText = _("General") + ":";
 
         foreach (var node in Nodes)
             SelectNodeFromSearchText(node);
@@ -137,6 +141,8 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
                         setting.PersistedValue = item.Value;
                     }
 
+                    if (setting.Name == "language")
+                        setting.Value = LocalizationService.ResolveMpvNetLanguage(setting.Value);
                     setting.StartValue = setting.Value;
                     setting.ConfItem = item;
                     item.SettingBase = setting;
@@ -168,6 +174,52 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
                         MainStackPanel.Children.Add(new OptionSettingControl(s) { Visibility = Visibility.Collapsed });
                     break;
             }
+        }
+    }
+
+    // Refresh labels without replacing settings, unsaved values or selection.
+    public void RefreshLanguage()
+    {
+        var translated = EditorConfigurationService.ParseSettings(Properties.Resources.editor_conf.TrimEnd());
+        string search = SearchText;
+        FilterStrings.Clear();
+        foreach (Setting setting in _settings)
+        {
+            Setting? text = translated.FirstOrDefault(item => item.Name == setting.Name && item.File == setting.File);
+            if (text == null)
+                continue;
+            if (SearchText == setting.Directory + ":")
+                search = text.Directory + ":";
+            setting.DisplayName = text.DisplayName;
+            setting.Help = text.Help;
+            setting.Directory = text.Directory;
+            if (!FilterStrings.Contains(setting.Directory!))
+                FilterStrings.Add(setting.Directory!);
+            if (setting is OptionSetting options && text is OptionSetting translatedOptions)
+                foreach (OptionSettingOption option in options.Options)
+                {
+                    OptionSettingOption? label = translatedOptions.Options.FirstOrDefault(item => item.Name == option.Name);
+                    if (label != null)
+                    {
+                        option.Text = label.Text;
+                        option.Help = label.Help;
+                    }
+                }
+        }
+        foreach (UIElement control in MainStackPanel.Children)
+            switch (control)
+            {
+                case StringSettingControl text: text.RefreshTranslation(); break;
+                case OptionSettingControl options: options.RefreshTranslation(); break;
+                case ComboBoxSettingControl combo: combo.RefreshTranslation(); break;
+            }
+        _nodes = null;
+        OnPropertyChanged(null);
+        SearchText = search;
+        foreach (var node in Nodes)
+        {
+            SelectNodeFromSearchText(node);
+            node.IsExpanded = true;
         }
     }
 
@@ -528,10 +580,10 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
     string GetValueToSave(Setting setting)
     {
         if (setting.Name == "language" &&
-            setting.PersistedValue == "system" &&
+            setting.PersistedValue != null &&
             setting.Value == setting.StartValue)
         {
-            return "system";
+            return setting.PersistedValue;
         }
 
         return setting.Value ?? "";

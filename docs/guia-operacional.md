@@ -134,6 +134,13 @@ arquivo local e stream, playlist, pasta com mídia, arrastar e soltar, menu de
 contexto, tela cheia, áudio, legendas, atalhos e encerramento. Valide assinatura,
 instalação e certificação do pacote da Store quando esse fluxo for alterado.
 
+Na expansão para os seis novos idiomas, execute também `python
+lang/test-language-expansion.py` e `src/Tools/test-localization-package.ps1`.
+O inventário, as regras RTL/regionais e os resultados da expansão estão em
+[Localização](developer/localization.md). O pacote deve conter todos os 19
+catálogos; inglês usa o texto-fonte. Uma compilação ou um MSIX local sem
+assinatura não comprova instalação, atualização nem certificação da Store.
+
 ## Manutenção deste guia
 
 Atualize este documento quando os comandos ou scripts operacionais mudarem.

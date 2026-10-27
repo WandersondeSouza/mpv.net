@@ -24,6 +24,7 @@ public class WpfApplication
         };
 
         TranslationProvider.Current?.Gettext("");
+        InterfaceLayout.ApplyCulture(LocalizationService.GetCulture(App.Language));
 
         var resourcesSource = "mpvnet;component/WPF/Resources.xaml";
         if (!application.Resources.MergedDictionaries.Any(rd => rd.Source?.OriginalString == resourcesSource))

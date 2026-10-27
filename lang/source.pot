@@ -2687,3 +2687,44 @@ msgstr ""
 #: src/MpvNet/Media/StreamingFailureDiagnostics.cs
 msgid "The source service requires verification that you are not a bot."
 msgstr ""
+
+msgid "The clipboard is temporarily unavailable."
+msgstr ""
+
+msgid "Untitled Track"
+msgstr ""
+
+msgid "Repository: "
+msgstr ""
+
+msgid "chinese-taiwan"
+msgstr ""
+
+msgid "chinese-hongkong"
+msgstr ""
+
+msgid "hindi"
+msgstr ""
+
+msgid "arabic"
+msgstr ""
+
+msgid "ukrainian"
+msgstr ""
+
+msgid "indonesian"
+msgstr ""
+
+
+msgid "Cache"
+msgstr ""
+
+msgid "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
+msgstr ""
+
+msgid "save-network-urls-in-recent"
+msgstr ""
+
+
+msgid "video"
+msgstr ""
