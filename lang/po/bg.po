@@ -6,7 +6,7 @@ msgid "(Default)"
 msgstr "(По подразбиране)"
 
 msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
-msgstr "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr "(експериментално) Win32 с WGL за изчертаване и Direct3D 9Ex за показване. Работи с Nvidia и AMD. По-нови чипове Intel с актуални драйвери също може да работят."
 
 #: src\MpvNet\Utilities\InputHelp.cs:111
 msgid "+10%"
@@ -39,52 +39,52 @@ msgid "8"
 msgstr "8"
 
 msgid "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
-msgstr "<-1.0..1.0> Brightness boost. Adds a constant bias onto the source luminance signal. 0.0 = neutral, 1.0 = solid white, -1.0 = solid black. Defaults to 0.0."
+msgstr "<-1.0..1.0> Усилване на яркостта чрез добавяне на постоянна стойност към изходната осветеност. 0.0 е неутрално, 1.0 е изцяло бяло, а -1.0 е изцяло черно. По подразбиране: 0.0."
 
 msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
-msgstr "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0.0 gives you 6500 K (no change), a value of -1.0 gives you 3000 K, and a value of 1.0 gives you 10000 K. Defaults to 0.0."
+msgstr "<-1.143..5.286> Изместване на цветовата температура спрямо 6500 K: 0.0 дава 6500 K без промяна, -1.0 дава 3000 K, а 1.0 дава 10000 K. По подразбиране: 0.0."
 
 msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
-msgstr "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
+msgstr "<0-100> Качество на JPEG. По-висока стойност означава по-добро качество. По подразбиране: 90."
 
 msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
-msgstr "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
+msgstr "<0-32> Когато няколко монитора образуват общ работен плот, задава на кой екран mpv да показва видеото."
 
 msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
-msgstr "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
+msgstr "<0-5> Филтър преди PNG компресия: 0 без филтър, 1 'sub', 2 'up', 3 'average', 4 'Paeth', 5 'mixed'. Влияе върху постигнатата компресия. За повечето изображения 'mixed' дава най-добър резултат и е по подразбиране."
 
 msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
-msgstr "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
+msgstr "<0-9> Ниво на PNG компресия. По-високо означава по-силна компресия, но влияе на размера и времето за запис на снимката. Прекомерната компресия може да натовари CPU и да прекъсне възпроизвеждането. По подразбиране: 7."
 
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
-msgstr "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
+msgstr "<0..1024> Размер на 3DLUT таблицата за преобразуване на цветовия обхват. Размерност 0 избира стойността по подразбиране. По подразбиране: 256."
 
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
-msgstr "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 32."
+msgstr "<0..1024> Размер на 3DLUT таблицата за преобразуване на цветовия обхват. Размерност 0 избира стойността по подразбиране. По подразбиране: 32."
 
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
-msgstr "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 48."
+msgstr "<0..1024> Размер на 3DLUT таблицата за преобразуване на цветовия обхват. Размерност 0 избира стойността по подразбиране. По подразбиране: 48."
 
 msgid "<0..16> The number of debanding steps to perform per sample. Each step reduces a bit more banding, but takes time to compute. Note that the strength of each step falls off very quickly, so high numbers (>4) are practically useless. Defaults to 1."
 msgstr "<0..16> Броят на стъпките за разглобяване на пробата. Всяка стъпка намалява малко повече ленти, но отнема време да се изчисли. Имайте предвид, че силата на всяка стъпка пада много бързо, така че високите числа (>4) са практически безполезни. По подразбиране до 1."
 
 msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
-msgstr "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaults to 256."
+msgstr "<0..4096> Размер на LUT таблицата за тонално преобразуване. 0 избира размера по подразбиране. По подразбиране: 256."
 
 msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
-msgstr "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
+msgstr "<0.0..0.5> Минимална точка на преход като дял от диапазона на PQ осветеността. Поставя долна граница на точката, избрана от knee_adaptation. По подразбиране: 0.1."
 
 msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
-msgstr "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
+msgstr "<0.0..1.0> Относителна зона за защита на цветността при перцептивно преобразуване. По подразбиране: 0.30."
 
 msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
-msgstr "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
+msgstr "<0.0..1.0> Сила на премахване на ореолите за всички филтри. 0.0 го изключва, а 1.0 задава пълна сила. По подразбиране: 0.0."
 
 msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
-msgstr "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
+msgstr "<0.0..1.0> Точка на преход, когато липсват метаданни за средната яркост на сцената. Обикновено се избира според относителната средна яркост на източника. По подразбиране: 0.4."
 
 msgid "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
-msgstr "<0.0..1.0> Desaturation strength for softclip. Defaults to 0.35."
+msgstr "<0.0..1.0> Сила на намаляване на наситеността за softclip. По подразбиране: 0.35."
 
 msgid "<0.0..1.0> For legacy functions (mobius, gamma) which operate on linear light, this directly sets the corresponding knee point. Defaults to 0.3."
 msgstr "<0.0..1.0> За наследствени функции (мобиус, гама), които работят на линейна светлина, това директно определя съответната точка на коляното. По подразбиране до 0.3."
@@ -93,31 +93,31 @@ msgid "<0.0..1.0> For the reinhard function, this specifies the local contrast c
 msgstr "<0.0..1.0> За функцията на реиндърд това определя локалния контрастен коефициент на пика на дисплея. По същество, стойност от 0,5 означава, че референтното бяло ще бъде наполовина светло, както при изрязването. По подразбиране до 0.5."
 
 msgid "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
-msgstr "<0.0..1.0> Knee point to use for soft-clipping methods (perceptual, softclip). Defaults to 0.70."
+msgstr "<0.0..1.0> Точка на преход за методите с плавно ограничаване (perceptual, softclip). По подразбиране: 0.70."
 
 msgid "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
-msgstr "<0.0..1.0> Strength of the perceptual saturation mapping component. Defaults to 0.80."
+msgstr "<0.0..1.0> Сила на перцептивния компонент за преобразуване на наситеността. По подразбиране: 0.80."
 
 msgid "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
-msgstr "<0.0..1.0> The center (bias) of the sigmoid curve. Defaults to 0.75."
+msgstr "<0.0..1.0> Център или отместване на сигмоидната крива. По подразбиране: 0.75."
 
 msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the linear exposure/gain applied to the image. Defaults to 1.0."
 msgstr "<0.0..10.0> За линейни методи (линейна, линейна), това контролира линейната експозиция/отрицание, приложена върху изображението. По подразбиране до 1.0."
 
 msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
-msgstr "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
+msgstr "<0.0..10.0> Гама на кривата I спрямо C за колориметрично ограничаване (relative, absolute и darken). По подразбиране: 1.80."
 
 msgid "<0.0..100.0> Black cutoff strength."
-msgstr "<0.0..100.0> Black cutoff strength."
+msgstr "<0.0..100.0> Сила на отрязване на черното."
 
 msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
-msgstr "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> Усилване на контраста. Умножава изходната осветеност с постоянен коефициент. 1.0 е неутрално, 0.0 е изцяло черно. По подразбиране: 1.0."
 
 msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
-msgstr "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
+msgstr "<0.0..100.0> Корекция на гама. Изсветлява или потъмнява сцената, като запазва общия контраст. 1.0 е неутрално, 0.0 е изцяло черно. По подразбиране: 1.0."
 
 msgid "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
-msgstr "<0.0..100.0> Saturation gain. Multiplies the source chromaticity signal by a constant factor. 1.0 = neutral, 0.0 = grayscale. Defaults to 1.0."
+msgstr "<0.0..100.0> Усилване на наситеността. Умножава цветността с постоянен коефициент. 1.0 е неутрално, 0.0 дава сива скала. По подразбиране: 1.0."
 
 msgid "<0.0..100.0> Which percentile of the input image brightness histogram to consider as the true peak of the scene."
 msgstr "<0.0..100.0> Кой процент от яркостта на входното изображение е хистограмата, за да се счита за истински връх на сцената."
@@ -126,64 +126,64 @@ msgid "<0.0..1000.0> Add some extra noise to the image. This significantly helps
 msgstr "<0.0..1000.0> Добавете допълнителен шум към изображението. Това значително помага да се покрият останалите квантизационни артефакти. По-високите числа добавят повече шум. По подразбиране до 4.0, което е много леко."
 
 msgid "<0.0..1000.0> Smoothing coefficient for the detected values."
-msgstr "<0.0..1000.0> Smoothing coefficient for the detected values."
+msgstr "<0.0..1000.0> Коефициент на изглаждане на откритите стойности."
 
 msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
-msgstr "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers increase the debanding strength dramatically, but progressively diminish image details. Defaults to 3.0."
+msgstr "<0.0..1000.0> Праг на филтъра за премахване на цветни ивици. По-високите стойности усилват ефекта, но постепенно намаляват детайлите. По подразбиране: 3.0."
 
 msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
-msgstr "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
+msgstr "<0.0..1000.0> Начален радиус на филтъра за премахване на цветни ивици. Расте линейно с всяка итерация. По-голям радиус открива повече преливания, а по-малък изглажда по-силно. По подразбиране: 16.0."
 
 msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
-msgstr "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
+msgstr "<0.5..1.0> Максимална точка на преход като дял от диапазона на PQ осветеността. Поставя горна граница на точката, избрана от knee_adaptation. По подразбиране: 0.8."
 
 msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
-msgstr "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
+msgstr "<0.5..2.0> Отместване на точката на преход само за bt2390. 0.5 е стойността от спецификацията, различна от подразбиращата се 1.0 в libplacebo."
 
 msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
-msgstr "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
+msgstr "<1.0..20.0> Наклон на сигмоидната крива. По подразбиране: 6.5."
 
 msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
-msgstr "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
+msgstr "<1.0..32.0> Размер на ядрото на нискочестотния филтър за възстановяване на HDR контраста. Промяната в двете посоки видимо влияе на картината. По подразбиране: 3.5."
 
 msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
-msgstr "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
+msgstr "<N|inf|force|no> Повтаря възпроизвеждането N пъти. 1 означава веднъж (по подразбиране), 2 — два пъти; inf означава безкрайно, а no е като 1. При няколко файла се повтаря целият списък. force е като inf, но не пропуска неуспешните записи. Може да губи време на CPU за несъществуващи файлове, но помага при интернет радио с нестабилна мрежа."
 
 msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
-msgstr "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
+msgstr "<N|inf|no> Повтаря един файл N пъти. inf означава безкрайно, а no — нормално възпроизвеждане.\\n\\nЗа разлика от loop-playlist повтаря само текущия файл. Ако списъкът съдържа един файл, връща се в началото чрез превъртане, а не чрез ново зареждане. loop е друго име на тази опция."
 
 msgid "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
-msgstr "<angle> Hue shift. Corresponds to a rotation of the UV subvector around the neutral axis. Specified in radians. Defaults to 0.0 (neutral)."
+msgstr "<angle> Изместване на оттенъка чрез завъртане на UV подвектора около неутралната ос, в радиани. По подразбиране: 0.0 (неутрално)."
 
 msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSuffixes such as KiB and MiB are supported."
 msgstr "<bytesize> контролира колко на демуксера е позволено да буферира напред.\\nПодкрепени са Suffixes като KiB и MiB."
 
 msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
-msgstr "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
+msgstr "<float> Минимално съотношение на страните на прозореца. Позволява по-широк прозорец и по-големи екранни контроли (OSC). (опция на mpv.net)"
 
 msgid "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
-msgstr "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
+msgstr "<int> Брой запомняни последни файлове. По подразбиране: 15 (опция на mpv.net)"
 
 msgid "<int> Initial window height in percent for audio files. Default: 70"
-msgstr "<int> Initial window height in percent for audio files. Default: 70"
+msgstr "<int> Начална височина на прозореца за аудио, в проценти. По подразбиране: 70"
 
 msgid "<int> Initial window height in percent for image files. Default: 80"
-msgstr "<int> Initial window height in percent for image files. Default: 80"
+msgstr "<int> Начална височина на прозореца за изображения, в проценти. По подразбиране: 80"
 
 msgid "<int> Initial window height in percent. Default: 60"
-msgstr "<int> Initial window height in percent. Default: 60"
+msgstr "<int> Начална височина на прозореца в проценти. По подразбиране: 60"
 
 msgid "<int> Maximum window height in percent. Default: 80"
-msgstr "<int> Maximum window height in percent. Default: 80"
+msgstr "<int> Максимална височина на прозореца в проценти. По подразбиране: 80"
 
 msgid "<int> Minimum window height in percent. Default: 10"
-msgstr "<int> Minimum window height in percent. Default: 10"
+msgstr "<int> Минимална височина на прозореца в проценти. По подразбиране: 10"
 
 msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
-msgstr "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nПреглед > Повече > Показване на аудио устройства\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nАудио > Аудио устройство"
+msgstr "<name> Аудиоустройство: име на изхода, например alsa, след това / и специфичното име на устройството. auto опитва изходите по приоритет с устройствата им по подразбиране.\\n\\nПоказване на устройствата чрез контекстното меню:\\n\\nИзглед > Още > Покажи аудиоустройствата.\\n\\nСмяна на устройството чрез менюто:\\n\\nАудио > Аудиоустройство"
 
 msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
-msgstr "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
+msgstr "<x:y> Начално положение на прозореца в проценти. По подразбиране: 50:50 (центрирано)\\n\\nИзисква Windows 11; в Windows 10 невидимите рамки причиняват леки отклонения.\\n\\nx=0 прилепва прозореца вляво.\\nx=100 го прилепва вдясно.\\n\\ny=0 го прилепва отгоре.\\ny=100 го прилепва отдолу."
 
 #: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
 msgid "Abort"
@@ -191,7 +191,7 @@ msgstr "Прекъсване"
 
 #: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:10
 msgid "About"
-msgstr "About"
+msgstr "За програмата"
 
 #: src\MpvNet\Utilities\InputHelp.cs:197
 msgid "About mpv.net"
@@ -226,16 +226,16 @@ msgid "Add mpv.net to Path environment variable"
 msgstr "Добави mpv.net към променливата на средата Path"
 
 msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
-msgstr "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr "Разрешава само OpenGL (изисква OpenGL 2.1+ или GLES 2.0+)"
 
 msgid "Allow only Vulkan"
-msgstr "Allow only Vulkan"
+msgstr "Разрешава само Vulkan"
 
 msgid "Allow only gpu-context=d3d11"
-msgstr "Allow only gpu-context=d3d11"
+msgstr "Разрешава само gpu-context=d3d11"
 
 msgid "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
-msgstr "Allows the peak detection result to be delayed by up to a single frame, which can sometimes improve throughput, at the cost of introducing the possibility of 1-frame flickers on transitions."
+msgstr "Позволява резултатът за върхова яркост да се забави до един кадър за по-добра производителност, но с риск от проблясване от 1 кадър при преходи."
 
 msgid "Always save the current playback position on quit. When this file is played again later, the player will seek to the old playback position on start. This does not happen if playback of a file is stopped in any other way than quitting. For example, going to the next file in the playlist will not save the position, and start playback at beginning the next time the file is played.\\n\\nThis behavior is disabled by default, but is always available when quitting the player with Shift+Q."
 msgstr "Винаги запазвайте текущата позиция за възпроизвеждане при напускане. Когато този файл се играе отново по-късно, играчът ще се стреми към старата позиция за възпроизвеждане при стартиране. Това не се случва, ако възпроизвеждането на файл е спряно по друг начин освен напускането. Например, отиването към следващия файл в списъка няма да запази позицията и ще започне възпроизвеждането в началото следващия път, когато файлът се играе.\\n\\nТова поведение е изключено по подразбиране, но винаги е на разположение при напускане на играча с Shift+Q."
@@ -275,13 +275,13 @@ msgid "Audio Tracks"
 msgstr "Аудио заглавия"
 
 msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
-msgstr "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "Аудио разширения за --audio-file-auto, --autocreate-playlist или --directory-filter-types. mpv.net ги използва и за файлови асоциации и auto-load-folder. По подразбиране: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
 
 msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
 msgstr "Автоматичен подбор. Ако не може да бъде открита дълбочината на изходния бит, се приемат 8 бита на компонент."
 
 msgid "Available on Windows 10 or higher"
-msgstr "Available on Windows 10 or higher"
+msgstr "Достъпно в Windows 10 или по-нова версия"
 
 #: src\MpvNet\Utilities\InputHelp.cs:207
 msgid "Backward"
@@ -327,7 +327,7 @@ msgid "Changed theme settings require mpv.net being restarted."
 msgstr "Променените настройки на темата изискват рестартиране на mpv.net."
 
 msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
-msgstr "Промени между светлина и тъмна тема.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "Превключва между светла и тъмна тема.\\nРестартирайте mpv.net след промяна.\\nСпецифична опция на mpv.net."
 
 #: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:126
 msgid "Changes will be available on next startup."
@@ -369,13 +369,13 @@ msgid "Color Mapping"
 msgstr "Маркиране на цветове"
 
 msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
-msgstr "Цветна тема, използвана в тъмен режим.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "Цветова тема за тъмен режим.\\nРестартирайте mpv.net след промяна.\\nСпецифична опция на mpv.net. По подразбиране: dark"
 
 msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
-msgstr "Цветна тема, използвана в светлинен режим.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "Цветова тема за светъл режим.\\nРестартирайте mpv.net след промяна.\\nСпецифична опция на mpv.net. По подразбиране: light"
 
 msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
-msgstr "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
+msgstr "Цвят на частите от прозореца mpv, които не са покрити с видео. За формата на цветовете вижте --sub-color."
 
 #: src\MpvNet.Windows\WPF\InputWindow.xaml:140
 msgid "Command"
@@ -423,7 +423,7 @@ msgid "Controls which type of graphics APIs will be accepted."
 msgstr "Контрол кой тип графики API ще бъдат приети."
 
 msgid "Create a new process everytime the shell starts mpv.net"
-msgstr "Create a new process everytime the shell starts mpv.net"
+msgstr "Създавай нов процес при всяко стартиране на mpv.net от системната обвивка"
 
 msgid "Cubic B-spline frame mixing"
 msgstr "Смесване на кубичната рамка B-spline"
@@ -434,7 +434,7 @@ msgid "Custom"
 msgstr "Потребителско"
 
 msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
-msgstr "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
+msgstr "Източник на данни за тонално преобразуване. Изрично избрана стойност отменя подразбиращия се приоритет на метаданните."
 
 msgid "Debanding"
 msgstr "Разглобяване"
@@ -487,7 +487,7 @@ msgid "Default settings, tuned to provide a balance of performance and quality."
 msgstr "Настройки по подразбиране, настроени да осигурят баланс на изпълнение и качество."
 
 msgid "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
-msgstr "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
+msgstr "Определя дали са разрешени няколко процеса mpv.net.\\nМногопроцесният режим се включва и със задържане на SHIFT. (опция на mpv.net)"
 
 #: src\MpvNet\Utilities\InputHelp.cs:86 src\MpvNet\Utilities\InputHelp.cs:93
 msgid "Delay +0.1"
@@ -501,7 +501,7 @@ msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable).
 msgstr "Забавяне на милисекунди преди да започнем да рестартираме ключ (0 за деактивиране)."
 
 msgid "Demuxer"
-msgstr "Demuxer"
+msgstr "Демултиплексор"
 
 #: src\MpvNet\Utilities\InputHelp.cs:147
 msgid "Demuxers"
@@ -512,7 +512,7 @@ msgid "Details"
 msgstr "Подробности"
 
 msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
-msgstr "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "Direct3D11 чрез слоя за преобразуване OpenGL ES ANGLE. Поддържа почти всички възможности на изхода win, ако версията на ANGLE е достатъчно нова."
 
 msgid "Disable all advanced rendering, equivalent to passing no to every option."
 msgstr "Изключване на всички напреднали рендиране, равносилно на преминаване не на всяка опция."
@@ -537,7 +537,7 @@ msgstr "Не зареждайте автоматично външни субти
 
 #: src\MpvNet\App.cs:208
 msgid "Donation"
-msgstr "Donation"
+msgstr "Дарение"
 
 #: src\MpvNet\Utilities\InputHelp.cs:114
 msgid "Double"
@@ -550,10 +550,10 @@ msgstr "Пуснете файлове или URL адреси тук за въз
 
 #: src\MpvNet\App.cs:210
 msgid "E-mail support"
-msgstr "E-mail support"
+msgstr "Поддръжка по електронна поща"
 
 msgid "EWA Lanczos (\"Jinc\") reconstruction (slow)."
-msgstr "EWA Lanczos (\"Jinc\") reconstruction (slow)."
+msgstr "Възстановяване EWA Lanczos (\"Jinc\", бавно)."
 
 #: src\MpvNet\App.cs:201
 msgid "Edit config file"
@@ -588,13 +588,13 @@ msgid "Enable the debanding algorithm. This greatly reduces the amount of visibl
 msgstr "Включване на алгоритъма. Това значително намалява количеството видими ленти, блокиране и други квантизационни артефакти, за сметка на много леко размиване на някои от най-добрите детайли. На практика, това почти винаги е подобрение - единствената причина да се деактивира е за изпълнение."
 
 msgid "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
-msgstr "Enable the default track auto-selection. Enabling this will make the player select streams according to aid, alang, and others. If it is disabled, no tracks are selected. In addition, the player will not exit if no tracks are selected, and wait instead (this wait mode is similar to pausing, but the pause option is not set).\\n\\nThis is useful with lavfi-complex: you can start playback in this mode, and then set select tracks at runtime by setting the filter graph. Note that if lavfi-complex is set before playback is started, the referenced tracks are always selected."
+msgstr "Включва автоматичен избор на писти според aid, alang и други опции. Ако е изключен, писти не се избират и плейърът изчаква, вместо да излезе; това прилича на пауза, но не задава pause.\\n\\nПолезно е с lavfi-complex: възпроизвеждането може да започне така, а пистите да се изберат по-късно чрез графа на филтрите. Ако графът е зададен преди началото, посочените писти винаги се избират."
 
 msgid "Enable this only when a developer asks for it. (mpv.net option)"
-msgstr "Enable this only when a developer asks for it. (mpv.net option)"
+msgstr "Включвайте само по искане на разработчик. (опция на mpv.net)"
 
 msgid "Enables HDR peak detection."
-msgstr "Enables HDR peak detection."
+msgstr "Включва откриването на върхова яркост HDR."
 
 msgid "Enables color adjustment."
 msgstr "Включване на корекция на цвета."
@@ -676,16 +676,16 @@ msgid "First File"
 msgstr "Първи файл"
 
 msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
-msgstr "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
+msgstr "При един файл автоматично зарежда цялата папка в списъка за възпроизвеждане. (остаряла опция на mpv.net; вместо нея може да се използва autocreate-playlist)"
 
 msgid "Force a single process and add files to playlist"
 msgstr "Принуди един процес и добави файлове в списъка"
 
 msgid "Force a single process everytime the shell starts mpv.net"
-msgstr "Force a single process everytime the shell starts mpv.net"
+msgstr "Използвай принудително един процес при всяко стартиране на mpv.net от системната обвивка"
 
 msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
-msgstr "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
+msgstr "Принудително използва пълна LUT за тонално преобразуване дори при функции с по-бързи GLSL реализации, като clip, linear и saturation. Това е опция за диагностика."
 
 #: src\MpvNet\Integration\Mpv\Player.cs:439
 #: src\MpvNet\Integration\Mpv\Player.cs:467
@@ -704,7 +704,7 @@ msgid "Fullscreen"
 msgstr "Цял екран"
 
 msgid "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
-msgstr "Gamut mapping function to use to handle out-of-gamut colors, including colors which are out-of-gamut as a consequence of tone mapping."
+msgstr "Функция за преобразуване на цветове извън обхвата, включително излезлите извън него вследствие на тоналното преобразуване."
 
 msgid "Gaussian smoothing (fast)"
 msgstr "Гаусово изглаждане (бързо)"
@@ -716,17 +716,17 @@ msgid "General"
 msgstr "Общи положения"
 
 msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
-msgstr "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "Универсален, настройваем видеоизход с GPU ускорение. Поддържа разширено мащабиране, дитеринг, управление на цветовете, собствени шейдъри, HDR и други функции."
 
 #: src\MpvNet\App.cs:206
 msgid "GitHub Sponsors"
 msgstr "GitHub Sponsors"
 
 msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
-msgstr "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixels that exceed the claimed source luminance range)."
+msgstr "Откроява ограничените пиксели при тонално преобразуване, тоест надвишаващите обявения диапазон на изходната осветеност."
 
 msgid "HDR Peak Detection"
-msgstr "HDR Peak Detection"
+msgstr "Откриване на върхова яркост HDR"
 
 #: src\MpvNet\Utilities\InputHelp.cs:113
 msgid "Half"
@@ -767,10 +767,10 @@ msgid "If possible, write screenshots with a bit depth similar to the source vid
 msgstr "Ако е възможно, напишете снимки на екрана с малко дълбочина, подобна на видеото с източника. Това е интересно по-специално за PNG, тъй като това понякога задейства писане 16 малко PNGs с огромни размери на файловете. Това ще включва и неизползван алфа канал в получените файлове, ако се използва 16 бита."
 
 msgid "If set to no and keep-open is also set to no, the player exits after the last file ends."
-msgstr "If set to no and keep-open is also set to no, the player exits after the last file ends."
+msgstr "Ако стойността е no и keep-open също е no, плейърът излиза след последния файл."
 
 msgid "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
-msgstr "If set to no, instead of pausing when keep-open is active, just stop at end of file and continue playing forward when you seek backwards until end where it stops again."
+msgstr "При no и включен keep-open спира в края, без да поставя на пауза. След превъртане назад продължава до края, където спира отново."
 
 msgid "If the current file ends, go to the next file, keep the last file open."
 msgstr "Ако текущият файл приключи, отидете в следващия файл, задръжте последния файл отворен."
@@ -787,7 +787,7 @@ msgid "Ignore left mouse button"
 msgstr "Игнорирай левия бутон на мишката"
 
 msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
-msgstr "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+msgstr "Разширения на изображения за --cover-art-auto, --autocreate-playlist или --directory-filter-types. mpv.net ги използва и за файлови асоциации и auto-load-folder. По подразбиране: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
 
 #: src\MpvNet\Utilities\InputHelp.cs:69
 msgid "Increase Brightness"
@@ -899,13 +899,13 @@ msgid "Load all audio files containing media filename."
 msgstr "Зареждане на всички аудио файлове, съдържащи медийно име."
 
 msgid "Load all audio files in the current and audio-file-paths directories."
-msgstr "Load all audio files in the current and audio-file-paths directories."
+msgstr "Зареждай всички аудиофайлове от текущата папка и от audio-file-paths."
 
 msgid "Load all subs containing media filename."
 msgstr "Зареждане на всички подове, съдържащи медийно име."
 
 msgid "Load all subs in the current and sub-file-paths directories."
-msgstr "Load all subs in the current and sub-file-paths directories."
+msgstr "Зареждай всички субтитри от текущата папка и от sub-file-paths."
 
 msgid "Load the media filename with audio file extension."
 msgstr "Зареждане на медийното име с аудио файлово разширение."
@@ -1029,7 +1029,7 @@ msgid "No audio tracks"
 msgstr "Няма аудио записи"
 
 msgid "No filter, only use basic GPU texture sampling."
-msgstr "No filter, only use basic GPU texture sampling."
+msgstr "Без филтър; само основно вземане на проби от GPU текстури."
 
 #: src\MpvNet\Command.cs:117
 msgid "No subtitle"
@@ -1041,7 +1041,7 @@ msgid "No subtitles"
 msgstr "Няма субтитри"
 
 msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
-msgstr "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
+msgstr "Обикновено mpv запазва опциите при преминаване към следващия файл, включително променените по време на възпроизвеждане. Тук се задава списък с опции за връщане към началните стойности при започване на възпроизвеждане."
 
 msgid "Number of key presses to generate per second on autorepeat."
 msgstr "Брой на ключовите преси за генериране в секунда на автоповторение."
@@ -1095,13 +1095,13 @@ msgid "Overrides the value of all options in this section by their default value
 msgstr "Прехвърля стойността на всички опции в този раздел от техните стойности по подразбиране от дадената предварително зададена."
 
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
-msgstr "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
+msgstr "Заменя всички опции в раздела със стойностите по подразбиране на избрания набор. high_quality включва и възстановяване на HDR контраста."
 
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
-msgstr "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
+msgstr "Заменя всички опции в раздела със стойностите по подразбиране на избрания набор. high_quality включва и измерване на хистограмата на кадрите."
 
 msgid "Oversampling, only mix \"edge\" frames while preserving FPS"
-msgstr "Oversampling, only mix \"edge\" frames while preserving FPS"
+msgstr "Свръхдискретизация: смесва само граничните кадри, като запазва кадровата честота (FPS)"
 
 #: src\MpvNet\Utilities\InputHelp.cs:51 src\MpvNet\Utilities\InputHelp.cs:52
 #: src\MpvNet\Utilities\InputHelp.cs:53 src\MpvNet\Utilities\InputHelp.cs:54
@@ -1111,10 +1111,10 @@ msgstr "Oversampling, only mix \"edge\" frames while preserving FPS"
 #: src\MpvNet\Utilities\InputHelp.cs:61 src\MpvNet\Utilities\InputHelp.cs:62
 #: src\MpvNet\Utilities\InputHelp.cs:63
 msgid "Pan & Scan"
-msgstr "Панорама & Мащаб"
+msgstr "Преместване и изрязване"
 
 msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
-msgstr "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
+msgstr "Подава допълнителна необработена опция към libplacebo, използван от --vo=gpu-next. Може да отмени други опции от обичайната система."
 
 #: src\MpvNet\Utilities\InputHelp.cs:23 src\MpvNet\Utilities\InputHelp.cs:201
 #: src\MpvNet\Utilities\InputHelp.cs:202 src\MpvNet\Utilities\InputHelp.cs:203
@@ -1215,7 +1215,7 @@ msgid "Rotate Video"
 msgstr "Завъртане на видео"
 
 msgid "Same as minimum-aspect-ratio but used for audio files."
-msgstr "Same as minimum-aspect-ratio but used for audio files."
+msgstr "Като minimum-aspect-ratio, но за аудиофайлове."
 
 msgid "Same as yes (for compatibility)."
 msgstr "Същото като да (за съвместимост)."
@@ -1224,10 +1224,10 @@ msgid "Save and restore the audio device chosen in the context menu. Default: ye
 msgstr "Запис и възстановяване на аудио устройството, избрано в контекстното меню. По подразбиране: да"
 
 msgid "Save the window position on exit. (mpv.net option)"
-msgstr "Save the window position on exit. (mpv.net option)"
+msgstr "Запазвай положението на прозореца при изход. (опция на mpv.net)"
 
 msgid "Save volume and mute on exit and restore it on start. (mpv.net option)"
-msgstr "Save volume and mute on exit and restore it on start. (mpv.net option)"
+msgstr "Запазвай силата на звука и заглушаването при изход и ги възстановявай при стартиране. (опция на mpv.net)"
 
 msgid "Scaling"
 msgstr "Скалиране"
@@ -1244,10 +1244,10 @@ msgid "Secondary Subtitles"
 msgstr "Втори субтитри"
 
 msgid "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
-msgstr "See sub-color. Color used for sub text background. You can use sub-shadow-offset to change its size relative to the text."
+msgstr "Вижте sub-color. Цвят на фона на субтитрите. sub-shadow-offset променя размера му спрямо текста."
 
 msgid "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
-msgstr "See sub-color. Color used for the sub font border. Ignored when sub-back-color is specified (or more exactly: when that option is not set to completely transparent)."
+msgstr "Вижте sub-color. Цвят на контура на шрифта на субтитрите. Пренебрегва се, ако sub-back-color не е изцяло прозрачен."
 
 #: src\MpvNet\Utilities\InputHelp.cs:222 src\MpvNet\Utilities\InputHelp.cs:224
 #: src\MpvNet\Utilities\InputHelp.cs:230
@@ -1280,7 +1280,7 @@ msgid "Set the image file type used for saving screenshots."
 msgstr "Задаване на типа образен файл, използван за запис на снимки на екрани."
 
 msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
-msgstr "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
+msgstr "Начална сила на звука: 0 е тишина, 100 запазва оригиналното ниво. Отрицателни стойности се приемат за съвместимост, но се третират като 0. От mpv 0.18.1 винаги управлява вътрешния миксер (\"softvol\"). По подразбиране: 100"
 
 msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
 msgstr "Задайте заглавието на прозореца. Това се използва за видео прозорец, и ако е възможно, също определя заглавието аудио поток. Свойствата са разширени. Внимание! Съществува опасност това да доведе до значително използване на процесора, в зависимост от използваните свойства."
@@ -1302,7 +1302,7 @@ msgid "Sets the filter used for upscaling."
 msgstr "Задаване на филтъра, използван за опъване."
 
 msgid "Setting to remember the window size. (mpv.net option)"
-msgstr "Setting to remember the window size. (mpv.net option)"
+msgstr "Настройка за запомняне на размера на прозореца. (опция на mpv.net)"
 
 #: src\MpvNet\Utilities\InputHelp.cs:174 src\MpvNet\Utilities\InputHelp.cs:175
 #: src\MpvNet\Utilities\InputHelp.cs:176 src\MpvNet\Utilities\InputHelp.cs:177
@@ -1312,7 +1312,7 @@ msgid "Setup"
 msgstr "Настройка"
 
 msgid "Sharpened version of ewa_lanczos (slow)."
-msgstr "Sharpened version of ewa_lanczos (slow)."
+msgstr "Изострена версия на ewa_lanczos (бавна)."
 
 #: src\MpvNet\Utilities\InputHelp.cs:167
 msgid "Show Config Editor"
@@ -1331,7 +1331,7 @@ msgid "Show Profiles"
 msgstr "Покажи профили"
 
 msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
-msgstr "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
+msgstr "Показва екранно съобщение (OSD) при начало на възпроизвеждане. Свойствата се разгъват: osd-playing-msg='file: ${filename}' показва file:, интервал и текущото име на файла. Повече информация:"
 
 #: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:614
 msgid "Show mpv manual"
@@ -1374,25 +1374,25 @@ msgid "Snap the player window to screen edges."
 msgstr "Натиснете прозореца на играча, за да екран ръбове."
 
 msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
-msgstr "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
+msgstr "Приоритетен списък с аудиоезици. DVD използва двубуквените ISO 639-1; Matroska, MPEG-TS и NUT използват трибуквените ISO 639-2; OGM използва свободни идентификатори. Вижте също aid."
 
 msgid "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
-msgstr "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
+msgstr "Приоритетен списък с езици на субтитрите. DVD използва двубуквените ISO 639-1, Matroska — трибуквените ISO 639-2, а OGM — свободни идентификатори. Вижте също sid."
 
 msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
-msgstr "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
+msgstr "Шрифт за субтитри, които не задават собствен шрифт. По подразбиране: sans-serif."
 
 msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
-msgstr "Specify the OSD font size. See sub-font-size for details. Default: 55"
+msgstr "Размер на шрифта на екранните съобщения (OSD). Подробности в sub-font-size. По подразбиране: 55"
 
 msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
 msgstr "Посочете цвета, използван за нестилирани текстови субтитри.\\n\\nОписание и примери за използване могат да бъдат намерени в ръководството на:"
 
 msgid "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nFind the full documentation here:"
-msgstr "Specify the filename template used to save screenshots. The template specifies the filename without file extension, and can contain format specifiers, which will be substituted when taking a screenshot. By default, the template is mpv-shot%n, which results in filenames like  mpv-shot0012.png for example.\\n\\nНамерете пълната документация тук:"
+msgstr "Шаблон за имената на екранни снимки, без разширение. Заместващите символи се попълват при заснемане. По подразбиране mpv-shot%n създава имена като mpv-shot0012.png.\\n\\nПълна документация:"
 
 msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
-msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nЗа повече информация:"
+msgstr "API за хардуерно декодиране на видео, ако е възможно. Поддръжката зависи от кодека; иначе mpv използва софтуерно декодиране. По подразбиране е изключено за надеждност. Съвременният хардуер обикновено го поддържа и намалява използването на CPU и енергия.\\n\\nПовече информация:"
 
 msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
 msgstr "Посочете размера на под шрифта. Устройството е с размер в мащабирани пиксели на височина на прозореца 720. Действителният размер на пикселите се мащабира с височината на прозореца: ако височината на прозореца е по-голяма или по-малка от 720, действителният размер на текста се увеличава или намалява. По подразбиране: 55"
@@ -1456,7 +1456,7 @@ msgid "Take Screenshot without subtitles"
 msgstr "Направи екранна снимка без субтитри"
 
 msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
-msgstr "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
+msgstr "GPU филтър за увеличаване на видео. Има и други филтри, но повечето са по-малко полезни. За пълен списък задайте help, например: mpv --scale=help"
 
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:244
 msgid "The clipboard does not contain a valid URL or file."
@@ -1483,7 +1483,7 @@ msgid "The online playlist could not be loaded."
 msgstr "Онлайн плейлистът не можа да бъде зареден."
 
 msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
-msgstr "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "Опции, записвани във файловете за продължаване, ако са променени след старта на mpv. Стойностите се възстановяват при следващото пускане на файла. Приема списък с имена на опции. Повече информация:"
 
 #: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
 msgid "This content is no longer available."
@@ -1586,10 +1586,10 @@ msgid "Unregister file associations"
 msgstr "Отмени регистрацията на файловите асоциации"
 
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
-msgstr "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
+msgstr "Използва библиотеката MediaInfo вместо mpv за получаване на медийна информация. (опция на mpv.net)"
 
 msgid "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
-msgstr "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "Използва произволен наличен API. Подразбиращият се GPU API може да се промени и не е гарантиран. Ако е нужен определен API, трябва да бъде зададен изрично."
 
 msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
 msgstr "Използвайте по-високо качество, но по-бавно, трикубна интерполация за gamut mapping 3DLUTs. Може значително да се подобри 3DLUT гамут точност на картиране, по-специално при по-малки 3DLUT размери. Не би трябвало да има голям ефект при размера по подразбиране."
@@ -1604,16 +1604,16 @@ msgid "Use the same filter as specified for upscaler"
 msgstr "Използване на същия филтър, както е посочено за upscaler"
 
 msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
-msgstr "Използван меню синтаксис за определяне на контекстното меню in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "Синтаксис за контекстното меню в input.conf.\\nПо подразбиране mpv.net използва '#menu:', а uosc — '#!'."
 
 msgid "User interface display language.\\nmpv.net must be restarted after a change."
-msgstr "Език на потребителския интерфейс.\\nmpv.net must be restarted after a change."
+msgstr "Език на потребителския интерфейс.\\nРестартирайте mpv.net след промяна."
 
 msgid "VK_KHR_win32_surface"
 msgstr "VK_KHR_win32_surface"
 
 msgid "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
-msgstr "Very sharp version of ewa_lanczos, with anti-ringing (very slow)."
+msgstr "Много остра версия на ewa_lanczos с премахване на ореоли (много бавна)."
 
 #: src\MpvNet\Utilities\InputHelp.cs:65 src\MpvNet\Utilities\InputHelp.cs:66
 #: src\MpvNet\Utilities\InputHelp.cs:67 src\MpvNet\Utilities\InputHelp.cs:68
@@ -1633,7 +1633,7 @@ msgid "Video Tracks"
 msgstr "Видео заглавия"
 
 msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
-msgstr "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+msgstr "Видео разширения за --autocreate-playlist или --directory-filter-types. mpv.net ги използва и за файлови асоциации и auto-load-folder. По подразбиране: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
 
 msgid "Video output driver that uses the Direct3D interface."
 msgstr "Драйвер за видеоизход, който използва интерфейса Direct3D."
@@ -1695,23 +1695,23 @@ msgid "Website mpv.net"
 msgstr "Уебсайт mpv.net"
 
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
-msgstr "При отваряне на местен файл, действайте така, сякаш главната директория е отворена и автоматично създавайте плейлист.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nСъщото: Създаване на плейлист от главната директория с файлове, отговарящи на същата категория като текущо заредения файл. Един от *-exts се избира въз основа на входния файл и към списъка се добавят само файлове със съвпадащи разширения. Ако входният файл сам по себе си не съответства на списъка с разширения, плейлистът не се генерира автоматично."
+msgstr "При отваряне на локален файл автоматично създава списък от неговата папка.\\n\\nno: зарежда един файл (по подразбиране в mpv).\\n\\nFilter: избира файлове според --directory-filter-types (по подразбиране в mpv.net).\\n\\nsame: добавя само файлове от същата категория. Входът определя списъка *-exts и се добавят само съвпадащи разширения. Ако файлът не съвпада с никой списък с разширения, списък за възпроизвеждане не се създава автоматично."
 
 msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
-msgstr "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
+msgstr "При увеличаване използва сигмоидно цветово преобразуване, за да не подчертава ореолите. Включва и линейно мащабиране."
 
 msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
-msgstr "При използване на конволюционни филтри, удължете размера на филтъра при снижаване. Увеличава качеството, но намалява производителността при снижаване.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
+msgstr "При конволюционни филтри разширява размера на филтъра при намаляване. Подобрява качеството, но намалява производителността.\\n\\nПри анаморфно видео е малко по-неоптимално, но пак по-добре от изключено, защото размерът следва само по-слабия коефициент на мащабиране между осите."
 
 msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
-msgstr "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+msgstr "Мащабира екранните съобщения (OSD) с прозореца. Ако е изключено, osd-font-size и другите опции с мащабирани пиксели използват реални пиксели; промяната на прозореца не променя OSD шрифта."
 
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:337
 msgid "Width"
 msgstr "Ширина"
 
 msgid "Win32, with native Direct3D 11 rendering."
-msgstr "Win32, with native Direct3D 11 rendering."
+msgstr "Win32 с вградено Direct3D 11 изчертаване."
 
 msgid "Win32/WGL"
 msgstr "Win32/WGL"
@@ -2032,7 +2032,7 @@ msgid "enable best hw decoder"
 msgstr "позволява най-добър hw декодер"
 
 msgid "enable best hw decoder with copy-back"
-msgstr "enable best hw decoder with copy-back"
+msgstr "включи най-добрия хардуерен декодер с обратно копиране"
 
 msgid "english"
 msgstr "english"
@@ -2182,7 +2182,7 @@ msgid "keepaspect-window"
 msgstr "keepaspect-window"
 
 msgid "keepaspect-window will lock the window size to the video aspect. Default: yes"
-msgstr "keepaspect-window will lock the window size to the video aspect. Default: yes"
+msgstr "keepaspect-window заключва пропорциите на прозореца към видеото. По подразбиране: yes"
 
 msgid "knee_adaptation"
 msgstr "knee_adaptation"
@@ -2393,13 +2393,13 @@ msgid "remember-window-position"
 msgstr "remember-window-position"
 
 msgid "requires vo=gpu (Any platform CUDA is available)"
-msgstr "requires vo=gpu (Any platform CUDA is available)"
+msgstr "изисква vo=gpu (всяка платформа с налична CUDA)"
 
 msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
-msgstr "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
+msgstr "изисква vo=gpu с gpu-context=d3d11 или gpu-context=angle"
 
 msgid "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
-msgstr "requires vo=gpu with gpu-context=d3d11, gpu-context=angle or gpu-context=dxinterop"
+msgstr "изисква vo=gpu с gpu-context=d3d11, gpu-context=angle или gpu-context=dxinterop"
 
 msgid "reset-on-next-file"
 msgstr "reset-on-next-file"
@@ -2637,37 +2637,37 @@ msgstr "{0} не съществува. Искате ли да го създад�
 #: src\MpvNet\Utilities\InputHelp.cs:161
 msgctxt "Move"
 msgid "Center"
-msgstr "Center"
+msgstr "Центрирай"
 
 #: src\MpvNet\Utilities\InputHelp.cs:160
 msgctxt "Move"
 msgid "Down"
-msgstr "Down"
+msgstr "Надолу"
 
 #: src\MpvNet\Utilities\InputHelp.cs:157
 msgctxt "Move"
 msgid "Left"
-msgstr "Left"
+msgstr "Наляво"
 
 #: src\MpvNet\Utilities\InputHelp.cs:158
 msgctxt "Move"
 msgid "Right"
-msgstr "Right"
+msgstr "Надясно"
 
 #: src\MpvNet\Utilities\InputHelp.cs:159
 msgctxt "Move"
 msgid "Up"
-msgstr "Up"
+msgstr "Нагоре"
 
 #: src\MpvNet\Utilities\InputHelp.cs:106
 msgctxt "Volume"
 msgid "Down"
-msgstr "Down"
+msgstr "Намали"
 
 #: src\MpvNet\Utilities\InputHelp.cs:105
 msgctxt "Volume"
 msgid "Up"
-msgstr "Up"
+msgstr "Увеличи"
 
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "No playable media was found in this drive or folder."
@@ -2682,13 +2682,13 @@ msgid "The source service requires verification that you are not a bot."
 msgstr "Услугата източник изисква проверка, че не сте бот."
 
 msgid "The clipboard is temporarily unavailable."
-msgstr "The clipboard is temporarily unavailable."
+msgstr "Клипбордът временно не е достъпен."
 
 msgid "Untitled Track"
-msgstr "Untitled Track"
+msgstr "Писта без заглавие"
 
 msgid "Repository: "
-msgstr "Repository: "
+msgstr "Хранилище на кода: "
 
 msgid "chinese-taiwan"
 msgstr "繁體中文（台灣）"
@@ -2713,7 +2713,7 @@ msgid "Cache"
 msgstr "Cache"
 
 msgid "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
-msgstr "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
+msgstr "Записва мрежови URL в последните файлове като обикновен текст в settings.xml. URL с вградени данни за вход, чувствителни параметри или фрагменти винаги се изключват. Включвайте само ако останалите параметри не съдържат тайни. (опция на mpv.net)"
 
 msgid "save-network-urls-in-recent"
 msgstr "save-network-urls-in-recent"
@@ -2721,3 +2721,23 @@ msgstr "save-network-urls-in-recent"
 
 msgid "video"
 msgstr "video"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Media and playlist files"
+msgstr "Медийни файлове и списъци"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Video files"
+msgstr "Видеофайлове"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Audio files"
+msgstr "Аудиофайлове"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Playlists"
+msgstr "Списъци за възпроизвеждане"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "All files"
+msgstr "Всички файлове"

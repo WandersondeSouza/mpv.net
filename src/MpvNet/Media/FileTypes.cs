@@ -93,7 +93,7 @@ public static class FileTypes
         string audio = string.Join(";", GetAudioExts().Select(ext => "*." + ext));
         string playlists = string.Join(";", Playlist.Select(ext => "*." + ext));
         string mediaAndPlaylists = string.Join(";", new[] { video, audio, playlists });
-        return $"Media and playlist files|{mediaAndPlaylists}|Video files|{video}|Audio files|{audio}|Playlists|{playlists}|All files (*.*)|*.*";
+        return $"{_("Media and playlist files")}|{mediaAndPlaylists}|{_("Video files")}|{video}|{_("Audio files")}|{audio}|{_("Playlists")}|{playlists}|{_("All files")} (*.*)|*.*";
     }
 
     static IEnumerable<string> SplitExtensions(string exts) =>

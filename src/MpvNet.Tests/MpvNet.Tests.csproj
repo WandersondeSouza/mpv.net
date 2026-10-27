@@ -20,11 +20,25 @@
 		<PackageReference Include="TngTech.ArchUnitNET.xUnitV3" />
 	</ItemGroup>
 
-  <Target Name="CopyTestLocaleCatalogs" AfterTargets="Build">
+  <Target Name="CopyTestRuntimeAssets" AfterTargets="Build">
+    <MSBuild Projects="$(MSBuildProjectDirectory)\..\MpvNet.Windows\MpvNet.Windows.csproj"
+             Targets="GetTargetPath"
+             Properties="Configuration=$(Configuration);Platform=$(Platform);RuntimeIdentifier=$(RuntimeIdentifier)">
+      <Output TaskParameter="TargetOutputs" ItemName="TestPlayerOutput" />
+    </MSBuild>
+    <PropertyGroup>
+      <TestPlayerOutputDirectory>@(TestPlayerOutput->'%(RootDir)%(Directory)')</TestPlayerOutputDirectory>
+    </PropertyGroup>
     <ItemGroup>
-      <TestLocale Include="$(MSBuildProjectDirectory)\..\MpvNet.Windows\bin\$(Configuration)\win-x64\Locale\**\*.mo" />
+      <TestNativeAsset Include="$(TestPlayerOutputDirectory)libmpv*.dll;$(TestPlayerOutputDirectory)libmpv-builds.json;$(TestPlayerOutputDirectory)MediaInfo.dll" />
+      <TestLocale Include="$(TestPlayerOutputDirectory)Locale\**\*.mo" />
+      <TestPlayerScript Include="$(TestPlayerOutputDirectory)Scripts\osc.lua" />
     </ItemGroup>
+    <Copy SourceFiles="@(TestNativeAsset)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
     <Copy SourceFiles="@(TestLocale)" DestinationFiles="@(TestLocale->'$(TargetDir)Locale\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(TestPlayerScript)" DestinationFolder="$(TargetDir)Scripts" SkipUnchangedFiles="true" />
+    <Error Condition="!Exists('$(TargetDir)libmpv-2.dll')"
+           Text="The test runtime requires libmpv-2.dll. Prepare the Windows build assets before running native tests." />
   </Target>
 
 </Project>

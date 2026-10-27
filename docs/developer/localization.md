@@ -25,6 +25,13 @@ O ingles e o idioma-fonte nativo do mpv.net. Por isso, nao existe `lang/po/en.po
 
 O arquivo `lang/source.pot` deve ser tratado como a base inglesa oficial. Todo arquivo `.po` de idioma traduzido deve ter as mesmas entradas ativas do `source.pot`, sem entradas ausentes, extras, duplicadas ou vazias. A validacao de paridade compara cada `lang/po/*.po` contra esse arquivo.
 
+Na inicialização, `App.Init` lê `mpvnet.conf` e aplica os argumentos `--language`
+antes de gerar menus e a mensagem inicial do mpv. O último argumento prevalece
+sobre o arquivo de configuração; aliases e fallback usam o resolvedor existente.
+Assim, a mensagem para soltar arquivos acompanha o idioma solicitado desde a
+abertura. As opções explícitas `osd-msg1` em `mpv.conf` ou na linha de comando
+continuam prevalecendo sobre a mensagem padrão traduzida.
+
 O formato final esperado pelo runtime e:
 
 ```text

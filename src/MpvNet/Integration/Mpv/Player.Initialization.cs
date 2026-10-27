@@ -14,6 +14,12 @@ public partial class MainPlayer
     string? _automaticYtDlpPath;
     bool _keepUserYtDlpPath;
 
+    public void UpdateLocalizedScriptMessages()
+    {
+        SetPropertyString("user-data/mpvnet-osc-cache-label", _("Cache"));
+        SetPropertyString("user-data/mpvnet-osc-idle-message", _("Drop files or URLs to play here."));
+    }
+
     void ConfigureYtDlpPath() => ConfigureYtDlpPath(RuntimeComponents.ResolveComponent("yt-dlp.exe"));
 
     internal void ConfigureYtDlpPath(ComponentResolutionResult resolution)
@@ -189,6 +195,7 @@ public partial class MainPlayer
         }
 
         SetMpvInitialized();
+        UpdateLocalizedScriptMessages();
         SetPropertyString("user-data/mpvnet-donation-url", AppClass.GetDonationUrl(App.Language));
         SetPropertyString("user-data/mpvnet-website-url", AppClass.GetOfficialWebsiteUrl(App.Language));
         CommandV("change-list", "script-opts", "append", "osc-idlescreen=no");

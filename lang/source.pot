@@ -2728,3 +2728,23 @@ msgstr ""
 
 msgid "video"
 msgstr ""
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Media and playlist files"
+msgstr ""
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Video files"
+msgstr ""
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Audio files"
+msgstr ""
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Playlists"
+msgstr ""
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "All files"
+msgstr ""

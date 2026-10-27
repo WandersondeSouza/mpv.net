@@ -138,6 +138,13 @@ Se os assets NuGet ainda não existirem, restaure o projeto antes de usar
 prepara dependências nativas e catálogos. `/p:EnsureBuildAssets=false` apenas
 pula essa preparação; exige assets válidos já disponíveis para testes que os usam.
 
+Depois do build, o projeto de testes copia da saída efetiva do projeto Windows
+as DLLs `libmpv-2.dll`, `libmpv-2-v3.dll`, `libmpvnet.dll` e `MediaInfo.dll`, os
+metadados de libmpv, os catálogos `Locale` e `Scripts/osc.lua`. A origem é resolvida
+pelo MSBuild para a configuração e plataforma atuais. Isso permite iniciar a
+cópia de `mpvnet.exe` da pasta de testes sem depender de uma execução anterior
+ou de cópias manuais das DLLs; a ausência da libmpv normal interrompe o build.
+
 `Program.cs` conserva casos de comportamento existente; a cobertura adicional
 fica nos arquivos por área, como `ApplicationPathTests.cs`, `MediaInputTests.cs`,
 `NativePlaylistTitleTests.cs`, `LocalizationExpansionTests.cs`,
@@ -145,6 +152,11 @@ fica nos arquivos por área, como `ApplicationPathTests.cs`, `MediaInputTests.cs
 suíte completa antes de escolher onde acrescentar uma regressão. O runner
 configurado em `AssemblyInfo.cs` executa sem paralelismo; evite também builds
 concorrentes sobre a mesma saída.
+
+`StartupLocalizationTests.cs` inicia o executável com configuração isolada e
+consulta `osd-msg1` pela IPC nativa do mpv. A cobertura inclui os 20 idiomas,
+idioma salvo, aliases, fallback, último argumento `--language` e preservação da
+mensagem personalizada em `mpv.conf` e na linha de comando.
 
 `TestEnvironment.cs` define `MPVNET_LOCAL_APPDATA` para `test-runtime` na pasta
 do executável de testes se não houver override explícito. Isso isola os dados

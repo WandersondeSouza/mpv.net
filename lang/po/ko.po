@@ -15,7 +15,7 @@ msgid "(Default)"
 msgstr "(ê¸°ë³¸ê°’)"
 
 msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
-msgstr "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr "（실험적）Win32에서 WGL로 렌더링하고 Direct3D 9Ex로 표시합니다. Nvidia와 AMD에서 작동하며 최신 드라이버를 사용하는 새 Intel 칩에서도 작동할 수 있습니다."
 
 #: src\MpvNet\Utilities\InputHelp.cs:111
 msgid "+10%"
@@ -54,16 +54,16 @@ msgid "<-1.143..5.286> Color temperature shift. Relative to 6500 K, a value of 0
 msgstr "<-1.143..5.286> 색온도 이동. 6500 K와 상대, 0.0의 가치는 당신에게 6500 K (변화 없음), -1.0의 가치 당신에게 3000 K를 주고, 1.0의 가치는 당신에게 10000 K를 줍니다. 0.0에 과태."
 
 msgid "<0-100> Set the JPEG quality level. Higher means better quality. The default is 90."
-msgstr "<0-100> JPEG 품질 수준을 설정합니다. Higher는 더 나은 질을 의미합니다. 기본값은 90입니다."
+msgstr "<0-100> JPEG 품질을 설정합니다. 값이 높을수록 화질이 좋아집니다. 기본값: 90."
 
 msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
-msgstr "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
+msgstr "<0-32> 여러 모니터가 하나의 바탕 화면을 구성할 때 mpv가 영상을 표시할 화면을 지정합니다."
 
 msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
 msgstr "<0-5> PNG 압축 이전에 적용되는 필터를 설정합니다. 0은 아무도, 1은 'sub', 2은 'up', 3은 'average', 4은 'Paeth', 5은 'mixed'입니다. 이것은 달성될 수 있는 압축의 수준에 영향을 줍니다. 대부분의 이미지의 경우 'mixed'는 최고의 압축 비율을 달성하므로 기본값입니다."
 
 msgid "<0-9> Set the PNG compression level. Higher means better compression. This will affect the file size of the written screenshot file and the time it takes to write a screenshot. Too high compression might occupy enough CPU time to interrupt playback. The default is 7."
-msgstr "<0-9> PNG 압축 레벨을 설정합니다. Higher는 더 나은 압축을 의미합니다. 이것은 서면 스크린 샷 파일의 파일 크기에 영향을주고 스크린 샷을 작성하는 데 시간이 걸립니다. 너무 높은 압축은 재생을 중단하는 충분한 CPU 시간을 점유할지도 모릅니다. 기본값은 7.입니다."
+msgstr "<0-9> PNG 압축 수준입니다. 값이 높을수록 더 압축되지만 파일 크기와 저장 시간이 달라집니다. 지나치게 높으면 CPU 사용량으로 재생이 끊길 수 있습니다. 기본값: 7."
 
 msgid "<0..1024> Gamut mapping 3DLUT size. Setting a dimension to 0 picks the default value. Defaults to 256."
 msgstr "<0..1024> Gamut 매핑 3DLUT 크기. 치수를 0로 설정하면 기본 값을 선택합니다. 기본 256."
@@ -81,13 +81,13 @@ msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaul
 msgstr "<0..4096> 톤 매핑 LUT 크기. 0을 설정하면 기본 크기를 선택합니다. 기본 256."
 
 msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
-msgstr "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
+msgstr "<0.0..0.5> PQ 휘도 범위의 비율로 전환점 최솟값을 설정합니다. knee_adaptation이 선택한 지점의 하한을 제한합니다. 기본값: 0.1."
 
 msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
 msgstr "<0.0..1.0> (Relative) 각광을 위한 색도 보호 지역. 기본값은 0.30입니다."
 
 msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
-msgstr "<0.0..1.0> 모든 필터에 사용할 수 있는 힘 방지. 0.0의 값은 antiringing을 해제하고 1.0의 값은 full-strength antiringing을 활성화합니다. 기본값은 0.0."
+msgstr "<0.0..1.0> 모든 필터의 테두리 잔상 억제 강도입니다. 0.0은 끄고 1.0은 최대 강도를 적용합니다. 기본값: 0.0."
 
 msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
 msgstr "<0.0..1.0> 기본 무릎 점은 소스 장면 평균 metadata의 부재에 사용. 일반적으로, 이것은 무릎 지점을 선택의 호의에서 무시 (관계) 소스 장면 평균 밝기 수준. 기본값은 0.4입니다."
@@ -141,10 +141,10 @@ msgid "<0.0..1000.0> The debanding filter's cut-off threshold. Higher numbers in
 msgstr "<0.0..1000.0> 분리 필터의 cut-off 임계값. 높은 숫자는 극적으로 파괴 강도를 증가, 그러나 진보적으로 이미지 세부 사항을 감소. 기본값은 3.0입니다."
 
 msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases linearly for each iteration. A higher radius will find more gradients, but a lower radius will smooth more aggressively. Defaults to 16.0."
-msgstr "<0.0..1000.0> 분리 필터의 초기 반경. 반경이 선형으로 증가합니다. 더 높은 반경은 더 많은 gradients를 찾아낼 것입니다, 그러나 더 낮은 반경은 더 적극적으로 매끄럽게 할 것입니다. 기본값 16.0."
+msgstr "<0.0..1000.0> 색상 띠 제거 필터의 초기 반경입니다. 반복할 때마다 선형으로 증가합니다. 큰 반경은 더 많은 색상 변화를 찾고 작은 반경은 더 강하게 부드럽게 합니다. 기본값: 16.0."
 
 msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
-msgstr "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
+msgstr "<0.5..1.0> PQ 휘도 범위의 비율로 전환점 최댓값을 설정합니다. knee_adaptation이 선택한 지점의 상한을 제한합니다. 기본값: 0.8."
 
 msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
 msgstr "<0.5..2.0> 무릎 점 오프셋 (bt2390 전용). 0.5 값은 spec-defined 기본 동작이며, 1.0의 libplacebo 기본값과 다릅니다."
@@ -153,10 +153,10 @@ msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
 msgstr "<1.0..20.0> sigmoid 곡선의 사면 (맛). 기본 6.5."
 
 msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
-msgstr "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
+msgstr "<1.0..32.0> HDR 대비 복원에 사용하는 저역 통과 필터 커널 크기입니다. 값을 늘리거나 줄이면 화면이 크게 달라집니다. 기본값: 3.5."
 
 msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
-msgstr "<N|inf|force|no> 루프 재생 N 번. 1의 가치는 1 시간 (과태), 2 2 시간, 등 inf가 영원히 의미한다. 1과 disables 반복과 동일하지 않습니다. 여러 파일이 명령줄에 지정되면 전체 재생 목록이 반복됩니다. 힘 형태는 inf 같이, 그러나 실패로 표시된 playlist 입장을 건너지 않습니다. 이것은 플레이어가 존재하지 않는 파일을 반복하려고 CPU 시간을 낭비 할 수 있음을 의미합니다. 하지만 그것은 매우 나쁜 네트워크 조건 하에서 webradios 재생에 대 한 유용할 수 있습니다."
+msgstr "<N|inf|force|no> 재생을 N번 반복합니다. 1은 한 번(기본값), 2는 두 번, inf는 무한 반복이고 no는 1과 같습니다. 파일을 여러 개 지정하면 전체 목록을 반복합니다. force는 inf와 같지만 실패한 항목도 다시 시도합니다. 없는 파일을 반복 시도해 CPU를 낭비할 수 있지만 네트워크가 불안정한 인터넷 라디오에 유용합니다."
 
 msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
 msgstr "<N|inf|no> 단일 파일 N 번 루프. inf는 영원히, 정상적인 재생을 의미하지 않습니다.\\n\\nloop-playlist의 차이는 재생 목록을 반복하지 않다는 것입니다. 재생 목록이 단일 파일 만 포함되면 두 옵션의 차이는이 옵션은 파일 재로드 대신 루프를 추구하는 것을 수행한다는 것입니다. 루프는이 옵션에 대한 별명입니다."
@@ -168,10 +168,10 @@ msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSu
 msgstr "<bytesize> demuxer가 버퍼로 허용되는 방법을 제어합니다.\\nKiB 및 MiB와 같은 스핑크가 지원됩니다."
 
 msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
-msgstr "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
+msgstr "<float> 창의 최소 가로세로 비율입니다. 창을 넓혀 화면 제어부(OSC)를 크게 표시할 수 있습니다. (mpv.net 옵션)"
 
 msgid "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
-msgstr "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
+msgstr "<int> 기억할 최근 파일 수입니다. 기본값: 15 (mpv.net 옵션)"
 
 msgid "<int> Initial window height in percent for audio files. Default: 70"
 msgstr "<int> 오디오 파일에 대한 %의 초기 창 높이. 과태: 70"
@@ -189,10 +189,10 @@ msgid "<int> Minimum window height in percent. Default: 10"
 msgstr "<int> %의 최소 창 높이. 과태: 10"
 
 msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
-msgstr "<name> 주어진 오디오 장치를 사용하십시오. 이것은 오디오 출력 이름, e.g. alsa로 구성되며, 다음으로 /, 다음으로 오디오 출력 특정 장치 이름. 이 옵션의 기본 값은 자동이며, 기본 장치로 설정 명령에서 각 오디오 출력을 트리거합니다.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\n보기 > 더 많은 > 오디오 장치 표시.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\n오디오 > 오디오 장치"
+msgstr "<name> 오디오 장치를 지정합니다. 출력 이름(예: alsa), /, 해당 출력의 장치 이름을 순서대로 입력합니다. 기본값 auto는 우선순위에 따라 각 출력의 기본 장치를 시도합니다.\\n\\n장치 목록은 상황에 맞는 메뉴에서 확인하세요:\\n\\n보기 > 더 보기 > 오디오 장치 표시.\\n\\n장치 변경도 상황에 맞는 메뉴에서 합니다:\\n\\n오디오 > 오디오 장치"
 
 msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
-msgstr "<x:y> 퍼센트의 초기 창 위치. 과태: 50:50 (중앙)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 창을 왼쪽으로 고정합니다.\\nx=100 창을 오른쪽으로 고정합니다.\\n\\ny=0 창을 왼쪽으로 고정합니다.\\ny=100는 아래쪽에 창을 묶습니다."
+msgstr "<x:y> 창의 초기 위치를 백분율로 지정합니다. 기본값: 50:50 (가운데)\\n\\nWindows 11이 필요하며 Windows 10에서는 보이지 않는 테두리로 인해 약간 어긋날 수 있습니다.\\n\\nx=0은 왼쪽에 배치합니다.\\nx=100은 오른쪽에 배치합니다.\\n\\ny=0은 위쪽에 배치합니다.\\ny=100은 아래쪽에 배치합니다."
 
 #: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
 msgid "Abort"
@@ -200,7 +200,7 @@ msgstr "한국어"
 
 #: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:10
 msgid "About"
-msgstr "About"
+msgstr "정보"
 
 #: src\MpvNet\Utilities\InputHelp.cs:197
 msgid "About mpv.net"
@@ -235,10 +235,10 @@ msgid "Add mpv.net to Path environment variable"
 msgstr "Path 환경 변수에 mpv.net 추가"
 
 msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
-msgstr "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr "OpenGL만 허용 (OpenGL 2.1+ 또는 GLES 2.0+ 필요)"
 
 msgid "Allow only Vulkan"
-msgstr "Allow only Vulkan"
+msgstr "Vulkan만 허용"
 
 msgid "Allow only gpu-context=d3d11"
 msgstr "gpu-context=d3d11만 허용"
@@ -284,13 +284,13 @@ msgid "Audio Tracks"
 msgstr "오디오 트랙"
 
 msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
-msgstr "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "--audio-file-auto, --autocreate-playlist 또는 --directory-filter-types 옵션에 사용할 오디오 확장자입니다. mpv.net의 파일 연결과 auto-load-folder에도 사용합니다. 기본값: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
 
 msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
 msgstr "자동 선택. 산출 조금 깊이가 검출될 수 없는 경우에, 성분 당 8 조금은 가정됩니다."
 
 msgid "Available on Windows 10 or higher"
-msgstr "Available on Windows 10 or higher"
+msgstr "Windows 10 이상에서 사용 가능"
 
 #: src\MpvNet\Utilities\InputHelp.cs:207
 msgid "Backward"
@@ -333,10 +333,10 @@ msgstr "화면 비율 변경"
 
 #: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:508
 msgid "Changed theme settings require mpv.net being restarted."
-msgstr "Changed theme settings require mpv.net being restarted."
+msgstr "테마 설정을 변경하면 mpv.net을 다시 시작해야 합니다."
 
 msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
-msgstr "빛과 어두운 테마 사이의 변화.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "밝은 테마와 어두운 테마를 전환합니다.\\n변경 후 mpv.net을 다시 시작해야 합니다.\\nmpv.net 전용 옵션입니다."
 
 #: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:126
 msgid "Changes will be available on next startup."
@@ -378,13 +378,13 @@ msgid "Color Mapping"
 msgstr "색깔 매핑"
 
 msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
-msgstr "어두운 형태에서 사용되는 색상 테마.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "어두운 모드의 색상 테마입니다.\\n변경 후 mpv.net을 다시 시작해야 합니다.\\nmpv.net 전용 옵션입니다. 기본값: dark"
 
 msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
-msgstr "빛 형태에서 사용된 색깔 주제.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "밝은 모드의 색상 테마입니다.\\n변경 후 mpv.net을 다시 시작해야 합니다.\\nmpv.net 전용 옵션입니다. 기본값: light"
 
 msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
-msgstr "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
+msgstr "영상이 덮지 않는 mpv 창 영역의 색입니다. 색 지정 방법은 --sub-color 옵션을 참조하세요."
 
 #: src\MpvNet.Windows\WPF\InputWindow.xaml:140
 msgid "Command"
@@ -432,7 +432,7 @@ msgid "Controls which type of graphics APIs will be accepted."
 msgstr "도표 APIs의 유형이 받아들여질 통제."
 
 msgid "Create a new process everytime the shell starts mpv.net"
-msgstr "Create a new process everytime the shell starts mpv.net"
+msgstr "시스템 셸에서 mpv.net을 시작할 때마다 새 프로세스 만들기"
 
 msgid "Cubic B-spline frame mixing"
 msgstr "Cubic B-spline 프레임 혼합"
@@ -496,7 +496,7 @@ msgid "Default settings, tuned to provide a balance of performance and quality."
 msgstr "기본 설정, 성능과 품질의 균형을 제공하기 위해 조정."
 
 msgid "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
-msgstr "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
+msgstr "여러 mpv.net 프로세스를 허용할지 정합니다.\\nSHIFT 키를 누른 채 시작해 여러 프로세스 모드를 활성화할 수도 있습니다. (mpv.net 옵션)"
 
 #: src\MpvNet\Utilities\InputHelp.cs:86 src\MpvNet\Utilities\InputHelp.cs:93
 msgid "Delay +0.1"
@@ -521,7 +521,7 @@ msgid "Details"
 msgstr "제품 정보"
 
 msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
-msgstr "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "OpenGL ES 변환 계층 ANGLE을 통해 Direct3D11을 사용합니다. ANGLE 버전이 충분히 최신이면 win 출력의 거의 모든 기능을 지원합니다."
 
 msgid "Disable all advanced rendering, equivalent to passing no to every option."
 msgstr "모든 고급 렌더링을 비활성화하여 모든 옵션에 대해 전달하십시오."
@@ -530,7 +530,7 @@ msgid "Disable any dithering done by mpv."
 msgstr "mpv에 의해 수행 된 어떤 제광을 해제."
 
 msgid "Disable frame mixing, show nearest frame to target PTS"
-msgstr "Disable 프레임 혼합, 대상 PTS에 가장 가까운 프레임 표시"
+msgstr "프레임 혼합을 끄고 대상 PTS에 가장 가까운 프레임 표시"
 
 msgid "Dither to 10 bit output."
 msgstr "10 비트 출력으로 나눕니다."
@@ -546,7 +546,7 @@ msgstr "외부 자막 파일을 자동로드하지 마십시오."
 
 #: src\MpvNet\App.cs:208
 msgid "Donation"
-msgstr "Donation"
+msgstr "기부"
 
 #: src\MpvNet\Utilities\InputHelp.cs:114
 msgid "Double"
@@ -559,10 +559,10 @@ msgstr "재생할 파일 또는 URL을 여기에 놓으세요."
 
 #: src\MpvNet\App.cs:210
 msgid "E-mail support"
-msgstr "E-mail support"
+msgstr "이메일 지원"
 
 msgid "EWA Lanczos (\"Jinc\") reconstruction (slow)."
-msgstr "EWA Lanczos (\"Jinc\") reconstruction (slow)."
+msgstr "EWA Lanczos(\"Jinc\") 재구성. 느립니다."
 
 #: src\MpvNet\App.cs:201
 msgid "Edit config file"
@@ -600,10 +600,10 @@ msgid "Enable the default track auto-selection. Enabling this will make the play
 msgstr "기본 트랙을 활성화 auto-selection. 플레이어는 aid, alang 및 기타에 따라 스트림을 선택합니다. 비활성화되면 트랙이 선택되지 않습니다. 또한, 플레이어는 트랙이 선택되지 않는 경우 종료하지 않고 (이 대기 모드는 일시 중지와 유사하지만 일시 옵션은 설정되지 않습니다).\\n\\n이것은 lavfi-complex와 유용합니다: 당신은 이 모드에서 재생을 시작할 수 있고, 그 후에 필터 그래프를 설정하여 실행시에 트랙을 설정할 수 있습니다. lavfi-complex가 재생하기 전에 설정된 경우, 참고된 트랙은 항상 선택됩니다."
 
 msgid "Enable this only when a developer asks for it. (mpv.net option)"
-msgstr "Enable this only when a developer asks for it. (mpv.net option)"
+msgstr "개발자가 요청한 경우에만 활성화하세요. (mpv.net 옵션)"
 
 msgid "Enables HDR peak detection."
-msgstr "Enables HDR peak detection."
+msgstr "HDR 최대 밝기 감지를 활성화합니다."
 
 msgid "Enables color adjustment."
 msgstr "색깔 조정을 가능하게 합니다."
@@ -685,13 +685,13 @@ msgid "First File"
 msgstr "첫 파일"
 
 msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
-msgstr "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
+msgstr "단일 파일을 열 때 전체 폴더를 재생 목록에 자동으로 추가합니다. (더 이상 권장하지 않는 mpv.net 옵션이며 autocreate-playlist를 대신 사용할 수 있습니다)"
 
 msgid "Force a single process and add files to playlist"
 msgstr "단일 프로세스를 강제하고 재생 목록에 파일을 추가"
 
 msgid "Force a single process everytime the shell starts mpv.net"
-msgstr "Force a single process everytime the shell starts mpv.net"
+msgstr "시스템 셸에서 mpv.net을 시작할 때 항상 단일 프로세스 사용"
 
 msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
 msgstr "힘 가득 차있는 tone-mapping의 사용 LUT는 더 빠른 순수한 GLSL 보충 (예를들면 클립, 선형, 포화)가 있는 기능을 위해 조차. 디버그 옵션입니다."
@@ -725,7 +725,7 @@ msgid "General"
 msgstr "주요사업"
 
 msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
-msgstr "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "사용자 설정이 가능하고 GPU 가속을 지원하는 범용 영상 출력입니다. 고급 크기 조절, 디더링, 색 관리, 사용자 셰이더, HDR 등을 지원합니다."
 
 #: src\MpvNet\App.cs:206
 msgid "GitHub Sponsors"
@@ -735,7 +735,7 @@ msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixel
 msgstr "tone-mapping의 hard-clipped 픽셀을 그래픽으로 강조합니다 (예를들면 광원 발광성 범위를 초과하는 i.e. 픽셀)."
 
 msgid "HDR Peak Detection"
-msgstr "HDR Peak Detection"
+msgstr "HDR 최대 밝기 감지"
 
 #: src\MpvNet\Utilities\InputHelp.cs:113
 msgid "Half"
@@ -796,7 +796,7 @@ msgid "Ignore left mouse button"
 msgstr "왼쪽 마우스 버튼 무시"
 
 msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
-msgstr "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+msgstr "--cover-art-auto, --autocreate-playlist 또는 --directory-filter-types 옵션에 사용할 이미지 확장자입니다. mpv.net의 파일 연결과 auto-load-folder에도 사용합니다. 기본값: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
 
 #: src\MpvNet\Utilities\InputHelp.cs:69
 msgid "Increase Brightness"
@@ -1038,7 +1038,7 @@ msgid "No audio tracks"
 msgstr "오디오 트랙 없음"
 
 msgid "No filter, only use basic GPU texture sampling."
-msgstr "No filter, only use basic GPU texture sampling."
+msgstr "필터 없이 GPU의 기본 텍스처 샘플링만 사용합니다."
 
 #: src\MpvNet\Command.cs:117
 msgid "No subtitle"
@@ -1050,7 +1050,7 @@ msgid "No subtitles"
 msgstr "자막 없음"
 
 msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
-msgstr "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
+msgstr "mpv는 보통 재생 중 변경한 옵션도 다음 파일에 유지합니다. 이 옵션에 목록을 지정하면 해당 옵션을 재생 시작 시 초기값으로 되돌립니다."
 
 msgid "Number of key presses to generate per second on autorepeat."
 msgstr "autorepeat에 초 당 생성하는 열쇠의 수."
@@ -1104,13 +1104,13 @@ msgid "Overrides the value of all options in this section by their default value
 msgstr "주어진 미리 설정에서 기본 값으로 이 섹션에서 모든 옵션의 값을 무시합니다."
 
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
-msgstr "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
+msgstr "이 구역의 모든 옵션을 선택한 사전 설정의 기본값으로 바꿉니다. high_quality는 HDR 대비 복원도 활성화합니다."
 
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
 msgstr "주어진 미리 설정에서 기본 값으로 이 섹션에서 모든 옵션의 값을 무시합니다. high_quality도 프레임의 심도 측정을 가능하게 합니다."
 
 msgid "Oversampling, only mix \"edge\" frames while preserving FPS"
-msgstr "Oversampling, only mix \"edge\" frames while preserving FPS"
+msgstr "오버샘플링: 프레임 속도(FPS)를 유지하면서 경계 프레임만 혼합"
 
 #: src\MpvNet\Utilities\InputHelp.cs:51 src\MpvNet\Utilities\InputHelp.cs:52
 #: src\MpvNet\Utilities\InputHelp.cs:53 src\MpvNet\Utilities\InputHelp.cs:54
@@ -1233,10 +1233,10 @@ msgid "Save and restore the audio device chosen in the context menu. Default: ye
 msgstr "컨텍스트 메뉴에서 선택한 오디오 장치를 저장하고 복원합니다. 기본: 예"
 
 msgid "Save the window position on exit. (mpv.net option)"
-msgstr "Save the window position on exit. (mpv.net option)"
+msgstr "종료할 때 창 위치를 저장합니다. (mpv.net 옵션)"
 
 msgid "Save volume and mute on exit and restore it on start. (mpv.net option)"
-msgstr "Save volume and mute on exit and restore it on start. (mpv.net option)"
+msgstr "종료할 때 볼륨과 음소거 상태를 저장하고 시작할 때 복원합니다. (mpv.net 옵션)"
 
 msgid "Scaling"
 msgstr "관련 상품"
@@ -1289,7 +1289,7 @@ msgid "Set the image file type used for saving screenshots."
 msgstr "스크린 샷을 저장하는 데 사용되는 이미지 파일 유형을 설정합니다."
 
 msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
-msgstr "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
+msgstr "시작 볼륨입니다. 0은 무음이며 100은 원래 볼륨입니다. 호환성을 위해 음수도 받지만 0으로 처리합니다. mpv 0.18.1부터 항상 내부 믹서(\"softvol\")를 제어합니다. 기본값: 100"
 
 msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
 msgstr "창 제목을 설정합니다. 비디오 창에 사용됩니다. 가능한 경우 오디오 스트림 타이틀을 설정합니다. 속성이 확장됩니다. 공지사항 사용 된 속성에 따라 중요한 CPU 사용의 위험이 있습니다."
@@ -1311,7 +1311,7 @@ msgid "Sets the filter used for upscaling."
 msgstr "확장에 사용되는 필터를 설정합니다."
 
 msgid "Setting to remember the window size. (mpv.net option)"
-msgstr "Setting to remember the window size. (mpv.net option)"
+msgstr "창 크기를 기억할 시점을 설정합니다. (mpv.net 옵션)"
 
 #: src\MpvNet\Utilities\InputHelp.cs:174 src\MpvNet\Utilities\InputHelp.cs:175
 #: src\MpvNet\Utilities\InputHelp.cs:176 src\MpvNet\Utilities\InputHelp.cs:177
@@ -1340,19 +1340,19 @@ msgid "Show Profiles"
 msgstr "프로파일 보기"
 
 msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
-msgstr "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
+msgstr "재생 시작 시 화면 메시지(OSD)를 표시합니다. 속성이 확장되므로 osd-playing-msg='file: ${filename}'는 file: 뒤에 공백과 현재 파일명을 표시합니다. 자세한 내용:"
 
 #: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:614
 msgid "Show mpv manual"
-msgstr "Show mpv manual"
+msgstr "mpv 설명서 보기"
 
 #: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:615
 msgid "Show mpv.net manual"
-msgstr "Show mpv.net manual"
+msgstr "mpv.net 설명서 보기"
 
 #: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:611
 msgid "Show mpv.net options"
-msgstr "Show mpv.net options"
+msgstr "mpv.net 옵션 보기"
 
 msgid "Show progress in taskbar."
 msgstr "taskbar의 진행 상황을 표시합니다."
@@ -1383,16 +1383,16 @@ msgid "Snap the player window to screen edges."
 msgstr "화면 가장자리에 플레이어 창을 스냅."
 
 msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
-msgstr "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
+msgstr "오디오 언어의 우선순위 목록입니다. DVD는 두 글자의 ISO 639-1, Matroska, MPEG-TS와 NUT는 세 글자의 ISO 639-2, OGM은 자유 형식 식별자를 사용합니다. aid도 참조하세요."
 
 msgid "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
-msgstr "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
+msgstr "자막 언어의 우선순위 목록입니다. DVD는 두 글자의 ISO 639-1, Matroska는 세 글자의 ISO 639-2, OGM은 자유 형식 식별자를 사용합니다. sid도 참조하세요."
 
 msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
 msgstr "특정 글꼴을 지정하지 않는 자막에 사용할 글꼴을 지정합니다. 기본값은 sans-serif입니다."
 
 msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
-msgstr "Specify the OSD font size. See sub-font-size for details. Default: 55"
+msgstr "화면 메시지(OSD)의 글꼴 크기입니다. 자세한 내용은 sub-font-size를 참조하세요. 기본값: 55"
 
 msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
 msgstr "unstyled 원본 자막을 위해 사용된 색깔을 지정하십시오.\\n\\n사용법 묘사와 예는 설명서에서 찾아낼 수 있습니다:"
@@ -1401,7 +1401,7 @@ msgid "Specify the filename template used to save screenshots. The template spec
 msgstr "스크린 샷을 저장하는 데 사용되는 파일 이름 템플릿을 지정합니다. 템플릿은 파일 확장없이 파일 이름을 지정하고 스크린 샷을 복용 할 때 대체 될 형식 사양을 포함 할 수 있습니다. 기본적으로 템플릿은 mpv-shot%n이며, 예를 들어 mpv-shot0012.png와 같은 파일명에 결과를 나타냅니다.\\n\\n이 문서는 다음과 같습니다:"
 
 msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
-msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\n더 많은 정보 방문:"
+msgstr "가능한 경우 사용할 하드웨어 영상 디코딩 API입니다. 코덱에 따라 지원 여부가 달라지며 지원하지 않으면 소프트웨어로 디코딩합니다. 안정성을 위해 기본적으로 꺼져 있습니다. 최신 하드웨어는 보통 이 기능을 지원하여 CPU 사용량과 전력 소모를 줄입니다.\\n\\n자세한 내용:"
 
 msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
 msgstr "하위 글꼴 크기를 지정합니다. 단위는 720의 창 고도에 가늠자된 화소에 있는 크기입니다. 실제 픽셀 크기는 창 높이로 확장됩니다. 창 높이가 720보다 크거나 작으면 텍스트의 실제 크기가 증가하거나 감소합니다. 과태: 55"
@@ -1465,7 +1465,7 @@ msgid "Take Screenshot without subtitles"
 msgstr "자막 없이 스크린샷 찍기"
 
 msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
-msgstr "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
+msgstr "영상을 확대할 때 사용할 GPU 필터입니다. 다른 필터도 있지만 보통 활용도가 낮습니다. 전체 목록은 help 값으로 확인하세요. 예: mpv --scale=help"
 
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:244
 msgid "The clipboard does not contain a valid URL or file."
@@ -1492,7 +1492,7 @@ msgid "The online playlist could not be loaded."
 msgstr "온라인 재생 목록을 불러올 수 없습니다."
 
 msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
-msgstr "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "mpv 시작 후 변경되었을 때 재개 파일에 저장할 옵션 목록입니다. 같은 파일을 다시 재생할 때 값을 복원합니다. 옵션 이름 목록을 받습니다. 자세한 내용:"
 
 #: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
 msgid "This content is no longer available."
@@ -1595,13 +1595,13 @@ msgid "Unregister file associations"
 msgstr "파일 연결 등록 해제"
 
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
-msgstr "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
+msgstr "미디어 정보를 얻을 때 mpv 대신 MediaInfo 라이브러리를 사용합니다. (mpv.net 옵션)"
 
 msgid "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
-msgstr "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "사용 가능한 API를 사용합니다. 기본 GPU API는 변경될 수 있으므로 고정된 것으로 가정하면 안 됩니다. 특정 API가 필요하면 명시적으로 지정하세요."
 
 msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
-msgstr "더 높은 품질, 하지만 더 느리고, tricubic interpolation for gamut mapping 3DLUTs. 3DLUT 가역 매핑 정확도를 실질적으로 향상시킬 수 있습니다. 특히 3DLUT 크기. 기본 크기에 많은 영향을 미칩니다."
+msgstr "색역 매핑 3DLUT에 더 정확하지만 느린 삼중 삼차 보간을 사용합니다. 특히 작은 3DLUT의 색역 매핑 정확도를 크게 개선할 수 있습니다. 기본 크기에서는 효과가 크지 않습니다."
 
 msgid "Use precise seeks if the seek is to an absolute position in the file, such as a chapter seek, but not for relative seeks like the default behavior of arrow keys."
 msgstr "찾기가 파일에 절대 위치 인 경우 정확한 추구를 사용하지만, 화살표 키의 기본 행동과 같은 상대적 추구하지."
@@ -1613,10 +1613,10 @@ msgid "Use the same filter as specified for upscaler"
 msgstr "upscaler를 위해 지정된 것과 동일한 필터를 사용하십시오"
 
 msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
-msgstr "input.conf에 context 메뉴를 정의하는 데 사용되는 메뉴 구문.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "input.conf에서 상황에 맞는 메뉴를 정의하는 문법입니다.\\nmpv.net의 기본값은 '#menu:'이고 uosc의 기본값은 '#!'입니다."
 
 msgid "User interface display language.\\nmpv.net must be restarted after a change."
-msgstr "사용자 인터페이스 표시 언어.\\nmpv.net must be restarted after a change."
+msgstr "사용자 인터페이스 표시 언어입니다.\\n변경 후 mpv.net을 다시 시작해야 합니다."
 
 msgid "VK_KHR_win32_surface"
 msgstr "VK_KHR_win32_surface"
@@ -1642,7 +1642,7 @@ msgid "Video Tracks"
 msgstr "비디오 트랙"
 
 msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
-msgstr "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+msgstr "--autocreate-playlist 또는 --directory-filter-types 옵션에 사용할 영상 확장자입니다. mpv.net의 파일 연결과 auto-load-folder에도 사용합니다. 기본값: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
 
 msgid "Video output driver that uses the Direct3D interface."
 msgstr "Direct3D 인터페이스를 사용하는 비디오 출력 드라이버입니다."
@@ -1704,7 +1704,7 @@ msgid "Website mpv.net"
 msgstr "mpv.net 웹사이트"
 
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
-msgstr "로컬 파일을 열 때, 부모 디렉토리가 열리고 재생 목록을 자동으로 만듭니다.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\n동일: 현재 로드된 파일과 같은 범주와 일치하는 파일과 부모 디렉토리의 재생 목록을 만듭니다. *-exts 중 하나는 입력 파일에 따라 선택되며 일치 확장 파일 만 재생 목록에 추가됩니다. 입력 파일 자체가 어떤 확장 목록에 일치하지 않는 경우, 재생 목록은 자동 생성되지 않습니다."
+msgstr "로컬 파일을 열면 상위 폴더에서 재생 목록을 자동으로 만듭니다.\\n\\nno: 파일 하나만 불러옵니다(mpv 기본값).\\n\\nFilter: --directory-filter-types 옵션에 맞는 파일을 선택합니다(mpv.net 기본값).\\n\\nsame: 현재 파일과 같은 종류만 추가합니다. 입력 파일에 따라 *-exts 목록을 선택하고 일치하는 확장자만 추가합니다. 어느 확장자 목록에도 해당하지 않으면 자동 생성하지 않습니다."
 
 msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
 msgstr "확장 할 때, sigmoidal 색상 변환을 사용하여 황체화 링을 방지합니다. 이것은 또한 linear-scaling를 의미한다."
@@ -1713,14 +1713,14 @@ msgid "When using convolution based filters, extend the filter size when downsca
 msgstr "convolution 기반 필터를 사용할 때, downscaling 때 필터 크기를 확장합니다. 품질 향상, 그러나 downscaling 동안 성능을 감소.\\n\\n이것은 anamorphic 영상을 위한 약간 sub-optimally를 실행할 것입니다 (그러나 그것 없이 아직도 더 나은) 그것은 axes 사이 가늠자 요인의 더 온화한 일치하기 위하여 크기를 확장할 것입니다."
 
 msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
-msgstr "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+msgstr "창 크기에 맞춰 화면 메시지(OSD)의 크기를 바꿉니다. 비활성화하면 osd-font-size 등 배율 적용 픽셀을 사용하는 옵션이 실제 픽셀을 사용하므로 창 크기를 바꿔도 OSD 글꼴 크기는 변하지 않습니다."
 
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:337
 msgid "Width"
 msgstr "너비"
 
 msgid "Win32, with native Direct3D 11 rendering."
-msgstr "Win32, with native Direct3D 11 rendering."
+msgstr "Win32에서 기본 Direct3D 11 렌더링을 사용합니다."
 
 msgid "Win32/WGL"
 msgstr "Win32/WGL"
@@ -2402,7 +2402,7 @@ msgid "remember-window-position"
 msgstr "remember-window-position"
 
 msgid "requires vo=gpu (Any platform CUDA is available)"
-msgstr "requires vo=gpu (Any platform CUDA is available)"
+msgstr "vo=gpu 필요 (CUDA를 사용할 수 있는 모든 플랫폼)"
 
 msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
 msgstr "gpu-context=d3d11 또는 gpu-context=angle를 가진 vo=gpu를 요구합니다"
@@ -2646,37 +2646,37 @@ msgstr "{0}이(가) 없습니다. 만들까요?"
 #: src\MpvNet\Utilities\InputHelp.cs:161
 msgctxt "Move"
 msgid "Center"
-msgstr "Center"
+msgstr "가운데"
 
 #: src\MpvNet\Utilities\InputHelp.cs:160
 msgctxt "Move"
 msgid "Down"
-msgstr "Down"
+msgstr "아래로"
 
 #: src\MpvNet\Utilities\InputHelp.cs:157
 msgctxt "Move"
 msgid "Left"
-msgstr "Left"
+msgstr "왼쪽"
 
 #: src\MpvNet\Utilities\InputHelp.cs:158
 msgctxt "Move"
 msgid "Right"
-msgstr "Right"
+msgstr "오른쪽"
 
 #: src\MpvNet\Utilities\InputHelp.cs:159
 msgctxt "Move"
 msgid "Up"
-msgstr "Up"
+msgstr "위로"
 
 #: src\MpvNet\Utilities\InputHelp.cs:106
 msgctxt "Volume"
 msgid "Down"
-msgstr "Down"
+msgstr "낮추기"
 
 #: src\MpvNet\Utilities\InputHelp.cs:105
 msgctxt "Volume"
 msgid "Up"
-msgstr "Up"
+msgstr "높이기"
 
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "No playable media was found in this drive or folder."
@@ -2691,13 +2691,13 @@ msgid "The source service requires verification that you are not a bot."
 msgstr "원본 서비스에서 봇이 아님을 확인해야 합니다."
 
 msgid "The clipboard is temporarily unavailable."
-msgstr "The clipboard is temporarily unavailable."
+msgstr "클립보드를 일시적으로 사용할 수 없습니다."
 
 msgid "Untitled Track"
-msgstr "Untitled Track"
+msgstr "제목 없는 트랙"
 
 msgid "Repository: "
-msgstr "Repository: "
+msgstr "소스 저장소: "
 
 msgid "chinese-taiwan"
 msgstr "繁體中文（台灣）"
@@ -2719,10 +2719,10 @@ msgstr "Bahasa Indonesia"
 
 
 msgid "Cache"
-msgstr "Cache"
+msgstr "캐시"
 
 msgid "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
-msgstr "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
+msgstr "네트워크 URL을 최근 파일에 저장하며 settings.xml에 일반 텍스트로 기록합니다. 내장 자격 증명, 민감한 쿼리 매개변수 또는 조각 식별자가 있는 URL은 항상 제외합니다. 나머지 매개변수에 비밀 정보가 없을 때만 활성화하세요. (mpv.net 옵션)"
 
 msgid "save-network-urls-in-recent"
 msgstr "save-network-urls-in-recent"
@@ -2730,3 +2730,23 @@ msgstr "save-network-urls-in-recent"
 
 msgid "video"
 msgstr "video"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Media and playlist files"
+msgstr "미디어 및 재생 목록 파일"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Video files"
+msgstr "영상 파일"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Audio files"
+msgstr "오디오 파일"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Playlists"
+msgstr "재생 목록"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "All files"
+msgstr "모든 파일"

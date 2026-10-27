@@ -17,7 +17,7 @@ msgid "(Default)"
 msgstr "(Varsayılan)"
 
 msgid "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
-msgstr "(experimental) Win32, using WGL for rendering and Direct3D 9Ex for presentation. Works on Nvidia and AMD. Newer Intel chips with the latest drivers may also work."
+msgstr "(deneysel) Çizim için WGL, sunum için Direct3D 9Ex kullanan Win32 çıktısı. Nvidia ve AMD ile çalışır. Güncel sürücülü yeni Intel yongaları da çalışabilir."
 
 #: src\MpvNet\Utilities\InputHelp.cs:111
 msgid "+10%"
@@ -59,7 +59,7 @@ msgid "<0-100> Set the JPEG quality level. Higher means better quality. The defa
 msgstr "<0-100> JPEG kalite seviyesini ayarlayın. Yüksek daha iyi kalite anlamına gelir. Varsayılan 90."
 
 msgid "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
-msgstr "<0-32> In multi-monitor configurations (i.e. a single desktop that spans across multiple displays), this option tells mpv which screen to display the video on."
+msgstr "<0-32> Birden fazla ekran tek bir masaüstü oluşturduğunda mpv'nin videoyu hangi ekranda göstereceğini belirler."
 
 msgid "<0-5> Set the filter applied prior to PNG compression. 0 is none, 1 is 'sub', 2 is 'up', 3 is 'average', 4 is 'Paeth', and 5 is 'mixed'. This affects the level of compression that can be achieved. For most images, 'mixed' achieves the best compression ratio, hence it is the default."
 msgstr "<0-5> Filtreden önce uygulanan filtreyi ayarlayın. 0 hayır, 1 'sub', 2 'up', 3 'ortalama', 4 'Paeth' ve 5 'dan alıntı'. Bu, elde edilebilecek sıkıştırma seviyesini etkiler. Çoğu resim için, 'bağlantılı' en iyi sıkıştırma oranı elde eder, bu nedenle varsayılandir."
@@ -83,13 +83,13 @@ msgid "<0..4096> Tone mapping LUT size. Setting 0 picks the default size. Defaul
 msgstr "<0..4096> Tone LUT boyutunu haritalamak. Ayar 0 varsayılan boyutunu alır. 256'ye döner."
 
 msgid "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
-msgstr "<0.0..0.5> Configures the knee point minimum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.1."
+msgstr "<0.0..0.5> Geçiş noktasının alt sınırını PQ parlaklık aralığının oranı olarak ayarlar. knee_adaptation tarafından seçilen noktayı alttan sınırlar. Varsayılan: 0.1."
 
 msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping. Defaults to 0.30."
 msgstr "<0.0..1.0> (Relative) algısal haritalama için kronolojik koruma alanı. Varsayılanler 0.30'a kadar."
 
 msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
-msgstr "<0.0..1.0> Tüm filtreler için kullanmak için güçlendirici. 0.0 devre dışı bırakma değeri ve 1.0 değeri full-strength antiringing sağlar. Temsiller 0.0."
+msgstr "<0.0..1.0> Tüm süzgeçlerde kenar halelerini azaltma gücü. 0.0 kapatır, 1.0 en yüksek gücü uygular. Varsayılan: 0.0."
 
 msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
 msgstr "<0.0..1.0> Varsayılan diz noktası, kaynak sahne ortalama metadata yokluğunda kullanmak. Normalde, bu, diz noktasını ortalama parlaklık seviyesi olarak seçmenin lehine göz ardı edilir. Varsayılanler 0.4'e kadar."
@@ -116,13 +116,13 @@ msgid "<0.0..10.0> For linear methods (linear, linearlight), this controls the l
 msgstr "<0.0..10.0> Lineer yöntemler için (linear, lineer ışık), bu, görüntüye uygulanan lineer maruz kalma/dönüşümü kontrol eder. 1.0'a döner."
 
 msgid "<0.0..10.0> I vs C curve gamma to use for colorimetric clipping (relative, absolute and darken). Defaults to 1.80."
-msgstr "<0.0..10.0> I vs C eğri gamma to use for colorimetric klibi (relatif, mutlak ve da koyu). 1.80'e kadar sıralayıcılar."
+msgstr "<0.0..10.0> Kolorimetrik kırpma yöntemlerinde (relative, absolute ve darken) kullanılan I ve C eğrisinin gama değeri. Varsayılan: 1.80."
 
 msgid "<0.0..100.0> Black cutoff strength."
 msgstr "<0.0..100.0> Siyah kesme gücü."
 
 msgid "<0.0..100.0> Contrast gain. Multiplies the source luminance signal by a constant factor. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
-msgstr "<0.0..100.0> Contrast kazanır. Sürekli bir faktör tarafından kaynak aydınlatıcı sinyalini Multiplies the source luminance signal by a Constant faktör. 1.0 = tarafsız, 0.0 = sağlam siyah. 1.0'a döner."
+msgstr "<0.0..100.0> Kontrast kazancı. Kaynak parlaklığını sabit bir katsayıyla çarpar. 1.0 değişiklik yapmaz, 0.0 tam siyahtır. Varsayılan: 1.0."
 
 msgid "<0.0..100.0> Gamma lift. Subjectively brightnes or darkens the scene while preserving overall contrast. 1.0 = neutral, 0.0 = solid black. Defaults to 1.0."
 msgstr "<0.0..100.0> Gamma asansör. Temel olarak parlaklar veya genel kontrastı korurken sahneyi karanlıklar. 1.0 = tarafsız, 0.0 = sağlam siyah. 1.0'a döner."
@@ -146,7 +146,7 @@ msgid "<0.0..1000.0> The debanding filter's initial radius. The radius increases
 msgstr "<0.0..1000.0> Dağıtılmış filtrenin ilk yarıyı. Deprem her iterasyon için lineer olarak yükselir. Daha yüksek bir yarı daha fazla gradient bulacaktır, ancak daha agresif bir şekilde daha yumuşak olacaktır. 16.0'a kadar sıralayıcılar."
 
 msgid "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
-msgstr "<0.5..1.0> Configures the knee point maximum as a percentage of the PQ luminance range. Provides a hard limit on the knee point chosen by knee_adaptation. Defaults to 0.8."
+msgstr "<0.5..1.0> Geçiş noktasının üst sınırını PQ parlaklık aralığının oranı olarak ayarlar. knee_adaptation tarafından seçilen noktayı üstten sınırlar. Varsayılan: 0.8."
 
 msgid "<0.5..2.0> Knee point offset (for bt2390 only). Note that a value of 0.5 is the spec-defined default behavior, which differs from the libplacebo default of 1.0."
 msgstr "<0.5..2.0> Diz noktası dengeleme (yalnızca bt2390 için). 0,5 değerinin spec-defined varsayılan davranış olduğunu unutmayın, bu da 1.0'ın libplacebo varsayılanliğinden farklıdır."
@@ -155,10 +155,10 @@ msgid "<1.0..20.0> The slope (steepness) of the sigmoid curve. Defaults to 6.5."
 msgstr "<1.0..20.0> Öpücü eğrinin eğimi. 6.5'e kadar sıralayıcılar."
 
 msgid "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
-msgstr "<1.0..32.0> HDR contrast recovery lowpass kernel size. Increasing or decreasing this will affect the visual appearance substantially. Defaults to 3.5."
+msgstr "<1.0..32.0> HDR kontrast kurtarmada kullanılan alçak geçiren süzgecin çekirdek boyutu. Değeri artırmak veya azaltmak görüntüyü belirgin biçimde değiştirir. Varsayılan: 3.5."
 
 msgid "<N|inf|force|no> Loops playback N times. A value of 1 plays it one time (default), 2 two times, etc. inf means forever. no is the same as 1 and disables looping. If several files are specified on command line, the entire playlist is looped. The force mode is like inf, but does not skip playlist entries which have been marked as failing. This means the player might waste CPU time trying to loop a file that doesn't exist. But it might be useful for playing webradios under very bad network conditions."
-msgstr "<N|inf|force|no> Loops N kez geri oynar. 1 değeri bir kez (default), 2 iki kez vs. inf sonsuza kadar demektir. 1 ve devre dışı bırakmıyor. Birkaç dosya komut satırında belirtilirse, tüm listeler çevrilir. Güç modu inf gibidir, ancak başarısız olarak işaret edilen liste girişlerini atmıyor. Bu, oyuncunun mevcut olmayan bir dosyayı uyandırmaya çalıştığını anlamına gelir. Ancak webradios'u çok kötü ağ koşulları altında oynamak için yararlı olabilir."
+msgstr "<N|inf|force|no> Oynatmayı N kez tekrarlar. 1 bir kez (varsayılan), 2 iki kez, inf sonsuz tekrardır ve no, 1 ile aynıdır. Birden çok dosya varsa tüm liste tekrarlanır. force, inf gibi çalışır ancak başarısız öğeleri de yeniden dener. Olmayan dosyaları deneyerek CPU zamanını harcayabilir; kararsız ağdaki internet radyolarında yararlıdır."
 
 msgid "<N|inf|no> Loop a single file N times. inf means forever, no means normal playback.\\n\\nThe difference to loop-playlist is that this doesn't loop the playlist, just the file itself. If the playlist contains only a single file, the difference between the two option is that this option performs a seek on loop, instead of reloading the file. loop is an alias for this option."
 msgstr "<N|inf|no>Tek bir dosyayı N kez açın. Inf sonsuza kadar, normal oyun geri anlamına gelmez.\\n\\nloop-playlist'a olan fark, bu sadece dosyanın kendisini döngüsü değildir. Eğer listeler sadece tek bir dosya içeriyorsa, iki seçenek arasındaki fark, bu seçeneğin dosyayı yeniden yüklemesi yerine, döngü üzerinde bir arama yaptığıdır. döngü bu seçenek için bir alias."
@@ -170,10 +170,10 @@ msgid "<bytesize> Controls how much the demuxer is allowed to buffer ahead.\\nSu
 msgstr "<bytesize> Demuxer'in önceden tampon olmasına izin verdiği kontroller.\\nKiB ve MiB gibi suf ekleri desteklenmektedir."
 
 msgid "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
-msgstr "<float> Minimum aspect ratio of the window. Useful to force a wider window and therefore a larger OSC. (mpv.net option)"
+msgstr "<float> Pencerenin en küçük en boy oranı. Daha geniş bir pencere ve daha büyük ekran denetimleri (OSC) sağlar. (mpv.net seçeneği)"
 
 msgid "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
-msgstr "<int> Amount of recent files to be remembered. Default: 15 (mpv.net option)"
+msgstr "<int> Hatırlanacak son dosya sayısı. Varsayılan: 15 (mpv.net seçeneği)"
 
 msgid "<int> Initial window height in percent for audio files. Default: 70"
 msgstr "<int> Ses dosyaları için ilk pencere yüksekliği. Varsayılan: 70"
@@ -191,18 +191,18 @@ msgid "<int> Minimum window height in percent. Default: 10"
 msgstr "<int> Yüzde minimum pencere yüksekliği. Varsayılan: 10"
 
 msgid "<name> Use the given audio device. This consists of the audio output name, e.g. alsa, followed by /, followed by the audio output specific device name. The default value for this option is auto, which tries every audio output in preference order with the default device.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > More > Show Audio Devices.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
-msgstr "<name> Verilen ses cihazı kullanın. Bu ses çıktı adı, e.g. alsa, takip /, ses çıktı özel cihaz adı tarafından takip edilmektedir. Bu seçenek için varsayılan değer otomatik, varsayılan cihazla her ses çıktısını tercih eden otomatikdir.\\n\\nTo list available audio devices in mpv.net, use the context menu:\\n\\nView > Daha fazla > Show Audio Cihazları.\\n\\nTo change the audio device in mpv.net, also use the context menu:\\n\\nAudio > Audio Device"
+msgstr "<name> Ses aygıtı: çıkış adı (örneğin alsa), ardından / ve bu çıkışa özgü aygıt adı. Varsayılan auto, çıkışları öncelik sırasıyla varsayılan aygıtlarıyla dener.\\n\\nAygıtları bağlam menüsünden listeleyin:\\n\\nGörünüm > Diğer > Ses aygıtlarını göster.\\n\\nAygıtı değiştirmek için bağlam menüsünü kullanın:\\n\\nSes > Ses aygıtı"
 
 msgid "<x:y> Initial window location in percent. Default: 50:50 (centered)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 docks the window to the left side.\\nx=100 docks the window to the right side.\\n\\ny=0 docks the window to the top side.\\ny=100 docks the window to the bottom side."
-msgstr "<x:y> Yüzde ilk pencere yeri. Varsayılan: 50:50 (merkezli)\\n\\nRequires Windows 11, on Windows 10 it works slightly incorrect due to invisible borders.\\n\\nx=0 Pencereyi sol tarafa taşır.\\nx=100 Pencereyi doğru tarafa taşır.\\n\\ny=0 Pencereyi üst tarafa taşır.\\ny=100 Pencereyi alt tarafa taşır."
+msgstr "<x:y> Pencerenin yüzde cinsinden başlangıç konumu. Varsayılan: 50:50 (ortalanmış)\\n\\nWindows 11 gerekir; Windows 10'da görünmez kenarlıklar küçük sapmalara neden olur.\\n\\nx=0 pencereyi sola yaslar.\\nx=100 sağa yaslar.\\n\\ny=0 üste yaslar.\\ny=100 alta yaslar."
 
 #: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:155
 msgid "Abort"
-msgstr "Abort"
+msgstr "Durdur"
 
 #: src\MpvNet.Windows\WPF\ViewModels\AboutViewModel.cs:10
 msgid "About"
-msgstr "About"
+msgstr "Hakkında"
 
 #: src\MpvNet\Utilities\InputHelp.cs:197
 msgid "About mpv.net"
@@ -237,10 +237,10 @@ msgid "Add mpv.net to Path environment variable"
 msgstr "Mpv.net'i Path ortam değişkenine ekleyin"
 
 msgid "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
-msgstr "Allow only OpenGL (requires OpenGL 2.1+ or GLES 2.0+)"
+msgstr "Yalnızca OpenGL'e izin ver (OpenGL 2.1+ veya GLES 2.0+ gerekir)"
 
 msgid "Allow only Vulkan"
-msgstr "Allow only Vulkan"
+msgstr "Yalnızca Vulkan'a izin ver"
 
 msgid "Allow only gpu-context=d3d11"
 msgstr "Sadece gpu-context=d3d11"
@@ -286,13 +286,13 @@ msgid "Audio Tracks"
 msgstr "Ses Parçaları"
 
 msgid "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
-msgstr "Audio file extentions to try to match when using --audio-file-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
+msgstr "--audio-file-auto, --autocreate-playlist veya --directory-filter-types için ses uzantıları. mpv.net bunları dosya ilişkilendirmelerinde ve auto-load-folder özelliğinde de kullanır. Varsayılan: mp3,wav,flac,m4a,aac,ogg,opus,wma,alac,aiff,aif,ape,wv,mka,ac3,dts,eac3,amr,au,mp2,mpa,mpc,thd,w64,oga,ogm,dtshd,dtshr,dtsma"
 
 msgid "Automatic selection. If output bit depth cannot be detected, 8 bits per component are assumed."
 msgstr "Otomatik seçim. Az derinlik tespit edilemezse, bileşen başına 8 bit varsayılır."
 
 msgid "Available on Windows 10 or higher"
-msgstr "Available on Windows 10 or higher"
+msgstr "Windows 10 ve üzeri sürümlerde kullanılabilir"
 
 #: src\MpvNet\Utilities\InputHelp.cs:207
 msgid "Backward"
@@ -338,7 +338,7 @@ msgid "Changed theme settings require mpv.net being restarted."
 msgstr "Değiştirilen tema ayarları mpv.net uygulamasının yeniden başlatılmasını gerektirir."
 
 msgid "Changes between a light and dark theme.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
-msgstr "Bir ışık ve karanlık tema arasındaki değişiklikler.\\nmpv.net must be restarted after a change.\\nmpv.net specific option."
+msgstr "Açık ve koyu temalar arasında geçiş yapar.\\nDeğişiklikten sonra mpv.net yeniden başlatılmalıdır.\\nmpv.net'e özgü seçenek."
 
 #: src\MpvNet.Windows\WPF\InputWindow.xaml.cs:126
 msgid "Changes will be available on next startup."
@@ -377,16 +377,16 @@ msgid "Color Adjustment"
 msgstr "Renk Uyumu"
 
 msgid "Color Mapping"
-msgstr "Color Mapping"
+msgstr "Renk eşleme"
 
 msgid "Color theme used in dark mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
-msgstr "Karanlık modda kullanılan renkli tema.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: dark"
+msgstr "Koyu modda kullanılan renk teması.\\nDeğişiklikten sonra mpv.net yeniden başlatılmalıdır.\\nmpv.net'e özgü seçenek. Varsayılan: dark"
 
 msgid "Color theme used in light mode.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
-msgstr "Işık modunda kullanılan renkli tema.\\nmpv.net must be restarted after a change.\\nmpv.net specific option. Default: light"
+msgstr "Açık modda kullanılan renk teması.\\nDeğişiklikten sonra mpv.net yeniden başlatılmalıdır.\\nmpv.net'e özgü seçenek. Varsayılan: light"
 
 msgid "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
-msgstr "Color used to draw parts of the mpv window not covered by video. See the --sub-color option for how colors are defined."
+msgstr "mpv penceresinde videonun kaplamadığı alanların rengi. Renk tanımları için --sub-color seçeneğine bakın."
 
 #: src\MpvNet.Windows\WPF\InputWindow.xaml:140
 msgid "Command"
@@ -434,7 +434,7 @@ msgid "Controls which type of graphics APIs will be accepted."
 msgstr "Grafik API türü olan kontroller kabul edilecektir."
 
 msgid "Create a new process everytime the shell starts mpv.net"
-msgstr "Create a new process everytime the shell starts mpv.net"
+msgstr "Sistem kabuğu mpv.net'i her başlattığında yeni bir işlem oluştur"
 
 msgid "Cubic B-spline frame mixing"
 msgstr "Cubic B-spline çerçeve karıştırma"
@@ -445,10 +445,10 @@ msgid "Custom"
 msgstr "Özel"
 
 msgid "Data source to use when tone-mapping. Setting this to a specific value allows overriding the default metadata preference logic."
-msgstr "Data source to use when tone-mapping. Bunu belirli bir değere ayarlayın, varsayılan metadata tercih mantığını genişletin."
+msgstr "Ton eşlemede kullanılacak veri kaynağı. Belirli bir değer seçmek, varsayılan üst veri önceliğini geçersiz kılar."
 
 msgid "Debanding"
-msgstr "Debanding"
+msgstr "Renk bantlarını azaltma"
 
 msgid "Decide whether to use network cache settings."
 msgstr "Ağ önbellek ayarlarını kullanmaya karar verin."
@@ -498,7 +498,7 @@ msgid "Default settings, tuned to provide a balance of performance and quality."
 msgstr "Varsayılan ayarlar, performans ve kalite dengesi sağlamak için ayarlandı."
 
 msgid "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
-msgstr "Defines if more then one mpv.net process is allowed.\\nMulti can alternatively be enabled by pressing the SHIFT key. (mpv.net option)"
+msgstr "Birden fazla mpv.net işlemine izin verilip verilmediğini belirler.\\nSHIFT tuşu basılı tutularak da çoklu işlem modu açılabilir. (mpv.net seçeneği)"
 
 #: src\MpvNet\Utilities\InputHelp.cs:86 src\MpvNet\Utilities\InputHelp.cs:93
 msgid "Delay +0.1"
@@ -512,7 +512,7 @@ msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable).
 msgstr "Daha önce milisaniyelerde gecikme, devre dışı bırakmak için bir anahtar (0."
 
 msgid "Demuxer"
-msgstr "Demuxer"
+msgstr "Çoğullama çözücü"
 
 #: src\MpvNet\Utilities\InputHelp.cs:147
 msgid "Demuxers"
@@ -523,7 +523,7 @@ msgid "Details"
 msgstr "Detaylar"
 
 msgid "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
-msgstr "Direct3D11 through the OpenGL ES translation layer ANGLE. This supports almost everything the win backend does (if the ANGLE build is new enough)."
+msgstr "OpenGL ES çeviri katmanı ANGLE üzerinden Direct3D11. ANGLE sürümü yeterince yeniyse win çıktısının neredeyse tüm özelliklerini destekler."
 
 msgid "Disable all advanced rendering, equivalent to passing no to every option."
 msgstr "Tüm gelişmiş kullanım, her seçeneğe hayır geçmek için eşdeğer."
@@ -548,7 +548,7 @@ msgstr "Otomatik olarak dış alt başlık dosyaları yüklemeyin."
 
 #: src\MpvNet\App.cs:208
 msgid "Donation"
-msgstr "Donation"
+msgstr "Bağış"
 
 #: src\MpvNet\Utilities\InputHelp.cs:114
 msgid "Double"
@@ -561,10 +561,10 @@ msgstr "Oynatmak için dosyaları veya URL'leri buraya bırakın."
 
 #: src\MpvNet\App.cs:210
 msgid "E-mail support"
-msgstr "E-mail support"
+msgstr "E-posta desteği"
 
 msgid "EWA Lanczos (\"Jinc\") reconstruction (slow)."
-msgstr "EWA Lanczos (\"Jinc\") reconstruction (slow)."
+msgstr "EWA Lanczos (\"Jinc\") yeniden oluşturma, yavaştır."
 
 #: src\MpvNet\App.cs:201
 msgid "Edit config file"
@@ -602,19 +602,19 @@ msgid "Enable the default track auto-selection. Enabling this will make the play
 msgstr "Varsayılan takip auto-selection. Bu, oyuncunun yardım, alang ve diğerlerine göre akışları seçmesini sağlayacaktır. Eğer devre dışı bırakılırsa, hiçbir parça seçilir. Buna ek olarak, oyuncu parçaları seçilmezse ve bunun yerine bekleyecek (bu bekleme modu eğlencelidir, ancak duraklama seçeneği belirlenmemektedir).\\n\\nBu lavfi-complex ile faydalıdır: Bu modda oyuna başlayabilirsiniz ve sonra filtre grafiğini ayarlayarak pistleri seçebilirsiniz. Not if lavfi-complex playback başlamadan önce ayarlandığında, referanslı parçalar her zaman seçilir."
 
 msgid "Enable this only when a developer asks for it. (mpv.net option)"
-msgstr "Enable this only when a developer asks for it. (mpv.net option)"
+msgstr "Yalnızca bir geliştirici istediğinde etkinleştirin. (mpv.net seçeneği)"
 
 msgid "Enables HDR peak detection."
-msgstr "Enables HDR peak detection."
+msgstr "HDR tepe parlaklığı algılamayı etkinleştirir."
 
 msgid "Enables color adjustment."
-msgstr "Enables color ayarı."
+msgstr "Renk ayarlamayı etkinleştirir."
 
 msgid "Enables debanding using libplacebo."
-msgstr "Enables debanding using libplacebo."
+msgstr "libplacebo ile renk bantlarını azaltmayı etkinleştirir."
 
 msgid "Enables sigmoidization."
-msgstr "Enables sigmoidization."
+msgstr "Sigmoid dönüşümünü etkinleştirir."
 
 msgid "Enables the use of these color mapping settings. Disabling this option does not disable color mapping, it just means \"use the default options for everything\"."
 msgstr "Bu renkli haritalama ayarlarının kullanımı kullanılabilir. Bu seçeneği bozmak renk haritasını devre dışı bırakmaz, sadece “her şey için varsayılan seçenekler” anlamına gelir."
@@ -687,16 +687,16 @@ msgid "First File"
 msgstr "İlk Dosya"
 
 msgid "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
-msgstr "For single files automatically load the entire directory into the playlist. (deprecated mpv.net option, autocreate-playlist can be used instead)"
+msgstr "Tek dosya açıldığında tüm klasörü otomatik olarak oynatma listesine ekler. (kullanımdan kaldırılan mpv.net seçeneği; yerine autocreate-playlist kullanılabilir)"
 
 msgid "Force a single process and add files to playlist"
 msgstr "Tek bir işlem kurmak ve dosyaları listelemek için ekleyin"
 
 msgid "Force a single process everytime the shell starts mpv.net"
-msgstr "Force a single process everytime the shell starts mpv.net"
+msgstr "Sistem kabuğu mpv.net'i her başlattığında tek işlem kullanımını zorla"
 
 msgid "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
-msgstr "Force the use of a full tone-mapping LUT even for functions that have faster pure GLSL replacements (e.g. clip, linear, saturation). This is a debug option."
+msgstr "clip, linear ve saturation gibi daha hızlı saf GLSL karşılıkları bulunan işlevlerde bile tam ton eşleme LUT'sini zorlar. Bu bir hata ayıklama seçeneğidir."
 
 #: src\MpvNet\Integration\Mpv\Player.cs:439
 #: src\MpvNet\Integration\Mpv\Player.cs:467
@@ -727,7 +727,7 @@ msgid "General"
 msgstr "General General General General General General General General General General General General"
 
 msgid "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
-msgstr "General purpose, customizable, GPU-accelerated video output driver. It supports extended scaling methods, dithering, color management, custom shaders, HDR, and more."
+msgstr "Özelleştirilebilir, GPU hızlandırmalı genel amaçlı video çıktısı. Gelişmiş ölçekleme, renk titreşimi, renk yönetimi, özel gölgelendiriciler, HDR ve diğer özellikleri destekler."
 
 #: src\MpvNet\App.cs:206
 msgid "GitHub Sponsors"
@@ -737,7 +737,7 @@ msgid "Graphically highlight hard-clipped pixels during tone-mapping (i.e. pixel
 msgstr "Grafiksel olarak hard-clipped piksel tone-mapping (i.e. piksel, iddia edilen kaynağı aydınlatan aralığı aşıyor)."
 
 msgid "HDR Peak Detection"
-msgstr "HDR Peak Detection"
+msgstr "HDR tepe parlaklığı algılama"
 
 #: src\MpvNet\Utilities\InputHelp.cs:113
 msgid "Half"
@@ -791,14 +791,14 @@ msgstr "Mevcut dosya biterse, bir sonraki dosyaya gidin. Eğer idle hayır için
 
 #: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:173
 msgid "Ignore"
-msgstr "Ignore"
+msgstr "Yok say"
 
 #: src\MpvNet\Utilities\InputHelp.cs:218
 msgid "Ignore left mouse button"
 msgstr "Sol fare düğmesini görmezden gel"
 
 msgid "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
-msgstr "Image file extentions to try to match when using --cover-art-auto, --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
+msgstr "--cover-art-auto, --autocreate-playlist veya --directory-filter-types için görüntü uzantıları. mpv.net bunları dosya ilişkilendirmelerinde ve auto-load-folder özelliğinde de kullanır. Varsayılan: avif,bmp,gif,j2k,jp2,jpeg,jpg,jxl,png,svg,tga,tif,tiff,webp"
 
 #: src\MpvNet\Utilities\InputHelp.cs:69
 msgid "Increase Brightness"
@@ -1040,7 +1040,7 @@ msgid "No audio tracks"
 msgstr "Ses parçası yok"
 
 msgid "No filter, only use basic GPU texture sampling."
-msgstr "No filter, only use basic GPU texture sampling."
+msgstr "Süzgeç kullanmadan yalnızca temel GPU doku örneklemesini kullanır."
 
 #: src\MpvNet\Command.cs:117
 msgid "No subtitle"
@@ -1052,7 +1052,7 @@ msgid "No subtitles"
 msgstr "Altyazı yok"
 
 msgid "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
-msgstr "Normally, mpv will try to keep all options when playing the next file on the playlist, even if they were changed by the user during playback. This can be changed with this option. It accepts a list of options, and mpv will reset the value of these options on playback start to the initial value."
+msgstr "mpv normalde oynatma sırasında değiştirilen seçenekleri de sonraki dosyaya taşır. Bu seçenek, oynatma başladığında ilk değerlerine sıfırlanacak seçeneklerin listesini alır."
 
 msgid "Number of key presses to generate per second on autorepeat."
 msgstr "Autorepeat'da ikinci başına üretmek için anahtar basın sayısı."
@@ -1094,10 +1094,10 @@ msgid "Open URL or file from clipboard"
 msgstr "URL'yi veya dosyayı panodan açın"
 
 msgid "Override all libplacebo options by the values from the given preset."
-msgstr "Override all libplacebo seçenekleri by the values from the given preset."
+msgstr "Tüm libplacebo seçeneklerini verilen ön ayardaki değerlerle değiştirir."
 
 msgid "Override the filter used for downscaling planes, e.g. chroma/alpha. If set to none, use the same setting as downscaler, respectively."
-msgstr "Override the filter used for downscaling uçaklar, e.g. chroma/alpha. Hiçbirine ayarlandığında, aynı ayarı alt ölçekli olarak kullanın."
+msgstr "Renk veya alfa düzlemlerini küçültürken kullanılacak süzgeci değiştirir. none seçilirse downscaler ayarı kullanılır."
 
 msgid "Override the filter used for upscaling planes, e.g. chroma/alpha. If set to none, use the same setting as upscaler, respectively."
 msgstr "Genişleme uçaklar için kullanılan filtre, e.g. chroma /alpha. Hiçbirine ayarlandığında, aynı ayarı sırasıyla ölçekleyici olarak kullanın."
@@ -1106,13 +1106,13 @@ msgid "Overrides the value of all options in this section by their default value
 msgstr "Bu bölümdeki tüm seçeneklerin değerini, verilen presetten varsayılan değerlerinden alır."
 
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
-msgstr "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables HDR contrast recovery."
+msgstr "Bu bölümdeki tüm seçenekleri seçilen ön ayarın varsayılan değerleriyle değiştirir. high_quality ayrıca HDR kontrast kurtarmayı açar."
 
 msgid "Overrides the value of all options in this section by their default values from the given preset. high_quality also enables frame histogram measurement."
 msgstr "Bu bölümdeki tüm seçeneklerin değerini, verilen presetten varsayılan değerlerinden alır. high_quality ayrıca histogram ölçümlerini çerçeveye olanak sağlar."
 
 msgid "Oversampling, only mix \"edge\" frames while preserving FPS"
-msgstr "Oversampling, only mix \"edge\" frames while preserving FPS"
+msgstr "Aşırı örnekleme: kare hızını (FPS) koruyarak yalnızca kenar kareleri karıştır"
 
 #: src\MpvNet\Utilities\InputHelp.cs:51 src\MpvNet\Utilities\InputHelp.cs:52
 #: src\MpvNet\Utilities\InputHelp.cs:53 src\MpvNet\Utilities\InputHelp.cs:54
@@ -1122,7 +1122,7 @@ msgstr "Oversampling, only mix \"edge\" frames while preserving FPS"
 #: src\MpvNet\Utilities\InputHelp.cs:61 src\MpvNet\Utilities\InputHelp.cs:62
 #: src\MpvNet\Utilities\InputHelp.cs:63
 msgid "Pan & Scan"
-msgstr "Videoyu Sıkıştır"
+msgstr "Kaydırma ve kırpma"
 
 msgid "Passes extra raw option to the libplacebo rendering backend (used by --vo=gpu-next). May override the effects of any other options set using the normal options system."
 msgstr "Ekstra ham seçeneği libplacebo file backend ( --vo=gpu-next tarafından kullanılır). Normal seçenekleri sistemi kullanarak belirlenen diğer seçeneklerin etkilerini on Mayıs."
@@ -1219,7 +1219,7 @@ msgstr "Tüm her şeyi yüksek kaliteli presetslere geri yükleyin (burada mevcu
 
 #: src\MpvNet.Windows\WPF\MsgBox\MessageBoxEx.xaml:164
 msgid "Retry"
-msgstr "Retry"
+msgstr "Yeniden dene"
 
 #: src\MpvNet\Utilities\InputHelp.cs:81
 msgid "Rotate Video"
@@ -1235,13 +1235,13 @@ msgid "Save and restore the audio device chosen in the context menu. Default: ye
 msgstr "İçerik menüsünde seçilen ses cihazı kurtarmak ve geri yüklemek. Varsayılan: evet"
 
 msgid "Save the window position on exit. (mpv.net option)"
-msgstr "Save the window position on exit. (mpv.net option)"
+msgstr "Çıkışta pencere konumunu kaydet. (mpv.net seçeneği)"
 
 msgid "Save volume and mute on exit and restore it on start. (mpv.net option)"
-msgstr "Save volume and mute on exit and restore it on start. (mpv.net option)"
+msgstr "Çıkışta ses düzeyi ve sessiz durumunu kaydedip başlangıçta geri yükle. (mpv.net seçeneği)"
 
 msgid "Scaling"
-msgstr "Scaling"
+msgstr "Ölçekleme"
 
 msgid "Screenshot"
 msgstr "Ekran görüntüsü"
@@ -1291,7 +1291,7 @@ msgid "Set the image file type used for saving screenshots."
 msgstr "Ekran görüntüleri kurtarmak için kullanılan görüntü dosyası türünü ayarlayın."
 
 msgid "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
-msgstr "Set the startup volume. 0 means silence, 100 means no volume reduction or amplification. Negative values can be passed for compatibility, but are treated as 0. Since mpv 0.18.1, this always controls the internal mixer (aka \"softvol\"). Default: 100"
+msgstr "Başlangıç ses düzeyi: 0 sessizlik, 100 özgün ses düzeyidir. Negatif değerler uyumluluk için kabul edilir ama 0 sayılır. mpv 0.18.1'den beri daima dahili karıştırıcıyı (\"softvol\") denetler. Varsayılan: 100"
 
 msgid "Set the window title. This is used for the video window, and if possible, also sets the audio stream title. Properties are expanded. Warning! There is a danger of this causing significant CPU usage, depending on the properties used."
 msgstr "Pencere ünvanını ayarlayın. Bu video penceresi için kullanılır ve mümkünse, ses akışını da ayarlar. Özellikler genişletilir. Uyarı! Kullanılan özelliklere bağlı olarak bu önemli CPU kullanımına neden olan bir tehlike var."
@@ -1313,7 +1313,7 @@ msgid "Sets the filter used for upscaling."
 msgstr "Üstler için kullanılan filtre ayarlar."
 
 msgid "Setting to remember the window size. (mpv.net option)"
-msgstr "Setting to remember the window size. (mpv.net option)"
+msgstr "Pencere boyutunun ne zaman hatırlanacağını ayarlar. (mpv.net seçeneği)"
 
 #: src\MpvNet\Utilities\InputHelp.cs:174 src\MpvNet\Utilities\InputHelp.cs:175
 #: src\MpvNet\Utilities\InputHelp.cs:176 src\MpvNet\Utilities\InputHelp.cs:177
@@ -1342,7 +1342,7 @@ msgid "Show Profiles"
 msgstr "Profilleri Göster"
 
 msgid "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
-msgstr "Show a message on OSD when playback starts. The string is expanded for properties, e.g. osd-playing-msg='file: ${filename}' will show the message file: followed by a space and the currently played filename. For more information visit:"
+msgstr "Oynatma başladığında ekran mesajı (OSD) gösterir. Özellikler genişletilir: osd-playing-msg='file: ${filename}', file: metninden sonra bir boşluk ve geçerli dosya adını gösterir. Ayrıntılar:"
 
 #: src\MpvNet.Windows\WPF\ConfWindow.xaml.cs:614
 msgid "Show mpv manual"
@@ -1385,16 +1385,16 @@ msgid "Snap the player window to screen edges."
 msgstr "Ekran kenarlarına oyuncu penceresini açın."
 
 msgid "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
-msgstr "Specify a priority list of audio languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two-letter language codes, Matroska, MPEG-TS and NUT use ISO 639-2 three-letter language codes, while OGM uses a free-form identifier. See also aid."
+msgstr "Ses dillerinin öncelik listesi. DVD, iki harfli ISO 639-1; Matroska, MPEG-TS ve NUT, üç harfli ISO 639-2; OGM ise serbest tanımlayıcı kullanır. Ayrıca aid seçeneğine bakın."
 
 msgid "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
-msgstr "Specify a priority list of subtitle languages to use. Different container formats employ different language codes. DVDs use ISO 639-1 two letter language codes, Matroska uses ISO 639-2 three letter language codes while OGM uses a free-form identifier. See also sid."
+msgstr "Altyazı dillerinin öncelik listesi. DVD, iki harfli ISO 639-1; Matroska, üç harfli ISO 639-2; OGM ise serbest tanımlayıcı kullanır. Ayrıca sid seçeneğine bakın."
 
 msgid "Specify font to use for subtitles that do not themselves specify a particular font. The default is  sans-serif."
 msgstr "Belli bir font belirtmedikleri subtitles için yazı yazmak. varsayılan sans-serif."
 
 msgid "Specify the OSD font size. See sub-font-size for details. Default: 55"
-msgstr "Specify the OSD font size. See sub-font-size for details. Default: 55"
+msgstr "Ekran mesajı (OSD) yazı boyutu. Ayrıntılar için sub-font-size seçeneğine bakın. Varsayılan: 55"
 
 msgid "Specify the color used for unstyled text subtitles.\\n\\nA usage description and examples can be found in the manual at:"
 msgstr "Unstyled text subtitles için kullanılan rengi belirtin.\\n\\nBir kullanım açıklaması ve örnekler manuel olarak bulunabilir:"
@@ -1403,7 +1403,7 @@ msgid "Specify the filename template used to save screenshots. The template spec
 msgstr "Ekran görüntüleri kurtarmak için kullanılan dosya adı şablonunu belirtin. Şablon, dosya uzatması olmadan dosya adını belirtir ve bir ekran görüntüsü alırken değiştirilecektir. Varsayılan olarak, şablon mpv-shot%n, mpv-shot0012 gibi dosya isimleri ile sonuçlanır.\\n\\nBurada tam belgeleri bulun:"
 
 msgid "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nFor more information visit:"
-msgstr "Specify the hardware video decoding API that should be used if possible. Whether hardware decoding is actually done depends on the video codec. If hardware decoding is not possible, mpv will fall back on software decoding. Hardware decoding is disabled by default to maintain reliability. However, modern hardware should support hardware video decoding, reducing CPU usage and power consumption.\\n\\nDaha fazla bilgi ziyareti için:"
+msgstr "Mümkünse kullanılacak donanımsal video çözme API'si. Destek codec'e bağlıdır; desteklenmiyorsa mpv yazılımsal çözmeye döner. Güvenilirlik için varsayılan olarak kapalıdır. Modern donanımlar genellikle destekler ve CPU kullanımıyla enerji tüketimini azaltır.\\n\\nAyrıntılar:"
 
 msgid "Specify the sub font size. The unit is the size in scaled pixels at a window height of 720. The actual pixel size is scaled with the window height: if the window height is larger or smaller than 720, the actual size of the text increases or decreases as well. Default: 55"
 msgstr "Alt font boyutunu belirtin. Ünite 720'nin pencere yüksekliğinde ölçeklenmiş piksel boyutu. Gerçek piksel boyutu pencere yüksekliği ile ölçeklenir: pencere yüksekliği 720'den daha büyük veya daha küçükse, metin artışlarının gerçek boyutunu da azaltır veya azalır. Varsayılan: 55"
@@ -1467,7 +1467,7 @@ msgid "Take Screenshot without subtitles"
 msgstr "Ekran Görüntüsünü Altyazısız Al"
 
 msgid "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
-msgstr "The GPU renderer filter function to use when upscaling video. There are some more filters, but most are not as useful. For a complete list, pass help as value, e.g.: mpv --scale=help"
+msgstr "Video büyütülürken kullanılacak GPU süzgeci. Başka süzgeçler de vardır ancak çoğu daha az kullanışlıdır. Tam liste için help değerini kullanın; örnek: mpv --scale=help"
 
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:244
 msgid "The clipboard does not contain a valid URL or file."
@@ -1494,7 +1494,7 @@ msgid "The online playlist could not be loaded."
 msgstr "Çevrimiçi oynatma listesi yüklenemedi."
 
 msgid "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
-msgstr "The options that are saved in \"watch later\" files if they have been changed since when mpv started. These values will be restored the next time the files are played. This is a string list option. For more information visit:"
+msgstr "mpv başladıktan sonra değiştirilmişlerse devam dosyalarına kaydedilecek seçenekler. Aynı dosya tekrar oynatıldığında değerler geri yüklenir. Seçenek adı listesi alır. Ayrıntılar:"
 
 #: src\\MpvNet\\Media\\StreamingFailureDiagnostics.cs:40
 msgid "This content is no longer available."
@@ -1597,10 +1597,10 @@ msgid "Unregister file associations"
 msgstr "Dosya ilişkilendirmelerinin kaldır"
 
 msgid "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
-msgstr "Usage of the media info library instead of mpv to retrieve media information. (mpv.net option)"
+msgstr "Ortam bilgilerini almak için mpv yerine MediaInfo kitaplığını kullanır. (mpv.net seçeneği)"
 
 msgid "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
-msgstr "Use any available API. Note that the default GPU API used for this value is subject to change, and must not be relied upon. If a certain GPU API needs to be used, it must be explicitly specified"
+msgstr "Kullanılabilir herhangi bir API'yi kullanır. Varsayılan GPU API'si değişebilir ve sabit kabul edilmemelidir. Belirli bir API gerekiyorsa açıkça seçilmelidir."
 
 msgid "Use higher quality, but slower, tricubic interpolation for gamut mapping 3DLUTs. May substantially improve the 3DLUT gamut mapping accuracy, in particular at smaller 3DLUT sizes. Shouldn't have much effect at the default size."
 msgstr "Daha yüksek kaliteli kullanın, ancak daha yavaş, tricubik apolasyon 3DLUTs. 3DLUT gamut haritasını büyük ölçüde artırabilir, özellikle küçük 3DLUT boyutlarda. Varsayılan boyutta çok fazla etkiye sahip olmamalıdır."
@@ -1615,10 +1615,10 @@ msgid "Use the same filter as specified for upscaler"
 msgstr "Aynı filtreyi yukarı ölçeklir için belirtildiği gibi kullanın"
 
 msgid "Used menu syntax for defining the context menu in input.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
-msgstr "Girişteki bağlam menüsünü tanımlamak için menü sözlüğü kullanılır.conf.\\nmpv.net by default uses '#menu:', uosc uses '#!' by default."
+msgstr "input.conf içinde bağlam menüsünü tanımlayan söz dizimi.\\nmpv.net varsayılan olarak '#menu:', uosc ise '#!' kullanır."
 
 msgid "User interface display language.\\nmpv.net must be restarted after a change."
-msgstr "Kullanıcı arayüzü görüntü dili.\\nmpv.net must be restarted after a change."
+msgstr "Kullanıcı arayüzünün görüntüleme dili.\\nDeğişiklikten sonra mpv.net yeniden başlatılmalıdır."
 
 msgid "VK_KHR_win32_surface"
 msgstr "VK_KHR_win32_surface"
@@ -1644,7 +1644,7 @@ msgid "Video Tracks"
 msgstr "Video Parçaları"
 
 msgid "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
-msgstr "Video file extentions to try to match when using --autocreate-playlist or --directory-filter-types. By mpv.net used to create file associations and used by the auto-load-folder feature. Default: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
+msgstr "--autocreate-playlist veya --directory-filter-types için video uzantıları. mpv.net bunları dosya ilişkilendirmelerinde ve auto-load-folder özelliğinde de kullanır. Varsayılan: 3g2,3gp,avi,flv,m2ts,m4v,mj2,mkv,mov,mp4,mpeg,mpg,ogv,rmvb,ts,webm,wmv,y4m"
 
 msgid "Video output driver that uses the Direct3D interface."
 msgstr "Direct3D arayüzünü kullanan video çıkış sürücüsü."
@@ -1706,23 +1706,23 @@ msgid "Website mpv.net"
 msgstr "Mpv.net internet sayfası"
 
 msgid "When opening a local file, act as if the parent directory is opened and create a playlist automatically.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nsame: Create a playlist from the parent directory with files matching the same category as the currently loaded file. One of the *-exts is selected based on the input file and only files with matching extensions are added to the playlist. If the input file itself is not matched to any extension list, the playlist is not autogenerated."
-msgstr "Yerel bir dosya açarken, ebeveyn rehberi açılır ve otomatik olarak bir liste yaratır.\\n\\nno: Load a single file (mpv default).\\n\\nFilter: Create a playlist from the parent directory with files matching --directory-filter-types. (mpv.net default)\\n\\nAynı: Şu anda yüklenen dosya olarak aynı kategoriyi eşleşen dosyalarla ebeveyn rehberinden bir liste oluşturun. * genişleticilerden biri giriş dosyasına göre seçilir ve sadece eşleşen uzantılarla dosyaları listelere eklenir. Giriş dosyasının kendisi herhangi bir uzatma listesine uymazsa, liste otomatik olarak üretilmez."
+msgstr "Yerel dosya açılırken üst klasörden otomatik oynatma listesi oluşturur.\\n\\nno: yalnızca tek dosya yükler (mpv varsayılanı).\\n\\nFilter: klasördeki dosyaları --directory-filter-types ile seçer (mpv.net varsayılanı).\\n\\nsame: yalnızca açık dosyayla aynı kategorideki dosyaları ekler. Girdiye göre bir *-exts listesi seçilir ve yalnızca eşleşen uzantılar eklenir. Girdi hiçbir uzantı listesine uymuyorsa otomatik liste oluşturulmaz."
 
 msgid "When upscaling, use a sigmoidal color transform to avoid emphasizing ringing artifacts. This also implies linear-scaling."
-msgstr "Genişleme yapıldığında, bir sigmoidal renk, ringing eserlerden kaçınmak için dönüştürür. Bu aynı zamanda linear-scaling anlamına gelir."
+msgstr "Büyütme sırasında kenar halelerini vurgulamamak için sigmoid renk dönüşümü kullanır. Doğrusal ölçeklemeyi de etkinleştirir."
 
 msgid "When using convolution based filters, extend the filter size when downscaling. Increases quality, but reduces performance while downscaling.\\n\\nThis will perform slightly sub-optimally for anamorphic video (but still better than without it) since it will extend the size to match only the milder of the scale factors between the axes."
 msgstr "Konvolution bazlı filtreler kullanırken, aşağıscaling sırasında filtre boyutunu genişletin. Kaliteyi artırır, ancak aşağıscaling sırasında performansı azaltır.\\n\\nBu, anamorfik video için biraz sub-optimally performans gösterecektir (ama yine de onsuzdan daha iyi) çünkü sadece axes arasındaki ölçek faktörlerinin hafif özelliklerini genişletecektir."
 
 msgid "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
-msgstr "Whether to scale the OSD with the window size. If this is disabled, osd-font-size and other OSD options that use scaled pixels are always in actual pixels. The effect is that changing the window size won't change the OSD font size."
+msgstr "Ekran mesajlarını (OSD) pencere boyutuna göre ölçekler. Kapatılırsa osd-font-size ve ölçekli piksel kullanan diğer seçenekler gerçek piksel kullanır; pencere boyutu değişince OSD yazı boyutu değişmez."
 
 #: src\MpvNet.Windows\Commands\GuiCommand.cs:337
 msgid "Width"
 msgstr "Genişlik"
 
 msgid "Win32, with native Direct3D 11 rendering."
-msgstr "Win32, with native Direct3D 11 rendering."
+msgstr "Yerel Direct3D 11 çizimi kullanan Win32 çıktısı."
 
 msgid "Win32/WGL"
 msgstr "Win32/WGL"
@@ -2404,7 +2404,7 @@ msgid "remember-window-position"
 msgstr "remember-window-position"
 
 msgid "requires vo=gpu (Any platform CUDA is available)"
-msgstr "requires vo=gpu (Any platform CUDA is available)"
+msgstr "vo=gpu gerekir (CUDA bulunan herhangi bir platform)"
 
 msgid "requires vo=gpu with gpu-context=d3d11 or gpu-context=angle"
 msgstr "vo=gpu gpu-context=d3d11 veya gpu-context=angle"
@@ -2648,37 +2648,37 @@ msgstr "{0} mevcut değil. Oluşturmak ister misiniz?"
 #: src\MpvNet\Utilities\InputHelp.cs:161
 msgctxt "Move"
 msgid "Center"
-msgstr "Center"
+msgstr "Ortala"
 
 #: src\MpvNet\Utilities\InputHelp.cs:160
 msgctxt "Move"
 msgid "Down"
-msgstr "Down"
+msgstr "Aşağı"
 
 #: src\MpvNet\Utilities\InputHelp.cs:157
 msgctxt "Move"
 msgid "Left"
-msgstr "Left"
+msgstr "Sol"
 
 #: src\MpvNet\Utilities\InputHelp.cs:158
 msgctxt "Move"
 msgid "Right"
-msgstr "Right"
+msgstr "Sağ"
 
 #: src\MpvNet\Utilities\InputHelp.cs:159
 msgctxt "Move"
 msgid "Up"
-msgstr "Up"
+msgstr "Yukarı"
 
 #: src\MpvNet\Utilities\InputHelp.cs:106
 msgctxt "Volume"
 msgid "Down"
-msgstr "Down"
+msgstr "Azalt"
 
 #: src\MpvNet\Utilities\InputHelp.cs:105
 msgctxt "Volume"
 msgid "Up"
-msgstr "Up"
+msgstr "Artır"
 
 #: src/MpvNet/Integration/Mpv/Player.MediaLoading.cs
 msgid "No playable media was found in this drive or folder."
@@ -2693,13 +2693,13 @@ msgid "The source service requires verification that you are not a bot."
 msgstr "Kaynak hizmet, bot olmadığınızın doğrulanmasını gerektiriyor."
 
 msgid "The clipboard is temporarily unavailable."
-msgstr "The clipboard is temporarily unavailable."
+msgstr "Pano geçici olarak kullanılamıyor."
 
 msgid "Untitled Track"
-msgstr "Untitled Track"
+msgstr "Başlıksız parça"
 
 msgid "Repository: "
-msgstr "Repository: "
+msgstr "Kod deposu: "
 
 msgid "chinese-taiwan"
 msgstr "繁體中文（台灣）"
@@ -2724,7 +2724,7 @@ msgid "Cache"
 msgstr "Cache"
 
 msgid "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
-msgstr "Save network URLs in Recent Files. URLs are stored as plain text in settings.xml. URLs with embedded credentials, sensitive query parameters, or fragments are always excluded; enable only when remaining URL parameters contain no secrets. (mpv.net option)"
+msgstr "Ağ URL'lerini son dosyalarda, settings.xml içinde düz metin olarak kaydeder. Gömülü kimlik bilgileri, hassas sorgu parametreleri veya parçalar içeren URL'ler her zaman dışlanır. Yalnızca kalan URL parametrelerinde gizli bilgi yoksa açın. (mpv.net seçeneği)"
 
 msgid "save-network-urls-in-recent"
 msgstr "save-network-urls-in-recent"
@@ -2732,3 +2732,23 @@ msgstr "save-network-urls-in-recent"
 
 msgid "video"
 msgstr "video"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Media and playlist files"
+msgstr "Medya ve oynatma listesi dosyaları"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Video files"
+msgstr "Video dosyaları"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Audio files"
+msgstr "Ses dosyaları"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Playlists"
+msgstr "Oynatma listeleri"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "All files"
+msgstr "Tüm dosyalar"

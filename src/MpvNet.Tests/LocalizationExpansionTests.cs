@@ -97,6 +97,38 @@ public sealed class LocalizationExpansionTests
         Assert.Equal("en", LocalizationCultureResolver.ResolveSupportedCulture("zh-Hant", ["zh-CN", "en"]));
     }
 
+    [Theory]
+    [MemberData(nameof(StartupLocalizationTests.InterfaceLanguages), MemberType = typeof(StartupLocalizationTests))]
+    public void FileDialogLabelsUseTheCatalogAndKeepExtensionPatterns(string name, string culture) => OnWpfThread(() =>
+    {
+        string savedLanguage = Global.App.Language;
+        ITranslator? savedTranslator = TranslationProvider.Current;
+        CultureInfo savedUi = CultureInfo.CurrentUICulture;
+        try
+        {
+            TranslationProvider.Current = null;
+            string[] baseline = FileTypes.GetOpenFileDialogFilter().Split('|');
+            Global.App.Language = name;
+            TranslationProvider.Current = new WpfTranslator();
+            var catalog = new NGettext.Catalog("mpvnet", AppPaths.Locale, new CultureInfo(culture));
+            string[] actual = FileTypes.GetOpenFileDialogFilter().Split('|');
+            Assert.Equal(10, actual.Length);
+            string[] labels = ["Media and playlist files", "Video files", "Audio files", "Playlists", "All files"];
+            for (int index = 0; index < labels.Length; index++)
+            {
+                Assert.Equal(catalog.GetString(labels[index]) + (index == 4 ? " (*.*)" : ""), actual[index * 2]);
+                Assert.Equal(baseline[index * 2 + 1], actual[index * 2 + 1]);
+            }
+        }
+        finally
+        {
+            Global.App.Language = savedLanguage;
+            TranslationProvider.Current = savedTranslator;
+            CultureInfo.CurrentUICulture = savedUi;
+            InterfaceLayout.ApplyCulture(savedUi);
+        }
+    });
+
     [Fact]
     public void TranslatingEditorNeverTranslatesConfigurationKeys()
     {

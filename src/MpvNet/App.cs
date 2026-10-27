@@ -95,6 +95,12 @@ public class AppClass : IDisposable
             foreach (var i in Conf)
                 ProcessProperty(i.Key, i.Value, true);
 
+            // Resolve the CLI override before generating menus and native OSD
+            // defaults. Applying it only in Player.Init leaves earlier text in
+            // the configured/system language for the rest of the session.
+            foreach (var argument in MpvNet.CommandLine.Arguments.Where(pair => pair.Name == "language"))
+                ProcessProperty(argument.Name, argument.Value);
+
             SanitizeRecentFiles();
 
             EnsureInitialSelectMenuConf();

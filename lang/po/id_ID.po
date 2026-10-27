@@ -78,7 +78,7 @@ msgid "<0.0..1.0> (Relative) chromaticity protection zone for perceptual mapping
 msgstr "<0.0..1.0> Zona perlindungan kromatisitas relatif untuk pemetaan perseptual. Bawaan 0.30."
 
 msgid "<0.0..1.0> Antiringing strength to use for all filters. A value of 0.0 disables antiringing, and a value of 1.0 enables full-strength antiringing. Defaults to 0.0."
-msgstr "<0.0..1.0> Kekuatan antiringing semua filter. 0.0 menonaktifkan, 1.0 kekuatan penuh. Bawaan 0.0."
+msgstr "<0.0..1.0> Kekuatan pengurangan halo untuk semua filter. 0.0 menonaktifkan, sedangkan 1.0 menerapkan kekuatan penuh. Bawaan 0.0."
 
 msgid "<0.0..1.0> Default knee point to use in the absence of source scene average metadata. Normally, this is ignored in favor of picking the knee point as the (relative) source scene average brightness level. Defaults to 0.4."
 msgstr "<0.0..1.0> Titik tekuk bawaan tanpa metadata rata-rata adegan sumber. Biasanya luminans rata-rata relatif sumber diutamakan. Bawaan 0.4."
@@ -501,7 +501,7 @@ msgid "Delay in milliseconds before we start to autorepeat a key (0 to disable).
 msgstr "Jeda sebelum pengulangan tombol otomatis dalam milidetik (0 untuk menonaktifkan)."
 
 msgid "Demuxer"
-msgstr "Demuxer"
+msgstr "Demultiplekser"
 
 #: src\MpvNet\Utilities\InputHelp.cs:147
 msgid "Demuxers"
@@ -1102,7 +1102,7 @@ msgid "Overrides the value of all options in this section by their default value
 msgstr "Timpa opsi bagian ini dengan nilai bawaan preset. high_quality juga mengaktifkan pengukuran histogram bingkai."
 
 msgid "Oversampling, only mix \"edge\" frames while preserving FPS"
-msgstr "Oversampling, campur hanya bingkai tepi sambil mempertahankan FPS"
+msgstr "Pengambilan sampel berlebih: campur hanya bingkai tepi sambil mempertahankan FPS"
 
 #: src\MpvNet\Utilities\InputHelp.cs:51 src\MpvNet\Utilities\InputHelp.cs:52
 #: src\MpvNet\Utilities\InputHelp.cs:53 src\MpvNet\Utilities\InputHelp.cs:54
@@ -2720,3 +2720,23 @@ msgstr "save-network-urls-in-recent"
 
 msgid "video"
 msgstr "video"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Media and playlist files"
+msgstr "Berkas media dan daftar putar"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Video files"
+msgstr "Berkas video"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Audio files"
+msgstr "Berkas audio"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Playlists"
+msgstr "Daftar putar"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "All files"
+msgstr "Semua berkas"

@@ -2720,3 +2720,23 @@ msgstr "save-network-urls-in-recent"
 
 msgid "video"
 msgstr "video"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Media and playlist files"
+msgstr "媒體與播放清單檔案"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Video files"
+msgstr "影片檔案"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Audio files"
+msgstr "音訊檔案"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "Playlists"
+msgstr "播放清單"
+
+#: src/MpvNet/Media/FileTypes.cs
+msgid "All files"
+msgstr "所有檔案"

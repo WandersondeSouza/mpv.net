@@ -2665,7 +2665,7 @@ local function osc_init()
         end
         local min = math.floor(dmx_cache / 60)
         local sec = math.floor(dmx_cache % 60) -- don't round e.g. 59.9 to 60
-        return "Cache: " .. (min > 0 and
+        return mp.get_property("user-data/mpvnet-osc-cache-label", "Cache") .. ": " .. (min > 0 and
             string.format("%sm%02.0fs", min, sec) or
             string.format("%3.0fs", sec))
     end
@@ -3121,7 +3121,7 @@ local function render_logo()
         ass:new_event()
         ass:pos(display_w / 2, icon_y + 65)
         ass:an(8)
-        ass:append("Drop files or URLs to play here.")
+        ass:append(mp.get_property("user-data/mpvnet-osc-idle-message", "Drop files or URLs to play here."))
     end
     set_osd(state.logo_osd, display_w, display_h, ass.text, -1000)
 end
