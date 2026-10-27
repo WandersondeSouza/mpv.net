@@ -10,7 +10,7 @@
 #
 #, fuzzy
 msgid ""
-msgstr "Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-25 14:24-0300\nPO-Revision-Date: 2023-12-08 00:34+0000\nLast-Translator: Dogancan YILMAZER, 2024\nLanguage-Team: Turkish (https://app.transifex.com/stax76/teams/179964/tr/)\nLanguage: tr\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+msgstr "Project-Id-Version: mpv.net\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-25 14:24-0300\nPO-Revision-Date: 2023-12-08 00:34+0000\nLast-Translator: Dogancan YILMAZER, 2024\nLanguage-Team: Turkish (https://app.transifex.com/stax76/teams/179964/tr/)\nLanguage: tr\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src\MpvNet.Windows\Configuration\Conf.cs:38
 msgid "(Default)"

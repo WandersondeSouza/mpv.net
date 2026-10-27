@@ -8,7 +8,7 @@
 #
 #, fuzzy
 msgid ""
-msgstr "Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-25 14:24-0300\nPO-Revision-Date: 2023-12-08 00:34+0000\nLast-Translator: Krzysztof Marcinek, 2024\nLanguage-Team: Polish (https://app.transifex.com/stax76/teams/179964/pl/)\nLanguage: pl\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+msgstr "Project-Id-Version: mpv.net\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-25 14:24-0300\nPO-Revision-Date: 2023-12-08 00:34+0000\nLast-Translator: Krzysztof Marcinek, 2024\nLanguage-Team: Polish (https://app.transifex.com/stax76/teams/179964/pl/)\nLanguage: pl\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: src\MpvNet.Windows\Configuration\Conf.cs:38
 msgid "(Default)"

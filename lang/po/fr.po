@@ -8,7 +8,7 @@
 #
 #, fuzzy
 msgid ""
-msgstr "Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-25 14:24-0300\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: Nathanael Gagnepain <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: fr\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Language: fr_FR\nX-Source-Language: en_EN\n"
+msgstr "Project-Id-Version: mpv.net\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-05-25 14:24-0300\nPO-Revision-Date: 2026-10-27 00:00+0000\nLast-Translator: Nathanael Gagnepain <EMAIL@ADDRESS>\nLanguage-Team: French\nLanguage: fr\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Language: fr_FR\nX-Source-Language: en_EN\n"
 
 #: src\MpvNet.Windows\Configuration\Conf.cs:38
 msgid "(Default)"
