@@ -396,11 +396,17 @@ A auditoria automatizada principal e:
 
 ```powershell
 .\lang\validate-po-files.ps1 -ValidateOnly
+python .\lang\audit-catalog-languages.py --fail-on-candidates
 ```
 
 Ela compara todos os `lang/po/*.po` com `lang/source.pot`, rejeita `lang/po/en.po`, detecta chaves ausentes, extras, duplicadas e textos vazios. Placeholders devem permanecer iguais aos `msgid`; quando houver duvida, nao inventar traducao automaticamente. Marcar para revisao humana ou manter fallback seguro.
 
-## Resultado da expansao de seis idiomas — 2026-10-27
+`audit-catalog-languages.py` complementa a paridade com heurísticas para prosa
+inglesa idêntica, rótulos comuns sem tradução e fragmentos ingleses repetidos.
+Um resultado sem candidatos reduz omissões óbvias, mas não certifica a qualidade
+estilística nem substitui revisão por falantes do idioma.
+
+## Registro inicial da expansão de seis idiomas — 2026-10-27
 
 - `lang/source.pot` e os 19 catalogos `.po` ficaram com 775 entradas unicas e sem chaves ausentes, extras, duplicadas ou vazias. Os seis novos catalogos tambem passaram pela verificacao de tokens, metadados, plurais e consultas reais aos arquivos MO. As 762 entradas anteriores dos 13 catalogos existentes foram comparadas com a branch de origem; nenhuma traducao anterior foi alterada.
 - `python lang/test-language-expansion.py`: 3 testes aprovados. `dotnet run --project src/MpvNet.Tests/MpvNet.Tests.csproj --no-restore`: 787 testes aprovados, nenhum erro ou falha. Build normal, publicacao Release, ZIP portatil e instalador foram gerados; os validadores de conteudo e dependencias nativas passaram.
@@ -409,4 +415,15 @@ Ela compara todos os `lang/po/*.po` com `lang/source.pot`, rejeita `lang/po/en.p
 - Artefatos e registros locais desta validacao ficam em `artifacts/language-expansion/`; essa pasta nao faz parte do commit.
 
 Esta validacao nao incluiu instalacao/atualizacao real de um MSIX assinado nem certificacao ou publicacao na Store. A revisao visual nao percorreu toda a matriz de DPI, monitores, foco e drag-and-drop, e as traducoes ainda precisam de uma revisao independente por falantes nativos.
+
+## Revisão final dos catálogos e das imagens da Store — 2026-10-27
+
+- `lang/source.pot` e os 19 arquivos `.po` possuem 780 entradas ativas, sem chaves ausentes, extras, duplicadas ou vazias. A auditoria de idioma terminou sem candidatos conhecidos de prosa inglesa, rótulos comuns sem tradução ou fragmentos ingleses recorrentes. Nomes de marcas, parâmetros do mpv, comandos, placeholders e valores técnicos literais foram preservados.
+- Foram revisadas 1.248 traduções existentes em 14 catálogos. Cinco rótulos novos da interface foram acrescentados ao template e traduzidos nos 19 catálogos, totalizando 95 novas traduções.
+- `App.Init` aplica `--language` antes de construir a interface inicial; as mensagens da tela ociosa e do OSC seguem o catálogo ativo. Os filtros da caixa de abertura também usam rótulos traduzidos, mantendo os padrões de extensões.
+- `src/MpvNet.Tests/MpvNet.Tests.csproj` copia as DLLs nativas e os recursos de runtime para a saída efetiva dos testes e interrompe o build se `libmpv-2.dll` estiver ausente. Isso cobre a falha de execução por DLL ausente na pasta `MpvNet.Tests`.
+- `python lang/test-language-expansion.py`: 6 testes aprovados. `lang/validate-po-files.ps1 -ValidateOnly`: os 19 catálogos passaram. `dotnet run --project src/MpvNet.Tests/MpvNet.Tests.csproj -c Release -p:Platform=x64 --no-restore`: 843 testes aprovados, sem falhas ou erros.
+- A interface foi aberta com os seis novos idiomas. As capturas `Player00.png`, `Player01.png` e `Player02.png` registram, respectivamente, a tela inicial, o menu traduzido e um quadro do vídeo fornecido. Os banners quadrado e vertical também foram localizados para cada pasta; os arquivos de metadados mantêm os títulos dos campos em português.
+
+A auditoria automática identifica omissões prováveis, mas não substitui uma revisão editorial independente por falantes nativos. A validação de interface descrita acima cobre esses seis idiomas e as telas capturadas; não equivale à matriz completa de DPI, monitores, foco e drag-and-drop.
 
