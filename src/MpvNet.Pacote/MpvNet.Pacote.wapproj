@@ -15,6 +15,9 @@
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <!-- The player can change language at runtime, so keep all languages in the main package. -->
+    <AppxBundleAutoResourcePackageQualifiers>Scale|DXFeatureLevel</AppxBundleAutoResourcePackageQualifiers>
+    <AppxDefaultResourceQualifiers>Language=pt-BR;pt-PT;en;bg;de;es;fr;it;ja;ko;pl;ru;tr;zh-CN;zh-TW;zh-HK;hi-IN;ar-SA;uk-UA;id-ID|Scale=200</AppxDefaultResourceQualifiers>
     <WapProjPath Condition="'$(WapProjPath)'=='' and Exists('$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\Microsoft.DesktopBridge.props')">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
     <WapProjPath Condition="'$(WapProjPath)'=='' and Exists('$(MSBuildProgramFiles32)\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\DesktopBridge\Microsoft.DesktopBridge.props')">$(MSBuildProgramFiles32)\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\DesktopBridge\</WapProjPath>
     <WapProjPath Condition="'$(WapProjPath)'=='' and Exists('$(MSBuildProgramFiles32)\Microsoft Visual Studio\18\Professional\MSBuild\Microsoft\DesktopBridge\Microsoft.DesktopBridge.props')">$(MSBuildProgramFiles32)\Microsoft Visual Studio\18\Professional\MSBuild\Microsoft\DesktopBridge\</WapProjPath>

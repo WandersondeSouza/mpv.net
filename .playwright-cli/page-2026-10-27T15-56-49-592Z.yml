@@ -1,0 +1,32 @@
+- generic [ref=f1e5]:
+  - img "Imagem do plano de fundo da organização" [ref=f1e6]
+  - generic [ref=f1e7]:
+    - generic [ref=f1e12]:
+      - generic [ref=f1e13]:
+        - img "Microsoft" [ref=f1e16]
+        - main [ref=f1e17]:
+          - generic [ref=f1e20]:
+            - heading "Entrar" [level=1] [ref=f1e24]
+            - generic [ref=f1e25]:
+              - alert
+              - generic [ref=f1e27]:
+                - textbox "Insira o seu email, telefone ou Skype." [active] [ref=f1e28]:
+                  - /placeholder: Email, telefone ou Skype
+                - textbox [aria-hidden] [ref=f1e29]
+            - generic [ref=f1e33]:
+              - generic [ref=f1e34]:
+                - text: Não tem uma conta?
+                - link "Criar uma conta da Microsoft" [ref=f1e35] [cursor=pointer]:
+                  - /url: https://login.live.com/oauth20_authorize.srf?client_id=fabfbdc4-5751-471c-ac43-3826fa1afc31&scope=openid+profile+offline_access&redirect_uri=https%3a%2f%2fpartner.microsoft.com%2faad%2fauthPostGateway&response_type=code+id_token&state=OpenIdConnect.AuthenticationProperties%3dCfDJ8HuJ03bRC91NrE6VSDaYWkfLilNsAvY212IgHd7H9fIy8mc4sQI_3S9lEscFB0tYJRxbT-LTvCXrN_jZ-v9NXgPS__ABGRQ1PZ7VwlMpIdLQfkCXDe2Sy9TQN-KkVWcoBsI6Tksy05tb6UnNMqvTtQZLaiI_dOiLB1c8rVz1U6c-UeuF6X2QJVgqYonbISWkrditSHcCnQoLEPPdTSw-EBSAa8ZXHDakO1-4XCYQPGdWk7LTKsbXUqqNyDhF_7G1kg&response_mode=form_post&nonce=639287134073587221.ZWZmYWRlOGYtZDhhYi00Y2VlLWI3YjgtNjJmYWYwYTg5MDM4MDdlYmUzN2QtYjRhYi00YjdjLThjNDgtZWY3MGZjODczMjBm&x-client-SKU=ID_NET472&x-client-Ver=6.32.0.0&uaid=73e3f6ec9c8b4b228fe3a5556f4683e7&msproxy=1&issuer=mso&tenant=common&ui_locales=pt-BR&signup=1&lw=1&fl=easi2&epctrc=1n0JDuX6%2bkMwp98iZDtxb97vXH5BR5EfpbBN0VNEgmw%3d2%3a1%3aCANARY%3av%2bJUKgxyDdXwUKA%2fPT3GdMsAkSlIQtYP4XYByaru8D4%3d&epct=PBgABDgEAAAA9VeaV3ywaSLp1O3c4_Et5RXZvU3RzQXJ0aWZhY3RzCAAAAAAAdxgUBH1EBLNd4S9VfveQXNemsOIdF46Zc_ygUpm62oGGEpKuP3bB71OcZ0NgYwf2MjtMhBHXhda5rzrjNGigjSWrKzXO5626HfP8ssN35hecOwKND_HlSdBLk56VeeQxMKKGPchemxgM34tn3ftKS1MesckvCPzkgtkmTf9a55pCo8IWF7vZ727zG4BVJBIqkiWSc2QWLIA-syFGUyge_Q1GBHraKyDhN9FQ2czuU0TzBCMiNLYduzAsVp2P5NkEBs17Xy-0D6lnec4MlBpylBZhHPuUEEBUpnS5H7tpgOsWIwv0jEWSg_AxiqZ5_AowZhl9C1eh8sHNHIZpReHI2KdPnUv3yaZkJ6qluBr6QdYp1IifvmNE0LjmhGso9STSC52ZRqvyJczPZ9zCIS73SwmiuVXQRSaEe7Q2XxiyU5Ovh5SPqPC6R5yYKZyciiw3n4WD5JE6fRgSA5EF2Qi15VtmtQGnXsfMEtUK5cBsFel9Y8MYKq4F76spS8kLlkeXgSbo5wLslkkurQpr8dbnfz84Mt1VQvmB87WPWF-jjcqIZO9S9_es_hHoFr7tW4WwHjr0W4vhW-eirkIyCmsxM3Iyy073104ru7a94Kw0nuV5Q63gjeVwvs_CiVlV5NktwFoXOD12q1eLtKN9sFx6SN-M_QLS5_MD_kYHgUO66EedkNk6KWUl1dYlyJye9b8X7B6s-CIBPP1wmNUsff-VjkS79g_MtS9tFFA8jK368Fzus6mecEGqOI7V3JeJKpVsIAA&jshs=0
+                  - text: Crie uma!
+              - link "Não consegue acessar sua conta?" [ref=f1e37] [cursor=pointer]:
+                - /url: "#"
+            - button "Avançar" [ref=f1e40] [cursor=pointer]
+      - button "Opções de entrada" [ref=f1e46] [cursor=pointer]
+    - contentinfo [ref=f1e51]:
+      - generic [ref=f1e52]:
+        - link "Termos de uso" [ref=f1e53] [cursor=pointer]:
+          - /url: https://www.microsoft.com/pt-BR/servicesagreement/
+        - link "Privacidade e cookies" [ref=f1e54] [cursor=pointer]:
+          - /url: https://privacy.microsoft.com/pt-BR/privacystatement
+        - button "Clique aqui para obter informações sobre solução de problemas" [ref=f1e55] [cursor=pointer]: ...
