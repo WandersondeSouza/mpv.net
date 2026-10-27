@@ -57,6 +57,78 @@ sair desse modo e não é encaminhado ao mpv como `quit`. Com a janela no tamanh
 normal, o atalho padrão `Esc` continua sendo encaminhado ao mpv para fechar o
 player.
 
+## Botão de tela cheia na barra de título
+
+`MainForm.TitleBar.cs` encaminha o clique para `Player.Command("cycle fullscreen")`.
+A propriedade observada do mpv e `MainForm.Fullscreen.cs` continuam controlando
+a transição. Esc mantém a prioridade do menu aberto; para sair de fullscreen,
+define a propriedade do mpv como `no`, deixando o mesmo observador atualizar
+a janela. Isso evita a janela normal com a propriedade ainda em `yes` e permite
+entrar novamente pelo próximo clique. Menu, atalhos e duplo clique mantêm seus
+comandos existentes.
+
+`TitleBarFullscreenButton.cs` contém uma janela auxiliar WinForms pertencente à
+principal, sem ativação, moldura ou entrada na taskbar. Ela ocupa somente a
+parte da barra entre o ícone do sistema e minimizar. Desenha o título em uma
+área limitada, com reticências, reservando o espaço do novo botão. O texto
+Win32 da janela principal e seu HWND permanecem intactos. A área de vídeo,
+`WM_NCCALCSIZE` e os três botões nativos não são substituídos. Isso mantém o
+roteamento do Windows para os botões, incluindo o recurso de layouts do Windows 11.
+Fora do novo botão, `HTTRANSPARENT` entrega os gestos ao proprietário na mesma
+thread, preservando arraste, duplo clique e menu de sistema da barra.
+
+O posicionamento consulta `DWMWA_CAPTION_BUTTON_BOUNDS` do DWM e
+`WM_GETTITLEBARINFOEX`, em coordenadas de tela com sinal. A superfície termina
+antes dos botões nativos e acima da origem do vídeo. Posição, tamanho,
+ativação, título, DPI, tema, visibilidade e display atualizam sua geometria.
+Sem geometria válida, sem borda/barra, minimizada ou em fullscreen, ela é
+ocultada; não existe um botão flutuante sobre o vídeo. O idioma atualiza
+tooltip e `AccessibleName` usando a entrada gettext existente `Fullscreen`.
+A ação acessível usa o mesmo clique. O clique ativa o proprietário para que
+o foco de teclado permaneça no player. Fontes, tooltip e controles são
+descartados com a janela principal; a recriação do HWND oculta e reposiciona
+a superfície.
+
+O ícone reproduz em GDI+ o contorno `E108` de `mpv-osd-symbols`, usado pelo
+estilo `classic` do OSC distribuído (`bottombar`, padrão `icon_style=layout`).
+A fonte interna do libmpv não é uma fonte GDI instalada; por isso o contorno
+é desenhado sem acrescentar uma dependência de fonte. O OSC e seus ícones
+não são alterados. A superfície acompanha `dark-mode` e alto contraste;
+o tema DWM é reaplicado após a leitura da configuração inicial.
+
+Referências: [geometria DWM](https://learn.microsoft.com/windows/win32/api/dwmapi/ne-dwmapi-dwmwindowattribute),
+[TITLEBARINFOEX](https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-titlebarinfoex)
+e [glyph clássico do mpv](https://github.com/mpv-player/mpv/blob/77e8f9cfa1c185e452d1f36c00b8ec569e0f0ea8/TOOLS/mpv-osd-symbols.sfdir/uniE108.glyph).
+
+Os testes `TitleBarFullscreenButtonTests` usam HWNDs reais em thread STA com
+PerMonitorV2 para verificar preservação de título, área cliente e hit test
+nativo em janela normal/maximizada, limites da superfície, ação acessível,
+tradução, ocultação, recriação e descarte. O checklist visual abaixo continua
+necessário para outros ambientes, escalas e monitores.
+
+Validação local em 2026-10-27, Windows 11 build 26300, um monitor e escala 100%:
+builds Debug/Release sem avisos/erros e 739 testes aprovados. Na aplicação com
+perfil isolado foram verificados ícone, tooltip e nome acessível em português,
+temas claro/escuro, entrada pelo botão em janela normal, Esc e reentrada,
+prioridade do menu no primeiro Esc, duplo clique no título/vídeo, arraste,
+minimização/restauração e fechamento nativos, além de ocultação com `border=no`
+e `title-bar=no`. A geometria maximizada foi conferida visualmente e nos testes
+de HWND; a ação acessível também foi testada nessa condição. HTTP em loopback,
+playlist M3U, pasta via IPC do mpv, reprodução de áudio/vídeo e atalhos de troca
+de áudio/legenda passaram nas sondas locais.
+
+Continuam pendentes Windows 10, escalas diferentes/mudança de DPI, múltiplos
+monitores, arrastar arquivos do Explorer, redimensionamento pela borda e Snap
+Layouts por hover no Windows 11. O clique físico no novo botão em janela
+maximizada também precisa de verificação manual: a automação local recusou
+esse alvo por identificar a janela auxiliar separadamente. As sondas de
+pasta/playlist/HTTP não substituem os fluxos correspondentes do Explorer nem
+um stream externo; o checklist completo permanece abaixo.
+
+Uma repetição da suíte ficou sem progresso e foi interrompida. A execução
+seguinte com diagnóstico por teste aprovou os 739 casos; a causa da ocorrência
+intermitente não foi determinada.
+
 ## OSC
 
 O OSC depende do comportamento da janela.

@@ -46,6 +46,7 @@ public partial class MainForm
 
     void WpfTranslator_LanguageChanged(object? sender, System.Globalization.CultureInfo culture)
     {
+        RunOnUiThread(UpdateTitleBarFullscreenButton);
         if (_taskbar != null)
             _taskbar.RefreshThumbnailButtons(BuildTaskbarThumbnailButtons(_mediaTransport?.Snapshot ?? MediaTransportSnapshot.Disabled));
     }

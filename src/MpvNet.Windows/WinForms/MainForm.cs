@@ -749,7 +749,7 @@ public partial class MainForm : Form
                         else if (keyCode == Keys.Escape && (IsFullscreen || Player.Fullscreen))
                         {
                             ignore = true;
-                            CycleFullscreen(false);
+                            Player.SetPropertyBool("fullscreen", false);
                         }
                     }
 
@@ -765,7 +765,7 @@ public partial class MainForm : Form
                 MediaTransportSnapshot settingSnapshot = _mediaTransport?.Snapshot ?? MediaTransportSnapshot.Disabled;
                 _taskbar?.RefreshThumbnailButtons(BuildTaskbarThumbnailButtons(settingSnapshot));
                 break;
-            case 0x0031: // WM_THEMECHANGED
+            case 0x031A: // WM_THEMECHANGED
                 UpdateDarkMode();
                 MediaTransportSnapshot themeSnapshot = _mediaTransport?.Snapshot ?? MediaTransportSnapshot.Disabled;
                 _taskbar?.RefreshThumbnailButtons(BuildTaskbarThumbnailButtons(themeSnapshot));
@@ -963,6 +963,9 @@ public partial class MainForm : Form
         // beep sound when closed using taskbar due to exception
         if (!IsDisposed)
             base.WndProc(ref m);
+
+        if (m.Msg is 0x0047 or 0x0006 or 0x0086 or 0x000C or 0x0018 or 0x001A or 0x031A or 0x02E0 or 0x007E)
+            UpdateTitleBarFullscreenButton(); // position, activation, title, visibility, theme, DPI, display
     }
 
     protected override void OnActivated(EventArgs e)
@@ -1082,6 +1085,7 @@ public partial class MainForm : Form
                 if (!Player.Border && FormBorderStyle == FormBorderStyle.Sizable)
                     FormBorderStyle = FormBorderStyle.None;
             }
+            UpdateTitleBarFullscreenButton();
         });
     }
 
@@ -1096,6 +1100,7 @@ public partial class MainForm : Form
             SetSize(ClientSize.Width, ClientSize.Height, Screen.FromControl(this), false);
             Height += 1;
             Height -= 1;
+            UpdateTitleBarFullscreenButton();
         });
     }
 
@@ -1129,6 +1134,8 @@ public partial class MainForm : Form
         GlobalHotkey.RegisterGlobalHotkeys(Handle);
         StrongReferenceMessenger.Default.Send(new MainWindowIsLoadedMessage());
         WasShown = true;
+        UpdateDarkMode(); // Apply the effective configuration parsed after HWND creation.
+        UpdateTitleBarFullscreenButton();
     }
 
     void ContextMenu_Closed(object sender, System.Windows.RoutedEventArgs e) => MenuAutoResetEvent.Set();
@@ -1139,6 +1146,8 @@ public partial class MainForm : Form
             return;
 
         _managedResourcesDisposed = true;
+        _titleBarFullscreenButton?.Dispose();
+        _titleBarFullscreenButton = null;
         DisposeVideoClick();
 
         _lifetimeCancellation.Cancel();

@@ -100,6 +100,13 @@ do Windows. `p`, `P` e `Space` também alternam Play/Pause. Personalizações do
 `input.conf` prevalecem; menus completos existentes mantêm os atalhos anteriores.
 Veja [Atalhos](ATALHOS.md) para detalhes.
 
+A barra de título oferece um botão **Tela cheia**, imediatamente antes de
+minimizar. Ele executa `cycle fullscreen`, como a opção do menu. O tooltip e
+o nome acessível acompanham o idioma da interface. Os três botões do Windows
+continuam nativos; o título usa reticências quando falta espaço. O novo botão
+fica oculto em tela cheia, com `border=no` ou `title-bar=no`. `Esc` mantém seu
+comportamento atual: fecha primeiro o menu aberto ou sai da tela cheia.
+
 O mpv.net lê a configuração nesta ordem:
 
 1. `--config-dir=...`, se informado

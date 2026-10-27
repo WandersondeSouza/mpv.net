@@ -16,6 +16,8 @@ public partial class MainForm
         _lastCycleFullscreen = Environment.TickCount;
 
         Player.Fullscreen = enabled;
+        if (enabled)
+            _titleBarFullscreenButton?.HideCaption();
 
         if (enabled)
         {
@@ -56,5 +58,6 @@ public partial class MainForm
         }
 
         UpdateMediaTransport();
+        UpdateTitleBarFullscreenButton();
     }
 }
