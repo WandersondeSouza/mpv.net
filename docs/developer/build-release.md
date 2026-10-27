@@ -19,7 +19,8 @@ Para desenvolvimento:
 Para execução:
 
 - Windows;
-- SDK .NET 10.0 para publicar self-contained `win-x64`;
+- .NET Desktop Runtime 10 compatível com a arquitetura nas builds dependentes
+  do runtime; ZIP e instalador publicados como self-contained incluem o runtime;
 - `libmpv-2.dll` e `libmpv-2-v3.dll` x64, ambas da mesma revisao upstream do mpv/libmpv;
 - `MediaInfo.dll` x64 baixada da MediaArea oficial durante a release;
 - `ffmpeg.exe`, `ffplay.exe`, `ffprobe.exe`, `yt-dlp.exe` e `deno.exe` baixados sob demanda para `%LOCALAPPDATA%\mpv.net\Component` pelo player;
@@ -64,9 +65,9 @@ Projetos principais:
 
 Pacotes NuGet versionados em `src/Directory.Packages.props`:
 
-- `CommunityToolkit.Mvvm` `8.4.2`;
-- `NGettext` `0.6.7`;
-- `Microsoft.Xaml.Behaviors.Wpf` `1.1.142`.
+Consulte esse arquivo para as versões atuais de `CommunityToolkit.Mvvm`,
+`NGettext`, `Microsoft.Xaml.Behaviors.Wpf`, `Microsoft.Windows.SDK.BuildTools`,
+`xunit.v3`, `xunit.runner.visualstudio` e `TngTech.ArchUnitNET.xUnitV3`.
 
 ## Scripts de `src/Tools`
 
@@ -94,15 +95,22 @@ Esta e a lista canonica de scripts do fork. Os demais documentos devem apontar p
 | `generate-installer-exe.ps1` | instalador Inno Setup |
 | `prepare-native-dependencies.ps1` | dependencias nativas e auxiliares |
 | `native-dependencies-config.ps1` | politica central de caminho e validade do cache |
+| `libmpv-validation.ps1` | funções de validação PE x64, exports, revisões e hashes das duas DLLs; contrato em `libmpv-build-contract.psd1` |
+| `download-mediainfo-dependency.ps1` | entrada legada de compatibilidade para o preparo central de dependências |
 | `prepare-build-output.ps1` | preparo automatico do output no build do app Windows |
 | `validate-native-dependencies.ps1` | validacao de DLLs nativas em pasta ou ZIP |
 | `validate-package-contents.ps1` | validação de `mpvnet.exe`, OSC e demais arquivos gerenciados obrigatórios em pastas e pacotes |
 | `set-release-version.ps1` | atualiza a versao publica em `BuildVersion.props` e grava a versao Store em `Package.appxmanifest` com revisao zero |
 | `publish-emergency-release.ps1` | release emergencial com bump de versao |
 | `update-mpv-runtime.ps1` | atualizacao do runtime mpv |
-| `test-mpv-build-variants.ps1` | smoke test das variantes de build |
+| `test-mpv-build-variants.ps1` | contrato dual offline; com `-Online`, baixa e valida as duas builds upstream |
+| `test-libmpv-build-contract.ps1` | valida o contrato dual e os padrões de nomes de assets sem rede |
 | `publish-store-package.ps1` | publicacao do pacote Microsoft Store |
 | `test-native-dependency-cache.ps1` | smoke test offline do cache compartilhado |
+| `test-native-dependency-download-validation.ps1` | teste offline da validação do SHA-256 publicado |
+| `validate-windows-baseline.ps1` | verifica TFMs e manifestos do baseline Windows 10 build 19041 |
+| `test-ui-smoke.ps1` | verifica permanência do processo; por padrão força seu término, sem comprovar fechamento limpo |
+| `test-localization-package.ps1` | contrato de catálogos em diretório, ZIP e contêiner Store aninhado, incluindo rejeição de catálogos ausentes/vazios |
 
 ---
 
@@ -267,7 +275,8 @@ Pontos a validar:
 
 # Release e empacotamento
 
-Para a referência completa dos scripts PowerShell do fork, veja `docs/guia-operacional.md`.
+Para os comandos operacionais resumidos, veja [Guia operacional](../guia-operacional.md).
+A lista de scripts está na seção [Scripts de `src/Tools`](#scripts-de-srctools) deste documento.
 
 ## Comandos prontos para copiar e colar
 
@@ -400,11 +409,14 @@ As dependencias baixadas automaticamente usam estas fontes:
 
 O script resolve um asset normal e um asset v3 da mesma revisão upstream, mantém os nomes físicos distintos e preserva a ABI `libmpv-2` do P/Invoke. Se o GitHub mudar os nomes dos assets, se a MediaArea mudar o link de download, se o NuGet mudar a resolucao de `Gettext.Tools`, se o download falhar, se a extracao falhar, se algum arquivo baixado estiver vazio, se as DLLs forem idênticas ou se uma DLL obrigatoria nao for x64, o script deve abortar antes de gerar um pacote parcial. `MediaInfo.dll` pode ser pinada por `-MediaInfoVersion`/`MPVNET_MEDIAINFO_VERSION` ou sobrescrita por `-MediaInfoFile`.
 
-Smoke test das duas variantes de dependencias:
+Validação offline do contrato das duas variantes:
 
 ```powershell
 .\src\Tools\test-mpv-build-variants.ps1
 ```
+
+Para também baixar e inspecionar as duas DLLs reais, execute o mesmo script com
+`-Online`. O resultado offline não comprova os binários de uma distribuição.
 
 Smoke test offline do cache compartilhado:
 

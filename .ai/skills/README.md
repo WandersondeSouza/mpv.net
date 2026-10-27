@@ -33,7 +33,7 @@ e `docs/developer/configuration.md`; para cache de mídia de rede, confira
 `src/MpvNet/Integration/Mpv/Player.NetworkCache.cs` e
 `docs/developer/mpv-integration.md`.
 
-Para mudanças em parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo, verifique primeiro a cobertura em `src/MpvNet.Tests/Program.cs`, amplie o harness quando houver comportamento novo e valide com `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`. Para documentação e `.ai`, use `git diff --check` e verificação de links/referências.
+Para mudanças em parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo, verifique os testes da área em `src/MpvNet.Tests/`, incluindo `Program.cs` quando aplicável. Amplie a cobertura quando houver comportamento novo e valide com `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`. Para documentação e `.ai`, use `git diff --check` e verificação de links/referências.
 
 ## Leitura que esta skill assume
 

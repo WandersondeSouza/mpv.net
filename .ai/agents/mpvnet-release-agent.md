@@ -39,6 +39,9 @@ Analisar build, empacotamento, release, ZIP portátil, instalador e dependência
 - Não assumir que build local equivale a pacote final.
 - Validar x64 sempre que a mudança afetar release; validar ARM64 somente se esse alvo for explicitamente reintroduzido.
 - Verificar se o ZIP portátil contém estrutura esperada.
+- Conferir as duas DLLs libmpv da mesma revisão, a normal obrigatória e todos
+  os catálogos exigidos por `validate-package-contents.ps1`. O teste de variantes
+  é offline por padrão; `-Online` é necessário para baixar e inspecionar DLLs reais.
 - Tratar a release GitHub (ZIP/instalador) e o pacote WAP/MSIX da Store como fluxos separados; um não comprova o outro.
 - Validar `Scripts/osc.lua` nos pacotes aplicáveis e `mpvnet.com` no payload Store; esse helper é empacotado por compatibilidade, não baixado nem iniciado pelo player.
 - Manter `BuildVersion.props` e `Package.appxmanifest` alinhados pelo script oficial; a versão MSIX usa revisão zero.

@@ -11,14 +11,14 @@ Todo agente deve seguir:
 1. preservar compatibilidade com mpv/libmpv;
 2. ler `AGENTS.md`, `README.md` e `docs/manual.md`;
 3. consultar `docs/guia-operacional.md` quando a tarefa envolver build, release, scripts ou manutenção geral;
-4. consultar `Validações manuais e externas` em `docs/guia-operacional.md` e as melhorias documentais da área quando a tarefa envolver priorização ou planejamento;
+4. consultar a seção `Validação` de `docs/guia-operacional.md` e as melhorias documentais da área quando a tarefa envolver priorização ou planejamento;
 5. consultar a documentação técnica em `docs/developer/` que corresponda à área tocada;
 6. confirmar comportamento no código antes de editar;
 7. propor mudança pequena;
 8. atualizar documentação quando o comportamento mudar;
 9. informar plano de teste.
 10. considerar a topologia consolidada `MainForm.*.cs` e `Player.*.cs` antes de propor nova separação.
-11. verificar e ampliar `src/MpvNet.Tests/Program.cs` antes de mudar parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo.
+11. verificar e ampliar os testes da área em `src/MpvNet.Tests/` (incluindo `Program.cs` quando aplicável) antes de mudar parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo.
 12. rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` depois dessas mudanças;
 13. não fazer commit, push ou publicação sem solicitação explícita.
 

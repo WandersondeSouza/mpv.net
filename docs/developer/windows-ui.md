@@ -310,8 +310,10 @@ comprovam apresentação visual no painel do Windows. Windows 10, FluentFlyout,
 teclas físicas multimídia, stream externo com credenciais e o checklist visual
 completo abaixo ainda precisam de validação nos respectivos ambientes.
 
-O script abaixo verifica inicialização, permanência do processo e fechamento
-limpo. Ele não substitui a verificação visual dos controles:
+O script abaixo verifica se o processo permanece ativo durante as janelas de
+inicialização e observação. Por padrão, termina com `Stop-Process -Force`; isso
+não comprova fechamento limpo, execução do shutdown nem descarte dos recursos.
+Ele também não substitui a verificação visual dos controles:
 
 ```powershell
 .\src\Tools\test-ui-smoke.ps1 `
@@ -328,7 +330,7 @@ Depois do smoke test, validar manualmente:
 - alternância de áudio/legenda, pause, seek, controles de mídia do Windows e fechamento;
 - persistência de volume, posição, tamanho e pasta inicial.
 
-O script encerra o processo ao final por padrão. Use `-KeepOpen` quando for
-necessário concluir o checklist visual antes de fechar a janela.
+Use `-KeepOpen` para concluir o checklist visual e fechar a janela pelo próprio
+aplicativo, verificando o encerramento normal separadamente.
 
 

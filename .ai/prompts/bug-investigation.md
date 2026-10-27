@@ -41,7 +41,7 @@ Regras:
 - não fazer refatoração ampla;
 - não alterar comportamento não relacionado;
 - preservar compatibilidade com mpv;
-- antes de corrigir parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo, verificar se `src/MpvNet.Tests/Program.cs` cobre o caso e ampliar quando necessário;
+- antes de corrigir parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo, verificar se os testes da área em `src/MpvNet.Tests/` (incluindo `Program.cs` quando aplicável) cobrem o caso e ampliar quando necessário;
 - atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes;
 - ao final, informar arquivos alterados e validação feita.
 

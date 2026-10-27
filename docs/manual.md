@@ -29,7 +29,8 @@ O aplicativo também está publicado na Microsoft Store:
 ## Instalação
 
 - Windows 10 versão 2004 (build 19041) ou superior.
-- Runtime .NET Desktop 10 compatível com o projeto.
+- Runtime .NET Desktop 10 para builds dependentes do runtime; o ZIP e o instalador
+  self-contained incluem o runtime necessário.
 - Para mídia online, o player mantém componentes auxiliares no cache `%LOCALAPPDATA%\mpv.net\Component\current`. É necessário acesso à rede para baixar ou atualizar componentes ausentes ou vencidos. Também é possível fornecer executáveis válidos na pasta do player ou no `PATH`.
 
 O instalador registra os formatos de mídia comuns e playlists IPTV suportados
@@ -50,7 +51,7 @@ quando o mpv informa mídia pesquisável com duração finita e positiva. Fast
 Forward/Rewind, quando oferecidos pelo Windows, saltam 5 segundos dentro dos
 limites da mídia, sem mudar a velocidade de reprodução.
 
-O recurso usa o HWND da janela principal e não depende do FluentFlyout. Ele é
+O recurso usa o HWND da janela principal e não depende do FluentFlyout. Ele
 mantém a sessão e os comandos ativos também em fullscreen. A sessão é limpa
 quando não há mídia carregada e durante o encerramento. URLs
 com credenciais, query strings ou fragmentos não são publicados como título.
@@ -389,11 +390,18 @@ tem prioridade, seguida pelo cache legado, pela pasta do executável e, por
 validados e promovidos como uma geração completa.
 
 Depois que a janela aparece, o player verifica e atualiza os componentes em
-segundo plano. Componentes ausentes ou inválidos, componentes cujo último
-download validado ocorreu há 20 dias ou mais e componentes cuja origem mudou
-são baixados novamente. O player
-exige SHA-256 publicado pelo GitHub, confere a arquitetura x64 e valida os
-arquivos antes de ativá-los.
+segundo plano. Componentes ausentes, inválidos ou com origem alterada precisam
+de atualização. Após 20 dias sem download validado ou verificação de release
+inalterada, o player consulta novamente a release. Se o hash publicado e os
+arquivos locais continuarem válidos, reutiliza o componente sem novo download.
+O player exige SHA-256 publicado pelo GitHub, confere a arquitetura x64 e
+valida os arquivos antes de ativá-los.
+
+Downloads interrompidos por falhas transitórias ou pelo fechamento do player
+podem ser retomados na próxima abertura, desde que a URL e o hash do asset
+permaneçam iguais. A geração válida anterior é preservada durante a atualização;
+veja [Configuração técnica](developer/configuration.md) para os limites e a limpeza.
+
 `mpvnet.com` permanece no payload de instalação por compatibilidade, mas não é
 baixado nem executado pelo bootstrap do player. `libmpv` e `MediaInfo.dll` são
 preparados e validados pelo fluxo de build/release.

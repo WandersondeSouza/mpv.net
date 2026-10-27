@@ -32,7 +32,7 @@ Regras:
 - não renomear comando, opção ou propriedade sem migração;
 - não bloquear loop de eventos;
 - preferir correção pequena e testável;
-- verificar e ampliar `src/MpvNet.Tests/Program.cs` quando a mudança tocar paths, playlist, parser de comandos, títulos, seleção de idioma ou MediaInfo;
+- verificar e ampliar os testes da área em `src/MpvNet.Tests/` (incluindo `Program.cs` quando aplicável) quando a mudança tocar paths, playlist, parser de comandos, títulos, seleção de idioma ou MediaInfo;
 - atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
 
 Plano de teste mínimo:

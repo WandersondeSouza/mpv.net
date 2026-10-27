@@ -25,7 +25,7 @@ A solução principal está em `src/MpvNet.sln`. O repositório também contém 
 | `src/MpvNet` | Núcleo, estado do player, configuração, linha de comando, comandos e fluxo de mídia. |
 | `src/MpvNet.Windows` | Aplicativo Windows, janela WinForms, janelas auxiliares WPF e integrações nativas do Windows. |
 | `src/NGettext.Wpf` | Localização usada pelas janelas WPF. |
-| `src/MpvNet.Tests` | Testes automatizados do núcleo e dos contratos arquiteturais. |
+| `src/MpvNet.Tests` | Suíte xUnit v3: núcleo, contratos arquiteturais, libmpv e integrações Windows, incluindo testes STA/WinRT. |
 | `src/MpvNet.Pacote` | Empacotamento MSIX/WAP para distribuição pela Microsoft Store. |
 | `src/MpvNet.Extension/ExampleExtension` | Exemplo de extensão .NET carregável pelo player. |
 
@@ -76,6 +76,7 @@ Comandos antigos e adaptadores públicos podem permanecer no código para preser
 
 ## Documentação relacionada
 
+- [Execução e isolamento dos testes](../guia-operacional.md#testes-automatizados)
 - [Manual do usuário](../manual.md)
 - [Guia operacional](../guia-operacional.md)
 - [Configuração](configuration.md)

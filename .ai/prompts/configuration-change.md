@@ -38,7 +38,7 @@ Regras:
 - ao avaliar caminhos, considerar `MPVNET_LOCAL_APPDATA` e a raiz `LocalCache\Local` resolvida por `AppPaths` no MSIX;
 - preservar compatibilidade com arquivos existentes;
 - não reescrever arquivo do usuário sem necessidade;
-- verificar e ampliar `src/MpvNet.Tests/Program.cs` quando a mudança alterar parser, paths, fallback, seleção de idioma ou compatibilidade de configuração;
+- verificar e ampliar os testes da área em `src/MpvNet.Tests/` (incluindo `Program.cs` quando aplicável) quando a mudança alterar parser, paths, fallback, seleção de idioma ou compatibilidade de configuração;
 - documentar qualquer nova opção, fallback ou migração consolidada em documento existente quando possível;
 - evitar criar documentação técnica redundante;
 - testar caminho instalado e portátil.

@@ -52,13 +52,13 @@ Antes de editar código ou documentação:
 3. ler `docs/manual.md`;
 4. ler `docs/CONFIGURACAO.md` ou a documentação da área tocada;
 5. ler `docs/guia-operacional.md` quando a tarefa envolver build, release, scripts ou manutenção geral;
-6. ler `Validações manuais e externas` em `docs/guia-operacional.md` e as melhorias documentais da área quando a tarefa envolver planejamento ou priorização;
+6. ler a seção `Validação` de `docs/guia-operacional.md` e as melhorias documentais da área quando a tarefa envolver planejamento ou priorização;
 7. ler `docs/developer/architecture.md` quando a tarefa envolver análise ampla ou refatoração;
 8. ler `docs/developer/configuration.md`, `docs/developer/mpv-integration.md`, `docs/developer/windows-ui.md`, `docs/developer/build-release.md` e `docs/developer/localization.md` conforme a área tocada;
 9. usar o arquivo de `skills/`, `agents/` e `prompts/` que melhor corresponda ao tipo de trabalho.
-10. verificar se `src\MpvNet.Tests\Program.cs` cobre o comportamento antes de alterar parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo;
-11. ampliar `src\MpvNet.Tests\Program.cs` quando a mudança criar caso novo nessas áreas;
-12. rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` para validar a cobertura leve;
+10. verificar se os testes da área em `src/MpvNet.Tests/` (incluindo `Program.cs` quando aplicável) cobrem o comportamento antes de alterar parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo;
+11. ampliar os testes da área em `src/MpvNet.Tests/` (incluindo `Program.cs` quando aplicável) quando a mudança criar caso novo nessas áreas;
+12. rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore` para validar a suíte xUnit v3;
 13. revisar `git diff --check`, links locais e o diff final.
 
 ## Limites de execução
@@ -67,6 +67,8 @@ Antes de editar código ou documentação:
 - Só executar essas ações quando forem solicitadas explicitamente e houver evidência de validação local.
 - Ao relatar resultados, separar `validado localmente`, `pendente de ambiente` e `não verificado`.
 - Para o harness xUnit v3, executar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`; `dotnet test src\MpvNet.sln` não é o fluxo de teste desta solução, que inclui um projeto WAP.
+- Para o mapa da suíte por área, preparo dos assets e isolamento dos dados,
+  consulte [Testes automatizados](../docs/guia-operacional.md#testes-automatizados).
 
 ## Observação sobre MCP
 

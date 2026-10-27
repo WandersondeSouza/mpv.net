@@ -1,5 +1,13 @@
 # Corrigir integração do yt-dlp e diagnóstico de verificação antibot
 
+> Registro da tarefa de 18/10/2026. O contrato do hook e a classificação antibot
+> já estão implementados; consulte [Configuração](../../docs/developer/configuration.md)
+> e [Integração com mpv/libmpv](../../docs/developer/mpv-integration.md).
+> Contagens de catálogos, versões de componentes e autorização abaixo pertencem
+> à tarefa original. Antes de reutilizar, confirme o código, os testes por área
+> e o pedido atual do usuário; os catálogos atuais estão em
+> [Localização](../../docs/developer/localization.md).
+
 ## Objetivo e autorização
 
 Implementar as correções confirmadas pela auditoria de 18/10/2026 no MPV.NET,

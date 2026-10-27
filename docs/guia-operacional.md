@@ -125,6 +125,34 @@ pertencem à raiz privada de dados, não ao diretório instalado em WindowsApps.
 
 ## Validação
 
+### Testes automatizados
+
+O projeto `src/MpvNet.Tests` usa xUnit v3. Execute a suíte a partir da raiz:
+
+```powershell
+dotnet run --project .\src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
+```
+
+Se os assets NuGet ainda não existirem, restaure o projeto antes de usar
+`--no-restore`. Os testes referenciam o projeto Windows, cujo build normal
+prepara dependências nativas e catálogos. `/p:EnsureBuildAssets=false` apenas
+pula essa preparação; exige assets válidos já disponíveis para testes que os usam.
+
+`Program.cs` conserva casos de comportamento existente; a cobertura adicional
+fica nos arquivos por área, como `ApplicationPathTests.cs`, `MediaInputTests.cs`,
+`NativePlaylistTitleTests.cs`, `LocalizationExpansionTests.cs`,
+`GitHubReleaseClientTests.cs` e `TitleBarFullscreenButtonTests.cs`. Consulte a
+suíte completa antes de escolher onde acrescentar uma regressão. O runner
+configurado em `AssemblyInfo.cs` executa sem paralelismo; evite também builds
+concorrentes sobre a mesma saída.
+
+`TestEnvironment.cs` define `MPVNET_LOCAL_APPDATA` para `test-runtime` na pasta
+do executável de testes se não houver override explícito. Isso isola os dados
+do player. O comando da solução `dotnet test src\MpvNet.sln` não substitui esse
+fluxo, pois a solução também contém o projeto WAP.
+
+### Limites das evidências
+
 Build e validação de pacote não comprovam o comportamento em todas as máquinas
 nem a aprovação da Microsoft Store. Registre apenas as verificações realmente
 executadas e identifique o pacote e o ambiente usados.
@@ -134,8 +162,8 @@ arquivo local e stream, playlist, pasta com mídia, arrastar e soltar, menu de
 contexto, tela cheia, áudio, legendas, atalhos e encerramento. Valide assinatura,
 instalação e certificação do pacote da Store quando esse fluxo for alterado.
 
-Na expansão para os seis novos idiomas, execute também `python
-lang/test-language-expansion.py` e `src/Tools/test-localization-package.ps1`.
+Para mudanças de localização, execute também `python lang/test-language-expansion.py`
+e `src/Tools/test-localization-package.ps1`.
 O inventário, as regras RTL/regionais e os resultados da expansão estão em
 [Localização](developer/localization.md). O pacote deve conter todos os 19
 catálogos; inglês usa o texto-fonte. Uma compilação ou um MSIX local sem

@@ -25,6 +25,10 @@ Regras:
 - preferir português brasileiro claro e técnico;
 - preservar nomes oficiais de arquivos, opções, comandos e caminhos;
 - não traduzir comandos mpv, opções de configuração ou nomes de classes;
+- para textos de UI, usar `lang/source.pot` e todos os `lang/po/*.po`;
+  preservar placeholders, paridade, fallback e aliases. Inglês usa o texto-fonte;
+- validar RTL/LTR, campos técnicos, acessibilidade e formatação regional sem
+  sobrescrever `CurrentCulture` ao selecionar o idioma de interface;
 - marcar como pendência aquilo que ainda não foi confirmado no código.
 - atualizar documentação técnica apenas quando houver mudança consolidada;
 - preferir documentos existentes e evitar criar arquivos redundantes.
@@ -47,5 +51,7 @@ Validação:
 - conferir links relativos;
 - conferir se caminhos citados existem;
 - conferir se comportamento descrito bate com o código ou está marcado como pendente.
+- para alterações de UI/gettext, seguir os validadores e os testes de localização
+  descritos em `docs/developer/localization.md`.
 
 

@@ -30,12 +30,18 @@ qualquer descrição de prompt como baseline.
   e o MSIX usa a área `LocalCache\Local` privada do pacote;
 - trate o fluxo de release GitHub e a validação/submissão WAP/Store como
   evidências separadas.
+- preserve o carregamento dual de libmpv: normal obrigatória e v3 selecionada
+  somente em CPU compatível, com fallback. Confira `LibMpvRuntime.cs` e a
+  documentação técnica antes de alterar seleção ou empacotamento;
+- para texto de interface, leia `docs/developer/localization.md`: gettext usa
+  `lang/source.pot` e os `.po` distribuídos. Preserve placeholders, aliases,
+  fallback, RTL/LTR e a formatação regional do usuário.
 
 ## Topologia consolidada
 
 - `src/MpvNet.Windows/WinForms/MainForm.cs` guarda o estado principal da janela; responsabilidades de UI ficam em partials `MainForm.*.cs` por tema: comandos, menu, cursor/OSC, drag/drop, fullscreen e eventos do player.
 - `src/MpvNet/Integration/Mpv/Player.cs` guarda o estado principal do player; responsabilidades críticas ficam em partials `Integration/Mpv/Player.*.cs`: inicialização, propriedades observadas, eventos, ciclo de vida, carregamento de mídia e capacidades.
-- Para mudanças em parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo, verifique se `src/MpvNet.Tests/Program.cs` cobre o caso, amplie o harness quando houver comportamento novo e rode `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
+- Para mudanças em parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo, verifique se os testes da área em `src/MpvNet.Tests/` (incluindo `Program.cs` quando aplicável) cobrem o caso, amplie a cobertura quando houver comportamento novo e rode `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
 - Para mudanças em UI/libmpv, rode build/testes e faça checklist manual: arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento.
 
 ## Resumo para a mudança

@@ -61,7 +61,11 @@ Mudanças de UI devem validar:
 
 ### Testes e validação
 
-Antes de alterar comportamento em parser, caminhos, playlists, títulos, logs, configuração, seleção de idioma ou MediaInfo, verificar se existe cobertura em `src/MpvNet.Tests/Program.cs` e ampliá-la quando a mudança criar um caso novo.
+Antes de alterar comportamento em parser, caminhos, playlists, títulos, logs, configuração, seleção de idioma ou MediaInfo, verificar a cobertura da área em `src/MpvNet.Tests/`, incluindo `Program.cs` quando aplicável, e ampliá-la quando a mudança criar um caso novo.
+
+A suíte usa xUnit v3 e arquivos por área; execução e isolamento estão em
+`docs/guia-operacional.md`, seção `Testes automatizados`. Para documentação e
+`.ai`, conferir links locais, caminhos citados e `git diff --check`.
 
 Para mudanças em UI ou integração com libmpv, combinar build/testes automatizados com checklist manual de execução: arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento.
 

@@ -20,6 +20,8 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 - `src/MpvNet/Integration/Mpv/Player.NetworkCache.cs` quando a alteração envolver mídia de rede;
 - `src/MpvNet/Integration/Mpv/MpvClient.cs`;
 - `src/MpvNet/Native/LibMpv.cs`;
+- `src/MpvNet/Native/LibMpvRuntime.cs`;
+- `src/MpvNet.Tests/LibMpvRuntimeTests.cs` e `LibMpvInteropTests.cs`;
 - `src/MpvNet/Command.cs`;
 - `src/MpvNet/Configuration/CommandLine.cs`;
 - `src/MpvNet/Configuration/InputConf.cs`.
@@ -34,9 +36,12 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 - Se o efeito observado vier de uma camada acima do wrapper, apontar a camada correta antes de mexer no nativo.
 - Atualizar documentação técnica apenas quando houver mudança consolidada, preferindo documentos existentes.
 - Preservar a ordem de inicialização em `Player.Initialization.cs`.
+- Preservar a seleção dual por caminho absoluto: normal obrigatória, v3 apenas
+  em CPU compatível e fallback para normal se a v3 não carregar. O parâmetro
+  legado de build não seleciona mais um pacote de variante única.
 - Para cache de rede, consultar `docs/developer/mpv-integration.md`, manter a política por item e preservar as opções explícitas em `mpv.conf` e na linha de comando.
 - Não misturar carregamento de mídia, eventos, propriedades observadas e shutdown em uma mesma alteração quando uma mudança puder ser menor.
-- Verificar e ampliar `src/MpvNet.Tests/Program.cs` quando tocar paths, playlist, parser de comandos, títulos, seleção de idioma ou MediaInfo; depois rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
+- Verificar e ampliar os testes da área em `src/MpvNet.Tests/` (incluindo `Program.cs` quando aplicável) quando tocar paths, playlist, parser de comandos, títulos, seleção de idioma ou MediaInfo; depois rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
 
 ## Testes manuais esperados
 

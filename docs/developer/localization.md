@@ -298,8 +298,9 @@ src/MpvNet.Windows/bin/Debug/win-x64/Locale/pt_BR/LC_MESSAGES/mpvnet.mo
    ao idioma base ja existente.
 2. Adicionar a variante em `LocalizationCultureResolver` apontando para a
    cultura base oficial.
-3. Adicionar um teste em `src/MpvNet.Tests/Program.cs` cobrindo a resolucao da
-   variante e o fallback final.
+3. Ampliar os testes de idioma em `src/MpvNet.Tests/LocalizationExpansionTests.cs`
+   e os casos existentes em `Program.cs` quando aplicável, cobrindo a resolução
+   da variante e o fallback final.
 4. Atualizar esta tabela de variantes.
 
 Exemplo: para mapear uma nova variante de espanhol, adicionar a cultura ao mapa

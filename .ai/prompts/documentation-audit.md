@@ -11,8 +11,18 @@ Verifique:
 - cobertura de uso, configuração, build, release e arquitetura;
 - inconsistências entre README, manual, `docs/developer/` e `.ai/`;
 - consistência entre documentos técnicos e os agentes/prompts que os citam;
+- referências a seções por nome, caminhos entre crases e exemplos de comandos,
+  mesmo quando não são links Markdown;
+- cobertura em `src/MpvNet.Tests/` por área, incluindo `Program.cs` quando
+  aplicável; confira o runner, o isolamento e as pré-condições dos comandos;
+- distinção entre teste de contrato offline, DLL/pacote real, processo ativo,
+  fechamento limpo e validação visual;
 - codificação UTF-8, caminhos reais e comandos ainda suportados;
 - se uma nova página é necessária ou se o conteúdo pertence a documento existente.
+
+Preserve os requisitos dos planos históricos. Quando o objetivo já estiver
+implementado, acrescente contexto e a referência técnica atual, sem reapresentar
+hipóteses antigas como defeitos confirmados nem repetir a implementação.
 
 Entregue:
 

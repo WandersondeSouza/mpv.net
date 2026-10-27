@@ -164,18 +164,41 @@ mantida. Os manifestos `yt-dlp.exe.json` e `deno.exe.json` ficam ao lado dos
 binários e registram versão/asset, hash, URL, data, tamanho, arquitetura e
 fingerprint.
 
+O intervalo de atualização é de 20 dias a partir do download validado
+(`LastCheckedUtc`) ou da última confirmação de release inalterada
+(`LastReleaseCheckUtc`), usando a data mais recente. Quando a release conserva
+o mesmo digest e o SHA-256 completo dos arquivos locais é válido, o bootstrap
+atualiza somente `LastReleaseCheckUtc`, sem baixar novamente nem alterar a
+data do último download.
+
 Na primeira execução, `yt-dlp.exe` e `deno.exe` são baixados antes do ZIP do
-FFmpeg e ficam disponíveis mesmo se esse download for interrompido. O bundle
-FFmpeg só é promovido depois que os três executáveis forem validados. O bootstrap
+FFmpeg. As alterações compartilham uma geração de staging, promovida uma vez
+ao concluir o bootstrap. Se apenas o download do FFmpeg falhar, os componentes
+já validados podem ser promovidos; cancelar o bootstrap descarta a geração de
+staging e preserva a anterior. O bundle FFmpeg só é promovido depois que os
+três executáveis forem validados. O bootstrap
 começa em segundo plano após a exibição da janela e, quando termina, atualiza o
 `ytdl_hook-ytdl_path` para as próximas reproduções sem substituir uma configuração
 explícita do usuário.
 
-Cada download tem limite de 10 minutos. Ao fechar o aplicativo, o cancelamento
-remove o arquivo parcial e só aparece nos logs de diagnóstico (`Debug`). Timeout
-e falhas de transporte são registrados como erros; o timeout também informa o
-limite e os bytes recebidos. O cache válido anterior é preservado, e componentes
-ausentes ou vencidos podem ser baixados na próxima inicialização.
+O download retomável usado pelo bootstrap tem limite total de duas horas,
+timeout de 60 segundos sem progresso e até três tentativas para falhas
+transitórias. Respostas HTTP 403/429 não geram repetição imediata. A consulta de
+metadados da release tem limite de 30 segundos. Esses limites são distintos do
+download simples legado de 10 minutos.
+
+Transferências parciais ficam em `Component\staging\downloads`, identificadas
+pela URL e pelo SHA-256 publicado. Cancelamento, timeout e falhas transitórias
+preservam esse parcial para retomada; o staging da geração é descartado. A
+retomada usa HTTP Range e valida tamanho/Content-Range; se o servidor responder
+com o arquivo inteiro, a transferência reinicia sem concatenar os conteúdos.
+O hash completo continua obrigatório antes da ativação. Parciais sem alteração
+há sete dias são removidos durante o bootstrap.
+
+Ao fechar o aplicativo, o cancelamento aparece apenas no diagnóstico (`Debug`).
+Timeout e falhas de transporte são registrados como erros, com limite e bytes
+recebidos quando aplicável. A geração válida anterior é preservada; componentes
+ausentes ou vencidos podem ser atualizados na próxima inicialização.
 
 O `yt-dlp.exe` vem do canal nightly oficial
 [`yt-dlp/yt-dlp-nightly-builds`](https://github.com/yt-dlp/yt-dlp-nightly-builds):
@@ -311,7 +334,7 @@ Arquivos envolvidos:
 
 - `src/MpvNet/Configuration/InputConf.cs`;
 - `src/MpvNet/Utilities/InputHelp.cs`;
-- `src/MpvNet/Binding.cs`;
+- `src/MpvNet/Models/Binding.cs`;
 - `src/MpvNet/Command.cs`;
 - `src/MpvNet.Windows/Commands/GuiCommand.cs`.
 
