@@ -2665,7 +2665,11 @@ local function osc_init()
         end
         local min = math.floor(dmx_cache / 60)
         local sec = math.floor(dmx_cache % 60) -- don't round e.g. 59.9 to 60
-        return mp.get_property("user-data/mpvnet-osc-cache-label", "Cache") .. ": " .. (min > 0 and
+        local label = mp.get_property("user-data/mpvnet-osc-cache-label", "Cache")
+        if label:sub(1, 1) == '"' and label:sub(-1) == '"' then
+            label = label:sub(2, -2)
+        end
+        return label .. ": " .. (min > 0 and
             string.format("%sm%02.0fs", min, sec) or
             string.format("%3.0fs", sec))
     end
