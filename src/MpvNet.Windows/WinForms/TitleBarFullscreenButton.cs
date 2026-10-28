@@ -62,19 +62,19 @@ public sealed class TitleBarFullscreenButton : Form
         BackColor = SystemInformation.HighContrast
             ? active ? SystemColors.ActiveCaption : SystemColors.InactiveCaption
             : darkMode
-                ? active ? Color.FromArgb(32, 32, 32) : Color.FromArgb(45, 45, 45)
-                : active ? Color.White : Color.FromArgb(96, 96, 96);
+                ? Color.FromArgb(32, 32, 32)
+                : Color.White;
         ForeColor = SystemInformation.HighContrast
             ? active ? SystemColors.ActiveCaptionText : SystemColors.InactiveCaptionText
-            : active && !darkMode ? Color.Black : Color.White;
+            : active ? darkMode ? Color.White : Color.Black : Color.FromArgb(128, 128, 128);
         _button.BackColor = BackColor;
         _button.ForeColor = ForeColor;
-        _button.FlatAppearance.BorderSize = active ? 0 : 1;
+        _button.FlatAppearance.BorderSize = 0;
         _button.FlatAppearance.BorderColor = SystemInformation.HighContrast
             ? ForeColor
             : darkMode ? Color.FromArgb(112, 112, 112) : Color.FromArgb(150, 150, 150);
-        _button.FlatAppearance.MouseOverBackColor = darkMode || !active ? Color.FromArgb(75, 75, 75) : Color.FromArgb(229, 229, 229);
-        _button.FlatAppearance.MouseDownBackColor = darkMode || !active ? Color.FromArgb(60, 60, 60) : Color.FromArgb(204, 204, 204);
+        _button.FlatAppearance.MouseOverBackColor = darkMode ? Color.FromArgb(55, 55, 55) : Color.FromArgb(229, 229, 229);
+        _button.FlatAppearance.MouseDownBackColor = darkMode ? Color.FromArgb(70, 70, 70) : Color.FromArgb(204, 204, 204);
         if (_button.AccessibleName != accessibleName)
         {
             Text = accessibleName;

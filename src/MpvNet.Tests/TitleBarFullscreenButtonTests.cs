@@ -75,11 +75,11 @@ public sealed class TitleBarFullscreenButtonTests
 
         caption.UpdateCaption(true, false, false, "Fullscreen");
         Assert.Equal("Fullscreen", button.AccessibilityObject.Name);
-        Assert.Equal(Color.FromArgb(96, 96, 96), caption.BackColor);
-        Assert.Equal(Color.White, caption.ForeColor);
+        Assert.Equal(Color.White, caption.BackColor);
+        Assert.Equal(Color.FromArgb(128, 128, 128), caption.ForeColor);
         caption.UpdateCaption(true, true, false, "Fullscreen");
-        Assert.Equal(Color.FromArgb(45, 45, 45), caption.BackColor);
-        Assert.Equal(Color.White, caption.ForeColor);
+        Assert.Equal(Color.FromArgb(32, 32, 32), caption.BackColor);
+        Assert.Equal(Color.FromArgb(128, 128, 128), caption.ForeColor);
         caption.UpdateCaption(true, false, true, "Fullscreen");
         Assert.Equal(Color.White, caption.BackColor);
         Assert.Equal(Color.Black, caption.ForeColor);

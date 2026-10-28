@@ -96,8 +96,8 @@ A fonte interna do libmpv não é uma fonte GDI instalada; por isso o contorno
 é desenhado sem acrescentar uma dependência de fonte. O glyph é ampliado para
 22 px para melhorar a leitura. Quando a janela perde o foco, a superfície usa
 as cores de legenda inativa do Windows no alto contraste; nos temas claro e
-escuro, o botão usa fundo escuro, ícone branco e contorno. Ao recuperar o foco,
-volta ao desenho do tema, sem contorno. O OSC e seus ícones não são alterados.
+escuro, o ícone fica cinza para acompanhar os botões nativos inativos. Ao
+recuperar o foco, volta à cor do tema. O OSC e seus ícones não são alterados.
 A superfície acompanha `dark-mode` e alto contraste; o tema DWM é reaplicado
 após a leitura da configuração inicial.
 

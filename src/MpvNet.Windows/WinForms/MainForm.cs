@@ -697,6 +697,8 @@ public partial class MainForm : Form
 
     protected override void WndProc(ref Message m)
     {
+        if (m.Msg == 0x0086) // WM_NCACTIVATE reflects the native caption state.
+            _titleBarActive = m.WParam != IntPtr.Zero;
         // Observe gestures without consuming input: mpv/OSC/scripts still select
         // the binding. Only the video-click default requests a delayed pause.
         if (m.Msg == 0x0201) // WM_LBUTTONDOWN

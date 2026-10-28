@@ -3,6 +3,7 @@ namespace MpvNet.Windows.WinForms;
 public partial class MainForm
 {
     TitleBarFullscreenButton? _titleBarFullscreenButton;
+    bool _titleBarActive = true;
 
     void UpdateTitleBarFullscreenButton()
     {
@@ -16,6 +17,6 @@ public partial class MainForm
         });
         _titleBarFullscreenButton.UpdateCaption(
             !_closingInput && Player.Border && Player.TitleBar && !Player.Fullscreen && !IsFullscreen,
-            UI.Theme.DarkMode, ContainsFocus, _("Fullscreen"));
+            UI.Theme.DarkMode, _titleBarActive, _("Fullscreen"));
     }
 }
