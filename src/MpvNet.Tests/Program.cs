@@ -34,6 +34,7 @@ Directory.CreateDirectory(tempPlaylistDir);
 string tempAudio = Path.Combine(tempPlaylistDir, "audio.mp3");
 string tempVideo = Path.Combine(tempPlaylistDir, "video.mp4");
 string tempM3u = Path.Combine(tempPlaylistDir, "playlist.m3u");
+string tempM3u8 = Path.Combine(tempPlaylistDir, "playlist.m3u8");
 string tempPls = Path.Combine(tempPlaylistDir, "playlist.pls");
 string tempXspf = Path.Combine(tempPlaylistDir, "playlist.xspf");
 string tempAsx = Path.Combine(tempPlaylistDir, "playlist.asx");
@@ -44,6 +45,7 @@ string tempUnknown = Path.Combine(tempPlaylistDir, "ignored.txt");
 string tempImage = Path.Combine(tempPlaylistDir, "image.jpg");
 string tempSecondImage = Path.Combine(tempPlaylistDir, "second.png");
 string tempVideoWithSpaces = Path.Combine(tempPlaylistDir, "video com espacos.mp4");
+string[] playlistDiscoveryFiles = FileTypes.Playlist.Select(ext => Path.Combine(tempPlaylistDir, "discovery." + ext)).ToArray();
 string tempCustomInputConf = Path.Combine(tempPlaylistDir, "custom-input.conf");
 string relativeMediaFile = $"mpvnet-tests-relative-media-{Guid.NewGuid():N}.mkv";
 File.WriteAllText(tempAudio, "");
@@ -64,13 +66,24 @@ File.WriteAllLines(tempM3u, [
     "audio.mp3",
     "#EXTINF:-1,Video title",
     "video.mp4",
-    "subtitle.srt"]);
+    "subtitle.srt",
+    "#EXTINF:-1,Remote live",
+    "https://example.invalid/live"]);
+File.WriteAllLines(tempM3u8, [
+    "#EXTM3U",
+    "#EXTINF:-1,M3U8 remote live",
+    "https://example.invalid/live/index.m3u8?token=test",
+    "#EXTINF:-1,M3U8 local video",
+    "video.mp4"]);
 File.WriteAllLines(tempPls, [
     "[playlist]",
     "File1=video.mp4",
     "Title1=PLS video title",
     "Length1=-1",
-    "NumberOfEntries=1"]);
+    "File2=https://example.invalid/live",
+    "Title2=PLS remote live",
+    "Length2=-1",
+    "NumberOfEntries=2"]);
 File.WriteAllText(tempXspf, """
 <?xml version="1.0" encoding="UTF-8"?>
 <playlist version="1" xmlns="http://xspf.org/ns/0/">
@@ -78,6 +91,10 @@ File.WriteAllText(tempXspf, """
     <track>
       <location>audio.mp3</location>
       <title>XSPF audio title</title>
+    </track>
+    <track>
+      <location>https://example.invalid/live</location>
+      <title>XSPF remote live</title>
     </track>
   </trackList>
 </playlist>
@@ -88,6 +105,10 @@ File.WriteAllText(tempAsx, """
     <title>ASX video title</title>
     <ref href="video.mp4" />
   </entry>
+  <entry>
+    <title>ASX remote live</title>
+    <ref href="https://example.invalid/live" />
+  </entry>
 </asx>
 """);
 File.WriteAllText(tempWpl, """
@@ -95,13 +116,16 @@ File.WriteAllText(tempWpl, """
   <body>
     <seq>
       <media src="audio.mp3" title="WPL audio title" />
+      <media src="https://example.invalid/live" title="WPL remote live" />
     </seq>
   </body>
 </smil>
 """);
 File.WriteAllLines(tempCue, [
     "TITLE \"CUE audio title\"",
-    "FILE \"audio.mp3\" MP3"]);
+    "FILE \"audio.mp3\" MP3",
+    "TITLE \"CUE remote live\"",
+    "FILE \"https://example.invalid/live\" MP3"]);
 File.WriteAllText(tempJspf, """
 {
   "playlist": {
@@ -109,6 +133,10 @@ File.WriteAllText(tempJspf, """
       {
         "title": "JSPF video title",
         "location": ["video.mp4"]
+      },
+      {
+        "title": "JSPF remote live",
+        "location": ["https://example.invalid/live"]
       }
     ]
   }
@@ -117,6 +145,7 @@ File.WriteAllText(tempJspf, """
 var parsedPlaylist = PlaylistFile.Read(tempM3u);
 string tempNormalizedM3u = PlaylistFile.WriteTempM3u(parsedPlaylist);
 string normalizedM3uContent = File.ReadAllText(tempNormalizedM3u);
+var parsedM3u8Playlist = PlaylistFile.Read(tempM3u8);
 var parsedPlsPlaylist = PlaylistFile.Read(tempPls);
 string tempNormalizedPlsM3u = PlaylistFile.WriteTempM3u(parsedPlsPlaylist);
 string normalizedPlsM3uContent = File.ReadAllText(tempNormalizedPlsM3u);
@@ -535,6 +564,7 @@ var tests = new (string Name, bool Result)[]
     ("IsVideoFile .mpegts", FileTypes.IsVideoFile(".mpegts")),
     ("IsVideoFile .3gpp", FileTypes.IsVideoFile(".3gpp")),
     ("IsPlaylistFile .m3u8", FileTypes.IsPlaylistFile(".m3u8")),
+    ("All playlist extensions are recognized", FileTypes.Playlist.All(ext => FileTypes.IsPlaylistFile("playlist." + ext))),
     ("IsPlaylistFile .cue", FileTypes.IsPlaylistFile(".cue")),
     ("IsPlaylistFile .asx", FileTypes.IsPlaylistFile(".asx")),
     ("IsPlaylistFile .wpl", FileTypes.IsPlaylistFile(".wpl")),
@@ -547,6 +577,7 @@ var tests = new (string Name, bool Result)[]
     ("Default image extensions include jpeg", imageExts.Contains("jpeg")),
     ("Default image extensions include jxl", imageExts.Contains("jxl")),
     ("Default image extensions include tiff", imageExts.Contains("tiff")),
+    ("Supported media input accepts images", FileTypes.IsSupportedMediaInput("image.png")),
     ("IsStreamingUrl https HLS", FileTypes.IsStreamingUrl("https://example.com/live.m3u8")),
     ("IsStreamingUrl rtmp", FileTypes.IsStreamingUrl("rtmp://server/live")),
     ("IsStreamingUrl rtsp", FileTypes.IsStreamingUrl("rtsp://server/stream")),
@@ -572,6 +603,7 @@ var tests = new (string Name, bool Result)[]
     ("Title normalization keeps unsupported extension text", TitleHelp.NormalizeMediaTitle("notes.backup") == "Notes Backup"),
     ("Command line accepts streaming URL", CommandLine.IsLoadableFileArgument("rtmps://example.com/live")),
     ("Command line accepts playlist file extension", CommandLine.IsLoadableFileArgument("iptv.m3u")),
+    ("Command line accepts every playlist extension", FileTypes.Playlist.All(ext => CommandLine.IsLoadableFileArgument("iptv." + ext))),
     ("Command line accepts stdin pipe marker", CommandLine.IsLoadableFileArgument("-")),
     ("Command line rejects options as files", !CommandLine.IsLoadableFileArgument("--fullscreen")),
     ("Command line defers profile until after media loading", CommandLine.IsPostFileProperty("profile")),
@@ -623,19 +655,23 @@ var tests = new (string Name, bool Result)[]
     ("Invalid unknown local path is not supported media input", !FileTypes.IsSupportedMediaInput(@"C:\missing\file.unknown")),
     ("Audio defaults keep legacy formats", legacyAudioExts.All(audioExts.Contains)),
     ("Audio defaults add modern formats", expectedAudioExts.All(audioExts.Contains)),
-    ("Open file dialog first filter includes video audio and playlists", openFileDialogFirstFilter.Contains("*.mp4") && openFileDialogFirstFilter.Contains("*.mp3") && openFileDialogFirstFilter.Contains("*.m3u8")),
+    ("Open file dialog first filter includes video audio images and playlists", openFileDialogFirstFilter.Contains("*.mp4") && openFileDialogFirstFilter.Contains("*.mp3") && openFileDialogFirstFilter.Contains("*.png") && openFileDialogFirstFilter.Contains("*.m3u8")),
     ("Open file dialog keeps separate playlist filter", openFileDialogFilter.Contains("|Playlists|*.m3u;*.m3u8;*.pls;*.xspf;*.asx;*.wpl;*.cue;*.jspf|")),
     ("Folder media filter includes playlists", FileTypes.GetMediaFiles([tempAudio, tempVideo, tempM3u, tempUnknown]).Count() == 3),
     ("Folder media filter keeps playlist files", FileTypes.GetMediaFiles([tempM3u]).Single() == tempM3u),
+    ("Folder media discovery recognizes every playlist extension", FileTypes.GetMediaFiles(playlistDiscoveryFiles).SequenceEqual(playlistDiscoveryFiles)),
+    ("Video folder discovery includes every playlist extension", FileTypes.GetFolderMediaFiles(playlistDiscoveryFiles.Append(tempVideo).ToArray(), tempVideo).SequenceEqual(playlistDiscoveryFiles.Append(tempVideo))),
     ("Folder autoload for video includes audio video and playlists", FileTypes.GetFolderMediaFiles([tempAudio, tempVideo, tempM3u, tempImage, tempUnknown], tempVideo).SequenceEqual([tempAudio, tempVideo, tempM3u])),
     ("Folder autoload for image includes only images", FileTypes.GetFolderMediaFiles([tempAudio, tempVideo, tempM3u, tempImage, tempSecondImage, tempUnknown], tempImage).SequenceEqual([tempImage, tempSecondImage])),
     ("Folder autoload detects uppercase image extension", FileTypes.GetFolderMediaFiles([tempAudio, tempImage.ToUpperInvariant()], tempImage.ToUpperInvariant()).Single() == tempImage.ToUpperInvariant()),
     ("Empty media track defaults avoid null bindings", new MediaTrack().Text == "" && new MediaTrack().Language == ""),
-    ("Playlist parser keeps playable unique items", parsedPlaylist.Count == 2),
+    ("Playlist parser keeps playable unique items", parsedPlaylist.Count == 3),
     ("Playlist parser resolves relative media paths", parsedPlaylist.Any(i => i.Path == tempAudio)),
     ("Playlist parser normalizes item title", parsedPlaylist.Any(i => i.Title == "Video Title" && i.Path == tempVideo)),
     ("Playlist writer preserves normalized item titles", normalizedM3uContent.Contains("#EXTINF:-1,Video Title")),
     ("Playlist writer preserves resolved paths", normalizedM3uContent.Contains(tempVideo)),
+    ("M3U8 parser reads local entries and streaming URLs", parsedM3u8Playlist.Any(i => i.Path == tempVideo && i.Title == "M3u8 Local Video") && parsedM3u8Playlist.Any(i => i.Path == "https://example.invalid/live/index.m3u8?token=test" && i.Title == "M3u8 Remote Live")),
+    ("M3U parser keeps streaming URLs", parsedPlaylist.Any(i => i.Path == "https://example.invalid/live" && i.Title == "Remote Live")),
     ("Playlist normalizer keeps streaming URLs", normalizedRemotePlaylistItems.Single().Path == "https://example.com/live/index.m3u8?token=abc"),
     ("Playlist normalizer resolves file URIs", Path.GetFullPath(normalizedFileUriPlaylistItems.Single().Path) == Path.GetFullPath(tempAudio)),
     ("Playlist normalizer removes quotes from titles", normalizedQuotedPlaylistItems.Single().Title == "Quoted Video Title"),
@@ -652,17 +688,23 @@ var tests = new (string Name, bool Result)[]
     ("Atomic text write creates missing folders", atomicNestedWriteContent == "created"),
     ("Atomic text write removes temporary file", atomicWriteCleanedTempFiles),
     ("PLS parser normalizes item title", parsedPlsPlaylist.Any(i => i.Title == "Pls Video Title" && i.Path == tempVideo)),
+    ("PLS parser keeps streaming URLs", parsedPlsPlaylist.Any(i => i.Path == "https://example.invalid/live" && i.Title == "Pls Remote Live")),
     ("PLS writer preserves normalized item titles", normalizedPlsM3uContent.Contains("#EXTINF:-1,Pls Video Title")),
-    ("XSPF parser resolves relative media paths", parsedXspfPlaylist.Single().Path == tempAudio),
-    ("XSPF parser normalizes item title", parsedXspfPlaylist.Single().Title == "Xspf Audio Title"),
-    ("ASX parser resolves relative media paths", parsedAsxPlaylist.Single().Path == tempVideo),
-    ("ASX parser normalizes item title", parsedAsxPlaylist.Single().Title == "Asx Video Title"),
-    ("WPL parser resolves relative media paths", parsedWplPlaylist.Single().Path == tempAudio),
-    ("WPL parser normalizes item title", parsedWplPlaylist.Single().Title == "Wpl Audio Title"),
-    ("CUE parser resolves relative media paths", parsedCuePlaylist.Single().Path == tempAudio),
-    ("CUE parser normalizes item title", parsedCuePlaylist.Single().Title == "Cue Audio Title"),
-    ("JSPF parser resolves array location", parsedJspfPlaylist.Single().Path == tempVideo),
-    ("JSPF parser normalizes item title", parsedJspfPlaylist.Single().Title == "Jspf Video Title"),
+    ("XSPF parser resolves relative media paths", parsedXspfPlaylist.Any(i => i.Path == tempAudio)),
+    ("XSPF parser normalizes item title", parsedXspfPlaylist.Any(i => i.Title == "Xspf Audio Title" && i.Path == tempAudio)),
+    ("XSPF parser keeps streaming URLs", parsedXspfPlaylist.Any(i => i.Path == "https://example.invalid/live" && i.Title == "Xspf Remote Live")),
+    ("ASX parser resolves relative media paths", parsedAsxPlaylist.Any(i => i.Path == tempVideo)),
+    ("ASX parser normalizes item title", parsedAsxPlaylist.Any(i => i.Title == "Asx Video Title" && i.Path == tempVideo)),
+    ("ASX parser keeps streaming URLs", parsedAsxPlaylist.Any(i => i.Path == "https://example.invalid/live" && i.Title == "Asx Remote Live")),
+    ("WPL parser resolves relative media paths", parsedWplPlaylist.Any(i => i.Path == tempAudio)),
+    ("WPL parser normalizes item title", parsedWplPlaylist.Any(i => i.Title == "Wpl Audio Title" && i.Path == tempAudio)),
+    ("WPL parser keeps streaming URLs", parsedWplPlaylist.Any(i => i.Path == "https://example.invalid/live" && i.Title == "Wpl Remote Live")),
+    ("CUE parser resolves relative media paths", parsedCuePlaylist.Any(i => i.Path == tempAudio)),
+    ("CUE parser normalizes item title", parsedCuePlaylist.Any(i => i.Title == "Cue Audio Title" && i.Path == tempAudio)),
+    ("CUE parser keeps streaming URLs", parsedCuePlaylist.Any(i => i.Path == "https://example.invalid/live" && i.Title == "Cue Remote Live")),
+    ("JSPF parser resolves array location", parsedJspfPlaylist.Any(i => i.Path == tempVideo)),
+    ("JSPF parser normalizes item title", parsedJspfPlaylist.Any(i => i.Title == "Jspf Video Title" && i.Path == tempVideo)),
+    ("JSPF parser keeps streaming URLs", parsedJspfPlaylist.Any(i => i.Path == "https://example.invalid/live" && i.Title == "Jspf Remote Live")),
     ("Config parser skips comments and invalid lines", parsedConfig.Count == 5),
     ("Config parser trims keys and values", parsedConfig["dark-mode"] == "never" && parsedConfig["language"] == "pt-BR"),
     ("Config parser keeps leading option dashes", parsedConfig["--fullscreen"] == "yes"),

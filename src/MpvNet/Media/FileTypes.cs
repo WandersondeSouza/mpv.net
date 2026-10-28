@@ -38,7 +38,7 @@ public static class FileTypes
     public static bool IsPlaylistFile(string input) => IsPlaylist(GetInputExtension(input));
     public static bool IsAudioFile(string input) => IsAudio(GetInputExtension(input));
     public static bool IsSupportedMediaInput(string input) =>
-        IsStreamingUrl(input) || IsVideoFile(input) || IsAudioFile(input) || IsPlaylistFile(input);
+        IsStreamingUrl(input) || IsVideoFile(input) || IsAudioFile(input) || IsImage(GetInputExtension(input)) || IsPlaylistFile(input);
 
     public static bool IsVideo(string ext) => GetSupportedVideoExts().Contains(NormalizeExt(ext));
     public static bool IsAudio(string ext) => GetAudioExts().Contains(NormalizeExt(ext));
@@ -91,8 +91,9 @@ public static class FileTypes
     {
         string video = string.Join(";", GetSupportedVideoExts().Select(ext => "*." + ext));
         string audio = string.Join(";", GetAudioExts().Select(ext => "*." + ext));
+        string image = string.Join(";", GetImgExts().Select(ext => "*." + ext));
         string playlists = string.Join(";", Playlist.Select(ext => "*." + ext));
-        string mediaAndPlaylists = string.Join(";", new[] { video, audio, playlists });
+        string mediaAndPlaylists = string.Join(";", new[] { video, audio, image, playlists });
         return $"{_("Media and playlist files")}|{mediaAndPlaylists}|{_("Video files")}|{video}|{_("Audio files")}|{audio}|{_("Playlists")}|{playlists}|{_("All files")} (*.*)|*.*";
     }
 

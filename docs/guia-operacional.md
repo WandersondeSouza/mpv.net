@@ -102,6 +102,13 @@ O diretório `portable_config` guarda as configurações usadas pelo pacote
 portátil. Você pode incluir nele `mpv.conf`, `input.conf`, scripts e opções de
 scripts, seguindo o layout do mpv.
 
+O ZIP portátil não registra associações de arquivos no Windows. Para abrir uma
+mídia pelo Explorador, selecione o MPV.NET em `Abrir com`; o filtro de abertura
+do player também inclui formatos de imagem. A associação de imagens no
+instalador desktop continua opcional, e o manifesto da Store declara formatos
+de imagem sem alterar automaticamente o aplicativo padrão escolhido pelo
+usuário.
+
 ## Diagnóstico de caminhos
 
 ```powershell

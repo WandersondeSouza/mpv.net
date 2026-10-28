@@ -24,6 +24,65 @@ A integração com libmpv é considerada uma das áreas mais críticas do projet
 - estado do player;
 - integração com scripts.
 
+## Extensões, playlists e capacidade de decodificação
+
+`src/MpvNet/Media/FileTypes.cs` mantém as extensões usadas pelo filtro de
+abertura, classificação de entradas, descoberta de mídias na pasta e registro
+de associações do instalador. O manifesto MSIX declara separadamente os tipos
+de arquivo que o Windows pode encaminhar ao pacote; os testes comparam esse
+manifesto com as listas padrão do player para evitar divergências. O instalador
+registra áudio, vídeo e playlists; imagens permanecem opt-in no desktop. O ZIP
+portátil não registra associações no Windows.
+
+O frontend também expande playlists locais `.m3u`, `.m3u8`, `.pls`, `.xspf`,
+`.asx`, `.wpl`, `.cue` e `.jspf`, aceitando itens reproduzíveis de áudio/vídeo
+ou URLs. Imagens são entradas diretas do player, não itens expandidos por esses
+formatos de playlist.
+
+### Matriz de filtros, descoberta e associações
+
+| Tipo | Diálogo e linha de comando | Descoberta em pastas | Instalador desktop | Microsoft Store |
+| --- | --- | --- | --- | --- |
+| Vídeo | `GetSupportedVideoExts()` combina `DefaultVideoExts` com `video-exts` do libmpv. Extensões reconhecidas passam pelo filtro e pela linha de comando; caminhos existentes também são encaminhados ao mpv. | Ao abrir áudio ou vídeo, `GetMediaFiles` inclui vídeos, áudios e playlists reconhecidos. | O Inno Setup registra vídeo automaticamente; o registro consulta a lista de vídeo exposta pelo libmpv, com defaults como fallback. | O manifesto declara a lista estática `DefaultVideoExts` e as oito extensões de playlist dentro da associação de vídeo. Não altera o aplicativo padrão do usuário. |
+| Áudio | `GetAudioExts()` usa `audio-exts` do libmpv ou `DefaultAudioExts` quando a propriedade está vazia. O mesmo conjunto alimenta o filtro e a classificação por extensão. | Ao abrir áudio ou vídeo, inclui áudios, vídeos e playlists reconhecidos. | O Inno Setup registra áudio automaticamente a partir da lista de áudio do libmpv, com defaults como fallback. | O manifesto declara `DefaultAudioExts`. |
+| Imagem | `GetImgExts()` usa `image-exts` do libmpv ou `DefaultImageExts` como fallback. A lista está no diálogo; a linha de comando e a entrada de mídia também aceitam imagens. | Ao abrir uma imagem, a descoberta automática fica restrita a outras imagens da pasta. Imagens não entram na expansão das playlists locais. | Não é registrada automaticamente. O usuário pode habilitar a associação em `Config > Setup > Register image file associations`. | O manifesto declara `DefaultImageExts` em associação própria para `Abrir com` e `Aplicativos padrão`, sem definir um padrão automaticamente. |
+| Playlist | O filtro, a linha de comando e `PlaylistFile.Read` cobrem `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`, `.wpl`, `.cue` e `.jspf`. Entradas locais relativas são resolvidas em relação à playlist; URLs são preservadas. | É incluída na descoberta de pasta quando a abertura parte de áudio/vídeo; não é misturada à descoberta de imagens. | O Inno Setup registra as oito extensões automaticamente. | As oito extensões aparecem na associação de vídeo do manifesto. |
+
+O ZIP portátil não registra associações no Windows. O manifesto MSIX usa as
+listas estáticas versionadas no projeto; o filtro e o instalador desktop também
+podem receber extensões específicas da build pelas propriedades `video-exts`,
+`audio-exts` e `image-exts` do libmpv. No diálogo do libmpv distribuído nesta
+auditoria, as propriedades expuseram `.ivf`, `.dff`, `.dsf`, `.mp1`, `.heic`,
+`.heif` e `.qoi` além das listas estáticas. Esses nomes não foram promovidos aos
+defaults nem ao manifesto: a presença no filtro, sem reprodução de amostra
+confirmada, não basta para declarar suporte.
+
+Uma extensão reconhecida informa como o frontend trata ou associa o caminho;
+ela não comprova que o arquivo contém um codec ou container reproduzível. A
+capacidade depende dos demuxers e decoders presentes na revisão empacotada de
+libmpv/FFmpeg e deve ser verificada com arquivos de amostra. As DLLs normal e
+x86-64-v3 são variantes de CPU da mesma revisão upstream, e a seleção de uma
+delas não é uma declaração de suporte a formatos. `mpvnet.exe
+--diagnose-libmpv` confirma a seleção/carregamento do binário; a reprodução
+real de amostras é uma verificação separada.
+
+### Binários identificados na auditoria de 28/10/2026
+
+Os dois arquivos publicados em `win-x64` foram identificados como PE AMD64 e
+reportam a mesma versão de arquivo/produto e o mesmo build upstream:
+`v0.41.0-1227-ge471496c5` (`20261021-git-e471496c56`). São variantes de CPU,
+não builds com listas de codecs diferentes.
+
+| Arquivo | Variante | SHA-256 |
+| --- | --- | --- |
+| `libmpv-2.dll` | x86-64 normal | `04E4D27DC385DC18DDD93FBE69C75E635B864F3C6EC53A9122DF54C2F7842F4A` |
+| `libmpv-2-v3.dll` | x86-64-v3 | `9197A10DD712A15D652CCB2E915F47E377605599BC9FAA9A137BB8A1EF2BB6C4` |
+
+Na verificação manual, ambas reproduziram amostras locais PNG, WAV e MP4. Uma
+playlist M3U8 com entrada local WAV também abriu e carregou a mídia. Isso
+confirma os caminhos básicos de imagem, áudio, vídeo e playlist nesta build; não
+é uma prova exaustiva de todos os codecs e containers anunciados pelo mpv.
+
 ---
 
 # Wrapper e comunicação

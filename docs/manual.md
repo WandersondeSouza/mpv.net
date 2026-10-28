@@ -37,9 +37,10 @@ O instalador registra os formatos de mídia comuns e playlists IPTV suportados
 pelo fork e adiciona a pasta instalada ao `PATH` do Windows, permitindo executar
 `mpvnet.exe` pelo terminal após abrir uma nova sessão. Imagens não são
 associadas automaticamente na instalação; use `Config > Setup > Register image
-file associations` no menu de contexto se quiser associá-las manualmente. Ao
-desinstalar, o instalador remove também as associações do mpv.net criadas
-manualmente para imagens e remove a pasta instalada do `PATH`.
+file associations` no menu de contexto se quiser associá-las manualmente. O ZIP
+portátil não registra associações no Windows. Ao desinstalar, o instalador remove
+as associações do mpv.net criadas para imagens e os formatos registrados na
+instalação, além de remover a pasta instalada do `PATH`.
 
 ## Controles de mídia do Windows
 
@@ -77,16 +78,27 @@ Os comandos de mídia mantêm a miniatura aberta após o clique, permitindo usar
 outro controle em seguida; o botão de apoio fecha a miniatura ao abrir o
 navegador. A toolbar aparece quando o Windows cria a miniatura da janela.
 
-As associações automáticas atuais incluem:
+As listas padrão de extensões do projeto incluem:
 
 - Vídeo: `.mp4`, `.m4v`, `.mkv`, `.webm`, `.avi`, `.mov`, `.qt`, `.wmv`, `.asf`, `.flv`, `.f4v`, `.mpg`, `.mpeg`, `.mpe`, `.m1v`, `.m2v`, `.vob`, `.ts`, `.mts`, `.m2ts`, `.3gp`, `.3g2`, `.3gpp`, `.ogv`, `.ogg`, `.rm`, `.rmvb`, `.divx`, `.xvid`, `.dv`, `.nut`, `.nsv`, `.264`, `.265`, `.avc`, `.avs`, `.dav`, `.h264`, `.h265`, `.hevc`, `.m2t`, `.mj2`, `.mpv`, `.vpy`, `.y4m`, `.mxf`, `.m2p`, `.m4p`, `.mpeg2`, `.mpegts`;
 - Áudio: `.mp3`, `.wav`, `.flac`, `.m4a`, `.m4b`, `.aac`, `.ogg`, `.opus`, `.wma`, `.alac`, `.aiff`, `.aif`, `.ape`, `.wv`, `.mka`, `.ac3`, `.dts`, `.eac3`, `.amr`, `.au`, `.mp2`, `.mpa`, `.mpc`, `.thd`, `.w64`, `.oga`, `.ogm`, `.dtshd`, `.dtshr`, `.dtsma`, `.mid`, `.midi`, `.caf`, `.tta`, `.tak`, `.rmi`, `.ra`, `.ram`, `.voc`, `.spx`;
 - Playlists: `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`, `.wpl`, `.cue`, `.jspf`;
 - Imagem, apenas quando associada manualmente pelo menu: `.avif`, `.bmp`, `.gif`, `.j2k`, `.jp2`, `.jpeg`, `.jpg`, `.jxl`, `.png`, `.svg`, `.tga`, `.tif`, `.tiff`, `.webp`.
 
-No pacote da Microsoft Store, essas extensões são registradas como formatos que
-o MPV.NET pode abrir e aparecem em `Abrir com` e em `Aplicativos padrão`. O
-Windows não permite que um aplicativo altere silenciosamente o padrão do
+As listas acima descrevem as extensões reconhecidas pelo frontend para filtros,
+coleções, associações e tratamento de títulos. Elas não garantem que qualquer
+arquivo com aquela extensão use um codec disponível no libmpv; o conteúdo real
+e os decoders/demuxers da build determinam a reprodução.
+
+O filtro e o instalador desktop também consultam as propriedades de extensão da
+build do libmpv; por isso podem expor tipos adicionais ou diferentes dos
+defaults. O manifesto da Store declara os defaults versionados no projeto. A
+matriz completa e as diferenças da build auditada estão na
+[documentação técnica de integração com mpv](developer/mpv-integration.md).
+
+No pacote da Microsoft Store, as extensões de vídeo, áudio, playlist e imagem
+são declaradas no manifesto e aparecem em `Abrir com` e em `Aplicativos padrão`.
+O Windows não permite que um aplicativo altere silenciosamente o padrão do
 usuário durante a instalação. Para tornar o MPV.NET o padrão, abra
 `Configurações > Aplicativos > Aplicativos padrão`, procure o MPV.NET e escolha
 as extensões desejadas; também é possível usar `Abrir com > Escolher outro

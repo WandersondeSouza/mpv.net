@@ -217,7 +217,7 @@ Pontos importantes:
 - o projeto inclui os assets necessários para montar o pacote da Store;
 - o projeto foi adicionado à solução `src/MpvNet.sln`, mas depende do Desktop Bridge/MSIX instalado no Visual Studio para gerar o pacote de fato.
 - como o idioma pode ser alterado dentro do player, todos os catálogos `.mo` ficam no pacote principal; o WAP separa recursos por escala e DirectX, mas não por idioma. Mantenha `AppxBundleAutoResourcePackageQualifiers` e `AppxDefaultResourceQualifiers` alinhados aos idiomas declarados em `Package.appxmanifest`.
-- o manifesto MSIX declara associacoes de video, audio e playlists para o Windows listar o app como abridor desses arquivos.
+- o manifesto MSIX declara associações de vídeo, áudio, playlists e imagens para o Windows listar o app como abridor desses arquivos; imagens continuam sem registro automático no instalador desktop.
 - o manifesto registra formatos para `Abrir com` e `Aplicativos padrão`, mas a instalação da Store não pode substituir silenciosamente o padrão escolhido pelo usuário; a seleção deve ser feita pelo usuário nas Configurações do Windows ou no Explorador de Arquivos.
 - o pacote MSIX nao grava a pasta instalada diretamente no `PATH` como o Inno Setup; para terminal, ele declara o alias `mpvnet.exe`, resolvido pelo Windows via App Execution Alias.
 - o arquivo real `src/MpvNet.Pacote/Packaging.Distribution.props` fica fora do Git por padrao e deve conter apenas dados locais/secretos do certificado.
