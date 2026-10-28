@@ -31,7 +31,7 @@ public sealed class TitleBarFullscreenButtonTests
             native.Offset(window.Left, window.Top);
             Point maximize = new(native.Left + native.Width / 2, native.Top + native.Height / 2);
             int originalHit = HitTest(handle, maximize);
-            caption.UpdateCaption(true, false, "Tela cheia");
+            caption.UpdateCaption(true, false, true, "Tela cheia");
             Application.DoEvents();
             Assert.True(caption.Visible);
             Assert.Same(owner, caption.Owner);
@@ -65,7 +65,7 @@ public sealed class TitleBarFullscreenButtonTests
         Application.DoEvents();
         int commands = 0;
         using var caption = new TitleBarFullscreenButton(owner, () => commands++);
-        caption.UpdateCaption(true, true, "Tela cheia");
+        caption.UpdateCaption(true, true, true, "Tela cheia");
         var button = Assert.IsAssignableFrom<Button>(Assert.Single(caption.Controls));
         Assert.Equal("Tela cheia", button.AccessibilityObject.Name);
         Assert.Equal(AccessibleRole.PushButton, button.AccessibilityObject.Role);
@@ -73,17 +73,24 @@ public sealed class TitleBarFullscreenButtonTests
         Assert.Equal(1, commands);
         Assert.Equal(state, owner.WindowState);
 
-        caption.UpdateCaption(true, false, "Fullscreen");
+        caption.UpdateCaption(true, false, false, "Fullscreen");
         Assert.Equal("Fullscreen", button.AccessibilityObject.Name);
-        caption.UpdateCaption(false, false, "Fullscreen");
+        Assert.Equal(Color.FromArgb(240, 240, 240), caption.BackColor);
+        Assert.Equal(Color.Black, caption.ForeColor);
+        caption.UpdateCaption(true, true, false, "Fullscreen");
+        Assert.Equal(Color.FromArgb(45, 45, 45), caption.BackColor);
+        Assert.Equal(Color.White, caption.ForeColor);
+        caption.UpdateCaption(true, false, true, "Fullscreen");
+        Assert.Equal(Color.White, caption.BackColor);
+        caption.UpdateCaption(false, false, false, "Fullscreen");
         Assert.False(caption.Visible);
         owner.WindowState = FormWindowState.Minimized;
-        caption.UpdateCaption(true, false, "Fullscreen");
+        caption.UpdateCaption(true, false, true, "Fullscreen");
         Assert.False(caption.Visible);
         owner.WindowState = FormWindowState.Normal;
         owner.RecreateWindow();
         Assert.False(caption.Visible);
-        caption.UpdateCaption(true, true, "Tela cheia");
+        caption.UpdateCaption(true, true, true, "Tela cheia");
         Assert.True(caption.Visible);
         Assert.Same(owner, caption.Owner);
         button.AccessibilityObject.DoDefaultAction();

@@ -93,9 +93,13 @@ a superfície.
 O ícone reproduz em GDI+ o contorno `E108` de `mpv-osd-symbols`, usado pelo
 estilo `classic` do OSC distribuído (`bottombar`, padrão `icon_style=layout`).
 A fonte interna do libmpv não é uma fonte GDI instalada; por isso o contorno
-é desenhado sem acrescentar uma dependência de fonte. O OSC e seus ícones
-não são alterados. A superfície acompanha `dark-mode` e alto contraste;
-o tema DWM é reaplicado após a leitura da configuração inicial.
+é desenhado sem acrescentar uma dependência de fonte. O glyph é ampliado para
+22 px para melhorar a leitura. Quando a janela perde o foco, a superfície usa
+as cores de legenda inativa do Windows no alto contraste, tons neutros no tema
+claro/escuro e um contorno no botão; ao recuperar o foco, volta ao desenho sem
+contorno. O OSC e seus ícones não são alterados. A superfície acompanha
+`dark-mode` e alto contraste; o tema DWM é reaplicado após a leitura da
+configuração inicial.
 
 Referências: [geometria DWM](https://learn.microsoft.com/windows/win32/api/dwmapi/ne-dwmapi-dwmwindowattribute),
 [TITLEBARINFOEX](https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-titlebarinfoex)

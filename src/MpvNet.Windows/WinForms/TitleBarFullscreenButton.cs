@@ -47,7 +47,7 @@ public sealed class TitleBarFullscreenButton : Form
         }
     }
 
-    public void UpdateCaption(bool enabled, bool darkMode, string accessibleName)
+    public void UpdateCaption(bool enabled, bool darkMode, bool active, string accessibleName)
     {
         if (IsDisposed)
             return;
@@ -59,12 +59,20 @@ public sealed class TitleBarFullscreenButton : Form
             return;
         }
 
-        BackColor = SystemInformation.HighContrast ? SystemColors.ActiveCaption :
-            darkMode ? Color.FromArgb(32, 32, 32) : Color.White;
-        ForeColor = SystemInformation.HighContrast ? SystemColors.ActiveCaptionText :
-            darkMode ? Color.White : Color.Black;
+        BackColor = SystemInformation.HighContrast
+            ? active ? SystemColors.ActiveCaption : SystemColors.InactiveCaption
+            : darkMode
+                ? active ? Color.FromArgb(32, 32, 32) : Color.FromArgb(45, 45, 45)
+                : active ? Color.White : Color.FromArgb(240, 240, 240);
+        ForeColor = SystemInformation.HighContrast
+            ? active ? SystemColors.ActiveCaptionText : SystemColors.InactiveCaptionText
+            : darkMode ? Color.White : Color.Black;
         _button.BackColor = BackColor;
         _button.ForeColor = ForeColor;
+        _button.FlatAppearance.BorderSize = active ? 0 : 1;
+        _button.FlatAppearance.BorderColor = SystemInformation.HighContrast
+            ? ForeColor
+            : darkMode ? Color.FromArgb(112, 112, 112) : Color.FromArgb(150, 150, 150);
         _button.FlatAppearance.MouseOverBackColor = darkMode ? Color.FromArgb(55, 55, 55) : Color.FromArgb(229, 229, 229);
         _button.FlatAppearance.MouseDownBackColor = darkMode ? Color.FromArgb(70, 70, 70) : Color.FromArgb(204, 204, 204);
         if (_button.AccessibleName != accessibleName)
@@ -179,7 +187,7 @@ public sealed class TitleBarFullscreenButton : Form
             path.AddPolygon(new[] { new Point(580, 120), new Point(760, 120), new Point(760, 300) });
             path.AddRectangle(new Rectangle(274, 240, 332, 159));
             path.AddPolygon(new[] { new Point(300, 520), new Point(120, 520), new Point(120, 340) });
-            float width = Math.Min(18f * DeviceDpi / 96, Width - 8);
+            float width = Math.Min(22f * DeviceDpi / 96, Width - 8);
             float height = width * 640 / 880;
             using Matrix transform = new(width / 880, 0, 0, height / 640, (Width - width) / 2, (Height - height) / 2);
             path.Transform(transform);

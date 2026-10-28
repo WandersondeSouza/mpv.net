@@ -16,6 +16,6 @@ public partial class MainForm
         });
         _titleBarFullscreenButton.UpdateCaption(
             !_closingInput && Player.Border && Player.TitleBar && !Player.Fullscreen && !IsFullscreen,
-            UI.Theme.DarkMode, _("Fullscreen"));
+            UI.Theme.DarkMode, ContainsFocus, _("Fullscreen"));
     }
 }
