@@ -11,6 +11,7 @@ Este manual cobre apenas o que importa para o uso cotidiano do fork.
 - [Controles de mídia do Windows](#controles-de-mídia-do-windows)
 - [Configuração](#configuração)
 - [Linha de comando](#linha-de-comando)
+- [Integração por parâmetros: vídeo, título e idioma](#integração-por-parâmetros-vídeo-título-e-idioma)
 - [Modo portátil](#modo-portátil)
 - [Documentação técnica](#documentação-técnica)
 - [Diferenças em relação ao mpv](#diferenças-em-relação-ao-mpv)
@@ -431,6 +432,121 @@ mpvnet.exe "C:\Videos\filme.mp4"
 mpvnet.exe "https://example.com/live/index.m3u8"
 mpvnet.exe "Canal IPTV" "https://example.com/live/index.m3u8"
 ```
+
+### Integração por parâmetros: vídeo, título e idioma
+
+Para outras aplicações abrirem o player portátil com um vídeo, título e idioma
+de interface definidos, use este formato no PowerShell:
+
+```powershell
+& "C:\Players\MPV.NET\mpvnet.exe" --process-instance=multi --alang= --language=pt-BR --title="Meu vídeo" "C:\Videos\video.mp4"
+```
+
+| Argumento | Função |
+| --- | --- |
+| `--process-instance=multi` | Abre uma nova instância, aplicando o título e o idioma nesta abertura mesmo se já houver outro player aberto. |
+| `--language=pt-BR` | Define o idioma da interface; também aceita o nome público, como `--language=portuguese-brazil`. Use `=` entre a opção e o idioma. |
+| `--alang=` | Limpa a preferência de áudio nesta execução para impedir que um `alang` salvo substitua o idioma da interface. |
+| `--title="Meu vídeo"` | Define o título visual da janela e da mídia. O player aplica sua normalização de títulos. |
+| `"C:\Videos\video.mp4"` | Caminho do vídeo. Pode ser substituído por uma URL compatível com o mpv. |
+
+Coloque caminhos e títulos com espaços entre aspas. No PowerShell, use `&`
+antes do caminho do executável entre aspas; no Prompt de Comando (`cmd.exe`),
+execute o mesmo comando sem o `&` inicial.
+
+Os exemplos abaixo cobrem os **20 idiomas atuais** e devem ser executados na
+pasta do player portátil. Substitua o caminho do vídeo e o título conforme a
+aplicação. Os códigos da tabela são aceitos diretamente em `--language`.
+
+| Idioma da interface | Código | Exemplo no PowerShell |
+| --- | --- | --- |
+| Alemão | `de` | `.\mpvnet.exe --process-instance=multi --alang= --language=de --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Árabe | `ar-SA` | `.\mpvnet.exe --process-instance=multi --alang= --language=ar-SA --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Búlgaro | `bg` | `.\mpvnet.exe --process-instance=multi --alang= --language=bg --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Chinês simplificado | `zh-CN` | `.\mpvnet.exe --process-instance=multi --alang= --language=zh-CN --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Chinês tradicional (Hong Kong) | `zh-HK` | `.\mpvnet.exe --process-instance=multi --alang= --language=zh-HK --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Chinês tradicional (Taiwan) | `zh-TW` | `.\mpvnet.exe --process-instance=multi --alang= --language=zh-TW --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Coreano | `ko` | `.\mpvnet.exe --process-instance=multi --alang= --language=ko --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Espanhol | `es` | `.\mpvnet.exe --process-instance=multi --alang= --language=es --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Francês | `fr` | `.\mpvnet.exe --process-instance=multi --alang= --language=fr --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Hindi | `hi-IN` | `.\mpvnet.exe --process-instance=multi --alang= --language=hi-IN --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Indonésio | `id-ID` | `.\mpvnet.exe --process-instance=multi --alang= --language=id-ID --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Inglês | `en` | `.\mpvnet.exe --process-instance=multi --alang= --language=en --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Italiano | `it` | `.\mpvnet.exe --process-instance=multi --alang= --language=it --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Japonês | `ja` | `.\mpvnet.exe --process-instance=multi --alang= --language=ja --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Polonês | `pl` | `.\mpvnet.exe --process-instance=multi --alang= --language=pl --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Português do Brasil | `pt-BR` | `.\mpvnet.exe --process-instance=multi --alang= --language=pt-BR --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Português de Portugal | `pt-PT` | `.\mpvnet.exe --process-instance=multi --alang= --language=pt-PT --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Russo | `ru` | `.\mpvnet.exe --process-instance=multi --alang= --language=ru --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Turco | `tr` | `.\mpvnet.exe --process-instance=multi --alang= --language=tr --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Ucraniano | `uk-UA` | `.\mpvnet.exe --process-instance=multi --alang= --language=uk-UA --title="Meu vídeo" "C:\Videos\video.mp4"` |
+
+Para abrir uma URL, mantenha as opções e troque somente a mídia:
+
+```powershell
+.\mpvnet.exe --process-instance=multi --alang= --language=pt-BR --title="Canal ao vivo" "https://example.com/live/index.m3u8"
+```
+
+**Fallback para inglês:** um idioma explicitamente informado e não reconhecido
+usa inglês. Para garantir inglês quando a aplicação não tiver um idioma para
+enviar, passe `--language=en`.
+
+```powershell
+# Idioma não suportado: interface em inglês.
+.\mpvnet.exe --process-instance=multi --alang= --language=xx-ZZ --title="Meu vídeo" "C:\Videos\video.mp4"
+
+# Inglês explícito, independentemente do idioma salvo ou do Windows.
+.\mpvnet.exe --process-instance=multi --alang= --language=en --title="Meu vídeo" "C:\Videos\video.mp4"
+```
+
+Omitir `--language` permite usar o idioma salvo em `mpvnet.conf`; sem esse valor,
+o player usa o idioma do Windows quando suportado e inglês nos demais casos.
+O último argumento `--language=...` prevalece sobre os anteriores e sobre
+`language` em `mpvnet.conf`. A opção da linha de comando vale para a execução
+e não grava essa preferência em `mpvnet.conf`.
+
+`--language` seleciona a interface. As preferências de áudio e legenda são
+opções separadas do mpv (`--alang` e `--slang`). Neste fork, um `alang` não vazio
+também pode selecionar o idioma da interface após a inicialização. Por isso,
+os exemplos usam `--alang=`: isso limpa a preferência de áudio da execução,
+sem desativar o áudio nem alterar `mpv.conf`. Se a integração também definir
+`--alang`, mantenha seu idioma alinhado ao da interface. `--slang` não participa
+dessa escolha. Nomes públicos e variantes aceitas estão em
+[Localização](developer/localization.md#idiomas-disponiveis).
+
+No modo padrão de instância única, uma chamada pode encaminhar apenas a mídia
+ao player já aberto, sem aplicar o novo título ou idioma. Por isso, mantenha
+`--process-instance=multi` nas integrações que precisam definir esses valores
+por abertura.
+
+**Exemplo de integração em C# (.NET):** passe cada argumento separadamente com
+`ArgumentList`, sem acrescentar aspas manualmente aos valores:
+
+```csharp
+using System.Diagnostics;
+
+string player = @"C:\Players\MPV.NET\mpvnet.exe";
+string video = @"C:\Videos\video.mp4";
+string titulo = "Meu vídeo";
+string? idioma = "pt-BR"; // Código recebido da aplicação integradora.
+
+var inicio = new ProcessStartInfo(player)
+{
+    UseShellExecute = false,
+    WorkingDirectory = System.IO.Path.GetDirectoryName(player)!
+};
+inicio.ArgumentList.Add("--process-instance=multi");
+inicio.ArgumentList.Add("--alang=");
+inicio.ArgumentList.Add("--language=" + (string.IsNullOrWhiteSpace(idioma) ? "en" : idioma));
+inicio.ArgumentList.Add("--title=" + titulo);
+inicio.ArgumentList.Add(video);
+Process.Start(inicio);
+```
+
+Distribua o conteúdo completo do ZIP portátil, incluindo DLLs, `Locale` e
+scripts. Copiar apenas `mpvnet.exe` não fornece as dependências nem as
+traduções. Para manter a configuração junto do executável, crie
+`portable_config` ao lado dele, conforme [Modo portátil](#modo-portátil).
 
 ## Modo portátil
 

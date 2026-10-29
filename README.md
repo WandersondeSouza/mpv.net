@@ -5,6 +5,7 @@ Fork de manutenção do **MPV.NET Media Player** para Windows, baseado no mpv.ne
 ## Documentação principal
 
 - [Manual](docs/manual.md)
+- [Integração por parâmetros: vídeo, título e 20 idiomas](docs/manual.md#integração-por-parâmetros-vídeo-título-e-idioma)
 - [Configuração rápida](docs/CONFIGURACAO.md)
 - [Atalhos](docs/ATALHOS.md)
 - [Logs de diagnóstico](docs/logging.md)
