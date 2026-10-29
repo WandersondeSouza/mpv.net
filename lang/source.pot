@@ -2748,3 +2748,83 @@ msgstr ""
 #: src/MpvNet/Media/FileTypes.cs
 msgid "All files"
 msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Bulgarian"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Chinese (Simplified)"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Chinese (Traditional, Taiwan)"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Chinese (Traditional, Hong Kong)"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Hindi"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Arabic"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Ukrainian"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Indonesian"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "English"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Spanish"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "French"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "German"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Italian"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Japanese"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Korean"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Polish"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Portuguese (Brazil)"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Portuguese (Portugal)"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Russian"
+msgstr ""
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Turkish"
+msgstr ""

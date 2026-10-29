@@ -2751,3 +2751,83 @@ msgstr "播放列表"
 #: src/MpvNet/Media/FileTypes.cs
 msgid "All files"
 msgstr "所有文件"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Bulgarian"
+msgstr "保加利亚语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Chinese (Simplified)"
+msgstr "中文（简体）"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Chinese (Traditional, Taiwan)"
+msgstr "中文（繁体，台湾）"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Chinese (Traditional, Hong Kong)"
+msgstr "中文（繁体，香港）"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Hindi"
+msgstr "印地语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Arabic"
+msgstr "阿拉伯语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Ukrainian"
+msgstr "乌克兰语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Indonesian"
+msgstr "印度尼西亚语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "English"
+msgstr "英语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Spanish"
+msgstr "西班牙语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "French"
+msgstr "法语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "German"
+msgstr "德语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Italian"
+msgstr "意大利语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Japanese"
+msgstr "日语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Korean"
+msgstr "韩语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Polish"
+msgstr "波兰语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Portuguese (Brazil)"
+msgstr "葡萄牙语（巴西）"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Portuguese (Portugal)"
+msgstr "葡萄牙语（葡萄牙）"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Russian"
+msgstr "俄语"
+
+#: src/MpvNet.Windows/Configuration/Conf.cs
+msgid "Turkish"
+msgstr "土耳其语"

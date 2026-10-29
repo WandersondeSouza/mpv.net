@@ -33,7 +33,7 @@ public static class EditorConfigurationService
                         opt.Name = it.Value;
 
                     opt.Text = section.GetValue("name") == "language"
-                        ? LanguageCatalog.FindInterfaceLanguage(opt.Name)?.NativeDisplayName ?? EditorConfLocalization.TranslateOptionValue(opt.Name)
+                        ? EditorConfLocalization.TranslateLanguageName(opt.Name)
                         : EditorConfLocalization.TranslateOptionValue(opt.Name);
 
                     if (opt.Name == optionSetting.Default)
@@ -90,6 +90,32 @@ static class EditorConfLocalization
         string.Join("/", path.Split('/', StringSplitOptions.RemoveEmptyEntries).Select(TranslateText));
 
     public static string TranslateOptionValue(string? value) => TranslateText(value ?? "");
+
+    // Display labels follow the interface language; configuration values stay literal.
+    public static string TranslateLanguageName(string? value) => value switch
+    {
+        "bulgarian" => _("Bulgarian"),
+        "chinese-china" => _("Chinese (Simplified)"),
+        "chinese-taiwan" => _("Chinese (Traditional, Taiwan)"),
+        "chinese-hongkong" => _("Chinese (Traditional, Hong Kong)"),
+        "hindi" => _("Hindi"),
+        "arabic" => _("Arabic"),
+        "ukrainian" => _("Ukrainian"),
+        "indonesian" => _("Indonesian"),
+        "english" => _("English"),
+        "spanish" => _("Spanish"),
+        "french" => _("French"),
+        "german" => _("German"),
+        "italian" => _("Italian"),
+        "japanese" => _("Japanese"),
+        "korean" => _("Korean"),
+        "polish" => _("Polish"),
+        "portuguese-brazil" => _("Portuguese (Brazil)"),
+        "portuguese-portugal" => _("Portuguese (Portugal)"),
+        "russian" => _("Russian"),
+        "turkish" => _("Turkish"),
+        _ => TranslateOptionValue(value),
+    };
 
     public static string TranslateText(string text) => _(text);
 }

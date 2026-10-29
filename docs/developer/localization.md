@@ -147,8 +147,11 @@ Mapeamento de variantes:
 A escrita chinesa explícita tem precedência sobre a região. Não inferir chinês
 simplificado de uma variante tradicional quando o catálogo solicitado estiver
 ausente. Outros idiomas/variantes sem suporte usam o inglês nativo. Nomes
-nativos dos seis novos idiomas também são aceitos pelo resolvedor e exibidos no
-seletor independentemente do idioma ativo.
+nativos dos seis novos idiomas também são aceitos pelo resolvedor como aliases.
+No seletor, os nomes dos 20 idiomas seguem o idioma ativo da interface, usando
+os catálogos gettext; inglês usa nomes legíveis do texto-fonte. Ao trocar o
+idioma, a lista e o texto selecionado são atualizados junto com o editor aberto.
+Os valores gravados, como `portuguese-brazil`, continuam literais.
 
 A ordem geral de fallback e:
 

@@ -1,4 +1,5 @@
 ﻿
+using System.ComponentModel;
 using System.Windows;
 
 namespace MpvNet.Windows;
@@ -32,9 +33,11 @@ public class OptionSetting : Setting
     public List<OptionSettingOption> Options { get; } = new List<OptionSettingOption>();
 }
 
-public class OptionSettingOption
+public class OptionSettingOption : INotifyPropertyChanged
 {
     string? _text;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     public string? Name { get; set; }
     public string? Help { get; set; }
@@ -45,7 +48,13 @@ public class OptionSettingOption
     public string? Text
     {
         get => _text ?? Name;
-        set => _text = value;
+        set
+        {
+            if (_text == value)
+                return;
+            _text = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Text)));
+        }
     }
 
     public bool Checked

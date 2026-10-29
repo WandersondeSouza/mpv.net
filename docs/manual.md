@@ -164,7 +164,9 @@ respectivamente, `chinese-taiwan`, `chinese-hongkong`, `hindi`, `arabic`,
 Kong e `zh-SG` usa chinês simplificado. Árabe espelha os diálogos e menus, com
 caminhos e comandos em direção normal; a formatação regional do Windows é
 preservada. É possível pré-visualizar a troca no editor sem perder as opções
-editadas; reinicie para aplicar todas as configurações.
+editadas. Os nomes dos idiomas na lista e na opção selecionada acompanham o
+idioma da interface: por exemplo, `Francês` em português, `French` em inglês e
+`Français` em francês. Reinicie para aplicar todas as configurações.
 
 O mpv.net normaliza codigos como `eng`, `por`, `pt_BR`, `es_MX` e nomes comuns
 de idioma, mas a selecao final de audio e legenda continua sendo feita pelo

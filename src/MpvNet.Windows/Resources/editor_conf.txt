@@ -1148,6 +1148,7 @@ url = https://mpv.io/manual/master/#options-input-ipc-server
 name = language
 file = mpvnet
 directory = Appearance
+option-name-width = 260
 help = User interface display language.\nmpv.net must be restarted after a change.
 default = english
 option = bulgarian

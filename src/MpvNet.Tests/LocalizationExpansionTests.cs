@@ -139,7 +139,7 @@ public sealed class LocalizationExpansionTests
             var setting = Assert.Single(EditorConfigurationService.ParseSettings("\nname = language\nfile = mpvnet\noption = arabic"));
             Assert.Equal("language", setting.Name);
             Assert.Equal("Translated language", setting.DisplayName);
-            Assert.Equal("العربية", Assert.IsType<OptionSetting>(setting).Options[0].Text);
+            Assert.Equal("Arabic", Assert.IsType<OptionSetting>(setting).Options[0].Text);
         }
         finally { TranslationProvider.Current = saved; }
     }
@@ -196,6 +196,58 @@ public sealed class LocalizationExpansionTests
         }
     });
 
+    static readonly string[] LanguageDisplayNames =
+    [
+        "Bulgarian", "Chinese (Simplified)", "Chinese (Traditional, Taiwan)",
+        "Chinese (Traditional, Hong Kong)", "Hindi", "Arabic", "Ukrainian",
+        "Indonesian", "English", "Spanish", "French", "German", "Italian",
+        "Japanese", "Korean", "Polish", "Portuguese (Brazil)",
+        "Portuguese (Portugal)", "Russian", "Turkish",
+    ];
+
+    [Theory]
+    [MemberData(nameof(StartupLocalizationTests.InterfaceLanguages), MemberType = typeof(StartupLocalizationTests))]
+    public void LanguageOptionsUseInterfaceTranslationsAndKeepConfigurationValues(string name, string culture) => OnWpfThread(() =>
+    {
+        string savedLanguage = Global.App.Language;
+        ITranslator? savedTranslator = TranslationProvider.Current;
+        CultureInfo savedUi = CultureInfo.CurrentUICulture;
+        try
+        {
+            Global.App.Language = name;
+            TranslationProvider.Current = new WpfTranslator();
+            var catalog = new NGettext.Catalog("mpvnet", AppPaths.Locale, new CultureInfo(culture));
+            var resources = new System.Resources.ResourceManager("MpvNet.Windows.Properties.Resources", typeof(ConfWindow).Assembly);
+            var options = Assert.IsType<OptionSetting>(EditorConfigurationService.ParseSettings(
+                resources.GetString("editor_conf")!.TrimEnd()).Single(s => s.Name == "language")).Options;
+            Assert.Equal(20, options.Count);
+            for (int index = 0; index < options.Count; index++)
+            {
+                Assert.Equal(LanguageCatalog.InterfaceLanguages[index].MpvNetName, options[index].Name);
+                string expected = catalog.GetString(LanguageDisplayNames[index]);
+                if (index == 8)
+                    expected += " " + catalog.GetString("(Default)");
+                Assert.Equal(expected, options[index].Text);
+                if (name != "english" && LanguageDisplayNames[index] != "Hindi")
+                    Assert.NotEqual(LanguageDisplayNames[index], catalog.GetString(LanguageDisplayNames[index]));
+            }
+            Assert.Equal(name switch
+            {
+                "portuguese-brazil" or "portuguese-portugal" => "Francês",
+                "english" => "French",
+                "french" => "Français",
+                _ => catalog.GetString("French"),
+            }, options.Single(o => o.Name == "french").Text);
+        }
+        finally
+        {
+            Global.App.Language = savedLanguage;
+            TranslationProvider.Current = savedTranslator;
+            CultureInfo.CurrentUICulture = savedUi;
+            InterfaceLayout.ApplyCulture(savedUi);
+        }
+    });
+
     [Fact]
     public void EditorChangesLanguageAndReturnsWithoutDiscardingUnsavedValues() => OnWpfThread(() =>
     {
@@ -224,13 +276,23 @@ public sealed class LocalizationExpansionTests
             var languageControl = ((StackPanel)window.FindName("MainStackPanel")).Children.OfType<ComboBoxSettingControl>().Single(c => c.Setting.Name == "language");
             var combo = (ComboBox)languageControl.FindName("ComboBoxControl");
             var options = Assert.IsType<OptionSetting>(selected).Options;
-            foreach (string name in new[] { "arabic", "hindi", "chinese-hongkong", "ukrainian", "indonesian", "chinese-taiwan" })
+            var label = new TextBlock();
+            label.SetBinding(TextBlock.TextProperty, new System.Windows.Data.Binding(nameof(OptionSettingOption.Text))
+            { Source = options.Single(o => o.Name == "chinese-taiwan") });
+            foreach (string name in LanguageCatalog.InterfaceLanguages.Select(l => l.MpvNetName)
+                .Concat(["portuguese-brazil", "english", "french", "chinese-taiwan"]))
             {
                 combo.SelectedItem = options.Single(o => o.Name == name);
                 Assert.Equal(name, Global.App.Language);
                 Assert.Equal("42", width.Value);
                 Assert.Equal(name == "arabic" ? FlowDirection.RightToLeft : FlowDirection.LeftToRight, window.FlowDirection);
                 Assert.Equal(20, combo.Items.Count);
+                Assert.Equal(name, selected.Value);
+                var catalog = new NGettext.Catalog("mpvnet", AppPaths.Locale, LocalizationService.GetCulture(name));
+                Assert.Equal(catalog.GetString("Chinese (Traditional, Taiwan)"), label.Text);
+                for (int index = 0; index < options.Count; index++)
+                    Assert.Equal(catalog.GetString(LanguageDisplayNames[index]) +
+                        (options[index].Name == "english" ? " " + catalog.GetString("(Default)") : ""), options[index].Text);
             }
             // Saving another option must preserve the existing language alias.
             var content = (string)typeof(ConfWindow).GetMethod("GetContent", BindingFlags.NonPublic | BindingFlags.Instance)!.Invoke(window, ["mpvnet"])!;
