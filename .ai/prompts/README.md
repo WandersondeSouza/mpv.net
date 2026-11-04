@@ -32,8 +32,10 @@ ações. Siga `.ai/README.md` e o pedido explícito do usuário.
 - [Modernização de mídia online e YouTube](online-media-youtube-streaming-modernization.md), com o [complemento de serviços regionais](online-media-ytdlp-regional-services-extension.md)
 - [Refatoração de qualidade e ciclo de vida](code-quality-resource-lifecycle-refactor.md)
 - [Interações de mouse e teclado](player-input-click-pause-fullscreen.md) e [evolução de atalhos/gestos/OSC](player-input-future-shortcuts-gestures-osc.md)
+- [Feedback: controles sempre visíveis e diagnóstico de atalhos](user-feedback-persistent-osc-and-keyboard-shortcuts.md)
 - [Migração SMTC/FluentFlyout/.NET 10](windows-smtc-fluentflyout-net10-migration.md)
 - [Melhorias de integração SMTC com o Windows](windows-smtc-integration-improvements.md), complemento incremental ao plano de migração
+- [Capas de áudio incorporadas, locais e online](audio-artwork-embedded-local-online.md)
 - [Tooltip de doação na taskbar](taskbar-donation-tooltip-localization.md)
 
 Os planos por área descrevem escopos específicos e podem estar parcial ou
