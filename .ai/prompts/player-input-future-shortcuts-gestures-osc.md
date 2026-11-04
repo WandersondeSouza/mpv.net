@@ -192,3 +192,47 @@ Entregar um relatório com:
 Não executar etapas opcionais, criar commits, fazer push, merge ou publicar uma
 release apenas por este prompt mencionar essas atividades. Seguir as autorizações
 explícitas do usuário para cada uma delas.
+
+---
+
+## Complemento de auditoria comparativa e roteiro de implementação (2026-11-04)
+
+Esta seção não substitui as etapas anteriores. A auditoria foi **estática**, baseada na branch `master`; não foram executados player, build ou testes manuais nesta análise. Reconfirmar a HEAD e a implementação antes de agir. A classificação **implementado no código** não equivale a **validado em ambiente real**.
+
+### Matriz requisito × evidência × ação
+
+| Requisito | Evidência localizada | Situação | Próxima ação |
+| --- | --- | --- | --- |
+| Clique simples Play/Pause | `MainForm.Input.cs`: `VideoClickArbiter`, timer e invalidação; `InputHelp.cs`: `MBTN_Left`; `PlayerInputTests.cs` | Implementado no código | Apenas regression/smoke Windows; não reimplementar |
+| Duplo clique fullscreen | `InputHelp.cs`: `MBTN_Left_DBL`; `MainForm.cs`: encaminhamento de evento, cancelamento da pausa; `MainForm.Fullscreen.cs` | Implementado no código | Validar fullscreen sem mudança em Play/Pause |
+| Bindings personalizados e `ignore` | `InputConf.cs`, `InputBindingParser.cs`, `PlayerInputTests.cs` | Implementado no código | Preservar precedência e arquivos completos |
+| Consulta/editor de bindings | `InputHelp.cs`: `F2`, `Ctrl+i`, `show-bindings`, `show-keys` | Implementado no código | Melhorar documentação/descoberta, sem duplicar editor |
+| Guia consolidado de atalhos | `docs/ATALHOS.md` é um resumo; `docs/manual.md` explica cliques principais | Parcial | Tabela com comandos efetivos, diferenças de caixa e exemplos |
+| J/K/L para navegar | `InputHelp.cs`: `k` edita `input.conf`; `l` é A-B loop; `L` alterna loop do arquivo; `Space`, `p` e `P` já fazem Play/Pause | Pendente como opção; conflito demonstrado | Propor perfil opt-in ou exemplos de `input.conf`, sem redefinir padrão |
+| Gestos laterais e arrastar para seek | `MainForm.cs` contém arraste da janela; `osc.lua` possui áreas de mouse e timeline | Não foi identificada implementação específica | Especificar conflitos e protótipo desativável; não presumir necessidade |
+| OSC permanente e área de vídeo | `osc.lua`: `visibility`, `boxvideo`, margens; `InputHelp.cs`: `Del` | Capacidade base implementada; UX parcial | Coordenar com prompt `user-feedback-persistent-osc-and-keyboard-shortcuts.md` |
+| Validação visual Windows | Checklist em `AGENTS.md` e `docs/developer/windows-ui.md` | Não validado nesta auditoria | Smoke real, com evidência e limites do ambiente |
+
+### Sequência recomendada sem duplicação
+
+**Fase A — documentação e diagnóstico (baixo risco).** Inventariar defaults reais, distinguindo `j`/`J`, `k`/`K`, `l`/`L`, modificadores, `Del`, F2 e teclado numérico conforme bindings atuais. Atualizar somente documentos já existentes. Mostrar como testar `ignore`, overrides e editor, sem alterar configurações do usuário. Registrar resultado e verificação de links/diff.
+
+**Fase B — escolha opcional de J/K/L (risco médio).** Preparar comparação com comandos exatos e conflitos: (1) exemplos de `input.conf` (preferido), (2) opção habilitada voluntariamente, (3) substituição global somente se houver autorização específica. Não assumir sem decidir se J/L representam seek incremental ou velocidade. Não implementar reprodução reversa; considerar mídias sem seek, streams ao vivo, repetição de teclas e diferença maiúsculas/minúsculas. Preservar `k` (editor), `l` (loop A-B), `L` (loop de arquivo) por padrão.
+
+**Fase C — gestos e OSC (alto risco, um por vez).** Para cada gesto candidato (duplo clique nas laterais, arraste para seek, alteração de hit areas), elaborar mini-especificação: região, gesto, ação, limiar, exclusões de OSC/timeline, precedência contra fullscreen e movimento da janela, pause/buffering/live, toggle, cancelamento e rollback. Primeiro provar que bindings nativos ou OSC não bastam; nenhum gesto é obrigatório. Implementar somente o gesto aprovado, sem alterar `CycleFullscreen` ou introduzir timers arbitrários, bloqueio da UI ou captura global.
+
+**Fase D — testes e documentação de entrega.** Cobrir `PlayerInputTests.cs` e demais testes de input/parser; executar suíte xUnit v3 segundo `.ai/README.md` e build correspondente quando código mudar, serialmente. Fazer teste manual de mídia local/URL/playlist/pasta, fullscreen, clique simples/duplo, foco, drag, seek, OSC/menu, DPI 100/125/150%, múltiplos monitores, troca de mídia e fechamento. Reportar casos não executados como **não validados**.
+
+### Critérios de aceite adicionais
+
+1. Com defaults, `p`, `P` e `Space` continuam Play/Pause; `k`, `l` e `L` mantêm suas funções. Arquivos personalizados, `ignore`, menus completos e `--input-conf` explícito não são silenciosamente modificados.
+2. Ajuda de atalhos corresponde ao parser e aos bindings efetivos; exemplos funcionam com sintaxe real e não divulgam uma funcionalidade proposta como disponível.
+3. Qualquer J/K/L opcional é reversível, não cria conflito não informado, não requer dependências novas e não altera comandos de libmpv fora do mecanismo suportado.
+4. Clique simples e duplo continuam mutuamente corretos, inclusive em sequências rápidas, clique+arraste, movimento da janela, fullscreen, perda de foco, mudança de mídia e fechamento; OSC e scripts de terceiros conservam prioridade em suas regiões.
+5. Em stream sem seek ou mídia pausada, gestos não causam comando incorreto, travamento ou retry infinito; timers e estados pendentes são cancelados quando necessário.
+6. Layout e atalhos funcionam nos temas, idiomas, escalas e modos de janela disponíveis; eventuais limitações são documentadas com cenário reproduzível.
+7. A entrega inclui matriz final implementado/parcial/pendente/não validado, arquivos alterados, bindings antes/depois, evidência de teste automatizado e manual, riscos e `git diff --check`.
+
+**Fronteira com o outro prompt:** visibilidade persistente, layout e margens de OSC pertencem primariamente ao prompt de feedback; este cuida de documentação de bindings, J/K/L e gestos, evitando propostas de UI duplicadas.
+
+**Autorização:** este complemento e seu commit não autorizam executar as fases B/C, alterar controles existentes nem publicar. Obedecer à solicitação explícita de implementação e aos limites do `AGENTS.md`.
