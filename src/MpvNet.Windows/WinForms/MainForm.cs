@@ -1152,6 +1152,9 @@ public partial class MainForm : Form
             return;
 
         _managedResourcesDisposed = true;
+        ResetAudioArtwork();
+        _audioArtworkCancellation?.Dispose();
+        _onlineAudioArtwork?.Dispose();
         _titleBarFullscreenButton?.Dispose();
         _titleBarFullscreenButton = null;
         DisposeVideoClick();
@@ -1240,6 +1243,7 @@ public partial class MainForm : Form
 
     protected override void OnFormClosing(FormClosingEventArgs e)
     {
+        ResetAudioArtwork();
         DisposeVideoClick();
         _mediaTransportTimer?.Stop();
         _mediaTransportMediaLoaded = false;

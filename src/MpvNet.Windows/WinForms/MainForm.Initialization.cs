@@ -60,6 +60,8 @@ public partial class MainForm
                 Player.ObserveProperty(property, UpdateMediaTransport);
 
             Player.ObserveProperty("chapter-list", UpdateMediaTransport);
+            foreach (string property in new[] { "vid", "audio-display", "cover-art-auto", "track-auto-selection", "autoload-files" })
+                Player.ObserveProperty(property, UpdateMediaTransport);
 
             Player.ObserveProperty("window-maximized", PropChangeWindowMaximized); // bool methods not working correctly
             Player.ObserveProperty("window-minimized", PropChangeWindowMinimized); // bool methods not working correctly

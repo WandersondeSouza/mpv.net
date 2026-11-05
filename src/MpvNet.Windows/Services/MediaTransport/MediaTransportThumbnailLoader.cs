@@ -96,7 +96,7 @@ public static class MediaTransportThumbnailLoader
         }
     }
 
-    static bool IsAvailableLocalFile(string path)
+    public static bool IsAvailableLocalFile(string path)
     {
         try
         {

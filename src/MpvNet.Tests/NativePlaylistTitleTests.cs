@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using MpvNet.Help;
 using MpvNet.Native;
+using MpvNet.Windows.Services.MediaTransport;
 using Xunit;
 
 namespace MpvNet.Tests;
@@ -16,6 +17,42 @@ namespace MpvNet.Tests;
 // inspect the native queue, rather than just the strings prepared by C#.
 public sealed class NativePlaylistTitleTests : IDisposable
 {
+    [Fact]
+    public async Task AlbumArtworkUsesTheSelectedNativePictureAndAsyncLoadingPreservesAudio()
+    {
+        using TestDirectory directory = new();
+        string media = WriteWave(directory.Path, "audio.wav");
+        string cover = Path.Combine(directory.Path, "chosen-picture.png");
+        await File.WriteAllBytesAsync(cover, await AudioArtworkImage.EncodeAsync(
+            new(2, 2, Enumerable.Repeat(new byte[] { 0, 0, 255, 255 }, 4).SelectMany(pixel => pixel).ToArray()),
+            TestContext.Current.CancellationToken), TestContext.Current.CancellationToken);
+        using MainPlayer player = CreateNativePlayer(options: [("vo", "gpu-next")]);
+        player.LoadFiles([media], false, false);
+        await WaitUntil(() => player.GetPropertyBool("seekable", false));
+        Assert.Null(player.CaptureAlbumArtwork());
+        long audio = player.GetPropertyLong("current-tracks/audio/id");
+        double position = player.GetPropertyDouble("time-pos", false);
+        player.AddAlbumArtwork(cover);
+        await WaitUntil(() => player.GetPropertyBool("current-tracks/video/albumart", false) &&
+            player.GetPropertyInt("video-params/w") == 2);
+        AlbumArtworkPixels? captured = null;
+        await WaitUntil(() => (captured = player.CaptureAlbumArtwork()) != null);
+        Assert.Equal(2, captured!.Width);
+        Assert.Equal(2, captured.Height);
+        Assert.Equal(new byte[] { 0, 0, 255, 255 }, captured.Bgra.Take(4).ToArray());
+        Assert.Equal(audio, player.GetPropertyLong("current-tracks/audio/id"));
+        Assert.Equal(position, player.GetPropertyDouble("time-pos", false), 2);
+        Assert.Equal(media, player.GetPropertyString("path"));
+        string next = WriteWave(directory.Path, "next.wav");
+        player.CommandV("loadfile", next);
+        await WaitUntil(() => player.GetPropertyString("path") == next && player.GetPropertyBool("seekable", false));
+        Assert.Equal("auto", player.GetPropertyString("options/vid"));
+        Assert.Null(player.CaptureAlbumArtwork());
+        player.Dispose();
+        Assert.Null(player.CaptureAlbumArtwork());
+        player.AddAlbumArtwork(cover); // A late completion must never touch a freed handle.
+    }
+
     readonly string[] _existingTempFiles = Global.App.TempFiles.ToArray();
 
     public void Dispose()
@@ -419,7 +456,7 @@ public sealed class NativePlaylistTitleTests : IDisposable
         Assert.True(condition(), "Timed out waiting for native playback state.");
     }
 
-    static string WriteWave(string root, string name, string? metadataTitle = null)
+    internal static string WriteWave(string root, string name, string? metadataTitle = null)
     {
         string path = Path.Combine(root, name);
         using BinaryWriter writer = new(File.Create(path));

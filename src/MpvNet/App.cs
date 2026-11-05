@@ -30,6 +30,8 @@ public class AppClass : IDisposable
 
     public bool AutoLoadFolder { get; set; }
     public bool AutomaticNetworkCache { get; set; } = true;
+    public bool AudioArtworkOnline { get; set; }
+    public bool AudioArtworkPreferOnline { get; set; }
 #if ENABLE_FILE_LOGGING
     public bool DebugMode { get; set; } = true;
 #else
@@ -388,6 +390,8 @@ public class AppClass : IDisposable
         {
             case "auto-load-folder": AutoLoadFolder = value == "yes"; return true;
             case "automatic-network-cache": AutomaticNetworkCache = value == "yes"; return true;
+            case "audio-artwork-online": AudioArtworkOnline = value == "yes"; return true;
+            case "audio-artwork-prefer-online": AudioArtworkPreferOnline = value == "yes"; return true;
             case "autofit-audio": AutofitAudio = value.Trim('%').ToInt(70) / 100f; return true;
             case "autofit-image": AutofitImage = value.Trim('%').ToInt(80) / 100f; return true;
             case "dark-mode": DarkMode = value; return true;

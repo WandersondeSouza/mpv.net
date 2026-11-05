@@ -16,6 +16,7 @@ public partial class MainForm
         _videoClick.Invalidate();
         Interlocked.Increment(ref _mediaTransportGeneration);
         _mediaTransportMediaLoaded = false;
+        RunOnUiThread(ResetAudioArtwork);
         RunOnUiThread(UpdateMediaTransport);
     }
 
@@ -24,12 +25,17 @@ public partial class MainForm
         _videoClick.Invalidate();
         Interlocked.Increment(ref _mediaTransportGeneration);
         _mediaTransportMediaLoaded = false;
+        RunOnUiThread(ResetAudioArtwork);
         RunOnUiThread(UpdateMediaTransport);
     }
 
     void Player_Seek() => UpdateMediaTransport();
 
-    void Player_PlaybackRestart() => UpdateMediaTransport();
+    void Player_PlaybackRestart() => RunOnUiThread(() =>
+    {
+        _audioArtworkPlaybackReady = true;
+        UpdateMediaTransport();
+    });
 
     void MediaTransportTimer_Tick(object? sender, EventArgs e) => UpdateMediaTransport();
 
@@ -96,7 +102,7 @@ public partial class MainForm
             return;
         }
 
-        MediaTransportSnapshot snapshot = BuildMediaTransportSnapshot();
+        MediaTransportSnapshot snapshot = ResolveAudioArtwork(BuildMediaTransportSnapshot());
         _mediaTransport.Publish(snapshot);
         UpdateTaskbarThumbnail(snapshot);
 
@@ -129,7 +135,10 @@ public partial class MainForm
                 : MediaTransportPlaybackStatus.Playing;
 
         bool albumArt = Player.GetPropertyBool("current-tracks/video/albumart", false);
-        bool hasVideo = !albumArt && (FileTypes.IsVideoFile(path) || !string.IsNullOrWhiteSpace(Player.GetPropertyString("video-codec")));
+        // Containers such as OGG can hold audio or video. Inspect native
+        // tracks so an audio-only OGG (or a disabled real video) is classified
+        // from its contents rather than its extension or selected track.
+        bool hasVideo = MediaHasRealVideo();
         bool hasAudio = FileTypes.IsAudioFile(path) || !string.IsNullOrWhiteSpace(Player.GetPropertyString("audio-codec"));
         string? trackText = Player.GetPropertyString("metadata/by-key/track");
         uint? trackNumber = uint.TryParse(trackText, NumberStyles.Integer, CultureInfo.InvariantCulture, out uint track)
@@ -185,5 +194,15 @@ public partial class MainForm
         {
             // The player may finish on its event thread while the form is closing.
         }
+    }
+
+    bool MediaHasRealVideo()
+    {
+        int count = Math.Min(1024, Player.GetPropertyInt("track-list/count"));
+        for (int i = 0; i < count; i++)
+            if (Player.GetPropertyString($"track-list/{i}/type") == "video" &&
+                !Player.GetPropertyBool($"track-list/{i}/albumart", false))
+                return true;
+        return false;
     }
 }
