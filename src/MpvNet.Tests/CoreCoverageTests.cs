@@ -573,18 +573,23 @@ public sealed class PlayerLifecycleTests
     }
 
     [Fact]
-    public async Task DestroyWaitsForActiveNativeOperation()
+    public void DestroyWaitsForActiveNativeOperation()
     {
         using MainPlayer player = new();
         Assert.True(player.TryEnterNativeOperation(out IDisposable? operation));
 
-        Task destroyTask = Task.Run(player.Destroy, TestContext.Current.CancellationToken);
-        await Task.Delay(TimeSpan.FromMilliseconds(100), TestContext.Current.CancellationToken);
-        Assert.False(destroyTask.IsCompleted);
-
-        operation!.Dispose();
-
-        await destroyTask.WaitAsync(TimeSpan.FromSeconds(2), TestContext.Current.CancellationToken);
+        Task destroyTask;
+        // ReaderWriterLockSlim leases belong to the acquiring thread. An await
+        // here can resume elsewhere, fail to release the read lock and deadlock
+        // the test's own cleanup instead of testing native lifetime ordering.
+        using (operation)
+        {
+            destroyTask = Task.Run(player.Destroy, TestContext.Current.CancellationToken);
+            Assert.True(SpinWait.SpinUntil(() => player.LifecycleState == PlayerLifecycleState.Destroyed,
+                TimeSpan.FromSeconds(2)));
+            Assert.False(destroyTask.Wait(TimeSpan.FromMilliseconds(100), TestContext.Current.CancellationToken));
+        }
+        Assert.True(destroyTask.Wait(TimeSpan.FromSeconds(2), TestContext.Current.CancellationToken));
         Assert.Equal(PlayerLifecycleState.Destroyed, player.LifecycleState);
     }
 
