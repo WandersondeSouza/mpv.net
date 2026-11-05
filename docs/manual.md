@@ -10,6 +10,7 @@ Este manual cobre apenas o que importa para o uso cotidiano do fork.
 - [Instalação](#instalação)
 - [Controles de mídia do Windows](#controles-de-mídia-do-windows)
 - [Configuração](#configuração)
+- [Atalhos de teclado e mouse](ATALHOS.md#controles-padrão-de-reprodução)
 - [Visibilidade dos controles OSC](#visibilidade-dos-controles-osc)
 - [Linha de comando](#linha-de-comando)
 - [Integração por parâmetros: vídeo, título e idioma](#integração-por-parâmetros-vídeo-título-e-idioma)
@@ -113,7 +114,12 @@ carregada; o duplo clique alterna tela cheia sem pausar ou retomar a mídia.
 O clique simples aguarda o intervalo necessário para distinguir o duplo clique
 do Windows. `p`, `P` e `Space` também alternam Play/Pause. Personalizações do
 `input.conf` prevalecem; menus completos existentes mantêm os atalhos anteriores.
-Veja [Atalhos](ATALHOS.md) para detalhes.
+Veja as tabelas de [atalhos de teclado e mouse](ATALHOS.md#controles-padrão-de-reprodução),
+os exemplos para [personalizar ou desativar um atalho](ATALHOS.md#personalizar-ou-desativar-um-atalho)
+e a configuração [opcional de J/K/L](ATALHOS.md#jkl-como-configuração-opcional),
+com os conflitos dos comandos atuais explicados. Os exemplos só são aplicados
+se você editar sua configuração; a interface e os controles padrão permanecem
+os mesmos.
 
 A barra de título oferece um botão **Tela cheia**, imediatamente antes de
 minimizar. Ele executa `cycle fullscreen`, como a opção do menu. O tooltip e
