@@ -259,6 +259,9 @@ public static class InputHelp
     public static List<Binding> Parse(string content)
         => InputBindingParser.Parse(content);
 
+    public static List<Binding> GetRuntimeBindings(string json)
+        => RuntimeInputBindings.Parse(json);
+
     public static List<Binding> GetReducedBindings(List<Binding> bindings)
     {
         var defaultBindings = GetDefaults();

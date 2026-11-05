@@ -1,6 +1,7 @@
 -- Based on mpv player/lua/osc.lua at commit 304426c39.
 -- mpv.net customization: place custom_button_1 immediately before volume in
 -- the bottombar control row. Keep later custom buttons in the title row.
+-- Restore permanent controls when leaving idle; the idle tick hides the OSC.
 local assdraw = require 'mp.assdraw'
 local msg = require 'mp.msg'
 local opt = require 'mp.options'
@@ -3267,7 +3268,13 @@ end)
 observe_cached("border", request_init_resize)
 observe_cached("title-bar", request_init_resize)
 observe_cached("window-maximized", request_init_resize)
-observe_cached("idle-active", request_tick)
+observe_cached("idle-active", function ()
+    if not state.idle_active and user_opts.visibility == "always" then
+        show_osc()
+        show_wc()
+    end
+    request_tick()
+end)
 
 mp.register_event("file-loaded", function()
     state.file_loaded = true

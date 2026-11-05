@@ -138,6 +138,30 @@ intermitente não foi determinada.
 
 O OSC depende do comportamento da janela.
 
+O padrão distribuído permanece `visibility=auto`, com `boxvideo=no` e
+`sub_margins=no`. `Del` executa `script-binding osc/visibility`; a alternância
+não persiste estado. A preferência de inicialização pertence ao próprio OSC,
+em `script-opts/osc.conf` ou `script-opts`, sem duplicação em `settings.xml`.
+Ao sair de `idle-active`, o script restaura os controles quando a opção é
+`always`: o tick ocioso os oculta, inclusive depois de `stop`, e apenas carregar
+outra mídia não os tornava visíveis novamente. O callback usa a atualização
+existente do OSC para recalcular as margens de `boxvideo`, sem timer adicional
+nem mudança no modo automático. `OscVisibilityTests` executa o Lua distribuído
+com libmpv em saída nula, cobrindo duas cargas separadas por `stop` e as margens.
+O exemplo para controles permanentes está no
+[manual](../manual.md#visibilidade-dos-controles-osc).
+
+O comando `show-bindings` consulta `input-bindings` no mpv no momento de uso,
+em vez de exibir `Player.UsedInputConfContent`. Este último é apenas a cópia
+montada pelo frontend antes de aplicar a CLI e não representa um `--input-conf`
+explícito nem bindings adicionados por scripts. `RuntimeInputBindings` exclui
+seções inativas e escolhe por tecla o binding forte antes do fraco, depois a
+maior prioridade, seguindo o critério de diagnóstico do `stats.lua` do mpv.
+Mantém `ignore` na exportação e não altera input nem captura teclas. As
+prioridades são dinâmicas e a consulta não comprova o recebimento de uma tecla
+física. Veja o contrato de
+[`input-bindings`](https://mpv.io/manual/master/#command-interface-input-bindings).
+
 O fork configura o `custom_button_1` para mostrar um coração de apoio. O comando
 de clique encaminha para o navegador usando a URL da página de apoio, gerada
 pelo C# com o idioma efetivo da interface. O `osc.lua` mantido em
@@ -153,8 +177,9 @@ resultado em `user-data/mpvnet-website-url`. Os botões são acrescentados a
 `script-opts` depois de `mpv_initialize`, preservando as opções do usuário e
 reutilizando `script-message-to mpvnet shell-execute`. O OSC embutido é
 desabilitado e a cópia compatível distribuída com o aplicativo é carregada em
-seguida; nela, somente o posicionamento do coração no `bottombar` difere da
-fonte oficial. O globo permanece na linha superior.
+seguida. A cópia mantém o posicionamento do coração no `bottombar`, os textos
+localizados publicados pelo frontend e a restauração do modo permanente ao
+sair do estado ocioso. O globo permanece na linha superior.
 
 ## Controles de mídia do Windows
 

@@ -10,6 +10,7 @@ Este manual cobre apenas o que importa para o uso cotidiano do fork.
 - [Instalação](#instalação)
 - [Controles de mídia do Windows](#controles-de-mídia-do-windows)
 - [Configuração](#configuração)
+- [Visibilidade dos controles OSC](#visibilidade-dos-controles-osc)
 - [Linha de comando](#linha-de-comando)
 - [Integração por parâmetros: vídeo, título e idioma](#integração-por-parâmetros-vídeo-título-e-idioma)
 - [Modo portátil](#modo-portátil)
@@ -547,6 +548,38 @@ Distribua o conteúdo completo do ZIP portátil, incluindo DLLs, `Locale` e
 scripts. Copiar apenas `mpvnet.exe` não fornece as dependências nem as
 traduções. Para manter a configuração junto do executável, crie
 `portable_config` ao lado dele, conforme [Modo portátil](#modo-portátil).
+
+## Visibilidade dos controles OSC
+
+`Del` alterna os controles na tela entre **Sempre visível**, **Oculto** e
+**Automático** (partindo do padrão automático). A mesma ação está no menu
+**View > Toggle OSC Visibility**, com o nome traduzido no idioma da interface.
+A mudança por atalho vale somente para a sessão atual.
+
+Para iniciar sempre com os controles visíveis, abra a pasta de configuração
+ativa pelo menu **Config > Open Config Folder** (`Ctrl+f`) e acrescente estas
+opções em `script-opts/osc.conf` (crie a pasta e o arquivo se necessário):
+
+```ini
+visibility=always
+boxvideo=yes
+sub_margins=yes
+```
+
+No layout padrão `bottombar`, `boxvideo` reserva espaço para o OSC e ajusta o
+vídeo a essa área. `sub_margins` solicita o ajuste das legendas de texto; legendas
+com posicionamento próprio podem exigir conferência visual. Isso usa o OSC
+existente, sem criar uma barra nativa nem trocar o desenho dos controles.
+
+Preserve as demais opções se o arquivo já existir e reinicie o player após
+editar. O OSC também aceita opções `osc-*` em `script-opts` do `mpv.conf` ou
+da linha de comando, que podem substituir os valores do arquivo. Margens de
+vídeo configuradas explicitamente também podem impedir o ajuste por `boxvideo`.
+Para voltar ao comportamento padrão, remova apenas as opções acrescentadas
+ou use `visibility=auto`, `boxvideo=no` e `sub_margins=no`.
+
+O modo automático continua sendo o padrão. Veja como consultar e diagnosticar
+os atalhos em [Atalhos](ATALHOS.md#consultar-e-diagnosticar-atalhos).
 
 ## Modo portátil
 

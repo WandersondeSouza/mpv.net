@@ -350,7 +350,8 @@ public partial class GuiCommand
 
     string FormatTime(double value) => ((int)value).ToString("00");
 
-    void ShowBindings() => ShowTextWithEditor(_("Bindings"), Player.UsedInputConfContent);
+    void ShowBindings() => ShowTextWithEditor(_("Bindings"),
+        InputHelp.ConvertToString(InputHelp.GetRuntimeBindings(Player.GetPropertyString("input-bindings"))));
 
     void AddToPath()
     {
