@@ -45,7 +45,9 @@ public sealed class TitleBarFullscreenButtonTests
             Assert.True(caption.Left >= info.TitleBar.Left + GetSystemMetricsForDpi(49, WinApi.GetDpiForWindow(handle)));
             Assert.True(caption.Right <= native.Left);
             Assert.True(caption.Bottom <= owner.PointToScreen(Point.Empty).Y);
-            Assert.Equal(buttons.Right - buttons.Left, caption.Width);
+            // DWM reports the entire minimize/maximize/close group. The added
+            // fullscreen button has the width of one native caption button.
+            Assert.Equal(info.Rectangles[2].Right - info.Rectangles[2].Left, caption.Width);
             Assert.Equal(originalHit, HitTest(handle, maximize));
         }
 
