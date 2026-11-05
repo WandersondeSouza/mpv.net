@@ -1,7 +1,6 @@
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -71,23 +70,8 @@ public sealed class OnlineAudioArtwork : IDisposable
             var cached = await _cache.FindAsync(key, requestToken).ConfigureAwait(false);
             if (cached.Found)
                 return cached.Path;
-            string? resource = Guid.TryParse(identity.ReleaseId, out Guid release) ? "release/" + release.ToString("D") :
-                Guid.TryParse(identity.ReleaseGroupId, out Guid group) ? "release-group/" + group.ToString("D") : null;
-            if (resource == null)
-            {
-                string query = "release:\"" + EscapeQuery(identity.Album!) + "\" AND artist:\"" + EscapeQuery(identity.Artist!) + "\"";
-                byte[]? json = await GetAsync(new(_musicBrainz, "release?fmt=json&limit=5&query=" + Uri.EscapeDataString(query)),
-                    512 * 1024, requestToken).ConfigureAwait(false);
-                if (json != null)
-                    resource = SelectRelease(json, identity);
-            }
-            string? image = null;
-            if (resource != null)
-            {
-                byte[]? bytes = await GetAsync(new(_coverArt, resource + "/front-500"), AudioArtworkImage.MaxBytes, requestToken).ConfigureAwait(false);
-                if (bytes != null)
-                    image = await _cache.StoreImageAsync(await AudioArtworkImage.NormalizeAsync(bytes, requestToken).ConfigureAwait(false), requestToken).ConfigureAwait(false);
-            }
+            string? resource = await ResolveResourceAsync(identity, requestToken).ConfigureAwait(false);
+            string? image = resource == null ? null : await DownloadCoverAsync(resource, requestToken).ConfigureAwait(false);
             await _cache.RememberAsync(key, image, image == null ? TimeSpan.FromDays(1) : TimeSpan.FromDays(30), requestToken).ConfigureAwait(false);
             return image;
         }
@@ -107,39 +91,27 @@ public sealed class OnlineAudioArtwork : IDisposable
         finally { NetworkGate.Release(); }
     }
 
-    public static string? SelectRelease(byte[] json, AudioArtworkIdentity identity)
+    async Task<string?> ResolveResourceAsync(AudioArtworkIdentity identity, CancellationToken token)
     {
-        using JsonDocument doc = JsonDocument.Parse(json);
-        if (!doc.RootElement.TryGetProperty("releases", out JsonElement releases) || releases.ValueKind != JsonValueKind.Array)
-            return null;
-        List<(string Id, string Group, bool HasGroup)> matches = [];
-        foreach (JsonElement release in releases.EnumerateArray())
-        {
-            if (!release.TryGetProperty("score", out JsonElement score) || !score.TryGetInt32(out int confidence) || confidence < 95 ||
-                !release.TryGetProperty("title", out JsonElement title) || title.ValueKind != JsonValueKind.String ||
-                AudioArtworkIdentity.Normalize(title.GetString()!) != AudioArtworkIdentity.Normalize(identity.Album!) ||
-                !release.TryGetProperty("id", out JsonElement id) || !Guid.TryParse(id.GetString(), out Guid releaseId) ||
-                !release.TryGetProperty("artist-credit", out JsonElement credits) || credits.ValueKind != JsonValueKind.Array)
-                continue;
-            string credited = string.Concat(credits.EnumerateArray().Select(credit =>
-                (credit.TryGetProperty("name", out var name) && name.ValueKind == JsonValueKind.String ? name.GetString() : "") +
-                (credit.TryGetProperty("joinphrase", out var join) && join.ValueKind == JsonValueKind.String ? join.GetString() : "")));
-            if (AudioArtworkIdentity.Normalize(credited) != AudioArtworkIdentity.Normalize(identity.Artist!))
-                continue;
-            Guid groupId = default;
-            bool hasGroup = release.TryGetProperty("release-group", out var rg) && rg.TryGetProperty("id", out var gid) &&
-                Guid.TryParse(gid.GetString(), out groupId);
-            matches.Add((releaseId.ToString("D"), hasGroup ? groupId.ToString("D") : releaseId.ToString("D"), hasGroup));
-        }
-        // Several editions of one album are acceptable; different groups with
-        // the same title/credit are ambiguous and must not be guessed.
-        if (matches.Count == 0 || matches.Select(match => match.Group).Distinct().Count() != 1)
-            return null;
-        // Tags identify the album, not a particular pressing. CAA's group
-        // endpoint selects its representative artwork; the first search hit
-        // may be a perfectly matching edition with no uploaded picture.
-        return matches[0].HasGroup ? "release-group/" + matches[0].Group : "release/" + matches[0].Id;
+        if (Guid.TryParse(identity.ReleaseId, out Guid release))
+            return "release/" + release.ToString("D");
+        if (Guid.TryParse(identity.ReleaseGroupId, out Guid group))
+            return "release-group/" + group.ToString("D");
+        string query = "release:\"" + EscapeQuery(identity.Album!) + "\" AND artist:\"" + EscapeQuery(identity.Artist!) + "\"";
+        byte[]? json = await GetAsync(new(_musicBrainz, "release?fmt=json&limit=5&query=" + Uri.EscapeDataString(query)),
+            512 * 1024, token).ConfigureAwait(false);
+        return json == null ? null : SelectRelease(json, identity);
     }
+
+    async Task<string?> DownloadCoverAsync(string resource, CancellationToken token)
+    {
+        byte[]? bytes = await GetAsync(new(_coverArt, resource + "/front-500"), AudioArtworkImage.MaxBytes, token).ConfigureAwait(false);
+        return bytes == null ? null : await _cache.StoreImageAsync(
+            await AudioArtworkImage.NormalizeAsync(bytes, token).ConfigureAwait(false), token).ConfigureAwait(false);
+    }
+
+    public static string? SelectRelease(byte[] json, AudioArtworkIdentity identity) =>
+        MusicBrainzReleaseSearch.SelectRelease(json, identity);
 
     async Task<byte[]?> GetAsync(Uri uri, int limit, CancellationToken token)
     {

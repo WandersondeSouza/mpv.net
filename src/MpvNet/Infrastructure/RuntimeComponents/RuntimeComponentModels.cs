@@ -51,6 +51,7 @@ internal sealed record RuntimeComponentFileFingerprint(long Length, long LastWri
 
 internal sealed class GitHubRelease
 {
+    [JsonPropertyName("assets"), JsonRequired]
     public GitHubAsset[] Assets { get; set; } = [];
 }
 

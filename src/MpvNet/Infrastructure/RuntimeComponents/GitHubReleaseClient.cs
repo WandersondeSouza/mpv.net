@@ -2,7 +2,6 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,31 +26,10 @@ internal static class GitHubReleaseClient
     {
         Timeout = Timeout.InfiniteTimeSpan
     };
-    static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
+    static readonly GitHubReleaseMetadataClient Metadata = new(Http, ReleaseRequestTimeout);
 
-    public static async Task<GitHubRelease> GetReleaseAsync(string url, CancellationToken cancellationToken)
-    {
-        ValidateGitHubUri(url);
-        using var request = new HttpRequestMessage(HttpMethod.Get, url);
-        request.Headers.UserAgent.Add(new ProductInfoHeaderValue("mpv.net", AppInfo.Version.ToString()));
-        using var timeoutSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-        timeoutSource.CancelAfter(ReleaseRequestTimeout);
-
-        try
-        {
-            using HttpResponseMessage response = await Http.SendAsync(
-                request, HttpCompletionOption.ResponseHeadersRead, timeoutSource.Token).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            string json = await response.Content.ReadAsStringAsync(timeoutSource.Token).ConfigureAwait(false);
-            return JsonSerializer.Deserialize<GitHubRelease>(json, JsonOptions)
-                ?? throw new InvalidOperationException("Invalid GitHub release payload.");
-        }
-        catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested && timeoutSource.IsCancellationRequested)
-        {
-            Log.Error($"Timed out while reading GitHub release metadata after {ReleaseRequestTimeout.TotalSeconds:0}s. url='{Log.SafeValue(url)}'");
-            throw;
-        }
-    }
+    public static Task<GitHubRelease> GetReleaseAsync(string url, CancellationToken cancellationToken) =>
+        Metadata.GetReleaseAsync(url, cancellationToken);
 
     public static Task<long> DownloadAsync(string url, string destinationPath, CancellationToken cancellationToken) =>
         DownloadAsync(url, destinationPath, cancellationToken, Http, DownloadTimeout);
@@ -230,7 +208,7 @@ internal static class GitHubReleaseClient
         }
     }
 
-    static async Task<HttpResponseMessage> SendWithValidatedRedirectsAsync(
+    internal static async Task<HttpResponseMessage> SendWithValidatedRedirectsAsync(
         HttpClient http, string url, CancellationToken cancellationToken, long offset = 0)
     {
         Uri current = new(url, UriKind.Absolute);
@@ -266,7 +244,7 @@ internal static class GitHubReleaseClient
             System.Net.HttpStatusCode.RedirectMethod or System.Net.HttpStatusCode.TemporaryRedirect or
             System.Net.HttpStatusCode.PermanentRedirect;
 
-    static void ValidateGitHubUri(string value)
+    internal static void ValidateGitHubUri(string value)
     {
         if (!Uri.TryCreate(value, UriKind.Absolute, out Uri? uri) ||
             uri.Scheme != Uri.UriSchemeHttps ||

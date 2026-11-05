@@ -304,7 +304,11 @@ MBIDs válidos prevalecem; a pesquisa por tags exige score >= 95, título e
 crédito de artista exatos e um único release-group entre os candidatos. Edições
 ambíguas são recusadas. A pesquisa por tags usa a imagem representativa do grupo
 de álbum, evitando escolher uma edição específica sem capa. O cliente
-identifica o produto no User-Agent, serializa
+usa o contrato JSON tipado de `MusicBrainzReleaseSearch`, que mantém a seleção
+separada da consulta e do download da imagem em `OnlineAudioArtwork`. Campos
+ausentes não confirmam a identidade; contratos JSON inválidos seguem o fluxo
+de falha transitória sem interromper a reprodução. O cliente identifica o
+produto no User-Agent, serializa
 consultas, mantém intervalo de 1,1 segundo e respeita Retry-After em 429/503.
 HTTPS, hosts de MusicBrainz/CAA/Internet Archive, até quatro redirecionamentos,
 15 segundos e limites de resposta são verificados antes de publicar a imagem.

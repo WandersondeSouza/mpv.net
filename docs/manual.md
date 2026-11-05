@@ -481,6 +481,9 @@ arquivos locais continuarem válidos, reutiliza o componente sem novo download.
 O player exige SHA-256 publicado pelo GitHub, confere a arquitetura x64 e
 valida os arquivos antes de ativá-los.
 
+Se o GitHub limitar as consultas, o player adia novas consultas de atualização
+durante o prazo indicado pelo serviço, preservando os componentes já válidos.
+
 Downloads interrompidos por falhas transitórias ou pelo fechamento do player
 podem ser retomados na próxima abertura, desde que a URL e o hash do asset
 permaneçam iguais. A geração válida anterior é preservada durante a atualização;

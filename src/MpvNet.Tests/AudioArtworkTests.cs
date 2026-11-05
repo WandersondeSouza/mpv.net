@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -339,6 +340,45 @@ public sealed class AudioArtworkTests
         byte[] json = SearchResult(score, album, artist);
         Assert.Equal(expected ? "release/" + Release : null,
             OnlineAudioArtwork.SelectRelease(json, new("Artist", "Album")));
+    }
+
+    [Theory]
+    [InlineData("null")]
+    [InlineData("{}")]
+    [InlineData("{\"releases\":null}")]
+    [InlineData("{\"releases\":[]}")]
+    [InlineData("{\"releases\":[null,{}]}")]
+    public void MissingSearchResultsNeverSelectACover(string json) =>
+        Assert.Null(OnlineAudioArtwork.SelectRelease(Encoding.UTF8.GetBytes(json), new("Artist", "Album")));
+
+    [Theory]
+    [InlineData("score")]
+    [InlineData("title")]
+    [InlineData("id")]
+    [InlineData("artist-credit")]
+    public void SearchRequiresAllIdentityAndConfidenceFields(string property)
+    {
+        JsonNode result = JsonNode.Parse(SearchResult(100, "Album", "Artist"))!;
+        result["releases"]![0]!.AsObject().Remove(property);
+        Assert.Null(OnlineAudioArtwork.SelectRelease(Encoding.UTF8.GetBytes(result.ToJsonString()), new("Artist", "Album")));
+    }
+
+    [Theory]
+    [InlineData("{")]
+    [InlineData("{\"releases\":{}}")]
+    [InlineData("{\"releases\":[{\"score\":\"100\"}]}")]
+    public void InvalidSearchContractIsRejected(string json) =>
+        Assert.Throws<JsonException>(() => OnlineAudioArtwork.SelectRelease(Encoding.UTF8.GetBytes(json), new("Artist", "Album")));
+
+    [Fact]
+    public void TypedSearchPreservesJoinedArtistCreditsNormalizationAndUnknownFields()
+    {
+        byte[] json = Encoding.UTF8.GetBytes($$"""
+            {"releases":[{"id":"{{Release}}","score":100,"title":" Ａｌｂｕｍ ",
+            "artist-credit":[{"name":"Artist","joinphrase":" & "},{"name":"Guest"}],
+            "release-group":{"id":"invalid"},"future_field":true}]}
+            """);
+        Assert.Equal("release/" + Release, OnlineAudioArtwork.SelectRelease(json, new("artist & guest", "Album")));
     }
 
     [Fact]

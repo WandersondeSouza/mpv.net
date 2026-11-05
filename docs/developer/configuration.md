@@ -184,8 +184,23 @@ explícita do usuário.
 O download retomável usado pelo bootstrap tem limite total de duas horas,
 timeout de 60 segundos sem progresso e até três tentativas para falhas
 transitórias. Respostas HTTP 403/429 não geram repetição imediata. A consulta de
-metadados da release tem limite de 30 segundos. Esses limites são distintos do
-download simples legado de 10 minutos.
+metadados da release tem limite de 30 segundos e 4 MiB, conferido tanto no
+Content-Length quanto durante a leitura. O contrato exige a lista `assets` e
+rejeita JSON inválido, lista nula ou entradas nulas. Metadados e downloads usam
+a mesma validação de destinos HTTPS e até cinco redirecionamentos. Esses
+limites são distintos do download simples legado de 10 minutos.
+
+`GitHubReleaseMetadataClient` separa a política de consulta do download binário
+e recebe o transporte HTTP e o relógio para testes. As consultas são
+serializadas. HTTP 403/429 ou `x-ratelimit-remaining=0` estabelecem uma pausa
+compartilhada entre as consultas de metadados no processo. O prazo considera
+`Retry-After` em segundos ou data e, com a cota esgotada, `x-ratelimit-reset`;
+se ambos forem válidos, prevalece o mais distante. Sem um prazo futuro válido,
+a pausa é de um minuto. Durante a pausa, novas consultas falham imediatamente
+sem acessar a rede nem manter o bootstrap esperando. Não há repetição
+automática ao expirar o prazo; uma nova solicitação pode consultar novamente.
+A pausa não é persistida entre execuções e não altera o cache de 20 dias nem
+a geração válida dos componentes.
 
 Transferências parciais ficam em `Component\staging\downloads`, identificadas
 pela URL e pelo SHA-256 publicado. Cancelamento, timeout e falhas transitórias

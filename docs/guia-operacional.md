@@ -155,7 +155,8 @@ ou de cópias manuais das DLLs; a ausência da libmpv normal interrompe o build.
 `Program.cs` conserva casos de comportamento existente; a cobertura adicional
 fica nos arquivos por área, como `ApplicationPathTests.cs`, `MediaInputTests.cs`,
 `NativePlaylistTitleTests.cs`, `LocalizationExpansionTests.cs`,
-`GitHubReleaseClientTests.cs` e `TitleBarFullscreenButtonTests.cs`. Consulte a
+`GitHubReleaseClientTests.cs`, `GitHubReleaseMetadataTests.cs`,
+`AudioArtworkTests.cs` e `TitleBarFullscreenButtonTests.cs`. Consulte a
 suíte completa antes de escolher onde acrescentar uma regressão. O runner
 configurado em `AssemblyInfo.cs` executa sem paralelismo; evite também builds
 concorrentes sobre a mesma saída.
