@@ -261,10 +261,28 @@ adapter não usa caminho, query, fragmento ou credencial
 de URL como título nem inventa tags ausentes. `AlbumArtist` usa `album_artist`
 ou `albumartist` do mpv; faixas `albumart` não transformam áudio em vídeo.
 
-`ThumbnailPath` recebe apenas capa externa local já selecionada pelo mpv.
-Na ausência dela, `StorageFile.GetThumbnailAsync` usa
+Para áudio local, `MainForm.AudioArtwork.cs` resolve a imagem selecionada pelo
+mpv depois de `playback-restart`, fora da thread da UI. Capas externas são
+copiadas e decodificadas; capas incorporadas usam `screenshot-raw video bgra`
+do libmpv, copiando os pixels antes de liberar o resultado nativo. Isso evita
+um segundo parser de tags ou dependência adicional e funciona para a imagem
+efetivamente selecionada, inclusive em formatos sem miniatura Windows.
+`AudioArtworkImage` valida até 4 MiB e 4096 pixels por dimensão, decodifica os
+pixels e normaliza em PNG sem metadados. O caminho do cache próprio é publicado
+em `ThumbnailPath`; o SMTC abre uma cópia em memória independente.
+
+Uma capa online ou o ícone de fallback é acrescentado como `albumart` por
+`video-add` assíncrono, sem trocar `wid`, OSC ou reiniciar áudio. O fallback
+usa o ícone centralizado em uma imagem opaca de 512 pixels, para evitar
+ampliação excessiva e fundo de transparência. A seleção `vid` é marcada como
+local ao arquivo antes da carga e restaurada na próxima mídia. Opções nativas
+explícitas e seleção manual prevalecem. A classificação usa as faixas reais:
+OGG somente de áudio não é tratado como vídeo só por sua extensão, e vídeo
+real desabilitado continua impedindo a inclusão automática de capas.
+
+Quando não há imagem resolvida, `StorageFile.GetThumbnailAsync` usa
 `ThumbnailOptions.ReturnOnlyIfCached`, que aceita miniatura em cache ou
-incorporada, sem extrator adicional e sem download. São aceitos somente arquivos
+incorporada. São aceitos somente arquivos
 locais em disco fixo, sem atributo offline/reparse no arquivo ou nos diretórios
 pai. Pastas redirecionadas/gerenciadas pela nuvem podem, por isso, usar o ícone
 do aplicativo mesmo quando a mídia está disponível. A imagem é validada com
@@ -277,8 +295,30 @@ mídia ou fechamento cancelam a operação e invalidam resultados anteriores;
 streams em memória permanecem sob responsabilidade do serviço até serem
 substituídos/descartados. Uma falha de capa é diagnosticada só por tipo de
 exceção/HRESULT e não desabilita o transporte. Sem imagem segura, a capa fica
-com o ícone padrão do aplicativo; arquivos remotos/offline e formatos sem miniatura Windows não têm extração
+com o ícone padrão do aplicativo. Arquivos remotos/offline não têm extração
 adicional. O timer para ao pausar, terminar a mídia ou fechar a janela.
+
+`OnlineAudioArtwork` consulta MusicBrainz/Cover Art Archive somente com
+`audio-artwork-online=yes`, áudio local disponível e identidade de álbum.
+MBIDs válidos prevalecem; a pesquisa por tags exige score >= 95, título e
+crédito de artista exatos e um único release-group entre os candidatos. Edições
+ambíguas são recusadas. A pesquisa por tags usa a imagem representativa do grupo
+de álbum, evitando escolher uma edição específica sem capa. O cliente
+identifica o produto no User-Agent, serializa
+consultas, mantém intervalo de 1,1 segundo e respeita Retry-After em 429/503.
+HTTPS, hosts de MusicBrainz/CAA/Internet Archive, até quatro redirecionamentos,
+15 segundos e limites de resposta são verificados antes de publicar a imagem.
+
+`AudioArtworkCache` usa hashes, gravação atômica, validade de 30 dias para
+sucesso, um dia para ausência e cinco minutos para falha transitória. Limita o
+conjunto a 128 MiB e 512 arquivos, sem gravar junto da mídia. Cancelamento por
+troca/fechamento e verificações de geração, caminho e seleção descartam
+resultados tardios. `user-data/mpvnet/audio-artwork-source` informa `none`,
+`local`, `online` ou `default` para diagnóstico por IPC; não expõe tags/caminhos.
+Atualizações de posição não iniciam nova resolução nem republicam a imagem.
+Foto automática de artista permanece indisponível por falta de uma fonte com
+identidade e licença/atribuição confirmadas; a ausência é uma limitação prevista
+no plano, e não uma busca genérica de imagens.
 
 O fallback usa o próprio `mpv-icon.ico`, incorporado como recurso da assembly
 Windows, convertido para PNG em memória. Ausência ou falha de capa retorna esse
@@ -317,6 +357,41 @@ O projeto suporta:
 ---
 
 ## Smoke test reproduzível
+
+### Capas de áudio — 05/11/2026
+
+Validação local em Windows build 26300.9818, libmpv
+`v0.42.0-1-g3138fc8ee`, execução desktop com configuração/dados isolados:
+
+- 940 testes xUnit aprovados, sem falhas ou skips; incluem HTTP loopback real,
+  cache/404/timeout/429/redirecionamentos, cancelamento, seleção, imagens
+  inválidas/grandes, arquivos offline, libmpv real e inicialização do executável.
+- Builds Debug e Release normais, sem avisos/erros e sem novas dependências.
+- Matriz de 17 casos via IPC: capas incorporadas em MP3/FLAC/M4A/OGG; ausência
+  de capa em WAV/MP3/FLAC/M4A/OGG; dois candidatos locais; capa local inválida;
+  preservação de vídeo real; stream HTTP local sem extração/busca; imagens
+  desativadas; 12 trocas rápidas; três ciclos de fullscreen; fechamento limpo.
+- Consulta HTTPS real ao CAA com MBID conhecido: imagem de 494 x 500 carregada
+  como `albumart` e publicada no SMTC com as mesmas dimensões. Capa incorporada
+  de 320 x 320 também foi confirmada pela API SMTC; ausência retornou ao ícone.
+  Busca real por artista/álbum, sem MBID nas tags, resolveu uma capa de
+  500 x 500 por release-group e a publicou nas duas superfícies.
+- Conferência visual da janela em tema claro/escuro, menu de contexto, OSC,
+  fullscreen, fallback opaco centralizado e fechamento pelo botão da janela.
+  `media-controls=yes` explícito preservou uma única sessão nativa com capa.
+
+Na validação foi corrigido o teste `DestroyWaitsForActiveNativeOperation`: ele
+mantinha uma lease de `ReaderWriterLockSlim` através de `await`, podendo tentar
+liberá-la em outra thread e travar seu próprio cleanup. O teste agora preserva
+a thread adquirente; o mecanismo de destruição do player não foi alterado.
+
+Essas evidências não substituem instalação/MSIX/Store, Windows 10, outros DPIs
+ou múltiplos monitores. Drag/drop por gesto físico e o painel visual do Windows
+não foram exercitados nesta rodada; seus caminhos de entrada e o contrato SMTC
+têm testes automatizados. A matriz visual completa abaixo permanece como
+checklist para os respectivos ambientes.
+
+### Integração SMTC — 14/10/2026 (histórico)
 
 Validação local das melhorias SMTC em 2026-10-14, Windows build 26300:
 

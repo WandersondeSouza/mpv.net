@@ -112,7 +112,7 @@ public sealed class OnlineAudioArtwork : IDisposable
         using JsonDocument doc = JsonDocument.Parse(json);
         if (!doc.RootElement.TryGetProperty("releases", out JsonElement releases) || releases.ValueKind != JsonValueKind.Array)
             return null;
-        List<(string Id, string Group)> matches = [];
+        List<(string Id, string Group, bool HasGroup)> matches = [];
         foreach (JsonElement release in releases.EnumerateArray())
         {
             if (!release.TryGetProperty("score", out JsonElement score) || !score.TryGetInt32(out int confidence) || confidence < 95 ||
@@ -126,14 +126,19 @@ public sealed class OnlineAudioArtwork : IDisposable
                 (credit.TryGetProperty("joinphrase", out var join) && join.ValueKind == JsonValueKind.String ? join.GetString() : "")));
             if (AudioArtworkIdentity.Normalize(credited) != AudioArtworkIdentity.Normalize(identity.Artist!))
                 continue;
-            string group = release.TryGetProperty("release-group", out var rg) && rg.TryGetProperty("id", out var gid) &&
-                Guid.TryParse(gid.GetString(), out Guid groupId) ? groupId.ToString("D") : releaseId.ToString("D");
-            matches.Add((releaseId.ToString("D"), group));
+            Guid groupId = default;
+            bool hasGroup = release.TryGetProperty("release-group", out var rg) && rg.TryGetProperty("id", out var gid) &&
+                Guid.TryParse(gid.GetString(), out groupId);
+            matches.Add((releaseId.ToString("D"), hasGroup ? groupId.ToString("D") : releaseId.ToString("D"), hasGroup));
         }
         // Several editions of one album are acceptable; different groups with
         // the same title/credit are ambiguous and must not be guessed.
-        return matches.Count > 0 && matches.Select(match => match.Group).Distinct().Count() == 1
-            ? "release/" + matches[0].Id : null;
+        if (matches.Count == 0 || matches.Select(match => match.Group).Distinct().Count() != 1)
+            return null;
+        // Tags identify the album, not a particular pressing. CAA's group
+        // endpoint selects its representative artwork; the first search hit
+        // may be a perfectly matching edition with no uploaded picture.
+        return matches[0].HasGroup ? "release-group/" + matches[0].Group : "release/" + matches[0].Id;
     }
 
     async Task<byte[]?> GetAsync(Uri uri, int limit, CancellationToken token)

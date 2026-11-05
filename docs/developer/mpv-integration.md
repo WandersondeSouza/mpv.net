@@ -92,6 +92,7 @@ Arquivos principais:
 - `src/MpvNet/Native/LibMpv.cs` - P/Invoke para `libmpv-2.dll`;
 - `src/MpvNet/Native/LibMpvRuntime.cs` - seleção da variante e diagnóstico de carregamento;
 - `src/MpvNet/Integration/Mpv/MpvClient.cs` - wrapper de cliente, comandos, propriedades e eventos;
+- `src/MpvNet/Integration/Mpv/MpvClient.Artwork.cs` - captura limitada de pixels de capa e inclusão assíncrona de `albumart` com seleção local ao arquivo;
 - `src/MpvNet/Integration/Mpv/Player.cs` - estado principal do player;
 - `src/MpvNet/Integration/Mpv/Player.Initialization.cs` - inicialização e configuração inicial do mpv/libmpv;
 - `src/MpvNet/Integration/Mpv/Player.ObservedProperties.cs` - propriedades observadas;

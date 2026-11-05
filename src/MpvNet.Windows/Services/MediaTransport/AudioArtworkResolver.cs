@@ -1,8 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-using Windows.Storage.Streams;
-
 namespace MpvNet.Windows.Services.MediaTransport;
 
 public sealed record AudioArtworkRequest(string Path, bool HasAudio, bool HasRealVideo, bool HasEmbeddedCover,
@@ -51,13 +49,8 @@ public sealed class AudioArtworkResolver(AudioArtworkCache cache, OnlineAudioArt
         if (request.AllowAdd && !request.HasEmbeddedCover && (string.IsNullOrEmpty(request.SelectedCoverPath) ||
             MediaTransportThumbnailLoader.IsAvailableLocalFile(request.SelectedCoverPath)))
         {
-            using IRandomAccessStream icon = await MediaTransportThumbnailLoader.LoadDefaultIconAsync(token).ConfigureAwait(false);
-            using var reader = new DataReader(icon);
-            await reader.LoadAsync((uint)icon.Size).AsTask(token).ConfigureAwait(false);
-            byte[] bytes = new byte[icon.Size];
-            reader.ReadBytes(bytes);
-            reader.DetachStream();
-            return new(await cache.StoreImageAsync(bytes, token).ConfigureAwait(false), true, "default");
+            token.ThrowIfCancellationRequested();
+            return new(await cache.StoreImageAsync(AudioArtworkImage.CreateDefault(), token).ConfigureAwait(false), true, "default");
         }
         return null;
     }

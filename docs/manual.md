@@ -9,6 +9,7 @@ Este manual cobre apenas o que importa para o uso cotidiano do fork.
 - [Download](#download)
 - [Instalação](#instalação)
 - [Controles de mídia do Windows](#controles-de-mídia-do-windows)
+- [Capas durante a reprodução de áudio](#capas-durante-a-reprodução-de-áudio)
 - [Configuração](#configuração)
 - [Atalhos de teclado e mouse](ATALHOS.md#controles-padrão-de-reprodução)
 - [Visibilidade dos controles OSC](#visibilidade-dos-controles-osc)
@@ -60,10 +61,12 @@ mantém a sessão e os comandos ativos também em fullscreen. A sessão é limpa
 quando não há mídia carregada e durante o encerramento. URLs
 com credenciais, query strings ou fragmentos não são publicados como título.
 
-A capa é opcional: usa imagem local de capa já selecionada pelo mpv ou miniatura
-incorporada/em cache fornecida pelo Windows. Não há download de capas; mídia
-remota e arquivos offline não são acessados para esse fim. Quando uma imagem
-não está disponível ou falha, os controles mostram o ícone padrão do MPV.NET.
+A capa é opcional. Para áudio local disponível, a imagem selecionada pelo mpv
+é copiada para os controles do Windows, inclusive quando está incorporada no
+arquivo. A busca de capas online é opcional e desligada por padrão; veja
+[Capas durante a reprodução de áudio](#capas-durante-a-reprodução-de-áudio).
+Mídia remota e arquivos offline não são acessados para obter imagens. Sem capa,
+os controles usam o ícone do MPV.NET.
 
 A miniatura da janela na barra de tarefas também oferece uma toolbar nesta
 ordem: Arquivo anterior, Capítulo anterior, Play/Pause, Próximo capítulo,
@@ -106,6 +109,65 @@ usuário durante a instalação. Para tornar o MPV.NET o padrão, abra
 `Configurações > Aplicativos > Aplicativos padrão`, procure o MPV.NET e escolha
 as extensões desejadas; também é possível usar `Abrir com > Escolher outro
 aplicativo` no Explorador de Arquivos.
+
+## Capas durante a reprodução de áudio
+
+O player aproveita a capa incorporada ou externa selecionada pelo mpv. A mesma
+imagem pode aparecer na janela e nos controles de mídia do Windows. Sem capa
+válida, o áudio local usa o ícone do aplicativo centralizado em um fundo neutro,
+desde que a seleção automática de imagens esteja habilitada. Vídeo real nunca
+é substituído por uma capa.
+
+Para habilitar a busca opcional de capas de álbum, acrescente em `mpvnet.conf`
+na [pasta de configuração ativa](#configuração) e reinicie o player:
+
+```ini
+audio-artwork-online=yes
+```
+
+A consulta usa o identificador MusicBrainz do álbum quando presente nas tags.
+Sem esse identificador, exige artista/artista do álbum e nome do álbum, com
+correspondência estrita. Os serviços MusicBrainz e Cover Art Archive recebem
+esses metadados e o endereço IP da conexão. O arquivo de áudio, seu caminho,
+credenciais e tags não são enviados como arquivos nem modificados. URLs/streams,
+drives de rede, arquivos offline e caminhos com reparse points não participam
+da busca. Não há scraping de imagens nem busca pelo nome do arquivo.
+
+A prioridade padrão é a imagem já selecionada pelo mpv, depois uma capa online
+confiável e, por fim, o ícone. Para preferir uma capa online à incorporada ruim:
+
+```ini
+audio-artwork-online=yes
+audio-artwork-prefer-online=yes
+```
+
+A segunda opção sozinha não autoriza consultas. Escolhas explícitas nativas de
+imagem/faixa em `mpv.conf`, CLI ou perfis continuam prevalecendo; uma seleção
+manual de vídeo durante a reprodução também impede substituição automática.
+`audio-display=no` mantém imagens desligadas na janela. Para desativar a busca,
+use `audio-artwork-online=no` ou remova essa opção e reinicie.
+
+Para escolher uma imagem local, use a opção nativa `cover-art-file` em
+`mpv.conf` ou na linha de comando, sem editar o áudio:
+
+```powershell
+.\mpvnet.exe --process-instance=multi --cover-art-file="C:\Musicas\minha-capa.jpg" "C:\Musicas\faixa.flac"
+```
+
+Também é possível escolher uma das imagens disponíveis como faixa de vídeo no
+menu **Track**. Depois de acrescentar uma capa à pasta, o comando nativo
+`rescan-external-files` permite redescobri-la sem reiniciar o áudio. A busca de
+arquivos e a prioridade incorporada/externa continuam seguindo `cover-art-auto`
+e `audio-display` do mpv; uma foto local pode ser escolhida da mesma forma.
+
+Imagens validadas ficam em `Artwork` na raiz de dados local do aplicativo,
+inclusive no modo portátil; o MSIX usa sua área privada. O cache tem limite de
+128 MiB e validade de até 30 dias, com limpeza durante as gravações. Ausências
+de capa são lembradas por um dia; falhas transitórias, por cinco minutos.
+Nenhuma capa baixada é gravada junto da música. Falhas de rede não interrompem
+o áudio. Foto automática do artista não está habilitada: exige uma fonte com
+identidade, licença e atribuição confirmadas; sem ela são usadas capas de álbum
+ou a imagem padrão.
 
 ## Configuração
 

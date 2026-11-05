@@ -11,6 +11,25 @@ public static class AudioArtworkImage
     public const int MaxBytes = 4 * 1024 * 1024;
     public const int MaxDimension = 4096;
 
+    public static byte[] CreateDefault()
+    {
+        using Stream resource = typeof(AudioArtworkImage).Assembly
+            .GetManifestResourceStream("MpvNet.Windows.DefaultIcon.ico")
+            ?? throw new InvalidOperationException("Application icon resource is missing.");
+        using var icon = new System.Drawing.Icon(resource, 128, 128);
+        using var bitmap = new System.Drawing.Bitmap(512, 512);
+        using (var graphics = System.Drawing.Graphics.FromImage(bitmap))
+        {
+            // An opaque neutral canvas avoids mpv's transparency checkerboard
+            // and keeps a small application icon from filling the whole window.
+            graphics.Clear(System.Drawing.Color.FromArgb(24, 24, 24));
+            graphics.DrawIcon(icon, new System.Drawing.Rectangle(192, 192, 128, 128));
+        }
+        using var output = new MemoryStream();
+        bitmap.Save(output, System.Drawing.Imaging.ImageFormat.Png);
+        return output.ToArray();
+    }
+
     public static async Task<byte[]> NormalizeAsync(byte[] bytes, CancellationToken token)
     {
         token.ThrowIfCancellationRequested();

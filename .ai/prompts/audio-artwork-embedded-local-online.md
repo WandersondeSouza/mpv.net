@@ -1,5 +1,14 @@
 # Capas de áudio incorporadas, locais e online
 
+Implementação consolidada em 05/11/2026: capas locais/incorporadas via imagem
+selecionada pelo mpv, busca online opcional de álbum, cache e fallback estão
+descritos no [manual](../../docs/manual.md#capas-durante-a-reprodução-de-áudio)
+e na [integração Windows](../../docs/developer/windows-ui.md). A alternativa
+adotada reutiliza os pixels do libmpv e não acrescenta parser/dependência de
+tags. Foto automática do artista segue condicionada à confirmação de fonte,
+identidade e direitos; não está habilitada. O texto abaixo conserva o plano
+para auditorias futuras, não substitui a documentação do comportamento atual.
+
 ## Objetivo
 
 Melhorar a imagem apresentada durante a reprodução de áudio no MPV.NET, tanto

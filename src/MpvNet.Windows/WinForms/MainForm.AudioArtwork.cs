@@ -86,6 +86,9 @@ public partial class MainForm
                             return Task.FromResult<AlbumArtworkPixels?>(null);
                         AlbumArtworkPixels? pixels = Player.CaptureAlbumArtwork();
                         cancellation.ThrowIfCancellationRequested();
+                        if (generation != Interlocked.Read(ref _mediaTransportGeneration) ||
+                            Player.GetPropertyString("path") != request.Path || Player.GetPropertyString("vid") != request.VideoSelection)
+                            return Task.FromResult<AlbumArtworkPixels?>(null);
                         return Task.FromResult(pixels);
                     }, token).ConfigureAwait(false);
                     token.ThrowIfCancellationRequested();

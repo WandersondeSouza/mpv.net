@@ -9,7 +9,7 @@ namespace MpvNet.Windows.Services.MediaTransport;
 public sealed class AudioArtworkCache(string directory)
 {
     public const long MaxCacheBytes = 128L * 1024 * 1024;
-    public const int MaxEntries = 256;
+    public const int MaxFiles = 512;
     static readonly SemaphoreSlim Gate = new(1);
     public string DirectoryPath { get; } = Path.GetFullPath(directory);
     public static string Hash(string value) => Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value)));
@@ -75,9 +75,8 @@ public sealed class AudioArtworkCache(string directory)
 
     void EnsureDirectory()
     {
-        // Use the same local/no-placeholder policy as the thumbnail reader,
-        // including the ancestors, before writing any cache content.
-        // Check parents without creating a probe in an untrusted destination.
+        // Check existing parents before creating anything. Artwork must never
+        // turn a cache write into a network or placeholder hydration operation.
         string? parent = DirectoryPath;
         while (parent != null)
         {
@@ -106,7 +105,8 @@ public sealed class AudioArtworkCache(string directory)
     {
         FileInfo[] files = new DirectoryInfo(DirectoryPath).GetFiles()
             .Where(file => file.Extension is ".png" or ".json" or ".tmp")
-            .OrderByDescending(file => file.LastWriteTimeUtc).ToArray();
+            .OrderByDescending(file => StringComparer.OrdinalIgnoreCase.Equals(file.FullName, preserve))
+            .ThenByDescending(file => file.LastWriteTimeUtc).ToArray();
         long bytes = 0;
         int count = 0;
         foreach (FileInfo file in files)
@@ -115,7 +115,7 @@ public sealed class AudioArtworkCache(string directory)
             count++;
             if (StringComparer.OrdinalIgnoreCase.Equals(file.FullName, preserve))
                 continue;
-            if (bytes <= MaxCacheBytes && count <= MaxEntries * 2 && file.LastWriteTimeUtc >= DateTime.UtcNow.AddDays(-30))
+            if (bytes <= MaxCacheBytes && count <= MaxFiles && file.LastWriteTimeUtc >= DateTime.UtcNow.AddDays(-30))
                 continue;
             try { file.Delete(); }
             catch (IOException) { }

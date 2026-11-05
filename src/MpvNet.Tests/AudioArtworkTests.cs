@@ -91,6 +91,32 @@ public sealed class AudioArtworkTests
     }
 
     [Fact]
+    public void DefaultPictureUsesAnOpaqueCanvasAndKeepsTheIconCentered()
+    {
+        using var input = new MemoryStream(AudioArtworkImage.CreateDefault());
+        using var bitmap = new System.Drawing.Bitmap(input);
+        Assert.Equal(512, bitmap.Width);
+        Assert.Equal(512, bitmap.Height);
+        Assert.Equal(System.Drawing.Color.FromArgb(255, 24, 24, 24), bitmap.GetPixel(0, 0));
+        Assert.NotEqual(bitmap.GetPixel(0, 0), bitmap.GetPixel(256, 256));
+    }
+
+    [Fact]
+    public async Task OfflineArtworkIsNotOpenedOrHydrated()
+    {
+        using TestDirectory directory = new();
+        string path = Path.Combine(directory.Path, "offline.png");
+        await File.WriteAllBytesAsync(path, await Image(), Token);
+        FileAttributes original = File.GetAttributes(path);
+        try
+        {
+            File.SetAttributes(path, original | FileAttributes.Offline);
+            Assert.Null(await AudioArtworkImage.ReadLocalAsync(path, Token));
+        }
+        finally { File.SetAttributes(path, original); }
+    }
+
+    [Fact]
     public async Task LocalCoverAndEmbeddedPixelsAreOwnedCachedAndDoNotModifyTheMedia()
     {
         using TestDirectory directory = new();
@@ -329,6 +355,23 @@ public sealed class AudioArtworkTests
         string item = result.RootElement.GetProperty("releases")[0].GetRawText();
         byte[] ambiguous = Encoding.UTF8.GetBytes("{\"releases\":[" + item + "," + item.Replace(Release, Guid.NewGuid().ToString()) + "]}");
         Assert.Null(OnlineAudioArtwork.SelectRelease(ambiguous, new("Artist", "Album")));
+    }
+
+    [Fact]
+    public async Task SearchUsesTheAlbumGroupInsteadOfGuessingAnEditionWithNoCover()
+    {
+        using TestDirectory directory = new();
+        string group = Guid.NewGuid().ToString();
+        string item = "{\"id\":\"" + Release + "\",\"score\":100,\"title\":\"Album\",\"artist-credit\":[{\"name\":\"Artist\"}]," +
+            "\"release-group\":{\"id\":\"" + group + "\"}}";
+        byte[] search = Encoding.UTF8.GetBytes("{\"releases\":[" + item + "," + item.Replace(Release, Guid.NewGuid().ToString()) + "]}");
+        Assert.Equal("release-group/" + group, OnlineAudioArtwork.SelectRelease(search, new("Artist", "Album")));
+        byte[] png = await Image();
+        using var server = new Server(path => path.StartsWith("/release?") ? (200, search) :
+            path == "/release-group/" + group + "/front-500" ? (200, png) : (404, []));
+        using var online = Online(new(directory.Path), server);
+        Assert.NotNull(await online.FindAsync(new("Artist", "Album"), Token));
+        Assert.Equal(2, server.Requests);
     }
 
     static byte[] SearchResult(int score, string album, string artist) =>

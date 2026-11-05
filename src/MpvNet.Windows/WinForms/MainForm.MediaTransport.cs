@@ -198,7 +198,9 @@ public partial class MainForm
 
     bool MediaHasRealVideo()
     {
-        int count = Math.Min(1024, Player.GetPropertyInt("track-list/count"));
+        int count = Player.GetPropertyInt("track-list/count");
+        if (count > 1024)
+            return true; // An unusually large track list must not hide real video.
         for (int i = 0; i < count; i++)
             if (Player.GetPropertyString($"track-list/{i}/type") == "video" &&
                 !Player.GetPropertyBool($"track-list/{i}/albumart", false))

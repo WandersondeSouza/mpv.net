@@ -285,6 +285,8 @@ Opções reconhecidas pelo mpv.net:
 | --- | --- | --- |
 | `auto-load-folder` | `no` | Controla carregamento automático da pasta. |
 | `automatic-network-cache` | `yes` | Ativa a política automática de cache por entrada de rede. |
+| `audio-artwork-online` | `no` | Autoriza busca opcional de capa de álbum para áudio local com identidade confiável. |
+| `audio-artwork-prefer-online` | `no` | Prefere capa online à selecionada automaticamente; depende de `audio-artwork-online=yes` e respeita escolhas nativas explícitas. |
 | `autofit-audio` | `70%` | Tamanho de janela para áudio. |
 | `autofit-image` | `80%` | Tamanho de janela para imagem. |
 | `dark-mode` | `always` | Modo escuro/claro. |
@@ -307,6 +309,13 @@ Opções reconhecidas pelo mpv.net:
 | `start-size` | `height-session` | Tamanho inicial da janela. |
 
 `App.Init()` registra como erro cada opção desconhecida encontrada no arquivo.
+
+As duas opções de capas também aceitam override na linha de comando. Não
+reescrevem `mpv.conf`, `mpvnet.conf`, tags ou arquivos de mídia. O cache de arte
+usa `AppPaths.LocalRoot/Artwork`, fora do cache temporário de três dias do mpv,
+com a mesma resolução de dados portátil/instalado/MSIX. Veja
+[Capas durante a reprodução de áudio](../manual.md#capas-durante-a-reprodução-de-áudio)
+para prioridade, privacidade e escolha de imagem local.
 
 `language` controla apenas o idioma da interface. As preferências de áudio e
 legenda continuam no `mpv.conf`, com as opções nativas do mpv:
