@@ -32,9 +32,13 @@ public static class EditorConfigurationService
                     else
                         opt.Name = it.Value;
 
-                    opt.Text = section.GetValue("name") == "language"
-                        ? EditorConfLocalization.TranslateLanguageName(opt.Name)
-                        : EditorConfLocalization.TranslateOptionValue(opt.Name);
+                    opt.Text = section.GetValue("name") switch
+                    {
+                        "language" => EditorConfLocalization.TranslateLanguageName(opt.Name),
+                        "audio-artwork-online" when opt.Name == "yes" => _("Yes"),
+                        "audio-artwork-online" when opt.Name == "no" => _("No"),
+                        _ => EditorConfLocalization.TranslateOptionValue(opt.Name)
+                    };
 
                     if (opt.Name == optionSetting.Default)
                         opt.Text += " " + _("(Default)");

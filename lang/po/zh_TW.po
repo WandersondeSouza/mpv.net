@@ -2820,3 +2820,11 @@ msgstr "俄語"
 #: src/MpvNet.Windows/Configuration/Conf.cs
 msgid "Turkish"
 msgstr "土耳其語"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "audio-artwork-online"
+msgstr "線上搜尋音訊封面"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "Look up album covers and, when no cover is available, artist photos in the public domain or under CC0. MusicBrainz, Cover Art Archive, Wikidata and Wikimedia Commons may receive artist or album metadata or identifiers and your IP address. Turning this off still allows previously cached artwork."
+msgstr "搜尋專輯封面，找不到封面時則搜尋屬於公有領域或以 CC0 發布的藝人照片。MusicBrainz、Cover Art Archive、Wikidata 和 Wikimedia Commons 可能會收到藝人或專輯的中繼資料或識別碼，以及您的 IP 位址。關閉後仍可使用已快取的圖片。"

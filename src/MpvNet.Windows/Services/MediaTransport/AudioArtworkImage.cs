@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -78,17 +79,20 @@ public static class AudioArtworkImage
         return bytes;
     }
 
-    public static async Task<byte[]?> ReadLocalAsync(string? path, CancellationToken token)
+    public static async Task<byte[]?> ReadLocalAsync(string? path, CancellationToken token, string? expectedHash = null)
     {
         token.ThrowIfCancellationRequested();
         if (path == null || !MediaTransportThumbnailLoader.IsAvailableLocalFile(path))
             return null;
         using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete,
             8192, FileOptions.Asynchronous);
-        if (stream.Length is 0 or > MaxBytes)
+        long length = stream.Length;
+        if (length is 0 or > MaxBytes)
             return null;
-        byte[] bytes = new byte[stream.Length];
+        byte[] bytes = new byte[length];
         await stream.ReadExactlyAsync(bytes, token).ConfigureAwait(false);
+        if (expectedHash != null && !StringComparer.OrdinalIgnoreCase.Equals(expectedHash, Convert.ToHexString(SHA256.HashData(bytes))))
+            return null;
         return await NormalizeAsync(bytes, token).ConfigureAwait(false);
     }
 }

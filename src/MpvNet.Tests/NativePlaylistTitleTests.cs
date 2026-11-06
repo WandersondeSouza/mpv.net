@@ -456,7 +456,8 @@ public sealed class NativePlaylistTitleTests : IDisposable
         Assert.True(condition(), "Timed out waiting for native playback state.");
     }
 
-    internal static string WriteWave(string root, string name, string? metadataTitle = null)
+    internal static string WriteWave(string root, string name, string? metadataTitle = null,
+        string? metadataArtist = null, int seconds = 1)
     {
         string path = Path.Combine(root, name);
         using BinaryWriter writer = new(File.Create(path));
@@ -464,15 +465,28 @@ public sealed class NativePlaylistTitleTests : IDisposable
         writer.Write(Encoding.ASCII.GetBytes("WAVEfmt ")); writer.Write(16);
         writer.Write((short)1); writer.Write((short)1); writer.Write(8000); writer.Write(16000);
         writer.Write((short)2); writer.Write((short)16);
-        if (metadataTitle != null)
+        if (metadataTitle != null || metadataArtist != null)
         {
-            byte[] tag = Encoding.UTF8.GetBytes(metadataTitle + "\0");
-            int padding = tag.Length % 2;
-            writer.Write(Encoding.ASCII.GetBytes("LIST")); writer.Write(12 + tag.Length + padding);
-            writer.Write(Encoding.ASCII.GetBytes("INFOINAM")); writer.Write(tag.Length); writer.Write(tag);
-            if (padding != 0) writer.Write((byte)0);
+            using var tags = new MemoryStream();
+            using var tagWriter = new BinaryWriter(tags);
+            tagWriter.Write(Encoding.ASCII.GetBytes("INFO"));
+            foreach (var (key, value) in new[] { ("INAM", metadataTitle), ("IART", metadataArtist) })
+            {
+                if (value == null)
+                    continue;
+                byte[] tag = Encoding.UTF8.GetBytes(value + "\0");
+                tagWriter.Write(Encoding.ASCII.GetBytes(key));
+                tagWriter.Write(tag.Length);
+                tagWriter.Write(tag);
+                if (tag.Length % 2 != 0)
+                    tagWriter.Write((byte)0);
+            }
+            writer.Write(Encoding.ASCII.GetBytes("LIST"));
+            writer.Write((int)tags.Length);
+            tags.WriteTo(writer.BaseStream);
         }
-        writer.Write(Encoding.ASCII.GetBytes("data")); writer.Write(16000); writer.Write(new byte[16000]);
+        int dataLength = 16000 * seconds;
+        writer.Write(Encoding.ASCII.GetBytes("data")); writer.Write(dataLength); writer.Write(new byte[dataLength]);
         long length = writer.BaseStream.Position;
         writer.Seek(4, SeekOrigin.Begin); writer.Write((int)length - 8);
         return path;

@@ -2820,3 +2820,11 @@ msgstr "الروسية"
 #: src/MpvNet.Windows/Configuration/Conf.cs
 msgid "Turkish"
 msgstr "التركية"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "audio-artwork-online"
+msgstr "البحث عن أغلفة الصوت عبر الإنترنت"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "Look up album covers and, when no cover is available, artist photos in the public domain or under CC0. MusicBrainz, Cover Art Archive, Wikidata and Wikimedia Commons may receive artist or album metadata or identifiers and your IP address. Turning this off still allows previously cached artwork."
+msgstr "ابحث عن أغلفة الألبومات، وعند عدم توفر غلاف، عن صور الفنانين في الملكية العامة أو بموجب CC0. قد تتلقى MusicBrainz وCover Art Archive وWikidata وWikimedia Commons بيانات وصفية أو معرّفات للفنان أو الألبوم وعنوان IP الخاص بك. يظل استخدام الصور المخزّنة مؤقتًا متاحًا بعد إيقاف هذا الخيار."

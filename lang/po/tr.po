@@ -2832,3 +2832,11 @@ msgstr "Rusça"
 #: src/MpvNet.Windows/Configuration/Conf.cs
 msgid "Turkish"
 msgstr "Türkçe"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "audio-artwork-online"
+msgstr "Ses kapaklarını çevrimiçi ara"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "Look up album covers and, when no cover is available, artist photos in the public domain or under CC0. MusicBrainz, Cover Art Archive, Wikidata and Wikimedia Commons may receive artist or album metadata or identifiers and your IP address. Turning this off still allows previously cached artwork."
+msgstr "Albüm kapaklarını, kapak yoksa kamu malı olan veya CC0 ile yayımlanan sanatçı fotoğraflarını arar. MusicBrainz, Cover Art Archive, Wikidata ve Wikimedia Commons sanatçıya veya albüme ait üst verileri ya da tanımlayıcıları ve IP adresinizi alabilir. Bu seçenek kapatıldığında önbellekteki görseller kullanılmaya devam eder."

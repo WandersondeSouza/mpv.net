@@ -293,6 +293,11 @@ atualizações imediatas por eventos. O player continua
 responsável pela reprodução e a integração é desligada se o SMTC não estiver
 disponível.
 
+Para áudio local, a camada Windows resolve a arte em segundo plano e pode
+acrescentar uma imagem validada ao arquivo corrente com \`video-add\` assíncrono.
+O frontend SMTC usa a mesma imagem quando está ativo. As regras de prioridade,
+cancelamento e cache estão em [Integração Windows](windows-ui.md).
+
 ## Metadados auxiliares
 
 A reprodução tem prioridade sobre metadados auxiliares. `MediaInfo.dll`,

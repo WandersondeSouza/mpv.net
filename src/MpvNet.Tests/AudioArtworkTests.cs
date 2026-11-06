@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
+using System.Resources;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -11,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using MpvNet;
+using MpvNet.Windows;
 using MpvNet.Windows.Services.MediaTransport;
 using Xunit;
 
@@ -25,11 +27,12 @@ public sealed class AudioArtworkTests
         Enumerable.Range(0, size * size).SelectMany(_ => new byte[] { 0, 0, 255, 255 }).ToArray()), Token);
 
     [Fact]
-    public void OnlineConfigurationDefaultsToOfflineAndPriorityDoesNotGrantNetworkPermission()
+    public void OnlineConfigurationDefaultsToYesInRuntimeAndEditorAndKeepsExplicitNo()
     {
         using AppClass app = new();
-        Assert.False(app.AudioArtworkOnline);
+        Assert.True(app.AudioArtworkOnline);
         Assert.False(app.AudioArtworkPreferOnline);
+        Assert.True(app.ProcessProperty("audio-artwork-online", "no"));
         Assert.True(app.ProcessProperty("audio-artwork-prefer-online", "yes"));
         Assert.True(app.AudioArtworkPreferOnline);
         Assert.False(app.AudioArtworkOnline);
@@ -37,6 +40,14 @@ public sealed class AudioArtworkTests
         Assert.True(app.AudioArtworkOnline);
         app.ProcessProperty("audio-artwork-online", "no");
         Assert.False(app.AudioArtworkOnline);
+
+        var resources = new ResourceManager("MpvNet.Windows.Properties.Resources", typeof(EditorConfigurationService).Assembly);
+        var option = Assert.IsType<OptionSetting>(Assert.Single(EditorConfigurationService
+            .ParseSettings(resources.GetString("editor_conf")!), setting => setting.Name == "audio-artwork-online"));
+        Assert.Equal("mpvnet", option.File);
+        Assert.Equal("yes", option.Default);
+        Assert.Equal("yes", option.Value);
+        Assert.Equal(["yes", "no"], option.Options.Select(value => value.Name));
     }
 
     [Theory]
@@ -194,11 +205,46 @@ public sealed class AudioArtworkTests
         for (int i = 0; i < 35; i++)
             await File.WriteAllBytesAsync(Path.Combine(directory.Path, i + ".png"), new byte[AudioArtworkImage.MaxBytes], Token);
         var cache = new AudioArtworkCache(directory.Path);
-        string current = await cache.StoreImageAsync(await Image(), Token);
+        string current = Path.Combine(directory.Path, "new.png");
+        await File.WriteAllBytesAsync(current, await Image(), Token);
+        File.SetLastWriteTimeUtc(current, DateTime.UtcNow.AddMinutes(1));
+        await cache.CleanupAsync();
         Assert.True(File.Exists(current));
         Assert.False(File.Exists(old));
         Assert.True(new DirectoryInfo(directory.Path).GetFiles("*.png").Sum(file => file.Length) <= AudioArtworkCache.MaxCacheBytes);
         Assert.Equal("unchanged", await File.ReadAllTextAsync(config, Token));
+    }
+
+    [Fact]
+    public async Task StartupCleanupIsIdempotentAndToleratesLockedFilesWithoutTraversingSubdirectories()
+    {
+        using TestDirectory directory = new();
+        string root = Path.Combine(directory.Path, "Artwork");
+        var cache = new AudioArtworkCache(root);
+        await cache.CleanupAsync();
+        Assert.False(Directory.Exists(root));
+        Directory.CreateDirectory(Path.Combine(root, "nested"));
+        string outside = Path.Combine(directory.Path, "outside.png");
+        string nested = Path.Combine(root, "nested", "inside.png");
+        string locked = Path.Combine(root, "locked.tmp");
+        foreach (string path in new[] { outside, nested, locked })
+        {
+            await File.WriteAllBytesAsync(path, [0], Token);
+            File.SetLastWriteTimeUtc(path, DateTime.UtcNow.AddDays(-31));
+        }
+        for (int i = 0; i < AudioArtworkCache.MaxFiles + 2; i++)
+            await File.WriteAllBytesAsync(Path.Combine(root, i + ".json"), [0], Token);
+        using (File.Open(locked, FileMode.Open, FileAccess.Read, FileShare.None))
+        {
+            await cache.CleanupAsync();
+            Assert.True(File.Exists(locked));
+        }
+        await cache.CleanupAsync();
+        await cache.CleanupAsync();
+        Assert.False(File.Exists(locked));
+        Assert.True(File.Exists(outside));
+        Assert.True(File.Exists(nested));
+        Assert.Equal(AudioArtworkCache.MaxFiles, Directory.GetFiles(root).Length);
     }
 
     [Fact]
@@ -287,6 +333,8 @@ public sealed class AudioArtworkTests
         Assert.Equal("local", (await resolver.ResolveAsync(request, _ => Task.FromResult<AlbumArtworkPixels?>(null), Token))?.Source);
         Assert.Equal(0, server.Requests);
         Assert.Equal("online", (await resolver.ResolveAsync(request with { PreferOnline = true },
+            _ => Task.FromResult<AlbumArtworkPixels?>(null), Token))?.Source);
+        Assert.Equal("online", (await resolver.ResolveAsync(request with { PreferOnline = true, OnlineEnabled = false },
             _ => Task.FromResult<AlbumArtworkPixels?>(null), Token))?.Source);
         Assert.Equal(1, server.Requests);
         Assert.Equal("local", (await resolver.ResolveAsync(request with { PreferOnline = true, AllowAdd = false },

@@ -300,8 +300,8 @@ Opções reconhecidas pelo mpv.net:
 | --- | --- | --- |
 | `auto-load-folder` | `no` | Controla carregamento automático da pasta. |
 | `automatic-network-cache` | `yes` | Ativa a política automática de cache por entrada de rede. |
-| `audio-artwork-online` | `no` | Autoriza busca opcional de capa de álbum para áudio local com identidade confiável. |
-| `audio-artwork-prefer-online` | `no` | Prefere capa online à selecionada automaticamente; depende de `audio-artwork-online=yes` e respeita escolhas nativas explícitas. |
+| `audio-artwork-online` | `yes` | Em **Áudio** no editor. Autoriza buscar capas de álbum e fotos verificadas de artista para áudio local. Um `no` explícito impede a rede e mantém leitura e limpeza de `Artwork`. |
+| `audio-artwork-prefer-online` | `no` | Prefere capa de álbum online ou em cache à arte selecionada automaticamente pelo mpv. A preferência respeita escolhas explícitas do mpv e só a primeira opção autoriza rede. |
 | `autofit-audio` | `70%` | Tamanho de janela para áudio. |
 | `autofit-image` | `80%` | Tamanho de janela para imagem. |
 | `dark-mode` | `always` | Modo escuro/claro. |

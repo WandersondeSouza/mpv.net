@@ -8,6 +8,7 @@ namespace MpvNet.Windows.WinForms;
 public partial class MainForm
 {
     readonly AudioArtworkCache _audioArtworkCache = new(Path.Combine(AppPaths.LocalRoot, "Artwork"));
+    readonly Task _audioArtworkCacheCleanup;
     OnlineAudioArtwork? _onlineAudioArtwork;
     AudioArtworkRequest? _audioArtworkRequest;
     CancellationTokenSource? _audioArtworkCancellation;
@@ -55,7 +56,9 @@ public partial class MainForm
             Player.GetPropertyBool("current-tracks/video/albumart", false)
                 ? Player.GetPropertyString("current-tracks/video/external-filename") : null,
             selectedVideo, Player.GetPropertyString("audio-display"), canAdd,
-            App.AudioArtworkOnline, App.AudioArtworkPreferOnline, identity);
+            App.AudioArtworkOnline, App.AudioArtworkPreferOnline, identity,
+            new AudioArtistIdentity(ReadAudioArtworkTag("artist") ?? ReadAudioArtworkTag("album_artist", "albumartist"),
+                ReadAudioArtworkTag("musicbrainz_artistid", "MusicBrainz Artist Id")));
 
         if (_audioArtworkPath != null && StringComparer.OrdinalIgnoreCase.Equals(request.SelectedCoverPath, _audioArtworkPath))
         {
@@ -79,6 +82,7 @@ public partial class MainForm
             {
                 try
                 {
+                    await _audioArtworkCacheCleanup.WaitAsync(token).ConfigureAwait(false);
                     AudioArtworkResult? result = await resolver.ResolveAsync(request, cancellation =>
                     {
                         cancellation.ThrowIfCancellationRequested();

@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using MpvNet.Windows.WPF.MsgBox;
@@ -13,6 +14,7 @@ public partial class MainForm
 {
     public MainForm()
     {
+        _audioArtworkCacheCleanup = Task.Run(_audioArtworkCache.CleanupAsync);
         InitializeComponent();
 
         Text = AppInfo.Product;

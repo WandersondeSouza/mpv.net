@@ -2830,3 +2830,11 @@ msgstr "Russe"
 #: src/MpvNet.Windows/Configuration/Conf.cs
 msgid "Turkish"
 msgstr "Turc"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "audio-artwork-online"
+msgstr "Rechercher des pochettes audio en ligne"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "Look up album covers and, when no cover is available, artist photos in the public domain or under CC0. MusicBrainz, Cover Art Archive, Wikidata and Wikimedia Commons may receive artist or album metadata or identifiers and your IP address. Turning this off still allows previously cached artwork."
+msgstr "Recherche des pochettes d’album et, à défaut, des photos d’artistes du domaine public ou sous CC0. MusicBrainz, Cover Art Archive, Wikidata et Wikimedia Commons peuvent recevoir des métadonnées ou des identifiants d’artiste ou d’album, ainsi que votre adresse IP. Les images déjà en cache restent disponibles après désactivation."

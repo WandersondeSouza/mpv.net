@@ -13,7 +13,7 @@ public sealed record AudioArtworkIdentity(string? Artist, string? Album, string?
         IsTag(Artist) && IsTag(Album) ? "tags:" + Normalize(Artist!) + "\n" + Normalize(Album!) : null;
 
     public static string Normalize(string value) => value.Normalize(NormalizationForm.FormKC).Trim().ToUpperInvariant();
-    static bool IsTag(string? value) => !string.IsNullOrWhiteSpace(value) && value.Length <= 256 &&
+    internal static bool IsTag(string? value) => !string.IsNullOrWhiteSpace(value) && value.Length <= 256 &&
         !value.Contains("://", StringComparison.Ordinal) && !value.Contains('\\') && !value.Any(char.IsControl);
 }
 
@@ -21,7 +21,7 @@ public sealed class OnlineAudioArtwork : IDisposable
 {
     static readonly SemaphoreSlim NetworkGate = new(1);
     static DateTimeOffset _nextRequest;
-    DateTimeOffset _retryAfter;
+    readonly Dictionary<string, DateTimeOffset> _retryAfter = new(StringComparer.Ordinal);
     readonly HttpClient _client;
     readonly AudioArtworkCache _cache;
     readonly Func<Uri, bool> _allowUri;
@@ -54,38 +54,65 @@ public sealed class OnlineAudioArtwork : IDisposable
         (uri.IdnHost is "musicbrainz.org" or "coverartarchive.org" or "archive.org" ||
          uri.IdnHost.EndsWith(".archive.org", StringComparison.Ordinal));
 
-    public async Task<string?> FindAsync(AudioArtworkIdentity identity, CancellationToken token)
+    public Task<string?> FindAsync(AudioArtworkIdentity identity, CancellationToken token) =>
+        FindAsync(identity, true, token);
+
+    public Task<string?> FindAsync(AudioArtworkIdentity identity, bool networkEnabled, CancellationToken token) =>
+        FindAsync(identity.Key, networkEnabled, null, async cancellation =>
+        {
+            string? resource = await ResolveResourceAsync(identity, cancellation).ConfigureAwait(false);
+            byte[]? image = resource == null ? null : await GetAsync(new(_coverArt, resource + "/front-500"),
+                AudioArtworkImage.MaxBytes, cancellation).ConfigureAwait(false);
+            return (image, null);
+        }, token);
+
+    public Task<string?> FindArtistAsync(AudioArtistIdentity artist, bool networkEnabled, CancellationToken token) =>
+        FindAsync(artist.Key, networkEnabled, artist.Matches, cancellation => ArtistArtworkLookup.ResolveAsync(
+            artist, _musicBrainz, (uri, limit) => GetAsync(uri, limit, cancellation, allowRedirects: false)), token);
+
+    async Task<string?> FindAsync(string? key, bool networkEnabled, Func<ArtistArtworkSource, bool>? validateArtist,
+        Func<CancellationToken, Task<(byte[]? Image, ArtistArtworkSource? Artist)>> resolve, CancellationToken token)
     {
-        string? key = identity.Key;
         if (key == null)
             return null;
+        if (!networkEnabled)
+            return (await _cache.FindAsync(key, validateArtist, token).ConfigureAwait(false)).Path;
+
         using var timeout = CancellationTokenSource.CreateLinkedTokenSource(token);
         timeout.CancelAfter(_timeout);
         CancellationToken requestToken = timeout.Token;
         // Serialize the cache check and request, coalescing consecutive tracks
         // from the same album. Cancellation releases the gate immediately.
-        await NetworkGate.WaitAsync(requestToken).ConfigureAwait(false);
-        try
-        {
-            var cached = await _cache.FindAsync(key, requestToken).ConfigureAwait(false);
-            if (cached.Found)
-                return cached.Path;
-            string? resource = await ResolveResourceAsync(identity, requestToken).ConfigureAwait(false);
-            string? image = resource == null ? null : await DownloadCoverAsync(resource, requestToken).ConfigureAwait(false);
-            await _cache.RememberAsync(key, image, image == null ? TimeSpan.FromDays(1) : TimeSpan.FromDays(30), requestToken).ConfigureAwait(false);
-            return image;
-        }
+        try { await NetworkGate.WaitAsync(requestToken).ConfigureAwait(false); }
         catch (OperationCanceledException) when (!token.IsCancellationRequested)
         {
-            await _cache.RememberAsync(key, null, TimeSpan.FromMinutes(5), token).ConfigureAwait(false);
+            Log.Debug("Online audio artwork wait timed out.");
             return null;
         }
-        catch (OperationCanceledException) { throw; }
-        catch (Exception)
+        try
         {
+            var cached = await _cache.FindAsync(key, validateArtist, requestToken).ConfigureAwait(false);
+            if (cached.Found)
+                return cached.Path;
+            var (bytes, artist) = await resolve(requestToken).ConfigureAwait(false);
+            string? image = bytes == null ? null : await _cache.StoreImageAsync(
+                await AudioArtworkImage.NormalizeAsync(bytes, requestToken).ConfigureAwait(false), requestToken).ConfigureAwait(false);
+            if (image == null)
+                Log.Debug(validateArtist == null ? "Album artwork unavailable." : "Artist artwork unavailable or unverified.");
+            await _cache.RememberAsync(key, image, image == null ? TimeSpan.FromDays(1) : TimeSpan.FromDays(30),
+                image == null ? null : artist, requestToken).ConfigureAwait(false);
+            return image;
+        }
+        catch (Exception ex) when (ex is not OperationCanceledException || !token.IsCancellationRequested)
+        {
+            Log.Debug($"Online audio artwork unavailable: {ex.GetType().Name}");
             // Cache transient failures briefly as well; a playlist of one album
             // must not hammer an unavailable service once per track.
-            await _cache.RememberAsync(key, null, TimeSpan.FromMinutes(5), token).ConfigureAwait(false);
+            try { await _cache.RememberAsync(key, null, TimeSpan.FromMinutes(5), token).ConfigureAwait(false); }
+            catch (Exception cacheError) when (cacheError is IOException or UnauthorizedAccessException)
+            {
+                Log.Debug($"Artwork cache unavailable: {cacheError.GetType().Name}");
+            }
             return null;
         }
         finally { NetworkGate.Release(); }
@@ -99,35 +126,31 @@ public sealed class OnlineAudioArtwork : IDisposable
             return "release-group/" + group.ToString("D");
         string query = "release:\"" + EscapeQuery(identity.Album!) + "\" AND artist:\"" + EscapeQuery(identity.Artist!) + "\"";
         byte[]? json = await GetAsync(new(_musicBrainz, "release?fmt=json&limit=5&query=" + Uri.EscapeDataString(query)),
-            512 * 1024, token).ConfigureAwait(false);
+            512 * 1024, token, allowRedirects: false).ConfigureAwait(false);
         return json == null ? null : SelectRelease(json, identity);
-    }
-
-    async Task<string?> DownloadCoverAsync(string resource, CancellationToken token)
-    {
-        byte[]? bytes = await GetAsync(new(_coverArt, resource + "/front-500"), AudioArtworkImage.MaxBytes, token).ConfigureAwait(false);
-        return bytes == null ? null : await _cache.StoreImageAsync(
-            await AudioArtworkImage.NormalizeAsync(bytes, token).ConfigureAwait(false), token).ConfigureAwait(false);
     }
 
     public static string? SelectRelease(byte[] json, AudioArtworkIdentity identity) =>
         MusicBrainzReleaseSearch.SelectRelease(json, identity);
 
-    async Task<byte[]?> GetAsync(Uri uri, int limit, CancellationToken token)
+    async Task<byte[]?> GetAsync(Uri uri, int limit, CancellationToken token, bool allowRedirects = true)
     {
         for (int redirects = 0; redirects <= 4; redirects++)
         {
-            if (!_allowUri(uri))
+            if (!_allowUri(uri) && (allowRedirects || !ArtistArtworkLookup.IsServiceUri(uri)))
                 throw new InvalidDataException("Unexpected artwork destination.");
-            TimeSpan delay = (_nextRequest > _retryAfter ? _nextRequest : _retryAfter) - DateTimeOffset.UtcNow;
+            DateTimeOffset retryAfter = _retryAfter.GetValueOrDefault(uri.IdnHost);
+            TimeSpan delay = (_nextRequest > retryAfter ? _nextRequest : retryAfter) - DateTimeOffset.UtcNow;
             if (delay > TimeSpan.Zero)
-                await Task.Delay(delay, token).ConfigureAwait(false);
+                await Task.Delay(delay < TimeSpan.FromDays(1) ? delay : TimeSpan.FromDays(1), token).ConfigureAwait(false);
             _nextRequest = DateTimeOffset.UtcNow + _spacing;
             using var request = new HttpRequestMessage(HttpMethod.Get, uri);
             using HttpResponseMessage response = await _client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, token).ConfigureAwait(false);
             int status = (int)response.StatusCode;
             if (status is 301 or 302 or 303 or 307 or 308)
             {
+                if (!allowRedirects)
+                    throw new InvalidDataException("Unexpected redirect for artwork metadata or artist photo.");
                 uri = response.Headers.Location is { } location ? new Uri(uri, location) : throw new InvalidDataException("Missing artwork redirect.");
                 continue;
             }
@@ -137,7 +160,7 @@ public sealed class OnlineAudioArtwork : IDisposable
             {
                 TimeSpan cooldown = response.Headers.RetryAfter?.Delta ??
                     (response.Headers.RetryAfter?.Date - DateTimeOffset.UtcNow) ?? TimeSpan.FromMinutes(1);
-                _retryAfter = DateTimeOffset.UtcNow + (cooldown > TimeSpan.FromSeconds(1) ? cooldown : TimeSpan.FromSeconds(1));
+                _retryAfter[uri.IdnHost] = DateTimeOffset.UtcNow + (cooldown > TimeSpan.FromSeconds(1) ? cooldown : TimeSpan.FromSeconds(1));
             }
             response.EnsureSuccessStatusCode();
             if (response.Content.Headers.ContentLength > limit)
@@ -157,7 +180,7 @@ public sealed class OnlineAudioArtwork : IDisposable
         throw new InvalidDataException("Too many artwork redirects.");
     }
 
-    static string EscapeQuery(string value) => string.Concat(value.Select(character =>
+    internal static string EscapeQuery(string value) => string.Concat(value.Select(character =>
         "+-!(){}[]^\"~*?:\\/|&".Contains(character) ? "\\" + character : character.ToString()));
     public void Dispose() => _client.Dispose();
 }

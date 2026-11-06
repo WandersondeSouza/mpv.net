@@ -271,7 +271,7 @@ efetivamente selecionada, inclusive em formatos sem miniatura Windows.
 pixels e normaliza em PNG sem metadados. O caminho do cache próprio é publicado
 em `ThumbnailPath`; o SMTC abre uma cópia em memória independente.
 
-Uma capa online ou o ícone de fallback é acrescentado como `albumart` por
+Uma capa online, foto do artista ou o ícone de fallback é acrescentado como `albumart` por
 `video-add` assíncrono, sem trocar `wid`, OSC ou reiniciar áudio. O fallback
 usa o ícone centralizado em uma imagem opaca de 512 pixels, para evitar
 ampliação excessiva e fundo de transparência. A seleção `vid` é marcada como
@@ -300,6 +300,7 @@ adicional. O timer para ao pausar, terminar a mídia ou fechar a janela.
 
 `OnlineAudioArtwork` consulta MusicBrainz/Cover Art Archive somente com
 `audio-artwork-online=yes`, áudio local disponível e identidade de álbum.
+Com a opção desligada, a resolução de imagens online usa somente o cache local.
 MBIDs válidos prevalecem; a pesquisa por tags exige score >= 95, título e
 crédito de artista exatos e um único release-group entre os candidatos. Edições
 ambíguas são recusadas. A pesquisa por tags usa a imagem representativa do grupo
@@ -310,19 +311,29 @@ ausentes não confirmam a identidade; contratos JSON inválidos seguem o fluxo
 de falha transitória sem interromper a reprodução. O cliente identifica o
 produto no User-Agent, serializa
 consultas, mantém intervalo de 1,1 segundo e respeita Retry-After em 429/503.
-HTTPS, hosts de MusicBrainz/CAA/Internet Archive, até quatro redirecionamentos,
-15 segundos e limites de resposta são verificados antes de publicar a imagem.
+O Cover Art Archive pode redirecionar até quatro vezes entre hosts permitidos.
+Cada resolução online tem timeout de 15 segundos e limites de resposta.
 
-`AudioArtworkCache` usa hashes, gravação atômica, validade de 30 dias para
-sucesso, um dia para ausência e cinco minutos para falha transitória. Limita o
-conjunto a 128 MiB e 512 arquivos, sem gravar junto da mídia. Cancelamento por
+Após as capas de álbum, `ArtistArtworkLookup` tenta o ID MusicBrainz do artista
+ou uma busca por nome com um único resultado exato em uma resposta completa.
+Exige uma relação Wikidata ativa, o vínculo reverso `P434` para o mesmo artista e
+uma única imagem `P18`. A API do Commons confirma o título, a página, a origem,
+a autoria e sinais consistentes de domínio público ou CC0. O cliente usa
+somente endpoints HTTPS oficiais, recusa redirecionamentos nessa sequência e
+verifica se a imagem ou miniatura pertence ao arquivo confirmado.
+
+`AudioArtworkCache` mantém imagens e metadados em `AppPaths.LocalRoot/Artwork`,
+com hashes, gravação atômica e chaves distintas por entidade. A entrada da foto
+guarda os IDs MusicBrainz/Wikidata, a autoria, a licença, a página e a data da
+verificação. A leitura confere os metadados e o hash antes de aceitar a foto
+offline. A validade é de 30 dias para sucesso, um dia para ausência e cinco
+minutos para falha transitória. A limpeza dedicada roda em segundo plano na
+inicialização e nas gravações, com retenção de 30 dias e limites de 128 MiB e
+512 arquivos. Cancelamento por
 troca/fechamento e verificações de geração, caminho e seleção descartam
 resultados tardios. `user-data/mpvnet/audio-artwork-source` informa `none`,
-`local`, `online` ou `default` para diagnóstico por IPC; não expõe tags/caminhos.
+`local`, `online`, `artist` ou `default` para diagnóstico por IPC.
 Atualizações de posição não iniciam nova resolução nem republicam a imagem.
-Foto automática de artista permanece indisponível por falta de uma fonte com
-identidade e licença/atribuição confirmadas; a ausência é uma limitação prevista
-no plano, e não uma busca genérica de imagens.
 
 O fallback usa o próprio `mpv-icon.ico`, incorporado como recurso da assembly
 Windows, convertido para PNG em memória. Ausência ou falha de capa retorna esse

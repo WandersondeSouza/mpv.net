@@ -113,39 +113,41 @@ aplicativo` no Explorador de Arquivos.
 ## Capas durante a reprodução de áudio
 
 O player aproveita a capa incorporada ou externa selecionada pelo mpv. A mesma
-imagem pode aparecer na janela e nos controles de mídia do Windows. Sem capa
-válida, o áudio local usa o ícone do aplicativo centralizado em um fundo neutro,
-desde que a seleção automática de imagens esteja habilitada. Vídeo real nunca
-é substituído por uma capa.
+imagem pode aparecer na janela e nos controles de mídia do Windows. Para áudio
+local com seleção automática de imagens, a ordem padrão é capa selecionada pelo
+mpv, capa online do álbum, foto verificada do artista e ícone do aplicativo em
+um fundo neutro. Escolhas explícitas do mpv têm prioridade, assim como vídeo real.
 
-Para habilitar a busca opcional de capas de álbum, acrescente em `mpvnet.conf`
-na [pasta de configuração ativa](#configuração) e reinicie o player:
+**Áudio → Buscar capas de áudio online** no editor de configuração vem ativado.
+Para desligar novas consultas e downloads, selecione **Não**, salve e reinicie.
+Também é possível ajustar `mpvnet.conf` na
+[pasta de configuração ativa](#configuração).
 
 ```ini
-audio-artwork-online=yes
+audio-artwork-online=no
 ```
 
-A consulta usa o identificador MusicBrainz do álbum quando presente nas tags.
-Sem esse identificador, exige artista/artista do álbum e nome do álbum, com
-correspondência estrita. Os serviços MusicBrainz e Cover Art Archive recebem
-esses metadados e o endereço IP da conexão. O arquivo de áudio, seu caminho,
-credenciais e tags não são enviados como arquivos nem modificados. URLs/streams,
-drives de rede, arquivos offline e caminhos com reparse points não participam
-da busca. Não há scraping de imagens nem busca pelo nome do arquivo.
+Imagens válidas já armazenadas podem ser usadas sem rede. Para capas, a consulta
+ao MusicBrainz e ao Cover Art Archive usa o identificador do álbum ou os nomes do
+artista e do álbum. Para fotos, o MusicBrainz identifica o artista pelo ID da
+tag ou por uma única correspondência exata de nome. O Wikidata confirma o
+vínculo, e o Wikimedia Commons fornece a imagem e os dados de autoria e licença.
+Só são aceitas fotos confirmadas em domínio público ou sob CC0. Os serviços
+consultados podem receber esses nomes, identificadores e o endereço IP da
+conexão. A busca se limita a arquivos disponíveis em discos fixos locais e
+usa as tags da mídia como fonte de identidade.
 
-A prioridade padrão é a imagem já selecionada pelo mpv, depois uma capa online
-confiável e, por fim, o ícone. Para preferir uma capa online à incorporada ruim:
+Para dar prioridade à capa online do álbum, use a preferência abaixo.
 
 ```ini
-audio-artwork-online=yes
 audio-artwork-prefer-online=yes
 ```
 
-A segunda opção sozinha não autoriza consultas. Escolhas explícitas nativas de
+A preferência se aplica a capas baixadas ou em cache. As consultas dependem da
+opção de busca online. Escolhas explícitas nativas de
 imagem/faixa em `mpv.conf`, CLI ou perfis continuam prevalecendo; uma seleção
 manual de vídeo durante a reprodução também impede substituição automática.
-`audio-display=no` mantém imagens desligadas na janela. Para desativar a busca,
-use `audio-artwork-online=no` ou remova essa opção e reinicie.
+`audio-display=no` mantém imagens desligadas na janela.
 
 Para escolher uma imagem local, use a opção nativa `cover-art-file` em
 `mpv.conf` ou na linha de comando, sem editar o áudio:
@@ -162,12 +164,10 @@ e `audio-display` do mpv; uma foto local pode ser escolhida da mesma forma.
 
 Imagens validadas ficam em `Artwork` na raiz de dados local do aplicativo,
 inclusive no modo portátil; o MSIX usa sua área privada. O cache tem limite de
-128 MiB e validade de até 30 dias, com limpeza durante as gravações. Ausências
-de capa são lembradas por um dia; falhas transitórias, por cinco minutos.
-Nenhuma capa baixada é gravada junto da música. Falhas de rede não interrompem
-o áudio. Foto automática do artista não está habilitada: exige uma fonte com
-identidade, licença e atribuição confirmadas; sem ela são usadas capas de álbum
-ou a imagem padrão.
+128 MiB e 512 arquivos, com retenção de até 30 dias. A limpeza ocorre ao iniciar
+o player e durante as gravações, inclusive com a busca desligada. Ausências são
+lembradas por um dia e falhas transitórias por cinco minutos. A busca e a
+decodificação ocorrem em segundo plano durante a reprodução.
 
 ## Configuração
 

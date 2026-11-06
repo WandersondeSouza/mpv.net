@@ -30,7 +30,7 @@ public class AppClass : IDisposable
 
     public bool AutoLoadFolder { get; set; }
     public bool AutomaticNetworkCache { get; set; } = true;
-    public bool AudioArtworkOnline { get; set; }
+    public bool AudioArtworkOnline { get; set; } = true;
     public bool AudioArtworkPreferOnline { get; set; }
 #if ENABLE_FILE_LOGGING
     public bool DebugMode { get; set; } = true;
