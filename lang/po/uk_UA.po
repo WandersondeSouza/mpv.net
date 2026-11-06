@@ -2828,3 +2828,11 @@ msgstr "Шукати обкладинки аудіо онлайн"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Look up album covers and, when no cover is available, artist photos in the public domain or under CC0. MusicBrainz, Cover Art Archive, Wikidata and Wikimedia Commons may receive artist or album metadata or identifiers and your IP address. Turning this off still allows previously cached artwork."
 msgstr "Шукає обкладинки альбомів, а за їх відсутності — фотографії виконавців із суспільного надбання або за умовами CC0. MusicBrainz, Cover Art Archive, Wikidata та Wikimedia Commons можуть отримати метадані або ідентифікатори виконавця чи альбому та вашу IP-адресу. Після вимкнення вже кешовані зображення залишаються доступними."
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "audio-artwork-cache"
+msgstr "Зберігати кеш обкладинок між сеансами"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
+msgstr "Повторно використовувати обкладинки між сеансами. Якщо вимкнено, програвач використовує тимчасові файли для поточного сеансу. Перезапустіть програвач, щоб застосувати зміни."

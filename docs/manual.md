@@ -127,7 +127,8 @@ Também é possível ajustar `mpvnet.conf` na
 audio-artwork-online=no
 ```
 
-Imagens válidas já armazenadas podem ser usadas sem rede. Para capas, a consulta
+Com o cache persistente ativado, imagens de sessões anteriores podem ser usadas
+sem rede. Para capas, a consulta
 ao MusicBrainz e ao Cover Art Archive usa o identificador do álbum ou os nomes do
 artista e do álbum. Para fotos, o MusicBrainz identifica o artista pelo ID da
 tag ou por uma única correspondência exata de nome. O Wikidata confirma o
@@ -162,12 +163,20 @@ menu **Track**. Depois de acrescentar uma capa à pasta, o comando nativo
 arquivos e a prioridade incorporada/externa continuam seguindo `cover-art-auto`
 e `audio-display` do mpv; uma foto local pode ser escolhida da mesma forma.
 
-Imagens validadas ficam em `Artwork` na raiz de dados local do aplicativo,
-inclusive no modo portátil; o MSIX usa sua área privada. O cache tem limite de
-256 MiB e 3.072 arquivos, com retenção de até 30 dias. A limpeza ocorre ao iniciar
-o player e durante as gravações, inclusive com a busca desligada. Ausências são
-lembradas por um dia e falhas transitórias por cinco minutos. A busca e a
-decodificação ocorrem em segundo plano durante a reprodução.
+Por padrão, imagens validadas ficam em `Artwork` na raiz de dados local do
+aplicativo, inclusive no modo portátil. O MSIX usa sua área privada. Para
+desativar o cache persistente, abra **Áudio → Manter cache de capas entre
+sessões** no editor, selecione **Não** e reinicie o player. A opção equivalente
+em `mpvnet.conf` é `audio-artwork-cache=no`. Nesse modo, a sessão usa arquivos
+temporários próprios, removidos no fechamento normal. O cache anterior fica
+disponível para quando você reativar a opção. **Buscar capas de áudio online**
+continua controlando o acesso à rede.
+
+O cache tem limite de 256 MiB e 3.072 arquivos, com retenção de até 30 dias.
+Quando o cache persistente está ativo, a limpeza ocorre ao iniciar o player e
+durante as gravações, inclusive com a busca desligada. Ausências são lembradas
+por um dia e falhas transitórias por cinco minutos. A busca e a decodificação
+ocorrem em segundo plano durante a reprodução.
 
 ## Configuração
 

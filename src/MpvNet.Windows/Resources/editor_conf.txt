@@ -814,6 +814,14 @@ default = yes
 option = yes
 option = no
 
+name = audio-artwork-cache
+file = mpvnet
+directory = Audio
+help = Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes.
+default = yes
+option = yes
+option = no
+
 name = alang
 file = mpv
 directory = Audio

@@ -300,7 +300,7 @@ adicional. O timer para ao pausar, terminar a mídia ou fechar a janela.
 
 `OnlineAudioArtwork` consulta MusicBrainz/Cover Art Archive somente com
 `audio-artwork-online=yes`, áudio local disponível e identidade de álbum.
-Com a opção desligada, a resolução de imagens online usa somente o cache local.
+Com a opção desligada, a resolução de imagens online usa somente o cache ativo.
 MBIDs válidos prevalecem; a pesquisa por tags exige score >= 95, título e
 crédito de artista exatos e um único release-group entre os candidatos. Edições
 ambíguas são recusadas. A pesquisa por tags usa a imagem representativa do grupo
@@ -329,7 +329,9 @@ verificação. A leitura confere os metadados e o hash antes de aceitar a foto
 offline. A validade é de 30 dias para sucesso, um dia para ausência e cinco
 minutos para falha transitória. A limpeza dedicada roda em segundo plano na
 inicialização e nas gravações, com retenção de 30 dias e limites de 256 MiB e
-3.072 arquivos. Cancelamento por
+3.072 arquivos. Com `audio-artwork-cache=no`, a instância usa uma pasta
+exclusiva em `AppPaths.Temp` e a remove depois de encerrar a reprodução e o
+transporte de mídia. Cancelamento por
 troca/fechamento e verificações de geração, caminho e seleção descartam
 resultados tardios. `user-data/mpvnet/audio-artwork-source` informa `none`,
 `local`, `online`, `artist` ou `default` para diagnóstico por IPC.

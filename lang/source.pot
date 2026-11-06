@@ -2836,3 +2836,11 @@ msgstr ""
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Look up album covers and, when no cover is available, artist photos in the public domain or under CC0. MusicBrainz, Cover Art Archive, Wikidata and Wikimedia Commons may receive artist or album metadata or identifiers and your IP address. Turning this off still allows previously cached artwork."
 msgstr ""
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "audio-artwork-cache"
+msgstr ""
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
+msgstr ""

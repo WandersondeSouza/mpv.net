@@ -1207,6 +1207,7 @@ public partial class MainForm : Form
         }
         _mediaTransport?.Dispose();
         _mediaTransport = null;
+        _audioArtworkCache.RemoveSessionFiles();
         MenuAutoResetEvent.Set();
         MenuAutoResetEvent.Dispose();
 

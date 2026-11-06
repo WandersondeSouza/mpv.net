@@ -2832,3 +2832,11 @@ msgstr "Procurar capas de áudio online"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Look up album covers and, when no cover is available, artist photos in the public domain or under CC0. MusicBrainz, Cover Art Archive, Wikidata and Wikimedia Commons may receive artist or album metadata or identifiers and your IP address. Turning this off still allows previously cached artwork."
 msgstr "Procura capas de álbuns e, quando não há capa disponível, fotografias de artistas no domínio público ou sob CC0. MusicBrainz, Cover Art Archive, Wikidata e Wikimedia Commons podem receber metadados ou identificadores do artista ou do álbum e o seu endereço IP. Ao desativar esta opção, as imagens já guardadas em cache continuam disponíveis."
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "audio-artwork-cache"
+msgstr "Manter a cache de capas entre sessões"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
+msgstr "Reutiliza capas entre sessões. Ao desativar esta opção, o leitor usa ficheiros temporários na sessão atual. Reinicie o leitor para aplicar a alteração."

@@ -7,7 +7,7 @@ namespace MpvNet.Windows.WinForms;
 
 public partial class MainForm
 {
-    readonly AudioArtworkCache _audioArtworkCache = new(Path.Combine(AppPaths.LocalRoot, "Artwork"));
+    readonly AudioArtworkCache _audioArtworkCache;
     readonly Task _audioArtworkCacheCleanup;
     OnlineAudioArtwork? _onlineAudioArtwork;
     AudioArtworkRequest? _audioArtworkRequest;

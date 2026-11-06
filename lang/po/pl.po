@@ -2838,3 +2838,11 @@ msgstr "Szukaj okładek audio online"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Look up album covers and, when no cover is available, artist photos in the public domain or under CC0. MusicBrainz, Cover Art Archive, Wikidata and Wikimedia Commons may receive artist or album metadata or identifiers and your IP address. Turning this off still allows previously cached artwork."
 msgstr "Wyszukuje okładki albumów, a w razie ich braku zdjęcia wykonawców z domeny publicznej lub udostępnione na warunkach CC0. MusicBrainz, Cover Art Archive, Wikidata i Wikimedia Commons mogą otrzymać metadane lub identyfikatory wykonawcy albo albumu oraz Twój adres IP. Wyłączenie opcji nadal pozwala korzystać z obrazów zapisanych w pamięci podręcznej."
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "audio-artwork-cache"
+msgstr "Zachowuj pamięć podręczną okładek między sesjami"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
+msgstr "Używa ponownie okładek w kolejnych sesjach. Po wyłączeniu odtwarzacz używa plików tymczasowych w bieżącej sesji. Uruchom ponownie odtwarzacz, aby zastosować zmiany."

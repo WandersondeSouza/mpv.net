@@ -2840,3 +2840,11 @@ msgstr "Ses kapaklarını çevrimiçi ara"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Look up album covers and, when no cover is available, artist photos in the public domain or under CC0. MusicBrainz, Cover Art Archive, Wikidata and Wikimedia Commons may receive artist or album metadata or identifiers and your IP address. Turning this off still allows previously cached artwork."
 msgstr "Albüm kapaklarını, kapak yoksa kamu malı olan veya CC0 ile yayımlanan sanatçı fotoğraflarını arar. MusicBrainz, Cover Art Archive, Wikidata ve Wikimedia Commons sanatçıya veya albüme ait üst verileri ya da tanımlayıcıları ve IP adresinizi alabilir. Bu seçenek kapatıldığında önbellekteki görseller kullanılmaya devam eder."
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "audio-artwork-cache"
+msgstr "Kapak önbelleğini oturumlar arasında sakla"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
+msgstr "Kapakları oturumlar arasında yeniden kullanır. Devre dışı bırakıldığında oynatıcı mevcut oturum için geçici dosyalar kullanır. Değişiklikleri uygulamak için oynatıcıyı yeniden başlatın."

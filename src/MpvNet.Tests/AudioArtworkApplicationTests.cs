@@ -15,13 +15,14 @@ namespace MpvNet.Tests;
 public sealed class AudioArtworkApplicationTests
 {
     [Theory]
-    [InlineData(false, false, ".wav", false)]
-    [InlineData(false, false, ".ogg", false)]
-    [InlineData(true, false, ".wav", false)]
-    [InlineData(false, true, ".wav", false)]
-    [InlineData(false, false, ".wav", true)]
+    [InlineData(false, false, ".wav", false, false)]
+    [InlineData(false, false, ".ogg", false, false)]
+    [InlineData(true, false, ".wav", false, false)]
+    [InlineData(false, true, ".wav", false, false)]
+    [InlineData(false, false, ".wav", true, false)]
+    [InlineData(false, false, ".wav", false, true)]
     public async Task PlayerArtworkDoesNotBlockPlaybackOrOverrideExplicitVideoSettings(
-        bool disableVideo, bool disableArtwork, string extension, bool slowNetwork)
+        bool disableVideo, bool disableArtwork, string extension, bool slowNetwork, bool disableCache)
     {
         using TestDirectory directory = new();
         CancellationToken token = TestContext.Current.CancellationToken;
@@ -33,8 +34,10 @@ public sealed class AudioArtworkApplicationTests
         string oldCacheFile = Path.Combine(artworkDirectory, "old.png");
         await File.WriteAllBytesAsync(oldCacheFile, [1], token);
         File.SetLastWriteTimeUtc(oldCacheFile, DateTime.UtcNow.AddDays(-31));
-        await File.WriteAllTextAsync(Path.Combine(directory.Path, "mpvnet.conf"),
-            slowNetwork ? "# Old config without an artwork option\n" : "audio-artwork-online=no\n", token);
+        string config = slowNetwork ? "# Old config without an artwork option\n" : "audio-artwork-online=no\n";
+        if (disableCache)
+            config += "audio-artwork-cache=no\n";
+        await File.WriteAllTextAsync(Path.Combine(directory.Path, "mpvnet.conf"), config, token);
         string pipeName = "mpvnet-artwork-test-" + Guid.NewGuid().ToString("N");
         var start = new ProcessStartInfo(Path.Combine(AppContext.BaseDirectory, "mpvnet.exe"))
         {
@@ -85,7 +88,7 @@ public sealed class AudioArtworkApplicationTests
             }
             while ((await Get("path"))?.GetString() != media || (await Get("seekable"))?.GetBoolean() != true)
                 await Task.Delay(20, timeout.Token);
-            while (File.Exists(oldCacheFile))
+            while (!disableCache && File.Exists(oldCacheFile))
                 await Task.Delay(20, timeout.Token);
             if (slowNetwork)
             {
@@ -127,6 +130,7 @@ public sealed class AudioArtworkApplicationTests
                 Assert.Equal(0, process.ExitCode);
                 return;
             }
+            string? sessionDirectory = null;
             if (disableVideo || disableArtwork)
             {
                 await Task.Delay(300, timeout.Token);
@@ -141,11 +145,20 @@ public sealed class AudioArtworkApplicationTests
                 string? artwork = (await Get("current-tracks/video/external-filename"))?.GetString();
                 Assert.NotNull(artwork);
                 Assert.True(File.Exists(artwork));
-                Assert.StartsWith(artworkDirectory, artwork);
+                if (disableCache)
+                {
+                    sessionDirectory = Path.GetDirectoryName(artwork);
+                    Assert.StartsWith(Path.Combine(data, "mpv.net", "Temp", "Artwork-"), sessionDirectory);
+                    Assert.Equal(oldCacheFile, Assert.Single(Directory.GetFiles(artworkDirectory)));
+                }
+                else
+                    Assert.StartsWith(artworkDirectory, artwork);
             }
             await Send("quit");
             await process.WaitForExitAsync(timeout.Token);
             Assert.Equal(0, process.ExitCode);
+            if (sessionDirectory != null)
+                Assert.False(Directory.Exists(sessionDirectory));
         }
         finally
         {

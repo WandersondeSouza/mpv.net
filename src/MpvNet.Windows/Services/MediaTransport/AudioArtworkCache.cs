@@ -12,9 +12,13 @@ public sealed class AudioArtworkCache(string directory)
     public const int MaxFiles = 3072;
     const int MaxEntryBytes = 16 * 1024;
     static readonly SemaphoreSlim Gate = new(1);
+    bool SessionOnly { get; init; }
     public string DirectoryPath { get; } = Path.GetFullPath(directory);
     public static string Hash(string value) => Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value)));
     public sealed record Entry(string? ImageHash, DateTimeOffset Expires, ArtistArtworkSource? Artist = null);
+
+    internal static AudioArtworkCache CreateSessionCache(string tempRoot) =>
+        new(Path.Combine(tempRoot, "Artwork-" + Guid.NewGuid().ToString("N"))) { SessionOnly = true };
 
     public Task<(bool Found, string? Path)> FindAsync(string key, CancellationToken token) =>
         FindAsync(key, null, token);
@@ -65,6 +69,7 @@ public sealed class AudioArtworkCache(string directory)
         await Gate.WaitAsync(token).ConfigureAwait(false);
         try
         {
+            token.ThrowIfCancellationRequested();
             EnsureDirectory();
             string path = Path.Combine(DirectoryPath, Convert.ToHexString(SHA256.HashData(png)) + ".png");
             await WriteAtomicAsync(path, png, token).ConfigureAwait(false);
@@ -83,6 +88,7 @@ public sealed class AudioArtworkCache(string directory)
         await Gate.WaitAsync(token).ConfigureAwait(false);
         try
         {
+            token.ThrowIfCancellationRequested();
             EnsureDirectory();
             var entry = new Entry(image == null ? null : Path.GetFileNameWithoutExtension(image), DateTimeOffset.UtcNow + validity, artist);
             string path = Path.Combine(DirectoryPath, Hash(key) + ".json");
@@ -145,6 +151,25 @@ public sealed class AudioArtworkCache(string directory)
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
             Log.Debug($"Artwork cache cleanup unavailable: {ex.GetType().Name}");
+        }
+        finally { Gate.Release(); }
+    }
+
+    internal void RemoveSessionFiles()
+    {
+        if (!SessionOnly)
+            return;
+
+        Gate.Wait();
+        try
+        {
+            CheckDirectory();
+            if (Directory.Exists(DirectoryPath))
+                Directory.Delete(DirectoryPath, recursive: true);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            Log.Debug($"Temporary artwork cleanup unavailable: {ex.GetType().Name}");
         }
         finally { Gate.Release(); }
     }

@@ -14,7 +14,11 @@ public partial class MainForm
 {
     public MainForm()
     {
-        _audioArtworkCacheCleanup = Task.Run(_audioArtworkCache.CleanupAsync);
+        bool persistArtwork = App.AudioArtworkCacheEnabled;
+        _audioArtworkCache = persistArtwork
+            ? new(Path.Combine(AppPaths.LocalRoot, "Artwork"))
+            : AudioArtworkCache.CreateSessionCache(AppPaths.Temp);
+        _audioArtworkCacheCleanup = persistArtwork ? Task.Run(_audioArtworkCache.CleanupAsync) : Task.CompletedTask;
         InitializeComponent();
 
         Text = AppInfo.Product;

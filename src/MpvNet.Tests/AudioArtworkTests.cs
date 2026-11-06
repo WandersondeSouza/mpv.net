@@ -50,6 +50,25 @@ public sealed class AudioArtworkTests
         Assert.Equal(["yes", "no"], option.Options.Select(value => value.Name));
     }
 
+    [Fact]
+    public void PersistentCacheDefaultsToYesAndCanBeDisabledIndependentlyOfOnlineLookup()
+    {
+        using AppClass app = new();
+        Assert.True(app.AudioArtworkCacheEnabled);
+        Assert.True(app.ProcessProperty("audio-artwork-cache", "no"));
+        Assert.False(app.AudioArtworkCacheEnabled);
+        Assert.True(app.AudioArtworkOnline);
+        Assert.True(app.ProcessProperty("audio-artwork-cache", "yes"));
+        Assert.True(app.AudioArtworkCacheEnabled);
+
+        var resources = new ResourceManager("MpvNet.Windows.Properties.Resources", typeof(EditorConfigurationService).Assembly);
+        var option = Assert.IsType<OptionSetting>(Assert.Single(EditorConfigurationService
+            .ParseSettings(resources.GetString("editor_conf")!), setting => setting.Name == "audio-artwork-cache"));
+        Assert.Equal("mpvnet", option.File);
+        Assert.Equal("yes", option.Default);
+        Assert.Equal(["yes", "no"], option.Options.Select(value => value.Name));
+    }
+
     [Theory]
     [InlineData("https://musicbrainz.org/ws/2/release", true)]
     [InlineData("https://coverartarchive.org/release/id/front-500", true)]

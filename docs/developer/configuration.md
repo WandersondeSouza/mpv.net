@@ -300,7 +300,8 @@ Opções reconhecidas pelo mpv.net:
 | --- | --- | --- |
 | `auto-load-folder` | `no` | Controla carregamento automático da pasta. |
 | `automatic-network-cache` | `yes` | Ativa a política automática de cache por entrada de rede. |
-| `audio-artwork-online` | `yes` | Em **Áudio** no editor. Autoriza buscar capas de álbum e fotos verificadas de artista para áudio local. Um `no` explícito impede a rede e mantém leitura e limpeza de `Artwork`. |
+| `audio-artwork-cache` | `yes` | Em **Áudio** no editor. Reutiliza o cache de capas entre sessões. Com `no`, usa uma pasta temporária por instância. A mudança exige reiniciar. |
+| `audio-artwork-online` | `yes` | Em **Áudio** no editor. Autoriza buscar capas de álbum e fotos verificadas de artista para áudio local. Um `no` explícito impede a rede e permite reutilizar imagens do cache ativo. |
 | `audio-artwork-prefer-online` | `no` | Prefere capa de álbum online ou em cache à arte selecionada automaticamente pelo mpv. A preferência respeita escolhas explícitas do mpv e só a primeira opção autoriza rede. |
 | `autofit-audio` | `70%` | Tamanho de janela para áudio. |
 | `autofit-image` | `80%` | Tamanho de janela para imagem. |
@@ -325,10 +326,11 @@ Opções reconhecidas pelo mpv.net:
 
 `App.Init()` registra como erro cada opção desconhecida encontrada no arquivo.
 
-As duas opções de capas também aceitam override na linha de comando. Não
-reescrevem `mpv.conf`, `mpvnet.conf`, tags ou arquivos de mídia. O cache de arte
-usa `AppPaths.LocalRoot/Artwork`, fora do cache temporário de três dias do mpv,
-com a mesma resolução de dados portátil/instalado/MSIX. Veja
+As opções de capas também aceitam override na linha de comando. O cache
+persistente usa `AppPaths.LocalRoot/Artwork`, com a mesma resolução de dados
+portátil/instalado/MSIX. O cache por sessão usa uma subpasta exclusiva em
+`AppPaths.Temp` e a remove no fechamento normal. Após uma interrupção, os
+arquivos restantes seguem a limpeza de temporários de três dias. Veja
 [Capas durante a reprodução de áudio](../manual.md#capas-durante-a-reprodução-de-áudio)
 para prioridade, privacidade e escolha de imagem local.
 

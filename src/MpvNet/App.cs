@@ -30,6 +30,7 @@ public class AppClass : IDisposable
 
     public bool AutoLoadFolder { get; set; }
     public bool AutomaticNetworkCache { get; set; } = true;
+    public bool AudioArtworkCacheEnabled { get; set; } = true;
     public bool AudioArtworkOnline { get; set; } = true;
     public bool AudioArtworkPreferOnline { get; set; }
 #if ENABLE_FILE_LOGGING
@@ -97,10 +98,9 @@ public class AppClass : IDisposable
             foreach (var i in Conf)
                 ProcessProperty(i.Key, i.Value, true);
 
-            // Resolve the CLI override before generating menus and native OSD
-            // defaults. Applying it only in Player.Init leaves earlier text in
-            // the configured/system language for the rest of the session.
-            foreach (var argument in MpvNet.CommandLine.Arguments.Where(pair => pair.Name == "language"))
+            // These settings are needed before Player.Init creates the native player.
+            foreach (var argument in MpvNet.CommandLine.Arguments.Where(pair =>
+                pair.Name is "language" or "audio-artwork-cache"))
                 ProcessProperty(argument.Name, argument.Value);
 
             SanitizeRecentFiles();
@@ -390,6 +390,7 @@ public class AppClass : IDisposable
         {
             case "auto-load-folder": AutoLoadFolder = value == "yes"; return true;
             case "automatic-network-cache": AutomaticNetworkCache = value == "yes"; return true;
+            case "audio-artwork-cache": AudioArtworkCacheEnabled = value == "yes"; return true;
             case "audio-artwork-online": AudioArtworkOnline = value == "yes"; return true;
             case "audio-artwork-prefer-online": AudioArtworkPreferOnline = value == "yes"; return true;
             case "autofit-audio": AutofitAudio = value.Trim('%').ToInt(70) / 100f; return true;

@@ -35,8 +35,8 @@ public static class EditorConfigurationService
                     opt.Text = section.GetValue("name") switch
                     {
                         "language" => EditorConfLocalization.TranslateLanguageName(opt.Name),
-                        "audio-artwork-online" when opt.Name == "yes" => _("Yes"),
-                        "audio-artwork-online" when opt.Name == "no" => _("No"),
+                        "audio-artwork-online" or "audio-artwork-cache" when opt.Name == "yes" => _("Yes"),
+                        "audio-artwork-online" or "audio-artwork-cache" when opt.Name == "no" => _("No"),
                         _ => EditorConfLocalization.TranslateOptionValue(opt.Name)
                     };
 
@@ -58,7 +58,10 @@ public static class EditorConfigurationService
 
             // Configuration keys are identifiers; only their display text is localized.
             baseSetting.Name = section.GetValue("name");
-            baseSetting.DisplayName = EditorConfLocalization.TranslateText(baseSetting.Name ?? "");
+            string displayName = EditorConfLocalization.TranslateText(baseSetting.Name ?? "");
+            baseSetting.DisplayName = displayName == "audio-artwork-cache"
+                ? "Keep artwork cache between sessions"
+                : displayName;
             baseSetting.File = section.GetValue("file");
             baseSetting.Directory = EditorConfLocalization.TranslateDirectory(section.GetValue("directory") ?? "");
 

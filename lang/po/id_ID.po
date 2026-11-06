@@ -2828,3 +2828,11 @@ msgstr "Cari sampul audio secara daring"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Look up album covers and, when no cover is available, artist photos in the public domain or under CC0. MusicBrainz, Cover Art Archive, Wikidata and Wikimedia Commons may receive artist or album metadata or identifiers and your IP address. Turning this off still allows previously cached artwork."
 msgstr "Cari sampul album dan, jika tidak ada sampul, foto artis dalam domain publik atau berlisensi CC0. MusicBrainz, Cover Art Archive, Wikidata, dan Wikimedia Commons dapat menerima metadata atau pengenal artis atau album serta alamat IP Anda. Gambar yang sudah tersimpan di cache tetap dapat digunakan setelah opsi ini dimatikan."
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "audio-artwork-cache"
+msgstr "Simpan cache sampul antar sesi"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
+msgstr "Gunakan kembali sampul antar sesi. Jika dinonaktifkan, pemutar menggunakan berkas sementara untuk sesi ini. Mulai ulang pemutar untuk menerapkan perubahan."

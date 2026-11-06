@@ -2832,3 +2832,11 @@ msgstr "Buscar carátulas de audio en línea"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Look up album covers and, when no cover is available, artist photos in the public domain or under CC0. MusicBrainz, Cover Art Archive, Wikidata and Wikimedia Commons may receive artist or album metadata or identifiers and your IP address. Turning this off still allows previously cached artwork."
 msgstr "Busca carátulas de álbumes y, cuando no haya carátula, fotos de artistas de dominio público o bajo CC0. MusicBrainz, Cover Art Archive, Wikidata y Wikimedia Commons pueden recibir metadatos o identificadores del artista o del álbum y tu dirección IP. Al desactivar esta opción se pueden seguir usando las imágenes guardadas en la caché."
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "audio-artwork-cache"
+msgstr "Conservar la caché de carátulas entre sesiones"
+
+#: src/MpvNet.Windows/Resources/editor_conf.txt
+msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
+msgstr "Reutiliza las carátulas entre sesiones. Si se desactiva, el reproductor usa archivos temporales para la sesión actual. Reinicia el reproductor para aplicar los cambios."
