@@ -202,8 +202,11 @@ public sealed class AudioArtworkTests
         File.SetLastWriteTimeUtc(old, DateTime.UtcNow.AddDays(-31));
         string config = Path.Combine(directory.Path, "mpv.conf");
         await File.WriteAllTextAsync(config, "unchanged", Token);
-        for (int i = 0; i < 35; i++)
-            await File.WriteAllBytesAsync(Path.Combine(directory.Path, i + ".png"), new byte[AudioArtworkImage.MaxBytes], Token);
+        for (int i = 0; i < AudioArtworkCache.MaxCacheBytes / AudioArtworkImage.MaxBytes; i++)
+        {
+            using FileStream file = File.Create(Path.Combine(directory.Path, i + ".png"));
+            file.SetLength(AudioArtworkImage.MaxBytes);
+        }
         var cache = new AudioArtworkCache(directory.Path);
         string current = Path.Combine(directory.Path, "new.png");
         await File.WriteAllBytesAsync(current, await Image(), Token);

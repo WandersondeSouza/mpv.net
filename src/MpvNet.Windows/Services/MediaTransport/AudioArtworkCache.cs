@@ -8,8 +8,8 @@ namespace MpvNet.Windows.Services.MediaTransport;
 
 public sealed class AudioArtworkCache(string directory)
 {
-    public const long MaxCacheBytes = 128L * 1024 * 1024;
-    public const int MaxFiles = 512;
+    public const long MaxCacheBytes = 256L * 1024 * 1024;
+    public const int MaxFiles = 3072;
     const int MaxEntryBytes = 16 * 1024;
     static readonly SemaphoreSlim Gate = new(1);
     public string DirectoryPath { get; } = Path.GetFullPath(directory);

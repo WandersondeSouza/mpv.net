@@ -164,7 +164,7 @@ e `audio-display` do mpv; uma foto local pode ser escolhida da mesma forma.
 
 Imagens validadas ficam em `Artwork` na raiz de dados local do aplicativo,
 inclusive no modo portátil; o MSIX usa sua área privada. O cache tem limite de
-128 MiB e 512 arquivos, com retenção de até 30 dias. A limpeza ocorre ao iniciar
+256 MiB e 3.072 arquivos, com retenção de até 30 dias. A limpeza ocorre ao iniciar
 o player e durante as gravações, inclusive com a busca desligada. Ausências são
 lembradas por um dia e falhas transitórias por cinco minutos. A busca e a
 decodificação ocorrem em segundo plano durante a reprodução.

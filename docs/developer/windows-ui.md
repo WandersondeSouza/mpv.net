@@ -328,8 +328,8 @@ guarda os IDs MusicBrainz/Wikidata, a autoria, a licença, a página e a data da
 verificação. A leitura confere os metadados e o hash antes de aceitar a foto
 offline. A validade é de 30 dias para sucesso, um dia para ausência e cinco
 minutos para falha transitória. A limpeza dedicada roda em segundo plano na
-inicialização e nas gravações, com retenção de 30 dias e limites de 128 MiB e
-512 arquivos. Cancelamento por
+inicialização e nas gravações, com retenção de 30 dias e limites de 256 MiB e
+3.072 arquivos. Cancelamento por
 troca/fechamento e verificações de geração, caminho e seleção descartam
 resultados tardios. `user-data/mpvnet/audio-artwork-source` informa `none`,
 `local`, `online`, `artist` ou `default` para diagnóstico por IPC.
