@@ -36,6 +36,7 @@ ações. Siga `.ai/README.md` e o pedido explícito do usuário.
 - [Migração SMTC/FluentFlyout/.NET 10](windows-smtc-fluentflyout-net10-migration.md)
 - [Melhorias de integração SMTC com o Windows](windows-smtc-integration-improvements.md), complemento incremental ao plano de migração
 - [Capas de áudio incorporadas, locais e online](audio-artwork-embedded-local-online.md)
+- [Cache de capas online e foto do artista como fallback](audio-artwork-cache-and-artist-fallback.md), complemento incremental ao plano de capas de áudio
 - [Tooltip de doação na taskbar](taskbar-donation-tooltip-localization.md)
 
 Os planos por área descrevem escopos específicos e podem estar parcial ou
