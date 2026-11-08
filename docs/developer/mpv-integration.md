@@ -491,18 +491,24 @@ Uma página, extensão de manifesto ou duração de DVR não prova VOD.
 `is_live=true` confirma live; `false` confirma VOD. Sem esse campo, duração
 positiva e seekability confirmam fontes não manifestas; HLS/DASH também exigem
 EOF do demuxer observado numa fase de classificação. Um manifesto ainda incerto
-mantém a política conservadora durante esse item. RTSP/RTMP/datagramas são
+usa os tetos do grupo HTTP/HTTPS sem forçar buffer inicial. Fontes ainda sem
+classificação de protocolo/formato mantêm o grupo menor até serem identificadas. RTSP/RTMP/datagramas são
 tratados como contínuos. Arquivos locais nunca são promovidos a rede.
 
-| Tipo confirmado | À frente | Para trás | Prefetch em segundos | Espera inicial/retomada |
+| Grupo de mídia | À frente | Para trás | Prefetch em segundos | Espera inicial/retomada |
 | --- | ---: | ---: | ---: | --- |
-| HTTP progressivo / DASH / yt-dlp VOD | 512 MiB | 32 MiB | 120 | inicial sim; 3 s |
-| HLS VOD | 256 MiB | 32 MiB | 120 | inicial sim; 3 s |
-| HLS/DASH live ou rede ainda incerta | 64 MiB | 8 MiB | 10 | inicial não; 1 s |
-| RTSP / UDP / TCP / SRT / SRTP | 32 MiB | 8 MiB | 10 | inicial não; 1 s |
-| RTMP/RTMPS | 64 MiB | 8 MiB | 10 | inicial não; 1 s |
-| FTP/FTPS/SFTP | 128 MiB | 8 MiB; 32 se VOD confirmado | 10; 120 se VOD | conforme evidência de VOD |
+| HTTP/HTTPS progressivo, HLS/DASH VOD ou live, yt-dlp identificado e FTP/FTPS/SFTP | 512 MiB | 64 MiB | 180 | VOD: inicial sim, 3 s; live/incerto: inicial não, 1 s |
+| RTSP / RTMP / RTMPS / UDP / TCP / SRT / SRTP | 128 MiB | 16 MiB | 30 | inicial não; 1 s |
+| Fontes ainda não identificadas | 64 MiB | 8 MiB | 10 | inicial não; 1 s |
 | Arquivo local | nenhuma opção automática | — | — | — |
+
+HTTP e HTTPS compartilham o classificador e a política: TLS não reduz os tetos.
+Uma página de serviço ainda sem resultado do resolvedor, ou um protocolo genérico
+sem identificação, usa o grupo de 64 MiB/10 s; depois da identificação, yt-dlp
+entra no grupo maior. A classificação VOD/live continua determinando a espera,
+separadamente dos tetos de bytes/tempo. Uma janela de manifesto curta ou a
+produção em tempo real pode impedir preenchimento maior. Os 180 s não são
+espera obrigatória, reserva de memória nem atraso imposto à live.
 
 São tetos do demuxer, não reservas ou duração garantida. `cache=yes` e
 `cache-pause=yes` habilitam o mecanismo nativo; `demuxer-max-bytes` e
@@ -572,7 +578,7 @@ os perfis ainda controlavam limites, `loadfile` e `on_load` aplicavam cache em
 fases distintas, a identificação dependia da entrada original e faltavam
 métricas com histerese. O editor não oferecia o toggle automático.
 
-A suíte atual aprovou **1.074 testes**, sem falhas/erros/skip. Os dois avisos
+A suíte da primeira implementação aprovou **1.074 testes**, sem falhas/erros/skip. Os dois avisos
 `xUnit1031` em `CoreCoverageTests` já existiam no baseline. Casos novos cobrem
 migração, limites, scripts/CLI/perfis/configuração, limites temporais pareados,
 cache em disco explícito, metadados ausentes, EOF, dados sanitizados, adaptação,
@@ -597,7 +603,7 @@ partir desses testes. Permanecem externos o checklist completo de arquivo/URL,
 playlist/pasta, drag/drop, menu, fullscreen, faixas/legendas, cursor/OSC e stress
 da aplicação completa. Essas verificações não são substituídas pelo build.
 
-Revisão final: 173 testes direcionados de cache/recovery/diagnóstico passaram
+Revisão final da primeira implementação: 173 testes direcionados de cache/recovery/diagnóstico passaram
 após o último ajuste, além da suíte completa acima. Foram conferidos 78 links
 locais/âncoras nos documentos alterados e `git diff --check` sem problemas.
 
@@ -618,7 +624,40 @@ indicada; os testes estão em `src/MpvNet.Tests/`. Não foram alterados runtime
 components, formatos de configuração nativos, assets visuais, codecs ou o motor
 de reprodução. Não houve commit, push, publicação ou deploy desta implementação.
 
-### Medição exploratória de opções nativas — 08/11/2026
+### Ampliação e agrupamento dos tetos — 08/11/2026
+
+Após solicitação para ampliar MiB e tempo de leitura antecipada, os limites foram
+agrupados nas três faixas acima. A baseline desta revisão era `master`, HEAD
+`232e84a62a918b19a523f94d6e7935004bca1a9c`, sem alterações locais. Os arquivos
+alterados são `MediaInput.cs`, `NetworkCachePolicyTests.cs`,
+`NetworkCacheNativeTests.cs`, manual, esta documentação e orientações locais da
+skill/agente de libmpv. Não se alteraram toggle, migração, recuperação,
+classificação, espera inicial/adaptativa ou precedência de opções explícitas.
+
+Os testes da política verificam os tetos à frente/para trás e os dois limites
+em segundos, a equivalência HTTP/HTTPS e o fallback de páginas ainda não
+resolvidas. Os testes com libmpv real exercitam os valores efetivos dos grupos,
+sem nova espera inicial nos transportes contínuos. As fixtures redirecionam os
+protocolos para WAV local; comprovam aplicação/restauração de opções, sem
+comprovar conectividade FTP/FTPS/SFTP/RTSP/RTMP/SRT ou TLS real.
+
+Validação local da revisão: **1.094 testes aprovados**, sem falhas, erros ou
+skip, usando libmpv `v0.42.0-5-g55d3feb45`. A rodada direcionada anterior aprovou
+197 casos de cache/classificação/playlist/recovery; a suíte final inclui os oito
+casos adicionais de equivalência HTTP/HTTPS. Permanecem apenas os dois avisos
+`xUnit1031` já existentes em `CoreCoverageTests`. Foram conferidos 35 links
+locais/âncoras e `git diff --check` sem problemas.
+
+Um grupo maior pode consumir mais RAM se houver dados disponíveis. Os tetos são
+do demuxer, não um limite global do processo: faixas/demuxers separados,
+decodificadores e GPU podem consumir memória adicional. A janela do
+servidor, o bitrate e o menor dos limites efetivamente alcançados continuam
+restringindo o preenchimento. Os tetos novos ainda precisam de medições
+prolongadas de memória, buffering e atraso de live; a medição anterior abaixo
+não foi reaproveitada como prova desses valores. O checklist manual completo
+da aplicação continua independente dos testes nativos sem interface.
+
+### Medição exploratória anterior ao agrupamento — 08/11/2026
 
 Comparação local em processos separados, libmpv normal `v0.42.0-5-g55d3feb45`,
 sem UI, `vo=null`, `ao=null`, `hwdec=no`. São amostras sintéticas H.264/AAC,
@@ -629,8 +668,9 @@ no cenário oscilante, interrompe a entrega por 3 s após 3 s de dados enviados.
 Cada célula abaixo é **anterior → automático**, uma única execução por caso.
 
 A referência usa os valores antigos de `resilient` (256 MiB, espera de 5 s).
-O caso automático reproduz as opções atuais nos hooks (`on_load` conservador,
-`on_preloaded` VOD confirmado com 512 MiB e espera de 3 s). Essa sonda compara
+O caso automático reproduziu as opções anteriores ao agrupamento: 512 MiB à
+frente, 32 MiB para trás, 120 s de prefetch e espera de 3 s após identificar VOD.
+Esses números não medem o grupo atual de 512/64 MiB e 180 s. Essa sonda compara
 as opções nativas; não executa a política C# de histerese nem mede o startup da
 UI/.NET. O script e JSON brutos ficaram localmente em
 `artifacts/cache-qa/cache-benchmark.py` e `cache-benchmark-results.json`,

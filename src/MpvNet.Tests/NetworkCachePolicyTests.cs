@@ -68,45 +68,77 @@ public sealed class NetworkCachePolicyTests
     }
 
     [Theory]
-    [InlineData(NetworkMediaKind.HttpProgressive, true, 512)]
-    [InlineData(NetworkMediaKind.OnlineResolver, true, 512)]
-    [InlineData(NetworkMediaKind.Dash, true, 512)]
-    [InlineData(NetworkMediaKind.Hls, true, 256)]
-    [InlineData(NetworkMediaKind.Hls, false, 64)]
-    [InlineData(NetworkMediaKind.Dash, false, 64)]
-    [InlineData(NetworkMediaKind.Rtsp, false, 32)]
-    [InlineData(NetworkMediaKind.Rtmp, false, 64)]
-    [InlineData(NetworkMediaKind.DatagramLive, false, 32)]
-    [InlineData(NetworkMediaKind.GenericNetwork, false, 64)]
-    [InlineData(NetworkMediaKind.FtpFile, true, 128)]
-    [InlineData(NetworkMediaKind.SftpFile, true, 128)]
-    public void AutomaticPolicyBoundsForwardBackwardAndTimeWithoutEnablingDisk(NetworkMediaKind kind, bool vod, int mib)
+    [InlineData(NetworkMediaKind.HttpProgressive, true, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.HttpProgressive, false, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.OnlineResolver, true, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.OnlineResolver, false, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.Dash, true, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.Hls, true, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.Hls, false, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.Dash, false, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.Rtsp, false, 128, 16, 30)]
+    [InlineData(NetworkMediaKind.Rtmp, false, 128, 16, 30)]
+    [InlineData(NetworkMediaKind.DatagramLive, false, 128, 16, 30)]
+    [InlineData(NetworkMediaKind.GenericNetwork, false, 64, 8, 10)]
+    [InlineData(NetworkMediaKind.FtpFile, true, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.SftpFile, true, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.FtpFile, false, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.SftpFile, false, 512, 64, 180)]
+    public void AutomaticPolicyBoundsForwardBackwardAndTimeWithoutEnablingDisk(NetworkMediaKind kind, bool vod, int mib, int back, int seconds)
     {
         WithAutomatic(() =>
         {
             string options = NetworkCachePolicy.Resolve(new NetworkCacheMedia(kind, vod, !vod), new HashSet<string>()).Options;
             Assert.Contains($"demuxer-max-bytes={mib}MiB", options);
-            Assert.Contains($"demuxer-max-back-bytes={(vod ? 32 : 8)}MiB", options);
+            Assert.Contains($"demuxer-max-back-bytes={back}MiB", options);
             Assert.Contains($"cache-pause-initial={(vod ? "yes" : "no")}", options);
-            Assert.Contains($"cache-secs={(vod ? 120 : 10)}", options);
+            Assert.Contains($"cache-secs={seconds}", options);
+            Assert.Contains($"demuxer-readahead-secs={seconds}", options);
+            Assert.Contains($"cache-pause-wait={(vod ? 3 : 1)}", options);
             Assert.DoesNotContain("cache-on-disk", options);
             Assert.DoesNotContain("network-timeout", options);
         });
     }
 
     [Theory]
-    [InlineData("https://youtu.be/VIDEO")]
-    [InlineData("https://example.com/live.m3u8")]
-    [InlineData("https://example.com/opaque")]
-    [InlineData("https://example.com/manifest.mpd")]
-    public void UnknownPagesAndManifestSuffixesNeverImplyVodOrStartupWait(string path)
+    [InlineData("https://youtu.be/VIDEO", 64, 10)]
+    [InlineData("https://example.com/live.m3u8", 512, 180)]
+    [InlineData("https://example.com/opaque", 64, 10)]
+    [InlineData("https://example.com/manifest.mpd", 512, 180)]
+    public void UnknownPagesAndManifestSuffixesNeverImplyVodOrStartupWait(string path, int mib, int seconds)
     {
         WithAutomatic(() =>
         {
             var resolution = NetworkCachePolicy.Resolve(path, new HashSet<string>());
             Assert.Equal("automatic", resolution.Profile);
-            Assert.Contains("demuxer-max-bytes=64MiB", resolution.Options);
+            Assert.Contains($"demuxer-max-bytes={mib}MiB", resolution.Options);
+            Assert.Contains($"cache-secs={seconds}", resolution.Options);
             Assert.Contains("cache-pause-initial=no", resolution.Options);
+        });
+    }
+
+    [Theory]
+    [InlineData("http", "video.mp4", NetworkMediaKind.HttpProgressive)]
+    [InlineData("https", "video.mp4", NetworkMediaKind.HttpProgressive)]
+    [InlineData("http", "index.m3u8", NetworkMediaKind.Hls)]
+    [InlineData("https", "index.m3u8", NetworkMediaKind.Hls)]
+    [InlineData("http", "manifest.mpd", NetworkMediaKind.Dash)]
+    [InlineData("https", "manifest.mpd", NetworkMediaKind.Dash)]
+    [InlineData("http", "watch", NetworkMediaKind.OnlineResolver)]
+    [InlineData("https", "watch", NetworkMediaKind.OnlineResolver)]
+    public void HttpAndHttpsShareTheLargeGroupAfterVodIsIdentified(string scheme, string path, NetworkMediaKind expected)
+    {
+        NetworkCachePolicyTests.WithAutomatic(() =>
+        {
+            string url = $"{scheme}://example.invalid/{path}";
+            Assert.Equal(expected, MediaInputClassifier.Classify(url).NetworkKind);
+            var media = NetworkCacheMedia.Identify(url, "", "", 120, true, resolverLive: false);
+            string options = NetworkCachePolicy.Resolve(media, new HashSet<string>()).Options;
+            Assert.Contains("demuxer-max-bytes=512MiB", options);
+            Assert.Contains("demuxer-max-back-bytes=64MiB", options);
+            Assert.Contains("cache-secs=180", options);
+            Assert.Contains("demuxer-readahead-secs=180", options);
+            Assert.Contains("cache-pause-wait=3", options);
         });
     }
 

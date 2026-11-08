@@ -372,13 +372,18 @@ o formato antigo é removido e uma cópia é preservada em
 `mpvnet.conf.network-cache.backup`. Valores iguais ao padrão podem ser omitidos.
 A opção antiga também continua aceita na linha de comando como alias de migração.
 
-Arquivos locais não recebem opções automáticas de rede. Para VOD confirmado,
-os tetos à frente são 512 MiB para HTTP progressivo, DASH e resolvedores como
-yt-dlp, e 256 MiB para HLS. Lives HLS/DASH e fontes ainda não identificadas usam
-64 MiB, sem espera inicial forçada. RTSP e datagramas usam 32 MiB; RTMP usa
-64 MiB; FTP/SFTP usam 128 MiB. O cache para trás é limitado separadamente a
-32 MiB em VOD e 8 MiB nos demais casos. Esses tetos não reservam memória nem
-asseguram minutos de vídeo; decodificador, áudio e GPU consomem memória adicional.
+Arquivos locais não recebem opções automáticas de rede. Os limites estão
+agrupados: HTTP/HTTPS progressivo, HLS/DASH VOD ou live, yt-dlp identificado e
+FTP/FTPS/SFTP usam até 512 MiB à frente, 64 MiB para trás e 180 segundos de
+leitura antecipada. RTSP/RTMP/RTMPS e datagramas usam 128 MiB, 16 MiB e
+30 segundos. Fontes ainda não identificadas usam 64 MiB, 8 MiB e 10 segundos
+até a identificação. HTTP e HTTPS recebem os mesmos limites.
+
+Esses valores são tetos, não reservas nem tempo obrigatório de espera.
+Lives continuam sem buffer inicial forçado e com margem de retomada curta;
+não é necessário preencher 180 segundos para começar. O preenchimento depende
+da taxa de entrada e da janela disponível no servidor. Mais cache pode usar
+mais RAM, além da memória do decodificador, áudio e GPU.
 
 A classificação usa dados já obtidos pelo mpv/yt-dlp, sem sondagens HTTP extras.
 Uma extensão `.m3u8`/`.mpd` ou a duração de uma janela DVR não prova VOD.

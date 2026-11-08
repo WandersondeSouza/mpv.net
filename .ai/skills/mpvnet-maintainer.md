@@ -50,6 +50,7 @@ qualquer descrição de prompt como baseline.
 - `on_load`/`on_preloaded` e `file-loaded` aplicam/refinam cache por item. Não voltar a injetar cache em `BuildLoadfileArgs`: isso conflita com precedência e classificação posterior.
 - `Media/NetworkCacheSession.cs` contém identificação e decisão pura com histerese. Metadados ausentes, janela DVR finita e URLs opacas exigem fallback conservador.
 - Respeitar opções explícitas, inclusive o par `cache-secs`/`demuxer-readahead-secs`, scripts/perfis e cache em disco. Não aumentar limites sem prova nem habilitar disco automaticamente.
+- Manter poucos grupos de tetos de memória/prefetch, separados da espera inicial/de retomada. HTTP e HTTPS seguem o mesmo grupo. Alterar tetos exige validar valores nativos e documentar consumo potencial; testes curtos anteriores não comprovam desempenho dos novos limites.
 - Executar os testes `NetworkCachePolicyTests`, `NetworkCacheSessionTests`, `NetworkCacheNativeTests` e regressões de playlist/recovery. Confirmar a revisão do libmpv efetivamente usada.
 - Consultar [integração mpv](../../docs/developer/mpv-integration.md#cache-automático-por-item) e [configuração](../../docs/developer/configuration.md#mpvnetconf) para limites, precedência, migração e evidências. Registros de desempenho anteriores são históricos.
 

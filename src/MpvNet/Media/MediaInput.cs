@@ -295,18 +295,14 @@ public static class NetworkCachePolicy
 
         // Unknown manifests/pages may be live. Do not add a startup wait until
         // VOD has been established from resolved metadata, rather than a suffix.
-        int forward = media.Kind switch
+        (int forward, int back, int seconds) = media.Kind switch
         {
-            NetworkMediaKind.Hls when media.IsVod => 256,
-            NetworkMediaKind.HttpProgressive or NetworkMediaKind.Dash or NetworkMediaKind.OnlineResolver
-                when media.IsVod => 512,
-            NetworkMediaKind.FtpFile or NetworkMediaKind.SftpFile => 128,
-            NetworkMediaKind.Rtmp => 64,
-            NetworkMediaKind.Rtsp or NetworkMediaKind.DatagramLive => 32,
-            _ => 64
+            NetworkMediaKind.Rtsp or NetworkMediaKind.Rtmp or NetworkMediaKind.DatagramLive => (128, 16, 30),
+            NetworkMediaKind.HttpProgressive or NetworkMediaKind.Hls or NetworkMediaKind.Dash or
+                NetworkMediaKind.FtpFile or NetworkMediaKind.SftpFile => (512, 64, 180),
+            NetworkMediaKind.OnlineResolver when media.IsVod || media.IsLive => (512, 64, 180),
+            _ => (64, 8, 10)
         };
-        int back = media.IsVod ? 32 : 8;
-        int seconds = media.IsVod ? 120 : 10;
         string options = $"cache=yes,cache-pause=yes,cache-pause-initial={(media.IsVod ? "yes" : "no")},cache-pause-wait={(media.IsVod ? 3 : 1)},demuxer-max-bytes={forward}MiB,demuxer-max-back-bytes={back}MiB,cache-secs={seconds},demuxer-readahead-secs={seconds}";
         return new(media.Kind, "automatic", RemoveExplicitOptions(options, explicitOptions));
     }

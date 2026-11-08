@@ -14,11 +14,11 @@ namespace MpvNet.Tests;
 public sealed class NetworkCacheNativeTests
 {
     [Theory]
-    [InlineData("m3u8_native", false, 256)]
-    [InlineData("http_dash_segments", false, 512)]
-    [InlineData("m3u8_native", true, 64)]
-    [InlineData("http_dash_segments", true, 64)]
-    public async Task ResolvedManifestEvidenceSelectsNativeLimitsWithoutReloading(string protocol, bool live, int mib)
+    [InlineData("m3u8_native", false, 512, 64, 180)]
+    [InlineData("http_dash_segments", false, 512, 64, 180)]
+    [InlineData("m3u8_native", true, 512, 64, 180)]
+    [InlineData("http_dash_segments", true, 512, 64, 180)]
+    public async Task ResolvedManifestEvidenceSelectsNativeLimitsWithoutReloading(string protocol, bool live, int mib, int back, int seconds)
     {
         using TestDirectory directory = new();
         string media = NativePlaylistTitleTests.WriteWave(directory.Path, "fixture.wav");
@@ -27,10 +27,46 @@ public sealed class NetworkCacheNativeTests
         Assert.True(player.RegisterHook("on_load", 10, 10));
         await Load(player, "https://example.invalid/service/page");
         Assert.Equal(mib * 1024L * 1024, player.GetPropertyLong("options/demuxer-max-bytes"));
+        Assert.Equal(back * 1024L * 1024, player.GetPropertyLong("options/demuxer-max-back-bytes"));
+        Assert.Equal(seconds, player.GetPropertyDouble("options/cache-secs"));
+        Assert.Equal(seconds, player.GetPropertyDouble("options/demuxer-readahead-secs"));
+        Assert.Equal(live ? 1 : 3, player.GetPropertyDouble("options/cache-pause-wait"));
         Assert.Equal(!live, player.GetPropertyBool("options/cache-pause-initial"));
         Assert.False(player.GetPropertyBool("options/cache-on-disk"));
         Assert.Equal(1, player.LoadCount);
         Assert.Equal("https://example.invalid/service/page", player.GetPropertyString("path"));
+    }
+
+    [Theory]
+    [InlineData("ftp://example.invalid/media.wav", 512, 64, 180)]
+    [InlineData("ftps://example.invalid/media.wav", 512, 64, 180)]
+    [InlineData("sftp://example.invalid/media.wav", 512, 64, 180)]
+    [InlineData("rtsp://example.invalid/live", 128, 16, 30)]
+    [InlineData("rtmp://example.invalid/live", 128, 16, 30)]
+    [InlineData("rtmps://example.invalid/live", 128, 16, 30)]
+    [InlineData("udp://example.invalid/live", 128, 16, 30)]
+    [InlineData("srt://example.invalid/live", 128, 16, 30)]
+    public async Task ProtocolGroupsApplyNativeByteAndTimeCapsWithoutAdditionalStartupWait(string url, int mib, int back, int seconds)
+    {
+        using TestDirectory directory = new();
+        string media = NativePlaylistTitleTests.WriteWave(directory.Path, "fixture.wav");
+        // Redirect before opening: this checks native option application, not
+        // connectivity to a real FTP/RTSP/RTMP/datagram server.
+        using var player = new ResolvedPlayer(media, "", null);
+        NativePlaylistTitleTests.CreateNativePlayer(player);
+        Assert.True(player.RegisterHook("on_load", 10, 10));
+        await Load(player, url);
+        Assert.Equal(mib * 1024L * 1024, player.GetPropertyLong("options/demuxer-max-bytes"));
+        Assert.Equal(back * 1024L * 1024, player.GetPropertyLong("options/demuxer-max-back-bytes"));
+        Assert.Equal(seconds, player.GetPropertyDouble("options/cache-secs"));
+        Assert.Equal(seconds, player.GetPropertyDouble("options/demuxer-readahead-secs"));
+        if (mib == 128)
+        {
+            Assert.False(player.GetPropertyBool("options/cache-pause-initial"));
+            Assert.Equal(1, player.GetPropertyDouble("options/cache-pause-wait"));
+        }
+        Assert.False(player.GetPropertyBool("options/cache-on-disk"));
+        Assert.Equal(1, player.LoadCount);
     }
 
     [Theory]
@@ -158,7 +194,7 @@ public sealed class NetworkCacheNativeTests
         finally { player.FileLoaded -= OnLoaded; }
     }
 
-    sealed class ResolvedPlayer(string media, string protocol, bool live, string source = "") : MainPlayer
+    sealed class ResolvedPlayer(string media, string protocol, bool? live, string source = "") : MainPlayer
     {
         internal int LoadCount;
         internal override void OnHook(MpvEventSnapshot snapshot)
