@@ -35,8 +35,8 @@ public static class EditorConfigurationService
                     opt.Text = section.GetValue("name") switch
                     {
                         "language" => EditorConfLocalization.TranslateLanguageName(opt.Name),
-                        "audio-artwork-online" or "audio-artwork-cache" when opt.Name == "yes" => _("Yes"),
-                        "audio-artwork-online" or "audio-artwork-cache" when opt.Name == "no" => _("No"),
+                        "automatic-network-cache" or "audio-artwork-online" or "audio-artwork-cache" when opt.Name == "yes" => _("Yes"),
+                        "automatic-network-cache" or "audio-artwork-online" or "audio-artwork-cache" when opt.Name == "no" => _("No"),
                         _ => EditorConfLocalization.TranslateOptionValue(opt.Name)
                     };
 
@@ -62,6 +62,8 @@ public static class EditorConfigurationService
             baseSetting.DisplayName = displayName == "audio-artwork-cache"
                 ? "Keep artwork cache between sessions"
                 : displayName;
+            if (baseSetting.Name == "automatic-network-cache")
+                baseSetting.DisplayName = _("Automatic streaming cache");
             baseSetting.File = section.GetValue("file");
             baseSetting.Directory = EditorConfLocalization.TranslateDirectory(section.GetValue("directory") ?? "");
 

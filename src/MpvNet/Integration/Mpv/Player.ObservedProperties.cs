@@ -5,8 +5,11 @@ public partial class MainPlayer
     void ConfigureObservedProperties()
     {
         ObservePropertyBool("paused-for-cache", OnCacheBufferingChanged);
+        ObservePropertyDouble("demuxer-cache-duration", _ => AdaptNetworkCache());
         ObservePropertyBool("pause", value => {
             Paused = value;
+            if (value)
+                _networkCacheSession?.Buffering(false, CacheSessionSeconds, false);
             Log.Debug($"Playback pause state changed. paused={value}, pausedForCache={GetPropertyBool("paused-for-cache")}");
             Pause?.Invoke();
         });

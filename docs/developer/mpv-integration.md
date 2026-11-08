@@ -461,63 +461,200 @@ a fila serial de tarefas impedem retry da mídia anterior, duas reproduções
 concorrentes e trabalho posterior ao fechamento. Stop e nova carga invalidam a
 geração pendente.
 
-No caminho de `loadfile`, as opções explícitas da linha de comando e do
-`mpv.conf` são materializadas uma vez por item. A mesma resolução é reutilizada
-para log e construção do comando, evitando a leitura anterior do arquivo para
-cada opção de cache e a dupla classificação da mesma URL. URLs legítimas do
-páginas candidatas a resolução online recebem o tipo `OnlineResolver`, com
-cache conforme o perfil escolhido, em vez de serem confundidas com HTTP progressivo;
-arquivos diretos e manifestos preservam suas classificações, e o protocolo
-final continua sob controle do ytdl hook, yt-dlp e mpv.
+### Cache automático por item
 
-### Cache por item de playlist
+A política usa somente `App.AutomaticNetworkCache`, ativado por padrão.
+`NetworkCacheProfile`/`--network-cache-profile` são aliases de compatibilidade
+que convertem os perfis antigos em ativado/desativado, sem selecionar políticas.
+A migração e o backup do editor estão em [Configuração](configuration.md#mpvnetconf).
+O editor apresenta **Cache automático de streaming**, traduzido nos 19 catálogos;
+as opções nativas avançadas do mpv permanecem disponíveis.
 
-O padrão `resilient` fornece 256 MiB à frente e buffer inicial/retomada de
-5 segundos de mídia para HTTP progressivo, DASH e `OnlineResolver`, incluindo
-URLs `ytdl://`. `balanced` fornece 128 MiB/3 segundos; `low-latency` mantém
-64 MiB sem buffer inicial. Não há limitação automática de resolução/codec.
+`BuildLoadfileArgs` não injeta mais cache. `on_load` de prioridade 50 aplica a
+política depois do `ytdl_hook` e das opções locais anteriores. Isso evita que
+valores do frontend pareçam escolhas explícitas e unifica `loadfile`, `loadlist`,
+playlists expandidas e navegação. `on_preloaded` refina a classificação antes de
+iniciar decoders; `file-loaded` reavalia propriedades que só se tornam disponíveis
+mais tarde. Nenhuma mídia é reiniciada. Escritas idênticas da política são evitadas.
+Se uma build externa não oferecer hooks, a reprodução nativa continua, sem
+injetar automaticamente cache no comando como fallback.
 
-A política de `OnlineResolver` independe do domínio: páginas de YouTube,
-Bilibili, Niconico, Naver, Dailymotion, Twitch, Vimeo, SoundCloud e demais
-serviços seguem o mesmo perfil. A resolução permanece com os extractors
-disponíveis no yt-dlp instalado; os testes de classificação não comprovam
-disponibilidade ou reprodução em cada serviço.
+`NetworkCacheMedia` combina `path`, `stream-open-filename`, `file-format`,
+duração/seekability e os campos `is_live`, `duration`, `protocol` e
+`requested_formats` do resultado já disponível do yt-dlp. A leitura do resultado
+é limitada a 4 MiB e uma vez por item, inclusive quando resolvido em `on_load_fail`.
+URLs assinadas e o JSON completo não são retidos nem registrados. Protocolos de
+fragmentos permitem identificar HLS/DASH mesmo dentro de EDL. O resolvedor e o
+mpv continuam responsáveis por abrir o conteúdo; não há requisição de sondagem.
 
-Após criar o cliente `mpvnet`, o player registra o hook nativo `on_load` com
-prioridade 50, antes de iniciar o loop de eventos. Assim, cada item criado
-pelo mpv ou reinserido por `loadlist` recebe a política mesmo quando não passou
-por `SendLoadfile`. O hook classifica `path`, preservando a URL original mesmo
-quando o yt-dlp já transformou `stream-open-filename` em EDL ou URL assinada.
-Somente opções ausentes são escritas em `file-local-options`: nomes explícitos
-do `mpv.conf` ativo/linha de comando, `option-info/*/set-locally` e
-`set-from-commandline` têm precedência. A política existente de `loadfile`
-continua funcionando e seus valores locais não são sobrescritos.
+Uma página, extensão de manifesto ou duração de DVR não prova VOD.
+`is_live=true` confirma live; `false` confirma VOD. Sem esse campo, duração
+positiva e seekability confirmam fontes não manifestas; HLS/DASH também exigem
+EOF do demuxer observado numa fase de classificação. Um manifesto ainda incerto
+mantém a política conservadora durante esse item. RTSP/RTMP/datagramas são
+tratados como contínuos. Arquivos locais nunca são promovidos a rede.
 
-`MpvEventSnapshot` copia nome, ID e userdata do hook antes da próxima chamada a
-`mpv_wait_event`. O dispatcher chama `mpv_hook_continue` em `finally`, inclusive
-quando a aplicação da política falha. Registro e continuação usam o mesmo gate
-de lifetime das demais chamadas nativas; após shutdown, o cliente é destruído
-antes do contexto principal, liberando hooks pendentes sem acessar handles
-inválidos. Se o libmpv fornecido pelo usuário não suportar o registro, o player
-registra a falha e preserva o caminho de `loadfile`.
+| Tipo confirmado | À frente | Para trás | Prefetch em segundos | Espera inicial/retomada |
+| --- | ---: | ---: | ---: | --- |
+| HTTP progressivo / DASH / yt-dlp VOD | 512 MiB | 32 MiB | 120 | inicial sim; 3 s |
+| HLS VOD | 256 MiB | 32 MiB | 120 | inicial sim; 3 s |
+| HLS/DASH live ou rede ainda incerta | 64 MiB | 8 MiB | 10 | inicial não; 1 s |
+| RTSP / UDP / TCP / SRT / SRTP | 32 MiB | 8 MiB | 10 | inicial não; 1 s |
+| RTMP/RTMPS | 64 MiB | 8 MiB | 10 | inicial não; 1 s |
+| FTP/FTPS/SFTP | 128 MiB | 8 MiB; 32 se VOD confirmado | 10; 120 se VOD | conforme evidência de VOD |
+| Arquivo local | nenhuma opção automática | — | — | — |
 
-Com `debug-mode=yes` em uma build com logging de diagnóstico, `Network cache
-state` informa opções efetivas por item; `buffering-start`/`buffering-end`
-informam transições, posição e duração da espera, buffer e taxa de entrada estimados.
-`Network cache stream durations` informa durações numéricas de áudio/vídeo
-quando disponíveis em `demuxer-cache-state/ts-per-stream`.
-Esses registros não incluem URLs resolvidas, cookies ou metadados do extractor.
-Na build com logging em arquivo, o cliente usa `terminal-default` para receber
-os níveis por módulo: `curl=trace`, `demux=debug`, `lavf=debug` e
-`ffmpeg/demuxer=debug`, salvo `msg-level` explícito. A seleção evita trace global
-por pacote/quadro. Mensagens passam por sanitização antes da divisão em blocos
-de até 500 caracteres; cabeçalhos curl preservam somente campos de transporte.
-As propriedades de stderr/path do yt-dlp são decodificadas quando contêm uma
-string JSON, antes da separação em linhas. Dumps de configuração/argumentos
-são ocultados; as demais linhas preservam os detalhes após o limite de 500
-caracteres que antes cortava toda a string escapada.
-Propriedades de buffer são estimativas do demuxer principal, não a soma
-garantida dos buffers separados de áudio e vídeo.
+São tetos do demuxer, não reservas ou duração garantida. `cache=yes` e
+`cache-pause=yes` habilitam o mecanismo nativo; `demuxer-max-bytes` e
+`demuxer-max-back-bytes` limitam dados à frente/para trás; `cache-secs` e
+`demuxer-readahead-secs` limitam prefetch. Como o mpv usa o maior dos dois limites
+temporais, uma escolha explícita em qualquer deles impede injeção no outro.
+A política não altera `network-timeout`, transporte, resolução ou codec.
+`cache-on-disk` nunca é habilitado automaticamente, inclusive para FTP/SFTP.
+Quando já está explicitamente ligado, toda a política automática recua: no
+mpv, os limites em bytes passam a medir metadados e não limitam o arquivo em disco.
+
+A precedência combina nomes de CLI/`mpv.conf`, `option-info/*/set-locally`,
+`set-from-commandline` e comparação com `default-value`. `include`, `profile`
+selecionado externamente e `use-filedir-conf` fazem a política recuar por
+inteiro quando a origem indireta não é inspecionada. Opções em perfis declarados
+no arquivo também são tratadas conservadoramente como explícitas. Depois de uma
+escrita automática, o player guarda o valor efetivo e deixa de controlar aquela
+opção se observar uma alteração externa. Uma escrita de script idêntica ao valor
+automático não pode ser atribuída pela API; para fixar esse valor, declare-o em
+CLI/`mpv.conf`, antes do hook como opção local, ou desligue a política.
+
+`NetworkCacheSession` reúne contagem/duração de buffering numa política pura,
+sem timers/tarefas/handles. O observador de `demuxer-cache-duration` aciona no
+máximo uma amostra a cada 5 s; lê taxa de entrada, bitrates das faixas presentes
+e durações individuais de áudio/vídeo em `ts-per-stream`. A menor duração das
+faixas é usada; valores ausentes/inválidos impedem adaptação. São estimativas do
+demuxer principal e podem não cobrir demuxers externos. Não se inventa bitrate.
+
+Após pelo menos três amostras consecutivas válidas e 30 s desde a última
+mudança, duas novas interrupções podem aumentar `cache-pause-wait` em 1 s,
+até 8 s em VOD ou 2 s em live/incerto. A taxa estimada deve exceder 115% do
+bitrate. Margem insuficiente/incerta gera somente diagnóstico. Com 120 s de
+estabilidade observada e buffer suficiente, a espera diminui 1 s até a base
+3/1 s. Intervalos de amostra superiores a 15 s reiniciam a evidência de
+estabilidade. Os tetos em bytes não crescem em runtime. Pausa, startup e seek
+não contam como underrun; fim/troca de item e dispose limpam o estado. Não há
+watchdog de vídeo nem seek/reload causado pela adaptação.
+
+O mecanismo existente `LiveStreamRecoveryPolicy` mantém três tentativas e
+backoff 1/2/4 s para falhas transitórias comprovadas de streams contínuos ou
+manifests live carregados. Evidência de live do resolvedor também atende fontes
+com URL opaca e janela DVR finita, sempre recarregando a entrada original.
+Sem essa evidência, permanece o critério conservador anterior para HLS/DASH
+diretos sem duração finita. Autenticação/403, antibot, URL explicitamente
+expirada (`ExpiredUrl`), manifesto inválido (`Manifest`) e decoder não geram
+retry. Não há reutilização automática de URL assinada identificada como expirada.
+
+`MpvEventSnapshot` e o dispatcher mantêm a continuação dos hooks em `finally`
+e o gate de lifetime. O estado novo fica na thread de eventos e é descartado
+no dispose após aguardar os loops. Nenhum observador extra sobrevive ao player.
+
+Os contratos foram conferidos na libmpv normal efetivamente preparada pelo
+build de 08/11/2026, `mpv v0.42.0-5-g55d3feb45`, e nas fontes dessa revisão:
+[opções](https://github.com/mpv-player/mpv/blob/55d3feb45/DOCS/man/options.rst),
+[hooks e propriedades](https://github.com/mpv-player/mpv/blob/55d3feb45/DOCS/man/input.rst),
+[atualização das opções do demuxer](https://github.com/mpv-player/mpv/blob/55d3feb45/demux/demux.c).
+As opções usadas são atualizáveis nessa revisão; isso também foi exercitado com
+`file-local-options` no libmpv real. Nenhuma opção de abertura imutável foi
+adicionada. Builds externas continuam sujeitas à disponibilidade de propriedades;
+ausência de evidência faz o frontend recuar.
+
+### Validação do cache unificado — 08/11/2026
+
+A branch inicial era `master`, HEAD `02f4f656a9e5ea5a0d004a293fce1e61fdee1067`,
+sem alterações locais. A suíte original aprovou 1.012 testes. Causas confirmadas:
+os perfis ainda controlavam limites, `loadfile` e `on_load` aplicavam cache em
+fases distintas, a identificação dependia da entrada original e faltavam
+métricas com histerese. O editor não oferecia o toggle automático.
+
+A suíte atual aprovou **1.074 testes**, sem falhas/erros/skip. Os dois avisos
+`xUnit1031` em `CoreCoverageTests` já existiam no baseline. Casos novos cobrem
+migração, limites, scripts/CLI/perfis/configuração, limites temporais pareados,
+cache em disco explícito, metadados ausentes, EOF, dados sanitizados, adaptação,
+URL expirada e manifesto inválido. Os testes nativos usam HTTP loopback real
+para VOD/restauração e redirecionamento para mídia local para simular resultados
+do resolvedor HLS/DASH; estes últimos não comprovam os transportes externos.
+Um teste passou a aguardar a restauração da opção após Stop, pois `idle-active`
+pode ser publicado antes dessa restauração nativa.
+
+Build Windows Debug com preparação normal: sem avisos/erros, 19 catálogos
+compilados, 807 entradas por catálogo. Os seis testes Python de localização
+passaram, assim como os contratos de pacote de localização (pasta, ZIP, Store
+aninhado e rejeição de catálogos ausentes/vazios). Em configuração isolada sob `artifacts/cache-qa`, a interface foi
+verificada nos temas escuro/claro: toggle em português, migração `off` → Não,
+alteração para Sim, persistência sem perfil antigo, backup e encerramento normal.
+Nenhum arquivo da instalação do usuário foi alterado.
+
+Medições exploratórias e pendências de desempenho são registradas abaixo.
+Não se infere disponibilidade de YouTube, transporte HLS/DASH/RTSP/RTMP real,
+latência de lives, funcionamento em outros DPIs ou estabilidade prolongada a
+partir desses testes. Permanecem externos o checklist completo de arquivo/URL,
+playlist/pasta, drag/drop, menu, fullscreen, faixas/legendas, cursor/OSC e stress
+da aplicação completa. Essas verificações não são substituídas pelo build.
+
+Revisão final: 173 testes direcionados de cache/recovery/diagnóstico passaram
+após o último ajuste, além da suíte completa acima. Foram conferidos 78 links
+locais/âncoras nos documentos alterados e `git diff --check` sem problemas.
+
+### Arquivos da implementação unificada
+
+| Área | Arquivos alterados |
+| --- | --- |
+| Migração e configuração | `App.cs`, `Configuration/NetworkCacheConfiguration.cs`, `MpvNet.Windows/Configuration/Conf.cs`, `WPF/ConfWindow.xaml.cs`, `Resources/editor_conf.txt` |
+| Política e identificação | `Media/MediaInput.cs`, `Media/NetworkCacheSession.cs` |
+| Integração | `Integration/Mpv/Player.NetworkCache.cs`, `Player.Initialization.cs`, `Player.Events.cs`, `Player.ObservedProperties.cs`, `Player.MediaLoading.cs`, `Player.Lifecycle.cs` |
+| Diagnóstico | `Media/StreamingFailureDiagnostics.cs` |
+| Testes | `NetworkCachePolicyTests.cs`, `NetworkCacheSessionTests.cs`, `NetworkCacheNativeTests.cs`, `NativePlaylistTitleTests.cs`, `MediaInputTests.cs`, `StreamingFailureDiagnosticsTests.cs`, `Program.cs` |
+| Traduções | `lang/source.pot` e os 19 arquivos em `lang/po/` |
+| Documentação e orientações | README, manual, configuração, logs, guia operacional, integração mpv, interface Windows, localização, `AGENTS.md`, `.ai/README.md`, skill de manutenção e agentes de libmpv/configuração/UI/componentes |
+
+Os nomes curtos de código são relativos a `src/MpvNet/`, salvo a área Windows
+indicada; os testes estão em `src/MpvNet.Tests/`. Não foram alterados runtime
+components, formatos de configuração nativos, assets visuais, codecs ou o motor
+de reprodução. Não houve commit, push, publicação ou deploy desta implementação.
+
+### Medição exploratória de opções nativas — 08/11/2026
+
+Comparação local em processos separados, libmpv normal `v0.42.0-5-g55d3feb45`,
+sem UI, `vo=null`, `ao=null`, `hwdec=no`. São amostras sintéticas H.264/AAC,
+8 s, 24 fps, 1920×1080 a 6 Mbit/s e 3840×2160 a 12 Mbit/s de alvo, geradas com
+FFmpeg/testsrc2, libx264 ultrafast, dois threads e `faststart`. O servidor HTTP
+loopback aceita ranges e entrega a 1,3 vez o tamanho médio por segundo da mídia;
+no cenário oscilante, interrompe a entrega por 3 s após 3 s de dados enviados.
+Cada célula abaixo é **anterior → automático**, uma única execução por caso.
+
+A referência usa os valores antigos de `resilient` (256 MiB, espera de 5 s).
+O caso automático reproduz as opções atuais nos hooks (`on_load` conservador,
+`on_preloaded` VOD confirmado com 512 MiB e espera de 3 s). Essa sonda compara
+as opções nativas; não executa a política C# de histerese nem mede o startup da
+UI/.NET. O script e JSON brutos ficaram localmente em
+`artifacts/cache-qa/cache-benchmark.py` e `cache-benchmark-results.json`,
+artefatos ignorados pelo Git desta execução.
+
+| Amostra | Início (s) | CPU do processo (s) | Pico do processo (MiB) | Rebuffer após início |
+| --- | ---: | ---: | ---: | ---: |
+| 1080p, estável | 4,269 → 2,771 | 1,078 → 0,859 | 116,3 → 116,0 | 0 → 0 |
+| 1080p, pausa de rede | 7,326 → 2,731 | 1,016 → 0,859 | 116,3 → 116,3 | 0 → 0 |
+| 4K, estável | 4,267 → 2,759 | 2,766 → 2,812 | 279,8 → 279,4 | 0 → 0 |
+| 4K, pausa de rede | 7,330 → 2,760 | 2,719 → 2,984 | 279,6 → 279,7 | 0 → 0 |
+
+O tempo total de rebuffer após o início foi 0 s em todos os casos. O pico inclui
+Python/servidor/decoders/libmpv no processo; não representa RAM do frontend ou
+VRAM. A redução de início é compatível com a menor margem inicial (5 → 3 s).
+Amostras tão curtas não preenchem os tetos e não comprovam benefício de 512 MiB,
+melhoria estatística de CPU/memória, interrupções por hora ou resistência a falhas
+longas. Não houve reconexão a medir. A latência de live, serviços externos,
+transporte HLS/DASH/RTSP/RTMP real e execução prolongada continuam sem medição.
+
+### Registros históricos de cache e diagnóstico
+
+Os resultados datados a seguir descrevem versões anteriores e não medem a
+política automática atual.
 
 Validação local em 2026-10-12: 551 testes aprovados e build Windows Release
 sem avisos/erros. Com libmpv normal, sondas sem interface verificaram opções

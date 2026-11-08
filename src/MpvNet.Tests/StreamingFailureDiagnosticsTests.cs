@@ -12,6 +12,20 @@ namespace MpvNet.Tests;
 
 public sealed class StreamingFailureDiagnosticsTests
 {
+    [Theory]
+    [InlineData("URL has expired https://source.invalid/?token=secret", StreamingFailureCategory.ExpiredUrl)]
+    [InlineData("HTTP error 403 signature expired", StreamingFailureCategory.ExpiredUrl)]
+    [InlineData("Failed to parse manifest", StreamingFailureCategory.Manifest)]
+    [InlineData("Invalid HLS", StreamingFailureCategory.Manifest)]
+    public void ExpiredUrlsAndInvalidManifestsAreDefinitiveAndSanitized(string message, StreamingFailureCategory expected)
+    {
+        var diagnostic = StreamingFailureDiagnostics.Classify("lavf", message);
+        Assert.NotNull(diagnostic);
+        Assert.Equal(expected, diagnostic.Category);
+        Assert.False(diagnostic.IsLikelyTransient);
+        Assert.DoesNotContain("secret", diagnostic.OriginalMessage);
+        Assert.False(LiveStreamRecoveryPolicy.Evaluate(NetworkMediaKind.Hls, true, TimeSpan.Zero, 1, diagnostic, 0).ShouldRetry);
+    }
     [Fact]
     public void JsonEncodedYtDlpOutputPreservesLaterLinesAndLongMessages()
     {

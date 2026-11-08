@@ -18,6 +18,8 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
 - `src/MpvNet/Integration/Mpv/Player.cs`;
 - `src/MpvNet/Integration/Mpv/Player.*.cs`;
 - `src/MpvNet/Integration/Mpv/Player.NetworkCache.cs` quando a alteração envolver mídia de rede;
+- `src/MpvNet/Media/NetworkCacheSession.cs` e `MediaInput.cs` para classificação e decisão de cache;
+- `src/MpvNet.Tests/NetworkCacheNativeTests.cs`, `NetworkCacheSessionTests.cs` e `NetworkCachePolicyTests.cs`;
 - `src/MpvNet/Integration/Mpv/MpvClient.cs`;
 - `src/MpvNet/Native/LibMpv.cs`;
 - `src/MpvNet/Native/LibMpvRuntime.cs`;
@@ -40,6 +42,9 @@ Analisar mudanças na integração entre mpv.net e mpv/libmpv com foco em compat
   em CPU compatível e fallback para normal se a v3 não carregar. O parâmetro
   legado de build não seleciona mais um pacote de variante única.
 - Para cache de rede, consultar `docs/developer/mpv-integration.md`, manter a política por item e preservar as opções explícitas em `mpv.conf` e na linha de comando.
+- Manter um único toggle automático, sem dependência operacional do perfil legado. Aplicar cache nos hooks por item, preservando perfis/scripts/opções locais e o par de limites temporais; não reintroduzir injeção em `loadfile`.
+- Classificar usando evidências já obtidas pelo mpv/yt-dlp; extensão e duração de DVR não provam VOD. Sem métricas completas, não adaptar. Preservar histerese, limites, limpeza por item e o recovery existente, sem novo watchdog.
+- Conferir opções suportadas/mutáveis na revisão nativa efetivamente testada. Distinguir teste HTTP loopback, simulação de resolvedor e reprodução de transportes/serviços reais no relatório.
 - Não misturar carregamento de mídia, eventos, propriedades observadas e shutdown em uma mesma alteração quando uma mudança puder ser menor.
 - Verificar e ampliar os testes da área em `src/MpvNet.Tests/` (incluindo `Program.cs` quando aplicável) quando tocar paths, playlist, parser de comandos, títulos, seleção de idioma ou MediaInfo; depois rodar `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
 

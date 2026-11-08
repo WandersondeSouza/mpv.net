@@ -213,7 +213,7 @@ public sealed class NativePlaylistTitleTests : IDisposable
             Assert.Contains(explicitYtdl ? "no-playlist" : "yes-playlist", player.YtdlOptions);
             if (explicitYtdl)
                 Assert.DoesNotContain("yes-playlist", player.YtdlOptions);
-            Assert.Equal(explicitCache ? 9 : 5, player.GetPropertyDouble("options/cache-pause-wait"));
+            Assert.Equal(explicitCache ? 9 : 3, player.GetPropertyDouble("options/cache-pause-wait"));
             Assert.Equal(url, player.GetPropertyString("path"));
             Assert.Equal("Titulo Da Rede", player.GetPropertyString("media-title"));
         }
@@ -399,7 +399,7 @@ public sealed class NativePlaylistTitleTests : IDisposable
         Assert.Equal(expected, actual);
     }
 
-    static MainPlayer CreateNativePlayer(MainPlayer? player = null, (string, string)[]? options = null)
+    internal static MainPlayer CreateNativePlayer(MainPlayer? player = null, (string, string)[]? options = null)
     {
         EnsureNativeLibrary();
         player ??= new();
@@ -418,6 +418,7 @@ public sealed class NativePlaylistTitleTests : IDisposable
             player.Handle = LibMpv.mpv_create_client(player.MainHandle, "title-tests");
             Assert.True(player.RegisterHook("on_load", MainPlayer.PlaylistTitleHookUserData, 5));
             Assert.True(player.RegisterHook("on_load", MainPlayer.NetworkCacheHookUserData, 50));
+            Assert.True(player.RegisterHook("on_preloaded", MainPlayer.NetworkCachePreloadedHookUserData, 50));
             player.ObserveProperty("playlist", player.ScheduleAutocreatedPlaylistNormalization);
             player.TrackEventTask(Task.Run(() => player.EventLoop(player.PlayerCancellationToken), TestContext.Current.CancellationToken));
             player.TrackEventTask(Task.Run(() => player.MainEventLoop(player.PlayerCancellationToken), TestContext.Current.CancellationToken));
@@ -448,7 +449,7 @@ public sealed class NativePlaylistTitleTests : IDisposable
         RuntimeComponents.RegisterNativeResolver();
     }
 
-    static async Task WaitUntil(Func<bool> condition)
+    internal static async Task WaitUntil(Func<bool> condition)
     {
         DateTime deadline = DateTime.UtcNow.AddSeconds(10);
         while (!condition() && DateTime.UtcNow < deadline)

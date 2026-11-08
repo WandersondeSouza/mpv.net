@@ -2836,3 +2836,12 @@ msgstr "सत्रों के बीच कवर कैश रखें"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "अलग-अलग सत्रों में कवर का दोबारा इस्तेमाल करें। इसे बंद करने पर प्लेयर मौजूदा सत्र के लिए अस्थायी फ़ाइलें इस्तेमाल करता है। बदलाव लागू करने के लिए प्लेयर को फिर से शुरू करें।"
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "स्वचालित स्ट्रीमिंग कैश"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "स्ट्रीमिंग कैश को स्वचालित रूप से समायोजित करता है। स्पष्ट रूप से दिए गए mpv विकल्पों को प्राथमिकता मिलती है। बदलाव अगले मीडिया आइटम पर लागू होते हैं।"

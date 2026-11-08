@@ -2840,3 +2840,12 @@ msgstr "Manter a cache de capas entre sessões"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "Reutiliza capas entre sessões. Ao desativar esta opção, o leitor usa ficheiros temporários na sessão atual. Reinicie o leitor para aplicar a alteração."
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "Cache automático de streaming"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "Adapta automaticamente a cache de streaming. As opções explícitas do mpv têm prioridade. As alterações aplicam-se ao próximo item multimédia."

@@ -253,6 +253,7 @@ public partial class MainPlayer
         // Prepare titles and YouTube playlist options before ytdl_hook (priority 10).
         RegisterHook("on_load", PlaylistTitleHookUserData, 5);
         RegisterHook("on_load", NetworkCacheHookUserData, 50);
+        RegisterHook("on_preloaded", NetworkCachePreloadedHookUserData, 50);
 
         if (formHandle != IntPtr.Zero)
             TrackEventTask(Task.Run(() => EventLoop(PlayerCancellationToken), PlayerCancellationToken));

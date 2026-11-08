@@ -2844,3 +2844,12 @@ msgstr ""
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr ""
+
+msgid "automatic-network-cache"
+msgstr ""
+
+msgid "Automatic streaming cache"
+msgstr ""
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr ""

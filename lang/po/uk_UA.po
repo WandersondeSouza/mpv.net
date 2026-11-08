@@ -2836,3 +2836,12 @@ msgstr "Зберігати кеш обкладинок між сеансами"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "Повторно використовувати обкладинки між сеансами. Якщо вимкнено, програвач використовує тимчасові файли для поточного сеансу. Перезапустіть програвач, щоб застосувати зміни."
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "Автоматичний кеш потокового відтворення"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "Автоматично налаштовує кеш потокового відтворення. Явно задані параметри mpv мають пріоритет. Зміни застосовуються до наступного медіафайлу."

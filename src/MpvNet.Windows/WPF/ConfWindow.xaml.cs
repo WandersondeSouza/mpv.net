@@ -237,7 +237,10 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
 
         bool isSectionItem = false;
 
-        foreach (string it in File.ReadAllLines(file))
+        string[] lines = File.ReadAllLines(file);
+        if (Path.GetFileName(file) == "mpvnet.conf")
+            lines = NetworkCacheConfiguration.Migrate(lines);
+        foreach (string it in lines)
         {
             string line = it.Trim();
 
@@ -537,6 +540,12 @@ public partial class ConfWindow : Window, INotifyPropertyChanged
         }
 
         FileHelp.WriteAllTextAtomic(Player.ConfPath, GetContent("mpv"));
+        if (File.Exists(App.ConfPath))
+        {
+            string[] original = File.ReadAllLines(App.ConfPath);
+            if (!original.SequenceEqual(NetworkCacheConfiguration.Migrate(original)))
+                File.Copy(App.ConfPath, App.ConfPath + ".network-cache.backup", true);
+        }
         FileHelp.WriteAllTextAtomic(App.ConfPath, GetContent("mpvnet"));
 
         foreach (Setting it in _settings)

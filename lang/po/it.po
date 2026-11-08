@@ -2837,3 +2837,12 @@ msgstr "Conserva la cache delle copertine tra le sessioni"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "Riutilizza le copertine tra le sessioni. Se disattivata, il lettore usa file temporanei per la sessione corrente. Riavvia il lettore per applicare le modifiche."
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "Cache automatica dello streaming"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "Adatta automaticamente la cache dello streaming. Le opzioni esplicite di mpv hanno la precedenza. Le modifiche si applicano al prossimo elemento multimediale."

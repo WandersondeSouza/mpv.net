@@ -192,15 +192,25 @@ Builds com logs habilitados registram detalhes adicionais do fluxo de abertura:
 
 URLs com usuário, senha, query string ou fragmento sao mascaradas no log para
 evitar expor credenciais e tokens de playlists privadas. Diagnósticos de cache
-registram o tipo de mídia e o perfil escolhido, nunca a query original.
+registram o tipo de mídia e a política automática, nunca a query original.
 
 Com `debug-mode=yes` em uma build com logging de diagnóstico, `Network cache
-state` registra as opções efetivas no hook `on_load` e no `file-loaded`.
-`buffering-start` e `buffering-end` registram pausas por cache e a duração
-da espera e posição, com buffer e taxa de entrada estimados. `Network cache
-stream durations` informa os segundos disponíveis para áudio/vídeo quando o
-mpv expõe esses valores em `ts-per-stream`. Esses valores descrevem
-o demuxer principal e não garantem cobertura conjunta das faixas separadas.
+state` registra política, tipo identificado, evidência VOD/live e opções efetivas
+em `on_load`, `file-loaded`, mudanças de buffering/adaptação e `end-file`.
+A contagem/duração total por sessão exclui startup, pausa e seek; o estado é
+limpo por item. `capacityEstimate` distingue margem estimada adequada,
+insuficiente, marginal ou desconhecida, sem prometer capacidade acima do bitrate.
+`Network cache buffering` registra posição, duração aproximada, percentual e
+taxa de entrada; `Network cache stream durations` aceita somente durações
+numéricas finitas e não negativas de áudio/vídeo em `ts-per-stream`.
+Esses valores descrevem o demuxer principal e não garantem cobertura de demuxers
+externos. Ausência de métricas suficientes impede adaptação. Não há log por
+frame/pacote nem emissão de métricas a cada amostra; somente as transições.
+
+A leitura limitada de metadados do resolvedor serve à classificação e não
+registra o JSON/URLs assinadas. `ExpiredUrl` e `Manifest` distinguem expiração
+explícita e manifesto inválido; são erros definitivos, sem reconexão automática.
+A política não diagnostica erro VP9/AV1 como falta de cache e não cria watchdog.
 
 Somente com `EnableFileLogging=true` e `debug-mode=yes`, o app acrescenta `verbose=` a
 `ytdl-raw-options`. Assim, o `yt-dlp` selecionado pelo hook do mpv grava a saída

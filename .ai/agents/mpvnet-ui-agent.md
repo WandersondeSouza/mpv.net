@@ -35,6 +35,7 @@ Analisar e alterar interface Windows do MPV.NET Media Player preservando comport
 - Validar DPI e múltiplos monitores quando a mudança afetar janela.
 - Não misturar correção visual com refatoração de arquitetura.
 - Preservar atalhos e menu de contexto.
+- No editor, manter **Cache automático de streaming** como um único Sim/Não de `automatic-network-cache`. Não restaurar perfis manuais nem remover opções nativas avançadas do mpv. Conferir migração/persistência, traduções e temas conforme [cache automático](../../docs/developer/mpv-integration.md#cache-automático-por-item).
 - Usar gettext para textos visíveis; preservar RTL/LTR, campos técnicos LTR,
   formatação regional, tooltips e nomes acessíveis. Validar troca de idioma no
   editor sem perder opções não salvas.

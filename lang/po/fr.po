@@ -2846,3 +2846,12 @@ msgstr "Conserver le cache des pochettes entre les sessions"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "Réutilise les pochettes entre les sessions. Si cette option est désactivée, le lecteur utilise des fichiers temporaires pour la session en cours. Redémarrez le lecteur pour appliquer les modifications."
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "Cache automatique de diffusion"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "Adapte automatiquement le cache de diffusion. Les options explicites de mpv sont prioritaires. Les modifications prennent effet au prochain média."

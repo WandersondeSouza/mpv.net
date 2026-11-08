@@ -16,7 +16,8 @@ public partial class MainPlayer
 {
     internal const ulong PlaylistTitleHookUserData = 2;
     public const string LoadfileOptionsInsertionIndex = "-1";
-    // Retained for existing consumers; current defaults are resolved per profile.
+    // Legacy constant retained for binary/source consumers. The automatic policy
+    // is now applied only by the per-item hook, not by loadfile arguments.
     public const string AutomaticStreamingLoadOptions = NetworkCachePolicy.BalancedHttpOptions;
 
     public void SetBluRayTitle(int id) => LoadFiles(new[] { @"bd://" + id }, false, false, source: MediaInputSource.InternalCommand);
@@ -282,17 +283,12 @@ public partial class MainPlayer
         IReadOnlySet<string> explicitOptions = classification.IsNetwork
             ? MpvOptionConfiguration.GetExplicitOptions()
             : MpvOptionConfiguration.EmptyOptions;
-        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(classification, explicitOptions);
-
-        if (resolution.IsEnabled)
-            Log.Debug($"Applying network cache policy. kind={resolution.Kind}, profile={resolution.Profile}, path='{Log.SafeValue(file)}', options='{resolution.Options}'");
-
         if (index == 0 && !append)
             Log.Debug($"Sending loadfile replace to mpv: '{Log.SafeValue(file)}'");
         else
             Log.Debug($"Sending loadfile append to mpv: '{Log.SafeValue(file)}'");
 
-        CommandV(BuildLoadfileArgs(file, index, append, title, resolution, explicitOptions));
+        CommandV(BuildLoadfileArgs(file, index, append, title, explicitOptions));
     }
 
     public static bool ShouldUseAutomaticStreamingOptions(string file) =>
@@ -307,8 +303,7 @@ public partial class MainPlayer
         IReadOnlySet<string> explicitOptions = classification.IsNetwork
             ? MpvOptionConfiguration.GetExplicitOptions()
             : MpvOptionConfiguration.EmptyOptions;
-        NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(classification, explicitOptions);
-        return BuildLoadfileArgs(file, index, append, title, resolution, explicitOptions);
+        return BuildLoadfileArgs(file, index, append, title, explicitOptions);
     }
 
     static string[] BuildLoadfileArgs(
@@ -316,11 +311,12 @@ public partial class MainPlayer
         int index,
         bool append,
         string? title,
-        NetworkCacheResolution resolution,
         IReadOnlySet<string> explicitOptions)
     {
         string mode = index == 0 && !append ? "replace" : "append";
-        string options = resolution.Options;
+        // Cache belongs to on_load, after scripts/profiles and yt-dlp. Injecting
+        // it here would mark our values explicit and prevent later refinement.
+        string options = "";
 
         if (!string.IsNullOrWhiteSpace(title))
             options = string.IsNullOrEmpty(options)

@@ -2836,3 +2836,12 @@ msgstr "跨工作階段保留封面快取"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "在不同工作階段重複使用封面。關閉後，播放器會為目前的工作階段使用暫存檔。請重新啟動播放器以套用變更。"
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "自動串流快取"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "自動調整串流快取。明確設定的 mpv 選項優先。變更會套用至下一個媒體項目。"

@@ -189,6 +189,23 @@ O inventário, as regras RTL/regionais e os resultados da expansão estão em
 catálogos; inglês usa o texto-fonte. Uma compilação ou um MSIX local sem
 assinatura não comprova instalação, atualização nem certificação da Store.
 
+### Cache automático: validação e medições
+
+Mudanças no cache exigem `NetworkCachePolicyTests`, `NetworkCacheSessionTests`,
+`NetworkCacheNativeTests`, regressões de playlist/recovery e a suíte completa.
+Os testes usam a libmpv preparada pelo build; confirme sua revisão efetiva.
+HTTP loopback real e resultados simulados de yt-dlp não comprovam reprodução
+em serviços externos. Os limites, a migração, a validação visual e as medições
+locais de 08/11/2026 estão em [Cache automático por item](developer/mpv-integration.md#cache-automático-por-item).
+
+Compare cenários equivalentes antes/depois e registre tempo de início,
+quantidade/duração de buffering, bitrate/taxa de entrada quando disponíveis,
+RAM/CPU e recuperação; para lives, meça atraso separadamente. As amostras
+sintéticas curtas registradas não substituem sessão prolongada 1080p/4K,
+transporte HLS/DASH/RTSP/RTMP, YouTube e o checklist manual acima. Uma etapa
+com build/testes aprovados pode manter essas validações externas pendentes,
+identificando o ambiente e sem prometer ganho de desempenho não medido.
+
 ## Manutenção deste guia
 
 Atualize este documento quando os comandos ou scripts operacionais mudarem.

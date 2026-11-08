@@ -44,6 +44,15 @@ qualquer descrição de prompt como baseline.
 - Para mudanças em parser, paths, playlist, título, logs, configuração, seleção de idioma ou MediaInfo, verifique se os testes da área em `src/MpvNet.Tests/` (incluindo `Program.cs` quando aplicável) cobrem o caso, amplie a cobertura quando houver comportamento novo e rode `dotnet run --project src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore`.
 - Para mudanças em UI/libmpv, rode build/testes e faça checklist manual: arquivo local, URL/stream, playlist, pasta com mídia, drag/drop, menu de contexto, fullscreen, alternância de faixa/legenda, cursor/OSC, comandos de janela e fechamento.
 
+## Cache resiliente unificado
+
+- A política operacional consulta somente `AutomaticNetworkCache`; o perfil legado é alias de migração. Conferir `NetworkCacheConfiguration.cs` antes de mudar leitura/persistência; o editor faz backup e a inicialização não regrava o arquivo.
+- `on_load`/`on_preloaded` e `file-loaded` aplicam/refinam cache por item. Não voltar a injetar cache em `BuildLoadfileArgs`: isso conflita com precedência e classificação posterior.
+- `Media/NetworkCacheSession.cs` contém identificação e decisão pura com histerese. Metadados ausentes, janela DVR finita e URLs opacas exigem fallback conservador.
+- Respeitar opções explícitas, inclusive o par `cache-secs`/`demuxer-readahead-secs`, scripts/perfis e cache em disco. Não aumentar limites sem prova nem habilitar disco automaticamente.
+- Executar os testes `NetworkCachePolicyTests`, `NetworkCacheSessionTests`, `NetworkCacheNativeTests` e regressões de playlist/recovery. Confirmar a revisão do libmpv efetivamente usada.
+- Consultar [integração mpv](../../docs/developer/mpv-integration.md#cache-automático-por-item) e [configuração](../../docs/developer/configuration.md#mpvnetconf) para limites, precedência, migração e evidências. Registros de desempenho anteriores são históricos.
+
 ## Resumo para a mudança
 
 Antes de editar, registre:

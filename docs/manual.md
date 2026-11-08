@@ -348,7 +348,6 @@ conservadoras de cache. A politica e controlada por `mpvnet.conf`:
 
 ```text
 automatic-network-cache=yes
-network-cache-profile=resilient
 save-network-urls-in-recent=no
 ```
 
@@ -361,19 +360,35 @@ segredos que não são reconhecidos, habilite a opção apenas para URLs que voc
 confia não conter dados sigilosos. Essa política não altera a URL usada na
 reprodução atual.
 
-Os perfis sao `off`, `low-latency`, `balanced` e `resilient`. O padrão, inclusive
-quando o valor configurado é inválido, é `resilient`; escolhas válidas existentes
-são preservadas. Arquivos locais
-nao recebem opcoes automaticas de rede. HTTP progressivo, HLS/DASH, arquivos
-FTP/SFTP e transmissao ao vivo (RTSP/RTMP/UDP/TCP) usam limites diferentes.
-RTSP nao recebe `network-timeout`, pois essa opcao pode quebrar o transporte.
-Páginas HTTP/HTTPS sem extensão de mídia direta usam a política de resolvedor
-online independentemente do domínio, respeitando o perfil selecionado; arquivos diretos e manifestos
-HLS/DASH preservam suas classificações próprias.
+No editor, **Cache → Cache automático de streaming** oferece apenas **Sim/Não**.
+O padrão é ativado. `automatic-network-cache=no` desliga todas as opções
+acrescentadas por essa política; as configurações nativas do mpv continuam válidas.
+A mudança vale para o próximo item aberto, inclusive em playlists.
+
+Configurações antigas com `low-latency`, `balanced` ou `resilient` passam a usar
+a política automática; `off` e um `automatic-network-cache=no` antigo continuam
+desativados. A leitura não regrava o arquivo. Ao salvar uma alteração no editor,
+o formato antigo é removido e uma cópia é preservada em
+`mpvnet.conf.network-cache.backup`. Valores iguais ao padrão podem ser omitidos.
+A opção antiga também continua aceita na linha de comando como alias de migração.
+
+Arquivos locais não recebem opções automáticas de rede. Para VOD confirmado,
+os tetos à frente são 512 MiB para HTTP progressivo, DASH e resolvedores como
+yt-dlp, e 256 MiB para HLS. Lives HLS/DASH e fontes ainda não identificadas usam
+64 MiB, sem espera inicial forçada. RTSP e datagramas usam 32 MiB; RTMP usa
+64 MiB; FTP/SFTP usam 128 MiB. O cache para trás é limitado separadamente a
+32 MiB em VOD e 8 MiB nos demais casos. Esses tetos não reservam memória nem
+asseguram minutos de vídeo; decodificador, áudio e GPU consomem memória adicional.
+
+A classificação usa dados já obtidos pelo mpv/yt-dlp, sem sondagens HTTP extras.
+Uma extensão `.m3u8`/`.mpd` ou a duração de uma janela DVR não prova VOD.
+Na dúvida, o player mantém limites conservadores. Veja as regras completas em
+[Cache automático por item](developer/mpv-integration.md#cache-automático-por-item).
 
 Em falha transitória comprovada, streams contínuos RTSP, RTMP, SRT, UDP e TCP
 podem tentar reconexão até três vezes, com esperas de 1, 2 e 4 segundos. HLS e
-DASH só entram nessa política depois de carregarem como live sem duração finita.
+DASH só entram nessa política depois de carregarem com evidência de live pelo
+resolvedor, ou no caminho direto já existente sem duração finita.
 Arquivos locais, HTTP progressivo, vídeo sob demanda, fim normal e playlists com
 próximo item não são reiniciados. Trocar a mídia, usar Stop ou fechar o player
 cancela a tentativa pendente.
@@ -383,24 +398,20 @@ precedencia sobre os valores automaticos. O diretorio temporario do cache
 continua em `%LOCALAPPDATA%\mpv.net\Cache`, mas `cache` e `cache-on-disk` nao
 sao mais forcados globalmente pelo frontend.
 
-Para HTTP progressivo, DASH e resolvedores online como YouTube, `low-latency`
-usa 64 MiB sem buffer inicial; `balanced` usa 128 MiB e espera por 3 segundos
-de mídia; `resilient` usa 256 MiB e espera por 5 segundos de mídia antes de
-iniciar ou retomar após esvaziar o cache. Essa espera é pela quantidade de
-conteúdo, não um prazo fixo de carregamento. O buffer anterior, os decoders e
-outras estruturas podem consumir memória além desse limite à frente.
+Em VOD confirmado, a margem inicial/de retomada é de 3 segundos de mídia.
+Com interrupções repetidas e métricas suficientes, ela pode subir gradualmente
+até 8 segundos; em lives/fontes incertas fica entre 1 e 2 segundos. A política
+não aumenta limites sem interrupções e reduz a margem após estabilidade
+observada. Pausa e seek não contam como falha de rede. Uma conexão
+continuamente abaixo do bitrate necessário é diagnosticada, sem loop de reload.
 
-O mesmo perfil se aplica às páginas de Bilibili, Niconico, Naver, Dailymotion,
-Twitch, Vimeo, SoundCloud e outros serviços reconhecidos pelos extractors
-disponíveis no yt-dlp instalado. A política independe do domínio; o extractor
-continua responsável por resolver o conteúdo, inclusive quando exige autenticação.
-
-A política também é aplicada a cada item de playlists expandidas pelo mpv,
-inclusive YouTube, próximo/anterior e itens reinseridos por `loadlist`.
-Opções locais de perfis/scripts têm precedência. A qualidade selecionada pelo
-mpv/yt-dlp não é reduzida automaticamente e o cache em disco não é habilitado
-automaticamente nesses conteúdos. Um buffer maior absorve oscilações, mas não
-sustenta uma conexão continuamente abaixo do bitrate necessário.
+A política é aplicada a cada item pelo mesmo hook, inclusive em playlists do
+YouTube, próximo/anterior e `loadlist`. Opções explícitas de CLI, `mpv.conf`,
+perfis e scripts prevalecem; configurações indiretas que não possam ser
+inspecionadas fazem a política recuar. Nenhum cache em disco é habilitado
+automaticamente. Não há troca automática de resolução/codec nem seek até a
+borda da live. Falhas de decoder ou vídeo congelado com áudio avançando
+continuam exigindo diagnóstico próprio: cache maior não garante solução.
 
 Playlists locais são expandidas pelo frontend e seus itens, já preparados pela
 regra comum, são enviados juntos com os títulos preenchidos. A ordem e a

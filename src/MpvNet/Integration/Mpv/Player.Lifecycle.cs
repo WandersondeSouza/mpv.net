@@ -79,6 +79,7 @@ public partial class MainPlayer
         }
         finally
         {
+            ResetNetworkCacheSession();
             lock (_playerTasksLock)
                 _playerTasks.Clear();
             lock (_eventTasksLock)

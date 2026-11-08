@@ -44,6 +44,7 @@ instalação comum, modo portátil e MSIX/Microsoft Store.
   documentos e testes atuais.
 - A política de cache de reprodução é uma área distinta: consulte
   `NetworkCachePolicy` e preserve opções explícitas do usuário.
+- Essa política usa apenas `AutomaticNetworkCache`, hooks por item e decisões de `NetworkCacheSession`; o perfil antigo é migração. Não criar outro downloader/cache de mídia dentro de `RuntimeComponents` nem confundir seus downloads persistentes com os tetos do demuxer. Veja [integração mpv](../../docs/developer/mpv-integration.md#cache-automático-por-item).
 
 ## Regras
 

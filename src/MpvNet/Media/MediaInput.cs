@@ -247,6 +247,11 @@ public static class MpvOptionConfiguration
                 result.Add(optionName);
         }
 
+        // Includes and externally selected profiles may contain arbitrary options.
+        // When their contents cannot be proven here, defer completely to mpv.
+        if (result.Overlaps(["include", "profile", "use-filedir-conf"]))
+            result.Add("*");
+
         return result;
     }
 
@@ -279,32 +284,31 @@ public static class NetworkCachePolicy
     internal static NetworkCacheResolution Resolve(
         MediaInputClassification classification,
         IReadOnlySet<string> explicitOptions)
+        => Resolve(new NetworkCacheMedia(classification.NetworkKind, false, false), explicitOptions,
+            classification.IsNetwork);
+
+    internal static NetworkCacheResolution Resolve(NetworkCacheMedia media,
+        IReadOnlySet<string> explicitOptions, bool isNetwork = true)
     {
-        if (!App.AutomaticNetworkCache || !classification.IsNetwork)
-            return new(classification.NetworkKind, App.NetworkCacheProfile, "");
+        if (!App.AutomaticNetworkCache || !isNetwork || media.Kind == NetworkMediaKind.None)
+            return new(media.Kind, "off", "");
 
-        string profile = NormalizeProfile(App.NetworkCacheProfile);
-        if (profile == "off")
-            return new(classification.NetworkKind, profile, "");
-
-        string options = classification.NetworkKind switch
+        // Unknown manifests/pages may be live. Do not add a startup wait until
+        // VOD has been established from resolved metadata, rather than a suffix.
+        int forward = media.Kind switch
         {
-            NetworkMediaKind.HttpProgressive or NetworkMediaKind.Dash or NetworkMediaKind.OnlineResolver =>
-                profile == "low-latency"
-                    ? "cache=yes,cache-pause-initial=no,demuxer-max-bytes=64MiB"
-                    : profile == "resilient" ? "cache=yes,cache-pause-initial=yes,cache-pause-wait=5,demuxer-max-bytes=256MiB" : BalancedHttpOptions,
-            NetworkMediaKind.Hls =>
-                profile == "low-latency"
-                    ? "cache=yes,cache-pause-initial=no,demuxer-max-bytes=32MiB"
-                    : profile == "resilient" ? "cache=yes,cache-pause-initial=yes,cache-pause-wait=5,demuxer-max-bytes=128MiB" : "cache=yes,cache-pause-initial=yes,cache-pause-wait=3,demuxer-max-bytes=64MiB",
-            NetworkMediaKind.FtpFile or NetworkMediaKind.SftpFile =>
-                "cache=yes,cache-on-disk=yes,demuxer-max-bytes=128MiB",
-            NetworkMediaKind.Rtsp or NetworkMediaKind.Rtmp or NetworkMediaKind.DatagramLive =>
-                "cache=yes,cache-pause-initial=no,cache-pause-wait=1,demuxer-max-bytes=32MiB",
-            _ => "cache=yes,cache-pause-initial=no,demuxer-max-bytes=64MiB"
+            NetworkMediaKind.Hls when media.IsVod => 256,
+            NetworkMediaKind.HttpProgressive or NetworkMediaKind.Dash or NetworkMediaKind.OnlineResolver
+                when media.IsVod => 512,
+            NetworkMediaKind.FtpFile or NetworkMediaKind.SftpFile => 128,
+            NetworkMediaKind.Rtmp => 64,
+            NetworkMediaKind.Rtsp or NetworkMediaKind.DatagramLive => 32,
+            _ => 64
         };
-
-        return new(classification.NetworkKind, profile, RemoveExplicitOptions(options, explicitOptions));
+        int back = media.IsVod ? 32 : 8;
+        int seconds = media.IsVod ? 120 : 10;
+        string options = $"cache=yes,cache-pause=yes,cache-pause-initial={(media.IsVod ? "yes" : "no")},cache-pause-wait={(media.IsVod ? 3 : 1)},demuxer-max-bytes={forward}MiB,demuxer-max-back-bytes={back}MiB,cache-secs={seconds},demuxer-readahead-secs={seconds}";
+        return new(media.Kind, "automatic", RemoveExplicitOptions(options, explicitOptions));
     }
 
     public static string NormalizeProfile(string? profile) =>
@@ -325,6 +329,10 @@ public static class NetworkCachePolicy
             {
                 int equals = option.IndexOf('=');
                 string name = equals > 0 ? option[..equals] : option;
+                if (name is "cache-secs" or "demuxer-readahead-secs" &&
+                    (MpvOptionConfiguration.IsExplicit(explicitOptions, "cache-secs") ||
+                     MpvOptionConfiguration.IsExplicit(explicitOptions, "demuxer-readahead-secs")))
+                    return false;
                 return !NetworkOptions.Contains(name) || !MpvOptionConfiguration.IsExplicit(explicitOptions, name);
             }));
 }

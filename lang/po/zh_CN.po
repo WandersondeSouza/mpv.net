@@ -2847,3 +2847,12 @@ msgstr "跨会话保留封面缓存"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "在不同会话中重复使用封面。关闭后，播放器会为当前会话使用临时文件。重启播放器以应用更改。"
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "自动流媒体缓存"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "自动调整流媒体缓存。明确设置的 mpv 选项优先。更改对下一个媒体项目生效。"

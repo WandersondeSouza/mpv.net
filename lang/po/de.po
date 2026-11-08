@@ -2846,3 +2846,12 @@ msgstr "Cover-Cache zwischen Sitzungen behalten"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "Verwendet Cover sitzungsübergreifend erneut. Bei deaktivierter Option verwendet der Player temporäre Dateien für die aktuelle Sitzung. Starten Sie den Player neu, um die Änderungen anzuwenden."
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "Automatischer Streaming-Cache"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "Passt den Streaming-Cache automatisch an. Explizite mpv-Optionen haben Vorrang. Änderungen gelten für das nächste Medium."

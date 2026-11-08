@@ -430,3 +430,20 @@ Esta validacao nao incluiu instalacao/atualizacao real de um MSIX assinado nem c
 
 A auditoria automática identifica omissões prováveis, mas não substitui uma revisão editorial independente por falantes nativos. A validação de interface descrita acima cobre esses seis idiomas e as telas capturadas; não equivale à matriz completa de DPI, monitores, foco e drag-and-drop.
 
+
+## Cache automático de streaming — 08/11/2026
+
+O editor inclui um único Sim/Não de `automatic-network-cache`. O identificador
+persistido permanece literal; o rótulo **Automatic streaming cache** e a ajuda
+são traduzidos nos 19 catálogos. As três chaves novas foram acrescentadas sem
+alterar traduções anteriores: template e catálogos têm 807 entradas ativas.
+Inglês continua usando o texto-fonte. A troca de idioma reutiliza a reconstrução
+de rótulos existente, sem substituir os valores editados. O toggle e a ajuda
+foram verificados visualmente em português, nos temas claro/escuro, com migração
+legada e gravação em configuração isolada. Isso não valida todos os idiomas,
+DPIs, RTL ou múltiplos monitores; os contratos de catálogo continuam automatizados.
+
+Os seis testes de `lang/test-language-expansion.py`, a compilação dos 19 MOs e
+`src/Tools/test-localization-package.ps1` passaram. O teste de pacote verifica
+pasta, ZIP, contêiner Store aninhado e rejeição de catálogos ausentes/vazios;
+isso não comprova instalação ou certificação na Microsoft Store.

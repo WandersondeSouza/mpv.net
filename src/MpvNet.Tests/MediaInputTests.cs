@@ -173,7 +173,7 @@ public sealed class MediaInputTests
             "https://www.youtube.com/watch?v=VIDEO_ID");
 
         Assert.Equal(NetworkMediaKind.OnlineResolver, classification.NetworkKind);
-        Assert.Contains("demuxer-max-bytes=256MiB", NetworkCachePolicy.Resolve(
+        Assert.Contains("demuxer-max-bytes=64MiB", NetworkCachePolicy.Resolve(
             "https://www.youtube.com/watch?v=VIDEO_ID", new HashSet<string>()).Options,
             StringComparison.Ordinal);
     }
@@ -188,7 +188,7 @@ public sealed class MediaInputTests
         NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(
             "https://example.com/video.mp4", explicitOptions);
 
-        Assert.Contains("cache-pause-initial=yes", resolution.Options, StringComparison.Ordinal);
+        Assert.Contains("cache-pause-initial=no", resolution.Options, StringComparison.Ordinal);
         Assert.DoesNotContain("cache=yes", resolution.Options, StringComparison.Ordinal);
         Assert.DoesNotContain("cache-pause-wait", resolution.Options, StringComparison.Ordinal);
         Assert.DoesNotContain("demuxer-max-bytes", resolution.Options, StringComparison.Ordinal);

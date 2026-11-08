@@ -1209,6 +1209,14 @@ directory = Appearance
 url = https://github.com/WandersondeSouza/mpv.net/blob/master/docs/manual.md#color-theme
 help = Color theme used in light mode.\nmpv.net must be restarted after a change.\nmpv.net specific option. Default: light
 
+name = automatic-network-cache
+file = mpvnet
+directory = Cache
+help = Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item.
+default = yes
+option = yes
+option = no
+
 name = cache
 file = mpv
 directory = Cache

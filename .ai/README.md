@@ -30,6 +30,7 @@ usuário. Não faça essas ações sem solicitação explícita.
 
 - Cache e componentes auxiliares: `docs/developer/configuration.md`,
   `docs/developer/mpv-integration.md` e `docs/logging.md`.
+- Para streaming, a [política unificada](../docs/developer/mpv-integration.md#cache-automático-por-item) usa `AutomaticNetworkCache`; os perfis de prompts antigos são contexto histórico. Consulte a skill local e os agentes de libmpv/configuração antes de alterar hooks, migração ou precedência.
 - Build e distribuição: `docs/developer/build-release.md` e
   `docs/guia-operacional.md`. O fluxo GitHub e o pacote WAP/Microsoft Store são
   validações distintas.

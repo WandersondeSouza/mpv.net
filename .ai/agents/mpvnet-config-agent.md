@@ -21,6 +21,8 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 - `src/MpvNet/Integration/Mpv/Player.Initialization.cs`;
 - `src/MpvNet/Integration/Mpv/Player.MediaLoading.cs`;
 - `src/MpvNet/App.cs`;
+- `src/MpvNet/Configuration/NetworkCacheConfiguration.cs`;
+- `src/MpvNet.Windows/WPF/ConfWindow.xaml.cs` e `Resources/editor_conf.txt`;
 - `src/MpvNet/Configuration/InputConf.cs`;
 - `src/MpvNet/Configuration/Settings.cs`;
 - `src/MpvNet/Infrastructure/Folder.cs`;
@@ -33,6 +35,8 @@ Analisar e manter o sistema de configuração, modo portátil, `mpv.conf`, `mpvn
 - Não presumir o caminho físico padrão do MSIX: `AppPaths` usa `Packages\<PackageFamilyName>\LocalCache\Local`; `MPVNET_LOCAL_APPDATA` substitui a raiz de dados nos dois modos.
 - Não normalizar ou reescrever arquivo do usuário sem necessidade.
 - Criar backup antes de migração que altere arquivo do usuário.
+- Cache de streaming tem somente `automatic-network-cache`. Ler os perfis antigos como migração em memória; preservar `off`/toggle `no`, aliases de CLI e precedência. A primeira gravação de uma alteração no editor remove o legado e preserva `mpvnet.conf.network-cache.backup`; não regravar no startup ou ao abrir/fechar sem editar.
+- Para migração e interação entre opções, consultar [configuração](../../docs/developer/configuration.md#mpvnetconf) e [cache automático](../../docs/developer/mpv-integration.md#cache-automático-por-item). Não confundir desligar a política com forçar `cache=no` no mpv.
 - Validar atalhos duplicados sem quebrar compatibilidade com sintaxe do mpv.
 - Documentar opção ou fallback consolidado em documento existente quando possível.
 - Evitar criar documentação técnica redundante.

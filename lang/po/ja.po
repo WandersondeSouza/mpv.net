@@ -2846,3 +2846,12 @@ msgstr "セッション間でカバー画像のキャッシュを保持"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "セッションをまたいでカバー画像を再利用します。無効にすると、プレーヤーは現在のセッション用の一時ファイルを使用します。変更を適用するにはプレーヤーを再起動してください。"
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "ストリーミングキャッシュの自動調整"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "ストリーミングキャッシュを自動調整します。明示的なmpvオプションが優先されます。変更は次のメディアから適用されます。"

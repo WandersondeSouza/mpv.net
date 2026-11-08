@@ -2836,3 +2836,12 @@ msgstr "الاحتفاظ بذاكرة التخزين المؤقت للأغلفة
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "يُعاد استخدام الأغلفة بين الجلسات. عند تعطيل هذا الخيار، يستخدم المشغّل ملفات مؤقتة للجلسة الحالية. أعد تشغيل المشغّل لتطبيق التغييرات."
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "التخزين المؤقت التلقائي للبث"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "يضبط التخزين المؤقت للبث تلقائيا. تكون الأولوية لخيارات mpv المحددة صراحة. تسري التغييرات على عنصر الوسائط التالي."

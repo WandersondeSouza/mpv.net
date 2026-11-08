@@ -2846,3 +2846,12 @@ msgstr "세션 간에 커버 이미지 캐시 유지"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "세션 간에 커버 이미지를 재사용합니다. 끄면 플레이어는 현재 세션에 임시 파일을 사용합니다. 변경 사항을 적용하려면 플레이어를 다시 시작하세요."
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "자동 스트리밍 캐시"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "스트리밍 캐시를 자동으로 조정합니다. 명시적으로 지정한 mpv 옵션이 우선합니다. 변경 사항은 다음 미디어 항목부터 적용됩니다."

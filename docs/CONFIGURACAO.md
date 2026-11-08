@@ -38,6 +38,12 @@ portable_config/
 
 ## Observações
 
+Em **Cache → Cache automático de streaming**, use Sim/Não para a política
+automática. O equivalente em `mpvnet.conf` é `automatic-network-cache=yes`
+(padrão) ou `no`. Os perfis antigos são migrados na leitura; ao salvar uma
+alteração no editor, um backup preserva o formato anterior. Desligar a política
+não muda as opções nativas do `mpv.conf`. Veja [limites e migração](developer/mpv-integration.md#cache-automático-por-item).
+
 - `mpv.conf` deve continuar compatível com o mpv.
 - `input.conf` pode ser usado para atalhos personalizados e menu.
 - Se `input.conf` usar menu personalizado, os itens base `Open Files...` e `About mpv.net` continuam sendo preservados quando estiverem ausentes.

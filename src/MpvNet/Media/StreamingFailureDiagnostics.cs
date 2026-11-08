@@ -26,7 +26,9 @@ public enum StreamingFailureCategory
     Playlist,
     NetworkTransport,
     Decoder,
-    BotVerification
+    BotVerification,
+    ExpiredUrl,
+    Manifest
 }
 
 public sealed record StreamingFailureDiagnostic(
@@ -130,6 +132,10 @@ public static partial class StreamingFailureDiagnostics
             return Result(StreamingFailureCategory.ProofOfOriginToken, "yt-dlp", safeMessage,
                 "Configure a supported PO Token provider only when required by the extractor; do not paste tokens into logs.", false, 100);
 
+        if (ContainsAny(text, "url has expired", "url expired", "signature expired", "request has expired", "token has expired"))
+            return Result(StreamingFailureCategory.ExpiredUrl, "signed media URL", safeMessage,
+                "Reopen the original service page to resolve a fresh URL; do not retry the expired signed address.", false, 96);
+
         if (ContainsAny(text, "javascript challenge", "js challenge", "ejs", "n challenge", "signature solving failed"))
             return Result(StreamingFailureCategory.JavaScriptChallenge, "yt-dlp/EJS", safeMessage,
                 "Run --diagnose-components and verify a supported JavaScript runtime and current yt-dlp.", false, 95);
@@ -189,6 +195,10 @@ public static partial class StreamingFailureDiagnostics
         if (ContainsAny(text, "failed to open playlist", "playlist error", "invalid playlist"))
             return Result(StreamingFailureCategory.Playlist, "mpv/demuxer", safeMessage,
                 "Validate the playlist response and its referenced media entries.", false, 40);
+
+        if (ContainsAny(text, "invalid manifest", "failed to parse manifest", "error parsing mpd", "invalid hls"))
+            return Result(StreamingFailureCategory.Manifest, "manifest demuxer", safeMessage,
+                "Inspect the manifest and preceding HTTP errors; increasing cache cannot repair invalid manifests.", false, 41);
 
         if (component is "ffmpeg/video" or "vd" && ContainsAny(text,
             "failed to read frame header", "invalid frame marker", "invalid data found when processing input",

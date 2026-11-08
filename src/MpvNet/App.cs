@@ -49,7 +49,11 @@ public class AppClass : IDisposable
 
     public int RecentCount { get; set; } = 15;
 
-    public string NetworkCacheProfile { get; set; } = "resilient";
+    // Compatibility alias for existing extensions/CLI. The policy only reads the toggle.
+    public string NetworkCacheProfile {
+        get => AutomaticNetworkCache ? "resilient" : "off";
+        set => AutomaticNetworkCache = NetworkCachePolicy.NormalizeProfile(value) != "off";
+    }
 
     public float AutofitAudio { get; set; } = 0.7f;
     public float AutofitImage { get; set; } = 0.8f;
@@ -376,7 +380,7 @@ public class AppClass : IDisposable
             if (_Conf == null)
             {
                 _Conf = File.Exists(ConfPath)
-                    ? ConfigFileParser.ParseKeyValueLines(File.ReadAllLines(ConfPath))
+                    ? ConfigFileParser.ParseKeyValueLines(NetworkCacheConfiguration.Migrate(File.ReadAllLines(ConfPath)))
                     : [];
             }
 

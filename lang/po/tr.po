@@ -2848,3 +2848,12 @@ msgstr "Kapak önbelleğini oturumlar arasında sakla"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "Kapakları oturumlar arasında yeniden kullanır. Devre dışı bırakıldığında oynatıcı mevcut oturum için geçici dosyalar kullanır. Değişiklikleri uygulamak için oynatıcıyı yeniden başlatın."
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "Otomatik akış önbelleği"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "Akış önbelleğini otomatik olarak uyarlar. Açıkça belirtilen mpv seçenekleri önceliklidir. Değişiklikler sonraki medya öğesine uygulanır."

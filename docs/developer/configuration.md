@@ -299,7 +299,7 @@ Opções reconhecidas pelo mpv.net:
 | Opção | Valor padrão no código | Função |
 | --- | --- | --- |
 | `auto-load-folder` | `no` | Controla carregamento automático da pasta. |
-| `automatic-network-cache` | `yes` | Ativa a política automática de cache por entrada de rede. |
+| `automatic-network-cache` | `yes` | Único toggle automático, em **Cache** no editor. Aplica a política resiliente por item; `no` deixa as opções nativas do mpv sob controle do usuário. Mudanças valem na próxima carga. |
 | `audio-artwork-cache` | `yes` | Em **Áudio** no editor. Reutiliza o cache de capas entre sessões. Com `no`, usa uma pasta temporária por instância. A mudança exige reiniciar. |
 | `audio-artwork-online` | `yes` | Em **Áudio** no editor. Autoriza buscar capas de álbum e fotos verificadas de artista para áudio local. Um `no` explícito impede a rede e permite reutilizar imagens do cache ativo. |
 | `audio-artwork-prefer-online` | `no` | Prefere capa de álbum online ou em cache à arte selecionada automaticamente pelo mpv. A preferência respeita escolhas explícitas do mpv e só a primeira opção autoriza rede. |
@@ -312,7 +312,7 @@ Opções reconhecidas pelo mpv.net:
 | `light-theme` | `light` | Tema claro. |
 | `media-info` | `yes` | Ativa ou desativa as informações de mídia. |
 | `menu-syntax` | `#menu:` | Define a sintaxe de menu reconhecida em `input.conf`. |
-| `network-cache-profile` | `resilient` | Perfil `off`, `low-latency`, `balanced` ou `resilient`; valor inválido usa `resilient`. |
+| `network-cache-profile` | alias legado | Aceita `off` → desativado; `low-latency`/`balanced`/`resilient` e inválidos → ativado. Não seleciona mais um perfil de cache. |
 | `minimum-aspect-ratio` | `0` | Limite de proporção para vídeo. |
 | `minimum-aspect-ratio-audio` | `0` | Limite de proporção para áudio. |
 | `process-instance` | `single` | Controle de instância: single/queue/multi. |
@@ -323,6 +323,22 @@ Opções reconhecidas pelo mpv.net:
 | `remember-volume` | `yes` | Persiste volume/mute. |
 | `remember-window-position` | `no` | Persiste posição da janela. |
 | `start-size` | `height-session` | Tamanho inicial da janela. |
+
+`NetworkCacheConfiguration.Migrate` normaliza o formato antigo somente em memória
+na leitura do aplicativo e do editor. No arquivo antigo, `off` ou um toggle
+`no` mantêm a política desligada, independentemente da ordem das duas chaves.
+Sem legado, o toggle novo prevalece normalmente. CLI é aplicada depois do
+arquivo; aliases na CLI seguem a ordem dos argumentos. `NetworkCacheProfile`
+permanece como fachada para consumidores internos, enquanto a política consulta
+exclusivamente `AutomaticNetworkCache`.
+
+A primeira gravação de uma alteração no editor remove o legado e faz backup em
+`mpvnet.conf.network-cache.backup` antes da escrita atômica de `mpvnet.conf`.
+Abrir/fechar o editor sem alterações não regrava nem cria backup. Comentários e
+opções não relacionados continuam no fluxo de preservação existente. `yes`, por
+ser o padrão, pode ser omitido na gravação. A migração não toca `mpv.conf`,
+`input.conf` nem os diretórios de configuração. Limites, precedência e fallback
+estão em [Cache automático por item](mpv-integration.md#cache-automático-por-item).
 
 `App.Init()` registra como erro cada opção desconhecida encontrada no arquivo.
 

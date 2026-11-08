@@ -456,3 +456,14 @@ Use `-KeepOpen` para concluir o checklist visual e fechar a janela pelo próprio
 aplicativo, verificando o encerramento normal separadamente.
 
 
+
+## Controle de cache automático no editor
+
+**Cache → Cache automático de streaming** é o Sim/Não de `automatic-network-cache`.
+O editor mantém os controles nativos avançados de cache e não expõe seleção de
+perfis automáticos. A leitura apresenta o estado migrado; salvar uma alteração
+preserva backup do formato legado. Rótulo, ajuda e Sim/Não usam gettext e o
+fluxo existente de atualização de idioma. Veja [migração](configuration.md#mpvnetconf)
+e [política por item](mpv-integration.md#cache-automático-por-item). A validação
+visual de 08/11/2026 confirmou o controle nos temas claro/escuro em português;
+DPI, RTL, outros idiomas e o checklist completo do player continuam independentes.

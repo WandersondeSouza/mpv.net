@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
-
+using System.Linq;
 using Xunit;
 
 namespace MpvNet.Tests;
@@ -10,71 +9,111 @@ namespace MpvNet.Tests;
 public sealed class NetworkCachePolicyTests
 {
     [Theory]
-    [InlineData("https://www.youtube.com/watch?v=VIDEO")]
-    [InlineData("https://www.bilibili.com/video/BV1Example/")]
-    [InlineData("https://www.nicovideo.jp/watch/sm9")]
-    [InlineData("https://tv.naver.com/v/1234")]
-    [InlineData("https://www.dailymotion.com/video/xexample")]
-    [InlineData("https://www.twitch.tv/videos/1234")]
-    [InlineData("https://vimeo.com/1234")]
-    [InlineData("https://soundcloud.com/artist/track")]
-    [InlineData("https://another-extractor.example/watch/1234")]
-    public void ServicePagesUseResilientWithoutADomainAllowlist(string path)
+    [InlineData("low-latency", true)]
+    [InlineData("balanced", true)]
+    [InlineData("resilient", true)]
+    [InlineData("off", false)]
+    [InlineData("INVALID", true)]
+    public void LegacyConfigurationMigratesWithoutChangingUnrelatedLines(string profile, bool enabled)
     {
-        WithProfile("resilient", () =>
-        {
-            Assert.Equal(NetworkMediaKind.OnlineResolver, MediaInputClassifier.Classify(path).NetworkKind);
-            NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(path, new HashSet<string>());
-            Assert.Equal("resilient", resolution.Profile);
-            Assert.Contains("demuxer-max-bytes=256MiB", resolution.Options);
-            Assert.Contains("cache-pause-initial=yes", resolution.Options);
-            Assert.Contains("cache-pause-wait=5", resolution.Options);
-            Assert.DoesNotContain("cache-on-disk", resolution.Options);
-        });
+        string[] lines = ["# User settings", "language=english", "network-cache-profile=" + profile, "queue=yes"];
+        string[] migrated = NetworkCacheConfiguration.Migrate(lines);
+        Assert.Equal(new[] { lines[0], lines[1], "automatic-network-cache=" + (enabled ? "yes" : "no"), lines[3] }, migrated);
+        Assert.Equal(migrated, NetworkCacheConfiguration.Migrate(migrated));
+        using AppClass app = new();
+        Assert.True(app.ProcessProperty("network-cache-profile", profile));
+        Assert.Equal(enabled, app.AutomaticNetworkCache);
     }
 
     [Theory]
-    [InlineData("low-latency", "64MiB", "no", null)]
-    [InlineData("balanced", "128MiB", "yes", "3")]
-    [InlineData("resilient", "256MiB", "yes", "5")]
-    public void ResolverAndDirectHttpRespectEachProfile(string profile, string bytes, string initial, string? wait)
+    [InlineData("off", "yes", "no")]
+    [InlineData("balanced", "no", "no")]
+    [InlineData("resilient", "yes", "yes")]
+    public void MigrationPreservesBothOldWaysOfDisablingCacheRegardlessOfLineOrder(string profile, string toggle, string expected)
     {
-        WithProfile(profile, () =>
-        {
-            foreach (string path in new[]
-            {
-                "https://youtu.be/VIDEO", "https://www.youtube.com/watch?v=VIDEO&list=LIST&index=6",
-                "https://unknown.example/media/opaque", "https://example.com/video.mp4",
-                "https://example.com/manifest.mpd", "ytdl://https://youtu.be/VIDEO"
-            })
-            {
-                string options = NetworkCachePolicy.Resolve(path, new HashSet<string>()).Options;
-                Assert.Contains("demuxer-max-bytes=" + bytes, options);
-                Assert.Contains("cache-pause-initial=" + initial, options);
-                if (wait is null)
-                    Assert.DoesNotContain("cache-pause-wait", options);
-                else
-                    Assert.Contains("cache-pause-wait=" + wait, options);
-                Assert.DoesNotContain("cache-on-disk", options);
-            }
-        });
-    }
-
-    [Theory]
-    [InlineData(null)]
-    [InlineData("")]
-    [InlineData("invalid")]
-    public void MissingOrInvalidProfileUsesResilient(string? profile)
-    {
-        Assert.Equal("resilient", NetworkCachePolicy.NormalizeProfile(profile));
-        Assert.Equal("resilient", new AppClass().NetworkCacheProfile);
+        string[] lines = ["network-cache-profile=" + profile, "automatic-network-cache=" + toggle];
+        Assert.Equal(new[] { "automatic-network-cache=" + expected }, NetworkCacheConfiguration.Migrate(lines));
+        Assert.Equal(new[] { "automatic-network-cache=" + expected }, NetworkCacheConfiguration.Migrate(lines.Reverse().ToArray()));
     }
 
     [Fact]
-    public void LocalFilesAndDisabledPolicyDoNotApplyFileOptions()
+    public void NewInstallationUsesTheSingleToggleAndCliCanOverrideMigratedSettings()
     {
-        WithProfile("off", () => Assert.Empty(NetworkCachePolicy.Resolve("https://youtu.be/VIDEO", new HashSet<string>()).Options));
-        WithProfile("resilient", () =>
+        using AppClass app = new();
+        Assert.True(app.AutomaticNetworkCache);
+        app.ProcessProperty("network-cache-profile", "off");
+        app.ProcessProperty("automatic-network-cache", "yes");
+        Assert.True(app.AutomaticNetworkCache);
+        Assert.Same(Array.Empty<string>(), NetworkCacheConfiguration.Migrate(Array.Empty<string>()));
+    }
+
+    [Fact]
+    public void MigrationAcceptsQuotedProfilesAndKeepsInlineComments()
+    {
+        string[] lines = [" # ignored=1", "network-cache-profile = 'off' # keep explanation", "language=english"];
+        Assert.Equal(new[] { lines[0], "automatic-network-cache=no", "# keep explanation", lines[2] }, NetworkCacheConfiguration.Migrate(lines));
+    }
+
+    [Theory]
+    [InlineData("cache-secs")]
+    [InlineData("demuxer-readahead-secs")]
+    public void ExplicitTimeCapPreventsItsCounterpartFromDefeatingIt(string option)
+    {
+        WithAutomatic(() =>
+        {
+            var resolution = NetworkCachePolicy.Resolve(new NetworkCacheMedia(NetworkMediaKind.HttpProgressive, true, false), new HashSet<string> { option });
+            Assert.DoesNotContain("cache-secs=", resolution.Options);
+            Assert.DoesNotContain("demuxer-readahead-secs=", resolution.Options);
+        });
+    }
+
+    [Theory]
+    [InlineData(NetworkMediaKind.HttpProgressive, true, 512)]
+    [InlineData(NetworkMediaKind.OnlineResolver, true, 512)]
+    [InlineData(NetworkMediaKind.Dash, true, 512)]
+    [InlineData(NetworkMediaKind.Hls, true, 256)]
+    [InlineData(NetworkMediaKind.Hls, false, 64)]
+    [InlineData(NetworkMediaKind.Dash, false, 64)]
+    [InlineData(NetworkMediaKind.Rtsp, false, 32)]
+    [InlineData(NetworkMediaKind.Rtmp, false, 64)]
+    [InlineData(NetworkMediaKind.DatagramLive, false, 32)]
+    [InlineData(NetworkMediaKind.GenericNetwork, false, 64)]
+    [InlineData(NetworkMediaKind.FtpFile, true, 128)]
+    [InlineData(NetworkMediaKind.SftpFile, true, 128)]
+    public void AutomaticPolicyBoundsForwardBackwardAndTimeWithoutEnablingDisk(NetworkMediaKind kind, bool vod, int mib)
+    {
+        WithAutomatic(() =>
+        {
+            string options = NetworkCachePolicy.Resolve(new NetworkCacheMedia(kind, vod, !vod), new HashSet<string>()).Options;
+            Assert.Contains($"demuxer-max-bytes={mib}MiB", options);
+            Assert.Contains($"demuxer-max-back-bytes={(vod ? 32 : 8)}MiB", options);
+            Assert.Contains($"cache-pause-initial={(vod ? "yes" : "no")}", options);
+            Assert.Contains($"cache-secs={(vod ? 120 : 10)}", options);
+            Assert.DoesNotContain("cache-on-disk", options);
+            Assert.DoesNotContain("network-timeout", options);
+        });
+    }
+
+    [Theory]
+    [InlineData("https://youtu.be/VIDEO")]
+    [InlineData("https://example.com/live.m3u8")]
+    [InlineData("https://example.com/opaque")]
+    [InlineData("https://example.com/manifest.mpd")]
+    public void UnknownPagesAndManifestSuffixesNeverImplyVodOrStartupWait(string path)
+    {
+        WithAutomatic(() =>
+        {
+            var resolution = NetworkCachePolicy.Resolve(path, new HashSet<string>());
+            Assert.Equal("automatic", resolution.Profile);
+            Assert.Contains("demuxer-max-bytes=64MiB", resolution.Options);
+            Assert.Contains("cache-pause-initial=no", resolution.Options);
+        });
+    }
+
+    [Fact]
+    public void LocalFilesAndDisabledToggleApplyNoOptions()
+    {
+        WithAutomatic(() =>
         {
             Assert.Empty(NetworkCachePolicy.Resolve(@"C:\Media\video.mp4", new HashSet<string>()).Options);
             Global.App.AutomaticNetworkCache = false;
@@ -83,70 +122,63 @@ public sealed class NetworkCachePolicyTests
     }
 
     [Fact]
-    public void LocalProfileOrScriptOptionsAreNotOverwrittenByHook()
+    public void HookPreservesEachExplicitOptionAndLocalScriptValue()
     {
-        WithProfile("resilient", () =>
+        WithAutomatic(() =>
         {
-            NetworkCacheResolution resolution = NetworkCachePolicy.Resolve("https://youtu.be/VIDEO",
-                new HashSet<string> { "cache-pause-wait" });
-            StringPair[] missing = NetworkCachePolicy.GetMissingFileOptions(resolution,
-                name => name is "cache" or "demuxer-max-bytes").ToArray();
-            Assert.Single(missing);
-            Assert.Equal("cache-pause-initial", missing[0].Name);
-            Assert.Equal("yes", missing[0].Value);
+            var resolution = NetworkCachePolicy.Resolve("https://youtu.be/VIDEO", new HashSet<string> { "cache-pause-wait" });
+            var missing = NetworkCachePolicy.GetMissingFileOptions(resolution, name => name is "cache" or "demuxer-max-bytes").ToArray();
+            Assert.DoesNotContain(missing, pair => pair.Name is "cache" or "demuxer-max-bytes" or "cache-pause-wait");
+            Assert.Contains(missing, pair => pair.Name == "cache-pause-initial" && pair.Value == "no");
         });
     }
 
-    [Fact]
-    public void NegativeCommandLineOptionAndUnreadableConfigBlockAutomaticOverride()
+    [Theory]
+    [InlineData("include=another.conf")]
+    [InlineData("profile=external")]
+    [InlineData("use-filedir-conf=yes")]
+    public void IndirectConfigurationDefersCompletelyToMpv(string line)
     {
-        WithProfile("resilient", () =>
+        WithAutomatic(() => Assert.Empty(NetworkCachePolicy.Resolve("https://example.com/video.mp4",
+            MpvOptionConfiguration.ParseExplicitOptions([], [line])).Options));
+    }
+
+    [Fact]
+    public void NegativeCliAndUnreadableConfigBlockOverrides()
+    {
+        WithAutomatic(() =>
         {
-            HashSet<string> options = MpvOptionConfiguration.ParseExplicitOptions([new StringPair("no-cache", "")], []);
+            var options = MpvOptionConfiguration.ParseExplicitOptions([new StringPair("no-cache", "")], []);
             Assert.DoesNotContain("cache=yes", NetworkCachePolicy.Resolve("https://youtu.be/VIDEO", options).Options);
             Assert.Empty(NetworkCachePolicy.Resolve("https://youtu.be/VIDEO", new HashSet<string> { "*" }).Options);
         });
     }
 
-    [Theory]
-    [InlineData("low-latency", "32MiB")]
-    [InlineData("balanced", "64MiB")]
-    [InlineData("resilient", "128MiB")]
-    public void HlsKeepsItsSmallerBufferAndLiveProtocolsKeepTheirTransportPolicy(string profile, string bytes)
+    [Fact]
+    public void LoadfileDefersCacheToHookForEveryProtocol()
     {
-        WithProfile(profile, () =>
+        foreach (string path in new[] { "https://example.com/video.mp4", "https://example.com/a.m3u8", "ftp://example.com/a", "rtsp://example.com/live" })
         {
-            Assert.Contains("demuxer-max-bytes=" + bytes,
-                NetworkCachePolicy.Resolve("https://example.com/live.m3u8", new HashSet<string>()).Options);
-            string rtsp = NetworkCachePolicy.Resolve("rtsp://example.com/live", new HashSet<string>()).Options;
-            Assert.Contains("cache-pause-initial=no", rtsp);
-            Assert.Contains("demuxer-max-bytes=32MiB", rtsp);
-            Assert.DoesNotContain("network-timeout", rtsp);
-        });
+            Assert.Equal(new[] { "loadfile", path }, MainPlayer.BuildLoadfileArgs(path, 0, false));
+            Assert.Equal(new[] { "loadfile", path, "append" }, MainPlayer.BuildLoadfileArgs(path, 1, true));
+        }
     }
 
     [Fact]
-    public void ExplicitCacheOptionsAreReadFromCommandLineConfigDirectory()
+    public void ExplicitOptionsUseTheCommandLineConfigDirectory()
     {
-        string folder = Path.Combine(Path.GetTempPath(), "mpvnet-cache-conf-" + Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(folder);
+        using TestDirectory directory = new();
         StringPair[] arguments = CommandLine.Arguments.ToArray();
         try
         {
-            File.WriteAllText(Path.Combine(folder, "mpv.conf"), "cache=no\ndemuxer-max-bytes=32MiB\n");
+            File.WriteAllText(Path.Combine(directory.Path, "mpv.conf"), "cache=no\ndemuxer-max-bytes=32MiB\n");
             CommandLine.Arguments.Clear();
-            CommandLine.Arguments.Add(new StringPair("config-dir", folder));
-            HashSet<string> explicitOptions = MpvOptionConfiguration.GetExplicitOptions();
-            Assert.Contains("cache", explicitOptions);
-            Assert.Contains("demuxer-max-bytes", explicitOptions);
+            CommandLine.Arguments.Add(new StringPair("config-dir", directory.Path));
+            var options = MpvOptionConfiguration.GetExplicitOptions();
+            Assert.Contains("cache", options);
+            Assert.Contains("demuxer-max-bytes", options);
         }
-        finally
-        {
-            CommandLine.Arguments.Clear();
-            CommandLine.Arguments.AddRange(arguments);
-            File.Delete(Path.Combine(folder, "mpv.conf"));
-            Directory.Delete(folder);
-        }
+        finally { CommandLine.Arguments.Clear(); CommandLine.Arguments.AddRange(arguments); }
     }
 
     [Theory]
@@ -155,33 +187,39 @@ public sealed class NetworkCachePolicyTests
     [InlineData("[]")]
     [InlineData("{}")]
     [InlineData("{\"ts-per-stream\":null}")]
+    [InlineData("{\"ts-per-stream\":[{\"type\":\"video\",\"cache-duration\":-2}]}")]
+    [InlineData("{\"ts-per-stream\":[{\"type\":\"video\",\"cache-duration\":1e999}]}")]
     [InlineData("{\"ts-per-stream\":[{\"type\":\"video\",\"cache-duration\":\"https://signed.invalid/?token=secret\"}]}")]
-    public void OptionalCacheDiagnosticsIgnoreUnavailableOrUnsafeValues(string json)
-    {
-        Assert.Empty(MainPlayer.FormatStreamCacheDurations(json));
-    }
+    public void OptionalDiagnosticsIgnoreUnsafeValues(string json) => Assert.Empty(MainPlayer.FormatStreamCacheDurations(json));
 
     [Fact]
-    public void CacheDiagnosticsLogOnlyNumericAudioAndVideoDurations()
+    public void DiagnosticsRetainOnlyNumericAudioAndVideoDurations()
     {
         const string json = "{\"ts-per-stream\":[{\"type\":\"audio\",\"cache-duration\":5.25},{\"type\":\"video\",\"cache-duration\":4},{\"type\":\"https://signed.invalid/?token=secret\",\"cache-duration\":8}]}";
         Assert.Equal("audio=5.25,video=4", MainPlayer.FormatStreamCacheDurations(json));
+        var durations = MainPlayer.ReadStreamCacheDurations(json);
+        Assert.Equal(5.25, durations.Audio);
+        Assert.Equal(4, durations.Video);
     }
 
-    static void WithProfile(string profile, Action test)
+    internal static void WithAutomatic(Action test)
     {
-        string previous = Global.App.NetworkCacheProfile;
-        bool automatic = Global.App.AutomaticNetworkCache;
-        try
-        {
-            Global.App.NetworkCacheProfile = profile;
-            Global.App.AutomaticNetworkCache = true;
-            test();
-        }
-        finally
-        {
-            Global.App.NetworkCacheProfile = previous;
-            Global.App.AutomaticNetworkCache = automatic;
-        }
+        bool previous = Global.App.AutomaticNetworkCache;
+        try { Global.App.AutomaticNetworkCache = true; test(); }
+        finally { Global.App.AutomaticNetworkCache = previous; }
+    }
+
+    [Fact]
+    public void EditorExposesOneAutomaticToggleWithLiteralStableValues()
+    {
+        var resources = new System.Resources.ResourceManager("MpvNet.Windows.Properties.Resources",
+            typeof(MpvNet.Windows.EditorConfigurationService).Assembly);
+        var settings = MpvNet.Windows.EditorConfigurationService.ParseSettings(resources.GetString("editor_conf")!);
+        var toggle = Assert.IsType<MpvNet.Windows.OptionSetting>(Assert.Single(settings,
+            setting => setting.Name == "automatic-network-cache"));
+        Assert.Equal("mpvnet", toggle.File);
+        Assert.Equal("yes", toggle.Default);
+        Assert.Equal(new[] { "yes", "no" }, toggle.Options.Select(option => option.Name));
+        Assert.DoesNotContain(settings, setting => setting.Name == "network-cache-profile");
     }
 }

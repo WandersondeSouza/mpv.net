@@ -2846,3 +2846,12 @@ msgstr "Zachowuj pamięć podręczną okładek między sesjami"
 #: src/MpvNet.Windows/Resources/editor_conf.txt
 msgid "Reuse artwork between sessions. When disabled, the player uses temporary files for this session. Restart the player to apply changes."
 msgstr "Używa ponownie okładek w kolejnych sesjach. Po wyłączeniu odtwarzacz używa plików tymczasowych w bieżącej sesji. Uruchom ponownie odtwarzacz, aby zastosować zmiany."
+
+msgid "automatic-network-cache"
+msgstr "automatic-network-cache"
+
+msgid "Automatic streaming cache"
+msgstr "Automatyczna pamięć podręczna transmisji"
+
+msgid "Automatically adapt streaming cache. Explicit mpv options take precedence. Changes apply to the next media item."
+msgstr "Automatycznie dostosowuje pamięć podręczną transmisji. Jawne opcje mpv mają pierwszeństwo. Zmiany dotyczą następnego elementu multimedialnego."

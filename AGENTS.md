@@ -49,6 +49,14 @@ Mudanças nessa área são consideradas de alto risco.
 
 A lógica de carregamento da pasta de configuração deve permanecer compatível.
 
+### Cache automático de streaming
+
+- Consultar `docs/developer/mpv-integration.md`, seção `Cache automático por item`, e os testes `NetworkCachePolicyTests`, `NetworkCacheSessionTests` e `NetworkCacheNativeTests` antes de alterar a política.
+- Manter um único toggle `AutomaticNetworkCache`; `network-cache-profile` é somente compatibilidade/migração, sem restaurar seleção de perfis.
+- Preservar a aplicação por hooks, a precedência das opções nativas e o fallback conservador quando faltarem evidências de formato/live/VOD.
+- Não criar downloader, polling intenso, watchdog ou reconexão paralela. Reutilizar o cache do mpv e `LiveStreamRecoveryPolicy`.
+- Separar testes determinísticos, medições de laboratório e reprodução externa. Tetos em bytes não representam memória reservada ou duração garantida.
+
 ### Interface gráfica
 
 Mudanças de UI devem validar:

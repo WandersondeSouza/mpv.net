@@ -68,6 +68,7 @@ public partial class MainPlayer
             : null;
         bool reconnectScheduled = playbackFailed &&
             TryScheduleLiveStreamRecovery(failedPath, playlistCount, streamingDiagnostic);
+        EndNetworkCacheSession();
         Log.Debug($"mpv end-file event. reason={reason}, error={data.EndFileError}, errorText='{errorText}', path='{Log.SafeValue(failedPath)}', playlistPos={failedPosition}, playlistCount={playlistCount}");
 
         if (playbackFailed)
@@ -111,7 +112,7 @@ public partial class MainPlayer
         _reportedRuntimeFailures.Clear();
         _currentMediaWasLoaded = false;
         _ytDlpDiagnosticOutputLogged = false;
-        _bufferingStartedAt = null;
+        ResetNetworkCacheSession();
         Path = GetPropertyString("path");
         NetworkCacheResolution resolution = NetworkCachePolicy.Resolve(Path);
         Log.Debug($"mpv start-file event. path='{Log.SafeValue(Path)}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}, cacheKind={resolution.Kind}, cacheProfile={resolution.Profile}, cacheEnabled={resolution.IsEnabled}");
@@ -146,6 +147,7 @@ public partial class MainPlayer
     {
         Duration = GetSafeDuration();
         _currentMediaWasLoaded = true;
+        RefineNetworkCache();
         LogYtDlpDiagnosticOutput();
         LogNetworkCacheState("file-loaded");
         Log.Debug($"mpv file-loaded event. path='{Log.SafeValue(GetPropertyString("path"))}', duration={Duration}, mediaTitle='{Log.SafeValue(GetPropertyString("media-title"))}'");
@@ -191,7 +193,10 @@ public partial class MainPlayer
         int playlistCount,
         StreamingFailureDiagnostic? diagnostic)
     {
-        NetworkMediaKind kind = MediaInputClassifier.Classify(failedPath).NetworkKind;
+        // Only use resolved manifests when live was confirmed. Preserve the
+        // existing zero-duration fallback for direct HLS/DASH sources.
+        NetworkMediaKind kind = _networkCacheMedia.IsLive ? _networkCacheMedia.Kind :
+            MediaInputClassifier.Classify(failedPath).NetworkKind;
         long generation;
         LiveStreamRecoveryDecision decision;
 
@@ -201,7 +206,7 @@ public partial class MainPlayer
             decision = LiveStreamRecoveryPolicy.Evaluate(
                 kind,
                 _currentMediaWasLoaded,
-                Duration,
+                _networkCacheMedia.IsLive ? TimeSpan.Zero : Duration,
                 playlistCount,
                 diagnostic,
                 _liveReconnectAttempts);
