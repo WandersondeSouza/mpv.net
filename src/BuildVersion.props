@@ -1,6 +1,6 @@
 ﻿<Project>
   <PropertyGroup>
-    <MpvNetVersion>7.1.40.0</MpvNetVersion>
-    <MpvNetStoreVersion>7.1.39.0</MpvNetStoreVersion>
+    <MpvNetVersion>7.1.41.0</MpvNetVersion>
+    <MpvNetStoreVersion>7.1.40.0</MpvNetStoreVersion>
   </PropertyGroup>
 </Project>
