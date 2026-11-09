@@ -497,17 +497,17 @@ tratados como contínuos. Arquivos locais nunca são promovidos a rede.
 
 | Grupo de mídia | À frente | Para trás | Prefetch em segundos | Espera inicial/retomada |
 | --- | ---: | ---: | ---: | --- |
-| HTTP/HTTPS progressivo, HLS/DASH VOD ou live, yt-dlp identificado e FTP/FTPS/SFTP | 512 MiB | 64 MiB | 180 | VOD: inicial sim, 3 s; live/incerto: inicial não, 1 s |
-| RTSP / RTMP / RTMPS / UDP / TCP / SRT / SRTP | 128 MiB | 16 MiB | 30 | inicial não; 1 s |
-| Fontes ainda não identificadas | 64 MiB | 8 MiB | 10 | inicial não; 1 s |
+| HTTP/HTTPS progressivo, HLS/DASH VOD ou live, yt-dlp identificado e FTP/FTPS/SFTP | 512 MiB | 64 MiB | 240 | VOD: inicial sim, 3 s; live/incerto: inicial não, 1 s |
+| RTSP / RTMP / RTMPS / UDP / TCP / SRT / SRTP | 128 MiB | 16 MiB | 90 | inicial não; 1 s |
+| Fontes ainda não identificadas | 64 MiB | 8 MiB | 70 | inicial não; 1 s |
 | Arquivo local | nenhuma opção automática | — | — | — |
 
 HTTP e HTTPS compartilham o classificador e a política: TLS não reduz os tetos.
 Uma página de serviço ainda sem resultado do resolvedor, ou um protocolo genérico
-sem identificação, usa o grupo de 64 MiB/10 s; depois da identificação, yt-dlp
+sem identificação, usa o grupo de 64 MiB/70 s; depois da identificação, yt-dlp
 entra no grupo maior. A classificação VOD/live continua determinando a espera,
 separadamente dos tetos de bytes/tempo. Uma janela de manifesto curta ou a
-produção em tempo real pode impedir preenchimento maior. Os 180 s não são
+produção em tempo real pode impedir preenchimento maior. Os 240 s não são
 espera obrigatória, reserva de memória nem atraso imposto à live.
 
 São tetos do demuxer, não reservas ou duração garantida. `cache=yes` e

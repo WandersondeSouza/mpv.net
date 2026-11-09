@@ -297,11 +297,11 @@ public static class NetworkCachePolicy
         // VOD has been established from resolved metadata, rather than a suffix.
         (int forward, int back, int seconds) = media.Kind switch
         {
-            NetworkMediaKind.Rtsp or NetworkMediaKind.Rtmp or NetworkMediaKind.DatagramLive => (128, 16, 30),
+            NetworkMediaKind.Rtsp or NetworkMediaKind.Rtmp or NetworkMediaKind.DatagramLive => (128, 16, 90),
             NetworkMediaKind.HttpProgressive or NetworkMediaKind.Hls or NetworkMediaKind.Dash or
-                NetworkMediaKind.FtpFile or NetworkMediaKind.SftpFile => (512, 64, 180),
-            NetworkMediaKind.OnlineResolver when media.IsVod || media.IsLive => (512, 64, 180),
-            _ => (64, 8, 10)
+                NetworkMediaKind.FtpFile or NetworkMediaKind.SftpFile => (512, 64, 240),
+            NetworkMediaKind.OnlineResolver when media.IsVod || media.IsLive => (512, 64, 240),
+            _ => (64, 8, 70)
         };
         string options = $"cache=yes,cache-pause=yes,cache-pause-initial={(media.IsVod ? "yes" : "no")},cache-pause-wait={(media.IsVod ? 3 : 1)},demuxer-max-bytes={forward}MiB,demuxer-max-back-bytes={back}MiB,cache-secs={seconds},demuxer-readahead-secs={seconds}";
         return new(media.Kind, "automatic", RemoveExplicitOptions(options, explicitOptions));

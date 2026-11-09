@@ -14,10 +14,10 @@ namespace MpvNet.Tests;
 public sealed class NetworkCacheNativeTests
 {
     [Theory]
-    [InlineData("m3u8_native", false, 512, 64, 180)]
-    [InlineData("http_dash_segments", false, 512, 64, 180)]
-    [InlineData("m3u8_native", true, 512, 64, 180)]
-    [InlineData("http_dash_segments", true, 512, 64, 180)]
+    [InlineData("m3u8_native", false, 512, 64, 240)]
+    [InlineData("http_dash_segments", false, 512, 64, 240)]
+    [InlineData("m3u8_native", true, 512, 64, 240)]
+    [InlineData("http_dash_segments", true, 512, 64, 240)]
     public async Task ResolvedManifestEvidenceSelectsNativeLimitsWithoutReloading(string protocol, bool live, int mib, int back, int seconds)
     {
         using TestDirectory directory = new();
@@ -38,14 +38,14 @@ public sealed class NetworkCacheNativeTests
     }
 
     [Theory]
-    [InlineData("ftp://example.invalid/media.wav", 512, 64, 180)]
-    [InlineData("ftps://example.invalid/media.wav", 512, 64, 180)]
-    [InlineData("sftp://example.invalid/media.wav", 512, 64, 180)]
-    [InlineData("rtsp://example.invalid/live", 128, 16, 30)]
-    [InlineData("rtmp://example.invalid/live", 128, 16, 30)]
-    [InlineData("rtmps://example.invalid/live", 128, 16, 30)]
-    [InlineData("udp://example.invalid/live", 128, 16, 30)]
-    [InlineData("srt://example.invalid/live", 128, 16, 30)]
+    [InlineData("ftp://example.invalid/media.wav", 512, 64, 240)]
+    [InlineData("ftps://example.invalid/media.wav", 512, 64, 240)]
+    [InlineData("sftp://example.invalid/media.wav", 512, 64, 240)]
+    [InlineData("rtsp://example.invalid/live", 128, 16, 90)]
+    [InlineData("rtmp://example.invalid/live", 128, 16, 90)]
+    [InlineData("rtmps://example.invalid/live", 128, 16, 90)]
+    [InlineData("udp://example.invalid/live", 128, 16, 90)]
+    [InlineData("srt://example.invalid/live", 128, 16, 90)]
     public async Task ProtocolGroupsApplyNativeByteAndTimeCapsWithoutAdditionalStartupWait(string url, int mib, int back, int seconds)
     {
         using TestDirectory directory = new();

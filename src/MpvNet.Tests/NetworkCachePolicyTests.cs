@@ -68,22 +68,22 @@ public sealed class NetworkCachePolicyTests
     }
 
     [Theory]
-    [InlineData(NetworkMediaKind.HttpProgressive, true, 512, 64, 180)]
-    [InlineData(NetworkMediaKind.HttpProgressive, false, 512, 64, 180)]
-    [InlineData(NetworkMediaKind.OnlineResolver, true, 512, 64, 180)]
-    [InlineData(NetworkMediaKind.OnlineResolver, false, 512, 64, 180)]
-    [InlineData(NetworkMediaKind.Dash, true, 512, 64, 180)]
-    [InlineData(NetworkMediaKind.Hls, true, 512, 64, 180)]
-    [InlineData(NetworkMediaKind.Hls, false, 512, 64, 180)]
-    [InlineData(NetworkMediaKind.Dash, false, 512, 64, 180)]
-    [InlineData(NetworkMediaKind.Rtsp, false, 128, 16, 30)]
-    [InlineData(NetworkMediaKind.Rtmp, false, 128, 16, 30)]
-    [InlineData(NetworkMediaKind.DatagramLive, false, 128, 16, 30)]
-    [InlineData(NetworkMediaKind.GenericNetwork, false, 64, 8, 10)]
-    [InlineData(NetworkMediaKind.FtpFile, true, 512, 64, 180)]
-    [InlineData(NetworkMediaKind.SftpFile, true, 512, 64, 180)]
-    [InlineData(NetworkMediaKind.FtpFile, false, 512, 64, 180)]
-    [InlineData(NetworkMediaKind.SftpFile, false, 512, 64, 180)]
+    [InlineData(NetworkMediaKind.HttpProgressive, true, 512, 64, 240)]
+    [InlineData(NetworkMediaKind.HttpProgressive, false, 512, 64, 240)]
+    [InlineData(NetworkMediaKind.OnlineResolver, true, 512, 64, 240)]
+    [InlineData(NetworkMediaKind.OnlineResolver, false, 512, 64, 240)]
+    [InlineData(NetworkMediaKind.Dash, true, 512, 64, 240)]
+    [InlineData(NetworkMediaKind.Hls, true, 512, 64, 240)]
+    [InlineData(NetworkMediaKind.Hls, false, 512, 64, 240)]
+    [InlineData(NetworkMediaKind.Dash, false, 512, 64, 240)]
+    [InlineData(NetworkMediaKind.Rtsp, false, 128, 16, 90)]
+    [InlineData(NetworkMediaKind.Rtmp, false, 128, 16, 90)]
+    [InlineData(NetworkMediaKind.DatagramLive, false, 128, 16, 90)]
+    [InlineData(NetworkMediaKind.GenericNetwork, false, 64, 8, 70)]
+    [InlineData(NetworkMediaKind.FtpFile, true, 512, 64, 240)]
+    [InlineData(NetworkMediaKind.SftpFile, true, 512, 64, 240)]
+    [InlineData(NetworkMediaKind.FtpFile, false, 512, 64, 240)]
+    [InlineData(NetworkMediaKind.SftpFile, false, 512, 64, 240)]
     public void AutomaticPolicyBoundsForwardBackwardAndTimeWithoutEnablingDisk(NetworkMediaKind kind, bool vod, int mib, int back, int seconds)
     {
         WithAutomatic(() =>
@@ -101,10 +101,10 @@ public sealed class NetworkCachePolicyTests
     }
 
     [Theory]
-    [InlineData("https://youtu.be/VIDEO", 64, 10)]
-    [InlineData("https://example.com/live.m3u8", 512, 180)]
-    [InlineData("https://example.com/opaque", 64, 10)]
-    [InlineData("https://example.com/manifest.mpd", 512, 180)]
+    [InlineData("https://youtu.be/VIDEO", 64, 70)]
+    [InlineData("https://example.com/live.m3u8", 512, 240)]
+    [InlineData("https://example.com/opaque", 64, 70)]
+    [InlineData("https://example.com/manifest.mpd", 512, 240)]
     public void UnknownPagesAndManifestSuffixesNeverImplyVodOrStartupWait(string path, int mib, int seconds)
     {
         WithAutomatic(() =>
@@ -136,8 +136,8 @@ public sealed class NetworkCachePolicyTests
             string options = NetworkCachePolicy.Resolve(media, new HashSet<string>()).Options;
             Assert.Contains("demuxer-max-bytes=512MiB", options);
             Assert.Contains("demuxer-max-back-bytes=64MiB", options);
-            Assert.Contains("cache-secs=180", options);
-            Assert.Contains("demuxer-readahead-secs=180", options);
+            Assert.Contains("cache-secs=240", options);
+            Assert.Contains("demuxer-readahead-secs=240", options);
             Assert.Contains("cache-pause-wait=3", options);
         });
     }
