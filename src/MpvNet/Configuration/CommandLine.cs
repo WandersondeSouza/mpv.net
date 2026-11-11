@@ -1,11 +1,11 @@
-﻿using MpvNet.Help;
+using System.Diagnostics.CodeAnalysis;
+
+using MpvNet.Help;
 
 namespace MpvNet;
 
 public class CommandLine
 {
-    static List<StringPair>? _arguments;
-
     static string[] _preInitProperties { get; } = {
         "input-terminal", "terminal", "input-file", "config", "o", "config-dir", "input-conf",
         "load-scripts", "scripts", "script-opts", "player-operation-mode", "idle", "log-file",
@@ -16,14 +16,7 @@ public class CommandLine
 
     public static List<StringPair> Arguments
     {
-        get
-        {
-            if (_arguments != null)
-                return _arguments;
-
-            _arguments = ParseArguments(Environment.GetCommandLineArgs().Skip(1));
-            return _arguments;
-        }
+        get => field ??= ParseArguments(Environment.GetCommandLineArgs().Skip(1));
     }
 
     internal static List<StringPair> ParseArguments(IEnumerable<string> args, bool log = true)
@@ -37,15 +30,15 @@ public class CommandLine
 
             if (TryParseArgument(input, out StringPair? pair))
             {
-                if (ShouldConsumeSeparatedValue(pair!.Name, pair.Value, inputs, index))
+                if (ShouldConsumeSeparatedValue(pair.Name, pair.Value, inputs, index))
                 {
                     pair = new StringPair(pair.Name, NormalizeSeparatedValue(pair.Name, inputs[index + 1]));
                     index++;
                 }
 
-                arguments.Add(pair!);
+                arguments.Add(pair);
                 if (log)
-                    Log.Debug($"Parsed command line option: {pair!.Name}='{Log.SafeValue(pair.Value)}'");
+                    Log.Debug($"Parsed command line option: {pair.Name}='{Log.SafeValue(pair.Value)}'");
             }
             else
             {
@@ -256,7 +249,7 @@ public class CommandLine
         return name == "title" && !value.Contains("${");
     }
 
-    static bool TryParseArgument(string input, out StringPair? pair)
+    static bool TryParseArgument(string input, [NotNullWhen(true)] out StringPair? pair)
     {
         pair = null;
         string arg = input;
