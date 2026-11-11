@@ -104,3 +104,10 @@ Plano de teste:
   anteriores. Eles não comprovam o estado atual nem substituem esta leitura.
 - Registre como pendente apenas uma validação ou atividade que ainda não tenha
   evidência concluída; indique ambiente e escopo quando aplicável.
+
+## Auditoria de qualidade com Codex (somente diagnóstico)
+- Quando a tarefa envolver qualidade ou limpeza de código, ler `.agents/prompts/code-quality-master.md`, `.agents/skills/code-quality-auditor/SKILL.md` e `docs/quality/README.md`.
+- Priorizar evidências reproduzíveis: caminho/linha, comandos e versões de analisadores, status da execução, confiança e severidade de cada achado; nunca inventar métricas.
+- Verificar duplicidade, código supostamente morto/obsoleto, complexidade, arquitetura, testes, segurança e gerenciamento de recursos. Código aparentemente sem referências pode ser usado indiretamente por DI, reflection, bindings, serialização, recursos, manifestos e integrações.
+- A auditoria inicial é exclusivamente documental/configuração; não aplicar autofix, refatorar, remover código, alterar dependências ou mudar comportamento sem solicitação separada.
+- Distinguir dívida legada de problemas introduzidos no código novo. Relatórios e workflow de auditoria começam em modo informativo, sem substituir os testes e verificações já existentes.

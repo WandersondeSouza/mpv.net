@@ -1,0 +1,38 @@
+# Quality audit is intentionally diagnostic and non-blocking.
+# Changes here must not replace existing build/test/security workflows.
+name: Code Quality Audit (informative)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 6 * * 1'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Inspect and verify whitespace (evidence only)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Continue'
+          $solutions = @(Get-ChildItem -Path 'src' -Include *.sln,*.slnx -Recurse -File | Select-Object -First 1)
+          if ($solutions.Count -eq 0) {
+            'NO_SOLUTION_FOUND' | Out-File quality-log.txt
+          } else {
+            "SOLUTION=$($solutions[0].FullName)" | Out-File quality-log.txt
+            dotnet format whitespace $solutions[0].FullName --verify-no-changes 2>&1 | Out-File quality-log.txt -Append
+            "FORMAT_EXIT=$LASTEXITCODE" | Out-File quality-log.txt -Append
+          }
+          Get-Content quality-log.txt
+      - name: Attach diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-quality-audit-log
+          path: quality-log.txt
+          if-no-files-found: warn
