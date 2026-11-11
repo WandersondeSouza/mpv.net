@@ -1,4 +1,4 @@
-﻿
+
 #pragma warning disable IDE1006 // type name starts with underscore
 #pragma warning disable CA1401  // P/Invokes should not be visible
 #pragma warning disable CA2101  // Specify marshaling for P/Invoke string arguments
@@ -276,20 +276,8 @@ public static class LibMpv
         return stringArray;
     }
 
-    public static string ConvertFromUtf8(nint nativeUtf8)
-    {
-        if (nativeUtf8 == 0)
-            return "";
-
-        int len = 0;
-
-        while (Marshal.ReadByte(nativeUtf8, len) != 0)
-            ++len;
-
-        byte[] buffer = new byte[len];
-        Marshal.Copy(nativeUtf8, buffer, 0, buffer.Length);
-        return Encoding.UTF8.GetString(buffer);
-    }
+    public static string ConvertFromUtf8(nint nativeUtf8) =>
+        Marshal.PtrToStringUTF8(nativeUtf8) ?? "";
 
     public static string GetError(mpv_error err)
     {

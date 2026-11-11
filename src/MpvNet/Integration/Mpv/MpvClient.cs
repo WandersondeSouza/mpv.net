@@ -1,4 +1,4 @@
-﻿
+
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -564,31 +564,27 @@ public partial class MpvClient : IDisposable
         }
     }
 
-    public string GetPropertyString(string name)
+    public string GetPropertyString(string name) => ReadStringProperty(name, mpv_format.MPV_FORMAT_STRING);
+
+    string ReadStringProperty(string name, mpv_format format)
     {
         if (!TryEnterNativeOperation(out IDisposable? operation))
             return "";
 
         using (operation)
         {
-        nint handle = Handle;
-        if (handle == IntPtr.Zero)
+            nint handle = Handle;
+            if (handle == IntPtr.Zero)
+                return "";
+
+            mpv_error err = mpv_get_property(handle, GetUtf8Bytes(name), format, out nint buffer);
+            if (err == 0)
+                return ReadAndFreePropertyString(buffer);
+
+            if (err < 0 && (format == mpv_format.MPV_FORMAT_OSD_STRING || App.DebugMode))
+                HandleError(err, "error getting property: " + name);
+
             return "";
-
-        mpv_error err = mpv_get_property(handle, GetUtf8Bytes(name),
-            mpv_format.MPV_FORMAT_STRING, out IntPtr lpBuffer);
-
-        if (err == 0)
-        {
-            string ret = ConvertFromUtf8(lpBuffer);
-            mpv_free(lpBuffer);
-            return ret;
-        }
-
-        if (err < 0 && App.DebugMode)
-            HandleError(err, "error getting property: " + name);
-
-        return "";
         }
     }
 
@@ -609,15 +605,20 @@ public partial class MpvClient : IDisposable
             if (err < 0)
                 return false;
 
-            try
-            {
-                value = ConvertFromUtf8(lpBuffer);
-                return true;
-            }
-            finally
-            {
-                mpv_free(lpBuffer);
-            }
+            value = ReadAndFreePropertyString(lpBuffer);
+            return true;
+        }
+    }
+
+    static string ReadAndFreePropertyString(nint buffer)
+    {
+        try
+        {
+            return ConvertFromUtf8(buffer);
+        }
+        finally
+        {
+            mpv_free(buffer);
         }
     }
 
@@ -692,33 +693,7 @@ public partial class MpvClient : IDisposable
         }
     }
 
-    public string GetPropertyOsdString(string name)
-    {
-        if (!TryEnterNativeOperation(out IDisposable? operation))
-            return "";
-
-        using (operation)
-        {
-        nint handle = Handle;
-        if (handle == IntPtr.Zero)
-            return "";
-
-        mpv_error err = mpv_get_property(handle, GetUtf8Bytes(name),
-            mpv_format.MPV_FORMAT_OSD_STRING, out IntPtr lpBuffer);
-
-        if (err == 0)
-        {
-            string ret = ConvertFromUtf8(lpBuffer);
-            mpv_free(lpBuffer);
-            return ret;
-        }
-
-        if (err < 0)
-            HandleError(err, "error getting property: " + name);
-
-        return "";
-        }
-    }
+    public string GetPropertyOsdString(string name) => ReadStringProperty(name, mpv_format.MPV_FORMAT_OSD_STRING);
 
     public void ObservePropertyInt(string name, Action<int> action)
     {

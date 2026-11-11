@@ -260,6 +260,12 @@ módulo enquanto encerra filtros e mídia.
 
 `MpvClient` traduz eventos nativos para eventos .NET e expõe callbacks para mudanças de propriedades, incluindo valores booleanos, inteiros, `double` e `string`.
 
+As leituras de propriedades de texto e OSD copiam o resultado UTF-8 e
+liberam o buffer com `mpv_free` em `finally`, dentro da operação protegida
+pelo gate de lifetime. Strings emprestadas por eventos ou pelo código de
+erro são apenas decodificadas. As duas formas de leitura mantêm seus
+formatos nativos e a política de diagnóstico de cada método.
+
 Eventos importantes:
 
 - `MPV_EVENT_SHUTDOWN`;

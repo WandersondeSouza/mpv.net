@@ -23,8 +23,8 @@ internal sealed class UnmanagedStringArray : IDisposable
             {
                 byte[] bytes = GetUtf8Bytes(values[index]);
                 nint pointer = Marshal.AllocHGlobal(bytes.Length);
-                Marshal.Copy(bytes, 0, pointer, bytes.Length);
                 _strings[index] = pointer;
+                Marshal.Copy(bytes, 0, pointer, bytes.Length);
             }
 
             if (_strings.Length > 0)
