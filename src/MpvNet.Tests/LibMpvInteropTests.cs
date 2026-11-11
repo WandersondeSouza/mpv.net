@@ -59,7 +59,18 @@ public sealed class LibMpvInteropTests
     [Fact]
     public void NativePropertyReadersPreserveUtf8AndUnavailableValues()
     {
-        using MainPlayer player = NativePlaylistTitleTests.CreateNativePlayer();
+        RuntimeComponents.RegisterNativeResolver();
+        using MainPlayer player = new();
+        player.MainHandle = LibMpv.mpv_create();
+        Assert.NotEqual(IntPtr.Zero, player.MainHandle);
+        foreach ((string option, string setting) in new[] { ("config", "no"), ("idle", "yes"), ("load-scripts", "no") })
+            Assert.Equal(0, LibMpv.mpv_set_option_string(
+                player.MainHandle, LibMpv.GetUtf8Bytes(option), LibMpv.GetUtf8Bytes(setting)));
+        Assert.Equal(LibMpv.mpv_error.MPV_ERROR_SUCCESS, LibMpv.mpv_initialize(player.MainHandle));
+        player.SetMpvInitialized();
+        player.Handle = LibMpv.mpv_create_client(player.MainHandle, "property-tests");
+        Assert.NotEqual(IntPtr.Zero, player.Handle);
+
         const string property = "user-data/mpvnet-test-title";
         const string value = "Título em português";
 
