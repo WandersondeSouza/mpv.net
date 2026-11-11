@@ -573,23 +573,41 @@ public sealed class PlayerLifecycleTests
     }
 
     [Fact]
-    public void DestroyWaitsForActiveNativeOperation()
+    public async Task DestroyWaitsForActiveNativeOperation()
     {
         using MainPlayer player = new();
-        Assert.True(player.TryEnterNativeOperation(out IDisposable? operation));
+        using ManualResetEventSlim releaseOperation = new();
+        CancellationToken cancellationToken = TestContext.Current.CancellationToken;
+        TimeSpan timeout = TimeSpan.FromSeconds(2);
+        TaskCompletionSource<bool> leaseAcquired = new(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        // Keep acquisition and disposal of the thread-affine lease on one thread.
+        Task holderTask = Task.Run(() =>
+        {
+            bool entered = player.TryEnterNativeOperation(out IDisposable? operation);
+            using (operation)
+            {
+                leaseAcquired.SetResult(entered);
+                releaseOperation.Wait(cancellationToken);
+            }
+        }, cancellationToken);
 
         Task destroyTask;
-        // ReaderWriterLockSlim leases belong to the acquiring thread. An await
-        // here can resume elsewhere, fail to release the read lock and deadlock
-        // the test's own cleanup instead of testing native lifetime ordering.
-        using (operation)
+        try
         {
-            destroyTask = Task.Run(player.Destroy, TestContext.Current.CancellationToken);
-            Assert.True(SpinWait.SpinUntil(() => player.LifecycleState == PlayerLifecycleState.Destroyed,
-                TimeSpan.FromSeconds(2)));
-            Assert.False(destroyTask.Wait(TimeSpan.FromMilliseconds(100), TestContext.Current.CancellationToken));
+            Assert.True(await leaseAcquired.Task.WaitAsync(timeout, cancellationToken));
+            destroyTask = Task.Run(player.Destroy, cancellationToken);
+            Assert.True(SpinWait.SpinUntil(() => player.LifecycleState == PlayerLifecycleState.Destroyed, timeout));
+            await Task.Delay(TimeSpan.FromMilliseconds(100), cancellationToken);
+            Assert.False(destroyTask.IsCompleted);
         }
-        Assert.True(destroyTask.Wait(TimeSpan.FromSeconds(2), TestContext.Current.CancellationToken));
+        finally
+        {
+            releaseOperation.Set();
+            await holderTask;
+        }
+
+        await destroyTask.WaitAsync(timeout, cancellationToken);
         Assert.Equal(PlayerLifecycleState.Destroyed, player.LifecycleState);
     }
 
