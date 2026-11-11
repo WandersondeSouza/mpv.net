@@ -11,10 +11,20 @@ Este documento orienta como preparar o ambiente para estudar, compilar e manter 
 Para desenvolvimento:
 
 - Windows 10 ou Windows 11;
-- SDK do .NET 10 e Windows 10 SDK com suporte ao baseline `net10.0-windows10.0.19041.0`;
+- SDK estável do .NET 10 e Windows 10 SDK com suporte ao baseline `net10.0-windows10.0.19041.0`;
 - Visual Studio com workload de desenvolvimento desktop .NET;
 - Git;
 - acesso ao repositório no GitHub.
+
+Execute `dotnet --version` a partir da raiz para confirmar o SDK ativo.
+O `global.json` aceita as atualizações estáveis da série 10.0 a partir da
+10.0.100. Se houver apenas um SDK mais recente instalado, instale o 10.0
+lado a lado ou selecione a instalação 10.0 no PATH da sessão de build.
+`src/Directory.Build.props` fixa C# 14.0 e mantém `AnalysisLevel=10`
+para as regras de análise do .NET 10. O projeto WAP empacota o executável
+compilado pelo projeto Windows. Consulte o
+[baseline da modernização](reports/csharp14-modernization-baseline.md)
+para a matriz de diagnósticos e os comandos de comparação.
 
 Para execução:
 
