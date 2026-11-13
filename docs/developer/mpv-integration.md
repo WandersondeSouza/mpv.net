@@ -241,7 +241,11 @@ rejeitadas, enquanto uma chamada nativa já iniciada termina sob o gate. Os
 callbacks de eventos ficam fora do lock para poderem consultar o wrapper sem
 deadlock; tarefas e loops são aguardados antes de destruir qualquer handle. O
 handle principal inicializado é encerrado com `mpv_terminate_destroy`; handles de
-clientes são destruídos antes dele. Depois que os loops e chamadas existentes
+clientes são destruídos antes dele. Durante a inicialização, `Handle` usa o contexto
+de `MainHandle` até a criação do cliente `mpvnet`. Se ocorrer uma falha nessa etapa,
+o descarte do cliente apenas limpa a referência emprestada e o player libera o
+contexto principal uma única vez. Antes de `mpv_initialize` ter sucesso, essa
+liberação usa `mpv_destroy`. Depois que os loops e chamadas existentes
 terminam, cada cliente descarta seu `ReaderWriterLockSlim`; o player descarta o
 `CancellationTokenSource`, `SemaphoreSlim` e sinal de shutdown. `Destroy()` e
 `Dispose()` são idempotentes e removem callbacks gerenciados para não reter a UI.

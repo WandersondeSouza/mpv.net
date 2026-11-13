@@ -89,6 +89,33 @@ public sealed class LibMpvInteropTests
         Assert.Equal(json, actual);
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void DestroyReleasesMainHandleSharedDuringPartialInitialization(bool initialized)
+    {
+        RuntimeComponents.RegisterNativeResolver();
+        using MainPlayer player = new();
+        player.MainHandle = LibMpv.mpv_create();
+        Assert.NotEqual(IntPtr.Zero, player.MainHandle);
+        player.Handle = player.MainHandle;
+
+        if (initialized)
+        {
+            player.SetOptionString("config", "no");
+            player.SetOptionString("load-scripts", "no");
+            Assert.Equal(LibMpv.mpv_error.MPV_ERROR_SUCCESS, LibMpv.mpv_initialize(player.MainHandle));
+            player.SetMpvInitialized();
+        }
+
+        player.Destroy();
+        player.Destroy();
+
+        Assert.Equal(IntPtr.Zero, player.Handle);
+        Assert.Equal(IntPtr.Zero, player.MainHandle);
+        Assert.Equal(PlayerLifecycleState.Destroyed, player.LifecycleState);
+    }
+
     [Fact]
     public void UnmanagedStringArrayWritesUtf8PointersAndNullSentinel()
     {

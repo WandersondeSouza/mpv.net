@@ -71,7 +71,7 @@ public partial class MpvClient : IDisposable
         public void Dispose() => Interlocked.Exchange(ref _release, null)?.Invoke();
     }
 
-    internal void DestroyHandle()
+    internal void DestroyHandle(nint borrowedHandle = default)
     {
         lock (_nativeLifetimeLock)
         {
@@ -83,7 +83,7 @@ public partial class MpvClient : IDisposable
             try
             {
                 nint handle = Handle;
-                if (handle != IntPtr.Zero)
+                if (handle != IntPtr.Zero && handle != borrowedHandle)
                     mpv_destroy(handle);
 
                 Handle = IntPtr.Zero;

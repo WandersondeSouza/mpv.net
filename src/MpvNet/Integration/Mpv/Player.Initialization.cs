@@ -114,6 +114,7 @@ public partial class MainPlayer
         App.ApplyShowMenuFix();
 
         MainHandle = mpv_create();
+        // Reuse the wrapper for startup options while MainHandle owns the native context.
         Handle = MainHandle;
 
         if (MainHandle == IntPtr.Zero)

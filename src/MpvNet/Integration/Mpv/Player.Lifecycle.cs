@@ -60,13 +60,13 @@ public partial class MainPlayer
             }
 
             Clients.Clear();
+            nint mainHandle = MainHandle;
             try
             {
-                base.DestroyHandle();
+                base.DestroyHandle(borrowedHandle: mainHandle);
             }
             finally
             {
-                nint mainHandle = MainHandle;
                 try
                 {
                     DestroyMainHandle(mainHandle);
