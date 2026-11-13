@@ -250,6 +250,12 @@ terminam, cada cliente descarta seu `ReaderWriterLockSlim`; o player descarta o
 `CancellationTokenSource`, `SemaphoreSlim` e sinal de shutdown. `Destroy()` e
 `Dispose()` são idempotentes e removem callbacks gerenciados para não reter a UI.
 
+`CreateNewPlayer()` coordena a criação do handle e o registro do cliente e do
+loop de eventos com `Destroy()`. Se o encerramento já começou, a chamada lança
+`ObjectDisposedException` antes de acessar libmpv. A criação exige um contexto
+principal disponível. Se o registro falhar, o cliente recém-criado é descartado
+antes de propagar a exceção.
+
 As tarefas de playlist e metadata são serializadas por instância do player e
 canceladas durante o fechamento. Uma tarefa atrasada pode terminar sem executar
 `GetProperty*`, `SetProperty*` ou `Command*` depois do início de `Destroy`,

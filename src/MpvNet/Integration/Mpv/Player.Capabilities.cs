@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 
 using System.Text;
@@ -65,13 +66,31 @@ public partial class MainPlayer
 
     public MpvClient CreateNewPlayer(string name)
     {
-        var client = new MpvClient { Handle = mpv_create_client(MainHandle, name) };
+        lock (_destroyLock)
+        {
+            ObjectDisposedException.ThrowIf(_isDestroyed, this);
+            nint mainHandle = MainHandle;
+            if (mainHandle == IntPtr.Zero)
+                throw new InvalidOperationException("The main libmpv context is not available.");
 
-        if (client.Handle == IntPtr.Zero)
-            throw new InvalidOperationException($"libmpv could not create client '{name}'.");
+            var client = new MpvClient();
+            try
+            {
+                client.Handle = mpv_create_client(mainHandle, name);
+                if (client.Handle == IntPtr.Zero)
+                    throw new InvalidOperationException($"libmpv could not create client '{name}'.");
 
-        TrackEventTask(Task.Run(() => client.EventLoop(PlayerCancellationToken), PlayerCancellationToken));
-        Clients.Add(client);
-        return client;
+                Clients.Add(client);
+                CancellationToken cancellationToken = PlayerCancellationToken;
+                TrackEventTask(Task.Run(() => client.EventLoop(cancellationToken), cancellationToken));
+                return client;
+            }
+            catch
+            {
+                Clients.Remove(client);
+                client.Dispose();
+                throw;
+            }
+        }
     }
 }

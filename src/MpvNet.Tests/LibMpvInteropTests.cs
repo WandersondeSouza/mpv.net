@@ -1,5 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 using MpvNet.Native;
 
@@ -114,6 +116,72 @@ public sealed class LibMpvInteropTests
         Assert.Equal(IntPtr.Zero, player.Handle);
         Assert.Equal(IntPtr.Zero, player.MainHandle);
         Assert.Equal(PlayerLifecycleState.Destroyed, player.LifecycleState);
+    }
+
+    [Fact]
+    public void CreateNewPlayerRequiresAMainContextAndRejectsDisposedPlayer()
+    {
+        using MainPlayer player = new();
+
+        Assert.Throws<InvalidOperationException>(() => player.CreateNewPlayer("before_startup"));
+        player.Destroy();
+        Assert.Throws<ObjectDisposedException>(() => player.CreateNewPlayer("after_shutdown"));
+        Assert.Empty(player.Clients);
+    }
+
+    [Fact]
+    public async Task DestroyWaitsForExtensionClientLoopAndRejectsNewClients()
+    {
+        RuntimeComponents.RegisterNativeResolver();
+        using MainPlayer player = new();
+        player.MainHandle = LibMpv.mpv_create();
+        Assert.NotEqual(IntPtr.Zero, player.MainHandle);
+        player.Handle = player.MainHandle;
+        player.SetOptionString("config", "no");
+        player.SetOptionString("load-scripts", "no");
+        player.SetOptionString("idle", "yes");
+        Assert.Equal(LibMpv.mpv_error.MPV_ERROR_SUCCESS, LibMpv.mpv_initialize(player.MainHandle));
+        player.SetMpvInitialized();
+
+        var callbackStarted = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var releaseCallback = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var shutdownStarted = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        using CancellationTokenRegistration registration = player.PlayerCancellationToken.Register(
+            () => shutdownStarted.TrySetResult());
+        TimeSpan timeout = TimeSpan.FromSeconds(10);
+        CancellationToken testCancellation = TestContext.Current.CancellationToken;
+        MpvClient client = player.CreateNewPlayer("extension");
+        Assert.Same(client, Assert.Single(player.Clients));
+        client.ObservePropertyBool("pause", _ =>
+        {
+            callbackStarted.TrySetResult();
+            releaseCallback.Task.GetAwaiter().GetResult();
+        });
+
+        Task? destroyTask = null;
+        try
+        {
+            await callbackStarted.Task.WaitAsync(timeout, testCancellation);
+            destroyTask = Task.Run(player.Destroy, testCancellation);
+            await shutdownStarted.Task.WaitAsync(timeout, testCancellation);
+            Assert.False(destroyTask.IsCompleted);
+            Assert.NotEqual(IntPtr.Zero, player.MainHandle);
+            Task createTask = Task.Run(() => Assert.Throws<ObjectDisposedException>(() =>
+            {
+                using MpvClient lateClient = player.CreateNewPlayer("during_shutdown");
+            }), testCancellation);
+            await createTask.WaitAsync(timeout, testCancellation);
+        }
+        finally
+        {
+            releaseCallback.TrySetResult();
+            if (destroyTask is not null)
+                await destroyTask.WaitAsync(timeout, testCancellation);
+        }
+
+        Assert.Empty(player.Clients);
+        Assert.Equal(IntPtr.Zero, client.Handle);
+        Assert.Equal(IntPtr.Zero, player.MainHandle);
     }
 
     [Fact]
