@@ -118,27 +118,34 @@ internal static class RuntimeComponentStore
         Log.Debug("Recovered the previous runtime component generation after an interrupted promotion.");
     }
 
-    public static string CreateStagingSnapshot()
+    public static string CreateStagingSnapshot(CancellationToken cancellationToken)
     {
         Stopwatch elapsed = Stopwatch.StartNew();
         Directory.CreateDirectory(RuntimeComponentPaths.TempFolder);
         string staging = Path.Combine(RuntimeComponentPaths.TempFolder, Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(staging);
 
-        string source = Directory.Exists(RuntimeComponentPaths.CurrentFolder)
-            ? RuntimeComponentPaths.CurrentFolder
-            : RuntimeComponentPaths.ComponentsFolder;
-        if (Directory.Exists(source))
+        try
         {
-            foreach (string file in Directory.GetFiles(source, "*", SearchOption.TopDirectoryOnly))
+            string source = Directory.Exists(RuntimeComponentPaths.CurrentFolder)
+                ? RuntimeComponentPaths.CurrentFolder
+                : RuntimeComponentPaths.ComponentsFolder;
+            foreach (string file in Directory.EnumerateFiles(source))
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 string target = Path.Combine(staging, Path.GetFileName(file));
                 File.Copy(file, target, overwrite: true);
             }
-        }
 
-        Log.Debug($"Runtime component staging snapshot completed. elapsedSeconds={elapsed.Elapsed.TotalSeconds:0.0}");
-        return staging;
+            cancellationToken.ThrowIfCancellationRequested();
+            Log.Debug($"Runtime component staging snapshot completed. elapsedSeconds={elapsed.Elapsed.TotalSeconds:0.0}");
+            return staging;
+        }
+        catch
+        {
+            RuntimeComponentFileSystem.DeleteIfExists(staging);
+            throw;
+        }
     }
 
     public static async Task PromoteAsync(string stagingDirectory, CancellationToken cancellationToken)

@@ -119,8 +119,11 @@ public partial class GuiCommand
     void ShowTextWithEditor(string name, string text)
     {
         string file = Path.Combine(AppPaths.Temp, name + ".txt");
-        App.TempFiles.Add(file);
-        File.WriteAllText(file, BR + text.Trim() + BR);
+        lock (App.TempFiles)
+        {
+            App.TempFiles.Add(file);
+            File.WriteAllText(file, BR + text.Trim() + BR);
+        }
         ProcessHelp.ShellExecute(WinApiHelp.GetAppPathForExtension("txt"), "\"" + file + "\"");
     }
 

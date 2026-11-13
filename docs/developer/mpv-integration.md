@@ -249,6 +249,8 @@ liberação usa `mpv_destroy`. Depois que os loops e chamadas existentes
 terminam, cada cliente descarta seu `ReaderWriterLockSlim`; o player descarta o
 `CancellationTokenSource`, `SemaphoreSlim` e sinal de shutdown. `Destroy()` e
 `Dispose()` são idempotentes e removem callbacks gerenciados para não reter a UI.
+As exceções dos assinantes de `Shutdown` são tratadas individualmente. O player
+sinaliza o encerramento mesmo se um assinante falhar.
 
 `CreateNewPlayer()` coordena a criação do handle e o registro do cliente e do
 loop de eventos com `Destroy()`. Se o encerramento já começou, a chamada lança
@@ -418,6 +420,10 @@ chinês, japonês e coreano, entrada pela área de transferência, IPC, `loadfil
 domínios não reconhecidos e ausência de opções específicas por provedor.
 
 ## Diagnóstico da cadeia online
+
+As sondagens dos executáveis aguardam a saída do processo e as leituras de
+`stdout` e `stderr` com o mesmo prazo. Ao expirar, as leituras são canceladas,
+a sondagem tenta encerrar a árvore do processo e descarta os dois leitores.
 
 `mpvnet.exe --diagnose-components` mantém a resolução central de
 `RuntimeComponents` e, sem abrir a UI ou baixar componentes, executa sondagens

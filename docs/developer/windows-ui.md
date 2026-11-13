@@ -39,6 +39,9 @@ A interface gráfica é uma das principais diferenças entre o mpv original e o 
 - `src/MpvNet.Windows/Services/MediaTransport/` - contrato, controlador,
   metadata segura e adapter WinRT SMTC.
 
+Os comandos configurados no menu de contexto são despachados após o fechamento
+do popup. Ao fechar a janela, o popup é fechado e comandos pendentes são cancelados.
+
 ---
 
 # Áreas críticas
@@ -331,8 +334,10 @@ minutos para falha transitória. A limpeza dedicada roda em segundo plano na
 inicialização e nas gravações, com retenção de 30 dias e limites de 256 MiB e
 3.072 arquivos. Com `audio-artwork-cache=no`, a instância usa uma pasta
 exclusiva em `AppPaths.Temp` e a remove depois de encerrar a reprodução e o
-transporte de mídia. Cancelamento por
-troca/fechamento e verificações de geração, caminho e seleção descartam
+transporte de mídia. Ao trocar de faixa, o trabalho anterior é cancelado e sua
+fonte de cancelamento é descartada quando a tarefa termina. Ao fechar a janela,
+as tarefas de capa terminam antes do descarte do cliente HTTP e da remoção do
+cache temporário. Verificações de geração, caminho e seleção descartam
 resultados tardios. `user-data/mpvnet/audio-artwork-source` informa `none`,
 `local`, `online`, `artist` ou `default` para diagnóstico por IPC.
 Atualizações de posição não iniciam nova resolução nem republicam a imagem.
@@ -343,6 +348,8 @@ Windows, convertido para PNG em memória. Ausência ou falha de capa retorna ess
 externo para o fallback. Sem mídia ou durante o encerramento, a miniatura é
 removida junto com a sessão. O ícone segue o mesmo cancelamento e descarte das
 capas e não é republicado em atualizações de posição.
+O descarte do SMTC cancela o carregamento e libera o stream da miniatura mesmo
+se a remoção de uma assinatura WinRT falhar.
 
 Na janela embutida, o padrão de `media-controls` do libmpv é `no`: o frontend
 já publica a sessão do HWND. Isso evita duas sessões concorrentes no Windows.
@@ -353,6 +360,8 @@ comportamento nativo da versão de libmpv instalada. A execução sem janela
 preserva o padrão anterior do núcleo.
 
 ## DPI e escala
+
+O fallback de DPI libera o contexto GDI após consultar `LOGPIXELSX`.
 
 Mudanças precisam validar:
 

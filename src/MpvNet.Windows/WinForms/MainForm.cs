@@ -31,7 +31,8 @@ public partial class MainForm : Form
     public bool WasShown { get; set; }
     public static MainForm? Instance { get; set; }
     new WpfControls.ContextMenu ContextMenu { get; } = new WpfControls.ContextMenu();
-    AutoResetEvent MenuAutoResetEvent { get; } = new AutoResetEvent(false);
+    readonly List<string> _pendingMenuCommands = [];
+    readonly List<Task> _menuCommandTasks = [];
     Point _lastCursorPosition;
     Taskbar? _taskbar;
     MediaTransportController? _mediaTransport;
@@ -47,7 +48,8 @@ public partial class MainForm : Form
     int _cursorAutohide = 1000;
 
     bool _contextMenuIsReady;
-    bool _contextMenuClosedHandlerAttached;
+    bool _contextMenuHandlersAttached;
+    bool _contextMenuPopupOpen;
     bool _managedResourcesDisposed;
     bool _wasMaximized;
     bool _maxSizeSet;
@@ -541,10 +543,11 @@ public partial class MainForm : Form
 
     public void InitAndBuildContextMenu()
     {
-        if (!_contextMenuClosedHandlerAttached)
+        if (!_contextMenuHandlersAttached)
         {
+            ContextMenu.Opened += ContextMenu_Opened;
             ContextMenu.Closed += ContextMenu_Closed;
-            _contextMenuClosedHandlerAttached = true;
+            _contextMenuHandlersAttached = true;
         }
 
         _contextMenuIsReady = false;
@@ -571,20 +574,7 @@ public partial class MainForm : Form
 
             if (menuItem != null)
             {
-                menuItem.Click += (sender, args) => {
-                    try {
-                        BackgroundTaskRunner.Run(() => {
-                            MenuAutoResetEvent.WaitOne();
-                            System.Windows.Application.Current.Dispatcher.Invoke(
-                                DispatcherPriority.Background, new Action(delegate { }));
-                            if (!string.IsNullOrEmpty(tempBinding.Command))
-                                Player.Command(tempBinding.Command);                
-                        });
-                    }
-                    catch (Exception ex) {
-                        Msg.ShowException(ex);
-                    }
-                };
+                menuItem.Click += (_, _) => QueueMenuCommand(tempBinding.Command);
 
                 menuItem.InputGestureText = InterfaceLayout.TechnicalText(InputHelp.GetBindingsForCommand(activeBindings, tempBinding.Command));
             }
@@ -595,7 +585,7 @@ public partial class MainForm : Form
 
     public void RebuildContextMenu()
     {
-        if (!_contextMenuIsReady)
+        if (!_contextMenuIsReady || _closingInput || _managedResourcesDisposed)
             return;
 
         bool wasOpen = ContextMenu.IsOpen;
@@ -1144,7 +1134,44 @@ public partial class MainForm : Form
         UpdateTitleBarFullscreenButton();
     }
 
-    void ContextMenu_Closed(object sender, System.Windows.RoutedEventArgs e) => MenuAutoResetEvent.Set();
+    void ContextMenu_Opened(object sender, System.Windows.RoutedEventArgs e) => _contextMenuPopupOpen = true;
+
+    void ContextMenu_Closed(object sender, System.Windows.RoutedEventArgs e)
+    {
+        _contextMenuPopupOpen = false;
+        foreach (string command in _pendingMenuCommands)
+            DispatchMenuCommand(command);
+        _pendingMenuCommands.Clear();
+    }
+
+    void QueueMenuCommand(string command)
+    {
+        if (string.IsNullOrEmpty(command) || _closingInput || _managedResourcesDisposed)
+            return;
+
+        // WPF can deliver Click either before or after the popup's Closed event.
+        if (_contextMenuPopupOpen)
+            _pendingMenuCommands.Add(command);
+        else
+            DispatchMenuCommand(command);
+    }
+
+    void DispatchMenuCommand(string command)
+    {
+        ContextMenu.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+        {
+            if (_closingInput || _managedResourcesDisposed)
+                return;
+
+            _menuCommandTasks.RemoveAll(task => task.IsCompleted);
+            _menuCommandTasks.Add(BackgroundTaskRunner.RunAsync(cancellationToken =>
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                Player.Command(command);
+                return Task.CompletedTask;
+            }, _lifetimeCancellation.Token));
+        }));
+    }
 
     void DisposeManagedResources()
     {
@@ -1152,9 +1179,7 @@ public partial class MainForm : Form
             return;
 
         _managedResourcesDisposed = true;
-        ResetAudioArtwork();
-        _audioArtworkCancellation?.Dispose();
-        _onlineAudioArtwork?.Dispose();
+        CancelAudioArtwork();
         _titleBarFullscreenButton?.Dispose();
         _titleBarFullscreenButton = null;
         DisposeVideoClick();
@@ -1162,12 +1187,13 @@ public partial class MainForm : Form
         _lifetimeCancellation.Cancel();
         try
         {
-            _activationDelayTask?.GetAwaiter().GetResult();
+            Task.WhenAll(_menuCommandTasks.Append(_activationDelayTask ?? Task.CompletedTask)).GetAwaiter().GetResult();
         }
         catch (OperationCanceledException) when (_lifetimeCancellation.IsCancellationRequested)
         {
-            // Cancellation is expected when the window closes during the delayed activation fix.
+            // Cancellation is expected when the window closes with pending UI work.
         }
+        _menuCommandTasks.Clear();
         _lifetimeCancellation.Dispose();
 
         WpfTranslator.LanguageChanged -= WpfTranslator_LanguageChanged;
@@ -1188,12 +1214,15 @@ public partial class MainForm : Form
         GuiCommand.Current.WindowScaleNet -= GuiCommand_WindowScaleNet;
         GuiCommand.Current.ShowMenu -= GuiCommand_ShowMenu;
 
-        if (_contextMenuClosedHandlerAttached)
+        if (_contextMenuHandlersAttached)
         {
+            ContextMenu.Opened -= ContextMenu_Opened;
             ContextMenu.Closed -= ContextMenu_Closed;
-            _contextMenuClosedHandlerAttached = false;
+            _contextMenuHandlersAttached = false;
         }
 
+        _pendingMenuCommands.Clear();
+        ContextMenu.IsOpen = false;
         ContextMenu.Items.Clear();
         GlobalHotkey.UnregisterGlobalHotkeys();
         _taskbar?.Dispose();
@@ -1207,9 +1236,8 @@ public partial class MainForm : Form
         }
         _mediaTransport?.Dispose();
         _mediaTransport = null;
+        DisposeAudioArtwork();
         _audioArtworkCache.RemoveSessionFiles();
-        MenuAutoResetEvent.Set();
-        MenuAutoResetEvent.Dispose();
 
         if (ReferenceEquals(Instance, this))
             Instance = null;
@@ -1244,12 +1272,18 @@ public partial class MainForm : Form
 
     protected override void OnFormClosing(FormClosingEventArgs e)
     {
+        base.OnFormClosing(e);
+        if (e.Cancel)
+            return;
+
         ResetAudioArtwork();
         DisposeVideoClick();
+        _lifetimeCancellation.Cancel();
+        _pendingMenuCommands.Clear();
+        ContextMenu.IsOpen = false;
         _mediaTransportTimer?.Stop();
         _mediaTransportMediaLoaded = false;
         _mediaTransport?.Suspend();
-        base.OnFormClosing(e);
 
         if (Player.IsQuitNeeded)
             Player.CommandV("quit");

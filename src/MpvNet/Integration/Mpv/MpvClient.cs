@@ -310,7 +310,23 @@ public partial class MpvClient : IDisposable
 
     protected virtual void OnEndFile(mpv_event_end_file data) => EndFile?.Invoke((mpv_end_file_reason)data.reason);
     protected virtual void OnFileLoaded() => FileLoaded?.Invoke();
-    protected virtual void OnShutdown() => Shutdown?.Invoke();
+    protected virtual void OnShutdown()
+    {
+        if (Shutdown is not { } shutdown)
+            return;
+
+        foreach (Action handler in shutdown.GetInvocationList())
+        {
+            try
+            {
+                handler();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "A player shutdown subscriber failed.");
+            }
+        }
+    }
     protected virtual void OnGetPropertyReply() => GetPropertyReply?.Invoke();
     protected virtual void OnSetPropertyReply() => SetPropertyReply?.Invoke();
     protected virtual void OnCommandReply() => CommandReply?.Invoke();

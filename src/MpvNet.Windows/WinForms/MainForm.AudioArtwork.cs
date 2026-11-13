@@ -11,7 +11,8 @@ public partial class MainForm
     readonly Task _audioArtworkCacheCleanup;
     OnlineAudioArtwork? _onlineAudioArtwork;
     AudioArtworkRequest? _audioArtworkRequest;
-    CancellationTokenSource? _audioArtworkCancellation;
+    (CancellationTokenSource Cancellation, Task Work)? _audioArtworkOperation;
+    readonly List<Task> _audioArtworkRetirements = [];
     string? _audioArtworkPath;
     bool _audioArtworkPlaybackReady;
     HashSet<string>? _artworkExplicitOptions;
@@ -19,10 +20,55 @@ public partial class MainForm
     void ResetAudioArtwork()
     {
         _audioArtworkPlaybackReady = false;
-        _audioArtworkCancellation?.Cancel();
+        CancelAudioArtwork();
         _audioArtworkPath = null;
         _audioArtworkRequest = null;
         Player.SetPropertyString("user-data/mpvnet/audio-artwork-source", "none");
+    }
+
+    void CancelAudioArtwork()
+    {
+        if (_audioArtworkOperation is not { } operation)
+            return;
+
+        _audioArtworkOperation = null;
+        _audioArtworkRetirements.RemoveAll(task => task.IsCompleted);
+        _audioArtworkRetirements.Add(FinishAudioArtworkAsync(operation.Cancellation, operation.Work));
+    }
+
+    static async Task FinishAudioArtworkAsync(CancellationTokenSource cancellation, Task work)
+    {
+        using (cancellation)
+        {
+            try
+            {
+                await Task.WhenAll(cancellation.CancelAsync(), work).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Audio artwork cancellation failed.");
+            }
+        }
+    }
+
+    void DisposeAudioArtwork()
+    {
+        CancelAudioArtwork();
+        try
+        {
+            // Workers post UI updates without waiting for the window to process them.
+            Task.WhenAll(_audioArtworkRetirements.Append(_audioArtworkCacheCleanup)).GetAwaiter().GetResult();
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Audio artwork cleanup failed.");
+        }
+        finally
+        {
+            _audioArtworkRetirements.Clear();
+            _onlineAudioArtwork?.Dispose();
+            _onlineAudioArtwork = null;
+        }
     }
 
     MediaTransportSnapshot ResolveAudioArtwork(MediaTransportSnapshot snapshot)
@@ -31,7 +77,7 @@ public partial class MainForm
             return snapshot;
         if (snapshot.Metadata is not { MediaType: MediaTransportMediaType.Music } metadata)
         {
-            _audioArtworkCancellation?.Cancel();
+            CancelAudioArtwork();
             _audioArtworkPath = null;
             _audioArtworkRequest = null;
             return snapshot;
@@ -68,17 +114,16 @@ public partial class MainForm
 
         if (request != _audioArtworkRequest)
         {
-            _audioArtworkCancellation?.Cancel();
-            _audioArtworkCancellation?.Dispose();
-            _audioArtworkCancellation = new CancellationTokenSource();
-            CancellationToken token = _audioArtworkCancellation.Token;
+            CancelAudioArtwork();
             _audioArtworkRequest = request;
             _audioArtworkPath = null;
             Player.SetPropertyString("user-data/mpvnet/audio-artwork-source", "none");
             long generation = Interlocked.Read(ref _mediaTransportGeneration);
             _onlineAudioArtwork ??= new(_audioArtworkCache);
             var resolver = new AudioArtworkResolver(_audioArtworkCache, _onlineAudioArtwork);
-            Task.Run(async () =>
+            var cancellationSource = new CancellationTokenSource();
+            CancellationToken token = cancellationSource.Token;
+            Task work = Task.Run(async () =>
             {
                 try
                 {
@@ -96,7 +141,7 @@ public partial class MainForm
                         return Task.FromResult(pixels);
                     }, token).ConfigureAwait(false);
                     token.ThrowIfCancellationRequested();
-                    RunOnUiThread(() =>
+                    BeginInvoke(() =>
                     {
                         if (result == null || token.IsCancellationRequested || _closingInput || _managedResourcesDisposed ||
                             generation != Interlocked.Read(ref _mediaTransportGeneration) || request != _audioArtworkRequest ||
@@ -113,6 +158,7 @@ public partial class MainForm
                 catch (OperationCanceledException) { }
                 catch (Exception ex) { Log.Debug($"Audio artwork unavailable: {ex.GetType().Name}"); }
             });
+            _audioArtworkOperation = (cancellationSource, work);
         }
         return _audioArtworkPath == null ? snapshot : snapshot with { Metadata = metadata with { ThumbnailPath = _audioArtworkPath } };
     }

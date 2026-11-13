@@ -15,7 +15,7 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
     bool _disposed;
     bool _positionChangeSubscribed;
     MediaTransportSnapshot? _published;
-    CancellationTokenSource? _thumbnailCancellation;
+    (CancellationTokenSource Cancellation, Task Work)? _thumbnailOperation;
     IRandomAccessStream? _thumbnailStream;
     readonly Func<MediaTransportMetadata, CancellationToken, Task<IRandomAccessStream?>> _thumbnailLoader;
 
@@ -193,6 +193,11 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
     void DisableUnsafe()
     {
         ClearThumbnailUnsafe();
+        DisableControlsUnsafe();
+    }
+
+    void DisableControlsUnsafe()
+    {
         if (_published == MediaTransportSnapshot.Disabled)
             return;
 
@@ -227,9 +232,12 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
 
     void ClearThumbnailUnsafe()
     {
-        _thumbnailCancellation?.Cancel();
-        _thumbnailCancellation?.Dispose();
-        _thumbnailCancellation = null;
+        if (_thumbnailOperation is { } operation)
+        {
+            _thumbnailOperation = null;
+            Task cleanup = FinishThumbnailAsync(operation.Cancellation, operation.Work);
+        }
+
         IRandomAccessStream? stream = _thumbnailStream;
         _thumbnailStream = null;
         try
@@ -243,12 +251,27 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
         }
     }
 
+    static async Task FinishThumbnailAsync(CancellationTokenSource cancellation, Task work)
+    {
+        using (cancellation)
+        {
+            try
+            {
+                await Task.WhenAll(cancellation.CancelAsync(), work).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Log.Debug($"SMTC thumbnail cleanup failed: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
+            }
+        }
+    }
+
     void StartThumbnailUnsafe(MediaTransportMetadata metadata)
     {
-        _thumbnailCancellation = new CancellationTokenSource();
-        CancellationToken token = _thumbnailCancellation.Token;
+        var cancellation = new CancellationTokenSource();
+        CancellationToken token = cancellation.Token;
         // All file access and image inspection run off the player/UI thread.
-        Task.Run(async () =>
+        Task work = Task.Run(async () =>
         {
             IRandomAccessStream? stream = null;
             try
@@ -289,6 +312,7 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
                 stream?.Dispose();
             }
         });
+        _thumbnailOperation = (cancellation, work);
     }
 
     void OnButtonPressed(SystemMediaTransportControlsButton button)
@@ -337,29 +361,33 @@ public sealed class WindowsSystemMediaTransportService : IMediaTransportService
 
             _disposed = true;
 
-            if (_controls != null)
+            TryDisposeStep(ClearThumbnailUnsafe);
+            if (_controls is { } controls)
             {
-                try
-                {
-                    if (_buttonPressedHandler != null)
-                        _controls.ButtonPressed -= _buttonPressedHandler;
-                    if (_positionChangeSubscribed && _positionChangeRequestedHandler != null)
-                    {
-                        _controls.PlaybackPositionChangeRequested -= _positionChangeRequestedHandler;
-                        _positionChangeSubscribed = false;
-                    }
-                    DisableUnsafe();
-                }
-                catch (Exception ex)
-                {
-                    Log.Debug($"SMTC nao pode ser liberado completamente: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
-                }
+                if (_buttonPressedHandler is { } buttonPressed)
+                    TryDisposeStep(() => controls.ButtonPressed -= buttonPressed);
+                if (_positionChangeSubscribed && _positionChangeRequestedHandler is { } positionChanged)
+                    TryDisposeStep(() => controls.PlaybackPositionChangeRequested -= positionChanged);
+                _positionChangeSubscribed = false;
+                TryDisposeStep(DisableControlsUnsafe);
             }
 
             _controls = null;
             _buttonPressedHandler = null;
             _positionChangeRequestedHandler = null;
             CommandRequested = null;
+        }
+    }
+
+    static void TryDisposeStep(Action cleanup)
+    {
+        try
+        {
+            cleanup();
+        }
+        catch (Exception ex)
+        {
+            Log.Debug($"SMTC nao pode ser liberado completamente: {ex.GetType().Name}, hresult=0x{ex.HResult:X8}");
         }
     }
 }

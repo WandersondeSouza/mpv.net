@@ -152,7 +152,13 @@ public partial class MainPlayer
         Log.Debug($"mpv shutdown event received. path='{Log.SafeValue(GetPropertyString("path"))}', playlistPos={GetPropertyInt("playlist-pos")}, playlistCount={GetPropertyInt("playlist-count")}, isQuitNeeded={IsQuitNeeded}");
         IsQuitNeeded = false;
         LifecycleState = PlayerLifecycleState.Shutdown;
-        base.OnShutdown();
-        ShutdownAutoResetEvent.Set();
+        try
+        {
+            base.OnShutdown();
+        }
+        finally
+        {
+            ShutdownAutoResetEvent.Set();
+        }
     }
 }

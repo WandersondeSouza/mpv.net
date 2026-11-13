@@ -74,7 +74,15 @@ public static class WinApiHelp
             return GetDpiForWindow(hwnd);
 
         using Graphics gx = Graphics.FromHwnd(hwnd);
-        return GetDeviceCaps(gx.GetHdc(), 88 /*LOGPIXELSX*/);
+        IntPtr dc = gx.GetHdc();
+        try
+        {
+            return GetDeviceCaps(dc, 88 /*LOGPIXELSX*/);
+        }
+        finally
+        {
+            gx.ReleaseHdc(dc);
+        }
     }
 
     public static Rectangle GetWorkingArea(IntPtr handle, Rectangle workingArea)

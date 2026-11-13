@@ -15,6 +15,7 @@ namespace MpvNet.Windows;
 static class Program
 {
     static readonly CancellationTokenSource _applicationCancellation = new();
+    static Task? _componentBootstrapTask;
 
     [STAThread]
     static void Main()
@@ -173,7 +174,6 @@ static class Program
                 Log.Debug("Headless output mode sets idle=no before entering mpv event loop.");
                 Player.SetPropertyString("idle", "no");
                 Player.EventLoop();
-                Player.Destroy();
             }
             else
             {
@@ -195,20 +195,27 @@ static class Program
         }
         finally
         {
-            _applicationCancellation.Cancel();
             try
             {
-                Player.Destroy();
+                _applicationCancellation.Cancel();
+                _componentBootstrapTask?.GetAwaiter().GetResult();
             }
             finally
             {
                 try
                 {
-                    App.Dispose();
+                    Player.Destroy();
                 }
                 finally
                 {
-                    _applicationCancellation.Dispose();
+                    try
+                    {
+                        App.Dispose();
+                    }
+                    finally
+                    {
+                        _applicationCancellation.Dispose();
+                    }
                 }
             }
         }
@@ -268,10 +275,11 @@ static class Program
     internal static void StartComponentBootstrap()
     {
         Log.Debug("Starting runtime component bootstrap in background.");
-        BackgroundTaskRunner.Run(
+        _componentBootstrapTask = BackgroundTaskRunner.RunAsync(
             async cancellationToken =>
             {
                 await RuntimeComponents.EnsureComponentsAsync(cancellationToken).ConfigureAwait(false);
+                cancellationToken.ThrowIfCancellationRequested();
                 RuntimeComponents.EnsureComponentsFolderOnPath();
                 Player.RefreshYtDlpPathAfterComponentBootstrap();
             },

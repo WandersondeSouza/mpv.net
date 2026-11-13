@@ -103,7 +103,7 @@ internal static partial class OnlineMediaDiagnostics
             ? Probe(component.ResolvedPath, arguments)
             : new(false, null, "", component.DiagnosticMessage ?? "component unavailable");
 
-    static ExecutableProbeResult Probe(string executable, params string[] arguments)
+    internal static ExecutableProbeResult Probe(string executable, params string[] arguments)
     {
         try
         {
@@ -125,26 +125,31 @@ internal static partial class OnlineMediaDiagnostics
             if (!process.Start())
                 return new(false, null, "", "process did not start");
 
-            Task<string> stdout = process.StandardOutput.ReadToEndAsync();
-            Task<string> stderr = process.StandardError.ReadToEndAsync();
+            using StreamReader outputReader = process.StandardOutput;
+            using StreamReader errorReader = process.StandardError;
             using CancellationTokenSource timeout = new(TimeSpan.FromSeconds(5));
+            Task<string> stdout = outputReader.ReadToEndAsync(timeout.Token);
+            Task<string> stderr = errorReader.ReadToEndAsync(timeout.Token);
 
             try
             {
-                process.WaitForExitAsync(timeout.Token).GetAwaiter().GetResult();
+                Task.WhenAll(process.WaitForExitAsync(timeout.Token), stdout, stderr).GetAwaiter().GetResult();
             }
-            catch (OperationCanceledException)
+            catch (Exception ex) when (ex is OperationCanceledException or IOException)
             {
-                string failure = "probe timed out after 5 seconds";
+                string failure = timeout.IsCancellationRequested ? "probe timed out after 5 seconds" : ex.Message;
                 try
                 {
                     if (!process.HasExited)
+                    {
                         process.Kill(true);
-                    process.WaitForExit();
+                        if (!process.WaitForExit(1000))
+                            failure += "; process did not exit after termination";
+                    }
                 }
-                catch (Exception ex) when (ex is InvalidOperationException or System.ComponentModel.Win32Exception)
+                catch (Exception terminationError) when (terminationError is InvalidOperationException or System.ComponentModel.Win32Exception or AggregateException)
                 {
-                    failure += $"; process termination failed: {ex.Message}";
+                    failure += $"; process termination failed: {terminationError.Message}";
                 }
 
                 return new(true, null, "", failure);

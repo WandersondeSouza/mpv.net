@@ -203,7 +203,22 @@ public class AppClass : IDisposable
 
         StrongReferenceMessenger.Default.UnregisterAll(this);
         _extensionService.UnhandledException -= ExtensionService_UnhandledException;
-        DisposeDebugTraceListener();
+        try
+        {
+            string[] files;
+            lock (TempFiles)
+            {
+                files = [.. TempFiles];
+                TempFiles.Clear();
+            }
+
+            foreach (string file in files)
+                FileHelp.Delete(file);
+        }
+        finally
+        {
+            DisposeDebugTraceListener();
+        }
     }
 
     public static string About => "MPV.NET Media Player\n" +
@@ -368,9 +383,6 @@ public class AppClass : IDisposable
 
         SanitizeRecentFiles();
         SettingsStore.Save(Settings);
-
-        foreach (string file in TempFiles)
-            FileHelp.Delete(file);
     }
 
     Dictionary<string, string>? _Conf;

@@ -70,7 +70,7 @@ public partial class MainForm
     void GuiCommand_ShowMenu()
     {
         BeginInvoke(() => {
-            if (IsMouseInOsc())
+            if (_closingInput || _managedResourcesDisposed || IsMouseInOsc())
                 return;
 
             ShowCursor();

@@ -54,7 +54,7 @@ internal static class RuntimeComponentService
                             await SaveReusedMetadataAsync(staging, definition, metadata!, cancellationToken).ConfigureAwait(false);
                         continue;
                     }
-                    staging ??= RuntimeComponentStore.CreateStagingSnapshot();
+                    staging ??= RuntimeComponentStore.CreateStagingSnapshot(cancellationToken);
                     await EnsureComponentAsync(definition, asset, staging, cancellationToken).ConfigureAwait(false);
                     generationChanged = true;
                 }
@@ -91,7 +91,7 @@ internal static class RuntimeComponentService
                             await SaveReusedMetadataAsync(staging, primary, metadata!, cancellationToken).ConfigureAwait(false);
                         continue;
                     }
-                    staging ??= RuntimeComponentStore.CreateStagingSnapshot();
+                    staging ??= RuntimeComponentStore.CreateStagingSnapshot(cancellationToken);
                     await EnsureBundleAsync(bundleDefinitions, asset, staging, cancellationToken).ConfigureAwait(false);
                     generationChanged = true;
                 }

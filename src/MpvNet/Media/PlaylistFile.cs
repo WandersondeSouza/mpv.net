@@ -16,9 +16,9 @@ public static class PlaylistFile
         Directory.CreateDirectory(App.TempFolder);
         string path = Path.Combine(App.TempFolder, Guid.NewGuid() + ".m3u8");
 
-        File.WriteAllText(path, CreateM3uContent(items), new UTF8Encoding(false));
-
-        App.TempFiles.Add(path);
+        FileHelp.WriteAllTextAtomic(path, CreateM3uContent(items));
+        lock (App.TempFiles)
+            App.TempFiles.Add(path);
         return path;
     }
 

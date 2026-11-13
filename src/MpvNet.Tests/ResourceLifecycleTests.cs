@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using MpvNet;
 using MpvNet.Help;
+using MpvNet.Windows.Help;
 
 using Xunit;
 
@@ -57,6 +58,57 @@ public sealed class ResourceLifecycleTests
         FileHelp.WriteAllTextAtomic(textPath, "input-default-bindings=yes", new UTF8Encoding(false));
         AssertFileIsExclusive(textPath);
         Assert.Empty(Directory.GetFiles(directory.Path, "input.conf.*.tmp"));
+    }
+
+    [Fact]
+    public void AppDisposeRemovesTrackedTemporaryFilesWithoutAPlayerShutdownEvent()
+    {
+        using TestDirectory directory = new();
+        using AppClass app = new();
+        string temporaryFile = Path.Combine(directory.Path, "playlist.m3u8");
+        File.WriteAllText(temporaryFile, "#EXTM3U");
+        app.TempFiles.Add(temporaryFile);
+
+        app.Dispose();
+
+        Assert.False(File.Exists(temporaryFile));
+        Assert.Empty(app.TempFiles);
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(7)]
+    public void ExecutableProbeCollectsBothRedirectedStreams(int exitCode)
+    {
+        string executable = Path.Combine(Environment.SystemDirectory, "cmd.exe");
+        ExecutableProbeResult result = OnlineMediaDiagnostics.Probe(executable, "/d", "/c",
+            $"echo probe-out&echo probe-err 1>&2&exit /b {exitCode}");
+
+        Assert.True(result.Started);
+        Assert.Equal(exitCode, result.ExitCode);
+        Assert.Contains("probe-out", result.Output);
+        Assert.Contains("probe-err", result.Output);
+        Assert.Equal(exitCode == 0, result.Succeeded);
+    }
+
+    [Fact]
+    public void ExecutableProbeTimesOutWithBothReadersPending()
+    {
+        string executable = Path.Combine(Environment.SystemDirectory, "WindowsPowerShell", "v1.0", "powershell.exe");
+        Stopwatch elapsed = Stopwatch.StartNew();
+        ExecutableProbeResult result = OnlineMediaDiagnostics.Probe(executable,
+            "-NoProfile", "-NonInteractive", "-Command", "Start-Sleep -Seconds 30");
+
+        Assert.True(result.Started);
+        Assert.Null(result.ExitCode);
+        Assert.StartsWith("probe timed out", result.Failure);
+        Assert.True(elapsed.Elapsed < TimeSpan.FromSeconds(15), $"Probe took {elapsed.Elapsed}.");
+    }
+
+    [Fact]
+    public void DesktopDpiFallbackReturnsValidDpi()
+    {
+        Assert.True(WinApiHelp.GetDpi(IntPtr.Zero) > 0);
     }
 
     [Fact]
@@ -131,6 +183,26 @@ public sealed class ResourceLifecycleTests
         player.Destroy();
 
         Assert.False(player.HasPendingPlaylistNormalization);
+    }
+
+    [Fact]
+    public void PlayerShutdownSignalsCompletionAndNotifiesLaterSubscribersAfterFailure()
+    {
+        using ShutdownProbePlayer player = new();
+        bool notified = false;
+        player.Shutdown += () => throw new InvalidOperationException("subscriber failed");
+        player.Shutdown += () => notified = true;
+
+        player.RaiseShutdown();
+
+        Assert.True(notified);
+        Assert.True(player.ShutdownAutoResetEvent.WaitOne(0));
+        Assert.Equal(PlayerLifecycleState.Shutdown, player.LifecycleState);
+    }
+
+    sealed class ShutdownProbePlayer : MainPlayer
+    {
+        public void RaiseShutdown() => OnShutdown();
     }
 
     static void AssertFileIsExclusive(string path)

@@ -210,7 +210,9 @@ com o arquivo inteiro, a transferência reinicia sem concatenar os conteúdos.
 O hash completo continua obrigatório antes da ativação. Parciais sem alteração
 há sete dias são removidos durante o bootstrap.
 
-Ao fechar o aplicativo, o cancelamento aparece apenas no diagnóstico (`Debug`).
+Ao fechar o aplicativo, o bootstrap é cancelado e a saída aguarda a limpeza do
+staging da geração e a liberação do mutex. O cancelamento aparece apenas no
+diagnóstico (`Debug`).
 Timeout e falhas de transporte são registrados como erros, com limite e bytes
 recebidos quando aplicável. A geração válida anterior é preservada; componentes
 ausentes ou vencidos podem ser atualizados na próxima inicialização.
@@ -478,6 +480,10 @@ Registre a validação do ZIP portátil junto ao artefato e à versão testada. 
 [Build e release](build-release.md).
 
 ### Limpeza de estado descartável
+
+O descarte da aplicação remove os arquivos temporários registrados na sessão
+depois que o player termina suas tarefas e libera o libmpv. Isso inclui as
+playlists `.m3u8` geradas pelo frontend e os relatórios de texto abertos no editor.
 
 Na inicialização, o aplicativo tenta remover arquivos e diretórios vazios cuja
 última alteração ocorreu há mais de três dias em `AppPaths.Cache` e

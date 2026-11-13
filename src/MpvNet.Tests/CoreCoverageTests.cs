@@ -303,6 +303,22 @@ public sealed class RuntimeComponentTests
     }
 
     [Fact]
+    public async Task CancelledStagingSnapshotDoesNotLeaveAnUnownedGeneration()
+    {
+        using RuntimeComponentUpdateLock updateLock = await RuntimeComponentUpdateLock.AcquireAsync(
+            TestContext.Current.CancellationToken);
+        string stagingRoot = RuntimeComponentPaths.TempFolder;
+        Directory.CreateDirectory(stagingRoot);
+        string[] before = Directory.GetDirectories(stagingRoot).Order().ToArray();
+        using CancellationTokenSource cancellation = new();
+        cancellation.Cancel();
+
+        Assert.Throws<OperationCanceledException>(() => RuntimeComponentStore.CreateStagingSnapshot(cancellation.Token));
+
+        Assert.Equal(before, Directory.GetDirectories(stagingRoot).Order().ToArray());
+    }
+
+    [Fact]
     public void RuntimePathResolverFindsComponentOnPath()
     {
         using TestDirectory directory = new();
