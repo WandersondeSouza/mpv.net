@@ -2,6 +2,15 @@
 
 Use este guia para configurar o SDK, compilar o fork e preparar os pacotes x64.
 
+## Tópicos
+
+- [Requisitos](#requisitos-principais)
+- [Build pelo terminal](#build-via-terminal)
+- [Release e empacotamento](#release-e-empacotamento)
+- [Microsoft Store e WACK](#empacotamento-microsoft-store)
+- [Versão e manifesto](#versão)
+- [Checklist manual](#checklist-de-validação-manual)
+
 <a name="objetivo"></a>
 
 ## Requisitos principais

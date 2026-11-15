@@ -1,5 +1,13 @@
 ﻿# Localização do MPV.NET Media Player
 
+## Tópicos
+
+- [Idiomas disponíveis](#idiomas-disponíveis)
+- [Variantes regionais e fallback](#normalização-e-fallback)
+- [Interface, áudio e legenda](#interface-áudio-e-legenda)
+- [Adicionar ou revisar um idioma](#como-adicionar-ou-revisar-um-idioma)
+- [Extrair e validar os catálogos](#extração-do-catálogo-fonte)
+
 ## Objetivo
 
 Este guia documenta como adicionar ou revisar traduções da interface do MPV.NET Media Player sem quebrar os idiomas existentes.

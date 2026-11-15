@@ -1,22 +1,15 @@
-﻿# Guia operacional do MPV.NET Media Player
+# Guia operacional do MPV.NET Media Player
 
-Este guia reúne os comandos mais usados para compilar, preparar dependências e gerar pacotes.
-Os detalhes de ambiente, arquitetura e empacotamento da Store estão em
-[Build e release](developer/build-release.md).
+Execute os comandos na raiz do repositório.
 
-## Referências
-
-- [Manual do usuário](manual.md)
-- [Logs](logging.md)
-- [Build e release](developer/build-release.md)
-- [Arquitetura](developer/architecture.md)
-- [Configuração](developer/configuration.md)
-- [Integração com mpv/libmpv](developer/mpv-integration.md)
+1. [Compilar o player](#build)
+2. [Executar os testes](#testes-automatizados)
+3. [Gerar e validar os pacotes locais](#gerar-pacotes-locais)
+4. [Publicar uma release](#publicar-uma-release)
 
 ## Build
 
-Execute os comandos a partir da raiz do repositório. Consulte
-[Build e release](developer/build-release.md) para os requisitos do ambiente.
+Consulte os [requisitos do ambiente](developer/build-release.md#requisitos-principais).
 
 ```powershell
 dotnet restore .\src\MpvNet.sln
@@ -29,108 +22,11 @@ Para conferir os projetos e manifestos do Windows:
 .\src\Tools\validate-windows-baseline.ps1
 ```
 
-## Dependências nativas
-
-As distribuições x64 incluem `libmpv-2.dll` e `libmpv-2-v3.dll`. O player seleciona a
-variante compatível e mantém a versão normal como fallback obrigatório. Não gere
-pacotes que contenham apenas a variante v3.
-
-O build prepara as dependências necessárias automaticamente. Para prepará-las manualmente:
-
-```powershell
-.\src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Release\win-x64
-```
-
-Valide uma pasta publicada antes de distribuir o pacote:
-
-```powershell
-.\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Release\win-x64\publish
-.\src\Tools\validate-package-contents.ps1 -Path .\src\MpvNet.Windows\bin\Release\win-x64\publish
-```
-
-Os validadores também aceitam arquivos de pacote. Consulte os parâmetros de
-`validate-native-dependencies.ps1` e `validate-package-contents.ps1` para validar
-um ZIP ou pacote da Store.
-
-## Gerar pacotes locais
-
-Para gerar o ZIP portátil e o instalador sem publicar no GitHub:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
-```
-
-Para gerar somente o ZIP portátil:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
-```
-
-Para gerar somente o instalador:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
-```
-
-Esses scripts validam o conteúdo gerado. Para criar um pacote de diagnóstico com
-logs detalhados, adicione `-EnableFileLogging`. Pacotes de diagnóstico são para
-suporte e não devem ser publicados como assets de uma release.
-
-## Publicar uma release
-
-Defina a versão pública pelo script oficial; não altere os arquivos de versão
-separadamente:
-
-```powershell
-$VersaoPublica = Read-Host 'Informe a versão pública'
-.\src\Tools\set-release-version.ps1 -Version $VersaoPublica
-```
-
-Gere e valide os pacotes localmente antes de iniciar a publicação. Use o workflow
-`release-packages.yml` e revise a branch, as notas e os assets configurados. Para
-regras de versionamento e publicação da Microsoft Store, siga
-[Build e release](developer/build-release.md).
-
-O script `publish-emergency-release.ps1` faz mais que gerar pacotes locais: ele
-atualiza a versão, cria um commit, envia a branch ao GitHub e inicia o workflow
-de release. Execute-o somente quando a publicação estiver planejada e a árvore
-Git estiver limpa.
-
-## Modo portátil
-
-Use a [estrutura portátil](CONFIGURACAO.md#estrutura-portátil) para organizar
-configurações, scripts e opções. O ZIP não registra associações no Windows.
-No Explorador de Arquivos, use **Abrir com** para selecionar o `mpvnet.exe`
-extraído. Veja como o instalador desktop e o MSIX tratam
-[associações e tipos de arquivo](manual.md#extensões-e-associações-de-arquivos).
-
-## Diagnóstico de caminhos
-
-```powershell
-mpvnet.exe --diagnose-paths
-mpvnet.exe --diagnose-paths --config-dir="C:\Meu perfil MPV"
-mpvnet.exe --diagnose-components
-```
-
-As duas chamadas com `--diagnose-paths` não criam diretórios nem iniciam downloads.
-`--diagnose-components` também não baixa componentes e faz sondagens de versão. Confira a
-origem da configuração e as raízes de cache, componentes, temporários, logs,
-DLLs e recursos. A matriz de portátil/instalado/Store está em
-[Configuração técnica](developer/configuration.md). Em Store, arquivos graváveis
-pertencem à raiz privada de dados, não ao diretório instalado em WindowsApps.
-
-## Contribuir
-
-- Preserve a compatibilidade com mpv/libmpv e com os arquivos de configuração existentes.
-- Prefira mudanças pequenas e atualize a documentação quando o comportamento mudar.
-- Consulte a documentação técnica da área antes de alterar build, configuração,
-  interface ou integração com libmpv.
-
 ## Validação
 
 ### Testes automatizados
 
-O projeto `src/MpvNet.Tests` usa xUnit v3. Execute a suíte a partir da raiz:
+Execute a suíte xUnit v3.
 
 ```powershell
 dotnet run --project .\src\MpvNet.Tests\MpvNet.Tests.csproj --no-restore
@@ -140,6 +36,9 @@ Se os assets NuGet ainda não existirem, restaure o projeto antes de usar
 `--no-restore`. Os testes referenciam o projeto Windows, cujo build normal
 prepara dependências nativas e catálogos. `/p:EnsureBuildAssets=false` apenas
 pula essa preparação; exige assets válidos já disponíveis para testes que os usam.
+
+<details>
+<summary>Preparação das dependências, cobertura e isolamento</summary>
 
 Depois do build, o projeto de testes copia da saída efetiva do projeto Windows
 as DLLs `libmpv-2.dll`, `libmpv-2-v3.dll`, `libmpvnet.dll` e `MediaInfo.dll`, os
@@ -166,6 +65,11 @@ mensagem personalizada em `mpv.conf` e na linha de comando.
 do executável de testes se não houver override explícito. Isso isola os dados
 do player. O comando da solução `dotnet test src\MpvNet.sln` não substitui esse
 fluxo, pois a solução também contém o projeto WAP.
+
+</details>
+
+<details>
+<summary>Validação manual, Store, localização e cache</summary>
 
 ### Limites das evidências
 
@@ -202,6 +106,113 @@ sintéticas curtas registradas não substituem sessão prolongada 1080p/4K,
 transporte HLS/DASH/RTSP/RTMP, YouTube e o checklist manual acima. Uma etapa
 com build/testes aprovados pode manter essas validações externas pendentes,
 identificando o ambiente e sem prometer ganho de desempenho não medido.
+
+</details>
+
+## Gerar pacotes locais
+
+Para gerar o ZIP portátil e o instalador sem publicar no GitHub:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease
+```
+
+Para gerar somente o ZIP portátil:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
+```
+
+Para gerar somente o instalador:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release
+```
+
+Esses scripts validam o conteúdo gerado. Veja também a
+[validação de dependências e conteúdo](#dependências-nativas).
+Use `-EnableFileLogging` para gerar [pacotes de suporte](logging.md#gerar-zip-e-instalador-para-teste)
+fora da release pública.
+
+## Publicar uma release
+
+Defina a versão pública pelo script oficial para sincronizar os arquivos de versão.
+
+```powershell
+$VersaoPublica = Read-Host 'Informe a versão pública'
+.\src\Tools\set-release-version.ps1 -Version $VersaoPublica
+```
+
+Gere e valide os pacotes localmente. Antes de executar o workflow
+[release-packages.yml](../.github/workflows/release-packages.yml), confira a
+branch, as notas e os arquivos da release. Para a Microsoft Store, siga o
+[fluxo de empacotamento MSIX](developer/build-release.md#empacotamento-microsoft-store).
+
+O script `publish-emergency-release.ps1` faz mais que gerar pacotes locais: ele
+atualiza a versão, cria um commit, envia a branch ao GitHub e inicia o workflow
+de release. Execute-o somente quando a publicação estiver planejada e a árvore
+Git estiver limpa.
+
+## Dependências nativas
+
+A distribuição x64 precisa das duas variantes de libmpv. A DLL normal é o
+fallback obrigatório.
+
+O build prepara as dependências necessárias automaticamente. Para prepará-las manualmente:
+
+```powershell
+.\src\Tools\prepare-native-dependencies.ps1 -SourceDir .\src -TargetDir .\src\MpvNet.Windows\bin\Release\win-x64
+```
+
+Para validar uma pasta de publicação Release:
+
+```powershell
+.\src\Tools\validate-native-dependencies.ps1 -Path .\src\MpvNet.Windows\bin\Release\win-x64\publish
+.\src\Tools\validate-package-contents.ps1 -Path .\src\MpvNet.Windows\bin\Release\win-x64\publish
+```
+
+Os validadores também aceitam arquivos de pacote. Consulte os parâmetros de
+`validate-native-dependencies.ps1` e `validate-package-contents.ps1` para validar
+um ZIP ou pacote da Store.
+
+## Modo portátil
+
+Use a [estrutura portátil](CONFIGURACAO.md#estrutura-portátil) para organizar
+configurações, scripts e opções. O ZIP não registra associações no Windows.
+No Explorador de Arquivos, use **Abrir com** para selecionar o `mpvnet.exe`
+extraído. Veja como o instalador desktop e o MSIX tratam
+[associações e tipos de arquivo](manual.md#extensões-e-associações-de-arquivos).
+
+## Diagnóstico de caminhos
+
+```powershell
+mpvnet.exe --diagnose-paths
+mpvnet.exe --diagnose-paths --config-dir="C:\Meu perfil MPV"
+mpvnet.exe --diagnose-components
+```
+
+As duas chamadas com `--diagnose-paths` não criam diretórios nem iniciam downloads.
+`--diagnose-components` também não baixa componentes e faz sondagens de versão. Confira a
+origem da configuração e as raízes de cache, componentes, temporários, logs,
+DLLs e recursos. A matriz de portátil/instalado/Store está em
+[Configuração técnica](developer/configuration.md). Em Store, arquivos graváveis
+pertencem à raiz privada de dados, não ao diretório instalado em WindowsApps.
+
+## Contribuir
+
+- Preserve a compatibilidade com mpv/libmpv e com os arquivos de configuração existentes.
+- Prefira mudanças pequenas e atualize a documentação quando o comportamento mudar.
+- Consulte a documentação técnica da área antes de alterar build, configuração,
+  interface ou integração com libmpv.
+
+## Referências
+
+- [Manual do usuário](manual.md)
+- [Logs](logging.md)
+- [Build e release](developer/build-release.md)
+- [Arquitetura](developer/architecture.md)
+- [Configuração](developer/configuration.md)
+- [Integração com mpv/libmpv](developer/mpv-integration.md)
 
 ## Manutenção deste guia
 

@@ -3,6 +3,15 @@
 O mpv/libmpv executa a reprodução. O frontend coordena o carregamento, os
 comandos, os eventos e o estado consumido pela interface e pelos scripts.
 
+## Tópicos
+
+- [Extensões, playlists e formatos](#extensões-playlists-e-capacidade-de-decodificação)
+- [Variantes e carregamento de libmpv](#carregamento-dual-de-libmpv)
+- [Ciclo de vida do player](#ciclo-de-vida)
+- [Diagnóstico de mídia online](#diagnóstico-da-cadeia-online)
+- [Cache e recuperação de streams](#cache-automático-por-item)
+- [Registros de validação](#registros-de-validação)
+
 <a name="objetivo"></a>
 <a name="visão-geral"></a>
 

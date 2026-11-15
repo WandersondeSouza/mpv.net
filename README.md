@@ -1,6 +1,29 @@
 # MPV.NET Media Player
 
-Player de mídia para Windows baseado no mpv.net e no mpv/libmpv. O fork preserva a compatibilidade com as opções, os comandos e os arquivos de configuração do mpv.
+Player de mídia para Windows baseado no mpv.net e no mpv/libmpv, com suporte às opções, aos comandos e aos arquivos de configuração do mpv.
+
+## Download
+
+Baixe o instalador ou o ZIP portátil nas [releases do GitHub](https://github.com/WandersondeSouza/mpv.net/releases). O player também está na [Microsoft Store](https://apps.microsoft.com/detail/9N441SP6XHLD).
+
+Requer Windows x64, a partir do Windows 10 versão 2004 (build 19041).
+
+## Uso rápido
+
+- Arraste um vídeo, áudio ou playlist para a janela. Use `Ctrl+v` para
+  abrir um caminho ou URL copiado.
+- Pressione `Ctrl+,` para abrir o
+  [editor de configuração](docs/manual.md#configuração).
+- Veja os [controles de reprodução](docs/manual.md#controles-de-reprodução).
+
+Com `mpvnet.exe` disponível no `PATH`, você também pode abrir mídia
+pelo PowerShell.
+
+```powershell
+mpvnet.exe "C:\Videos\filme.mp4"
+mpvnet.exe "C:\Listas\iptv.m3u"
+mpvnet.exe "https://example.com/live/index.m3u8"
+```
 
 ## Documentação principal
 
@@ -9,7 +32,10 @@ Player de mídia para Windows baseado no mpv.net e no mpv/libmpv. O fork preserv
 - [Configuração rápida](docs/CONFIGURACAO.md)
 - [Atalhos](docs/ATALHOS.md)
 - [Logs de diagnóstico](docs/logging.md)
-- [Guia operacional, build e release](docs/guia-operacional.md)
+
+### Desenvolvimento
+
+- [Guia operacional](docs/guia-operacional.md)
 - [Arquitetura técnica](docs/developer/architecture.md)
 - [Configuração técnica](docs/developer/configuration.md)
 - [Integração com mpv/libmpv](docs/developer/mpv-integration.md)
@@ -19,37 +45,13 @@ Player de mídia para Windows baseado no mpv.net e no mpv/libmpv. O fork preserv
 - [Artefatos de IA](.ai/README.md)
 - [Política de segurança](SECURITY.md)
 
-## Uso rápido
-
-```powershell
-mpvnet.exe "C:\Videos\filme.mp4"
-mpvnet.exe "C:\Listas\iptv.m3u"
-mpvnet.exe "https://example.com/live/index.m3u8"
-```
-
-O mpv.net aceita arquivos locais, playlists e URLs de streaming compatíveis com o mpv.
-
-O [cache automático de streaming](docs/developer/mpv-integration.md#cache-automático-por-item)
-usa uma política resiliente por tipo de mídia, com um único toggle no editor e
-precedência para opções explícitas do mpv.
-
-As distribuições x64 exigem Windows 10 versão 2004 (build 19041) ou
-posterior. Em Windows 10/11, os controles de mídia do sistema podem exibir a
-mídia ativa e enviar Play, Pause, Stop, Next, Previous e seek para o player.
-
-## Apresentação do player
-
-Baixe o MPV.NET Media Player nas [releases do GitHub](https://github.com/WandersondeSouza/mpv.net/releases) ou na [Microsoft Store](https://apps.microsoft.com/detail/9N441SP6XHLD).
-
 ## Compatibilidade de CPU do libmpv
 
-Todas as distribuições x64 incluem `libmpv-2.dll` (normal) e
-`libmpv-2-v3.dll` (x86-64-v3). Na inicialização, o player seleciona a v3
-automaticamente somente em CPUs compatíveis e volta para a normal se a v3 não
-existir ou não puder ser carregada. Portanto, o pacote da Microsoft Store não
-exige uma CPU x86-64-v3 para iniciar. Veja os detalhes técnicos, diagnóstico e
-testes em [Integração com mpv/libmpv](docs/developer/mpv-integration.md) e
-[Build e release](docs/developer/build-release.md).
+O player inclui `libmpv-2.dll` e `libmpv-2-v3.dll` nos pacotes x64.
+Ele tenta a v3 em CPUs compatíveis e usa a variante normal como fallback.
+Consulte a [seleção de libmpv e o diagnóstico](docs/developer/mpv-integration.md#carregamento-dual-de-libmpv).
+
+## Apresentação do player
 
 ![MPV.NET Media Player em Português do Brasil](docs/img/player/Player00.png)
 

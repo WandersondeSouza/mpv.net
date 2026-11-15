@@ -3,6 +3,15 @@
 A pasta ativa reúne os arquivos do mpv e do frontend. O `AppPaths`
 resolve os caminhos de configuração e de dados.
 
+## Tópicos
+
+- [Pasta de configuração e precedência](#ordem-de-resolução-da-pasta-de-configuração)
+- [Arquivos e caminhos de dados](#arquivos-principais)
+- [Componentes baixados pelo player](#componentes-auxiliares-de-runtime)
+- [Opções do mpv.net](#mpvnetconf)
+- [Atalhos e migrações](#inputconf)
+- [Opções iniciais da linha de comando](#opções-iniciais-da-linha-de-comando)
+
 <a name="objetivo"></a>
 
 ## Visão geral

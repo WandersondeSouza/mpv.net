@@ -4,6 +4,15 @@ A janela principal usa WinForms. Janelas auxiliares em WPF, os controles na
 tela, os temas e a integração com a barra de tarefas completam a interface
 do Windows.
 
+## Tópicos
+
+- [Topologia da janela](#topologia-da-janela-principal)
+- [Tela cheia](#fullscreen)
+- [Controles na tela (OSC)](#osc)
+- [Controles de mídia e barra de tarefas](#controles-de-mídia-do-windows)
+- [DPI e escala](#dpi-e-escala)
+- [Smoke test e checklist visual](#smoke-test-reproduzível)
+
 <a name="objetivo"></a>
 <a name="visão-geral"></a>
 <a name="principais-responsabilidades"></a>

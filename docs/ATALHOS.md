@@ -1,20 +1,61 @@
 ﻿# Atalhos
 
-Referência dos atalhos definidos pelo fork em `InputHelp.GetDefaults()`.
-As tabelas descrevem uma configuração sem personalizações, com a janela
-principal focada. Seu `input.conf`, opções de inicialização e scripts podem
-substituir esses controles; confira a lista ativa em caso de diferença.
+As tabelas mostram os atalhos padrão com a janela principal em foco.
+Personalizações, opções de inicialização e scripts podem mudar os atalhos ativos.
 
-- `input.conf`: atalhos de teclado e mouse;
-- `global-input.conf`: atalhos globais do Windows;
-- `input-test` e `input-keylist`: modos de diagnóstico;
-- o menu de contexto pode ser ajustado pelo `input.conf` compatível com o fork.
+- [Personalizar ou desativar um atalho](#personalizar-ou-desativar-um-atalho)
+- [Consultar os controles padrão](#controles-padrão-de-reprodução)
+- [Diagnosticar um atalho](#consultar-e-diagnosticar-atalhos)
 
-Para localizar os arquivos e a pasta ativa, veja [Configuração](CONFIGURACAO.md).
+## Personalizar ou desativar um atalho
+
+1. Abra **Configuração → Mostrar editor de atalhos** (`Ctrl+i`).
+2. Localize a ação pelo nome ou pela tecla atual.
+3. Clique na coluna **Entrada** e pressione a nova tecla ou combinação.
+   No diálogo de captura, **Configuração** confirma a seleção e
+   **Limpar lista** apaga a entrada daquela ação. Uma ação pode ter mais de
+   um atalho em linhas separadas.
+4. Feche o editor para salvar e reinicie o player. Se houver a mesma tecla
+   associada a comandos diferentes, o editor indica o conflito e mantém a
+   janela aberta para correção.
+
+<details>
+<summary>Editar input.conf e conferir a precedência dos atalhos</summary>
+
+Abra **Configuração → Editar input.conf** (`k`) ou abra a pasta ativa
+com `Ctrl+f`. Faça uma cópia do arquivo antes de editar e reinicie o
+player após salvar. O [guia de configuração](CONFIGURACAO.md#arquivos-principais)
+também indica o arquivo de atalhos globais e os demais arquivos do perfil.
+
+Cada linha associa uma tecla a um comando. As linhas abaixo mudam o salto da
+seta direita para 10 segundos e desativam apenas `p`.
+
+```ini
+Right seek 10
+p ignore
+```
+
+Maiúsculas e minúsculas são distintas. Use `Alt+k` para consultar os
+nomes de teclas disponíveis no seu layout. O parser normaliza os nomes dos
+modificadores, como `ctrl+` para `Ctrl+`.
+
+Sem menu completo, os atalhos definidos no arquivo, inclusive `ignore`,
+têm prioridade sobre os padrões do fork. Em menus completos com a sintaxe
+`#menu:`, edite a linha existente para preservar o rótulo. O frontend
+preserva as ações essenciais **Abrir arquivos** e **Sobre**. Migrações de
+comandos e links legados usam backup.
+
+Com `--input-conf=...`, o mpv usa o arquivo explícito, enquanto o editor
+continua ligado ao `input.conf` do perfil ativo. Scripts e OSC podem ter
+prioridade nas respectivas áreas. Consulte os
+[atalhos ativos](#consultar-e-diagnosticar-atalhos) e as
+[regras de configuração](developer/configuration.md#inputconf).
+
+</details>
 
 ## Controles padrão de reprodução
 
-| Ação | Binding padrão | Observações |
+| Ação | Atalho padrão | Observações |
 | --- | --- | --- |
 | Play/Pause | `Space`, `p`, `P` | Usam `script-message-to mpvnet play-pause`, assim como as teclas de mídia `Play`, `Pause` e `PlayPause`. |
 | Parar | `Ctrl+s`, tecla de mídia `Stop` | Executam `stop`; não fecham o player. |
@@ -39,7 +80,7 @@ da janela pesquisável.
 
 ## Playlist, faixas, legendas e repetição
 
-| Ação | Binding padrão | Observações |
+| Ação | Atalho padrão | Observações |
 | --- | --- | --- |
 | Arquivo anterior / próximo | `F11` / `F12`, `<` / `>` | Também pelas teclas de mídia `Prev` / `Next`. |
 | Primeiro / último arquivo | `Home` / `End` | Navegam na playlist atual. |
@@ -58,11 +99,11 @@ da janela pesquisável.
 
 ## Mouse e movimento da janela
 
-Os bindings abaixo valem fora de controles que capturam o mouse. Sobre o OSC,
-os botões, a timeline e a roda seguem as ações do próprio painel; scripts também
-podem registrar áreas e bindings próprios.
+Os atalhos abaixo valem fora dos controles que capturam o mouse. Sobre o OSC,
+os botões, a barra de progresso e a roda seguem as ações do painel.
+Scripts também podem definir áreas e atalhos próprios.
 
-| Ação | Binding padrão | Observações |
+| Ação | Atalho padrão | Observações |
 | --- | --- | --- |
 | Play/Pause na área de vídeo | Clique esquerdo (`MBTN_Left`) | Exige mídia carregada e área elegível fora da reserva do OSC. |
 | Alternar tela cheia | Duplo clique esquerdo (`MBTN_Left_DBL`) | Cancela a pausa pendente do clique simples. |
@@ -83,54 +124,8 @@ consulta das áreas interativas reais do OSC; pode excluir partes do vídeo mesm
 com os controles ocultos. Cliques consumidos pelo OSC ou por scripts continuam
 sob controle do mpv.
 
-`p` deixa de mostrar progresso no padrão. O comando `show-progress` continua
-disponível no menu **View > Progress** (com o nome traduzido no idioma da
-interface) e pode receber um atalho no editor de input.
-
-## Personalizar ou desativar um atalho
-
-Abra o editor de atalhos com `Ctrl+i` (**Config > Show Input Editor**) ou o
-arquivo de texto `input.conf` com `k` (**Config > Edit input.conf**). `Ctrl+f`
-abre a pasta de configuração ativa. Faça uma cópia do arquivo antes de editar,
-preserve as demais linhas e reinicie o player para aplicar as alterações.
-
-Cada linha contém a tecla e o comando. Por exemplo, para fazer a seta direita
-avançar 10 segundos:
-
-```ini
-Right seek 10
-```
-
-Para desativar somente `p`, mantendo `P` e `Space` nos padrões:
-
-```ini
-p ignore
-```
-
-Maiúsculas e minúsculas são distintas: `f` alterna tela cheia, mas `F` altera a
-legenda; `l` e `L` controlam repetições diferentes. O parser normaliza os nomes
-dos modificadores (`ctrl+` para `Ctrl+`, por exemplo), mas preserva a caixa da
-letra. Use os nomes de tecla da consulta `Alt+k`; símbolos dependem do layout
-do teclado.
-
-Em arquivos sem menu completo, o frontend combina seus padrões com o conteúdo
-do usuário, deixando bindings explícitos, inclusive `ignore`, com prioridade
-sobre os defaults. Evite duas linhas próprias com a mesma tecla e comandos
-diferentes; o editor verifica esses conflitos ao salvar.
-
-Um arquivo com a sintaxe de menu ativa (`#menu: ` por padrão) fornece seus
-próprios bindings e não recebe a mesclagem geral de defaults. Ao personalizá-lo,
-edite a linha existente para preservar seu rótulo de menu; não substitua o
-arquivo inteiro por estes exemplos. O frontend preserva as ações essenciais de
-abrir arquivos e Sobre no menu. Migrações de comandos/links legados são
-separadas e usam backup; não impõem os controles novos. Detalhes em
-[Configuração técnica](developer/configuration.md#inputconf).
-
-Se iniciar com `--input-conf=...`, esse arquivo explícito prevalece no mpv. O
-editor do frontend continua ligado ao `input.conf` da pasta ativa; confira o
-arquivo indicado na linha de comando e consulte os bindings efetivos.
-Scripts e OSC podem ter prioridade nas suas seções ativas, mesmo com uma linha
-explícita no arquivo.
+Use **Exibir → Progresso** para executar `show-progress` ou atribua
+uma tecla a esse comando no editor.
 
 ## J/K/L como configuração opcional
 
@@ -153,8 +148,8 @@ transmissões sem busca não passam a permitir retrocesso.
 | Tecla | Padrão do fork | Com o exemplo opcional |
 | --- | --- | --- |
 | `j` | Sem binding próprio | Voltar 5 s. |
-| `k` | Editar `input.conf` como texto | Play/Pause; o editor visual continua em `Ctrl+i` e a edição como texto no menu Config. |
-| `l` | Loop A-B | Avançar 5 s; o loop A-B continua no menu Tools. |
+| `k` | Editar `input.conf` como texto | Play/Pause. A edição continua no menu **Configuração**. |
+| `l` | Loop A-B | Avançar 5 s. O loop A-B continua no menu **Ferramentas**. |
 | `J`, `K` | Sem binding próprio | Permanecem sem binding próprio; não são aliases das minúsculas. |
 | `L` | Repetir arquivo | Permanece igual. |
 
@@ -179,13 +174,11 @@ Com a janela principal focada, os padrões incluem:
 | `Ctrl+i` | Abrir o editor de atalhos. |
 | `Alt+k` | Listar os nomes de teclas reconhecidos pelo mpv em um editor de texto. |
 
-No menu de contexto, **View > More > Active Bindings In Text Editor** exporta
-uma consulta dos bindings de runtime do mpv. Ela inclui o arquivo selecionado
-por `--input-conf` e bindings de scripts, respeita prioridade e mantém `ignore`
-visível para explicar teclas desativadas. É uma fotografia do momento da
-consulta: scripts e overlays podem mudar os bindings disponíveis depois.
-Os nomes do menu acompanham o idioma da interface. A consulta abre um arquivo
-de diagnóstico; não grava nem substitui o `input.conf`.
+No menu de contexto, **Exibir → Mais → Atalhos ativos no editor de texto**
+mostra os atalhos ativos no momento da consulta. A lista inclui as atribuições
+de scripts e do arquivo selecionado com `--input-conf`, respeita a prioridade
+entre eles e mostra entradas `ignore`. A consulta abre um arquivo de
+diagnóstico separado do `input.conf`.
 
 Se uma tecla não funcionar:
 
