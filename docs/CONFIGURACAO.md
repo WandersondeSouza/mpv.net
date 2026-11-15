@@ -1,6 +1,10 @@
 ﻿# Configuração do MPV.NET Media Player
 
-Encontre a pasta ativa e o arquivo que precisa editar.
+Abra **Configuração → Mostrar editor de configuração** (`Ctrl+,`) para
+ajustar as opções do player. Feche o editor para salvar. Veja as categorias
+mais usadas no [manual](manual.md#configuração).
+
+Consulte a pasta e os arquivos abaixo para ajustes avançados, scripts e backups.
 
 ## Ordem de busca
 
