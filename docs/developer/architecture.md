@@ -2,13 +2,11 @@
 
 ## Propósito
 
-Esta página resume a estrutura do repositório, as responsabilidades dos principais projetos e o fluxo entre a interface do Windows e o mpv/libmpv. Detalhes de configuração, integração nativa, interface e release ficam nas páginas técnicas específicas.
+A solução integra o motor mpv/libmpv à interface do Windows, à configuração e aos comandos do fork.
 
 ## Visão geral
 
-O MPV.NET Media Player é um aplicativo Windows baseado no mpv.net. O mpv/libmpv executa a reprodução; o código do fork integra esse motor à interface Windows, aos comandos, à configuração e aos recursos do sistema.
-
-A separação principal é entre:
+Os principais componentes têm as seguintes responsabilidades.
 
 - **MpvNet**: núcleo da aplicação e coordenação do player;
 - **MpvNet.Windows**: janela, comandos de interface e integrações Windows;
@@ -66,7 +64,7 @@ sem pacote e diretório padrão local. MSIX usa a raiz privada do pacote para
 dados graváveis. Os formatos de configuração do mpv e do frontend continuam
 separados dentro da mesma pasta; veja a matriz completa em [Configuração](configuration.md).
 
-Comandos antigos e adaptadores públicos podem permanecer no código para preservar configurações, scripts e extensões existentes. Os arquivos, a ordem completa de resolução e os detalhes do modo portátil estão em [Configuração](configuration.md).
+Comandos antigos e adaptadores públicos preservam a compatibilidade com configurações, scripts e extensões existentes.
 
 ## Ciclo de vida e limites entre componentes
 
@@ -84,3 +82,5 @@ Comandos antigos e adaptadores públicos podem permanecer no código para preser
 - [Interface Windows](windows-ui.md)
 - [Build e release](build-release.md)
 - [Localização](localization.md)
+
+- [Auditoria editorial da documentação](reports/documentation-editorial-audit.md)

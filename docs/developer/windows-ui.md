@@ -1,29 +1,12 @@
 ﻿# Interface Windows do MPV.NET Media Player
 
-## Objetivo
+A janela principal usa WinForms. Janelas auxiliares em WPF, os controles na
+tela, os temas e a integração com a barra de tarefas completam a interface
+do Windows.
 
-Documentar conceitos da interface gráfica do MPV.NET Media Player.
-
----
-
-# Visão geral
-
-O mpv.net implementa sua própria janela principal para Windows.
-
-A interface gráfica é uma das principais diferenças entre o mpv original e o mpv.net.
-
----
-
-# Principais responsabilidades
-
-- janela principal;
-- fullscreen;
-- menu de contexto;
-- overlays;
-- temas;
-- atalhos;
-- mouse;
-- controles na tela.
+<a name="objetivo"></a>
+<a name="visão-geral"></a>
+<a name="principais-responsabilidades"></a>
 
 ## Topologia da janela principal
 
@@ -42,11 +25,9 @@ A interface gráfica é uma das principais diferenças entre o mpv original e o 
 Os comandos configurados no menu de contexto são despachados após o fechamento
 do popup. Ao fechar a janela, o popup é fechado e comandos pendentes são cancelados.
 
----
+## Áreas críticas
 
-# Áreas críticas
-
-## Fullscreen
+### Fullscreen
 
 Mudanças podem impactar:
 
@@ -60,7 +41,7 @@ sair desse modo e não é encaminhado ao mpv como `quit`. Com a janela no tamanh
 normal, o atalho padrão `Esc` continua sendo encaminhado ao mpv para fechar o
 player.
 
-## Botão de tela cheia na barra de título
+### Botão de tela cheia na barra de título
 
 `MainForm.TitleBar.cs` encaminha o clique para `Player.Command("cycle fullscreen")`.
 A propriedade observada do mpv e `MainForm.Fullscreen.cs` continuam controlando
@@ -96,7 +77,7 @@ a superfície.
 O ícone reproduz em GDI+ o contorno `E108` de `mpv-osd-symbols`, usado pelo
 estilo `classic` do OSC distribuído (`bottombar`, padrão `icon_style=layout`).
 A fonte interna do libmpv não é uma fonte GDI instalada; por isso o contorno
-é desenhado sem acrescentar uma dependência de fonte. O glyph é ampliado para
+é desenhado sem acrescentar uma dependência de fonte. O glifo é ampliado para
 22 px para melhorar a leitura. Quando a janela perde o foco, a superfície usa
 as cores de legenda inativa do Windows no alto contraste; nos temas claro e
 escuro, o ícone fica cinza para acompanhar os botões nativos inativos. Ao
@@ -137,9 +118,7 @@ Uma repetição da suíte ficou sem progresso e foi interrompida. A execução
 seguinte com diagnóstico por teste aprovou os 739 casos; a causa da ocorrência
 intermitente não foi determinada.
 
-## OSC
-
-O OSC depende do comportamento da janela.
+### OSC
 
 O padrão distribuído permanece `visibility=auto`, com `boxvideo=no` e
 `sub_margins=no`. `Del` executa `script-binding osc/visibility`; a alternância
@@ -170,7 +149,7 @@ de clique encaminha para o navegador usando a URL da página de apoio, gerada
 pelo C# com o idioma efetivo da interface. O `osc.lua` mantido em
 `src/MpvNet.Windows/Scripts/osc.lua`, baseado no commit `304426c39` do mpv,
 coloca esse botão na linha inferior do layout `bottombar`, imediatamente antes
-do controle de volume. Ele continua usando a visibilidade, hover, autocultação
+do controle de volume. Ele continua usando a visibilidade, hover, ocultação automática
 e roteamento de mouse do próprio OSC.
 
 O `custom_button_2` usa um globo da fonte `Segoe UI Symbol` para abrir a página
@@ -184,7 +163,7 @@ seguida. A cópia mantém o posicionamento do coração no `bottombar`, os texto
 localizados publicados pelo frontend e a restauração do modo permanente ao
 sair do estado ocioso. O globo permanece na linha superior.
 
-## Controles de mídia do Windows
+### Controles de mídia do Windows
 
 O MPV.NET usa `Windows.Media.SystemMediaTransportControlsInterop.GetForWindow`
 com o HWND da `MainForm`; a integração é opcional e não faz referência ao
@@ -359,7 +338,7 @@ publicação com o mpv. Nesse modo explícito, controles e metadados seguem o
 comportamento nativo da versão de libmpv instalada. A execução sem janela
 preserva o padrão anterior do núcleo.
 
-## DPI e escala
+### DPI e escala
 
 O fallback de DPI libera o contexto GDI após consultar `LOGPIXELSX`.
 
@@ -370,9 +349,7 @@ Mudanças precisam validar:
 - telas 4K;
 - múltiplos monitores.
 
----
-
-# Temas
+## Temas
 
 O projeto suporta:
 
@@ -380,9 +357,41 @@ O projeto suporta:
 - tema escuro;
 - temas customizados.
 
----
-
 ## Smoke test reproduzível
+
+Use o roteiro abaixo para verificar se o processo permanece ativo durante a
+inicialização e o período de observação.
+
+Por padrão, o script termina o processo com `Stop-Process -Force`.
+Use `-KeepOpen` para fechar pela janela e verificar o encerramento normal.
+
+```powershell
+.\src\Tools\test-ui-smoke.ps1 `
+  -ExecutablePath .\src\MpvNet.Windows\bin\Debug\win-x64\mpvnet.exe `
+  -MediaPath C:\Videos\amostra.mp4
+```
+
+Depois do smoke test, validar manualmente:
+
+- arquivo local, URL/stream, playlist e pasta com mídia;
+- drag/drop e abertura por linha de comando;
+- tema claro/escuro, DPI, múltiplos monitores e fullscreen;
+- menu de contexto, atalhos, foco e cursor/OSC;
+- alternância de áudio/legenda, pause, seek, controles de mídia do Windows e fechamento;
+- persistência de volume, posição, tamanho e pasta inicial.
+
+## Controle de cache automático no editor
+
+**Cache → Cache automático de streaming** é o Sim/Não de `automatic-network-cache`.
+O editor mantém os controles nativos avançados de cache e não expõe seleção de
+perfis automáticos. A leitura apresenta o estado migrado; salvar uma alteração
+preserva backup do formato legado. Rótulo, ajuda e Sim/Não usam gettext e o
+fluxo existente de atualização de idioma. Veja [migração](configuration.md#mpvnetconf)
+e [política por item](mpv-integration.md#cache-automático-por-item). A validação
+visual de 08/11/2026 confirmou o controle nos temas claro/escuro em português;
+DPI, RTL, outros idiomas e o checklist completo do player continuam independentes.
+
+## Registros de validação
 
 ### Capas de áudio — 05/11/2026
 
@@ -440,39 +449,3 @@ trocar para mídia sem capa. Esses testes foram automatizados via APIs; não
 comprovam apresentação visual no painel do Windows. Windows 10, FluentFlyout,
 teclas físicas multimídia, stream externo com credenciais e o checklist visual
 completo abaixo ainda precisam de validação nos respectivos ambientes.
-
-O script abaixo verifica se o processo permanece ativo durante as janelas de
-inicialização e observação. Por padrão, termina com `Stop-Process -Force`; isso
-não comprova fechamento limpo, execução do shutdown nem descarte dos recursos.
-Ele também não substitui a verificação visual dos controles:
-
-```powershell
-.\src\Tools\test-ui-smoke.ps1 `
-  -ExecutablePath .\src\MpvNet.Windows\bin\Debug\win-x64\mpvnet.exe `
-  -MediaPath C:\Videos\amostra.mp4
-```
-
-Depois do smoke test, validar manualmente:
-
-- arquivo local, URL/stream, playlist e pasta com mídia;
-- drag/drop e abertura por linha de comando;
-- tema claro/escuro, DPI, múltiplos monitores e fullscreen;
-- menu de contexto, atalhos, foco e cursor/OSC;
-- alternância de áudio/legenda, pause, seek, controles de mídia do Windows e fechamento;
-- persistência de volume, posição, tamanho e pasta inicial.
-
-Use `-KeepOpen` para concluir o checklist visual e fechar a janela pelo próprio
-aplicativo, verificando o encerramento normal separadamente.
-
-
-
-## Controle de cache automático no editor
-
-**Cache → Cache automático de streaming** é o Sim/Não de `automatic-network-cache`.
-O editor mantém os controles nativos avançados de cache e não expõe seleção de
-perfis automáticos. A leitura apresenta o estado migrado; salvar uma alteração
-preserva backup do formato legado. Rótulo, ajuda e Sim/Não usam gettext e o
-fluxo existente de atualização de idioma. Veja [migração](configuration.md#mpvnetconf)
-e [política por item](mpv-integration.md#cache-automático-por-item). A validação
-visual de 08/11/2026 confirmou o controle nos temas claro/escuro em português;
-DPI, RTL, outros idiomas e o checklist completo do player continuam independentes.

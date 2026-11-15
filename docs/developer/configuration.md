@@ -1,16 +1,16 @@
 ﻿# Configuração do MPV.NET Media Player
 
-## Objetivo
+A pasta ativa reúne os arquivos do mpv e do frontend. O `AppPaths`
+resolve os caminhos de configuração e de dados.
 
-Descrever como o MPV.NET localiza e carrega as configurações e como trata seus arquivos.
-
----
+<a name="objetivo"></a>
 
 ## Visão geral
 
 O mpv.net preserva o modelo de configuração do mpv: arquivos de texto, uma pasta previsível e suporte a scripts.
 
-O núcleo da resolução de configuração está em:
+A resolução está em [Folder.cs](../../src/MpvNet/Infrastructure/Folder.cs).
+Os principais consumidores são:
 
 - `src/MpvNet/Integration/Mpv/Player.cs`;
 - `src/MpvNet/App.cs`;
@@ -19,13 +19,9 @@ O núcleo da resolução de configuração está em:
 - `src/MpvNet.Windows/UI/Theme.cs`;
 - `src/MpvNet.Windows/UI/GlobalHotkey.cs`.
 
----
-
 ## Ordem de resolução da pasta de configuração
 
-Implementação: `Player.ConfigFolder`.
-
-Ordem:
+`Player.ConfigFolder` usa a resolução de `AppPaths` nesta ordem.
 
 1. `--config-dir`, quando informado (a última ocorrência prevalece);
 2. variável de ambiente `MPVNET_HOME`, quando aponta para um diretório existente;
@@ -40,8 +36,6 @@ a semântica da CLI. Variáveis de ambiente próprias do app aceitam aspas e
 expansão de `%VAR%`; valores relativos usam a pasta do executável. Todos os
 caminhos selecionados são absolutos. `MPVNET_HOME` inválido ou inexistente
 continua permitindo fallback, sem migração ou cópia automática de configurações.
-
----
 
 ## Arquivos principais
 
@@ -69,7 +63,7 @@ Cache e logs:
 | --- | --- |
 | `AppPaths.Cache` | Cache temporário do mpv para demuxer, ICC e shaders; o cache de rede em disco é usado durante a reprodução e removido ao fechar a mídia. |
 | `AppPaths.Components\current` | Geração válida atual dos componentes auxiliares baixados e seus manifestos. |
-| `AppPaths.Components\staging` | Downloads e extrações temporárias, removidos depois de promover ou falhar. |
+| `AppPaths.Components\staging` | Gerações temporárias e downloads parciais. As gerações são descartadas ao concluir, falhar ou cancelar. Parciais válidos podem permanecer para retomada. |
 | `AppPaths.Components` | Local legado: continua sendo lido como fallback até uma atualização válida migrar os arquivos para `current`. |
 | `AppPaths.Temp` | Arquivos temporários criados pelo frontend, como playlists normalizadas. |
 | `AppPaths.Logs` | Erros e logs detalhados somente quando o build é gerado com `EnableFileLogging=true`. |
@@ -77,7 +71,7 @@ Cache e logs:
 Esses diretórios são centralizados em `AppPaths` e criados no início da
 aplicação; a pasta `Logs` só é criada em builds com logging habilitado.
 Em instalações comuns, `AppPaths.LocalAppData` é `%LOCALAPPDATA%`;
-no pacote MSIX/Microsoft Store, é
+no pacote MSIX da Microsoft Store, é
 `%LOCALAPPDATA%\Packages\<PackageFamilyName>\LocalCache\Local`. `AppPaths.LocalRoot`
 acrescenta `mpv.net` a essa raiz. A variável `MPVNET_LOCAL_APPDATA` pode definir
 outra raiz nos dois casos. Essa resolução mantém os caminhos do bootstrap na
@@ -98,7 +92,8 @@ continuam no perfil local, salvo override explícito de `MPVNET_LOCAL_APPDATA`.
 cache, componentes, DLLs e recursos sem criar diretórios nem baixar arquivos.
 Aceita também `--config-dir=...`. Não afirma que uma pasta é gravável: a escrita
 é validada somente durante a operação normal. `--diagnose-components` acrescenta
-a origem efetiva dos binários e suas validações.
+a origem efetiva dos binários e suas validações. Esse modo segue a preparação
+normal dos diretórios locais.
 O relatório de caminhos descreve os padrões do aplicativo antes de inicializar o
 mpv; overrides nativos como `--input-conf` e `--demuxer-cache-dir` são aplicados
 pelo mpv e continuam prevalecendo sobre esses padrões.
@@ -166,7 +161,7 @@ fingerprint.
 
 O intervalo de atualização é de 20 dias a partir do download validado
 (`LastCheckedUtc`) ou da última confirmação de release inalterada
-(`LastReleaseCheckUtc`), usando a data mais recente. Quando a release conserva
+(`LastReleaseCheckUtc`), o que for mais recente. Quando a release conserva
 o mesmo digest e o SHA-256 completo dos arquivos locais é válido, o bootstrap
 atualiza somente `LastReleaseCheckUtc`, sem baixar novamente nem alterar a
 data do último download.
@@ -237,7 +232,8 @@ mpv usa as bibliotecas integradas ao libmpv, e o hook consegue entregar faixas
 separadas sem executar `ffmpeg.exe` para mesclá-las. Esse download não substitui
 as bibliotecas FFmpeg do libmpv nem precisa usar a mesma revisão delas.
 
-Para diagnóstico sem download nem escrita, execute:
+Para conferir os componentes sem iniciar downloads, execute o comando abaixo.
+A inicialização prepara os diretórios locais antes das sondagens.
 
 ```powershell
 mpvnet.exe --diagnose-components
@@ -254,14 +250,10 @@ direto ao `thumbfast`; configure `mpv_path` para um `mpv.exe` separado apenas
 como fallback para versões antigas ou casos específicos documentados pelo
 próprio script.
 
-Na primeira execução, o `mpv.conf` inicial criado pelo aplicativo não cria
-perfis específicos para IPTV. `Player.MediaLoading` aplica, quando habilitada,
-uma política conservadora como opções locais do comando `loadfile`. A política
-classifica a URI antes de escolher o perfil, não altera arquivos locais e não
-torna as opções globais para o próximo item. Opções explícitas no `mpv.conf` ou
-na linha de comando são excluídas da lista automática.
-
----
+O `mpv.conf` inicial não cria perfis IPTV. Quando a política automática
+está habilitada, os hooks de carregamento aplicam as opções locais por item,
+com precedência para as opções explícitas do mpv. Veja
+[Cache automático por item](mpv-integration.md#cache-automático-por-item).
 
 ## `mpv.conf`
 
@@ -290,8 +282,6 @@ Cuidados:
 - evitar mudar o parser sem validar arquivos antigos;
 - lembrar que linhas sem `=` podem ser interpretadas como `=yes` quando o nome é simples.
 
----
-
 ## `mpvnet.conf`
 
 Arquivo de opções específicas do mpv.net, processado por `App.ProcessProperty`.
@@ -303,14 +293,14 @@ Opções reconhecidas pelo mpv.net:
 | `auto-load-folder` | `no` | Controla carregamento automático da pasta. |
 | `automatic-network-cache` | `yes` | Único toggle automático, em **Cache** no editor. Aplica a política resiliente por item; `no` deixa as opções nativas do mpv sob controle do usuário. Mudanças valem na próxima carga. |
 | `audio-artwork-cache` | `yes` | Em **Áudio** no editor. Reutiliza o cache de capas entre sessões. Com `no`, usa uma pasta temporária por instância. A mudança exige reiniciar. |
-| `audio-artwork-online` | `yes` | Em **Áudio** no editor. Autoriza buscar capas de álbum e fotos verificadas de artista para áudio local. Um `no` explícito impede a rede e permite reutilizar imagens do cache ativo. |
-| `audio-artwork-prefer-online` | `no` | Prefere capa de álbum online ou em cache à arte selecionada automaticamente pelo mpv. A preferência respeita escolhas explícitas do mpv e só a primeira opção autoriza rede. |
+| `audio-artwork-online` | `yes` | Em **Áudio** no editor. Autoriza buscar capas de álbum e fotos verificadas de artista para áudio local. `no` impede consultas de capas e permite reutilizar imagens do cache ativo. |
+| `audio-artwork-prefer-online` | `no` | Prefere capa de álbum online ou em cache à arte selecionada automaticamente pelo mpv. A preferência respeita escolhas explícitas do mpv. `audio-artwork-online` controla o acesso à rede. |
 | `autofit-audio` | `70%` | Tamanho de janela para áudio. |
 | `autofit-image` | `80%` | Tamanho de janela para imagem. |
 | `dark-mode` | `always` | Modo escuro/claro. |
 | `dark-theme` | `dark` | Tema escuro. |
-| `debug-mode` | `no` | Ativa o diagnóstico em runtime; `MpvNet-debug.log` e verbose automático do yt-dlp exigem também `EnableFileLogging=true` na compilação. |
-| `language` | `english` | Idioma da interface. Se ausente, o app usa o idioma do Windows quando houver tradução e, caso contrário, usa inglês. |
+| `debug-mode` | `no` na build padrão, `yes` com `EnableFileLogging=true` | Ativa o diagnóstico em runtime; `MpvNet-debug.log` e verbose automático do yt-dlp exigem também `EnableFileLogging=true` na compilação. |
+| `language` | Idioma do Windows quando suportado, com fallback para inglês | Idioma da interface. Um valor informado tem precedência na inicialização. |
 | `light-theme` | `light` | Tema claro. |
 | `media-info` | `yes` | Ativa ou desativa as informações de mídia. |
 | `menu-syntax` | `#menu:` | Define a sintaxe de menu reconhecida em `input.conf`. |
@@ -320,7 +310,7 @@ Opções reconhecidas pelo mpv.net:
 | `process-instance` | `single` | Controle de instância: single/queue/multi. |
 | `queue` | `no` | Modo fila. |
 | `recent-count` | `15` | Quantidade de recentes. |
-| `save-network-urls-in-recent` | `no` | Permite salvar URLs de rede em Recent Files; credenciais conhecidas, parâmetros sensíveis e fragmentos são sempre omitidos. A lista é armazenada em texto legível em `settings.xml`. |
+| `save-network-urls-in-recent` | `no` | Permite salvar URLs de rede na lista de arquivos recentes. Exclui URLs com credenciais na autoridade, parâmetros sensíveis reconhecidos ou fragmentos. A lista é armazenada em texto legível em `settings.xml`. |
 | `remember-audio-device` | `yes` | Persiste dispositivo de áudio. |
 | `remember-volume` | `yes` | Persiste volume/mute. |
 | `remember-window-position` | `no` | Persiste posição da janela. |
@@ -352,8 +342,9 @@ arquivos restantes seguem a limpeza de temporários de três dias. Veja
 [Capas durante a reprodução de áudio](../manual.md#capas-durante-a-reprodução-de-áudio)
 para prioridade, privacidade e escolha de imagem local.
 
-`language` controla apenas o idioma da interface. As preferências de áudio e
-legenda continuam no `mpv.conf`, com as opções nativas do mpv:
+`language` define a interface. Um `alang` não vazio pode influenciar
+essa seleção, conforme [Localização](localization.md#interface-áudio-e-legenda).
+Para controlar áudio e legendas, use as opções nativas do mpv.
 
 | Opção | Arquivo | Função |
 | --- | --- | --- |
@@ -367,8 +358,6 @@ legenda continuam no `mpv.conf`, com as opções nativas do mpv:
 O mpv.net normaliza e compara códigos de idioma, mas não reescreve o
 `mpv.conf` nem substitui as configurações de áudio e legenda definidas pelo
 usuário.
-
----
 
 ## `input.conf`
 
@@ -394,10 +383,8 @@ Migrações automáticas:
 - `script-message mpv.net` é substituído por `script-message-to mpvnet`.
 - `/docs/Manual.md` é substituído por `/docs/manual.md`.
 - Links de `stax76/mpv.net` são atualizados para `WandersondeSouza/mpv.net`.
-- Links do manual com `/blob/main/docs/` são atualizados para `/blob/master/docs/`, branch publicado do repositório.
+- Links do manual com `/blob/main/docs/` são atualizados para `/blob/master/docs/`, branch padrão do repositório.
 - Quando uma migração altera o arquivo, o mpv.net cria o backup `input.conf.backup`.
-
----
 
 ## `settings.xml`
 
@@ -414,8 +401,6 @@ Usado para preferências internas como:
 Esse arquivo guarda o estado interno do frontend e não substitui `mpv.conf` nem
 `mpvnet.conf`. Se ainda não existir, o volume inicial será `100`.
 
----
-
 ## Temas e atalhos globais
 
 `Theme.Init()` lê `theme.conf` quando o arquivo existe na pasta ativa de
@@ -425,8 +410,6 @@ configuração.
 
 Ao alterar esses recursos, valide os temas claro e escuro, o registro de atalhos
 globais e possíveis conflitos com outros programas.
-
----
 
 ## Opções iniciais da linha de comando
 
@@ -450,8 +433,6 @@ Quando o usuário define `--config-dir`, o frontend inteiro e o mpv usam essa
 pasta desde a inicialização. Um `--input-conf` explícito continua prevalecendo
 na configuração nativa; o frontend não o substitui por uma nova leitura tardia.
 
----
-
 ## Fluxo de configuração
 
 1. `Player.ConfigFolder` usa a seleção central de `AppPaths`: CLI explícita, `MPVNET_HOME`, `portable_config` sem MSIX e pasta local padrão.
@@ -462,8 +443,6 @@ na configuração nativa; o frontend não o substitui por uma nova leitura tardi
 5. `settings.xml`, `theme.conf` e `global-input.conf` completam as preferências do frontend.
 6. A interface e o libmpv usam esse estado inicial. O aplicativo salva as alterações em `settings.xml` e, quando necessário, atualiza arquivos durante migrações.
 
----
-
 ## Áreas críticas
 
 ### Compatibilidade
@@ -472,7 +451,8 @@ Não altere nomes de arquivos, ordem de resolução ou sintaxe sem uma migraçã
 
 ### Modo portátil
 
-O mpv.net usa `portable_config` quando essa pasta existe ao lado do executável.
+Em execução sem identidade MSIX, o mpv.net usa `portable_config` ao lado
+do executável quando nenhuma opção de maior precedência seleciona a pasta.
 Os arquivos de configuração ficam nela; o cache temporário e os logs continuam
 na raiz de dados local definida por `AppPaths`.
 
@@ -503,5 +483,3 @@ existente e mantenha essas alterações restritas ao necessário.
 
 O aplicativo lê a configuração na inicialização. Evite leituras repetidas e
 processamento pesado nesse fluxo.
-
-

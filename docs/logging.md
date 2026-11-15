@@ -1,15 +1,7 @@
 ﻿# Logs de diagnóstico
 
-O MPV.NET Media Player possui um logger interno simples para diagnóstico de suporte.
-Ele grava em arquivo somente quando a versão é compilada com
-`EnableFileLogging=true`. A build padrão não cria arquivos de log do frontend.
-
-Resumo rápido:
-
-- `Error` e `Debug` só vão para arquivo em build de diagnóstico.
-- `debug-mode=yes` sozinho não habilita arquivos de log em uma build padrão.
-- Logs diarios de diagnóstico sao retidos por 3 dias.
-- Limpeza de `Cache` e `Temp` tambem usa 3 dias.
+A compilação com `EnableFileLogging=true` grava `Error` e
+`Debug` em arquivo. Use essa opção para gerar uma build de suporte.
 
 Falhas reconhecidas de transporte curl e de decodificação de vídeo durante
 streaming também geram `Streaming runtime failure` em `Error` na build de
@@ -38,23 +30,20 @@ transitória. O limite é de duas horas por transferência, com detecção de
 bytes retomados, progresso a cada cinco segundos, velocidade média, duração
 das fases e reaproveitamento de uma release com SHA-256 inalterado.
 
-Os testes xUnit isolam automaticamente `MPVNET_LOCAL_APPDATA` em
-`test-runtime` dentro da pasta do executável de testes quando não existe um
-override explícito. Assim, os testes de XML/JSON inválidos mantêm seus erros
-no log de testes, sem misturá-los ao log do player instalado. Um
-`MPVNET_LOCAL_APPDATA` fornecido pelo desenvolvedor ou CI continua sendo usado.
+Os testes xUnit isolam a raiz de dados quando não há um override explícito.
+Veja [Testes automatizados](guia-operacional.md#testes-automatizados).
 
-Use esse padrão para releases publicas:
+Para gerar uma saída Release com o comportamento padrão do logger, use:
 
 ```powershell
 dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj -c Release -r win-x64 /p:EnableFileLogging=false
 ```
 
-O mesmo padrão e usado pelos scripts de release quando nenhum parametro extra e informado.
+Os scripts de release usam o mesmo padrão.
 
 ## Como habilitar
 
-Para gerar uma versao de diagnóstico com logs detalhados em arquivo:
+Para gerar uma versão de diagnóstico com logs detalhados em arquivo:
 
 ```powershell
 dotnet publish src\MpvNet.Windows\MpvNet.Windows.csproj -c Release -r win-x64 /p:EnableFileLogging=true
@@ -82,16 +71,10 @@ por linha; mensagens longas são divididas após a sanitização, preservando o
 restante do diagnóstico. Dumps de argumentos de configuração são ocultados
 por poderem conter senhas, cookies ou tokens.
 
-Nos scripts do fork, use `-EnableFileLogging`:
-
-```powershell
-.\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release -EnableFileLogging
-.\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release -EnableFileLogging
-.\src\Tools\build-release-package.ps1 .\src .\artifacts\release -SkipGitHubRelease -EnableFileLogging
-```
-
-No workflow manual `.github/workflows/release-packages.yml`, selecione
-`enable_file_logging=true` apenas para pacotes de diagnóstico/suporte.
+Use `-EnableFileLogging` nos scripts de empacotamento do fork. No workflow
+manual [release-packages.yml](../.github/workflows/release-packages.yml), use
+`enable_file_logging=true` e `create_release=false` para gerar um
+artefato de suporte.
 
 ## Gerar ZIP e instalador para teste
 
@@ -104,14 +87,14 @@ logs habilitados.
 powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-portable-zip.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release -EnableFileLogging
 ```
 
-Saidas esperadas:
+Saída de uma versão estável
 
 ```text
-artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\
-artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64.zip
+artifacts\release\MPV.NET-Media-Player-v<versao>-diagnostic-portable-x64\
+artifacts\release\MPV.NET-Media-Player-v<versao>-diagnostic-portable-x64.zip
 ```
 
-Para testar, extraia o ZIP e execute `mpvnet.exe` dentro da pasta extraida.
+Para testar, extraia o ZIP e execute `mpvnet.exe` dentro da pasta extraída.
 
 ### Gerar apenas o instalador executável com logs
 
@@ -119,14 +102,14 @@ Para testar, extraia o ZIP e execute `mpvnet.exe` dentro da pasta extraida.
 powershell -ExecutionPolicy Bypass -File .\src\Tools\generate-installer-exe.ps1 -SourceDir .\src -OutputRootDir .\artifacts\release -EnableFileLogging
 ```
 
-Saidas esperadas:
+Saída de uma versão estável
 
 ```text
-artifacts\release\MPV.NET-Media-Player-v<versao>-portable-x64\
-artifacts\release\MPV.NET-Media-Player-v<versao>-setup-x64.exe
+artifacts\release\MPV.NET-Media-Player-v<versao>-diagnostic-portable-x64\
+artifacts\release\MPV.NET-Media-Player-v<versao>-diagnostic-setup-x64.exe
 ```
 
-Para testar, execute o instalador `setup-x64.exe`, abra o aplicativo instalado e
+Para testar, execute o instalador gerado, abra o aplicativo instalado e
 reproduza os cenários que deseja diagnosticar.
 
 ### Gerar ZIP e instalador juntos com logs
@@ -137,7 +120,7 @@ powershell -ExecutionPolicy Bypass -File .\src\Tools\build-release-package.ps1 .
 
 Esse comando gera os artefatos locais sem publicar no GitHub.
 
-Depois de abrir o aplicativo gerado, verifique o log em:
+Após reproduzir o cenário, abra a pasta de logs de uma instalação padrão.
 
 ```powershell
 explorer "$env:LOCALAPPDATA\mpv.net\Logs"
@@ -153,18 +136,22 @@ Quando existe escrita em arquivo, o aplicativo grava em:
 %LOCALAPPDATA%\mpv.net\Logs
 ```
 
-Essa pasta compartilha a mesma raiz usada pelo cache temporário do mpv:
+O pacote da Microsoft Store usa a raiz privada sob `LocalCache\Local`.
+Com `MPVNET_LOCAL_APPDATA`, a raiz segue o valor informado. Execute
+`mpvnet.exe --diagnose-paths` para verificar o caminho efetivo.
+
+A pasta de logs compartilha a raiz de dados com o cache temporário do mpv.
 
 ```text
 %LOCALAPPDATA%\mpv.net\Cache
 ```
 
 Na inicialização, falhas ao limpar arquivos antigos em
-`%LOCALAPPDATA%\mpv.net\Cache` ou `%LOCALAPPDATA%\mpv.net\Temp` tambem entram
+`%LOCALAPPDATA%\mpv.net\Cache` ou `%LOCALAPPDATA%\mpv.net\Temp` também entram
 nesse log somente em builds de diagnóstico, junto com os logs `Debug`.
-Essas falhas nao bloqueiam a abertura do player.
+Essas falhas não bloqueiam a abertura do player.
 
-O arquivo diario usa este padrão:
+O nome do arquivo inclui a data local.
 
 ```text
 mpvnet-YYYY-MM-DD.log
@@ -176,21 +163,23 @@ Exemplo:
 mpvnet-2026-06-02.log
 ```
 
-Cada entrada contem data/hora completa, nivel e mensagem. Quando existe excecao,
-o arquivo tambem inclui a excecao completa com stack trace e inner exception.
+Cada entrada inclui data, hora, nível e mensagem. Ao registrar uma exceção,
+o logger inclui a pilha de chamadas e a exceção interna, quando disponível.
 
-## Diagnostico de abertura por parametro
+<a name="diagnostico-de-abertura-por-parametro"></a>
+
+## Diagnóstico de abertura por parâmetro
 
 Builds com logs habilitados registram detalhes adicionais do fluxo de abertura:
 
 - argumentos recebidos pela linha de comando;
-- opcoes aplicadas antes e depois de `mpv_initialize`;
-- arquivos, playlists ou URLs classificados como entrada de midia;
+- opções aplicadas antes e depois de `mpv_initialize`;
+- arquivos, playlists ou URLs classificados como entrada de mídia;
 - comandos `loadfile` e `loadlist` enviados ao mpv;
-- valor final de `idle` e se o frontend deve sair ao fim da reproducao;
+- valor final de `idle` e se o frontend deve sair ao fim da reprodução;
 - eventos `start-file`, `file-loaded`, `end-file` e `shutdown` emitidos pelo mpv.
 
-URLs com usuário, senha, query string ou fragmento sao mascaradas no log para
+URLs com usuário, senha, query string ou fragmento são mascaradas no log para
 evitar expor credenciais e tokens de playlists privadas. Diagnósticos de cache
 registram o tipo de mídia e a política automática, nunca a query original.
 
@@ -223,17 +212,21 @@ reproduzir esse modo manualmente, o yt-dlp documenta `--verbose` como a opção
 de informações de depuração e o mpv encaminha `ytdl-raw-options` ao processo
 filho.
 
-## Retencao
+<a name="retencao"></a>
 
-Na inicialização do logger de uma build de diagnóstico, arquivos `mpvnet-YYYY-MM-DD.log` com mais de 3 dias
-sao apagados automaticamente.
+## Retenção
+
+Ao inicializar uma build de diagnóstico, o logger remove arquivos
+`mpvnet-YYYY-MM-DD.log` cuja data no nome seja anterior a três dias atrás.
+A limpeza de `Cache` e `Temp` usa outro critério: a data da última
+alteração do arquivo ou do diretório vazio.
 
 A limpeza atua apenas dentro da pasta de logs e apenas em arquivos que seguem o
-padrão `mpvnet-*.log`. Falhas de limpeza ou escrita sao tratadas internamente e
-nao devem interromper a interface nem o player.
+padrão `mpvnet-*.log`. Falhas de limpeza ou escrita são tratadas internamente e
+não devem interromper a interface nem o player.
 
 ## Cuidados
 
-Nao registre senha, token, URL privada de playlist, usuario ou dados pessóais.
-Se um diagnóstico exigir URL, mascare partes sensiveis antes de registrar.
-
+Revise os logs antes de compartilhar. Remova senhas, tokens, nomes de usuário,
+URLs privadas e dados pessoais. Se a URL for necessária ao diagnóstico,
+mascare os trechos sensíveis.

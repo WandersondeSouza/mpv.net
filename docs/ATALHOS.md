@@ -34,8 +34,8 @@ Para localizar os arquivos e a pasta ativa, veja [Configuração](CONFIGURACAO.m
 | Fechar menu / sair de tela cheia / sair do player | `Esc` | Fecha primeiro o menu de contexto aberto; em tela cheia, volta à janela. Fora desses casos, o binding padrão é `quit`. |
 | Sair / sair salvando para continuar depois | `q` / `Q` | `quit` / `quit-watch-later`. |
 
-Seek depende da capacidade da mídia. Streams ao vivo sem busca não permitem
-voltar ou avançar livremente; um atalho não acrescenta essa capacidade.
+A busca depende da mídia. Em transmissões ao vivo, os saltos seguem os limites
+da janela pesquisável.
 
 ## Playlist, faixas, legendas e repetição
 
@@ -134,9 +134,8 @@ explícita no arquivo.
 
 ## J/K/L como configuração opcional
 
-O player mantém os padrões atuais. Para quem prefere voltar, pausar e avançar
-com três teclas próximas, este exemplo pode ser colocado voluntariamente no
-`input.conf`, após revisar os conflitos:
+Para voltar, pausar e avançar com três teclas próximas, revise os conflitos na
+tabela abaixo e acrescente estas linhas ao `input.conf`.
 
 ```ini
 j seek -5
@@ -166,8 +165,7 @@ atribuir essas teclas: confira a lista ativa antes de usar o exemplo.
 
 Para desfazer, restaure apenas as linhas modificadas do seu arquivo e reinicie.
 Em um perfil sem menu completo e sem bindings anteriores nessas teclas, basta
-remover as três linhas acrescentadas. Este guia não ativa o exemplo nem grava
-configurações por conta própria.
+remover as três linhas acrescentadas.
 
 ## Consultar e diagnosticar atalhos
 
@@ -217,10 +215,6 @@ O editor mantém as configurações existentes; não restaure padrões por cima 
 arquivo só para diagnosticar. Para manter o OSC visível após reiniciar, veja
 [Visibilidade dos controles OSC](manual.md#visibilidade-dos-controles-osc).
 
-Para mudanças amplas em atalhos, menu ou input, consulte também:
-
-- `docs/developer/mpv-integration.md`
-- `docs/developer/configuration.md`
-- `docs/developer/architecture.md`
-
-
+Para manutenção, consulte a [integração com mpv](developer/mpv-integration.md#input),
+a [configuração interna de atalhos](developer/configuration.md#inputconf) e a
+[arquitetura](developer/architecture.md).

@@ -2,8 +2,6 @@
 
 O MPV.NET Media Player é um player de mídia para Windows baseado no mpv/libmpv e no mpv.net.
 
-Este manual cobre apenas o que importa para o uso cotidiano do fork.
-
 ## Tópicos
 
 - [Download](#download)
@@ -22,17 +20,11 @@ Este manual cobre apenas o que importa para o uso cotidiano do fork.
 
 ## Download
 
-Use as releases do fork em:
-
-`https://github.com/WandersondeSouza/mpv.net/releases`
-
-O aplicativo também está publicado na Microsoft Store:
-
-- URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
+Baixe o instalador ou o ZIP portátil nas [releases do GitHub](https://github.com/WandersondeSouza/mpv.net/releases). Você também pode instalar o aplicativo pela [Microsoft Store](https://apps.microsoft.com/detail/9N441SP6XHLD).
 
 ## Instalação
 
-- Windows 10 versão 2004 (build 19041) ou superior.
+- Windows 10 versão 2004 (build 19041) ou posterior, em x64.
 - Runtime .NET Desktop 10 para builds dependentes do runtime; o ZIP e o instalador
   self-contained incluem o runtime necessário.
 - Para mídia online, o player mantém componentes auxiliares no cache `%LOCALAPPDATA%\mpv.net\Component\current`. É necessário acesso à rede para baixar ou atualizar componentes ausentes ou vencidos. Também é possível fornecer executáveis válidos na pasta do player ou no `PATH`.
@@ -46,45 +38,9 @@ portátil não registra associações no Windows. Ao desinstalar, o instalador r
 as associações do mpv.net criadas para imagens e os formatos registrados na
 instalação, além de remover a pasta instalada do `PATH`.
 
-## Controles de mídia do Windows
+### Extensões e associações de arquivos
 
-Durante a reprodução, o MPV.NET publica a mídia ativa nos controles de mídia do
-Windows 10/11. O painel pode mostrar título, artista/álbum quando o arquivo
-fornecer essas tags, artista do álbum, capa disponível, duração e posição,
-além de Play, Pause, Stop, Previous, Next e seek. A busca só fica disponível
-quando o mpv informa mídia pesquisável com duração finita e positiva. Fast
-Forward/Rewind, quando oferecidos pelo Windows, saltam 5 segundos dentro dos
-limites da mídia, sem mudar a velocidade de reprodução.
-
-O recurso usa o HWND da janela principal e não depende do FluentFlyout. Ele
-mantém a sessão e os comandos ativos também em fullscreen. A sessão é limpa
-quando não há mídia carregada e durante o encerramento. URLs
-com credenciais, query strings ou fragmentos não são publicados como título.
-
-A capa é opcional. Para áudio local disponível, a imagem selecionada pelo mpv
-é copiada para os controles do Windows, inclusive quando está incorporada no
-arquivo. A busca de capas online é opcional e desligada por padrão; veja
-[Capas durante a reprodução de áudio](#capas-durante-a-reprodução-de-áudio).
-Mídia remota e arquivos offline não são acessados para obter imagens. Sem capa,
-os controles usam o ícone do MPV.NET.
-
-A miniatura da janela na barra de tarefas também oferece uma toolbar nesta
-ordem: Arquivo anterior, Capítulo anterior, Play/Pause, Próximo capítulo,
-Próximo arquivo e apoio ao player. Play/Pause fica no centro dos cinco controles
-de reprodução. Os botões de capítulos permanecem visíveis e ficam habilitados
-quando a mídia carregada tem pelo menos um capítulo, como no controle do player;
-os de arquivos seguem a disponibilidade de anterior/próximo na playlist.
-Ao trocar de mídia, o estado é atualizado mesmo quando a reprodução está pausada.
-Em tela cheia, os cinco controles de reprodução ficam desabilitados.
-Essa toolbar é uma integração
-Win32 separada do SMTC: o botão de apoio abre a página oficial para apoiar o
-MPV.NET no idioma atual da interface, enquanto os demais comandos reutilizam o
-fluxo de reprodução do player. Play/Pause alterna o estado diretamente no mpv.
-Os comandos de mídia mantêm a miniatura aberta após o clique, permitindo usar
-outro controle em seguida; o botão de apoio fecha a miniatura ao abrir o
-navegador. A toolbar aparece quando o Windows cria a miniatura da janela.
-
-As listas padrão de extensões do projeto incluem:
+As listas padrão do projeto incluem os formatos abaixo.
 
 - Vídeo: `.mp4`, `.m4v`, `.mkv`, `.webm`, `.avi`, `.mov`, `.qt`, `.wmv`, `.asf`, `.flv`, `.f4v`, `.mpg`, `.mpeg`, `.mpe`, `.m1v`, `.m2v`, `.vob`, `.ts`, `.mts`, `.m2ts`, `.3gp`, `.3g2`, `.3gpp`, `.ogv`, `.ogg`, `.rm`, `.rmvb`, `.divx`, `.xvid`, `.dv`, `.nut`, `.nsv`, `.264`, `.265`, `.avc`, `.avs`, `.dav`, `.h264`, `.h265`, `.hevc`, `.m2t`, `.mj2`, `.mpv`, `.vpy`, `.y4m`, `.mxf`, `.m2p`, `.m4p`, `.mpeg2`, `.mpegts`;
 - Áudio: `.mp3`, `.wav`, `.flac`, `.m4a`, `.m4b`, `.aac`, `.ogg`, `.opus`, `.wma`, `.alac`, `.aiff`, `.aif`, `.ape`, `.wv`, `.mka`, `.ac3`, `.dts`, `.eac3`, `.amr`, `.au`, `.mp2`, `.mpa`, `.mpc`, `.thd`, `.w64`, `.oga`, `.ogm`, `.dtshd`, `.dtshr`, `.dtsma`, `.mid`, `.midi`, `.caf`, `.tta`, `.tak`, `.rmi`, `.ra`, `.ram`, `.voc`, `.spx`;
@@ -109,6 +65,40 @@ usuário durante a instalação. Para tornar o MPV.NET o padrão, abra
 `Configurações > Aplicativos > Aplicativos padrão`, procure o MPV.NET e escolha
 as extensões desejadas; também é possível usar `Abrir com > Escolher outro
 aplicativo` no Explorador de Arquivos.
+
+## Controles de mídia do Windows
+
+Durante a reprodução, o MPV.NET publica a mídia ativa nos controles de mídia do
+Windows 10/11. O painel pode mostrar título, artista/álbum quando o arquivo
+fornecer essas tags, artista do álbum, capa disponível, duração e posição,
+além de Play, Pause, Stop, Previous, Next e seek. A busca só fica disponível
+quando o mpv informa mídia com duração finita e positiva e capacidade de busca fora do cache. Fast
+Forward/Rewind, quando oferecidos pelo Windows, saltam 5 segundos dentro dos
+limites da mídia, sem mudar a velocidade de reprodução.
+
+O recurso usa o HWND da janela principal e não depende do FluentFlyout. Ele
+mantém a sessão e os comandos ativos também em fullscreen. A sessão é limpa
+quando não há mídia carregada e durante o encerramento. URLs
+com credenciais, query strings ou fragmentos não são publicados como título.
+
+Para áudio local, os controles do Windows podem mostrar a mesma imagem usada na
+janela do player. A busca online vem ativada para arquivos locais disponíveis.
+O painel usa o ícone do aplicativo quando não há imagem segura. Consulte as
+[regras de prioridade e privacidade](#capas-durante-a-reprodução-de-áudio).
+
+A miniatura da janela na barra de tarefas oferece seis botões, na seguinte
+ordem: Arquivo anterior, Capítulo anterior, Play/Pause, Próximo capítulo,
+Próximo arquivo e apoio ao player. Play/Pause fica no centro dos cinco controles
+de reprodução. Os botões de capítulos permanecem visíveis e ficam habilitados
+quando a mídia carregada tem pelo menos um capítulo, como no controle do player;
+os de arquivos seguem a disponibilidade de anterior/próximo na playlist.
+Ao trocar de mídia, o estado é atualizado mesmo quando a reprodução está pausada.
+Em tela cheia, os cinco controles de reprodução ficam desabilitados.
+Essa barra usa a integração Win32 da miniatura. O botão de apoio abre a página
+oficial no idioma da interface. Os outros botões usam os comandos do player. Play/Pause alterna o estado diretamente no mpv.
+Os comandos de mídia mantêm a miniatura aberta após o clique, permitindo usar
+outro controle em seguida; o botão de apoio fecha a miniatura ao abrir o
+navegador. A barra aparece quando o Windows cria a miniatura da janela.
 
 ## Capas durante a reprodução de áudio
 
@@ -195,41 +185,33 @@ os mesmos.
 A barra de título oferece um botão **Tela cheia**, imediatamente antes de
 minimizar. Ele executa `cycle fullscreen`, como a opção do menu. O tooltip e
 o nome acessível acompanham o idioma da interface. Os três botões do Windows
-continuam nativos; o título usa reticências quando falta espaço. O novo botão
+continuam nativos; o título usa reticências quando falta espaço. O botão
 fica oculto em tela cheia, com `border=no` ou `title-bar=no`. `Esc` mantém seu
 comportamento atual: fecha primeiro o menu aberto ou sai da tela cheia.
 
-O mpv.net lê a configuração nesta ordem:
+A pasta ativa vale para o mpv e o frontend. Para escolher um perfil, use
+`--config-dir=...`, `MPVNET_HOME` ou `portable_config`, conforme a
+[ordem de busca](CONFIGURACAO.md#ordem-de-busca). Cache, componentes e
+temporários usam a raiz de dados local, inclusive no modo portátil.
+`MPVNET_LOCAL_APPDATA` seleciona outra raiz de dados.
 
-1. `--config-dir=...`, se informado
-2. `MPVNET_HOME`, se apontar para uma pasta existente
-3. `portable_config` ao lado do executável, em instalações sem pacote MSIX
-4. `%LOCALAPPDATA%\mpv.net`, ou a raiz privada de dados da Microsoft Store
-
-Configuração, settings, tema e atalhos do frontend usam a mesma pasta escolhida
-para o mpv. Cache, componentes e temporários continuam na raiz de dados local,
-inclusive no modo portátil; `MPVNET_LOCAL_APPDATA` permite selecionar outra raiz.
-Para conferir todos esses locais sem criar diretórios, execute
-`mpvnet.exe --diagnose-paths`. Caminhos relativos na CLI usam a pasta de
-lançamento; nas variáveis próprias do aplicativo, usam a pasta do executável.
+Execute `mpvnet.exe --diagnose-paths` para conferir esses locais sem criar
+diretórios. Caminhos relativos na linha de comando usam a pasta de lançamento.
+Nas variáveis do aplicativo, usam a pasta do executável.
 
 No pacote Store, ações para gerenciar PATH ou associações abrem as configurações
 de aplicativos do Windows. O pacote declara os aliases e formatos suportados;
 o player não grava seu diretório versionado de WindowsApps no PATH persistente.
 
-Arquivos principais:
-
-- `mpv.conf`
-- `mpvnet.conf`
-- `input.conf`
-- `global-input.conf`
-- `settings.xml`
-- `theme.conf`
+Edite `mpv.conf` para opções do motor, `mpvnet.conf` para opções da
+interface e `input.conf` para atalhos. O guia de
+[configuração rápida](CONFIGURACAO.md#arquivos-principais) descreve os
+demais arquivos, incluindo `menu.conf` e `settings.xml`.
 
 Idiomas:
 
 - interface: configure `language` em `mpvnet.conf`, por exemplo `language=english` ou `language=portuguese-brazil`;
-- audio preferido: configure `alang` em `mpv.conf`;
+- áudio preferido: configure `alang` em `mpv.conf`;
 - legenda preferida: configure `slang` em `mpv.conf`;
 - legenda desligada: use `sid=no` ou selecione sem legenda na interface.
 
@@ -247,26 +229,25 @@ editadas. Os nomes dos idiomas na lista e na opção selecionada acompanham o
 idioma da interface: por exemplo, `Francês` em português, `French` em inglês e
 `Français` em francês. Reinicie para aplicar todas as configurações.
 
-O mpv.net normaliza codigos como `eng`, `por`, `pt_BR`, `es_MX` e nomes comuns
-de idioma, mas a selecao final de audio e legenda continua sendo feita pelo
+O mpv.net normaliza códigos como `eng`, `por`, `pt_BR`, `es_MX` e nomes comuns
+de idioma, mas a seleção final de áudio e legenda continua sendo feita pelo
 mpv/libmpv.
 
 ## Linha de comando
 
-O frontend aceita arquivos locais, playlists e URLs de streaming compativeis com o mpv.
-Tambem aceita um titulo separado antes de uma URL. Esse texto e usado apenas
-como metadado visual:
+O frontend aceita arquivos locais, playlists e URLs de streaming compatíveis com o mpv.
+Para definir o título visível, informe o título antes da URL ou use `--title`.
 
 ```powershell
-mpvnet.exe "Nome do video" "https://example.com/video.mp4"
+mpvnet.exe "Nome do vídeo" "https://example.com/video.mp4"
 mpvnet.exe --title "Nome do video" "https://example.com/video.mp4"
 ```
 
-Quando `auto-load-folder=yes` esta ativo e o usuario abre um arquivo local de
-audio ou video, o mpv.net adiciona a playlist interna os outros arquivos de
-audio, video e playlists compativeis da mesma pasta. Quando o arquivo aberto e
-uma imagem, o carregamento automatico da pasta adiciona apenas outras imagens
-compativeis da mesma pasta.
+Quando `auto-load-folder=yes` está ativo e o usuário abre um arquivo local de
+áudio ou vídeo, o mpv.net acrescenta à playlist interna os outros arquivos de
+áudio, vídeo e playlists compatíveis da mesma pasta. Quando o arquivo aberto é
+uma imagem, o carregamento automático da pasta adiciona apenas outras imagens
+compatíveis da mesma pasta.
 
 Para abrir uma coleção inteira, use **Arquivo > Abrir arquivos de mídia em uma
 unidade ou pasta (incluindo subpastas)...**. Essa opção procura áudio, vídeo e
@@ -315,15 +296,15 @@ falhar durante a reprodução, o mpv.net registra o erro e continua no próximo
 item disponível, sem reconstruir a playlist nem fechar o player.
 
 Playlists locais nos formatos `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`,
-`.wpl`, `.cue` e `.jspf` sao expandidas pelo frontend antes do envio ao
-mpv/libmpv. O mpv.net usa o titulo informado pela playlist quando disponivel,
-mantem apenas entradas de audio/video ou URLs de streaming e ignora itens
+`.wpl`, `.cue` e `.jspf` são expandidas pelo frontend antes do envio ao
+mpv/libmpv. O mpv.net usa o título informado pela playlist quando disponível,
+mantém apenas entradas de áudio ou vídeo ou URLs de streaming e ignora itens
 repetidos que apontem para o mesmo caminho ou URL. Se uma instancia do player
-ja estiver aberta, os itens da playlist sao adicionados a playlist atual.
+já estiver aberta, o modo de instância determina o encaminhamento da mídia. Consulte as opções de instância na [configuração técnica](developer/configuration.md#mpvnetconf).
 
 Arquivos de playlist, arquivos encontrados na mesma pasta e colecoes entregues
-pelo mpv passam pela mesma regra: primeiro os titulos sao normalizados e depois
-as entradas repetidas sao removidas pelo caminho ou URL, preservando a ordem.
+pelo mpv passam pela mesma regra: primeiro os títulos são normalizados e depois
+as entradas repetidas são removidas pelo caminho ou URL, preservando a ordem.
 
 URLs HTTP/HTTPS novas são enviadas diretamente ao mpv/libmpv, sem uma sondagem
 HTTP bloqueante no frontend. Isso evita atraso antes do início do carregamento,
@@ -343,10 +324,10 @@ usuário nos mecanismos do mpv/yt-dlp; conteúdo protegido por DRM pode não ser
 reproduzível. O MPV.NET não coleta senhas, não contorna DRM ou paywall e não
 promete compatibilidade permanente com serviços externos.
 
-Ao abrir uma URL de streaming, o frontend pode aplicar opcoes locais e
-conservadoras de cache. A politica e controlada por `mpvnet.conf`:
+O frontend pode aplicar cache por item de rede. Ajuste a política e o
+histórico de URLs em `mpvnet.conf`.
 
-```text
+```ini
 automatic-network-cache=yes
 save-network-urls-in-recent=no
 ```
@@ -372,23 +353,12 @@ o formato antigo é removido e uma cópia é preservada em
 `mpvnet.conf.network-cache.backup`. Valores iguais ao padrão podem ser omitidos.
 A opção antiga também continua aceita na linha de comando como alias de migração.
 
-Arquivos locais não recebem opções automáticas de rede. Os limites estão
-agrupados: HTTP/HTTPS progressivo, HLS/DASH VOD ou live, yt-dlp identificado e
-FTP/FTPS/SFTP usam até 512 MiB à frente, 64 MiB para trás e 180 segundos de
-leitura antecipada. RTSP/RTMP/RTMPS e datagramas usam 128 MiB, 16 MiB e
-30 segundos. Fontes ainda não identificadas usam 64 MiB, 8 MiB e 10 segundos
-até a identificação. HTTP e HTTPS recebem os mesmos limites.
-
-Esses valores são tetos, não reservas nem tempo obrigatório de espera.
-Lives continuam sem buffer inicial forçado e com margem de retomada curta;
-não é necessário preencher 180 segundos para começar. O preenchimento depende
-da taxa de entrada e da janela disponível no servidor. Mais cache pode usar
-mais RAM, além da memória do decodificador, áudio e GPU.
-
-A classificação usa dados já obtidos pelo mpv/yt-dlp, sem sondagens HTTP extras.
-Uma extensão `.m3u8`/`.mpd` ou a duração de uma janela DVR não prova VOD.
-Na dúvida, o player mantém limites conservadores. Veja as regras completas em
-[Cache automático por item](developer/mpv-integration.md#cache-automático-por-item).
+A política se aplica a itens de rede. Os tetos variam de 64 a 512 MiB à
+frente, de acordo com a classificação. O preenchimento depende da taxa de
+entrada, da janela do servidor e dos limites de leitura antecipada. O player
+mantém limites conservadores quando faltam metadados. Uma extensão
+`.m3u8`/`.mpd` ou uma janela DVR com duração finita, por si só, não
+identifica VOD. Consulte a [tabela de limites](developer/mpv-integration.md#cache-automático-por-item).
 
 Em falha transitória comprovada, streams contínuos RTSP, RTMP, SRT, UDP e TCP
 podem tentar reconexão até três vezes, com esperas de 1, 2 e 4 segundos. HLS e
@@ -398,37 +368,22 @@ Arquivos locais, HTTP progressivo, vídeo sob demanda, fim normal e playlists co
 próximo item não são reiniciados. Trocar a mídia, usar Stop ou fechar o player
 cancela a tentativa pendente.
 
-Opcoes explicitamente definidas no `mpv.conf` ou na linha de comando tem
-precedencia sobre os valores automaticos. O diretorio temporario do cache
-continua em `%LOCALAPPDATA%\mpv.net\Cache`, mas `cache` e `cache-on-disk` nao
-sao mais forcados globalmente pelo frontend.
-
-Em VOD confirmado, a margem inicial/de retomada é de 3 segundos de mídia.
-Com interrupções repetidas e métricas suficientes, ela pode subir gradualmente
-até 8 segundos; em lives/fontes incertas fica entre 1 e 2 segundos. A política
-não aumenta limites sem interrupções e reduz a margem após estabilidade
-observada. Pausa e seek não contam como falha de rede. Uma conexão
-continuamente abaixo do bitrate necessário é diagnosticada, sem loop de reload.
-
-A política é aplicada a cada item pelo mesmo hook, inclusive em playlists do
-YouTube, próximo/anterior e `loadlist`. Opções explícitas de CLI, `mpv.conf`,
-perfis e scripts prevalecem; configurações indiretas que não possam ser
-inspecionadas fazem a política recuar. Nenhum cache em disco é habilitado
-automaticamente. Não há troca automática de resolução/codec nem seek até a
-borda da live. Falhas de decoder ou vídeo congelado com áudio avançando
-continuam exigindo diagnóstico próprio: cache maior não garante solução.
-
-Playlists locais são expandidas pelo frontend e seus itens, já preparados pela
-regra comum, são enviados juntos com os títulos preenchidos. A ordem e a
-política de rede específica de cada item são preservadas.
+O cache automático respeita as opções explícitas do mpv e aplica os valores
+por item, inclusive em playlists, após próximo/anterior e com `loadlist`.
+O diretório padrão do cache é `Cache` na raiz de dados do aplicativo. Apenas
+uma opção explícita ativa cache em disco. Em VOD confirmado, a margem inicial
+é de 3 segundos. Após interrupções observadas, a margem de retomada pode chegar
+a 8 segundos em VOD ou a 2 segundos em live e fontes incertas. Pausa e busca
+ficam fora dessa contagem. Para limites, precedência e diagnóstico, consulte
+[Cache automático por item](developer/mpv-integration.md#cache-automático-por-item).
 
 No YouTube, uma URL sem `list=` continua sendo tratada como vídeo individual.
 Quando a URL contém `list=`, o MPV.NET preserva todos os parâmetros e habilita
 a expansão nativa do `ytdl_hook`/`yt-dlp`; a fila resultante pertence ao mpv e
 funciona com próximo, anterior e avanço automático. Em URLs
 `watch?v=...&list=...&index=...`, o hook atual procura primeiro o vídeo indicado
-na playlist e usa `index=` quando ele corresponde, sem reconstruir a coleção em
-C# nem reiniciar o item atual. Depois da expansão, o MPV.NET normaliza os títulos
+na playlist e usa `index=` quando ele corresponde, sem criar uma
+fila paralela nem reiniciar o item atual. Depois da expansão, o MPV.NET normaliza os títulos
 dos itens e remove entradas repetidas pelo caminho ou URL, mantendo a fila nativa
 e o item que já estiver em reprodução. Como essa fila só existe depois que o
 yt-dlp a entrega ao mpv, a preparação aguarda a expansão ficar estável. O mesmo
@@ -450,17 +405,15 @@ diretamente e confira a mensagem original:
 .\yt-dlp.exe --no-playlist --cookies-from-browser chrome --dump-single-json "https://www.youtube.com/watch?v=DuVaLWf2114"
 ```
 
-Troque `chrome` por `edge`, `firefox` ou outro navegador que contenha a sessao
-autenticada, se necessario. Se preferir exportar cookies para um arquivo, use
+Troque `chrome` por `edge`, `firefox` ou outro navegador que contenha a sessão
+autenticada, se necessário. Se preferir exportar cookies para um arquivo, use
 um arquivo no formato Mozilla/Netscape e garanta que a primeira linha seja
 `# HTTP Cookie File` ou `# Netscape HTTP Cookie File`.
 
 As instruções de cookies e autenticação do YouTube mudam com o `yt-dlp`.
 Consulte a [orientação oficial para cookies](https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies)
-antes de exportar. A orientação atual usa uma janela privada, acessa
-`https://www.youtube.com/robots.txt` na mesma aba e fecha a janela logo após a
-exportação. Usar cookies da conta pode trazer riscos à conta; só faça isso se
-for necessário.
+antes de exportar. Cookies de sessão dão acesso à conta. Use-os apenas quando
+necessário e mantenha arquivos exportados fora de logs e chamados de suporte.
 
 `Sign in to confirm you're not a bot` indica uma verificação exigida pelo
 YouTube. Confira o acesso pelo navegador na mesma rede e as orientações oficiais
@@ -471,15 +424,12 @@ Enumerar uma playlist em modo `--flat-playlist` confirma apenas os metadados
 da coleção; a obtenção dos formatos e a reprodução de cada vídeo são verificações
 distintas. Os testes usam a URL completa, preservando `v`, `list` e `index`.
 
-Se o video continuar falhando mesmo com cookies validos, o YouTube pode estar
-exigindo PO Token em vez de apenas autenticacao. O `yt-dlp` nao gera esse
-token sozinho, entao esse caso ainda pode exigir ajuste externo no lado do
-extrator.
+O YouTube pode exigir também um PO Token. Nesse caso, consulte o diagnóstico
+do extrator e as opções externas descritas na [documentação técnica](developer/mpv-integration.md#diagnóstico-da-cadeia-online).
 
-Falhas auxiliares ao criar ou expandir playlists nao devem impedir a tentativa
-de reproducao da midia principal. Quando houver uma URL ou caminho valido, o
-frontend tenta enviar a midia bruta ao mpv/libmpv; o titulo informado por linha
-de comando e aplicado como metadado visual, nao como requisito de playlist.
+Falhas auxiliares ao criar ou expandir playlists não devem impedir a tentativa
+de reprodução da mídia principal. Quando houver uma URL ou caminho válido, o
+frontend tenta enviar a mídia bruta ao mpv/libmpv; o título da linha de comando continua disponível como metadado visual.
 
 Quando uma mídia online falha e não há uma reconexão controlada em andamento,
 o player mostra uma mensagem curta no idioma da interface para categorias como
@@ -498,29 +448,16 @@ tem prioridade, seguida pelo cache legado, pela pasta do executável e, por
 último, pelo `PATH`. Os downloads são preparados em `Component\staging`,
 validados e promovidos como uma geração completa.
 
-Depois que a janela aparece, o player verifica e atualiza os componentes em
-segundo plano. Componentes ausentes, inválidos ou com origem alterada precisam
-de atualização. Após 20 dias sem download validado ou verificação de release
-inalterada, o player consulta novamente a release. Se o hash publicado e os
-arquivos locais continuarem válidos, reutiliza o componente sem novo download.
-O player exige SHA-256 publicado pelo GitHub, confere a arquitetura x64 e
-valida os arquivos antes de ativá-los.
+A janela abre antes de o player verificar os componentes em segundo plano.
+O bootstrap valida o SHA-256 publicado e a arquitetura x64, reutiliza
+componentes válidos e preserva a geração anterior durante atualizações. Uma
+transferência interrompida pode ser retomada na próxima abertura se a URL e
+o hash do asset permanecerem iguais. Consulte os [prazos, a validação e os
+fallbacks](developer/configuration.md#componentes-auxiliares-de-runtime).
 
-Se o GitHub limitar as consultas, o player adia novas consultas de atualização
-durante o prazo indicado pelo serviço, preservando os componentes já válidos.
-
-Downloads interrompidos por falhas transitórias ou pelo fechamento do player
-podem ser retomados na próxima abertura, desde que a URL e o hash do asset
-permaneçam iguais. A geração válida anterior é preservada durante a atualização;
-veja [Configuração técnica](developer/configuration.md) para os limites e a limpeza.
-
-`mpvnet.com` permanece no payload de instalação por compatibilidade, mas não é
-baixado nem executado pelo bootstrap do player. `libmpv` e `MediaInfo.dll` são
-preparados e validados pelo fluxo de build/release.
-Execute `mpvnet.exe --diagnose-components` para ver a existência e origem dos
-componentes, a idade do último download bem-sucedido, os hashes registrados e
-calculados e os testes de versão de FFmpeg, FFplay, FFprobe, yt-dlp e Deno. Esse
-comando é somente diagnóstico e não inicia downloads.
+Execute `mpvnet.exe --diagnose-components` para conferir origem, versões,
+datas e integridade dos componentes sem iniciar downloads. O helper
+`mpvnet.com` acompanha a instalação por compatibilidade.
 
 Exemplo:
 
@@ -547,36 +484,34 @@ de interface definidos, use este formato no PowerShell:
 | `--title="Meu vídeo"` | Define o título visual da janela e da mídia. O player aplica sua normalização de títulos. |
 | `"C:\Videos\video.mp4"` | Caminho do vídeo. Pode ser substituído por uma URL compatível com o mpv. |
 
-Coloque caminhos e títulos com espaços entre aspas. No PowerShell, use `&`
-antes do caminho do executável entre aspas; no Prompt de Comando (`cmd.exe`),
-execute o mesmo comando sem o `&` inicial.
+Coloque caminhos e títulos com espaços entre aspas. Use `&` no PowerShell
+para chamar o executável quando o caminho estiver entre aspas. No Prompt de
+Comando (`cmd.exe`), omita o `&` inicial.
 
-Os exemplos abaixo cobrem os **20 idiomas atuais** e devem ser executados na
-pasta do player portátil. Substitua o caminho do vídeo e o título conforme a
-aplicação. Os códigos da tabela são aceitos diretamente em `--language`.
+Substitua `pt-BR` por um dos códigos da tabela para abrir o player em outro idioma.
 
-| Idioma da interface | Código | Exemplo no PowerShell |
-| --- | --- | --- |
-| Alemão | `de` | `.\mpvnet.exe --process-instance=multi --alang= --language=de --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Árabe | `ar-SA` | `.\mpvnet.exe --process-instance=multi --alang= --language=ar-SA --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Búlgaro | `bg` | `.\mpvnet.exe --process-instance=multi --alang= --language=bg --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Chinês simplificado | `zh-CN` | `.\mpvnet.exe --process-instance=multi --alang= --language=zh-CN --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Chinês tradicional (Hong Kong) | `zh-HK` | `.\mpvnet.exe --process-instance=multi --alang= --language=zh-HK --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Chinês tradicional (Taiwan) | `zh-TW` | `.\mpvnet.exe --process-instance=multi --alang= --language=zh-TW --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Coreano | `ko` | `.\mpvnet.exe --process-instance=multi --alang= --language=ko --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Espanhol | `es` | `.\mpvnet.exe --process-instance=multi --alang= --language=es --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Francês | `fr` | `.\mpvnet.exe --process-instance=multi --alang= --language=fr --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Hindi | `hi-IN` | `.\mpvnet.exe --process-instance=multi --alang= --language=hi-IN --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Indonésio | `id-ID` | `.\mpvnet.exe --process-instance=multi --alang= --language=id-ID --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Inglês | `en` | `.\mpvnet.exe --process-instance=multi --alang= --language=en --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Italiano | `it` | `.\mpvnet.exe --process-instance=multi --alang= --language=it --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Japonês | `ja` | `.\mpvnet.exe --process-instance=multi --alang= --language=ja --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Polonês | `pl` | `.\mpvnet.exe --process-instance=multi --alang= --language=pl --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Português do Brasil | `pt-BR` | `.\mpvnet.exe --process-instance=multi --alang= --language=pt-BR --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Português de Portugal | `pt-PT` | `.\mpvnet.exe --process-instance=multi --alang= --language=pt-PT --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Russo | `ru` | `.\mpvnet.exe --process-instance=multi --alang= --language=ru --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Turco | `tr` | `.\mpvnet.exe --process-instance=multi --alang= --language=tr --title="Meu vídeo" "C:\Videos\video.mp4"` |
-| Ucraniano | `uk-UA` | `.\mpvnet.exe --process-instance=multi --alang= --language=uk-UA --title="Meu vídeo" "C:\Videos\video.mp4"` |
+| Idioma da interface | Código |
+| --- | --- |
+| Alemão | `de` |
+| Árabe | `ar-SA` |
+| Búlgaro | `bg` |
+| Chinês simplificado | `zh-CN` |
+| Chinês tradicional (Hong Kong) | `zh-HK` |
+| Chinês tradicional (Taiwan) | `zh-TW` |
+| Coreano | `ko` |
+| Espanhol | `es` |
+| Francês | `fr` |
+| Hindi | `hi-IN` |
+| Indonésio | `id-ID` |
+| Inglês | `en` |
+| Italiano | `it` |
+| Japonês | `ja` |
+| Polonês | `pl` |
+| Português do Brasil | `pt-BR` |
+| Português de Portugal | `pt-PT` |
+| Russo | `ru` |
+| Turco | `tr` |
+| Ucraniano | `uk-UA` |
 
 Para abrir uma URL, mantenha as opções e troque somente a mídia:
 
@@ -609,35 +544,41 @@ os exemplos usam `--alang=`: isso limpa a preferência de áudio da execução,
 sem desativar o áudio nem alterar `mpv.conf`. Se a integração também definir
 `--alang`, mantenha seu idioma alinhado ao da interface. `--slang` não participa
 dessa escolha. Nomes públicos e variantes aceitas estão em
-[Localização](developer/localization.md#idiomas-disponiveis).
+[Localização](developer/localization.md#idiomas-disponíveis).
 
 No modo padrão de instância única, uma chamada pode encaminhar apenas a mídia
 ao player já aberto, sem aplicar o novo título ou idioma. Por isso, mantenha
 `--process-instance=multi` nas integrações que precisam definir esses valores
 por abertura.
 
-**Exemplo de integração em C# (.NET):** passe cada argumento separadamente com
-`ArgumentList`, sem acrescentar aspas manualmente aos valores:
+No PowerShell 7.3 ou posterior, monte os argumentos de outra aplicação
+como itens separados. O exemplo usa inglês quando o código do idioma está vazio
+e executa o player a partir da pasta do executável.
 
-```csharp
-using System.Diagnostics;
+```powershell
+$player = 'C:\Players\MPV.NET\mpvnet.exe'
+$video = 'C:\Videos\video.mp4'
+$titulo = 'Meu vídeo'
+$idioma = 'pt-BR'
 
-string player = @"C:\Players\MPV.NET\mpvnet.exe";
-string video = @"C:\Videos\video.mp4";
-string titulo = "Meu vídeo";
-string? idioma = "pt-BR"; // Código recebido da aplicação integradora.
+if ([string]::IsNullOrWhiteSpace($idioma)) {
+    $idioma = 'en'
+}
 
-var inicio = new ProcessStartInfo(player)
-{
-    UseShellExecute = false,
-    WorkingDirectory = System.IO.Path.GetDirectoryName(player)!
-};
-inicio.ArgumentList.Add("--process-instance=multi");
-inicio.ArgumentList.Add("--alang=");
-inicio.ArgumentList.Add("--language=" + (string.IsNullOrWhiteSpace(idioma) ? "en" : idioma));
-inicio.ArgumentList.Add("--title=" + titulo);
-inicio.ArgumentList.Add(video);
-Process.Start(inicio);
+$argumentosPlayer = @(
+    '--process-instance=multi'
+    '--alang='
+    "--language=$idioma"
+    "--title=$titulo"
+    $video
+)
+
+Push-Location -LiteralPath (Split-Path -LiteralPath $player)
+try {
+    & $player @argumentosPlayer
+} finally {
+    Pop-Location
+}
 ```
 
 Distribua o conteúdo completo do ZIP portátil, incluindo DLLs, `Locale` e
@@ -674,23 +615,15 @@ vídeo configuradas explicitamente também podem impedir o ajuste por `boxvideo`
 Para voltar ao comportamento padrão, remova apenas as opções acrescentadas
 ou use `visibility=auto`, `boxvideo=no` e `sub_margins=no`.
 
-O modo automático continua sendo o padrão. Veja como consultar e diagnosticar
+Veja como consultar e diagnosticar
 os atalhos em [Atalhos](ATALHOS.md#consultar-e-diagnosticar-atalhos).
 
 ## Modo portátil
 
-Crie `portable_config` ao lado de `mpvnet.exe` para manter as configurações dentro da pasta do player.
-
-```text
-mpvnet.exe
-portable_config/
-  mpv.conf
-  input.conf
-  scripts/
-  script-opts/
-```
-
-Veja [Guia operacional](guia-operacional.md) para o layout recomendado.
+Para guardar a configuração junto do executável no ZIP portátil, siga a
+[estrutura de `portable_config`](CONFIGURACAO.md#estrutura-portátil). Os
+dados de cache e diagnóstico ficam na raiz de dados local. Use
+`mpvnet.exe --diagnose-paths` para conferir os caminhos da instalação.
 
 ## Documentação técnica
 
@@ -709,16 +642,12 @@ O mpv.net preserva a maior parte do comportamento do mpv e adiciona interface gr
 
 ## Suporte
 
-Sua contribuição voluntária ajuda a manter e melhorar o MPV.NET. Ela é opcional
-e única, não libera funcionalidades nem cria licença ou assinatura. O player
-continua gratuito.
+A contribuição para o MPV.NET é voluntária e o player continua gratuito.
 
 - **Apoie o player:** [Acessar a página oficial de apoio](https://www.gestaodesistemas.com.br/mpvnet)
 - **Repositório:** [WandersondeSouza/mpv.net](https://github.com/WandersondeSouza/mpv.net)
   (também aberto em `Ajuda > Website mpv.net`, atalho `Ctrl+a`)
 - **Problemas e sugestões:** [Issues do MPV.NET](https://github.com/WandersondeSouza/mpv.net/issues)
+- **Vulnerabilidades:** [Política de segurança](../SECURITY.md)
 - **E-mail:** [wanderson_souza@hotmail.com](mailto:wanderson_souza@hotmail.com)
 - **Manual oficial do mpv:** [mpv.io/manual/master](https://mpv.io/manual/master/)
-
-
-

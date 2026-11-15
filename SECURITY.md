@@ -4,13 +4,13 @@
 
 | Versão | Suporte de segurança |
 | --- | --- |
-| `main` | Sim |
+| `master` | Sim |
 | Versão mais recente publicada em Releases | Sim |
 | Versões anteriores | Não garantido |
 
 ## Como denunciar uma vulnerabilidade
 
-Não publique detalhes de uma vulnerabilidade em uma issue ou pull request
+Não publique detalhes de uma vulnerabilidade em uma issue pública ou em um pull request
 público.
 
 Envie a descrição, os passos para reproduzir e o impacto para

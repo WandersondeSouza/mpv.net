@@ -98,16 +98,11 @@ Git estiver limpa.
 
 ## Modo portátil
 
-O diretório `portable_config` guarda as configurações usadas pelo pacote
-portátil. Você pode incluir nele `mpv.conf`, `input.conf`, scripts e opções de
-scripts, seguindo o layout do mpv.
-
-O ZIP portátil não registra associações de arquivos no Windows. Para abrir uma
-mídia pelo Explorador, selecione o MPV.NET em `Abrir com`; o filtro de abertura
-do player também inclui formatos de imagem. A associação de imagens no
-instalador desktop continua opcional, e o manifesto da Store declara formatos
-de imagem sem alterar automaticamente o aplicativo padrão escolhido pelo
-usuário.
+Use a [estrutura portátil](CONFIGURACAO.md#estrutura-portátil) para organizar
+configurações, scripts e opções. O ZIP não registra associações no Windows.
+No Explorador de Arquivos, use **Abrir com** para selecionar o `mpvnet.exe`
+extraído. Veja como o instalador desktop e o MSIX tratam
+[associações e tipos de arquivo](manual.md#extensões-e-associações-de-arquivos).
 
 ## Diagnóstico de caminhos
 
@@ -117,7 +112,8 @@ mpvnet.exe --diagnose-paths --config-dir="C:\Meu perfil MPV"
 mpvnet.exe --diagnose-components
 ```
 
-O primeiro diagnóstico não cria diretórios nem inicia downloads. Confira a
+As duas chamadas com `--diagnose-paths` não criam diretórios nem iniciam downloads.
+`--diagnose-components` também não baixa componentes e faz sondagens de versão. Confira a
 origem da configuração e as raízes de cache, componentes, temporários, logs,
 DLLs e recursos. A matriz de portátil/instalado/Store está em
 [Configuração técnica](developer/configuration.md). Em Store, arquivos graváveis
@@ -196,7 +192,8 @@ Mudanças no cache exigem `NetworkCachePolicyTests`, `NetworkCacheSessionTests`,
 Os testes usam a libmpv preparada pelo build; confirme sua revisão efetiva.
 HTTP loopback real e resultados simulados de yt-dlp não comprovam reprodução
 em serviços externos. Os limites, a migração, a validação visual e as medições
-locais de 08/11/2026 estão em [Cache automático por item](developer/mpv-integration.md#cache-automático-por-item).
+locais estão na [documentação da política](developer/mpv-integration.md#cache-automático-por-item)
+e nos [registros de validação](developer/mpv-integration.md#registros-de-validação).
 
 Compare cenários equivalentes antes/depois e registre tempo de início,
 quantidade/duração de buffering, bitrate/taxa de entrada quando disponíveis,

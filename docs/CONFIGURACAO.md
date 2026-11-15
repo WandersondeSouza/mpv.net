@@ -1,15 +1,15 @@
 ﻿# Configuração do MPV.NET Media Player
 
-Este documento resume onde o fork procura as configurações e quais arquivos o usuário normalmente edita.
+Encontre a pasta ativa e o arquivo que precisa editar.
 
 ## Ordem de busca
 
 1. `--config-dir=...`, se informado
 2. `MPVNET_HOME`, se apontar para uma pasta existente
-3. `portable_config`, em distribuições sem identidade MSIX
+3. `portable_config` ao lado do executável, em instalações sem identidade MSIX
 4. `%LOCALAPPDATA%\mpv.net`, ou a raiz privada de dados da Microsoft Store
 
-A pasta escolhida vale para o mpv e para o frontend, incluindo settings e tema.
+O mpv e o frontend usam a mesma pasta para configuração, estado e tema.
 Use `mpvnet.exe --diagnose-paths` para conferir os caminhos efetivos. O comando
 não cria pastas. Veja os detalhes de cada modo em [Configuração técnica](developer/configuration.md).
 
@@ -25,7 +25,7 @@ não cria pastas. Veja os detalhes de cada modo em [Configuração técnica](dev
 
 ## Estrutura portátil
 
-Se `portable_config` existir ao lado de `mpvnet.exe`, o player usa essa pasta como configuração principal.
+Extraia o ZIP completo. Crie `portable_config` ao lado de `mpvnet.exe` se o diretório ainda não existir.
 
 ```text
 mpvnet.exe
@@ -49,6 +49,4 @@ não muda as opções nativas do `mpv.conf`. Veja [limites e migração](develop
 - Se `input.conf` usar menu personalizado, os itens base `Open Files...` e `About mpv.net` continuam sendo preservados quando estiverem ausentes.
 - O menu OSD do `Ctrl+p` usa `menu.conf` quando existe; o mpv.net gera esse arquivo com rótulos localizados se ele ainda não existir.
 - Scripts e opções de scripts ficam em `scripts/` e `script-opts/`.
-- O exemplo de `thumbfast` do fork fica em `docs/exemplos/thumbfast.conf`.
-
-
+- Consulte os [exemplos de configuração](exemplos/) e o [exemplo de `thumbfast`](exemplos/thumbfast.conf).

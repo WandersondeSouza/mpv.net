@@ -1,28 +1,12 @@
 ﻿# Integração com mpv/libmpv
 
-## Objetivo
+O mpv/libmpv executa a reprodução. O frontend coordena o carregamento, os
+comandos, os eventos e o estado consumido pela interface e pelos scripts.
 
-Documentar conceitos relacionados à integração do MPV.NET Media Player com mpv/libmpv.
+<a name="objetivo"></a>
+<a name="visão-geral"></a>
 
----
-
-# Visão geral
-
-O mpv.net utiliza o mpv/libmpv como motor principal de reprodução multimídia.
-
-A integração com libmpv é considerada uma das áreas mais críticas do projeto.
-
----
-
-# Responsabilidades da integração
-
-- reprodução de mídia;
-- propriedades;
-- comandos;
-- sincronização;
-- eventos;
-- estado do player;
-- integração com scripts.
+<a name="responsabilidades-da-integração"></a>
 
 ## Extensões, playlists e capacidade de decodificação
 
@@ -48,11 +32,11 @@ formatos de playlist.
 | Imagem | `GetImgExts()` usa `image-exts` do libmpv ou `DefaultImageExts` como fallback. A lista está no diálogo; a linha de comando e a entrada de mídia também aceitam imagens. | Ao abrir uma imagem, a descoberta automática fica restrita a outras imagens da pasta. Imagens não entram na expansão das playlists locais. | Não é registrada automaticamente. O usuário pode habilitar a associação em `Config > Setup > Register image file associations`. | O manifesto declara `DefaultImageExts` em associação própria para `Abrir com` e `Aplicativos padrão`, sem definir um padrão automaticamente. |
 | Playlist | O filtro, a linha de comando e `PlaylistFile.Read` cobrem `.m3u`, `.m3u8`, `.pls`, `.xspf`, `.asx`, `.wpl`, `.cue` e `.jspf`. Entradas locais relativas são resolvidas em relação à playlist; URLs são preservadas. | É incluída na descoberta de pasta quando a abertura parte de áudio/vídeo; não é misturada à descoberta de imagens. | O Inno Setup registra as oito extensões automaticamente. | As oito extensões aparecem na associação de vídeo do manifesto. |
 
-O ZIP portátil não registra associações no Windows. O manifesto MSIX usa as
-listas estáticas versionadas no projeto; o filtro e o instalador desktop também
+O manifesto MSIX usa as listas estáticas versionadas no projeto. O filtro e o instalador desktop também
 podem receber extensões específicas da build pelas propriedades `video-exts`,
-`audio-exts` e `image-exts` do libmpv. No diálogo do libmpv distribuído nesta
-auditoria, as propriedades expuseram `.ivf`, `.dff`, `.dsf`, `.mp1`, `.heic`,
+`audio-exts` e `image-exts` do libmpv.
+
+No diálogo da build examinada em 28/10/2026, as propriedades expuseram `.ivf`, `.dff`, `.dsf`, `.mp1`, `.heic`,
 `.heif` e `.qoi` além das listas estáticas. Esses nomes não foram promovidos aos
 defaults nem ao manifesto: a presença no filtro, sem reprodução de amostra
 confirmada, não basta para declarar suporte.
@@ -62,30 +46,10 @@ ela não comprova que o arquivo contém um codec ou container reproduzível. A
 capacidade depende dos demuxers e decoders presentes na revisão empacotada de
 libmpv/FFmpeg e deve ser verificada com arquivos de amostra. As DLLs normal e
 x86-64-v3 são variantes de CPU da mesma revisão upstream, e a seleção de uma
-delas não é uma declaração de suporte a formatos. `mpvnet.exe
---diagnose-libmpv` confirma a seleção/carregamento do binário; a reprodução
+delas não é uma declaração de suporte a formatos. `mpvnet.exe --diagnose-libmpv` confirma a seleção/carregamento do binário; a reprodução
 real de amostras é uma verificação separada.
 
-### Binários identificados na auditoria de 28/10/2026
-
-Os dois arquivos publicados em `win-x64` foram identificados como PE AMD64 e
-reportam a mesma versão de arquivo/produto e o mesmo build upstream:
-`v0.41.0-1227-ge471496c5` (`20261021-git-e471496c56`). São variantes de CPU,
-não builds com listas de codecs diferentes.
-
-| Arquivo | Variante | SHA-256 |
-| --- | --- | --- |
-| `libmpv-2.dll` | x86-64 normal | `04E4D27DC385DC18DDD93FBE69C75E635B864F3C6EC53A9122DF54C2F7842F4A` |
-| `libmpv-2-v3.dll` | x86-64-v3 | `9197A10DD712A15D652CCB2E915F47E377605599BC9FAA9A137BB8A1EF2BB6C4` |
-
-Na verificação manual, ambas reproduziram amostras locais PNG, WAV e MP4. Uma
-playlist M3U8 com entrada local WAV também abriu e carregou a mídia. Isso
-confirma os caminhos básicos de imagem, áudio, vídeo e playlist nesta build; não
-é uma prova exaustiva de todos os codecs e containers anunciados pelo mpv.
-
----
-
-# Wrapper e comunicação
+## Wrapper e comunicação
 
 Arquivos principais:
 
@@ -101,7 +65,7 @@ Arquivos principais:
 - `src/MpvNet/Integration/Mpv/Player.MediaLoading.cs` - carregamento de mídia, playlists, URLs, ISO/DVD/BD e pasta automática;
 - `src/MpvNet/Integration/Mpv/Player.Capabilities.cs` - perfis, decoders, protocolos, demuxers e criação de clientes adicionais.
 
-## Abertura explícita de unidade/pasta
+### Abertura explícita de unidade/pasta
 
 `open-optical-media` mantém o binding e o diálogo existentes.
 `LoadDiskFolderAsync` usa `Media/FolderMediaDiscovery.cs` para distinguir
@@ -161,44 +125,13 @@ recebe `force-media-title`. A fotografia nativa resultante é registrada para
 evitar reconstruções repetidas. Coleções preparadas pelo frontend já possuem
 todos os títulos normalizados desde a inserção, incluindo o item inicial.
 
-Validação local em 2026-10-17: 680 testes aprovados; build Windows Debug x64
-sem avisos/erros; 13 catálogos gettext validados e compilados. Uma sonda sem
-interface, com libmpv normal real e WAVs locais, verificou substituição da fila
-dentro da janela de append, ordem natural, título de playlist, deduplicação,
-preservação da fila para pasta vazia/inválida, próximo/anterior, avanço no EOF
-e encerramento, com `AutoLoadFolder` ligado e desligado. Erros parciais e
-reparse points foram cobertos por testes com sistema de arquivos controlado.
-Isso não comprova reprodução de DVD/Blu-ray físico ou ISO real, remoção de uma
-unidade durante a busca nem o checklist visual da interface Windows
-(menu/tradução, temas, DPI, fullscreen, atalhos, drag/drop, faixas e cursor/OSC).
-
-Correção posterior dos títulos pendentes em 2026-10-17: 696 testes aprovados,
-incluindo 13 testes com libmpv normal real. A regressão verifica o campo `title`
-dos 200 itens antes de reproduzir o próximo, com autoload ligado/desligado;
-entradas por diálogo, clipboard, drag/drop, CLI e IPC; append sem alterar o ID,
-caminho ou posição da mídia ativa; título de playlist sobre tag incorporada;
-mudança de títulos em uma fila com os mesmos caminhos, sem loop de reconstrução;
-e opções de cache/YouTube por item, inclusive overrides explícitos. Os testes
-de URL usam redirecionamento nativo para WAV local, sem acessar serviços externos.
-O build Windows Debug x64 terminou sem avisos/erros. A verificação visual do
-seletor F8 na aplicação completa permanece manual; os testes consultam a mesma
-playlist nativa usada por esse seletor.
-
-Correção de desempenho do seletor em 2026-10-17: 698 testes aprovados e build
-Windows Release x64 sem avisos/erros. Dois casos novos com 200 e 2.000 entradas
-reproduziram a origem excessiva antes da correção e verificaram origem curta,
-títulos antecipados e registro do temporário para limpeza após a mudança.
-Uma sonda isolada com o frontend corrigido, libmpv normal e uma M3U de 14.892
-itens, precedidos de um WAV local pausado para não acessar os streams, mediu
-aproximadamente 66 ms na primeira abertura do F8 e 50–51 ms nas quatro seguintes;
-com `memory://`, a abertura não havia concluído em 15 segundos. Não houve eventos
-de alteração da playlist nessas aberturas. Esses tempos são evidência local;
-não substituem o checklist visual da aplicação completa ou reprodução de streams.
+Veja os [resultados de descoberta e playlist](#descoberta-de-mídia-e-playlist--17102026).
 
 ## Carregamento dual de libmpv
 
 As distribuições x64 contêm `libmpv-2.dll` (normal) e
-`libmpv-2-v3.dll` (x86-64-v3), com a mesma API. O P/Invoke continua usando o
+`libmpv-2-v3.dll` (x86-64-v3), com a mesma API. A variante v3 pode melhorar o desempenho conforme o
+conteúdo, a decodificação, os filtros e os drivers. O P/Invoke continua usando o
 nome lógico único `libmpv-2`. Antes de `mpv_create`, um resolvedor registrado
 uma única vez no assembly dos imports decide o arquivo por caminho absoluto a
 partir de `AppContext.BaseDirectory`; ele não usa o diretório de trabalho nem
@@ -225,7 +158,7 @@ Fluxo principal em `Player.Initialization.cs`:
 2. registra eventos com `mpv_request_event`;
 3. prepara propriedades iniciais;
 4. define `config-dir` como `Player.ConfigFolder`;
-5. direciona o diretório de cache temporário do mpv para `%LOCALAPPDATA%\mpv.net\Cache`, sem forçar `cache` global;
+5. direciona o cache temporário do mpv para `AppPaths.Cache`, sem forçar `cache` global;
 6. carrega `input.conf` em memória quando existe conteúdo;
 7. processa argumentos de linha de comando antes de `mpv_initialize`;
 8. chama `mpv_initialize`;
@@ -302,8 +235,7 @@ Os controles de mídia não alteram o wrapper libmpv. A camada Windows observa o
 eventos `start-file`, `file-loaded`, `end-file`, `pause`, `seek`,
 `playback-restart` e `playlist-pos`, consulta propriedades somente para
 metadata/timeline e converte os comandos do SMTC em `CommandV` (`set pause`,
-`stop`, `playlist-next`, `playlist-prev` e `seek absolute+exact`). A capacidade de
-busca combina `seekable` com duração finita e positiva. Fast Forward/Rewind
+`stop`, `playlist-next`, `playlist-prev` e `seek absolute+exact`). A busca exige `seekable`, duração finita e positiva e ausência de `partially-seekable`. Fast Forward/Rewind
 calculam saltos de 5 segundos a partir da posição real, limitados à duração,
 e reutilizam seek sem alterar a velocidade. A sessão permanece ativa em
 fullscreen; o timer de timeline usa 5 segundos durante reprodução, com
@@ -312,7 +244,7 @@ responsável pela reprodução e a integração é desligada se o SMTC não esti
 disponível.
 
 Para áudio local, a camada Windows resolve a arte em segundo plano e pode
-acrescentar uma imagem validada ao arquivo corrente com \`video-add\` assíncrono.
+acrescentar uma imagem validada ao arquivo corrente com `video-add` assíncrono.
 O frontend SMTC usa a mesma imagem quando está ativo. As regras de prioridade,
 cancelamento e cache estão em [Integração Windows](windows-ui.md).
 
@@ -335,12 +267,11 @@ uma requisição de sondagem antes da reprodução; a identificação de mídia 
 playlist remota fica a cargo do mpv/libmpv.
 
 O mesmo vale para playlists criadas ou expandidas pelo frontend. A linha de
-comando pode receber somente uma URL, um arquivo local, ou um titulo visual
-seguido de uma URL. Quando a midia principal e resolvida, o titulo deve ser
-aplicado como metadado e a URL ou caminho bruto deve ser enviado ao mpv/libmpv
-sem depender de playlist. Expansoes auxiliares de playlist devem continuar
-opcionais: se falharem, o frontend deve preservar a tentativa de reproducao da
-midia principal antes de desistir. Playlists locais expandidas com sucesso
+comando pode receber somente uma URL, um arquivo local, ou um título visual
+seguido de uma URL. Quando a entrada principal é válida, o frontend envia a URL ou o caminho ao
+mpv/libmpv e aplica o título como metadado. Expansões auxiliares de playlist devem continuar
+opcionais: se falharem, o frontend deve preservar a tentativa de reprodução da
+mídia principal antes de desistir. Playlists locais expandidas com sucesso
 enviam seus itens preparados em M3U com títulos preenchidos por `loadlist`.
 O transporte usa um arquivo temporário com origem curta; os caminhos locais
 são absolutos. As opções de rede são aplicadas por item no hook nativo, sem
@@ -358,7 +289,7 @@ YouTube. Toda URL HTTP/HTTPS válida continua elegível ao `loadfile`; páginas 
 extensão de mídia direta recebem `NetworkMediaKind.OnlineResolver`, enquanto
 arquivos HTTP progressivos, HLS e DASH mantêm classificações específicas. Essa
 decisão não usa whitelist de host e permite que um extractor novo do yt-dlp
-funcione sem um novo `if` no MPV.NET.
+funcione sem uma integração adicional no MPV.NET.
 
 O MPV.NET não executa o yt-dlp antecipadamente em C#, não repete requisições de
 metadata e não implementa HTML, API privada ou autenticação de Bilibili,
@@ -377,7 +308,7 @@ intenção explícita de coleção por meio de um parâmetro `list=` em host leg
 do YouTube. A URL original, inclusive `v=`, `index=`, parâmetros desconhecidos
 e fragmento, permanece intacta no `loadfile` direto ou na entrada da M3U preparada.
 
-Não existe playlist paralela em C#. Com `yes-playlist`, o hook nativo recebe o
+Com `yes-playlist`, o hook nativo recebe o
 JSON plano do yt-dlp, cria a playlist do mpv e sua implementação atual compara
 `index=` e `v=` com as entradas retornadas para escolher o item inicial. Assim,
 `playlist-next`, `playlist-prev`, avanço automático e SMTC continuam operando
@@ -390,60 +321,24 @@ e registra a fotografia de endereços e títulos antes de aceitar outra execuç�
 assim, os eventos produzidos por `playlist-clear` e `loadlist` não realimentam
 a normalização.
 
-Essa regra foi conferida no manual e no `ytdl_hook.lua` do mpv. Em teste local
-com yt-dlp e uma playlist pública de 31 itens, o hook recebeu
-`--yes-playlist`, registrou a correspondência do vídeo solicitado e definiu
-`playlist-start=2`. O mpv expôs `playlist-count=31`, `playlist-pos=2` e o vídeo
-solicitado como item atual. Como o resultado depende de um serviço externo,
-repita a validação antes de uma release.
-
-### Validação de serviços externos
-
-Na validação local, `--list-extractors` confirmou a presença dos extractors,
-mas essa listagem não comprova acesso ao conteúdo. Testes online sem download
-apresentaram estes resultados:
-
-- **URLs públicas resolvidas:** Bilibili, Niconico, Naver, Dailymotion e
-  SoundCloud.
-- **Playlists:** três entradas retornadas para uma coletânea do Bilibili e três
-  para uma coleção de usuário do Niconico.
-- **Sem confirmação:** YouTube solicitou autenticação, sem cookies; Vimeo exigiu
-  login. A live do Naver e o canal Twitch estavam offline. O extractor do Douyu
-  falhou ao obter o identificador da sala.
-- **Não validado online:** Douyin.
-
-As consultas confirmaram somente os casos de resolução listados, nessa máquina
-e versão do yt-dlp. Não comprovaram reprodução no mpv, navegação da playlist,
-integração com SMTC ou reprodução de lives ativas; valide esses casos antes de
-uma release. A suíte offline cobre parâmetros e fragmentos de URL, Unicode em
-chinês, japonês e coreano, entrada pela área de transferência, IPC, `loadfile`,
-domínios não reconhecidos e ausência de opções específicas por provedor.
+Veja as [verificações de playlists e serviços externos](#validação-de-serviços-externos).
 
 ## Diagnóstico da cadeia online
 
-As sondagens dos executáveis aguardam a saída do processo e as leituras de
-`stdout` e `stderr` com o mesmo prazo. Ao expirar, as leituras são canceladas,
-a sondagem tenta encerrar a árvore do processo e descarta os dois leitores.
+`mpvnet.exe --diagnose-components` consulta as versões dos componentes,
+os runtimes JavaScript reconhecidos e a disponibilidade de impersonação no
+yt-dlp. O diagnóstico preserva a ordem de resolução de
+[`RuntimeComponents`](configuration.md#componentes-auxiliares-de-runtime),
+dispensa a interface gráfica e não inicia downloads. As sondagens têm prazo
+comum para a saída do processo e as leituras de `stdout` e `stderr`.
+Se o prazo expirar, o diagnóstico cancela as leituras, tenta encerrar a árvore
+do processo e descarta os leitores.
 
-`mpvnet.exe --diagnose-components` mantém a resolução central de
-`RuntimeComponents` e, sem abrir a UI ou baixar componentes, executa sondagens
-curtas para informar a versão efetiva de `yt-dlp` e FFmpeg, runtimes JavaScript
-compatíveis e a capability opcional de browser impersonation. O diagnóstico
-não recebe URL, cookie, header de autorização, query assinada nem PO Token.
-
-O executável Windows x64 oficial do yt-dlp é obtido do canal nightly, recomendado
-pelo projeto para uso regular, e continua sendo atualizado pelo fluxo existente
-de componentes, fora do caminho de reprodução. O bootstrap começa em segundo
-plano depois que a janela é exibida e, ao terminar, atualiza a chave
-`ytdl_hook-ytdl_path` de `script-opts` para
-as próximas reproduções; uma configuração explícita do usuário continua tendo
-precedência. O mesmo bootstrap baixa o
-`deno.exe` x64 (Deno 2.3 ou posterior), runtime recomendado e habilitado por
-padrão pelo yt-dlp. O executável oficial inclui os componentes de script EJS;
-Node.js 22 ou posterior e QuickJS 2023-12-9 ou posterior continuam
-sendo alternativas que exigem configuração explícita. O MPV.NET não baixa
-esses runtimes a cada reprodução e não substitui um caminho do hook configurado
-pelo usuário.
+O bootstrap usa o yt-dlp nightly oficial para Windows x64, com scripts EJS,
+e disponibiliza Deno no `PATH` do processo. As versões mínimas
+reconhecidas pelo diagnóstico do fork são Deno 2.3, Node.js 22 e QuickJS
+2023-12-9. Node.js e QuickJS exigem configuração no yt-dlp. Confira os
+requisitos do extrator na [documentação de EJS](https://github.com/yt-dlp/yt-dlp/wiki/EJS).
 
 A configuração do caminho ocorre depois de `mpv_initialize`, quando o mapa
 efetivo de `script-opts` já inclui CLI, `mpv.conf` e perfis iniciais. O frontend
@@ -474,16 +369,16 @@ privado e confirmação de idade continuam classificados como autenticação.
 Esse desafio depende do serviço, da rede/IP e da sessão; dependências válidas
 ou enumeração plana de playlist não comprovam acesso aos formatos do vídeo.
 
-A recuperação automática é deliberadamente limitada. Somente uma falha
-classificada como transitória agenda reload do mesmo item: no máximo três
-tentativas com backoff de 1, 2 e 4 segundos para RTSP/RTMP/SRT/UDP/TCP, ou para
-HLS/DASH que já carregou sem duração finita. A fila deve ter no máximo um item;
-se houver próximo item, permanece o avanço já existente. Uma geração de mídia e
-a fila serial de tarefas impedem retry da mídia anterior, duas reproduções
-concorrentes e trabalho posterior ao fechamento. Stop e nova carga invalidam a
-geração pendente.
+Para falhas de HTTP/3, compare a reprodução com a opção nativa
+`--curl-http-version=2`. Ela permite negociar HTTP/2 ou HTTP/1.1, conforme
+o servidor. Se precisar manter a opção, faça backup e acrescente
+`curl-http-version=2` ao `mpv.conf` ativo. Para voltar à negociação
+automática, remova a linha ou use `curl-http-version=auto`. A comparação
+isola uma variável de transporte. Erros de codec, exigência de autenticação
+e respostas HTTP 429 exigem diagnóstico próprio.
+Consulte o [manual de rede do mpv](https://mpv.io/manual/master/#network-backend-libcurl).
 
-### Cache automático por item
+## Cache automático por item
 
 A política usa somente `App.AutomaticNetworkCache`, ativado por padrão.
 `NetworkCacheProfile`/`--network-cache-profile` são aliases de compatibilidade
@@ -569,18 +464,24 @@ estabilidade. Os tetos em bytes não crescem em runtime. Pausa, startup e seek
 não contam como underrun; fim/troca de item e dispose limpam o estado. Não há
 watchdog de vídeo nem seek/reload causado pela adaptação.
 
-O mecanismo existente `LiveStreamRecoveryPolicy` mantém três tentativas e
-backoff 1/2/4 s para falhas transitórias comprovadas de streams contínuos ou
-manifests live carregados. Evidência de live do resolvedor também atende fontes
+### Recuperação de streams ao vivo
+
+`LiveStreamRecoveryPolicy` permite até três tentativas, com espera de
+1, 2 e 4 segundos, para falhas transitórias identificadas em streams contínuos
+ou manifestos live já carregados. Só agenda reconexão quando a playlist tem
+até um item. Stop, nova carga e fechamento invalidam a geração pendente.
+A fila serial impede duas tentativas de reprodução concorrentes. Evidência de live do resolvedor também atende fontes
 com URL opaca e janela DVR finita, sempre recarregando a entrada original.
 Sem essa evidência, permanece o critério conservador anterior para HLS/DASH
 diretos sem duração finita. Autenticação/403, antibot, URL explicitamente
 expirada (`ExpiredUrl`), manifesto inválido (`Manifest`) e decoder não geram
-retry. Não há reutilização automática de URL assinada identificada como expirada.
+nova tentativa. Não há reutilização automática de URL assinada identificada como expirada.
+
+### Ciclo de vida dos hooks
 
 `MpvEventSnapshot` e o dispatcher mantêm a continuação dos hooks em `finally`
-e o gate de lifetime. O estado novo fica na thread de eventos e é descartado
-no dispose após aguardar os loops. Nenhum observador extra sobrevive ao player.
+e o bloqueio que protege o ciclo de vida do cliente. A thread de eventos mantém
+esse estado. O descarte espera o fim dos loops antes de liberá-lo. Nenhum observador extra sobrevive ao player.
 
 Os contratos foram conferidos na libmpv normal efetivamente preparada pelo
 build de 08/11/2026, `mpv v0.42.0-5-g55d3feb45`, e nas fontes dessa revisão:
@@ -591,6 +492,93 @@ As opções usadas são atualizáveis nessa revisão; isso também foi exercitad
 `file-local-options` no libmpv real. Nenhuma opção de abertura imutável foi
 adicionada. Builds externas continuam sujeitas à disponibilidade de propriedades;
 ausência de evidência faz o frontend recuar.
+
+Os [registros de validação](#registros-de-validação) identificam as revisões,
+as condições do laboratório e as medições que ainda faltam.
+
+## Registros de validação
+
+### Binários identificados na auditoria de 28/10/2026
+
+Os dois arquivos publicados em `win-x64` foram identificados como PE AMD64 e
+reportam a mesma versão de arquivo/produto e o mesmo build upstream:
+`v0.41.0-1227-ge471496c5` (`20261021-git-e471496c56`). São variantes de CPU,
+não builds com listas de codecs diferentes.
+
+| Arquivo | Variante | SHA-256 |
+| --- | --- | --- |
+| `libmpv-2.dll` | x86-64 normal | `04E4D27DC385DC18DDD93FBE69C75E635B864F3C6EC53A9122DF54C2F7842F4A` |
+| `libmpv-2-v3.dll` | x86-64-v3 | `9197A10DD712A15D652CCB2E915F47E377605599BC9FAA9A137BB8A1EF2BB6C4` |
+
+Na verificação manual, ambas reproduziram amostras locais PNG, WAV e MP4. Uma
+playlist M3U8 com entrada local WAV também abriu e carregou a mídia. Isso
+confirma os caminhos básicos de imagem, áudio, vídeo e playlist nesta build; não
+é uma prova exaustiva de todos os codecs e containers anunciados pelo mpv.
+
+### Descoberta de mídia e playlist — 17/10/2026
+
+Validação local em 2026-10-17: 680 testes aprovados; build Windows Debug x64
+sem avisos/erros; 13 catálogos gettext validados e compilados. Uma sonda sem
+interface, com libmpv normal real e WAVs locais, verificou substituição da fila
+dentro da janela de append, ordem natural, título de playlist, deduplicação,
+preservação da fila para pasta vazia/inválida, próximo/anterior, avanço no EOF
+e encerramento, com `AutoLoadFolder` ligado e desligado. Erros parciais e
+reparse points foram cobertos por testes com sistema de arquivos controlado.
+Isso não comprova reprodução de DVD/Blu-ray físico ou ISO real, remoção de uma
+unidade durante a busca nem o checklist visual da interface Windows
+(menu/tradução, temas, DPI, fullscreen, atalhos, drag/drop, faixas e cursor/OSC).
+
+Correção posterior dos títulos pendentes em 2026-10-17: 696 testes aprovados,
+incluindo 13 testes com libmpv normal real. A regressão verifica o campo `title`
+dos 200 itens antes de reproduzir o próximo, com autoload ligado/desligado;
+entradas por diálogo, clipboard, drag/drop, CLI e IPC; append sem alterar o ID,
+caminho ou posição da mídia ativa; título de playlist sobre tag incorporada;
+mudança de títulos em uma fila com os mesmos caminhos, sem loop de reconstrução;
+e opções de cache/YouTube por item, inclusive overrides explícitos. Os testes
+de URL usam redirecionamento nativo para WAV local, sem acessar serviços externos.
+O build Windows Debug x64 terminou sem avisos/erros. A verificação visual do
+seletor F8 na aplicação completa permanece manual; os testes consultam a mesma
+playlist nativa usada por esse seletor.
+
+Correção de desempenho do seletor em 2026-10-17: 698 testes aprovados e build
+Windows Release x64 sem avisos/erros. Dois casos novos com 200 e 2.000 entradas
+reproduziram a origem excessiva antes da correção e verificaram origem curta,
+títulos antecipados e registro do temporário para limpeza após a mudança.
+Uma sonda isolada com o frontend corrigido, libmpv normal e uma M3U de 14.892
+itens, precedidos de um WAV local pausado para não acessar os streams, mediu
+aproximadamente 66 ms na primeira abertura do F8 e 50–51 ms nas quatro seguintes;
+com `memory://`, a abertura não havia concluído em 15 segundos. Não houve eventos
+de alteração da playlist nessas aberturas. Esses tempos são evidência local;
+não substituem o checklist visual da aplicação completa ou reprodução de streams.
+
+### Validação de serviços externos
+
+A regra de seleção da playlist foi conferida no manual e no `ytdl_hook.lua`
+do mpv. Em teste local com yt-dlp e uma playlist pública de 31 itens, o hook recebeu
+`--yes-playlist`, registrou a correspondência do vídeo solicitado e definiu
+`playlist-start=2`. O mpv expôs `playlist-count=31`, `playlist-pos=2` e o vídeo
+solicitado como item atual. Como o resultado depende de um serviço externo,
+repita a validação antes de uma release.
+
+Na validação histórica dos serviços, `--list-extractors` confirmou a presença dos extractors,
+mas essa listagem não comprova acesso ao conteúdo. Testes online sem download
+apresentaram estes resultados:
+
+- **URLs públicas resolvidas:** Bilibili, Niconico, Naver, Dailymotion e
+  SoundCloud.
+- **Playlists:** três entradas retornadas para uma coletânea do Bilibili e três
+  para uma coleção de usuário do Niconico.
+- **Sem confirmação:** YouTube solicitou autenticação, sem cookies; Vimeo exigiu
+  login. A live do Naver e o canal Twitch estavam offline. O extractor do Douyu
+  falhou ao obter o identificador da sala.
+- **Não validado online:** Douyin.
+
+As consultas confirmaram somente os casos de resolução listados, nessa máquina
+e versão do yt-dlp. Não comprovaram reprodução no mpv, navegação da playlist,
+integração com SMTC ou reprodução de lives ativas; valide esses casos antes de
+uma release. A suíte offline cobre parâmetros e fragmentos de URL, Unicode em
+chinês, japonês e coreano, entrada pela área de transferência, IPC, `loadfile`,
+domínios não reconhecidos e ausência de opções específicas por provedor.
 
 ### Validação do cache unificado — 08/11/2026
 
@@ -648,8 +636,10 @@ de reprodução. Não houve commit, push, publicação ou deploy desta implement
 
 ### Ampliação e agrupamento dos tetos — 08/11/2026
 
-Após solicitação para ampliar MiB e tempo de leitura antecipada, os limites foram
-agrupados nas três faixas acima. A baseline desta revisão era `master`, HEAD
+Nesta revisão, os tetos passaram a 512/64 MiB e 180 s para HTTP/HTTPS e os
+protocolos do mesmo grupo, 128/16 MiB e 30 s para protocolos contínuos e
+64/8 MiB e 10 s para fontes incertas. Ajustes posteriores mudaram os
+tempos. Consulte a [tabela de limites vigentes](#cache-automático-por-item). A baseline desta revisão era `master`, HEAD
 `232e84a62a918b19a523f94d6e7935004bca1a9c`, sem alterações locais. Os arquivos
 alterados são `MediaInput.cs`, `NetworkCachePolicyTests.cs`,
 `NetworkCacheNativeTests.cs`, manual, esta documentação e orientações locais da
@@ -692,7 +682,7 @@ Cada célula abaixo é **anterior → automático**, uma única execução por c
 A referência usa os valores antigos de `resilient` (256 MiB, espera de 5 s).
 O caso automático reproduziu as opções anteriores ao agrupamento: 512 MiB à
 frente, 32 MiB para trás, 120 s de prefetch e espera de 3 s após identificar VOD.
-Esses números não medem o grupo atual de 512/64 MiB e 180 s. Essa sonda compara
+Esses números antecedem o agrupamento em 512/64 MiB e 180 s, que também foi revisado depois. Essa sonda compara
 as opções nativas; não executa a política C# de histerese nem mede o startup da
 UI/.NET. O script e JSON brutos ficaram localmente em
 `artifacts/cache-qa/cache-benchmark.py` e `cache-benchmark-results.json`,
@@ -754,18 +744,9 @@ exige evidência textual de HTTP, evitando interpretar tamanho de pacote ou
 valores do codec como status. Caminhos assinados absolutos/relativos são
 ocultados antes da divisão das mensagens em blocos.
 
-Para comparar uma falha HTTP/3, o mpv oferece `--curl-http-version=2`, que
-limita a negociação e permite HTTP/1.1 conforme o servidor. É uma opção de
-diagnóstico, sem mudança automática do padrão de transporte ou do formato
-selecionado pelo yt-dlp. Consulte o [manual de rede do mpv](https://mpv.io/manual/master/#network-backend-libcurl).
-Se a falha se repetir na instalação, a mesma mitigação pode ser mantida no
-`mpv.conf` ativo com `curl-http-version=2`, após fazer backup do arquivo. Isso
-limita o transporte dessa configuração a HTTP/2 ou inferior; remova a linha ou
-use `curl-http-version=auto` para restaurar a negociação automática. O padrão
-global do frontend permanece inalterado. Essa opção não garante correção de
-bitstream VP9, nem impede respostas HTTP 429 ou exigências de autenticação.
-O caso VP9 original e o checklist manual completo da interface Windows
-continuam sem comprovação de correção.
+A nota de [diagnóstico de transporte](#diagnóstico-da-cadeia-online) documenta
+a comparação com HTTP/2. O caso VP9 original e o checklist visual da interface
+Windows ficaram sem comprovação de correção nessa rodada.
 
 Validação das correções do log em 2026-10-15: 656 testes aprovados com logging
 padrão e 656 com logging em arquivo habilitado. Build Windows Release com
@@ -773,37 +754,25 @@ dependências nativas e catálogos preparados: zero avisos/erros. O executável
 Release de diagnóstico reproduziu áudio HTTP local até EOF e ocultou caminhos
 assinados absolutos e relativos, cookies e cabeçalhos da fixture Lua/HTTP.
 
----
+## Compatibilidade
 
-# Compatibilidade
+Preserve os contratos de scripts, propriedades, comandos e opções de linha de
+comando ao alterar a integração.
 
-O objetivo arquitetural é manter compatibilidade máxima com mpv.
+## Áreas críticas
 
-Mudanças nessa camada devem considerar:
+### Eventos
 
-- scripts existentes;
-- propriedades;
-- linha de comando;
-- comportamento esperado do mpv.
+Ao alterar o despacho de eventos, confira os observadores da interface,
+os scripts e o estado da reprodução.
 
----
+### Fullscreen
 
-# Áreas críticas
+Confira a propagação da propriedade do mpv até a janela. O fluxo de
+transição está em [Interface Windows](windows-ui.md#fullscreen).
 
-## Eventos
+### Input
 
-Mudanças em eventos podem impactar:
-
-- UI;
-- scripts;
-- sincronização;
-- estado do player.
-
-## Fullscreen
-
-Pode depender da integração entre janela e libmpv.
-
-## Input
-
-Atalhos e comandos podem depender da integração com mpv.
-
+Altere os comandos e bindings na camada que os interpreta. Consulte
+[Configuração de `input.conf`](configuration.md#inputconf) para a ordem
+de aplicação e as migrações.

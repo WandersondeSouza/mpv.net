@@ -14,6 +14,7 @@ ações. Siga `.ai/README.md` e o pedido explícito do usuário.
 - [Mudança de configuração](configuration-change.md)
 - [Análise profunda de código-fonte](deep-source-analysis.md)
 - [Auditoria de documentação](documentation-audit.md)
+- [Revisão editorial e técnica da documentação](documentation-editorial-modernization.md)
 - [Mudança em mpv/libmpv](libmpv-change.md)
 - [Próximas melhorias](next-improvements.md)
 - [Tradução e documentação pt-BR](ptbr-translation-docs.md)

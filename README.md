@@ -1,6 +1,6 @@
 # MPV.NET Media Player
 
-Fork de manutenção do **MPV.NET Media Player** para Windows, baseado no mpv.net e focado em compatibilidade com mpv/libmpv, documentação objetiva e mudanças pequenas e verificadas.
+Player de mídia para Windows baseado no mpv.net e no mpv/libmpv. O fork preserva a compatibilidade com as opções, os comandos e os arquivos de configuração do mpv.
 
 ## Documentação principal
 
@@ -10,7 +10,6 @@ Fork de manutenção do **MPV.NET Media Player** para Windows, baseado no mpv.ne
 - [Atalhos](docs/ATALHOS.md)
 - [Logs de diagnóstico](docs/logging.md)
 - [Guia operacional, build e release](docs/guia-operacional.md)
-- [Microsoft Store](https://apps.microsoft.com/detail/9N441SP6XHLD)
 - [Arquitetura técnica](docs/developer/architecture.md)
 - [Configuração técnica](docs/developer/configuration.md)
 - [Integração com mpv/libmpv](docs/developer/mpv-integration.md)
@@ -18,6 +17,7 @@ Fork de manutenção do **MPV.NET Media Player** para Windows, baseado no mpv.ne
 - [Build e release](docs/developer/build-release.md)
 - [Localização](docs/developer/localization.md)
 - [Artefatos de IA](.ai/README.md)
+- [Política de segurança](SECURITY.md)
 
 ## Uso rápido
 
@@ -33,15 +33,13 @@ O [cache automático de streaming](docs/developer/mpv-integration.md#cache-autom
 usa uma política resiliente por tipo de mídia, com um único toggle no editor e
 precedência para opções explícitas do mpv.
 
-As builds atuais para Windows exigem Windows 10 versão 2004 (build 19041) ou
+As distribuições x64 exigem Windows 10 versão 2004 (build 19041) ou
 posterior. Em Windows 10/11, os controles de mídia do sistema podem exibir a
 mídia ativa e enviar Play, Pause, Stop, Next, Previous e seek para o player.
 
 ## Apresentação do player
 
-O MPV.NET Media Player também está disponível na Microsoft Store:
-
-- URL da Web Store: [https://apps.microsoft.com/detail/9N441SP6XHLD](https://apps.microsoft.com/detail/9N441SP6XHLD)
+Baixe o MPV.NET Media Player nas [releases do GitHub](https://github.com/WandersondeSouza/mpv.net/releases) ou na [Microsoft Store](https://apps.microsoft.com/detail/9N441SP6XHLD).
 
 ## Compatibilidade de CPU do libmpv
 
